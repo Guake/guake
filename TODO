@@ -1,0 +1,87 @@
+Guake Todo
+==========
+
+ - DONE * Code cleanup (Lincoln)
+
+ * Cleanup image names and maybe create a directory for them
+ 
+ - DONE * Add a feature to set the scrollback history lines in the terminal,
+   so add a entry in prefs window to setup it
+     
+ - DONE * Error handling to can take a default action if something external
+   fails. Example:
+      When try to load configs from gconf, trying to get a int, but with a
+      string in gconf schema, it make a segmentation fault. A error handling
+      will come like a piece in a jigsaw :)
+
+ * Maybe convert all svg images to png, we needn't vetorial
+   graphics at this moment (but is important to store the svg `source files'
+   to edit them later)
+
+ - DONE * Finish Preferences window (Gabriel)
+
+ - DONE * Make translation works (Lincoln)
+
+ * Maybe create a little class to can take a debug over all program. We can
+      setup a FLAG when creating the instance of the "debugger" so we turn
+      it ON or OFF, when "ON" messages will be printed along all the parts
+      of guake. (This is just an idea)
+
+ * Bug hunting
+
+    - DONE - Guake is appearing on the task list. (Lincoln)
+
+    - DONE - Added a option for this on prefs window: Guake window must hide
+      when lose focus. NO! discard it! Some users like to do other things with
+      guake opened and above it.
+
+    - Some times, when guake opens, it does not grabs the focus.
+
+    - When guake is hidden/shown the cursor is appearing on bottom,
+    only happens when animate_show/hide is enabled. (Lincoln)
+
+ * Release the first alpha version
+
+ * Pynotify
+    can be used to notify when guake is opened
+    to show all errors
+
+ * Implement a little option in prefs dialog to set status icon visibility
+
+ * Put a shortcut in gnome menu: System->Preferences-> Guake
+ 
+    - This will show the guake preferences, so user will can configure guake thought without the statusicon shown
+
+ * Make that the right click on VTE show a context menu with all options of statusicon menu but show_hide
+
+ * Remove the method update_ui() and threadfy the process of animate show and hide.
+
+    - I think this can optimize the show/hide.
+
+ * Show error when keybind fails - PARTIALLY IMPLEMENTED
+
+ * Maybe create a namespace to store all standard messages, specialy errors
+   and warnings.
+
+ * Add keybindings to:
+	# Add new tab OK
+	# remove current tab (I use ctrl+d, maybe a way to explain to the user...)
+	# Set window size, here we will set only 10 default sizes:
+		# Ctrl-Super-1 -> set to 10% of window
+		# Ctrl-Super-0 -> set to 100% of window 
+
+ * Add to preferences window:
+
+   - History size
+
+   - Visual bell
+
+   - Audio bell
+
+ * Bug hunting
+
+ * Release alpha2
+
+ * Release the first beta
+
+ * Release the stable version of Guake!!!

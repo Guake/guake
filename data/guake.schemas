@@ -1,0 +1,228 @@
+<gconfschemafile>
+    <schemalist>
+
+        <schema>
+            <key>/schemas/apps/guake/general/history_size</key>
+            <applyto>/apps/guake/general/history_size</applyto>
+            <owner>guake</owner>
+            <type>int</type>
+            <default>2048</default>
+            <locale name="C">
+                <short>History Size.</short>
+                <long>The number of scrollback lines to save as history.</long>
+            </locale>
+        </schema>
+
+        <schema>
+            <key>/schemas/apps/guake/general/use_scrollbar</key>
+            <applyto>/apps/guake/general/use_scrollbar</applyto>
+            <owner>guake</owner>
+            <type>bool</type>
+            <default>true</default>
+            <locale name="C">
+                <short>Sets the scrollbar visibility.</short>
+                <long>When true scrollbar is visible.</long>
+            </locale>
+        </schema>
+        
+        <schema>
+            <key>/schemas/apps/guake/general/default_shell</key>
+            <applyto>/apps/guake/general/default_shell</applyto>
+            <owner>guake</owner>
+            <type>string</type>
+            <default>/bin/bash</default>
+            <locale name="C">
+                <short>Path to the default shell.</short>
+                <long>Path to the default shell. If an invalid shell is placed
+                here, guake will fallback to bash.</long>
+            </locale>
+        </schema>
+
+        <schema>
+            <key>/schemas/apps/guake/general/hide_on_lost_focus</key>
+            <applyto>/apps/guake/general/hide_on_lost_focus</applyto>
+            <owner>guake</owner>
+            <type>bool</type>
+            <default>false</default>
+            <locale name="C">
+                <short>Determine if guake hides on lost focus.</short>
+                <long>If this property is set as true, guake will be hidden when
+                lost focus.</long>
+            </locale>
+        </schema>
+
+        <schema>
+            <key>/schemas/apps/guake/general/use_bgimage</key>
+            <applyto>/apps/guake/general/use_bgimage</applyto>
+            <owner>guake</owner>
+            <type>bool</type>
+            <default>false</default>
+            <locale name="C">
+                <short>Set if bg is image or transparent.</short>
+                <long>If true the bg style will be the chosen image
+                    otherway the bg will be transparent</long>
+            </locale>
+        </schema>
+        
+        <schema>
+            <key>/schemas/apps/guake/general/window_animate</key>
+            <applyto>/apps/guake/general/window_animate</applyto>
+            <owner>guake</owner>
+            <type>bool</type>
+            <default>true</default>
+            <locale name="C">
+                <short>Animate window.</short>
+                <long>Animate window when show/hide guake terminals
+                    window.</long>
+            </locale>
+        </schema>
+
+        <schema>
+            <key>/schemas/apps/guake/general/window_ontop</key>
+            <applyto>/apps/guake/general/window_ontop</applyto>
+            <owner>guake</owner>
+            <type>bool</type>
+            <default>true</default>
+            <locale name="C">
+                <short>Stay on top.</short>
+                <long>Makes guake window be on top of all other windows in the
+                    desktop.</long>
+            </locale>
+        </schema>
+
+        <schema>
+            <key>/schemas/apps/guake/general/window_size</key>
+            <applyto>/apps/guake/general/window_size</applyto>
+            <owner>guake</owner>
+            <type>int</type>
+            <default>50</default>
+            <locale name="C">
+                <short>Window size.</short>
+                <long>Percent of the screen that will be used by guake
+                    terminal.</long>
+            </locale>
+        </schema>
+
+        <schema>
+            <key>/schemas/apps/guake/general/tabpos</key>
+            <applyto>/apps/guake/general/tabpos</applyto>
+            <owner>guake</owner>
+            <type>string</type>
+            <default>bottom</default>
+            <locale name="C">
+                <short>Tab position.</short>
+                <long>Defines where tabs will be shown in guake.</long>
+            </locale>
+        </schema>
+
+        <schema>
+            <key>/schemas/apps/guake/style/font/style</key>
+            <applyto>/apps/guake/style/font/style</applyto>
+            <owner>guake</owner>
+            <type>string</type>
+            <default>Sans 10</default>
+            <locale name="C">
+                <short>Font style.</short>
+                <long>Font face and size that will be used in terminal.</long>
+            </locale>
+        </schema>
+
+        <schema>
+            <key>/schemas/apps/guake/style/font/color</key>
+            <applyto>/apps/guake/style/font/color</applyto>
+            <owner>guake</owner>
+            <type>string</type>
+            <default>#ffffffffffff</default>
+            <locale name="C">
+                <short>Font color.</short>
+                <long>Font color that will be used in terminal.</long>
+            </locale>
+        </schema>
+
+        <schema>
+            <key>/schemas/apps/guake/style/background/color</key>
+            <applyto>/apps/guake/style/background/color</applyto>
+            <owner>guake</owner>
+            <type>string</type>
+            <default>#000000000000</default>
+            <locale name="C">
+                <short>Background color.</short>
+                <long>Background color that will be used in terminal.</long>
+            </locale>
+        </schema>
+
+        <schema>
+            <key>/schemas/apps/guake/style/background/image</key>
+            <applyto>/apps/guake/style/background/image</applyto>
+            <owner>guake</owner>
+            <type>string</type>
+            <default></default>
+            <locale name="C">
+                <short>Background image.</short>
+                <long>Background image that will be used in terminal.</long>
+            </locale>
+        </schema>
+
+        <schema>
+            <key>/schemas/apps/guake/style/background/transparency</key>
+            <applyto>/apps/guake/style/background/transparency</applyto>
+            <owner>guake</owner>
+            <type>int</type>
+            <default>20</default>
+            <locale name="C">
+                <short>Background transparency.</short>
+                <long>Alpha that will be applied to the terminal background.</long>
+            </locale>
+        </schema>
+
+        <schema>
+            <key>/schemas/apps/guake/keybindings/global/show_hide</key>
+            <applyto>/apps/guake/keybindings/global/show_hide</applyto>
+            <owner>guake</owner>
+            <type>string</type>
+            <default>F12</default>
+            <locale name="C">
+                <short>Keybinding to show/hide guake.</short>
+                <long>Global keybinding to allow user call guake from each
+                place after it's opened without clicks.</long>
+            </locale>
+        </schema>
+
+        <schema>
+            <key>/schemas/apps/guake/keybindings/local/new_tab</key>
+            <applyto>/apps/guake/keybindings/local/new_tab</applyto>
+            <owner>guake</owner>
+            <type>string</type>
+            <default>&lt;Control&gt;&lt;Shift&gt;t</default>
+            <locale name="C">
+                <short>Add a new tab.</short>
+                <long>Calls the function to add a new tab in guake window.</long>
+            </locale>
+        </schema>
+
+        <schema>
+            <key>/schemas/apps/guake/keybindings/local/previous_tab</key>
+            <applyto>/apps/guake/keybindings/local/previous_tab</applyto>
+            <owner>guake</owner>
+            <type>string</type>
+            <default>&lt;Control&gt;Page_Up</default>
+            <locale name="C">
+                <short>Previous tab.</short>
+                <long>Shows the previous tab.</long>
+            </locale>
+        </schema>
+
+        <schema>
+            <key>/schemas/apps/guake/keybindings/local/next_tab</key>
+            <applyto>/apps/guake/keybindings/local/next_tab</applyto>
+            <owner>guake</owner>
+            <type>string</type>
+            <default>&lt;Control&gt;Page_Down</default>
+            <locale name="C">
+                <short>Next tab.</short>
+                <long>Shows the next tab.</long>
+            </locale>
+        </schema>
+
+    </schemalist>
+</gconfschemafile>
