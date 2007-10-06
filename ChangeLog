@@ -19,6 +19,8 @@
 	* data/pixmaps/up_in.svg:
 	* data/pixmaps/up_normal.svg: Removed.
 
+	* data/pixmaps/Makefile.am: Fixing names of images that were [re]moved.
+
 	* data/pixmaps/guake.svg: Considered as the original image used to make
 	all other guake logos, came from down_normal.svg old image.
 
