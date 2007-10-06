@@ -57,9 +57,6 @@ Guake Todo
  * Threadfy the process of animate show and hide (this was removed for improve
    other things)
 
- * Maybe create a namespace to store all standard messages, specialy errors
-   and warnings.
-
  * Show error when keybind fails - PARTIALLY IMPLEMENTED
 
  * Add keybindings to:
