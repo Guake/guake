@@ -1,5 +1,8 @@
 2007-10-06  Lincoln de Sousa <lincoln@minaslivre.org>
 
+	* src/guake.py (PrefsDialog.__init__): Fixing jpg, jpeg file filters to be
+	passed to gtk.FileChooser.
+
 	* src/guake.py (Guake, PrefsDialog): removing Guake.use_bgimage as
 	attribute, gconf is a really good framework to store/manage configuration.
 
