@@ -380,7 +380,7 @@ class Guake(SimpleGladeApp):
         tray_icon.show_all()
 
         # adding images from a different path.
-        ipath = common.pixmapfile('new_guakelogo.png')
+        ipath = common.pixmapfile('guake.png')
         self.get_widget('image1').set_from_file(ipath)
         ipath = common.pixmapfile('add_tab.png')
         self.get_widget('image2').set_from_file(ipath)
