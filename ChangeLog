@@ -1,3 +1,8 @@
+2007-10-06  Lincoln de Sousa <lincoln@minaslivre.org>
+
+	* src/guake.py (Guake.__init__): Setting the main window to be shown in all
+	desktos with the .stick() method.
+
 2007-10-02  Lincoln de Sousa  <lincoln@minaslivre.org>
 
 	* src/guake.py (PrefsDialog):

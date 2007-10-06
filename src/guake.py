@@ -360,6 +360,9 @@ class Guake(SimpleGladeApp):
         super(Guake, self).__init__(common.gladefile('guake.glade'))
         self.client = gconf.client_get_default()
 
+        # setting window in all desktops
+        self.get_widget('window-root').stick()
+
         # default option in case of gconf fails:
         self.use_bgimage = False
 
