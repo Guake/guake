@@ -261,12 +261,13 @@ class PrefsDialog(SimpleGladeApp):
         self.client.set_int(GCONF_PATH + 'general/history_size', val)
         
     def on_show_scrollbar_checkbutton_toggled(self, chk):
-        bool = chk.get_active()
-        self.client.set_bool(GCONF_PATH + 'general/use_scrollbar', bool)
+        fbool = chk.get_active()
+        self.client.set_bool(GCONF_PATH + 'general/use_scrollbar', fbool)
+        self.guake.toggle_scrollbars()
         
     def on_chk_lostfocus_toggled(self, chk):
-        bool = chk.get_active()
-        self.client.set_bool(GCONF_PATH + 'general/hide_on_lost_focus', bool)
+        fbool = chk.get_active()
+        self.client.set_bool(GCONF_PATH + 'general/hide_on_lost_focus', fbool)
         
     def on_shells_combobox_changed(self, combo):
         citer = combo.get_active_iter()
@@ -403,6 +404,7 @@ class Guake(SimpleGladeApp):
 
         self.load_config()
         self.load_accelerators()
+        self.toggle_scrollbars()
         self.refresh()
         self.add_tab()
 
@@ -513,6 +515,19 @@ class Guake(SimpleGladeApp):
         self.notebook.next_page()
         return True
 
+    def toggle_scrollbars(self):
+        b = self.client.get_bool(GCONF_PATH+'general/use_scrollbar')
+        for i in self.term_list:
+            # this hbox contains a Terminal and a Scrollbar, and we only
+            # have the Terminal, so we're going to use this to get the bar
+            # and hide/show it.
+            hbox = i.get_parent()
+            terminal, scrollbar = hbox.get_children()
+            if b:
+                scrollbar.show()
+            else:
+                scrollbar.hide()
+
     # -- format functions --
 
     def set_bgcolor(self):
@@ -585,6 +600,7 @@ class Guake(SimpleGladeApp):
         last_added = len(self.term_list)
         self.term_list.append(vte.Terminal())
         self.term_list[last_added].set_sensitive(False)
+
         # TODO: make new terminal opens in the same dir of the already in use.
         shell_name = self.client.get_string(GCONF_PATH+'general/default_shell')
         self.term_list[last_added].fork_command(shell_name or "bash",
@@ -608,15 +624,13 @@ class Guake(SimpleGladeApp):
         hbox.pack_start(button)
         hbox.show_all()
 
+        # preparing the way to a scrollbar...
         mhbox = gtk.HBox()
         mhbox.pack_start(self.term_list[last_added], True, True)
-
-        # showing scrollbar based in gconf setting:
-        scrollbar_visible = self.client.get_bool(GCONF_PATH+'general/use_scrollbar')
-        if scrollbar_visible:
-            adj = self.term_list[last_added].get_adjustment()
-            scroll = gtk.VScrollbar(adj)
-            mhbox.pack_start(scroll, False, False)
+        adj = self.term_list[last_added].get_adjustment()
+        scroll = gtk.VScrollbar(adj)
+        scroll.set_no_show_all(True)
+        mhbox.pack_start(scroll, False, False)
 
         mhbox.show_all()
 

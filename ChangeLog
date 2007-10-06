@@ -1,5 +1,8 @@
 2007-10-06  Lincoln de Sousa <lincoln@minaslivre.org>
 
+	* src/guake.py (Guake): Added toggle_scrollbars method and fixing problems
+	when hidding/showing scrollbars.
+
 	* data/pixmaps/down_in.svg:
 	* data/pixmaps/down_normal.svg:
 	* data/pixmaps/guakelogo.svg:
