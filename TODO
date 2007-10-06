@@ -22,11 +22,6 @@ Guake Todo
 
  - DONE * Make translation works (Lincoln)
 
- * FORGET * Maybe create a little class to can take a debug over all program. We can
-      setup a FLAG when creating the instance of the "debugger" so we turn
-      it ON or OFF, when "ON" messages will be printed along all the parts
-      of guake. (This is just an idea)
-
  * Bug hunting
 
     - DONE * Guake is appearing on the task list. (Lincoln)
