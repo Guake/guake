@@ -40,8 +40,6 @@ import dbusiface
 import globalhotkeys
 import guake_globals
 
-VERSION = '0.1a'
-
 # Loading translation
 bindtextdomain(guake_globals.name, guake_globals.locale_dir)
 
@@ -72,7 +70,7 @@ class AboutDialog(SimpleGladeApp):
         ad.set_property('logo', img)
 
         ad.set_name('Guake!')
-        ad.set_version(VERSION)
+        ad.set_version(guake_globals.version)
 
 
 class PrefsDialog(SimpleGladeApp):
