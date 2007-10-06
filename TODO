@@ -14,10 +14,6 @@ Guake Todo
       string in gconf schema, it make a segmentation fault. A error handling
       will come like a piece in a jigsaw :)
 
- * Maybe convert all svg images to png, we needn't vetorial
-   graphics at this moment (but is important to store the svg `source files'
-   to edit them later)
-
  - DONE * Finish Preferences window (Gabriel)
 
  - DONE * Make translation works (Lincoln)
