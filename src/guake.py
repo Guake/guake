@@ -333,11 +333,19 @@ class PrefsDialog(SimpleGladeApp):
         giter = model.get_iter(path)
         gconf_path = model.get_value(giter, 0)
         model.set(giter, 2, key)
-
-        # ungrabing key
         accel = self.client.get_string(gconf_path)
-        keynum, mask = gtk.accelerator_parse(accel)
-        self.guake.accel_group.disconnect_key(keynum, mask)
+
+        if gconf_path in [x[0] for x in GHOTKEYS]:
+            # ungrabing global keys
+            globalhotkeys.unbind(accel)
+            if not globalhotkeys.bind(key, self.guake.show_hide):
+                globalhotkeys.bind(accel, self.guake.show_hide)
+                raise ShowableError(_('key binding error'),
+                        _('Unable to bind %s key' % key), -1)
+        else:
+            # ungrabing local keys
+            keynum, mask = gtk.accelerator_parse(accel)
+            self.guake.accel_group.disconnect_key(keynum, mask)
 
         # setting the new value on gconf
         self.client.set_string(gconf_path, key)

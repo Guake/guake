@@ -38,7 +38,8 @@ class ShowableError(Exception):
         d.format_secondary_markup(msg)
         d.run()
         d.destroy()
-        sys.exit(exit_code)
+        if exit_code != -1:
+            sys.exit(exit_code)
 
 def test_dbus(bus, interface):
     obj = bus.get_object('org.freedesktop.DBus', '/org/freedesktop/DBus')

@@ -1,5 +1,7 @@
 2007-10-06  Lincoln de Sousa <lincoln@minaslivre.org>
 
+	* configure.ac: Fixing bug tracker url and changing version to 0.1a.
+
 	* src/guake.in: Adding the -a flag to change the process name and make it
 	easy to find guake by using ps or another process management tool.
 
@@ -35,11 +37,16 @@
 	* src/guake.py (PrefsDialog.__init__): Fixing jpg, jpeg file filters to be
 	passed to gtk.FileChooser.
 
+	* src/guake.py (PrefsDialog.on_key_edited): Fixing rebinding of global
+	hotkeys.
+
 	* src/guake.py (Guake, PrefsDialog): removing Guake.use_bgimage as
 	attribute, gconf is a really good framework to store/manage configuration.
 
 	* src/guake.py (Guake.show): Setting the main window to be shown in all
 	desktos with the .stick() method.
+
+	* src/common.py (ShowableError): avoiding sys.exit when exit_code == -1.
 
 2007-10-02  Lincoln de Sousa  <lincoln@minaslivre.org>
 
