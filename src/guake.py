@@ -117,9 +117,10 @@ class PrefsDialog(SimpleGladeApp):
         # Preview when selecting a bgimage
         self.selection_preview = gtk.Image()
         self.file_filter = gtk.FileFilter()
-        self.file_filter.add_pattern("*.jp[e]?g")
+        self.file_filter.add_pattern("*.jpg")
         self.file_filter.add_pattern("*.png")
         self.file_filter.add_pattern("*.svg")
+        self.file_filter.add_pattern("*.jpeg")
         self.bgfilechooser = self.get_widget('bgimage-filechooserbutton')
         self.bgfilechooser.set_preview_widget(self.selection_preview)
         self.bgfilechooser.set_filter(self.file_filter)
