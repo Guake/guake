@@ -192,8 +192,8 @@ class PrefsDialog(SimpleGladeApp):
         except (ValueError, TypeError):
             warnings.warn('Unable to parse color %s' % val, Warning)
             
-        self.guake.use_bgimage = self.client.get_bool(GCONF_PATH+'general/use_bgimage')
-        self.get_widget('chk_bg_transparent').set_active(not self.guake.use_bgimage)
+        use_bgimage = self.client.get_bool(GCONF_PATH+'general/use_bgimage')
+        self.get_widget('chk_bg_transparent').set_active(not use_bgimage)
         self.get_widget('chk_bg_transparent').connect('toggled', self.on_chk_bg_transparent_toggled)
         
         val = self.client.get_string(GCONF_PATH+'style/background/image')
@@ -363,9 +363,6 @@ class Guake(SimpleGladeApp):
         # setting window in all desktops
         self.get_widget('window-root').stick()
 
-        # default option in case of gconf fails:
-        self.use_bgimage = False
-
         # setting global hotkey!
         globalhotkeys.init()
         key = self.client.get_string(GHOTKEYS[0][0])
@@ -518,11 +515,11 @@ class Guake(SimpleGladeApp):
 
     def set_bgimage(self):
         image = self.client.get_string(GCONF_PATH+'style/background/image')
-        self.use_bgimage = self.client.get_bool(GCONF_PATH+'general/use_bgimage')
+        use_bgimage = self.client.get_bool(GCONF_PATH+'general/use_bgimage')
         if image and os.path.exists(image):
             for i in self.term_list:
                 i.set_background_image_file(image)
-                i.set_background_transparent(not self.use_bgimage)
+                i.set_background_transparent(not use_bgimage)
                 
     def set_fgcolor(self):
         color = self.client.get_string(GCONF_PATH+'style/font/color')
@@ -541,9 +538,9 @@ class Guake(SimpleGladeApp):
 
     def set_alpha(self):
         alpha = self.client.get_int(GCONF_PATH+'style/background/transparency')
-        self.use_bgimage = self.client.get_bool(GCONF_PATH+'general/use_bgimage')
+        use_bgimage = self.client.get_bool(GCONF_PATH+'general/use_bgimage')
         for i in self.term_list:
-            i.set_background_transparent(not self.use_bgimage)
+            i.set_background_transparent(not use_bgimage)
             i.set_background_saturation(alpha / 100.0)
 
     def set_tabpos(self):
@@ -613,8 +610,10 @@ class Guake(SimpleGladeApp):
             mhbox.pack_start(scroll, False, False)
 
         mhbox.show_all()
-            
-        self.term_list[last_added].set_background_transparent(not self.use_bgimage)
+
+        use_bgimage = self.client.get_bool(GCONF_PATH+'general/use_bgimage')
+        self.term_list[last_added].set_background_transparent(not use_bgimage)
+
         # TODO: maybe the better way is give these choices to the user...
         self.term_list[last_added].set_audible_bell(False) # without boring beep
         self.term_list[last_added].set_visible_bell(False) # without visible beep
