@@ -442,6 +442,7 @@ class Guake(SimpleGladeApp):
         # blank screen before adding the tab.
         if not self.term_list:
             self.add_tab()
+
         self.visible = True
         self.window.move(0, 0)
         self.resize(*self.get_final_window_size())
