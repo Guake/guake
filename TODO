@@ -22,29 +22,31 @@ Guake Todo
 
  - DONE * Make translation works (Lincoln)
 
- * Maybe create a little class to can take a debug over all program. We can
+ * FORGET * Maybe create a little class to can take a debug over all program. We can
       setup a FLAG when creating the instance of the "debugger" so we turn
       it ON or OFF, when "ON" messages will be printed along all the parts
       of guake. (This is just an idea)
 
  * Bug hunting
 
-    - DONE - Guake is appearing on the task list. (Lincoln)
+    - DONE * Guake is appearing on the task list. (Lincoln)
 
-    - DONE - Added a option for this on prefs window: Guake window must hide
+    - DONE * Added a option for this on prefs window: Guake window must hide
       when lose focus. NO! discard it! Some users like to do other things with
       guake opened and above it.
 
     - Some times, when guake opens, it does not grabs the focus.
 
-    - When guake is hidden/shown the cursor is appearing on bottom,
+    - DONE * When guake is hidden/shown the cursor is appearing on bottom,
     only happens when animate_show/hide is enabled. (Lincoln)
 
- * Release the first alpha version
+ * Fix about window (name, site, etc)
 
- * Pynotify
-    can be used to notify when guake is opened
-    to show all errors
+ ==== * Release the first alpha version * ====
+
+ * Pynotify integration
+
+ * Make that the right click on VTE show a context menu with all options of statusicon menu but show_hide
 
  * Implement a little option in prefs dialog to set status icon visibility
 
@@ -52,16 +54,13 @@ Guake Todo
  
     - This will show the guake preferences, so user will can configure guake thought without the statusicon shown
 
- * Make that the right click on VTE show a context menu with all options of statusicon menu but show_hide
-
- * Remove the method update_ui() and threadfy the process of animate show and hide.
-
-    - I think this can optimize the show/hide.
-
- * Show error when keybind fails - PARTIALLY IMPLEMENTED
+ * Threadfy the process of animate show and hide (this was removed for improve
+   other things)
 
  * Maybe create a namespace to store all standard messages, specialy errors
    and warnings.
+
+ * Show error when keybind fails - PARTIALLY IMPLEMENTED
 
  * Add keybindings to:
 	# Add new tab OK
@@ -72,7 +71,7 @@ Guake Todo
 
  * Add to preferences window:
 
-   - History size
+   - DONE * History size
 
    - Visual bell
 
@@ -80,8 +79,8 @@ Guake Todo
 
  * Bug hunting
 
- * Release alpha2
+ ==== * Release the first beta version * ====
 
- * Release the first beta
+ * Bug hunting
 
- * Release the stable version of Guake!!!
+ ==== * Release the first stable version of Guake!!! * ====
