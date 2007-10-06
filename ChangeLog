@@ -1,5 +1,10 @@
 2007-10-06  Lincoln de Sousa <lincoln@minaslivre.org>
 
+	* src/guake.py (AboutDialog.__init__):
+	* data/about.glade: Fixing emails, adding gabriel in artists list,
+	improving guake description, adding version information and setting
+	application name in about window.
+
 	* src/guake.py (PrefsDialog.__init__): Fixing jpg, jpeg file filters to be
 	passed to gtk.FileChooser.
 

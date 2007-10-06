@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <!DOCTYPE glade-interface SYSTEM "glade-2.0.dtd">
-<!--Generated with glade3 3.2.1 on Sun May 27 13:52:34 2007 by pythonwarrior@pidinti-->
+<!--Generated with glade3 3.2.2 on Sat Oct  6 15:44:41 2007 by pythonwarrior@pidinti-->
 <glade-interface>
   <widget class="GtkAboutDialog" id="aboutdialog">
     <property name="visible">True</property>
@@ -12,21 +12,22 @@
     <property name="window_position">GTK_WIN_POS_CENTER_ALWAYS</property>
     <property name="type_hint">GDK_WINDOW_TYPE_HINT_NORMAL</property>
     <property name="has_separator">False</property>
-    <property name="name">Guake</property>
     <property name="version">0.1</property>
     <property name="copyright" translatable="yes">Copyright 2007 Gabriel Falcão
 Copyright 2007 Lincoln de Sousa</property>
-    <property name="comments" translatable="yes">Guake is a binding of gnome-terminal that provide quickly access by clicking in applet  or thought using a keyboard shortcut.</property>
-    <property name="website">http://guake.sf.net</property>
-    <property name="website_label" translatable="yes">http://guake.sf.net</property>
+    <property name="comments" translatable="yes">Guake is an easy to access
+terminal based on fps games terminal</property>
+    <property name="website">http://guake-terminal.org</property>
+    <property name="website_label" translatable="yes">http://guake-terminal.org</property>
     <property name="license" translatable="yes">Guake is free software; you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation; either version 2 of the License, or (at your option) any later version.
 
 Guake is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 You should have received a copy of the GNU General Public License along with Guake; if not, write to the Free Software Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301 USA
 </property>
-    <property name="authors">Gabriel Falcao &lt;gabrielteratos@gmail.com&gt;
-Lincoln de Sousa &lt;lincoln@archlinux-br.org&gt;</property>
+    <property name="authors">Gabriel Falcao &lt;gabriel@guake-terminal.org&gt;
+Lincoln de Sousa &lt;lincoln@guake-terminal.org&gt;</property>
+    <property name="artists">Gabriel Falcao &lt;gabriel@guake-terminal.org&gt;</property>
     <property name="wrap_license">True</property>
     <signal name="response" handler="gtk_widget_destroy" object="aboutdialog"/>
     <child internal-child="vbox">

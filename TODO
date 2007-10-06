@@ -40,7 +40,7 @@ Guake Todo
     - DONE * When guake is hidden/shown the cursor is appearing on bottom,
     only happens when animate_show/hide is enabled. (Lincoln)
 
- * Fix about window (name, site, etc)
+ - DONE * Fix about window (name, site, etc)
 
  ==== * Release the first alpha version * ====
 

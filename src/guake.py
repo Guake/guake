@@ -40,6 +40,8 @@ import dbusiface
 import globalhotkeys
 import guake_globals
 
+VERSION = '0.1a'
+
 # Loading translation
 bindtextdomain(guake_globals.name, guake_globals.locale_dir)
 
@@ -59,13 +61,18 @@ class AboutDialog(SimpleGladeApp):
     def __init__(self):
         super(AboutDialog, self).__init__(common.gladefile('about.glade'),
                 root='aboutdialog')
+        ad = self.get_widget('aboutdialog')
+
         # the terminal window can be opened and the user *must* see this window
-        self.get_widget('aboutdialog').set_keep_above(True)
+        ad.set_keep_above(True)
 
         # images
         ipath = common.pixmapfile('guake.png')
         img = gtk.gdk.pixbuf_new_from_file(ipath)
-        self.get_widget('aboutdialog').set_property('logo', img)
+        ad.set_property('logo', img)
+
+        ad.set_name('Guake!')
+        ad.set_version(VERSION)
 
 
 class PrefsDialog(SimpleGladeApp):
