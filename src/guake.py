@@ -340,6 +340,7 @@ class PrefsDialog(SimpleGladeApp):
             globalhotkeys.unbind(accel)
             if not globalhotkeys.bind(key, self.guake.show_hide):
                 globalhotkeys.bind(accel, self.guake.show_hide)
+                model.set(giter, 2, accel)
                 raise ShowableError(_('key binding error'),
                         _('Unable to bind %s key' % key), -1)
         else:
