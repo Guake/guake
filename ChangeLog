@@ -1,5 +1,8 @@
 2007-10-06  Lincoln de Sousa <lincoln@minaslivre.org>
 
+	* src/guake.in: Adding the -a flag to change the process name and make it
+	easy to find guake by using ps or another process management tool.
+
 	* src/guake.py (Guake): Added toggle_scrollbars method and fixing problems
 	when hidding/showing scrollbars.
 
