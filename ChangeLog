@@ -1,3 +1,8 @@
+2007-10-06  Gabriel Falcão <root@gabrielfalcao.com>
+
+	* data/pixmaps/tabdown.svg: Tangonified
+	* data/pixmaps/tabup.svg: Tangonified
+
 2007-10-06  Lincoln de Sousa <lincoln@minaslivre.org>
 
 	* configure.ac: Fixing bug tracker url and changing version to 0.1a.
