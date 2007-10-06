@@ -23,7 +23,7 @@
 ## the same distribution terms that you use for the rest of that program.
 
 dnl IT_PROG_INTLTOOL([MINIMUM-VERSION], [no-xml])
-# serial 35 IT_PROG_INTLTOOL
+# serial 36 IT_PROG_INTLTOOL
 AC_DEFUN([IT_PROG_INTLTOOL],
 [AC_PREREQ([2.50])dnl
 
@@ -36,7 +36,7 @@ case "$am__api_version" in
 esac
 
 if test -n "$1"; then
-    AC_MSG_CHECKING(for intltool >= $1)
+    AC_MSG_CHECKING([for intltool >= $1])
 
     INTLTOOL_REQUIRED_VERSION_AS_INT=`echo $1 | awk -F. '{ print $ 1 * 1000 + $ 2 * 100 + $ 3; }'`
     INTLTOOL_APPLIED_VERSION=`awk -F\" '/\\$VERSION / { print $ 2; }' ${ac_aux_dir}/intltool-update.in`
@@ -65,6 +65,7 @@ INTLTOOL_SOUNDLIST_RULE='%.soundlist: %.soundlist.in $(INTLTOOL_MERGE) $(wildcar
   INTLTOOL_SCHEMAS_RULE='%.schemas:   %.schemas.in   $(INTLTOOL_MERGE) $(wildcard $(top_srcdir)/po/*.po) ; LC_ALL=C $(INTLTOOL_MERGE) -s -u -c $(top_builddir)/po/.intltool-merge-cache $(top_srcdir)/po $< [$]@' 
     INTLTOOL_THEME_RULE='%.theme:     %.theme.in     $(INTLTOOL_MERGE) $(wildcard $(top_srcdir)/po/*.po) ; LC_ALL=C $(INTLTOOL_MERGE) -d -u -c $(top_builddir)/po/.intltool-merge-cache $(top_srcdir)/po $< [$]@' 
     INTLTOOL_SERVICE_RULE='%.service: %.service.in   $(INTLTOOL_MERGE) $(wildcard $(top_srcdir)/po/*.po) ; LC_ALL=C $(INTLTOOL_MERGE) -d -u -c $(top_builddir)/po/.intltool-merge-cache $(top_srcdir)/po $< [$]@'
+   INTLTOOL_POLICY_RULE='%.policy:    %.policy.in    $(INTLTOOL_MERGE) $(wildcard $(top_srcdir)/po/*.po) ; LC_ALL=C $(INTLTOOL_MERGE) -x -u -c $(top_builddir)/po/.intltool-merge-cache $(top_srcdir)/po $< [$]@'
 
 AC_SUBST(INTLTOOL_DESKTOP_RULE)
 AC_SUBST(INTLTOOL_DIRECTORY_RULE)
@@ -84,6 +85,7 @@ AC_SUBST(INTLTOOL_CAVES_RULE)
 AC_SUBST(INTLTOOL_SCHEMAS_RULE)
 AC_SUBST(INTLTOOL_THEME_RULE)
 AC_SUBST(INTLTOOL_SERVICE_RULE)
+AC_SUBST(INTLTOOL_POLICY_RULE)
 
 # Use the tools built into the package, not the ones that are installed.
 AC_SUBST(INTLTOOL_EXTRACT, '$(top_builddir)/intltool-extract')
@@ -106,19 +108,16 @@ if test "x$2" != "xno-xml"; then
    fi
 fi
 
-AC_PATH_PROG(INTLTOOL_ICONV, iconv, iconv)
-AC_PATH_PROG(INTLTOOL_MSGFMT, msgfmt, msgfmt)
-AC_PATH_PROG(INTLTOOL_MSGMERGE, msgmerge, msgmerge)
-AC_PATH_PROG(INTLTOOL_XGETTEXT, xgettext, xgettext)
-
 # Substitute ALL_LINGUAS so we can use it in po/Makefile
 AC_SUBST(ALL_LINGUAS)
 
 # Set DATADIRNAME correctly if it is not set yet
 # (copied from glib-gettext.m4)
 if test -z "$DATADIRNAME"; then
-  AC_TRY_LINK(, [extern int _nl_msg_cat_cntr;
-                 return _nl_msg_cat_cntr],
+  AC_LINK_IFELSE(
+    [AC_LANG_PROGRAM([[]],
+                     [[extern int _nl_msg_cat_cntr;
+                       return _nl_msg_cat_cntr]])],
     [DATADIRNAME=share],
     [case $host in
     *-*-solaris*)
@@ -159,10 +158,6 @@ AC_CONFIG_COMMANDS([intltool], [
 for file in intltool-extract intltool-merge intltool-update; do
   sed -e "s|@INTLTOOL_EXTRACT@|`pwd`/intltool-extract|g" \
       -e "s|@INTLTOOL_LIBDIR@|${INTLTOOL_LIBDIR}|g" \
-      -e "s|@INTLTOOL_ICONV@|${INTLTOOL_ICONV}|g" \
-      -e "s|@INTLTOOL_MSGFMT@|${INTLTOOL_MSGFMT}|g" \
-      -e "s|@INTLTOOL_MSGMERGE@|${INTLTOOL_MSGMERGE}|g" \
-      -e "s|@INTLTOOL_XGETTEXT@|${INTLTOOL_XGETTEXT}|g" \
       -e "s|@INTLTOOL_PERL@|${INTLTOOL_PERL}|g" \
 	< ${ac_aux_dir}/${file}.in > ${file}.out
   if cmp -s ${file} ${file}.out 2>/dev/null; then
@@ -177,9 +172,7 @@ done
 ],
 [INTLTOOL_PERL='${INTLTOOL_PERL}' ac_aux_dir='${ac_aux_dir}'
 prefix="$prefix" exec_prefix="$exec_prefix" INTLTOOL_LIBDIR="$libdir" 
-INTLTOOL_EXTRACT='${INTLTOOL_EXTRACT}' INTLTOOL_ICONV='${INTLTOOL_ICONV}'
-INTLTOOL_MSGFMT='${INTLTOOL_MSGFMT}' INTLTOOL_MSGMERGE='${INTLTOOL_MSGMERGE}'
-INTLTOOL_XGETTEXT='${INTLTOOL_XGETTEXT}'])
+INTLTOOL_EXTRACT='${INTLTOOL_EXTRACT}'])
 
 ])
 

@@ -1,3 +1,43 @@
+2007-10-02  Lincoln de Sousa  <lincoln@minaslivre.org>
+
+	* src/guake.py (PrefsDialog):
+	* src/guake.py (PrefsDialog.load_configs): Widget spinHistorySize renamed
+	to historysize-spinbutton to follow the name of other widgets, because of
+	this, the callback on_spinHistorySize_value_changed was renamed to
+	on_historysize_spinbutton_value_changed. Removed animate flag button
+	changer.
+
+	* src/guake.py (PrefsDialog.load_configs): Adding warnings when unable to
+	parse a color.
+
+	* src/guake.py (PrefsDialog.on_show_scrollbar_checkbutton_toggled): Pep8'ed
+
+	* src/guake.py
+	  (PrefsDialog.on_bgimage_filechooserbutton_selection_changed): little var
+	  name clean.
+
+	* src/guake.py (Guake.refresh): Comment updated, misspell fixed.
+
+	* src/guake.py (Guake.show): Moving add_tab call to be called before
+	self.window.show, to avoid blank screens before adding a tab. And some
+	unuseful function calls removed. Not this method resizes and shows the main
+	window, see the next entry to understand why.
+
+	* src/guake.py (Guake.animate_hide, Guake.animate_show): Removed, we will
+	wait a better moment to implement animated things, now Guake.show and
+	Guake.hide makes the work alone.
+
+	* data/guake.glade: window-root is not a popup any more, now it's a
+	toplevel window, his type_hint is Normal by default, etc. The
+	notebook-terminals widget had his tabs hidden by default, now it can has
+	focus, all borders were set to 0, empty pages were removed, because it is
+	added by code, not in the glade file. toolbar widget height was set to 22.
+
+	* data/prefs.glade: spinHistorySize widget was renamed to
+	historysize-spinbutton (his change signall too), padding and spacing
+	changed in many places, misspell fixed in "Hide on lose focus" and remove
+	option to choose animated show/hide.
+
 2007-06-21  Lincoln de Sousa <lincoln@archlinux-br.org>
 
 	* src/dialogs.py: Removed.
