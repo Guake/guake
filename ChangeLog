@@ -1,5 +1,24 @@
 2007-10-06  Lincoln de Sousa <lincoln@minaslivre.org>
 
+	* data/pixmaps/down_in.svg:
+	* data/pixmaps/down_normal.svg:
+	* data/pixmaps/guakelogo.svg:
+	* data/pixmaps/left_in.svg:
+	* data/pixmaps/left_normal.svg:
+	* data/pixmaps/littleguakelogo.png:
+	* data/pixmaps/littleguakelogo.svg:
+	* data/pixmaps/new_guakelogo.png:
+	* data/pixmaps/right_in.svg:
+	* data/pixmaps/right_normal.svg:
+	* data/pixmaps/up_in.svg:
+	* data/pixmaps/up_normal.svg: Removed.
+
+	* data/pixmaps/guake.svg: Considered as the original image used to make
+	all other guake logos, came from down_normal.svg old image.
+
+	* src/guake.py (Guake.__init__): Fixing main image name (below tabs), to
+	point to statusicon_out.png.
+
 	* src/guake.py (AboutDialog.__init__):
 	* data/about.glade: Fixing emails, adding gabriel in artists list,
 	improving guake description, adding version information and setting

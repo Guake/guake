@@ -3,7 +3,7 @@ Guake Todo
 
  - DONE * Code cleanup (Lincoln)
 
- * Cleanup image names and maybe create a directory for them
+ - DONE * Cleanup image names and maybe create a directory for them
  
  - DONE * Add a feature to set the scrollback history lines in the terminal,
    so add a entry in prefs window to setup it
