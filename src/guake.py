@@ -361,9 +361,6 @@ class Guake(SimpleGladeApp):
         super(Guake, self).__init__(common.gladefile('guake.glade'))
         self.client = gconf.client_get_default()
 
-        # setting window in all desktops
-        self.get_widget('window-root').stick()
-
         # setting global hotkey!
         globalhotkeys.init()
         key = self.client.get_string(GHOTKEYS[0][0])
@@ -438,6 +435,9 @@ class Guake(SimpleGladeApp):
             self.hide()
 
     def show(self, wwidth, hheight):
+        # setting window in all desktops
+        self.get_widget('window-root').stick()
+
         # add tab must be called before window.show to avoid a
         # blank screen before adding the tab.
         if not self.term_list:
