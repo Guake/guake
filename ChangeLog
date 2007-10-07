@@ -7,12 +7,6 @@
 
 	* configure.ac: Fixing bug tracker url and changing version to 0.1a.
 
-	* src/guake.in: Adding the -a flag to change the process name and make it
-	easy to find guake by using ps or another process management tool.
-
-	* src/guake.py (Guake): Added toggle_scrollbars method and fixing problems
-	when hidding/showing scrollbars.
-
 	* data/pixmaps/down_in.svg:
 	* data/pixmaps/down_normal.svg:
 	* data/pixmaps/guakelogo.svg:
@@ -51,7 +45,16 @@
 	* src/guake.py (Guake.show): Setting the main window to be shown in all
 	desktos with the .stick() method.
 
+	* src/guake.py (Guake): Added toggle_scrollbars method and fixing problems
+	when hidding/showing scrollbars and added a notification when guake starts.
+
+	* src/guake.in: Adding the -a flag to change the process name and make it
+	easy to find guake by using ps or another process management tool.
+
 	* src/common.py (ShowableError): avoiding sys.exit when exit_code == -1.
+
+	* src/common.py (pixmapfile, gladefile): Now these functions returns the
+	absolute path of files.
 
 2007-10-02  Lincoln de Sousa  <lincoln@minaslivre.org>
 

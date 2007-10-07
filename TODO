@@ -35,11 +35,9 @@ Guake Todo
 
  ==== * Release the first alpha version * ====
 
- * Pynotify integration
+ - DONE * Pynotify integration
 
  * Make that the right click on VTE show a context menu with all options of statusicon menu but show_hide
-
- * Implement a little option in prefs dialog to set status icon visibility
 
  * Put a shortcut in gnome menu: System->Preferences-> Guake
  
@@ -48,7 +46,7 @@ Guake Todo
  * Threadfy the process of animate show and hide (this was removed for improve
    other things)
 
- * Show error when keybind fails - PARTIALLY IMPLEMENTED
+ - DONE * Show error when keybind fails - PARTIALLY IMPLEMENTED
 
  * Add keybindings to:
 	# Add new tab OK
@@ -64,6 +62,8 @@ Guake Todo
    - Visual bell
 
    - Audio bell
+
+   - status icon visibility
 
  * Bug hunting
 
