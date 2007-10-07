@@ -222,7 +222,8 @@ class PrefsDialog(SimpleGladeApp):
             lines = open(SHELLS_FILE).readlines()
             for i in lines:
                 possible = i.strip()
-                if possible and not possible.startswith('#'):
+                if possible and not possible.startswith('#') and \
+                   os.path.exists(possible):
                     cb.append_text(possible)
         cb.append_text(sys.executable)
 

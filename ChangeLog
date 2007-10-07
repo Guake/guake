@@ -1,3 +1,9 @@
+2007-10-07  Lincoln de Sousa <lincoln@minaslivre.org>
+
+	* data/prefs.glade: Fixing callback name in shell combo signal connection.
+
+	* src/guake.py: Testing if a shell exists before put it in the combo.
+
 2007-10-06  Gabriel Falcão <root@gabrielfalcao.com>
 
 	* data/pixmaps/tabdown.svg: Tangonified
