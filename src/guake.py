@@ -26,6 +26,7 @@ gobject.threads_init()
 import gtk
 import vte
 from pango import FontDescription
+import pynotify
 import gconf
 import dbus
 
@@ -39,6 +40,8 @@ from statusicon import GuakeStatusIcon
 import dbusiface
 import globalhotkeys
 import guake_globals
+
+pynotify.init('Guake!')
 
 # Loading translation
 bindtextdomain(guake_globals.name, guake_globals.locale_dir)
@@ -376,10 +379,20 @@ class Guake(SimpleGladeApp):
         super(Guake, self).__init__(common.gladefile('guake.glade'))
         self.client = gconf.client_get_default()
 
-        # setting global hotkey!
+        # setting global hotkey showing a pretty notification =)
         globalhotkeys.init()
         key = self.client.get_string(GHOTKEYS[0][0])
-        globalhotkeys.bind(key, self.show_hide)
+        filename = common.pixmapfile('guake.png')
+        if not globalhotkeys.bind(key, self.show_hide):
+            n = pynotify.Notification(_('Guake!'),
+                _('A problem happened when binding <b>%s</b> key.\n'
+                  'Please use guake properties form to choose another '
+                  'key' % key), filename)
+        else:
+            n = pynotify.Notification(_('Guake!'),
+                _('Guake is already running,\n'
+                  'press <b>%s</b> to use it.' % key), filename)
+        n.show()
 
         # trayicon!
         tray_icon = GuakeStatusIcon()
