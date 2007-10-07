@@ -63,13 +63,13 @@ def pixmapfile(x):
     f = os.path.join(guake_globals.image_dir, x)
     if not os.path.exists(f):
         raise IOError('No such file or directory: %s' % f)
-    return f
+    return os.path.abspath(f)
 
 def gladefile(x):
     f = os.path.join(guake_globals.glade_dir, x)
     if not os.path.exists(f):
         raise IOError('No such file or directory: %s' % f)
-    return f
+    return os.path.abspath(f)
 
 def hexify_color(c):
     h = lambda x: hex(x).replace('0x', '').zfill(4)
