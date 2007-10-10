@@ -1,3 +1,8 @@
+2007-10-10  Lincoln de Sousa <lincoln@minaslivre.org>
+
+	* data/guake.glade: Removing tabs from notebool-terminals widget, they are
+	unuseful and generates a warning when starts guake.
+
 2007-10-10  Gabriel Falcão <root@gabrielfalcao.com>
 
 	* data/pixmaps/close.svg: A little bit bigger close image for tabs.

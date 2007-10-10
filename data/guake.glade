@@ -20,36 +20,8 @@
             <property name="visible">True</property>
             <property name="has_focus">True</property>
             <property name="tab_pos">GTK_POS_BOTTOM</property>
-            <property name="show_tabs">False</property>
             <property name="scrollable">True</property>
             <property name="enable_popup">True</property>
-            <child>
-              <placeholder/>
-            </child>
-            <child>
-              <widget class="GtkLabel" id="label4">
-                <property name="visible">True</property>
-              </widget>
-              <packing>
-                <property name="type">tab</property>
-                <property name="tab_expand">False</property>
-                <property name="tab_fill">False</property>
-              </packing>
-            </child>
-            <child>
-              <placeholder/>
-            </child>
-            <child>
-              <widget class="GtkLabel" id="label5">
-                <property name="visible">True</property>
-              </widget>
-              <packing>
-                <property name="type">tab</property>
-                <property name="position">1</property>
-                <property name="tab_expand">False</property>
-                <property name="tab_fill">False</property>
-              </packing>
-            </child>
           </widget>
         </child>
         <child>
@@ -94,6 +66,7 @@
                 <child>
                   <widget class="GtkButton" id="add-button">
                     <property name="visible">True</property>
+                    <property name="response_id">0</property>
                     <signal name="clicked" handler="on_add_button_clicked"/>
                     <child>
                       <widget class="GtkHBox" id="hbox4">
