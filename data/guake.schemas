@@ -224,5 +224,29 @@
             </locale>
         </schema>
 
+        <schema>
+            <key>/schemas/apps/guake/keybindings/local/clipboard_copy</key>
+            <applyto>/apps/guake/keybindings/local/clipboard_copy</applyto>
+            <owner>guake</owner>
+            <type>string</type>
+            <default>&lt;Control&gt;&lt;Shift&gt;c</default>
+            <locale name="C">
+                <short>Copy clipboard.</short>
+                <long>Copy the clipboard content.</long>
+            </locale>
+        </schema>
+
+        <schema>
+            <key>/schemas/apps/guake/keybindings/local/clipboard_paste</key>
+            <applyto>/apps/guake/keybindings/local/clipboard_paste</applyto>
+            <owner>guake</owner>
+            <type>string</type>
+            <default>&lt;Control&gt;&lt;Shift&gt;v</default>
+            <locale name="C">
+                <short>Paste clipboard.</short>
+                <long>Paste the clipboard content.</long>
+            </locale>
+        </schema>
+
     </schemalist>
 </gconfschemafile>

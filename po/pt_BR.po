@@ -1,62 +1,58 @@
-# translation of Guake.
-# Copyright (C) 2007 THE Guake'S COPYRIGHT HOLDER
-# This file is distributed under the same license as the Guake package.
-# Lincoln de Sousa <lincoln@archlinux-br.org>, 2007.
-# , fuzzy
-# 
-# 
+# Tradução do Guake-terminal
+#Copyright (C) 2007 Gabriel Falcão <gabrielteratos@gmail.com>
+#Copyright (C) 2007 Lincoln de Sousa <lincoln@archlinux-br.org>
+# This file is distributed under the same license as the guake package.
+# Gabriel Falcão <gabriel@guake-terminal.org>, 2007
+#
 msgid ""
 msgstr ""
-"Project-Id-Version: Guake 0.0.1a1\n"
+"Project-Id-Version: guake 0.0.1alpha\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2007-06-16 23:33-0300\n"
-"PO-Revision-Date: 2007-06-16 23:58-0300\n"
-"Last-Translator:  <>\n"
-"Language-Team: \n"
+"POT-Creation-Date: 2007-10-10 11:44-0300\n"
+"PO-Revision-Date: 2007-10-10 12:05-0300\n"
+"Last-Translator: Gabriel Falcão <gabrielteratos@gmail.com>\n"
+"Language-Team: translation@guake-terminal.org\n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=\n"
-"Content-Transfer-Encoding: "
-
-#: src/dbusiface.py:63
-msgid "Could not connect to dbus session bus. dbus will be unavailable.\n"
-msgstr "Não foi possível conectar à sessão do dbus, o dbus não será usado\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
 
 #: about.glade.h:1
 msgid "About Guake"
-msgstr "Sobre o Guake"
+msgstr "Sobre o guake"
 
 #: about.glade.h:2
 msgid ""
 "Copyright 2007 Gabriel Falcão\n"
 "Copyright 2007 Lincoln de Sousa"
 msgstr ""
+"Copyright 2007 Gabriel Falcão\n"
+"Copyright 2007 Lincoln de Sousa"
 
 #: about.glade.h:4
 msgid ""
-"Guake is a binding of gnome-terminal that provide quickly access by clicking "
-"in applet  or thought using a keyboard shortcut."
+"Guake is an easy to access\n"
+"terminal based on fps games terminal"
 msgstr ""
+"Guake é um terminal de acesso simples\n"
+"baseado terminais de jogos de primeira pessoa."
 
-#: about.glade.h:5
+#: about.glade.h:6
 msgid ""
-"Guake is free software; you can redistribute it and/or modify it under the "
-"terms of the GNU General Public License as published by the Free Software "
-"Foundation; either version 2 of the License, or (at your option) any later "
-"version.\n"
+"Guake is free software; you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation; either version 2 of the License, or (at your option) any later version.\n"
 "\n"
-"Guake is distributed in the hope that it will be useful, but WITHOUT ANY "
-"WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS "
-"FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more "
-"details.\n"
+"Guake is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more details.\n"
 "\n"
-"You should have received a copy of the GNU General Public License along with "
-"Guake; if not, write to the Free Software Foundation, Inc., 51 Franklin St, "
-"Fifth Floor, Boston, MA  02110-1301 USA\n"
+"You should have received a copy of the GNU General Public License along with Guake; if not, write to the Free Software Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301 USA\n"
 msgstr ""
+"Guake is free software; you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation; either version 2 of the License, or (at your option) any later version.\n"
+"\n"
+"Guake is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more details.\n"
+"\n"
+"You should have received a copy of the GNU General Public License along with Guake; if not, write to the Free Software Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301 USA\n"
 
-#: about.glade.h:11
-msgid "http://guake.sf.net"
-msgstr "http://guake.sf.net"
+#: about.glade.h:12
+msgid "http://guake-terminal.org"
+msgstr "http://guake-terminal.org"
 
 #: guake.glade.h:1
 msgid "Guake 0.0.1alpha"
@@ -99,44 +95,44 @@ msgid "<b>Window size</b>"
 msgstr "<b>Tamanho da janela</b>"
 
 #: prefs.glade.h:8
-msgid "Animate on \"show and hide\""
-msgstr "Animar quando \"mostrar e escondar\""
+msgid "Background Transparent:"
+msgstr "Fundo transparente:"
 
 #: prefs.glade.h:9
-msgid "Background Transparent:"
-msgstr "Plano de fundo Transparente:"
+msgid "Bottom"
+msgstr "Abaixo"
 
 #: prefs.glade.h:10
-msgid "Bottom"
-msgstr "Em baixo"
+msgid "Choose some color"
+msgstr "Escolha uma cor"
 
 #: prefs.glade.h:11
-msgid "Choose some color"
-msgstr "Escolha alguma cor"
+msgid "Choose some font"
+msgstr "Escolha uma fonte"
 
 #: prefs.glade.h:12
-msgid "Choose some font"
-msgstr "Escolha alguma fonte"
-
-#: prefs.glade.h:13
 msgid "Color:"
 msgstr "Cor:"
 
-#: prefs.glade.h:14
+#: prefs.glade.h:13
 msgid "Default interpreter:"
-msgstr "Interpretador padrão"
+msgstr "Interpretador padrão:"
+
+#: prefs.glade.h:14
+msgid "Desaturation:"
+msgstr "Desaturação:"
 
 #: prefs.glade.h:15
-msgid "Desaturation:"
-msgstr ""
-
-#: prefs.glade.h:16
 msgid "General"
 msgstr "Geral"
 
-#: prefs.glade.h:17
+#: prefs.glade.h:16
 msgid "Guake Preferences"
 msgstr "Preferências do Guake"
+
+#: prefs.glade.h:17
+msgid "Hide on lose focus"
+msgstr "Esconder quando perder foco"
 
 #: prefs.glade.h:18
 msgid "Image:"
@@ -147,18 +143,26 @@ msgid "Keyboard shortcuts"
 msgstr "Atalhos de teclado"
 
 #: prefs.glade.h:20
-msgid "Stay on top"
-msgstr "Ficar em cima"
+msgid "Scrollback lines:"
+msgstr "Linhas para trás(rolagem):"
 
 #: prefs.glade.h:21
+msgid "Show scrollbar"
+msgstr "Mostrar barra de rolagem"
+
+#: prefs.glade.h:22
+msgid "Stay on top"
+msgstr "Permanecer no topo"
+
+#: prefs.glade.h:23
 msgid "Style"
 msgstr "Estilo"
 
-#: prefs.glade.h:22
+#: prefs.glade.h:24
 msgid "Style:"
-msgstr "Estilo:"
+msgstr "Estilo"
 
-#: prefs.glade.h:23
+#: prefs.glade.h:25
 msgid "Top"
-msgstr "Em cima"
+msgstr "Topo"
 

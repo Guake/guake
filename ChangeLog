@@ -1,3 +1,19 @@
+2007-10-10  Gabriel Falcão <root@gabrielfalcao.com>
+
+	* data/pixmaps/close.svg: A little bit bigger close image for tabs.
+
+	* data/guake.glade: A context-menu was created with gtk.menu widget.
+
+	* data/guake.schemas: New schema entries for keyboard shortcuts in
+	copy/paste
+
+	* src/guake.py: Adding a context menu for the 3rd mouse button press event.
+
+	* src/guake.py: Key bind accellerators added for copy/paste from guake.
+
+	* src/guake.py: In preferences window, added the entries to edit clipboard
+	shortcut keys.
+
 2007-10-07  Lincoln de Sousa <lincoln@minaslivre.org>
 
 	* data/prefs.glade: Fixing callback name in shell combo signal connection.

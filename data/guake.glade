@@ -18,23 +18,36 @@
         <child>
           <widget class="GtkNotebook" id="notebook-teminals">
             <property name="visible">True</property>
-            <property name="can_focus">True</property>
             <property name="has_focus">True</property>
-            <property name="is_focus">True</property>
             <property name="tab_pos">GTK_POS_BOTTOM</property>
             <property name="show_tabs">False</property>
             <property name="scrollable">True</property>
-            <property name="tab_border">0</property>
-            <property name="tab_hborder">0</property>
-            <property name="tab_vborder">0</property>
             <property name="enable_popup">True</property>
             <child>
               <placeholder/>
             </child>
             <child>
-              <placeholder/>
+              <widget class="GtkLabel" id="label4">
+                <property name="visible">True</property>
+              </widget>
               <packing>
                 <property name="type">tab</property>
+                <property name="tab_expand">False</property>
+                <property name="tab_fill">False</property>
+              </packing>
+            </child>
+            <child>
+              <placeholder/>
+            </child>
+            <child>
+              <widget class="GtkLabel" id="label5">
+                <property name="visible">True</property>
+              </widget>
+              <packing>
+                <property name="type">tab</property>
+                <property name="position">1</property>
+                <property name="tab_expand">False</property>
+                <property name="tab_fill">False</property>
               </packing>
             </child>
           </widget>
@@ -81,7 +94,6 @@
                 <child>
                   <widget class="GtkButton" id="add-button">
                     <property name="visible">True</property>
-                    <property name="response_id">0</property>
                     <signal name="clicked" handler="on_add_button_clicked"/>
                     <child>
                       <widget class="GtkHBox" id="hbox4">
@@ -150,6 +162,56 @@
         <property name="use_underline">True</property>
         <property name="use_stock">True</property>
         <signal name="activate" handler="gtk_main_quit"/>
+      </widget>
+    </child>
+  </widget>
+  <widget class="GtkMenu" id="context-menu">
+    <property name="visible">True</property>
+    <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
+    <child>
+      <widget class="GtkImageMenuItem" id="context_preferences">
+        <property name="visible">True</property>
+        <property name="label">gtk-preferences</property>
+        <property name="use_underline">True</property>
+        <property name="use_stock">True</property>
+        <signal name="activate" handler="on_context_preferences_activate"/>
+      </widget>
+    </child>
+    <child>
+      <widget class="GtkSeparatorMenuItem" id="separador1">
+        <property name="visible">True</property>
+      </widget>
+    </child>
+    <child>
+      <widget class="GtkImageMenuItem" id="context_copy">
+        <property name="visible">True</property>
+        <property name="label">gtk-copy</property>
+        <property name="use_underline">True</property>
+        <property name="use_stock">True</property>
+        <signal name="activate" handler="on_context_copy_activate"/>
+      </widget>
+    </child>
+    <child>
+      <widget class="GtkImageMenuItem" id="context_paste">
+        <property name="visible">True</property>
+        <property name="label">gtk-paste</property>
+        <property name="use_underline">True</property>
+        <property name="use_stock">True</property>
+        <signal name="activate" handler="on_context_paste_activate"/>
+      </widget>
+    </child>
+    <child>
+      <widget class="GtkSeparatorMenuItem" id="separador2">
+        <property name="visible">True</property>
+      </widget>
+    </child>
+    <child>
+      <widget class="GtkImageMenuItem" id="context_close">
+        <property name="visible">True</property>
+        <property name="label">gtk-quit</property>
+        <property name="use_underline">True</property>
+        <property name="use_stock">True</property>
+        <signal name="activate" handler="on_context_close_activate"/>
       </widget>
     </child>
   </widget>

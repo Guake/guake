@@ -25,7 +25,7 @@ if [[ "$1" == "-h" || "$1" == "--help" ]]; then
     echo After run this script, rename the messages.pot file to yourlanguage.po
     echo edit that with your prefered po editor, like poedit or gtranslator.
     echo
-    echo After that please send me your work to gabrielteratos@gmail.com
+    echo After that please send me your work to gabriel@guake-terminal.org
     echo with subject: GUAKE TRANSLATION
     echo Thanks!
     exit 0

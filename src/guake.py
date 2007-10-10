@@ -55,7 +55,10 @@ GHOTKEYS = ((GCONF_KEYS+'global/show_hide', _('Toggle terminal visibility')),)
 LHOTKEYS = ((GCONF_KEYS+'local/new_tab', _('New tab'),),
             (GCONF_KEYS+'local/close_tab', _('Close tab')),
             (GCONF_KEYS+'local/previous_tab', _('Go to previous tab')),
-            (GCONF_KEYS+'local/next_tab', _('Go to next tab'),))
+            (GCONF_KEYS+'local/next_tab', _('Go to next tab'),),
+            (GCONF_KEYS+'local/clipboard_copy', _('Copy text to clipboard'),),
+            (GCONF_KEYS+'local/clipboard_paste', _('Paste text from clipboard'),),
+)
 
 
 class AboutDialog(SimpleGladeApp):
@@ -445,6 +448,16 @@ class Guake(SimpleGladeApp):
         menu = self.get_widget('tray-menu')
         menu.popup(None, None, None, 3, gtk.get_current_event_time())
 
+    def show_context_menu(self, vte, event):
+        guake_clipboard = gtk.clipboard_get()
+        if not guake_clipboard.wait_is_text_available():
+            self.get_widget('context_paste').set_sensitive(False)
+        else:
+            self.get_widget('context_paste').set_sensitive(True)
+        context_menu = self.get_widget('context-menu')
+        if event.button == 3:
+            context_menu.popup(None, None, None, 3, gtk.get_current_event_time())
+
     # -- methods exclusivelly called by dbus interface --
 
     def show_about(self):
@@ -463,7 +476,7 @@ class Guake(SimpleGladeApp):
             self.set_terminal_focus()
         else:
             self.hide()
-
+ 
     def show(self, wwidth, hheight):
         # setting window in all desktops
         self.get_widget('window-root').stick()
@@ -524,6 +537,16 @@ class Guake(SimpleGladeApp):
         self.accel_group.connect_group(key, mask, gtk.ACCEL_VISIBLE,
                 self.accel_next)
 
+        ac = gets(GCONF_PATH+'keybindings/local/clipboard_copy')
+        key, mask = gtk.accelerator_parse(ac)
+        self.accel_group.connect_group(key, mask, gtk.ACCEL_VISIBLE,
+                self.accel_copy_clipboard)
+
+        ac = gets(GCONF_PATH+'keybindings/local/clipboard_paste')
+        key, mask = gtk.accelerator_parse(ac)
+        self.accel_group.connect_group(key, mask, gtk.ACCEL_VISIBLE,
+                self.accel_paste_clipboard)
+
     def accel_add(self, *args):
         self.add_tab()
         return True
@@ -535,6 +558,17 @@ class Guake(SimpleGladeApp):
     def accel_next(self, *args):
         self.notebook.next_page()
         return True
+
+    def accel_copy_clipboard(self, *args):
+        pos = self.notebook.get_current_page()
+        self.term_list[pos].copy_clipboard()
+        return True
+
+    def accel_paste_clipboard(self, *args):
+        pos = self.notebook.get_current_page()
+        self.term_list[pos].paste_clipboard()
+        return True
+
 
     def toggle_scrollbars(self):
         b = self.client.get_bool(GCONF_PATH+'general/use_scrollbar')
@@ -571,8 +605,6 @@ class Guake(SimpleGladeApp):
         fgcolor = gtk.gdk.color_parse(color)
         for i in self.term_list:
             i.set_color_dim(fgcolor)
-            i.set_color_cursor(fgcolor)
-            i.set_color_highlight(fgcolor)
             i.set_color_foreground(fgcolor)
 
     def set_font(self):
@@ -610,6 +642,22 @@ class Guake(SimpleGladeApp):
 
     def on_terminal_exited(self, term, widget):
         self.delete_tab(self.notebook.page_num(widget))
+    
+    # -- Context menu callbacks --
+
+    def on_context_preferences_activate(self, widget):
+        PrefsDialog(self).show()
+
+    def on_context_copy_activate(self, widget):
+        current_pos = self.notebook.get_current_page()
+        self.term_list[current_pos].copy_clipboard()
+
+    def on_context_paste_activate(self, widget):
+        current_pos = self.notebook.get_current_page()
+        self.term_list[current_pos].paste_clipboard()
+
+    def on_context_close_activate(self, widget):
+        gtk.main_quit()
 
     def on_close_button_close_clicked(self, widget, index):
         self.delete_tab(self.notebook.page_num(self.term_list[index]))
@@ -626,7 +674,9 @@ class Guake(SimpleGladeApp):
         shell_name = self.client.get_string(GCONF_PATH+'general/default_shell')
         self.term_list[last_added].fork_command(shell_name or "bash",
                 directory=os.path.expanduser('~'))
-        
+        self.term_list[last_added].connect('button-press-event',
+                self.show_context_menu)
+
         image = gtk.Image()
         image.set_from_file(common.pixmapfile('close.svg'))
         
