@@ -3,6 +3,15 @@
 	* data/guake.glade: Removing tabs from notebool-terminals widget, they are
 	unuseful and generates a warning when starts guake.
 
+	* data/guake.schemas: Adding a new entry to store `toggle fullscreen`
+	accell key.
+
+	* src/guake.py: Adding a new entry in LHOTKEYS tuple.
+
+	* src/guake.py (Guake): Adding a new boolean attribute to store fullscreen
+	state and adding the function that toggles this state called
+	accel_toggle_fullscreen and its association in load_accelerators.
+
 2007-10-10  Gabriel Falcão <root@gabrielfalcao.com>
 
 	* data/pixmaps/close.svg: A little bit bigger close image for tabs.
