@@ -58,6 +58,7 @@ LHOTKEYS = ((GCONF_KEYS+'local/new_tab', _('New tab'),),
             (GCONF_KEYS+'local/next_tab', _('Go to next tab'),),
             (GCONF_KEYS+'local/clipboard_copy', _('Copy text to clipboard'),),
             (GCONF_KEYS+'local/clipboard_paste', _('Paste text from clipboard'),),
+            (GCONF_KEYS+'local/toggle_fullscreen', _('Toggle Fullscreen'),),
 )
 
 
@@ -420,6 +421,7 @@ class Guake(SimpleGladeApp):
         self.term_list = []
         self.animation_speed = 30
         self.visible = False
+        self.fullscreen = False
 
         self.window.add_accel_group(self.accel_group)
         self.window.set_keep_above(True)
@@ -547,6 +549,11 @@ class Guake(SimpleGladeApp):
         self.accel_group.connect_group(key, mask, gtk.ACCEL_VISIBLE,
                 self.accel_paste_clipboard)
 
+        ac = gets(GCONF_PATH+'keybindings/local/toggle_fullscreen')
+        key, mask = gtk.accelerator_parse(ac)
+        self.accel_group.connect_group(key, mask, gtk.ACCEL_VISIBLE,
+                self.accel_toggle_fullscreen)
+
     def accel_add(self, *args):
         self.add_tab()
         return True
@@ -569,6 +576,14 @@ class Guake(SimpleGladeApp):
         self.term_list[pos].paste_clipboard()
         return True
 
+    def accel_toggle_fullscreen(self, *args):
+        if not self.fullscreen:
+            self.window.fullscreen()
+            self.fullscreen = True
+        else:
+            self.window.unfullscreen()
+            self.fullscreen = False
+        return True
 
     def toggle_scrollbars(self):
         b = self.client.get_bool(GCONF_PATH+'general/use_scrollbar')
