@@ -248,5 +248,17 @@
             </locale>
         </schema>
 
+        <schema>
+            <key>/schemas/apps/guake/keybindings/local/toggle_fullscreen</key>
+            <applyto>/apps/guake/keybindings/local/toggle_fullscreen</applyto>
+            <owner>guake</owner>
+            <type>string</type>
+            <default>F11</default>
+            <locale name="C">
+                <short>Toggle Fullscreen.</short>
+                <long>Toggle main guake window fullscreen.</long>
+            </locale>
+        </schema>
+
     </schemalist>
 </gconfschemafile>
