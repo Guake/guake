@@ -37,7 +37,7 @@ Guake Todo
 
  - DONE * Pynotify integration
 
- * Make that the right click on VTE show a context menu with all options of statusicon menu but show_hide
+ - DONE * Make that the right click on VTE show a context menu with all options of statusicon menu but show_hide
 
  * Put a shortcut in gnome menu: System->Preferences-> Guake
  
