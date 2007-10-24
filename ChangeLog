@@ -1,3 +1,7 @@
+2007-10-24  Lincoln de Sousa <lincoln@minaslivre.org>
+
+	* data/prefs.glade: Gnome Hig compilance by n3rd3x, thank you guy =)
+
 2007-10-10  Lincoln de Sousa <lincoln@minaslivre.org>
 
 	* data/guake.glade: Removing tabs from notebool-terminals widget, they are
