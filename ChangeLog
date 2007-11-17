@@ -1,3 +1,13 @@
+2007-11-17  Lincoln de Sousa <lincoln@minaslivre.org>
+
+	* Makefile.am: Adding EXTRA_DIST and DISTCLEANFILES to make intltool
+	works in make distcheck.
+
+	* configure.ac: Fixing version number.
+	
+	* po/POTFILES.in: Adding some python files that should be
+	internationalized.
+	
 2007-10-24  Lincoln de Sousa <lincoln@minaslivre.org>
 
 	* data/prefs.glade: Gnome Hig compilance by n3rd3x, thank you guy =)
