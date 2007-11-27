@@ -1,3 +1,8 @@
+2007-11-26  Lincoln de Sousa  <lincoln@minaslivre.org>
+
+	* data/pixmaps/Makefile.am: Fixing little problem in line 6, I forgot to
+	put a slash and it was removing some images from the distribution pack.
+
 2007-11-17  Lincoln de Sousa <lincoln@minaslivre.org>
 
 	* Makefile.am: Adding EXTRA_DIST and DISTCLEANFILES to make intltool
