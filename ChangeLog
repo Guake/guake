@@ -1,7 +1,9 @@
 2008-05-28  Gabriel Falcão <gabriel@nacaolivre.org>
 
 	* src/guake.py: Applied patch from SteveD <dashdot@f-m.fm> that fixes the
-	bug of scrollbars, ticket #3.
+	bug of scrollbars, ticket #1.
+	* src/guake.py: Applied a modificated version of SteveD's patch for
+	"infinite VTEs" bug, reported in ticket #3,
 
 2007-11-26  Lincoln de Sousa  <lincoln@minaslivre.org>
 

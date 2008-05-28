@@ -674,7 +674,7 @@ class Guake(SimpleGladeApp):
         gtk.main_quit()
 
     def on_close_button_close_clicked(self, widget, index):
-        self.delete_tab(self.notebook.page_num(self.term_list[index]))
+        self.term_list[index].fork_command("bash", "exit")
         self.set_terminal_focus()
 
     # -- tab related functions --
@@ -751,8 +751,8 @@ class Guake(SimpleGladeApp):
         self.last_pos = last_added
 
     def delete_tab(self, pagepos):
-        self.term_list.pop(pagepos)
         self.notebook.remove_page(pagepos)
+        self.clear_old_terms()
         self.set_tabs_visible()
         if not self.term_list:
             self.hide()
@@ -770,6 +770,12 @@ class Guake(SimpleGladeApp):
     def set_last_pos(self, notebook, page, page_num):
         self.last_pos = page_num
 
+    def clear_old_terms(self):
+        for term in reversed(self.term_list):
+            term_page = term.get_parent()
+            if self.notebook.page_num(term_page) == -1:
+                self.term_list.remove(term)
+                del term
 
 def main():
     from optparse import OptionParser
