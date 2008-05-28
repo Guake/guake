@@ -1,3 +1,8 @@
+2008-05-28  Gabriel Falcão <gabriel@nacaolivre.org>
+
+	* src/guake.py: Applied patch from SteveD <dashdot@f-m.fm> that fixes the
+	bug of scrollbars, ticket #3.
+
 2007-11-26  Lincoln de Sousa  <lincoln@minaslivre.org>
 
 	* data/pixmaps/Makefile.am: Fixing little problem in line 6, I forgot to

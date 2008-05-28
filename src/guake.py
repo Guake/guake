@@ -430,7 +430,7 @@ class Guake(SimpleGladeApp):
 
         self.load_config()
         self.load_accelerators()
-        self.toggle_scrollbars()
+        # self.toggle_scrollbars()
         self.refresh()
         self.add_tab()
 
@@ -715,7 +715,9 @@ class Guake(SimpleGladeApp):
         mhbox.pack_start(self.term_list[last_added], True, True)
         adj = self.term_list[last_added].get_adjustment()
         scroll = gtk.VScrollbar(adj)
-        scroll.set_no_show_all(True)
+        use_scrollbar = self.client.get_bool(GCONF_PATH+'general/use_scrollbar')
+        if not use_scrollbar:
+            scroll.set_no_show_all(True)
         mhbox.pack_start(scroll, False, False)
 
         mhbox.show_all()
