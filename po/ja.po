@@ -1,0 +1,278 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2008 THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# Nishio Futoshi <futoshi@momonga-linux.org>, 2008.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2008-05-09 21:37+0900\n"
+"PO-Revision-Date: 2008-05-28 01:58-0300\n"
+"Last-Translator: Gabriel Falcão <gabrielteratos@gmail.com>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../data/about.glade.h:1
+msgid "About Guake"
+msgstr "Guakeについて"
+
+#: ../data/about.glade.h:2
+msgid ""
+"Copyright 2007 Gabriel Falcão\n"
+"Copyright 2007 Lincoln de Sousa"
+msgstr ""
+
+#: ../data/about.glade.h:4
+msgid ""
+"Guake is an easy to access\n"
+"terminal based on fps games terminal"
+msgstr ""
+"Guakeは、fpsゲーム端末をベースにした\n"
+"簡単に使える端末です"
+
+#: ../data/about.glade.h:6
+msgid ""
+"Guake is free software; you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation; either version 2 of the License, or (at your option) any later version.\n"
+"\n"
+"Guake is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more details.\n"
+"\n"
+"You should have received a copy of the GNU General Public License along with Guake; if not, write to the Free Software Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301 USA\n"
+msgstr ""
+
+#: ../data/about.glade.h:12
+msgid "http://guake-terminal.org"
+msgstr ""
+
+#: ../data/guake.glade.h:1
+msgid "Guake 0.0.1alpha"
+msgstr ""
+
+#: ../data/guake.glade.h:2
+#: ../src/guake.py:392
+#: ../src/guake.py:397
+msgid "Guake!"
+msgstr ""
+
+#: ../data/guake.glade.h:3
+msgid "New Tab"
+msgstr "新規TAB"
+
+#: ../data/prefs.glade.h:1
+msgid "<b><big>Guake Properties</big></b>"
+msgstr "<b><big>Guakeの設定</big></b>"
+
+#: ../data/prefs.glade.h:2
+msgid "<b>Background</b>"
+msgstr "<b>背景</b>"
+
+#: ../data/prefs.glade.h:3
+msgid "<b>Fonts</b>"
+msgstr "<b>フォント</b>"
+
+#: ../data/prefs.glade.h:4
+msgid "<b>Shell</b>"
+msgstr "<b>シェル</b>"
+
+#: ../data/prefs.glade.h:5
+msgid "<b>Tab position</b>"
+msgstr "<b>TABの位置</b>"
+
+#: ../data/prefs.glade.h:6
+msgid "<b>Window behavior</b>"
+msgstr "<b>ウィンドウの動作</b>"
+
+#: ../data/prefs.glade.h:7
+msgid "<b>Window size</b>"
+msgstr "<b>ウィンドウサイズ</b>"
+
+#: ../data/prefs.glade.h:8
+msgid "Background Transparent:"
+msgstr "背景の透過:"
+
+#: ../data/prefs.glade.h:9
+msgid "Bottom"
+msgstr "下"
+
+#: ../data/prefs.glade.h:10
+msgid "Choose some color"
+msgstr "色を選択する"
+
+#: ../data/prefs.glade.h:11
+msgid "Choose some font"
+msgstr "フォントの選択"
+
+#: ../data/prefs.glade.h:12
+msgid "Color:"
+msgstr "色:"
+
+#: ../data/prefs.glade.h:13
+msgid "Default interpreter:"
+msgstr "デフォルトのシェル:"
+
+#: ../data/prefs.glade.h:14
+msgid "Desaturation:"
+msgstr "不透明度:"
+
+#: ../data/prefs.glade.h:15
+msgid "General"
+msgstr "一般的な設定"
+
+#: ../data/prefs.glade.h:16
+msgid "Guake Preferences"
+msgstr "Gaukeの設定"
+
+#: ../data/prefs.glade.h:17
+msgid "Hide on lose focus"
+msgstr "フォーカスを失うと隠す"
+
+#: ../data/prefs.glade.h:18
+msgid "Image:"
+msgstr "画像："
+
+#: ../data/prefs.glade.h:19
+msgid "Keyboard shortcuts"
+msgstr "キーボードショートカット"
+
+#: ../data/prefs.glade.h:20
+msgid "Scrollback lines:"
+msgstr "行をスクロールバックする"
+
+#: ../data/prefs.glade.h:21
+msgid "Show scrollbar"
+msgstr "スクロールバーの表示"
+
+#: ../data/prefs.glade.h:22
+msgid "Stay on top"
+msgstr "最前面に"
+
+#: ../data/prefs.glade.h:23
+msgid "Style"
+msgstr "スタイル"
+
+#: ../data/prefs.glade.h:24
+msgid "Style:"
+msgstr "スタイル"
+
+#: ../data/prefs.glade.h:25
+msgid "Top"
+msgstr "上"
+
+#: ../src/dbusiface.py:63
+msgid "Could not connect to dbus session bus. dbus will be unavailable.\n"
+msgstr "dbusセッションに接続できませんでした。dbusは利用できません。\n"
+
+#: ../src/guake.py:53
+msgid "Toggle terminal visibility"
+msgstr "端末表示の切り替え"
+
+#: ../src/guake.py:55
+msgid "New tab"
+msgstr "新規TAB"
+
+#: ../src/guake.py:56
+msgid "Close tab"
+msgstr "TABを閉じる"
+
+#: ../src/guake.py:57
+msgid "Go to previous tab"
+msgstr "前のTABに移動"
+
+#: ../src/guake.py:58
+msgid "Go to next tab"
+msgstr "次のTABに移動"
+
+#: ../src/guake.py:59
+msgid "Copy text to clipboard"
+msgstr "テキストをクリップボードにコピー"
+
+#: ../src/guake.py:60
+msgid "Paste text from clipboard"
+msgstr "クリップボードからテキストをペースト"
+
+#: ../src/guake.py:61
+msgid "Toggle Fullscreen"
+msgstr "全画面表示"
+
+#: ../src/guake.py:112
+msgid "Action"
+msgstr "動作"
+
+#: ../src/guake.py:119
+msgid "Shortcut"
+msgstr "ショートカット"
+
+#: ../src/guake.py:238
+msgid "Global hotkeys"
+msgstr "全体のホットキー"
+
+#: ../src/guake.py:250
+msgid "Local hotkeys"
+msgstr "ローカルのホットキー"
+
+#: ../src/guake.py:352
+msgid "key binding error"
+msgstr "キーの割り当てエラー"
+
+#: ../src/guake.py:353
+#, python-format
+msgid "Unable to bind %s key"
+msgstr "%sキーを割り当てられません"
+
+#: ../src/guake.py:393
+#, python-format
+msgid ""
+"A problem happened when binding <b>%s</b> key.\n"
+"Please use guake properties form to choose another key"
+msgstr ""
+"<b>%s</b>キーの割り当てで問題が生じております。\n"
+"設定画面で別のキーを選択してください"
+
+#: ../src/guake.py:398
+#, python-format
+msgid ""
+"Guake is already running,\n"
+"press <b>%s</b> to use it."
+msgstr ""
+"Guakeは実行中です\n"
+"<b>%s</b>を入力して使用して下さい。"
+
+#: ../src/guake.py:698
+#, python-format
+msgid "Terminal %s"
+msgstr "端末 %s"
+
+#: ../src/guake.py:778
+msgid "Toggles the visibility of the terminal window"
+msgstr "端末の表示を変更します"
+
+#: ../src/guake.py:782
+msgid "Shows Guake preference window"
+msgstr "Guakeの設定画面を表示します"
+
+#: ../src/guake.py:786
+msgid "Shows Guake's about info"
+msgstr "Guakeの情報を表示します"
+
+#: ../src/guake.py:790
+msgid "Says to Guake go away =("
+msgstr "Guakeに消えてなくなれと言ってください (T_T)"
+
+#: ../src/guake.py:828
+msgid "Guake can not init!"
+msgstr "Guakeを初期化できません"
+
+#: ../src/guake.py:829
+msgid ""
+"Gconf Error.\n"
+"Have you installed <b>guake.schemas</b> properlly?"
+msgstr ""
+"Gconf Error.\n"
+"<b>guake.schemas</b>を適切にインストールしましたか？"
+
+#: ../src/statusicon.py:64
+msgid "Guake-Terminal"
+msgstr ""
+

@@ -1,3 +1,9 @@
+2008-05-28  Gabriel Falcão <gabriel@nacaolivre.org>
+
+	* ja.po: Added a japanese translation by Nishio Futoshi
+	<futoshi@momonga-linux.org>, reported at Trac.
+	refs #7
+
 2007-06-17  Lincoln de Sousa <lincoln@archlinux-br.org>
 
 	* pt_BR.po: Updated and almost finished to translate.
