@@ -54,6 +54,18 @@ AS_AC_EXPAND(LIBDIR, ${libdir})
 AS_AC_EXPAND(BINDIR, ${bindir})
 AS_AC_EXPAND(DATADIR, ${datarootdir})
 
+dnl Checking python-vte
+AC_MSG_CHECKING([for the python-vte package])
+ac_pvte_result=`$PYTHON -c "import vte" 2>&1`
+if test -z "$ac_pvte_result"; then
+    AC_MSG_RESULT([yes])
+else
+    AC_MSG_RESULT([no])
+    AC_MSG_ERROR([cannot import Python module "vte".
+    Please check if you have python-vte installed. The error was:
+    $ac_pvte_result])
+fi
+
 dnl gconf
 AC_PATH_PROG(GCONFTOOL, gconftool-2, no)
 if test x"$GCONFTOOL" = xno; then
