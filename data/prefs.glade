@@ -7,7 +7,6 @@
     <property name="border_width">8</property>
     <property name="title" translatable="yes">Guake Preferences</property>
     <property name="resizable">False</property>
-    <property name="modal">True</property>
     <property name="window_position">GTK_WIN_POS_CENTER_ALWAYS</property>
     <property name="urgency_hint">True</property>
     <child>
@@ -75,15 +74,24 @@
                                 <property name="row_spacing">6</property>
                                 <property name="homogeneous">True</property>
                                 <child>
-                                  <widget class="GtkComboBox" id="shells-combobox">
+                                  <widget class="GtkLabel" id="lblChooseShell3">
                                     <property name="visible">True</property>
-                                    <property name="items" translatable="yes"></property>
-                                    <signal name="changed" handler="on_shells_combobox_changed"/>
+                                    <property name="xalign">0</property>
+                                    <property name="label" translatable="yes">Scrollback lines:</property>
+                                    <property name="use_markup">True</property>
                                   </widget>
                                   <packing>
-                                    <property name="left_attach">1</property>
-                                    <property name="right_attach">2</property>
+                                    <property name="top_attach">1</property>
+                                    <property name="bottom_attach">2</property>
                                   </packing>
+                                </child>
+                                <child>
+                                  <widget class="GtkLabel" id="lblChooseShell1">
+                                    <property name="visible">True</property>
+                                    <property name="xalign">0</property>
+                                    <property name="label" translatable="yes">Default interpreter:</property>
+                                    <property name="use_markup">True</property>
+                                  </widget>
                                 </child>
                                 <child>
                                   <widget class="GtkSpinButton" id="historysize-spinbutton">
@@ -104,23 +112,14 @@
                                   </packing>
                                 </child>
                                 <child>
-                                  <widget class="GtkLabel" id="lblChooseShell1">
+                                  <widget class="GtkComboBox" id="shells-combobox">
                                     <property name="visible">True</property>
-                                    <property name="xalign">0</property>
-                                    <property name="label" translatable="yes">Default interpreter:</property>
-                                    <property name="use_markup">True</property>
-                                  </widget>
-                                </child>
-                                <child>
-                                  <widget class="GtkLabel" id="lblChooseShell3">
-                                    <property name="visible">True</property>
-                                    <property name="xalign">0</property>
-                                    <property name="label" translatable="yes">Scrollback lines:</property>
-                                    <property name="use_markup">True</property>
+                                    <property name="items" translatable="yes"></property>
+                                    <signal name="changed" handler="on_shells_combobox_changed"/>
                                   </widget>
                                   <packing>
-                                    <property name="top_attach">1</property>
-                                    <property name="bottom_attach">2</property>
+                                    <property name="left_attach">1</property>
+                                    <property name="right_attach">2</property>
                                   </packing>
                                 </child>
                               </widget>
@@ -283,21 +282,18 @@
                                 <property name="column_spacing">12</property>
                                 <property name="row_spacing">6</property>
                                 <child>
-                                  <widget class="GtkImage" id="image1">
+                                  <widget class="GtkRadioButton" id="tabbottom-radiobutton">
                                     <property name="visible">True</property>
-                                    <property name="xalign">0</property>
-                                    <property name="stock">gtk-missing-image</property>
-                                  </widget>
-                                </child>
-                                <child>
-                                  <widget class="GtkImage" id="image2">
-                                    <property name="visible">True</property>
-                                    <property name="xalign">0</property>
-                                    <property name="stock">gtk-missing-image</property>
+                                    <property name="label" translatable="yes">Bottom</property>
+                                    <property name="use_underline">True</property>
+                                    <property name="response_id">0</property>
+                                    <property name="active">True</property>
+                                    <property name="draw_indicator">True</property>
+                                    <signal name="toggled" handler="on_tabbottom_radiobutton_toggled"/>
                                   </widget>
                                   <packing>
-                                    <property name="left_attach">1</property>
-                                    <property name="right_attach">2</property>
+                                    <property name="top_attach">1</property>
+                                    <property name="bottom_attach">2</property>
                                   </packing>
                                 </child>
                                 <child>
@@ -319,19 +315,22 @@
                                   </packing>
                                 </child>
                                 <child>
-                                  <widget class="GtkRadioButton" id="tabbottom-radiobutton">
+                                  <widget class="GtkImage" id="image2">
                                     <property name="visible">True</property>
-                                    <property name="label" translatable="yes">Bottom</property>
-                                    <property name="use_underline">True</property>
-                                    <property name="response_id">0</property>
-                                    <property name="active">True</property>
-                                    <property name="draw_indicator">True</property>
-                                    <signal name="toggled" handler="on_tabbottom_radiobutton_toggled"/>
+                                    <property name="xalign">0</property>
+                                    <property name="stock">gtk-missing-image</property>
                                   </widget>
                                   <packing>
-                                    <property name="top_attach">1</property>
-                                    <property name="bottom_attach">2</property>
+                                    <property name="left_attach">1</property>
+                                    <property name="right_attach">2</property>
                                   </packing>
+                                </child>
+                                <child>
+                                  <widget class="GtkImage" id="image1">
+                                    <property name="visible">True</property>
+                                    <property name="xalign">0</property>
+                                    <property name="stock">gtk-missing-image</property>
+                                  </widget>
                                 </child>
                               </widget>
                             </child>
@@ -390,15 +389,25 @@
                                 <property name="row_spacing">6</property>
                                 <property name="homogeneous">True</property>
                                 <child>
-                                  <widget class="GtkColorButton" id="font-colorbutton">
+                                  <widget class="GtkLabel" id="label10">
                                     <property name="visible">True</property>
-                                    <property name="response_id">0</property>
-                                    <property name="title" translatable="yes">Choose some color</property>
-                                    <signal name="color_set" handler="on_font_colorbutton_color_set"/>
+                                    <property name="xalign">0</property>
+                                    <property name="label" translatable="yes">Style:</property>
+                                    <property name="use_markup">True</property>
+                                    <property name="ellipsize">PANGO_ELLIPSIZE_MIDDLE</property>
+                                    <property name="single_line_mode">True</property>
+                                  </widget>
+                                </child>
+                                <child>
+                                  <widget class="GtkLabel" id="label11">
+                                    <property name="visible">True</property>
+                                    <property name="xalign">0</property>
+                                    <property name="label" translatable="yes">Color:</property>
+                                    <property name="use_markup">True</property>
+                                    <property name="ellipsize">PANGO_ELLIPSIZE_MIDDLE</property>
+                                    <property name="single_line_mode">True</property>
                                   </widget>
                                   <packing>
-                                    <property name="left_attach">1</property>
-                                    <property name="right_attach">2</property>
                                     <property name="top_attach">1</property>
                                     <property name="bottom_attach">2</property>
                                   </packing>
@@ -417,28 +426,18 @@
                                   </packing>
                                 </child>
                                 <child>
-                                  <widget class="GtkLabel" id="label11">
+                                  <widget class="GtkColorButton" id="font-colorbutton">
                                     <property name="visible">True</property>
-                                    <property name="xalign">0</property>
-                                    <property name="label" translatable="yes">Color:</property>
-                                    <property name="use_markup">True</property>
-                                    <property name="ellipsize">PANGO_ELLIPSIZE_MIDDLE</property>
-                                    <property name="single_line_mode">True</property>
+                                    <property name="response_id">0</property>
+                                    <property name="title" translatable="yes">Choose some color</property>
+                                    <signal name="color_set" handler="on_font_colorbutton_color_set"/>
                                   </widget>
                                   <packing>
+                                    <property name="left_attach">1</property>
+                                    <property name="right_attach">2</property>
                                     <property name="top_attach">1</property>
                                     <property name="bottom_attach">2</property>
                                   </packing>
-                                </child>
-                                <child>
-                                  <widget class="GtkLabel" id="label10">
-                                    <property name="visible">True</property>
-                                    <property name="xalign">0</property>
-                                    <property name="label" translatable="yes">Style:</property>
-                                    <property name="use_markup">True</property>
-                                    <property name="ellipsize">PANGO_ELLIPSIZE_MIDDLE</property>
-                                    <property name="single_line_mode">True</property>
-                                  </widget>
                                 </child>
                               </widget>
                             </child>
@@ -479,22 +478,79 @@
                                 <property name="row_spacing">6</property>
                                 <property name="homogeneous">True</property>
                                 <child>
-                                  <widget class="GtkCheckButton" id="chk_bg_transparent">
+                                  <widget class="GtkLabel" id="label3">
                                     <property name="visible">True</property>
-                                    <property name="can_focus">True</property>
+                                    <property name="xalign">0</property>
+                                    <property name="label" translatable="yes">Color:</property>
+                                    <property name="use_markup">True</property>
+                                    <property name="ellipsize">PANGO_ELLIPSIZE_MIDDLE</property>
+                                    <property name="single_line_mode">True</property>
+                                  </widget>
+                                </child>
+                                <child>
+                                  <widget class="GtkLabel" id="label4">
+                                    <property name="visible">True</property>
+                                    <property name="xalign">0</property>
+                                    <property name="label" translatable="yes">Image:</property>
+                                    <property name="use_markup">True</property>
+                                    <property name="ellipsize">PANGO_ELLIPSIZE_MIDDLE</property>
+                                    <property name="single_line_mode">True</property>
+                                  </widget>
+                                  <packing>
+                                    <property name="top_attach">1</property>
+                                    <property name="bottom_attach">2</property>
+                                  </packing>
+                                </child>
+                                <child>
+                                  <widget class="GtkLabel" id="label14">
+                                    <property name="visible">True</property>
+                                    <property name="xalign">0</property>
+                                    <property name="label" translatable="yes">Desaturation:</property>
+                                    <property name="use_markup">True</property>
+                                    <property name="ellipsize">PANGO_ELLIPSIZE_MIDDLE</property>
+                                    <property name="single_line_mode">True</property>
+                                  </widget>
+                                  <packing>
+                                    <property name="top_attach">2</property>
+                                    <property name="bottom_attach">3</property>
+                                  </packing>
+                                </child>
+                                <child>
+                                  <widget class="GtkLabel" id="label2">
+                                    <property name="visible">True</property>
+                                    <property name="xalign">0</property>
+                                    <property name="label" translatable="yes">Background Transparent:</property>
+                                    <property name="use_markup">True</property>
+                                    <property name="ellipsize">PANGO_ELLIPSIZE_MIDDLE</property>
+                                    <property name="single_line_mode">True</property>
+                                  </widget>
+                                  <packing>
+                                    <property name="top_attach">3</property>
+                                    <property name="bottom_attach">4</property>
+                                  </packing>
+                                </child>
+                                <child>
+                                  <widget class="GtkColorButton" id="bg-colorbutton">
+                                    <property name="visible">True</property>
                                     <property name="response_id">0</property>
-                                    <property name="active">True</property>
-                                    <property name="draw_indicator">True</property>
-                                    <signal name="toggled" handler="on_chk_bg_transparent_toggled"/>
-                                    <child>
-                                      <placeholder/>
-                                    </child>
+                                    <property name="title" translatable="yes">Choose some color</property>
+                                    <signal name="color_set" handler="on_bg_colorbutton_color_set"/>
                                   </widget>
                                   <packing>
                                     <property name="left_attach">1</property>
                                     <property name="right_attach">2</property>
-                                    <property name="top_attach">3</property>
-                                    <property name="bottom_attach">4</property>
+                                  </packing>
+                                </child>
+                                <child>
+                                  <widget class="GtkFileChooserButton" id="bgimage-filechooserbutton">
+                                    <property name="visible">True</property>
+                                    <signal name="selection_changed" handler="on_bgimage_filechooserbutton_selection_changed"/>
+                                  </widget>
+                                  <packing>
+                                    <property name="left_attach">1</property>
+                                    <property name="right_attach">2</property>
+                                    <property name="top_attach">1</property>
+                                    <property name="bottom_attach">2</property>
                                   </packing>
                                 </child>
                                 <child>
@@ -514,80 +570,23 @@
                                   </packing>
                                 </child>
                                 <child>
-                                  <widget class="GtkFileChooserButton" id="bgimage-filechooserbutton">
+                                  <widget class="GtkCheckButton" id="chk_bg_transparent">
                                     <property name="visible">True</property>
-                                    <signal name="selection_changed" handler="on_bgimage_filechooserbutton_selection_changed"/>
-                                  </widget>
-                                  <packing>
-                                    <property name="left_attach">1</property>
-                                    <property name="right_attach">2</property>
-                                    <property name="top_attach">1</property>
-                                    <property name="bottom_attach">2</property>
-                                  </packing>
-                                </child>
-                                <child>
-                                  <widget class="GtkColorButton" id="bg-colorbutton">
-                                    <property name="visible">True</property>
+                                    <property name="can_focus">True</property>
                                     <property name="response_id">0</property>
-                                    <property name="title" translatable="yes">Choose some color</property>
-                                    <signal name="color_set" handler="on_bg_colorbutton_color_set"/>
+                                    <property name="active">True</property>
+                                    <property name="draw_indicator">True</property>
+                                    <signal name="toggled" handler="on_chk_bg_transparent_toggled"/>
+                                    <child>
+                                      <placeholder/>
+                                    </child>
                                   </widget>
                                   <packing>
                                     <property name="left_attach">1</property>
                                     <property name="right_attach">2</property>
-                                  </packing>
-                                </child>
-                                <child>
-                                  <widget class="GtkLabel" id="label2">
-                                    <property name="visible">True</property>
-                                    <property name="xalign">0</property>
-                                    <property name="label" translatable="yes">Background Transparent:</property>
-                                    <property name="use_markup">True</property>
-                                    <property name="ellipsize">PANGO_ELLIPSIZE_MIDDLE</property>
-                                    <property name="single_line_mode">True</property>
-                                  </widget>
-                                  <packing>
                                     <property name="top_attach">3</property>
                                     <property name="bottom_attach">4</property>
                                   </packing>
-                                </child>
-                                <child>
-                                  <widget class="GtkLabel" id="label14">
-                                    <property name="visible">True</property>
-                                    <property name="xalign">0</property>
-                                    <property name="label" translatable="yes">Desaturation:</property>
-                                    <property name="use_markup">True</property>
-                                    <property name="ellipsize">PANGO_ELLIPSIZE_MIDDLE</property>
-                                    <property name="single_line_mode">True</property>
-                                  </widget>
-                                  <packing>
-                                    <property name="top_attach">2</property>
-                                    <property name="bottom_attach">3</property>
-                                  </packing>
-                                </child>
-                                <child>
-                                  <widget class="GtkLabel" id="label4">
-                                    <property name="visible">True</property>
-                                    <property name="xalign">0</property>
-                                    <property name="label" translatable="yes">Image:</property>
-                                    <property name="use_markup">True</property>
-                                    <property name="ellipsize">PANGO_ELLIPSIZE_MIDDLE</property>
-                                    <property name="single_line_mode">True</property>
-                                  </widget>
-                                  <packing>
-                                    <property name="top_attach">1</property>
-                                    <property name="bottom_attach">2</property>
-                                  </packing>
-                                </child>
-                                <child>
-                                  <widget class="GtkLabel" id="label3">
-                                    <property name="visible">True</property>
-                                    <property name="xalign">0</property>
-                                    <property name="label" translatable="yes">Color:</property>
-                                    <property name="use_markup">True</property>
-                                    <property name="ellipsize">PANGO_ELLIPSIZE_MIDDLE</property>
-                                    <property name="single_line_mode">True</property>
-                                  </widget>
                                 </child>
                               </widget>
                             </child>
