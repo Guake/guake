@@ -430,7 +430,6 @@ class Guake(SimpleGladeApp):
 
         self.load_config()
         self.load_accelerators()
-        # self.toggle_scrollbars()
         self.refresh()
         self.add_tab()
 
