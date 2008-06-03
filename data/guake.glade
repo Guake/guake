@@ -6,7 +6,6 @@
     <property name="has_focus">True</property>
     <property name="title" translatable="yes">Guake!</property>
     <property name="modal">True</property>
-    <property name="window_position">GTK_WIN_POS_CENTER</property>
     <property name="skip_taskbar_hint">True</property>
     <property name="skip_pager_hint">True</property>
     <property name="urgency_hint">True</property>
@@ -44,7 +43,7 @@
                 </child>
                 <child>
                   <widget class="GtkLabel" id="label3">
-                    <property name="label" translatable="yes">Guake 0.0.1alpha</property>
+                    <property name="label" translatable="yes">Guake!</property>
                     <property name="use_markup">True</property>
                   </widget>
                   <packing>
