@@ -491,6 +491,7 @@ class Guake(SimpleGladeApp):
         self.window.move(0, 0)
         self.resize(*self.get_final_window_size())
         self.window.show_all()
+        self.window.window.focus()
 
     def hide(self):
         self.window.hide() # FIXME: Don't use hide_all here!
