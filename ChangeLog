@@ -1,7 +1,21 @@
+2008-06-03  Lincoln de Sousa  <lincoln@minaslivre.org>
+
+	* src/guake.py (Guake.show): Moving window after shown.
+
+	* src/guake.py (Guake.show_prefs, Guake.show_about)
+	(PrefsDialog.show): Making dialogs be shown and hidden without
+	bothering main window.
+
+	* data/guake.glade: Removing version number from main window and
+	removing window position from center.
+
+	* data/prefs.glade: This dialog is no longer set as modal and
+	crazy glade changes.
+
 2008-06-03  Gabriel Falcão <gabriel@nacaolivre.org>
 
-	* configure.ac: ALL_LINGUAS configured by adding japanese translation.
-					Version changed to 0.2
+	* configure.ac: ALL_LINGUAS configured by adding japanese
+	translation. Version changed to 0.2
 
 2008-05-28  Gabriel Falcão <gabriel@nacaolivre.org>
 
@@ -21,10 +35,10 @@
 	works in make distcheck.
 
 	* configure.ac: Fixing version number.
-	
+
 	* po/POTFILES.in: Adding some python files that should be
 	internationalized.
-	
+
 2007-10-24  Lincoln de Sousa <lincoln@minaslivre.org>
 
 	* data/prefs.glade: Gnome Hig compilance by n3rd3x, thank you guy =)
