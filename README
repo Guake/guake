@@ -12,8 +12,13 @@ DEPENDENCIES
 ~~~~~~~~~~~~
  * Python2.4+
  * pygtk2.10 (gtk.StatusIcon)
+ * python-vte
  * pynotify (optional)
 
+To build guake, you will need the following packages too:
+ * python-dev
+ * gtk+-2.0-dev
+ * gconf2-dev (to use some autoconf stuff)
 
 INSTALLATION
 ~~~~~~~~~~~~
