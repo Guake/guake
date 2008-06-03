@@ -141,6 +141,7 @@ class PrefsDialog(SimpleGladeApp):
 
     def show(self):
         self.get_widget('config-window').show_all()
+        self.get_widget('config-window').present()
 
     def hide(self):
         self.get_widget('config-window').hide()
@@ -462,9 +463,11 @@ class Guake(SimpleGladeApp):
     # -- methods exclusivelly called by dbus interface --
 
     def show_about(self):
+        self.hide()
         AboutDialog()
 
     def show_prefs(self):
+        self.hide()
         PrefsDialog(self).show()
 
     # -- controls main window visibility and size --
@@ -488,9 +491,9 @@ class Guake(SimpleGladeApp):
             self.add_tab()
 
         self.visible = True
-        self.window.move(0, 0)
         self.resize(*self.get_final_window_size())
         self.window.show_all()
+        self.window.move(0, 0)
         self.window.window.focus()
 
     def hide(self):
@@ -647,10 +650,10 @@ class Guake(SimpleGladeApp):
     # -- callbacks --
 
     def on_prefs_menuitem_activate(self, *args):
-        PrefsDialog(self).show()
+        self.show_prefs()
 
     def on_about_menuitem_activate(self, *args):
-        AboutDialog()
+        self.show_about()
 
     def on_add_button_clicked(self, *args):
         self.add_tab()
@@ -661,7 +664,7 @@ class Guake(SimpleGladeApp):
     # -- Context menu callbacks --
 
     def on_context_preferences_activate(self, widget):
-        PrefsDialog(self).show()
+        self.show_prefs()
 
     def on_context_copy_activate(self, widget):
         current_pos = self.notebook.get_current_page()
