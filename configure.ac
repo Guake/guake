@@ -56,7 +56,11 @@ AS_AC_EXPAND(DATADIR, ${datarootdir})
 
 dnl Checking python-vte
 AC_MSG_CHECKING([for the python-vte package])
-ac_pvte_result=`$PYTHON -c "import vte" 2>&1`
+ac_pvte_result=`$PYTHON -c 'try:
+    import vte
+except Exception, e:
+    print str(e)' 2> /dev/null`
+
 if test -z "$ac_pvte_result"; then
     AC_MSG_RESULT([yes])
 else
