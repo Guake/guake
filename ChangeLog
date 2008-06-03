@@ -1,3 +1,8 @@
+2008-06-03  Gabriel Falcão <gabriel@nacaolivre.org>
+
+	* configure.ac: ALL_LINGUAS configured by adding japanese translation.
+					Version changed to 0.2
+
 2008-05-28  Gabriel Falcão <gabriel@nacaolivre.org>
 
 	* src/guake.py: Applied patch from SteveD <dashdot@f-m.fm> that fixes the

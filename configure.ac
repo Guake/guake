@@ -16,7 +16,7 @@
 # Free Software Foundation, Inc., 59 Temple Place - Suite 330,
 # Boston, MA 02111-1307, USA.
 
-AC_INIT([guake], [0.1], [http://trac.guake-terminal.org/])
+AC_INIT([guake], [0.2], [http://trac.guake-terminal.org/])
 
 AC_CONFIG_HEADERS([config.h])
 
@@ -79,7 +79,7 @@ AM_GCONF_SOURCE_2
 
 dnl Internationalization
 GETTEXT_PACKAGE=guake
-ALL_LINGUAS="pt_BR"
+ALL_LINGUAS="pt_BR ja"
 
 AC_SUBST([GETTEXT_PACKAGE])
 AC_SUBST([ALL_LINGUAS])
