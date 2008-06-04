@@ -494,7 +494,13 @@ class Guake(SimpleGladeApp):
         self.resize(*self.get_final_window_size())
         self.window.show_all()
         self.window.move(0, 0)
-        self.window.window.focus()
+
+        try:
+            # does it work in other gtk backends
+            time = gtk.gdk.x11_get_server_time(self.window.window)
+        except AttributeError:
+            time = 0
+        self.window.window.focus(time)
 
     def hide(self):
         self.window.hide() # FIXME: Don't use hide_all here!
