@@ -1,5 +1,7 @@
 2008-06-03  Lincoln de Sousa  <lincoln@minaslivre.org>
 
+	* data/Makefile.am: Clean up.
+
 	* src/guake.py (Guake.show): Moving window after shown.
 
 	* src/guake.py (Guake.show_prefs, Guake.show_about)
