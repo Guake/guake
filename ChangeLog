@@ -1,5 +1,10 @@
 2008-06-04  Lincoln de Sousa  <lincoln@minaslivre.org>
 
+	* data/prefs.glade: Adding a better tittle and setting some
+	paddings and spaces.
+
+	* data/tab{down, up}.svg: Making these images a bit smaller.
+
 	* data/guake.glade: removing Modal flag from the main window (it
 	was bothering preferences and about dialogs'
 

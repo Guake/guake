@@ -88,6 +88,11 @@ class PrefsDialog(SimpleGladeApp):
         self.guake = guakeinstance
         self.client = gconf.client_get_default()
 
+        # setting evtbox title bg
+        eventbox = self.get_widget('eventbox-title')
+        eventbox.modify_bg(gtk.STATE_NORMAL,
+                           eventbox.get_colormap().alloc_color("#ffffff"))
+
         # images
         ipath = common.pixmapfile('guake.png')
         self.get_widget('image_logo').set_from_file(ipath)
