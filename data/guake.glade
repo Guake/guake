@@ -5,7 +5,6 @@
   <widget class="GtkWindow" id="window-root">
     <property name="has_focus">True</property>
     <property name="title" translatable="yes">Guake!</property>
-    <property name="modal">True</property>
     <property name="skip_taskbar_hint">True</property>
     <property name="skip_pager_hint">True</property>
     <property name="urgency_hint">True</property>
