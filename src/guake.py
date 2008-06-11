@@ -393,7 +393,7 @@ class Guake(SimpleGladeApp):
         # setting global hotkey showing a pretty notification =)
         globalhotkeys.init()
         key = self.client.get_string(GHOTKEYS[0][0])
-        filename = common.pixmapfile('guake.png')
+        filename = common.pixmapfile('guake-notification.png')
         if not globalhotkeys.bind(key, self.show_hide):
             n = pynotify.Notification(_('Guake!'),
                 _('A problem happened when binding <b>%s</b> key.\n'
@@ -412,19 +412,21 @@ class Guake(SimpleGladeApp):
         tray_icon.show_all()
 
         # adding images from a different path.
-        ipath = common.pixmapfile('statusicon_out.png')
+        ipath = common.pixmapfile('guake.png')
         self.get_widget('image1').set_from_file(ipath)
         ipath = common.pixmapfile('add_tab.png')
         self.get_widget('image2').set_from_file(ipath)
 
         self.window = self.get_widget('window-root')
         self.notebook = self.get_widget('notebook-teminals')
+        self.tabs = self.get_widget('hbox-tabs')
         self.toolbar = self.get_widget('toolbar')
         self.mainframe = self.get_widget('mainframe')
 
         self.accel_group = gtk.AccelGroup()
         self.last_pos = -1
         self.term_list = []
+
         self.animation_speed = 30
         self.visible = False
         self.fullscreen = False
@@ -573,11 +575,17 @@ class Guake(SimpleGladeApp):
         return True
 
     def accel_prev(self, *args):
-        self.notebook.prev_page()
+        if self.notebook.get_current_page() == 0:
+            self.notebook.set_current_page(self.notebook.get_n_pages()-1)
+        else:
+            self.notebook.prev_page()
         return True
 
     def accel_next(self, *args):
-        self.notebook.next_page()
+        if self.notebook.get_current_page()+1 == self.notebook.get_n_pages():
+            self.notebook.set_current_page(0)
+        else:
+            self.notebook.next_page()
         return True
 
     def accel_copy_clipboard(self, *args):
@@ -706,34 +714,27 @@ class Guake(SimpleGladeApp):
         self.term_list[last_added].connect('button-press-event',
                 self.show_context_menu)
 
-        image = gtk.Image()
-        image.set_from_file(common.pixmapfile('close.svg'))
-        
-        label = gtk.Label(_('Terminal %s') % (last_added+1))
-        label.connect('button-press-event', self.set_terminal_focus)
+        # Adding a new radio button to tabbar
+        tabs = self.tabs.get_children()
+        parent = tabs and tabs[0] or None
+        bnt = gtk.RadioButton(group=parent,
+                              label=_('Terminal %s') % (last_added+1))
+        bnt.connect('clicked', self.set_terminal_focus)
+        bnt.set_property('draw-indicator', False)
+        bnt.show()
 
-        button = gtk.Button()
-        button.set_image(image)
-        button.set_relief(gtk.RELIEF_NONE)
-        button.connect('clicked', self.on_close_button_close_clicked,
-                last_added)
+        self.tabs.pack_start(bnt, expand=False, padding=1)
 
-        hbox = gtk.HBox(False, False)
-        hbox.set_border_width(1)
-        hbox.pack_start(label)
-        hbox.pack_start(button)
-        hbox.show_all()
-
-        # preparing the way to a scrollbar...
+        # preparing the way to the scrollbar...
         mhbox = gtk.HBox()
         mhbox.pack_start(self.term_list[last_added], True, True)
+
         adj = self.term_list[last_added].get_adjustment()
         scroll = gtk.VScrollbar(adj)
         use_scrollbar = self.client.get_bool(GCONF_PATH+'general/use_scrollbar')
         if not use_scrollbar:
             scroll.set_no_show_all(True)
         mhbox.pack_start(scroll, False, False)
-
         mhbox.show_all()
 
         use_bgimage = self.client.get_bool(GCONF_PATH+'general/use_bgimage')
@@ -744,7 +745,7 @@ class Guake(SimpleGladeApp):
         self.term_list[last_added].set_visible_bell(False) # without visible beep
         self.term_list[last_added].set_scroll_on_output(True) # auto scroll
         self.term_list[last_added].set_scroll_on_keystroke(True) # auto scroll
-        #self.term_list[last_added].set_scroll_background(True)
+
         history_size = self.client.get_int(GCONF_PATH+'general/history_size')
         self.term_list[last_added].set_scrollback_lines(history_size) # history size
         self.term_list[last_added].set_sensitive(True)
@@ -755,11 +756,10 @@ class Guake(SimpleGladeApp):
                 self.on_terminal_exited, mhbox)
         self.term_list[last_added].grab_focus()
 
-        self.notebook.append_page(mhbox, hbox)
+        self.notebook.append_page(mhbox, None)
         self.notebook.connect('switch-page', self.set_last_pos)
         self.notebook.connect('focus-tab', self.set_terminal_focus)
 
-        self.set_tabs_visible()
         self.load_config()
         self.term_list[last_added].show()
         self.notebook.set_current_page(last_added)
@@ -767,20 +767,17 @@ class Guake(SimpleGladeApp):
 
     def delete_tab(self, pagepos):
         self.notebook.remove_page(pagepos)
+        self.tabs.get_children()[pagepos].destroy()
         self.clear_old_terms()
-        self.set_tabs_visible()
         if not self.term_list:
             self.hide()
 
-    def set_terminal_focus(self):
+    def set_terminal_focus(self, *args):
         self.notebook.set_current_page(self.last_pos)
         self.term_list[self.last_pos].grab_focus()
 
-    def set_tabs_visible(self):
-        if self.notebook.get_n_pages() == 1:
-            self.notebook.set_show_tabs(False)
-        else:
-            self.notebook.set_show_tabs(True)
+    def select_current_tab(self, notebook, user_data, page):
+        self.tabs.get_children()[page].set_active(True)
 
     def set_last_pos(self, notebook, page, page_num):
         self.last_pos = page_num

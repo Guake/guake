@@ -60,7 +60,7 @@ class GuakeStatusIcon(object):
         self.icon = None
         self.style = None
 
-        img = common.pixmapfile('statusicon_out.png')
+        img = common.pixmapfile('guake-tray.png')
         tooltip = _('Guake-Terminal')
         try:
             self.icon = gtk.status_icon_new_from_file(img)

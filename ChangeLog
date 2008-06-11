@@ -1,5 +1,12 @@
 2008-06-10  Lincoln de Sousa  <lincoln@minaslivre.org>
 
+	* src/guake.py: Starting to implement the new tabs
+	system (acctualy almost finishing =) and updating image names.
+
+	* src/statusicon.py: Updating notification image name.
+
+2008-06-10  Lincoln de Sousa  <lincoln@minaslivre.org>
+
 	* data/guake.glade: Hiding tabs and border from the main notebook,
 	fixing add tab button image, removing the "guake" name in left
 	side and adding an hbox to be the place holder to the new tab
