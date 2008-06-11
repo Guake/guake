@@ -1,3 +1,13 @@
+2008-06-11  Lincoln de Sousa  <lincoln@minaslivre.org>
+
+	* src/guake.py (Guake): Finishing initial tab issues, like close,
+	now the child process is being killed with SIGKILL. Terminal focus
+	on tab click was fixed too. last_pos attribute and its setter were
+	removed.
+
+	* data/guake.glade: adding close tab menu entry and fixing little
+	focus issues on main notebook.
+
 2008-06-10  Lincoln de Sousa  <lincoln@minaslivre.org>
 
 	* src/guake.py: Starting to implement the new tabs

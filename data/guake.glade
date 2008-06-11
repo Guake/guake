@@ -16,7 +16,9 @@
         <child>
           <widget class="GtkNotebook" id="notebook-teminals">
             <property name="visible">True</property>
+            <property name="can_focus">True</property>
             <property name="has_focus">True</property>
+            <property name="is_focus">True</property>
             <property name="tab_pos">GTK_POS_BOTTOM</property>
             <property name="show_tabs">False</property>
             <property name="show_border">False</property>
@@ -146,6 +148,20 @@
     <child>
       <widget class="GtkSeparatorMenuItem" id="separador2">
         <property name="visible">True</property>
+      </widget>
+    </child>
+    <child>
+      <widget class="GtkImageMenuItem" id="menuitem1">
+        <property name="visible">True</property>
+        <property name="label" translatable="yes">Close Tab</property>
+        <property name="use_underline">True</property>
+        <signal name="activate" handler="on_context_close_tab_activate"/>
+        <child internal-child="image">
+          <widget class="GtkImage" id="menu-item-image1">
+            <property name="stock">gtk-close</property>
+            <property name="icon-size">1</property>
+          </widget>
+        </child>
       </widget>
     </child>
     <child>
