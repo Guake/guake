@@ -18,81 +18,53 @@
             <property name="visible">True</property>
             <property name="has_focus">True</property>
             <property name="tab_pos">GTK_POS_BOTTOM</property>
-            <property name="scrollable">True</property>
+            <property name="show_tabs">False</property>
+            <property name="show_border">False</property>
             <property name="enable_popup">True</property>
+            <signal name="switch_page" handler="select_current_tab"/>
           </widget>
         </child>
         <child>
           <widget class="GtkHBox" id="toolbar">
-            <property name="height_request">22</property>
             <property name="visible">True</property>
             <child>
-              <widget class="GtkHBox" id="hbox3">
+              <widget class="GtkImage" id="image1">
                 <property name="visible">True</property>
-                <child>
-                  <widget class="GtkImage" id="image1">
-                    <property name="width_request">28</property>
-                    <property name="visible">True</property>
-                    <property name="stock">gtk-missing-image</property>
-                  </widget>
-                  <packing>
-                    <property name="expand">False</property>
-                    <property name="fill">False</property>
-                  </packing>
-                </child>
-                <child>
-                  <widget class="GtkLabel" id="label3">
-                    <property name="label" translatable="yes">Guake!</property>
-                    <property name="use_markup">True</property>
-                  </widget>
-                  <packing>
-                    <property name="expand">False</property>
-                    <property name="fill">False</property>
-                    <property name="position">1</property>
-                  </packing>
-                </child>
+                <property name="stock">gtk-missing-image</property>
               </widget>
               <packing>
                 <property name="expand">False</property>
                 <property name="fill">False</property>
+                <property name="padding">6</property>
               </packing>
             </child>
             <child>
-              <widget class="GtkHButtonBox" id="hbuttonbox1">
+              <widget class="GtkHBox" id="hbox-tabs">
                 <property name="visible">True</property>
-                <property name="layout_style">GTK_BUTTONBOX_END</property>
+              </widget>
+              <packing>
+                <property name="position">1</property>
+              </packing>
+            </child>
+            <child>
+              <widget class="GtkButton" id="button1">
+                <property name="visible">True</property>
+                <property name="can_focus">True</property>
+                <property name="receives_default">True</property>
+                <property name="tooltip" translatable="yes">Add a new tab</property>
+                <property name="relief">GTK_RELIEF_NONE</property>
+                <property name="response_id">0</property>
+                <signal name="clicked" handler="on_add_button_clicked"/>
                 <child>
-                  <widget class="GtkButton" id="add-button">
+                  <widget class="GtkImage" id="image2">
                     <property name="visible">True</property>
-                    <property name="response_id">0</property>
-                    <signal name="clicked" handler="on_add_button_clicked"/>
-                    <child>
-                      <widget class="GtkHBox" id="hbox4">
-                        <property name="visible">True</property>
-                        <child>
-                          <widget class="GtkImage" id="image2">
-                            <property name="visible">True</property>
-                            <property name="stock">gtk-missing-image</property>
-                            <property name="icon_size">1</property>
-                          </widget>
-                        </child>
-                        <child>
-                          <widget class="GtkLabel" id="label2">
-                            <property name="visible">True</property>
-                            <property name="label" translatable="yes">New Tab</property>
-                            <property name="use_markup">True</property>
-                          </widget>
-                          <packing>
-                            <property name="position">1</property>
-                          </packing>
-                        </child>
-                      </widget>
-                    </child>
+                    <property name="stock">gtk-missing-image</property>
                   </widget>
                 </child>
               </widget>
               <packing>
-                <property name="position">1</property>
+                <property name="expand">False</property>
+                <property name="position">2</property>
               </packing>
             </child>
           </widget>
