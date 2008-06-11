@@ -2,7 +2,7 @@
 <!-- Created with Inkscape (http://www.inkscape.org/) -->
 <svg
    xmlns:dc="http://purl.org/dc/elements/1.1/"
-   xmlns:cc="http://web.resource.org/cc/"
+   xmlns:cc="http://creativecommons.org/ns#"
    xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
    xmlns:svg="http://www.w3.org/2000/svg"
    xmlns="http://www.w3.org/2000/svg"
@@ -13,17 +13,24 @@
    height="17.561049"
    id="svg2"
    sodipodi:version="0.32"
-   inkscape:version="0.45"
+   inkscape:version="0.46"
    version="1.0"
-   sodipodi:docname="down_normal.svg"
+   sodipodi:docname="guake.svg"
    sodipodi:docbase="/home/gabriel/Desktop/guakeApplet/buttons"
    inkscape:output_extension="org.inkscape.output.svg.inkscape"
-   inkscape:export-filename="/home/gabriel/Desktop/guakeApplet/buttons/statusicon_out.png"
-   inkscape:export-xdpi="98.999954"
-   inkscape:export-ydpi="98.999954"
+   inkscape:export-filename="/home/lincoln/Work/projects/guake/guake-python/guake/data/pixmaps/guake-notification.png"
+   inkscape:export-xdpi="213.3768"
+   inkscape:export-ydpi="213.3768"
    sodipodi:modified="TRUE">
   <defs
      id="defs4">
+    <inkscape:perspective
+       sodipodi:type="inkscape:persp3d"
+       inkscape:vp_x="0 : 8.7805243 : 1"
+       inkscape:vp_y="0 : 1000 : 0"
+       inkscape:vp_z="20.00001 : 8.7805243 : 1"
+       inkscape:persp3d-origin="10.000005 : 5.8536828 : 1"
+       id="perspective880" />
     <linearGradient
        id="linearGradient5025">
       <stop
@@ -6580,17 +6587,18 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="16.359409"
-     inkscape:cx="8.5092863"
-     inkscape:cy="10.466212"
+     inkscape:zoom="21.376988"
+     inkscape:cx="6.9788173"
+     inkscape:cy="5.8519013"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
      width="20px"
      height="20px"
      inkscape:window-width="1280"
-     inkscape:window-height="950"
+     inkscape:window-height="753"
      inkscape:window-x="0"
-     inkscape:window-y="24" />
+     inkscape:window-y="25"
+     showgrid="false" />
   <metadata
      id="metadata7">
     <rdf:RDF>
@@ -6618,7 +6626,7 @@
        style="opacity:0.69387758;color:#000000;fill:url(#radialGradient2637);fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;marker:none;marker-start:none;marker-mid:none;marker-end:none;stroke-miterlimit:10;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;visibility:visible;display:inline;overflow:visible"
        sodipodi:type="arc" />
     <rect
-       style="fill:url(#linearGradient5068);fill-opacity:1;fill-rule:evenodd;stroke:url(#linearGradient5070);stroke-width:0.52167332;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+       style="fill:url(#linearGradient5068);fill-opacity:1;fill-rule:evenodd;stroke:url(#linearGradient5070);stroke-width:0.8;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
        id="rect1314"
        width="19.445875"
        height="15.216899"
@@ -6629,7 +6637,7 @@
     <g
        id="g2286"
        style="opacity:0.25568183"
-       transform="matrix(0.5243171,0,0,0.5243171,223.36978,418.98272)">
+       transform="matrix(0.5505553,0,0,0.5243171,222.77798,418.98272)">
       <path
          id="path1345"
          d="M 8.0152033,11.500361 L 39.994145,11.500361"
@@ -6690,14 +6698,16 @@
        d="M 227.36789,423.17726 C 227.09353,423.17726 226.5427,423.27697 226.5427,423.71519 L 226.60458,432.37511 C 235.87032,431.86998 234.0105,428.0463 245.39109,426.1309 L 245.35819,423.85435 C 245.31716,423.26444 245.07542,423.20844 244.51397,423.21191 L 227.36789,423.17726 z "
        id="path2443" />
     <rect
-       style="opacity:0.71428576;fill:none;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:1.04863369;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+       style="opacity:0.71428576;fill:none;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:0.61600286;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
        id="rect1340"
-       width="17.840429"
-       height="13.662375"
-       x="227.03448"
-       y="423.69135"
-       rx="0.061728988"
-       ry="0.061728988" />
+       width="18.297846"
+       height="14.040887"
+       x="226.82045"
+       y="423.46262"
+       rx="0.063311681"
+       ry="0.063439168"
+       inkscape:export-xdpi="123.72"
+       inkscape:export-ydpi="123.72" />
     <g
        id="g5039"
        transform="matrix(0.7273343,0,0,0.7273343,66.484726,114.34015)">

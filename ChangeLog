@@ -1,3 +1,25 @@
+2008-06-10  Lincoln de Sousa  <lincoln@minaslivre.org>
+
+	* data/guake.glade: Hiding tabs and border from the main notebook,
+	fixing add tab button image, removing the "guake" name in left
+	side and adding an hbox to be the place holder to the new tab
+	system.
+
+	* data/pixmaps/add_tab.svg:
+	* data/pixmaps/close.svg:
+	* data/pixmaps/statusicon_*: Removed.
+
+	* data/pixmaps/guake.svg: Adding some lights and reducing some
+	borders.
+
+	* data/pixmaps/guake.png: Generated from the new guake.svg;
+
+	* data/pixmaps/guake-notification.png:
+	* data/pixmaps/guake-tray.png: Added.
+
+	* data/pixmaps/Makefile.am: Updating changed files in
+	pixmaps_DATA.
+
 2008-06-04  Lincoln de Sousa  <lincoln@minaslivre.org>
 
 	* data/prefs.glade: Adding a better tittle and setting some
