@@ -31,6 +31,7 @@ import gconf
 import dbus
 
 import os
+import signal
 import sys
 import warnings
 import common
@@ -61,7 +62,6 @@ LHOTKEYS = ((GCONF_KEYS+'local/new_tab', _('New tab'),),
             (GCONF_KEYS+'local/toggle_fullscreen', _('Toggle Fullscreen'),),
 )
 
-
 class AboutDialog(SimpleGladeApp):
     def __init__(self):
         super(AboutDialog, self).__init__(common.gladefile('about.glade'),
@@ -72,7 +72,7 @@ class AboutDialog(SimpleGladeApp):
         ad.set_keep_above(True)
 
         # images
-        ipath = common.pixmapfile('guake.png')
+        ipath = common.pixmapfile('guake-notification.png')
         img = gtk.gdk.pixbuf_new_from_file(ipath)
         ad.set_property('logo', img)
 
@@ -94,7 +94,7 @@ class PrefsDialog(SimpleGladeApp):
                            eventbox.get_colormap().alloc_color("#ffffff"))
 
         # images
-        ipath = common.pixmapfile('guake.png')
+        ipath = common.pixmapfile('guake-notification.png')
         self.get_widget('image_logo').set_from_file(ipath)
         ipath = common.pixmapfile('tabdown.svg')
         self.get_widget('image1').set_from_file(ipath)
@@ -424,8 +424,8 @@ class Guake(SimpleGladeApp):
         self.mainframe = self.get_widget('mainframe')
 
         self.accel_group = gtk.AccelGroup()
-        self.last_pos = -1
         self.term_list = []
+        self.pid_list = []
 
         self.animation_speed = 30
         self.visible = False
@@ -693,12 +693,13 @@ class Guake(SimpleGladeApp):
         current_pos = self.notebook.get_current_page()
         self.term_list[current_pos].paste_clipboard()
 
+    def on_context_close_tab_activate(self, *args):
+        current_pos = self.notebook.get_current_page()
+        pid = self.pid_list.pop(current_pos)
+        os.kill(pid, signal.SIGKILL)
+
     def on_context_close_activate(self, widget):
         gtk.main_quit()
-
-    def on_close_button_close_clicked(self, widget, index):
-        self.term_list[index].fork_command("bash", "exit")
-        self.set_terminal_focus()
 
     # -- tab related functions --
 
@@ -709,8 +710,11 @@ class Guake(SimpleGladeApp):
 
         # TODO: make new terminal opens in the same dir of the already in use.
         shell_name = self.client.get_string(GCONF_PATH+'general/default_shell')
-        self.term_list[last_added].fork_command(shell_name or "bash",
-                directory=os.path.expanduser('~'))
+        directory = os.path.expanduser('~')
+        pid = self.term_list[last_added].\
+            fork_command(shell_name or "bash", directory=directory)
+
+        self.pid_list.append(pid)
         self.term_list[last_added].connect('button-press-event',
                 self.show_context_menu)
 
@@ -719,7 +723,8 @@ class Guake(SimpleGladeApp):
         parent = tabs and tabs[0] or None
         bnt = gtk.RadioButton(group=parent,
                               label=_('Terminal %s') % (last_added+1))
-        bnt.connect('clicked', self.set_terminal_focus)
+        bnt.connect('clicked', lambda *x:
+                        self.notebook.set_current_page (len(tabs)))
         bnt.set_property('draw-indicator', False)
         bnt.show()
 
@@ -757,13 +762,10 @@ class Guake(SimpleGladeApp):
         self.term_list[last_added].grab_focus()
 
         self.notebook.append_page(mhbox, None)
-        self.notebook.connect('switch-page', self.set_last_pos)
-        self.notebook.connect('focus-tab', self.set_terminal_focus)
 
         self.load_config()
         self.term_list[last_added].show()
         self.notebook.set_current_page(last_added)
-        self.last_pos = last_added
 
     def delete_tab(self, pagepos):
         self.notebook.remove_page(pagepos)
@@ -772,15 +774,12 @@ class Guake(SimpleGladeApp):
         if not self.term_list:
             self.hide()
 
-    def set_terminal_focus(self, *args):
-        self.notebook.set_current_page(self.last_pos)
-        self.term_list[self.last_pos].grab_focus()
+    def set_terminal_focus(self):
+        page = self.notebook.get_current_page()
+        self.term_list[page].grab_focus()
 
     def select_current_tab(self, notebook, user_data, page):
         self.tabs.get_children()[page].set_active(True)
-
-    def set_last_pos(self, notebook, page, page_num):
-        self.last_pos = page_num
 
     def clear_old_terms(self):
         for term in reversed(self.term_list):
