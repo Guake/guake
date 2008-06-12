@@ -159,7 +159,7 @@
         <child internal-child="image">
           <widget class="GtkImage" id="menu-item-image1">
             <property name="stock">gtk-close</property>
-            <property name="icon-size">1</property>
+            <property name="icon_size">1</property>
           </widget>
         </child>
       </widget>
@@ -171,6 +171,39 @@
         <property name="use_underline">True</property>
         <property name="use_stock">True</property>
         <signal name="activate" handler="on_context_close_activate"/>
+      </widget>
+    </child>
+  </widget>
+  <widget class="GtkMenu" id="tab-menu">
+    <property name="visible">True</property>
+    <child>
+      <widget class="GtkImageMenuItem" id="rename">
+        <property name="visible">True</property>
+        <property name="label" translatable="yes">Rename</property>
+        <property name="use_underline">True</property>
+        <signal name="activate" handler="on_rename_activate"/>
+        <child internal-child="image">
+          <widget class="GtkImage" id="menu-item-image3">
+            <property name="visible">True</property>
+            <property name="stock">gtk-edit</property>
+            <property name="icon_size">1</property>
+          </widget>
+        </child>
+      </widget>
+    </child>
+    <child>
+      <widget class="GtkImageMenuItem" id="close">
+        <property name="visible">True</property>
+        <property name="label" translatable="yes">Close</property>
+        <property name="use_underline">True</property>
+        <signal name="activate" handler="on_close_activate"/>
+        <child internal-child="image">
+          <widget class="GtkImage" id="menu-item-image2">
+            <property name="visible">True</property>
+            <property name="stock">gtk-close</property>
+            <property name="icon_size">1</property>
+          </widget>
+        </child>
       </widget>
     </child>
   </widget>

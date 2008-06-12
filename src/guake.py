@@ -433,6 +433,15 @@ class Guake(SimpleGladeApp):
         # used to kill the process when closing a tab
         self.pid_list = []
 
+        # It's intended to know which tab was selected to
+        # close/rename. This attribute will be set in
+        # self.show_tab_menu
+        self.selected_tab = None
+
+        # holds the number of created tabs. This counter will not be
+        # reset to avoid problems of repeated tab names.
+        self.tab_counter = 0
+
         # holds visibility/fullscreen status =)
         self.visible = False
         self.fullscreen = False
@@ -477,6 +486,13 @@ class Guake(SimpleGladeApp):
         context_menu = self.get_widget('context-menu')
         if event.button == 3:
             context_menu.popup(None, None, None, 3, gtk.get_current_event_time())
+
+    def show_tab_menu(self, target, event):
+        if event.button == 3:
+            self.selected_tab = target
+            menu = self.get_widget('tab-menu')
+            menu.popup(None, None, None, 3, event.get_time())
+        self.set_terminal_focus()
 
     # -- methods exclusivelly called by dbus interface --
 
@@ -690,7 +706,39 @@ class Guake(SimpleGladeApp):
 
     def on_terminal_exited(self, term, widget):
         self.delete_tab(self.notebook.page_num(widget))
-    
+
+    def on_rename_activate(self, *args):
+        entry = gtk.Entry()
+        entry.set_text(self.selected_tab.get_label())
+
+        vbox = gtk.VBox()
+        vbox.pack_start(entry)
+        vbox.set_border_width(6)
+        vbox.show_all()
+
+        dialog = gtk.Dialog("Rename tab",
+                            self.window,
+                            gtk.DIALOG_MODAL | gtk.DIALOG_DESTROY_WITH_PARENT,
+                            (gtk.STOCK_CANCEL, gtk.RESPONSE_REJECT,
+                             gtk.STOCK_OK, gtk.RESPONSE_ACCEPT))
+
+        dialog.set_size_request(300, -1)
+        dialog.vbox.pack_start(vbox)
+        dialog.set_border_width(4)
+        dialog.set_has_separator(False)
+        dialog.set_default_response(gtk.RESPONSE_ACCEPT)
+
+        response = dialog.run()
+        dialog.destroy()
+
+        if response == gtk.RESPONSE_ACCEPT:
+            self.selected_tab.set_label(entry.get_text())
+
+        self.set_terminal_focus()
+
+    def on_close_activate(self, *args):
+        self.on_context_close_tab_activate()
+
     # -- Context menu callbacks --
 
     def on_context_preferences_activate(self, widget):
@@ -733,11 +781,18 @@ class Guake(SimpleGladeApp):
         tabs = self.tabs.get_children()
         parent = tabs and tabs[0] or None
 
-        bnt = gtk.RadioButton(group=parent,
-                              label=_('Terminal %s') % (last_added+1))
-        bnt.connect('clicked', lambda *x:
-                        self.notebook.set_current_page (len(tabs)))
+        self.tab_counter += 1
+
+        label = _('Terminal %s') % self.tab_counter
+        bnt = gtk.RadioButton(group=parent, label=label)
+
+        bnt.set_tooltip_text(self.term_list[last_added].get_window_title())
+        bnt.set_property('can-focus', False)
         bnt.set_property('draw-indicator', False)
+
+        bnt.connect('button-press-event', self.show_tab_menu)
+        bnt.connect('clicked', lambda *x:
+                        self.notebook.set_current_page (last_added))
         bnt.show()
 
         self.tabs.pack_start(bnt, expand=False, padding=1)
