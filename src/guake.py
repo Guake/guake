@@ -1,7 +1,7 @@
 # -*- coding: utf-8; -*-
 """
 Copyright (C) 2007 Gabriel Falcão <gabrielteratos@gmail.com>
-Copyright (C) 2007 Lincoln de Sousa <lincoln@archlinux-br.org>
+Copyright (C) 2007 Lincoln de Sousa <lincoln@minaslivre.org>
 
 This program is free software; you can redistribute it and/or
 modify it under the terms of the GNU General Public License as
@@ -65,10 +65,11 @@ LHOTKEYS = ((GCONF_KEYS+'local/new_tab', _('New tab'),),
 class AboutDialog(SimpleGladeApp):
     def __init__(self):
         super(AboutDialog, self).__init__(common.gladefile('about.glade'),
-                root='aboutdialog')
+                                          root='aboutdialog')
         ad = self.get_widget('aboutdialog')
 
-        # the terminal window can be opened and the user *must* see this window
+        # the terminal window can be opened and the user *must* see
+        # this window
         ad.set_keep_above(True)
 
         # images
@@ -83,7 +84,7 @@ class AboutDialog(SimpleGladeApp):
 class PrefsDialog(SimpleGladeApp):
     def __init__(self, guakeinstance):
         super(PrefsDialog, self).__init__(common.gladefile('prefs.glade'),
-                root='config-window')
+                                          root='config-window')
 
         self.guake = guakeinstance
         self.client = gconf.client_get_default()
@@ -142,7 +143,7 @@ class PrefsDialog(SimpleGladeApp):
         self.bgfilechooser.set_preview_widget(self.selection_preview)
         self.bgfilechooser.set_filter(self.file_filter)
         self.bgfilechooser.connect('update-preview', self.update_preview_cb,
-                self.selection_preview)
+                                   self.selection_preview)
 
     def show(self):
         self.get_widget('config-window').show_all()
@@ -390,7 +391,7 @@ class Guake(SimpleGladeApp):
         super(Guake, self).__init__(common.gladefile('guake.glade'))
         self.client = gconf.client_get_default()
 
-        # setting global hotkey showing a pretty notification =)
+        # setting global hotkey and showing a pretty notification =)
         globalhotkeys.init()
         key = self.client.get_string(GHOTKEYS[0][0])
         filename = common.pixmapfile('guake-notification.png')
@@ -417,24 +418,34 @@ class Guake(SimpleGladeApp):
         ipath = common.pixmapfile('add_tab.png')
         self.get_widget('image2').set_from_file(ipath)
 
+        # important widgets
         self.window = self.get_widget('window-root')
         self.notebook = self.get_widget('notebook-teminals')
         self.tabs = self.get_widget('hbox-tabs')
         self.toolbar = self.get_widget('toolbar')
         self.mainframe = self.get_widget('mainframe')
 
-        self.accel_group = gtk.AccelGroup()
+        # List of vte.Terminal widgets, it will be useful when needed
+        # to get a widget by the current page in self.notebook
         self.term_list = []
+
+        # This is the pid of shells forked by each terminal. Will be
+        # used to kill the process when closing a tab
         self.pid_list = []
 
-        self.animation_speed = 30
+        # holds visibility/fullscreen status =)
         self.visible = False
         self.fullscreen = False
 
+        # some day we're going to have animation when showing/hiding
+        # guake's main window.
+        self.animation_speed = 30
+
+        self.accel_group = gtk.AccelGroup()
         self.window.add_accel_group(self.accel_group)
         self.window.set_keep_above(True)
         self.window.set_geometry_hints(min_width=1, min_height=1)
-        self.window.connect('focus-out-event',self.on_window_lostfocus)
+        self.window.connect('focus-out-event', self.on_window_lostfocus)
 
         self.load_config()
         self.load_accelerators()
@@ -444,7 +455,7 @@ class Guake(SimpleGladeApp):
     def on_window_lostfocus(self,window, event):
         getb = lambda x:self.client.get_bool(x)
         value = getb(GCONF_PATH+'general/hide_on_lost_focus')
-        if value == True:
+        if value:
             self.hide()
         
     def refresh(self):
@@ -718,9 +729,10 @@ class Guake(SimpleGladeApp):
         self.term_list[last_added].connect('button-press-event',
                 self.show_context_menu)
 
-        # Adding a new radio button to tabbar
+        # Adding a new radio button to the tabbar
         tabs = self.tabs.get_children()
         parent = tabs and tabs[0] or None
+
         bnt = gtk.RadioButton(group=parent,
                               label=_('Terminal %s') % (last_added+1))
         bnt.connect('clicked', lambda *x:
