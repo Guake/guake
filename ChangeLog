@@ -5,7 +5,7 @@
 	* src/guake.py: Code cleanup and comments added.
 
 	* src/guake.py (Guake): Adding a context menu to each tab with
-	rename and close options (close is broken for a while =).
+	rename and close options.
 
 2008-06-11  Lincoln de Sousa  <lincoln@minaslivre.org>
 

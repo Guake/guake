@@ -34,6 +34,8 @@ import os
 import signal
 import sys
 import warnings
+from thread import start_new_thread
+from time import sleep
 import common
 from common import _
 from simplegladeapp import SimpleGladeApp, bindtextdomain
@@ -705,7 +707,7 @@ class Guake(SimpleGladeApp):
         self.add_tab()
 
     def on_terminal_exited(self, term, widget):
-        self.delete_tab(self.notebook.page_num(widget))
+        self.delete_tab(self.notebook.page_num(widget), kill=False)
 
     def on_rename_activate(self, *args):
         entry = gtk.Entry()
@@ -737,7 +739,8 @@ class Guake(SimpleGladeApp):
         self.set_terminal_focus()
 
     def on_close_activate(self, *args):
-        self.on_context_close_tab_activate()
+        pagepos = self.tabs.get_children().index(self.selected_tab)
+        self.delete_tab(pagepos)
 
     # -- Context menu callbacks --
 
@@ -753,9 +756,8 @@ class Guake(SimpleGladeApp):
         self.term_list[current_pos].paste_clipboard()
 
     def on_context_close_tab_activate(self, *args):
-        current_pos = self.notebook.get_current_page()
-        pid = self.pid_list.pop(current_pos)
-        os.kill(pid, signal.SIGKILL)
+        pagepos = self.notebook.get_current_page()
+        self.delete_tab(pagepos)
 
     def on_context_close_activate(self, widget):
         gtk.main_quit()
@@ -834,12 +836,39 @@ class Guake(SimpleGladeApp):
         self.term_list[last_added].show()
         self.notebook.set_current_page(last_added)
 
-    def delete_tab(self, pagepos):
+    def delete_tab(self, pagepos, kill=True):
+        """This function will destroy the notebook page, terminal and
+        tab widgets and will call the function to kill interpreter
+        forked by vte.
+        """
         self.notebook.remove_page(pagepos)
         self.tabs.get_children()[pagepos].destroy()
-        self.clear_old_terms()
+        self.term_list.pop(pagepos).destroy()
+        pid = self.pid_list.pop(pagepos)
+
+        if kill:
+            start_new_thread(self.delete_shell, (pid,))
+
         if not self.term_list:
             self.hide()
+
+    def delete_shell(self, pid):
+        """This function will kill the shell on a tab, trying to sent
+        a sigterm and if it doesn't work, a sigkill. Between these two
+        signals, we have a timeout of 3 seconds, so is recommended to
+        call this in another thread. This doesn't change any thing in
+        UI, so you can use python's start_new_thread.
+        """
+        os.kill(pid, signal.SIGTERM)
+        os.wait()
+        sleep(3)
+
+        try:
+            os.kill(pid, signal.SIGKILL)
+        except OSError:
+            # if this part of code was reached, means that SIGTERM did
+            # the work and SIGKILL wasnt needed.
+            pass
 
     def set_terminal_focus(self):
         page = self.notebook.get_current_page()
@@ -847,13 +876,6 @@ class Guake(SimpleGladeApp):
 
     def select_current_tab(self, notebook, user_data, page):
         self.tabs.get_children()[page].set_active(True)
-
-    def clear_old_terms(self):
-        for term in reversed(self.term_list):
-            term_page = term.get_parent()
-            if self.notebook.page_num(term_page) == -1:
-                self.term_list.remove(term)
-                del term
 
 def main():
     from optparse import OptionParser
