@@ -767,9 +767,7 @@ class Guake(SimpleGladeApp):
     def add_tab(self):
         last_added = len(self.term_list)
         self.term_list.append(vte.Terminal())
-        self.term_list[last_added].set_sensitive(False)
 
-        # TODO: make new terminal opens in the same dir of the already in use.
         shell_name = self.client.get_string(GCONF_PATH+'general/default_shell')
         directory = os.path.expanduser('~')
         pid = self.term_list[last_added].\
@@ -788,7 +786,6 @@ class Guake(SimpleGladeApp):
         label = _('Terminal %s') % self.tab_counter
         bnt = gtk.RadioButton(group=parent, label=label)
 
-        bnt.set_tooltip_text(self.term_list[last_added].get_window_title())
         bnt.set_property('can-focus', False)
         bnt.set_property('draw-indicator', False)
 
