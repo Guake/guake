@@ -44,6 +44,7 @@ dnl gtk dependencie
 GTK_REQUIRED=2.10.0
 PKG_CHECK_MODULES([DEPENDENCIES], [
     gtk+-2.0 >= $GTK_REQUIRED
+    pygtk-2.0
     x11
 ])
 AC_SUBST([DEPENDENCIES_CFLAGS])
@@ -81,6 +82,9 @@ dnl Internationalization
 GETTEXT_PACKAGE=guake
 ALL_LINGUAS="pt_BR ja"
 
+dnl to generate bindings to eggcellrendererkeys
+AC_PATH_PROG(PYGTK_CODEGEN, pygtk-codegen-2.0, no)
+
 AC_SUBST([GETTEXT_PACKAGE])
 AC_SUBST([ALL_LINGUAS])
 
@@ -96,6 +100,7 @@ AC_CONFIG_FILES([
     po/Makefile.in
     src/Makefile
     src/globalhotkeys/Makefile
+    src/eggcellrendererkeys/Makefile
     src/guake_globals.py
     src/guake
 ])

@@ -1,0 +1,14 @@
+/* -*- Mode: C; c-basic-offset: 4 -*- */
+%%
+headers
+#include <Python.h>
+#include <pygobject.h>
+#include "eggcellrendererkeys.h"
+%%
+modulename cellrendererkeys
+%%
+import gtk.CellRendererText as PyGtkCellRendererText_Type
+%%
+ignore-glob
+*_get_type
+%%

@@ -1,4 +1,4 @@
-SUBDIRS = globalhotkeys
+SUBDIRS = globalhotkeys eggcellrendererkeys
 
 guakedir = $(bindir)
 bin_SCRIPTS = guake
