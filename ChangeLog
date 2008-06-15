@@ -1,5 +1,15 @@
 2008-06-15  Lincoln de Sousa  <lincoln@minaslivre.org>
 
+	* src/eggcellrendererkeys/cellrendererkeys.override: Overriding
+	egg_accelerator_parse_virtual function to make it pythonic.
+
+	* src/eggcellrendererkeys/cellrendererkeys.defs: Renaming
+	virtual_accelerator_label to accelerator_label and
+	virtual_accelerator_name to accelerator_name. Adding
+	accelerator_parse_virtual definition.
+
+2008-06-15  Lincoln de Sousa  <lincoln@minaslivre.org>
+
 	* src/eggcellrendererkeys/*: Adding bindings to
 	EggCellRendererKeys, a renderer that shows key shortcuts.
 

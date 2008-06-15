@@ -87,7 +87,18 @@
 
 ;; From eggaccelerators.h
 
-(define-function virtual_accelerator_name
+(define-function accelerator_parse_virtual
+  (c-name "egg_accelerator_parse_virtual")
+  (return-type "gboolean")
+  (parameters
+    '("const-gchar*" "accelerator")
+    '("guint*" "accelerator_key")
+    '("guint*" "keycode")
+    '("EggVirtualModifierType*" "accelerator_mods")
+  )
+)
+
+(define-function accelerator_name
   (c-name "egg_virtual_accelerator_name")
   (return-type "gchar*")
   (parameters
@@ -97,7 +108,7 @@
   )
 )
 
-(define-function virtual_accelerator_label
+(define-function accelerator_label
   (c-name "egg_virtual_accelerator_label")
   (return-type "gchar*")
   (parameters

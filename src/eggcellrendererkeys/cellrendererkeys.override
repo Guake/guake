@@ -12,3 +12,27 @@ import gtk.CellRendererText as PyGtkCellRendererText_Type
 ignore-glob
 *_get_type
 %%
+override egg_accelerator_parse_virtual args
+static PyObject *
+_wrap_egg_accelerator_parse_virtual (PyObject *self, PyObject *fargs)
+{
+    PyObject *ret;
+    gchar *accelerator;
+    gint keyval, keycode;
+    EggVirtualModifierType mask;
+
+    if (!PyArg_ParseTuple (fargs, "s", &accelerator))
+        return NULL;
+
+    if (!egg_accelerator_parse_virtual (accelerator, &keyval, &keycode, &mask))
+        g_warning ("Some thing wrong occourred when parsing accelerator.");
+
+    ret = PyTuple_New (3);
+
+    PyTuple_SetItem (ret, 0, PyInt_FromLong (keyval));
+    PyTuple_SetItem (ret, 1, PyInt_FromLong (keycode));
+    PyTuple_SetItem (ret, 2, PyInt_FromLong (mask));
+
+    return ret;
+}
+%%
