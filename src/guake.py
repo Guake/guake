@@ -43,6 +43,7 @@ from statusicon import GuakeStatusIcon
 import dbusiface
 import globalhotkeys
 import guake_globals
+import cellrendererkeys
 
 pynotify.init('Guake!')
 
@@ -63,6 +64,12 @@ LHOTKEYS = ((GCONF_KEYS+'local/new_tab', _('New tab'),),
             (GCONF_KEYS+'local/clipboard_paste', _('Paste text from clipboard'),),
             (GCONF_KEYS+'local/toggle_fullscreen', _('Toggle Fullscreen'),),
 )
+
+class KeyEntry(object):
+    def __init__(self, keyval, keycode, mask):
+        self.keyval = keyval
+        self.keycode = keycode
+        self.mask = mask
 
 class AboutDialog(SimpleGladeApp):
     def __init__(self):
@@ -106,7 +113,7 @@ class PrefsDialog(SimpleGladeApp):
 
         # the first position in tree will store the keybinding path in gconf,
         # and the user doesn't worry with this, lest hide that =D
-        model = gtk.TreeStore(str, str, str, bool)
+        model = gtk.TreeStore(str, str, object, bool)
         treeview = self.get_widget('treeview-keys')
         treeview.set_model(model)
         treeview.set_rules_hint(True)
@@ -121,11 +128,14 @@ class PrefsDialog(SimpleGladeApp):
         column.set_property('expand', True)
         treeview.append_column(column)
 
-        renderer = gtk.CellRendererText()
-        renderer.set_data('column', 1)
-        renderer.connect('edited', self.on_key_edited, model)
-        column = gtk.TreeViewColumn(_('Shortcut'), renderer, text=2,
-                editable=3)
+        renderer = cellrendererkeys.CellRendererKeys()
+        renderer.set_property('editable', True)
+        renderer.set_property('accel-mode',
+                              cellrendererkeys.CELL_RENDERER_KEYS_MODE_X)
+
+        renderer.connect('accel-edited', self.on_key_edited, model)
+        column = gtk.TreeViewColumn(_('Shortcut'), renderer)
+        column.set_cell_data_func(renderer, self.cell_data_func)
         column.set_property('expand', False)
         treeview.append_column(column)
 
@@ -248,24 +258,36 @@ class PrefsDialog(SimpleGladeApp):
 
         for i in GHOTKEYS:
             child = model.append(giter)
-            hotkey = self.client.get_string(i[0])
+            accel = self.client.get_string(i[0])
+            if accel:
+                params = cellrendererkeys.accelerator_parse_virtual(accel)
+                hotkey = KeyEntry(*params)
+            else:
+                hotkey = KeyEntry(0, 0, 0)
+
             model.set(child,
-                    0, i[0],
-                    1, i[1],
-                    2, hotkey,
-                    3, True)
+                      0, i[0],
+                      1, i[1],
+                      2, hotkey,
+                      3, True)
 
         giter = model.append(None)
         model.set(giter, 0, '', 1, _('Local hotkeys'))
 
         for i in LHOTKEYS:
             child = model.append(giter)
-            hotkey = self.client.get_string(i[0])
+            accel = self.client.get_string(i[0])
+            if accel:
+                params = cellrendererkeys.accelerator_parse_virtual(accel)
+                hotkey = KeyEntry(*params)
+            else:
+                hotkey = KeyEntry(0, 0, 0)
+
             model.set(child,
-                    0, i[0],
-                    1, i[1],
-                    2, hotkey,
-                    3, True)
+                      0, i[0],
+                      1, i[1],
+                      2, hotkey,
+                      3, True)
 
         self.get_widget('treeview-keys').expand_all()
         
@@ -346,12 +368,17 @@ class PrefsDialog(SimpleGladeApp):
                 int(val))
         self.guake.set_alpha()
 
-    def on_key_edited(self, renderer, path, key, model):
+    def on_key_edited(self, renderer, path, keyval, mask, keycode, model):
         giter = model.get_iter(path)
         gconf_path = model.get_value(giter, 0)
-        model.set(giter, 2, key)
-        accel = self.client.get_string(gconf_path)
 
+        hotkey = KeyEntry(keyval, keycode, mask)
+        giter = model.get_iter(path)
+        model.set_value(giter, 2, hotkey)
+        key = cellrendererkeys.accelerator_name(keyval, keycode, mask)
+
+        # old key, used only to disconnect current shortcuts
+        accel = self.client.get_string(gconf_path)
         if gconf_path in [x[0] for x in GHOTKEYS]:
             # ungrabing global keys
             globalhotkeys.unbind(accel)
@@ -362,12 +389,22 @@ class PrefsDialog(SimpleGladeApp):
                         _('Unable to bind %s key' % key), -1)
         else:
             # ungrabing local keys
-            keynum, mask = gtk.accelerator_parse(accel)
-            self.guake.accel_group.disconnect_key(keynum, mask)
+            if accel:
+                keynum, mask = gtk.accelerator_parse(accel)
+                self.guake.accel_group.disconnect_key(keynum, mask)
 
         # setting the new value on gconf
         self.client.set_string(gconf_path, key)
         self.guake.load_accelerators()
+
+    def cell_data_func(self, column, renderer, model, giter):
+        obj = model.get_value(giter, 2)
+        if obj:
+            renderer.set_property('visible', True)
+            renderer.set_accelerator(obj.keyval, obj.keycode, obj.mask)
+        else:
+            renderer.set_property('visible', False)
+            renderer.set_accelerator(0, 0, 0)
 
     def update_preview_cb(self,file_chooser, preview):
         """

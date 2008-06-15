@@ -1,5 +1,10 @@
 2008-06-15  Lincoln de Sousa  <lincoln@minaslivre.org>
 
+	* src/guake.py (PrefsDialog): Changed the old way of showing
+	keybindings to the way that uses eggcellrendererkeys.
+
+	* src/guake.py (KeyEntry): Added to support above change.
+
 	* src/eggcellrendererkeys/cellrendererkeys.override: Overriding
 	egg_accelerator_parse_virtual function to make it pythonic.
 
