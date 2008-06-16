@@ -117,6 +117,7 @@ class PrefsDialog(SimpleGladeApp):
         treeview = self.get_widget('treeview-keys')
         treeview.set_model(model)
         treeview.set_rules_hint(True)
+        treeview.connect('button-press-event', self.start_editing_cb)
 
         renderer = gtk.CellRendererText()
         column = gtk.TreeViewColumn('keypath', renderer, text=0)
@@ -424,6 +425,26 @@ class PrefsDialog(SimpleGladeApp):
         else:
             file_chooser.set_preview_widget_active(False)
 
+    def start_editing_cb(self, treeview, event):
+        """Make the treeview grab the focus and start editing the cell
+        that the user has clicked to avoid confusion with two or three
+        clicks before editing a keybinding.
+
+        Thanks to gnome-keybinding-properties.c =)
+        """
+        if event.window != treeview.get_bin_window():
+            return False
+
+        x, y = int(event.x), int(event.y)
+        path, column, cellx, celly = treeview.get_path_at_pos(x, y)
+        if path and len(path) > 1:
+            def real_cb():
+                treeview.grab_focus()
+                treeview.set_cursor(path, column, True)
+            treeview.stop_emission('button-press-event')
+            gobject.idle_add(real_cb)
+
+        return True
 
 class Guake(SimpleGladeApp):
     def __init__(self):
