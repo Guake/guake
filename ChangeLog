@@ -5,6 +5,8 @@
 	* Makefile.am: Removing some intl files reference (it was breaking
 	make dist rule)
 
+	* m4/intltool.m4: Updates from intltool.
+
 	* src/guake.py (PrefsDialog): Changed the old way of showing
 	keybindings to the way that uses eggcellrendererkeys.
 
