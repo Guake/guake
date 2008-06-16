@@ -16,7 +16,7 @@
 # Free Software Foundation, Inc., 59 Temple Place - Suite 330,
 # Boston, MA 02111-1307, USA.
 
-AC_INIT([guake], [0.2], [http://trac.guake-terminal.org/])
+AC_INIT([guake], [0.3], [http://trac.guake-terminal.org/])
 
 AC_CONFIG_HEADERS([config.h])
 
@@ -28,7 +28,8 @@ AC_PROG_LIBTOOL
 
 AC_PROG_CC
 
-AC_PROG_INTLTOOL
+AC_PROG_INTLTOOL([0.35.0])
+AM_GLIB_GNU_GETTEXT
 
 dnl python checks
 AM_PATH_PYTHON(2.4.0)
@@ -87,8 +88,6 @@ AC_PATH_PROG(PYGTK_CODEGEN, pygtk-codegen-2.0, no)
 
 AC_SUBST([GETTEXT_PACKAGE])
 AC_SUBST([ALL_LINGUAS])
-
-AM_GLIB_GNU_GETTEXT
 
 dnl output files
 AC_CONFIG_FILES([

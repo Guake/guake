@@ -1,5 +1,10 @@
 2008-06-15  Lincoln de Sousa  <lincoln@minaslivre.org>
 
+	* configure.ac: Bump to version 0.3.
+
+	* Makefile.am: Removing some intl files reference (it was breaking
+	make dist rule)
+
 	* src/guake.py (PrefsDialog): Changed the old way of showing
 	keybindings to the way that uses eggcellrendererkeys.
 
