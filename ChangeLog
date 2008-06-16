@@ -1,3 +1,16 @@
+2008-06-16  Lincoln de Sousa  <lincoln@minaslivre.org>
+
+	* src/guake.py (KeyEntry): Adding __repr__ and __eq__ methods to
+	make it easy and pythonic to compare with other keyentry and to
+	debug.
+
+	* src/guake.py (PrefsDialog.on_key_edited): Adding validation to
+	avoid repeated keybindings and to avoid using simple keys
+	as [a-zA-Z0-9] keys.
+
+	* src/guake.py (PrefsDialog): Adding a way to clear a keybinding
+	with on_key_cleared method.
+
 2008-06-15  Lincoln de Sousa  <lincoln@minaslivre.org>
 
 	* configure.ac: Bump to version 0.3.

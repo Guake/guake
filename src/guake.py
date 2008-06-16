@@ -71,6 +71,15 @@ class KeyEntry(object):
         self.keycode = keycode
         self.mask = mask
 
+    def __repr__(self):
+        return u'KeyEntry(%d, %d, %d)' % (
+            self.keyval, self.keycode, self.mask)
+
+    def __eq__(self, rval):
+        return self.keycode == rval.keycode and \
+            self.keyval == rval.keyval and \
+            self.mask == rval.mask
+
 class AboutDialog(SimpleGladeApp):
     def __init__(self):
         super(AboutDialog, self).__init__(common.gladefile('about.glade'),
@@ -135,6 +144,8 @@ class PrefsDialog(SimpleGladeApp):
                               cellrendererkeys.CELL_RENDERER_KEYS_MODE_X)
 
         renderer.connect('accel-edited', self.on_key_edited, model)
+        renderer.connect('accel-cleared', self.on_key_cleared, model)
+
         column = gtk.TreeViewColumn(_('Shortcut'), renderer)
         column.set_cell_data_func(renderer, self.cell_data_func)
         column.set_property('expand', False)
@@ -373,10 +384,47 @@ class PrefsDialog(SimpleGladeApp):
         giter = model.get_iter(path)
         gconf_path = model.get_value(giter, 0)
 
+        oldkey = model.get_value(giter, 2)
         hotkey = KeyEntry(keyval, keycode, mask)
+        key = cellrendererkeys.accelerator_name(keyval, keycode, mask)
+        keylabel = cellrendererkeys.accelerator_label(keyval, keycode, mask)
+
+        # we needn't to change anything, the user is trying to set the
+        # same key that is already set.
+        if oldkey == hotkey:
+            return False
+
+        # looking for already used keybindings
+        def each_key(model, path, subiter):
+            keyentry = model.get_value(subiter, 2)
+            if keyentry and keyentry == hotkey:
+                msg = _("The shortcut \"%s\" is already in use.") % keylabel
+                raise ShowableError(_('Error setting keybinding.'), msg, -1)
+        model.foreach(each_key)
+
+        # avoiding problems with common keys
+        if ((mask == 0 and keycode != 0) and (
+            (keyval >= ord('a') and keyval <= ord('z')) or
+            (keyval >= ord('A') and keyval <= ord('Z')) or
+            (keyval >= ord('0') and keyval <= ord('9')))):
+            parent = self.get_widget('config-window')
+            dialog = gtk.MessageDialog(parent,
+                                       gtk.DIALOG_MODAL |
+                                       gtk.DIALOG_DESTROY_WITH_PARENT,
+                                       gtk.MESSAGE_WARNING,
+                                       gtk.BUTTONS_OK,
+                                       _("The shortcut \"%s\" cannot be used "
+                                         "because it will become impossible to "
+                                         "type using this key.\n\n"
+                                         "Please try with a key such as "
+                                         "Control, Alt or Shift at the same "
+                                         "time.\n") % key)
+            dialog.run()
+            dialog.destroy()
+            return False
+
         giter = model.get_iter(path)
         model.set_value(giter, 2, hotkey)
-        key = cellrendererkeys.accelerator_name(keyval, keycode, mask)
 
         # old key, used only to disconnect current shortcuts
         accel = self.client.get_string(gconf_path)
@@ -397,6 +445,12 @@ class PrefsDialog(SimpleGladeApp):
         # setting the new value on gconf
         self.client.set_string(gconf_path, key)
         self.guake.load_accelerators()
+
+    def on_key_cleared(self, renderer, path, model):
+        giter = model.get_iter(path)
+        gconf_path = model.get_value(giter, 0)
+        model.set_value(giter, 2, KeyEntry(0, 0, 0))
+        self.client.set_string(gconf_path, 'disabled')
 
     def cell_data_func(self, column, renderer, model, giter):
         obj = model.get_value(giter, 2)
@@ -436,7 +490,11 @@ class PrefsDialog(SimpleGladeApp):
             return False
 
         x, y = int(event.x), int(event.y)
-        path, column, cellx, celly = treeview.get_path_at_pos(x, y)
+        ret = treeview.get_path_at_pos(x, y)
+        if not ret:
+            return False
+
+        path, column, cellx, celly = ret
         if path and len(path) > 1:
             def real_cb():
                 treeview.grab_focus()
