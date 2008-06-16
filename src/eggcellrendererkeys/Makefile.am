@@ -1,5 +1,5 @@
 cellrendererkeysdir = $(libdir)/guake
-lib_LTLIBRARIES = cellrendererkeys.la
+cellrendererkeys_LTLIBRARIES = cellrendererkeys.la
 
 cellrendererkeys_la_LDFLAGS = \
 	-module \
