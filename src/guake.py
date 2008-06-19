@@ -484,7 +484,7 @@ class PrefsDialog(SimpleGladeApp):
                 globalhotkeys.bind(accel, self.guake.show_hide)
                 model.set(giter, 2, accel)
                 raise ShowableError(_('key binding error'),
-                        _('Unable to bind %s key' % key), -1)
+                        _('Unable to bind %s key') % key, -1)
         else:
             # ungrabing local keys
             if accel != 'disabled':
@@ -578,11 +578,11 @@ class Guake(SimpleGladeApp):
             n = pynotify.Notification(_('Guake!'),
                 _('A problem happened when binding <b>%s</b> key.\n'
                   'Please use guake properties form to choose another '
-                  'key' % key), filename)
+                  'key') % key, filename)
         else:
             n = pynotify.Notification(_('Guake!'),
                 _('Guake is already running,\n'
-                  'press <b>%s</b> to use it.' % key), filename)
+                  'press <b>%s</b> to use it.') % key, filename)
         n.show()
 
         # trayicon!

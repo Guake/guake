@@ -1,5 +1,10 @@
 2008-06-19  Lincoln de Sousa  <lincoln@minaslivre.org>
 
+	* src/guake.py: Fixing some gettext calls, patch by
+	infinito. Closes #27.
+
+2008-06-19  Lincoln de Sousa  <lincoln@minaslivre.org>
+
 	* data/prefs.glade: Added compatibility tab (stolen from
 	gnome-terminal =)
 
