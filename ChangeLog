@@ -1,3 +1,11 @@
+2008-06-18  Lincoln de Sousa  <lincoln@minaslivre.org>
+
+	* src/guake.py (PrefsDialog.on_key_cleared): Unbinding accel when
+	cleared.
+
+	* src/guake.py (Guake.load_accelerators): Adding close_tab
+	binding (Closes: #4).
+
 2008-06-16  Lincoln de Sousa  <lincoln@minaslivre.org>
 
 	* src/guake.py (KeyEntry): Adding __repr__ and __eq__ methods to
