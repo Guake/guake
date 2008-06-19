@@ -1,5 +1,7 @@
 2008-06-18  Lincoln de Sousa  <lincoln@minaslivre.org>
 
+	* data/guake.schemas: Adding the close_tab schema entry.
+
 	* src/guake.py (PrefsDialog.on_key_cleared): Unbinding accel when
 	cleared.
 

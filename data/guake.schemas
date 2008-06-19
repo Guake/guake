@@ -201,6 +201,18 @@
         </schema>
 
         <schema>
+            <key>/schemas/apps/guake/keybindings/local/close_tab</key>
+            <applyto>/apps/guake/keybindings/local/close_tab</applyto>
+            <owner>guake</owner>
+            <type>string</type>
+            <default>&lt;Control&gt;&lt;Shift&gt;w</default>
+            <locale name="C">
+                <short>Closes the current tab.</short>
+                <long>Accelerator to active function that closes the current selected tab.</long>
+            </locale>
+        </schema>
+
+        <schema>
             <key>/schemas/apps/guake/keybindings/local/previous_tab</key>
             <applyto>/apps/guake/keybindings/local/previous_tab</applyto>
             <owner>guake</owner>
