@@ -1057,15 +1057,22 @@ class Guake(SimpleGladeApp):
         UI, so you can use python's start_new_thread.
         """
         os.kill(pid, signal.SIGTERM)
-        os.wait()
-        sleep(3)
+        num_tries = 30
 
-        try:
-            os.kill(pid, signal.SIGKILL)
-        except OSError:
-            # if this part of code was reached, means that SIGTERM did
-            # the work and SIGKILL wasnt needed.
-            pass
+        while num_tries > 0:
+            if os.waitpid(pid, os.WNOHANG)[0] != 0:
+                break
+            sleep(0.1)
+            num_tries -= 1
+
+        if num_tries == 0:
+            try:
+                os.kill(pid, signal.SIGKILL)
+                os.waitpid(pid, 0)
+            except OSError:
+                # if this part of code was reached, means that SIGTERM
+                # did the work and SIGKILL wasnt needed.
+                pass
 
     def set_terminal_focus(self):
         page = self.notebook.get_current_page()
