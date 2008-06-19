@@ -65,6 +65,12 @@ LHOTKEYS = ((GCONF_KEYS+'local/new_tab', _('New tab'),),
             (GCONF_KEYS+'local/toggle_fullscreen', _('Toggle Fullscreen'),),
 )
 
+# translating our types to vte types
+
+ERASE_BINDINGS = {'ASCII DEL': 'ascii-delete',
+                  'Escape sequence': 'delete-sequence',
+                  'Control-H': 'ascii-backspace'}
+
 class KeyEntry(object):
     def __init__(self, keyval, keycode, mask):
         self.keyval = keyval
@@ -175,7 +181,28 @@ class PrefsDialog(SimpleGladeApp):
 
     def hide(self):
         self.get_widget('config-window').hide()
-        
+
+    def reload_erase_combos(self):
+        # backspace erase binding
+        combo = self.get_widget('backspace-binding-combobox')
+        binding = self.client.get_string(GCONF_PATH+'general/compat_backspace')
+        model = combo.get_model()
+        bindex = ERASE_BINDINGS.values().index(binding)
+        for i in model:
+            value = model.get_value(i.iter, 0)
+            if ERASE_BINDINGS.keys().index(value) == bindex:
+                combo.set_active_iter(i.iter)
+
+        # delete erase binding
+        combo = self.get_widget('delete-binding-combobox')
+        binding = self.client.get_string(GCONF_PATH+'general/compat_delete')
+        model = combo.get_model()
+        bindex = ERASE_BINDINGS.values().index(binding)
+        for i in model:
+            value = model.get_value(i.iter, 0)
+            if ERASE_BINDINGS.keys().index(value) == bindex:
+                combo.set_active_iter(i.iter)
+
     def load_configs(self):
         # shells list
         default = self.client.get_string(GCONF_PATH + 'general/default_shell')
@@ -245,6 +272,9 @@ class PrefsDialog(SimpleGladeApp):
 
         val = self.client.get_int(GCONF_PATH+'style/background/transparency')
         self.get_widget('transparency-hscale').set_value(val)
+
+        # it's a separated method, to be reused.
+        self.reload_erase_combos()
 
         # the terminal window can be opened and the user *must* see this window
         self.get_widget('config-window').set_keep_above(True)
@@ -379,6 +409,25 @@ class PrefsDialog(SimpleGladeApp):
         self.client.set_int(GCONF_PATH + 'style/background/transparency',
                 int(val))
         self.guake.set_alpha()
+
+    def on_backspace_binding_combobox_changed(self, combo):
+        val = combo.get_active_text()
+        self.client.set_string(GCONF_PATH+'general/compat_backspace',
+                               ERASE_BINDINGS[val])
+        self.guake.set_erasebindings()
+
+    def on_delete_binding_combobox_changed(self, combo):
+        val = combo.get_active_text()
+        self.client.set_string(GCONF_PATH+'general/compat_delete',
+                               ERASE_BINDINGS[val])
+        self.guake.set_erasebindings()
+
+    def on_reset_compat_defaults_button_clicked(self, bnt):
+        # default values were defined in guake.schemas file
+        self.client.unset(GCONF_PATH+'general/compat_backspace')
+        self.client.unset(GCONF_PATH+'general/compat_delete')
+        self.reload_erase_combos()
+        self.guake.set_erasebindings()
 
     def on_key_edited(self, renderer, path, keyval, mask, keycode, model):
         giter = model.get_iter(path)
@@ -694,6 +743,7 @@ class Guake(SimpleGladeApp):
         self.set_bgimage()
         self.set_alpha()
         self.set_tabpos()
+        self.set_erasebindings()
 
     def load_accelerators(self):
         gets = lambda x:self.client.get_string(x)
@@ -834,7 +884,14 @@ class Guake(SimpleGladeApp):
         else:
             self.mainframe.reorder_child(self.notebook, 1)
             self.notebook.set_tab_pos(gtk.POS_TOP)
-           
+
+    def set_erasebindings(self):
+        backspace = self.client.get_string(GCONF_PATH+'general/compat_backspace')
+        delete = self.client.get_string(GCONF_PATH+'general/compat_delete')
+        for i in self.term_list:
+            i.set_backspace_binding(backspace)
+            i.set_delete_binding(delete)
+
     # -- callbacks --
 
     def on_prefs_menuitem_activate(self, *args):

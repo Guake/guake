@@ -116,6 +116,30 @@
         </schema>
 
         <schema>
+            <key>/schemas/apps/guake/general/compat_backspace</key>
+            <applyto>/apps/guake/general/compat_backspace</applyto>
+            <owner>guake</owner>
+            <type>string</type>
+            <default>ascii-delete</default>
+            <locale name="C">
+                <short>Backspace Compatibility</short>
+                <long>Defines the behavior of backscape key.</long>
+            </locale>
+        </schema>
+
+        <schema>
+            <key>/schemas/apps/guake/general/compat_delete</key>
+            <applyto>/apps/guake/general/compat_delete</applyto>
+            <owner>guake</owner>
+            <type>string</type>
+            <default>delete-sequence</default>
+            <locale name="C">
+                <short>Delete Compatibility</short>
+                <long>Defines the behavior of delete key.</long>
+            </locale>
+        </schema>
+
+        <schema>
             <key>/schemas/apps/guake/style/font/style</key>
             <applyto>/apps/guake/style/font/style</applyto>
             <owner>guake</owner>

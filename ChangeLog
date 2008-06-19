@@ -1,3 +1,15 @@
+2008-06-19  Lincoln de Sousa  <lincoln@minaslivre.org>
+
+	* data/prefs.glade: Added compatibility tab (stolen from
+	gnome-terminal =)
+
+	* data/guake.schemas: Added two new keys (compat_backspace,
+	compat_delete).
+
+	* src/guake.py (Guake, PrefsDialog): Setting delete and backspace
+	compatibility bindings as in gnome-terminal. Thanks so much
+	gnome-terminal guys)
+
 2008-06-18  Lincoln de Sousa  <lincoln@minaslivre.org>
 
 	* data/guake.schemas: Adding the close_tab schema entry.
