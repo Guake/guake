@@ -656,15 +656,18 @@ class Guake(SimpleGladeApp):
         menu = self.get_widget('tray-menu')
         menu.popup(None, None, None, 3, gtk.get_current_event_time())
 
-    def show_context_menu(self, vte, event):
+    def show_context_menu(self, terminal, event):
+        if event.button != 3:
+            return False
+
         guake_clipboard = gtk.clipboard_get()
         if not guake_clipboard.wait_is_text_available():
             self.get_widget('context_paste').set_sensitive(False)
         else:
             self.get_widget('context_paste').set_sensitive(True)
         context_menu = self.get_widget('context-menu')
-        if event.button == 3:
-            context_menu.popup(None, None, None, 3, gtk.get_current_event_time())
+        context_menu.popup(None, None, None, 3, gtk.get_current_event_time())
+        return True
 
     def show_tab_menu(self, target, event):
         if event.button == 3:

@@ -3,6 +3,9 @@
 	* src/guake.py: Fixing some gettext calls, patch by
 	infinito. Closes #27.
 
+	* src/guake.py: (Guake.show_context_menu): Making double/triple
+	click to select words as in gnome-terminal. Closes #31.
+
 2008-06-19  Lincoln de Sousa  <lincoln@minaslivre.org>
 
 	* data/prefs.glade: Added compatibility tab (stolen from
