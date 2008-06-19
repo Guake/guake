@@ -438,7 +438,7 @@ class PrefsDialog(SimpleGladeApp):
                         _('Unable to bind %s key' % key), -1)
         else:
             # ungrabing local keys
-            if accel:
+            if accel != 'disabled':
                 keynum, mask = gtk.accelerator_parse(accel)
                 self.guake.accel_group.disconnect_key(keynum, mask)
 
@@ -449,8 +449,20 @@ class PrefsDialog(SimpleGladeApp):
     def on_key_cleared(self, renderer, path, model):
         giter = model.get_iter(path)
         gconf_path = model.get_value(giter, 0)
+        accel = self.client.get_string(gconf_path)
         model.set_value(giter, 2, KeyEntry(0, 0, 0))
+
+        # cleared accel must be unbinded
+        accel = self.client.get_string(gconf_path)
+        if gconf_path in [x[0] for x in GHOTKEYS]:
+            globalhotkeys.unbind(accel)
+
+        keynum, mask = gtk.accelerator_parse(accel)
+        if keynum:
+            self.guake.accel_group.disconnect_key(keynum, mask)
+
         self.client.set_string(gconf_path, 'disabled')
+        self.guake.load_accelerators()
 
     def cell_data_func(self, column, renderer, model, giter):
         obj = model.get_value(giter, 2)
@@ -687,33 +699,45 @@ class Guake(SimpleGladeApp):
         gets = lambda x:self.client.get_string(x)
         ac = gets(GCONF_PATH+'keybindings/local/new_tab')
         key, mask = gtk.accelerator_parse(ac)
-        self.accel_group.connect_group(key, mask, gtk.ACCEL_VISIBLE,
-                self.accel_add)
+        if key > 0:
+            self.accel_group.connect_group(key, mask, gtk.ACCEL_VISIBLE,
+                                           self.accel_add)
+
+        ac = gets(GCONF_PATH+'keybindings/local/close_tab')
+        key, mask = gtk.accelerator_parse(ac)
+        if key > 0:
+            self.accel_group.connect_group(key, mask, gtk.ACCEL_VISIBLE,
+                                           self.on_context_close_tab_activate)
 
         ac = gets(GCONF_PATH+'keybindings/local/previous_tab')
         key, mask = gtk.accelerator_parse(ac)
-        self.accel_group.connect_group(key, mask, gtk.ACCEL_VISIBLE,
-                self.accel_prev)
+        if key > 0:
+            self.accel_group.connect_group(key, mask, gtk.ACCEL_VISIBLE,
+                                           self.accel_prev)
 
         ac = gets(GCONF_PATH+'keybindings/local/next_tab')
         key, mask = gtk.accelerator_parse(ac)
-        self.accel_group.connect_group(key, mask, gtk.ACCEL_VISIBLE,
-                self.accel_next)
+        if key > 0:
+            self.accel_group.connect_group(key, mask, gtk.ACCEL_VISIBLE,
+                                           self.accel_next)
 
         ac = gets(GCONF_PATH+'keybindings/local/clipboard_copy')
         key, mask = gtk.accelerator_parse(ac)
-        self.accel_group.connect_group(key, mask, gtk.ACCEL_VISIBLE,
-                self.accel_copy_clipboard)
+        if key > 0:
+            self.accel_group.connect_group(key, mask, gtk.ACCEL_VISIBLE,
+                                           self.accel_copy_clipboard)
 
         ac = gets(GCONF_PATH+'keybindings/local/clipboard_paste')
         key, mask = gtk.accelerator_parse(ac)
-        self.accel_group.connect_group(key, mask, gtk.ACCEL_VISIBLE,
-                self.accel_paste_clipboard)
+        if key > 0:
+            self.accel_group.connect_group(key, mask, gtk.ACCEL_VISIBLE,
+                                           self.accel_paste_clipboard)
 
         ac = gets(GCONF_PATH+'keybindings/local/toggle_fullscreen')
         key, mask = gtk.accelerator_parse(ac)
-        self.accel_group.connect_group(key, mask, gtk.ACCEL_VISIBLE,
-                self.accel_toggle_fullscreen)
+        if key > 0:
+            self.accel_group.connect_group(key, mask, gtk.ACCEL_VISIBLE,
+                                           self.accel_toggle_fullscreen)
 
     def accel_add(self, *args):
         self.add_tab()
