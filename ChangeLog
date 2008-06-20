@@ -1,5 +1,8 @@
 2008-06-19  Lincoln de Sousa  <lincoln@minaslivre.org>
 
+	* data/prefs.glade: Fixing some Adding compatibility keybindings
+	to backspace and delete keys and fixing some spaces.
+
 	* src/guake.py: Fixing some gettext calls, patch by
 	infinito. Closes #27.
 
