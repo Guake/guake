@@ -716,6 +716,8 @@ class Guake(SimpleGladeApp):
             time = gtk.gdk.x11_get_server_time(self.window.window)
         except AttributeError:
             time = 0
+
+        self.window.window.show()
         self.window.window.focus(time)
 
     def hide(self):
