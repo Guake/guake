@@ -22,7 +22,10 @@ cellrendererkeys_la_SOURCES = \
 
 nodist_cellrendererkeys_la_SOURCES = cellrendererkeys.c
 
-EXTRA_DIST = cellrendererkeys.defs cellrendererkeys.override
+EXTRA_DIST = \
+	cellrendererkeys.defs \
+	cellrendererkeys.override \
+	eggcellrendererkeys-arg-types.py
 
 cellrendererkeys.c: cellrendererkeys.defs cellrendererkeys.override
 CLEANFILES = cellrendererkeys.c

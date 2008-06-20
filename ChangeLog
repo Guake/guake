@@ -1,3 +1,8 @@
+2008-06-20  Lincoln de Sousa  <lincoln@minaslivre.org>
+
+	* src/eggcellrendererkeys/Makefile.am: Adding
+	eggcellrendererkeys-arg-types.py to EXTRA_DIST.
+
 2008-06-19  Lincoln de Sousa  <lincoln@minaslivre.org>
 
 	* data/prefs.glade: Fixing some Adding compatibility keybindings
