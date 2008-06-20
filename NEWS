@@ -1,0 +1,20 @@
+changes since 0.2
+
+        * Making prefs dialog window better, including a better title,
+          fixing some paddings and spaces.
+
+        * Added backspace and delete compatibility options (thanks to
+          gnome-terminal guys =)
+
+        * Cleanup of data files (images and glade files), mostly images.
+
+        * Complete rewrite of tab system in the main window.
+
+        * Fixing all issues (I think =) in close tab feature.
+
+        * Adding tab rename feature.
+
+        * Making easier to grab keybinging shortcuts from the prefs
+          screen by using eggcellrendererkeys lib.
+
+        * Fixing a lot of bugs.

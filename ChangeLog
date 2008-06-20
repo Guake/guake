@@ -1,5 +1,7 @@
 2008-06-20  Lincoln de Sousa  <lincoln@minaslivre.org>
 
+	* NEWS: Updated.
+
 	* src/eggcellrendererkeys/Makefile.am: Adding
 	eggcellrendererkeys-arg-types.py to EXTRA_DIST.
 
