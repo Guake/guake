@@ -2,6 +2,8 @@
 
 	* NEWS: Updated.
 
+	* README: Adding pygtk in dependency list.
+
 	* src/eggcellrendererkeys/Makefile.am: Adding
 	eggcellrendererkeys-arg-types.py to EXTRA_DIST.
 

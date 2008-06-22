@@ -18,6 +18,7 @@ DEPENDENCIES
 To build guake, you will need the following packages too:
  * python-dev
  * gtk+-2.0-dev
+ * pygtk-dev
  * gconf2-dev (to use some autoconf stuff)
 
 INSTALLATION
