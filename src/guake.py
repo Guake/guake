@@ -361,7 +361,8 @@ class PrefsDialog(SimpleGladeApp):
 
     def on_ontop_checkbutton_toggled(self, bnt):
         self.client.set_bool(GCONF_PATH + 'general/window_ontop',
-                bnt.get_active())
+                             bnt.get_active())
+        self.guake.toggle_ontop()
 
     def on_winsize_hscale_value_changed(self, hscale):
         val = hscale.get_value()
@@ -631,7 +632,6 @@ class Guake(SimpleGladeApp):
 
         self.accel_group = gtk.AccelGroup()
         self.window.add_accel_group(self.accel_group)
-        self.window.set_keep_above(True)
         self.window.set_geometry_hints(min_width=1, min_height=1)
         self.window.connect('focus-out-event', self.on_window_lostfocus)
 
@@ -639,6 +639,7 @@ class Guake(SimpleGladeApp):
         self.load_accelerators()
         self.refresh()
         self.add_tab()
+        self.toggle_ontop()
 
     def on_window_lostfocus(self,window, event):
         getb = lambda x:self.client.get_bool(x)
@@ -843,6 +844,10 @@ class Guake(SimpleGladeApp):
                 scrollbar.show()
             else:
                 scrollbar.hide()
+
+    def toggle_ontop(self):
+        b = self.client.get_bool(GCONF_PATH+'general/window_ontop')
+        self.window.set_keep_above(b)
 
     # -- format functions --
 

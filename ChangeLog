@@ -1,3 +1,8 @@
+2008-06-22  Lincoln de Sousa  <lincoln@minaslivre.org>
+
+	* src/guake.py: Fixing problems in "Stay on top" toggle, Patch by
+	infinito (Closes #25).
+
 2008-06-20  Lincoln de Sousa  <lincoln@minaslivre.org>
 
 	* NEWS: Updated.
