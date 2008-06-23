@@ -634,7 +634,9 @@ class Guake(SimpleGladeApp):
         self.window.add_accel_group(self.accel_group)
         self.window.set_geometry_hints(min_width=1, min_height=1)
         self.window.connect('focus-out-event', self.on_window_lostfocus)
+        self.get_widget('context-menu').set_accel_group(self.accel_group)
 
+        self.load_accel_map()
         self.load_config()
         self.load_accelerators()
         self.refresh()
@@ -750,6 +752,12 @@ class Guake(SimpleGladeApp):
         self.set_alpha()
         self.set_tabpos()
         self.set_erasebindings()
+
+    def load_accel_map(self):
+        # Sets the accel map of quit context option.
+        key, mask = gtk.accelerator_parse('<Control>q')
+        gtk.accel_map_add_entry('<main>/Quit', key, mask)
+        self.get_widget('context_close').set_accel_path('<main>/Quit')
 
     def load_accelerators(self):
         gets = lambda x:self.client.get_string(x)

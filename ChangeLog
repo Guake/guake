@@ -1,5 +1,8 @@
 2008-06-22  Lincoln de Sousa  <lincoln@minaslivre.org>
 
+	* src/guake.py (Guake): Added load_accel_map method to make Quit
+	context menu works (Closes #33).
+
 	* src/guake.py: Fixing problems in "Stay on top" toggle, Patch by
 	infinito (Closes #25).
 
