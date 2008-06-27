@@ -1,5 +1,7 @@
 SUBDIRS = pixmaps
 
+man_MANS = guake.1
+
 uidir = $(datadir)/guake
 ui_DATA = \
 	about.glade \
@@ -23,7 +25,8 @@ schema_DATA = guake.schemas
 EXTRA_DIST = \
 	$(ui_DATA) \
 	$(schema_DATA) \
-	$(desktop_in_files)
+	$(desktop_in_files) \
+	$(man_MANS)
 
 if GCONF_SCHEMAS_INSTALL
 install-data-local:
