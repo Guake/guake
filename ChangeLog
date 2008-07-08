@@ -1,3 +1,9 @@
+2008-06-26  Gabriel Falcão  <gabriel@nacaolivre.org>
+
+	* data/guake.1: Added.
+
+	* data/Makefile.am: Adding man file.
+
 2008-06-22  Lincoln de Sousa  <lincoln@minaslivre.org>
 
 	* src/guake.py (Guake): Added load_accel_map method to make Quit
