@@ -296,5 +296,25 @@
             </locale>
         </schema>
 
+        <!-- These options are not shown in guake-prefs window to
+             avoid bloating that pretty ui =) -->
+
+        <schema>
+            <key>/schemas/apps/guake/general/word_chars</key>
+            <applyto>/apps/guake/general/word_chars</applyto>
+            <owner>guake</owner>
+            <type>string</type>
+            <default>-A-Za-z0-9,./?%&amp;#:_</default>
+            <locale name="C">
+                <!-- these comments were stolen from gnome-terminal,
+                     thanks gnome-temrinal buddies -->
+                <short>Characters that are considered "part of a word"</short>
+                <long>When selecting text by word, sequences of these
+                characters are considered single words. Ranges can be
+                given as "A-Z". Literal hyphen (not expressing a
+                range) should be the first character given. </long>
+            </locale>
+        </schema>
+
     </schemalist>
 </gconfschemafile>

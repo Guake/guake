@@ -1,3 +1,12 @@
+2008-07-08  Lincoln de Sousa  <lincoln@minaslivre.org>
+
+	Bug #31 - Double click behavior
+
+	* src/guake.py (Guake.add_tab): Setting word_chars of each new
+	terminal.
+
+	* data/guake.schemas: Adding word_chars property in guake schemas.
+
 2008-06-26  Gabriel Falcão  <gabriel@nacaolivre.org>
 
 	* data/guake.1: Added.

@@ -983,6 +983,10 @@ class Guake(SimpleGladeApp):
         last_added = len(self.term_list)
         self.term_list.append(vte.Terminal())
 
+        # setting the word chars in the terminal
+        word_chars = self.client.get_string(GCONF_PATH+'general/word_chars')
+        self.term_list[last_added].set_word_chars(word_chars)
+
         shell_name = self.client.get_string(GCONF_PATH+'general/default_shell')
         directory = os.path.expanduser('~')
         pid = self.term_list[last_added].\
