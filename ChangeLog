@@ -1,5 +1,8 @@
 2008-07-10  Lincoln de Sousa  <lincoln@minaslivre.org>
 
+	* src/guake.py (Guake.on_window_lostfocus): Testing if the main
+	window is already hidden before hide it (Closes #6).
+
 	* configure.ac: Adding es, pl and ru_RU to ALL_LINGUAS.
 
 2008-07-08  Lincoln de Sousa  <lincoln@minaslivre.org>

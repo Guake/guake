@@ -646,7 +646,7 @@ class Guake(SimpleGladeApp):
     def on_window_lostfocus(self,window, event):
         getb = lambda x:self.client.get_bool(x)
         value = getb(GCONF_PATH+'general/hide_on_lost_focus')
-        if value:
+        if value and not self.visible:
             self.hide()
         
     def refresh(self):
