@@ -1,0 +1,166 @@
+# Polish translation of Guake.
+# Copyright (C) 2008 THE Guake'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the Guake package.
+# Mieszko Ślusarczyk <mieszkoslusarczyk@gmail.com>, 2008.
+# , fuzzy
+# 
+# 
+msgid ""
+msgstr ""
+"Project-Id-Version: Guake 0.2.2\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2008-06-22 20:55+0200\n"
+"PO-Revision-Date: 2008-06-22 21:05+0200\n"
+"Last-Translator: Mieszko Ślusarczyk <mieszkoslusarczyk@gmail.com>\n"
+"Language-Team: Polish\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit"
+
+#: about.glade.h:1
+msgid "About Guake"
+msgstr "O Guake"
+
+#: about.glade.h:2
+msgid ""
+"Copyright 2007 Gabriel Falcão\n"
+"Copyright 2007 Lincoln de Sousa"
+msgstr "Copyright 2007 Gabriel Falcão\n"
+"Copyright 2007 Lincoln de Sousa"
+
+#: about.glade.h:4
+msgid ""
+"Guake is an easy to access\n"
+"terminal based on fps games terminal"
+msgstr "Guake·Jest łatwym w obsłudze\n"
+"terminalem bazującym na grach fps"
+
+#: about.glade.h:6
+msgid ""
+"Guake is free software; you can redistribute it and/or modify it under the "
+"terms of the GNU General Public License as published by the Free Software "
+"Foundation; either version 2 of the License, or (at your option) any later "
+"version.\n"
+"\n"
+"Guake is distributed in the hope that it will be useful, but WITHOUT ANY "
+"WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS "
+"FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more "
+"details.\n"
+"\n"
+"You should have received a copy of the GNU General Public License along with "
+"Guake; if not, write to the Free Software Foundation, Inc., 51 Franklin St, "
+"Fifth Floor, Boston, MA  02110-1301 USA\n"
+msgstr ""
+
+#: about.glade.h:12
+msgid "http://guake-terminal.org"
+msgstr "http://guake-terminal.org"
+
+#: guake.glade.h:1
+msgid "Guake!"
+msgstr "Guake!"
+
+#: guake.glade.h:2
+msgid "New Tab"
+msgstr "Nowa Karta"
+
+#: prefs.glade.h:1
+msgid "<b><big>Guake Properties</big></b>"
+msgstr "<b><big>Właściwości Guake</big></b>"
+
+#: prefs.glade.h:2
+msgid "<b>Background</b>"
+msgstr "<b>Tło</b>"
+
+#: prefs.glade.h:3
+msgid "<b>Fonts</b>"
+msgstr "<b>Czcionki</b>"
+
+#: prefs.glade.h:4
+msgid "<b>Shell</b>"
+msgstr "<b>Powłoka</b>"
+
+#: prefs.glade.h:5
+msgid "<b>Tab position</b>"
+msgstr "<b>Pozycja kart</b>"
+
+#: prefs.glade.h:6
+msgid "<b>Window behavior</b>"
+msgstr "<b>Zachowanie okna</b>"
+
+#: prefs.glade.h:7
+msgid "<b>Window size</b>"
+msgstr "<b>Rozmiar okna</b>"
+
+#: prefs.glade.h:8
+msgid "Background Transparent:"
+msgstr "Przezroczystość tła:"
+
+#: prefs.glade.h:9
+msgid "Bottom"
+msgstr "Dół"
+
+#: prefs.glade.h:10
+msgid "Choose some color"
+msgstr "Wybierz kolor"
+
+#: prefs.glade.h:11
+msgid "Choose some font"
+msgstr "Wybierz Czcionkę"
+
+#: prefs.glade.h:12
+msgid "Color:"
+msgstr "Kolor:"
+
+#: prefs.glade.h:13
+msgid "Default interpreter:"
+msgstr "Domyślna powłoka:"
+
+#: prefs.glade.h:14
+msgid "Desaturation:"
+msgstr "Desaturacja:"
+
+#: prefs.glade.h:15
+msgid "General"
+msgstr "Ogólne"
+
+#: prefs.glade.h:16
+msgid "Guake Preferences"
+msgstr "Preferencje Guake"
+
+#: prefs.glade.h:17
+msgid "Hide on lose focus"
+msgstr "Ukryj przy utracie aktywności"
+
+#: prefs.glade.h:18
+msgid "Image:"
+msgstr "Obraz:"
+
+#: prefs.glade.h:19
+msgid "Keyboard shortcuts"
+msgstr "Skróty klawiaturowe"
+
+#: prefs.glade.h:20
+msgid "Scrollback lines:"
+msgstr "Przewijanie:"
+
+#: prefs.glade.h:21
+msgid "Show scrollbar"
+msgstr "Pokaż pasek przewijania"
+
+#: prefs.glade.h:22
+msgid "Stay on top"
+msgstr "Zawsze na wierzchu"
+
+#: prefs.glade.h:23
+msgid "Style"
+msgstr "Styl"
+
+#: prefs.glade.h:24
+msgid "Style:"
+msgstr "Styl:"
+
+#: prefs.glade.h:25
+msgid "Top"
+msgstr "Góra"
+
