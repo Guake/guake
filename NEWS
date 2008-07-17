@@ -17,4 +17,7 @@ changes since 0.2
         * Making easier to grab keybinging shortcuts from the prefs
           screen by using eggcellrendererkeys lib.
 
+        * Now we look for more python interpreters when filling
+          interpreters combo.
+
         * Fixing a lot of bugs.

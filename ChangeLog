@@ -1,3 +1,12 @@
+2008-07-17  Lincoln de Sousa  <lincoln@minaslivre.org>
+
+	Bug #48 - /usr/bin/guake is selectable as "default interpreter"
+
+	* src/guake.py (PrefsDialog.populate_shell_combo): Now it lists
+	all found python interpreters in path.
+
+	* NEWS: Just telling to the world about this new feature =)
+
 2008-07-10  Lincoln de Sousa  <lincoln@minaslivre.org>
 
 	* src/guake.py (Guake.on_window_lostfocus): Testing if the main
