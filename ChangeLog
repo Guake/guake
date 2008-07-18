@@ -1,5 +1,9 @@
 2008-07-17  Lincoln de Sousa  <lincoln@minaslivre.org>
 
+	* po/POTFILES.in: Adding eggcellrendererkeys.c
+
+2008-07-17  Lincoln de Sousa  <lincoln@minaslivre.org>
+
 	Bug #48 - /usr/bin/guake is selectable as "default interpreter"
 
 	* src/guake.py (PrefsDialog.populate_shell_combo): Now it lists

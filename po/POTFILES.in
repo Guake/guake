@@ -6,3 +6,4 @@ data/guake.desktop.in
 src/dbusiface.py
 src/guake.py
 src/statusicon.py
+src/eggcellrendererkeys/eggcellrendererkeys.c
