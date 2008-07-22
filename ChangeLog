@@ -1,3 +1,8 @@
+2008-07-21  Lincoln de Sousa  <lincoln@minaslivre.org>
+
+	* src/guake.py (PrefsDialog.populate_shell_combo): Avoiding list
+	of unexistent directories.
+
 2008-07-17  Lincoln de Sousa  <lincoln@minaslivre.org>
 
 	* po/POTFILES.in: Adding eggcellrendererkeys.c

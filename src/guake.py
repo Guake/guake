@@ -305,9 +305,10 @@ class PrefsDialog(SimpleGladeApp):
                     cb.append_text(possible)
 
         for i in os.environ.get('PATH', '').split(os.pathsep):
-            for j in os.listdir(i):
-                if PYTHONS.match(j):
-                    cb.append_text(os.path.join(i, j))
+            if os.path.exists(i):
+                for j in os.listdir(i):
+                    if PYTHONS.match(j):
+                        cb.append_text(os.path.join(i, j))
 
     def populate_keys_tree(self):
         model = self.get_widget('treeview-keys').get_model()
