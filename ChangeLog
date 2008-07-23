@@ -1,3 +1,7 @@
+2008-07-22  Gabriel Falcão <gabriel@nacaolivre.org>
+
+	* data/guake.1: Fixing a typo in manpage: from --hide to --help
+
 2008-07-21  Lincoln de Sousa  <lincoln@minaslivre.org>
 
 	* src/guake.py (PrefsDialog.populate_shell_combo): Avoiding list
