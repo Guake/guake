@@ -1,6 +1,7 @@
 2008-07-22  Gabriel Falcão <gabriel@nacaolivre.org>
 
 	* data/guake.1: Fixing a typo in manpage: from --hide to --help
+	* debian/: Adding the debian package structure inside guake upstream
 
 2008-07-21  Lincoln de Sousa  <lincoln@minaslivre.org>
 

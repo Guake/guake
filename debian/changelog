@@ -1,0 +1,18 @@
+guake (0.3-1) unstable; urgency=low
+
+  * New upstream release
+
+ -- Gabriel Falcão Gonçalves de Moura <gabriel@nacaolivre.org>  Thu, 17 Jul 2008 23:55:02 -0300
+
+guake (0.2.2-1) unstable; urgency=low
+
+  * New upstream release
+
+ -- Gabriel Falcao Goncalves de Moura <gabriel@nacaolivre.org>  Tue, 03 Jun 2008 15:18:08 -0300
+
+guake (0.2-1) unstable; urgency=low
+
+  * Initial release from upstream
+
+ -- Gabriel Falcao Goncalves de Moura <gabriel@guake-terminal.org>  Tue, 03 Jun 2008 04:09:48 -0300
+
