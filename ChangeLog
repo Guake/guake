@@ -1,3 +1,12 @@
+2008-07-24  Lincoln de Sousa  <lincoln@minaslivre.org>
+
+	Bug #57 - Problems when listing $PATH directories.
+
+	* src/guake.py (PrefsDialog.populate_shell_combo): Last commit
+	fixed just a part of the whole problem, if the user has something
+	in the $PATH different of a directory the problem was raising
+	again.
+
 2008-07-22  Gabriel Falcão <gabriel@nacaolivre.org>
 
 	* data/guake.1: Fixing a typo in manpage: from --hide to --help
