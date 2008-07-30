@@ -99,7 +99,6 @@ AC_CONFIG_FILES([
     po/Makefile.in
     src/Makefile
     src/globalhotkeys/Makefile
-    src/eggcellrendererkeys/Makefile
     src/guake_globals.py
     src/guake
 ])

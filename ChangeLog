@@ -1,3 +1,14 @@
+2008-07-30  Lincoln de Sousa  <lincoln@alfaiati.net>
+
+	* src/eggcellrendererkeys: Removed.
+
+	* configure.ac:
+	* src/Makefile.am: Removing references of eggcellrendererkeys.
+
+	* src/guake.py: Removing all references of eggcellrendererkeys,
+	gtk provides a bult-in CellRendererAccel, I don't know how I
+	didn't see it before =/
+
 2008-07-25  Lincoln de Sousa  <lincoln@minaslivre.org>
 
 	* configure.ac: Bump to version 0.3.1

@@ -44,7 +44,6 @@ from statusicon import GuakeStatusIcon
 import dbusiface
 import globalhotkeys
 import guake_globals
-import cellrendererkeys
 
 pynotify.init('Guake!')
 
@@ -85,18 +84,16 @@ ERASE_BINDINGS = {'ASCII DEL': 'ascii-delete',
                   'Control-H': 'ascii-backspace'}
 
 class KeyEntry(object):
-    def __init__(self, keyval, keycode, mask):
-        self.keyval = keyval
+    def __init__(self, keycode, mask):
         self.keycode = keycode
         self.mask = mask
 
     def __repr__(self):
-        return u'KeyEntry(%d, %d, %d)' % (
-            self.keyval, self.keycode, self.mask)
+        return u'KeyEntry(%d, %d)' % (
+            self.keycode, self.mask)
 
     def __eq__(self, rval):
         return self.keycode == rval.keycode and \
-            self.keyval == rval.keyval and \
             self.mask == rval.mask
 
 class AboutDialog(SimpleGladeApp):
@@ -157,10 +154,8 @@ class PrefsDialog(SimpleGladeApp):
         column.set_property('expand', True)
         treeview.append_column(column)
 
-        renderer = cellrendererkeys.CellRendererKeys()
+        renderer = gtk.CellRendererAccel()
         renderer.set_property('editable', True)
-        renderer.set_property('accel-mode',
-                              cellrendererkeys.CELL_RENDERER_KEYS_MODE_X)
 
         renderer.connect('accel-edited', self.on_key_edited, model)
         renderer.connect('accel-cleared', self.on_key_cleared, model)
@@ -320,10 +315,10 @@ class PrefsDialog(SimpleGladeApp):
             child = model.append(giter)
             accel = self.client.get_string(i[0])
             if accel:
-                params = cellrendererkeys.accelerator_parse_virtual(accel)
+                params = gtk.accelerator_parse(accel)
                 hotkey = KeyEntry(*params)
             else:
-                hotkey = KeyEntry(0, 0, 0)
+                hotkey = KeyEntry(0, 0)
 
             model.set(child,
                       0, i[0],
@@ -338,10 +333,10 @@ class PrefsDialog(SimpleGladeApp):
             child = model.append(giter)
             accel = self.client.get_string(i[0])
             if accel:
-                params = cellrendererkeys.accelerator_parse_virtual(accel)
+                params = gtk.accelerator_parse(accel)
                 hotkey = KeyEntry(*params)
             else:
-                hotkey = KeyEntry(0, 0, 0)
+                hotkey = KeyEntry(0, 0)
 
             model.set(child,
                       0, i[0],
@@ -448,14 +443,14 @@ class PrefsDialog(SimpleGladeApp):
         self.reload_erase_combos()
         self.guake.set_erasebindings()
 
-    def on_key_edited(self, renderer, path, keyval, mask, keycode, model):
+    def on_key_edited(self, renderer, path, keycode, mask, keyval, model):
         giter = model.get_iter(path)
         gconf_path = model.get_value(giter, 0)
 
         oldkey = model.get_value(giter, 2)
-        hotkey = KeyEntry(keyval, keycode, mask)
-        key = cellrendererkeys.accelerator_name(keyval, keycode, mask)
-        keylabel = cellrendererkeys.accelerator_label(keyval, keycode, mask)
+        hotkey = KeyEntry(keycode, mask)
+        key = gtk.accelerator_name(keycode, mask)
+        keylabel = gtk.accelerator_get_label(keycode, mask)
 
         # we needn't to change anything, the user is trying to set the
         # same key that is already set.
@@ -472,9 +467,9 @@ class PrefsDialog(SimpleGladeApp):
 
         # avoiding problems with common keys
         if ((mask == 0 and keycode != 0) and (
-            (keyval >= ord('a') and keyval <= ord('z')) or
-            (keyval >= ord('A') and keyval <= ord('Z')) or
-            (keyval >= ord('0') and keyval <= ord('9')))):
+            (keycode >= ord('a') and keycode <= ord('z')) or
+            (keycode >= ord('A') and keycode <= ord('Z')) or
+            (keycode >= ord('0') and keycode <= ord('9')))):
             parent = self.get_widget('config-window')
             dialog = gtk.MessageDialog(parent,
                                        gtk.DIALOG_MODAL |
@@ -518,7 +513,7 @@ class PrefsDialog(SimpleGladeApp):
         giter = model.get_iter(path)
         gconf_path = model.get_value(giter, 0)
         accel = self.client.get_string(gconf_path)
-        model.set_value(giter, 2, KeyEntry(0, 0, 0))
+        model.set_value(giter, 2, KeyEntry(0, 0))
 
         # cleared accel must be unbinded
         accel = self.client.get_string(gconf_path)
@@ -536,10 +531,12 @@ class PrefsDialog(SimpleGladeApp):
         obj = model.get_value(giter, 2)
         if obj:
             renderer.set_property('visible', True)
-            renderer.set_accelerator(obj.keyval, obj.keycode, obj.mask)
+            renderer.set_property('accel-key', obj.keycode)
+            renderer.set_property('accel-mods', obj.mask)
         else:
             renderer.set_property('visible', False)
-            renderer.set_accelerator(0, 0, 0)
+            renderer.set_property('accel-key', 0)
+            renderer.set_property('accel-mods', 0)
 
     def update_preview_cb(self,file_chooser, preview):
         """
