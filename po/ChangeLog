@@ -1,5 +1,7 @@
 2008-08-03  Lincoln de Sousa  <lincoln@minaslivre.org>
 
+	* ru_RU.po: Fixing a little problem shown in #61 (Closes #61)
+
 	* pl.po: Updating to 3.0 strings. Thanks to Piotr Drąg (Closes #35)
 
 2008-07-10  Lincoln de Sousa  <lincoln@minaslivre.org>
