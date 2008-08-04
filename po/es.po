@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: guake 0.2.2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-06-18 14:44+0200\n"
+"POT-Creation-Date: 2008-08-04 01:12-0300\n"
 "PO-Revision-Date: 2008-06-18 14:44+0100\n"
 "Last-Translator: Adolfo González Blázquez <code@infinicode.org>\n"
 "Language-Team: translation@guake-terminal.org\n"
@@ -24,13 +24,33 @@ msgstr "Acerca de Guake"
 
 #: ../data/about.glade.h:2
 msgid ""
-"Copyright 2007 Gabriel Falcão\n"
-"Copyright 2007 Lincoln de Sousa"
+"Brazilian Portuguese\n"
+" * Lincoln de Sousa <lincoln@guake-terminal.org>\n"
+"\n"
+"Spanish\n"
+" * Adolfo González Blázquez <code@infinicode.org>\n"
+"\n"
+"Japanese\n"
+" * Nishio Futoshi <futoshi@momonga-linux.org>\n"
+"\n"
+"Polish\n"
+" * Mieszko Ślusarczyk <mieszkoslusarczyk@gmail.com>, 2008.\n"
+" * Piotr Drąg <piotrdrag@gmail.com>, 2008.\n"
+"\n"
+"Russian\n"
+" * Pavel Alexeev Pahan@Hubbitus.spb.su>"
+msgstr ""
+
+#: ../data/about.glade.h:17
+#, fuzzy
+msgid ""
+"Copyright 2007-2008 Lincoln de Sousa\n"
+"Copyright 2007 Gabriel Falcão"
 msgstr ""
 "Copyright 2007 Gabriel Falcão\n"
 "Copyright 2007 Lincoln de Sousa"
 
-#: ../data/about.glade.h:4
+#: ../data/about.glade.h:19
 msgid ""
 "Guake is an easy to access\n"
 "terminal based on fps games terminal"
@@ -39,45 +59,74 @@ msgstr ""
 "basado en los terminales de los juegos\n"
 "de acción en primera persona."
 
-#: ../data/about.glade.h:6
+#: ../data/about.glade.h:21
 msgid ""
-"Guake is free software; you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation; either version 2 of the License, or (at your option) any later version.\n"
+"Guake is free software; you can redistribute it and/or modify it under the "
+"terms of the GNU General Public License as published by the Free Software "
+"Foundation; either version 2 of the License, or (at your option) any later "
+"version.\n"
 "\n"
-"Guake is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more details.\n"
+"Guake is distributed in the hope that it will be useful, but WITHOUT ANY "
+"WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS "
+"FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more "
+"details.\n"
 "\n"
-"You should have received a copy of the GNU General Public License along with Guake; if not, write to the Free Software Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301 USA\n"
+"You should have received a copy of the GNU General Public License along with "
+"Guake; if not, write to the Free Software Foundation, Inc., 51 Franklin St, "
+"Fifth Floor, Boston, MA  02110-1301 USA\n"
 msgstr ""
-"Guake is free software; you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation; either version 2 of the License, or (at your option) any later version.\n"
+"Guake is free software; you can redistribute it and/or modify it under the "
+"terms of the GNU General Public License as published by the Free Software "
+"Foundation; either version 2 of the License, or (at your option) any later "
+"version.\n"
 "\n"
-"Guake is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more details.\n"
+"Guake is distributed in the hope that it will be useful, but WITHOUT ANY "
+"WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS "
+"FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more "
+"details.\n"
 "\n"
-"You should have received a copy of the GNU General Public License along with Guake; if not, write to the Free Software Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301 USA\n"
+"You should have received a copy of the GNU General Public License along with "
+"Guake; if not, write to the Free Software Foundation, Inc., 51 Franklin St, "
+"Fifth Floor, Boston, MA  02110-1301 USA\n"
 
-#: ../data/about.glade.h:12
+#: ../data/about.glade.h:27
 msgid "http://guake-terminal.org"
 msgstr "http://guake-terminal.org"
 
 #: ../data/guake.glade.h:1
-#: ../src/guake.py:393
-#: ../src/guake.py:398
+#, fuzzy
+msgid "Add a new tab"
+msgstr "Nueva pestaña"
+
+#: ../data/guake.glade.h:2
+#, fuzzy
+msgid "Close"
+msgstr "Cerrar pestaña"
+
+#: ../data/guake.glade.h:3
+#, fuzzy
+msgid "Close Tab"
+msgstr "Cerrar pestaña"
+
+#: ../data/guake.glade.h:4 ../src/guake.py:597 ../src/guake.py:602
 msgid "Guake!"
 msgstr "Guake!"
 
-#: ../data/guake.glade.h:2
-msgid "New Tab"
-msgstr "Nueva pestaña"
+#: ../data/guake.glade.h:5
+msgid "Rename"
+msgstr ""
 
 #: ../data/prefs.glade.h:1
-msgid "<b><big>Guake Properties</big></b>"
-msgstr "<b><big>Preferencias de Guake</big></b>"
-
-#: ../data/prefs.glade.h:2
 msgid "<b>Background</b>"
 msgstr "<b>Fondo</b>"
 
-#: ../data/prefs.glade.h:3
+#: ../data/prefs.glade.h:2
 msgid "<b>Fonts</b>"
 msgstr "<b>Tipografía</b>"
+
+#: ../data/prefs.glade.h:3
+msgid "<b>Keyboard compatibility</b>"
+msgstr ""
 
 #: ../data/prefs.glade.h:4
 msgid "<b>Shell</b>"
@@ -96,139 +145,198 @@ msgid "<b>Window size</b>"
 msgstr "<b>Tamaño de la ventana</b>"
 
 #: ../data/prefs.glade.h:8
+msgid ""
+"<small><i><b>Note:</b> These options may cause some applications to behave "
+"incorrectly.  They are only here to allow you to work around certain "
+"applications and operating systems that expect different terminal behavior.</"
+"i></small>"
+msgstr ""
+
+#: ../data/prefs.glade.h:9
+msgid ""
+"<span color=\"black\">Customize behavior and appearance of Guake!</span>"
+msgstr ""
+
+#: ../data/prefs.glade.h:10
+msgid "<span size=\"18000\" color=\"black\"><b>Guake properties</b></span>"
+msgstr ""
+
+#: ../data/prefs.glade.h:11
+msgid ""
+"ASCII DEL\n"
+"Escape sequence\n"
+"Control-H"
+msgstr ""
+
+#: ../data/prefs.glade.h:14
 msgid "Background Transparent:"
 msgstr "Fondo transparente:"
 
-#: ../data/prefs.glade.h:9
+#: ../data/prefs.glade.h:15
 msgid "Bottom"
 msgstr "Abajo"
 
-#: ../data/prefs.glade.h:10
+#: ../data/prefs.glade.h:16
 msgid "Choose some color"
 msgstr "Elija un color"
 
-#: ../data/prefs.glade.h:11
+#: ../data/prefs.glade.h:17
 msgid "Choose some font"
 msgstr "Elija una tipografía"
 
-#: ../data/prefs.glade.h:12
+#: ../data/prefs.glade.h:18
 msgid "Color:"
 msgstr "Color:"
 
-#: ../data/prefs.glade.h:13
+#: ../data/prefs.glade.h:19
+msgid "Compatibility"
+msgstr ""
+
+#: ../data/prefs.glade.h:20
 msgid "Default interpreter:"
 msgstr "Intérprete predeterminado:"
 
-#: ../data/prefs.glade.h:14
+#: ../data/prefs.glade.h:21
 msgid "Desaturation:"
 msgstr "Desaturación:"
 
-#: ../data/prefs.glade.h:15
+#: ../data/prefs.glade.h:22
 msgid "General"
 msgstr "General"
 
-#: ../data/prefs.glade.h:16
+#: ../data/prefs.glade.h:23
 msgid "Guake Preferences"
 msgstr "Preferencias de Guake"
 
-#: ../data/prefs.glade.h:17
+#: ../data/prefs.glade.h:24
 msgid "Hide on lose focus"
 msgstr "Esconder al perder el foco"
 
-#: ../data/prefs.glade.h:18
+#: ../data/prefs.glade.h:25
 msgid "Image:"
 msgstr "Imagen:"
 
-#: ../data/prefs.glade.h:19
+#: ../data/prefs.glade.h:26
 msgid "Keyboard shortcuts"
 msgstr "Atajos de teclado"
 
-#: ../data/prefs.glade.h:20
+#: ../data/prefs.glade.h:27
 msgid "Scrollback lines:"
 msgstr "Desplazamiento hacia atrás (líneas):"
 
-#: ../data/prefs.glade.h:21
+#: ../data/prefs.glade.h:28
 msgid "Show scrollbar"
 msgstr "Mostrar barra de desplazamiento"
 
-#: ../data/prefs.glade.h:22
+#: ../data/prefs.glade.h:29
 msgid "Stay on top"
 msgstr "Permanecer encima"
 
-#: ../data/prefs.glade.h:23
+#: ../data/prefs.glade.h:30
 msgid "Style"
 msgstr "Estilo"
 
-#: ../data/prefs.glade.h:24
+#: ../data/prefs.glade.h:31
 msgid "Style:"
 msgstr "Estilo:"
 
-#: ../data/prefs.glade.h:25
+#: ../data/prefs.glade.h:32
 msgid "Top"
 msgstr "Arriba"
 
+#: ../data/prefs.glade.h:33
+msgid "_Backspace key generates:"
+msgstr ""
+
+#: ../data/prefs.glade.h:34
+msgid "_Delete key generates:"
+msgstr ""
+
+#: ../data/prefs.glade.h:35
+msgid "_Reset Compatibility Options to Defaults"
+msgstr ""
+
 #: ../src/dbusiface.py:63
 msgid "Could not connect to dbus session bus. dbus will be unavailable.\n"
-msgstr "No se puede conectar con la sesión dbus, así que no estará disponible.\n"
+msgstr ""
+"No se puede conectar con la sesión dbus, así que no estará disponible.\n"
 
-#: ../src/guake.py:53
+#: ../src/guake.py:69
 msgid "Toggle terminal visibility"
 msgstr "Conmuta la visibilidad del terminal"
 
-#: ../src/guake.py:55
+#: ../src/guake.py:71
 msgid "New tab"
 msgstr "Nueva pestaña"
 
-#: ../src/guake.py:56
+#: ../src/guake.py:72
 msgid "Close tab"
 msgstr "Cerrar pestaña"
 
-#: ../src/guake.py:57
+#: ../src/guake.py:73
 msgid "Go to previous tab"
 msgstr "Ir a la pestaña anterior"
 
-#: ../src/guake.py:58
+#: ../src/guake.py:74
 msgid "Go to next tab"
 msgstr "Ir a la pestaña siguiente"
 
-#: ../src/guake.py:59
+#: ../src/guake.py:75
 msgid "Copy text to clipboard"
 msgstr "Copiar texto al portapapeles"
 
-#: ../src/guake.py:60
+#: ../src/guake.py:76
 msgid "Paste text from clipboard"
 msgstr "Pegar texto del portapapeles"
 
-#: ../src/guake.py:61
+#: ../src/guake.py:77
 msgid "Toggle Fullscreen"
 msgstr "Conmutar pantalla completa"
 
-#: ../src/guake.py:112
+#: ../src/guake.py:153
 msgid "Action"
 msgstr "Acción"
 
-#: ../src/guake.py:119
+#: ../src/guake.py:163
 msgid "Shortcut"
 msgstr "Atajo"
 
-#: ../src/guake.py:239
+#: ../src/guake.py:312
 msgid "Global hotkeys"
 msgstr "Atajos de teclado globales"
 
-#: ../src/guake.py:251
+#: ../src/guake.py:330
 msgid "Local hotkeys"
 msgstr "Atajos de teclado locales"
 
-#: ../src/guake.py:353
+#: ../src/guake.py:464
+#, python-format
+msgid "The shortcut \"%s\" is already in use."
+msgstr ""
+
+#: ../src/guake.py:465
+msgid "Error setting keybinding."
+msgstr ""
+
+#: ../src/guake.py:479
+#, python-format
+msgid ""
+"The shortcut \"%s\" cannot be used because it will become impossible to type "
+"using this key.\n"
+"\n"
+"Please try with a key such as Control, Alt or Shift at the same time.\n"
+msgstr ""
+
+#: ../src/guake.py:500
 msgid "key binding error"
 msgstr "Error al asignar tecla"
 
-#: ../src/guake.py:354
+#: ../src/guake.py:501
 #, python-format
 msgid "Unable to bind %s key"
 msgstr "No se pudo asignar la tecla %s"
 
-#: ../src/guake.py:394
+#: ../src/guake.py:598
 #, python-format
 msgid ""
 "A problem happened when binding <b>%s</b> key.\n"
@@ -237,7 +345,7 @@ msgstr ""
 "Ocurrió un problema asignando la tecla <b>%s</b>.\n"
 "Por favor, use las preferencias de Guake para asignar otra tecla."
 
-#: ../src/guake.py:399
+#: ../src/guake.py:603
 #, python-format
 msgid ""
 "Guake is already running,\n"
@@ -246,32 +354,32 @@ msgstr ""
 "Guake se está ejecutando,\n"
 "pulse <b>%s</b> para usarlo."
 
-#: ../src/guake.py:701
+#: ../src/guake.py:1026
 #, python-format
 msgid "Terminal %s"
 msgstr "Terminal %s"
 
-#: ../src/guake.py:789
+#: ../src/guake.py:1129
 msgid "Toggles the visibility of the terminal window"
 msgstr "Conmuta la visibilidad de la ventana del terminal"
 
-#: ../src/guake.py:793
+#: ../src/guake.py:1133
 msgid "Shows Guake preference window"
 msgstr "Muestra las preferencias de Guake"
 
-#: ../src/guake.py:797
+#: ../src/guake.py:1137
 msgid "Shows Guake's about info"
 msgstr "Muestra el dialogo de información de Guake"
 
-#: ../src/guake.py:801
+#: ../src/guake.py:1141
 msgid "Says to Guake go away =("
 msgstr "Le dice a Guake que desaparezca =("
 
-#: ../src/guake.py:839
+#: ../src/guake.py:1179
 msgid "Guake can not init!"
 msgstr "¡Guake no se puede iniciar!"
 
-#: ../src/guake.py:840
+#: ../src/guake.py:1180
 msgid ""
 "Gconf Error.\n"
 "Have you installed <b>guake.schemas</b> properlly?"
@@ -283,3 +391,8 @@ msgstr ""
 msgid "Guake-Terminal"
 msgstr "Guake-Terminal"
 
+#~ msgid "New Tab"
+#~ msgstr "Nueva pestaña"
+
+#~ msgid "<b><big>Guake Properties</big></b>"
+#~ msgstr "<b><big>Preferencias de Guake</big></b>"

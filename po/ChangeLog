@@ -1,3 +1,18 @@
+2008-08-04  Lincoln de Sousa  <lincoln@minaslivre.org>
+
+	* POTFILES.in: Removing eggcellrendererkeys.c.
+
+	* pt_BR.po: Updating translation, at the moment there are no
+	untranslated messages.
+
+	* {es,ja,pl,ru_RU}.po: Updating with make update-po.
+
+2008-08-03  Lincoln de Sousa  <lincoln@minaslivre.org>
+
+	* ru_RU.po: Fixing a little problem shown in #61 (Closes #61)
+
+	* pl.po: Updating to 3.0 strings. Thanks to Piotr Drąg (Closes #35)
+
 2008-07-10  Lincoln de Sousa  <lincoln@minaslivre.org>
 
 	* es.po: Added, thanks to infinito (Closes #28)

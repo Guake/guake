@@ -1,3 +1,34 @@
+2008-08-04  Lincoln de Sousa  <lincoln@minaslivre.org>
+
+	* data/about.glade: Adding translators in about dialog.
+
+2008-08-03  Lincoln de Sousa  <lincoln@minaslivre.org>
+
+	* src/guake.py (Guake.__init__): Getting/showing the accel label
+	instead of name, the < and > symbols were bothering pango and it's
+	better to show a pretty label to the user.
+
+2008-08-03  Lincoln de Sousa  <lincoln@minaslivre.org>
+
+	* src/guake.py (Guake.on_rename_activate): Making it possible to
+	press enter instead of clicking in ok button to save the tab
+	renaming.
+
+2008-07-30  Lincoln de Sousa  <lincoln@alfaiati.net>
+
+	* src/eggcellrendererkeys: Removed.
+
+	* configure.ac:
+	* src/Makefile.am: Removing references of eggcellrendererkeys.
+
+	* src/guake.py: Removing all references of eggcellrendererkeys,
+	gtk provides a bult-in CellRendererAccel, I don't know how I
+	didn't see it before =/
+
+2008-07-25  Lincoln de Sousa  <lincoln@minaslivre.org>
+
+	* configure.ac: Bump to version 0.3.1
+
 2008-07-24  Lincoln de Sousa  <lincoln@minaslivre.org>
 
 	Bug #57 - Problems when listing $PATH directories.
