@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <!DOCTYPE glade-interface SYSTEM "glade-2.0.dtd">
-<!--Generated with glade3 3.2.2 on Sat Oct  6 15:44:41 2007 by pythonwarrior@pidinti-->
+<!--Generated with glade3 3.4.5 on Mon Aug  4 01:12:05 2008 -->
 <glade-interface>
   <widget class="GtkAboutDialog" id="aboutdialog">
     <property name="visible">True</property>
@@ -12,9 +12,8 @@
     <property name="window_position">GTK_WIN_POS_CENTER_ALWAYS</property>
     <property name="type_hint">GDK_WINDOW_TYPE_HINT_NORMAL</property>
     <property name="has_separator">False</property>
-    <property name="version">0.1</property>
-    <property name="copyright" translatable="yes">Copyright 2007 Gabriel Falcão
-Copyright 2007 Lincoln de Sousa</property>
+    <property name="copyright" translatable="yes">Copyright 2007-2008 Lincoln de Sousa
+Copyright 2007 Gabriel Falcão</property>
     <property name="comments" translatable="yes">Guake is an easy to access
 terminal based on fps games terminal</property>
     <property name="website">http://guake-terminal.org</property>
@@ -27,6 +26,22 @@ You should have received a copy of the GNU General Public License along with Gua
 </property>
     <property name="authors">Gabriel Falcao &lt;gabriel@guake-terminal.org&gt;
 Lincoln de Sousa &lt;lincoln@guake-terminal.org&gt;</property>
+    <property name="documenters"></property>
+    <property name="translator_credits" translatable="yes">Brazilian Portuguese
+ * Lincoln de Sousa &lt;lincoln@guake-terminal.org&gt;
+
+Spanish
+ * Adolfo González Blázquez &lt;code@infinicode.org&gt;
+
+Japanese
+ * Nishio Futoshi &lt;futoshi@momonga-linux.org&gt;
+
+Polish
+ * Mieszko Ślusarczyk &lt;mieszkoslusarczyk@gmail.com&gt;, 2008.
+ * Piotr Drąg &lt;piotrdrag@gmail.com&gt;, 2008.
+
+Russian
+ * Pavel Alexeev Pahan@Hubbitus.spb.su&gt;</property>
     <property name="artists">Gabriel Falcao &lt;gabriel@guake-terminal.org&gt;</property>
     <property name="wrap_license">True</property>
     <signal name="response" handler="gtk_widget_destroy" object="aboutdialog"/>

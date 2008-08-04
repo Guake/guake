@@ -1,4 +1,8 @@
-2008-08-03  Lincoln de Sousa  <lincoln@indigente.viaduto>
+2008-08-04  Lincoln de Sousa  <lincoln@minaslivre.org>
+
+	* data/about.glade: Adding translators in about dialog.
+
+2008-08-03  Lincoln de Sousa  <lincoln@minaslivre.org>
 
 	* src/guake.py (Guake.__init__): Getting/showing the accel label
 	instead of name, the < and > symbols were bothering pango and it's
