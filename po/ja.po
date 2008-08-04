@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-05-09 21:37+0900\n"
+"POT-Creation-Date: 2008-08-04 01:12-0300\n"
 "PO-Revision-Date: 2008-05-28 01:58-0300\n"
 "Last-Translator: Gabriel Falcão <gabrielteratos@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -21,11 +21,30 @@ msgstr "Guakeについて"
 
 #: ../data/about.glade.h:2
 msgid ""
-"Copyright 2007 Gabriel Falcão\n"
-"Copyright 2007 Lincoln de Sousa"
+"Brazilian Portuguese\n"
+" * Lincoln de Sousa <lincoln@guake-terminal.org>\n"
+"\n"
+"Spanish\n"
+" * Adolfo González Blázquez <code@infinicode.org>\n"
+"\n"
+"Japanese\n"
+" * Nishio Futoshi <futoshi@momonga-linux.org>\n"
+"\n"
+"Polish\n"
+" * Mieszko Ślusarczyk <mieszkoslusarczyk@gmail.com>, 2008.\n"
+" * Piotr Drąg <piotrdrag@gmail.com>, 2008.\n"
+"\n"
+"Russian\n"
+" * Pavel Alexeev Pahan@Hubbitus.spb.su>"
 msgstr ""
 
-#: ../data/about.glade.h:4
+#: ../data/about.glade.h:17
+msgid ""
+"Copyright 2007-2008 Lincoln de Sousa\n"
+"Copyright 2007 Gabriel Falcão"
+msgstr ""
+
+#: ../data/about.glade.h:19
 msgid ""
 "Guake is an easy to access\n"
 "terminal based on fps games terminal"
@@ -33,44 +52,61 @@ msgstr ""
 "Guakeは、fpsゲーム端末をベースにした\n"
 "簡単に使える端末です"
 
-#: ../data/about.glade.h:6
+#: ../data/about.glade.h:21
 msgid ""
-"Guake is free software; you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation; either version 2 of the License, or (at your option) any later version.\n"
+"Guake is free software; you can redistribute it and/or modify it under the "
+"terms of the GNU General Public License as published by the Free Software "
+"Foundation; either version 2 of the License, or (at your option) any later "
+"version.\n"
 "\n"
-"Guake is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more details.\n"
+"Guake is distributed in the hope that it will be useful, but WITHOUT ANY "
+"WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS "
+"FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more "
+"details.\n"
 "\n"
-"You should have received a copy of the GNU General Public License along with Guake; if not, write to the Free Software Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301 USA\n"
+"You should have received a copy of the GNU General Public License along with "
+"Guake; if not, write to the Free Software Foundation, Inc., 51 Franklin St, "
+"Fifth Floor, Boston, MA  02110-1301 USA\n"
 msgstr ""
 
-#: ../data/about.glade.h:12
+#: ../data/about.glade.h:27
 msgid "http://guake-terminal.org"
 msgstr ""
 
 #: ../data/guake.glade.h:1
-msgid "Guake 0.0.1alpha"
-msgstr ""
+#, fuzzy
+msgid "Add a new tab"
+msgstr "新規TAB"
 
 #: ../data/guake.glade.h:2
-#: ../src/guake.py:392
-#: ../src/guake.py:397
+#, fuzzy
+msgid "Close"
+msgstr "TABを閉じる"
+
+#: ../data/guake.glade.h:3
+#, fuzzy
+msgid "Close Tab"
+msgstr "TABを閉じる"
+
+#: ../data/guake.glade.h:4 ../src/guake.py:597 ../src/guake.py:602
 msgid "Guake!"
 msgstr ""
 
-#: ../data/guake.glade.h:3
-msgid "New Tab"
-msgstr "新規TAB"
+#: ../data/guake.glade.h:5
+msgid "Rename"
+msgstr ""
 
 #: ../data/prefs.glade.h:1
-msgid "<b><big>Guake Properties</big></b>"
-msgstr "<b><big>Guakeの設定</big></b>"
-
-#: ../data/prefs.glade.h:2
 msgid "<b>Background</b>"
 msgstr "<b>背景</b>"
 
-#: ../data/prefs.glade.h:3
+#: ../data/prefs.glade.h:2
 msgid "<b>Fonts</b>"
 msgstr "<b>フォント</b>"
+
+#: ../data/prefs.glade.h:3
+msgid "<b>Keyboard compatibility</b>"
+msgstr ""
 
 #: ../data/prefs.glade.h:4
 msgid "<b>Shell</b>"
@@ -89,139 +125,197 @@ msgid "<b>Window size</b>"
 msgstr "<b>ウィンドウサイズ</b>"
 
 #: ../data/prefs.glade.h:8
+msgid ""
+"<small><i><b>Note:</b> These options may cause some applications to behave "
+"incorrectly.  They are only here to allow you to work around certain "
+"applications and operating systems that expect different terminal behavior.</"
+"i></small>"
+msgstr ""
+
+#: ../data/prefs.glade.h:9
+msgid ""
+"<span color=\"black\">Customize behavior and appearance of Guake!</span>"
+msgstr ""
+
+#: ../data/prefs.glade.h:10
+msgid "<span size=\"18000\" color=\"black\"><b>Guake properties</b></span>"
+msgstr ""
+
+#: ../data/prefs.glade.h:11
+msgid ""
+"ASCII DEL\n"
+"Escape sequence\n"
+"Control-H"
+msgstr ""
+
+#: ../data/prefs.glade.h:14
 msgid "Background Transparent:"
 msgstr "背景の透過:"
 
-#: ../data/prefs.glade.h:9
+#: ../data/prefs.glade.h:15
 msgid "Bottom"
 msgstr "下"
 
-#: ../data/prefs.glade.h:10
+#: ../data/prefs.glade.h:16
 msgid "Choose some color"
 msgstr "色を選択する"
 
-#: ../data/prefs.glade.h:11
+#: ../data/prefs.glade.h:17
 msgid "Choose some font"
 msgstr "フォントの選択"
 
-#: ../data/prefs.glade.h:12
+#: ../data/prefs.glade.h:18
 msgid "Color:"
 msgstr "色:"
 
-#: ../data/prefs.glade.h:13
+#: ../data/prefs.glade.h:19
+msgid "Compatibility"
+msgstr ""
+
+#: ../data/prefs.glade.h:20
 msgid "Default interpreter:"
 msgstr "デフォルトのシェル:"
 
-#: ../data/prefs.glade.h:14
+#: ../data/prefs.glade.h:21
 msgid "Desaturation:"
 msgstr "不透明度:"
 
-#: ../data/prefs.glade.h:15
+#: ../data/prefs.glade.h:22
 msgid "General"
 msgstr "一般的な設定"
 
-#: ../data/prefs.glade.h:16
+#: ../data/prefs.glade.h:23
 msgid "Guake Preferences"
 msgstr "Gaukeの設定"
 
-#: ../data/prefs.glade.h:17
+#: ../data/prefs.glade.h:24
 msgid "Hide on lose focus"
 msgstr "フォーカスを失うと隠す"
 
-#: ../data/prefs.glade.h:18
+#: ../data/prefs.glade.h:25
 msgid "Image:"
 msgstr "画像："
 
-#: ../data/prefs.glade.h:19
+#: ../data/prefs.glade.h:26
 msgid "Keyboard shortcuts"
 msgstr "キーボードショートカット"
 
-#: ../data/prefs.glade.h:20
+#: ../data/prefs.glade.h:27
 msgid "Scrollback lines:"
 msgstr "行をスクロールバックする"
 
-#: ../data/prefs.glade.h:21
+#: ../data/prefs.glade.h:28
 msgid "Show scrollbar"
 msgstr "スクロールバーの表示"
 
-#: ../data/prefs.glade.h:22
+#: ../data/prefs.glade.h:29
 msgid "Stay on top"
 msgstr "最前面に"
 
-#: ../data/prefs.glade.h:23
+#: ../data/prefs.glade.h:30
 msgid "Style"
 msgstr "スタイル"
 
-#: ../data/prefs.glade.h:24
+#: ../data/prefs.glade.h:31
 msgid "Style:"
 msgstr "スタイル"
 
-#: ../data/prefs.glade.h:25
+#: ../data/prefs.glade.h:32
 msgid "Top"
 msgstr "上"
+
+#: ../data/prefs.glade.h:33
+msgid "_Backspace key generates:"
+msgstr ""
+
+#: ../data/prefs.glade.h:34
+msgid "_Delete key generates:"
+msgstr ""
+
+#: ../data/prefs.glade.h:35
+msgid "_Reset Compatibility Options to Defaults"
+msgstr ""
 
 #: ../src/dbusiface.py:63
 msgid "Could not connect to dbus session bus. dbus will be unavailable.\n"
 msgstr "dbusセッションに接続できませんでした。dbusは利用できません。\n"
 
-#: ../src/guake.py:53
+#: ../src/guake.py:69
 msgid "Toggle terminal visibility"
 msgstr "端末表示の切り替え"
 
-#: ../src/guake.py:55
+#: ../src/guake.py:71
 msgid "New tab"
 msgstr "新規TAB"
 
-#: ../src/guake.py:56
+#: ../src/guake.py:72
 msgid "Close tab"
 msgstr "TABを閉じる"
 
-#: ../src/guake.py:57
+#: ../src/guake.py:73
 msgid "Go to previous tab"
 msgstr "前のTABに移動"
 
-#: ../src/guake.py:58
+#: ../src/guake.py:74
 msgid "Go to next tab"
 msgstr "次のTABに移動"
 
-#: ../src/guake.py:59
+#: ../src/guake.py:75
 msgid "Copy text to clipboard"
 msgstr "テキストをクリップボードにコピー"
 
-#: ../src/guake.py:60
+#: ../src/guake.py:76
 msgid "Paste text from clipboard"
 msgstr "クリップボードからテキストをペースト"
 
-#: ../src/guake.py:61
+#: ../src/guake.py:77
 msgid "Toggle Fullscreen"
 msgstr "全画面表示"
 
-#: ../src/guake.py:112
+#: ../src/guake.py:153
 msgid "Action"
 msgstr "動作"
 
-#: ../src/guake.py:119
+#: ../src/guake.py:163
 msgid "Shortcut"
 msgstr "ショートカット"
 
-#: ../src/guake.py:238
+#: ../src/guake.py:312
 msgid "Global hotkeys"
 msgstr "全体のホットキー"
 
-#: ../src/guake.py:250
+#: ../src/guake.py:330
 msgid "Local hotkeys"
 msgstr "ローカルのホットキー"
 
-#: ../src/guake.py:352
+#: ../src/guake.py:464
+#, python-format
+msgid "The shortcut \"%s\" is already in use."
+msgstr ""
+
+#: ../src/guake.py:465
+msgid "Error setting keybinding."
+msgstr ""
+
+#: ../src/guake.py:479
+#, python-format
+msgid ""
+"The shortcut \"%s\" cannot be used because it will become impossible to type "
+"using this key.\n"
+"\n"
+"Please try with a key such as Control, Alt or Shift at the same time.\n"
+msgstr ""
+
+#: ../src/guake.py:500
 msgid "key binding error"
 msgstr "キーの割り当てエラー"
 
-#: ../src/guake.py:353
+#: ../src/guake.py:501
 #, python-format
 msgid "Unable to bind %s key"
 msgstr "%sキーを割り当てられません"
 
-#: ../src/guake.py:393
+#: ../src/guake.py:598
 #, python-format
 msgid ""
 "A problem happened when binding <b>%s</b> key.\n"
@@ -230,7 +324,7 @@ msgstr ""
 "<b>%s</b>キーの割り当てで問題が生じております。\n"
 "設定画面で別のキーを選択してください"
 
-#: ../src/guake.py:398
+#: ../src/guake.py:603
 #, python-format
 msgid ""
 "Guake is already running,\n"
@@ -239,32 +333,32 @@ msgstr ""
 "Guakeは実行中です\n"
 "<b>%s</b>を入力して使用して下さい。"
 
-#: ../src/guake.py:698
+#: ../src/guake.py:1026
 #, python-format
 msgid "Terminal %s"
 msgstr "端末 %s"
 
-#: ../src/guake.py:778
+#: ../src/guake.py:1129
 msgid "Toggles the visibility of the terminal window"
 msgstr "端末の表示を変更します"
 
-#: ../src/guake.py:782
+#: ../src/guake.py:1133
 msgid "Shows Guake preference window"
 msgstr "Guakeの設定画面を表示します"
 
-#: ../src/guake.py:786
+#: ../src/guake.py:1137
 msgid "Shows Guake's about info"
 msgstr "Guakeの情報を表示します"
 
-#: ../src/guake.py:790
+#: ../src/guake.py:1141
 msgid "Says to Guake go away =("
 msgstr "Guakeに消えてなくなれと言ってください (T_T)"
 
-#: ../src/guake.py:828
+#: ../src/guake.py:1179
 msgid "Guake can not init!"
 msgstr "Guakeを初期化できません"
 
-#: ../src/guake.py:829
+#: ../src/guake.py:1180
 msgid ""
 "Gconf Error.\n"
 "Have you installed <b>guake.schemas</b> properlly?"
@@ -276,3 +370,8 @@ msgstr ""
 msgid "Guake-Terminal"
 msgstr ""
 
+#~ msgid "New Tab"
+#~ msgstr "新規TAB"
+
+#~ msgid "<b><big>Guake Properties</big></b>"
+#~ msgstr "<b><big>Guakeの設定</big></b>"

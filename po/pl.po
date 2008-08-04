@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Guake 0.3.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-07-18 23:37+0200\n"
+"POT-Creation-Date: 2008-08-04 01:12-0300\n"
 "PO-Revision-Date: 2008-07-19 00:08+0200\n"
 "Last-Translator: Piotr Drąg <piotrdrag@gmail.com>\n"
 "Language-Team: Polish <pl@li.org>\n"
@@ -20,13 +20,33 @@ msgstr "O Guake"
 
 #: ../data/about.glade.h:2
 msgid ""
-"Copyright 2007 Gabriel Falcão\n"
-"Copyright 2007 Lincoln de Sousa"
+"Brazilian Portuguese\n"
+" * Lincoln de Sousa <lincoln@guake-terminal.org>\n"
+"\n"
+"Spanish\n"
+" * Adolfo González Blázquez <code@infinicode.org>\n"
+"\n"
+"Japanese\n"
+" * Nishio Futoshi <futoshi@momonga-linux.org>\n"
+"\n"
+"Polish\n"
+" * Mieszko Ślusarczyk <mieszkoslusarczyk@gmail.com>, 2008.\n"
+" * Piotr Drąg <piotrdrag@gmail.com>, 2008.\n"
+"\n"
+"Russian\n"
+" * Pavel Alexeev Pahan@Hubbitus.spb.su>"
+msgstr ""
+
+#: ../data/about.glade.h:17
+#, fuzzy
+msgid ""
+"Copyright 2007-2008 Lincoln de Sousa\n"
+"Copyright 2007 Gabriel Falcão"
 msgstr ""
 "Copyright 2007 Gabriel Falcão\n"
 "Copyright 2007 Lincoln de Sousa"
 
-#: ../data/about.glade.h:4
+#: ../data/about.glade.h:19
 msgid ""
 "Guake is an easy to access\n"
 "terminal based on fps games terminal"
@@ -34,7 +54,7 @@ msgstr ""
 "Guake jest łatwo dostępnym\n"
 "terminalem opartym na grach FPS"
 
-#: ../data/about.glade.h:6
+#: ../data/about.glade.h:21
 msgid ""
 "Guake is free software; you can redistribute it and/or modify it under the "
 "terms of the GNU General Public License as published by the Free Software "
@@ -65,7 +85,7 @@ msgstr ""
 "- napisz do Free Software Foundation, Inc., 51 Franklin St, Fifth Floor, "
 "Boston, MA 02110-1301, USA.\n"
 
-#: ../data/about.glade.h:12
+#: ../data/about.glade.h:27
 msgid "http://guake-terminal.org"
 msgstr "http://guake-terminal.org"
 
@@ -81,7 +101,7 @@ msgstr "Zamknij"
 msgid "Close Tab"
 msgstr "Zamknij kartę"
 
-#: ../data/guake.glade.h:4 ../src/guake.py:596 ../src/guake.py:601
+#: ../data/guake.glade.h:4 ../src/guake.py:597 ../src/guake.py:602
 msgid "Guake!"
 msgstr "Guake!"
 
@@ -132,8 +152,7 @@ msgstr ""
 #: ../data/prefs.glade.h:9
 msgid ""
 "<span color=\"black\">Customize behavior and appearance of Guake!</span>"
-msgstr ""
-"<span color=\"black\">Dostosuj zachowanie i wygląd Guake!</span>"
+msgstr "<span color=\"black\">Dostosuj zachowanie i wygląd Guake!</span>"
 
 #: ../data/prefs.glade.h:10
 msgid "<span size=\"18000\" color=\"black\"><b>Guake properties</b></span>"
@@ -242,64 +261,64 @@ msgid "Could not connect to dbus session bus. dbus will be unavailable.\n"
 msgstr ""
 "Nie można połączyć się z magistralą sesji D-Bus. D-Bus będzie niedostępny.\n"
 
-#: ../src/guake.py:70
+#: ../src/guake.py:69
 msgid "Toggle terminal visibility"
 msgstr "Przełącz widoczność terminala"
 
-#: ../src/guake.py:72
+#: ../src/guake.py:71
 msgid "New tab"
 msgstr "Nowa karta"
 
-#: ../src/guake.py:73
+#: ../src/guake.py:72
 msgid "Close tab"
 msgstr "Zamknij kartę"
 
-#: ../src/guake.py:74
+#: ../src/guake.py:73
 msgid "Go to previous tab"
 msgstr "Przejdź do poprzedniej karty"
 
-#: ../src/guake.py:75
+#: ../src/guake.py:74
 msgid "Go to next tab"
 msgstr "Przejdź do następnej karty"
 
-#: ../src/guake.py:76
+#: ../src/guake.py:75
 msgid "Copy text to clipboard"
 msgstr "Skopiuj tekst do schowka"
 
-#: ../src/guake.py:77
+#: ../src/guake.py:76
 msgid "Paste text from clipboard"
 msgstr "Wklej tekst ze schowka"
 
-#: ../src/guake.py:78
+#: ../src/guake.py:77
 msgid "Toggle Fullscreen"
 msgstr "Przełącz pełny ekran"
 
-#: ../src/guake.py:156
+#: ../src/guake.py:153
 msgid "Action"
 msgstr "Działanie"
 
-#: ../src/guake.py:168
+#: ../src/guake.py:163
 msgid "Shortcut"
 msgstr "Skrót"
 
-#: ../src/guake.py:316
+#: ../src/guake.py:312
 msgid "Global hotkeys"
 msgstr "Globalne klawisze skrótów"
 
-#: ../src/guake.py:334
+#: ../src/guake.py:330
 msgid "Local hotkeys"
 msgstr "Lokalne klawisze skrótów"
 
-#: ../src/guake.py:468
+#: ../src/guake.py:464
 #, python-format
 msgid "The shortcut \"%s\" is already in use."
 msgstr "Skrót \"%s\" jest już używany."
 
-#: ../src/guake.py:469
+#: ../src/guake.py:465
 msgid "Error setting keybinding."
 msgstr "Błąd podczas ustawiania dowiązania klawiszy."
 
-#: ../src/guake.py:483
+#: ../src/guake.py:479
 #, python-format
 msgid ""
 "The shortcut \"%s\" cannot be used because it will become impossible to type "
@@ -312,16 +331,16 @@ msgstr ""
 "\n"
 "Spróbuj z klawiszem takim jak Control, Alt lub Shift w tym samym czasie.\n"
 
-#: ../src/guake.py:504
+#: ../src/guake.py:500
 msgid "key binding error"
 msgstr "błąd podczas dowiązywania klawisza"
 
-#: ../src/guake.py:505
+#: ../src/guake.py:501
 #, python-format
 msgid "Unable to bind %s key"
 msgstr "Nie można dowiązań klawisza %s"
 
-#: ../src/guake.py:597
+#: ../src/guake.py:598
 #, python-format
 msgid ""
 "A problem happened when binding <b>%s</b> key.\n"
@@ -330,7 +349,7 @@ msgstr ""
 "Wystąpił problem podczas dowiązywania do klawisza <b>%s</b>.\n"
 "Użyj formularza właściwości Guake, aby wybrać inny klawisz"
 
-#: ../src/guake.py:602
+#: ../src/guake.py:603
 #, python-format
 msgid ""
 "Guake is already running,\n"
@@ -339,32 +358,32 @@ msgstr ""
 "Guake jest już uruchomione,\n"
 "naciśnij <b>%s</b>, aby go użyć."
 
-#: ../src/guake.py:1022
+#: ../src/guake.py:1026
 #, python-format
 msgid "Terminal %s"
 msgstr "Terminal %s"
 
-#: ../src/guake.py:1125
+#: ../src/guake.py:1129
 msgid "Toggles the visibility of the terminal window"
 msgstr "Przełącza widoczność okna terminala"
 
-#: ../src/guake.py:1129
+#: ../src/guake.py:1133
 msgid "Shows Guake preference window"
 msgstr "Wyświetla okno preferencji Guake"
 
-#: ../src/guake.py:1133
+#: ../src/guake.py:1137
 msgid "Shows Guake's about info"
 msgstr "Wyświetla informacje o Guake"
 
-#: ../src/guake.py:1137
+#: ../src/guake.py:1141
 msgid "Says to Guake go away =("
 msgstr "Mówi do Guake, aby sobie poszło =("
 
-#: ../src/guake.py:1175
+#: ../src/guake.py:1179
 msgid "Guake can not init!"
 msgstr "Nie można zainicjować Guake!"
 
-#: ../src/guake.py:1176
+#: ../src/guake.py:1180
 msgid ""
 "Gconf Error.\n"
 "Have you installed <b>guake.schemas</b> properlly?"
@@ -376,33 +395,23 @@ msgstr ""
 msgid "Guake-Terminal"
 msgstr "Guake-Terminal"
 
-#: ../src/eggcellrendererkeys/eggcellrendererkeys.c:21
-msgid "New accelerator..."
-msgstr "Nowy skrót klawiszowy..."
+#~ msgid "New accelerator..."
+#~ msgstr "Nowy skrót klawiszowy..."
 
-#: ../src/eggcellrendererkeys/eggcellrendererkeys.c:163
-#: ../src/eggcellrendererkeys/eggcellrendererkeys.c:164
-msgid "Accelerator key"
-msgstr "Klawisz skrótu"
+#~ msgid "Accelerator key"
+#~ msgstr "Klawisz skrótu"
 
-#: ../src/eggcellrendererkeys/eggcellrendererkeys.c:173
-#: ../src/eggcellrendererkeys/eggcellrendererkeys.c:174
-msgid "Accelerator modifiers"
-msgstr "Modyfikatory skrótu"
+#~ msgid "Accelerator modifiers"
+#~ msgstr "Modyfikatory skrótu"
 
-#: ../src/eggcellrendererkeys/eggcellrendererkeys.c:182
-#: ../src/eggcellrendererkeys/eggcellrendererkeys.c:183
-msgid "Accelerator keycode"
-msgstr "Kod klawisza skrótu"
+#~ msgid "Accelerator keycode"
+#~ msgstr "Kod klawisza skrótu"
 
-#: ../src/eggcellrendererkeys/eggcellrendererkeys.c:193
-msgid "Accel Mode"
-msgstr "Tryb skrótu"
+#~ msgid "Accel Mode"
+#~ msgstr "Tryb skrótu"
 
-#: ../src/eggcellrendererkeys/eggcellrendererkeys.c:194
-msgid "The type of accelerator."
-msgstr "Typ skrótu."
+#~ msgid "The type of accelerator."
+#~ msgstr "Typ skrótu."
 
-#: ../src/eggcellrendererkeys/eggcellrendererkeys.c:242
-msgid "Disabled"
-msgstr "Wyłączone"
+#~ msgid "Disabled"
+#~ msgstr "Wyłączone"
