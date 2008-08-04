@@ -942,11 +942,12 @@ class Guake(SimpleGladeApp):
     def on_rename_activate(self, *args):
         entry = gtk.Entry()
         entry.set_text(self.selected_tab.get_label())
+        entry.set_property('can-default', True)
+        entry.show()
 
         vbox = gtk.VBox()
-        vbox.pack_start(entry)
         vbox.set_border_width(6)
-        vbox.show_all()
+        vbox.show()
 
         dialog = gtk.Dialog("Rename tab",
                             self.window,
@@ -959,6 +960,8 @@ class Guake(SimpleGladeApp):
         dialog.set_border_width(4)
         dialog.set_has_separator(False)
         dialog.set_default_response(gtk.RESPONSE_ACCEPT)
+        dialog.add_action_widget(entry, gtk.RESPONSE_ACCEPT)
+        entry.reparent(vbox)
 
         response = dialog.run()
         dialog.destroy()

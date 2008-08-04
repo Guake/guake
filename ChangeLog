@@ -1,3 +1,9 @@
+2008-08-03  Lincoln de Sousa  <lincoln@minaslivre.org>
+
+	* src/guake.py (Guake.on_rename_activate): Making it possible to
+	press enter instead of clicking in ok button to save the tab
+	renaming.
+
 2008-07-30  Lincoln de Sousa  <lincoln@alfaiati.net>
 
 	* src/eggcellrendererkeys: Removed.
