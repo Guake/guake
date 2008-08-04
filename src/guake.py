@@ -589,16 +589,19 @@ class Guake(SimpleGladeApp):
         # setting global hotkey and showing a pretty notification =)
         globalhotkeys.init()
         key = self.client.get_string(GHOTKEYS[0][0])
+        keyval, mask = gtk.accelerator_parse(key)
+        label = gtk.accelerator_get_label(keyval, mask)
+
         filename = common.pixmapfile('guake-notification.png')
         if not globalhotkeys.bind(key, self.show_hide):
             n = pynotify.Notification(_('Guake!'),
                 _('A problem happened when binding <b>%s</b> key.\n'
                   'Please use guake properties form to choose another '
-                  'key') % key, filename)
+                  'key') % label, filename)
         else:
             n = pynotify.Notification(_('Guake!'),
                 _('Guake is already running,\n'
-                  'press <b>%s</b> to use it.') % key, filename)
+                  'press <b>%s</b> to use it.') % label, filename)
         n.show()
 
         # trayicon!
