@@ -2,6 +2,9 @@
 
 	* POTFILES.in: Removing eggcellrendererkeys.c.
 
+	* pt_BR.po: Updating translation, at the moment there are no
+	untranslated messages.
+
 2008-08-03  Lincoln de Sousa  <lincoln@minaslivre.org>
 
 	* ru_RU.po: Fixing a little problem shown in #61 (Closes #61)
