@@ -340,5 +340,17 @@
                 <long>When true, the tabs bar is visible</long>
             </locale>
         </schema>
+
+        <schema>
+            <key>/schemas/apps/guake/general/toolbar_visible_in_fullscreen</key>
+            <applyto>/apps/guake/general/toolbar_visible_in_fullscreen</applyto>
+            <owner>guake</owner>
+            <type>bool</type>
+            <default>true</default>
+            <locale name="C">
+                <short>If the tabs bar must be visible in fullscreen</short>
+                <long>Set it as false to enjoy guake's fullscreen.</long>
+            </locale>
+        </schema>
     </schemalist>
 </gconfschemafile>

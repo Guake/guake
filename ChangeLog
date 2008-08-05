@@ -6,6 +6,9 @@
 	* data/guake.glade: toolbar (tabs) is no more affected by window.show_all()
 	* src/guake.py: Guake are listening to GConf! (only show_resizer and
 	show_toolbar stuff for now)
+	* data/guake.schemas: Adding a new boolean key:	toolbar_visible_in_fullscreen
+	* src/guake.py: Guake checking if the tabs must be visible when in
+	fullscreen mode.
 
 2008-08-04  Lincoln de Sousa  <lincoln@minaslivre.org>
 

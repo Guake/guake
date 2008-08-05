@@ -708,8 +708,10 @@ class Guake(SimpleGladeApp):
             self.hide()
 
     def check_widgets_visibility(self):
-        show_resizer = self.client.get_bool(GCONF_PATH+'general/show_resizer')
-        show_toolbar = self.client.get_bool(GCONF_PATH+'general/show_toolbar')
+        gbool = lambda x: self.client.get_bool(GCONF_PATH+'general/%s' % x)
+        
+        show_resizer = gbool('show_resizer')
+        show_toolbar = gbool('show_toolbar')
         
         if not show_resizer:
             self.resizer.hide()
@@ -719,7 +721,10 @@ class Guake(SimpleGladeApp):
         if not show_toolbar:
             self.toolbar.hide()
         else:
-            self.toolbar.show()
+            if not self.fullscreen:
+                self.toolbar.show()
+            else:
+                self.toolbar.hide()
         
     def refresh(self):
         # FIXME: vte.Terminal need to be shown with his parent window to
@@ -911,10 +916,14 @@ class Guake(SimpleGladeApp):
         return True
 
     def accel_toggle_fullscreen(self, *args):
+        gbool = lambda x: self.client.get_bool(GCONF_PATH+'general/%s' % x)
+        tabs_visible = gbool("toolbar_visible_in_fullscreen")
         if not self.fullscreen:
             self.window.fullscreen()
             self.fullscreen = True
             self.resizer.hide()
+            if not tabs_visible:
+                self.toolbar.hide()
         else:
             self.window.unfullscreen()
             self.fullscreen = False
