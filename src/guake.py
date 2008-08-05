@@ -83,6 +83,19 @@ ERASE_BINDINGS = {'ASCII DEL': 'ascii-delete',
                   'Escape sequence': 'delete-sequence',
                   'Control-H': 'ascii-backspace'}
 
+class GuakeGConf(object):
+    def __init__(self, guakeinstance):
+        self.guake = guakeinstance
+        self.guake.client.add_dir("/apps/guake", gconf.CLIENT_PRELOAD_NONE)
+
+        self.guake.client.notify_add("/apps/guake/general/show_resizer", self.on_show_resizer_toggled)
+            
+    def on_show_resizer_toggled(self, client, connection_id, entry, data):
+        if entry.value:
+            self.guake.resizer.show()
+        else:
+            self.guake.resizer.hide()
+            
 class KeyEntry(object):
     def __init__(self, keycode, mask):
         self.keycode = keycode
@@ -585,7 +598,7 @@ class Guake(SimpleGladeApp):
     def __init__(self):
         super(Guake, self).__init__(common.gladefile('guake.glade'))
         self.client = gconf.client_get_default()
-
+        self.gconf = GuakeGConf(self)
         # setting global hotkey and showing a pretty notification =)
         globalhotkeys.init()
         key = self.client.get_string(GHOTKEYS[0][0])
