@@ -1,3 +1,9 @@
+2008-08-05  Gabriel Falcão <gabriel@nacaolivre.org>
+
+	* src/guake.py: Now guake can be resized with a resizer :)
+	* data/guake.glade: Adding a GtkHPaned as resizer for guake
+	* data/guake.schemas: Adding two new boolean keys: show_toolbar and show_resizer
+
 2008-08-04  Lincoln de Sousa  <lincoln@minaslivre.org>
 
 	* data/about.glade: Adding translators in about dialog.
