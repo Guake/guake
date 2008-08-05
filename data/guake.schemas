@@ -316,5 +316,29 @@
             </locale>
         </schema>
 
+        <schema>
+            <key>/schemas/apps/guake/general/show_resizer</key>
+            <applyto>/apps/guake/general/show_resizer</applyto>
+            <owner>guake</owner>
+            <type>bool</type>
+            <default>true</default>
+            <locale name="C">
+                <short>If guake must show a control to make resizing more handful</short>
+                <long>When true, guake shows a resizer on its bottom to allow user 
+                resize guake.</long>
+            </locale>
+        </schema>
+
+        <schema>
+            <key>/schemas/apps/guake/general/show_toolbar</key>
+            <applyto>/apps/guake/general/show_toolbar</applyto>
+            <owner>guake</owner>
+            <type>bool</type>
+            <default>true</default>
+            <locale name="C">
+                <short>If the tabs bar must be visible</short>
+                <long>When true, the tabs bar is visible</long>
+            </locale>
+        </schema>
     </schemalist>
 </gconfschemafile>

@@ -622,6 +622,7 @@ class Guake(SimpleGladeApp):
         self.tabs = self.get_widget('hbox-tabs')
         self.toolbar = self.get_widget('toolbar')
         self.mainframe = self.get_widget('mainframe')
+        self.resizer = self.get_widget('resizer')
 
         # List of vte.Terminal widgets, it will be useful when needed
         # to get a widget by the current page in self.notebook
@@ -652,6 +653,10 @@ class Guake(SimpleGladeApp):
         self.window.add_accel_group(self.accel_group)
         self.window.set_geometry_hints(min_width=1, min_height=1)
         self.window.connect('focus-out-event', self.on_window_lostfocus)
+
+        # resizer stuff
+        self.resizer.connect('motion-notify-event', self.on_resizer_drag)
+            
         self.get_widget('context-menu').set_accel_group(self.accel_group)
 
         self.load_accel_map()
@@ -660,6 +665,19 @@ class Guake(SimpleGladeApp):
         self.refresh()
         self.add_tab()
         self.toggle_ontop()
+
+    def on_resizer_drag(self, widget, event):
+        (x, y), mod = event.device.get_state(widget.window)
+
+        max_height = self.window.get_screen().get_height()
+        percent = y / (max_height / 100)
+        
+        if percent < 1:
+            percent = 1
+            
+        if int(mod) > 1:
+            self.client.set_int(GCONF_PATH + 'general/window_size', int(percent))
+            self.resize(*self.get_final_window_size())
 
     def on_window_lostfocus(self,window, event):
         getb = lambda x:self.client.get_bool(x)
@@ -672,6 +690,9 @@ class Guake(SimpleGladeApp):
         # can load his configs of back/fore color, fonts, etc.
         self.window.show_all()
         self.window.hide()
+        show_resizer = self.client.get_bool(GCONF_PATH+'general/show_resizer')
+        if not show_resizer:
+            self.resizer.hide()
 
     def show_menu(self, *args):
         menu = self.get_widget('tray-menu')
@@ -748,6 +769,12 @@ class Guake(SimpleGladeApp):
     def get_window_size(self):
         width = self.window.get_screen().get_width()
         height = self.client.get_int(GCONF_PATH+'general/window_size')
+        # avoiding X Window system error
+        max_height = self.window.get_screen().get_height()
+
+        if height > max_height:
+            height = max_height
+
         return width, height
 
     def get_final_window_size(self):
