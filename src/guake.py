@@ -88,14 +88,23 @@ class GuakeGConf(object):
         self.guake = guakeinstance
         self.guake.client.add_dir("/apps/guake", gconf.CLIENT_PRELOAD_NONE)
 
-        self.guake.client.notify_add("/apps/guake/general/show_resizer", self.on_show_resizer_toggled)
-            
+        self.guake.client.notify_add("/apps/guake/general/show_resizer",
+                                     self.on_show_resizer_toggled)
+        self.guake.client.notify_add("/apps/guake/general/show_toolbar",
+                                     self.on_show_toolbar_toggled)
+
     def on_show_resizer_toggled(self, client, connection_id, entry, data):
-        if entry.value:
+        if entry.value.get_bool():
             self.guake.resizer.show()
         else:
             self.guake.resizer.hide()
             
+    def on_show_toolbar_toggled(self, client, connection_id, entry, data):
+        if entry.value.get_bool():
+            self.guake.toolbar.show()
+        else:
+            self.guake.toolbar.hide()
+
 class KeyEntry(object):
     def __init__(self, keycode, mask):
         self.keycode = keycode
@@ -697,15 +706,27 @@ class Guake(SimpleGladeApp):
         value = getb(GCONF_PATH+'general/hide_on_lost_focus')
         if value and not self.visible:
             self.hide()
+
+    def check_widgets_visibility(self):
+        show_resizer = self.client.get_bool(GCONF_PATH+'general/show_resizer')
+        show_toolbar = self.client.get_bool(GCONF_PATH+'general/show_toolbar')
+        
+        if not show_resizer:
+            self.resizer.hide()
+        else:
+            self.resizer.show()
+
+        if not show_toolbar:
+            self.toolbar.hide()
+        else:
+            self.toolbar.show()
         
     def refresh(self):
         # FIXME: vte.Terminal need to be shown with his parent window to
         # can load his configs of back/fore color, fonts, etc.
         self.window.show_all()
         self.window.hide()
-        show_resizer = self.client.get_bool(GCONF_PATH+'general/show_resizer')
-        if not show_resizer:
-            self.resizer.hide()
+        self.check_widgets_visibility()
 
     def show_menu(self, *args):
         menu = self.get_widget('tray-menu')
@@ -893,9 +914,11 @@ class Guake(SimpleGladeApp):
         if not self.fullscreen:
             self.window.fullscreen()
             self.fullscreen = True
+            self.resizer.hide()
         else:
             self.window.unfullscreen()
             self.fullscreen = False
+            self.check_widgets_visibility()
         return True
 
     def toggle_scrollbars(self):

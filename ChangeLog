@@ -3,6 +3,9 @@
 	* src/guake.py: Now guake can be resized with a resizer :)
 	* data/guake.glade: Adding a GtkHPaned as resizer for guake
 	* data/guake.schemas: Adding two new boolean keys: show_toolbar and show_resizer
+	* data/guake.glade: toolbar (tabs) is no more affected by window.show_all()
+	* src/guake.py: Guake are listening to GConf! (only show_resizer and
+	show_toolbar stuff for now)
 
 2008-08-04  Lincoln de Sousa  <lincoln@minaslivre.org>
 
