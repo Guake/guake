@@ -1,7 +1,9 @@
 2008-08-07  Gabriel Falcão <gabriel@nacaolivre.org>
 
 	* TODO: Somethings turn obselete since new features had been implemented.
-	* cofnigure.ac: Guake version 0.4.0
+	* configure.ac: Guake version 0.4.0
+	* src/guake.py: Avoinding gdk device mods mistakes then handling the
+	resizer.
 
 2008-08-05  Gabriel Falcão <gabriel@nacaolivre.org>
 

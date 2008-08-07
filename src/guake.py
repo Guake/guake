@@ -697,7 +697,7 @@ class Guake(SimpleGladeApp):
         if percent < 1:
             percent = 1
             
-        if int(mod) > 1:
+        if 'GDK_BUTTON1_MASK' in mod.value_names:
             self.client.set_int(GCONF_PATH + 'general/window_size', int(percent))
             self.resize(*self.get_final_window_size())
 
