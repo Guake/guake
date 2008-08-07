@@ -51,13 +51,12 @@ Guake Todo
  * Add keybindings to:
 	# Add new tab OK
 	# remove current tab (I use ctrl+d, maybe a way to explain to the user...)
-	# Set window size, here we will set only 10 default sizes:
-		# Ctrl-Super-1 -> set to 10% of window
-		# Ctrl-Super-0 -> set to 100% of window 
 
  * Add to preferences window:
 
    - DONE * History size
+
+ * Add to gconf options
 
    - Visual bell
 

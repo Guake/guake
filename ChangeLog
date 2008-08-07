@@ -1,3 +1,8 @@
+2008-08-07  Gabriel Falcão <gabriel@nacaolivre.org>
+
+	* TODO: Somethings turn obselete since new features had been implemented.
+	* cofnigure.ac: Guake version 0.4.0
+
 2008-08-05  Gabriel Falcão <gabriel@nacaolivre.org>
 
 	* src/guake.py: Now guake can be resized with a resizer :)
