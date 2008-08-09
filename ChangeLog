@@ -1,3 +1,7 @@
+2008-08-09  Gabriel Falcão <gabriel@nacaolivre.org>
+
+	* po/pt_BR.po: Fixing a little semantic error.
+
 2008-08-07  Gabriel Falcão <gabriel@nacaolivre.org>
 
 	* TODO: Somethings turn obselete since new features had been implemented.

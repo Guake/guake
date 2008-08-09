@@ -378,7 +378,7 @@ msgid ""
 "Guake is already running,\n"
 "press <b>%s</b> to use it."
 msgstr ""
-"O Guake está rodando,\n"
+"O Guake está em execução,\n"
 "aperte <b>%s</b> para usá-lo"
 
 #: ../src/guake.py:1026
