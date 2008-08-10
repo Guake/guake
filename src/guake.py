@@ -1160,6 +1160,8 @@ class Guake(SimpleGladeApp):
 
         if not self.term_list:
             self.hide()
+            # avoiding the delay on next Guake show request
+            self.add_tab()
 
     def delete_shell(self, pid):
         """This function will kill the shell on a tab, trying to sent
