@@ -1081,7 +1081,18 @@ class Guake(SimpleGladeApp):
         self.term_list[last_added].set_word_chars(word_chars)
 
         shell_name = self.client.get_string(GCONF_PATH+'general/default_shell')
+
+        if len(self.term_list):
+            active_pagepos = self.notebook.get_current_page()
+        else:
+            active_pagepos = -1
+
         directory = os.path.expanduser('~')
+        if active_pagepos >= 0:
+            cwd = "/proc/%d/cwd" % self.pid_list[active_pagepos]
+            if os.path.exists(cwd):
+                directory = cwd
+            
         pid = self.term_list[last_added].\
             fork_command(shell_name or "bash", directory=directory)
 

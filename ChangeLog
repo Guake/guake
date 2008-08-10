@@ -3,6 +3,8 @@
 	* po/pt_BR.po: Fixing a little semantic error.
 	* src/guake.py: on delete_tab(), pre-adding a new tab when all tabs get
 	closed, it improves the speed of new guake show request
+	* src/guake.py: Guake openning new terminals in the same directory than
+	current openned tab.
 
 2008-08-07  Gabriel Falcão <gabriel@nacaolivre.org>
 
