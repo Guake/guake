@@ -1,3 +1,8 @@
+2008-11-25  Gabriel Falcão <gabriel@nacaolivre.org>
+
+	* src/guake.py: Applying Licio's (liciofernando@gmail.com) patch for
+	dual head monitors. 
+
 2008-08-09  Gabriel Falcão <gabriel@nacaolivre.org>
 
 	* po/pt_BR.po: Fixing a little semantic error.

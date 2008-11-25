@@ -806,13 +806,17 @@ class Guake(SimpleGladeApp):
         self.visible = False
 
     def get_window_size(self):
-        width = self.window.get_screen().get_width()
+	screen = self.window.get_screen()
         height = self.client.get_int(GCONF_PATH+'general/window_size')
         # avoiding X Window system error
-        max_height = self.window.get_screen().get_height()
+        max_height = screen.get_height()
 
         if height > max_height:
             height = max_height
+	# get the width just from the first/default monitor
+	# in the future we might create a field to select which monitor you wanna use
+	width = screen.get_monitor_geometry(0).width
+
 
         return width, height
 
