@@ -23,3 +23,6 @@ version = '@VERSION@'
 image_dir = '@DATADIR@/pixmaps/' + name
 glade_dir = '@DATADIR@/' + name
 locale_dir = '@DATADIR@/locale'
+
+# Gconf stuff. Yep, it is hardcoded =)
+GCONF_PATH = '/apps/guake/'
