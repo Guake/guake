@@ -30,6 +30,9 @@ import guake_globals
 # Internationalization purposes.
 _ = gettext.gettext
 
+__all__ = ['_', 'ShowableError', 'test_dbus', 'test_gconf',
+           'pixmapfile', 'gladefile', 'hexify_color']
+
 class ShowableError(Exception):
     def __init__(self, title, msg, exit_code=1):
         d = gtk.MessageDialog(type=gtk.MESSAGE_ERROR,
@@ -51,14 +54,6 @@ def test_gconf():
     c = gconf.client_get_default()
     return c.dir_exists('/apps/guake')
 
-def std_visible(value):
-    if not value:
-        sys.stderr = open('/dev/null', 'w')
-        sys.stdout = open('/dev/null', 'w')
-    else:
-        sys.stderr = sys.__stderr__
-        sys.stdout = sys.__stdout__
-
 def pixmapfile(x):
     f = os.path.join(guake_globals.image_dir, x)
     if not os.path.exists(f):
@@ -74,8 +69,3 @@ def gladefile(x):
 def hexify_color(c):
     h = lambda x: hex(x).replace('0x', '').zfill(4)
     return '#%s%s%s' % (h(c.red), h(c.green), h(c.blue))
-
-def update_ui():
-    time.sleep(1/(10**20))
-    while gtk.events_pending():
-        gtk.main_iteration()
