@@ -326,7 +326,6 @@ class Guake(SimpleGladeApp):
         self.set_bgcolor()
         self.set_bgimage()
         self.set_alpha()
-        self.set_tabpos()
         self.set_erasebindings()
 
     def load_accel_map(self):
@@ -475,15 +474,6 @@ class Guake(SimpleGladeApp):
         for i in self.term_list:
             i.set_background_transparent(not use_bgimage)
             i.set_background_saturation(alpha / 100.0)
-
-    def set_tabpos(self):
-        pos = self.client.get_string(GCONF_PATH+'general/tabpos')
-        if pos == 'bottom':
-            self.mainframe.reorder_child(self.notebook, 0)
-            self.notebook.set_tab_pos(gtk.POS_BOTTOM)
-        else:
-            self.mainframe.reorder_child(self.notebook, 1)
-            self.notebook.set_tab_pos(gtk.POS_TOP)
 
     def set_erasebindings(self):
         backspace = self.client.get_string(GCONF_PATH+'general/compat_backspace')

@@ -104,18 +104,6 @@
         </schema>
 
         <schema>
-            <key>/schemas/apps/guake/general/tabpos</key>
-            <applyto>/apps/guake/general/tabpos</applyto>
-            <owner>guake</owner>
-            <type>string</type>
-            <default>bottom</default>
-            <locale name="C">
-                <short>Tab position.</short>
-                <long>Defines where tabs will be shown in guake.</long>
-            </locale>
-        </schema>
-
-        <schema>
             <key>/schemas/apps/guake/general/compat_backspace</key>
             <applyto>/apps/guake/general/compat_backspace</applyto>
             <owner>guake</owner>

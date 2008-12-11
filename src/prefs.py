@@ -84,10 +84,6 @@ class PrefsDialog(SimpleGladeApp):
         # images
         ipath = pixmapfile('guake-notification.png')
         self.get_widget('image_logo').set_from_file(ipath)
-        ipath = pixmapfile('tabdown.svg')
-        self.get_widget('image1').set_from_file(ipath)
-        ipath = pixmapfile('tabup.svg')
-        self.get_widget('image2').set_from_file(ipath)
 
         # the first position in tree will store the keybinding path in gconf,
         # and the user doesn't worry with this, lest hide that =D
@@ -197,13 +193,6 @@ class PrefsDialog(SimpleGladeApp):
         # winsize
         val = float(self.client.get_int(GCONF_PATH + 'general/window_size'))
         self.get_widget('winsize-hscale').set_value(val)
-
-        # tab pos
-        val = self.client.get_string(GCONF_PATH + 'general/tabpos')
-        if val == 'bottom':
-            self.get_widget('tabbottom-radiobutton').set_active(True)
-        else:
-            self.get_widget('tabtop-radiobutton').set_active(True)
 
         # font
         val = self.client.get_string(GCONF_PATH + 'style/font/style')
@@ -334,16 +323,6 @@ class PrefsDialog(SimpleGladeApp):
         val = hscale.get_value()
         self.client.set_int(GCONF_PATH + 'general/window_size', int(val))
         self.guake.resize(*self.guake.get_final_window_size())
-
-    def on_tabbottom_radiobutton_toggled(self, bnt):
-        st = bnt.get_active() and 'bottom' or 'top'
-        self.client.set_string(GCONF_PATH + 'general/tabpos', st)
-        self.guake.set_tabpos()
-        
-    def on_tabtop_radiobutton_toggled(self, bnt):
-        st = bnt.get_active() and 'top' or 'bottom'
-        self.client.set_string(GCONF_PATH + 'general/tabpos', st)
-        self.guake.set_tabpos()
 
     def on_fontbutton_font_set(self, fb):
         self.client.set_string(GCONF_PATH + 'style/font/style',
