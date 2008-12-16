@@ -103,18 +103,6 @@ class Guake(SimpleGladeApp):
         keyval, mask = gtk.accelerator_parse(key)
         label = gtk.accelerator_get_label(keyval, mask)
 
-        filename = pixmapfile('guake-notification.png')
-        if not globalhotkeys.bind(key, self.show_hide):
-            n = pynotify.Notification(_('Guake!'),
-                _('A problem happened when binding <b>%s</b> key.\n'
-                  'Please use guake properties form to choose another '
-                  'key') % label, filename)
-        else:
-            n = pynotify.Notification(_('Guake!'),
-                _('Guake is already running,\n'
-                  'press <b>%s</b> to use it.') % label, filename)
-        n.show()
-
         # trayicon!
         tray_icon = GuakeStatusIcon()
         tray_icon.connect('popup-menu', self.show_menu)
@@ -164,11 +152,10 @@ class Guake(SimpleGladeApp):
         self.window.add_accel_group(self.accel_group)
         self.window.set_geometry_hints(min_width=1, min_height=1)
         self.window.connect('focus-out-event', self.on_window_lostfocus)
+        self.get_widget('context-menu').set_accel_group(self.accel_group)
 
         # resizer stuff
         self.resizer.connect('motion-notify-event', self.on_resizer_drag)
-            
-        self.get_widget('context-menu').set_accel_group(self.accel_group)
 
         self.load_accel_map()
         self.load_config()
@@ -176,6 +163,20 @@ class Guake(SimpleGladeApp):
         self.refresh()
         self.add_tab()
         self.toggle_ontop()
+
+        # Pop-up that shows that guake is working properly (if not
+        # unset in the preferences windows)
+        filename = pixmapfile('guake-notification.png')
+        if not globalhotkeys.bind(key, self.show_hide):
+            n = pynotify.Notification(_('Guake!'),
+                _('A problem happened when binding <b>%s</b> key.\n'
+                  'Please use guake properties form to choose another '
+                  'key') % label, filename)
+        else:
+            n = pynotify.Notification(_('Guake!'),
+                _('Guake is already running,\n'
+                  'press <b>%s</b> to use it.') % label, filename)
+        n.show()
 
     def on_resizer_drag(self, widget, event):
         (x, y), mod = event.device.get_state(widget.window)
