@@ -4,9 +4,6 @@ pixmaps_DATA = \
 	guake.png \
 	guake-tray.png \
 	guake-notification.png \
-	add_tab.png \
-	tabdown.svg \
-	tabup.svg
-
+	add_tab.png
 
 EXTRA_DIST = $(pixmaps_DATA)
