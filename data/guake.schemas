@@ -24,7 +24,19 @@
                 <long>When true scrollbar is visible.</long>
             </locale>
         </schema>
-        
+
+	<schema>
+            <key>/schemas/apps/guake/general/use_tray</key>
+            <applyto>/apps/guake/general/use_tray</applyto>
+            <owner>guake</owner>
+            <type>bool</type>
+            <default>true</default>
+            <locale name="C">
+                <short>Sets the tray visibility.</short>
+                <long>When true tray is visible.</long>
+            </locale>
+        </schema>        
+
         <schema>
             <key>/schemas/apps/guake/general/default_shell</key>
             <applyto>/apps/guake/general/default_shell</applyto>

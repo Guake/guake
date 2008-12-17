@@ -178,6 +178,10 @@ class PrefsDialog(SimpleGladeApp):
         ac = self.client.get_bool(GCONF_PATH + 'general/use_scrollbar')
         self.get_widget('show-scrollbar-checkbutton').set_active(ac)
 
+        # Tray icon
+        ac = self.client.get_bool(GCONF_PATH + 'general/use_trayicon')
+        self.get_widget('show-trayicon-checkbutton').set_active(ac)
+
         # hide on lost focus
         ac = self.client.get_bool(GCONF_PATH + 'general/hide_on_lost_focus')
         self.get_widget('hide-onlostfocus-checkbutton').set_active(ac)
@@ -298,6 +302,15 @@ class PrefsDialog(SimpleGladeApp):
         fbool = chk.get_active()
         self.client.set_bool(GCONF_PATH + 'general/use_scrollbar', fbool)
         self.guake.toggle_scrollbars()
+
+    def on_show_trayicon_checkbutton_toggled(self, chk):
+        fbool = chk.get_active()
+        self.client.set_bool(GCONF_PATH + 'general/use_trayicon', fbool)
+        self.guake.toggle_trayicon()
+
+    def on_show_popup_checkbutton_toggled(self, chk):
+        fbool = chk.get_active()
+        self.client.set_bool(GCONF_PATH + 'general/use_popup', fbool)
         
     def on_chk_lostfocus_toggled(self, chk):
         fbool = chk.get_active()

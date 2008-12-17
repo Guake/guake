@@ -40,7 +40,6 @@ from time import sleep
 import dbusiface
 import globalhotkeys
 from simplegladeapp import SimpleGladeApp, bindtextdomain
-from statusicon import GuakeStatusIcon
 from prefs import PrefsDialog, GHOTKEYS
 from common import *
 from guake_globals import *
@@ -104,10 +103,11 @@ class Guake(SimpleGladeApp):
         label = gtk.accelerator_get_label(keyval, mask)
 
         # trayicon!
-        tray_icon = GuakeStatusIcon()
-        tray_icon.connect('popup-menu', self.show_menu)
-        tray_icon.connect('activate', self.show_hide)
-        tray_icon.show_all()
+        img = pixmapfile('guake-tray.png')
+        self.tray_icon = gtk.status_icon_new_from_file(img)
+        self.tray_icon.set_tooltip(_('Guake-Terminal'))
+        self.tray_icon.connect('popup-menu', self.show_menu)
+        self.tray_icon.connect('activate', self.show_hide)
 
         # adding images from a different path.
         ipath = pixmapfile('guake.png')
@@ -163,6 +163,7 @@ class Guake(SimpleGladeApp):
         self.refresh()
         self.add_tab()
         self.toggle_ontop()
+        self.toggle_trayicon()
 
         # Pop-up that shows that guake is working properly (if not
         # unset in the preferences windows)
@@ -438,6 +439,10 @@ class Guake(SimpleGladeApp):
     def toggle_ontop(self):
         b = self.client.get_bool(GCONF_PATH+'general/window_ontop')
         self.window.set_keep_above(b)
+
+    def toggle_trayicon(self):
+        visible = self.client.get_bool(GCONF_PATH+'general/use_trayicon')
+        self.tray_icon.set_visible(visible)
 
     # -- format functions --
 

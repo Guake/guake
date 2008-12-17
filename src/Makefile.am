@@ -9,7 +9,7 @@ guakelib_DATA = \
 	common.py \
 	simplegladeapp.py \
 	dbusiface.py \
-	statusicon.py \
+	prefs.py \
 	guake_globals.py
 
 EXTRA_DIST =  \
