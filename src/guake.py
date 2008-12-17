@@ -378,6 +378,12 @@ class Guake(SimpleGladeApp):
             self.accel_group.connect_group(key, mask, gtk.ACCEL_VISIBLE,
                                            self.accel_next)
 
+        ac = gets(GCONF_PATH+'keybindings/local/rename_tab')
+        key, mask = gtk.accelerator_parse(ac)
+        if key > 0:
+            self.accel_group.connect_group(key, mask, gtk.ACCEL_VISIBLE,
+                                           self.accel_rename)
+
         ac = gets(GCONF_PATH+'keybindings/local/clipboard_copy')
         key, mask = gtk.accelerator_parse(ac)
         if key > 0:
@@ -419,6 +425,14 @@ class Guake(SimpleGladeApp):
         else:
             self.notebook.next_page()
         return True
+
+    def accel_rename(self, *args):
+        """Callback to show the rename tab dialog. Called by the accel
+        key.
+        """
+        pagepos = self.notebook.get_current_page()
+        self.selected_tab = self.tabs.get_children()[pagepos]
+        self.on_rename_activate()
 
     def accel_copy_clipboard(self, *args):
         """Callback to copy text in the shown terminal. Called by the

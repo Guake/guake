@@ -261,6 +261,18 @@
         </schema>
 
         <schema>
+            <key>/schemas/apps/guake/keybindings/local/rename_tab</key>
+            <applyto>/apps/guake/keybindings/local/rename_tab</applyto>
+            <owner>guake</owner>
+            <type>string</type>
+            <default>F2</default>
+            <locale name="C">
+                <short>Rename tab.</short>
+                <long>Shows a dialog to rename the current tab.</long>
+            </locale>
+        </schema>
+
+        <schema>
             <key>/schemas/apps/guake/keybindings/local/clipboard_copy</key>
             <applyto>/apps/guake/keybindings/local/clipboard_copy</applyto>
             <owner>guake</owner>
