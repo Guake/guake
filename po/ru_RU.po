@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: guake 0.3.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-08-04 01:12-0300\n"
+"POT-Creation-Date: 2008-12-16 10:49-0200\n"
 "PO-Revision-Date: 2008-08-03 23:27-0300\n"
 "Last-Translator: Pavel Alexeev <Pahan [ at ] Hubbitus [ DOT ] spb [ dOt.] "
 "su>\n"
@@ -102,7 +102,7 @@ msgstr "Закрыть"
 msgid "Close Tab"
 msgstr "Закрыть вкладку"
 
-#: ../data/guake.glade.h:4 ../src/guake.py:597 ../src/guake.py:602
+#: ../data/guake.glade.h:4 ../src/guake.py:172 ../src/guake.py:177
 msgid "Guake!"
 msgstr "Guake!"
 
@@ -127,18 +127,14 @@ msgid "<b>Shell</b>"
 msgstr "<b>Shell</b>"
 
 #: ../data/prefs.glade.h:5
-msgid "<b>Tab position</b>"
-msgstr "<b>Позиция вкладок</b>"
-
-#: ../data/prefs.glade.h:6
 msgid "<b>Window behavior</b>"
 msgstr "<b>Поведение окна</b>"
 
-#: ../data/prefs.glade.h:7
+#: ../data/prefs.glade.h:6
 msgid "<b>Window size</b>"
 msgstr "<b>Размер окна</b>"
 
-#: ../data/prefs.glade.h:8
+#: ../data/prefs.glade.h:7
 msgid ""
 "<small><i><b>Note:</b> These options may cause some applications to behave "
 "incorrectly.  They are only here to allow you to work around certain "
@@ -152,16 +148,16 @@ msgstr ""
 "Замечание переводчика: Смотри http://trac.guake-terminal.org/trac.cgi/"
 "ticket/41</small>"
 
-#: ../data/prefs.glade.h:9
+#: ../data/prefs.glade.h:8
 msgid ""
 "<span color=\"black\">Customize behavior and appearance of Guake!</span>"
 msgstr "<span color=\"black\">Настройки поведения и отображаения Guake!</span>"
 
-#: ../data/prefs.glade.h:10
+#: ../data/prefs.glade.h:9
 msgid "<span size=\"18000\" color=\"black\"><b>Guake properties</b></span>"
 msgstr "<span size=\"18000\" color=\"black\"><b>Свойства Guake</b></span>"
 
-#: ../data/prefs.glade.h:11
+#: ../data/prefs.glade.h:10
 msgid ""
 "ASCII DEL\n"
 "Escape sequence\n"
@@ -171,91 +167,88 @@ msgstr ""
 "Escape sequence\n"
 "Control-H"
 
-#: ../data/prefs.glade.h:14
+#: ../data/prefs.glade.h:13
 msgid "Background Transparent:"
 msgstr "Прозрачность фона:"
 
-#: ../data/prefs.glade.h:15
-msgid "Bottom"
-msgstr "Снизу"
-
-#: ../data/prefs.glade.h:16
+#: ../data/prefs.glade.h:14
 msgid "Choose some color"
 msgstr "Выберите цвет"
 
-#: ../data/prefs.glade.h:17
+#: ../data/prefs.glade.h:15
 msgid "Choose some font"
 msgstr "Выберите шрифт"
 
-#: ../data/prefs.glade.h:18
+#: ../data/prefs.glade.h:16
 msgid "Color:"
 msgstr "Цвет:"
 
-#: ../data/prefs.glade.h:19
+#: ../data/prefs.glade.h:17
 msgid "Compatibility"
 msgstr "Совместимость"
 
-#: ../data/prefs.glade.h:20
+#: ../data/prefs.glade.h:18
 msgid "Default interpreter:"
 msgstr "Интерпретатор по-умолчанию:"
 
-#: ../data/prefs.glade.h:21
+#: ../data/prefs.glade.h:19
 msgid "Desaturation:"
 msgstr "Уровень прозрачности:"
 
-#: ../data/prefs.glade.h:22
+#: ../data/prefs.glade.h:20
 msgid "General"
 msgstr "Общие"
 
-#: ../data/prefs.glade.h:23
+#: ../data/prefs.glade.h:21
 msgid "Guake Preferences"
 msgstr "Настройки Guake"
 
-#: ../data/prefs.glade.h:24
+#: ../data/prefs.glade.h:22
 msgid "Hide on lose focus"
 msgstr "Прятать при потери фокуса"
 
-#: ../data/prefs.glade.h:25
+#: ../data/prefs.glade.h:23
 msgid "Image:"
 msgstr "Изображение:"
 
-#: ../data/prefs.glade.h:26
+#: ../data/prefs.glade.h:24
 msgid "Keyboard shortcuts"
 msgstr "Горячие клавиши"
 
-#: ../data/prefs.glade.h:27
+#: ../data/prefs.glade.h:25
 msgid "Scrollback lines:"
 msgstr "Строк прокрутки:"
 
-#: ../data/prefs.glade.h:28
+#: ../data/prefs.glade.h:26
 msgid "Show scrollbar"
 msgstr "Показывать полосу прокрутки"
 
-#: ../data/prefs.glade.h:29
+#: ../data/prefs.glade.h:27
+#, fuzzy
+msgid "Show tray"
+msgstr "Показывать полосу прокрутки"
+
+#: ../data/prefs.glade.h:28
 msgid "Stay on top"
 msgstr "Всегда наверху"
 
-#: ../data/prefs.glade.h:30
+#: ../data/prefs.glade.h:29
 msgid "Style"
 msgstr "Стиль"
 
-#: ../data/prefs.glade.h:31
+#: ../data/prefs.glade.h:30
 msgid "Style:"
 msgstr "Стиль:"
 
-#: ../data/prefs.glade.h:32
-msgid "Top"
-msgstr "Верх"
-
-#: ../data/prefs.glade.h:33
+#: ../data/prefs.glade.h:31
 msgid "_Backspace key generates:"
 msgstr "Клавиша _Backspace генерирует:"
 
-#: ../data/prefs.glade.h:34
+#: ../data/prefs.glade.h:32
 msgid "_Delete key generates:"
 msgstr "Клавиша _Delete генерирует:"
 
-#: ../data/prefs.glade.h:35
+#: ../data/prefs.glade.h:33
 msgid "_Reset Compatibility Options to Defaults"
 msgstr "Сбросить опции совместимости в значения по-умолчанию"
 
@@ -263,66 +256,117 @@ msgstr "Сбросить опции совместимости в значени
 msgid "Could not connect to dbus session bus. dbus will be unavailable.\n"
 msgstr ""
 
-#: ../src/guake.py:69
+#: ../src/guake.py:108
+#, fuzzy
+msgid "Guake-Terminal"
+msgstr "http://guake-terminal.org"
+
+#: ../src/guake.py:173
+#, python-format
+msgid ""
+"A problem happened when binding <b>%s</b> key.\n"
+"Please use guake properties form to choose another key"
+msgstr ""
+
+#: ../src/guake.py:178
+#, python-format
+msgid ""
+"Guake is already running,\n"
+"press <b>%s</b> to use it."
+msgstr ""
+
+#: ../src/guake.py:597
+#, python-format
+msgid "Terminal %s"
+msgstr ""
+
+#: ../src/guake.py:702
+msgid "Toggles the visibility of the terminal window"
+msgstr ""
+
+#: ../src/guake.py:706
+#, fuzzy
+msgid "Shows Guake preference window"
+msgstr "Настройки Guake"
+
+#: ../src/guake.py:710
+msgid "Shows Guake's about info"
+msgstr ""
+
+#: ../src/guake.py:714
+msgid "Says to Guake go away =("
+msgstr ""
+
+#: ../src/guake.py:751
+msgid "Guake can not init!"
+msgstr ""
+
+#: ../src/guake.py:752
+msgid ""
+"Gconf Error.\n"
+"Have you installed <b>guake.schemas</b> properlly?"
+msgstr ""
+
+#: ../src/prefs.py:48
 msgid "Toggle terminal visibility"
 msgstr ""
 
-#: ../src/guake.py:71
+#: ../src/prefs.py:49
 #, fuzzy
 msgid "New tab"
 msgstr "Новая вкладка"
 
-#: ../src/guake.py:72
+#: ../src/prefs.py:50
 #, fuzzy
 msgid "Close tab"
 msgstr "Закрыть вкладку"
 
-#: ../src/guake.py:73
+#: ../src/prefs.py:51
 msgid "Go to previous tab"
 msgstr ""
 
-#: ../src/guake.py:74
+#: ../src/prefs.py:52
 msgid "Go to next tab"
 msgstr ""
 
-#: ../src/guake.py:75
+#: ../src/prefs.py:53
 msgid "Copy text to clipboard"
 msgstr ""
 
-#: ../src/guake.py:76
+#: ../src/prefs.py:54
 msgid "Paste text from clipboard"
 msgstr ""
 
-#: ../src/guake.py:77
+#: ../src/prefs.py:55
 msgid "Toggle Fullscreen"
 msgstr ""
 
-#: ../src/guake.py:153
+#: ../src/prefs.py:102
 msgid "Action"
 msgstr ""
 
-#: ../src/guake.py:163
+#: ../src/prefs.py:112
 msgid "Shortcut"
 msgstr ""
 
-#: ../src/guake.py:312
+#: ../src/prefs.py:258
 msgid "Global hotkeys"
 msgstr ""
 
-#: ../src/guake.py:330
+#: ../src/prefs.py:276
 msgid "Local hotkeys"
 msgstr ""
 
-#: ../src/guake.py:464
+#: ../src/prefs.py:409
 #, python-format
 msgid "The shortcut \"%s\" is already in use."
 msgstr ""
 
-#: ../src/guake.py:465
+#: ../src/prefs.py:410
 msgid "Error setting keybinding."
 msgstr ""
 
-#: ../src/guake.py:479
+#: ../src/prefs.py:424
 #, python-format
 msgid ""
 "The shortcut \"%s\" cannot be used because it will become impossible to type "
@@ -331,62 +375,20 @@ msgid ""
 "Please try with a key such as Control, Alt or Shift at the same time.\n"
 msgstr ""
 
-#: ../src/guake.py:500
+#: ../src/prefs.py:445
 msgid "key binding error"
 msgstr ""
 
-#: ../src/guake.py:501
+#: ../src/prefs.py:446
 #, python-format
 msgid "Unable to bind %s key"
 msgstr ""
 
-#: ../src/guake.py:598
-#, python-format
-msgid ""
-"A problem happened when binding <b>%s</b> key.\n"
-"Please use guake properties form to choose another key"
-msgstr ""
+#~ msgid "<b>Tab position</b>"
+#~ msgstr "<b>Позиция вкладок</b>"
 
-#: ../src/guake.py:603
-#, python-format
-msgid ""
-"Guake is already running,\n"
-"press <b>%s</b> to use it."
-msgstr ""
+#~ msgid "Bottom"
+#~ msgstr "Снизу"
 
-#: ../src/guake.py:1026
-#, python-format
-msgid "Terminal %s"
-msgstr ""
-
-#: ../src/guake.py:1129
-msgid "Toggles the visibility of the terminal window"
-msgstr ""
-
-#: ../src/guake.py:1133
-#, fuzzy
-msgid "Shows Guake preference window"
-msgstr "Настройки Guake"
-
-#: ../src/guake.py:1137
-msgid "Shows Guake's about info"
-msgstr ""
-
-#: ../src/guake.py:1141
-msgid "Says to Guake go away =("
-msgstr ""
-
-#: ../src/guake.py:1179
-msgid "Guake can not init!"
-msgstr ""
-
-#: ../src/guake.py:1180
-msgid ""
-"Gconf Error.\n"
-"Have you installed <b>guake.schemas</b> properlly?"
-msgstr ""
-
-#: ../src/statusicon.py:64
-#, fuzzy
-msgid "Guake-Terminal"
-msgstr "http://guake-terminal.org"
+#~ msgid "Top"
+#~ msgstr "Верх"
