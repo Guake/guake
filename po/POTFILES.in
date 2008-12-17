@@ -5,4 +5,4 @@ data/prefs.glade
 data/guake.desktop.in
 src/dbusiface.py
 src/guake.py
-src/statusicon.py
+src/prefs.py
