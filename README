@@ -3,9 +3,33 @@ Guake README file
 
 INTRO
 ~~~~~
-Guake code is placed in the src directory.
-We use python system to build guake modules and to generate distribution
-packages, because it's easy to maintain and because we like python =D
+
+Guake is a dropdown terminal made for the GNOME desktop
+environment. Its style of window is based on an fps games, and one of
+its goals is be easy to reach.
+
+Guake is written mostly in python and has a little piece in C (global
+hotkey stuff). The code is placed in the src directory. Files and
+images are in the data directory. If you're looking for translation
+stuff, you should take a look at the po directory.
+
+LICENSE
+~~~~~~~
+
+This program is free software; you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation; either version 2 of the License, or (at
+your option) any later version.
+
+This program is distributed in the hope that it will be useful, but
+WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program; if not, write to the Free Software
+Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA
+02110-1301, USA.
 
 
 DEPENDENCIES
@@ -13,7 +37,8 @@ DEPENDENCIES
  * Python2.4+
  * pygtk2.10 (gtk.StatusIcon)
  * python-vte
- * pynotify (optional)
+ * python-notify
+ * python-dbus
 
 To build guake, you will need the following packages too:
  * python-dev
@@ -23,8 +48,8 @@ To build guake, you will need the following packages too:
 
 INSTALLATION
 ~~~~~~~~~~~~
-We are using an autotools based installation, so if you got the source of
-guake from a release file, please do the following::
+We are using an autotools based installation, so if you got the source
+of guake from a release file, please do the following::
 
     $ gunzip -c guake-x.x.x.tar.gz | tar x
     $ cd guake-x.x.x
@@ -35,27 +60,3 @@ guake from a release file, please do the following::
 
 For more install details, please read the `INSTALL` file.
 
-
-PACKAGERS
-~~~~~~~~~
-The python way to create packages have also distribution specific features,
-like generate .rpm or .deb files. But if you are interested in make Guake
-available in other distributions, you can ask setup.py to install in your
-package build dir with the following command::
-
-    $ python setup.py install --root=/path/to/your/package/dir
-
-
-TRANSLATION
-~~~~~~~~~~~
-If you want to translate Guake to your locale, please run po-extract. That
-script will generate a file called `messages.pot`. Please edit this file with
-your prefered po editor (like poedit, gtranslator, etc) and please send us
-your work. And do not forget to rename messages.pot to your language.po, for
-example `pt_BR.po`
-
-NOTE: To compile the .po file to .mo, type::
-
-    $ msgfmt pt_BR.po -o po/pt/LC_MESSAGES/meuprograma.mo
-
-# vim:set ft=rst:
