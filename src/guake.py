@@ -33,11 +33,9 @@ import dbus
 import os
 import signal
 import sys
-import warnings
 from thread import start_new_thread
 from time import sleep
 
-import dbusiface
 import globalhotkeys
 from simplegladeapp import SimpleGladeApp, bindtextdomain
 from prefs import PrefsDialog, GHOTKEYS
@@ -73,29 +71,34 @@ class GuakeGConf(object):
 
 
 class AboutDialog(SimpleGladeApp):
+    """The About Guake dialog class
+    """
     def __init__(self):
         super(AboutDialog, self).__init__(gladefile('about.glade'),
                                           root='aboutdialog')
-        ad = self.get_widget('aboutdialog')
+        dialog = self.get_widget('aboutdialog')
 
         # the terminal window can be opened and the user *must* see
         # this window
-        ad.set_keep_above(True)
+        dialog.set_keep_above(True)
 
         # images
         ipath = pixmapfile('guake-notification.png')
         img = gtk.gdk.pixbuf_new_from_file(ipath)
-        ad.set_property('logo', img)
+        dialog.set_property('logo', img)
 
-        ad.set_name('Guake!')
-        ad.set_version(version)
+        dialog.set_name('Guake!')
+        dialog.set_version(version)
 
 
 class Guake(SimpleGladeApp):
+    """Guake main class. Handles specialy the main window.
+    """
     def __init__(self):
         super(Guake, self).__init__(gladefile('guake.glade'))
         self.client = gconf.client_get_default()
         self.gconf = GuakeGConf(self)
+
         # setting global hotkey and showing a pretty notification =)
         globalhotkeys.init()
         key = self.client.get_string(GHOTKEYS[0][0])
@@ -189,10 +192,10 @@ class Guake(SimpleGladeApp):
             percent = 1
             
         if 'GDK_BUTTON1_MASK' in mod.value_names:
-            self.client.set_int(GCONF_PATH + 'general/window_size', int(percent))
+            self.client.set_int(GCONF_PATH+'general/window_size', int(percent))
             self.resize(*self.get_final_window_size())
 
-    def on_window_lostfocus(self,window, event):
+    def on_window_lostfocus(self, window, event):
         getb = lambda x:self.client.get_bool(x)
         value = getb(GCONF_PATH+'general/hide_on_lost_focus')
         if value and not self.visible:
@@ -251,10 +254,16 @@ class Guake(SimpleGladeApp):
     # -- methods exclusivelly called by dbus interface --
 
     def show_about(self):
+        """Hides the main window and creates an instance of the About
+        Dialog.
+        """
         self.hide()
         AboutDialog()
 
     def show_prefs(self):
+        """Hides the main window and creates an instance of the
+        Preferences window.
+        """
         self.hide()
         PrefsDialog(self).show()
 
@@ -293,21 +302,22 @@ class Guake(SimpleGladeApp):
         self.window.window.focus(time)
 
     def hide(self):
-        self.window.hide() # FIXME: Don't use hide_all here!
+        self.window.hide() # Don't use hide_all here!
         self.visible = False
 
     def get_window_size(self):
-	screen = self.window.get_screen()
+        screen = self.window.get_screen()
         height = self.client.get_int(GCONF_PATH+'general/window_size')
+
         # avoiding X Window system error
         max_height = screen.get_height()
-
         if height > max_height:
             height = max_height
 
-	# get the width just from the first/default monitor
-	# in the future we might create a field to select which monitor you wanna use
-	width = screen.get_monitor_geometry(0).width
+	# get the width just from the first/default monitor in the
+	# future we might create a field to select which monitor you
+	# wanna use
+        width = screen.get_monitor_geometry(0).width
         return width, height
 
     def get_final_window_size(self):
@@ -323,6 +333,8 @@ class Guake(SimpleGladeApp):
     # -- configuration --
 
     def load_config(self):
+        """"Just a proxy for all the configuration stuff.
+        """
         self.set_fgcolor()
         self.set_font()
         self.set_bgcolor()
@@ -331,12 +343,16 @@ class Guake(SimpleGladeApp):
         self.set_erasebindings()
 
     def load_accel_map(self):
-        # Sets the accel map of quit context option.
+        """Sets the accel map of quit context option.
+        """
         key, mask = gtk.accelerator_parse('<Control>q')
         gtk.accel_map_add_entry('<main>/Quit', key, mask)
         self.get_widget('context_close').set_accel_path('<main>/Quit')
 
     def load_accelerators(self):
+        """Reads all gconf paths under /apps/guake/keybindings/local
+        and adds to the main accel_group.
+        """
         gets = lambda x:self.client.get_string(x)
         ac = gets(GCONF_PATH+'keybindings/local/new_tab')
         key, mask = gtk.accelerator_parse(ac)
@@ -381,10 +397,14 @@ class Guake(SimpleGladeApp):
                                            self.accel_toggle_fullscreen)
 
     def accel_add(self, *args):
+        """Callback to add a new tab. Called by the accel key.
+        """
         self.add_tab()
         return True
 
     def accel_prev(self, *args):
+        """Callback to go to the previous tab. Called by the accel key.
+        """
         if self.notebook.get_current_page() == 0:
             self.notebook.set_current_page(self.notebook.get_n_pages()-1)
         else:
@@ -392,6 +412,8 @@ class Guake(SimpleGladeApp):
         return True
 
     def accel_next(self, *args):
+        """Callback to go to the next tab. Called by the accel key.
+        """
         if self.notebook.get_current_page()+1 == self.notebook.get_n_pages():
             self.notebook.set_current_page(0)
         else:
@@ -399,16 +421,27 @@ class Guake(SimpleGladeApp):
         return True
 
     def accel_copy_clipboard(self, *args):
+        """Callback to copy text in the shown terminal. Called by the
+        accel key.
+        """
         pos = self.notebook.get_current_page()
         self.term_list[pos].copy_clipboard()
         return True
 
     def accel_paste_clipboard(self, *args):
+        """Callback to paste text in the shown terminal. Called by the
+        accel key.
+        """
         pos = self.notebook.get_current_page()
         self.term_list[pos].paste_clipboard()
         return True
 
     def accel_toggle_fullscreen(self, *args):
+        """Callback toggle the fullscreen status of the main
+        window. It uses the toolbar_visible_in_fullscreen variable
+        from gconf to decide if the tabbar will or not be
+        shown. Called by the accel key.
+        """
         gbool = lambda x: self.client.get_bool(GCONF_PATH+'general/%s' % x)
         tabs_visible = gbool("toolbar_visible_in_fullscreen")
         if not self.fullscreen:
@@ -482,10 +515,10 @@ class Guake(SimpleGladeApp):
             i.set_background_saturation(alpha / 100.0)
 
     def set_erasebindings(self):
-        backspace = self.client.get_string(GCONF_PATH+'general/compat_backspace')
+        bkspace = self.client.get_string(GCONF_PATH+'general/compat_backspace')
         delete = self.client.get_string(GCONF_PATH+'general/compat_delete')
         for i in self.term_list:
-            i.set_backspace_binding(backspace)
+            i.set_backspace_binding(bkspace)
             i.set_delete_binding(delete)
 
     # -- callbacks --
@@ -622,20 +655,22 @@ class Guake(SimpleGladeApp):
         use_bgimage = self.client.get_bool(GCONF_PATH+'general/use_bgimage')
         self.term_list[last_added].set_background_transparent(not use_bgimage)
 
-        # TODO: maybe the better way is give these choices to the user...
-        self.term_list[last_added].set_audible_bell(False) # without boring beep
-        self.term_list[last_added].set_visible_bell(False) # without visible beep
-        self.term_list[last_added].set_scroll_on_output(True) # auto scroll
-        self.term_list[last_added].set_scroll_on_keystroke(True) # auto scroll
+        self.term_list[last_added].set_audible_bell(False)
+        self.term_list[last_added].set_visible_bell(False)
+
+        # TODO: make configurable by gconf optional
+        self.term_list[last_added].set_scroll_on_output(True)
+        self.term_list[last_added].set_scroll_on_keystroke(True)
 
         history_size = self.client.get_int(GCONF_PATH+'general/history_size')
-        self.term_list[last_added].set_scrollback_lines(history_size) # history size
+        self.term_list[last_added].set_scrollback_lines(history_size)
         self.term_list[last_added].set_sensitive(True)
         
         self.term_list[last_added].set_flags(gtk.CAN_DEFAULT)
         self.term_list[last_added].set_flags(gtk.CAN_FOCUS)
         self.term_list[last_added].connect('child-exited',
-                self.on_terminal_exited, mhbox)
+                                           self.on_terminal_exited,
+                                           mhbox)
         self.term_list[last_added].grab_focus()
 
         self.notebook.append_page(mhbox, None)
@@ -663,7 +698,7 @@ class Guake(SimpleGladeApp):
             self.add_tab()
 
     def delete_shell(self, pid):
-        """This function will kill the shell on a tab, trying to sent
+        """This function will kill the shell on a tab, trying to send
         a sigterm and if it doesn't work, a sigkill. Between these two
         signals, we have a timeout of 3 seconds, so is recommended to
         call this in another thread. This doesn't change any thing in
