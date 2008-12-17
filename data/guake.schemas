@@ -144,7 +144,7 @@
             <applyto>/apps/guake/style/font/style</applyto>
             <owner>guake</owner>
             <type>string</type>
-            <default>Sans 10</default>
+            <default>Monospace 10</default>
             <locale name="C">
                 <short>Font style.</short>
                 <long>Font face and size that will be used in terminal.</long>
