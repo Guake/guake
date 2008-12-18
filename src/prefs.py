@@ -171,6 +171,22 @@ class PrefsCallbacks(object):
         value = hscale.get_value()
         self.client.set_int(KEY('/style/background/opacity'), int(value))
 
+    # compatibility tab
+
+    def on_backspace_binding_changed(self, combo):
+        """Changes the value of compat_backspace in gconf
+        """
+        val = combo.get_active_text()
+        self.client.set_string(KEY('/general/compat_backspace'),
+                               ERASE_BINDINGS[val])
+
+    def on_delete_binding_changed(self, combo):
+        """Changes the value of compat_delete in gconf
+        """
+        val = combo.get_active_text()
+        self.client.set_string(KEY('/general/compat_delete'),
+                               ERASE_BINDINGS[val])
+
 
 class PrefsDialog(SimpleGladeApp):
     """The Guake Preferences dialog.
@@ -253,25 +269,31 @@ class PrefsDialog(SimpleGladeApp):
         """
         self.get_widget('config-window').hide()
 
-    def reload_erase_combos(self):
+    def on_reset_compat_defaults_clicked(self, bnt):
+        """Reset default values to compat_{backspace,delete} gconf
+        keys. The default values are retrivied from the guake.schemas
+        file.
+        """
+        self.client.unset(KEY('/general/compat_backspace'))
+        self.client.unset(KEY('/general/compat_delete'))
+        self.reload_erase_combos()
+
+    def reload_erase_combos(self, btn=None):
+        """Read from gconf the value of compat_{backspace,delete} vars
+        and select the right option in combos.
+        """
         # backspace erase binding
         combo = self.get_widget('backspace-binding-combobox')
         binding = self.client.get_string(KEY('/general/compat_backspace'))
-        model = combo.get_model()
-        bindex = ERASE_BINDINGS.values().index(binding)
-        for i in model:
-            value = model.get_value(i.iter, 0)
-            if ERASE_BINDINGS.keys().index(value) == bindex:
+        for i in combo.get_model():
+            if ERASE_BINDINGS.get(i[0]) == binding:
                 combo.set_active_iter(i.iter)
 
         # delete erase binding
         combo = self.get_widget('delete-binding-combobox')
         binding = self.client.get_string(KEY('/general/compat_delete'))
-        model = combo.get_model()
-        bindex = ERASE_BINDINGS.values().index(binding)
-        for i in model:
-            value = model.get_value(i.iter, 0)
-            if ERASE_BINDINGS.keys().index(value) == bindex:
+        for i in combo.get_model():
+            if ERASE_BINDINGS.get(i[0]) == binding:
                 combo.set_active_iter(i.iter)
 
     def load_configs(self):
@@ -434,22 +456,6 @@ class PrefsDialog(SimpleGladeApp):
         self.get_widget('font_style').set_sensitive(not chk.get_active())
 
     # -----------------------------------------------------------------------
-
-    def on_backspace_binding_combobox_changed(self, combo):
-        val = combo.get_active_text()
-        self.client.set_string(GCONF_PATH+'general/compat_backspace',
-                               ERASE_BINDINGS[val])
-
-    def on_delete_binding_combobox_changed(self, combo):
-        val = combo.get_active_text()
-        self.client.set_string(GCONF_PATH+'general/compat_delete',
-                               ERASE_BINDINGS[val])
-
-    def on_reset_compat_defaults_button_clicked(self, bnt):
-        # default values were defined in guake.schemas file
-        self.client.unset(GCONF_PATH+'general/compat_backspace')
-        self.client.unset(GCONF_PATH+'general/compat_delete')
-        self.reload_erase_combos()
 
     def on_key_edited(self, renderer, path, keycode, mask, keyval, model):
         giter = model.get_iter(path)

@@ -64,6 +64,7 @@ class GConfHandler(object):
 
         notify_add = client.notify_add
 
+        # these keys does not need to be watched.
         #notify_add(KEY('/general/default_shell'), self.shell_changed)
         #notify_add(KEY('/general/use_login_shell'), self.login_shell_toggled)
         #notify_add(KEY('/general/use_popup'), self.popup_toggled)
@@ -87,6 +88,9 @@ class GConfHandler(object):
         notify_add(KEY('/style/background/color'), self.bgcolor_changed)
         notify_add(KEY('/style/background/image'), self.bgimage_changed)
         notify_add(KEY('/style/background/opacity'), self.bgopacity_changed)
+
+        notify_add(KEY('/general/compat_backspace'), self.backspace_changed)
+        notify_add(KEY('/general/compat_delete'), self.delete_changed)
 
     def show_resizer_toggled(self, client, connection_id, entry, data):
         """If the gconf var show_resizer be changed, this method will
@@ -233,6 +237,22 @@ class GConfHandler(object):
         for i in self.guake.term_list:
             i.set_background_saturation(opacity / 100.0)
             i.set_opacity(opacity)
+
+    def backspace_changed(self, client, connection_id, entry, data):
+        """If the gconf var compat_backspace be changed, this method
+        will be called and will change the binding configuration in
+        all terminals open.
+        """
+        for i in self.guake.term_list:
+            i.set_backspace_binding(entry.value.get_string())
+
+    def delete_changed(self, client, connection_id, entry, data):
+        """If the gconf var compat_delete be changed, this method
+        will be called and will change the binding configuration in
+        all terminals open.
+        """
+        for i in self.guake.term_list:
+            i.set_delete_binding(entry.value.get_string())
 
 
 class AboutDialog(SimpleGladeApp):
@@ -488,9 +508,6 @@ class Guake(SimpleGladeApp):
         self.client.notify(KEY('/style/background/opacity'))
         self.client.notify(KEY('/general/use_default_font'))
 
-        return
-        self.set_erasebindings()
-
     def load_accel_map(self):
         """Sets the accel map of quit context option.
         """
@@ -630,15 +647,6 @@ class Guake(SimpleGladeApp):
 
         return True
 
-    # -- format functions --
-
-    def set_erasebindings(self):
-        bkspace = self.client.get_string(GCONF_PATH+'general/compat_backspace')
-        delete = self.client.get_string(GCONF_PATH+'general/compat_delete')
-        for i in self.term_list:
-            i.set_backspace_binding(bkspace)
-            i.set_delete_binding(delete)
-
     # -- callbacks --
 
     def on_prefs_menuitem_activate(self, *args):
@@ -723,8 +731,15 @@ class Guake(SimpleGladeApp):
                 directory = cwd
 
         shell = self.client.get_string(KEY('/general/default_shell')) or 'sh'
+        login_shell = self.client.get_bool(KEY('/general/use_login_shell'))
+
+        argv = []
+        if login_shell:
+            argv.append('-')
+
         pid = self.term_list[last_added].\
-            fork_command(shell, directory=directory)
+            fork_command(shell, argv, None, directory,
+                         login_shell, None, None)
 
         self.pid_list.append(pid)
 

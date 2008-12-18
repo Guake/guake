@@ -856,33 +856,19 @@
                                 <property name="column_spacing">12</property>
                                 <property name="row_spacing">6</property>
                                 <child>
-                                  <widget class="GtkComboBox" id="delete-binding-combobox">
+                                  <widget class="GtkLabel" id="delete-binding-combobox-label">
                                     <property name="visible">True</property>
-                                    <property name="items" translatable="yes">ASCII DEL
-Escape sequence
-Control-H</property>
-                                    <signal name="changed" handler="on_delete_binding_combobox_changed"/>
+                                    <property name="xalign">0</property>
+                                    <property name="label" translatable="yes">_Delete key generates:</property>
+                                    <property name="use_underline">True</property>
+                                    <property name="justify">GTK_JUSTIFY_CENTER</property>
+                                    <property name="mnemonic_widget">delete-binding-combobox</property>
                                   </widget>
                                   <packing>
-                                    <property name="left_attach">1</property>
-                                    <property name="right_attach">3</property>
                                     <property name="top_attach">1</property>
                                     <property name="bottom_attach">2</property>
-                                    <property name="y_options">GTK_FILL</property>
-                                  </packing>
-                                </child>
-                                <child>
-                                  <widget class="GtkComboBox" id="backspace-binding-combobox">
-                                    <property name="visible">True</property>
-                                    <property name="items" translatable="yes">ASCII DEL
-Escape sequence
-Control-H</property>
-                                    <signal name="changed" handler="on_backspace_binding_combobox_changed"/>
-                                  </widget>
-                                  <packing>
-                                    <property name="left_attach">1</property>
-                                    <property name="right_attach">3</property>
-                                    <property name="y_options">GTK_FILL</property>
+                                    <property name="x_options">GTK_FILL</property>
+                                    <property name="y_options"></property>
                                   </packing>
                                 </child>
                                 <child>
@@ -900,19 +886,33 @@ Control-H</property>
                                   </packing>
                                 </child>
                                 <child>
-                                  <widget class="GtkLabel" id="delete-binding-combobox-label">
+                                  <widget class="GtkComboBox" id="backspace-binding-combobox">
                                     <property name="visible">True</property>
-                                    <property name="xalign">0</property>
-                                    <property name="label" translatable="yes">_Delete key generates:</property>
-                                    <property name="use_underline">True</property>
-                                    <property name="justify">GTK_JUSTIFY_CENTER</property>
-                                    <property name="mnemonic_widget">delete-binding-combobox</property>
+                                    <property name="items" translatable="yes">ASCII DEL
+Escape sequence
+Control-H</property>
+                                    <signal name="changed" handler="on_backspace_binding_changed"/>
                                   </widget>
                                   <packing>
+                                    <property name="left_attach">1</property>
+                                    <property name="right_attach">3</property>
+                                    <property name="y_options">GTK_FILL</property>
+                                  </packing>
+                                </child>
+                                <child>
+                                  <widget class="GtkComboBox" id="delete-binding-combobox">
+                                    <property name="visible">True</property>
+                                    <property name="items" translatable="yes">ASCII DEL
+Escape sequence
+Control-H</property>
+                                    <signal name="changed" handler="on_delete_binding_changed"/>
+                                  </widget>
+                                  <packing>
+                                    <property name="left_attach">1</property>
+                                    <property name="right_attach">3</property>
                                     <property name="top_attach">1</property>
                                     <property name="bottom_attach">2</property>
-                                    <property name="x_options">GTK_FILL</property>
-                                    <property name="y_options"></property>
+                                    <property name="y_options">GTK_FILL</property>
                                   </packing>
                                 </child>
                               </widget>
@@ -934,7 +934,8 @@ Control-H</property>
                                     <property name="label" translatable="yes">_Reset Compatibility Options to Defaults</property>
                                     <property name="use_underline">True</property>
                                     <property name="response_id">0</property>
-                                    <signal name="clicked" handler="on_reset_compat_defaults_button_clicked"/>
+                                    <signal name="clicked" handler="on_reset_compat_defaults_clicked"/>
+                                    <signal name="clicked" handler="reload_erase_combos"/>
                                   </widget>
                                 </child>
                               </widget>
