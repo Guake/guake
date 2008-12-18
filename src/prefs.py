@@ -329,8 +329,9 @@ class PrefsDialog(SimpleGladeApp):
         self.get_widget('scroll_keystroke').set_active(value)
 
         # default font
-        value = self.client.get_bool(KEY('/style/use_default_font'))
+        value = self.client.get_bool(KEY('/general/use_default_font'))
         self.get_widget('use_default_font').set_active(value)
+        self.get_widget('font_style').set_sensitive(not value)
 
         # font
         value = self.client.get_string(KEY('/style/font/style'))
@@ -423,6 +424,13 @@ class PrefsDialog(SimpleGladeApp):
                       3, True)
 
         self.get_widget('treeview-keys').expand_all()
+
+    def toggle_style_sensitivity(self, chk):
+        """If the user chooses to use the gnome default font
+        configuration it means that he will not be able to use the
+        font selector.
+        """
+        self.get_widget('font_style').set_sensitive(not chk.get_active())
 
     # -----------------------------------------------------------------------
 
