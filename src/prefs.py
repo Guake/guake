@@ -293,6 +293,13 @@ class PrefsDialog(SimpleGladeApp):
         """
         self.get_widget('font_style').set_sensitive(not chk.get_active())
 
+    def clear_background_image(self, btn):
+        """Unset the gconf variable that holds the name of the
+        background image of all terminals.
+        """
+        self.client.unset(KEY('/style/background/image'))
+        self.bgfilechooser.unselect_all()
+
     def on_reset_compat_defaults_clicked(self, bnt):
         """Reset default values to compat_{backspace,delete} gconf
         keys. The default values are retrivied from the guake.schemas

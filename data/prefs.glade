@@ -697,9 +697,35 @@
                                       </packing>
                                     </child>
                                     <child>
-                                      <widget class="GtkFileChooserButton" id="background_image">
+                                      <widget class="GtkHBox" id="hbox9">
                                         <property name="visible">True</property>
-                                        <signal name="selection_changed" handler="on_background_image_changed"/>
+                                        <property name="spacing">4</property>
+                                        <child>
+                                          <widget class="GtkFileChooserButton" id="background_image">
+                                            <property name="visible">True</property>
+                                            <signal name="selection_changed" handler="on_background_image_changed"/>
+                                          </widget>
+                                        </child>
+                                        <child>
+                                          <widget class="GtkButton" id="button2">
+                                            <property name="visible">True</property>
+                                            <property name="can_focus">True</property>
+                                            <property name="receives_default">True</property>
+                                            <property name="response_id">0</property>
+                                            <signal name="clicked" handler="clear_background_image"/>
+                                            <child>
+                                              <widget class="GtkImage" id="image1">
+                                                <property name="visible">True</property>
+                                                <property name="stock">gtk-clear</property>
+                                                <property name="icon_size">1</property>
+                                              </widget>
+                                            </child>
+                                          </widget>
+                                          <packing>
+                                            <property name="expand">False</property>
+                                            <property name="position">1</property>
+                                          </packing>
+                                        </child>
                                       </widget>
                                       <packing>
                                         <property name="position">1</property>
@@ -856,33 +882,19 @@
                                 <property name="column_spacing">12</property>
                                 <property name="row_spacing">6</property>
                                 <child>
-                                  <widget class="GtkLabel" id="delete-binding-combobox-label">
+                                  <widget class="GtkComboBox" id="delete-binding-combobox">
                                     <property name="visible">True</property>
-                                    <property name="xalign">0</property>
-                                    <property name="label" translatable="yes">_Delete key generates:</property>
-                                    <property name="use_underline">True</property>
-                                    <property name="justify">GTK_JUSTIFY_CENTER</property>
-                                    <property name="mnemonic_widget">delete-binding-combobox</property>
+                                    <property name="items" translatable="yes">ASCII DEL
+Escape sequence
+Control-H</property>
+                                    <signal name="changed" handler="on_delete_binding_changed"/>
                                   </widget>
                                   <packing>
+                                    <property name="left_attach">1</property>
+                                    <property name="right_attach">3</property>
                                     <property name="top_attach">1</property>
                                     <property name="bottom_attach">2</property>
-                                    <property name="x_options">GTK_FILL</property>
-                                    <property name="y_options"></property>
-                                  </packing>
-                                </child>
-                                <child>
-                                  <widget class="GtkLabel" id="backspace-binding-combobox-label">
-                                    <property name="visible">True</property>
-                                    <property name="xalign">0</property>
-                                    <property name="label" translatable="yes">_Backspace key generates:</property>
-                                    <property name="use_underline">True</property>
-                                    <property name="justify">GTK_JUSTIFY_CENTER</property>
-                                    <property name="mnemonic_widget">backspace-binding-combobox</property>
-                                  </widget>
-                                  <packing>
-                                    <property name="x_options">GTK_FILL</property>
-                                    <property name="y_options"></property>
+                                    <property name="y_options">GTK_FILL</property>
                                   </packing>
                                 </child>
                                 <child>
@@ -900,19 +912,33 @@ Control-H</property>
                                   </packing>
                                 </child>
                                 <child>
-                                  <widget class="GtkComboBox" id="delete-binding-combobox">
+                                  <widget class="GtkLabel" id="backspace-binding-combobox-label">
                                     <property name="visible">True</property>
-                                    <property name="items" translatable="yes">ASCII DEL
-Escape sequence
-Control-H</property>
-                                    <signal name="changed" handler="on_delete_binding_changed"/>
+                                    <property name="xalign">0</property>
+                                    <property name="label" translatable="yes">_Backspace key generates:</property>
+                                    <property name="use_underline">True</property>
+                                    <property name="justify">GTK_JUSTIFY_CENTER</property>
+                                    <property name="mnemonic_widget">backspace-binding-combobox</property>
                                   </widget>
                                   <packing>
-                                    <property name="left_attach">1</property>
-                                    <property name="right_attach">3</property>
+                                    <property name="x_options">GTK_FILL</property>
+                                    <property name="y_options"></property>
+                                  </packing>
+                                </child>
+                                <child>
+                                  <widget class="GtkLabel" id="delete-binding-combobox-label">
+                                    <property name="visible">True</property>
+                                    <property name="xalign">0</property>
+                                    <property name="label" translatable="yes">_Delete key generates:</property>
+                                    <property name="use_underline">True</property>
+                                    <property name="justify">GTK_JUSTIFY_CENTER</property>
+                                    <property name="mnemonic_widget">delete-binding-combobox</property>
+                                  </widget>
+                                  <packing>
                                     <property name="top_attach">1</property>
                                     <property name="bottom_attach">2</property>
-                                    <property name="y_options">GTK_FILL</property>
+                                    <property name="x_options">GTK_FILL</property>
+                                    <property name="y_options"></property>
                                   </packing>
                                 </child>
                               </widget>
