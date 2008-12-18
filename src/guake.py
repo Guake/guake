@@ -49,6 +49,28 @@ GNOME_FONT_PATH = '/desktop/gnome/interface/monospace_font_name'
 # Loading translation
 bindtextdomain(name, locale_dir)
 
+
+class AboutDialog(SimpleGladeApp):
+    """The About Guake dialog class
+    """
+    def __init__(self):
+        super(AboutDialog, self).__init__(gladefile('about.glade'),
+                                          root='aboutdialog')
+        dialog = self.get_widget('aboutdialog')
+
+        # the terminal window can be opened and the user *must* see
+        # this window
+        dialog.set_keep_above(True)
+
+        # images
+        ipath = pixmapfile('guake-notification.png')
+        img = gtk.gdk.pixbuf_new_from_file(ipath)
+        dialog.set_property('logo', img)
+
+        dialog.set_name('Guake!')
+        dialog.set_version(version)
+
+
 class GConfHandler(object):
     """Handles gconf changes, if any gconf variable is changed, a
     different method is called to handle this change.
@@ -253,27 +275,6 @@ class GConfHandler(object):
         """
         for i in self.guake.term_list:
             i.set_delete_binding(entry.value.get_string())
-
-
-class AboutDialog(SimpleGladeApp):
-    """The About Guake dialog class
-    """
-    def __init__(self):
-        super(AboutDialog, self).__init__(gladefile('about.glade'),
-                                          root='aboutdialog')
-        dialog = self.get_widget('aboutdialog')
-
-        # the terminal window can be opened and the user *must* see
-        # this window
-        dialog.set_keep_above(True)
-
-        # images
-        ipath = pixmapfile('guake-notification.png')
-        img = gtk.gdk.pixbuf_new_from_file(ipath)
-        dialog.set_property('logo', img)
-
-        dialog.set_name('Guake!')
-        dialog.set_version(version)
 
 
 class Guake(SimpleGladeApp):
