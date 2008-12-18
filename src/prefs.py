@@ -18,13 +18,14 @@
 # Boston, MA 02111-1307, USA.
 import re
 import os
+import warnings
 
 import gtk
 import gobject
 import gconf
 
 from simplegladeapp import SimpleGladeApp
-from guake_globals import GCONF_PATH
+from guake_globals import GCONF_PATH, KEY
 from common import *
 import globalhotkeys
 
@@ -44,37 +45,144 @@ ERASE_BINDINGS = {'ASCII DEL': 'ascii-delete',
 
 # These tuples are going to be used to build a treeview with the
 # hotkeys used in guake preferences.
-GCONF_KEYS = GCONF_PATH + 'keybindings/'
-GHOTKEYS = ((GCONF_KEYS+'global/show_hide', _('Toggle terminal visibility')),)
-LHOTKEYS = ((GCONF_KEYS+'local/new_tab', _('New tab'),),
-            (GCONF_KEYS+'local/close_tab', _('Close tab')),
-            (GCONF_KEYS+'local/previous_tab', _('Go to previous tab')),
-            (GCONF_KEYS+'local/next_tab', _('Go to next tab'),),
-            (GCONF_KEYS+'local/rename_tab', _('Rename current tab'),),
-            (GCONF_KEYS+'local/clipboard_copy', _('Copy text to clipboard'),),
-            (GCONF_KEYS+'local/clipboard_paste', _('Paste text from clipboard'),),
-            (GCONF_KEYS+'local/toggle_fullscreen', _('Toggle Fullscreen'),),
+HKEYS = lambda x:GCONF_PATH + '/keybindings' + x
+GHOTKEYS = ((HKEYS('/global/show_hide'), _('Toggle terminal visibility')),)
+LHOTKEYS = ((HKEYS('/local/new_tab'), _('New tab'),),
+            (HKEYS('/local/close_tab'), _('Close tab')),
+            (HKEYS('/local/previous_tab'), _('Go to previous tab')),
+            (HKEYS('/local/next_tab'), _('Go to next tab'),),
+            (HKEYS('/local/rename_tab'), _('Rename current tab'),),
+            (HKEYS('/local/clipboard_copy'), _('Copy text to clipboard'),),
+            (HKEYS('/local/clipboard_paste'), _('Paste text from clipboard'),),
+            (HKEYS('/local/toggle_fullscreen'), _('Toggle Fullscreen'),),
 )
 
-class KeyEntry(object):
-    def __init__(self, keycode, mask):
-        self.keycode = keycode
-        self.mask = mask
+class PrefsCallbacks(object):
+    """Holds callbacks that will be used in the PrefsDialg class.
+    """
 
-    def __repr__(self):
-        return u'KeyEntry(%d, %d)' % (
-            self.keycode, self.mask)
+    def __init__(self):
+        self.client = gconf.client_get_default()
 
-    def __eq__(self, rval):
-        return self.keycode == rval.keycode and \
-            self.mask == rval.mask
+    # general tab
+
+    def on_default_shell_changed(self, combo):
+        """Changes the activity of default_shell in gconf
+        """
+        citer = combo.get_active_iter()
+        if not citer:
+            return
+        shell = combo.get_model().get_value(citer, 0)
+        self.client.set_string(KEY('/general/default_shell'), shell)
+
+    def on_use_login_shell_toggled(self, chk):
+        """Changes the activity of use_login_shell in gconf
+        """
+        self.client.set_bool(KEY('/general/use_login_shell'), chk.get_active())
+
+    def on_use_trayicon_toggled(self, chk):
+        """Changes the activity of use_trayicon in gconf
+        """
+        self.client.set_bool(KEY('/general/use_trayicon'), chk.get_active())
+
+    def on_use_popup_toggled(self, chk):
+        """Changes the activity of use_popup in gconf
+        """
+        self.client.set_bool(KEY('/general/use_popup'), chk.get_active())
+
+    def on_window_ontop_toggled(self, chk):
+        """Changes the activity of window_ontop in gconf
+        """
+        self.client.set_bool(KEY('/general/window_ontop'), chk.get_active())
+
+    def on_window_losefocus_toggled(self, chk):
+        """Changes the activity of window_losefocus in gconf
+        """
+        self.client.set_bool(KEY('/general/window_losefocus'), chk.get_active())
+
+    def on_window_tabbar_toggled(self, chk):
+        """Changes the activity of window_tabbar in gconf
+        """
+        self.client.set_bool(KEY('/general/window_tabbar'), chk.get_active())
+
+    def on_window_size_value_changed(self, hscale):
+        """Changes the value of window_size in gconf
+        """
+        val = hscale.get_value()
+        self.client.set_int(KEY('/general/window_size'), int(val))
+
+    # scrolling tab
+
+    def on_use_scrollbar_toggled(self, chk):
+        """Changes the activity of use_scrollbar in gconf
+        """
+        self.client.set_bool(KEY('/general/use_scrollbar'), chk.get_active())
+
+    def on_history_size_value_changed(self, spin):
+        """Changes the value of history_size in gconf
+        """
+        val = int(spin.get_value())
+        self.client.set_int(KEY('/general/history_size'), val)
+
+    def on_scroll_output_toggled(self, chk):
+        """Changes the activity of scroll_output in gconf
+        """
+        self.client.set_bool(KEY('/general/scroll_output'), chk.get_active())
+
+    def on_scroll_keystroke_toggled(self, chk):
+        """Changes the activity of scroll_keystroke in gconf
+        """
+        self.client.set_bool(KEY('/general/scroll_keystroke'), chk.get_active())
+
+    # appearance tab
+
+    def on_use_default_font_toggled(self, chk):
+        """Changes the activity of use_default_font in gconf
+        """
+        self.client.set_bool(KEY('/general/use_default_font'), chk.get_active())
+
+    def on_font_style_font_set(self, fbtn):
+        """Changes the value of font_style in gconf
+        """
+        self.client.set_string(KEY('/style/font/style'), fbtn.get_font_name())
+
+    def on_font_color_color_set(self, btn):
+        """Changes the value of font_color in gconf
+        """
+        color = hexify_color(btn.get_color())
+        self.client.set_string(KEY('/style/font/color'), color)
+
+    def on_background_color_color_set(self, btn):
+        """Changes the value of background_color in gconf
+        """
+        color = hexify_color(btn.get_color())
+        self.client.set_string(KEY('/style/background/color'), color)
+
+    def on_background_image_changed(self, btn):
+        """Changes the value of background_image in gconf
+        """
+        filename = btn.get_filename()
+        if filename:
+            self.client.set_string(KEY('/style/background/image'), filename)
+
+    def on_opacity_value_changed(self, hscale):
+        """Changes the value of background_opacity in gconf
+        """
+        value = hscale.get_value()
+        self.client.set_int(KEY('/style/background/opacity'), int(value))
+
 
 class PrefsDialog(SimpleGladeApp):
-    def __init__(self, guakeinstance):
+    """The Guake Preferences dialog.
+    """
+    def __init__(self):
+        """Setup the preferences dialog interface, loading images,
+        adding filters to file choosers and connecting some signals.
+        """
         super(PrefsDialog, self).__init__(gladefile('prefs.glade'),
                                           root='config-window')
+        self.add_callbacks(PrefsCallbacks())
 
-        self.guake = guakeinstance
         self.client = gconf.client_get_default()
 
         # setting evtbox title bg
@@ -127,23 +235,28 @@ class PrefsDialog(SimpleGladeApp):
         self.file_filter.add_pattern("*.png")
         self.file_filter.add_pattern("*.svg")
         self.file_filter.add_pattern("*.jpeg")
-        self.bgfilechooser = self.get_widget('bgimage-filechooserbutton')
+        self.bgfilechooser = self.get_widget('background_image')
         self.bgfilechooser.set_preview_widget(self.selection_preview)
         self.bgfilechooser.set_filter(self.file_filter)
         self.bgfilechooser.connect('update-preview', self.update_preview_cb,
                                    self.selection_preview)
 
     def show(self):
+        """Calls the main window show_all method and presents the
+        window in the desktop.
+        """
         self.get_widget('config-window').show_all()
         self.get_widget('config-window').present()
 
     def hide(self):
+        """Calls the main window hide function.
+        """
         self.get_widget('config-window').hide()
 
     def reload_erase_combos(self):
         # backspace erase binding
         combo = self.get_widget('backspace-binding-combobox')
-        binding = self.client.get_string(GCONF_PATH+'general/compat_backspace')
+        binding = self.client.get_string(KEY('/general/compat_backspace'))
         model = combo.get_model()
         bindex = ERASE_BINDINGS.values().index(binding)
         for i in model:
@@ -153,7 +266,7 @@ class PrefsDialog(SimpleGladeApp):
 
         # delete erase binding
         combo = self.get_widget('delete-binding-combobox')
-        binding = self.client.get_string(GCONF_PATH+'general/compat_delete')
+        binding = self.client.get_string(KEY('/general/compat_delete'))
         model = combo.get_model()
         bindex = ERASE_BINDINGS.values().index(binding)
         for i in model:
@@ -162,82 +275,100 @@ class PrefsDialog(SimpleGladeApp):
                 combo.set_active_iter(i.iter)
 
     def load_configs(self):
-        # shells list
-        default = self.client.get_string(GCONF_PATH + 'general/default_shell')
-        combo = self.get_widget('shells-combobox')
-        model = combo.get_model()
-        for i in model:
-            value = model.get_value(i.iter, 0)
-            if value == default:
+        """Load configurations for all widgets in General, Scrolling
+        and Appearance tabs from gconf.
+        """
+        # default_shell
+        combo = self.get_widget('default_shell')
+        for i in combo.get_model():
+            if i[0] == self.client.get_string(KEY('/general/default_shell')):
                 combo.set_active_iter(i.iter)
 
-        # history size
-        val = self.client.get_int(GCONF_PATH+'general/history_size')
-        self.get_widget('historysize-spinbutton').set_value(val)
+        # login shell
+        value = self.client.get_bool(KEY('/general/use_login_shell'))
+        self.get_widget('use_login_shell').set_active(value)
+
+        # tray icon
+        value = self.client.get_bool(KEY('/general/use_trayicon'))
+        self.get_widget('use_trayicon').set_active(value)
+
+        # popup
+        value = self.client.get_bool(KEY('/general/use_popup'))
+        self.get_widget('use_popup').set_active(value)
+
+        # ontop
+        value = self.client.get_bool(KEY('/general/window_ontop'))
+        self.get_widget('window_ontop').set_active(value)
+
+        # losefocus
+        value = self.client.get_bool(KEY('/general/window_losefocus'))
+        self.get_widget('window_losefocus').set_active(value)
+
+        # tabbar
+        value = self.client.get_bool(KEY('/general/window_tabbar'))
+        self.get_widget('window_tabbar').set_active(value)
+
+        # size
+        value = float(self.client.get_int(KEY('/general/window_size')))
+        self.get_widget('window_size').set_value(value)
 
         # scrollbar
-        ac = self.client.get_bool(GCONF_PATH + 'general/use_scrollbar')
-        self.get_widget('show-scrollbar-checkbutton').set_active(ac)
+        value = self.client.get_bool(KEY('/general/use_scrollbar'))
+        self.get_widget('use_scrollbar').set_active(value)
 
-        # Tray icon
-        ac = self.client.get_bool(GCONF_PATH + 'general/use_trayicon')
-        self.get_widget('show-trayicon-checkbutton').set_active(ac)
+        # history size
+        value = self.client.get_int(KEY('/general/history_size'))
+        self.get_widget('history_size').set_value(value)
 
-        # hide on lost focus
-        ac = self.client.get_bool(GCONF_PATH + 'general/hide_on_lost_focus')
-        self.get_widget('hide-onlostfocus-checkbutton').set_active(ac)
+        # scroll output
+        value = self.client.get_bool(KEY('/general/scroll_output'))
+        self.get_widget('scroll_output').set_active(value)
 
-        # animate flag
-        #ac = self.client.get_bool(GCONF_PATH + 'general/window_animate')
-        #self.get_widget('animate-checkbutton').set_active(ac)
+        # scroll keystroke
+        value = self.client.get_bool(KEY('/general/scroll_keystroke'))
+        self.get_widget('scroll_keystroke').set_active(value)
 
-        # on top flag
-        ac = self.client.get_bool(GCONF_PATH + 'general/window_ontop')
-        self.get_widget('ontop-checkbutton').set_active(ac)
-
-        # winsize
-        val = float(self.client.get_int(GCONF_PATH + 'general/window_size'))
-        self.get_widget('winsize-hscale').set_value(val)
+        # default font
+        value = self.client.get_bool(KEY('/style/use_default_font'))
+        self.get_widget('use_default_font').set_active(value)
 
         # font
-        val = self.client.get_string(GCONF_PATH + 'style/font/style')
-        self.get_widget('fontbutton').set_font_name(val)
+        value = self.client.get_string(KEY('/style/font/style'))
+        self.get_widget('font_style').set_font_name(value)
 
-        val = self.client.get_string(GCONF_PATH + 'style/font/color')
+        # font color
+        val = self.client.get_string(KEY('/style/font/color'))
         try:
             color = gtk.gdk.color_parse(val)
-            self.get_widget('font-colorbutton').set_color(color)
+            self.get_widget('font_color').set_color(color)
         except (ValueError, TypeError):
             warnings.warn('Unable to parse color %s' % val, Warning)
 
-        # background
-        val = self.client.get_string(GCONF_PATH+'style/background/color')
+        # background color
+        value = self.client.get_string(KEY('/style/background/color'))
         try:
-            color = gtk.gdk.color_parse(val)
-            self.get_widget('bg-colorbutton').set_color(color)
+            color = gtk.gdk.color_parse(value)
+            self.get_widget('background_color').set_color(color)
         except (ValueError, TypeError):
             warnings.warn('Unable to parse color %s' % val, Warning)
-            
-        use_bgimage = self.client.get_bool(GCONF_PATH+'general/use_bgimage')
-        self.get_widget('chk_bg_transparent').set_active(not use_bgimage)
-        self.get_widget('chk_bg_transparent').connect('toggled', self.on_chk_bg_transparent_toggled)
-        
-        val = self.client.get_string(GCONF_PATH+'style/background/image')
-        self.get_widget('bgimage-filechooserbutton').set_filename(val)
 
-        val = self.client.get_int(GCONF_PATH+'style/background/transparency')
-        self.get_widget('transparency-hscale').set_value(val)
+        # background image
+        value = self.client.get_string(KEY('/style/background/image'))
+        self.get_widget('background_image').set_filename(value)
+
+        value = self.client.get_int(KEY('/style/background/opacity'))
+        self.get_widget('background_opacity').set_value(value)
 
         # it's a separated method, to be reused.
         self.reload_erase_combos()
 
-        # the terminal window can be opened and the user *must* see this window
-        self.get_widget('config-window').set_keep_above(True)
-
     # -- populate functions --
 
     def populate_shell_combo(self):
-        cb = self.get_widget('shells-combobox')
+        """Read the /etc/shells and looks for installed pythons to
+        fill the default_shell combobox.
+        """
+        cb = self.get_widget('default_shell')
         if os.path.exists(SHELLS_FILE):
             lines = open(SHELLS_FILE).readlines()
             for i in lines:
@@ -292,102 +423,24 @@ class PrefsDialog(SimpleGladeApp):
                       3, True)
 
         self.get_widget('treeview-keys').expand_all()
-        
-    # -- callbacks --
 
-    def on_historysize_spinbutton_value_changed(self, spin):
-        val = int(spin.get_value())
-        self.client.set_int(GCONF_PATH + 'general/history_size', val)
-        
-    def on_show_scrollbar_checkbutton_toggled(self, chk):
-        fbool = chk.get_active()
-        self.client.set_bool(GCONF_PATH + 'general/use_scrollbar', fbool)
-        self.guake.toggle_scrollbars()
-
-    def on_show_trayicon_checkbutton_toggled(self, chk):
-        fbool = chk.get_active()
-        self.client.set_bool(GCONF_PATH + 'general/use_trayicon', fbool)
-        self.guake.toggle_trayicon()
-
-    def on_show_popup_checkbutton_toggled(self, chk):
-        fbool = chk.get_active()
-        self.client.set_bool(GCONF_PATH + 'general/use_popup', fbool)
-        
-    def on_chk_lostfocus_toggled(self, chk):
-        fbool = chk.get_active()
-        self.client.set_bool(GCONF_PATH + 'general/hide_on_lost_focus', fbool)
-        
-    def on_shells_combobox_changed(self, combo):
-        citer = combo.get_active_iter()
-        if not citer:
-            return
-        shell = combo.get_model().get_value(citer, 0)
-        self.client.set_string(GCONF_PATH + 'general/default_shell', shell)
-
-    def on_animate_checkbutton_toggled(self, bnt):
-        self.client.set_bool(GCONF_PATH + 'general/window_animate',
-                bnt.get_active())
-
-    def on_ontop_checkbutton_toggled(self, bnt):
-        self.client.set_bool(GCONF_PATH + 'general/window_ontop',
-                             bnt.get_active())
-        self.guake.toggle_ontop()
-
-    def on_winsize_hscale_value_changed(self, hscale):
-        val = hscale.get_value()
-        self.client.set_int(GCONF_PATH + 'general/window_size', int(val))
-        self.guake.resize(*self.guake.get_final_window_size())
-
-    def on_fontbutton_font_set(self, fb):
-        self.client.set_string(GCONF_PATH + 'style/font/style',
-                fb.get_font_name())
-        self.guake.set_font()
-
-    def on_font_colorbutton_color_set(self, bnt):
-        c = hexify_color(bnt.get_color())
-        self.client.set_string(GCONF_PATH + 'style/font/color', c)
-        self.guake.set_fgcolor()
-
-    def on_bg_colorbutton_color_set(self, bnt):
-        c = hexify_color(bnt.get_color())
-        self.client.set_string(GCONF_PATH + 'style/background/color', c)
-        self.guake.set_bgcolor()
-
-    def on_bgimage_filechooserbutton_selection_changed(self, bnt):
-        f = bnt.get_filename()
-        if f:
-            self.client.set_string(GCONF_PATH + 'style/background/image', f)
-            self.guake.set_bgimage()
-
-    def on_chk_bg_transparent_toggled(self, togglebutton):
-        value = togglebutton.get_active()
-        self.client.set_bool(GCONF_PATH + 'general/use_bgimage', not value)
-        self.guake.set_bgimage()
-            
-    def on_transparency_hscale_value_changed(self, hscale):
-        val = hscale.get_value()
-        self.client.set_int(GCONF_PATH + 'style/background/transparency',
-                int(val))
-        self.guake.set_alpha()
+    # -----------------------------------------------------------------------
 
     def on_backspace_binding_combobox_changed(self, combo):
         val = combo.get_active_text()
         self.client.set_string(GCONF_PATH+'general/compat_backspace',
                                ERASE_BINDINGS[val])
-        self.guake.set_erasebindings()
 
     def on_delete_binding_combobox_changed(self, combo):
         val = combo.get_active_text()
         self.client.set_string(GCONF_PATH+'general/compat_delete',
                                ERASE_BINDINGS[val])
-        self.guake.set_erasebindings()
 
     def on_reset_compat_defaults_button_clicked(self, bnt):
         # default values were defined in guake.schemas file
         self.client.unset(GCONF_PATH+'general/compat_backspace')
         self.client.unset(GCONF_PATH+'general/compat_delete')
         self.reload_erase_combos()
-        self.guake.set_erasebindings()
 
     def on_key_edited(self, renderer, path, keycode, mask, keyval, model):
         giter = model.get_iter(path)
@@ -484,9 +537,8 @@ class PrefsDialog(SimpleGladeApp):
             renderer.set_property('accel-key', 0)
             renderer.set_property('accel-mods', 0)
 
-    def update_preview_cb(self,file_chooser, preview):
-        """
-        Used by filechooser to preview image files
+    def update_preview_cb(self, file_chooser, preview):
+        """Used by filechooser to preview image files
         """
         filename = file_chooser.get_preview_filename()
         if filename:
@@ -496,9 +548,9 @@ class PrefsDialog(SimpleGladeApp):
                 preview.set_from_pixbuf(pixbuf)
                 file_chooser.set_preview_widget_active(True)
             except gobject.GError:
-                # this exception is raised when user chooses a non-image
-                # file or a directory
-                pass
+                # this exception is raised when user chooses a
+                # non-image file or a directory
+                warnings.warn('File %s is not an image' % filename)
         else:
             file_chooser.set_preview_widget_active(False)
 
@@ -526,3 +578,20 @@ class PrefsDialog(SimpleGladeApp):
             gobject.idle_add(real_cb)
 
         return True
+
+class KeyEntry(object):
+    def __init__(self, keycode, mask):
+        self.keycode = keycode
+        self.mask = mask
+
+    def __repr__(self):
+        return u'KeyEntry(%d, %d)' % (
+            self.keycode, self.mask)
+
+    def __eq__(self, rval):
+        return self.keycode == rval.keycode and \
+            self.mask == rval.mask
+
+if __name__ == '__main__':
+    PrefsDialog().show()
+    gtk.main()
