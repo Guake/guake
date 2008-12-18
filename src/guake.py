@@ -520,51 +520,43 @@ class Guake(SimpleGladeApp):
         """Reads all gconf paths under /apps/guake/keybindings/local
         and adds to the main accel_group.
         """
-        gets = lambda x:self.client.get_string(x)
-        ac = gets(KEY('/keybindings/local/new_tab'))
-        key, mask = gtk.accelerator_parse(ac)
+        gets = lambda x:self.client.get_string(KEY('/keybindings/local/%s' % x))
+        key, mask = gtk.accelerator_parse(gets('new_tab'))
         if key > 0:
             self.accel_group.connect_group(key, mask, gtk.ACCEL_VISIBLE,
                                            self.accel_add)
 
-        ac = gets(KEY('/keybindings/local/close_tab'))
-        key, mask = gtk.accelerator_parse(ac)
+        key, mask = gtk.accelerator_parse(gets('close_tab'))
         if key > 0:
             self.accel_group.connect_group(key, mask, gtk.ACCEL_VISIBLE,
                                            self.on_context_close_tab_activate)
 
-        ac = gets(KEY('/keybindings/local/previous_tab'))
-        key, mask = gtk.accelerator_parse(ac)
+        key, mask = gtk.accelerator_parse(gets('previous_tab'))
         if key > 0:
             self.accel_group.connect_group(key, mask, gtk.ACCEL_VISIBLE,
                                            self.accel_prev)
 
-        ac = gets(KEY('/keybindings/local/next_tab'))
-        key, mask = gtk.accelerator_parse(ac)
+        key, mask = gtk.accelerator_parse(gets('next_tab'))
         if key > 0:
             self.accel_group.connect_group(key, mask, gtk.ACCEL_VISIBLE,
                                            self.accel_next)
 
-        ac = gets(KEY('/keybindings/local/rename_tab'))
-        key, mask = gtk.accelerator_parse(ac)
+        key, mask = gtk.accelerator_parse(gets('rename_tab'))
         if key > 0:
             self.accel_group.connect_group(key, mask, gtk.ACCEL_VISIBLE,
                                            self.accel_rename)
 
-        ac = gets(KEY('/keybindings/local/clipboard_copy'))
-        key, mask = gtk.accelerator_parse(ac)
+        key, mask = gtk.accelerator_parse(gets('clipboard_copy'))
         if key > 0:
             self.accel_group.connect_group(key, mask, gtk.ACCEL_VISIBLE,
                                            self.accel_copy_clipboard)
 
-        ac = gets(KEY('/keybindings/local/clipboard_paste'))
-        key, mask = gtk.accelerator_parse(ac)
+        key, mask = gtk.accelerator_parse(gets('clipboard_paste'))
         if key > 0:
             self.accel_group.connect_group(key, mask, gtk.ACCEL_VISIBLE,
                                            self.accel_paste_clipboard)
 
-        ac = gets(KEY('/keybindings/local/toggle_fullscreen'))
-        key, mask = gtk.accelerator_parse(ac)
+        key, mask = gtk.accelerator_parse(gets('toggle_fullscreen'))
         if key > 0:
             self.accel_group.connect_group(key, mask, gtk.ACCEL_VISIBLE,
                                            self.accel_toggle_fullscreen)
