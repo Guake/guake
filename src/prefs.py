@@ -162,7 +162,7 @@ class PrefsCallbacks(object):
         """Changes the value of background_image in gconf
         """
         filename = btn.get_filename()
-        if filename:
+        if os.path.isfile(filename or ''):
             self.client.set_string(KEY('/style/background/image'), filename)
 
     def on_opacity_value_changed(self, hscale):
@@ -355,7 +355,8 @@ class PrefsDialog(SimpleGladeApp):
 
         # background image
         value = self.client.get_string(KEY('/style/background/image'))
-        self.get_widget('background_image').set_filename(value)
+        if os.path.isfile(value or ''):
+            self.get_widget('background_image').set_filename(value)
 
         value = self.client.get_int(KEY('/style/background/opacity'))
         self.get_widget('background_opacity').set_value(value)
@@ -549,7 +550,7 @@ class PrefsDialog(SimpleGladeApp):
         """Used by filechooser to preview image files
         """
         filename = file_chooser.get_preview_filename()
-        if filename:
+        if filename and os.path.isfile(filename or ''):
             try:
                 mkpb = gtk.gdk.pixbuf_new_from_file_at_size
                 pixbuf = mkpb(filename, 256, 256)
