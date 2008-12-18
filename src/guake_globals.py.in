@@ -25,4 +25,5 @@ glade_dir = '@DATADIR@/' + name
 locale_dir = '@DATADIR@/locale'
 
 # Gconf stuff. Yep, it is hardcoded =)
-GCONF_PATH = '/apps/guake/'
+GCONF_PATH = '/apps/guake'
+KEY = lambda x: (GCONF_PATH+x)
