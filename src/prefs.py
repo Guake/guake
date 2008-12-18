@@ -269,6 +269,30 @@ class PrefsDialog(SimpleGladeApp):
         """
         self.get_widget('config-window').hide()
 
+    def update_preview_cb(self, file_chooser, preview):
+        """Used by filechooser to preview image files
+        """
+        filename = file_chooser.get_preview_filename()
+        if filename and os.path.isfile(filename or ''):
+            try:
+                mkpb = gtk.gdk.pixbuf_new_from_file_at_size
+                pixbuf = mkpb(filename, 256, 256)
+                preview.set_from_pixbuf(pixbuf)
+                file_chooser.set_preview_widget_active(True)
+            except gobject.GError:
+                # this exception is raised when user chooses a
+                # non-image file or a directory
+                warnings.warn('File %s is not an image' % filename)
+        else:
+            file_chooser.set_preview_widget_active(False)
+
+    def toggle_style_sensitivity(self, chk):
+        """If the user chooses to use the gnome default font
+        configuration it means that he will not be able to use the
+        font selector.
+        """
+        self.get_widget('font_style').set_sensitive(not chk.get_active())
+
     def on_reset_compat_defaults_clicked(self, bnt):
         """Reset default values to compat_{backspace,delete} gconf
         keys. The default values are retrivied from the guake.schemas
@@ -448,13 +472,6 @@ class PrefsDialog(SimpleGladeApp):
 
         self.get_widget('treeview-keys').expand_all()
 
-    def toggle_style_sensitivity(self, chk):
-        """If the user chooses to use the gnome default font
-        configuration it means that he will not be able to use the
-        font selector.
-        """
-        self.get_widget('font_style').set_sensitive(not chk.get_active())
-
     # -----------------------------------------------------------------------
 
     def on_key_edited(self, renderer, path, keycode, mask, keyval, model):
@@ -551,23 +568,6 @@ class PrefsDialog(SimpleGladeApp):
             renderer.set_property('visible', False)
             renderer.set_property('accel-key', 0)
             renderer.set_property('accel-mods', 0)
-
-    def update_preview_cb(self, file_chooser, preview):
-        """Used by filechooser to preview image files
-        """
-        filename = file_chooser.get_preview_filename()
-        if filename and os.path.isfile(filename or ''):
-            try:
-                mkpb = gtk.gdk.pixbuf_new_from_file_at_size
-                pixbuf = mkpb(filename, 256, 256)
-                preview.set_from_pixbuf(pixbuf)
-                file_chooser.set_preview_widget_active(True)
-            except gobject.GError:
-                # this exception is raised when user chooses a
-                # non-image file or a directory
-                warnings.warn('File %s is not an image' % filename)
-        else:
-            file_chooser.set_preview_widget_active(False)
 
     def start_editing_cb(self, treeview, event):
         """Make the treeview grab the focus and start editing the cell
