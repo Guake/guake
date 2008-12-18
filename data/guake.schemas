@@ -2,42 +2,6 @@
     <schemalist>
 
         <schema>
-            <key>/schemas/apps/guake/general/history_size</key>
-            <applyto>/apps/guake/general/history_size</applyto>
-            <owner>guake</owner>
-            <type>int</type>
-            <default>2048</default>
-            <locale name="C">
-                <short>History Size.</short>
-                <long>The number of scrollback lines to save as history.</long>
-            </locale>
-        </schema>
-
-        <schema>
-            <key>/schemas/apps/guake/general/use_scrollbar</key>
-            <applyto>/apps/guake/general/use_scrollbar</applyto>
-            <owner>guake</owner>
-            <type>bool</type>
-            <default>true</default>
-            <locale name="C">
-                <short>Sets the scrollbar visibility.</short>
-                <long>When true scrollbar is visible.</long>
-            </locale>
-        </schema>
-
-	<schema>
-            <key>/schemas/apps/guake/general/use_tray</key>
-            <applyto>/apps/guake/general/use_tray</applyto>
-            <owner>guake</owner>
-            <type>bool</type>
-            <default>true</default>
-            <locale name="C">
-                <short>Sets the tray visibility.</short>
-                <long>When true tray is visible.</long>
-            </locale>
-        </schema>        
-
-        <schema>
             <key>/schemas/apps/guake/general/default_shell</key>
             <applyto>/apps/guake/general/default_shell</applyto>
             <owner>guake</owner>
@@ -51,41 +15,40 @@
         </schema>
 
         <schema>
-            <key>/schemas/apps/guake/general/hide_on_lost_focus</key>
-            <applyto>/apps/guake/general/hide_on_lost_focus</applyto>
+            <key>/schemas/apps/guake/general/use_login_shell</key>
+            <applyto>/apps/guake/general/use_login_shell</applyto>
             <owner>guake</owner>
             <type>bool</type>
             <default>false</default>
             <locale name="C">
-                <short>Determine if guake hides on lost focus.</short>
-                <long>If this property is set as true, guake will be hidden when
-                lost focus.</long>
+                <short>Login shell</short>
+                <long>If true, the commands in terminal will be
+                executed in a login shell.</long>
             </locale>
         </schema>
 
-        <schema>
-            <key>/schemas/apps/guake/general/use_bgimage</key>
-            <applyto>/apps/guake/general/use_bgimage</applyto>
-            <owner>guake</owner>
-            <type>bool</type>
-            <default>false</default>
-            <locale name="C">
-                <short>Set if bg is image or transparent.</short>
-                <long>If true the bg style will be the chosen image
-                    otherway the bg will be transparent</long>
-            </locale>
-        </schema>
-        
-        <schema>
-            <key>/schemas/apps/guake/general/window_animate</key>
-            <applyto>/apps/guake/general/window_animate</applyto>
+	<schema>
+            <key>/schemas/apps/guake/general/use_trayicon</key>
+            <applyto>/apps/guake/general/use_trayicon</applyto>
             <owner>guake</owner>
             <type>bool</type>
             <default>true</default>
             <locale name="C">
-                <short>Animate window.</short>
-                <long>Animate window when show/hide guake terminals
-                    window.</long>
+                <short>Sets the tray visibility.</short>
+                <long>When true tray is visible.</long>
+            </locale>
+        </schema>
+
+	<schema>
+            <key>/schemas/apps/guake/general/use_popup</key>
+            <applyto>/apps/guake/general/use_popup</applyto>
+            <owner>guake</owner>
+            <type>bool</type>
+            <default>true</default>
+            <locale name="C">
+                <short>Sets the popup notifications visibility.</short>
+                <long>When true, popup notifications will be shown
+                when Guake starts.</long>
             </locale>
         </schema>
 
@@ -103,6 +66,32 @@
         </schema>
 
         <schema>
+            <key>/schemas/apps/guake/general/window_losefocus</key>
+            <applyto>/apps/guake/general/window_losefocus</applyto>
+            <owner>guake</owner>
+            <type>bool</type>
+            <default>false</default>
+            <locale name="C">
+                <short>Determine if guake hides on lose focus.</short>
+                <long>If this property is set as true, guake will be
+                hidden when the main window lose the focus (when
+                Alt+Tab be pressed for example).</long>
+            </locale>
+        </schema>
+
+        <schema>
+            <key>/schemas/apps/guake/general/window_tabbar</key>
+            <applyto>/apps/guake/general/window_tabbar</applyto>
+            <owner>guake</owner>
+            <type>bool</type>
+            <default>true</default>
+            <locale name="C">
+                <short>The tab bar visibility.</short>
+                <long>When true, the tab bar is visible.</long>
+            </locale>
+        </schema>
+
+        <schema>
             <key>/schemas/apps/guake/general/window_size</key>
             <applyto>/apps/guake/general/window_size</applyto>
             <owner>guake</owner>
@@ -111,31 +100,71 @@
             <locale name="C">
                 <short>Window size.</short>
                 <long>Percent of the screen that will be used by guake
-                    terminal.</long>
+                  terminal vertically.</long>
             </locale>
         </schema>
 
         <schema>
-            <key>/schemas/apps/guake/general/compat_backspace</key>
-            <applyto>/apps/guake/general/compat_backspace</applyto>
+            <key>/schemas/apps/guake/general/use_scrollbar</key>
+            <applyto>/apps/guake/general/use_scrollbar</applyto>
             <owner>guake</owner>
-            <type>string</type>
-            <default>ascii-delete</default>
+            <type>bool</type>
+            <default>true</default>
             <locale name="C">
-                <short>Backspace Compatibility</short>
-                <long>Defines the behavior of backscape key.</long>
+                <short>Sets the scrollbar visibility.</short>
+                <long>When true, scrollbar is visible.</long>
             </locale>
         </schema>
 
         <schema>
-            <key>/schemas/apps/guake/general/compat_delete</key>
-            <applyto>/apps/guake/general/compat_delete</applyto>
+            <key>/schemas/apps/guake/general/history_size</key>
+            <applyto>/apps/guake/general/history_size</applyto>
             <owner>guake</owner>
-            <type>string</type>
-            <default>delete-sequence</default>
+            <type>int</type>
+            <default>1024</default>
             <locale name="C">
-                <short>Delete Compatibility</short>
-                <long>Defines the behavior of delete key.</long>
+                <short>History Size.</short>
+                <long>The number of scrollback lines to save in
+                history.</long>
+            </locale>
+        </schema>
+
+        <schema>
+            <key>/schemas/apps/guake/general/scroll_output</key>
+            <applyto>/apps/guake/general/scroll_output</applyto>
+            <owner>guake</owner>
+            <type>bool</type>
+            <default>false</default>
+            <locale name="C">
+                <short>Scroll on output</short>
+                <long>If true, whenever there is new output in the
+                terminal, it will scroll to the bottom.</long>
+            </locale>
+        </schema>
+
+        <schema>
+            <key>/schemas/apps/guake/general/scroll_keystroke</key>
+            <applyto>/apps/guake/general/scroll_keystroke</applyto>
+            <owner>guake</owner>
+            <type>bool</type>
+            <default>true</default>
+            <locale name="C">
+                <short>Scroll on keystroke</short>
+                <long>If true and a key is pressed, the terminal is
+                scrolled to the bottom.</long>
+            </locale>
+        </schema>
+
+        <schema>
+            <key>/schemas/apps/guake/general/use_default_font</key>
+            <applyto>/apps/guake/general/use_default_font</applyto>
+            <owner>guake</owner>
+            <type>bool</type>
+            <default>true</default>
+            <locale name="C">
+                <short>Use default font</short>
+                <long>If true, Guake will use the GNOME monospace
+                default font.</long>
             </locale>
         </schema>
 
@@ -188,14 +217,39 @@
         </schema>
 
         <schema>
-            <key>/schemas/apps/guake/style/background/transparency</key>
-            <applyto>/apps/guake/style/background/transparency</applyto>
+            <key>/schemas/apps/guake/style/background/opacity</key>
+            <applyto>/apps/guake/style/background/opacity</applyto>
             <owner>guake</owner>
             <type>int</type>
-            <default>20</default>
+            <default>80</default>
             <locale name="C">
-                <short>Background transparency.</short>
-                <long>Alpha that will be applied to the terminal background.</long>
+                <short>Background opacity.</short>
+                <long>Alpha that will be applied to the terminal
+                background.</long>
+            </locale>
+        </schema>
+
+        <schema>
+            <key>/schemas/apps/guake/general/compat_backspace</key>
+            <applyto>/apps/guake/general/compat_backspace</applyto>
+            <owner>guake</owner>
+            <type>string</type>
+            <default>ascii-delete</default>
+            <locale name="C">
+                <short>Backspace Compatibility</short>
+                <long>Defines the behavior of backscape key.</long>
+            </locale>
+        </schema>
+
+        <schema>
+            <key>/schemas/apps/guake/general/compat_delete</key>
+            <applyto>/apps/guake/general/compat_delete</applyto>
+            <owner>guake</owner>
+            <type>string</type>
+            <default>delete-sequence</default>
+            <locale name="C">
+                <short>Delete Compatibility</short>
+                <long>Defines the behavior of delete key.</long>
             </locale>
         </schema>
 
@@ -338,18 +392,6 @@
                 <short>If guake must show a control to make resizing more handful</short>
                 <long>When true, guake shows a resizer on its bottom to allow user 
                 resize guake.</long>
-            </locale>
-        </schema>
-
-        <schema>
-            <key>/schemas/apps/guake/general/show_toolbar</key>
-            <applyto>/apps/guake/general/show_toolbar</applyto>
-            <owner>guake</owner>
-            <type>bool</type>
-            <default>true</default>
-            <locale name="C">
-                <short>If the tabs bar must be visible</short>
-                <long>When true, the tabs bar is visible</long>
             </locale>
         </schema>
 
