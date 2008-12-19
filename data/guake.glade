@@ -1,6 +1,4 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<!DOCTYPE glade-interface SYSTEM "glade-2.0.dtd">
-<!--*- mode: xml -*-->
+<?xml version="1.0"?>
 <glade-interface>
   <widget class="GtkWindow" id="window-root">
     <property name="has_focus">True</property>
@@ -59,7 +57,7 @@
                 <property name="tooltip" translatable="yes">Add a new tab</property>
                 <property name="relief">GTK_RELIEF_NONE</property>
                 <property name="response_id">0</property>
-                <signal name="clicked" handler="on_add_button_clicked"/>
+                <signal name="clicked" handler="add_tab"/>
                 <child>
                   <widget class="GtkImage" id="image2">
                     <property name="visible">True</property>
@@ -120,7 +118,7 @@
         <property name="label">gtk-preferences</property>
         <property name="use_underline">True</property>
         <property name="use_stock">True</property>
-        <signal name="activate" handler="on_prefs_menuitem_activate"/>
+        <signal name="activate" handler="show_prefs"/>
       </widget>
     </child>
     <child>
@@ -129,7 +127,7 @@
         <property name="label">gtk-about</property>
         <property name="use_underline">True</property>
         <property name="use_stock">True</property>
-        <signal name="activate" handler="on_about_menuitem_activate"/>
+        <signal name="activate" handler="show_about"/>
       </widget>
     </child>
     <child>
@@ -151,7 +149,7 @@
         <property name="label">gtk-preferences</property>
         <property name="use_underline">True</property>
         <property name="use_stock">True</property>
-        <signal name="activate" handler="on_context_preferences_activate"/>
+        <signal name="activate" handler="show_prefs"/>
       </widget>
     </child>
     <child>
@@ -165,7 +163,7 @@
         <property name="label">gtk-copy</property>
         <property name="use_underline">True</property>
         <property name="use_stock">True</property>
-        <signal name="activate" handler="on_context_copy_activate"/>
+        <signal name="activate" handler="accel_copy_clipboard"/>
       </widget>
     </child>
     <child>
@@ -174,7 +172,7 @@
         <property name="label">gtk-paste</property>
         <property name="use_underline">True</property>
         <property name="use_stock">True</property>
-        <signal name="activate" handler="on_context_paste_activate"/>
+        <signal name="activate" handler="accel_paste_clipboard"/>
       </widget>
     </child>
     <child>
@@ -187,7 +185,7 @@
         <property name="visible">True</property>
         <property name="label" translatable="yes">Close Tab</property>
         <property name="use_underline">True</property>
-        <signal name="activate" handler="on_context_close_tab_activate"/>
+        <signal name="activate" handler="close_tab"/>
         <child internal-child="image">
           <widget class="GtkImage" id="menu-item-image1">
             <property name="stock">gtk-close</property>
@@ -202,7 +200,7 @@
         <property name="label">gtk-quit</property>
         <property name="use_underline">True</property>
         <property name="use_stock">True</property>
-        <signal name="activate" handler="on_context_close_activate"/>
+        <signal name="activate" handler="gtk_main_quit"/>
       </widget>
     </child>
   </widget>

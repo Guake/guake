@@ -319,7 +319,7 @@ class GConfKeyHandler(object):
         if key > 0:
             self.accel_group.connect_group(
                 key, mask, gtk.ACCEL_VISIBLE,
-                self.guake.on_context_close_tab_activate)
+                self.guake.close_tab)
 
         key, mask = gtk.accelerator_parse(gets('previous_tab'))
         if key > 0:
@@ -358,6 +358,49 @@ class GConfKeyHandler(object):
 
     def clear_global(self, accel):
         globalhotkeys.unbind(accel)
+
+
+class GuakeTerminal(vte.Terminal):
+    """Just a vte.Terminal with some properties already set.
+    """
+    def __init__(self):
+        super(GuakeTerminal, self).__init__()
+        self.configure_terminal()
+
+    def configure_terminal(self):
+        """Sets all customized properties
+        """
+        client = gconf.client_get_default()
+        word_chars = client.get_string(KEY('/general/word_chars'))
+        self.set_word_chars(word_chars)
+        self.set_audible_bell(False)
+        self.set_visible_bell(False)
+        self.set_sensitive(True)
+        self.set_flags(gtk.CAN_DEFAULT)
+        self.set_flags(gtk.CAN_FOCUS)
+
+class GuakeTerminalBox(gtk.HBox):
+    """A box to group the terminal and a scrollbar.
+    """
+    def __init__(self):
+        super(GuakeTerminalBox, self).__init__()
+        self.terminal = GuakeTerminal()
+        self.add_terminal()
+        self.add_scroll_bar()
+
+    def add_terminal(self):
+        """Packs the terminal widget.
+        """
+        self.pack_start(self.terminal, True, True)
+        self.terminal.show()
+
+    def add_scroll_bar(self):
+        """Packs the scrollbar.
+        """
+        adj = self.terminal.get_adjustment()
+        scroll = gtk.VScrollbar(adj)
+        scroll.set_no_show_all(True)
+        self.pack_start(scroll, False, False)
 
 
 class Guake(SimpleGladeApp):
@@ -457,6 +500,10 @@ class Guake(SimpleGladeApp):
         notification.show()
 
     def on_resizer_drag(self, widget, event):
+        """Method that handles the resize drag. It does not actuall
+        moves the main window. It just set the new window size in
+        gconf.
+        """
         (x, y), mod = event.device.get_state(widget.window)
 
         max_height = self.window.get_screen().get_height()
@@ -469,15 +516,23 @@ class Guake(SimpleGladeApp):
             self.client.set_int(KEY('/general/window_size'), int(percent))
 
     def on_window_losefocus(self, window, event):
+        """Hides terminal main window when it loses the focus and if
+        the window_losefocus gconf variable is True.
+        """
         value = self.client.get_bool(KEY('/general/window_losefocus'))
         if value and self.visible:
             self.hide()
 
     def show_menu(self, *args):
+        """Show the tray icon menu.
+        """
         menu = self.get_widget('tray-menu')
         menu.popup(None, None, None, 3, gtk.get_current_event_time())
 
     def show_context_menu(self, terminal, event):
+        """Show the context menu, only with a right click on a vte
+        Terminal.
+        """
         if event.button != 3:
             return False
 
@@ -491,29 +546,28 @@ class Guake(SimpleGladeApp):
         return True
 
     def show_tab_menu(self, target, event):
+        """Shows the tab menu with a right click. After that, the
+        focus come back to the terminal.
+        """
         if event.button == 3:
             self.selected_tab = target
             menu = self.get_widget('tab-menu')
             menu.popup(None, None, None, 3, event.get_time())
         self.set_terminal_focus()
 
-    # -- methods exclusivelly called by dbus interface --
-
-    def show_about(self):
+    def show_about(self, *args):
         """Hides the main window and creates an instance of the About
         Dialog.
         """
         self.hide()
         AboutDialog()
 
-    def show_prefs(self):
+    def show_prefs(self, *args):
         """Hides the main window and creates an instance of the
         Preferences window.
         """
         #self.hide()
         PrefsDialog().show()
-
-    # -- controls main window visibility and size --
 
     def show_hide(self, *args):
         """Toggles the main window visibility
@@ -525,6 +579,8 @@ class Guake(SimpleGladeApp):
             self.hide()
  
     def show(self):
+        """Shows the main window and grabs the focus on it.
+        """
         # setting window in all desktops
         self.get_widget('window-root').stick()
 
@@ -550,10 +606,18 @@ class Guake(SimpleGladeApp):
         self.window.window.focus(time)
 
     def hide(self):
+        """Hides the main window of the terminal and sets the visible
+        flag to False.
+        """
         self.window.hide() # Don't use hide_all here!
         self.visible = False
 
     def get_final_window_size(self):
+        """Gets the final size of the main window of guake. The height
+        is just the window_size property. But width is calculated as
+        100% of the screen and tested against the monitor geometry
+        width.
+        """
         screen = self.window.get_screen()
         height = self.client.get_int(KEY('/general/window_size'))
 
@@ -678,19 +742,12 @@ class Guake(SimpleGladeApp):
 
     # -- callbacks --
 
-    def on_prefs_menuitem_activate(self, *args):
-        self.show_prefs()
-
-    def on_about_menuitem_activate(self, *args):
-        self.show_about()
-
-    def on_add_button_clicked(self, *args):
-        self.add_tab()
-
     def on_terminal_exited(self, term, widget):
         self.delete_tab(self.notebook.page_num(widget), kill=False)
 
     def on_rename_activate(self, *args):
+        """Shows a dialog to rename the current tab.
+        """
         entry = gtk.Entry()
         entry.set_text(self.selected_tab.get_label())
         entry.set_property('can-default', True)
@@ -722,98 +779,72 @@ class Guake(SimpleGladeApp):
 
         self.set_terminal_focus()
 
-    def on_close_activate(self, *args):
-        pagepos = self.tabs.get_children().index(self.selected_tab)
-        self.delete_tab(pagepos)
+    # -- tab related functions --
 
-    # -- Context menu callbacks --
-
-    def on_context_preferences_activate(self, widget):
-        self.show_prefs()
-
-    def on_context_copy_activate(self, widget):
-        current_pos = self.notebook.get_current_page()
-        self.term_list[current_pos].copy_clipboard()
-
-    def on_context_paste_activate(self, widget):
-        current_pos = self.notebook.get_current_page()
-        self.term_list[current_pos].paste_clipboard()
-
-    def on_context_close_tab_activate(self, *args):
+    def close_tab(self, *args):
+        """Closes the current tab.
+        """
         pagepos = self.notebook.get_current_page()
         self.delete_tab(pagepos)
 
-    def on_context_close_activate(self, widget):
-        gtk.main_quit()
 
-    # -- tab related functions --
-
-    def add_tab(self):
-        last_added = len(self.term_list)
-        self.term_list.append(vte.Terminal())
-
+    def get_current_dir(self):
+        """Gets the working directory of the current tab to create a
+        new one in the same dir.
+        """
         active_pagepos = self.notebook.get_current_page()
         directory = os.path.expanduser('~')
         if active_pagepos >= 0:
             cwd = "/proc/%d/cwd" % self.pid_list[active_pagepos]
             if os.path.exists(cwd):
                 directory = cwd
+        return directory
 
+    def get_fork_params(self):
+        """Return all parameters to be passed to the fork_command
+        method of a vte terminal.
+        """
+        argv = []
         shell = self.client.get_string(KEY('/general/default_shell')) or 'sh'
         login_shell = self.client.get_bool(KEY('/general/use_login_shell'))
-
-        argv = []
         if login_shell:
             argv.append('-')
 
-        pid = self.term_list[last_added].\
-            fork_command(shell, argv, None, directory,
-                         login_shell, None, None)
+        directory = self.get_current_dir()
+        return shell, argv, None, directory, login_shell, None, None
 
+    def add_tab(self, *args):
+        """Adds a new tab to the terminal notebook.
+        """
+        box = GuakeTerminalBox()
+        box.terminal.grab_focus()
+        box.terminal.connect('button-press-event', self.show_context_menu)
+        box.terminal.connect('child-exited', self.on_terminal_exited, box)
+        box.show()
+
+        last_added = len(self.term_list)
+        self.term_list.append(box.terminal)
+
+        pid = box.terminal.fork_command(*self.get_fork_params())
         self.pid_list.append(pid)
 
         # Adding a new radio button to the tabbar
         label = _('Terminal %s') % self.tab_counter
         tabs = self.tabs.get_children()
         parent = tabs and tabs[0] or None
+
         bnt = gtk.RadioButton(group=parent, label=label)
         bnt.set_property('can-focus', False)
         bnt.set_property('draw-indicator', False)
         bnt.connect('button-press-event', self.show_tab_menu)
         bnt.connect('clicked', lambda *x:
-                        self.notebook.set_current_page (last_added))
+                        self.notebook.set_current_page(last_added))
         bnt.show()
 
         self.tabs.pack_start(bnt, expand=False, padding=1)
         self.tab_counter += 1
 
-        # preparing the way to the scrollbar...
-        mhbox = gtk.HBox()
-        mhbox.pack_start(self.term_list[last_added], True, True)
-        self.term_list[last_added].show()
-
-        adj = self.term_list[last_added].get_adjustment()
-        scroll = gtk.VScrollbar(adj)
-        scroll.set_no_show_all(True)
-        mhbox.pack_start(scroll, False, False)
-        mhbox.show()
-
-        # configuring the terminal widget
-        word_chars = self.client.get_string(KEY('/general/word_chars'))
-        self.term_list[last_added].set_word_chars(word_chars)
-        self.term_list[last_added].set_audible_bell(False)
-        self.term_list[last_added].set_visible_bell(False)
-        self.term_list[last_added].set_sensitive(True)
-        self.term_list[last_added].set_flags(gtk.CAN_DEFAULT)
-        self.term_list[last_added].set_flags(gtk.CAN_FOCUS)
-        self.term_list[last_added].connect('button-press-event',
-                                           self.show_context_menu)
-        self.term_list[last_added].connect('child-exited',
-                                           self.on_terminal_exited,
-                                           mhbox)
-
-        self.term_list[last_added].grab_focus()
-        self.notebook.append_page(mhbox, None)
+        self.notebook.append_page(box, None)
         self.notebook.set_current_page(last_added)
         self.load_config()
 
