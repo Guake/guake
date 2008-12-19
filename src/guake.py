@@ -38,7 +38,7 @@ from time import sleep
 
 import globalhotkeys
 from simplegladeapp import SimpleGladeApp, bindtextdomain
-from prefs import PrefsDialog, GHOTKEYS
+from prefs import PrefsDialog, LKEY, GKEY
 from common import *
 from guake_globals import *
 
@@ -150,7 +150,7 @@ class GConfHandler(object):
         be called and will call the resize function in guake.
         """
         width, height = self.guake.get_final_window_size()
-        self.guake.resize(width, height)
+        self.guake.window.resize(width, height)
 
     def scrollbar_toggled(self, client, connection_id, entry, data):
         """If the gconf var use_scrollbar be changed, this method will
@@ -277,6 +277,89 @@ class GConfHandler(object):
             i.set_delete_binding(entry.value.get_string())
 
 
+class GConfKeyHandler(object):
+    """Handles changes in keyboard shortcuts.
+    """
+    def __init__(self, guake):
+        """Constructor of Keyboard, only receives the guake instance
+        to be used in internal methods.
+        """
+        self.guake = guake
+        self.accel_group = None # see reload_accelerators
+        self.client = gconf.client_get_default()
+
+        keys = ['toggle_fullscreen', 'new_tab', 'close_tab', 'rename_tab',
+                'previous_tab', 'next_tab', 'clipboard_copy', 'clipboard_paste',
+                ]
+        notify_add = self.client.notify_add
+        for key in keys:
+            notify_add(LKEY(key), self.reload_accelerators)
+            self.client.notify(LKEY(key))
+
+    def reload_accelerators(self, *args):
+        """Reassign an accel_group to guake main window and guake
+        context menu and calls the load_accelerators method.
+        """
+        self.accel_group = gtk.AccelGroup()
+        self.guake.window.add_accel_group(self.accel_group)
+        self.guake.context_menu.set_accel_group(self.accel_group)
+        self.load_accelerators()
+
+    def load_accelerators(self):
+        """Reads all gconf paths under /apps/guake/keybindings/local
+        and adds to the main accel_group.
+        """
+        gets = lambda x:self.client.get_string(LKEY(x))
+        key, mask = gtk.accelerator_parse(gets('new_tab'))
+        if key > 0:
+            self.accel_group.connect_group(key, mask, gtk.ACCEL_VISIBLE,
+                                           self.guake.accel_add)
+
+        key, mask = gtk.accelerator_parse(gets('close_tab'))
+        if key > 0:
+            self.accel_group.connect_group(
+                key, mask, gtk.ACCEL_VISIBLE,
+                self.guake.on_context_close_tab_activate)
+
+        key, mask = gtk.accelerator_parse(gets('previous_tab'))
+        if key > 0:
+            self.accel_group.connect_group(key, mask, gtk.ACCEL_VISIBLE,
+                                           self.guake.accel_prev)
+
+        key, mask = gtk.accelerator_parse(gets('next_tab'))
+        if key > 0:
+            self.accel_group.connect_group(key, mask, gtk.ACCEL_VISIBLE,
+                                           self.guake.accel_next)
+
+        key, mask = gtk.accelerator_parse(gets('rename_tab'))
+        if key > 0:
+            self.accel_group.connect_group(key, mask, gtk.ACCEL_VISIBLE,
+                                           self.guake.accel_rename)
+
+        key, mask = gtk.accelerator_parse(gets('clipboard_copy'))
+        if key > 0:
+            self.accel_group.connect_group(key, mask, gtk.ACCEL_VISIBLE,
+                                           self.guake.accel_copy_clipboard)
+
+        key, mask = gtk.accelerator_parse(gets('clipboard_paste'))
+        if key > 0:
+            self.accel_group.connect_group(key, mask, gtk.ACCEL_VISIBLE,
+                                           self.guake.accel_paste_clipboard)
+
+        key, mask = gtk.accelerator_parse(gets('toggle_fullscreen'))
+        if key > 0:
+            self.accel_group.connect_group(key, mask, gtk.ACCEL_VISIBLE,
+                                           self.guake.accel_toggle_fullscreen)
+
+    def set_global(self):
+        if not globalhotkeys.bind(key, self.guake.show_hide):
+            raise ShowableError(_('key binding error'),
+                                _('Unable to bind global %s key') % key, -1)
+
+    def clear_global(self, accel):
+        globalhotkeys.unbind(accel)
+
+
 class Guake(SimpleGladeApp):
     """Guake main class. Handles specialy the main window.
     """
@@ -286,9 +369,6 @@ class Guake(SimpleGladeApp):
 
         # setting global hotkey and showing a pretty notification =)
         globalhotkeys.init()
-        key = self.client.get_string(GHOTKEYS[0][0])
-        keyval, mask = gtk.accelerator_parse(key)
-        label = gtk.accelerator_get_label(keyval, mask)
 
         # trayicon!
         img = pixmapfile('guake-tray.png')
@@ -332,11 +412,8 @@ class Guake(SimpleGladeApp):
         self.visible = False
         self.fullscreen = False
 
-        self.accel_group = gtk.AccelGroup()
-        self.window.add_accel_group(self.accel_group)
         self.window.set_geometry_hints(min_width=1, min_height=1)
         self.window.connect('focus-out-event', self.on_window_losefocus)
-        self.get_widget('context-menu').set_accel_group(self.accel_group)
 
         # resizer stuff
         self.resizer.connect('motion-notify-event', self.on_resizer_drag)
@@ -344,11 +421,16 @@ class Guake(SimpleGladeApp):
         # adding the first tab on guake
         self.add_tab()
 
-        # loading configuration stuff
+        # loading and setting up configuration stuff
         GConfHandler(self)
+        GConfKeyHandler(self)
+
         self.load_config()
         self.load_accel_map()
-        self.load_accelerators()
+
+        key = self.client.get_string(GKEY('show_hide'))
+        keyval, mask = gtk.accelerator_parse(key)
+        label = gtk.accelerator_get_label(keyval, mask)
 
         if not globalhotkeys.bind(key, self.show_hide):
             filename = pixmapfile('guake-notification.png')
@@ -434,15 +516,15 @@ class Guake(SimpleGladeApp):
     # -- controls main window visibility and size --
 
     def show_hide(self, *args):
-        screen = self.window.get_screen()
-        w, h = screen.get_width(), screen.get_height()
+        """Toggles the main window visibility
+        """
         if not self.visible:
-            self.show(w, h)
+            self.show()
             self.set_terminal_focus()
         else:
             self.hide()
  
-    def show(self, wwidth, hheight):
+    def show(self):
         # setting window in all desktops
         self.get_widget('window-root').stick()
 
@@ -452,7 +534,9 @@ class Guake(SimpleGladeApp):
             self.add_tab()
 
         self.visible = True
-        self.resize(*self.get_final_window_size())
+
+        width, height = self.get_final_window_size()
+        self.window.resize(width, height)
         self.window.show_all()
         self.window.move(0, 0)
 
@@ -478,17 +562,14 @@ class Guake(SimpleGladeApp):
         if height > max_height:
             height = max_height
 
-	# get the width just from the first/default monitor in the
-	# future we might create a field to select which monitor you
-	# wanna use
+        # get the width just from the first/default monitor in the
+        # future we might create a field to select which monitor you
+        # wanna use
         width = screen.get_monitor_geometry(0).width
 
         total_height = self.window.get_screen().get_height()
         final_height = total_height * height / 100
         return width, final_height
-
-    def resize(self, width, height):
-        self.window.resize(width, height)
 
     # -- configuration --
 
@@ -516,51 +597,6 @@ class Guake(SimpleGladeApp):
         gtk.accel_map_add_entry('<Guake>/Quit', key, mask)
         btn = self.get_widget('context_close')
         btn.set_accel_path('<Guake>/Quit')
-
-    def load_accelerators(self):
-        """Reads all gconf paths under /apps/guake/keybindings/local
-        and adds to the main accel_group.
-        """
-        gets = lambda x:self.client.get_string(KEY('/keybindings/local/%s' % x))
-        key, mask = gtk.accelerator_parse(gets('new_tab'))
-        if key > 0:
-            self.accel_group.connect_group(key, mask, gtk.ACCEL_VISIBLE,
-                                           self.accel_add)
-
-        key, mask = gtk.accelerator_parse(gets('close_tab'))
-        if key > 0:
-            self.accel_group.connect_group(key, mask, gtk.ACCEL_VISIBLE,
-                                           self.on_context_close_tab_activate)
-
-        key, mask = gtk.accelerator_parse(gets('previous_tab'))
-        if key > 0:
-            self.accel_group.connect_group(key, mask, gtk.ACCEL_VISIBLE,
-                                           self.accel_prev)
-
-        key, mask = gtk.accelerator_parse(gets('next_tab'))
-        if key > 0:
-            self.accel_group.connect_group(key, mask, gtk.ACCEL_VISIBLE,
-                                           self.accel_next)
-
-        key, mask = gtk.accelerator_parse(gets('rename_tab'))
-        if key > 0:
-            self.accel_group.connect_group(key, mask, gtk.ACCEL_VISIBLE,
-                                           self.accel_rename)
-
-        key, mask = gtk.accelerator_parse(gets('clipboard_copy'))
-        if key > 0:
-            self.accel_group.connect_group(key, mask, gtk.ACCEL_VISIBLE,
-                                           self.accel_copy_clipboard)
-
-        key, mask = gtk.accelerator_parse(gets('clipboard_paste'))
-        if key > 0:
-            self.accel_group.connect_group(key, mask, gtk.ACCEL_VISIBLE,
-                                           self.accel_paste_clipboard)
-
-        key, mask = gtk.accelerator_parse(gets('toggle_fullscreen'))
-        if key > 0:
-            self.accel_group.connect_group(key, mask, gtk.ACCEL_VISIBLE,
-                                           self.accel_toggle_fullscreen)
 
     def accel_add(self, *args):
         """Callback to add a new tab. Called by the accel key.
