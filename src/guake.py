@@ -474,9 +474,9 @@ class Guake(SimpleGladeApp):
         key = self.client.get_string(GKEY('show_hide'))
         keyval, mask = gtk.accelerator_parse(key)
         label = gtk.accelerator_get_label(keyval, mask)
+        filename = pixmapfile('guake-notification.png')
 
         if not globalhotkeys.bind(key, self.show_hide):
-            filename = pixmapfile('guake-notification.png')
             notification = pynotify.Notification(
                 _('Guake!'),
                 _('A problem happened when binding <b>%s</b> key.\n'
@@ -488,17 +488,11 @@ class Guake(SimpleGladeApp):
         elif self.client.get_bool(KEY('/general/use_popup')):
             # Pop-up that shows that guake is working properly (if not
             # unset in the preferences windows)
-            self.startup_notification(label)
-
-    def startup_notification(self, label):
-        """Shows a startup notification if guake starts correctly.
-        """
-        filename = pixmapfile('guake-notification.png')
-        notification = pynotify.Notification(
-            _('Guake!'),
-            _('Guake is already running,\n'
-              'press <b>%s</b> to use it.') % label, filename)
-        notification.show()
+            notification = pynotify.Notification(
+                _('Guake!'),
+                _('Guake is already running,\n'
+                  'press <b>%s</b> to use it.') % label, filename)
+            notification.show()
 
     def on_resizer_drag(self, widget, event):
         """Method that handles the resize drag. It does not actuall
