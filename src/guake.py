@@ -480,8 +480,9 @@ class Guake(SimpleGladeApp):
             notification = pynotify.Notification(
                 _('Guake!'),
                 _('A problem happened when binding <b>%s</b> key.\n'
-                  'Please use guake properties form to choose another '
-                  'key') % label, filename)
+                  'Please use Guake Preferences dialog to choose another '
+                  'key (The trayicon was enabled)') % label, filename)
+            self.client.set_bool(KEY('/general/use_trayicon'), True)
             notification.show()
 
         elif self.client.get_bool(KEY('/general/use_popup')):
