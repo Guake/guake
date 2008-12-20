@@ -892,10 +892,16 @@ class Guake(SimpleGladeApp):
                 pass
 
     def set_terminal_focus(self):
+        """Grabs the focus on the current tab.
+        """
         page = self.notebook.get_current_page()
         self.term_list[page].grab_focus()
 
     def select_current_tab(self, notebook, user_data, page):
+        """When current self.notebook page is changed, the tab bar
+        made with radio buttons must be updated and this method does
+        this work.
+        """
         self.tabs.get_children()[page].set_active(True)
 
 def main():
