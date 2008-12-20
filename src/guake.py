@@ -757,7 +757,7 @@ class Guake(SimpleGladeApp):
         vbox.set_border_width(6)
         vbox.show()
 
-        dialog = gtk.Dialog("Rename tab",
+        dialog = gtk.Dialog(_("Rename tab"),
                             self.window,
                             gtk.DIALOG_MODAL | gtk.DIALOG_DESTROY_WITH_PARENT,
                             (gtk.STOCK_CANCEL, gtk.RESPONSE_REJECT,
