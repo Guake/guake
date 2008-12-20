@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2007 Lincoln de Sousa <lincoln@archlinux-br.org>
+ * Copyright (C) 2007, 2008 Lincoln de Sousa <lincoln@minaslivre.org>
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License as
@@ -114,9 +114,12 @@ _wrapped_keybinder_init (PyObject *self, PyObject *args)
 }
 
 static PyMethodDef GhMethods[] = {
-  {"init", (PyCFunction) _wrapped_keybinder_init, METH_NOARGS, "Initializes global hotkey plugin."},
-  {"bind", (PyCFunction) _wrapped_keybinder_bind, METH_VARARGS, "Called when the plugin is disabled."},
-  {"unbind", (PyCFunction) _wrapped_keybinder_unbind, METH_VARARGS, "Shows a dialog to configure keyboard hotkeys."},
+  {"init", (PyCFunction) _wrapped_keybinder_init, METH_NOARGS,
+   "Initializes global hotkey plugin."},
+  {"bind", (PyCFunction) _wrapped_keybinder_bind, METH_VARARGS,
+   "Called when the plugin is disabled."},
+  {"unbind", (PyCFunction) _wrapped_keybinder_unbind, METH_VARARGS,
+   "Shows a dialog to configure keyboard hotkeys."},
   {NULL, NULL, 0, NULL}        /* Sentinel */
 };
 
