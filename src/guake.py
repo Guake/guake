@@ -371,9 +371,11 @@ class GuakeTerminal(vte.Terminal):
     def __init__(self):
         super(GuakeTerminal, self).__init__()
         self.configure_terminal()
+        self.add_matches()
+        self.connect('button-press-event', self.button_press)
 
     def configure_terminal(self):
-        """Sets all customized properties
+        """Sets all customized properties on the terminal
         """
         client = gconf.client_get_default()
         word_chars = client.get_string(KEY('/general/word_chars'))
@@ -383,6 +385,43 @@ class GuakeTerminal(vte.Terminal):
         self.set_sensitive(True)
         self.set_flags(gtk.CAN_DEFAULT)
         self.set_flags(gtk.CAN_FOCUS)
+
+    def add_matches(self):
+        """Adds all regular expressions declared in
+        guake_globals.TERMINAL_MATCH_EXPRS to the terminal to make vte
+        highlight text that matches them.
+        """
+        for expr in TERMINAL_MATCH_EXPRS:
+            tag = self.match_add(expr)
+            self.match_set_cursor_type(tag, gtk.gdk.HAND2)
+
+    def button_press(self, terminal, event):
+        """Handles the button press event in the terminal widget. If
+        any match string is caught, another aplication is open to
+        handle the matched resource uri.
+        """
+        matched_string = self.match_check(
+            int(event.x / self.get_char_width()),
+            int(event.y / self.get_char_height()))
+
+        if event.button == 1 \
+                and event.get_state() & gtk.gdk.CONTROL_MASK \
+                and matched_string:
+            value, tag = matched_string
+
+            if TERMINAL_MATCH_TAGS[tag] == 'schema':
+                # value here should not be changed, it is right and
+                # ready to be used.
+                pass
+            elif TERMINAL_MATCH_TAGS[tag] == 'http':
+                value = 'http://%s' % value
+            elif TERMINAL_MATCH_TAGS[tag] == 'email':
+                value = 'mailto:%s' % value
+
+            # I'm temporarely using this little hammer because
+            # gtk_show_uri seem to not be binded to python yet.
+            open_uri(value)
+
 
 class GuakeTerminalBox(gtk.HBox):
     """A box to group the terminal and a scrollbar.

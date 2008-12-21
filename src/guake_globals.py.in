@@ -27,3 +27,24 @@ locale_dir = '@DATADIR@/locale'
 # Gconf stuff. Yep, it is hardcoded =)
 GCONF_PATH = '/apps/guake'
 KEY = lambda x: (GCONF_PATH+x)
+
+# regular expressions to highlight links in terminal. This code was
+# lovely stolen from the great gnome-terminal project, thank you =)
+USERCHARS = "-A-Za-z0-9"
+PASSCHARS = "-A-Za-z0-9,?;.:/!%$^*&~\"#'"
+HOSTCHARS = "-A-Za-z0-9"
+HOST      = "[" + HOSTCHARS + "]+(\\.[" + HOSTCHARS + "]+)*"
+PORT      = "(:[0-9]{1,5})?"
+PATHCHARS =  "-A-Za-z0-9_$.+!*(),;:@&=?/~#%"
+SCHEME    = "(news:|telnet:|nntp:|file:/|https?:|ftps?:|webcal:)"
+USER      = "[" + USERCHARS + "]+(:[" + PASSCHARS + "]+)?"
+URLPATH   = "/[" + PATHCHARS + "]*[^]'.}>) \t\r\n,\\\"]"
+
+TERMINAL_MATCH_EXPRS = [
+  "\<" + SCHEME + "//(" + USER + "@)?" + HOST + PORT + "(" + URLPATH + ")?\>/?",
+  "\<(www|ftp)[" + HOSTCHARS + "]*\." + HOST + PORT + "(" +URLPATH + ")?\>/?",
+  "\<(mailto:)?[" + USERCHARS + "][" + USERCHARS + ".]*@[" + HOSTCHARS +
+  "]+\." + HOST + "\>"
+  ]
+
+TERMINAL_MATCH_TAGS = 'schema', 'http', 'email'

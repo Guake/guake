@@ -455,11 +455,8 @@ class PrefsDialog(SimpleGladeApp):
                    os.path.exists(possible):
                     cb.append_text(possible)
 
-        for i in os.environ.get('PATH', '').split(os.pathsep):
-            if os.path.isdir(i):
-                for j in os.listdir(i):
-                    if PYTHONS.match(j):
-                        cb.append_text(os.path.join(i, j))
+        for i in get_binaries_from_path(PYTHONS):
+            cb.append_text(i)
 
     def populate_keys_tree(self):
         """Reads the HOTKEYS global variable and insert all data in
