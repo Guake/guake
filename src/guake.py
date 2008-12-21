@@ -288,13 +288,27 @@ class GConfKeyHandler(object):
         self.accel_group = None # see reload_accelerators
         self.client = gconf.client_get_default()
 
+        notify_add = self.client.notify_add
+        notify_add(GKEY('show_hide'), self.reload_globals)
+
         keys = ['toggle_fullscreen', 'new_tab', 'close_tab', 'rename_tab',
                 'previous_tab', 'next_tab', 'clipboard_copy', 'clipboard_paste',
                 ]
-        notify_add = self.client.notify_add
         for key in keys:
             notify_add(LKEY(key), self.reload_accelerators)
             self.client.notify(LKEY(key))
+
+    def reload_globals(self, client, connection_id, entry, data):
+        """Unbind all global hotkeys and rebind the show_hide
+        method. If more global hotkeys should be added, just connect
+        the gconf key to the watch system and add.
+        """
+        self.guake.hotkeys.unbind_all()
+        key = entry.get_value().get_string()
+        if not self.guake.hotkeys.bind(key, self.guake.show_hide):
+            raise ShowableError(_('key binding error'),
+                                _('Unable to bind global <b>%s</b> key') % key,
+                                -1)
 
     def reload_accelerators(self, *args):
         """Reassign an accel_group to guake main window and guake
@@ -350,15 +364,6 @@ class GConfKeyHandler(object):
         if key > 0:
             self.accel_group.connect_group(key, mask, gtk.ACCEL_VISIBLE,
                                            self.guake.accel_toggle_fullscreen)
-
-    def set_global(self):
-        if not globalhotkeys.bind(key, self.guake.show_hide):
-            raise ShowableError(_('key binding error'),
-                                _('Unable to bind global %s key') % key, -1)
-
-    def clear_global(self, accel):
-        globalhotkeys.unbind(accel)
-
 
 class GuakeTerminal(vte.Terminal):
     """Just a vte.Terminal with some properties already set.
@@ -467,7 +472,7 @@ class Guake(SimpleGladeApp):
         # loading and setting up configuration stuff
         GConfHandler(self)
         GConfKeyHandler(self)
-
+        self.hotkeys = globalhotkeys.GlobalHotkey()
         self.load_config()
         self.load_accel_map()
 
@@ -476,7 +481,7 @@ class Guake(SimpleGladeApp):
         label = gtk.accelerator_get_label(keyval, mask)
         filename = pixmapfile('guake-notification.png')
 
-        if not globalhotkeys.bind(key, self.show_hide):
+        if not self.hotkeys.bind(key, self.show_hide):
             notification = pynotify.Notification(
                 _('Guake!'),
                 _('A problem happened when binding <b>%s</b> key.\n'
