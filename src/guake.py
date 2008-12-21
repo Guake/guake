@@ -499,6 +499,13 @@ class Guake(SimpleGladeApp):
         self.visible = False
         self.fullscreen = False
 
+        # Flag to prevent guake hide when window_losefocus is true and
+        # user tries to use the context menu.
+        self.showing_context_menu = False
+        def hide_context_menu(menu):
+            self.showing_context_menu = False
+        self.get_widget('context-menu').connect('hide', hide_context_menu)
+
         self.window.set_geometry_hints(min_width=1, min_height=1)
         self.window.connect('focus-out-event', self.on_window_losefocus)
 
@@ -559,7 +566,7 @@ class Guake(SimpleGladeApp):
         the window_losefocus gconf variable is True.
         """
         value = self.client.get_bool(KEY('/general/window_losefocus'))
-        if value and self.visible:
+        if value and self.visible and not self.showing_context_menu:
             self.hide()
 
     def show_menu(self, *args):
@@ -574,6 +581,8 @@ class Guake(SimpleGladeApp):
         """
         if event.button != 3:
             return False
+
+        self.showing_context_menu = True
 
         guake_clipboard = gtk.clipboard_get()
         if not guake_clipboard.wait_is_text_available():
