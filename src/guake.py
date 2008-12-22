@@ -505,6 +505,7 @@ class Guake(SimpleGladeApp):
         def hide_context_menu(menu):
             self.showing_context_menu = False
         self.get_widget('context-menu').connect('hide', hide_context_menu)
+        self.get_widget('tab-menu').connect('hide', hide_context_menu)
 
         self.window.set_geometry_hints(min_width=1, min_height=1)
         self.window.connect('focus-out-event', self.on_window_losefocus)
