@@ -18,6 +18,12 @@ License along with this program; if not, write to the
 Free Software Foundation, Inc., 59 Temple Place - Suite 330,
 Boston, MA 02111-1307, USA.
 """
+
+__all__ = [
+    'name', 'version', 'image_dir', 'glade_dir', 'locale_dir',
+    'GCONF_PATH', 'KEY', 'TERMINAL_MATCH_EXPRS', 'TERMINAL_MATCH_TAGS',
+    ]
+
 name = 'guake'
 version = '@VERSION@'
 image_dir = '@DATADIR@/pixmaps/' + name
