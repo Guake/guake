@@ -495,8 +495,7 @@ class Guake(SimpleGladeApp):
         # reset to avoid problems of repeated tab names.
         self.tab_counter = 0
 
-        # holds visibility/fullscreen status =)
-        self.visible = False
+        # holds fullscreen status
         self.fullscreen = False
 
         # Flag to prevent guake hide when window_losefocus is true and
@@ -506,8 +505,6 @@ class Guake(SimpleGladeApp):
             self.showing_context_menu = False
         self.get_widget('context-menu').connect('hide', hide_context_menu)
         self.get_widget('tab-menu').connect('hide', hide_context_menu)
-
-        self.window.set_geometry_hints(min_width=1, min_height=1)
         self.window.connect('focus-out-event', self.on_window_losefocus)
 
         # resizer stuff
@@ -567,7 +564,8 @@ class Guake(SimpleGladeApp):
         the window_losefocus gconf variable is True.
         """
         value = self.client.get_bool(KEY('/general/window_losefocus'))
-        if value and self.visible and not self.showing_context_menu:
+        visible = window.get_property('visible')
+        if value and visible and not self.showing_context_menu:
             self.hide()
 
     def show_menu(self, *args):
@@ -622,7 +620,7 @@ class Guake(SimpleGladeApp):
     def show_hide(self, *args):
         """Toggles the main window visibility
         """
-        if not self.visible:
+        if not self.window.get_property('visible'):
             self.show()
             self.set_terminal_focus()
         else:
@@ -638,8 +636,6 @@ class Guake(SimpleGladeApp):
         # blank screen before adding the tab.
         if not self.term_list:
             self.add_tab()
-
-        self.visible = True
 
         width, height = self.get_final_window_size()
         self.window.resize(width, height)
@@ -664,7 +660,6 @@ class Guake(SimpleGladeApp):
         flag to False.
         """
         self.window.hide() # Don't use hide_all here!
-        self.visible = False
 
     def get_final_window_size(self):
         """Gets the final size of the main window of guake. The height
