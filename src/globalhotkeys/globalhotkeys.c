@@ -49,8 +49,8 @@ caller (char *key, gpointer userdata)
   retval = PyObject_CallObject (obj->callback, obj->params);
   if (!retval)
     PyErr_Print ();
-
-  Py_DECREF (retval);
+  else
+    Py_DECREF (retval);
   PyGILState_Release (threadstate);
 }
 
