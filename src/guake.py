@@ -598,6 +598,7 @@ class Guake(SimpleGladeApp):
         focus come back to the terminal.
         """
         if event.button == 3:
+            self.showing_context_menu = True
             self.selected_tab = target
             menu = self.get_widget('tab-menu')
             menu.popup(None, None, None, 3, event.get_time())
