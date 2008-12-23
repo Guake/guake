@@ -568,6 +568,17 @@ class Guake(SimpleGladeApp):
         if value and visible and not self.showing_context_menu:
             self.hide()
 
+            # There is a race condition between the focus-out-event and
+            # the global keybind that calls the self.show_hide method. I
+            # didn't investigate but this callback is allways called
+            # before the X keyboard event. So, to fix it temporarely, I
+            # did the following hammer:
+            def hack():
+                sleep(0.1)
+                self.client.notify(GKEY('show_hide'))
+            self.hotkeys.unbind_all()
+            start_new_thread(hack, ())
+
     def show_menu(self, *args):
         """Show the tray icon menu.
         """
