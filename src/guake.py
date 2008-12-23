@@ -507,6 +507,10 @@ class Guake(SimpleGladeApp):
         self.get_widget('tab-menu').connect('hide', hide_context_menu)
         self.window.connect('focus-out-event', self.on_window_losefocus)
 
+        # this line is important to resize the main window and make it
+        # smaller.
+        self.window.set_geometry_hints(min_width=1, min_height=1)
+
         # resizer stuff
         self.resizer.connect('motion-notify-event', self.on_resizer_drag)
 
@@ -549,15 +553,16 @@ class Guake(SimpleGladeApp):
         gconf.
         """
         (x, y), mod = event.device.get_state(widget.window)
+        if not 'GDK_BUTTON1_MASK' in mod.value_names:
+            return
 
         max_height = self.window.get_screen().get_height()
         percent = y / (max_height / 100)
-        
+
         if percent < 1:
             percent = 1
-            
-        if 'GDK_BUTTON1_MASK' in mod.value_names:
-            self.client.set_int(KEY('/general/window_size'), int(percent))
+
+        self.client.set_int(KEY('/general/window_size'), int(percent))
 
     def on_window_losefocus(self, window, event):
         """Hides terminal main window when it loses the focus and if
