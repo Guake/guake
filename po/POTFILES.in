@@ -6,3 +6,4 @@ data/guake.desktop.in
 src/dbusiface.py
 src/guake.py
 src/prefs.py
+src/common.py
