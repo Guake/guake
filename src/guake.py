@@ -937,8 +937,8 @@ class Guake(SimpleGladeApp):
         tab widgets and will call the function to kill interpreter
         forked by vte.
         """
-        self.notebook.remove_page(pagepos)
         self.tabs.get_children()[pagepos].destroy()
+        self.notebook.remove_page(pagepos)
         self.term_list.pop(pagepos).destroy()
         pid = self.pid_list.pop(pagepos)
 
