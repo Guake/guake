@@ -630,7 +630,7 @@ class Guake(SimpleGladeApp):
         """Hides the main window and creates an instance of the
         Preferences window.
         """
-        #self.hide()
+        self.hide()
         PrefsDialog().show()
 
     def show_hide(self, *args):
