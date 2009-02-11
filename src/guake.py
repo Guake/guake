@@ -903,7 +903,7 @@ class Guake(SimpleGladeApp):
         bnt.set_property('draw-indicator', False)
         bnt.connect('button-press-event', self.show_tab_menu)
         bnt.connect('clicked', lambda *x:
-                        self.notebook.set_current_page(last_added))
+                        self.notebook.set_current_page(self.notebook.page_num(box)))
         bnt.show()
 
         self.tabs.pack_start(bnt, expand=False, padding=1)
