@@ -869,14 +869,14 @@ class Guake(SimpleGladeApp):
         """Return all parameters to be passed to the fork_command
         method of a vte terminal.
         """
-        argv = []
+        argv = None
         shell = self.client.get_string(KEY('/general/default_shell')) or 'sh'
         login_shell = self.client.get_bool(KEY('/general/use_login_shell'))
         if login_shell:
-            argv.append('-')
+            argv = ['-']
 
         directory = self.get_current_dir()
-        return shell, argv, None, directory, login_shell, None, None
+        return shell, argv, None, directory, login_shell, False, False
 
     def add_tab(self, *args):
         """Adds a new tab to the terminal notebook.
