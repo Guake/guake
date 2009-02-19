@@ -248,7 +248,16 @@ class GConfHandler(object):
                 i.set_background_image_file(image)
                 i.set_background_transparent(False)
             else:
-                i.set_background_transparent(True)
+                """We need to clear the image if it's not set but there is
+                a bug in vte python bidnings which doesn't allow None to be
+                passed to set_background_image (C GTK function expects NULL).
+                The user will need to restart Guake after clearing the image.
+                i.set_background_image(None)
+                """
+                if self.guake.has_argb:
+                    i.set_background_transparent(False)
+                else:
+                    i.set_background_transparent(True)
 
     def bgopacity_changed(self, client, connection_id, entry, data):
         """If the gconf var style/background/opacity be changed, this
@@ -258,7 +267,8 @@ class GConfHandler(object):
         opacity = entry.value.get_int()
         for i in self.guake.term_list:
             i.set_background_saturation(opacity / 100.0)
-            i.set_opacity(opacity)
+            if self.guake.has_argb:
+                i.set_opacity(int(opacity / 100.0 * 65535))
 
     def backspace_changed(self, client, connection_id, entry, data):
         """If the gconf var compat_backspace be changed, this method
@@ -477,6 +487,15 @@ class Guake(SimpleGladeApp):
         self.toolbar = self.get_widget('toolbar')
         self.mainframe = self.get_widget('mainframe')
         self.resizer = self.get_widget('resizer')
+
+        # check and set ARGB for real transparency
+        screen = self.window.get_screen()
+        colormap = screen.get_rgba_colormap()
+        if colormap != None and screen.is_composited():
+            self.window.set_colormap(colormap)
+            self.has_argb = True
+        else:
+            self.has_argb = False
 
         # List of vte.Terminal widgets, it will be useful when needed
         # to get a widget by the current page in self.notebook
