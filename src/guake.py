@@ -268,7 +268,7 @@ class GConfHandler(object):
         for i in self.guake.term_list:
             i.set_background_saturation(opacity / 100.0)
             if self.guake.has_argb:
-                i.set_opacity(int(opacity / 100.0 * 65535))
+                i.set_opacity(65535 / 100 * abs(opacity - 100))
 
     def backspace_changed(self, client, connection_id, entry, data):
         """If the gconf var compat_backspace be changed, this method
