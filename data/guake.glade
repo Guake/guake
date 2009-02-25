@@ -137,6 +137,11 @@
       </widget>
     </child>
     <child>
+      <widget class="GtkSeparatorMenuItem" id="separador-mmenu">
+        <property name="visible">True</property>
+      </widget>
+    </child>
+    <child>
       <widget class="GtkImageMenuItem" id="quit-menuitem">
         <property name="visible">True</property>
         <property name="label">gtk-quit</property>
