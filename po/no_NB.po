@@ -1,0 +1,403 @@
+# Norwegian translation of Guake-terminal
+# Copyright (C) 2008 Håvard Havdal (haavard@wty.se)
+# This file is distributed under the same license as the guake package.
+# Håvard Havdal <haavard@wty.se>, 2008.
+# , fuzzy
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: guake 0.3.1\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2008-08-04 01:12-0300\n"
+"PO-Revision-Date: 2008-08-12 22:00-0300\n"
+"Last-Translator: Håvard Havdal <haavard@wty.se>\n"
+"Language-Team: translation@guake-terminal.org <http://trac.guake-terminal.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../data/about.glade.h:1
+msgid "About Guake"
+msgstr "Om Guake"
+
+#: ../data/about.glade.h:2
+msgid ""
+"Brazilian Portuguese\n"
+" * Lincoln de Sousa <lincoln@guake-terminal.org>\n"
+"\n"
+"Spanish\n"
+" * Adolfo González Blázquez <code@infinicode.org>\n"
+"\n"
+"Japanese\n"
+" * Nishio Futoshi <futoshi@momonga-linux.org>\n"
+"\n"
+"Polish\n"
+" * Mieszko Ślusarczyk <mieszkoslusarczyk@gmail.com>, 2008.\n"
+" * Piotr Drąg <piotrdrag@gmail.com>, 2008.\n"
+"\n"
+"Russian\n"
+" * Pavel Alexeev Pahan@Hubbitus.spb.su>"
+"\n"
+"Norwegian\n"
+" * Håvard Havdal <haavard@wty.se>"
+msgstr ""
+
+#: ../data/about.glade.h:17
+#, fuzzy
+msgid ""
+"Copyright 2007-2008 Lincoln de Sousa\n"
+"Copyright 2007 Gabriel Falcão"
+msgstr ""
+"Copyright 2007 Gabriel Falcão\n"
+"Copyright 2007 Lincoln de Sousa"
+
+#: ../data/about.glade.h:19
+msgid ""
+"Guake is an easy to access\n"
+"terminal based on fps games terminal"
+msgstr ""
+"Guake er en lett tilgjengelig\n"
+"terminal basert på fps spill terminal"
+
+#: ../data/about.glade.h:21
+msgid ""
+"Guake is free software; you can redistribute it and/or modify it under the "
+"terms of the GNU General Public License as published by the Free Software "
+"Foundation; either version 2 of the License, or (at your option) any later "
+"version.\n"
+"\n"
+"Guake is distributed in the hope that it will be useful, but WITHOUT ANY "
+"WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS "
+"FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more "
+"details.\n"
+"\n"
+"You should have received a copy of the GNU General Public License along with "
+"Guake; if not, write to the Free Software Foundation, Inc., 51 Franklin St, "
+"Fifth Floor, Boston, MA  02110-1301 USA\n"
+msgstr ""
+"Guake er fri programvare; du kan redistribuere og/eller modifisere den under "
+"betingelsene til GNU General Public License som er publisert av Free Software "
+"Foundation; enten versjon 2 av lisensen, eller (etter din mening) enhver "
+"senere versjon.\n"
+"\n"
+"Guake distribueres i det håp at det vil være nyttig, men UTEN NOEN "
+"GARANTI; uten selv de underforståtte garantier om salgbarhet eller anvendelighet "
+"FOR ET BESTEMT FORMÅL. See the GNU General Public License for flere "
+"detaljer.\n"
+"\n"
+"Du bør ha mottatt en kopi av GNU General Public License sammen med "
+"Guake; hvis ikke, skriv til Free Software Foundation, Inc., 51 Fanklin St, "
+"Fifth Floor, Boston, MA 02110-1301 USA\n"
+
+#: ../data/about.glade.h:27
+msgid "http://guake-terminal.org"
+msgstr "http://guake-terminal.org"
+
+#: ../data/guake.glade.h:1
+msgid "Add a new tab"
+msgstr "Legg til fane"
+
+#: ../data/guake.glade.h:2
+msgid "Close"
+msgstr "Lukk"
+
+#: ../data/guake.glade.h:3
+msgid "Close Tab"
+msgstr "Lukk fane"
+
+#: ../data/guake.glade.h:4 ../src/guake.py:597 ../src/guake.py:602
+msgid "Guake!"
+msgstr "Guake!"
+
+#: ../data/guake.glade.h:5
+msgid "Rename"
+msgstr "Gi nytt navn"
+
+#: ../data/prefs.glade.h:1
+msgid "<b>Background</b>"
+msgstr "<b>Bakgrunn</b>"
+
+#: ../data/prefs.glade.h:2
+msgid "<b>Fonts</b>"
+msgstr "<b>Fonter</b>"
+
+#: ../data/prefs.glade.h:3
+msgid "<b>Keyboard compatibility</b>"
+msgstr "<b>Tastatur kompabilitet</b>"
+
+#: ../data/prefs.glade.h:4
+msgid "<b>Shell</b>"
+msgstr "<b>Shell</b>"
+
+#: ../data/prefs.glade.h:5
+msgid "<b>Tab position</b>"
+msgstr "<b>Fane posisjon</b>"
+
+#: ../data/prefs.glade.h:6
+msgid "<b>Window behavior</b>"
+msgstr "<b>Vindu oppførsel</b>"
+
+#: ../data/prefs.glade.h:7
+msgid "<b>Window size</b>"
+msgstr "<b>Vindu størrelse</b>"
+
+#: ../data/prefs.glade.h:8
+msgid ""
+"<small><i><b>Note:</b> These options may cause some applications to behave "
+"incorrectly.  They are only here to allow you to work around certain "
+"applications and operating systems that expect different terminal behavior.</"
+"i></small>"
+msgstr ""
+"<small><i><b>Merk:</b> Dette er alternativer som kan forårsake noen applikasjoner "
+"til å oppføre seg unøyaktig. De er kun her for å tillate deg til å arbeide rundt "
+"visse applikasjoner og operativ systemer som forventer forskjellig terminaloppførsel."
+"</i></small>"
+
+#: ../data/prefs.glade.h:9
+msgid ""
+"<span color=\"black\">Customize behavior and appearance of Guake!</span>"
+msgstr "<span color=\"black\">Skreddersy oppførselen og utseende til Guake!</span>"
+
+#: ../data/prefs.glade.h:10
+msgid "<span size=\"18000\" color=\"black\"><b>Guake properties</b></span>"
+msgstr "<span size=\"18000\" color=\"black\"><b>Guake egenskaper</b></span>"
+
+#: ../data/prefs.glade.h:11
+msgid ""
+"ASCII DEL\n"
+"Escape sequence\n"
+"Control-H"
+msgstr ""
+"ASCII DEL\n"
+"Escape sequence\n"
+"Control-H"
+
+#: ../data/prefs.glade.h:14
+msgid "Background Transparent:"
+msgstr "Gjennomsiktig bakgrunn:"
+
+#: ../data/prefs.glade.h:15
+msgid "Bottom"
+msgstr "Bunn"
+
+#: ../data/prefs.glade.h:16
+msgid "Choose some color"
+msgstr "Velg en farge"
+
+#: ../data/prefs.glade.h:17
+msgid "Choose some font"
+msgstr "Velg en font"
+
+#: ../data/prefs.glade.h:18
+msgid "Color:"
+msgstr "Farge:"
+
+#: ../data/prefs.glade.h:19
+msgid "Compatibility"
+msgstr "Kompatibilitet"
+
+#: ../data/prefs.glade.h:20
+msgid "Default interpreter:"
+msgstr "Standard tolk:"
+
+#: ../data/prefs.glade.h:21
+msgid "Desaturation:"
+msgstr "Synlighet:"
+
+#: ../data/prefs.glade.h:22
+msgid "General"
+msgstr "Generell"
+
+#: ../data/prefs.glade.h:23
+msgid "Guake Preferences"
+msgstr "Guake egenskaper"
+
+#: ../data/prefs.glade.h:24
+msgid "Hide on lose focus"
+msgstr "Skjul ved mistet fokus"
+
+#: ../data/prefs.glade.h:25
+msgid "Image:"
+msgstr "Bilde:"
+
+#: ../data/prefs.glade.h:26
+msgid "Keyboard shortcuts"
+msgstr "Hurtigtaster"
+
+#: ../data/prefs.glade.h:27
+msgid "Scrollback lines:"
+msgstr "Scrollback linjer:"
+
+#: ../data/prefs.glade.h:28
+msgid "Show scrollbar"
+msgstr "Vis scrollbar"
+
+#: ../data/prefs.glade.h:29
+msgid "Stay on top"
+msgstr "Alltid øverst"
+
+#: ../data/prefs.glade.h:30
+msgid "Style"
+msgstr "Stil"
+
+#: ../data/prefs.glade.h:31
+msgid "Style:"
+msgstr "Stil:"
+
+#: ../data/prefs.glade.h:32
+msgid "Top"
+msgstr "Topp"
+
+#: ../data/prefs.glade.h:33
+msgid "_Backspace key generates:"
+msgstr "_Tilbaketast genererer:"
+
+#: ../data/prefs.glade.h:34
+msgid "_Delete key generates:"
+msgstr "_Slettetast genererer:"
+
+#: ../data/prefs.glade.h:35
+msgid "_Reset Compatibility Options to Defaults"
+msgstr "_Tilbakestill kompabilitet alternativer til standard"
+
+#: ../src/dbusiface.py:63
+msgid "Could not connect to dbus session bus. dbus will be unavailable.\n"
+msgstr "Kunne ikke koble til dbus sesjonsbus. Dbus vil være utilgjengelig.\n"
+
+#: ../src/guake.py:69
+msgid "Toggle terminal visibility"
+msgstr "Vis terminal"
+
+#: ../src/guake.py:71
+#, fuzzy
+msgid "New tab"
+msgstr "Ny fane"
+
+#: ../src/guake.py:72
+#, fuzzy
+msgid "Close tab"
+msgstr "Lukk fane"
+
+#: ../src/guake.py:73
+msgid "Go to previous tab"
+msgstr "Go til forrige fane"
+
+#: ../src/guake.py:74
+msgid "Go to next tab"
+msgstr "Gå til neste fane"
+
+#: ../src/guake.py:75
+msgid "Copy text to clipboard"
+msgstr "Kopier tekst"
+
+#: ../src/guake.py:76
+msgid "Paste text from clipboard"
+msgstr "Lim inn tekst"
+
+#: ../src/guake.py:77
+msgid "Toggle Fullscreen"
+msgstr "Endre til fullskjerm"
+
+#: ../src/guake.py:153
+msgid "Action"
+msgstr "Handling"
+
+#: ../src/guake.py:163
+msgid "Shortcut"
+msgstr "Snarvei"
+
+#: ../src/guake.py:312
+msgid "Global hotkeys"
+msgstr "Globale hurtigtaster"
+
+#: ../src/guake.py:330
+msgid "Local hotkeys"
+msgstr "Lokale hurtigtaster"
+
+#: ../src/guake.py:464
+#, python-format
+msgid "The shortcut \"%s\" is already in use."
+msgstr "Hurtigtasten er allerede i bruk"
+
+#: ../src/guake.py:465
+msgid "Error setting keybinding."
+msgstr "Kunne ikke lagre hurtigtasten"
+
+#: ../src/guake.py:479
+#, python-format
+msgid ""
+"The shortcut \"%s\" cannot be used because it will become impossible to type "
+"using this key.\n"
+"\n"
+"Please try with a key such as Control, Alt or Shift at the same time.\n"
+msgstr ""
+"Hurtigtast \"%s\" kan ikke bli benyttet, det vil bli umulig å skrive "
+"ved bruk av denne tasten.\n"
+"\n"
+"Vennligst prøv med en tast som for eksempel Control, Alt eller Shift.\n"
+
+#: ../src/guake.py:500
+msgid "key binding error"
+msgstr "Hurtigtast error"
+
+#: ../src/guake.py:501
+#, python-format
+msgid "Unable to bind %s key"
+msgstr "Kunne ikke lagre %s tasten"
+
+#: ../src/guake.py:598
+#, python-format
+msgid ""
+"A problem happened when binding <b>%s</b> key.\n"
+"Please use guake properties form to choose another key"
+msgstr ""
+"Et problem har oppstått under lagringen av <b>%s</b> tasten.\n"
+"Vennligst benytt guake egenskaper for å velge en annen tast"
+
+#: ../src/guake.py:603
+#, python-format
+msgid ""
+"Guake is already running,\n"
+"press <b>%s</b> to use it."
+msgstr ""
+"Guake kjører allerede,\n"
+"trykk <b>%s</b> for å bruke den."
+
+#: ../src/guake.py:1026
+#, python-format
+msgid "Terminal %s"
+msgstr "Terminal %s"
+
+#: ../src/guake.py:1129
+msgid "Toggles the visibility of the terminal window"
+msgstr "Endrer synligheten av terminalvinduet"
+
+#: ../src/guake.py:1133
+#, fuzzy
+msgid "Shows Guake preference window"
+msgstr "Viser Guake egenskapervinduet"
+
+#: ../src/guake.py:1137
+msgid "Shows Guake's about info"
+msgstr "Viser Guakes om informasjon"
+
+#: ../src/guake.py:1141
+msgid "Says to Guake go away =("
+msgstr "Sier til Guake at den skal gå vekk =("
+
+#: ../src/guake.py:1179
+msgid "Guake can not init!"
+msgstr "Guake kan ikke init!"
+
+#: ../src/guake.py:1180
+msgid ""
+"Gconf Error.\n"
+"Have you installed <b>guake.schemas</b> properlly?"
+msgstr ""
+"Gconf error.\n"
+"Har du installert <b>guake.schemas</b> ordentlig?"
+
+#: ../src/statusicon.py:64
+#, fuzzy
+msgid "Guake-Terminal"
+msgstr "http://guake-terminal.org"
