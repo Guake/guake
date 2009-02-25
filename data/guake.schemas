@@ -267,6 +267,18 @@
         </schema>
 
         <schema>
+            <key>/schemas/apps/guake/keybindings/local/quit</key>
+            <applyto>/apps/guake/keybindings/local/quit</applyto>
+            <owner>guake</owner>
+            <type>string</type>
+            <default>&lt;Control&gt;&lt;Shift&gt;q</default>
+            <locale name="C">
+                <short>Quit</short>
+                <long>Quit Guake.</long>
+            </locale>
+        </schema>
+
+        <schema>
             <key>/schemas/apps/guake/keybindings/local/new_tab</key>
             <applyto>/apps/guake/keybindings/local/new_tab</applyto>
             <owner>guake</owner>

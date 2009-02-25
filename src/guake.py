@@ -303,6 +303,7 @@ class GConfKeyHandler(object):
 
         keys = ['toggle_fullscreen', 'new_tab', 'close_tab', 'rename_tab',
                 'previous_tab', 'next_tab', 'clipboard_copy', 'clipboard_paste',
+                'quit',
                 ]
         for key in keys:
             notify_add(LKEY(key), self.reload_accelerators)
@@ -336,6 +337,12 @@ class GConfKeyHandler(object):
         and adds to the main accel_group.
         """
         gets = lambda x:self.client.get_string(LKEY(x))
+        key, mask = gtk.accelerator_parse(gets('quit'))
+        if key > 0:
+            gtk.accel_map_change_entry('<Guake>/Quit', key, mask, True)
+            ctxbtn = self.guake.get_widget('context_close')
+            ctxbtn.set_accel_path('<Guake>/Quit')
+
         key, mask = gtk.accelerator_parse(gets('new_tab'))
         if key > 0:
             self.accel_group.connect_group(key, mask, gtk.ACCEL_VISIBLE,
@@ -553,7 +560,6 @@ class Guake(SimpleGladeApp):
         GConfKeyHandler(self)
         self.hotkeys = globalhotkeys.GlobalHotkey()
         self.load_config()
-        self.load_accel_map()
 
         key = self.client.get_string(GKEY('show_hide'))
         keyval, mask = gtk.accelerator_parse(key)
@@ -749,14 +755,6 @@ class Guake(SimpleGladeApp):
         self.client.notify(KEY('/style/background/image'))
         self.client.notify(KEY('/style/background/opacity'))
         self.client.notify(KEY('/general/use_default_font'))
-
-    def load_accel_map(self):
-        """Sets the accel map of quit context option.
-        """
-        key, mask = gtk.accelerator_parse('<Control>q')
-        gtk.accel_map_add_entry('<Guake>/Quit', key, mask)
-        btn = self.get_widget('context_close')
-        btn.set_accel_path('<Guake>/Quit')
 
     def accel_add(self, *args):
         """Callback to add a new tab. Called by the accel key.

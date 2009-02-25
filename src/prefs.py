@@ -54,6 +54,8 @@ HOTKEYS = [
                'label': _('Toggle Guake visibility')},
               {'key': LKEY('toggle_fullscreen'),
                'label': _('Toggle Fullscreen')},
+              {'key': LKEY('quit'),
+               'label': _('Quit')},
               ]},
 
     {'label': _('Tab management'),
