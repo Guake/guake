@@ -39,6 +39,7 @@ DEPENDENCIES
  * python-vte
  * python-notify
  * python-dbus
+ * python-gconf
 
 To build guake, you will need the following packages too:
  * python-dev
