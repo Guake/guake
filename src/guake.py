@@ -519,6 +519,16 @@ class Guake(SimpleGladeApp):
         # holds fullscreen status
         self.fullscreen = False
 
+        # double click stuff
+        def double_click(hbox, event):
+            """Handles double clicks on tabs area and when receive
+            one, calls add_tab.
+            """
+            if event.button == 1 and event.type == gtk.gdk._2BUTTON_PRESS:
+                self.add_tab()
+        evtbox = self.get_widget('event-tabs')
+        evtbox.connect('button-press-event', double_click)
+
         # Flag to prevent guake hide when window_losefocus is true and
         # user tries to use the context menu.
         self.showing_context_menu = False

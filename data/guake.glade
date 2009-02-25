@@ -42,9 +42,15 @@
               </packing>
             </child>
             <child>
-              <widget class="GtkHBox" id="hbox-tabs">
+              <widget class="GtkEventBox" id="event-tabs">
                 <property name="visible">True</property>
-              </widget>
+                <property name="events">GDK_BUTTON_PRESS_MASK | GDK_STRUCTURE_MASK</property>
+                <child>
+                  <widget class="GtkHBox" id="hbox-tabs">
+                    <property name="visible">True</property>
+                  </widget>
+                  </child>
+                </widget>
               <packing>
                 <property name="position">1</property>
               </packing>
