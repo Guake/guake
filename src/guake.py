@@ -58,10 +58,6 @@ class AboutDialog(SimpleGladeApp):
                                           root='aboutdialog')
         dialog = self.get_widget('aboutdialog')
 
-        # the terminal window can be opened and the user *must* see
-        # this window
-        dialog.set_keep_above(True)
-
         # images
         ipath = pixmapfile('guake-notification.png')
         img = gtk.gdk.pixbuf_new_from_file(ipath)
@@ -916,6 +912,7 @@ class Guake(SimpleGladeApp):
         box.terminal.connect('child-exited', self.on_terminal_exited, box)
         box.show()
 
+        pagenum = self.notebook.page_num(box)
         last_added = len(self.term_list)
         self.term_list.append(box.terminal)
 
@@ -932,7 +929,7 @@ class Guake(SimpleGladeApp):
         bnt.set_property('draw-indicator', False)
         bnt.connect('button-press-event', self.show_tab_menu)
         bnt.connect('clicked', lambda *x:
-                        self.notebook.set_current_page(self.notebook.page_num(box)))
+                        self.notebook.set_current_page(pagenum))
         bnt.show()
 
         self.tabs.pack_start(bnt, expand=False, padding=1)
