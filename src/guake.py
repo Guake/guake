@@ -912,7 +912,6 @@ class Guake(SimpleGladeApp):
         box.terminal.connect('child-exited', self.on_terminal_exited, box)
         box.show()
 
-        pagenum = self.notebook.page_num(box)
         last_added = len(self.term_list)
         self.term_list.append(box.terminal)
 
@@ -928,15 +927,17 @@ class Guake(SimpleGladeApp):
         bnt.set_property('can-focus', False)
         bnt.set_property('draw-indicator', False)
         bnt.connect('button-press-event', self.show_tab_menu)
-        bnt.connect('clicked', lambda *x:
-                        self.notebook.set_current_page(pagenum))
+        bnt.connect('clicked',
+                    lambda *x: self.notebook.set_current_page(
+                        self.notebook.page_num(box)
+                    ))
         bnt.show()
 
         self.tabs.pack_start(bnt, expand=False, padding=1)
         self.tab_counter += 1
 
         self.notebook.append_page(box, None)
-        self.notebook.set_current_page(last_added)
+        self.notebook.set_current_page(self.notebook.page_num(box))
         self.load_config()
 
     def delete_tab(self, pagepos, kill=True):
