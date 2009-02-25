@@ -18,9 +18,9 @@
    sodipodi:docname="guake.svg"
    sodipodi:docbase="/home/gabriel/Desktop/guakeApplet/buttons"
    inkscape:output_extension="org.inkscape.output.svg.inkscape"
-   inkscape:export-filename="/home/lincoln/Work/projects/guake/guake-python/guake/data/pixmaps/guake-notification.png"
-   inkscape:export-xdpi="213.3768"
-   inkscape:export-ydpi="213.3768"
+   inkscape:export-filename="/home/lincoln/Work/projects/guake/guake/data/pixmaps/guake-tray.png"
+   inkscape:export-xdpi="88.910004"
+   inkscape:export-ydpi="88.910004"
    sodipodi:modified="TRUE">
   <defs
      id="defs4">
@@ -6594,7 +6594,7 @@
      inkscape:current-layer="layer1"
      width="20px"
      height="20px"
-     inkscape:window-width="1280"
+     inkscape:window-width="1272"
      inkscape:window-height="753"
      inkscape:window-x="0"
      inkscape:window-y="25"
@@ -6615,16 +6615,6 @@
      inkscape:groupmode="layer"
      id="layer1"
      transform="translate(-225.95829,-422.64517)">
-    <path
-       transform="matrix(0.636099,0,0,0.2834605,220.11102,427.50208)"
-       d="M 40.481863 36.421127 A 15.644737 8.3968935 0 1 1  9.1923885,36.421127 A 15.644737 8.3968935 0 1 1  40.481863 36.421127 z"
-       sodipodi:ry="8.3968935"
-       sodipodi:rx="15.644737"
-       sodipodi:cy="36.421127"
-       sodipodi:cx="24.837126"
-       id="path8660"
-       style="opacity:0.69387758;color:#000000;fill:url(#radialGradient2637);fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;marker:none;marker-start:none;marker-mid:none;marker-end:none;stroke-miterlimit:10;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;visibility:visible;display:inline;overflow:visible"
-       sodipodi:type="arc" />
     <rect
        style="fill:url(#linearGradient5068);fill-opacity:1;fill-rule:evenodd;stroke:url(#linearGradient5070);stroke-width:0.8;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
        id="rect1314"

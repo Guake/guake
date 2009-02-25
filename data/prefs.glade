@@ -15,6 +15,7 @@
             <child>
               <widget class="GtkEventBox" id="eventbox-title">
                 <property name="visible">True</property>
+                <property name="height_request">70</property>
                 <child>
                   <widget class="GtkHBox" id="hbox29">
                     <property name="visible">True</property>
