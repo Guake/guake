@@ -324,6 +324,8 @@ class GConfKeyHandler(object):
         """Reassign an accel_group to guake main window and guake
         context menu and calls the load_accelerators method.
         """
+        if self.accel_group:
+            self.guake.window.remove_accel_group(self.accel_group)
         self.accel_group = gtk.AccelGroup()
         self.guake.window.add_accel_group(self.accel_group)
         self.guake.context_menu.set_accel_group(self.accel_group)
