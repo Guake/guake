@@ -870,6 +870,13 @@ class Guake(SimpleGladeApp):
 
         self.set_terminal_focus()
 
+    def on_close_activate(self, *args):
+        """Tab context menu close handler
+        """
+        tabs = self.tabs.get_children()
+        pagepos = tabs.index(self.selected_tab)
+        self.delete_tab(pagepos)
+
     # -- tab related functions --
 
     def close_tab(self, *args):
