@@ -221,6 +221,7 @@ class GConfHandler(object):
         for i in self.guake.term_list:
             i.set_color_dim(fgcolor)
             i.set_color_foreground(fgcolor)
+            i.set_color_bold(fgcolor)
 
     def bgcolor_changed(self, client, connection_id, entry, data):
         """If the gconf var style/background/color be changed, this
