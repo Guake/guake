@@ -902,14 +902,23 @@ class Guake(SimpleGladeApp):
         """Return all parameters to be passed to the fork_command
         method of a vte terminal.
         """
-        argv = None
-        shell = self.client.get_string(KEY('/general/default_shell')) or 'sh'
+        # use dictionary to pass named params to work around command
+        # parameter in fork_command not accepting None as argument.
+        # When we pass None as command, vte starts the default user shell.
+        params = {}
+
+        shell = self.client.get_string(KEY('/general/default_shell'))
+        if shell and os.path.exists(shell):
+            params['command'] = shell
+
         login_shell = self.client.get_bool(KEY('/general/use_login_shell'))
         if login_shell:
-            argv = ['-']
+            params['argv'] = ['-']
 
-        directory = self.get_current_dir()
-        return shell, argv, None, directory, login_shell, False, False
+        params['directory'] = self.get_current_dir()
+        params['loglastlog'] = login_shell
+
+        return params
 
     def add_tab(self, *args):
         """Adds a new tab to the terminal notebook.
@@ -923,7 +932,7 @@ class Guake(SimpleGladeApp):
         last_added = len(self.term_list)
         self.term_list.append(box.terminal)
 
-        pid = box.terminal.fork_command(*self.get_fork_params())
+        pid = box.terminal.fork_command(**self.get_fork_params())
         self.pid_list.append(pid)
 
         # Adding a new radio button to the tabbar

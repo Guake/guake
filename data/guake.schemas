@@ -6,11 +6,12 @@
             <applyto>/apps/guake/general/default_shell</applyto>
             <owner>guake</owner>
             <type>string</type>
-            <default>/bin/bash</default>
+            <default></default>
             <locale name="C">
                 <short>Path to the default shell.</short>
-                <long>Path to the default shell. If an invalid shell is placed
-                here, guake will fallback to bash.</long>
+                <long>Path to the default shell. Set to empty to
+                use default user shell. If invalid path is set
+                here, guake will fallback to user shell.</long>
             </locale>
         </schema>
 

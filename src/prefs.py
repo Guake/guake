@@ -38,6 +38,9 @@ PYTHONS = re.compile('^python\d\.\d$')
 # rest of the combo too.
 SHELLS_FILE = '/etc/shells'
 
+# string to show in prefereces dialog for user shell option
+USER_SHELL_VALUE = _('<user shell>')
+
 # translating our types to vte types
 ERASE_BINDINGS = {'ASCII DEL': 'ascii-delete',
                   'Escape sequence': 'delete-sequence',
@@ -98,7 +101,12 @@ class PrefsCallbacks(object):
         if not citer:
             return
         shell = combo.get_model().get_value(citer, 0)
-        self.client.set_string(KEY('/general/default_shell'), shell)
+        # we unset the value (restore to default) when user chooses to use
+        # user shell as guake shell interpreter.
+        if shell == USER_SHELL_VALUE:
+            self.client.unset(KEY('/general/default_shell'))
+        else:
+            self.client.set_string(KEY('/general/default_shell'), shell)
 
     def on_use_login_shell_toggled(self, chk):
         """Changes the activity of use_login_shell in gconf
@@ -358,8 +366,11 @@ class PrefsDialog(SimpleGladeApp):
         """
         # default_shell
         combo = self.get_widget('default_shell')
+        # get the value for defualt shell. If unset, set to USER_SHELL_VALUE.
+        value = self.client.get_string(KEY('/general/default_shell')) or \
+                USER_SHELL_VALUE
         for i in combo.get_model():
-            if i[0] == self.client.get_string(KEY('/general/default_shell')):
+            if i[0] == value:
                 combo.set_active_iter(i.iter)
 
         # login shell
@@ -449,6 +460,8 @@ class PrefsDialog(SimpleGladeApp):
         fill the default_shell combobox.
         """
         cb = self.get_widget('default_shell')
+        # append user shell as first option
+        cb.append_text(USER_SHELL_VALUE)
         if os.path.exists(SHELLS_FILE):
             lines = open(SHELLS_FILE).readlines()
             for i in lines:
