@@ -702,8 +702,9 @@ class Guake(SimpleGladeApp):
         self.window.window.focus(time)
 
         # This is here because vte color configuration works only
-        # after the be widget shown.
+        # after the widget is shown.
         self.client.notify(KEY('/style/font/color'))
+        self.client.notify(KEY('/style/background/color'))
 
     def hide(self):
         """Hides the main window of the terminal and sets the visible
