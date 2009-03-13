@@ -1,3 +1,9 @@
+2009-03-13  Lincoln de Sousa  <lincoln@alfaiati.net>
+
+	* de.po: Added.
+	* {es,ja,pl,no_NB,pt_BR,ru_RU}.po: Updated because of about.glade
+	a change.
+
 2008-08-04  Lincoln de Sousa  <lincoln@minaslivre.org>
 
 	* POTFILES.in: Removing eggcellrendererkeys.c.

@@ -25,21 +25,13 @@ You should have received a copy of the GNU General Public License along with Gua
     <property name="authors">Lincoln de Sousa &lt;lincoln@guake-terminal.org&gt; (Maintainer)
 Gabriel Falcao &lt;gabriel@guake-terminal.org&gt;</property>
     <property name="documenters"></property>
-    <property name="translator_credits" translatable="yes">Brazilian Portuguese
- * Lincoln de Sousa &lt;lincoln@guake-terminal.org&gt;
-
-Spanish
- * Adolfo Gonz&#xE1;lez Bl&#xE1;zquez &lt;code@infinicode.org&gt;
-
-Japanese
- * Nishio Futoshi &lt;futoshi@momonga-linux.org&gt;
-
-Polish
- * Mieszko &#x15A;lusarczyk &lt;mieszkoslusarczyk@gmail.com&gt;, 2008.
- * Piotr Dr&#x105;g &lt;piotrdrag@gmail.com&gt;, 2008.
-
-Russian
- * Pavel Alexeev Pahan@Hubbitus.spb.su&gt;</property>
+    <property name="translator_credits" translatable="yes">Adolfo González Blázquez &lt;code@infinicode.org&gt; Spanish
+Lincoln de Sousa &lt;lincoln@guake-terminal.org&gt; Brazilian Portuguese
+Markus Majer &lt;mm@mpathy.de&gt; German
+Mieszko Ślusarczyk &lt;mieszkoslusarczyk@gmail.com&gt; Polish
+Nishio Futoshi &lt;futoshi@momonga-linux.org&gt; Japanese
+Pavel Alexeev &lt;Pahan@Hubbitus.spb.su&gt; Russian
+Piotr Drąg &lt;piotrdrag@gmail.com&gt; Polish</property>
     <property name="artists">Gabriel Falcao &lt;gabriel@guake-terminal.org&gt;</property>
     <property name="wrap_license">True</property>
     <signal name="response" handler="gtk_widget_destroy" object="aboutdialog"/>
