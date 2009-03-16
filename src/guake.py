@@ -336,9 +336,8 @@ class GConfKeyHandler(object):
         gets = lambda x:self.client.get_string(LKEY(x))
         key, mask = gtk.accelerator_parse(gets('quit'))
         if key > 0:
-            gtk.accel_map_change_entry('<Guake>/Quit', key, mask, True)
-            ctxbtn = self.guake.get_widget('context_close')
-            ctxbtn.set_accel_path('<Guake>/Quit')
+            self.accel_group.connect_group(key, mask, gtk.ACCEL_VISIBLE,
+                                           gtk.main_quit)
 
         key, mask = gtk.accelerator_parse(gets('new_tab'))
         if key > 0:
