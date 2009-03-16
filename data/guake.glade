@@ -1,5 +1,7 @@
 <?xml version="1.0"?>
 <glade-interface>
+  <!-- interface-requires gtk+ 2.10 -->
+  <!-- interface-naming-policy project-wide -->
   <widget class="GtkWindow" id="window-root">
     <property name="has_focus">True</property>
     <property name="title" translatable="yes">Guake!</property>
@@ -7,7 +9,7 @@
     <property name="skip_pager_hint">True</property>
     <property name="urgency_hint">True</property>
     <property name="decorated">False</property>
-    <property name="gravity">GDK_GRAVITY_STATIC</property>
+    <property name="gravity">static</property>
     <child>
       <widget class="GtkVBox" id="mainframe">
         <property name="visible">True</property>
@@ -17,18 +19,21 @@
             <property name="can_focus">True</property>
             <property name="has_focus">True</property>
             <property name="is_focus">True</property>
-            <property name="tab_pos">GTK_POS_BOTTOM</property>
+            <property name="tab_pos">bottom</property>
             <property name="show_tabs">False</property>
             <property name="show_border">False</property>
             <property name="enable_popup">True</property>
             <signal name="switch_page" handler="select_current_tab"/>
           </widget>
+          <packing>
+            <property name="position">0</property>
+          </packing>
         </child>
         <child>
           <widget class="GtkHBox" id="toolbar">
             <property name="visible">True</property>
             <property name="events">GDK_EXPOSURE_MASK | GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_MOTION_MASK | GDK_BUTTON1_MOTION_MASK | GDK_BUTTON2_MOTION_MASK | GDK_BUTTON3_MOTION_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK | GDK_KEY_PRESS_MASK | GDK_KEY_RELEASE_MASK | GDK_ENTER_NOTIFY_MASK | GDK_LEAVE_NOTIFY_MASK | GDK_FOCUS_CHANGE_MASK | GDK_STRUCTURE_MASK | GDK_PROPERTY_CHANGE_MASK | GDK_VISIBILITY_NOTIFY_MASK | GDK_PROXIMITY_IN_MASK | GDK_PROXIMITY_OUT_MASK | GDK_SUBSTRUCTURE_MASK | GDK_SCROLL_MASK</property>
-            <property name="extension_events">GDK_EXTENSION_EVENTS_ALL</property>
+            <property name="extension_events">all</property>
             <property name="no_show_all">True</property>
             <child>
               <widget class="GtkImage" id="image1">
@@ -39,6 +44,7 @@
                 <property name="expand">False</property>
                 <property name="fill">False</property>
                 <property name="padding">6</property>
+                <property name="position">0</property>
               </packing>
             </child>
             <child>
@@ -49,8 +55,8 @@
                   <widget class="GtkHBox" id="hbox-tabs">
                     <property name="visible">True</property>
                   </widget>
-                  </child>
-                </widget>
+                </child>
+              </widget>
               <packing>
                 <property name="position">1</property>
               </packing>
@@ -61,8 +67,7 @@
                 <property name="can_focus">True</property>
                 <property name="receives_default">True</property>
                 <property name="tooltip" translatable="yes">Add a new tab</property>
-                <property name="relief">GTK_RELIEF_NONE</property>
-                <property name="response_id">0</property>
+                <property name="relief">none</property>
                 <signal name="clicked" handler="add_tab"/>
                 <child>
                   <widget class="GtkImage" id="image2">
@@ -120,8 +125,8 @@
     <property name="visible">True</property>
     <child>
       <widget class="GtkImageMenuItem" id="prefs-menuitem">
-        <property name="visible">True</property>
         <property name="label">gtk-preferences</property>
+        <property name="visible">True</property>
         <property name="use_underline">True</property>
         <property name="use_stock">True</property>
         <signal name="activate" handler="show_prefs"/>
@@ -129,8 +134,8 @@
     </child>
     <child>
       <widget class="GtkImageMenuItem" id="about-menuitem">
-        <property name="visible">True</property>
         <property name="label">gtk-about</property>
+        <property name="visible">True</property>
         <property name="use_underline">True</property>
         <property name="use_stock">True</property>
         <signal name="activate" handler="show_about"/>
@@ -143,11 +148,17 @@
     </child>
     <child>
       <widget class="GtkImageMenuItem" id="quit-menuitem">
+        <property name="label" translatable="yes">Quit</property>
         <property name="visible">True</property>
-        <property name="label">gtk-quit</property>
-        <property name="use_underline">True</property>
-        <property name="use_stock">True</property>
+        <property name="use_stock">False</property>
         <signal name="activate" handler="gtk_main_quit"/>
+        <child internal-child="image">
+          <widget class="GtkImage" id="tray_quit_icon">
+            <property name="visible">True</property>
+            <property name="stock">gtk-quit</property>
+            <property name="icon-size">1</property>
+          </widget>
+        </child>
       </widget>
     </child>
   </widget>
@@ -156,9 +167,8 @@
     <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
     <child>
       <widget class="GtkImageMenuItem" id="context_preferences">
-        <property name="visible">True</property>
         <property name="label">gtk-preferences</property>
-        <property name="use_underline">True</property>
+        <property name="visible">True</property>
         <property name="use_stock">True</property>
         <signal name="activate" handler="show_prefs"/>
       </widget>
@@ -170,20 +180,32 @@
     </child>
     <child>
       <widget class="GtkImageMenuItem" id="context_copy">
+        <property name="label" translatable="yes">Copy</property>
         <property name="visible">True</property>
-        <property name="label">gtk-copy</property>
-        <property name="use_underline">True</property>
-        <property name="use_stock">True</property>
+        <property name="use_stock">False</property>
         <signal name="activate" handler="accel_copy_clipboard"/>
+        <child internal-child="image">
+          <widget class="GtkImage" id="copy_icon">
+            <property name="visible">True</property>
+            <property name="stock">gtk-copy</property>
+            <property name="icon-size">1</property>
+          </widget>
+        </child>
       </widget>
     </child>
     <child>
       <widget class="GtkImageMenuItem" id="context_paste">
+        <property name="label" translatable="yes">Paste</property>
         <property name="visible">True</property>
-        <property name="label">gtk-paste</property>
-        <property name="use_underline">True</property>
-        <property name="use_stock">True</property>
+        <property name="use_stock">False</property>
         <signal name="activate" handler="accel_paste_clipboard"/>
+        <child internal-child="image">
+          <widget class="GtkImage" id="paste_icon">
+            <property name="visible">True</property>
+            <property name="stock">gtk-paste</property>
+            <property name="icon-size">1</property>
+          </widget>
+        </child>
       </widget>
     </child>
     <child>
@@ -192,26 +214,33 @@
       </widget>
     </child>
     <child>
-      <widget class="GtkImageMenuItem" id="menuitem1">
-        <property name="visible">True</property>
+      <widget class="GtkImageMenuItem" id="context_close_tab">
         <property name="label" translatable="yes">Close Tab</property>
-        <property name="use_underline">True</property>
+        <property name="visible">True</property>
+        <property name="use_stock">False</property>
         <signal name="activate" handler="close_tab"/>
         <child internal-child="image">
-          <widget class="GtkImage" id="menu-item-image1">
+          <widget class="GtkImage" id="close_tab_icon">
+            <property name="visible">True</property>
             <property name="stock">gtk-close</property>
-            <property name="icon_size">1</property>
+            <property name="icon-size">1</property>
           </widget>
         </child>
       </widget>
     </child>
     <child>
       <widget class="GtkImageMenuItem" id="context_close">
+        <property name="label" translatable="yes">Quit</property>
         <property name="visible">True</property>
-        <property name="label">gtk-quit</property>
-        <property name="use_underline">True</property>
-        <property name="use_stock">True</property>
+        <property name="use_stock">False</property>
         <signal name="activate" handler="gtk_main_quit"/>
+        <child internal-child="image">
+          <widget class="GtkImage" id="close_icon">
+            <property name="visible">True</property>
+            <property name="stock">gtk-quit</property>
+            <property name="icon-size">1</property>
+          </widget>
+        </child>
       </widget>
     </child>
   </widget>
@@ -219,30 +248,30 @@
     <property name="visible">True</property>
     <child>
       <widget class="GtkImageMenuItem" id="rename">
-        <property name="visible">True</property>
         <property name="label" translatable="yes">Rename</property>
-        <property name="use_underline">True</property>
+        <property name="visible">True</property>
+        <property name="use_stock">False</property>
         <signal name="activate" handler="on_rename_activate"/>
         <child internal-child="image">
-          <widget class="GtkImage" id="menu-item-image3">
+          <widget class="GtkImage" id="tab_rename_icon">
             <property name="visible">True</property>
             <property name="stock">gtk-edit</property>
-            <property name="icon_size">1</property>
+            <property name="icon-size">1</property>
           </widget>
         </child>
       </widget>
     </child>
     <child>
       <widget class="GtkImageMenuItem" id="close">
-        <property name="visible">True</property>
         <property name="label" translatable="yes">Close</property>
-        <property name="use_underline">True</property>
+        <property name="visible">True</property>
+        <property name="use_stock">False</property>
         <signal name="activate" handler="on_close_activate"/>
         <child internal-child="image">
-          <widget class="GtkImage" id="menu-item-image2">
+          <widget class="GtkImage" id="tab_close_icon">
             <property name="visible">True</property>
             <property name="stock">gtk-close</property>
-            <property name="icon_size">1</property>
+            <property name="icon-size">1</property>
           </widget>
         </child>
       </widget>
