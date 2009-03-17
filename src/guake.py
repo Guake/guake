@@ -415,6 +415,7 @@ class GuakeTerminal(vte.Terminal):
         any match string is caught, another aplication is open to
         handle the matched resource uri.
         """
+        self.matched_value = ''
         matched_string = self.match_check(
             int(event.x / self.get_char_width()),
             int(event.y / self.get_char_height()))
@@ -436,7 +437,8 @@ class GuakeTerminal(vte.Terminal):
             # I'm temporarely using this little hammer because
             # gtk_show_uri seem to not be binded to python yet.
             open_uri(value)
-
+        elif event.button == 3 and matched_string:
+            self.matched_value = matched_string[0]
 
 class GuakeTerminalBox(gtk.HBox):
     """A box to group the terminal and a scrollbar.
@@ -791,8 +793,14 @@ class Guake(SimpleGladeApp):
         """Callback to copy text in the shown terminal. Called by the
         accel key.
         """
-        pos = self.notebook.get_current_page()
-        self.term_list[pos].copy_clipboard()
+        current_term = self.term_list[self.notebook.get_current_page()]
+
+        if current_term.get_has_selection():
+            current_term.copy_clipboard()
+        elif current_term.matched_value:
+            guake_clipboard = gtk.clipboard_get()
+            guake_clipboard.set_text(current_term.matched_value)
+
         return True
 
     def accel_paste_clipboard(self, *args):
