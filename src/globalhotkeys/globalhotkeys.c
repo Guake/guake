@@ -196,6 +196,13 @@ GlobalHotkey_bind (GlobalHotkey *self,
   return NULL;
 }
 
+static PyObject *
+GlobalHotkey_get_current_event_time (GlobalHotkey *self)
+{
+  guint32 ret = keybinder_get_current_event_time ();
+  return Py_BuildValue ("i", ret);
+}
+
 static struct PyMemberDef GlobalHotkey_members[] = {
   {"binded", T_OBJECT_EX, offsetof (GlobalHotkey, binded), 0,
    "Already binded hotkeys"},
@@ -215,6 +222,9 @@ static PyMethodDef GlobalHotkey_methods[] = {
 
   {"bind", (PyCFunction) GlobalHotkey_bind,
    METH_VARARGS, "Bind a key to a callable object"},
+
+  {"get_current_event_time", (PyCFunction) GlobalHotkey_get_current_event_time,
+   METH_NOARGS, "Returns the timestamp of the current event"},
 
   {NULL}                        /* sentinel */
 };

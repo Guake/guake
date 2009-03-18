@@ -522,6 +522,9 @@ class Guake(SimpleGladeApp):
         # holds fullscreen status
         self.fullscreen = False
 
+        # holds the timestamp of the losefocus event
+        self.losefocus_time = 0
+
         # double click stuff
         def double_click(hbox, event):
             """Handles double clicks on tabs area and when receive
@@ -604,18 +607,8 @@ class Guake(SimpleGladeApp):
         value = self.client.get_bool(KEY('/general/window_losefocus'))
         visible = window.get_property('visible')
         if value and visible and not self.showing_context_menu:
+            self.losefocus_time = gtk.gdk.x11_get_server_time(self.window.window)
             self.hide()
-
-            # There is a race condition between the focus-out-event and
-            # the global keybind that calls the self.show_hide method. I
-            # didn't investigate but this callback is allways called
-            # before the X keyboard event. So, to fix it temporarely, I
-            # did the following hammer:
-            def hack():
-                sleep(0.1)
-                self.client.notify(GKEY('show_hide'))
-            self.hotkeys.unbind_all()
-            start_new_thread(hack, ())
 
     def show_menu(self, *args):
         """Show the tray icon menu.
@@ -669,6 +662,14 @@ class Guake(SimpleGladeApp):
     def show_hide(self, *args):
         """Toggles the main window visibility
         """
+        event_time = self.hotkeys.get_current_event_time()
+
+        if self.losefocus_time and \
+                self.losefocus_time >= event_time and \
+                (self.losefocus_time - event_time) < 10:
+            self.losefocus_time = 0
+            return
+
         if not self.window.get_property('visible'):
             self.show()
             self.set_terminal_focus()
