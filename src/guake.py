@@ -145,8 +145,8 @@ class GConfHandler(object):
         """If the gconf var window_size be changed, this method will
         be called and will call the resize function in guake.
         """
-        width, height = self.guake.get_final_window_size()
-        self.guake.window.resize(width, height)
+        window_rect = self.guake.get_final_window_rect()
+        self.guake.window.resize(window_rect.width, window_rect.height)
 
     def scrollbar_toggled(self, client, connection_id, entry, data):
         """If the gconf var use_scrollbar be changed, this method will
@@ -689,10 +689,10 @@ class Guake(SimpleGladeApp):
         if not self.term_list:
             self.add_tab()
 
-        width, height = self.get_final_window_size()
-        self.window.resize(width, height)
+        window_rect = self.get_final_window_rect()
+        self.window.resize(window_rect.width, window_rect.height)
         self.window.show_all()
-        self.window.move(0, 0)
+        self.window.move(window_rect.x, window_rect.y)
 
         try:
             # does it work in other gtk backends
@@ -714,7 +714,7 @@ class Guake(SimpleGladeApp):
         """
         self.window.hide() # Don't use hide_all here!
 
-    def get_final_window_size(self):
+    def get_final_window_rect(self):
         """Gets the final size of the main window of guake. The height
         is just the window_size property. But width is calculated as
         100% of the screen and tested against the monitor geometry
@@ -723,19 +723,13 @@ class Guake(SimpleGladeApp):
         screen = self.window.get_screen()
         height = self.client.get_int(KEY('/general/window_size'))
 
-        # avoiding X Window system error
-        max_height = screen.get_height()
-        if height > max_height:
-            height = max_height
-
-        # get the width just from the first/default monitor in the
+        # get the rectangle just from the first/default monitor in the
         # future we might create a field to select which monitor you
         # wanna use
-        width = screen.get_monitor_geometry(0).width
+        window_rect = screen.get_monitor_geometry(0)
 
-        total_height = self.window.get_screen().get_height()
-        final_height = total_height * height / 100
-        return width, final_height
+        window_rect.height = window_rect.height * height / 100
+        return window_rect
 
     # -- configuration --
 
