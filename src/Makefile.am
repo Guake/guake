@@ -1,7 +1,7 @@
 SUBDIRS = globalhotkeys
 
 guakedir = $(bindir)
-bin_SCRIPTS = guake
+bin_SCRIPTS = guake guake-prefs
 
 guakelibdir = $(libdir)/guake
 guakelib_DATA = \

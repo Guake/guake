@@ -94,6 +94,7 @@ AC_CONFIG_FILES([
     Makefile
     data/Makefile
     data/guake.desktop
+    data/guake-prefs.desktop
     data/org.gnome.Guake.service
     data/pixmaps/Makefile
     po/Makefile.in
@@ -101,6 +102,7 @@ AC_CONFIG_FILES([
     src/globalhotkeys/Makefile
     src/guake_globals.py
     src/guake
+    src/guake-prefs
 ])
 
 AC_OUTPUT

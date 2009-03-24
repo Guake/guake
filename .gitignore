@@ -23,5 +23,6 @@ org.gnome.Guake.service
 Makefile.in.in
 guake_globals.py
 guake
+guake-prefs
 autom4te.cache
 POTFILES

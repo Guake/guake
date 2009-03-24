@@ -3,6 +3,7 @@ data/about.glade
 data/guake.glade
 data/prefs.glade
 data/guake.desktop.in
+data/guake-prefs.desktop.in
 src/dbusiface.py
 src/guake.py
 src/prefs.py
