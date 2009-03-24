@@ -105,7 +105,7 @@ class GConfHandler(object):
         notify_add(KEY('/style/font/color'), self.fcolor_changed)
         notify_add(KEY('/style/background/color'), self.bgcolor_changed)
         notify_add(KEY('/style/background/image'), self.bgimage_changed)
-        notify_add(KEY('/style/background/opacity'), self.bgopacity_changed)
+        notify_add(KEY('/style/background/transparency'), self.bgtransparency_changed)
 
         notify_add(KEY('/general/compat_backspace'), self.backspace_changed)
         notify_add(KEY('/general/compat_delete'), self.delete_changed)
@@ -256,16 +256,16 @@ class GConfHandler(object):
                 else:
                     i.set_background_transparent(True)
 
-    def bgopacity_changed(self, client, connection_id, entry, data):
-        """If the gconf var style/background/opacity be changed, this
-        method will be called and will set the saturation and opacity
+    def bgtransparency_changed(self, client, connection_id, entry, data):
+        """If the gconf var style/background/transparency be changed, this
+        method will be called and will set the saturation and transparency
         properties in all terminals open.
         """
-        opacity = entry.value.get_int()
+        transparency = entry.value.get_int()
         for i in self.guake.term_list:
-            i.set_background_saturation(opacity / 100.0)
+            i.set_background_saturation(transparency / 100.0)
             if self.guake.has_argb:
-                i.set_opacity(65535 / 100 * abs(opacity - 100))
+                i.set_opacity(int((100 - transparency) / 100.0 * 65535))
 
     def backspace_changed(self, client, connection_id, entry, data):
         """If the gconf var compat_backspace be changed, this method
@@ -747,7 +747,7 @@ class Guake(SimpleGladeApp):
         self.client.notify(KEY('/style/font/color'))
         self.client.notify(KEY('/style/background/color'))
         self.client.notify(KEY('/style/background/image'))
-        self.client.notify(KEY('/style/background/opacity'))
+        self.client.notify(KEY('/style/background/transparency'))
         self.client.notify(KEY('/general/use_default_font'))
 
     def accel_add(self, *args):

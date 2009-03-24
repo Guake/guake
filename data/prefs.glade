@@ -736,7 +736,7 @@
                                   <packing>
                                     <property name="expand">False</property>
                                     <property name="fill">False</property>
-                                    <property name="position">1</property>
+                                    <property name="position">2</property>
                                   </packing>
                                 </child>
                                 <child>
@@ -747,7 +747,7 @@
                                         <property name="width_request">140</property>
                                         <property name="visible">True</property>
                                         <property name="xalign">0</property>
-                                        <property name="label" translatable="yes">Opacity:</property>
+                                        <property name="label" translatable="yes">Transparency:</property>
                                         <property name="use_markup">True</property>
                                       </widget>
                                       <packing>
@@ -756,13 +756,13 @@
                                       </packing>
                                     </child>
                                     <child>
-                                      <widget class="GtkHScale" id="background_opacity">
+                                      <widget class="GtkHScale" id="background_transparency">
                                         <property name="visible">True</property>
                                         <property name="can_focus">True</property>
                                         <property name="adjustment">0 0 100 1 10 10</property>
                                         <property name="draw_value">False</property>
                                         <property name="value_pos">GTK_POS_RIGHT</property>
-                                        <signal name="value_changed" handler="on_opacity_value_changed"/>
+                                        <signal name="value_changed" handler="on_transparency_value_changed"/>
                                       </widget>
                                       <packing>
                                         <property name="position">1</property>
@@ -771,7 +771,7 @@
                                   </widget>
                                   <packing>
                                     <property name="expand">False</property>
-                                    <property name="position">2</property>
+                                    <property name="position">1</property>
                                   </packing>
                                 </child>
                               </widget>

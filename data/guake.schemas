@@ -218,13 +218,13 @@
         </schema>
 
         <schema>
-            <key>/schemas/apps/guake/style/background/opacity</key>
-            <applyto>/apps/guake/style/background/opacity</applyto>
+            <key>/schemas/apps/guake/style/background/transparency</key>
+            <applyto>/apps/guake/style/background/transparency</applyto>
             <owner>guake</owner>
             <type>int</type>
             <default>80</default>
             <locale name="C">
-                <short>Background opacity.</short>
+                <short>Background transparency.</short>
                 <long>Alpha that will be applied to the terminal
                 background.</long>
             </locale>

@@ -198,11 +198,11 @@ class PrefsCallbacks(object):
         if os.path.isfile(filename or ''):
             self.client.set_string(KEY('/style/background/image'), filename)
 
-    def on_opacity_value_changed(self, hscale):
-        """Changes the value of background_opacity in gconf
+    def on_transparency_value_changed(self, hscale):
+        """Changes the value of background_transparency in gconf
         """
         value = hscale.get_value()
-        self.client.set_int(KEY('/style/background/opacity'), int(value))
+        self.client.set_int(KEY('/style/background/transparency'), int(value))
 
     # compatibility tab
 
@@ -447,8 +447,8 @@ class PrefsDialog(SimpleGladeApp):
         if os.path.isfile(value or ''):
             self.get_widget('background_image').set_filename(value)
 
-        value = self.client.get_int(KEY('/style/background/opacity'))
-        self.get_widget('background_opacity').set_value(value)
+        value = self.client.get_int(KEY('/style/background/transparency'))
+        self.get_widget('background_transparency').set_value(value)
 
         # it's a separated method, to be reused.
         self.reload_erase_combos()
