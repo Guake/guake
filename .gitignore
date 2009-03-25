@@ -19,6 +19,7 @@ depcomp
 install-sh
 mkinstalldirs
 guake.desktop
+guake-prefs.desktop
 org.gnome.Guake.service
 Makefile.in.in
 guake_globals.py
