@@ -23,7 +23,11 @@ Guake is distributed in the hope that it will be useful, but WITHOUT ANY WARRANT
 You should have received a copy of the GNU General Public License along with Guake; if not, write to the Free Software Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301 USA
 </property>
     <property name="authors">Lincoln de Sousa &lt;lincoln@guake-terminal.org&gt; (Maintainer)
-Gabriel Falcao &lt;gabriel@guake-terminal.org&gt;</property>
+Gabriel Falcão &lt;gabriel@guake-terminal.org&gt;
+
+Contributors:
+Pierre-Yves Chibon &lt;py@pingoured.fr&gt; (pingou)
+Aleksandar Krsteski &lt;alekrsteski@gmail.com&gt; (SnapShot)</property>
     <property name="translator_credits" translatable="yes">Adolfo González Blázquez &lt;code@infinicode.org&gt; Spanish
 Lincoln de Sousa &lt;lincoln@guake-terminal.org&gt; Brazilian Portuguese
 Markus Majer &lt;mm@mpathy.de&gt; German
