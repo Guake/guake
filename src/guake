@@ -42,6 +42,7 @@ import posix
 
 import guake.globalhotkeys
 from guake.simplegladeapp import SimpleGladeApp, bindtextdomain
+from guake.simplegtkapp import SimpleGtkApp
 from guake.prefs import PrefsDialog, LKEY, GKEY
 from guake.dbusiface import DbusManager, DBUS_NAME, DBUS_PATH
 from guake.common import test_gconf, pixmapfile, gladefile, ShowableError, _
@@ -78,12 +79,11 @@ class PromptQuitDialog(gtk.MessageDialog):
             )
 
 
-class AboutDialog(SimpleGladeApp):
+class AboutDialog(SimpleGtkApp):
     """The About Guake dialog class
     """
     def __init__(self):
-        super(AboutDialog, self).__init__(gladefile('about.glade'),
-                                          root='aboutdialog')
+        super(AboutDialog, self).__init__(gladefile('about.ui'))
         dialog = self.get_widget('aboutdialog')
 
         # images

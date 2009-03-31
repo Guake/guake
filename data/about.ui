@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<interface>
+  <requires lib="gtk+" version="2.20"/>
+  <!-- interface-naming-policy toplevel-contextual -->
+  <object class="GtkAboutDialog" id="aboutdialog">
+    <property name="visible">True</property>
+    <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
+    <property name="border_width">5</property>
+    <property name="title" translatable="yes">About Guake</property>
+    <property name="resizable">False</property>
+    <property name="modal">True</property>
+    <property name="window_position">center-always</property>
+    <property name="type_hint">normal</property>
+    <property name="has_separator">False</property>
+    <property name="copyright" translatable="yes">Copyright 2007-2009 Lincoln de Sousa
+Copyright 2007 Gabriel Falcão</property>
+    <property name="comments" translatable="yes">Guake is an easy to access
+terminal based on fps games terminal</property>
+    <property name="website">http://guake-terminal.org</property>
+    <property name="website_label" translatable="yes">http://guake-terminal.org</property>
+    <property name="license" translatable="yes">Guake is free software; you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation; either version 2 of the License, or (at your option) any later version.
+
+Guake is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License along with Guake; if not, write to the Free Software Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301 USA
+</property>
+    <property name="authors">Lincoln de Sousa &lt;lincoln@guake-terminal.org&gt; (Maintainer)
+Gabriel Falcão &lt;gabriel@guake-terminal.org&gt;
+
+Contributors:
+Pierre-Yves Chibon &lt;py@pingoured.fr&gt; (pingou)
+Aleksandar Krsteski &lt;alekrsteski@gmail.com&gt; (SnapShot)</property>
+    <property name="translator_credits" translatable="yes">Adolfo González Blázquez &lt;code@infinicode.org&gt; Spanish
+Lincoln de Sousa &lt;lincoln@guake-terminal.org&gt; Brazilian Portuguese
+Markus Majer &lt;mm@mpathy.de&gt; German
+Mieszko Ślusarczyk &lt;mieszkoslusarczyk@gmail.com&gt; Polish
+Nishio Futoshi &lt;futoshi@momonga-linux.org&gt; Japanese
+Pavel Alexeev &lt;Pahan@Hubbitus.spb.su&gt; Russian
+Piotr Drąg &lt;piotrdrag@gmail.com&gt; Polish</property>
+    <property name="artists">Gabriel Falcao &lt;gabriel@guake-terminal.org&gt;</property>
+    <property name="wrap_license">True</property>
+    <signal name="response" handler="gtk_widget_destroy" object="aboutdialog" swapped="yes"/>
+    <child internal-child="vbox">
+      <object class="GtkVBox" id="dialog-vbox1">
+        <property name="visible">True</property>
+        <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
+        <property name="spacing">2</property>
+        <child>
+          <placeholder/>
+        </child>
+        <child internal-child="action_area">
+          <object class="GtkHButtonBox" id="dialog-action_area1">
+            <property name="visible">True</property>
+            <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
+            <property name="layout_style">end</property>
+          </object>
+          <packing>
+            <property name="expand">False</property>
+            <property name="pack_type">end</property>
+            <property name="position">0</property>
+          </packing>
+        </child>
+      </object>
+    </child>
+  </object>
+</interface>

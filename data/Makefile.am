@@ -4,7 +4,7 @@ man_MANS = guake.1
 
 uidir = $(datadir)/guake
 ui_DATA = \
-	about.glade \
+	about.ui \
 	guake.glade \
 	prefs.glade
 
