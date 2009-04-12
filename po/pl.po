@@ -4,10 +4,10 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Guake 0.3.0\n"
+"Project-Id-Version: Guake 0.4.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-12-16 10:49-0200\n"
-"PO-Revision-Date: 2008-07-19 00:08+0200\n"
+"POT-Creation-Date: 2009-04-12 20:24-0300\n"
+"PO-Revision-Date: 2009-04-07 21:03+0200\n"
 "Last-Translator: Piotr Drąg <piotrdrag@gmail.com>\n"
 "Language-Team: Polish <pl@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -20,32 +20,31 @@ msgstr "O Guake"
 
 #: ../data/about.glade.h:2
 msgid ""
-"Adolfo González Blázquez &lt;code@infinicode.org&gt; Spanish\n"
-"Lincoln de Sousa &lt;lincoln@guake-terminal.org&gt; Brazilian Portuguese\n"
-"Markus Majer &lt;mm@mpathy.de&gt; German\n"
-"Mieszko Ślusarczyk &lt;mieszkoslusarczyk@gmail.com&gt; Polish\n"
-"Nishio Futoshi &lt;futoshi@momonga-linux.org&gt; Japanese\n"
-"Pavel Alexeev &lt;Pahan@Hubbitus.spb.su&gt; Russian\n"
-"Piotr Drąg &lt;piotrdrag@gmail.com&gt; Polish\n"
+"Adolfo González Blázquez <code@infinicode.org> Spanish\n"
+"Lincoln de Sousa <lincoln@guake-terminal.org> Brazilian Portuguese\n"
+"Markus Majer <mm@mpathy.de> German\n"
+"Mieszko Ślusarczyk <mieszkoslusarczyk@gmail.com> Polish\n"
+"Nishio Futoshi <futoshi@momonga-linux.org> Japanese\n"
+"Pavel Alexeev <Pahan@Hubbitus.spb.su> Russian\n"
+"Piotr Drąg <piotrdrag@gmail.com> Polish"
 msgstr ""
-"Adolfo González Blázquez &lt;code@infinicode.org&gt; Spanish\n"
-"Lincoln de Sousa &lt;lincoln@guake-terminal.org&gt; Brazilian Portuguese\n"
-"Markus Majer &lt;mm@mpathy.de&gt; German\n"
-"Mieszko Ślusarczyk &lt;mieszkoslusarczyk@gmail.com&lt; Polish\n"
-"Nishio Futoshi &lt;futoshi@momonga-linux.org&gt; Japanese\n"
-"Pavel Alexeev &lt;Pahan@Hubbitus.spb.su&gt; Russian\n"
-"Piotr Drąg &lt;piotrdrag@gmail.com&gt; Polish\n"
+"Adolfo González Blázquez <code@infinicode.org> hiszpański\n"
+"Lincoln de Sousa <lincoln@guake-terminal.org> portugalski brazylijski\n"
+"Markus Majer <mm@mpathy.de> niemiecki\n"
+"Mieszko Ślusarczyk <mieszkoslusarczyk@gmail.com> polski\n"
+"Nishio Futoshi <futoshi@momonga-linux.org> japoński\n"
+"Pavel Alexeev <Pahan@Hubbitus.spb.su> rosyjski\n"
+"Piotr Drąg <piotrdrag@gmail.com> polski"
 
-#: ../data/about.glade.h:17
-#, fuzzy
+#: ../data/about.glade.h:9
 msgid ""
-"Copyright 2007-2008 Lincoln de Sousa\n"
-"Copyright 2007 Gabriel Falcão"
+"Copyright 2007-2009 Lincoln de Sousa\n"
+"Copyright 2007 Gabriel Falc&#xE3;o"
 msgstr ""
-"Copyright 2007 Gabriel Falcão\n"
-"Copyright 2007 Lincoln de Sousa"
+"Copyright 2007-2009 Lincoln de Sousa\n"
+"Copyright 2007 Gabriel Falc&#xE3;o"
 
-#: ../data/about.glade.h:19
+#: ../data/about.glade.h:11
 msgid ""
 "Guake is an easy to access\n"
 "terminal based on fps games terminal"
@@ -53,7 +52,7 @@ msgstr ""
 "Guake jest łatwo dostępnym\n"
 "terminalem opartym na grach FPS"
 
-#: ../data/about.glade.h:21
+#: ../data/about.glade.h:13
 msgid ""
 "Guake is free software; you can redistribute it and/or modify it under the "
 "terms of the GNU General Public License as published by the Free Software "
@@ -84,7 +83,7 @@ msgstr ""
 "- napisz do Free Software Foundation, Inc., 51 Franklin St, Fifth Floor, "
 "Boston, MA 02110-1301, USA.\n"
 
-#: ../data/about.glade.h:27
+#: ../data/about.glade.h:19
 msgid "http://guake-terminal.org"
 msgstr "http://guake-terminal.org"
 
@@ -100,11 +99,23 @@ msgstr "Zamknij"
 msgid "Close Tab"
 msgstr "Zamknij kartę"
 
-#: ../data/guake.glade.h:4 ../src/guake.py:172 ../src/guake.py:177
+#: ../data/guake.glade.h:4
+msgid "Copy"
+msgstr "Skopiuj"
+
+#: ../data/guake.glade.h:5 ../src/guake.py:572 ../src/guake.py:583
 msgid "Guake!"
 msgstr "Guake!"
 
-#: ../data/guake.glade.h:5
+#: ../data/guake.glade.h:6
+msgid "Paste"
+msgstr "Wklej"
+
+#: ../data/guake.glade.h:7 ../src/prefs.py:61
+msgid "Quit"
+msgstr "Zakończ"
+
+#: ../data/guake.glade.h:8
 msgid "Rename"
 msgstr "Zmień nazwę"
 
@@ -117,22 +128,30 @@ msgid "<b>Fonts</b>"
 msgstr "<b>Czcionki</b>"
 
 #: ../data/prefs.glade.h:3
+msgid "<b>General</b>"
+msgstr "<b>Ogólne</b>"
+
+#: ../data/prefs.glade.h:4
 msgid "<b>Keyboard compatibility</b>"
 msgstr "<b>Zgodność klawiatury</b>"
 
-#: ../data/prefs.glade.h:4
+#: ../data/prefs.glade.h:5
+msgid "<b>Main Window size</b>"
+msgstr "<b>Rozmiar głównego okna</b>"
+
+#: ../data/prefs.glade.h:6
+msgid "<b>Main Window</b>"
+msgstr "<b>Główne okno</b>"
+
+#: ../data/prefs.glade.h:7
+msgid "<b>Scroll</b>"
+msgstr "<b>Przewijanie</b>"
+
+#: ../data/prefs.glade.h:8
 msgid "<b>Shell</b>"
 msgstr "<b>Powłoka</b>"
 
-#: ../data/prefs.glade.h:5
-msgid "<b>Window behavior</b>"
-msgstr "<b>Zachowanie okna</b>"
-
-#: ../data/prefs.glade.h:6
-msgid "<b>Window size</b>"
-msgstr "<b>Rozmiar okna</b>"
-
-#: ../data/prefs.glade.h:7
+#: ../data/prefs.glade.h:9
 msgid ""
 "<small><i><b>Note:</b> These options may cause some applications to behave "
 "incorrectly.  They are only here to allow you to work around certain "
@@ -144,16 +163,16 @@ msgstr ""
 "określonymi aplikacjami i systemami operacyjnymi, które oczekują innego "
 "zachowania terminala.</i></small>"
 
-#: ../data/prefs.glade.h:8
+#: ../data/prefs.glade.h:10
 msgid ""
 "<span color=\"black\">Customize behavior and appearance of Guake!</span>"
 msgstr "<span color=\"black\">Dostosuj zachowanie i wygląd Guake!</span>"
 
-#: ../data/prefs.glade.h:9
+#: ../data/prefs.glade.h:11
 msgid "<span size=\"18000\" color=\"black\"><b>Guake properties</b></span>"
 msgstr "<span size=\"18000\" color=\"black\"><b>Właściwości Guake</b></span>"
 
-#: ../data/prefs.glade.h:10
+#: ../data/prefs.glade.h:12
 msgid ""
 "ASCII DEL\n"
 "Escape sequence\n"
@@ -163,110 +182,144 @@ msgstr ""
 "Sekwencja Escape\n"
 "Control-H"
 
-#: ../data/prefs.glade.h:13
-msgid "Background Transparent:"
-msgstr "Przezroczystość tła:"
+#: ../data/prefs.glade.h:15
+msgid "Appearance"
+msgstr "Wygląd"
 
-#: ../data/prefs.glade.h:14
+#: ../data/prefs.glade.h:16
 msgid "Choose some color"
 msgstr "Wybierz kolor"
 
-#: ../data/prefs.glade.h:15
+#: ../data/prefs.glade.h:17
 msgid "Choose some font"
 msgstr "Wybierz czcionkę"
 
-#: ../data/prefs.glade.h:16
+#: ../data/prefs.glade.h:18
 msgid "Color:"
 msgstr "Kolor:"
 
-#: ../data/prefs.glade.h:17
+#: ../data/prefs.glade.h:19
 msgid "Compatibility"
 msgstr "Zgodność"
 
-#: ../data/prefs.glade.h:18
+#: ../data/prefs.glade.h:20
 msgid "Default interpreter:"
 msgstr "Domyślna powłoka:"
 
-#: ../data/prefs.glade.h:19
-msgid "Desaturation:"
-msgstr "Desaturacja:"
+#: ../data/prefs.glade.h:21
+msgid "Enable popup notifications on startup"
+msgstr "Włącz wyskakujące powiadomienia podczas uruchamiania"
 
-#: ../data/prefs.glade.h:20
+#: ../data/prefs.glade.h:22 ../src/prefs.py:55
 msgid "General"
 msgstr "Ogólne"
 
-#: ../data/prefs.glade.h:21
+#: ../data/prefs.glade.h:23
 msgid "Guake Preferences"
 msgstr "Preferencje Guake"
 
-#: ../data/prefs.glade.h:22
+#: ../data/prefs.glade.h:24
 msgid "Hide on lose focus"
 msgstr "Ukryj po utracie aktywności"
 
-#: ../data/prefs.glade.h:23
+#: ../data/prefs.glade.h:25
 msgid "Image:"
 msgstr "Obraz:"
 
-#: ../data/prefs.glade.h:24
+#: ../data/prefs.glade.h:26
 msgid "Keyboard shortcuts"
 msgstr "Skróty klawiszowe"
 
-#: ../data/prefs.glade.h:25
+#: ../data/prefs.glade.h:27
+msgid "On key stroke"
+msgstr "Podczas wciśnięcia klawisza"
+
+#: ../data/prefs.glade.h:28
+msgid "On output"
+msgstr "Na wyjściu"
+
+#: ../data/prefs.glade.h:29
 msgid "Scrollback lines:"
 msgstr "Przewijanie:"
 
-#: ../data/prefs.glade.h:26
+#: ../data/prefs.glade.h:30
+msgid "Scrolling"
+msgstr "Przewijanie"
+
+#: ../data/prefs.glade.h:31
 msgid "Show scrollbar"
 msgstr "Wyświetl pasek przewijania"
 
-#: ../data/prefs.glade.h:27
-#, fuzzy
-msgid "Show tray"
-msgstr "Wyświetl pasek przewijania"
+#: ../data/prefs.glade.h:32
+msgid "Show tab bar"
+msgstr "Wyświetl pasek kart"
 
-#: ../data/prefs.glade.h:28
+#: ../data/prefs.glade.h:33
+msgid "Show tray icon"
+msgstr "Wyświetl ikonę obszaru powiadamiania"
+
+#: ../data/prefs.glade.h:34
 msgid "Stay on top"
 msgstr "Zawsze na wierzchu"
 
-#: ../data/prefs.glade.h:29
-msgid "Style"
-msgstr "Styl"
-
-#: ../data/prefs.glade.h:30
+#: ../data/prefs.glade.h:35
 msgid "Style:"
 msgstr "Styl:"
 
-#: ../data/prefs.glade.h:31
+#: ../data/prefs.glade.h:36
+msgid "Transparency:"
+msgstr "Przezroczystość:"
+
+#: ../data/prefs.glade.h:37
+msgid "Use system defaults"
+msgstr "Użyj domyślnych systemu"
+
+#: ../data/prefs.glade.h:38
 msgid "_Backspace key generates:"
 msgstr "Klawisz _Backspace generuje:"
 
-#: ../data/prefs.glade.h:32
+#: ../data/prefs.glade.h:39
 msgid "_Delete key generates:"
 msgstr "Klawisz _Delete generuje:"
 
-#: ../data/prefs.glade.h:33
+#: ../data/prefs.glade.h:40
 msgid "_Reset Compatibility Options to Defaults"
 msgstr "P_rzywróć domyślne opcje zgodności"
+
+#: ../data/prefs.glade.h:41
+msgid "_Run command as a login shell"
+msgstr "U_ruchom polecenie jako powłokę logowania"
 
 #: ../src/dbusiface.py:63
 msgid "Could not connect to dbus session bus. dbus will be unavailable.\n"
 msgstr ""
 "Nie można połączyć się z magistralą sesji D-Bus. D-Bus będzie niedostępny.\n"
 
-#: ../src/guake.py:108
+#: ../src/guake.py:317
+msgid "key binding error"
+msgstr "błąd podczas dowiązywania klawisza"
+
+#: ../src/guake.py:318
+#, python-format
+msgid "Unable to bind global <b>%s</b> key"
+msgstr "Nie można dowiązać globalnego klawisza <b>%s</b>"
+
+#: ../src/guake.py:480
 msgid "Guake-Terminal"
 msgstr "Guake-Terminal"
 
-#: ../src/guake.py:173
+#: ../src/guake.py:573
 #, python-format
 msgid ""
 "A problem happened when binding <b>%s</b> key.\n"
-"Please use guake properties form to choose another key"
+"Please use Guake Preferences dialog to choose another key (The trayicon was "
+"enabled)"
 msgstr ""
-"Wystąpił problem podczas dowiązywania do klawisza <b>%s</b>.\n"
-"Użyj formularza właściwości Guake, aby wybrać inny klawisz"
+"Wystąpił problem podczas dowiązywania klawisza <b>%s</b>.\n"
+"Użyj okna dialogowego preferencji Guake, aby wybrać inny klawisz (ikona "
+"obszaru powiadamiania była włączona)"
 
-#: ../src/guake.py:178
+#: ../src/guake.py:584
 #, python-format
 msgid ""
 "Guake is already running,\n"
@@ -275,32 +328,37 @@ msgstr ""
 "Guake jest już uruchomione,\n"
 "naciśnij <b>%s</b>, aby go użyć."
 
-#: ../src/guake.py:597
+#: ../src/guake.py:854
+msgid "Rename tab"
+msgstr "Zmień nazwę karty"
+
+#. Adding a new radio button to the tabbar
+#: ../src/guake.py:942
 #, python-format
 msgid "Terminal %s"
 msgstr "Terminal %s"
 
-#: ../src/guake.py:702
+#: ../src/guake.py:1027
 msgid "Toggles the visibility of the terminal window"
 msgstr "Przełącza widoczność okna terminala"
 
-#: ../src/guake.py:706
+#: ../src/guake.py:1031
 msgid "Shows Guake preference window"
 msgstr "Wyświetla okno preferencji Guake"
 
-#: ../src/guake.py:710
+#: ../src/guake.py:1035
 msgid "Shows Guake's about info"
 msgstr "Wyświetla informacje o Guake"
 
-#: ../src/guake.py:714
+#: ../src/guake.py:1039
 msgid "Says to Guake go away =("
-msgstr "Mówi do Guake, aby sobie poszło =("
+msgstr "Mówi Guake, aby sobie poszło =("
 
-#: ../src/guake.py:751
+#: ../src/guake.py:1076
 msgid "Guake can not init!"
 msgstr "Nie można zainicjować Guake!"
 
-#: ../src/guake.py:752
+#: ../src/guake.py:1077
 msgid ""
 "Gconf Error.\n"
 "Have you installed <b>guake.schemas</b> properlly?"
@@ -308,64 +366,77 @@ msgstr ""
 "Błąd GConf.\n"
 "Poprawnie zainstalowano <b>guake.schemas</b>?"
 
-#: ../src/prefs.py:48
-msgid "Toggle terminal visibility"
-msgstr "Przełącz widoczność terminala"
+#. string to show in prefereces dialog for user shell option
+#: ../src/prefs.py:42
+msgid "<user shell>"
+msgstr "<powłoka użytkownika>"
 
-#: ../src/prefs.py:49
-msgid "New tab"
-msgstr "Nowa karta"
+#: ../src/prefs.py:57
+msgid "Toggle Guake visibility"
+msgstr "Przełącz widoczność Guake"
 
-#: ../src/prefs.py:50
-msgid "Close tab"
-msgstr "Zamknij kartę"
-
-#: ../src/prefs.py:51
-msgid "Go to previous tab"
-msgstr "Przejdź do poprzedniej karty"
-
-#: ../src/prefs.py:52
-msgid "Go to next tab"
-msgstr "Przejdź do następnej karty"
-
-#: ../src/prefs.py:53
-msgid "Copy text to clipboard"
-msgstr "Skopiuj tekst do schowka"
-
-#: ../src/prefs.py:54
-msgid "Paste text from clipboard"
-msgstr "Wklej tekst ze schowka"
-
-#: ../src/prefs.py:55
+#: ../src/prefs.py:59
 msgid "Toggle Fullscreen"
 msgstr "Przełącz pełny ekran"
 
-#: ../src/prefs.py:102
+#: ../src/prefs.py:64
+msgid "Tab management"
+msgstr "Zarządzanie kartami"
+
+#: ../src/prefs.py:66
+msgid "New tab"
+msgstr "Nowa karta"
+
+#: ../src/prefs.py:68
+msgid "Close tab"
+msgstr "Zamknij kartę"
+
+#: ../src/prefs.py:70
+msgid "Rename current tab"
+msgstr "Zmień nazwę bieżącej karty"
+
+#: ../src/prefs.py:73
+msgid "Navigation"
+msgstr "Nawigacja"
+
+#: ../src/prefs.py:75
+msgid "Go to previous tab"
+msgstr "Przejdź do poprzedniej karty"
+
+#: ../src/prefs.py:77
+msgid "Go to next tab"
+msgstr "Przejdź do następnej karty"
+
+#: ../src/prefs.py:80
+msgid "Clipboard"
+msgstr "Schowek"
+
+#: ../src/prefs.py:82
+msgid "Copy text to clipboard"
+msgstr "Skopiuj tekst do schowka"
+
+#: ../src/prefs.py:84
+msgid "Paste text from clipboard"
+msgstr "Wklej tekst ze schowka"
+
+#: ../src/prefs.py:260
 msgid "Action"
 msgstr "Działanie"
 
-#: ../src/prefs.py:112
+#: ../src/prefs.py:270
 msgid "Shortcut"
 msgstr "Skrót"
 
-#: ../src/prefs.py:258
-msgid "Global hotkeys"
-msgstr "Globalne klawisze skrótów"
-
-#: ../src/prefs.py:276
-msgid "Local hotkeys"
-msgstr "Lokalne klawisze skrótów"
-
-#: ../src/prefs.py:409
+#: ../src/prefs.py:525
 #, python-format
 msgid "The shortcut \"%s\" is already in use."
 msgstr "Skrót \"%s\" jest już używany."
 
-#: ../src/prefs.py:410
+#: ../src/prefs.py:526
 msgid "Error setting keybinding."
 msgstr "Błąd podczas ustawiania dowiązania klawiszy."
 
-#: ../src/prefs.py:424
+#: ../src/prefs.py:538
 #, python-format
 msgid ""
 "The shortcut \"%s\" cannot be used because it will become impossible to type "
@@ -378,41 +449,14 @@ msgstr ""
 "\n"
 "Spróbuj z klawiszem takim jak Control, Alt lub Shift w tym samym czasie.\n"
 
-#: ../src/prefs.py:445
-msgid "key binding error"
-msgstr "błąd podczas dowiązywania klawisza"
+#: ../src/common.py:91
+msgid "Program not found in path"
+msgstr "Nie znaleziono programu w ścieżce"
 
-#: ../src/prefs.py:446
-#, python-format
-msgid "Unable to bind %s key"
-msgstr "Nie można dowiązań klawisza %s"
-
-#~ msgid "<b>Tab position</b>"
-#~ msgstr "<b>Położenie kart</b>"
-
-#~ msgid "Bottom"
-#~ msgstr "Dół"
-
-#~ msgid "Top"
-#~ msgstr "Góra"
-
-#~ msgid "New accelerator..."
-#~ msgstr "Nowy skrót klawiszowy..."
-
-#~ msgid "Accelerator key"
-#~ msgstr "Klawisz skrótu"
-
-#~ msgid "Accelerator modifiers"
-#~ msgstr "Modyfikatory skrótu"
-
-#~ msgid "Accelerator keycode"
-#~ msgstr "Kod klawisza skrótu"
-
-#~ msgid "Accel Mode"
-#~ msgstr "Tryb skrótu"
-
-#~ msgid "The type of accelerator."
-#~ msgstr "Typ skrótu."
-
-#~ msgid "Disabled"
-#~ msgstr "Wyłączone"
+#: ../src/common.py:92
+msgid ""
+"You don't have any available program to interpret this uri. To solve this "
+"problem just install gnome-open or xdg-open and try again."
+msgstr ""
+"Brak dostępnego programu do zinterpretowania tego adresu URI. Aby rozwiązać "
+"ten problem, zainstaluj gnome-open lub xdg-open i spróbuj ponownie."
