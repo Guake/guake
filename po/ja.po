@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-12-16 10:49-0200\n"
+"POT-Creation-Date: 2009-04-12 20:24-0300\n"
 "PO-Revision-Date: 2008-05-28 01:58-0300\n"
 "Last-Translator: Gabriel Falcão <gabrielteratos@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -20,14 +20,15 @@ msgid "About Guake"
 msgstr "Guakeについて"
 
 #: ../data/about.glade.h:2
+#, fuzzy
 msgid ""
-"Adolfo González Blázquez &lt;code@infinicode.org&gt; Spanish\n"
-"Lincoln de Sousa &lt;lincoln@guake-terminal.org&gt; Brazilian Portuguese\n"
-"Markus Majer &lt;mm@mpathy.de&gt; German\n"
-"Mieszko Ślusarczyk &lt;mieszkoslusarczyk@gmail.com&gt; Polish\n"
-"Nishio Futoshi &lt;futoshi@momonga-linux.org&gt; Japanese\n"
-"Pavel Alexeev &lt;Pahan@Hubbitus.spb.su&gt; Russian\n"
-"Piotr Drąg &lt;piotrdrag@gmail.com&gt; Polish\n"
+"Adolfo González Blázquez <code@infinicode.org> Spanish\n"
+"Lincoln de Sousa <lincoln@guake-terminal.org> Brazilian Portuguese\n"
+"Markus Majer <mm@mpathy.de> German\n"
+"Mieszko Ślusarczyk <mieszkoslusarczyk@gmail.com> Polish\n"
+"Nishio Futoshi <futoshi@momonga-linux.org> Japanese\n"
+"Pavel Alexeev <Pahan@Hubbitus.spb.su> Russian\n"
+"Piotr Drąg <piotrdrag@gmail.com> Polish"
 msgstr ""
 "Adolfo González Blázquez &lt;code@infinicode.org&gt; Spanish\n"
 "Lincoln de Sousa &lt;lincoln@guake-terminal.org&gt; Brazilian Portuguese\n"
@@ -37,13 +38,13 @@ msgstr ""
 "Pavel Alexeev &lt;Pahan@Hubbitus.spb.su&gt; Russian\n"
 "Piotr Drąg &lt;piotrdrag@gmail.com&gt; Polish\n"
 
-#: ../data/about.glade.h:17
+#: ../data/about.glade.h:9
 msgid ""
-"Copyright 2007-2008 Lincoln de Sousa\n"
-"Copyright 2007 Gabriel Falcão"
+"Copyright 2007-2009 Lincoln de Sousa\n"
+"Copyright 2007 Gabriel Falc&#xE3;o"
 msgstr ""
 
-#: ../data/about.glade.h:19
+#: ../data/about.glade.h:11
 msgid ""
 "Guake is an easy to access\n"
 "terminal based on fps games terminal"
@@ -51,7 +52,7 @@ msgstr ""
 "Guakeは、fpsゲーム端末をベースにした\n"
 "簡単に使える端末です"
 
-#: ../data/about.glade.h:21
+#: ../data/about.glade.h:13
 msgid ""
 "Guake is free software; you can redistribute it and/or modify it under the "
 "terms of the GNU General Public License as published by the Free Software "
@@ -68,7 +69,7 @@ msgid ""
 "Fifth Floor, Boston, MA  02110-1301 USA\n"
 msgstr ""
 
-#: ../data/about.glade.h:27
+#: ../data/about.glade.h:19
 msgid "http://guake-terminal.org"
 msgstr ""
 
@@ -87,11 +88,23 @@ msgstr "TABを閉じる"
 msgid "Close Tab"
 msgstr "TABを閉じる"
 
-#: ../data/guake.glade.h:4 ../src/guake.py:172 ../src/guake.py:177
+#: ../data/guake.glade.h:4
+msgid "Copy"
+msgstr ""
+
+#: ../data/guake.glade.h:5 ../src/guake.py:572 ../src/guake.py:583
 msgid "Guake!"
 msgstr ""
 
-#: ../data/guake.glade.h:5
+#: ../data/guake.glade.h:6
+msgid "Paste"
+msgstr ""
+
+#: ../data/guake.glade.h:7 ../src/prefs.py:61
+msgid "Quit"
+msgstr ""
+
+#: ../data/guake.glade.h:8
 msgid "Rename"
 msgstr ""
 
@@ -104,22 +117,34 @@ msgid "<b>Fonts</b>"
 msgstr "<b>フォント</b>"
 
 #: ../data/prefs.glade.h:3
+#, fuzzy
+msgid "<b>General</b>"
+msgstr "<b>シェル</b>"
+
+#: ../data/prefs.glade.h:4
 msgid "<b>Keyboard compatibility</b>"
 msgstr ""
 
-#: ../data/prefs.glade.h:4
-msgid "<b>Shell</b>"
-msgstr "<b>シェル</b>"
-
 #: ../data/prefs.glade.h:5
-msgid "<b>Window behavior</b>"
-msgstr "<b>ウィンドウの動作</b>"
+#, fuzzy
+msgid "<b>Main Window size</b>"
+msgstr "<b>ウィンドウサイズ</b>"
 
 #: ../data/prefs.glade.h:6
-msgid "<b>Window size</b>"
+#, fuzzy
+msgid "<b>Main Window</b>"
 msgstr "<b>ウィンドウサイズ</b>"
 
 #: ../data/prefs.glade.h:7
+#, fuzzy
+msgid "<b>Scroll</b>"
+msgstr "<b>シェル</b>"
+
+#: ../data/prefs.glade.h:8
+msgid "<b>Shell</b>"
+msgstr "<b>シェル</b>"
+
+#: ../data/prefs.glade.h:9
 msgid ""
 "<small><i><b>Note:</b> These options may cause some applications to behave "
 "incorrectly.  They are only here to allow you to work around certain "
@@ -127,125 +152,162 @@ msgid ""
 "i></small>"
 msgstr ""
 
-#: ../data/prefs.glade.h:8
+#: ../data/prefs.glade.h:10
 msgid ""
 "<span color=\"black\">Customize behavior and appearance of Guake!</span>"
 msgstr ""
 
-#: ../data/prefs.glade.h:9
+#: ../data/prefs.glade.h:11
 msgid "<span size=\"18000\" color=\"black\"><b>Guake properties</b></span>"
 msgstr ""
 
-#: ../data/prefs.glade.h:10
+#: ../data/prefs.glade.h:12
 msgid ""
 "ASCII DEL\n"
 "Escape sequence\n"
 "Control-H"
 msgstr ""
 
-#: ../data/prefs.glade.h:13
-msgid "Background Transparent:"
-msgstr "背景の透過:"
+#: ../data/prefs.glade.h:15
+msgid "Appearance"
+msgstr ""
 
-#: ../data/prefs.glade.h:14
+#: ../data/prefs.glade.h:16
 msgid "Choose some color"
 msgstr "色を選択する"
 
-#: ../data/prefs.glade.h:15
+#: ../data/prefs.glade.h:17
 msgid "Choose some font"
 msgstr "フォントの選択"
 
-#: ../data/prefs.glade.h:16
+#: ../data/prefs.glade.h:18
 msgid "Color:"
 msgstr "色:"
 
-#: ../data/prefs.glade.h:17
+#: ../data/prefs.glade.h:19
 msgid "Compatibility"
 msgstr ""
 
-#: ../data/prefs.glade.h:18
+#: ../data/prefs.glade.h:20
 msgid "Default interpreter:"
 msgstr "デフォルトのシェル:"
 
-#: ../data/prefs.glade.h:19
-msgid "Desaturation:"
-msgstr "不透明度:"
+#: ../data/prefs.glade.h:21
+msgid "Enable popup notifications on startup"
+msgstr ""
 
-#: ../data/prefs.glade.h:20
+#: ../data/prefs.glade.h:22 ../src/prefs.py:55
 msgid "General"
 msgstr "一般的な設定"
 
-#: ../data/prefs.glade.h:21
+#: ../data/prefs.glade.h:23
 msgid "Guake Preferences"
 msgstr "Gaukeの設定"
 
-#: ../data/prefs.glade.h:22
+#: ../data/prefs.glade.h:24
 msgid "Hide on lose focus"
 msgstr "フォーカスを失うと隠す"
 
-#: ../data/prefs.glade.h:23
+#: ../data/prefs.glade.h:25
 msgid "Image:"
 msgstr "画像："
 
-#: ../data/prefs.glade.h:24
+#: ../data/prefs.glade.h:26
 msgid "Keyboard shortcuts"
 msgstr "キーボードショートカット"
 
-#: ../data/prefs.glade.h:25
+#: ../data/prefs.glade.h:27
+msgid "On key stroke"
+msgstr ""
+
+#: ../data/prefs.glade.h:28
+msgid "On output"
+msgstr ""
+
+#: ../data/prefs.glade.h:29
 msgid "Scrollback lines:"
 msgstr "行をスクロールバックする"
 
-#: ../data/prefs.glade.h:26
+#: ../data/prefs.glade.h:30
+#, fuzzy
+msgid "Scrolling"
+msgstr "行をスクロールバックする"
+
+#: ../data/prefs.glade.h:31
 msgid "Show scrollbar"
 msgstr "スクロールバーの表示"
 
-#: ../data/prefs.glade.h:27
+#: ../data/prefs.glade.h:32
 #, fuzzy
-msgid "Show tray"
+msgid "Show tab bar"
 msgstr "スクロールバーの表示"
 
-#: ../data/prefs.glade.h:28
+#: ../data/prefs.glade.h:33
+#, fuzzy
+msgid "Show tray icon"
+msgstr "スクロールバーの表示"
+
+#: ../data/prefs.glade.h:34
 msgid "Stay on top"
 msgstr "最前面に"
 
-#: ../data/prefs.glade.h:29
-msgid "Style"
-msgstr "スタイル"
-
-#: ../data/prefs.glade.h:30
+#: ../data/prefs.glade.h:35
 msgid "Style:"
 msgstr "スタイル"
 
-#: ../data/prefs.glade.h:31
+#: ../data/prefs.glade.h:36
+#, fuzzy
+msgid "Transparency:"
+msgstr "背景の透過:"
+
+#: ../data/prefs.glade.h:37
+msgid "Use system defaults"
+msgstr ""
+
+#: ../data/prefs.glade.h:38
 msgid "_Backspace key generates:"
 msgstr ""
 
-#: ../data/prefs.glade.h:32
+#: ../data/prefs.glade.h:39
 msgid "_Delete key generates:"
 msgstr ""
 
-#: ../data/prefs.glade.h:33
+#: ../data/prefs.glade.h:40
 msgid "_Reset Compatibility Options to Defaults"
+msgstr ""
+
+#: ../data/prefs.glade.h:41
+msgid "_Run command as a login shell"
 msgstr ""
 
 #: ../src/dbusiface.py:63
 msgid "Could not connect to dbus session bus. dbus will be unavailable.\n"
 msgstr "dbusセッションに接続できませんでした。dbusは利用できません。\n"
 
-#: ../src/guake.py:108
+#: ../src/guake.py:317
+msgid "key binding error"
+msgstr "キーの割り当てエラー"
+
+#: ../src/guake.py:318
+#, fuzzy, python-format
+msgid "Unable to bind global <b>%s</b> key"
+msgstr "%sキーを割り当てられません"
+
+#: ../src/guake.py:480
 msgid "Guake-Terminal"
 msgstr ""
 
-#: ../src/guake.py:173
-#, python-format
+#: ../src/guake.py:573
+#, fuzzy, python-format
 msgid ""
 "A problem happened when binding <b>%s</b> key.\n"
-"Please use guake properties form to choose another key"
+"Please use Guake Preferences dialog to choose another key (The trayicon was "
+"enabled)"
 msgstr ""
 "<b>%s</b>キーの割り当てで問題が生じております。\n"
 "設定画面で別のキーを選択してください"
 
-#: ../src/guake.py:178
+#: ../src/guake.py:584
 #, python-format
 msgid ""
 "Guake is already running,\n"
@@ -254,32 +316,37 @@ msgstr ""
 "Guakeは実行中です\n"
 "<b>%s</b>を入力して使用して下さい。"
 
-#: ../src/guake.py:597
+#: ../src/guake.py:854
+msgid "Rename tab"
+msgstr ""
+
+#. Adding a new radio button to the tabbar
+#: ../src/guake.py:942
 #, python-format
 msgid "Terminal %s"
 msgstr "端末 %s"
 
-#: ../src/guake.py:702
+#: ../src/guake.py:1027
 msgid "Toggles the visibility of the terminal window"
 msgstr "端末の表示を変更します"
 
-#: ../src/guake.py:706
+#: ../src/guake.py:1031
 msgid "Shows Guake preference window"
 msgstr "Guakeの設定画面を表示します"
 
-#: ../src/guake.py:710
+#: ../src/guake.py:1035
 msgid "Shows Guake's about info"
 msgstr "Guakeの情報を表示します"
 
-#: ../src/guake.py:714
+#: ../src/guake.py:1039
 msgid "Says to Guake go away =("
 msgstr "Guakeに消えてなくなれと言ってください (T_T)"
 
-#: ../src/guake.py:751
+#: ../src/guake.py:1076
 msgid "Guake can not init!"
 msgstr "Guakeを初期化できません"
 
-#: ../src/guake.py:752
+#: ../src/guake.py:1077
 msgid ""
 "Gconf Error.\n"
 "Have you installed <b>guake.schemas</b> properlly?"
@@ -287,64 +354,78 @@ msgstr ""
 "Gconf Error.\n"
 "<b>guake.schemas</b>を適切にインストールしましたか？"
 
-#: ../src/prefs.py:48
-msgid "Toggle terminal visibility"
+#. string to show in prefereces dialog for user shell option
+#: ../src/prefs.py:42
+msgid "<user shell>"
+msgstr ""
+
+#: ../src/prefs.py:57
+#, fuzzy
+msgid "Toggle Guake visibility"
 msgstr "端末表示の切り替え"
 
-#: ../src/prefs.py:49
-msgid "New tab"
-msgstr "新規TAB"
-
-#: ../src/prefs.py:50
-msgid "Close tab"
-msgstr "TABを閉じる"
-
-#: ../src/prefs.py:51
-msgid "Go to previous tab"
-msgstr "前のTABに移動"
-
-#: ../src/prefs.py:52
-msgid "Go to next tab"
-msgstr "次のTABに移動"
-
-#: ../src/prefs.py:53
-msgid "Copy text to clipboard"
-msgstr "テキストをクリップボードにコピー"
-
-#: ../src/prefs.py:54
-msgid "Paste text from clipboard"
-msgstr "クリップボードからテキストをペースト"
-
-#: ../src/prefs.py:55
+#: ../src/prefs.py:59
 msgid "Toggle Fullscreen"
 msgstr "全画面表示"
 
-#: ../src/prefs.py:102
+#: ../src/prefs.py:64
+msgid "Tab management"
+msgstr ""
+
+#: ../src/prefs.py:66
+msgid "New tab"
+msgstr "新規TAB"
+
+#: ../src/prefs.py:68
+msgid "Close tab"
+msgstr "TABを閉じる"
+
+#: ../src/prefs.py:70
+msgid "Rename current tab"
+msgstr ""
+
+#: ../src/prefs.py:73
+msgid "Navigation"
+msgstr ""
+
+#: ../src/prefs.py:75
+msgid "Go to previous tab"
+msgstr "前のTABに移動"
+
+#: ../src/prefs.py:77
+msgid "Go to next tab"
+msgstr "次のTABに移動"
+
+#: ../src/prefs.py:80
+msgid "Clipboard"
+msgstr ""
+
+#: ../src/prefs.py:82
+msgid "Copy text to clipboard"
+msgstr "テキストをクリップボードにコピー"
+
+#: ../src/prefs.py:84
+msgid "Paste text from clipboard"
+msgstr "クリップボードからテキストをペースト"
+
+#: ../src/prefs.py:260
 msgid "Action"
 msgstr "動作"
 
-#: ../src/prefs.py:112
+#: ../src/prefs.py:270
 msgid "Shortcut"
 msgstr "ショートカット"
 
-#: ../src/prefs.py:258
-msgid "Global hotkeys"
-msgstr "全体のホットキー"
-
-#: ../src/prefs.py:276
-msgid "Local hotkeys"
-msgstr "ローカルのホットキー"
-
-#: ../src/prefs.py:409
+#: ../src/prefs.py:525
 #, python-format
 msgid "The shortcut \"%s\" is already in use."
 msgstr ""
 
-#: ../src/prefs.py:410
+#: ../src/prefs.py:526
 msgid "Error setting keybinding."
 msgstr ""
 
-#: ../src/prefs.py:424
+#: ../src/prefs.py:538
 #, python-format
 msgid ""
 "The shortcut \"%s\" cannot be used because it will become impossible to type "
@@ -353,14 +434,30 @@ msgid ""
 "Please try with a key such as Control, Alt or Shift at the same time.\n"
 msgstr ""
 
-#: ../src/prefs.py:445
-msgid "key binding error"
-msgstr "キーの割り当てエラー"
+#: ../src/common.py:91
+msgid "Program not found in path"
+msgstr ""
 
-#: ../src/prefs.py:446
-#, python-format
-msgid "Unable to bind %s key"
-msgstr "%sキーを割り当てられません"
+#: ../src/common.py:92
+msgid ""
+"You don't have any available program to interpret this uri. To solve this "
+"problem just install gnome-open or xdg-open and try again."
+msgstr ""
+
+#~ msgid "<b>Window behavior</b>"
+#~ msgstr "<b>ウィンドウの動作</b>"
+
+#~ msgid "Desaturation:"
+#~ msgstr "不透明度:"
+
+#~ msgid "Style"
+#~ msgstr "スタイル"
+
+#~ msgid "Global hotkeys"
+#~ msgstr "全体のホットキー"
+
+#~ msgid "Local hotkeys"
+#~ msgstr "ローカルのホットキー"
 
 #~ msgid "<b>Tab position</b>"
 #~ msgstr "<b>TABの位置</b>"
