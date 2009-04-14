@@ -39,9 +39,9 @@ class DbusManager(dbus.service.Object):
     def show_hide(self):
         self.guake.show_hide()
 
-    @dbus.service.method(DBUS_NAME)
-    def add_tab(self):
-        self.guake.add_tab()
+    @dbus.service.method(DBUS_NAME, in_signature='s')
+    def add_tab(self, directory=''):
+        self.guake.add_tab(directory)
 
     @dbus.service.method(DBUS_NAME)
     def show_about(self):

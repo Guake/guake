@@ -902,13 +902,15 @@ class Guake(SimpleGladeApp):
                 directory = cwd
         return directory
 
-    def get_fork_params(self):
+    def get_fork_params(self, default_params=None):
         """Return all parameters to be passed to the fork_command
-        method of a vte terminal.
+        method of a vte terminal. Params returned can be expanded by
+        the `params' parameter that receive a dictionary.
         """
         # use dictionary to pass named params to work around command
         # parameter in fork_command not accepting None as argument.
-        # When we pass None as command, vte starts the default user shell.
+        # When we pass None as command, vte starts the default user
+        # shell.
         params = {}
 
         shell = self.client.get_string(KEY('/general/default_shell'))
@@ -922,9 +924,13 @@ class Guake(SimpleGladeApp):
         params['directory'] = self.get_current_dir()
         params['loglastlog'] = login_shell
 
+        # Leting caller change/add values to fork params.
+        if default_params:
+            params.update(default_params)
+
         return params
 
-    def add_tab(self, *args):
+    def add_tab(self, directory=None):
         """Adds a new tab to the terminal notebook.
         """
         box = GuakeTerminalBox()
@@ -936,7 +942,16 @@ class Guake(SimpleGladeApp):
         last_added = len(self.term_list)
         self.term_list.append(box.terminal)
 
-        pid = box.terminal.fork_command(**self.get_fork_params())
+        # We can choose the directory to vte launch. It is important
+        # to be used by dbus interface. I'm testing if directory is a
+        # string because when binded to a signal, the first param can
+        # be a button not a directory.
+        default_params = {}
+        if isinstance(directory, basestring):
+            default_params['directory'] = directory
+
+        final_params = self.get_fork_params(default_params)
+        pid = box.terminal.fork_command(**final_params)
         self.pid_list.append(pid)
 
         # Adding a new radio button to the tabbar
