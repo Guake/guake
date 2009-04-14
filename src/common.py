@@ -32,7 +32,7 @@ import guake_globals
 # Internationalization purposes.
 _ = gettext.gettext
 
-__all__ = ['_', 'ShowableError', 'test_dbus', 'test_gconf',
+__all__ = ['_', 'ShowableError', 'test_gconf',
            'pixmapfile', 'gladefile', 'hexify_color',
            'get_binaries_from_path']
 
@@ -46,12 +46,6 @@ class ShowableError(Exception):
         d.destroy()
         if exit_code != -1:
             sys.exit(exit_code)
-
-def test_dbus(bus, interface):
-    obj = bus.get_object('org.freedesktop.DBus', '/org/freedesktop/DBus')
-    dbus_iface = dbus.Interface(obj, 'org.freedesktop.DBus')
-    avail = dbus_iface.ListNames()
-    return interface in avail
 
 def test_gconf():
     c = gconf.client_get_default()
