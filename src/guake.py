@@ -436,9 +436,8 @@ class GuakeTerminal(vte.Terminal):
             elif TERMINAL_MATCH_TAGS[tag] == 'email':
                 value = 'mailto:%s' % value
 
-            # I'm temporarely using this little hammer because
-            # gtk_show_uri seem to not be binded to python yet.
-            open_uri(value)
+            gtk.show_uri(self.window.get_screen(), value,
+                         gtk.gdk.x11_get_server_time(self.window))
         elif event.button == 3 and matched_string:
             self.matched_value = matched_string[0]
 

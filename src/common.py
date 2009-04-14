@@ -29,13 +29,11 @@ import subprocess
 import re
 import guake_globals
 
-OPEN_PROGRAMS = re.compile('((?:gnome|xdg)-open)')
-
 # Internationalization purposes.
 _ = gettext.gettext
 
 __all__ = ['_', 'ShowableError', 'test_dbus', 'test_gconf',
-           'pixmapfile', 'gladefile', 'hexify_color', 'open_uri',
+           'pixmapfile', 'gladefile', 'hexify_color',
            'get_binaries_from_path']
 
 class ShowableError(Exception):
@@ -83,15 +81,3 @@ def get_binaries_from_path(compiled_re):
                 if compiled_re.match(j):
                     ret.append(os.path.join(i, j))
     return ret
-
-def open_uri(uri):
-    binaries = get_binaries_from_path(OPEN_PROGRAMS)
-    if not binaries:
-        raise ShowableError(
-            _('Program not found in path'),
-            _('You don\'t have any available program '
-              'to interpret this uri. To solve this problem '
-              'just install gnome-open or xdg-open and try '
-              'again.'),
-            -1)
-    subprocess.Popen([binaries[0], uri])
