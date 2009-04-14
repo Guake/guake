@@ -32,7 +32,6 @@ import dbus
 
 import os
 import signal
-import sys
 from thread import start_new_thread
 from time import sleep
 
@@ -106,7 +105,8 @@ class GConfHandler(object):
         notify_add(KEY('/style/font/color'), self.fcolor_changed)
         notify_add(KEY('/style/background/color'), self.bgcolor_changed)
         notify_add(KEY('/style/background/image'), self.bgimage_changed)
-        notify_add(KEY('/style/background/transparency'), self.bgtransparency_changed)
+        notify_add(KEY('/style/background/transparency'),
+                   self.bgtransparency_changed)
 
         notify_add(KEY('/general/compat_backspace'), self.backspace_changed)
         notify_add(KEY('/general/compat_delete'), self.delete_changed)
@@ -389,6 +389,7 @@ class GuakeTerminal(vte.Terminal):
         self.configure_terminal()
         self.add_matches()
         self.connect('button-press-event', self.button_press)
+        self.matched_value = ''
 
     def configure_terminal(self):
         """Sets all customized properties on the terminal
@@ -542,6 +543,9 @@ class Guake(SimpleGladeApp):
         # user tries to use the context menu.
         self.showing_context_menu = False
         def hide_context_menu(menu):
+            """Turn context menu flag off to make sure it is not being
+            shown.
+            """
             self.showing_context_menu = False
         self.get_widget('context-menu').connect('hide', hide_context_menu)
         self.get_widget('tab-menu').connect('hide', hide_context_menu)
@@ -596,7 +600,7 @@ class Guake(SimpleGladeApp):
 
         if command[-1] != '\n':
             command += '\n'
-        term = self.term_list[tab or 0].feed_child(command)
+        self.term_list[tab or 0].feed_child(command)
 
     def on_resizer_drag(self, widget, event):
         """Method that handles the resize drag. It does not actuall
@@ -622,7 +626,8 @@ class Guake(SimpleGladeApp):
         value = self.client.get_bool(KEY('/general/window_losefocus'))
         visible = window.get_property('visible')
         if value and visible and not self.showing_context_menu:
-            self.losefocus_time = gtk.gdk.x11_get_server_time(self.window.window)
+            self.losefocus_time = \
+                gtk.gdk.x11_get_server_time(self.window.window)
             self.hide()
 
     def show_menu(self, *args):
@@ -850,6 +855,10 @@ class Guake(SimpleGladeApp):
     # -- callbacks --
 
     def on_terminal_exited(self, term, widget):
+        """When a terminal is closed, shell process should be killed,
+        this is the method that does that, or, at least calls
+        `delete_tab' method to do the work.
+        """
         self.delete_tab(self.notebook.page_num(widget), kill=False)
 
     def on_rename_activate(self, *args):
@@ -951,7 +960,6 @@ class Guake(SimpleGladeApp):
         box.terminal.connect('child-exited', self.on_terminal_exited, box)
         box.show()
 
-        last_added = len(self.term_list)
         self.term_list.append(box.terminal)
 
         # We can choose the directory to vte launch. It is important
@@ -1076,7 +1084,7 @@ def main():
             action='store_true', default=False,
             help=_('Says to Guake go away =('))
 
-    options, args = parser.parse_args()
+    options = parser.parse_args()[0]
 
     # Trying to get an already running instance of guake. If it is not
     # possible, lets create a new instance. This function will return
