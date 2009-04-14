@@ -20,15 +20,15 @@ Boston, MA 02111-1307, USA.
 """
 
 __all__ = [
-    'name', 'version', 'image_dir', 'glade_dir', 'locale_dir',
+    'NAME', 'VERSION', 'IMAGE_DIR', 'GLADE_DIR', 'LOCALE_DIR',
     'GCONF_PATH', 'KEY', 'TERMINAL_MATCH_EXPRS', 'TERMINAL_MATCH_TAGS',
     ]
 
-name = 'guake'
-version = '@VERSION@'
-image_dir = '@DATADIR@/pixmaps/' + name
-glade_dir = '@DATADIR@/' + name
-locale_dir = '@DATADIR@/locale'
+NAME = 'guake'
+VERSION = '@VERSION@'
+IMAGE_DIR = '@DATADIR@/pixmaps/' + name
+GLADE_DIR = '@DATADIR@/' + name
+LOCALE_DIR = '@DATADIR@/locale'
 
 # Gconf stuff. Yep, it is hardcoded =)
 GCONF_PATH = '/apps/guake'

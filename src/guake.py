@@ -39,15 +39,16 @@ import globalhotkeys
 from simplegladeapp import SimpleGladeApp, bindtextdomain
 from prefs import PrefsDialog, LKEY, GKEY
 from dbusiface import DbusManager, DBUS_NAME, DBUS_PATH
-from common import *
-from guake_globals import *
+from common import test_gconf, pixmapfile, gladefile, ShowableError, _
+from guake_globals import NAME, VERSION, LOCALE_DIR, KEY, GCONF_PATH, \
+    TERMINAL_MATCH_EXPRS, TERMINAL_MATCH_TAGS
 
 pynotify.init('Guake!')
 
 GNOME_FONT_PATH = '/desktop/gnome/interface/monospace_font_name'
 
 # Loading translation
-bindtextdomain(name, locale_dir)
+bindtextdomain(NAME, LOCALE_DIR)
 
 
 class AboutDialog(SimpleGladeApp):
@@ -64,7 +65,7 @@ class AboutDialog(SimpleGladeApp):
         dialog.set_property('logo', img)
 
         dialog.set_name('Guake!')
-        dialog.set_version(version)
+        dialog.set_version(VERSION)
 
 
 class GConfHandler(object):

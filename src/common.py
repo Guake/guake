@@ -58,13 +58,13 @@ def test_gconf():
     return c.dir_exists('/apps/guake')
 
 def pixmapfile(x):
-    f = os.path.join(guake_globals.image_dir, x)
+    f = os.path.join(guake_globals.IMAGE_DIR, x)
     if not os.path.exists(f):
         raise IOError('No such file or directory: %s' % f)
     return os.path.abspath(f)
 
 def gladefile(x):
-    f = os.path.join(guake_globals.glade_dir, x)
+    f = os.path.join(guake_globals.GLADE_DIR, x)
     if not os.path.exists(f):
         raise IOError('No such file or directory: %s' % f)
     return os.path.abspath(f)
