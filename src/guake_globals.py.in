@@ -26,8 +26,8 @@ __all__ = [
 
 NAME = 'guake'
 VERSION = '@VERSION@'
-IMAGE_DIR = '@DATADIR@/pixmaps/' + name
-GLADE_DIR = '@DATADIR@/' + name
+IMAGE_DIR = '@DATADIR@/pixmaps/' + NAME
+GLADE_DIR = '@DATADIR@/' + NAME
 LOCALE_DIR = '@DATADIR@/locale'
 
 # Gconf stuff. Yep, it is hardcoded =)
