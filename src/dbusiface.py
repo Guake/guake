@@ -25,41 +25,32 @@ import gtk
 import common
 dbus.glib.threads_init()
 
+DBUS_PATH = '/org/guake_terminal/guake/RemoteControl'
+DBUS_NAME = 'org.guake_terminal.Guake'
 
-class DaemonDBus(dbus.service.Object):
-    def __init__(self, bus_name, guakeinstance):
+class DbusManager(dbus.service.Object):
+    def __init__(self, guakeinstance):
         self.guake = guakeinstance
-        object_path = '/DBusInterface'
-        super(DaemonDBus, self).__init__(bus_name, object_path)
+        self.bus = dbus.SessionBus()
+        bus_name = dbus.service.BusName(DBUS_NAME, bus=self.bus)
+        super(DbusManager, self).__init__(bus_name, DBUS_PATH)
 
-    @dbus.service.method('org.gnome.Guake.DBusInterface')
+    @dbus.service.method(DBUS_NAME)
     def show_hide(self):
         self.guake.show_hide()
 
-    @dbus.service.method('org.gnome.Guake.DBusInterface')
+    @dbus.service.method(DBUS_NAME)
     def add_tab(self):
         self.guake.add_tab()
 
-    @dbus.service.method('org.gnome.Guake.DBusInterface')
+    @dbus.service.method(DBUS_NAME)
     def show_about(self):
         self.guake.show_about()
 
-    @dbus.service.method('org.gnome.Guake.DBusInterface')
+    @dbus.service.method(DBUS_NAME)
     def show_prefs(self):
         self.guake.show_prefs()
 
-    @dbus.service.method('org.gnome.Guake.DBusInterface')
+    @dbus.service.method(DBUS_NAME)
     def quit(self):
         self.guake.quit()
-
-
-def dbus_init(guakeinstance):
-    try:
-        session_bus = dbus.SessionBus()
-        name = dbus.service.BusName('org.gnome.Guake.DBus', bus=session_bus)
-        return DaemonDBus(name, guakeinstance)
-    except dbus.DBusException:
-        import sys
-        sys.stderr.write(_('Could not connect to dbus session bus.'
-            ' dbus will be unavailable.\n'))
-        return None

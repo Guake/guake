@@ -39,6 +39,7 @@ from time import sleep
 import globalhotkeys
 from simplegladeapp import SimpleGladeApp, bindtextdomain
 from prefs import PrefsDialog, LKEY, GKEY
+from dbusiface import DbusManager, DBUS_NAME, DBUS_PATH
 from common import *
 from guake_globals import *
 
@@ -1018,7 +1019,9 @@ class Guake(SimpleGladeApp):
 
 def main():
     """Parses the command line parameters and decide if dbus methods
-    should be called or not.
+    should be called or not. If there is already a guake instance
+    running it will be used and a True value will be returned,
+    otherwise, false will be returned.
     """
     from optparse import OptionParser
     parser = OptionParser()
@@ -1040,43 +1043,48 @@ def main():
 
     options, args = parser.parse_args()
 
-    bus = dbus.SessionBus()
+    # Trying to get an already running instance of guake. If it is not
+    # possible, lets create a new instance. This function will return
+    # a boolean value depending on this decision.
     try:
-        remote_object = bus.get_object('org.gnome.Guake.DBus', '/DBusInterface')
+        bus = dbus.SessionBus()
+        remote_object = bus.get_object(DBUS_NAME, DBUS_PATH)
+        already_running = True
     except dbus.DBusException:
-        return
+        instance = Guake()
+        remote_object = DbusManager(instance)
+        already_running = False
+
+    called_with_param = False
 
     if options.show_hide:
         remote_object.show_hide()
-        sys.exit(0)
+        called_with_param = True
 
     if options.show_preferences:
         remote_object.show_prefs()
-        sys.exit(0)
+        called_with_param = True
 
     if options.show_about:
         remote_object.show_about()
-        sys.exit(0)
+        called_with_param = True
 
     if options.quit:
         remote_object.quit()
-        sys.exit(0)
+        called_with_param = True
 
-    # here we know that guake was called without any parameter and it is
-    # already running, so, lets toggle glade visibility and exit!
-    remote_object.show_hide()
-    sys.exit(0)
+    if not called_with_param:
+        # here we know that guake was called without any parameter and
+        # it is already running, so, lets toggle its visibility.
+        remote_object.show_hide()
 
+    return already_running
 
 if __name__ == '__main__':
-    from dbusiface import dbus_init
-    main()
-
     if not test_gconf():
         raise ShowableError(_('Guake can not init!'),
             _('Gconf Error.\n'
               'Have you installed <b>guake.schemas</b> properlly?'))
 
-    guake = Guake()
-    dbus_init(guake)
-    guake.run()
+    if not main():
+        gtk.main()
