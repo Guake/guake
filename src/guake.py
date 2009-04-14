@@ -1052,6 +1052,10 @@ def main():
             action='store_true', default=False,
             help=_('Shows Guake\'s about info'))
 
+    parser.add_option('-t', '--new-tab', dest='new_tab',
+            action='store', default='',
+            help=_('Add a new tab'))
+
     parser.add_option('-q', '--quit', dest='quit',
             action='store_true', default=False,
             help=_('Says to Guake go away =('))
@@ -1078,6 +1082,10 @@ def main():
 
     if options.show_preferences:
         remote_object.show_prefs()
+        called_with_param = True
+
+    if options.new_tab:
+        remote_object.add_tab(options.new_tab)
         called_with_param = True
 
     if options.show_about:
