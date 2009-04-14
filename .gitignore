@@ -27,3 +27,9 @@ guake
 guake-prefs
 autom4te.cache
 POTFILES
+m4/libtool.m4
+m4/ltoptions.m4
+m4/ltsugar.m4
+m4/ltversion.m4
+m4/lt~obsolete.m4
+m4/gnome-doc-utils.m4
