@@ -1124,7 +1124,7 @@ def main():
         remote_object.quit()
         called_with_param = True
 
-    if not called_with_param:
+    if not called_with_param and already_running:
         # here we know that guake was called without any parameter and
         # it is already running, so, lets toggle its visibility.
         remote_object.show_hide()
