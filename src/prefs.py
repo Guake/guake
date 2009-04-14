@@ -618,6 +618,22 @@ class KeyEntry(object):
         return self.keycode == rval.keycode and \
             self.mask == rval.mask
 
+def setup_standalone_signals(instance):
+    """Called when prefs dialog is running in standalone mode. It
+    makes the delete event of dialog and click on close button finish
+    the application.
+    """
+    window = instance.get_widget('config-window')
+    window.connect('delete-event', gtk.main_quit)
+
+    # We need to block the execution of the already associated
+    # callback before connecting the new handler.
+    button = instance.get_widget('button1')
+    button.handler_block_by_func(instance.gtk_widget_destroy)
+    button.connect('clicked', gtk.main_quit)
+
+    return instance
+
 if __name__ == '__main__':
-    PrefsDialog().show()
+    setup_standalone_signals(PrefsDialog()).show()
     gtk.main()
