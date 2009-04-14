@@ -586,6 +586,18 @@ class Guake(SimpleGladeApp):
                   'press <b>%s</b> to use it.') % label, filename)
             notification.show()
 
+    def execute_command(self, command, tab=None):
+        """Execute the `command' in the `tab'. If tab is None, the
+        command will be executed in the current tab. Command should
+        end with '\n', otherwise it will be appended to the string.
+        """
+        if not self.term_list:
+            self.add_tab()
+
+        if command[-1] != '\n':
+            command += '\n'
+        term = self.term_list[tab or 0].feed_child(command)
+
     def on_resizer_drag(self, widget, event):
         """Method that handles the resize drag. It does not actuall
         moves the main window. It just set the new window size in
@@ -1056,6 +1068,10 @@ def main():
             action='store', default='',
             help=_('Add a new tab'))
 
+    parser.add_option('-e', '--execute-command', dest='command',
+            action='store', default='',
+            help=_('Execute an arbitrary command.'))
+
     parser.add_option('-q', '--quit', dest='quit',
             action='store_true', default=False,
             help=_('Says to Guake go away =('))
@@ -1086,6 +1102,10 @@ def main():
 
     if options.new_tab:
         remote_object.add_tab(options.new_tab)
+        called_with_param = True
+
+    if options.command:
+        remote_object.execute_command(options.command)
         called_with_param = True
 
     if options.show_about:
