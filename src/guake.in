@@ -22,4 +22,4 @@ GUAKEPATH="@LIBDIR@/guake"
 PYTHONPATH="$PYTHONPATH:$GUAKEPATH"
 PYTHON="/usr/bin/python"
 
-exec -a guake $PYTHON -OO $GUAKEPATH/guake.py $@
+exec -a guake $PYTHON -OO $GUAKEPATH/guake.py "$@"
