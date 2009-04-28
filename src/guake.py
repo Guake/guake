@@ -1081,7 +1081,7 @@ def main():
 
     parser.add_option('-e', '--execute-command', dest='command',
             action='store', default='',
-            help=_('Execute an arbitrary command.'))
+            help=_('Execute an arbitrary command in the selected tab.'))
 
     parser.add_option('-q', '--quit', dest='quit',
             action='store_true', default=False,
