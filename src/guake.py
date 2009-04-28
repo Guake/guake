@@ -592,15 +592,18 @@ class Guake(SimpleGladeApp):
 
     def execute_command(self, command, tab=None):
         """Execute the `command' in the `tab'. If tab is None, the
-        command will be executed in the current tab. Command should
-        end with '\n', otherwise it will be appended to the string.
+        command will be executed in the currently selected
+        tab. Command should end with '\n', otherwise it will be
+        appended to the string.
         """
         if not self.term_list:
             self.add_tab()
 
         if command[-1] != '\n':
             command += '\n'
-        self.term_list[tab or 0].feed_child(command)
+
+        index = self.notebook.get_current_page()
+        self.term_list[tab or index].feed_child(command)
 
     def on_resizer_drag(self, widget, event):
         """Method that handles the resize drag. It does not actuall
