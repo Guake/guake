@@ -913,6 +913,13 @@ class Guake(SimpleGladeApp):
         pagepos = self.notebook.get_current_page()
         self.delete_tab(pagepos)
 
+    def rename_current_tab(self, new_text):
+        """Sets the `self.selected_tab' var with the selected radio
+        button and change its label to `new_text'.
+        """
+        pagepos = self.notebook.get_current_page()
+        self.selected_tab = self.tabs.get_children()[pagepos]
+        self.selected_tab.set_label(new_text)
 
     def get_current_dir(self):
         """Gets the working directory of the current tab to create a
@@ -1083,6 +1090,10 @@ def main():
             action='store', default='',
             help=_('Execute an arbitrary command in the selected tab.'))
 
+    parser.add_option('-r', '--rename-tab', dest='rename_tab',
+            action='store', default='',
+            help=_('Rename the selected tab.'))
+
     parser.add_option('-q', '--quit', dest='quit',
             action='store_true', default=False,
             help=_('Says to Guake go away =('))
@@ -1117,6 +1128,10 @@ def main():
 
     if options.command:
         remote_object.execute_command(options.command)
+        called_with_param = True
+
+    if options.rename_tab:
+        remote_object.rename_current_tab(options.rename_tab)
         called_with_param = True
 
     if options.show_about:

@@ -47,6 +47,10 @@ class DbusManager(dbus.service.Object):
     def execute_command(self, command):
         self.guake.execute_command(command)
 
+    @dbus.service.method(DBUS_NAME, in_signature='s')
+    def rename_current_tab(self, new_text):
+        self.guake.rename_current_tab(new_text)
+
     @dbus.service.method(DBUS_NAME)
     def show_about(self):
         self.guake.show_about()
