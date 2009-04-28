@@ -1,7 +1,7 @@
 *.[oa]
 *.l[oa]
 *~
-*.pyc
+*.py[co]
 *.gmo
 Makefile
 Makefile.in
