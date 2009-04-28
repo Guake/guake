@@ -31,6 +31,7 @@ import gconf
 import dbus
 
 import os
+import sys
 import signal
 from thread import start_new_thread
 from time import sleep
@@ -1062,6 +1063,22 @@ class Guake(SimpleGladeApp):
         """
         self.tabs.get_children()[page].set_active(True)
 
+    def select_tab(self, tab_index):
+        """Select an already added tab by its index.
+        """
+        try:
+            self.tabs.get_children()[tab_index].set_active(True)
+        except IndexError:
+            pass
+
+    def get_selected_tab(self):
+        """return the selected tab index, it also set the
+        self.selected_tab var.
+        """
+        pagepos = self.notebook.get_current_page()
+        self.selected_tab = self.tabs.get_children()[pagepos]
+        return pagepos
+
 def main():
     """Parses the command line parameters and decide if dbus methods
     should be called or not. If there is already a guake instance
@@ -1070,7 +1087,7 @@ def main():
     """
     from optparse import OptionParser
     parser = OptionParser()
-    parser.add_option('-s', '--show-hide', dest='show_hide',
+    parser.add_option('-t', '--toggle-visibility', dest='show_hide',
             action='store_true', default=False,
             help=_('Toggles the visibility of the terminal window'))
 
@@ -1082,9 +1099,17 @@ def main():
             action='store_true', default=False,
             help=_('Shows Guake\'s about info'))
 
-    parser.add_option('-t', '--new-tab', dest='new_tab',
+    parser.add_option('-n', '--new-tab', dest='new_tab',
             action='store', default='',
             help=_('Add a new tab'))
+
+    parser.add_option('-s', '--select-tab', dest='select_tab',
+            action='store', default='',
+            help=_('Select a tab'))
+
+    parser.add_option('-g', '--selected-tab', dest='selected_tab',
+            action='store_true', default=False,
+            help=_('Return the selectd tab index.'))
 
     parser.add_option('-e', '--execute-command', dest='command',
             action='store', default='',
@@ -1124,6 +1149,16 @@ def main():
 
     if options.new_tab:
         remote_object.add_tab(options.new_tab)
+        called_with_param = True
+
+    if options.select_tab:
+        selected = int(options.select_tab)
+        remote_object.select_tab(selected)
+        called_with_param = True
+
+    if options.selected_tab:
+        selected = remote_object.get_selected_tab()
+        sys.stdout.write('%d\n' % selected)
         called_with_param = True
 
     if options.command:

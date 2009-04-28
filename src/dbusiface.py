@@ -43,6 +43,14 @@ class DbusManager(dbus.service.Object):
     def add_tab(self, directory=''):
         self.guake.add_tab(directory)
 
+    @dbus.service.method(DBUS_NAME, in_signature='i')
+    def select_tab(self, tab_index=0):
+        self.guake.select_tab(int(tab_index))
+
+    @dbus.service.method(DBUS_NAME, out_signature='i')
+    def get_selected_tab(self):
+        return self.guake.get_selected_tab()
+
     @dbus.service.method(DBUS_NAME, in_signature='s')
     def execute_command(self, command):
         self.guake.execute_command(command)
