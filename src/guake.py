@@ -771,6 +771,8 @@ class Guake(SimpleGladeApp):
         self.client.notify(KEY('/style/background/image'))
         self.client.notify(KEY('/style/background/transparency'))
         self.client.notify(KEY('/general/use_default_font'))
+        self.client.notify(KEY('/general/compat_backspace'))
+        self.client.notify(KEY('/general/compat_delete'))
 
     def accel_add(self, *args):
         """Callback to add a new tab. Called by the accel key.
