@@ -18,6 +18,10 @@ desktopdir = $(datadir)/applications
 desktop_in_files = guake.desktop.in guake-prefs.desktop.in
 desktop_DATA = $(desktop_in_files:.desktop.in=.desktop)
 
+autostartdir = $(sysconfdir)/xdg/autostart
+autostart_in_files = guake.desktop.in
+autostart_DATA = $(autostart_in_files:.desktop.in=.desktop)
+
 @INTLTOOL_SCHEMAS_RULE@
 schemadir = $(sysconfdir)/gconf/schemas
 schema_DATA = guake.schemas
