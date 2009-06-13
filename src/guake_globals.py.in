@@ -36,12 +36,12 @@ KEY = lambda x: (GCONF_PATH+x)
 
 # regular expressions to highlight links in terminal. This code was
 # lovely stolen from the great gnome-terminal project, thank you =)
-USERCHARS = "-A-Za-z0-9"
-PASSCHARS = "-A-Za-z0-9,?;.:/!%$^*&~\"#'"
-HOSTCHARS = "-A-Za-z0-9"
+USERCHARS = "-[:alnum:]"
+PASSCHARS = "-[:alnum:],?;.:/!%$^*&~\"#'"
+HOSTCHARS = "-[:alnum:]"
 HOST      = "[" + HOSTCHARS + "]+(\\.[" + HOSTCHARS + "]+)*"
-PORT      = "(:[0-9]{1,5})?"
-PATHCHARS =  "-A-Za-z0-9_$.+!*(),;:@&=?/~#%"
+PORT      = "(:[:digit:]{1,5})?"
+PATHCHARS =  "-[:alnum:]_$.+!*(),;:@&=?/~#%"
 SCHEME    = "(news:|telnet:|nntp:|file:/|https?:|ftps?:|webcal:)"
 USER      = "[" + USERCHARS + "]+(:[" + PASSCHARS + "]+)?"
 URLPATH   = "/[" + PATHCHARS + "]*[^]'.}>) \t\r\n,\\\"]"
