@@ -634,11 +634,12 @@ class Guake(SimpleGladeApp):
                 gtk.gdk.x11_get_server_time(self.window.window)
             self.hide()
 
-    def show_menu(self, *args):
+    def show_menu(self, status_icon, button, activate_time):
         """Show the tray icon menu.
         """
         menu = self.get_widget('tray-menu')
-        menu.popup(None, None, None, 3, gtk.get_current_event_time())
+        menu.popup(None, None, gtk.status_icon_position_menu,
+                   button, activate_time, status_icon)
 
     def show_context_menu(self, terminal, event):
         """Show the context menu, only with a right click on a vte
