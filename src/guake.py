@@ -95,6 +95,7 @@ class GConfHandler(object):
         notify_add(KEY('/general/use_trayicon'), self.trayicon_toggled)
         notify_add(KEY('/general/window_ontop'), self.ontop_toggled)
         notify_add(KEY('/general/window_tabbar'), self.tabbar_toggled)
+        notify_add(KEY('/general/window_width'), self.size_changed)
         notify_add(KEY('/general/window_height'), self.size_changed)
 
         notify_add(KEY('/general/use_scrollbar'), self.scrollbar_toggled)
@@ -145,8 +146,9 @@ class GConfHandler(object):
             self.guake.toolbar.hide()
 
     def size_changed(self, client, connection_id, entry, data):
-        """If the gconf var window_height be changed, this method will
-        be called and will call the resize function in guake.
+        """If the gconf var window_height or window_width are changed,
+        this method will be called and will call the resize function
+        in guake.
         """
         window_rect = self.guake.get_final_window_rect()
         self.guake.window.resize(window_rect.width, window_rect.height)
@@ -739,12 +741,11 @@ class Guake(SimpleGladeApp):
 
     def get_final_window_rect(self):
         """Gets the final size of the main window of guake. The height
-        is just the window_height property. But width is calculated as
-        100% of the screen and tested against the monitor geometry
-        width.
+        is the window_height property, while width is window_width.
         """
         screen = self.window.get_screen()
         height = self.client.get_int(KEY('/general/window_height'))
+        width = self.client.get_int(KEY('/general/window_width'))
 
         # get the rectangle just from the first/default monitor in the
         # future we might create a field to select which monitor you
@@ -752,6 +753,7 @@ class Guake(SimpleGladeApp):
         window_rect = screen.get_monitor_geometry(0)
 
         window_rect.height = window_rect.height * height / 100
+        window_rect.width = window_rect.width * width / 100
         return window_rect
 
     # -- configuration --
@@ -762,6 +764,7 @@ class Guake(SimpleGladeApp):
         self.client.notify(KEY('/general/use_trayicon'))
         self.client.notify(KEY('/general/window_tabbar'))
         self.client.notify(KEY('/general/window_ontop'))
+        self.client.notify(KEY('/general/window_width'))
         self.client.notify(KEY('/general/window_height'))
         self.client.notify(KEY('/general/use_scrollbar'))
         self.client.notify(KEY('/general/history_size'))

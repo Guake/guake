@@ -138,6 +138,12 @@ class PrefsCallbacks(object):
         """
         self.client.set_bool(KEY('/general/window_tabbar'), chk.get_active())
 
+    def on_window_width_value_changed(self, wscale):
+        """Changes the value of window_width in gconf
+        """
+        val = wscale.get_value()
+        self.client.set_int(KEY('/general/window_width'), int(val))
+
     def on_window_height_value_changed(self, hscale):
         """Changes the value of window_height in gconf
         """
@@ -397,7 +403,11 @@ class PrefsDialog(SimpleGladeApp):
         value = self.client.get_bool(KEY('/general/window_tabbar'))
         self.get_widget('window_tabbar').set_active(value)
 
-        # size
+        # width
+        value = float(self.client.get_int(KEY('/general/window_width')))
+        self.get_widget('window_width').set_value(value)
+
+        # height
         value = float(self.client.get_int(KEY('/general/window_height')))
         self.get_widget('window_height').set_value(value)
 
