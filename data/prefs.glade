@@ -319,7 +319,7 @@
                             <property name="visible">True</property>
                             <property name="left_padding">12</property>
                             <child>
-                              <widget class="GtkHScale" id="window_size">
+                              <widget class="GtkHScale" id="window_height">
                                 <property name="visible">True</property>
                                 <property name="can_focus">True</property>
                                 <property name="update_policy">GTK_UPDATE_DISCONTINUOUS</property>
@@ -327,7 +327,7 @@
                                 <property name="digits">0</property>
                                 <property name="draw_value">False</property>
                                 <property name="value_pos">GTK_POS_RIGHT</property>
-                                <signal name="value_changed" handler="on_window_size_value_changed"/>
+                                <signal name="value_changed" handler="on_window_height_value_changed"/>
                               </widget>
                             </child>
                           </widget>

@@ -138,11 +138,11 @@ class PrefsCallbacks(object):
         """
         self.client.set_bool(KEY('/general/window_tabbar'), chk.get_active())
 
-    def on_window_size_value_changed(self, hscale):
-        """Changes the value of window_size in gconf
+    def on_window_height_value_changed(self, hscale):
+        """Changes the value of window_height in gconf
         """
         val = hscale.get_value()
-        self.client.set_int(KEY('/general/window_size'), int(val))
+        self.client.set_int(KEY('/general/window_height'), int(val))
 
     # scrolling tab
 
@@ -398,8 +398,8 @@ class PrefsDialog(SimpleGladeApp):
         self.get_widget('window_tabbar').set_active(value)
 
         # size
-        value = float(self.client.get_int(KEY('/general/window_size')))
-        self.get_widget('window_size').set_value(value)
+        value = float(self.client.get_int(KEY('/general/window_height')))
+        self.get_widget('window_height').set_value(value)
 
         # scrollbar
         value = self.client.get_bool(KEY('/general/use_scrollbar'))

@@ -95,7 +95,7 @@ class GConfHandler(object):
         notify_add(KEY('/general/use_trayicon'), self.trayicon_toggled)
         notify_add(KEY('/general/window_ontop'), self.ontop_toggled)
         notify_add(KEY('/general/window_tabbar'), self.tabbar_toggled)
-        notify_add(KEY('/general/window_size'), self.size_changed)
+        notify_add(KEY('/general/window_height'), self.size_changed)
 
         notify_add(KEY('/general/use_scrollbar'), self.scrollbar_toggled)
         notify_add(KEY('/general/history_size'), self.history_size_changed)
@@ -145,7 +145,7 @@ class GConfHandler(object):
             self.guake.toolbar.hide()
 
     def size_changed(self, client, connection_id, entry, data):
-        """If the gconf var window_size be changed, this method will
+        """If the gconf var window_height be changed, this method will
         be called and will call the resize function in guake.
         """
         window_rect = self.guake.get_final_window_rect()
@@ -621,7 +621,7 @@ class Guake(SimpleGladeApp):
         if percent < 1:
             percent = 1
 
-        self.client.set_int(KEY('/general/window_size'), int(percent))
+        self.client.set_int(KEY('/general/window_height'), int(percent))
 
     def on_window_losefocus(self, window, event):
         """Hides terminal main window when it loses the focus and if
@@ -739,12 +739,12 @@ class Guake(SimpleGladeApp):
 
     def get_final_window_rect(self):
         """Gets the final size of the main window of guake. The height
-        is just the window_size property. But width is calculated as
+        is just the window_height property. But width is calculated as
         100% of the screen and tested against the monitor geometry
         width.
         """
         screen = self.window.get_screen()
-        height = self.client.get_int(KEY('/general/window_size'))
+        height = self.client.get_int(KEY('/general/window_height'))
 
         # get the rectangle just from the first/default monitor in the
         # future we might create a field to select which monitor you
@@ -762,7 +762,7 @@ class Guake(SimpleGladeApp):
         self.client.notify(KEY('/general/use_trayicon'))
         self.client.notify(KEY('/general/window_tabbar'))
         self.client.notify(KEY('/general/window_ontop'))
-        self.client.notify(KEY('/general/window_size'))
+        self.client.notify(KEY('/general/window_height'))
         self.client.notify(KEY('/general/use_scrollbar'))
         self.client.notify(KEY('/general/history_size'))
         self.client.notify(KEY('/general/show_resizer'))

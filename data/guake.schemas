@@ -93,8 +93,8 @@
         </schema>
 
         <schema>
-            <key>/schemas/apps/guake/general/window_size</key>
-            <applyto>/apps/guake/general/window_size</applyto>
+            <key>/schemas/apps/guake/general/window_height</key>
+            <applyto>/apps/guake/general/window_height</applyto>
             <owner>guake</owner>
             <type>int</type>
             <default>50</default>
