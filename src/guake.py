@@ -42,7 +42,8 @@ from prefs import PrefsDialog, LKEY, GKEY
 from dbusiface import DbusManager, DBUS_NAME, DBUS_PATH
 from common import test_gconf, pixmapfile, gladefile, ShowableError, _
 from guake_globals import NAME, VERSION, LOCALE_DIR, KEY, GCONF_PATH, \
-    TERMINAL_MATCH_EXPRS, TERMINAL_MATCH_TAGS
+    TERMINAL_MATCH_EXPRS, TERMINAL_MATCH_TAGS, \
+    ALIGN_LEFT, ALIGN_RIGHT, ALIGN_CENTER
 
 pynotify.init('Guake!')
 
@@ -95,6 +96,7 @@ class GConfHandler(object):
         notify_add(KEY('/general/use_trayicon'), self.trayicon_toggled)
         notify_add(KEY('/general/window_ontop'), self.ontop_toggled)
         notify_add(KEY('/general/window_tabbar'), self.tabbar_toggled)
+        notify_add(KEY('/general/window_halignment'), self.alignment_changed)
         notify_add(KEY('/general/window_width'), self.size_changed)
         notify_add(KEY('/general/window_height'), self.size_changed)
 
@@ -145,12 +147,20 @@ class GConfHandler(object):
         else:
             self.guake.toolbar.hide()
 
+    def alignment_changed(self, client, connection_id, entry, data):
+        """If the gconf var window_halignment be changed, this method will
+        be called and will call the move function in guake.
+        """
+        window_rect = self.guake.get_final_window_rect()
+        self.guake.window.move(window_rect.x, window_rect.y)
+
     def size_changed(self, client, connection_id, entry, data):
         """If the gconf var window_height or window_width are changed,
         this method will be called and will call the resize function
         in guake.
         """
         window_rect = self.guake.get_final_window_rect()
+        self.guake.window.move(window_rect.x, window_rect.y)
         self.guake.window.resize(window_rect.width, window_rect.height)
 
     def scrollbar_toggled(self, client, connection_id, entry, data):
@@ -741,19 +751,30 @@ class Guake(SimpleGladeApp):
 
     def get_final_window_rect(self):
         """Gets the final size of the main window of guake. The height
-        is the window_height property, while width is window_width.
+        is the window_height property, width is window_width and the
+        horizontal alignment is given by window_alignment.
         """
         screen = self.window.get_screen()
         height = self.client.get_int(KEY('/general/window_height'))
         width = self.client.get_int(KEY('/general/window_width'))
+        halignment = self.client.get_int(KEY('/general/window_halignment'))
 
         # get the rectangle just from the first/default monitor in the
         # future we might create a field to select which monitor you
         # wanna use
         window_rect = screen.get_monitor_geometry(0)
-
+        total_width = window_rect.width
         window_rect.height = window_rect.height * height / 100
         window_rect.width = window_rect.width * width / 100
+
+        if width < total_width:
+            if halignment == ALIGN_CENTER:
+                window_rect.x = (total_width - window_rect.width) / 2
+            elif halignment == ALIGN_LEFT:
+                window_rect.x = 0
+            elif halignment == ALIGN_RIGHT:
+                window_rect.x = total_width - window_rect.width
+        window_rect.y = 0
         return window_rect
 
     # -- configuration --

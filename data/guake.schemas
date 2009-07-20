@@ -118,6 +118,19 @@
             </locale>
         </schema>
 
+	<schema>
+	    <key>/schemas/apps/guake/general/window_halignment</key>
+	    <applyto>/apps/guake/general/window_halignment</applyto>
+	    <owner>guake</owner>
+	    <type>int</type>
+	    <default>0</default>
+	    <locale name="C">
+	    <short>Window horizontal alignment.</short>
+	    <long>Place Guake at:
+	          0: center, 1: left, 2: right</long>
+	    </locale>
+	</schema>
+
         <schema>
             <key>/schemas/apps/guake/general/use_scrollbar</key>
             <applyto>/apps/guake/general/use_scrollbar</applyto>
