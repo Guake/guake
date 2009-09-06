@@ -747,9 +747,9 @@ class Guake(SimpleGladeApp):
             self.add_tab()
 
         window_rect = self.get_final_window_rect()
+        self.window.move(window_rect.x, window_rect.y)
         self.window.resize(window_rect.width, window_rect.height)
         self.window.show_all()
-        self.window.move(window_rect.x, window_rect.y)
 
         try:
             # does it work in other gtk backends
