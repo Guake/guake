@@ -53,6 +53,19 @@
             </locale>
         </schema>
 
+	<schema>
+            <key>/schemas/apps/guake/general/prompt_on_quit</key>
+            <applyto>/apps/guake/general/prompt_on_quit</applyto>
+            <owner>guake</owner>
+            <type>bool</type>
+            <default>true</default>
+            <locale name="C">
+                <short>Prompt when quiting.</short>
+                <long>Ask for confirmation when guiting Guake and there
+                processes running.</long>
+            </locale>
+        </schema>
+
         <schema>
             <key>/schemas/apps/guake/general/window_ontop</key>
             <applyto>/apps/guake/general/window_ontop</applyto>

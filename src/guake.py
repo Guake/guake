@@ -35,6 +35,7 @@ import sys
 import signal
 from thread import start_new_thread
 from time import sleep
+import posix
 
 import globalhotkeys
 from simplegladeapp import SimpleGladeApp, bindtextdomain
@@ -51,6 +52,27 @@ GNOME_FONT_PATH = '/desktop/gnome/interface/monospace_font_name'
 
 # Loading translation
 bindtextdomain(NAME, LOCALE_DIR)
+
+
+class PromptQuitDialog(gtk.MessageDialog):
+    """Prompts the user whether to quit or not if there are procs running.
+    """
+    def __init__(self, parent, running_procs):
+        super(PromptQuitDialog, self).__init__(
+            parent,
+            gtk.DIALOG_MODAL | gtk.DIALOG_DESTROY_WITH_PARENT,
+            gtk.MESSAGE_QUESTION, gtk.BUTTONS_YES_NO)
+
+        self.set_keep_above(True)
+        self.set_markup(_('Do you really want to quit Guake!?'))
+        if running_procs == 1:
+            self.format_secondary_markup(
+                _("<b>There is one process still running.</b>")
+            )
+        elif running_procs > 1:
+            self.format_secondary_markup(
+                _("<b>There are %d processes running.</b>" % running_procs)
+            )
 
 
 class AboutDialog(SimpleGladeApp):
@@ -352,7 +374,7 @@ class GConfKeyHandler(object):
         key, mask = gtk.accelerator_parse(gets('quit'))
         if key > 0:
             self.accel_group.connect_group(key, mask, gtk.ACCEL_VISIBLE,
-                                           gtk.main_quit)
+                                           self.guake.accel_quit)
 
         key, mask = gtk.accelerator_parse(gets('new_tab'))
         if key > 0:
@@ -777,12 +799,28 @@ class Guake(SimpleGladeApp):
         window_rect.y = 0
         return window_rect
 
+    def get_running_fg_processes(self):
+        """Get the number processes for each terminal/tab. The code is taken
+        from gnome-terminal.
+        """
+        total_procs = 0
+        term_idx = 0
+        for terminal in self.term_list:
+            fdpty = terminal.get_pty()
+            term_pid = self.pid_list[term_idx]
+            fgpid = posix.tcgetpgrp(fdpty)
+            if not (fgpid == -1 or fgpid == term_pid):
+            	total_procs += 1
+            term_idx += 1
+        return total_procs
+
     # -- configuration --
 
     def load_config(self):
         """"Just a proxy for all the configuration stuff.
         """
         self.client.notify(KEY('/general/use_trayicon'))
+        self.client.notify(KEY('/general/prompt_on_quit'))
         self.client.notify(KEY('/general/window_tabbar'))
         self.client.notify(KEY('/general/window_ontop'))
         self.client.notify(KEY('/general/window_width'))
@@ -798,6 +836,22 @@ class Guake(SimpleGladeApp):
         self.client.notify(KEY('/general/use_default_font'))
         self.client.notify(KEY('/general/compat_backspace'))
         self.client.notify(KEY('/general/compat_delete'))
+
+    def accel_quit(self, *args):
+        """Callback to prompt the user whether to quit Guake or not.
+        """
+        if self.client.get_bool(KEY('/general/prompt_on_quit')):
+            procs = self.get_running_fg_processes()
+            if procs >= 1:
+                dialog = PromptQuitDialog(self.window, procs)
+                response = dialog.run() == gtk.RESPONSE_YES
+                dialog.destroy()
+                if response:
+                    gtk.main_quit()
+            else:
+                gtk.main_quit()
+        else:
+            gtk.main_quit()
 
     def accel_add(self, *args):
         """Callback to add a new tab. Called by the accel key.

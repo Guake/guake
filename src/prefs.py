@@ -159,6 +159,11 @@ class PrefsCallbacks(object):
         alignment = combo.get_model().get_value(citer, 1)
         self.client.set_int(KEY('/general/window_halignment'), alignment)
 
+    def on_prompt_on_quit_toggled(self, chk):
+        """Set the `prompt on quit' property in gconf
+        """
+        self.client.set_bool(KEY('/general/prompt_on_quit'), chk.get_active())
+
     # scrolling tab
 
     def on_use_scrollbar_toggled(self, chk):
@@ -400,6 +405,10 @@ class PrefsDialog(SimpleGladeApp):
         # popup
         value = self.client.get_bool(KEY('/general/use_popup'))
         self.get_widget('use_popup').set_active(value)
+
+        # prompt on quit
+        value = self.client.get_bool(KEY('/general/prompt_on_quit'))
+        self.get_widget('prompt_on_quit').set_active(value)
 
         # ontop
         value = self.client.get_bool(KEY('/general/window_ontop'))

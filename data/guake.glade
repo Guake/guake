@@ -151,7 +151,7 @@
         <property name="label" translatable="yes">Quit</property>
         <property name="visible">True</property>
         <property name="use_stock">False</property>
-        <signal name="activate" handler="gtk_main_quit"/>
+        <signal name="activate" handler="accel_quit"/>
         <child internal-child="image">
           <widget class="GtkImage" id="tray_quit_icon">
             <property name="visible">True</property>
@@ -169,6 +169,7 @@
       <widget class="GtkImageMenuItem" id="context_preferences">
         <property name="label">gtk-preferences</property>
         <property name="visible">True</property>
+        <property name="use_underline">True</property>
         <property name="use_stock">True</property>
         <signal name="activate" handler="show_prefs"/>
       </widget>
@@ -233,7 +234,7 @@
         <property name="label" translatable="yes">Quit</property>
         <property name="visible">True</property>
         <property name="use_stock">False</property>
-        <signal name="activate" handler="gtk_main_quit"/>
+        <signal name="activate" handler="accel_quit"/>
         <child internal-child="image">
           <widget class="GtkImage" id="close_icon">
             <property name="visible">True</property>
