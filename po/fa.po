@@ -1,0 +1,393 @@
+# Tradução do Guake-terminal
+# Copyright (C) 2007 Gabriel Falcão <gabrielteratos@gmail.com>
+# Copyright (C) 2007 Lincoln de Sousa <lincoln@archlinux-br.org>
+# This file is distributed under the same license as the guake package.
+# Gabriel Falcão <gabriel@guake-terminal.org>, 2007
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: guake 0.4.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2008-12-16 10:49-0200\n"
+"PO-Revision-Date: 2009-09-15 11:42+0430\n"
+"Last-Translator: Kasra Keshavarz <kasra545@gmail.com>\n"
+"Language-Team: translation@guake-terminal.org <>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Poedit-Language: Farsi\n"
+"X-Poedit-Country: IRAN\n"
+
+#: ../data/about.glade.h:1
+msgid "About Guake"
+msgstr "درباره‌ی Guake"
+
+#: ../data/about.glade.h:2
+msgid ""
+"Adolfo González Blázquez &lt;code@infinicode.org&gt; Spanish\n"
+"Lincoln de Sousa &lt;lincoln@guake-terminal.org&gt; Brazilian Portuguese\n"
+"Markus Majer &lt;mm@mpathy.de&gt; German\n"
+"Mieszko Ślusarczyk &lt;mieszkoslusarczyk@gmail.com&lt; Polish\n"
+"Nishio Futoshi &lt;futoshi@momonga-linux.org&gt; Japanese\n"
+"Pavel Alexeev &lt;Pahan@Hubbitus.spb.su&gt; Russian\n"
+"Piotr Drąg &lt;piotrdrag@gmail.com&gt; Polish\n"
+msgstr ""
+"Adolfo González Blázquez &lt;code@infinicode.org&gt; Spanish\n"
+"Lincoln de Sousa &lt;lincoln@guake-terminal.org&gt; Brazilian Portuguese\n"
+"Markus Majer &lt;mm@mpathy.de&gt; German\n"
+"Mieszko Ślusarczyk &lt;mieszkoslusarczyk@gmail.com&lt; Polish\n"
+"Nishio Futoshi &lt;futoshi@momonga-linux.org&gt; Japanese\n"
+"Pavel Alexeev &lt;Pahan@Hubbitus.spb.su&gt; Russian\n"
+"Piotr Drąg &lt;piotrdrag@gmail.com&gt; Polish\n"
+
+#: ../data/about.glade.h:17
+msgid ""
+"Copyright 2007-2008 Lincoln de Sousa\n"
+"Copyright 2007 Gabriel Falcão"
+msgstr ""
+"حق انتشار محفوظ ۲۰۰۸ - ۲۰۰۸ Lincoln de Sousa\n"
+"حق انتشار محفوظ ۲۰۰۷ Gabriel Falcão"
+
+#: ../data/about.glade.h:19
+msgid ""
+"Guake is an easy to access\n"
+"terminal based on fps games terminal"
+msgstr ""
+"برنامه‌ی Guake ترمینالی سریع\n"
+"و در دسترس در هر زمان"
+
+#: ../data/about.glade.h:21
+msgid ""
+"Guake is free software; you can redistribute it and/or modify it under the "
+"terms of the GNU General Public License as published by the Free Software "
+"Foundation; either version 2 of the License, or (at your option) any later "
+"version.\n"
+"\n"
+"Guake is distributed in the hope that it will be useful, but WITHOUT ANY "
+"WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS "
+"FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more "
+"details.\n"
+"\n"
+"You should have received a copy of the GNU General Public License along with "
+"Guake; if not, write to the Free Software Foundation, Inc., 51 Franklin St, "
+"Fifth Floor, Boston, MA  02110-1301 USA\n"
+msgstr ""
+"Guake is free software; you can redistribute it and/or modify it under the "
+"terms of the GNU General Public License as published by the Free Software "
+"Foundation; either version 2 of the License, or (at your option) any later "
+"version.\n"
+"\n"
+"Guake is distributed in the hope that it will be useful, but WITHOUT ANY "
+"WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS "
+"FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more "
+"details.\n"
+"\n"
+"You should have received a copy of the GNU General Public License along with "
+"Guake; if not, write to the Free Software Foundation, Inc., 51 Franklin St, "
+"Fifth Floor, Boston, MA  02110-1301 USA\n"
+"\n"
+
+#: ../data/about.glade.h:27
+msgid "http://guake-terminal.org"
+msgstr "http://guake-terminal.org"
+
+#: ../data/guake.glade.h:1
+msgid "Add a new tab"
+msgstr "افزودن زبانه‌ی جدید"
+
+#: ../data/guake.glade.h:2
+msgid "Close"
+msgstr "بستن"
+
+#: ../data/guake.glade.h:3
+msgid "Close Tab"
+msgstr "بستن زبانه"
+
+#: ../data/guake.glade.h:4 ../src/guake.py:172 ../src/guake.py:177
+msgid "Guake!"
+msgstr "Guake!"
+
+#: ../data/guake.glade.h:5
+msgid "Rename"
+msgstr ""
+
+#: ../data/prefs.glade.h:1
+msgid "<b>Background</b>"
+msgstr "<b>پس زمینه</b>"
+
+#: ../data/prefs.glade.h:2
+msgid "<b>Fonts</b>"
+msgstr "<b>قلم‌ها</b>"
+
+#: ../data/prefs.glade.h:3
+msgid "<b>Keyboard compatibility</b>"
+msgstr ""
+
+#: ../data/prefs.glade.h:4
+msgid "<b>Shell</b>"
+msgstr "<b>خط فرمان</b>"
+
+#: ../data/prefs.glade.h:5
+msgid "<b>Window behavior</b>"
+msgstr "<b>رفتار پنجره</b>"
+
+#: ../data/prefs.glade.h:6
+msgid "<b>Window size</b>"
+msgstr "<b>سایز پنجره</b>"
+
+#: ../data/prefs.glade.h:7
+msgid ""
+"<small><i><b>Note:</b> These options may cause some applications to behave "
+"incorrectly.  They are only here to allow you to work around certain "
+"applications and operating systems that expect different terminal behavior.</"
+"i></small>"
+msgstr ""
+
+#: ../data/prefs.glade.h:8
+msgid ""
+"<span color=\"black\">Customize behavior and appearance of Guake!</span>"
+msgstr ""
+
+#: ../data/prefs.glade.h:9
+msgid "<span size=\"18000\" color=\"black\"><b>Guake properties</b></span>"
+msgstr ""
+
+#: ../data/prefs.glade.h:10
+msgid ""
+"ASCII DEL\n"
+"Escape sequence\n"
+"Control-H"
+msgstr ""
+
+#: ../data/prefs.glade.h:13
+msgid "Background Transparent:"
+msgstr "شفافیت پس زمینه"
+
+#: ../data/prefs.glade.h:14
+msgid "Choose some color"
+msgstr "تعدادی رنگ انتخاب کنید"
+
+#: ../data/prefs.glade.h:15
+msgid "Choose some font"
+msgstr "تعدادی قلم انتخاب کنید"
+
+#: ../data/prefs.glade.h:16
+msgid "Color:"
+msgstr "رنگ:"
+
+#: ../data/prefs.glade.h:17
+msgid "Compatibility"
+msgstr ""
+
+#: ../data/prefs.glade.h:18
+msgid "Default interpreter:"
+msgstr "خط فرمان پیشفرض:"
+
+#: ../data/prefs.glade.h:19
+msgid "Desaturation:"
+msgstr "خالی کردن"
+
+#: ../data/prefs.glade.h:20
+msgid "General"
+msgstr "عمومی"
+
+#: ../data/prefs.glade.h:21
+msgid "Guake Preferences"
+msgstr "تنظیمات Guake"
+
+#: ../data/prefs.glade.h:22
+msgid "Hide on lose focus"
+msgstr "در صورت توجه کم پنهان شو"
+
+#: ../data/prefs.glade.h:23
+msgid "Image:"
+msgstr "تصویر:"
+
+#: ../data/prefs.glade.h:24
+msgid "Keyboard shortcuts"
+msgstr "میانبر‌های صفحه‌کلید"
+
+#: ../data/prefs.glade.h:25
+msgid "Scrollback lines:"
+msgstr "خط‌های قبلی"
+
+#: ../data/prefs.glade.h:26
+msgid "Show scrollbar"
+msgstr "نمایش دادن نوار لغزش"
+
+#: ../data/prefs.glade.h:27
+msgid "Show tray"
+msgstr "نمایش دادن سینی"
+
+#: ../data/prefs.glade.h:28
+msgid "Stay on top"
+msgstr "در بالا بمان"
+
+#: ../data/prefs.glade.h:29
+msgid "Style"
+msgstr "سبک"
+
+#: ../data/prefs.glade.h:30
+msgid "Style:"
+msgstr "سبک:"
+
+#: ../data/prefs.glade.h:31
+msgid "_Backspace key generates:"
+msgstr ""
+
+#: ../data/prefs.glade.h:32
+msgid "_Delete key generates:"
+msgstr ""
+
+#: ../data/prefs.glade.h:33
+msgid "_Reset Compatibility Options to Defaults"
+msgstr ""
+
+#: ../src/dbusiface.py:63
+msgid "Could not connect to dbus session bus. dbus will be unavailable.\n"
+msgstr "نمی‌توان به dbus session bus متصل شد، dbus در دسترس نخواهد بود.\n"
+
+#: ../src/guake.py:108
+msgid "Guake-Terminal"
+msgstr "Guake-Terminal"
+
+#: ../src/guake.py:173
+#, python-format
+msgid ""
+"A problem happened when binding <b>%s</b> key.\n"
+"Please use guake properties form to choose another key"
+msgstr ""
+"مشکلی هنگام بارگزاری کلید <b>%s</b> به وجود آمد.\n"
+"لطفا از برگه‌ی تنظیمات Guake برای انتخاب کلید دیگر استفاده کنید"
+
+#: ../src/guake.py:178
+#, python-format
+msgid ""
+"Guake is already running,\n"
+"press <b>%s</b> to use it."
+msgstr ""
+"هم‌اکنون Guake در حال اجرا می‌باشد،\n"
+"برای استفاده کلید <b>%s</b> را فشار دهید."
+
+#: ../src/guake.py:597
+#, python-format
+msgid "Terminal %s"
+msgstr "ترمینال %s"
+
+#: ../src/guake.py:702
+msgid "Toggles the visibility of the terminal window"
+msgstr "Toggles the visibility of the terminal window"
+
+#: ../src/guake.py:706
+msgid "Shows Guake preference window"
+msgstr "Shows Guake preference window"
+
+#: ../src/guake.py:710
+msgid "Shows Guake's about info"
+msgstr "Shows Guake's about info"
+
+#: ../src/guake.py:714
+msgid "Says to Guake go away =("
+msgstr "Says to Guake go away =("
+
+#: ../src/guake.py:751
+msgid "Guake can not init!"
+msgstr "برنامه‌ی Guake قابل بارگزاری نیست!"
+
+#: ../src/guake.py:752
+msgid ""
+"Gconf Error.\n"
+"Have you installed <b>guake.schemas</b> properlly?"
+msgstr ""
+"خطای Gconf.\n"
+"آیا <b>guake.schemas</b> مناسب را نصب کرده‌اید؟"
+
+#: ../src/prefs.py:48
+msgid "Toggle terminal visibility"
+msgstr "تغییر پدیداری ترمینال"
+
+#: ../src/prefs.py:49
+msgid "New tab"
+msgstr "زبانه‌ی جدید"
+
+#: ../src/prefs.py:50
+msgid "Close tab"
+msgstr "بستن زبانه"
+
+#: ../src/prefs.py:51
+msgid "Go to previous tab"
+msgstr "رفتن به زبانه‌ی قبلی"
+
+#: ../src/prefs.py:52
+msgid "Go to next tab"
+msgstr "رفتن به زبانه‌ی بعدی"
+
+#: ../src/prefs.py:53
+msgid "Copy text to clipboard"
+msgstr "کپی متن به حافظه‌ی موقت"
+
+#: ../src/prefs.py:54
+msgid "Paste text from clipboard"
+msgstr "چشباندن متن از حافظه‌ی موقت"
+
+#: ../src/prefs.py:55
+msgid "Toggle Fullscreen"
+msgstr "‌تغییر به تمام‌صفحه"
+
+#: ../src/prefs.py:102
+msgid "Action"
+msgstr "حرکت"
+
+#: ../src/prefs.py:112
+msgid "Shortcut"
+msgstr "میانبر"
+
+#: ../src/prefs.py:258
+msgid "Global hotkeys"
+msgstr "میانبر‌های بین‌المللی"
+
+#: ../src/prefs.py:276
+msgid "Local hotkeys"
+msgstr "میانبر‌های محلی"
+
+#: ../src/prefs.py:409
+#, python-format
+msgid "The shortcut \"%s\" is already in use."
+msgstr ""
+
+#: ../src/prefs.py:410
+msgid "Error setting keybinding."
+msgstr ""
+
+#: ../src/prefs.py:424
+#, python-format
+msgid ""
+"The shortcut \"%s\" cannot be used because it will become impossible to type "
+"using this key.\n"
+"\n"
+"Please try with a key such as Control, Alt or Shift at the same time.\n"
+msgstr ""
+
+#: ../src/prefs.py:445
+msgid "key binding error"
+msgstr "خطا در باگزاری کلید"
+
+#: ../src/prefs.py:446
+#, python-format
+msgid "Unable to bind %s key"
+msgstr "نمی‌توان کلید %s را بارگزاری کرد"
+
+#~ msgid "<b>Tab position</b>"
+#~ msgstr "<b>Posición de las pestañas</b>"
+
+#~ msgid "Bottom"
+#~ msgstr "Abajo"
+
+#~ msgid "Top"
+#~ msgstr "Arriba"
+
+#~ msgid "New Tab"
+#~ msgstr "Nueva pestaña"
+
+#~ msgid "<b><big>Guake Properties</big></b>"
+#~ msgstr "<b><big>Preferencias de Guake</big></b>"
