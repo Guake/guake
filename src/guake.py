@@ -1117,7 +1117,13 @@ class Guake(SimpleGladeApp):
         num_tries = 30
 
         while num_tries > 0:
-            if os.waitpid(pid, os.WNOHANG)[0] != 0:
+            try:
+                # Try to wait for the pid to be closed. If it does not
+                # exist anymore, an OSError is raised and we can
+                # safely ignore it.
+                if os.waitpid(pid, os.WNOHANG)[0] != 0:
+                    break
+            except OSError:
                 break
             sleep(0.1)
             num_tries -= 1
