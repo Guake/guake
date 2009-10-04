@@ -693,6 +693,16 @@ class Guake(SimpleGladeApp):
         context_menu.popup(None, None, None, 3, gtk.get_current_event_time())
         return True
 
+    def show_rename_dialog(self, target, event):
+        """On double-click over a tab, show the rename dialog.
+        """
+        if event.button == 1:
+            if event.type == gtk.gdk._2BUTTON_PRESS:
+                self.accel_rename()
+                self.set_terminal_focus()
+                self.selected_tab.pressed()
+                return
+
     def show_tab_menu(self, target, event):
         """Shows the tab menu with a right click. After that, the
         focus come back to the terminal.
@@ -1075,6 +1085,7 @@ class Guake(SimpleGladeApp):
         bnt.set_property('can-focus', False)
         bnt.set_property('draw-indicator', False)
         bnt.connect('button-press-event', self.show_tab_menu)
+        bnt.connect('button-press-event', self.show_rename_dialog)
         bnt.connect('clicked',
                     lambda *x: self.notebook.set_current_page(
                         self.notebook.page_num(box)
