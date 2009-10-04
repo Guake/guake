@@ -81,7 +81,7 @@ AM_GCONF_SOURCE_2
 
 dnl Internationalization
 GETTEXT_PACKAGE=guake
-ALL_LINGUAS="pt_BR ja es ru_RU pl no_NB de it_IT fa hu"
+ALL_LINGUAS="pt_BR ja es ru_RU pl no_NB de it_IT fa hu el"
 
 dnl to generate bindings to eggcellrendererkeys
 AC_PATH_PROG(PYGTK_CODEGEN, pygtk-codegen-2.0, no)

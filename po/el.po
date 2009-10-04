@@ -1,0 +1,453 @@
+# translation of el.po to
+# Μετάφραση του Guake-terminal
+# Copyright (C) 2007 Gabriel Falcão <gabrielteratos@gmail.com>
+# Copyright (C) 2007 Lincoln de Sousa <lincoln@archlinux-br.org>
+# This file is distributed under the same license as the Guake package.
+# Μαριμπής Αβραάμ <makism@venus.cs.teicrete.gr>, 2009
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: el\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2009-06-09 01:24+0200\n"
+"PO-Revision-Date: 2009-08-25 18:58+0300\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: KBabel 1.11.4\n"
+
+#: ../data/about.glade.h:1
+msgid "About Guake"
+msgstr "Περί του Guake"
+
+#: ../data/about.glade.h:2
+msgid ""
+"Adolfo González Blázquez <code@infinicode.org> Spanish\n"
+"Lincoln de Sousa <lincoln@guake-terminal.org> Brazilian Portuguese\n"
+"Markus Majer <mm@mpathy.de> German\n"
+"Mieszko Ślusarczyk <mieszkoslusarczyk@gmail.com> Polish\n"
+"Nishio Futoshi <futoshi@momonga-linux.org> Japanese\n"
+"Pavel Alexeev <Pahan@Hubbitus.spb.su> Russian\n"
+"Piotr Drąg <piotrdrag@gmail.com> Polish"
+msgstr ""
+"Adolfo González Blázquez <code@infinicode.org> Spanish\n"
+"Lincoln de Sousa <lincoln@guake-terminal.org> Brazilian Portuguese\n"
+"Markus Majer <mm@mpathy.de> German\n"
+"Mieszko Ślusarczyk <mieszkoslusarczyk@gmail.com> Polish\n"
+"Nishio Futoshi <futoshi@momonga-linux.org> Japanese\n"
+"Pavel Alexeev <Pahan@Hubbitus.spb.su> Russian\n"
+"Piotr Drąg <piotrdrag@gmail.com> Polish\n"
+"Marco Leogrande <dark.knight.ita@gmail.com> Italian \n"
+"Μαριμπής Αβραάμ <makism@venus.cs.teicrete.gr> Ελληνικά"
+
+#: ../data/about.glade.h:9
+msgid ""
+"Copyright 2007-2009 Lincoln de Sousa\n"
+"Copyright 2007 Gabriel Falc&#xE3;o"
+msgstr ""
+"Πνευματικά δικαιώματα 2007-2009 Lincoln de Sousa\n"
+"Πνευματικά δικαιώματα 2007 Gabriel Falc&#xE3;o"
+
+#: ../data/about.glade.h:11
+msgid ""
+"Guake is an easy to access\n"
+"terminal based on fps games terminal"
+msgstr ""
+"Το Guake είναι ένα ευκόλως προσβάσιμο\n"
+"τερματικό βασισμένο στο τερματικό των\n"
+"παιχνιδιών πρώτου προσώπου"
+
+#: ../data/about.glade.h:13
+msgid ""
+"Guake is free software; you can redistribute it and/or modify it under the "
+"terms of the GNU General Public License as published by the Free Software "
+"Foundation; either version 2 of the License, or (at your option) any later "
+"version.\n"
+"\n"
+"Guake is distributed in the hope that it will be useful, but WITHOUT ANY "
+"WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS "
+"FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more "
+"details.\n"
+"\n"
+"You should have received a copy of the GNU General Public License along with "
+"Guake; if not, write to the Free Software Foundation, Inc., 51 Franklin St, "
+"Fifth Floor, Boston, MA  02110-1301 USA\n"
+msgstr ""
+"Το Guake είναι ελεύθερο λογισμικό. Επιτρέπεται η αναδιανομή ή/και τροποποίησή του υπό τους όρους της Γενικής ‘Αδειας Δημόσιας Χρήσης GNU (GNU General Public License), όπως αυτή έχει δημοσιευτεί από το Ίδρυμα Ελεύθερου Λογισμικού (Free Software Foundation) -είτε της έκδοσης 2 της ‘Αδειας, είτε (κατ' επιλογήν) οποιασδήποτε μεταγενέστερης έκδοσης.\n"
+"\n"
+"Το Guake διανέμεται με την ελπίδα ότι θα αποδειχθεί χρήσιμο, παρόλα αυτά ΧΩΡΙΣ ΚΑΜΙΑ ΕΓΓΥΗΣΗ –χωρίς ούτε και την σιωπηρή εγγύηση ΕΜΠΟΡΕΥΣΙΜΟΤΗΤΑΣ ή ΚΑΤΑΛΛΗΛΟΤΗΤΑΣ ΓΙΑ ΣΥΓΚΕΚΡΙΜΕΝΗ ΧΡΗΣΗ. Για περισσότερες λεπτομέρειες ανατρέξτε στη Γενική ‘Αδεια Δημόσιας Χρήσης GNU (GNU General Public License).\n"
+"\n"
+"Θα πρέπει να έχετε λάβει ένα αντίγραφο της Γενικής ‘Αδειας Δημόσιας Χρήσης GNU (GNU General Public License) μαζί με αυτό το πρόγραμμα. Εάν όχι, επικοινωνήστε γραπτώς με το Ίδρυμα Ελεύθερου Λογισμικού (Free Software Foundation), Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA\n"
+
+#: ../data/about.glade.h:19
+msgid "http://guake-terminal.org"
+msgstr "http://guake-terminal.org"
+
+#: ../data/guake.glade.h:1 ../src/guake.py:1106
+msgid "Add a new tab"
+msgstr "Προσθήκη νέας καρτέλας"
+
+#: ../data/guake.glade.h:2
+msgid "Close"
+msgstr "Κλείσιμο"
+
+#: ../data/guake.glade.h:3
+msgid "Close Tab"
+msgstr "Κλείσιμο Καρτέλας"
+
+#: ../data/guake.glade.h:4
+msgid "Copy"
+msgstr "Αντιγραφή"
+
+#: ../data/guake.glade.h:5 ../src/guake.py:578 ../src/guake.py:589
+msgid "Guake!"
+msgstr "Guake!"
+
+#: ../data/guake.glade.h:6
+msgid "Paste"
+msgstr "Επικόλληση"
+
+#: ../data/guake.glade.h:7 ../src/prefs.py:61
+msgid "Quit"
+msgstr "Έξοδος"
+
+#: ../data/guake.glade.h:8
+msgid "Rename"
+msgstr "Μετονομασία"
+
+#: ../data/prefs.glade.h:1
+msgid "<b>Background</b>"
+msgstr "<b>Φόντο</b>"
+
+#: ../data/prefs.glade.h:2
+msgid "<b>Fonts</b>"
+msgstr "<b>Γραμματοσειρές</b>"
+
+#: ../data/prefs.glade.h:3
+msgid "<b>General</b>"
+msgstr "<b>Γενικά</b>"
+
+#: ../data/prefs.glade.h:4
+msgid "<b>Keyboard compatibility</b>"
+msgstr "<b>Συμβατότητα πληκτρολογίου</b>"
+
+#: ../data/prefs.glade.h:5
+msgid "<b>Main Window size</b>"
+msgstr "<b>Μέγεθος κεντρικού παραθύρου</b>"
+
+#: ../data/prefs.glade.h:6
+msgid "<b>Main Window</b>"
+msgstr "<b>Κεντρικό Παράθυρο</b>"
+
+#: ../data/prefs.glade.h:7
+msgid "<b>Scroll</b>"
+msgstr "<b>Κύλιση</b>"
+
+#: ../data/prefs.glade.h:8
+msgid "<b>Shell</b>"
+msgstr "<b>Κελύφος</b>"
+
+#: ../data/prefs.glade.h:9
+msgid ""
+"<small><i><b>Note:</b> These options may cause some applications to behave "
+"incorrectly.  They are only here to allow you to work around certain "
+"applications and operating systems that expect different terminal behavior.</"
+"i></small>"
+msgstr "<small><i><b>Σημείωση:</b> Αυτές οι επιλογές ίσως προκαλέσουν μερικές εφαρμογές να συμπεριφέρονται εσφαλμένα.  Σκοπός τους είναι να σας επιτρέψουν να δουλέψετε με συγκεκριμένες εφαρμογές και λειτουργικά συστήματα τα οποία απαιτούν διαφορετική συμπεριφορά από το τερματικό.</i></small>"
+
+#: ../data/prefs.glade.h:10
+msgid "<span color=\"black\">Customize behavior and appearance of Guake!</span>"
+msgstr "<span color=\"black\">Προσαρμόστε τη συμπεριφορά και την εμφάνιση του Guake!</span>"
+
+#: ../data/prefs.glade.h:11
+msgid "<span size=\"18000\" color=\"black\"><b>Guake properties</b></span>"
+msgstr "<span size=\"18000\" color=\"black\"><b>Ιδιότητες Guake</b></span>"
+
+#: ../data/prefs.glade.h:12
+msgid ""
+"ASCII DEL\n"
+"Escape sequence\n"
+"Control-H"
+msgstr ""
+"ASCII DEL\n"
+"Escape sequence\n"
+"Control-H"
+
+#: ../data/prefs.glade.h:15
+msgid "Appearance"
+msgstr "Εμφάνιση"
+
+#: ../data/prefs.glade.h:16
+msgid "Choose some color"
+msgstr "Επιλογή χρώματος"
+
+#: ../data/prefs.glade.h:17
+msgid "Choose some font"
+msgstr "Επιλογή γραμματοσειράς"
+
+#: ../data/prefs.glade.h:18
+msgid "Color:"
+msgstr "Χρώμα:"
+
+#: ../data/prefs.glade.h:19
+msgid "Compatibility"
+msgstr "Συμβατότητα"
+
+#: ../data/prefs.glade.h:20
+msgid "Default interpreter:"
+msgstr "Προκαθορισμένος μεταγλωττιστής:"
+
+#: ../data/prefs.glade.h:21
+msgid "Enable popup notifications on startup"
+msgstr "Ενεργοποίηση αναδυόμενων ειδοποιήσεων κατά την εκκίνηση"
+
+#: ../data/prefs.glade.h:22 ../src/prefs.py:55
+msgid "General"
+msgstr "Γενικά"
+
+#: ../data/prefs.glade.h:23
+msgid "Guake Preferences"
+msgstr "Προτιμήσεις του Guake"
+
+#: ../data/prefs.glade.h:24
+msgid "Hide on lose focus"
+msgstr "Απόκρυψη όταν χάνει εστίαση"
+
+#: ../data/prefs.glade.h:25
+msgid "Image:"
+msgstr "Εικόνα:"
+
+#: ../data/prefs.glade.h:26
+msgid "Keyboard shortcuts"
+msgstr "Συντομεύσεις πληκτρολογίου"
+
+#: ../data/prefs.glade.h:27
+msgid "On key stroke"
+msgstr "Στο πάτημα ενός πλήκτρου"
+
+#: ../data/prefs.glade.h:28
+msgid "On output"
+msgstr "Όταν υπάρχει έξοδος"
+
+#: ../data/prefs.glade.h:29
+msgid "Scrollback lines:"
+msgstr "Γραμμές κύλισης προς τα πίσω:"
+
+#: ../data/prefs.glade.h:30
+msgid "Scrolling"
+msgstr "Κύλιση"
+
+#: ../data/prefs.glade.h:31
+msgid "Show scrollbar"
+msgstr "Εμφάνιση γραμμή κύλισης"
+
+#: ../data/prefs.glade.h:32
+msgid "Show tab bar"
+msgstr "Εμφάνισε την γραμμή καρτελών"
+
+#: ../data/prefs.glade.h:33
+msgid "Show tray icon"
+msgstr "Εμφάνιση εικονιδίου συστήματος"
+
+#: ../data/prefs.glade.h:34
+msgid "Stay on top"
+msgstr "Μείνε στο προσκήνιο"
+
+#: ../data/prefs.glade.h:35
+msgid "Style:"
+msgstr "Στυλ:"
+
+#: ../data/prefs.glade.h:36
+msgid "Transparency:"
+msgstr "Διαφάνεια:"
+
+#: ../data/prefs.glade.h:37
+msgid "Use system defaults"
+msgstr "Χρησιμοποίησε τις προκαθορισμένες ρυθμίσεις"
+
+#: ../data/prefs.glade.h:38
+msgid "_Backspace key generates:"
+msgstr "Το πλήκτρο _Backspace παράγει:"
+
+#: ../data/prefs.glade.h:39
+msgid "_Delete key generates:"
+msgstr "Το πλήκτρο _Delete παράγει:"
+
+#: ../data/prefs.glade.h:40
+msgid "_Reset Compatibility Options to Defaults"
+msgstr "_Επαναφορά των Προκαθορισμένων Ρυθμίσεων Συμβατότητας"
+
+#: ../data/prefs.glade.h:41
+msgid "_Run command as a login shell"
+msgstr "_Εκτέλεση εντολής ως κέλυφος σύνδεσης"
+
+#: ../src/guake.py:320
+msgid "key binding error"
+msgstr "σφάλμα συντόμευσης πληκτρολογίου"
+
+#: ../src/guake.py:321
+#, python-format
+msgid "Unable to bind global <b>%s</b> key"
+msgstr "Αδυναμία καθολικής σύνδεσης του πλήκτρου \"%s\""
+
+#: ../src/guake.py:483
+msgid "Guake-Terminal"
+msgstr "Guake-Terminal"
+
+#: ../src/guake.py:579
+#, python-format
+msgid ""
+"A problem happened when binding <b>%s</b> key.\n"
+"Please use Guake Preferences dialog to choose another key (The trayicon was "
+"enabled)"
+msgstr ""
+"Παρουσιάστηκε ένα πρόβλημα κατά την σύνδεση του πλήκτρου <b>%s</b>.\n"
+"Παρακαλώ χρησιμοποιήστε την φόρμα Ρυθμίσεων του Guake και επιλέξτε ένα διαφορετικό πλήκτρο (Το εικονίδιο συστήματος ήταν ενεργοποιημένο)"
+
+#: ../src/guake.py:590
+#, python-format
+msgid ""
+"Guake is already running,\n"
+"press <b>%s</b> to use it."
+msgstr ""
+"Το Guake εκτελείται ήδη,\n"
+"πατήστε <b>%s</b> για να το χρησιμοποιήσετε."
+
+#: ../src/guake.py:882
+msgid "Rename tab"
+msgstr "Μετονομασία καρτέλας"
+
+#. Adding a new radio button to the tabbar
+#: ../src/guake.py:991
+#, python-format
+msgid "Terminal %s"
+msgstr "Τερματικό %s"
+
+#: ../src/guake.py:1094
+msgid "Toggles the visibility of the terminal window"
+msgstr "Εναλλάσει την ορατότητα του τερματικού παραθύρου"
+
+#: ../src/guake.py:1098
+msgid "Shows Guake preference window"
+msgstr "Εμφανίζει το παράθυρο προτιμήσεων του Guake"
+
+#: ../src/guake.py:1102
+msgid "Shows Guake's about info"
+msgstr "Εμφανίζει πληροφορίες περί του Guake"
+
+#: ../src/guake.py:1110
+msgid "Select a tab"
+msgstr "Επιλέξτε μία καρτέλα"
+
+#: ../src/guake.py:1114
+msgid "Return the selectd tab index."
+msgstr "Restituisce l'indice della scheda selezionata."
+
+#: ../src/guake.py:1118
+msgid "Execute an arbitrary command in the selected tab."
+msgstr "Εκτέλεσε μία εντολή στην επιλεγμένη καρτέλα"
+
+#: ../src/guake.py:1122
+msgid "Rename the selected tab."
+msgstr "Μετονομασία της επιλεγμένης καρτέλας"
+
+#: ../src/guake.py:1126
+msgid "Says to Guake go away =("
+msgstr "Λέει στο Guake να φύγει =("
+
+#: ../src/guake.py:1191
+msgid "Guake can not init!"
+msgstr "Το Guake δεν μπορεί να ξεκινήσει!"
+
+#: ../src/guake.py:1192
+msgid ""
+"Gconf Error.\n"
+"Have you installed <b>guake.schemas</b> properlly?"
+msgstr ""
+"Σφάλμα Gconf.\n"
+"Έχετε εγκαταστήσει το <b>guake.schemas</b> σωστά;"
+
+#. string to show in prefereces dialog for user shell option
+#: ../src/prefs.py:42
+msgid "<user shell>"
+msgstr "<κέλυφος χρήστη>"
+
+#: ../src/prefs.py:57
+msgid "Toggle Guake visibility"
+msgstr "Εναλλαγή ορατότητας του Guake"
+
+#: ../src/prefs.py:59
+msgid "Toggle Fullscreen"
+msgstr "Εναλλαγή πλήρους οθόνης"
+
+#: ../src/prefs.py:64
+msgid "Tab management"
+msgstr "Διαχείρηση καρτελών"
+
+#: ../src/prefs.py:66
+msgid "New tab"
+msgstr "Νέα καρτέλα"
+
+#: ../src/prefs.py:68
+msgid "Close tab"
+msgstr "Κλείσμο καρτέλας"
+
+#: ../src/prefs.py:70
+msgid "Rename current tab"
+msgstr "Μετονομασία τρέχουσας καρτέλας"
+
+#: ../src/prefs.py:73
+msgid "Navigation"
+msgstr "Πλοήγηση"
+
+#: ../src/prefs.py:75
+msgid "Go to previous tab"
+msgstr "Μετάβαση στην προηγούμενη καρτέλα"
+
+#: ../src/prefs.py:77
+msgid "Go to next tab"
+msgstr "Μετάβαση στην επόμενη καρτέλα"
+
+#: ../src/prefs.py:80
+msgid "Clipboard"
+msgstr "Πρόχειρο"
+
+#: ../src/prefs.py:82
+msgid "Copy text to clipboard"
+msgstr "Αντιγραφή κειμένου στο πρόχειρο"
+
+#: ../src/prefs.py:84
+msgid "Paste text from clipboard"
+msgstr "Επικόλληση κειμένου από το πρόχειρο"
+
+#: ../src/prefs.py:260
+msgid "Action"
+msgstr "Ενέργεια"
+
+#: ../src/prefs.py:270
+msgid "Shortcut"
+msgstr "Συντόμευση"
+
+#: ../src/prefs.py:525
+#, python-format
+msgid "The shortcut \"%s\" is already in use."
+msgstr "Η συντόμευση \"%s\" είναι σε χρήση."
+
+#: ../src/prefs.py:526
+msgid "Error setting keybinding."
+msgstr "Σφάλμα κατά τη ρύθμιση συντομεύσεων πληκτρολογίου"
+
+#: ../src/prefs.py:538
+#, python-format
+msgid ""
+"The shortcut \"%s\" cannot be used because it will become impossible to type "
+"using this key.\n"
+"\n"
+"Please try with a key such as Control, Alt or Shift at the same time.\n"
+msgstr ""
+"Η συντόμευση \"%s\" δεν μπορεί να χρησιμοποιηθεί γιατί θα καταστεί αδύνατο να πληκτρολογείτε χρησιμοποιώντας αυτό το πλήκτρο.\n"
+"\n"
+"Παρακαλώ δοκιμάστε πατώντας ταυτόχρονα ένα πλήκτρο όπως Control, Alt ή Shift.\n"
+
