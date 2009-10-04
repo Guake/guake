@@ -1010,7 +1010,7 @@ class Guake(SimpleGladeApp):
         active_pagepos = self.notebook.get_current_page()
         directory = os.path.expanduser('~')
         if active_pagepos >= 0:
-            cwd = "/proc/%d/cwd" % self.pid_list[active_pagepos]
+            cwd = os.readlink("/proc/%d/cwd" % self.pid_list[active_pagepos])
             if os.path.exists(cwd):
                 directory = cwd
         return directory
