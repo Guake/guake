@@ -4,7 +4,6 @@
   <!-- interface-naming-policy toplevel-contextual -->
   <widget class="GtkWindow" id="config-window">
     <property name="title" translatable="yes">Guake Preferences</property>
-    <property name="resizable">False</property>
     <property name="window_position">center-always</property>
     <property name="default_width">460</property>
     <property name="urgency_hint">True</property>
