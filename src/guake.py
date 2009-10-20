@@ -621,7 +621,7 @@ class Guake(SimpleGladeApp):
             # unset in the preferences windows)
             notification = pynotify.Notification(
                 _('Guake!'),
-                _('Guake is already running,\n'
+                _('Guake is now running,\n'
                   'press <b>%s</b> to use it.') % label, filename)
             notification.show()
 
