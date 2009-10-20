@@ -113,6 +113,12 @@ class PrefsCallbacks(object):
         """
         self.client.set_bool(KEY('/general/use_login_shell'), chk.get_active())
 
+    def on_open_tab_cwd_toggled(self, chk):
+        """Changes the activity of open_tab_cwd in gconf
+        """
+        self.client.set_bool(KEY('/general/open_tab_cwd'), chk.get_active())
+
+
     def on_use_trayicon_toggled(self, chk):
         """Changes the activity of use_trayicon in gconf
         """
