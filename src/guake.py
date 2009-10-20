@@ -1044,7 +1044,8 @@ class Guake(SimpleGladeApp):
         if login_shell:
             params['argv'] = ['-']
 
-        params['directory'] = self.get_current_dir()
+        if self.client.get_bool(KEY('/general/open_tab_cwd')):
+            params['directory'] = self.get_current_dir()
         params['loglastlog'] = login_shell
 
         # Leting caller change/add values to fork params.
