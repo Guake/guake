@@ -26,6 +26,10 @@
 #include <config.h>
 #endif
 
+#if PY_MINOR_VERSION < 5
+#define Py_ssize_t size_t
+#endif
+
 #include "keybinder.h"
 
 typedef struct {
