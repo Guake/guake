@@ -514,7 +514,7 @@ class Guake(SimpleGladeApp):
         # trayicon!
         img = pixmapfile('guake-tray.png')
         self.tray_icon = gtk.status_icon_new_from_file(img)
-        self.tray_icon.set_tooltip(_('Guake-Terminal'))
+        self.tray_icon.set_tooltip(_('Guake Terminal'))
         self.tray_icon.connect('popup-menu', self.show_menu)
         self.tray_icon.connect('activate', self.show_hide)
 
