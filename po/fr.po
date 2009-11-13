@@ -2,7 +2,7 @@
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
 # Pierre-Yves Chibon <pingou@pingoured.fr>, 2009.
-#
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: guake 0.5.0\n"
@@ -55,33 +55,17 @@ msgstr ""
 
 #: ../data/about.glade.h:13
 msgid ""
-"Guake is free software; you can redistribute it and/or modify it under the "
-"terms of the GNU General Public License as published by the Free Software "
-"Foundation; either version 2 of the License, or (at your option) any later "
-"version.\n"
+"Guake is free software; you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation; either version 2 of the License, or (at your option) any later version.\n"
 "\n"
-"Guake is distributed in the hope that it will be useful, but WITHOUT ANY "
-"WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS "
-"FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more "
-"details.\n"
+"Guake is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more details.\n"
 "\n"
-"You should have received a copy of the GNU General Public License along with "
-"Guake; if not, write to the Free Software Foundation, Inc., 51 Franklin St, "
-"Fifth Floor, Boston, MA  02110-1301 USA\n"
+"You should have received a copy of the GNU General Public License along with Guake; if not, write to the Free Software Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301 USA\n"
 msgstr ""
-"Guake is free software; you can redistribute it and/or modify it under the "
-"terms of the GNU General Public License as published by the Free Software "
-"Foundation; either version 2 of the License, or (at your option) any later "
-"version.\n"
+"Guake is free software; you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation; either version 2 of the License, or (at your option) any later version.\n"
 "\n"
-"Guake is distributed in the hope that it will be useful, but WITHOUT ANY "
-"WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS "
-"FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more "
-"details.\n"
+"Guake is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more details.\n"
 "\n"
-"You should have received a copy of the GNU General Public License along with "
-"Guake; if not, write to the Free Software Foundation, Inc., 51 Franklin St, "
-"Fifth Floor, Boston, MA  02110-1301 USA\n"
+"You should have received a copy of the GNU General Public License along with Guake; if not, write to the Free Software Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301 USA\n"
 
 #: ../data/about.glade.h:19
 msgid "http://guake-terminal.org"
@@ -160,32 +144,16 @@ msgid "<b>Shell</b>"
 msgstr "<b>Shell</b>"
 
 #: ../data/prefs.glade.h:11
-msgid ""
-"<small><i><b>Note:</b> These options may cause some applications to behave "
-"incorrectly.  They are only here to allow you to work around certain "
-"applications and operating systems that expect different terminal behavior.</"
-"i></small>"
-msgstr "<small><i><b>Note:</b> Ces options peuvent entrainer un comportement anormale."
-"Elles ne sont disponible ici que pour des cas spécifiques où certains logiciels"
-"ou système d'exploitation attendent un comportement différent du terminal</"
-"i></small>"
+msgid "<small><i><b>Note:</b> These options may cause some applications to behave incorrectly.  They are only here to allow you to work around certain applications and operating systems that expect different terminal behavior.</i></small>"
+msgstr "<small><i><b>Note:</b> Ces options peuvent entrainer un comportement anormale.Elles ne sont disponible ici que pour des cas spécifiques où certains logicielsou système d'exploitation attendent un comportement différent du terminal</i></small>"
 
 #: ../data/prefs.glade.h:12
-msgid ""
-"<span color=\"black\">Customize behavior and appearance of Guake!</span>"
-msgstr ""
-"<span color=\"black\">Personnaliser Guake !</span>"
+msgid "<span color=\"black\">Customize behavior and appearance of Guake!</span>"
+msgstr "<span color=\"black\">Personnaliser Guake !</span>"
 
 #: ../data/prefs.glade.h:13
 msgid "<span size=\"18000\" color=\"black\"><b>Guake properties</b></span>"
 msgstr "<span size=\"18000\" color=\"black\"><b>Propriétés de Guake</b></span>"
-
-#: ../data/prefs.glade.h:14
-msgid ""
-"ASCII DEL\n"
-"Escape sequence\n"
-"Control-H"
-msgstr ""
 
 #: ../data/prefs.glade.h:17
 msgid "Appearance"
@@ -329,12 +297,10 @@ msgstr "Guake-Terminal"
 #, python-format
 msgid ""
 "A problem happened when binding <b>%s</b> key.\n"
-"Please use Guake Preferences dialog to choose another key (The trayicon was "
-"enabled)"
+"Please use Guake Preferences dialog to choose another key (The trayicon was enabled)"
 msgstr ""
 "Un problème est survenu lors de la liaison avec la touche <b>%s</b>.\n"
-"Merci d'utilisez la fenêtre de préférences de Guake pour choisir une autre"
-"touche (icône de notification activée)"
+"Merci d'utilisez la fenêtre de préférences de Guake pour choisir une autretouche (icône de notification activée)"
 
 #: ../src/guake.py:624
 #, python-format
@@ -370,10 +336,6 @@ msgstr "Afficher les informations à propos de Guake"
 #: ../src/guake.py:1206
 msgid "Select a tab"
 msgstr "Sélectionner un onglet"
-
-#: ../src/guake.py:1210
-msgid "Return the selectd tab index."
-msgstr ""
 
 #: ../src/guake.py:1214
 msgid "Execute an arbitrary command in the selected tab."
@@ -472,12 +434,24 @@ msgstr "Erreur d'attribution des raccourcis."
 #: ../src/prefs.py:584
 #, python-format
 msgid ""
-"The shortcut \"%s\" cannot be used because it will become impossible to type "
-"using this key.\n"
+"The shortcut \"%s\" cannot be used because it will become impossible to type using this key.\n"
 "\n"
 "Please try with a key such as Control, Alt or Shift at the same time.\n"
 msgstr ""
-"Le raccourcis \"%s\" ne peux être utiliser car il empêche une utilisation normale "
-"du clavier.\n"
+"Le raccourcis \"%s\" ne peux être utiliser car il empêche une utilisation normale du clavier.\n"
 "\n"
 "Essayer de l'utiliser en combinaison avec une touche tel que Control, Alt ou Shift.\n"
+
+#: ../src/guake.py:1210
+msgid "Return the selectd tab index."
+msgstr "Retoune l'index de l'onglet sélectionné"
+
+#: ../data/prefs.glade.h:14
+msgid ""
+"ASCII DEL\n"
+"Escape sequence\n"
+"Control-H"
+msgstr ""
+"ASCII DEL\n"
+"Escape sequence\n"
+"Control-H"
