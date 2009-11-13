@@ -1,6 +1,6 @@
-# SOME DESCRIPTIVE TITLE.
-# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
-# This file is distributed under the same license as the PACKAGE package.
+# Traduction française de Guake-terminal
+# Copyright (C) 2009 Pierre-Yves Chibon
+# This file is distributed under the same license as the guake package.
 # Pierre-Yves Chibon <pingou@pingoured.fr>, 2009.
 # 
 msgid ""
@@ -140,7 +140,7 @@ msgid ""
 "Control-H"
 msgstr ""
 "ASCII DEL\n"
-"Escape sequence\n"
+"Séquence d'échappement\n"
 "Control-H"
 
 #: ../data/prefs.glade.h:17
