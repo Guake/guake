@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: guake 0.5.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-10-22 12:34+0000\n"
+"POT-Creation-Date: 2009-11-13 21:08+0000\n"
 "PO-Revision-Date: 2009-10-22 15:26+CET\n"
 "Last-Translator: Pierre-Yves Chibon <pingou@pingoured.fr>\n"
 "Language-Team: \n"
@@ -18,24 +18,6 @@ msgstr ""
 #: ../data/about.glade.h:1
 msgid "About Guake"
 msgstr "À propos de Guake"
-
-#: ../data/about.glade.h:2
-msgid ""
-"Adolfo González Blázquez <code@infinicode.org> Spanish\n"
-"Lincoln de Sousa <lincoln@guake-terminal.org> Brazilian Portuguese\n"
-"Markus Majer <mm@mpathy.de> German\n"
-"Mieszko Ślusarczyk <mieszkoslusarczyk@gmail.com> Polish\n"
-"Nishio Futoshi <futoshi@momonga-linux.org> Japanese\n"
-"Pavel Alexeev <Pahan@Hubbitus.spb.su> Russian\n"
-"Piotr Drąg <piotrdrag@gmail.com> Polish"
-msgstr ""
-"Adolfo González Blázquez <code@infinicode.org> Spanish\n"
-"Lincoln de Sousa <lincoln@guake-terminal.org> Brazilian Portuguese\n"
-"Markus Majer <mm@mpathy.de> German\n"
-"Mieszko Ślusarczyk <mieszkoslusarczyk@gmail.com> Polish\n"
-"Nishio Futoshi <futoshi@momonga-linux.org> Japanese\n"
-"Pavel Alexeev <Pahan@Hubbitus.spb.su> Russian\n"
-"Piotr Drąg <piotrdrag@gmail.com> Polish"
 
 #: ../data/about.glade.h:9
 msgid ""
@@ -67,11 +49,7 @@ msgstr ""
 "\n"
 "You should have received a copy of the GNU General Public License along with Guake; if not, write to the Free Software Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301 USA\n"
 
-#: ../data/about.glade.h:19
-msgid "http://guake-terminal.org"
-msgstr "http://guake.org"
-
-#: ../data/guake.glade.h:1 ../src/guake.py:1202
+#: ../data/guake.glade.h:1 ../src/guake.py:1203
 msgid "Add a new tab"
 msgstr "Ajouter un nouvel onglet"
 
@@ -154,6 +132,16 @@ msgstr "<span color=\"black\">Personnaliser Guake !</span>"
 #: ../data/prefs.glade.h:13
 msgid "<span size=\"18000\" color=\"black\"><b>Guake properties</b></span>"
 msgstr "<span size=\"18000\" color=\"black\"><b>Propriétés de Guake</b></span>"
+
+#: ../data/prefs.glade.h:14
+msgid ""
+"ASCII DEL\n"
+"Escape sequence\n"
+"Control-H"
+msgstr ""
+"ASCII DEL\n"
+"Escape sequence\n"
+"Control-H"
 
 #: ../data/prefs.glade.h:17
 msgid "Appearance"
@@ -259,11 +247,11 @@ msgstr "La touche _Retour correspond à:"
 msgid "_Delete key generates:"
 msgstr "La touche _Suppr correspond à:"
 
-#: ../data/prefs.glade.h:43
+#: ../data/prefs.glade.h:44
 msgid "_Reset Compatibility Options to Defaults"
 msgstr "Rétablir la configuration par défaut"
 
-#: ../data/prefs.glade.h:44
+#: ../data/prefs.glade.h:45
 msgid "_Run command as a login shell"
 msgstr "_Exécuter les commandes comme shell de connexion"
 
@@ -289,10 +277,6 @@ msgstr "Combinaison de touches invalide"
 msgid "Unable to bind global <b>%s</b> key"
 msgstr "Impossible de combiner la touche <b>%s</b>"
 
-#: ../src/guake.py:517
-msgid "Guake-Terminal"
-msgstr "Guake-Terminal"
-
 #: ../src/guake.py:613
 #, python-format
 msgid ""
@@ -302,58 +286,53 @@ msgstr ""
 "Un problème est survenu lors de la liaison avec la touche <b>%s</b>.\n"
 "Merci d'utilisez la fenêtre de préférences de Guake pour choisir une autretouche (icône de notification activée)"
 
-#: ../src/guake.py:624
-#, python-format
-msgid ""
-"Guake is already running,\n"
-"press <b>%s</b> to use it."
-msgstr ""
-"Guake est en marche,\n"
-"appuyer sur <b>%s</b> pour l'utiliser."
-
 #: ../src/guake.py:971
 msgid "Rename tab"
 msgstr "Renomme onglet"
 
 #. Adding a new radio button to the tabbar
-#: ../src/guake.py:1080
+#: ../src/guake.py:1081
 #, python-format
 msgid "Terminal %s"
 msgstr "Terminal %s"
 
-#: ../src/guake.py:1190
+#: ../src/guake.py:1191
 msgid "Toggles the visibility of the terminal window"
 msgstr "Active/Désactive la visibilité de la fenêtre principale"
 
-#: ../src/guake.py:1194
+#: ../src/guake.py:1195
 msgid "Shows Guake preference window"
 msgstr "Afficher la fenêtre de préférences de Guake"
 
-#: ../src/guake.py:1198
+#: ../src/guake.py:1199
 msgid "Shows Guake's about info"
 msgstr "Afficher les informations à propos de Guake"
 
-#: ../src/guake.py:1206
+#: ../src/guake.py:1207
 msgid "Select a tab"
 msgstr "Sélectionner un onglet"
 
-#: ../src/guake.py:1214
+#: ../src/guake.py:1211
+msgid "Return the selectd tab index."
+msgstr "Retoune l'index de l'onglet sélectionné"
+
+#: ../src/guake.py:1215
 msgid "Execute an arbitrary command in the selected tab."
 msgstr "Exécute une commande dans un onglet sélectionné"
 
-#: ../src/guake.py:1218
+#: ../src/guake.py:1219
 msgid "Rename the selected tab."
 msgstr "Renommer l'ongler sélectionner"
 
-#: ../src/guake.py:1222
+#: ../src/guake.py:1223
 msgid "Says to Guake go away =("
 msgstr "Dis au-revoir à Guake =("
 
-#: ../src/guake.py:1287
+#: ../src/guake.py:1288
 msgid "Guake can not init!"
 msgstr "Guake ne peux démarrer"
 
-#: ../src/guake.py:1288
+#: ../src/guake.py:1289
 msgid ""
 "Gconf Error.\n"
 "Have you installed <b>guake.schemas</b> properlly?"
@@ -414,24 +393,24 @@ msgstr "Copie dans le presse-papiers"
 msgid "Paste text from clipboard"
 msgstr "Colle du presse-papiers"
 
-#: ../src/prefs.py:280
+#: ../src/prefs.py:286
 msgid "Action"
 msgstr "Action"
 
-#: ../src/prefs.py:290
+#: ../src/prefs.py:296
 msgid "Shortcut"
 msgstr "Raccourcis"
 
-#: ../src/prefs.py:571
+#: ../src/prefs.py:577
 #, python-format
 msgid "The shortcut \"%s\" is already in use."
 msgstr "Le raccourcis \"%s\" est déjà utilisé."
 
-#: ../src/prefs.py:572
+#: ../src/prefs.py:578
 msgid "Error setting keybinding."
 msgstr "Erreur d'attribution des raccourcis."
 
-#: ../src/prefs.py:584
+#: ../src/prefs.py:590
 #, python-format
 msgid ""
 "The shortcut \"%s\" cannot be used because it will become impossible to type using this key.\n"
@@ -442,16 +421,41 @@ msgstr ""
 "\n"
 "Essayer de l'utiliser en combinaison avec une touche tel que Control, Alt ou Shift.\n"
 
-#: ../src/guake.py:1210
-msgid "Return the selectd tab index."
-msgstr "Retoune l'index de l'onglet sélectionné"
+#: ../data/prefs.glade.h:43
+msgid "_Open new tab in current directory"
+msgstr "_Ouvrir un nouvel onglet dans le dossier courrant"
 
-#: ../data/prefs.glade.h:14
+#: ../src/guake.py:624
+#, python-format
 msgid ""
-"ASCII DEL\n"
-"Escape sequence\n"
-"Control-H"
+"Guake is now running,\n"
+"press <b>%s</b> to use it."
 msgstr ""
-"ASCII DEL\n"
-"Escape sequence\n"
-"Control-H"
+"Guake est en marche,\n"
+"appuyer sur <b>%s</b> pour l'utiliser."
+
+#: ../data/about.glade.h:2
+msgid ""
+"Adolfo González Blázquez <code@infinicode.org> Spanish\n"
+"Lincoln de Sousa <lincoln@guake.org> Brazilian Portuguese\n"
+"Markus Majer <mm@mpathy.de> German\n"
+"Mieszko Ślusarczyk <mieszkoslusarczyk@gmail.com> Polish\n"
+"Nishio Futoshi <futoshi@momonga-linux.org> Japanese\n"
+"Pavel Alexeev <Pahan@Hubbitus.spb.su> Russian\n"
+"Piotr Drąg <piotrdrag@gmail.com> Polish"
+msgstr ""
+"Adolfo González Blázquez <code@infinicode.org> Spanish\r\n"
+"Lincoln de Sousa <lincoln@guake.org> Brazilian Portuguese\r\n"
+"Markus Majer <mm@mpathy.de> German\r\n"
+"Mieszko Ślusarczyk <mieszkoslusarczyk@gmail.com> Polish\r\n"
+"Nishio Futoshi <futoshi@momonga-linux.org> Japanese\r\n"
+"Pavel Alexeev <Pahan@Hubbitus.spb.su> Russian\r\n"
+"Piotr Drąg <piotrdrag@gmail.com> Polish"
+
+#: ../data/about.glade.h:19
+msgid "http://guake.org"
+msgstr "http://guake.org"
+
+#: ../src/guake.py:517
+msgid "Guake Terminal"
+msgstr "Guake-Terminal"
