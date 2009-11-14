@@ -3,8 +3,8 @@
 # Copyright (C) 2007 Lincoln de Sousa <lincoln@archlinux-br.org>
 # This file is distributed under the same license as the guake package.
 # Gabriel Falcão <gabriel@guake-terminal.org>, 2007
-#
-#
+# 
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: guake 0.2.2\n"
@@ -20,24 +20,6 @@ msgstr ""
 #: ../data/about.glade.h:1
 msgid "About Guake"
 msgstr "Über Guake"
-
-#: ../data/about.glade.h:2
-msgid ""
-"Adolfo González Blázquez <code@infinicode.org> Spanish\n"
-"Lincoln de Sousa <lincoln@guake.org> Brazilian Portuguese\n"
-"Markus Majer <mm@mpathy.de> German\n"
-"Mieszko Ślusarczyk <mieszkoslusarczyk@gmail.com> Polish\n"
-"Nishio Futoshi <futoshi@momonga-linux.org> Japanese\n"
-"Pavel Alexeev <Pahan@Hubbitus.spb.su> Russian\n"
-"Piotr Drąg <piotrdrag@gmail.com> Polish"
-msgstr ""
-"Adolfo González Blázquez <code@infinicode.org> Spanish\n"
-"Lincoln de Sousa <lincoln@guake.org> Brazilian Portuguese\n"
-"Markus Majer <mm@mpathy.de> German\n"
-"Mieszko Ślusarczyk <mieszkoslusarczyk@gmail.com> Polish\n"
-"Nishio Futoshi <futoshi@momonga-linux.org> Japanese\n"
-"Pavel Alexeev <Pahan@Hubbitus.spb.su> Russian\n"
-"Piotr Drąg <piotrdrag@gmail.com> Polish"
 
 #: ../data/about.glade.h:9
 msgid ""
@@ -58,36 +40,17 @@ msgstr ""
 
 #: ../data/about.glade.h:13
 msgid ""
-"Guake is free software; you can redistribute it and/or modify it under the "
-"terms of the GNU General Public License as published by the Free Software "
-"Foundation; either version 2 of the License, or (at your option) any later "
-"version.\n"
+"Guake is free software; you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation; either version 2 of the License, or (at your option) any later version.\n"
 "\n"
-"Guake is distributed in the hope that it will be useful, but WITHOUT ANY "
-"WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS "
-"FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more "
-"details.\n"
+"Guake is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more details.\n"
 "\n"
-"You should have received a copy of the GNU General Public License along with "
-"Guake; if not, write to the Free Software Foundation, Inc., 51 Franklin St, "
-"Fifth Floor, Boston, MA  02110-1301 USA\n"
+"You should have received a copy of the GNU General Public License along with Guake; if not, write to the Free Software Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301 USA\n"
 msgstr ""
-"Guake ist freie Software. Sie können es unter den Bedingungen der GNU "
-"General Public License, wie von der Free Software Foundation veröffentlicht, "
-"weitergeben und/oder modifizieren, entweder gemäß Version 2 der Lizenz oder "
-"(nach Ihrer Option) jeder späteren Version.\n"
+"Guake ist freie Software. Sie können es unter den Bedingungen der GNU General Public License, wie von der Free Software Foundation veröffentlicht, weitergeben und/oder modifizieren, entweder gemäß Version 2 der Lizenz oder (nach Ihrer Option) jeder späteren Version.\n"
 "\n"
-"Die Veröffentlichung dieses Programms erfolgt in der Hoffnung, daß es Ihnen "
-"von Nutzen sein wird, aber OHNE IRGENDEINE GARANTIE, sogar ohne die "
-"implizite Garantie der MARKTREIFE oder der VERWENDBARKEIT FÜR EINEN "
-"BESTIMMTEN ZWECK. Details finden Sie in der GNU General Public License.\n"
+"Die Veröffentlichung dieses Programms erfolgt in der Hoffnung, daß es Ihnen von Nutzen sein wird, aber OHNE IRGENDEINE GARANTIE, sogar ohne die implizite Garantie der MARKTREIFE oder der VERWENDBARKEIT FÜR EINEN BESTIMMTEN ZWECK. Details finden Sie in der GNU General Public License.\n"
 "\n"
-"Sie sollten ein Exemplar der GNU General Public License zusammen mit diesem "
-"Programm erhalten haben. Falls nicht, siehe <http://www.gnu.org/licenses/>.\n"
-
-#: ../data/about.glade.h:19
-msgid "http://guake.org"
-msgstr "http://guake.org"
+"Sie sollten ein Exemplar der GNU General Public License zusammen mit diesem Programm erhalten haben. Falls nicht, siehe <http://www.gnu.org/licenses/>.\n"
 
 #: ../data/guake.glade.h:1 ../src/guake.py:1203
 msgid "Add a new tab"
@@ -137,21 +100,6 @@ msgstr "<b>Allgemein</b>"
 msgid "<b>Keyboard compatibility</b>"
 msgstr "<b>Tastatur Kompatibilität </b>"
 
-#: ../data/prefs.glade.h:5
-#, fuzzy
-msgid "<b>Main Window height</b>"
-msgstr "<b>Hauptfenster</b>"
-
-#: ../data/prefs.glade.h:6
-#, fuzzy
-msgid "<b>Main Window horizontal alignment</b>"
-msgstr "<b>Fenstergröße</b>"
-
-#: ../data/prefs.glade.h:7
-#, fuzzy
-msgid "<b>Main Window width</b>"
-msgstr "<b>Hauptfenster</b>"
-
 #: ../data/prefs.glade.h:8
 msgid "<b>Main Window</b>"
 msgstr "<b>Hauptfenster</b>"
@@ -165,22 +113,12 @@ msgid "<b>Shell</b>"
 msgstr "<b>Shell</b>"
 
 #: ../data/prefs.glade.h:11
-msgid ""
-"<small><i><b>Note:</b> These options may cause some applications to behave "
-"incorrectly.  They are only here to allow you to work around certain "
-"applications and operating systems that expect different terminal behavior.</"
-"i></small>"
-msgstr ""
-"<small><i><b>Notiz:</b> Diese Optionen könnten dazu führen, dass andere "
-"Programme nicht mehr ordnungsgemäß funktionieren. Diese Optionen dienen nur "
-"dazu verschiedene Programme und Systeme zu unterstützen, die ein anderes "
-"Terminalverhalten besitzen\" </i></small>"
+msgid "<small><i><b>Note:</b> These options may cause some applications to behave incorrectly.  They are only here to allow you to work around certain applications and operating systems that expect different terminal behavior.</i></small>"
+msgstr "<small><i><b>Notiz:</b> Diese Optionen könnten dazu führen, dass andere Programme nicht mehr ordnungsgemäß funktionieren. Diese Optionen dienen nur dazu verschiedene Programme und Systeme zu unterstützen, die ein anderes Terminalverhalten besitzen\" </i></small>"
 
 #: ../data/prefs.glade.h:12
-msgid ""
-"<span color=\"black\">Customize behavior and appearance of Guake!</span>"
-msgstr ""
-"<span color=\"black\">Aussehen und Verhalten von Guake verändern!</span>"
+msgid "<span color=\"black\">Customize behavior and appearance of Guake!</span>"
+msgstr "<span color=\"black\">Aussehen und Verhalten von Guake verändern!</span>"
 
 #: ../data/prefs.glade.h:13
 msgid "<span size=\"18000\" color=\"black\"><b>Guake properties</b></span>"
@@ -252,10 +190,6 @@ msgstr "auf Tastendruck"
 msgid "On output"
 msgstr "bei Ausgabe"
 
-#: ../data/prefs.glade.h:31
-msgid "Prompt on quit"
-msgstr "Beenden bestätigen"
-
 #: ../data/prefs.glade.h:32
 msgid "Scrollback lines:"
 msgstr "zurückscrollbare Zeilen:"
@@ -300,10 +234,6 @@ msgstr "_Rückschritttaste bewirkt:"
 msgid "_Delete key generates:"
 msgstr "_Entfernen Taste bewirkt:"
 
-#: ../data/prefs.glade.h:43
-msgid "_Open new tab in current directory"
-msgstr "Öffne _neuen Tab im aktuellen Verzeichnis"
-
 #: ../data/prefs.glade.h:44
 msgid "_Reset Compatibility Options to Defaults"
 msgstr "_Zurücksetzen der Kompatibilitätsoptionen "
@@ -334,29 +264,14 @@ msgstr "Fehler beim Ändern des Kürzels"
 msgid "Unable to bind global <b>%s</b> key"
 msgstr "Unfähig das Kürzel auf <b>%s</b> zu ändern."
 
-#: ../src/guake.py:517
-msgid "Guake Terminal"
-msgstr "Guake Terminal"
-
 #: ../src/guake.py:613
 #, python-format
 msgid ""
 "A problem happened when binding <b>%s</b> key.\n"
-"Please use Guake Preferences dialog to choose another key (The trayicon was "
-"enabled)"
+"Please use Guake Preferences dialog to choose another key (The trayicon was enabled)"
 msgstr ""
 "Ein Problem trat auf beim Verknüfen mit <b>%s</b>.\n"
-"Bitte benutzen Sie die Einstellungen um eine andere Taste oder ein anderes "
-"Tastenkürzel zu wählen."
-
-#: ../src/guake.py:624
-#, python-format
-msgid ""
-"Guake is now running,\n"
-"press <b>%s</b> to use it."
-msgstr ""
-"Guake läuft bereits,\n"
-"drücken sie <b>%s</b> um es zu benutzen."
+"Bitte benutzen Sie die Einstellungen um eine andere Taste oder ein anderes Tastenkürzel zu wählen."
 
 #: ../src/guake.py:971
 msgid "Rename tab"
@@ -379,23 +294,6 @@ msgstr "Zeigt die Einstellungen von Guake"
 #: ../src/guake.py:1199
 msgid "Shows Guake's about info"
 msgstr "Zeigt Guake's Programminformationen"
-
-#: ../src/guake.py:1207
-msgid "Select a tab"
-msgstr "Tab auswählen"
-
-#: ../src/guake.py:1211
-msgid "Return the selectd tab index."
-msgstr ""
-
-#: ../src/guake.py:1215
-msgid "Execute an arbitrary command in the selected tab."
-msgstr ""
-
-#: ../src/guake.py:1219
-#, fuzzy
-msgid "Rename the selected tab."
-msgstr "Aktuellen Tab umbenennen"
 
 #: ../src/guake.py:1223
 msgid "Says to Guake go away =("
@@ -486,27 +384,92 @@ msgstr "Fehler beim Setzten des Tastenkürzels"
 #: ../src/prefs.py:590
 #, python-format
 msgid ""
-"The shortcut \"%s\" cannot be used because it will become impossible to type "
-"using this key.\n"
+"The shortcut \"%s\" cannot be used because it will become impossible to type using this key.\n"
 "\n"
 "Please try with a key such as Control, Alt or Shift at the same time.\n"
 msgstr ""
-"Das Tastenkürzel \"%s\" kann nicht genutzt werden, weil es nicht möglich ist "
-"die Kombination zu benutzen.\n"
+"Das Tastenkürzel \"%s\" kann nicht genutzt werden, weil es nicht möglich ist die Kombination zu benutzen.\n"
 "\n"
 "Versuchen Sie es mit den Tasten Strg, Alt oder Shift zur gleichen Zeit.\n"
 
+#: ../src/guake.py:1207
+msgid "Select a tab"
+msgstr "Tab auswählen"
+
+#: ../data/prefs.glade.h:43
+msgid "_Open new tab in current directory"
+msgstr "_Neuen Tab in aktuellem Verzeichnis öffnen"
+
+#: ../src/guake.py:624
+#, python-format
+msgid ""
+"Guake is now running,\n"
+"press <b>%s</b> to use it."
+msgstr ""
+"Guake läuft bereits,\n"
+"bitte drücken Sie <b>%s</b> um es zu benutzen."
+
+#: ../data/prefs.glade.h:31
+msgid "Prompt on quit"
+msgstr "Beim Beenden nachfragen"
+
+#: ../data/about.glade.h:2
+msgid ""
+"Adolfo González Blázquez <code@infinicode.org> Spanish\n"
+"Lincoln de Sousa <lincoln@guake.org> Brazilian Portuguese\n"
+"Markus Majer <mm@mpathy.de> German\n"
+"Mieszko Ślusarczyk <mieszkoslusarczyk@gmail.com> Polish\n"
+"Nishio Futoshi <futoshi@momonga-linux.org> Japanese\n"
+"Pavel Alexeev <Pahan@Hubbitus.spb.su> Russian\n"
+"Piotr Drąg <piotrdrag@gmail.com> Polish"
+msgstr ""
+"Adolfo González Blázquez <code@infinicode.org> Spanish\n"
+"Lincoln de Sousa <lincoln@guake.org> Brazilian Portuguese\n"
+"Markus Majer <mm@mpathy.de> German\n"
+"Mieszko Ślusarczyk <mieszkoslusarczyk@gmail.com> Polish\n"
+"Nishio Futoshi <futoshi@momonga-linux.org> Japanese\n"
+"Pavel Alexeev <Pahan@Hubbitus.spb.su> Russian\n"
+"Piotr Drąg <piotrdrag@gmail.com> Polish"
+
+#: ../data/about.glade.h:19
+msgid "http://guake.org"
+msgstr "http://guake.org"
+
+#: ../data/prefs.glade.h:5
+msgid "<b>Main Window height</b>"
+msgstr "<b>Höhe des Hauptfensters</b>"
+
+#: ../src/guake.py:517
+msgid "Guake Terminal"
+msgstr "Guake Terminal"
+
+#: ../src/guake.py:1219
+msgid "Rename the selected tab."
+msgstr "Gewählten Tab umbenennen"
+
+#: ../src/guake.py:1215
+msgid "Execute an arbitrary command in the selected tab."
+msgstr "Eigenen Befehl im ausgewählten Tab ausführen"
+
+#: ../src/guake.py:1211
+msgid "Return the selectd tab index."
+msgstr ""
+
+#: ../data/prefs.glade.h:6
+msgid "<b>Main Window horizontal alignment</b>"
+msgstr "<b>Horizontale Ausrichtung des Hauptfensters</b>"
+
+#: ../data/prefs.glade.h:7
+msgid "<b>Main Window width</b>"
+msgstr "<b>Weite des Hauptfensters</b>"
+
 #~ msgid "Could not connect to dbus session bus. dbus will be unavailable.\n"
-#~ msgstr ""
-#~ "Konnte keine Verbindung zur DBus Sitzung herstellen. DBus wird nicht "
-#~ "verwendet werden können.\n"
+#~ msgstr "Konnte keine Verbindung zur DBus Sitzung herstellen. DBus wird nicht verwendet werden können.\n"
 
 #~ msgid "Program not found in path"
 #~ msgstr "Das Programm wurde im Pfad nicht gefunden"
 
-#~ msgid ""
-#~ "You don't have any available program to interpret this uri. To solve this "
-#~ "problem just install gnome-open or xdg-open and try again."
+#~ msgid "You don't have any available program to interpret this uri. To solve this problem just install gnome-open or xdg-open and try again."
 #~ msgstr "Du hast kein Programm installiert um diese "
 
 #~ msgid "<b>Window behavior</b>"
