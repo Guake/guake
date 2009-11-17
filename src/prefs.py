@@ -144,26 +144,11 @@ class PrefsCallbacks(object):
         """
         self.client.set_bool(KEY('/general/window_tabbar'), chk.get_active())
 
-    def on_window_width_value_changed(self, wscale):
-        """Changes the value of window_width in gconf
-        """
-        val = wscale.get_value()
-        self.client.set_int(KEY('/general/window_width'), int(val))
-
     def on_window_height_value_changed(self, hscale):
         """Changes the value of window_height in gconf
         """
         val = hscale.get_value()
         self.client.set_int(KEY('/general/window_height'), int(val))
-
-    def on_window_halignment_changed(self, combo):
-        """Changes the activity of window_alignment in gconf
-        """
-        citer = combo.get_active_iter()
-        if not citer:
-            return
-        alignment = combo.get_model().get_value(citer, 1)
-        self.client.set_int(KEY('/general/window_halignment'), alignment)
 
     def on_prompt_on_quit_toggled(self, chk):
         """Set the `prompt on quit' property in gconf
@@ -299,7 +284,6 @@ class PrefsDialog(SimpleGladeApp):
         treeview.append_column(column)
 
         self.populate_shell_combo()
-        self.populate_halignment_combo()
         self.populate_keys_tree()
         self.load_configs()
         self.get_widget('config-window').hide()
@@ -428,20 +412,6 @@ class PrefsDialog(SimpleGladeApp):
         value = self.client.get_bool(KEY('/general/window_tabbar'))
         self.get_widget('window_tabbar').set_active(value)
 
-        # width
-        value = float(self.client.get_int(KEY('/general/window_width')))
-        self.get_widget('window_width').set_value(value)
-
-        # height
-        value = float(self.client.get_int(KEY('/general/window_height')))
-        self.get_widget('window_height').set_value(value)
-
-        # horizontal alignment
-        combo = self.get_widget('window_halignment')
-        for i in combo.get_model():
-            if i[1] == self.client.get_int(KEY('/general/window_halignment')):
-                combo.set_active_iter(i.iter)
-
         # scrollbar
         value = self.client.get_bool(KEY('/general/use_scrollbar'))
         self.get_widget('use_scrollbar').set_active(value)
@@ -536,17 +506,6 @@ class PrefsDialog(SimpleGladeApp):
                           2, hotkey,
                           3, True)
         self.get_widget('treeview-keys').expand_all()
-
-    def populate_halignment_combo(self):
-        """Fill combo model with alignment possible values.
-        """
-        model = gtk.ListStore(gobject.TYPE_STRING, gobject.TYPE_INT)
-        for row in (
-                ("Center", ALIGN_CENTER),
-                ("Left", ALIGN_LEFT),
-                ("Right", ALIGN_RIGHT)):
-            model.append(row)
-        self.get_widget('window_halignment').set_model(model)
 
     # -- key handling --
 

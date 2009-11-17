@@ -118,8 +118,6 @@ class GConfHandler(object):
         notify_add(KEY('/general/use_trayicon'), self.trayicon_toggled)
         notify_add(KEY('/general/window_ontop'), self.ontop_toggled)
         notify_add(KEY('/general/window_tabbar'), self.tabbar_toggled)
-        notify_add(KEY('/general/window_halignment'), self.alignment_changed)
-        notify_add(KEY('/general/window_width'), self.size_changed)
         notify_add(KEY('/general/window_height'), self.size_changed)
 
         notify_add(KEY('/general/use_scrollbar'), self.scrollbar_toggled)
@@ -788,7 +786,7 @@ class Guake(SimpleGladeApp):
         """
         screen = self.window.get_screen()
         height = self.client.get_int(KEY('/general/window_height'))
-        width = self.client.get_int(KEY('/general/window_width'))
+        width = 100
         halignment = self.client.get_int(KEY('/general/window_halignment'))
 
         # get the rectangle just from the first/default monitor in the
@@ -833,7 +831,6 @@ class Guake(SimpleGladeApp):
         self.client.notify(KEY('/general/prompt_on_quit'))
         self.client.notify(KEY('/general/window_tabbar'))
         self.client.notify(KEY('/general/window_ontop'))
-        self.client.notify(KEY('/general/window_width'))
         self.client.notify(KEY('/general/window_height'))
         self.client.notify(KEY('/general/use_scrollbar'))
         self.client.notify(KEY('/general/history_size'))
