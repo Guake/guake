@@ -59,5 +59,18 @@ of guake from a release file, please do the following::
     (give the root password here!)
     # make install
 
+If you receive a message asking you if you have installed
+guake.schemas properly when launching guake, it means that your
+default sysconfdir is different from the one choosen by autotools. To
+fix that, you probably have to append the param `--sysconfdir=/etc' to
+your `./configure' call, like this::
+
+    $ ./configure --sysconfidir=/etc && make
+
+If it is not enought you can call, you can install the gconf schemas
+file by hand doing the following::
+
+    # gconftool-2 --makefile-install-rule data/guake.schemas
+
 For more install details, please read the `INSTALL` file.
 
