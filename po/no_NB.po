@@ -1,18 +1,16 @@
-# Norwegian translation of Guake-terminal
-# Copyright (C) 2008 Håvard Havdal (haavard@wty.se)
+# Traduction française de Guake-terminal
+# Copyright (C) 2009 Pierre-Yves Chibon
 # This file is distributed under the same license as the guake package.
-# Håvard Havdal <haavard@wty.se>, 2008.
-# , fuzzy
+# Pierre-Yves Chibon <pingou@pingoured.fr>, 2009.
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: guake 0.3.1\n"
+"Project-Id-Version: guake 0.5.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-04-12 20:24-0300\n"
-"PO-Revision-Date: 2008-08-12 22:00-0300\n"
-"Last-Translator: Håvard Havdal <haavard@wty.se>\n"
-"Language-Team: translation@guake-terminal.org <http://trac.guake-terminal."
-"org>\n"
+"POT-Creation-Date: 2010-01-18 13:24+0000\n"
+"PO-Revision-Date: 2009-10-22 15:26+CET\n"
+"Last-Translator: Håvard Havdal <haavard@havdal.net>\n"
+"Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -22,32 +20,30 @@ msgid "About Guake"
 msgstr "Om Guake"
 
 #: ../data/about.glade.h:2
-#, fuzzy
 msgid ""
 "Adolfo González Blázquez <code@infinicode.org> Spanish\n"
-"Lincoln de Sousa <lincoln@guake-terminal.org> Brazilian Portuguese\n"
+"Lincoln de Sousa <lincoln@guake.org> Brazilian Portuguese\n"
 "Markus Majer <mm@mpathy.de> German\n"
 "Mieszko Ślusarczyk <mieszkoslusarczyk@gmail.com> Polish\n"
 "Nishio Futoshi <futoshi@momonga-linux.org> Japanese\n"
 "Pavel Alexeev <Pahan@Hubbitus.spb.su> Russian\n"
 "Piotr Drąg <piotrdrag@gmail.com> Polish"
 msgstr ""
-"Adolfo González Blázquez &lt;code@infinicode.org&gt; Spanish\n"
-"Lincoln de Sousa &lt;lincoln@guake-terminal.org&gt; Brazilian Portuguese\n"
-"Markus Majer &lt;mm@mpathy.de&gt; German\n"
-"Mieszko Ślusarczyk &lt;mieszkoslusarczyk@gmail.com&lt; Polish\n"
-"Nishio Futoshi &lt;futoshi@momonga-linux.org&gt; Japanese\n"
-"Pavel Alexeev &lt;Pahan@Hubbitus.spb.su&gt; Russian\n"
-"Piotr Drąg &lt;piotrdrag@gmail.com&gt; Polish\n"
+"Adolfo González Blázquez <code@infinicode.org> Spanish\r\n"
+"Lincoln de Sousa <lincoln@guake.org> Brazilian Portuguese\r\n"
+"Markus Majer <mm@mpathy.de> German\r\n"
+"Mieszko Ślusarczyk <mieszkoslusarczyk@gmail.com> Polish\r\n"
+"Nishio Futoshi <futoshi@momonga-linux.org> Japanese\r\n"
+"Pavel Alexeev <Pahan@Hubbitus.spb.su> Russian\r\n"
+"Piotr Drąg <piotrdrag@gmail.com> Polish"
 
 #: ../data/about.glade.h:9
-#, fuzzy
 msgid ""
 "Copyright 2007-2009 Lincoln de Sousa\n"
 "Copyright 2007 Gabriel Falc&#xE3;o"
 msgstr ""
-"Copyright 2007 Gabriel Falcão\n"
-"Copyright 2007 Lincoln de Sousa"
+"Copyright 2007-2009 Lincoln de Sousa\n"
+"Copyright 2007 Gabriel Falc&#xE3;o"
 
 #: ../data/about.glade.h:11
 msgid ""
@@ -55,7 +51,7 @@ msgid ""
 "terminal based on fps games terminal"
 msgstr ""
 "Guake er en lett tilgjengelig\n"
-"terminal basert på fps spill terminal"
+"terminal basert på fps spill terminal."
 
 #: ../data/about.glade.h:13
 msgid ""
@@ -87,10 +83,10 @@ msgstr ""
 "Floor, Boston, MA 02110-1301 USA\n"
 
 #: ../data/about.glade.h:19
-msgid "http://guake-terminal.org"
-msgstr "http://guake-terminal.org"
+msgid "http://guake.org"
+msgstr "http://guake.org"
 
-#: ../data/guake.glade.h:1
+#: ../data/guake.glade.h:1 ../src/guake.py:1200
 msgid "Add a new tab"
 msgstr "Legg til fane"
 
@@ -104,19 +100,19 @@ msgstr "Lukk fane"
 
 #: ../data/guake.glade.h:4
 msgid "Copy"
-msgstr ""
+msgstr "Kopier"
 
-#: ../data/guake.glade.h:5 ../src/guake.py:572 ../src/guake.py:583
+#: ../data/guake.glade.h:5 ../src/guake.py:610 ../src/guake.py:621
 msgid "Guake!"
 msgstr "Guake!"
 
 #: ../data/guake.glade.h:6
 msgid "Paste"
-msgstr ""
+msgstr "Lim inn"
 
 #: ../data/guake.glade.h:7 ../src/prefs.py:61
 msgid "Quit"
-msgstr ""
+msgstr "Avslutt"
 
 #: ../data/guake.glade.h:8
 msgid "Rename"
@@ -128,35 +124,31 @@ msgstr "<b>Bakgrunn</b>"
 
 #: ../data/prefs.glade.h:2
 msgid "<b>Fonts</b>"
-msgstr "<b>Fonter</b>"
+msgstr "<b>Skrifttyper</b>"
 
 #: ../data/prefs.glade.h:3
-#, fuzzy
 msgid "<b>General</b>"
-msgstr "<b>Shell</b>"
+msgstr "<b>Generell</b>"
 
 #: ../data/prefs.glade.h:4
 msgid "<b>Keyboard compatibility</b>"
 msgstr "<b>Tastatur kompabilitet</b>"
 
 #: ../data/prefs.glade.h:5
-#, fuzzy
-msgid "<b>Main Window size</b>"
-msgstr "<b>Vindu størrelse</b>"
+msgid "<b>Main Window height</b>"
+msgstr "<b>Hovedvindu høyde</b>"
 
 #: ../data/prefs.glade.h:6
-#, fuzzy
 msgid "<b>Main Window</b>"
-msgstr "<b>Vindu størrelse</b>"
+msgstr "<b>Hovedvindu</b>"
 
 #: ../data/prefs.glade.h:7
-#, fuzzy
 msgid "<b>Scroll</b>"
-msgstr "<b>Shell</b>"
+msgstr "<b>Skroll</b>"
 
 #: ../data/prefs.glade.h:8
 msgid "<b>Shell</b>"
-msgstr "<b>Shell</b>"
+msgstr "<b>Skall</b>"
 
 #: ../data/prefs.glade.h:9
 msgid ""
@@ -173,8 +165,7 @@ msgstr ""
 #: ../data/prefs.glade.h:10
 msgid ""
 "<span color=\"black\">Customize behavior and appearance of Guake!</span>"
-msgstr ""
-"<span color=\"black\">Skreddersy oppførselen og utseende til Guake!</span>"
+msgstr "<span color=\"black\">Personaliser Guake!</span>"
 
 #: ../data/prefs.glade.h:11
 msgid "<span size=\"18000\" color=\"black\"><b>Guake properties</b></span>"
@@ -192,7 +183,7 @@ msgstr ""
 
 #: ../data/prefs.glade.h:15
 msgid "Appearance"
-msgstr ""
+msgstr "Utseende"
 
 #: ../data/prefs.glade.h:16
 msgid "Choose some color"
@@ -200,7 +191,7 @@ msgstr "Velg en farge"
 
 #: ../data/prefs.glade.h:17
 msgid "Choose some font"
-msgstr "Velg en font"
+msgstr "Velg en skrifttype"
 
 #: ../data/prefs.glade.h:18
 msgid "Color:"
@@ -208,7 +199,7 @@ msgstr "Farge:"
 
 #: ../data/prefs.glade.h:19
 msgid "Compatibility"
-msgstr "Kompatibilitet"
+msgstr "Kompabilitet"
 
 #: ../data/prefs.glade.h:20
 msgid "Default interpreter:"
@@ -216,7 +207,7 @@ msgstr "Standard tolk:"
 
 #: ../data/prefs.glade.h:21
 msgid "Enable popup notifications on startup"
-msgstr ""
+msgstr "Aktiver popupvarslinger ved oppstart"
 
 #: ../data/prefs.glade.h:22 ../src/prefs.py:55
 msgid "General"
@@ -228,11 +219,11 @@ msgstr "Guake egenskaper"
 
 #: ../data/prefs.glade.h:24
 msgid "Hide on lose focus"
-msgstr "Skjul ved mistet fokus"
+msgstr "Skjul ved inaktivt vindu"
 
 #: ../data/prefs.glade.h:25
 msgid "Image:"
-msgstr "Bilde:"
+msgstr "Bildet:"
 
 #: ../data/prefs.glade.h:26
 msgid "Keyboard shortcuts"
@@ -240,87 +231,100 @@ msgstr "Hurtigtaster"
 
 #: ../data/prefs.glade.h:27
 msgid "On key stroke"
-msgstr ""
+msgstr "Ved tastetrykk"
 
 #: ../data/prefs.glade.h:28
 msgid "On output"
-msgstr ""
+msgstr "On output"
 
 #: ../data/prefs.glade.h:29
-msgid "Scrollback lines:"
-msgstr "Scrollback linjer:"
+msgid "Prompt on quit"
+msgstr "Promt on quit"
 
 #: ../data/prefs.glade.h:30
-#, fuzzy
-msgid "Scrolling"
-msgstr "Scrollback linjer:"
+msgid "Scrollback lines:"
+msgstr "Skrollback linjer:"
 
 #: ../data/prefs.glade.h:31
-msgid "Show scrollbar"
-msgstr "Vis scrollbar"
+msgid "Scrolling"
+msgstr "Skrolling"
 
 #: ../data/prefs.glade.h:32
-#, fuzzy
-msgid "Show tab bar"
-msgstr "Vis scrollbar"
+msgid "Show scrollbar"
+msgstr "Vis skrollbar"
 
 #: ../data/prefs.glade.h:33
-msgid "Show tray icon"
-msgstr ""
+msgid "Show tab bar"
+msgstr "Vis fanelinje"
 
 #: ../data/prefs.glade.h:34
+msgid "Show tray icon"
+msgstr "Vis trayikon"
+
+#: ../data/prefs.glade.h:35
 msgid "Stay on top"
 msgstr "Alltid øverst"
 
-#: ../data/prefs.glade.h:35
+#: ../data/prefs.glade.h:36
 msgid "Style:"
 msgstr "Stil:"
 
-#: ../data/prefs.glade.h:36
-#, fuzzy
-msgid "Transparency:"
-msgstr "Gjennomsiktig bakgrunn:"
-
 #: ../data/prefs.glade.h:37
-msgid "Use system defaults"
-msgstr ""
+msgid "Transparency:"
+msgstr "Gjennomsiktighet"
 
 #: ../data/prefs.glade.h:38
+msgid "Use system defaults"
+msgstr "Bruk systeminstillinger"
+
+#: ../data/prefs.glade.h:39
 msgid "_Backspace key generates:"
 msgstr "_Tilbaketast genererer:"
 
-#: ../data/prefs.glade.h:39
+#: ../data/prefs.glade.h:40
 msgid "_Delete key generates:"
 msgstr "_Slettetast genererer:"
 
-#: ../data/prefs.glade.h:40
+#: ../data/prefs.glade.h:41
+msgid "_Open new tab in current directory"
+msgstr "_Åpne ny fane i aktiv sti"
+
+#: ../data/prefs.glade.h:42
 msgid "_Reset Compatibility Options to Defaults"
 msgstr "_Tilbakestill kompabilitet alternativer til standard"
 
-#: ../data/prefs.glade.h:41
+#: ../data/prefs.glade.h:43
 msgid "_Run command as a login shell"
-msgstr ""
+msgstr "_Kjør kommando som loginskall"
 
-#: ../src/dbusiface.py:63
-msgid "Could not connect to dbus session bus. dbus will be unavailable.\n"
-msgstr "Kunne ikke koble til dbus sesjonsbus. Dbus vil være utilgjengelig.\n"
+#: ../src/guake.py:67
+msgid "Do you really want to quit Guake!?"
+msgstr "Vil du virkelig avslutte Guake!?"
 
-#: ../src/guake.py:317
+#: ../src/guake.py:70
+msgid "<b>There is one process still running.</b>"
+msgstr "<b>Det er forsatt én prosess kjørende.</b>"
+
+#: ../src/guake.py:74
+#, python-format
+msgid "<b>There are %d processes running.</b>"
+msgstr "<b>Det er %d prosesser kjørende.</b>"
+
+#: ../src/guake.py:352
 msgid "key binding error"
 msgstr "Hurtigtast error"
 
-#: ../src/guake.py:318
-#, fuzzy, python-format
+#: ../src/guake.py:353
+#, python-format
 msgid "Unable to bind global <b>%s</b> key"
-msgstr "Kunne ikke lagre %s tasten"
+msgstr "Kunne ikke lagre <b>%s</b> tasten"
 
-#: ../src/guake.py:480
-#, fuzzy
-msgid "Guake-Terminal"
-msgstr "http://guake-terminal.org"
+#: ../src/guake.py:515
+msgid "Guake Terminal"
+msgstr "Guake Terminal"
 
-#: ../src/guake.py:573
-#, fuzzy, python-format
+#: ../src/guake.py:611
+#, python-format
 msgid ""
 "A problem happened when binding <b>%s</b> key.\n"
 "Please use Guake Preferences dialog to choose another key (The trayicon was "
@@ -329,48 +333,62 @@ msgstr ""
 "Et problem har oppstått under lagringen av <b>%s</b> tasten.\n"
 "Vennligst benytt guake egenskaper for å velge en annen tast"
 
-#: ../src/guake.py:584
+#: ../src/guake.py:622
 #, python-format
 msgid ""
-"Guake is already running,\n"
+"Guake is now running,\n"
 "press <b>%s</b> to use it."
 msgstr ""
-"Guake kjører allerede,\n"
-"trykk <b>%s</b> for å bruke den."
+"Guake er nå startet,\n"
+"trykk <b>%s</b> for å ta den i bruk."
 
-#: ../src/guake.py:854
-#, fuzzy
+#: ../src/guake.py:968
 msgid "Rename tab"
-msgstr "Gi nytt navn"
+msgstr "Gi nytt navn til fane"
 
 #. Adding a new radio button to the tabbar
-#: ../src/guake.py:942
+#: ../src/guake.py:1078
 #, python-format
 msgid "Terminal %s"
 msgstr "Terminal %s"
 
-#: ../src/guake.py:1027
+#: ../src/guake.py:1188
 msgid "Toggles the visibility of the terminal window"
 msgstr "Endrer synligheten av terminalvinduet"
 
-#: ../src/guake.py:1031
-#, fuzzy
+#: ../src/guake.py:1192
 msgid "Shows Guake preference window"
 msgstr "Viser Guake egenskapervinduet"
 
-#: ../src/guake.py:1035
+#: ../src/guake.py:1196
 msgid "Shows Guake's about info"
 msgstr "Viser Guakes om informasjon"
 
-#: ../src/guake.py:1039
+#: ../src/guake.py:1204
+msgid "Select a tab"
+msgstr "Velg en fane"
+
+#: ../src/guake.py:1208
+msgid "Return the selectd tab index."
+msgstr "Gå tilbake til den valgte faneindex."
+
+#: ../src/guake.py:1212
+msgid "Execute an arbitrary command in the selected tab."
+msgstr "Utføre en vilkårlig kommandoen i den valgte fanen."
+
+#: ../src/guake.py:1216
+msgid "Rename the selected tab."
+msgstr "Gi nytt navn til aktiv fane."
+
+#: ../src/guake.py:1220
 msgid "Says to Guake go away =("
 msgstr "Sier til Guake at den skal gå vekk =("
 
-#: ../src/guake.py:1076
+#: ../src/guake.py:1285
 msgid "Guake can not init!"
 msgstr "Guake kan ikke init!"
 
-#: ../src/guake.py:1077
+#: ../src/guake.py:1286
 msgid ""
 "Gconf Error.\n"
 "Have you installed <b>guake.schemas</b> properlly?"
@@ -381,12 +399,11 @@ msgstr ""
 #. string to show in prefereces dialog for user shell option
 #: ../src/prefs.py:42
 msgid "<user shell>"
-msgstr ""
+msgstr "<bruker skall>"
 
 #: ../src/prefs.py:57
-#, fuzzy
 msgid "Toggle Guake visibility"
-msgstr "Vis terminal"
+msgstr "Endrer Guakes synslighet"
 
 #: ../src/prefs.py:59
 msgid "Toggle Fullscreen"
@@ -394,29 +411,27 @@ msgstr "Endre til fullskjerm"
 
 #: ../src/prefs.py:64
 msgid "Tab management"
-msgstr ""
+msgstr "Fanebehandler"
 
 #: ../src/prefs.py:66
-#, fuzzy
 msgid "New tab"
 msgstr "Ny fane"
 
 #: ../src/prefs.py:68
-#, fuzzy
 msgid "Close tab"
 msgstr "Lukk fane"
 
 #: ../src/prefs.py:70
 msgid "Rename current tab"
-msgstr ""
+msgstr "Gi nytt navn til aktiv fane"
 
 #: ../src/prefs.py:73
 msgid "Navigation"
-msgstr ""
+msgstr "Navigasjon"
 
 #: ../src/prefs.py:75
 msgid "Go to previous tab"
-msgstr "Go til forrige fane"
+msgstr "Gå til forrige fane"
 
 #: ../src/prefs.py:77
 msgid "Go to next tab"
@@ -424,34 +439,34 @@ msgstr "Gå til neste fane"
 
 #: ../src/prefs.py:80
 msgid "Clipboard"
-msgstr ""
+msgstr "Utklippstavle"
 
 #: ../src/prefs.py:82
 msgid "Copy text to clipboard"
-msgstr "Kopier tekst"
+msgstr "Kopier tekst til utklippstavle"
 
 #: ../src/prefs.py:84
 msgid "Paste text from clipboard"
-msgstr "Lim inn tekst"
+msgstr "Lim inn tekst fra utklippstavle"
 
-#: ../src/prefs.py:260
+#: ../src/prefs.py:271
 msgid "Action"
 msgstr "Handling"
 
-#: ../src/prefs.py:270
+#: ../src/prefs.py:281
 msgid "Shortcut"
 msgstr "Snarvei"
 
-#: ../src/prefs.py:525
+#: ../src/prefs.py:536
 #, python-format
 msgid "The shortcut \"%s\" is already in use."
-msgstr "Hurtigtasten er allerede i bruk"
+msgstr "Hurtigtasten \"%s\" er allerede i bruk"
 
-#: ../src/prefs.py:526
+#: ../src/prefs.py:537
 msgid "Error setting keybinding."
-msgstr "Kunne ikke lagre hurtigtasten"
+msgstr "Kunne ikke lagre hurtigtasten."
 
-#: ../src/prefs.py:538
+#: ../src/prefs.py:549
 #, python-format
 msgid ""
 "The shortcut \"%s\" cannot be used because it will become impossible to type "
@@ -464,36 +479,8 @@ msgstr ""
 "\n"
 "Vennligst prøv med en tast som for eksempel Control, Alt eller Shift.\n"
 
-#: ../src/common.py:91
-msgid "Program not found in path"
-msgstr ""
+#~ msgid "<b>Main Window horizontal alignment</b>"
+#~ msgstr "<b>Position horizontale de la fenêtre principale</b>"
 
-#: ../src/common.py:92
-msgid ""
-"You don't have any available program to interpret this uri. To solve this "
-"problem just install gnome-open or xdg-open and try again."
-msgstr ""
-
-#~ msgid "<b>Tab position</b>"
-#~ msgstr "<b>Fane posisjon</b>"
-
-#~ msgid "<b>Window behavior</b>"
-#~ msgstr "<b>Vindu oppførsel</b>"
-
-#~ msgid "Bottom"
-#~ msgstr "Bunn"
-
-#~ msgid "Desaturation:"
-#~ msgstr "Synlighet:"
-
-#~ msgid "Style"
-#~ msgstr "Stil"
-
-#~ msgid "Top"
-#~ msgstr "Topp"
-
-#~ msgid "Global hotkeys"
-#~ msgstr "Globale hurtigtaster"
-
-#~ msgid "Local hotkeys"
-#~ msgstr "Lokale hurtigtaster"
+#~ msgid "<b>Main Window width</b>"
+#~ msgstr "<b>Largeur de la fenêtre principale</b>"
