@@ -1,0 +1,462 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Guake\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2010-01-22 04:14+0000\n"
+"PO-Revision-Date: \n"
+"Last-Translator: 甘露(Gan Lu) <rhythm.gan@gmail.com>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Poedit-Language: zh_CN\n"
+"X-Poedit-Country: China\n"
+
+#: ../data/about.glade.h:1
+msgid "About Guake"
+msgstr "关于 Guake"
+
+#: ../data/about.glade.h:2
+msgid ""
+"Adolfo González Blázquez <code@infinicode.org> Spanish\n"
+"Lincoln de Sousa <lincoln@guake.org> Brazilian Portuguese\n"
+"Markus Majer <mm@mpathy.de> German\n"
+"Mieszko Ślusarczyk <mieszkoslusarczyk@gmail.com> Polish\n"
+"Nishio Futoshi <futoshi@momonga-linux.org> Japanese\n"
+"Pavel Alexeev <Pahan@Hubbitus.spb.su> Russian\n"
+"Piotr Drąg <piotrdrag@gmail.com> Polish"
+msgstr ""
+"Adolfo González Blázquez <code@infinicode.org> Spanish\n"
+"Lincoln de Sousa <lincoln@guake.org> Brazilian Portuguese\n"
+"Markus Majer <mm@mpathy.de> German\n"
+"Mieszko Ślusarczyk <mieszkoslusarczyk@gmail.com> Polish\n"
+"Nishio Futoshi <futoshi@momonga-linux.org> Japanese\n"
+"Pavel Alexeev <Pahan@Hubbitus.spb.su> Russian\n"
+"Piotr Drąg <piotrdrag@gmail.com> Polish"
+
+#: ../data/about.glade.h:9
+msgid ""
+"Copyright 2007-2009 Lincoln de Sousa\n"
+"Copyright 2007 Gabriel Falc&#xE3;o"
+msgstr ""
+"版权所有 2007-2009 Lincoln de Sousa\n"
+"版权所有 2007 Gabriel Falc&#xE3;o"
+
+#: ../data/about.glade.h:11
+msgid ""
+"Guake is an easy to access\n"
+"terminal based on fps games terminal"
+msgstr ""
+"Guake 是一个易于使用的\n"
+"基于 fps 游戏终端的终端"
+
+#: ../data/about.glade.h:13
+msgid ""
+"Guake is free software; you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation; either version 2 of the License, or (at your option) any later version.\n"
+"\n"
+"Guake is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more details.\n"
+"\n"
+"You should have received a copy of the GNU General Public License along with Guake; if not, write to the Free Software Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301 USA\n"
+msgstr ""
+"Guake 是自由软件；您可以在自由软件基金会\n"
+"发布的 GNU 通用公共许可证的条款下\n"
+"重新分发和(或)修改它；\n"
+"您可以选择使用 GPL 第二版，或(按照您的意愿)任何更新的版本。\n"
+"Guake 分发的目的是希望它物有所用，\n"
+"但是没有任何担保；对于其适销性或某一特定目的下的适用性，\n"
+"没有任何即便是暗示的担保。\n"
+"请查阅 GNU 通用公共许可证以获得更多信息。\n"
+"您应当已经跟 Guake 一起收到一份 GNU 通用公众许可证的副本；\n"
+"如果没有，请写信至：Free Software Foundation, Inc.，\n"
+"51 Franklin St, Fifth Floor, Boston, MA 02110-1301  USA\n"
+
+#: ../data/about.glade.h:19
+msgid "http://guake.org"
+msgstr "http://guake.org"
+
+#: ../data/guake.glade.h:1
+#: ../src/guake.py:1200
+msgid "Add a new tab"
+msgstr "新增标签页"
+
+#: ../data/guake.glade.h:2
+msgid "Close"
+msgstr "关闭"
+
+#: ../data/guake.glade.h:3
+msgid "Close Tab"
+msgstr "关闭标签页"
+
+#: ../data/guake.glade.h:4
+msgid "Copy"
+msgstr "复制"
+
+#: ../data/guake.glade.h:5
+#: ../src/guake.py:610
+#: ../src/guake.py:621
+msgid "Guake!"
+msgstr "Guake！"
+
+#: ../data/guake.glade.h:6
+msgid "Paste"
+msgstr "粘贴"
+
+#: ../data/guake.glade.h:7
+#: ../src/prefs.py:61
+msgid "Quit"
+msgstr "退出"
+
+#: ../data/guake.glade.h:8
+msgid "Rename"
+msgstr "重命名"
+
+#: ../data/prefs.glade.h:1
+msgid "<b>Background</b>"
+msgstr "<b>背景</b>"
+
+#: ../data/prefs.glade.h:2
+msgid "<b>Fonts</b>"
+msgstr "<b>字体</b>"
+
+#: ../data/prefs.glade.h:3
+msgid "<b>General</b>"
+msgstr "<b>常规</b>"
+
+#: ../data/prefs.glade.h:4
+msgid "<b>Keyboard compatibility</b>"
+msgstr "<b>键盘兼容性</b>"
+
+#: ../data/prefs.glade.h:5
+msgid "<b>Main Window height</b>"
+msgstr "<b>主窗口高度</b>"
+
+#: ../data/prefs.glade.h:6
+msgid "<b>Main Window</b>"
+msgstr "<b>主窗口</b>"
+
+#: ../data/prefs.glade.h:7
+msgid "<b>Scroll</b>"
+msgstr "<b>滚动</b>"
+
+#: ../data/prefs.glade.h:8
+msgid "<b>Shell</b>"
+msgstr "<b>外壳</b>"
+
+#: ../data/prefs.glade.h:9
+msgid "<small><i><b>Note:</b> These options may cause some applications to behave incorrectly.  They are only here to allow you to work around certain applications and operating systems that expect different terminal behavior.</i></small>"
+msgstr "<small><i><b>Note:</b>这些选项可能会导致一些程序行为异常。仅仅是允许您暂时应对某程序和期望不同终端行为的操作系统。</i></small>"
+
+#: ../data/prefs.glade.h:10
+msgid "<span color=\"black\">Customize behavior and appearance of Guake!</span>"
+msgstr "<span color=\"black\">自定义 Guake 的行为和外观！</span>"
+
+#: ../data/prefs.glade.h:11
+msgid "<span size=\"18000\" color=\"black\"><b>Guake properties</b></span>"
+msgstr "<span size=\"18000\" color=\"black\"><b>Guake 属性</b></span>"
+
+#: ../data/prefs.glade.h:12
+msgid ""
+"ASCII DEL\n"
+"Escape sequence\n"
+"Control-H"
+msgstr ""
+"ASCII DEL\n"
+"Escape 顺序\n"
+"Control-H"
+
+#: ../data/prefs.glade.h:15
+msgid "Appearance"
+msgstr "外观"
+
+#: ../data/prefs.glade.h:16
+msgid "Choose some color"
+msgstr "选择颜色"
+
+#: ../data/prefs.glade.h:17
+msgid "Choose some font"
+msgstr "选择字体"
+
+#: ../data/prefs.glade.h:18
+msgid "Color:"
+msgstr "颜色："
+
+#: ../data/prefs.glade.h:19
+msgid "Compatibility"
+msgstr "兼容性"
+
+#: ../data/prefs.glade.h:20
+msgid "Default interpreter:"
+msgstr "默认解释器"
+
+#: ../data/prefs.glade.h:21
+msgid "Enable popup notifications on startup"
+msgstr "启用启动时的弹出通知"
+
+#: ../data/prefs.glade.h:22
+#: ../src/prefs.py:55
+msgid "General"
+msgstr "常规"
+
+#: ../data/prefs.glade.h:23
+msgid "Guake Preferences"
+msgstr "Guake 首选项"
+
+#: ../data/prefs.glade.h:24
+msgid "Hide on lose focus"
+msgstr "失去焦点后隐藏"
+
+#: ../data/prefs.glade.h:25
+msgid "Image:"
+msgstr "图像："
+
+#: ../data/prefs.glade.h:26
+msgid "Keyboard shortcuts"
+msgstr "键盘快捷键"
+
+#: ../data/prefs.glade.h:27
+msgid "On key stroke"
+msgstr "键敲下时"
+
+#: ../data/prefs.glade.h:28
+msgid "On output"
+msgstr "输出时"
+
+#: ../data/prefs.glade.h:29
+msgid "Prompt on quit"
+msgstr "退出时提示"
+
+#: ../data/prefs.glade.h:30
+msgid "Scrollback lines:"
+msgstr "回卷行数："
+
+#: ../data/prefs.glade.h:31
+msgid "Scrolling"
+msgstr "滚屏"
+
+#: ../data/prefs.glade.h:32
+msgid "Show scrollbar"
+msgstr "显示滚动条"
+
+#: ../data/prefs.glade.h:33
+msgid "Show tab bar"
+msgstr "显示标签栏"
+
+#: ../data/prefs.glade.h:34
+msgid "Show tray icon"
+msgstr "显示系统托盘图标"
+
+#: ../data/prefs.glade.h:35
+msgid "Stay on top"
+msgstr "保持在最前端"
+
+#: ../data/prefs.glade.h:36
+msgid "Style:"
+msgstr "风格："
+
+#: ../data/prefs.glade.h:37
+msgid "Transparency:"
+msgstr "透明："
+
+#: ../data/prefs.glade.h:38
+msgid "Use system defaults"
+msgstr "使用系统默认"
+
+#: ../data/prefs.glade.h:39
+msgid "_Backspace key generates:"
+msgstr "_Backspace 键产生："
+
+#: ../data/prefs.glade.h:40
+msgid "_Delete key generates:"
+msgstr "_Delete 键产生："
+
+#: ../data/prefs.glade.h:41
+msgid "_Open new tab in current directory"
+msgstr "在当前目录打开新标签页(_O)"
+
+#: ../data/prefs.glade.h:42
+msgid "_Reset Compatibility Options to Defaults"
+msgstr "重新设定兼容性选项为默认值(_R)"
+
+#: ../data/prefs.glade.h:43
+msgid "_Run command as a login shell"
+msgstr "运行命令作为登录外壳(_R)"
+
+#: ../src/guake.py:67
+msgid "Do you really want to quit Guake!?"
+msgstr "您确实想退出 Guake！？"
+
+#: ../src/guake.py:70
+msgid "<b>There is one process still running.</b>"
+msgstr "<b>有一个进程仍然在运行</b>"
+
+#: ../src/guake.py:74
+#, python-format
+msgid "<b>There are %d processes running.</b>"
+msgstr "<b>有 %d 进程正在运行</b>"
+
+#: ../src/guake.py:352
+msgid "key binding error"
+msgstr "键绑定出错"
+
+#: ../src/guake.py:353
+#, python-format
+msgid "Unable to bind global <b>%s</b> key"
+msgstr "无法绑定全局 <b>%s</b> 键"
+
+#: ../src/guake.py:515
+msgid "Guake Terminal"
+msgstr "Guake 终端"
+
+#: ../src/guake.py:611
+#, python-format
+msgid ""
+"A problem happened when binding <b>%s</b> key.\n"
+"Please use Guake Preferences dialog to choose another key (The trayicon was enabled)"
+msgstr ""
+"绑定 <b>%s</b> 键时出现问题。\n"
+"请使用 Guake 首选项对话框选择另外的键（托盘图标已启用）"
+
+#: ../src/guake.py:622
+#, python-format
+msgid ""
+"Guake is now running,\n"
+"press <b>%s</b> to use it."
+msgstr ""
+"Guake 正在运行，\n"
+"按 <b>%s</b> 使用它。"
+
+#: ../src/guake.py:968
+msgid "Rename tab"
+msgstr "重命名标签"
+
+#. Adding a new radio button to the tabbar
+#: ../src/guake.py:1078
+#, python-format
+msgid "Terminal %s"
+msgstr "终端 %s"
+
+#: ../src/guake.py:1188
+msgid "Toggles the visibility of the terminal window"
+msgstr "切换终端窗口是否可见"
+
+#: ../src/guake.py:1192
+msgid "Shows Guake preference window"
+msgstr "显示 Guake 的首选项窗口"
+
+#: ../src/guake.py:1196
+msgid "Shows Guake's about info"
+msgstr "显示 Guake 的“关于”信息"
+
+#: ../src/guake.py:1204
+msgid "Select a tab"
+msgstr "选择一个标签页"
+
+#: ../src/guake.py:1208
+msgid "Return the selectd tab index."
+msgstr "回到选定的标签页索引"
+
+#: ../src/guake.py:1212
+msgid "Execute an arbitrary command in the selected tab."
+msgstr "在选定标签页执行一个随意的命令。"
+
+#: ../src/guake.py:1216
+msgid "Rename the selected tab."
+msgstr "重命名选定的标签页"
+
+#: ../src/guake.py:1220
+msgid "Says to Guake go away =("
+msgstr "告诉 Guake 走开 =("
+
+#: ../src/guake.py:1285
+msgid "Guake can not init!"
+msgstr "Guake 无法初始化！"
+
+#: ../src/guake.py:1286
+msgid ""
+"Gconf Error.\n"
+"Have you installed <b>guake.schemas</b> properlly?"
+msgstr ""
+"Gconf 错误。\n"
+"您已经正确安装了 <b>guake.schemas</b> 吗？"
+
+#. string to show in prefereces dialog for user shell option
+#: ../src/prefs.py:42
+msgid "<user shell>"
+msgstr "<用户外壳>"
+
+#: ../src/prefs.py:57
+msgid "Toggle Guake visibility"
+msgstr "切换 Guake 是否可见"
+
+#: ../src/prefs.py:59
+msgid "Toggle Fullscreen"
+msgstr "切换全屏"
+
+#: ../src/prefs.py:64
+msgid "Tab management"
+msgstr "标签页管理"
+
+#: ../src/prefs.py:66
+msgid "New tab"
+msgstr "新标签页"
+
+#: ../src/prefs.py:68
+msgid "Close tab"
+msgstr "关闭标签页"
+
+#: ../src/prefs.py:70
+msgid "Rename current tab"
+msgstr "重命名当前标签页"
+
+#: ../src/prefs.py:73
+msgid "Navigation"
+msgstr "导航"
+
+#: ../src/prefs.py:75
+msgid "Go to previous tab"
+msgstr "上一个标签页"
+
+#: ../src/prefs.py:77
+msgid "Go to next tab"
+msgstr "下一个标签页"
+
+#: ../src/prefs.py:80
+msgid "Clipboard"
+msgstr "剪贴板"
+
+#: ../src/prefs.py:82
+msgid "Copy text to clipboard"
+msgstr "复制文字到剪贴板"
+
+#: ../src/prefs.py:84
+msgid "Paste text from clipboard"
+msgstr "从剪贴板中粘贴文字"
+
+#: ../src/prefs.py:271
+msgid "Action"
+msgstr "行动"
+
+#: ../src/prefs.py:281
+msgid "Shortcut"
+msgstr "快捷键"
+
+#: ../src/prefs.py:536
+#, python-format
+msgid "The shortcut \"%s\" is already in use."
+msgstr "快捷键 \"%s\" 已经被使用"
+
+#: ../src/prefs.py:537
+msgid "Error setting keybinding."
+msgstr "设定键绑定时出错"
+
+#: ../src/prefs.py:549
+#, python-format
+msgid ""
+"The shortcut \"%s\" cannot be used because it will become impossible to type using this key.\n"
+"\n"
+"Please try with a key such as Control, Alt or Shift at the same time.\n"
+msgstr ""
+"无法使用快捷键 \"%s\" ，因为使用该键将导致无法输入。\n"
+"\n"
+"请尝试同时用诸如 Control，Alt 或 Shift 键。\n"
+
