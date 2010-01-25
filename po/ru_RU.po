@@ -3,7 +3,7 @@
 # Copyright (C) 2008 Pavel Alexeev (Pahan-Hubbitus)
 # This file is distributed under the same license as the guake package.
 # Pavel Alexeev <pahan@hubbitus.info>, 2010.
-#
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: guake.master\n"
@@ -15,8 +15,8 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 "X-Generator: KBabel 1.11.4\n"
-"Plural-Forms:  nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 
 #: ../data/about.glade.h:1
 msgid "About Guake"
@@ -58,36 +58,21 @@ msgstr ""
 
 #: ../data/about.glade.h:13
 msgid ""
-"Guake is free software; you can redistribute it and/or modify it under the "
-"terms of the GNU General Public License as published by the Free Software "
-"Foundation; either version 2 of the License, or (at your option) any later "
-"version.\n"
+"Guake is free software; you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation; either version 2 of the License, or (at your option) any later version.\n"
 "\n"
-"Guake is distributed in the hope that it will be useful, but WITHOUT ANY "
-"WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS "
-"FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more "
-"details.\n"
+"Guake is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more details.\n"
 "\n"
-"You should have received a copy of the GNU General Public License along with "
-"Guake; if not, write to the Free Software Foundation, Inc., 51 Franklin St, "
-"Fifth Floor, Boston, MA  02110-1301 USA\n"
+"You should have received a copy of the GNU General Public License along with Guake; if not, write to the Free Software Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301 USA\n"
 msgstr ""
-"Guake это свободное программное обеспечение. Вы можете распространять или "
-"изменять его по условиям лицензии GNU GPL, как она опубликована Free "
-"Software Foundation, версии 2 или более поздней\n"
+"Guake это свободное программное обеспечение. Вы можете распространять или изменять его по условиям лицензии GNU GPL, как она опубликована Free Software Foundation, версии 2 или более поздней\n"
 "\n"
-"Guake распространяется в надежде что будет полезным, НО БЕЗ КАКИХ-ЛИБО "
-"гарантий!В том числе даже без гарантии того что он Вам подходит, а также "
-"других подобных.Смотрите GNU General Public License за подробностями.\n"
+"Guake распространяется в надежде что будет полезным, НО БЕЗ КАКИХ-ЛИБО гарантий!В том числе даже без гарантии того что он Вам подходит, а также других подобных.Смотрите GNU General Public License за подробностями.\n"
 "\n"
-"Вы должны получсить копию лицензии GNU General Public License вместе с "
-"Guake. Если Вы не получили её напишите в Free Software Foundation, Inc., 51 "
-"Franklin St, Fifth Floor, Boston, MA  02110-1301 USA\n"
+"Вы должны получсить копию лицензии GNU General Public License вместе с Guake. Если Вы не получили её напишите в Free Software Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301 USA\n"
 
 #: ../data/about.glade.h:19
-#, fuzzy
 msgid "http://guake.org"
-msgstr "http://guake-terminal.org"
+msgstr "http://guake.org"
 
 #: ../data/guake.glade.h:1 ../src/guake.py:1200
 msgid "Add a new tab"
@@ -154,18 +139,10 @@ msgid "<b>Shell</b>"
 msgstr "<b>Шелл</b>"
 
 #: ../data/prefs.glade.h:9
-msgid ""
-"<small><i><b>Note:</b> These options may cause some applications to behave "
-"incorrectly.  They are only here to allow you to work around certain "
-"applications and operating systems that expect different terminal behavior.</"
-"i></small>"
+msgid "<small><i><b>Note:</b> These options may cause some applications to behave incorrectly.  They are only here to allow you to work around certain applications and operating systems that expect different terminal behavior.</i></small>"
 msgstr ""
-"<small><i><b>Замечение:</b> Эти опции могут сделать поведение приложения "
-"некорректным. Они здесь представлены только чтобы обойти некоторые "
-"ограничения приложений или операционных систем, которые ожидают другое "
-"поведение терминала.</i>\n"
-"Замечание переводчика: Смотри http://trac.guake-terminal.org/trac.cgi/"
-"ticket/41</small>"
+"<small><i><b>Замечение:</b> Эти опции могут сделать поведение приложения некорректным. Они здесь представлены только чтобы обойти некоторые ограничения приложений или операционных систем, которые ожидают другое поведение терминала.</i>\n"
+"Замечание переводчика: Смотри http://trac.guake-terminal.org/trac.cgi/ticket/41</small>"
 
 #: ../data/prefs.glade.h:10
 msgid "<span color=\"black\">Customize behavior and appearance of Guake!</span>"
@@ -274,9 +251,8 @@ msgid "Style:"
 msgstr "Стиль:"
 
 #: ../data/prefs.glade.h:37
-#, fuzzy
 msgid "Transparency:"
-msgstr "Прозрачность фона:"
+msgstr "Прозрачность:"
 
 #: ../data/prefs.glade.h:38
 msgid "Use system defaults"
@@ -332,8 +308,7 @@ msgstr "Guake Terminal"
 #, python-format
 msgid ""
 "A problem happened when binding <b>%s</b> key.\n"
-"Please use Guake Preferences dialog to choose another key (The trayicon was "
-"enabled)"
+"Please use Guake Preferences dialog to choose another key (The trayicon was enabled)"
 msgstr ""
 "Возникла проблема при попытке назначить клавишу <b>%s</b>.\n"
 "Пожалуйста воспользуйтесь диалогом настройки чтобы выбрать другую клавишу (Иконка в трее была включена)"
@@ -362,9 +337,8 @@ msgid "Toggles the visibility of the terminal window"
 msgstr "Переключение видимости окна терминала"
 
 #: ../src/guake.py:1192
-#, fuzzy
 msgid "Shows Guake preference window"
-msgstr "Настройки Guake"
+msgstr "Показать окно настроек Guake"
 
 #: ../src/guake.py:1196
 msgid "Shows Guake's about info"
@@ -420,12 +394,10 @@ msgid "Tab management"
 msgstr "Управление вкладками"
 
 #: ../src/prefs.py:66
-#, fuzzy
 msgid "New tab"
 msgstr "Новая вкладка"
 
 #: ../src/prefs.py:68
-#, fuzzy
 msgid "Close tab"
 msgstr "Закрыть вкладку"
 
@@ -477,12 +449,10 @@ msgstr "Ошибка назначения клавиш."
 #: ../src/prefs.py:549
 #, python-format
 msgid ""
-"The shortcut \"%s\" cannot be used because it will become impossible to type "
-"using this key.\n"
+"The shortcut \"%s\" cannot be used because it will become impossible to type using this key.\n"
 "\n"
 "Please try with a key such as Control, Alt or Shift at the same time.\n"
 msgstr ""
 "Сокращение \"%s\" не может быть использовано потому что его невозможно будет набрать используя эту кнопку.\n"
 "\n"
 "Пожалуйста, попробуйте всочетании с клавишами Control, Alt или Shift.\n"
-
