@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: guake 0.4.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-12-16 10:49-0200\n"
-"PO-Revision-Date: 2009-09-15 11:42+0430\n"
+"POT-Creation-Date: 2010-01-18 04:06+0000\n"
+"PO-Revision-Date: 2010-01-27 18:31+0330\n"
 "Last-Translator: Kasra Keshavarz <kasra545@gmail.com>\n"
 "Language-Team: translation@guake-terminal.org <>\n"
 "MIME-Version: 1.0\n"
@@ -24,31 +24,31 @@ msgstr "درباره‌ی Guake"
 
 #: ../data/about.glade.h:2
 msgid ""
-"Adolfo González Blázquez &lt;code@infinicode.org&gt; Spanish\n"
-"Lincoln de Sousa &lt;lincoln@guake-terminal.org&gt; Brazilian Portuguese\n"
-"Markus Majer &lt;mm@mpathy.de&gt; German\n"
-"Mieszko Ślusarczyk &lt;mieszkoslusarczyk@gmail.com&lt; Polish\n"
-"Nishio Futoshi &lt;futoshi@momonga-linux.org&gt; Japanese\n"
-"Pavel Alexeev &lt;Pahan@Hubbitus.spb.su&gt; Russian\n"
-"Piotr Drąg &lt;piotrdrag@gmail.com&gt; Polish\n"
+"Adolfo González Blázquez <code@infinicode.org> Spanish\n"
+"Lincoln de Sousa <lincoln@guake.org> Brazilian Portuguese\n"
+"Markus Majer <mm@mpathy.de> German\n"
+"Mieszko Ślusarczyk <mieszkoslusarczyk@gmail.com> Polish\n"
+"Nishio Futoshi <futoshi@momonga-linux.org> Japanese\n"
+"Pavel Alexeev <Pahan@Hubbitus.spb.su> Russian\n"
+"Piotr Drąg <piotrdrag@gmail.com> Polish"
 msgstr ""
-"Adolfo González Blázquez &lt;code@infinicode.org&gt; Spanish\n"
-"Lincoln de Sousa &lt;lincoln@guake-terminal.org&gt; Brazilian Portuguese\n"
-"Markus Majer &lt;mm@mpathy.de&gt; German\n"
-"Mieszko Ślusarczyk &lt;mieszkoslusarczyk@gmail.com&lt; Polish\n"
-"Nishio Futoshi &lt;futoshi@momonga-linux.org&gt; Japanese\n"
-"Pavel Alexeev &lt;Pahan@Hubbitus.spb.su&gt; Russian\n"
-"Piotr Drąg &lt;piotrdrag@gmail.com&gt; Polish\n"
+"Adolfo González Blázquez <code@infinicode.org> Spanish\n"
+"Lincoln de Sousa <lincoln@guake.org> Brazilian Portuguese\n"
+"Markus Majer <mm@mpathy.de> German\n"
+"Mieszko Ślusarczyk <mieszkoslusarczyk@gmail.com> Polish\n"
+"Nishio Futoshi <futoshi@momonga-linux.org> Japanese\n"
+"Pavel Alexeev <Pahan@Hubbitus.spb.su> Russian\n"
+"Piotr Drąg <piotrdrag@gmail.com> Polish"
 
-#: ../data/about.glade.h:17
+#: ../data/about.glade.h:9
 msgid ""
-"Copyright 2007-2008 Lincoln de Sousa\n"
-"Copyright 2007 Gabriel Falcão"
+"Copyright 2007-2009 Lincoln de Sousa\n"
+"Copyright 2007 Gabriel Falc&#xE3;o"
 msgstr ""
-"حق انتشار محفوظ ۲۰۰۸ - ۲۰۰۸ Lincoln de Sousa\n"
+"حق انتشار محفوظ ۲۰۰۹ - ۲۰۰۷ Lincoln de Sousa\n"
 "حق انتشار محفوظ ۲۰۰۷ Gabriel Falcão"
 
-#: ../data/about.glade.h:19
+#: ../data/about.glade.h:11
 msgid ""
 "Guake is an easy to access\n"
 "terminal based on fps games terminal"
@@ -56,7 +56,7 @@ msgstr ""
 "برنامه‌ی Guake ترمینالی سریع\n"
 "و در دسترس در هر زمان"
 
-#: ../data/about.glade.h:21
+#: ../data/about.glade.h:13
 msgid ""
 "Guake is free software; you can redistribute it and/or modify it under the "
 "terms of the GNU General Public License as published by the Free Software "
@@ -85,13 +85,12 @@ msgstr ""
 "You should have received a copy of the GNU General Public License along with "
 "Guake; if not, write to the Free Software Foundation, Inc., 51 Franklin St, "
 "Fifth Floor, Boston, MA  02110-1301 USA\n"
-"\n"
 
-#: ../data/about.glade.h:27
-msgid "http://guake-terminal.org"
-msgstr "http://guake-terminal.org"
+#: ../data/about.glade.h:19
+msgid "http://guake.org"
+msgstr "http://guake.org"
 
-#: ../data/guake.glade.h:1
+#: ../data/guake.glade.h:1 ../src/guake.py:1200
 msgid "Add a new tab"
 msgstr "افزودن زبانه‌ی جدید"
 
@@ -103,13 +102,25 @@ msgstr "بستن"
 msgid "Close Tab"
 msgstr "بستن زبانه"
 
-#: ../data/guake.glade.h:4 ../src/guake.py:172 ../src/guake.py:177
+#: ../data/guake.glade.h:4
+msgid "Copy"
+msgstr "رونوشت کردن"
+
+#: ../data/guake.glade.h:5 ../src/guake.py:610 ../src/guake.py:621
 msgid "Guake!"
 msgstr "Guake!"
 
-#: ../data/guake.glade.h:5
+#: ../data/guake.glade.h:6
+msgid "Paste"
+msgstr "چسباندن"
+
+#: ../data/guake.glade.h:7 ../src/prefs.py:61
+msgid "Quit"
+msgstr "خروج"
+
+#: ../data/guake.glade.h:8
 msgid "Rename"
-msgstr ""
+msgstr "تغییر نام"
 
 #: ../data/prefs.glade.h:1
 msgid "<b>Background</b>"
@@ -120,246 +131,346 @@ msgid "<b>Fonts</b>"
 msgstr "<b>قلم‌ها</b>"
 
 #: ../data/prefs.glade.h:3
-msgid "<b>Keyboard compatibility</b>"
-msgstr ""
+msgid "<b>General</b>"
+msgstr "<b>عمومی</b>"
 
 #: ../data/prefs.glade.h:4
+msgid "<b>Keyboard compatibility</b>"
+msgstr "<b>سازگاری با صفحه‌کلید</b>"
+
+#: ../data/prefs.glade.h:5
+msgid "<b>Main Window height</b>"
+msgstr "<b>سایز پنجره اصلی</b>"
+
+#: ../data/prefs.glade.h:6
+msgid "<b>Main Window</b>"
+msgstr "<b>پنجره اصلی</b>"
+
+#: ../data/prefs.glade.h:7
+msgid "<b>Scroll</b>"
+msgstr "<b>پیمایش</b>"
+
+#: ../data/prefs.glade.h:8
 msgid "<b>Shell</b>"
 msgstr "<b>خط فرمان</b>"
 
-#: ../data/prefs.glade.h:5
-msgid "<b>Window behavior</b>"
-msgstr "<b>رفتار پنجره</b>"
-
-#: ../data/prefs.glade.h:6
-msgid "<b>Window size</b>"
-msgstr "<b>سایز پنجره</b>"
-
-#: ../data/prefs.glade.h:7
+#: ../data/prefs.glade.h:9
 msgid ""
 "<small><i><b>Note:</b> These options may cause some applications to behave "
 "incorrectly.  They are only here to allow you to work around certain "
 "applications and operating systems that expect different terminal behavior.</"
 "i></small>"
 msgstr ""
-
-#: ../data/prefs.glade.h:8
-msgid ""
-"<span color=\"black\">Customize behavior and appearance of Guake!</span>"
-msgstr ""
-
-#: ../data/prefs.glade.h:9
-msgid "<span size=\"18000\" color=\"black\"><b>Guake properties</b></span>"
-msgstr ""
+"<small><i><b>توجه:</b>این ترجیحات ممکن است باعث شود که بعضی برنامه‌ها درست "
+"کار نکنند.  این‌ها فقط اینجا هستند برای احازه دادن شما برای کارکردن در بعضی "
+"برنامه‌ها و سیستم عامل‌ها که انتظار رفتار پایانه‌های متفاوتی دارند. </i></small>"
 
 #: ../data/prefs.glade.h:10
+msgid ""
+"<span color=\"black\">Customize behavior and appearance of Guake!</span>"
+msgstr "<span color=\"black\">سفارشی کردن رفتار و ظاهر Guake</span>"
+
+#: ../data/prefs.glade.h:11
+msgid "<span size=\"18000\" color=\"black\"><b>Guake properties</b></span>"
+msgstr "<span size=\"18000\" color=\"black\"><b>تنظیمات Guake</b></span>"
+
+#: ../data/prefs.glade.h:12
 msgid ""
 "ASCII DEL\n"
 "Escape sequence\n"
 "Control-H"
 msgstr ""
+"ASCII DEL\n"
+"Escape sequence\n"
+"Control-H"
 
-#: ../data/prefs.glade.h:13
-msgid "Background Transparent:"
-msgstr "شفافیت پس زمینه"
+#: ../data/prefs.glade.h:15
+msgid "Appearance"
+msgstr "ظاهر"
 
-#: ../data/prefs.glade.h:14
+#: ../data/prefs.glade.h:16
 msgid "Choose some color"
 msgstr "تعدادی رنگ انتخاب کنید"
 
-#: ../data/prefs.glade.h:15
+#: ../data/prefs.glade.h:17
 msgid "Choose some font"
 msgstr "تعدادی قلم انتخاب کنید"
 
-#: ../data/prefs.glade.h:16
+#: ../data/prefs.glade.h:18
 msgid "Color:"
 msgstr "رنگ:"
 
-#: ../data/prefs.glade.h:17
+#: ../data/prefs.glade.h:19
 msgid "Compatibility"
-msgstr ""
+msgstr "سازگاری"
 
-#: ../data/prefs.glade.h:18
+#: ../data/prefs.glade.h:20
 msgid "Default interpreter:"
 msgstr "خط فرمان پیشفرض:"
 
-#: ../data/prefs.glade.h:19
-msgid "Desaturation:"
-msgstr "خالی کردن"
+#: ../data/prefs.glade.h:21
+msgid "Enable popup notifications on startup"
+msgstr "فعال کردن پنجره‌ی اطلاعیه در شروع"
 
-#: ../data/prefs.glade.h:20
+#: ../data/prefs.glade.h:22 ../src/prefs.py:55
 msgid "General"
 msgstr "عمومی"
 
-#: ../data/prefs.glade.h:21
+#: ../data/prefs.glade.h:23
 msgid "Guake Preferences"
 msgstr "تنظیمات Guake"
 
-#: ../data/prefs.glade.h:22
+#: ../data/prefs.glade.h:24
 msgid "Hide on lose focus"
 msgstr "در صورت توجه کم پنهان شو"
 
-#: ../data/prefs.glade.h:23
+#: ../data/prefs.glade.h:25
 msgid "Image:"
 msgstr "تصویر:"
 
-#: ../data/prefs.glade.h:24
+#: ../data/prefs.glade.h:26
 msgid "Keyboard shortcuts"
 msgstr "میانبر‌های صفحه‌کلید"
 
-#: ../data/prefs.glade.h:25
-msgid "Scrollback lines:"
-msgstr "خط‌های قبلی"
+#: ../data/prefs.glade.h:27
+msgid "On key stroke"
+msgstr "با زدن کلید"
 
-#: ../data/prefs.glade.h:26
+#: ../data/prefs.glade.h:28
+msgid "On output"
+msgstr "در خروجی"
+
+#: ../data/prefs.glade.h:29
+msgid "Prompt on quit"
+msgstr "سریع در موقع خروج"
+
+#: ../data/prefs.glade.h:30
+msgid "Scrollback lines:"
+msgstr "پیمایش خط‌های قبلی:"
+
+#: ../data/prefs.glade.h:31
+msgid "Scrolling"
+msgstr "پیمایش"
+
+#: ../data/prefs.glade.h:32
 msgid "Show scrollbar"
 msgstr "نمایش دادن نوار لغزش"
 
-#: ../data/prefs.glade.h:27
-msgid "Show tray"
-msgstr "نمایش دادن سینی"
+#: ../data/prefs.glade.h:33
+msgid "Show tab bar"
+msgstr "نمایش دادن نوار حاوی زبانه"
 
-#: ../data/prefs.glade.h:28
+#: ../data/prefs.glade.h:34
+msgid "Show tray icon"
+msgstr "نمایش دادن آیکون در حالت مخفی"
+
+#: ../data/prefs.glade.h:35
 msgid "Stay on top"
-msgstr "در بالا بمان"
+msgstr "همیشه در بالا بمان"
 
-#: ../data/prefs.glade.h:29
-msgid "Style"
-msgstr "سبک"
-
-#: ../data/prefs.glade.h:30
+#: ../data/prefs.glade.h:36
 msgid "Style:"
 msgstr "سبک:"
 
-#: ../data/prefs.glade.h:31
+#: ../data/prefs.glade.h:37
+msgid "Transparency:"
+msgstr "شفافیت:"
+
+#: ../data/prefs.glade.h:38
+msgid "Use system defaults"
+msgstr "استفاده از پیشفرض‌های سیستم"
+
+#: ../data/prefs.glade.h:39
 msgid "_Backspace key generates:"
-msgstr ""
+msgstr "_تولید کردن کلید پسبردن"
 
-#: ../data/prefs.glade.h:32
+#: ../data/prefs.glade.h:40
 msgid "_Delete key generates:"
-msgstr ""
+msgstr "تولید کردن کلید پاک کردن"
 
-#: ../data/prefs.glade.h:33
+#: ../data/prefs.glade.h:41
+msgid "_Open new tab in current directory"
+msgstr "_زبانه‌ای جدید در مسیر کنونی باز کن"
+
+#: ../data/prefs.glade.h:42
 msgid "_Reset Compatibility Options to Defaults"
-msgstr ""
+msgstr "_تنظیم مجدد ترجیحات سازگاری به پیشفرض"
 
-#: ../src/dbusiface.py:63
-msgid "Could not connect to dbus session bus. dbus will be unavailable.\n"
-msgstr "نمی‌توان به dbus session bus متصل شد، dbus در دسترس نخواهد بود.\n"
+#: ../data/prefs.glade.h:43
+msgid "_Run command as a login shell"
+msgstr "_اجرا دستور به عنوان خط فرمان ورود به سیستم"
 
-#: ../src/guake.py:108
-msgid "Guake-Terminal"
-msgstr "Guake-Terminal"
+#: ../src/guake.py:67
+msgid "Do you really want to quit Guake!?"
+msgstr "واقعا مایل به خارج شدن از Guake هستید!؟"
 
-#: ../src/guake.py:173
+#: ../src/guake.py:70
+msgid "<b>There is one process still running.</b>"
+msgstr "<b>روند دیگری هنوز در حال اجراست</b>"
+
+#: ../src/guake.py:74
+#, python-format
+msgid "<b>There are %d processes running.</b>"
+msgstr "<b>روندهای %d در حال اجرا هستند.</b>"
+
+#: ../src/guake.py:352
+msgid "key binding error"
+msgstr "خطا در باگزاری کلید"
+
+#: ../src/guake.py:353
+#, python-format
+msgid "Unable to bind global <b>%s</b> key"
+msgstr "نمی‌توان کلید <b>%s</b> را بارگزاری کرد"
+
+#: ../src/guake.py:515
+msgid "Guake Terminal"
+msgstr "Guake Terminal"
+
+#: ../src/guake.py:611
 #, python-format
 msgid ""
 "A problem happened when binding <b>%s</b> key.\n"
-"Please use guake properties form to choose another key"
+"Please use Guake Preferences dialog to choose another key (The trayicon was "
+"enabled)"
 msgstr ""
 "مشکلی هنگام بارگزاری کلید <b>%s</b> به وجود آمد.\n"
-"لطفا از برگه‌ی تنظیمات Guake برای انتخاب کلید دیگر استفاده کنید"
+"لطفا از برگه‌ی تنظیمات Guake برای انتخاب کلید دیگر استفاده کنید(آیکون مخفی "
+"فعال شده بود)"
 
-#: ../src/guake.py:178
+#: ../src/guake.py:622
 #, python-format
 msgid ""
-"Guake is already running,\n"
+"Guake is now running,\n"
 "press <b>%s</b> to use it."
 msgstr ""
 "هم‌اکنون Guake در حال اجرا می‌باشد،\n"
 "برای استفاده کلید <b>%s</b> را فشار دهید."
 
-#: ../src/guake.py:597
+#: ../src/guake.py:968
+msgid "Rename tab"
+msgstr "نام زبانه را تغییر بده"
+
+#. Adding a new radio button to the tabbar
+#: ../src/guake.py:1078
 #, python-format
 msgid "Terminal %s"
 msgstr "ترمینال %s"
 
-#: ../src/guake.py:702
+#: ../src/guake.py:1188
 msgid "Toggles the visibility of the terminal window"
 msgstr "Toggles the visibility of the terminal window"
 
-#: ../src/guake.py:706
+#: ../src/guake.py:1192
 msgid "Shows Guake preference window"
 msgstr "Shows Guake preference window"
 
-#: ../src/guake.py:710
+#: ../src/guake.py:1196
 msgid "Shows Guake's about info"
 msgstr "Shows Guake's about info"
 
-#: ../src/guake.py:714
+#: ../src/guake.py:1204
+msgid "Select a tab"
+msgstr "Select a tab"
+
+#: ../src/guake.py:1208
+msgid "Return the selectd tab index."
+msgstr "Return the selectd tab index."
+
+#: ../src/guake.py:1212
+msgid "Execute an arbitrary command in the selected tab."
+msgstr "Execute an arbitrary command in the selected tab."
+
+#: ../src/guake.py:1216
+msgid "Rename the selected tab."
+msgstr "Rename the selected tab."
+
+#: ../src/guake.py:1220
 msgid "Says to Guake go away =("
 msgstr "Says to Guake go away =("
 
-#: ../src/guake.py:751
+#: ../src/guake.py:1285
 msgid "Guake can not init!"
 msgstr "برنامه‌ی Guake قابل بارگزاری نیست!"
 
-#: ../src/guake.py:752
+#: ../src/guake.py:1286
 msgid ""
 "Gconf Error.\n"
 "Have you installed <b>guake.schemas</b> properlly?"
 msgstr ""
 "خطای Gconf.\n"
-"آیا <b>guake.schemas</b> مناسب را نصب کرده‌اید؟"
+"آیا <b>guake.schemas</b> را به طور صحیح نصب کرده‌اید؟"
 
-#: ../src/prefs.py:48
-msgid "Toggle terminal visibility"
-msgstr "تغییر پدیداری ترمینال"
+#. string to show in prefereces dialog for user shell option
+#: ../src/prefs.py:42
+msgid "<user shell>"
+msgstr "<user shell>"
 
-#: ../src/prefs.py:49
-msgid "New tab"
-msgstr "زبانه‌ی جدید"
+#: ../src/prefs.py:57
+msgid "Toggle Guake visibility"
+msgstr "تغییر پدیداری Guake"
 
-#: ../src/prefs.py:50
-msgid "Close tab"
-msgstr "بستن زبانه"
-
-#: ../src/prefs.py:51
-msgid "Go to previous tab"
-msgstr "رفتن به زبانه‌ی قبلی"
-
-#: ../src/prefs.py:52
-msgid "Go to next tab"
-msgstr "رفتن به زبانه‌ی بعدی"
-
-#: ../src/prefs.py:53
-msgid "Copy text to clipboard"
-msgstr "کپی متن به حافظه‌ی موقت"
-
-#: ../src/prefs.py:54
-msgid "Paste text from clipboard"
-msgstr "چشباندن متن از حافظه‌ی موقت"
-
-#: ../src/prefs.py:55
+#: ../src/prefs.py:59
 msgid "Toggle Fullscreen"
 msgstr "‌تغییر به تمام‌صفحه"
 
-#: ../src/prefs.py:102
+#: ../src/prefs.py:64
+msgid "Tab management"
+msgstr "مدیریت زبانه"
+
+#: ../src/prefs.py:66
+msgid "New tab"
+msgstr "زبانه‌ی جدید"
+
+#: ../src/prefs.py:68
+msgid "Close tab"
+msgstr "بستن زبانه"
+
+#: ../src/prefs.py:70
+msgid "Rename current tab"
+msgstr "نام زبانه‌ی فعلی را تغییر بده"
+
+#: ../src/prefs.py:73
+msgid "Navigation"
+msgstr "Navigation"
+
+#: ../src/prefs.py:75
+msgid "Go to previous tab"
+msgstr "رفتن به زبانه‌ی قبلی"
+
+#: ../src/prefs.py:77
+msgid "Go to next tab"
+msgstr "رفتن به زبانه‌ی بعدی"
+
+#: ../src/prefs.py:80
+msgid "Clipboard"
+msgstr "حافظه‌ی موقت"
+
+#: ../src/prefs.py:82
+msgid "Copy text to clipboard"
+msgstr "کپی متن به حافظه‌ی موقت"
+
+#: ../src/prefs.py:84
+msgid "Paste text from clipboard"
+msgstr "چشباندن متن از حافظه‌ی موقت"
+
+#: ../src/prefs.py:271
 msgid "Action"
 msgstr "حرکت"
 
-#: ../src/prefs.py:112
+#: ../src/prefs.py:281
 msgid "Shortcut"
 msgstr "میانبر"
 
-#: ../src/prefs.py:258
-msgid "Global hotkeys"
-msgstr "میانبر‌های بین‌المللی"
-
-#: ../src/prefs.py:276
-msgid "Local hotkeys"
-msgstr "میانبر‌های محلی"
-
-#: ../src/prefs.py:409
+#: ../src/prefs.py:536
 #, python-format
 msgid "The shortcut \"%s\" is already in use."
-msgstr ""
+msgstr "میانبر \"%s\" هم‌اکنون در حال استفاده می‌باشد."
 
-#: ../src/prefs.py:410
+#: ../src/prefs.py:537
 msgid "Error setting keybinding."
-msgstr ""
+msgstr "خطا در بارگزاری کلید."
 
-#: ../src/prefs.py:424
+#: ../src/prefs.py:549
 #, python-format
 msgid ""
 "The shortcut \"%s\" cannot be used because it will become impossible to type "
@@ -367,15 +478,28 @@ msgid ""
 "\n"
 "Please try with a key such as Control, Alt or Shift at the same time.\n"
 msgstr ""
+"میانبر \"%s\" قابل استفاده نیست زیرا این کار تایپ کردن را با این کلید غیر "
+"ممکن می‌کند.\n"
+"\n"
+"لطفا با کلیدهایی مانند Control, Alt, Shift در یک زمان استفاده کنید.\n"
 
-#: ../src/prefs.py:445
-msgid "key binding error"
-msgstr "خطا در باگزاری کلید"
+#~ msgid "<b>Window behavior</b>"
+#~ msgstr "<b>رفتار پنجره</b>"
 
-#: ../src/prefs.py:446
-#, python-format
-msgid "Unable to bind %s key"
-msgstr "نمی‌توان کلید %s را بارگزاری کرد"
+#~ msgid "Desaturation:"
+#~ msgstr "خالی کردن"
+
+#~ msgid "Style"
+#~ msgstr "سبک"
+
+#~ msgid "Could not connect to dbus session bus. dbus will be unavailable.\n"
+#~ msgstr "نمی‌توان به dbus session bus متصل شد، dbus در دسترس نخواهد بود.\n"
+
+#~ msgid "Global hotkeys"
+#~ msgstr "میانبر‌های بین‌المللی"
+
+#~ msgid "Local hotkeys"
+#~ msgstr "میانبر‌های محلی"
 
 #~ msgid "<b>Tab position</b>"
 #~ msgstr "<b>Posición de las pestañas</b>"
