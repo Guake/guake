@@ -1,3 +1,39 @@
+changes since 0.4.0:
+
+Updated translation and new translation:
+  - Italian
+  - French
+  - Portuguese/Brazilian
+  - Novergian
+  - German
+  - Polish
+  - Greek
+  - Hungarian
+
+Bugs/Features:
+  - Change start message #168
+  - Add an option to the preference windows to create new tab in cwd #146
+  - Preferences windows are resizable #149
+  - Guake's windows not shown when ran for the first time #174
+  - Implement dbus interface to script with guake #150, #138, #105, #126, #128, #109
+  - Command line arguments implemented
+    -n create a new tab
+    -e execute a command on a defined tab
+    -r rename a tab
+    -t toggle visibility
+  - Improve regex to use character classes (improve the support of certain locales) #156
+  - Ask user if he really wants to quit when there is a child process #158
+  - Double click on a tab allows you to rename the tab #165
+  - Add more information on the INSTALL file 
+  - Tray icon position fixed #161
+
+Infrastructure:
+  - Move from guake-terminal.org to guake.org
+  - Set up a mailing-list at: http://lists.guake.org/cgi-bin/mailman/listinfo/guake
+
+
+
+
 changes since 0.2
 
         * Making prefs dialog window better, including a better title,
