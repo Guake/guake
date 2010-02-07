@@ -3,15 +3,16 @@
 # Copyright (C) 2007 Lincoln de Sousa <lincoln@archlinux-br.org>
 # This file is distributed under the same license as the guake package.
 # Gabriel Falcão <gabriel@guake-terminal.org>, 2007
+# Diego Martinez <dmartinezc@gmail.com>, 2009
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: guake 0.2.2\n"
-"Report-Msgid-Bugs-To: \n"
+"Report-Msgid-Bugs-To: guake@lists.guake.org\n"
 "POT-Creation-Date: 2008-12-16 10:49-0200\n"
 "PO-Revision-Date: 2009-05-05 18:01-0300\n"
 "Last-Translator: Diego Martinez <dmartinezc@gmail.com>\n"
-"Language-Team: translation@guake-terminal.org\n"
+"Language-Team: guake@lists.guake.org\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"

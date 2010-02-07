@@ -1,16 +1,16 @@
-# SOME DESCRIPTIVE TITLE.
-# Copyright (C) 2008 THE PACKAGE'S COPYRIGHT HOLDER
-# This file is distributed under the same license as the PACKAGE package.
+# Japanese translation of the Guake software
+# Copyright (C) 2008 THE Guake'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the Guake package.
 # Nishio Futoshi <futoshi@momonga-linux.org>, 2008.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"Report-Msgid-Bugs-To: \n"
+"Report-Msgid-Bugs-To: guake@lists.guake.org\n"
 "POT-Creation-Date: 2009-04-12 20:24-0300\n"
 "PO-Revision-Date: 2008-05-28 01:58-0300\n"
-"Last-Translator: Gabriel Falcão <gabrielteratos@gmail.com>\n"
-"Language-Team: LANGUAGE <LL@li.org>\n"
+"Last-Translator: Nishio Futoshi <futoshi@momonga-linux.org>\n"
+"Language-Team: guake@lists.guake.org\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"

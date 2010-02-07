@@ -8,7 +8,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Guake! 3.0.1\n"
-"Report-Msgid-Bugs-To: \n"
+"Report-Msgid-Bugs-To: guake@lists.guake.org\n"
 "POT-Creation-Date: 2009-11-13 21:06+0000\n"
 "PO-Revision-Date: 2009-11-14 09:48-0300\n"
 "Last-Translator: Djavan Fagundes <djavan@comum.org>\n"

@@ -1,16 +1,16 @@
 # Traduction française de Guake-terminal
 # Copyright (C) 2009 Pierre-Yves Chibon
 # This file is distributed under the same license as the guake package.
-# Pierre-Yves Chibon <pingou@pingoured.fr>, 2009.
+# Håvard Havdal <haavard@havdal.net>,2009
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: guake 0.5.0\n"
-"Report-Msgid-Bugs-To: \n"
+"Report-Msgid-Bugs-To: guake@lists.guake.org\n"
 "POT-Creation-Date: 2010-01-18 13:24+0000\n"
-"PO-Revision-Date: 2009-10-22 15:26+CET\n"
+"PO-Revision-Date: 2010-01-18 15:26+CET\n"
 "Last-Translator: Håvard Havdal <haavard@havdal.net>\n"
-"Language-Team: \n"
+"Language-Team: guake@lists.guake.org\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"

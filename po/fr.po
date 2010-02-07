@@ -2,11 +2,12 @@
 # Copyright (C) 2009 Pierre-Yves Chibon
 # This file is distributed under the same license as the guake package.
 # Pierre-Yves Chibon <pingou@pingoured.fr>, 2009.
+# Pablo Martin-Gomez <pablo.martin-gomez@laposte.net>, 2010
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: guake 0.5.0\n"
-"Report-Msgid-Bugs-To: \n"
+"Report-Msgid-Bugs-To: guake@lists.guake.org\n"
 "POT-Creation-Date: 2010-01-18 13:24+0000\n"
 "PO-Revision-Date: 2010-01-25 19:51+0100\n"
 "Last-Translator: Pablo Martin-Gomez <pablo.martin-gomez@laposte.net>\n"
