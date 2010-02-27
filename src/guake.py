@@ -584,6 +584,9 @@ class Guake(SimpleGladeApp):
         self.get_widget('tab-menu').connect('hide', hide_context_menu)
         self.window.connect('focus-out-event', self.on_window_losefocus)
 
+        # Flag to completly disable losefocus hiding
+        self.disable_losefocus_hiding = False
+
         # this line is important to resize the main window and make it
         # smaller.
         self.window.set_geometry_hints(min_width=1, min_height=1)
@@ -659,9 +662,12 @@ class Guake(SimpleGladeApp):
         """Hides terminal main window when it loses the focus and if
         the window_losefocus gconf variable is True.
         """
+        if self.disable_losefocus_hiding or self.showing_context_menu:
+            return
+
         value = self.client.get_bool(KEY('/general/window_losefocus'))
         visible = window.get_property('visible')
-        if value and visible and not self.showing_context_menu:
+        if value and visible:
             self.losefocus_time = \
                 gtk.gdk.x11_get_server_time(self.window.window)
             self.hide()
@@ -979,7 +985,9 @@ class Guake(SimpleGladeApp):
         dialog.add_action_widget(entry, gtk.RESPONSE_ACCEPT)
         entry.reparent(vbox)
 
+        self.disable_losefocus_hiding = True
         response = dialog.run()
+        self.disable_losefocus_hiding = False
 
         if response == gtk.RESPONSE_ACCEPT:
             self.selected_tab.set_label(entry.get_text())
