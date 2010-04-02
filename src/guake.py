@@ -128,6 +128,7 @@ class GConfHandler(object):
         notify_add(KEY('/general/use_default_font'), self.default_font_toggled)
         notify_add(KEY('/style/font/style'), self.fstyle_changed)
         notify_add(KEY('/style/font/color'), self.fcolor_changed)
+        notify_add(KEY('/style/font/palette'), self.fpalette_changed)
         notify_add(KEY('/style/background/color'), self.bgcolor_changed)
         notify_add(KEY('/style/background/image'), self.bgimage_changed)
         notify_add(KEY('/style/background/transparency'),
@@ -257,6 +258,20 @@ class GConfHandler(object):
             i.set_color_dim(fgcolor)
             i.set_color_foreground(fgcolor)
             i.set_color_bold(fgcolor)
+
+    def fpalette_changed(self, client, connection_id, entry, data):
+        """If the gconf var style/font/palette be changed, this method
+        will be called and will change the color scheme in all terminals
+        open.
+        """
+        fgcolor = gtk.gdk.color_parse(
+            client.get_string(KEY('/style/font/color')))
+        bgcolor = gtk.gdk.color_parse(
+            client.get_string(KEY('/style/background/color')))
+        palette = [gtk.gdk.color_parse(color) for color in 
+            entry.value.get_string().split(':')]
+        for i in self.guake.term_list:
+            i.set_colors(fgcolor, bgcolor, palette)
 
     def bgcolor_changed(self, client, connection_id, entry, data):
         """If the gconf var style/background/color be changed, this
@@ -843,6 +858,7 @@ class Guake(SimpleGladeApp):
         self.client.notify(KEY('/general/show_resizer'))
         self.client.notify(KEY('/style/font/style'))
         self.client.notify(KEY('/style/font/color'))
+        self.client.notify(KEY('/style/font/palette'))
         self.client.notify(KEY('/style/background/color'))
         self.client.notify(KEY('/style/background/image'))
         self.client.notify(KEY('/style/background/transparency'))
