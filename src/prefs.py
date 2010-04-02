@@ -85,6 +85,32 @@ HOTKEYS = [
               ]}
     ]
 
+PALETTES = [
+    # tango
+    '#000000000000:#cccc00000000:#4e4e9a9a0606:#c4c4a0a00000:#34346565a4a4:'
+    '#757550507b7b:#060698209a9a:#d3d3d7d7cfcf:#555557575353:#efef29292929:'
+    '#8a8ae2e23434:#fcfce9e94f4f:#72729f9fcfcf:#adad7f7fa8a8:#3434e2e2e2e2:'
+    '#eeeeeeeeecec',
+
+    # linux console
+    '#000000000000:#aaaa00000000:#0000aaaa0000:#aaaa55550000:#00000000aaaa:'
+    '#aaaa0000aaaa:#0000aaaaaaaa:#aaaaaaaaaaaa:#555555555555:#ffff55555555:'
+    '#5555ffff5555:#ffffffff5555:#55555555ffff:#ffff5555ffff:#5555ffffffff:'
+    '#ffffffffffff',
+
+    # xterm
+    '#000000000000:#cdcb00000000:#0000cdcb0000:#cdcbcdcb0000:#1e1a908fffff:'
+    '#cdcb0000cdcb:#0000cdcbcdcb:#e5e2e5e2e5e2:#4ccc4ccc4ccc:#ffff00000000:'
+    '#0000ffff0000:#ffffffff0000:#46458281b4ae:#ffff0000ffff:#0000ffffffff:'
+    '#ffffffffffff',
+
+    # rxvt
+    '#000000000000:#cdcd00000000:#0000cdcd0000:#cdcdcdcd0000:#00000000cdcd:'
+    '#cdcd0000cdcd:#0000cdcdcdcd:#fafaebebd7d7:#404040404040:#ffff00000000:'
+    '#0000ffff0000:#ffffffff0000:#00000000ffff:#ffff0000ffff:#0000ffffffff:'
+    '#ffffffffffff'
+]
+
 class PrefsCallbacks(object):
     """Holds callbacks that will be used in the PrefsDialg class.
     """
@@ -353,6 +379,44 @@ class PrefsDialog(SimpleGladeApp):
         self.client.unset(KEY('/general/compat_delete'))
         self.reload_erase_combos()
 
+    def on_palette_name_changed(self, combo):
+        """Changes the value of palette in gconf
+        """
+        palette_index = combo.get_active()
+        if palette_index == 4:
+            return
+        self.client.set_string(KEY('/style/font/palette'), 
+            PALETTES[palette_index]) 
+        self.set_palette_colors(PALETTES[palette_index])
+
+    def on_palette_color_set(self, btn):
+        """Changes the value of palette in gconf
+        """
+        palette = []
+        for i in range(16):
+            palette.append(hexify_color(
+                self.get_widget('palette_%d' % i).get_color()))
+        palette = ':'.join(palette)
+        self.client.set_string(KEY('/style/font/palette'), palette)
+        self.set_palette_name(palette)
+
+    def set_palette_name(self, palette):
+        """If the given palette matches an existing one, shows it in the
+        combobox
+        """
+        self.get_widget('palette_name').set_active(4)
+        for i in range(len(PALETTES)):
+            if palette == PALETTES[i]:
+                self.get_widget('palette_name').set_active(i)
+    
+    def set_palette_colors(self, palette):
+        """Updates the color buttons with the given palette
+        """
+        palette = palette.split(':')
+        for i in range(16):
+            color = gtk.gdk.color_parse(palette[i])
+            self.get_widget('palette_%d' % i).set_color(color)
+
     def reload_erase_combos(self, btn=None):
         """Read from gconf the value of compat_{backspace,delete} vars
         and select the right option in combos.
@@ -453,6 +517,11 @@ class PrefsDialog(SimpleGladeApp):
         except (ValueError, TypeError):
             warnings.warn('Unable to parse color %s' % val, Warning)
 
+        # palette
+        value = self.client.get_string(KEY('/style/font/palette'))
+        self.set_palette_name(value)
+        self.set_palette_colors(value)
+    
         # background image
         value = self.client.get_string(KEY('/style/background/image'))
         if os.path.isfile(value or ''):
