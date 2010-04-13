@@ -1,6 +1,6 @@
 # -*- coding: utf-8; -*-
 """
-Copyright (C) 2007,2008,2009 Lincoln de Sousa <lincoln@minaslivre.org>
+Copyright (C) 2007,2008,2009,2010 Lincoln de Sousa <lincoln@minaslivre.org>
 Copyright (C) 2007 Gabriel Falcão <gabrielteratos@gmail.com>
 
 This program is free software; you can redistribute it and/or
@@ -980,11 +980,11 @@ class Guake(SimpleGladeApp):
         entry.reparent(vbox)
 
         response = dialog.run()
-        dialog.destroy()
 
         if response == gtk.RESPONSE_ACCEPT:
             self.selected_tab.set_label(entry.get_text())
 
+        dialog.destroy()
         self.set_terminal_focus()
 
     def on_close_activate(self, *args):
