@@ -1073,7 +1073,40 @@ class Guake(SimpleGladeApp):
         if default_params:
             params.update(default_params)
 
+        # Environment variables are not actually parameters but they
+        # need to be set before calling terminal.fork_command()
+        # method. So I found this place good to do it.
+        self.update_proxy_vars()
         return params
+
+    def update_proxy_vars(self):
+        """This method updates http{s,}_proxy environment variables
+        with values found in gconf.
+        """
+        proxy = '/system/http_proxy/'
+        if self.client.get_bool(proxy + 'use_http_proxy'):
+            host = self.client.get_string(proxy + 'host')
+            port = self.client.get_int(proxy + 'port')
+            if self.client.get_bool(proxy + 'use_same_proxy'):
+                ssl_host = host
+                ssl_port = port
+            else:
+                ssl_host = self.client.get_string('/system/proxy/secure_host')
+                ssl_port = self.client.get_string('/system/proxy/secure_port')
+
+            if self.client.get_bool(proxy + 'use_authentication'):
+                auth_user = self.client.get_string(
+                    proxy + 'authentication_user')
+                auth_pass = self.client.get_string(
+                    proxy + 'authentication_password')
+                os.environ['http_proxy'] = 'http://%s:%s@%s:%d' % (
+                    auth_user, auth_pass, host, port)
+                os.environ['https_proxy'] = 'http://%s:%s@%s:%d' % (
+                    auth_user, auth_pass, ssl_host, ssl_port)
+            else:
+                os.environ['http_proxy'] = 'http://%s:%d' % (host, port)
+                os.environ['https_proxy'] = 'http://%s:%d' % (
+                    ssl_host, ssl_port)
 
     def add_tab(self, directory=None):
         """Adds a new tab to the terminal notebook.
