@@ -4,7 +4,7 @@
 # This file is distributed under the same license as the guake package.
 # Pavel Alexeev <pahan@hubbitus.info>, 2010.
 # Notes and help by Igor (nick igorsub) <igor6130@gmail.com>, 2010
-#
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: guake.master\n"
@@ -16,8 +16,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%"
-"10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 "X-Generator: KBabel 1.11.4\n"
 
 #: ../data/about.glade.h:1
@@ -60,31 +59,17 @@ msgstr ""
 
 #: ../data/about.glade.h:13
 msgid ""
-"Guake is free software; you can redistribute it and/or modify it under the "
-"terms of the GNU General Public License as published by the Free Software "
-"Foundation; either version 2 of the License, or (at your option) any later "
-"version.\n"
+"Guake is free software; you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation; either version 2 of the License, or (at your option) any later version.\n"
 "\n"
-"Guake is distributed in the hope that it will be useful, but WITHOUT ANY "
-"WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS "
-"FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more "
-"details.\n"
+"Guake is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more details.\n"
 "\n"
-"You should have received a copy of the GNU General Public License along with "
-"Guake; if not, write to the Free Software Foundation, Inc., 51 Franklin St, "
-"Fifth Floor, Boston, MA  02110-1301 USA\n"
+"You should have received a copy of the GNU General Public License along with Guake; if not, write to the Free Software Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301 USA\n"
 msgstr ""
-"Guake свободное программное обеспечение. Вы можете распространять или "
-"изменять его на условиях лицензии GNU GPL, опубликованой Free "
-"Software Foundation, версии 2 или более поздней\n"
+"Guake свободное программное обеспечение. Вы можете распространять или изменять его на условиях лицензии GNU GPL, опубликованой Free Software Foundation, версии 2 или более поздней\n"
 "\n"
-"Guake распространяется в надежде что будет полезным, НО БЕЗ КАКИХ-ЛИБО "
-"гарантий! В том числе даже без гарантии того что он Вам подходит, а также "
-"других подобных. Читайте GNU General Public License для уяснения подробностей.\n"
+"Guake распространяется в надежде что будет полезным, НО БЕЗ КАКИХ-ЛИБО гарантий! В том числе даже без гарантии того что он Вам подходит, а также других подобных. Читайте GNU General Public License для уяснения подробностей.\n"
 "\n"
-"Вы должны получить копию лицензии GNU General Public License вместе с "
-"Guake. Если Вы не получили обратитесь в Free Software Foundation, Inc., 51 "
-"Franklin St, Fifth Floor, Boston, MA  02110-1301 USA\n"
+"Вы должны получить копию лицензии GNU General Public License вместе с Guake. Если Вы не получили обратитесь в Free Software Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301 USA\n"
 
 #: ../data/about.glade.h:19
 msgid "http://guake.org"
@@ -123,9 +108,8 @@ msgid "Rename"
 msgstr "Переименовать"
 
 #: ../data/prefs.glade.h:1
-#, fuzzy
 msgid "<b>Effects</b>"
-msgstr "<b>Шрифты</b>"
+msgstr "<b>Воздействие</b>"
 
 #: ../data/prefs.glade.h:2
 msgid "<b>General</b>"
@@ -144,9 +128,8 @@ msgid "<b>Main Window</b>"
 msgstr "<b>Основное окно</b>"
 
 #: ../data/prefs.glade.h:6
-#, fuzzy
 msgid "<b>Palette</b>"
-msgstr "<b>Основное</b>"
+msgstr "<b>Палитра</b>"
 
 #: ../data/prefs.glade.h:7
 msgid "<b>Scroll</b>"
@@ -157,22 +140,13 @@ msgid "<b>Shell</b>"
 msgstr "<b>Шелл</b>"
 
 #: ../data/prefs.glade.h:9
-msgid ""
-"<small><i><b>Note:</b> These options may cause some applications to behave "
-"incorrectly.  They are only here to allow you to work around certain "
-"applications and operating systems that expect different terminal behavior.</"
-"i></small>"
+msgid "<small><i><b>Note:</b> These options may cause some applications to behave incorrectly.  They are only here to allow you to work around certain applications and operating systems that expect different terminal behavior.</i></small>"
 msgstr ""
-"<small><i><b>Замечение:</b> эти опции могут сделать поведение приложения "
-"некорректным. Они представлены только чтобы обойти некоторые "
-"ограничения приложений или операционных систем, которые ожидают другое "
-"поведение терминала.</i>\n"
-"Замечание переводчика: смотри http://trac.guake-terminal.org/trac.cgi/"
-"ticket/41</small>"
+"<small><i><b>Замечение:</b> эти опции могут сделать поведение приложения некорректным. Они представлены только чтобы обойти некоторые ограничения приложений или операционных систем, которые ожидают другое поведение терминала.</i>\n"
+"Замечание переводчика: смотри http://trac.guake-terminal.org/trac.cgi/ticket/41</small>"
 
 #: ../data/prefs.glade.h:10
-msgid ""
-"<span color=\"black\">Customize behavior and appearance of Guake!</span>"
+msgid "<span color=\"black\">Customize behavior and appearance of Guake!</span>"
 msgstr "<span color=\"black\">Настройки поведения и отображения Guake!</span>"
 
 #: ../data/prefs.glade.h:11
@@ -210,9 +184,8 @@ msgid "Choose some font"
 msgstr "Выберите шрифт"
 
 #: ../data/prefs.glade.h:20
-#, fuzzy
 msgid "Color palette:"
-msgstr "Цвет:"
+msgstr "Цветовая палитра:"
 
 #: ../data/prefs.glade.h:21
 msgid "Compatibility"
@@ -290,6 +263,10 @@ msgid ""
 "Rxvt\n"
 "Custom\n"
 msgstr ""
+"Танго\n"
+"Linux консоль\\ nXTerm\n"
+"Rxvt\n"
+"Custom\n"
 
 #: ../data/prefs.glade.h:44
 msgid "Text color:"
@@ -353,12 +330,10 @@ msgstr "Guake Terminal"
 #, python-format
 msgid ""
 "A problem happened when binding <b>%s</b> key.\n"
-"Please use Guake Preferences dialog to choose another key (The trayicon was "
-"enabled)"
+"Please use Guake Preferences dialog to choose another key (The trayicon was enabled)"
 msgstr ""
 "Возникла проблема при попытке назначить клавишу <b>%s</b>.\n"
-"Пожалуйста, воспользуйтесь диалогом настройки, чтобы выбрать другую клавишу "
-"(иконка в трее была включена)"
+"Пожалуйста, воспользуйтесь диалогом настройки, чтобы выбрать другую клавишу (иконка в трее была включена)"
 
 #: ../src/guake.py:640
 #, python-format
@@ -496,13 +471,11 @@ msgstr "Ошибка назначения клавиш."
 #: ../src/prefs.py:618
 #, python-format
 msgid ""
-"The shortcut \"%s\" cannot be used because it will become impossible to type "
-"using this key.\n"
+"The shortcut \"%s\" cannot be used because it will become impossible to type using this key.\n"
 "\n"
 "Please try with a key such as Control, Alt or Shift at the same time.\n"
 msgstr ""
-"Вы не сможете использовать сокращение \"%s\", так как его невозможно будет "
-"набрать, используя эту клавишу.\n"
+"Вы не сможете использовать сокращение \"%s\", так как его невозможно будет набрать, используя эту клавишу.\n"
 "\n"
 "Попробуйте сочетание с клавишами Control, Alt или Shift.\n"
 
