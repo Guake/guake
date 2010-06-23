@@ -599,6 +599,13 @@ class Guake(SimpleGladeApp):
         self.get_widget('tab-menu').connect('hide', hide_context_menu)
         self.window.connect('focus-out-event', self.on_window_losefocus)
 
+        # Handling the delete-event of the main window to avoid
+        # problems when closing it.
+        def destroy(*args):
+            self.hide()
+            return True
+        self.window.connect('delete-event', destroy)
+
         # Flag to completly disable losefocus hiding
         self.disable_losefocus_hiding = False
 
