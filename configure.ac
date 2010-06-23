@@ -92,7 +92,7 @@ AC_CONFIG_FILES([
     data/Makefile
     data/guake.desktop
     data/guake-prefs.desktop
-    data/org.gnome.Guake.service
+    data/org.guake.Guake.service
     data/pixmaps/Makefile
     po/Makefile.in
     src/Makefile

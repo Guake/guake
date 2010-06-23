@@ -25,8 +25,8 @@ import gtk
 import common
 dbus.glib.threads_init()
 
-DBUS_PATH = '/org/guake_terminal/guake/RemoteControl'
-DBUS_NAME = 'org.guake_terminal.Guake'
+DBUS_PATH = '/org/guake/RemoteControl'
+DBUS_NAME = 'org.guake.RemoteControl'
 
 class DbusManager(dbus.service.Object):
     def __init__(self, guakeinstance):
