@@ -1,3 +1,34 @@
+changes since 0.4.1:
+
+Updated translations and new translations:
+
+  - Swedish (Daniel Nylander)
+  - Persian (Kasra Keshavarz)
+  - French (Bouska and Pingou)
+  - Russian (Pavel Alexeev)
+  - Polish (Piotr Drąg)
+  - Spanish, Castilian (dmartinezc)
+  - Italian (Marco Leogrande a.k.a. dark)
+  - Chinese simplified (甘露, Gan Lu)
+
+Bugs/Features:
+
+  - Calling the hide() method when closing main window: #229 (Lincoln)
+
+  - Fixing dbus path and name for the RemoteControl object: #202
+    (Lincoln)
+
+  - Setting http{s,}_proxy vars before calling fork_command: #172
+    (Lincoln)
+
+  - Adding the `fr' lang to ALL_LINGUAS: #189 (Lincoln)
+
+  - Option to configure the color palette: #51 (Eduardo Grajeda)
+
+  - Do not hide when showing rename dialog (Aleksandar Krsteski)
+
+  - Fixing the tab renaming feature: #205 (Lincoln)
+
 changes since 0.4.0:
 
 Updated translation and new translation:
