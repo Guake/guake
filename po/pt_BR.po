@@ -127,7 +127,7 @@ msgstr "<b>Janela principal</b>"
 
 #: ../data/prefs.glade.h:6
 msgid "<b>Palette</b>"
-msgstr "<b>Palheta</b>"
+msgstr "<b>Paleta</b>"
 
 #: ../data/prefs.glade.h:7
 msgid "<b>Scroll</b>"
@@ -181,7 +181,7 @@ msgstr "Escolha uma fonte"
 
 #: ../data/prefs.glade.h:20
 msgid "Color palette:"
-msgstr "Palheta de cor:"
+msgstr "Paleta de cor:"
 
 #: ../data/prefs.glade.h:21
 msgid "Compatibility"
