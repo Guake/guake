@@ -3,12 +3,12 @@
 # This file is distributed under the same license as the guake package.
 # Pierre-Yves Chibon <pingou@pingoured.fr>, 2009.
 # Pablo Martin-Gomez <pablo.martin-gomez@laposte.net>, 2010
-#
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: guake 0.5.0\n"
-"Report-Msgid-Bugs-To: guake@lists.guake.org\n"
-"POT-Creation-Date: 2010-01-18 13:24+0000\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2010-06-27 05:40+0000\n"
 "PO-Revision-Date: 2010-01-25 19:51+0100\n"
 "Last-Translator: Pablo Martin-Gomez <pablo.martin-gomez@laposte.net>\n"
 "Language-Team: Français <fedora-trans-fr@redhat.com>\n"
@@ -56,39 +56,23 @@ msgstr ""
 
 #: ../data/about.glade.h:13
 msgid ""
-"Guake is free software; you can redistribute it and/or modify it under the "
-"terms of the GNU General Public License as published by the Free Software "
-"Foundation; either version 2 of the License, or (at your option) any later "
-"version.\n"
+"Guake is free software; you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation; either version 2 of the License, or (at your option) any later version.\n"
 "\n"
-"Guake is distributed in the hope that it will be useful, but WITHOUT ANY "
-"WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS "
-"FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more "
-"details.\n"
+"Guake is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more details.\n"
 "\n"
-"You should have received a copy of the GNU General Public License along with "
-"Guake; if not, write to the Free Software Foundation, Inc., 51 Franklin St, "
-"Fifth Floor, Boston, MA  02110-1301 USA\n"
+"You should have received a copy of the GNU General Public License along with Guake; if not, write to the Free Software Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301 USA\n"
 msgstr ""
-"Guake is free software; you can redistribute it and/or modify it under the "
-"terms of the GNU General Public License as published by the Free Software "
-"Foundation; either version 2 of the License, or (at your option) any later "
-"version.\n"
+"Guake is free software; you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation; either version 2 of the License, or (at your option) any later version.\n"
 "\n"
-"Guake is distributed in the hope that it will be useful, but WITHOUT ANY "
-"WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS "
-"FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more "
-"details.\n"
+"Guake is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more details.\n"
 "\n"
-"You should have received a copy of the GNU General Public License along with "
-"Guake; if not, write to the Free Software Foundation, Inc., 51 Franklin St, "
-"Fifth Floor, Boston, MA  02110-1301 USA\n"
+"You should have received a copy of the GNU General Public License along with Guake; if not, write to the Free Software Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301 USA\n"
 
 #: ../data/about.glade.h:19
 msgid "http://guake.org"
 msgstr "http://guake.org"
 
-#: ../data/guake.glade.h:1 ../src/guake.py:1200
+#: ../data/guake.glade.h:1 ../src/guake.py:1264
 msgid "Add a new tab"
 msgstr "Ajouter un nouvel onglet"
 
@@ -104,7 +88,7 @@ msgstr "Fermer onglet"
 msgid "Copy"
 msgstr "Copier"
 
-#: ../data/guake.glade.h:5 ../src/guake.py:610 ../src/guake.py:621
+#: ../data/guake.glade.h:5 ../src/guake.py:635 ../src/guake.py:646
 msgid "Guake!"
 msgstr "Guake !"
 
@@ -121,28 +105,30 @@ msgid "Rename"
 msgstr "Renommer"
 
 #: ../data/prefs.glade.h:1
-msgid "<b>Background</b>"
-msgstr "<b>Fond</b>"
+#, fuzzy
+msgid "<b>Effects</b>"
+msgstr "<b>Effets</b>"
 
 #: ../data/prefs.glade.h:2
-msgid "<b>Fonts</b>"
-msgstr "<b>Polices</b>"
-
-#: ../data/prefs.glade.h:3
 msgid "<b>General</b>"
 msgstr "<b>Général</b>"
 
-#: ../data/prefs.glade.h:4
+#: ../data/prefs.glade.h:3
 msgid "<b>Keyboard compatibility</b>"
 msgstr "<b>Configuration clavier</b>"
 
-#: ../data/prefs.glade.h:5
+#: ../data/prefs.glade.h:4
 msgid "<b>Main Window height</b>"
 msgstr "<b>Hauteur de la fenêtre principale</b>"
 
-#: ../data/prefs.glade.h:6
+#: ../data/prefs.glade.h:5
 msgid "<b>Main Window</b>"
 msgstr "<b>Fenêtre principale</b>"
+
+#: ../data/prefs.glade.h:6
+#, fuzzy
+msgid "<b>Palette</b>"
+msgstr "<b>Palette</b>"
 
 #: ../data/prefs.glade.h:7
 msgid "<b>Scroll</b>"
@@ -153,20 +139,11 @@ msgid "<b>Shell</b>"
 msgstr "<b>Shell</b>"
 
 #: ../data/prefs.glade.h:9
-msgid ""
-"<small><i><b>Note:</b> These options may cause some applications to behave "
-"incorrectly.  They are only here to allow you to work around certain "
-"applications and operating systems that expect different terminal behavior.</"
-"i></small>"
-msgstr ""
-"<small><i><b>Note :</b> Ces options peuvent entrainer un comportement "
-"anormale. Elles ne sont disponible ici que pour des cas spécifiques où "
-"certains logiciels ou système d'exploitation attendent un comportement "
-"différent du terminal.</i></small>"
+msgid "<small><i><b>Note:</b> These options may cause some applications to behave incorrectly.  They are only here to allow you to work around certain applications and operating systems that expect different terminal behavior.</i></small>"
+msgstr "<small><i><b>Note :</b> Ces options peuvent entrainer un comportement anormale. Elles ne sont disponible ici que pour des cas spécifiques où certains logiciels ou système d'exploitation attendent un comportement différent du terminal.</i></small>"
 
 #: ../data/prefs.glade.h:10
-msgid ""
-"<span color=\"black\">Customize behavior and appearance of Guake!</span>"
+msgid "<span color=\"black\">Customize behavior and appearance of Guake!</span>"
 msgstr "<span color=\"black\">Personnaliser Guake !</span>"
 
 #: ../data/prefs.glade.h:11
@@ -188,114 +165,136 @@ msgid "Appearance"
 msgstr "Apparence"
 
 #: ../data/prefs.glade.h:16
-msgid "Choose some color"
-msgstr "Choisissez une couleur"
+#, fuzzy
+msgid "Background color:"
+msgstr "Couleur de fond:"
 
 #: ../data/prefs.glade.h:17
+#, fuzzy
+msgid "Background image:"
+msgstr "Image de fond:"
+
+#: ../data/prefs.glade.h:18
+msgid "Built-in schemes:"
+msgstr ""
+
+#: ../data/prefs.glade.h:19
 msgid "Choose some font"
 msgstr "Choisissez une police"
 
-#: ../data/prefs.glade.h:18
-msgid "Color:"
+#: ../data/prefs.glade.h:20
+#, fuzzy
+msgid "Color palette:"
 msgstr "Couleur :"
 
-#: ../data/prefs.glade.h:19
+#: ../data/prefs.glade.h:21
 msgid "Compatibility"
 msgstr "Compatibilité"
 
-#: ../data/prefs.glade.h:20
+#: ../data/prefs.glade.h:22
 msgid "Default interpreter:"
 msgstr "Interpréteur par défaut :"
 
-#: ../data/prefs.glade.h:21
+#: ../data/prefs.glade.h:23
 msgid "Enable popup notifications on startup"
 msgstr "Activer la notification par pop-up au démarrage"
 
-#: ../data/prefs.glade.h:22 ../src/prefs.py:55
+#: ../data/prefs.glade.h:24
+#, fuzzy
+msgid "Font:"
+msgstr "Police:"
+
+#: ../data/prefs.glade.h:25 ../src/prefs.py:55
 msgid "General"
 msgstr "Général"
 
-#: ../data/prefs.glade.h:23
+#: ../data/prefs.glade.h:26
 msgid "Guake Preferences"
 msgstr "Préférences de Guake"
 
-#: ../data/prefs.glade.h:24
+#: ../data/prefs.glade.h:27
 msgid "Hide on lose focus"
 msgstr "Cacher lors de la perte du focus"
 
-#: ../data/prefs.glade.h:25
-msgid "Image:"
-msgstr "Image :"
-
-#: ../data/prefs.glade.h:26
+#: ../data/prefs.glade.h:28
 msgid "Keyboard shortcuts"
 msgstr "Raccourcis clavier"
 
-#: ../data/prefs.glade.h:27
+#: ../data/prefs.glade.h:29
 msgid "On key stroke"
 msgstr "Par raccourcis clavier"
 
-#: ../data/prefs.glade.h:28
+#: ../data/prefs.glade.h:30
 msgid "On output"
 msgstr "En sortie"
 
-#: ../data/prefs.glade.h:29
+#: ../data/prefs.glade.h:31
 msgid "Prompt on quit"
 msgstr "Confirmer pour quitter"
 
-#: ../data/prefs.glade.h:30
+#: ../data/prefs.glade.h:32
 msgid "Scrollback lines:"
 msgstr "Nombres de lignes en mémoire :"
 
-#: ../data/prefs.glade.h:31
+#: ../data/prefs.glade.h:33
 msgid "Scrolling"
 msgstr "Défilement"
 
-#: ../data/prefs.glade.h:32
+#: ../data/prefs.glade.h:34
 msgid "Show scrollbar"
 msgstr "Afficher la barre de défilement"
 
-#: ../data/prefs.glade.h:33
+#: ../data/prefs.glade.h:35
 msgid "Show tab bar"
 msgstr "Afficher la barre d'onglets"
 
-#: ../data/prefs.glade.h:34
+#: ../data/prefs.glade.h:36
 msgid "Show tray icon"
 msgstr "Afficher l'icône de notification"
 
-#: ../data/prefs.glade.h:35
+#: ../data/prefs.glade.h:37
 msgid "Stay on top"
 msgstr "Reste au premier plan"
 
-#: ../data/prefs.glade.h:36
-msgid "Style:"
-msgstr "Police :"
+#: ../data/prefs.glade.h:38
+msgid ""
+"Tango\n"
+"Linux console\n"
+"XTerm\n"
+"Rxvt\n"
+"Custom\n"
+msgstr ""
 
-#: ../data/prefs.glade.h:37
+#: ../data/prefs.glade.h:44
+#, fuzzy
+msgid "Text color:"
+msgstr "Couleur du texte:"
+
+#: ../data/prefs.glade.h:45
 msgid "Transparency:"
 msgstr "Transparence :"
 
-#: ../data/prefs.glade.h:38
-msgid "Use system defaults"
-msgstr "Utiliser la configuration du système"
+#: ../data/prefs.glade.h:46
+msgid "Use the system fixed width font"
+msgstr ""
 
-#: ../data/prefs.glade.h:39
+#: ../data/prefs.glade.h:47
 msgid "_Backspace key generates:"
 msgstr "La touche _Retour correspond à :"
 
-#: ../data/prefs.glade.h:40
+#: ../data/prefs.glade.h:48
 msgid "_Delete key generates:"
 msgstr "La touche _Suppr correspond  à :"
 
-#: ../data/prefs.glade.h:41
+#: ../data/prefs.glade.h:49
 msgid "_Open new tab in current directory"
 msgstr "_Ouvrir un nouvel onglet dans le dossier courrant"
 
-#: ../data/prefs.glade.h:42
+#: ../data/prefs.glade.h:50
 msgid "_Reset Compatibility Options to Defaults"
 msgstr "_Rétablir la configuration par défaut"
 
-#: ../data/prefs.glade.h:43
+#: ../data/prefs.glade.h:51
 msgid "_Run command as a login shell"
 msgstr "_Exécuter les commandes comme shell de connexion"
 
@@ -312,31 +311,29 @@ msgstr "<b>Il y a encore un processus en cours.</b>"
 msgid "<b>There are %d processes running.</b>"
 msgstr "<b>Il y a %d processus en cours.</b>"
 
-#: ../src/guake.py:352
+#: ../src/guake.py:367
 msgid "key binding error"
 msgstr "Combinaison de touches invalide"
 
-#: ../src/guake.py:353
+#: ../src/guake.py:368
 #, python-format
 msgid "Unable to bind global <b>%s</b> key"
 msgstr "Impossible de combiner la touche <b>%s</b>"
 
-#: ../src/guake.py:515
+#: ../src/guake.py:530
 msgid "Guake Terminal"
 msgstr "Terminal Guake"
 
-#: ../src/guake.py:611
+#: ../src/guake.py:636
 #, python-format
 msgid ""
 "A problem happened when binding <b>%s</b> key.\n"
-"Please use Guake Preferences dialog to choose another key (The trayicon was "
-"enabled)"
+"Please use Guake Preferences dialog to choose another key (The trayicon was enabled)"
 msgstr ""
 "Un problème est survenu lors de la liaison avec la touche <b>%s</b>.\n"
-"Merci d'utiliser la fenêtre de préférences de Guake pour choisir une autre "
-"touche (icône de notification activée)"
+"Merci d'utiliser la fenêtre de préférences de Guake pour choisir une autre touche (icône de notification activée)"
 
-#: ../src/guake.py:622
+#: ../src/guake.py:647
 #, python-format
 msgid ""
 "Guake is now running,\n"
@@ -345,53 +342,53 @@ msgstr ""
 "Guake est en cours de fonctionnement,\n"
 "appuyer sur <b>%s</b> pour l'utiliser."
 
-#: ../src/guake.py:968
+#: ../src/guake.py:997
 msgid "Rename tab"
 msgstr "Renomme l'onglet"
 
 #. Adding a new radio button to the tabbar
-#: ../src/guake.py:1078
+#: ../src/guake.py:1142
 #, python-format
 msgid "Terminal %s"
 msgstr "Terminal %s"
 
-#: ../src/guake.py:1188
+#: ../src/guake.py:1252
 msgid "Toggles the visibility of the terminal window"
 msgstr "Active/Désactive la visibilité de la fenêtre principale"
 
-#: ../src/guake.py:1192
+#: ../src/guake.py:1256
 msgid "Shows Guake preference window"
 msgstr "Afficher la fenêtre de préférences de Guake"
 
-#: ../src/guake.py:1196
+#: ../src/guake.py:1260
 msgid "Shows Guake's about info"
 msgstr "Afficher les informations à propos de Guake"
 
-#: ../src/guake.py:1204
+#: ../src/guake.py:1268
 msgid "Select a tab"
 msgstr "Sélectionner un onglet"
 
-#: ../src/guake.py:1208
+#: ../src/guake.py:1272
 msgid "Return the selectd tab index."
 msgstr "Retourne l'index de l'onglet sélectionné."
 
-#: ../src/guake.py:1212
+#: ../src/guake.py:1276
 msgid "Execute an arbitrary command in the selected tab."
 msgstr "Exécute une commande dans un onglet sélectionné"
 
-#: ../src/guake.py:1216
+#: ../src/guake.py:1280
 msgid "Rename the selected tab."
 msgstr "Renommer l'onglet sélectionné."
 
-#: ../src/guake.py:1220
+#: ../src/guake.py:1284
 msgid "Says to Guake go away =("
 msgstr "Dis au-revoir à Guake =("
 
-#: ../src/guake.py:1285
+#: ../src/guake.py:1349
 msgid "Guake can not init!"
 msgstr "Guake ne peux démarrer"
 
-#: ../src/guake.py:1286
+#: ../src/guake.py:1350
 msgid ""
 "Gconf Error.\n"
 "Have you installed <b>guake.schemas</b> properlly?"
@@ -452,36 +449,48 @@ msgstr "Copie dans le presse-papiers"
 msgid "Paste text from clipboard"
 msgstr "Colle à partir du presse-papiers"
 
-#: ../src/prefs.py:271
+#: ../src/prefs.py:297
 msgid "Action"
 msgstr "Action"
 
-#: ../src/prefs.py:281
+#: ../src/prefs.py:307
 msgid "Shortcut"
 msgstr "Raccourcis"
 
-#: ../src/prefs.py:536
+#: ../src/prefs.py:605
 #, python-format
 msgid "The shortcut \"%s\" is already in use."
 msgstr "Le raccourcis « %s » est déjà utilisé."
 
-#: ../src/prefs.py:537
+#: ../src/prefs.py:606
 msgid "Error setting keybinding."
 msgstr "Erreur d'attribution des raccourcis."
 
-#: ../src/prefs.py:549
+#: ../src/prefs.py:618
 #, python-format
 msgid ""
-"The shortcut \"%s\" cannot be used because it will become impossible to type "
-"using this key.\n"
+"The shortcut \"%s\" cannot be used because it will become impossible to type using this key.\n"
 "\n"
 "Please try with a key such as Control, Alt or Shift at the same time.\n"
 msgstr ""
-"Le raccourcis « %s » ne peux être utilisé car il empêche une utilisation "
-"normale du clavier.\n"
+"Le raccourcis « %s » ne peux être utilisé car il empêche une utilisation normale du clavier.\n"
 "\n"
-"Essayez de l'utiliser en combinaison avec une touche tel que Control, Alt ou "
-"Shift.\n"
+"Essayez de l'utiliser en combinaison avec une touche tel que Control, Alt ou Shift.\n"
+
+#~ msgid "<b>Background</b>"
+#~ msgstr "<b>Fond</b>"
+
+#~ msgid "Choose some color"
+#~ msgstr "Choisissez une couleur"
+
+#~ msgid "Image:"
+#~ msgstr "Image :"
+
+#~ msgid "Style:"
+#~ msgstr "Police :"
+
+#~ msgid "Use system defaults"
+#~ msgstr "Utiliser la configuration du système"
 
 #~ msgid "<b>Main Window horizontal alignment</b>"
 #~ msgstr "<b>Position horizontale de la fenêtre principale</b>"
