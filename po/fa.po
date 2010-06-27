@@ -3,16 +3,16 @@
 # Copyright (C) 2007 Lincoln de Sousa <lincoln@archlinux-br.org>
 # This file is distributed under the same license as the guake package.
 # Gabriel Falcão <gabriel@guake-terminal.org>, 2007
-# Kasra Keshavarz <kasra545@gmail.com>, 2010
 #
+# Kasra Keshavarz <kasra545@gmail.com>, 2010, 2010.
 msgid ""
 msgstr ""
-"Project-Id-Version: guake 0.4.0\n"
-"Report-Msgid-Bugs-To: guake@lists.guake.org\n"
-"POT-Creation-Date: 2010-01-18 04:06+0000\n"
-"PO-Revision-Date: 2010-01-27 18:31+0330\n"
+"Project-Id-Version: guake 0.4.1\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2010-04-17 04:14+0000\n"
+"PO-Revision-Date: 2010-04-17 17:45+0430\n"
 "Last-Translator: Kasra Keshavarz <kasra545@gmail.com>\n"
-"Language-Team: guake@lists.guake.org\n"
+"Language-Team: guake@lists.guake.org <>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -91,7 +91,7 @@ msgstr ""
 msgid "http://guake.org"
 msgstr "http://guake.org"
 
-#: ../data/guake.glade.h:1 ../src/guake.py:1200
+#: ../data/guake.glade.h:1 ../src/guake.py:1224
 msgid "Add a new tab"
 msgstr "افزودن زبانه‌ی جدید"
 
@@ -107,7 +107,7 @@ msgstr "بستن زبانه"
 msgid "Copy"
 msgstr "رونوشت کردن"
 
-#: ../data/guake.glade.h:5 ../src/guake.py:610 ../src/guake.py:621
+#: ../data/guake.glade.h:5 ../src/guake.py:628 ../src/guake.py:639
 msgid "Guake!"
 msgstr "Guake!"
 
@@ -124,28 +124,28 @@ msgid "Rename"
 msgstr "تغییر نام"
 
 #: ../data/prefs.glade.h:1
-msgid "<b>Background</b>"
-msgstr "<b>پس زمینه</b>"
+msgid "<b>Effects</b>"
+msgstr "<b>اثرات</b>"
 
 #: ../data/prefs.glade.h:2
-msgid "<b>Fonts</b>"
-msgstr "<b>قلم‌ها</b>"
-
-#: ../data/prefs.glade.h:3
 msgid "<b>General</b>"
 msgstr "<b>عمومی</b>"
 
-#: ../data/prefs.glade.h:4
+#: ../data/prefs.glade.h:3
 msgid "<b>Keyboard compatibility</b>"
 msgstr "<b>سازگاری با صفحه‌کلید</b>"
 
-#: ../data/prefs.glade.h:5
+#: ../data/prefs.glade.h:4
 msgid "<b>Main Window height</b>"
 msgstr "<b>سایز پنجره اصلی</b>"
 
-#: ../data/prefs.glade.h:6
+#: ../data/prefs.glade.h:5
 msgid "<b>Main Window</b>"
 msgstr "<b>پنجره اصلی</b>"
+
+#: ../data/prefs.glade.h:6
+msgid "<b>Palette</b>"
+msgstr "<b>پَلت</b>"
 
 #: ../data/prefs.glade.h:7
 msgid "<b>Scroll</b>"
@@ -190,114 +190,136 @@ msgid "Appearance"
 msgstr "ظاهر"
 
 #: ../data/prefs.glade.h:16
-msgid "Choose some color"
-msgstr "تعدادی رنگ انتخاب کنید"
+msgid "Background color:"
+msgstr "رنگ پس‌زمینه:"
 
 #: ../data/prefs.glade.h:17
+msgid "Background image:"
+msgstr "عکس پس‌زمینه:"
+
+#: ../data/prefs.glade.h:18
+msgid "Built-in schemes:"
+msgstr "طرح‌های داخلی:"
+
+#: ../data/prefs.glade.h:19
 msgid "Choose some font"
 msgstr "تعدادی قلم انتخاب کنید"
 
-#: ../data/prefs.glade.h:18
-msgid "Color:"
-msgstr "رنگ:"
+#: ../data/prefs.glade.h:20
+msgid "Color palette:"
+msgstr "پَلت رنگ:"
 
-#: ../data/prefs.glade.h:19
+#: ../data/prefs.glade.h:21
 msgid "Compatibility"
 msgstr "سازگاری"
 
-#: ../data/prefs.glade.h:20
+#: ../data/prefs.glade.h:22
 msgid "Default interpreter:"
 msgstr "خط فرمان پیشفرض:"
 
-#: ../data/prefs.glade.h:21
+#: ../data/prefs.glade.h:23
 msgid "Enable popup notifications on startup"
-msgstr "فعال کردن پنجره‌ی اطلاعیه در شروع"
+msgstr "فعال کردن پنجره‌های اطلاعیه در شروع"
 
-#: ../data/prefs.glade.h:22 ../src/prefs.py:55
+#: ../data/prefs.glade.h:24
+msgid "Font:"
+msgstr "قلم:"
+
+#: ../data/prefs.glade.h:25 ../src/prefs.py:55
 msgid "General"
 msgstr "عمومی"
 
-#: ../data/prefs.glade.h:23
+#: ../data/prefs.glade.h:26
 msgid "Guake Preferences"
 msgstr "تنظیمات Guake"
 
-#: ../data/prefs.glade.h:24
+#: ../data/prefs.glade.h:27
 msgid "Hide on lose focus"
 msgstr "در صورت توجه کم پنهان شو"
 
-#: ../data/prefs.glade.h:25
-msgid "Image:"
-msgstr "تصویر:"
-
-#: ../data/prefs.glade.h:26
+#: ../data/prefs.glade.h:28
 msgid "Keyboard shortcuts"
 msgstr "میانبر‌های صفحه‌کلید"
 
-#: ../data/prefs.glade.h:27
+#: ../data/prefs.glade.h:29
 msgid "On key stroke"
 msgstr "با زدن کلید"
 
-#: ../data/prefs.glade.h:28
+#: ../data/prefs.glade.h:30
 msgid "On output"
 msgstr "در خروجی"
 
-#: ../data/prefs.glade.h:29
+#: ../data/prefs.glade.h:31
 msgid "Prompt on quit"
 msgstr "سریع در موقع خروج"
 
-#: ../data/prefs.glade.h:30
+#: ../data/prefs.glade.h:32
 msgid "Scrollback lines:"
 msgstr "پیمایش خط‌های قبلی:"
 
-#: ../data/prefs.glade.h:31
+#: ../data/prefs.glade.h:33
 msgid "Scrolling"
 msgstr "پیمایش"
 
-#: ../data/prefs.glade.h:32
+#: ../data/prefs.glade.h:34
 msgid "Show scrollbar"
 msgstr "نمایش دادن نوار لغزش"
 
-#: ../data/prefs.glade.h:33
+#: ../data/prefs.glade.h:35
 msgid "Show tab bar"
 msgstr "نمایش دادن نوار حاوی زبانه"
 
-#: ../data/prefs.glade.h:34
+#: ../data/prefs.glade.h:36
 msgid "Show tray icon"
 msgstr "نمایش دادن آیکون در حالت مخفی"
 
-#: ../data/prefs.glade.h:35
+#: ../data/prefs.glade.h:37
 msgid "Stay on top"
 msgstr "همیشه در بالا بمان"
 
-#: ../data/prefs.glade.h:36
-msgid "Style:"
-msgstr "سبک:"
+#: ../data/prefs.glade.h:38
+msgid ""
+"Tango\n"
+"Linux console\n"
+"XTerm\n"
+"Rxvt\n"
+"Custom\n"
+msgstr ""
+"Tango\n"
+"Linux console\n"
+"XTerm\n"
+"Rxvt\n"
+"Custom\n"
 
-#: ../data/prefs.glade.h:37
+#: ../data/prefs.glade.h:44
+msgid "Text color:"
+msgstr "رنگ متن:"
+
+#: ../data/prefs.glade.h:45
 msgid "Transparency:"
 msgstr "شفافیت:"
 
-#: ../data/prefs.glade.h:38
-msgid "Use system defaults"
-msgstr "استفاده از پیشفرض‌های سیستم"
+#: ../data/prefs.glade.h:46
+msgid "Use the system fixed width font"
+msgstr "استفاده از قلم عریض ساخته‌شده‌ی سیستم"
 
-#: ../data/prefs.glade.h:39
+#: ../data/prefs.glade.h:47
 msgid "_Backspace key generates:"
 msgstr "_تولید کردن کلید پسبردن"
 
-#: ../data/prefs.glade.h:40
+#: ../data/prefs.glade.h:48
 msgid "_Delete key generates:"
 msgstr "تولید کردن کلید پاک کردن"
 
-#: ../data/prefs.glade.h:41
+#: ../data/prefs.glade.h:49
 msgid "_Open new tab in current directory"
 msgstr "_زبانه‌ای جدید در مسیر کنونی باز کن"
 
-#: ../data/prefs.glade.h:42
+#: ../data/prefs.glade.h:50
 msgid "_Reset Compatibility Options to Defaults"
 msgstr "_تنظیم مجدد ترجیحات سازگاری به پیشفرض"
 
-#: ../data/prefs.glade.h:43
+#: ../data/prefs.glade.h:51
 msgid "_Run command as a login shell"
 msgstr "_اجرا دستور به عنوان خط فرمان ورود به سیستم"
 
@@ -314,20 +336,20 @@ msgstr "<b>روند دیگری هنوز در حال اجراست</b>"
 msgid "<b>There are %d processes running.</b>"
 msgstr "<b>روندهای %d در حال اجرا هستند.</b>"
 
-#: ../src/guake.py:352
+#: ../src/guake.py:367
 msgid "key binding error"
 msgstr "خطا در باگزاری کلید"
 
-#: ../src/guake.py:353
+#: ../src/guake.py:368
 #, python-format
 msgid "Unable to bind global <b>%s</b> key"
 msgstr "نمی‌توان کلید <b>%s</b> را بارگزاری کرد"
 
-#: ../src/guake.py:515
+#: ../src/guake.py:530
 msgid "Guake Terminal"
 msgstr "Guake Terminal"
 
-#: ../src/guake.py:611
+#: ../src/guake.py:629
 #, python-format
 msgid ""
 "A problem happened when binding <b>%s</b> key.\n"
@@ -338,7 +360,7 @@ msgstr ""
 "لطفا از برگه‌ی تنظیمات Guake برای انتخاب کلید دیگر استفاده کنید(آیکون مخفی "
 "فعال شده بود)"
 
-#: ../src/guake.py:622
+#: ../src/guake.py:640
 #, python-format
 msgid ""
 "Guake is now running,\n"
@@ -347,53 +369,53 @@ msgstr ""
 "هم‌اکنون Guake در حال اجرا می‌باشد،\n"
 "برای استفاده کلید <b>%s</b> را فشار دهید."
 
-#: ../src/guake.py:968
+#: ../src/guake.py:990
 msgid "Rename tab"
 msgstr "نام زبانه را تغییر بده"
 
 #. Adding a new radio button to the tabbar
-#: ../src/guake.py:1078
+#: ../src/guake.py:1102
 #, python-format
 msgid "Terminal %s"
 msgstr "ترمینال %s"
 
-#: ../src/guake.py:1188
+#: ../src/guake.py:1212
 msgid "Toggles the visibility of the terminal window"
 msgstr "Toggles the visibility of the terminal window"
 
-#: ../src/guake.py:1192
+#: ../src/guake.py:1216
 msgid "Shows Guake preference window"
 msgstr "Shows Guake preference window"
 
-#: ../src/guake.py:1196
+#: ../src/guake.py:1220
 msgid "Shows Guake's about info"
 msgstr "Shows Guake's about info"
 
-#: ../src/guake.py:1204
+#: ../src/guake.py:1228
 msgid "Select a tab"
 msgstr "Select a tab"
 
-#: ../src/guake.py:1208
+#: ../src/guake.py:1232
 msgid "Return the selectd tab index."
 msgstr "Return the selectd tab index."
 
-#: ../src/guake.py:1212
+#: ../src/guake.py:1236
 msgid "Execute an arbitrary command in the selected tab."
 msgstr "Execute an arbitrary command in the selected tab."
 
-#: ../src/guake.py:1216
+#: ../src/guake.py:1240
 msgid "Rename the selected tab."
 msgstr "Rename the selected tab."
 
-#: ../src/guake.py:1220
+#: ../src/guake.py:1244
 msgid "Says to Guake go away =("
 msgstr "Says to Guake go away =("
 
-#: ../src/guake.py:1285
+#: ../src/guake.py:1309
 msgid "Guake can not init!"
 msgstr "برنامه‌ی Guake قابل بارگزاری نیست!"
 
-#: ../src/guake.py:1286
+#: ../src/guake.py:1310
 msgid ""
 "Gconf Error.\n"
 "Have you installed <b>guake.schemas</b> properlly?"
@@ -454,24 +476,24 @@ msgstr "کپی متن به حافظه‌ی موقت"
 msgid "Paste text from clipboard"
 msgstr "چشباندن متن از حافظه‌ی موقت"
 
-#: ../src/prefs.py:271
+#: ../src/prefs.py:297
 msgid "Action"
 msgstr "حرکت"
 
-#: ../src/prefs.py:281
+#: ../src/prefs.py:307
 msgid "Shortcut"
 msgstr "میانبر"
 
-#: ../src/prefs.py:536
+#: ../src/prefs.py:605
 #, python-format
 msgid "The shortcut \"%s\" is already in use."
 msgstr "میانبر \"%s\" هم‌اکنون در حال استفاده می‌باشد."
 
-#: ../src/prefs.py:537
+#: ../src/prefs.py:606
 msgid "Error setting keybinding."
 msgstr "خطا در بارگزاری کلید."
 
-#: ../src/prefs.py:549
+#: ../src/prefs.py:618
 #, python-format
 msgid ""
 "The shortcut \"%s\" cannot be used because it will become impossible to type "
@@ -483,6 +505,21 @@ msgstr ""
 "ممکن می‌کند.\n"
 "\n"
 "لطفا با کلیدهایی مانند Control, Alt, Shift در یک زمان استفاده کنید.\n"
+
+#~ msgid "<b>Background</b>"
+#~ msgstr "<b>پس زمینه</b>"
+
+#~ msgid "Choose some color"
+#~ msgstr "تعدادی رنگ انتخاب کنید"
+
+#~ msgid "Image:"
+#~ msgstr "تصویر:"
+
+#~ msgid "Style:"
+#~ msgstr "سبک:"
+
+#~ msgid "Use system defaults"
+#~ msgstr "استفاده از پیشفرض‌های سیستم"
 
 #~ msgid "<b>Window behavior</b>"
 #~ msgstr "<b>رفتار پنجره</b>"
