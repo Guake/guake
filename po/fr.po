@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: guake 0.5.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-06-27 05:40+0000\n"
+"POT-Creation-Date: 2010-06-30 05:34+0000\n"
 "PO-Revision-Date: 2010-01-25 19:51+0100\n"
 "Last-Translator: Pablo Martin-Gomez <pablo.martin-gomez@laposte.net>\n"
 "Language-Team: Français <fedora-trans-fr@redhat.com>\n"
@@ -105,7 +105,6 @@ msgid "Rename"
 msgstr "Renommer"
 
 #: ../data/prefs.glade.h:1
-#, fuzzy
 msgid "<b>Effects</b>"
 msgstr "<b>Effets</b>"
 
@@ -126,7 +125,6 @@ msgid "<b>Main Window</b>"
 msgstr "<b>Fenêtre principale</b>"
 
 #: ../data/prefs.glade.h:6
-#, fuzzy
 msgid "<b>Palette</b>"
 msgstr "<b>Palette</b>"
 
@@ -165,14 +163,12 @@ msgid "Appearance"
 msgstr "Apparence"
 
 #: ../data/prefs.glade.h:16
-#, fuzzy
 msgid "Background color:"
-msgstr "Couleur de fond:"
+msgstr "Couleur d'arrière-plan "
 
 #: ../data/prefs.glade.h:17
-#, fuzzy
 msgid "Background image:"
-msgstr "Image de fond:"
+msgstr "Image d'arrière-plan :"
 
 #: ../data/prefs.glade.h:18
 msgid "Built-in schemes:"
@@ -183,9 +179,8 @@ msgid "Choose some font"
 msgstr "Choisissez une police"
 
 #: ../data/prefs.glade.h:20
-#, fuzzy
 msgid "Color palette:"
-msgstr "Couleur :"
+msgstr "Palette de couleurs :"
 
 #: ../data/prefs.glade.h:21
 msgid "Compatibility"
@@ -200,9 +195,8 @@ msgid "Enable popup notifications on startup"
 msgstr "Activer la notification par pop-up au démarrage"
 
 #: ../data/prefs.glade.h:24
-#, fuzzy
 msgid "Font:"
-msgstr "Police:"
+msgstr "Police de caractères :"
 
 #: ../data/prefs.glade.h:25 ../src/prefs.py:55
 msgid "General"
@@ -264,11 +258,15 @@ msgid ""
 "Rxvt\n"
 "Custom\n"
 msgstr ""
+"Tango\n"
+"Console Linux\n"
+"XTerm\n"
+"Rxvt\n"
+"Personnalisé\n"
 
 #: ../data/prefs.glade.h:44
-#, fuzzy
 msgid "Text color:"
-msgstr "Couleur du texte:"
+msgstr "Couleur du texte :"
 
 #: ../data/prefs.glade.h:45
 msgid "Transparency:"
@@ -276,7 +274,7 @@ msgstr "Transparence :"
 
 #: ../data/prefs.glade.h:46
 msgid "Use the system fixed width font"
-msgstr ""
+msgstr "Utiliser la taille de police définie par le système"
 
 #: ../data/prefs.glade.h:47
 msgid "_Backspace key generates:"
