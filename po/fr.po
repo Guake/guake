@@ -171,8 +171,9 @@ msgid "Background image:"
 msgstr "Image d'arrière-plan :"
 
 #: ../data/prefs.glade.h:18
+#, fuzzy
 msgid "Built-in schemes:"
-msgstr ""
+msgstr "Built-in schemes:"
 
 #: ../data/prefs.glade.h:19
 msgid "Choose some font"
