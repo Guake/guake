@@ -3,13 +3,12 @@
 # Copyright (C) 2008 Pavel Alexeev (Pahan-Hubbitus)
 # This file is distributed under the same license as the guake package.
 # 甘露(Gan Lu) <rhythm.gan@gmail.com>, 2010.
-# 
-
+#
 msgid ""
 msgstr ""
 "Project-Id-Version: Guake\n"
-"Report-Msgid-Bugs-To: guake@lists.guake.org\n"
-"POT-Creation-Date: 2010-01-22 04:14+0000\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2010-06-24 13:41+0000\n"
 "PO-Revision-Date: \n"
 "Last-Translator: 甘露(Gan Lu) <rhythm.gan@gmail.com>\n"
 "Language-Team: guake@lists.guake.org\n"
@@ -82,7 +81,7 @@ msgid "http://guake.org"
 msgstr "http://guake.org"
 
 #: ../data/guake.glade.h:1
-#: ../src/guake.py:1200
+#: ../src/guake.py:1264
 msgid "Add a new tab"
 msgstr "新增标签页"
 
@@ -99,8 +98,8 @@ msgid "Copy"
 msgstr "复制"
 
 #: ../data/guake.glade.h:5
-#: ../src/guake.py:610
-#: ../src/guake.py:621
+#: ../src/guake.py:635
+#: ../src/guake.py:646
 msgid "Guake!"
 msgstr "Guake！"
 
@@ -118,28 +117,28 @@ msgid "Rename"
 msgstr "重命名"
 
 #: ../data/prefs.glade.h:1
-msgid "<b>Background</b>"
-msgstr "<b>背景</b>"
+msgid "<b>Effects</b>"
+msgstr "<b>效果</b>"
 
 #: ../data/prefs.glade.h:2
-msgid "<b>Fonts</b>"
-msgstr "<b>字体</b>"
-
-#: ../data/prefs.glade.h:3
 msgid "<b>General</b>"
 msgstr "<b>常规</b>"
 
-#: ../data/prefs.glade.h:4
+#: ../data/prefs.glade.h:3
 msgid "<b>Keyboard compatibility</b>"
 msgstr "<b>键盘兼容性</b>"
 
-#: ../data/prefs.glade.h:5
+#: ../data/prefs.glade.h:4
 msgid "<b>Main Window height</b>"
 msgstr "<b>主窗口高度</b>"
 
-#: ../data/prefs.glade.h:6
+#: ../data/prefs.glade.h:5
 msgid "<b>Main Window</b>"
 msgstr "<b>主窗口</b>"
+
+#: ../data/prefs.glade.h:6
+msgid "<b>Palette</b>"
+msgstr "<b>调色板</b>"
 
 #: ../data/prefs.glade.h:7
 msgid "<b>Scroll</b>"
@@ -168,7 +167,7 @@ msgid ""
 "Control-H"
 msgstr ""
 "ASCII DEL\n"
-"Escape 顺序\n"
+"Escape 序列\n"
 "Control-H"
 
 #: ../data/prefs.glade.h:15
@@ -176,115 +175,137 @@ msgid "Appearance"
 msgstr "外观"
 
 #: ../data/prefs.glade.h:16
-msgid "Choose some color"
-msgstr "选择颜色"
+msgid "Background color:"
+msgstr "背景颜色："
 
 #: ../data/prefs.glade.h:17
+msgid "Background image:"
+msgstr "背景图像："
+
+#: ../data/prefs.glade.h:18
+msgid "Built-in schemes:"
+msgstr "内建方案："
+
+#: ../data/prefs.glade.h:19
 msgid "Choose some font"
 msgstr "选择字体"
 
-#: ../data/prefs.glade.h:18
-msgid "Color:"
-msgstr "颜色："
+#: ../data/prefs.glade.h:20
+msgid "Color palette:"
+msgstr "调色板："
 
-#: ../data/prefs.glade.h:19
+#: ../data/prefs.glade.h:21
 msgid "Compatibility"
 msgstr "兼容性"
 
-#: ../data/prefs.glade.h:20
+#: ../data/prefs.glade.h:22
 msgid "Default interpreter:"
 msgstr "默认解释器"
 
-#: ../data/prefs.glade.h:21
+#: ../data/prefs.glade.h:23
 msgid "Enable popup notifications on startup"
 msgstr "启用启动时的弹出通知"
 
-#: ../data/prefs.glade.h:22
+#: ../data/prefs.glade.h:24
+msgid "Font:"
+msgstr "字体："
+
+#: ../data/prefs.glade.h:25
 #: ../src/prefs.py:55
 msgid "General"
 msgstr "常规"
 
-#: ../data/prefs.glade.h:23
+#: ../data/prefs.glade.h:26
 msgid "Guake Preferences"
 msgstr "Guake 首选项"
 
-#: ../data/prefs.glade.h:24
+#: ../data/prefs.glade.h:27
 msgid "Hide on lose focus"
 msgstr "失去焦点后隐藏"
 
-#: ../data/prefs.glade.h:25
-msgid "Image:"
-msgstr "图像："
-
-#: ../data/prefs.glade.h:26
+#: ../data/prefs.glade.h:28
 msgid "Keyboard shortcuts"
 msgstr "键盘快捷键"
 
-#: ../data/prefs.glade.h:27
+#: ../data/prefs.glade.h:29
 msgid "On key stroke"
 msgstr "键敲下时"
 
-#: ../data/prefs.glade.h:28
+#: ../data/prefs.glade.h:30
 msgid "On output"
 msgstr "输出时"
 
-#: ../data/prefs.glade.h:29
+#: ../data/prefs.glade.h:31
 msgid "Prompt on quit"
 msgstr "退出时提示"
 
-#: ../data/prefs.glade.h:30
+#: ../data/prefs.glade.h:32
 msgid "Scrollback lines:"
 msgstr "回卷行数："
 
-#: ../data/prefs.glade.h:31
+#: ../data/prefs.glade.h:33
 msgid "Scrolling"
 msgstr "滚屏"
 
-#: ../data/prefs.glade.h:32
+#: ../data/prefs.glade.h:34
 msgid "Show scrollbar"
 msgstr "显示滚动条"
 
-#: ../data/prefs.glade.h:33
+#: ../data/prefs.glade.h:35
 msgid "Show tab bar"
 msgstr "显示标签栏"
 
-#: ../data/prefs.glade.h:34
+#: ../data/prefs.glade.h:36
 msgid "Show tray icon"
 msgstr "显示系统托盘图标"
 
-#: ../data/prefs.glade.h:35
+#: ../data/prefs.glade.h:37
 msgid "Stay on top"
 msgstr "保持在最前端"
 
-#: ../data/prefs.glade.h:36
-msgid "Style:"
-msgstr "风格："
+#: ../data/prefs.glade.h:38
+msgid ""
+"Tango\n"
+"Linux console\n"
+"XTerm\n"
+"Rxvt\n"
+"Custom\n"
+msgstr ""
+"Tango\n"
+"Linux 终端\n"
+"XTerm\n"
+"Rxvt\n"
+"自定义\n"
 
-#: ../data/prefs.glade.h:37
+#: ../data/prefs.glade.h:44
+msgid "Text color:"
+msgstr "文字颜色："
+
+#: ../data/prefs.glade.h:45
 msgid "Transparency:"
 msgstr "透明："
 
-#: ../data/prefs.glade.h:38
-msgid "Use system defaults"
-msgstr "使用系统默认"
+#: ../data/prefs.glade.h:46
+msgid "Use the system fixed width font"
+msgstr "使用系统的等宽字体"
 
-#: ../data/prefs.glade.h:39
+#: ../data/prefs.glade.h:47
 msgid "_Backspace key generates:"
 msgstr "_Backspace 键产生："
 
-#: ../data/prefs.glade.h:40
+#: ../data/prefs.glade.h:48
 msgid "_Delete key generates:"
 msgstr "_Delete 键产生："
 
-#: ../data/prefs.glade.h:41
+#: ../data/prefs.glade.h:49
 msgid "_Open new tab in current directory"
 msgstr "在当前目录打开新标签页(_O)"
 
-#: ../data/prefs.glade.h:42
+#: ../data/prefs.glade.h:50
 msgid "_Reset Compatibility Options to Defaults"
 msgstr "重新设定兼容性选项为默认值(_R)"
 
-#: ../data/prefs.glade.h:43
+#: ../data/prefs.glade.h:51
 msgid "_Run command as a login shell"
 msgstr "运行命令作为登录外壳(_R)"
 
@@ -301,20 +322,20 @@ msgstr "<b>有一个进程仍然在运行</b>"
 msgid "<b>There are %d processes running.</b>"
 msgstr "<b>有 %d 进程正在运行</b>"
 
-#: ../src/guake.py:352
+#: ../src/guake.py:367
 msgid "key binding error"
 msgstr "键绑定出错"
 
-#: ../src/guake.py:353
+#: ../src/guake.py:368
 #, python-format
 msgid "Unable to bind global <b>%s</b> key"
 msgstr "无法绑定全局 <b>%s</b> 键"
 
-#: ../src/guake.py:515
+#: ../src/guake.py:530
 msgid "Guake Terminal"
 msgstr "Guake 终端"
 
-#: ../src/guake.py:611
+#: ../src/guake.py:636
 #, python-format
 msgid ""
 "A problem happened when binding <b>%s</b> key.\n"
@@ -323,7 +344,7 @@ msgstr ""
 "绑定 <b>%s</b> 键时出现问题。\n"
 "请使用 Guake 首选项对话框选择另外的键（托盘图标已启用）"
 
-#: ../src/guake.py:622
+#: ../src/guake.py:647
 #, python-format
 msgid ""
 "Guake is now running,\n"
@@ -332,53 +353,53 @@ msgstr ""
 "Guake 正在运行，\n"
 "按 <b>%s</b> 使用它。"
 
-#: ../src/guake.py:968
+#: ../src/guake.py:997
 msgid "Rename tab"
 msgstr "重命名标签"
 
 #. Adding a new radio button to the tabbar
-#: ../src/guake.py:1078
+#: ../src/guake.py:1142
 #, python-format
 msgid "Terminal %s"
 msgstr "终端 %s"
 
-#: ../src/guake.py:1188
+#: ../src/guake.py:1252
 msgid "Toggles the visibility of the terminal window"
 msgstr "切换终端窗口是否可见"
 
-#: ../src/guake.py:1192
+#: ../src/guake.py:1256
 msgid "Shows Guake preference window"
 msgstr "显示 Guake 的首选项窗口"
 
-#: ../src/guake.py:1196
+#: ../src/guake.py:1260
 msgid "Shows Guake's about info"
 msgstr "显示 Guake 的“关于”信息"
 
-#: ../src/guake.py:1204
+#: ../src/guake.py:1268
 msgid "Select a tab"
 msgstr "选择一个标签页"
 
-#: ../src/guake.py:1208
+#: ../src/guake.py:1272
 msgid "Return the selectd tab index."
 msgstr "回到选定的标签页索引"
 
-#: ../src/guake.py:1212
+#: ../src/guake.py:1276
 msgid "Execute an arbitrary command in the selected tab."
 msgstr "在选定标签页执行一个随意的命令。"
 
-#: ../src/guake.py:1216
+#: ../src/guake.py:1280
 msgid "Rename the selected tab."
 msgstr "重命名选定的标签页"
 
-#: ../src/guake.py:1220
+#: ../src/guake.py:1284
 msgid "Says to Guake go away =("
 msgstr "告诉 Guake 走开 =("
 
-#: ../src/guake.py:1285
+#: ../src/guake.py:1349
 msgid "Guake can not init!"
 msgstr "Guake 无法初始化！"
 
-#: ../src/guake.py:1286
+#: ../src/guake.py:1350
 msgid ""
 "Gconf Error.\n"
 "Have you installed <b>guake.schemas</b> properlly?"
@@ -439,24 +460,24 @@ msgstr "复制文字到剪贴板"
 msgid "Paste text from clipboard"
 msgstr "从剪贴板中粘贴文字"
 
-#: ../src/prefs.py:271
+#: ../src/prefs.py:297
 msgid "Action"
 msgstr "行动"
 
-#: ../src/prefs.py:281
+#: ../src/prefs.py:307
 msgid "Shortcut"
 msgstr "快捷键"
 
-#: ../src/prefs.py:536
+#: ../src/prefs.py:605
 #, python-format
 msgid "The shortcut \"%s\" is already in use."
 msgstr "快捷键 \"%s\" 已经被使用"
 
-#: ../src/prefs.py:537
+#: ../src/prefs.py:606
 msgid "Error setting keybinding."
 msgstr "设定键绑定时出错"
 
-#: ../src/prefs.py:549
+#: ../src/prefs.py:618
 #, python-format
 msgid ""
 "The shortcut \"%s\" cannot be used because it will become impossible to type using this key.\n"
@@ -467,3 +488,17 @@ msgstr ""
 "\n"
 "请尝试同时用诸如 Control，Alt 或 Shift 键。\n"
 
+#~ msgid "<b>Background</b>"
+#~ msgstr "<b>背景</b>"
+
+#~ msgid "Choose some color"
+#~ msgstr "选择颜色"
+
+#~ msgid "Image:"
+#~ msgstr "图像："
+
+#~ msgid "Style:"
+#~ msgstr "风格："
+
+#~ msgid "Use system defaults"
+#~ msgstr "使用系统默认"
