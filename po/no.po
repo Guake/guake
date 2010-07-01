@@ -171,7 +171,7 @@ msgstr "Bakgrunnsbildet:"
 
 #: ../data/prefs.glade.h:18
 msgid "Built-in schemes:"
-msgstr ""
+msgstr "Bygd inn skjemaer"
 
 #: ../data/prefs.glade.h:19
 msgid "Choose some font"
