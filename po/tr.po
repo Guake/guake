@@ -2,7 +2,7 @@
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-#
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: guake 0.4.1\n"
@@ -37,7 +37,8 @@ msgstr ""
 "Mieszko Ślusarczyk <mieszkoslusarczyk@gmail.com> Polish\n"
 "Nishio Futoshi <futoshi@momonga-linux.org> Japanese\n"
 "Pavel Alexeev <Pahan@Hubbitus.spb.su> Russian\n"
-"Piotr Drąg <piotrdrag@gmail.com> PolishBerk Demirkır <perq87@gmail.com> Turkish"
+"Piotr Drąg <piotrdrag@gmail.com> Polish\n"
+"Berk Demirkır <perq87@gmail.com> Turkish"
 
 #: ../data/about.glade.h:9
 msgid ""
@@ -73,8 +74,7 @@ msgstr ""
 msgid "http://guake.org"
 msgstr "http://guake.org"
 
-#: ../data/guake.glade.h:1
-#: ../src/guake.py:1264
+#: ../data/guake.glade.h:1 ../src/guake.py:1264
 msgid "Add a new tab"
 msgstr "Yeni sekme ekle"
 
@@ -90,9 +90,7 @@ msgstr "Sekmeyi Kapat"
 msgid "Copy"
 msgstr "Kopyala"
 
-#: ../data/guake.glade.h:5
-#: ../src/guake.py:635
-#: ../src/guake.py:646
+#: ../data/guake.glade.h:5 ../src/guake.py:635 ../src/guake.py:646
 msgid "Guake!"
 msgstr "Guake!"
 
@@ -100,8 +98,7 @@ msgstr "Guake!"
 msgid "Paste"
 msgstr "Yapıştır"
 
-#: ../data/guake.glade.h:7
-#: ../src/prefs.py:61
+#: ../data/guake.glade.h:7 ../src/prefs.py:61
 msgid "Quit"
 msgstr "Çıkış"
 
@@ -203,8 +200,7 @@ msgstr "Başlangıçta popup uyarılarını göster"
 msgid "Font:"
 msgstr "Yazıtipi:"
 
-#: ../data/prefs.glade.h:25
-#: ../src/prefs.py:55
+#: ../data/prefs.glade.h:25 ../src/prefs.py:55
 msgid "General"
 msgstr "Genel"
 
@@ -480,4 +476,3 @@ msgstr ""
 "\"%s\" kısayolu kullanılamaz çünkü bu tuş kullanılarak yazmak imkansız olur.\n"
 "\n"
 "Ctrl, Alt veya Shift tuşları ile beraber kullanmayı deneyin.\n"
-
