@@ -1,15 +1,18 @@
 changes since 0.4.1:
 
-Updated translations and new translations:
+Updated translations and new translations (unsorted):
 
+  - Norwegian (wty)
+  - Turkish (Berk Demirkır)
   - Swedish (Daniel Nylander)
   - Persian (Kasra Keshavarz)
   - French (Bouska and Pingou)
-  - Russian (Pavel Alexeev)
+  - Russian (Pavel Alexeev and vkotovv)
   - Polish (Piotr Drąg)
   - Spanish, Castilian (dmartinezc)
   - Italian (Marco Leogrande a.k.a. dark)
   - Chinese simplified (甘露, Gan Lu)
+  - Portuguese/Brazilian (Djavan Fagundes)
 
 Bugs/Features:
 
