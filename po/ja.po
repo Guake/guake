@@ -19,6 +19,7 @@ msgid "About Guake"
 msgstr "Guakeについて"
 
 #: ../data/about.glade.h:2
+#, fuzzy
 msgid ""
 "Adolfo González Blázquez <code@infinicode.org> Spanish\n"
 "Lincoln de Sousa <lincoln@guake.org> Brazilian Portuguese\n"
@@ -28,12 +29,22 @@ msgid ""
 "Pavel Alexeev <Pahan@Hubbitus.spb.su> Russian\n"
 "Piotr Drąg <piotrdrag@gmail.com> Polish"
 msgstr ""
+"Adolfo González Blázquez <code@infinicode.org> Spanish\n"
+"Lincoln de Sousa <lincoln@guake.org> Brazilian Portuguese\n"
+"Markus Majer <mm@mpathy.de> German\n"
+"Mieszko Ślusarczyk <mieszkoslusarczyk@gmail.com> Polish\n"
+"Nishio Futoshi <futoshi@momonga-linux.org> Japanese\n"
+"Pavel Alexeev <Pahan@Hubbitus.spb.su> Russian\n"
+"Piotr Drąg <piotrdrag@gmail.com> Polish"
 
 #: ../data/about.glade.h:9
+#, fuzzy
 msgid ""
 "Copyright 2007-2009 Lincoln de Sousa\n"
 "Copyright 2007 Gabriel Falc&#xE3;o"
 msgstr ""
+"Copyright 2007-2009 Lincoln de Sousa\n"
+"Copyright 2007 Gabriel Falc&#xE3;o"
 
 #: ../data/about.glade.h:11
 msgid ""
@@ -45,24 +56,17 @@ msgstr ""
 
 #: ../data/about.glade.h:13
 msgid ""
-"Guake is free software; you can redistribute it and/or modify it under the "
-"terms of the GNU General Public License as published by the Free Software "
-"Foundation; either version 2 of the License, or (at your option) any later "
-"version.\n"
+"Guake is free software; you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation; either version 2 of the License, or (at your option) any later version.\n"
 "\n"
-"Guake is distributed in the hope that it will be useful, but WITHOUT ANY "
-"WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS "
-"FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more "
-"details.\n"
+"Guake is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more details.\n"
 "\n"
-"You should have received a copy of the GNU General Public License along with "
-"Guake; if not, write to the Free Software Foundation, Inc., 51 Franklin St, "
-"Fifth Floor, Boston, MA  02110-1301 USA\n"
+"You should have received a copy of the GNU General Public License along with Guake; if not, write to the Free Software Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301 USA\n"
 msgstr ""
 
 #: ../data/about.glade.h:19
+#, fuzzy
 msgid "http://guake.org"
-msgstr ""
+msgstr "http://guake.org"
 
 #: ../data/guake.glade.h:1 ../src/guake.py:1264
 msgid "Add a new tab"
@@ -81,8 +85,9 @@ msgid "Copy"
 msgstr "コピー"
 
 #: ../data/guake.glade.h:5 ../src/guake.py:635 ../src/guake.py:646
+#, fuzzy
 msgid "Guake!"
-msgstr ""
+msgstr "Guake!"
 
 #: ../data/guake.glade.h:6
 msgid "Paste"
@@ -129,20 +134,11 @@ msgid "<b>Shell</b>"
 msgstr "<b>シェル</b>"
 
 #: ../data/prefs.glade.h:9
-msgid ""
-"<small><i><b>Note:</b> These options may cause some applications to behave "
-"incorrectly.  They are only here to allow you to work around certain "
-"applications and operating systems that expect different terminal behavior.</"
-"i></small>"
-msgstr ""
-"<small><i><b>注意:</b> これらのオプションが影響して、いくつかのアプリケーショ"
-"ンが正常に動作しなくなるかもしれません。これらのオプションは特定のアプリや "
-"OS 上で異なった動作になってしまう問題を解決するために提供されています。</i></"
-"small>"
+msgid "<small><i><b>Note:</b> These options may cause some applications to behave incorrectly.  They are only here to allow you to work around certain applications and operating systems that expect different terminal behavior.</i></small>"
+msgstr "<small><i><b>注意:</b> これらのオプションが影響して、いくつかのアプリケーションが正常に動作しなくなるかもしれません。これらのオプションは特定のアプリや OS 上で異なった動作になってしまう問題を解決するために提供されています。</i></small>"
 
 #: ../data/prefs.glade.h:10
-msgid ""
-"<span color=\"black\">Customize behavior and appearance of Guake!</span>"
+msgid "<span color=\"black\">Customize behavior and appearance of Guake!</span>"
 msgstr "<span color=\"black\">Guake の動作や外観をカスタマイズします</span>"
 
 #: ../data/prefs.glade.h:11
@@ -327,8 +323,7 @@ msgstr "Guake 端末"
 #, python-format
 msgid ""
 "A problem happened when binding <b>%s</b> key.\n"
-"Please use Guake Preferences dialog to choose another key (The trayicon was "
-"enabled)"
+"Please use Guake Preferences dialog to choose another key (The trayicon was enabled)"
 msgstr ""
 "<b>%s</b>キーの割り当てで問題が発生しました。\n"
 "設定画面で別のキーを選択してください。(通知エリアのアイコンが有効でした)"
@@ -469,21 +464,17 @@ msgstr "ショートカットの設定中にエラーが起きました"
 #: ../src/prefs.py:618
 #, python-format
 msgid ""
-"The shortcut \"%s\" cannot be used because it will become impossible to type "
-"using this key.\n"
+"The shortcut \"%s\" cannot be used because it will become impossible to type using this key.\n"
 "\n"
 "Please try with a key such as Control, Alt or Shift at the same time.\n"
 msgstr ""
-"このキーでは入力できないので \"%s\" というショートカット・キーは利用できませ"
-"ん。\n"
+"このキーでは入力できないので \"%s\" というショートカット・キーは利用できません。\n"
 "\n"
-"[Control] や [Alt] や [Shift] といった修飾キーを一緒に使うようにしてみて下さ"
-"い。\n"
+"[Control] や [Alt] や [Shift] といった修飾キーを一緒に使うようにしてみて下さい。\n"
 
 #~ msgid "<b>Background</b>"
 #~ msgstr "<b>背景</b>"
 
-#, fuzzy
 #~ msgid "<b>Main Window size</b>"
 #~ msgstr "<b>ウィンドウサイズ</b>"
 
