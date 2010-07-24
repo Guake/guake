@@ -19,7 +19,6 @@ msgid "About Guake"
 msgstr "Guakeについて"
 
 #: ../data/about.glade.h:2
-#, fuzzy
 msgid ""
 "Adolfo González Blázquez <code@infinicode.org> Spanish\n"
 "Lincoln de Sousa <lincoln@guake.org> Brazilian Portuguese\n"
@@ -38,7 +37,6 @@ msgstr ""
 "Piotr Drąg <piotrdrag@gmail.com> Polish"
 
 #: ../data/about.glade.h:9
-#, fuzzy
 msgid ""
 "Copyright 2007-2009 Lincoln de Sousa\n"
 "Copyright 2007 Gabriel Falc&#xE3;o"
@@ -64,7 +62,6 @@ msgid ""
 msgstr ""
 
 #: ../data/about.glade.h:19
-#, fuzzy
 msgid "http://guake.org"
 msgstr "http://guake.org"
 
@@ -85,7 +82,6 @@ msgid "Copy"
 msgstr "コピー"
 
 #: ../data/guake.glade.h:5 ../src/guake.py:635 ../src/guake.py:646
-#, fuzzy
 msgid "Guake!"
 msgstr "Guake!"
 
