@@ -1102,7 +1102,7 @@ class Guake(SimpleGladeApp):
                 ssl_port = port
             else:
                 ssl_host = self.client.get_string('/system/proxy/secure_host')
-                ssl_port = self.client.get_string('/system/proxy/secure_port')
+                ssl_port = self.client.get_int('/system/proxy/secure_port')
 
             if self.client.get_bool(proxy + 'use_authentication'):
                 auth_user = self.client.get_string(
