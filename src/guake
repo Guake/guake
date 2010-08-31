@@ -1130,7 +1130,6 @@ class Guake(SimpleGladeApp):
         """Adds a new tab to the terminal notebook.
         """
         box = GuakeTerminalBox()
-        box.terminal.grab_focus()
         box.terminal.connect('button-press-event', self.show_context_menu)
         box.terminal.connect('child-exited', self.on_terminal_exited, box)
         box.terminal.connect('window-title-changed',
@@ -1172,6 +1171,7 @@ class Guake(SimpleGladeApp):
 
         self.notebook.append_page(box, None)
         self.notebook.set_current_page(self.notebook.page_num(box))
+        box.terminal.grab_focus()
         self.load_config()
 
     def delete_tab(self, pagepos, kill=True):
