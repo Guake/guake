@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: guake 0.2.2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-05-04 04:15+0000\n"
+"POT-Creation-Date: 2010-09-12 05:55+0000\n"
 "PO-Revision-Date: 2009-05-05 18:01-0300\n"
 "Last-Translator: Diego Martinez <dmartinezc@gmail.com>\n"
 "Language-Team: guake@lists.guake.org\n"
@@ -77,7 +77,7 @@ msgstr ""
 msgid "http://guake.org"
 msgstr "http://guake.org"
 
-#: ../data/guake.glade.h:1 ../src/guake.py:1224
+#: ../data/guake.glade.h:1 ../src/guake.py:1264
 msgid "Add a new tab"
 msgstr "Agregar Nueva pestaña"
 
@@ -93,7 +93,7 @@ msgstr "Cerrar pestaña"
 msgid "Copy"
 msgstr "Copiar"
 
-#: ../data/guake.glade.h:5 ../src/guake.py:628 ../src/guake.py:639
+#: ../data/guake.glade.h:5 ../src/guake.py:635 ../src/guake.py:646
 msgid "Guake!"
 msgstr "Guake!"
 
@@ -114,7 +114,6 @@ msgid "<b>Effects</b>"
 msgstr "<b>Efectos</b>"
 
 #: ../data/prefs.glade.h:2
-#, fuzzy
 msgid "<b>General</b>"
 msgstr "<b>General</b>"
 
@@ -131,12 +130,10 @@ msgid "<b>Main Window</b>"
 msgstr "<b>Ventana principal</b>"
 
 #: ../data/prefs.glade.h:6
-#, fuzzy
 msgid "<b>Palette</b>"
-msgstr "<b>Tipografía</b>"
+msgstr "<b>Paleta</b>"
 
 #: ../data/prefs.glade.h:7
-#, fuzzy
 msgid "<b>Scroll</b>"
 msgstr "<b>Shell</b>"
 
@@ -187,9 +184,8 @@ msgid "Choose some font"
 msgstr "Elija una tipografía"
 
 #: ../data/prefs.glade.h:20
-#, fuzzy
 msgid "Color palette:"
-msgstr "Color:"
+msgstr "Paleta de Colores:"
 
 #: ../data/prefs.glade.h:21
 msgid "Compatibility"
@@ -201,11 +197,11 @@ msgstr "Intérprete predeterminado:"
 
 #: ../data/prefs.glade.h:23
 msgid "Enable popup notifications on startup"
-msgstr ""
+msgstr "Activar notificaciones emergentes al inicio"
 
 #: ../data/prefs.glade.h:24
 msgid "Font:"
-msgstr ""
+msgstr "Fuente"
 
 #: ../data/prefs.glade.h:25 ../src/prefs.py:55
 msgid "General"
@@ -225,22 +221,21 @@ msgstr "Atajos de teclado"
 
 #: ../data/prefs.glade.h:29
 msgid "On key stroke"
-msgstr ""
+msgstr "Al presionar una tecla"
 
 #: ../data/prefs.glade.h:30
 msgid "On output"
-msgstr ""
+msgstr "En la salida"
 
 #: ../data/prefs.glade.h:31
 msgid "Prompt on quit"
-msgstr ""
+msgstr "Advertir al salir"
 
 #: ../data/prefs.glade.h:32
 msgid "Scrollback lines:"
 msgstr "Desplazamiento hacia atrás (líneas):"
 
 #: ../data/prefs.glade.h:33
-#, fuzzy
 msgid "Scrolling"
 msgstr "Desplazamiento hacia atrás (líneas):"
 
@@ -249,14 +244,12 @@ msgid "Show scrollbar"
 msgstr "Mostrar barra de desplazamiento"
 
 #: ../data/prefs.glade.h:35
-#, fuzzy
 msgid "Show tab bar"
-msgstr "Mostrar Icono"
+msgstr "Mostrar barra de pestañas"
 
 #: ../data/prefs.glade.h:36
-#, fuzzy
 msgid "Show tray icon"
-msgstr "Mostrar Icono"
+msgstr "Mostrar icono en la bandeja del sistema"
 
 #: ../data/prefs.glade.h:37
 msgid "Stay on top"
@@ -270,19 +263,23 @@ msgid ""
 "Rxvt\n"
 "Custom\n"
 msgstr ""
+"Tango\n"
+"Consola Linux\n"
+"XTerm\n"
+"Rxvt\n"
+"Custom\n"
 
 #: ../data/prefs.glade.h:44
 msgid "Text color:"
-msgstr ""
+msgstr "Color del texto:"
 
 #: ../data/prefs.glade.h:45
-#, fuzzy
 msgid "Transparency:"
 msgstr "Fondo transparente:"
 
 #: ../data/prefs.glade.h:46
 msgid "Use the system fixed width font"
-msgstr ""
+msgstr "Usar tamaño de letra del sistema"
 
 #: ../data/prefs.glade.h:47
 msgid "_Backspace key generates:"
@@ -294,7 +291,7 @@ msgstr "Tecla _Delete genera:"
 
 #: ../data/prefs.glade.h:49
 msgid "_Open new tab in current directory"
-msgstr ""
+msgstr "_Abrir nueva pestaña en el directorio actual"
 
 #: ../data/prefs.glade.h:50
 msgid "_Reset Compatibility Options to Defaults"
@@ -302,37 +299,36 @@ msgstr "_Reiniciar "
 
 #: ../data/prefs.glade.h:51
 msgid "_Run command as a login shell"
-msgstr ""
+msgstr "_Ejecutar comando como un usuario de shell"
 
 #: ../src/guake.py:67
 msgid "Do you really want to quit Guake!?"
-msgstr ""
+msgstr "¿Realmente quiere salir de Guake?"
 
 #: ../src/guake.py:70
 msgid "<b>There is one process still running.</b>"
-msgstr ""
+msgstr "<b>Hay un proceso ejecutándose actualmente</b>"
 
 #: ../src/guake.py:74
 #, python-format
 msgid "<b>There are %d processes running.</b>"
-msgstr ""
+msgstr "<b>Hay %d procesos ejecutándose actualmente</b>"
 
 #: ../src/guake.py:367
 msgid "key binding error"
 msgstr "Error al asignar tecla"
 
 #: ../src/guake.py:368
-#, fuzzy, python-format
+#, python-format
 msgid "Unable to bind global <b>%s</b> key"
 msgstr "No se pudo asignar la tecla %s"
 
 #: ../src/guake.py:530
-#, fuzzy
 msgid "Guake Terminal"
 msgstr "Guake-Terminal"
 
-#: ../src/guake.py:629
-#, fuzzy, python-format
+#: ../src/guake.py:636
+#, python-format
 msgid ""
 "A problem happened when binding <b>%s</b> key.\n"
 "Please use Guake Preferences dialog to choose another key (The trayicon was enabled)"
@@ -340,8 +336,8 @@ msgstr ""
 "Ocurrió un problema asignando la tecla <b>%s</b>.\n"
 "Por favor, use las preferencias de Guake para asignar otra tecla."
 
-#: ../src/guake.py:640
-#, fuzzy, python-format
+#: ../src/guake.py:647
+#, python-format
 msgid ""
 "Guake is now running,\n"
 "press <b>%s</b> to use it."
@@ -349,54 +345,53 @@ msgstr ""
 "Guake se está ejecutando,\n"
 "pulse <b>%s</b> para usarlo."
 
-#: ../src/guake.py:990
-#, fuzzy
+#: ../src/guake.py:997
 msgid "Rename tab"
-msgstr "Renombrar"
+msgstr "Renombrar pestaña"
 
 #. Adding a new radio button to the tabbar
-#: ../src/guake.py:1102
+#: ../src/guake.py:1142
 #, python-format
 msgid "Terminal %s"
 msgstr "Terminal %s"
 
-#: ../src/guake.py:1212
+#: ../src/guake.py:1252
 msgid "Toggles the visibility of the terminal window"
 msgstr "Conmuta la visibilidad de la ventana del terminal"
 
-#: ../src/guake.py:1216
+#: ../src/guake.py:1256
 msgid "Shows Guake preference window"
 msgstr "Muestra las preferencias de Guake"
 
-#: ../src/guake.py:1220
+#: ../src/guake.py:1260
 msgid "Shows Guake's about info"
 msgstr "Muestra el dialogo de información de Guake"
 
-#: ../src/guake.py:1228
+#: ../src/guake.py:1268
 msgid "Select a tab"
-msgstr ""
+msgstr "Seleccione una pestaña"
 
-#: ../src/guake.py:1232
+#: ../src/guake.py:1272
 msgid "Return the selectd tab index."
-msgstr ""
+msgstr "Devolver el índice de la pestaña seleccionada"
 
-#: ../src/guake.py:1236
+#: ../src/guake.py:1276
 msgid "Execute an arbitrary command in the selected tab."
-msgstr ""
+msgstr "Ejecutar un comando arbitrario en la pestaña seleccionada."
 
-#: ../src/guake.py:1240
+#: ../src/guake.py:1280
 msgid "Rename the selected tab."
-msgstr ""
+msgstr "Renombrar la pestaña seleccionada"
 
-#: ../src/guake.py:1244
+#: ../src/guake.py:1284
 msgid "Says to Guake go away =("
 msgstr "Le dice a Guake que desaparezca =("
 
-#: ../src/guake.py:1309
+#: ../src/guake.py:1349
 msgid "Guake can not init!"
 msgstr "¡Guake no se puede iniciar!"
 
-#: ../src/guake.py:1310
+#: ../src/guake.py:1350
 msgid ""
 "Gconf Error.\n"
 "Have you installed <b>guake.schemas</b> properlly?"
@@ -407,10 +402,9 @@ msgstr ""
 #. string to show in prefereces dialog for user shell option
 #: ../src/prefs.py:42
 msgid "<user shell>"
-msgstr ""
+msgstr "<usuario shell>"
 
 #: ../src/prefs.py:57
-#, fuzzy
 msgid "Toggle Guake visibility"
 msgstr "Conmuta la visibilidad del terminal"
 
@@ -420,7 +414,7 @@ msgstr "Conmutar pantalla completa"
 
 #: ../src/prefs.py:64
 msgid "Tab management"
-msgstr ""
+msgstr "Administrar pestañas"
 
 #: ../src/prefs.py:66
 msgid "New tab"
@@ -432,11 +426,11 @@ msgstr "Cerrar pestaña"
 
 #: ../src/prefs.py:70
 msgid "Rename current tab"
-msgstr ""
+msgstr "Renombrar la pestaña actual"
 
 #: ../src/prefs.py:73
 msgid "Navigation"
-msgstr ""
+msgstr "Navegación"
 
 #: ../src/prefs.py:75
 msgid "Go to previous tab"
@@ -448,7 +442,7 @@ msgstr "Ir a la pestaña siguiente"
 
 #: ../src/prefs.py:80
 msgid "Clipboard"
-msgstr ""
+msgstr "Portapapeles"
 
 #: ../src/prefs.py:82
 msgid "Copy text to clipboard"
