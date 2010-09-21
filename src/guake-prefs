@@ -1,3 +1,4 @@
+#!/usr/bin/env python
 # -*- coding: utf-8; -*-
 #
 # Copyright (C) 2008 Lincoln de Sousa <lincoln@minaslivre.org>
@@ -16,6 +17,8 @@
 # License along with this program; if not, write to the
 # Free Software Foundation, Inc., 59 Temple Place - Suite 330,
 # Boston, MA 02111-1307, USA.
+from __future__ import absolute_import
+
 import re
 import os
 import warnings
@@ -24,10 +27,9 @@ import gtk
 import gobject
 import gconf
 
-from simplegladeapp import SimpleGladeApp
-from guake_globals import GCONF_PATH, KEY, ALIGN_LEFT, ALIGN_RIGHT, ALIGN_CENTER
-from common import *
-import globalhotkeys
+from guake.simplegladeapp import SimpleGladeApp
+from guake.globals import GCONF_PATH, KEY, ALIGN_LEFT, ALIGN_RIGHT, ALIGN_CENTER
+from guake.common import *
 
 # A regular expression to match possible python interpreters when
 # filling interpreters combo in preferences

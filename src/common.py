@@ -18,6 +18,8 @@ License along with this program; if not, write to the
 Free Software Foundation, Inc., 59 Temple Place - Suite 330,
 Boston, MA 02111-1307, USA.
 """
+from __future__ import absolute_import
+
 import gtk
 import gconf
 import sys
@@ -27,7 +29,7 @@ import gettext
 import time
 import subprocess
 import re
-import guake_globals
+import guake.globals
 
 # Internationalization purposes.
 _ = gettext.gettext
@@ -52,13 +54,13 @@ def test_gconf():
     return c.dir_exists('/apps/guake')
 
 def pixmapfile(x):
-    f = os.path.join(guake_globals.IMAGE_DIR, x)
+    f = os.path.join(guake.globals.IMAGE_DIR, x)
     if not os.path.exists(f):
         raise IOError('No such file or directory: %s' % f)
     return os.path.abspath(f)
 
 def gladefile(x):
-    f = os.path.join(guake_globals.GLADE_DIR, x)
+    f = os.path.join(guake.globals.GLADE_DIR, x)
     if not os.path.exists(f):
         raise IOError('No such file or directory: %s' % f)
     return os.path.abspath(f)

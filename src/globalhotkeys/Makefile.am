@@ -1,5 +1,5 @@
-pyexecdir = $(libdir)/guake
-pyexec_LTLIBRARIES = globalhotkeys.la
+guakepyexecdir = $(pkgpyexecdir)
+guakepyexec_LTLIBRARIES = globalhotkeys.la
 
 globalhotkeys_la_SOURCES = \
 	eggaccelerators.c \
