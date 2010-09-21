@@ -23,8 +23,6 @@ guake-prefs.desktop
 org.gnome.Guake.service
 Makefile.in.in
 globals.py
-guake
-guake-prefs
 autom4te.cache
 POTFILES
 m4/libtool.m4

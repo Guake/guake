@@ -6,4 +6,4 @@ guakemodule_PYTHON = __init__.py \
                      prefs.py
 
 guakedir = $(bindir)
-bin_SCRIPTS = guake
+bin_SCRIPTS = guake guake-prefs
