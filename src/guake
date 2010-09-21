@@ -41,7 +41,7 @@ from time import sleep
 import posix
 
 import guake.globalhotkeys
-from simplegladeapp import SimpleGladeApp, bindtextdomain
+from guake.simplegladeapp import SimpleGladeApp, bindtextdomain
 from guake.prefs import PrefsDialog, LKEY, GKEY
 from guake.dbusiface import DbusManager, DBUS_NAME, DBUS_PATH
 from guake.common import test_gconf, pixmapfile, gladefile, ShowableError, _
