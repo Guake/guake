@@ -570,10 +570,6 @@ class Guake(SimpleGladeApp):
         # self.show_tab_menu
         self.selected_tab = None
 
-        # holds the number of created tabs. This counter will not be
-        # reset to avoid problems of repeated tab names.
-        self.tab_counter = 0
-
         # holds fullscreen status
         self.fullscreen = False
 
@@ -1154,7 +1150,7 @@ class Guake(SimpleGladeApp):
         self.pid_list.append(pid)
 
         # Adding a new radio button to the tabbar
-        label = _('Terminal %s') % self.tab_counter
+        label = box.terminal.get_window_title() or _("Terminal")
         tabs = self.tabs.get_children()
         parent = tabs and tabs[0] or None
 
@@ -1170,7 +1166,6 @@ class Guake(SimpleGladeApp):
         bnt.show()
 
         self.tabs.pack_start(bnt, expand=False, padding=1)
-        self.tab_counter += 1
 
         self.notebook.append_page(box, None)
         self.notebook.set_current_page(self.notebook.page_num(box))
