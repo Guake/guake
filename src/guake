@@ -974,6 +974,9 @@ class Guake(SimpleGladeApp):
             # their default state.
             self.client.notify(KEY('/general/window_tabbar'))
             self.client.notify(KEY('/general/show_resizer'))
+            # make sure the window size is correct after returning
+            # from fullscreen
+            self.client.notify(KEY('/general/window_height'))
 
         return True
 
