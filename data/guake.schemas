@@ -208,6 +208,18 @@
             </locale>
         </schema>
 
+	<schema>
+            <key>/schemas/apps/guake/general/use_vte_titles</key>
+            <applyto>/apps/guake/general/use_vte_titles</applyto>
+            <owner>guake</owner>
+            <type>bool</type>
+            <default>true</default>
+            <locale name="C">
+                <short>Use terminal titles for tab naming</short>
+                <long>Any terminal program can set the terminal's title via special escape sequences. Some shells (e.g. bash) display user's prompt there (though you can adjust that to any arbitrary text in bashrc or similar) and update it automatically as the prompt changes. So you can have easy automatically updating meaningful tab titles with this option turned on.</long>
+            </locale>
+        </schema>
+
         <schema>
             <key>/schemas/apps/guake/style/font/style</key>
             <applyto>/apps/guake/style/font/style</applyto>

@@ -866,6 +866,7 @@ class Guake(SimpleGladeApp):
         self.client.notify(KEY('/general/use_scrollbar'))
         self.client.notify(KEY('/general/history_size'))
         self.client.notify(KEY('/general/show_resizer'))
+        self.client.notify(KEY('/general/use_vte_titles'))
         self.client.notify(KEY('/style/font/style'))
         self.client.notify(KEY('/style/font/color'))
         self.client.notify(KEY('/style/font/palette'))
@@ -984,6 +985,13 @@ class Guake(SimpleGladeApp):
         `delete_tab' method to do the work.
         """
         self.delete_tab(self.notebook.page_num(widget), kill=False)
+
+    def on_terminal_title_changed(self, vte, box):
+        use_them = self.client.get_bool(KEY("/general/use_vte_titles"))
+        if not use_them:
+            return
+        page = self.notebook.page_num(box)
+        self.tabs.get_children()[page].set_label(vte.get_window_title())
 
     def on_rename_activate(self, *args):
         """Shows a dialog to rename the current tab.
@@ -1125,6 +1133,8 @@ class Guake(SimpleGladeApp):
         box.terminal.grab_focus()
         box.terminal.connect('button-press-event', self.show_context_menu)
         box.terminal.connect('child-exited', self.on_terminal_exited, box)
+        box.terminal.connect('window-title-changed',
+                             self.on_terminal_title_changed, box)
         box.show()
 
         self.term_list.append(box.terminal)
