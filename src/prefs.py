@@ -27,7 +27,7 @@ import gtk
 import gobject
 import gconf
 
-from guake.simplegladeapp import SimpleGladeApp
+from guake.simplegtkapp import SimpleGtkApp, CallbacksProxy
 from guake.globals import GCONF_PATH, KEY, ALIGN_LEFT, ALIGN_RIGHT, ALIGN_CENTER
 from guake.common import *
 
@@ -113,7 +113,7 @@ PALETTES = [
     '#ffffffffffff'
 ]
 
-class PrefsCallbacks(object):
+class PrefsCallbacks(CallbacksProxy):
     """Holds callbacks that will be used in the PrefsDialg class.
     """
 
@@ -260,16 +260,15 @@ class PrefsCallbacks(object):
                                ERASE_BINDINGS[val])
 
 
-class PrefsDialog(SimpleGladeApp):
+class PrefsDialog(SimpleGtkApp):
     """The Guake Preferences dialog.
     """
     def __init__(self):
         """Setup the preferences dialog interface, loading images,
         adding filters to file choosers and connecting some signals.
         """
-        super(PrefsDialog, self).__init__(gladefile('prefs.glade'),
-                                          root='config-window')
-        self.add_callbacks(PrefsCallbacks())
+        super(PrefsDialog, self).__init__(gladefile('prefs.ui'),
+                                          PrefsCallbacks())
 
         self.client = gconf.client_get_default()
 

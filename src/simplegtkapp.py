@@ -47,7 +47,21 @@ def bindtextdomain(app_name, locale_dir=None):
         print "Warning", app_name, e
         __builtins__.__dict__["_"] = lambda x : x
 
-class SimpleGtkApp(object):
+class CallbacksProxy(object):
+    # -- predefined callbacks --
+    def gtk_main_quit(self, *args):
+        """
+        Calls self.quit()
+        """
+        self.quit()
+
+    def gtk_widget_destroy(self, widget, *args):
+        """
+        Destroyes the widget.
+        """
+        widget.destroy()
+
+class SimpleGtkApp(CallbacksProxy):
     """
     Basic GtkBuilder wrapper that implements the functions from
     simplegladeapp.py used by Guake with the purpose to minimize
@@ -89,17 +103,3 @@ class SimpleGtkApp(object):
         Returns all the interface widgets.
         """
         return self.builder.get_objects()
-
-    # -- predefined callbacks --
-    
-    def gtk_main_quit(self, *args):
-        """
-        Calls self.quit()
-        """
-        self.quit()
-
-    def gtk_widget_destroy(self, widget, *args):
-        """
-        Destroyes the widget.
-        """
-        widget.destroy()

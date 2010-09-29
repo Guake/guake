@@ -6,7 +6,7 @@ uidir = $(datadir)/guake
 ui_DATA = \
 	about.ui \
 	guake.ui \
-	prefs.glade
+	prefs.ui
 
 # dbus service file
 servicedir = $(datadir)/dbus-1/services
