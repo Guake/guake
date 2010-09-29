@@ -21,9 +21,6 @@ Boston, MA 02111-1307, USA.
 import dbus
 import dbus.service
 import dbus.glib
-import gtk
-import guake.common
-dbus.glib.threads_init()
 
 DBUS_PATH = '/org/guake/RemoteControl'
 DBUS_NAME = 'org.guake.RemoteControl'

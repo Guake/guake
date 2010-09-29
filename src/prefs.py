@@ -19,9 +19,8 @@
 # Boston, MA 02111-1307, USA.
 from __future__ import absolute_import
 
-import re
-import os
-import warnings
+import pygtk
+pygtk.require('2.0')
 
 import gtk
 import gobject
@@ -30,6 +29,10 @@ import gconf
 from guake.simplegtkapp import SimpleGtkApp, CallbacksProxy
 from guake.globals import GCONF_PATH, KEY, ALIGN_LEFT, ALIGN_RIGHT, ALIGN_CENTER
 from guake.common import *
+
+import re
+import os
+import warnings
 
 # A regular expression to match possible python interpreters when
 # filling interpreters combo in preferences

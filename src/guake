@@ -22,16 +22,14 @@ Boston, MA 02111-1307, USA.
 from __future__ import absolute_import
 
 import pygtk
-import gobject
 pygtk.require('2.0')
-gobject.threads_init()
 
 import gtk
-import vte
-from pango import FontDescription
-import pynotify
+import pango
 import gconf
+import vte
 import dbus
+#import pynotify
 
 import os
 import sys
@@ -49,7 +47,7 @@ from guake.globals import NAME, VERSION, LOCALE_DIR, KEY, GCONF_PATH, \
     TERMINAL_MATCH_EXPRS, TERMINAL_MATCH_TAGS, \
     ALIGN_LEFT, ALIGN_RIGHT, ALIGN_CENTER
 
-pynotify.init('Guake!')
+#pynotify.init('Guake!')
 
 GNOME_FONT_PATH = '/desktop/gnome/interface/monospace_font_name'
 
@@ -237,7 +235,7 @@ class GConfHandler(object):
         else:
             key = KEY('/style/font/style')
 
-        font = FontDescription(client.get_string(key))
+        font = pango.FontDescription(client.get_string(key))
         for i in self.guake.term_list:
             i.set_font(font)
 
@@ -246,7 +244,7 @@ class GConfHandler(object):
         will be called and will change the font style in all terminals
         open.
         """
-        font = FontDescription(entry.value.get_string())
+        font = pango.FontDescription(entry.value.get_string())
         for i in self.guake.term_list:
             i.set_font(font)
 
@@ -529,7 +527,7 @@ class Guake(SimpleGtkApp):
         # trayicon!
         img = pixmapfile('guake-tray.png')
         self.tray_icon = gtk.status_icon_new_from_file(img)
-        self.tray_icon.set_tooltip(_('Guake Terminal'))
+        self.tray_icon.set_tooltip_text(_('Guake Terminal'))
         self.tray_icon.connect('popup-menu', self.show_menu)
         self.tray_icon.connect('activate', self.show_hide)
 
@@ -549,13 +547,14 @@ class Guake(SimpleGtkApp):
         self.context_menu = self.get_widget('context-menu')
 
         # check and set ARGB for real transparency
-        screen = self.window.get_screen()
-        colormap = screen.get_rgba_colormap()
-        if colormap != None and screen.is_composited():
-            self.window.set_colormap(colormap)
-            self.has_argb = True
-        else:
-            self.has_argb = False
+        self.has_argb = False
+        #screen = self.window.get_screen()
+        #colormap = screen.get_rgba_colormap()
+        #if colormap != None and screen.is_composited():
+        #    self.window.set_colormap(colormap)
+        #    self.has_argb = True
+        #else:
+        #    self.has_argb = False
 
         # List of vte.Terminal widgets, it will be useful when needed
         # to get a widget by the current page in self.notebook
@@ -630,22 +629,24 @@ class Guake(SimpleGtkApp):
         filename = pixmapfile('guake-notification.png')
 
         if not self.hotkeys.bind(key, self.show_hide):
-            notification = pynotify.Notification(
-                _('Guake!'),
-                _('A problem happened when binding <b>%s</b> key.\n'
-                  'Please use Guake Preferences dialog to choose another '
-                  'key (The trayicon was enabled)') % label, filename)
+            #notification = pynotify.Notification(
+            #    _('Guake!'),
+            #    _('A problem happened when binding <b>%s</b> key.\n'
+            #      'Please use Guake Preferences dialog to choose another '
+            #      'key (The trayicon was enabled)') % label, filename)
+            #notification.show()
             self.client.set_bool(KEY('/general/use_trayicon'), True)
-            notification.show()
+            print "A problem happened when binding %s key." % label
 
         elif self.client.get_bool(KEY('/general/use_popup')):
             # Pop-up that shows that guake is working properly (if not
             # unset in the preferences windows)
-            notification = pynotify.Notification(
-                _('Guake!'),
-                _('Guake is now running,\n'
-                  'press <b>%s</b> to use it.') % label, filename)
-            notification.show()
+            #notification = pynotify.Notification(
+            #    _('Guake!'),
+            #    _('Guake is now running,\n'
+            #      'press <b>%s</b> to use it.') % label, filename)
+            #notification.show()
+            print "Guake is runing press %s to use it." % label
 
     def execute_command(self, command, tab=None):
         """Execute the `command' in the `tab'. If tab is None, the
