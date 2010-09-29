@@ -5,7 +5,7 @@ man_MANS = guake.1
 uidir = $(datadir)/guake
 ui_DATA = \
 	about.ui \
-	guake.glade \
+	guake.ui \
 	prefs.glade
 
 # dbus service file

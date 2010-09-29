@@ -41,8 +41,7 @@ from time import sleep
 import posix
 
 import guake.globalhotkeys
-from guake.simplegladeapp import SimpleGladeApp, bindtextdomain
-from guake.simplegtkapp import SimpleGtkApp
+from guake.simplegtkapp import SimpleGtkApp, bindtextdomain
 from guake.prefs import PrefsDialog, LKEY, GKEY
 from guake.dbusiface import DbusManager, DBUS_NAME, DBUS_PATH
 from guake.common import test_gconf, pixmapfile, gladefile, ShowableError, _
@@ -517,11 +516,11 @@ class GuakeTerminalBox(gtk.HBox):
         self.pack_start(scroll, False, False)
 
 
-class Guake(SimpleGladeApp):
+class Guake(SimpleGtkApp):
     """Guake main class. Handles specialy the main window.
     """
     def __init__(self):
-        super(Guake, self).__init__(gladefile('guake.glade'))
+        super(Guake, self).__init__(gladefile('guake.ui'))
         self.client = gconf.client_get_default()
 
         # setting global hotkey and showing a pretty notification =)
@@ -547,6 +546,7 @@ class Guake(SimpleGladeApp):
         self.toolbar = self.get_widget('toolbar')
         self.mainframe = self.get_widget('mainframe')
         self.resizer = self.get_widget('resizer')
+        self.context_menu = self.get_widget('context-menu')
 
         # check and set ARGB for real transparency
         screen = self.window.get_screen()
@@ -714,8 +714,7 @@ class Guake(SimpleGladeApp):
             self.get_widget('context_paste').set_sensitive(False)
         else:
             self.get_widget('context_paste').set_sensitive(True)
-        context_menu = self.get_widget('context-menu')
-        context_menu.popup(None, None, None, 3, gtk.get_current_event_time())
+        self.context_menu.popup(None, None, None, 3, gtk.get_current_event_time())
         return True
 
     def show_rename_dialog(self, target, event):
