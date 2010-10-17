@@ -1351,7 +1351,7 @@ if __name__ == '__main__':
     if not test_gconf():
         raise ShowableError(_('Guake can not init!'),
             _('Gconf Error.\n'
-              'Have you installed <b>guake.schemas</b> properlly?'))
+              'Have you installed <b>guake.schemas</b> properly?'))
 
     if not main():
         gtk.main()
