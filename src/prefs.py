@@ -22,9 +22,12 @@ from __future__ import absolute_import
 import pygtk
 pygtk.require('2.0')
 
-import gtk
-import gobject
-import gconf
+from gi.repository import Gdk
+Gdk.init_check([])
+from gi.repository import Gtk
+Gtk.init_check([])
+from gi.repository import GObject
+from gi.repository import GConf
 
 from guake.simplegtkapp import SimpleGtkApp, CallbacksProxy
 from guake.globals import GCONF_PATH, KEY, ALIGN_LEFT, ALIGN_RIGHT, ALIGN_CENTER
@@ -121,7 +124,7 @@ class PrefsCallbacks(CallbacksProxy):
     """
 
     def __init__(self):
-        self.client = gconf.client_get_default()
+        self.client = GConf.Client.get_default()
 
     # general tab
 
@@ -273,11 +276,11 @@ class PrefsDialog(SimpleGtkApp):
         super(PrefsDialog, self).__init__(gladefile('prefs.ui'),
                                           PrefsCallbacks())
 
-        self.client = gconf.client_get_default()
+        self.client = GConf.Client.get_default()
 
         # setting evtbox title bg
         eventbox = self.get_widget('eventbox-title')
-        eventbox.modify_bg(gtk.STATE_NORMAL,
+        eventbox.modify_bg(Gtk.StateType.NORMAL,
                            eventbox.get_colormap().alloc_color("#ffffff"))
 
         # images
@@ -286,29 +289,29 @@ class PrefsDialog(SimpleGtkApp):
 
         # the first position in tree will store the keybinding path in gconf,
         # and the user doesn't worry with this, lest hide that =D
-        model = gtk.TreeStore(str, str, object, bool)
+        model = Gtk.TreeStore(str, str, object, bool)
         treeview = self.get_widget('treeview-keys')
         treeview.set_model(model)
         treeview.set_rules_hint(True)
         treeview.connect('button-press-event', self.start_editing)
 
-        renderer = gtk.CellRendererText()
-        column = gtk.TreeViewColumn('keypath', renderer, text=0)
+        renderer = Gtk.CellRendererText()
+        column = Gtk.TreeViewColumn('keypath', renderer, text=0)
         column.set_visible(False)
         treeview.append_column(column)
 
-        renderer = gtk.CellRendererText()
-        column = gtk.TreeViewColumn(_('Action'), renderer, text=1)
+        renderer = Gtk.CellRendererText()
+        column = Gtk.TreeViewColumn(_('Action'), renderer, text=1)
         column.set_property('expand', True)
         treeview.append_column(column)
 
-        renderer = gtk.CellRendererAccel()
+        renderer = Gtk.CellRendererAccel()
         renderer.set_property('editable', True)
 
         renderer.connect('accel-edited', self.on_key_edited, model)
         renderer.connect('accel-cleared', self.on_key_cleared, model)
 
-        column = gtk.TreeViewColumn(_('Shortcut'), renderer)
+        column = Gtk.TreeViewColumn(_('Shortcut'), renderer)
         column.set_cell_data_func(renderer, self.cell_data_func)
         column.set_property('expand', False)
         treeview.append_column(column)
@@ -319,8 +322,8 @@ class PrefsDialog(SimpleGtkApp):
         self.get_widget('config-window').hide()
 
         # Preview when selecting a bgimage
-        self.selection_preview = gtk.Image()
-        self.file_filter = gtk.FileFilter()
+        self.selection_preview = Gtk.Image()
+        self.file_filter = Gtk.FileFilter()
         self.file_filter.add_pattern("*.jpg")
         self.file_filter.add_pattern("*.png")
         self.file_filter.add_pattern("*.svg")
@@ -349,11 +352,11 @@ class PrefsDialog(SimpleGtkApp):
         filename = file_chooser.get_preview_filename()
         if filename and os.path.isfile(filename or ''):
             try:
-                mkpb = gtk.gdk.pixbuf_new_from_file_at_size
+                mkpb = Gdk.pixbuf_new_from_file_at_size
                 pixbuf = mkpb(filename, 256, 256)
                 preview.set_from_pixbuf(pixbuf)
                 file_chooser.set_preview_widget_active(True)
-            except gobject.GError:
+            except GObject.GError:
                 # this exception is raised when user chooses a
                 # non-image file or a directory
                 warnings.warn('File %s is not an image' % filename)
@@ -418,7 +421,7 @@ class PrefsDialog(SimpleGtkApp):
         """
         palette = palette.split(':')
         for i in range(16):
-            color = gtk.gdk.color_parse(palette[i])
+            color = Gdk.color_parse(palette[i])
             self.get_widget('palette_%d' % i).set_color(color)
 
     def reload_erase_combos(self, btn=None):
@@ -441,7 +444,7 @@ class PrefsDialog(SimpleGtkApp):
 
     def load_configs(self):
         """Load configurations for all widgets in General, Scrolling
-        and Appearance tabs from gconf.
+        and Appearance tabs from GConf.
         """
         # default_shell
         combo = self.get_widget('default_shell')
@@ -508,7 +511,7 @@ class PrefsDialog(SimpleGtkApp):
         # font color
         val = self.client.get_string(KEY('/style/font/color'))
         try:
-            color = gtk.gdk.color_parse(val)
+            color = Gdk.color_parse(val)
             self.get_widget('font_color').set_color(color)
         except (ValueError, TypeError):
             warnings.warn('Unable to parse color %s' % val, Warning)
@@ -516,7 +519,7 @@ class PrefsDialog(SimpleGtkApp):
         # background color
         value = self.client.get_string(KEY('/style/background/color'))
         try:
-            color = gtk.gdk.color_parse(value)
+            color = Gdk.color_parse(value)
             self.get_widget('background_color').set_color(color)
         except (ValueError, TypeError):
             warnings.warn('Unable to parse color %s' % val, Warning)
@@ -569,7 +572,7 @@ class PrefsDialog(SimpleGtkApp):
                 child = model.append(giter)
                 accel = self.client.get_string(item['key'])
                 if accel:
-                    params = gtk.accelerator_parse(accel)
+                    params = Gtk.accelerator_parse(accel)
                     hotkey = KeyEntry(*params)
                 else:
                     hotkey = KeyEntry(0, 0)
@@ -587,15 +590,15 @@ class PrefsDialog(SimpleGtkApp):
         some tests to validate the key, like looking for already in
         use keys and look for [A-Z][a-z][0-9] to avoid problems with
         these common keys. If all tests are ok, the value will be
-        stored in gconf.
+        stored in GConf.
         """
         giter = model.get_iter(path)
         gconf_path = model.get_value(giter, 0)
 
         oldkey = model.get_value(giter, 2)
         hotkey = KeyEntry(keycode, mask)
-        key = gtk.accelerator_name(keycode, mask)
-        keylabel = gtk.accelerator_get_label(keycode, mask)
+        key = Gtk.accelerator_name(keycode, mask)
+        keylabel = Gtk.accelerator_get_label(keycode, mask)
 
         # we needn't to change anything, the user is trying to set the
         # same key that is already set.
@@ -615,10 +618,10 @@ class PrefsDialog(SimpleGtkApp):
             (keycode >= ord('a') and keycode <= ord('z')) or
             (keycode >= ord('A') and keycode <= ord('Z')) or
             (keycode >= ord('0') and keycode <= ord('9')))):
-            dialog = gtk.MessageDialog(
+            dialog = Gtk.MessageDialog(
                 self.get_widget('config-window'),
-                gtk.DIALOG_MODAL | gtk.DIALOG_DESTROY_WITH_PARENT,
-                gtk.MESSAGE_WARNING, gtk.BUTTONS_OK,
+                Gtk.DIALOG_MODAL | Gtk.DIALOG_DESTROY_WITH_PARENT,
+                Gtk.MESSAGE_WARNING, Gtk.BUTTONS_OK,
                 _("The shortcut \"%s\" cannot be used "
                   "because it will become impossible to "
                   "type using this key.\n\n"
@@ -685,7 +688,7 @@ class PrefsDialog(SimpleGtkApp):
                 treeview.grab_focus()
                 treeview.set_cursor(path, column, True)
             treeview.stop_emission('button-press-event')
-            gobject.idle_add(real_cb)
+            GObject.idle_add(real_cb)
 
         return True
 
@@ -708,16 +711,16 @@ def setup_standalone_signals(instance):
     the application.
     """
     window = instance.get_widget('config-window')
-    window.connect('delete-event', gtk.main_quit)
+    window.connect('delete-event', Gtk.main_quit)
 
     # We need to block the execution of the already associated
     # callback before connecting the new handler.
     button = instance.get_widget('button1')
     button.handler_block_by_func(instance.gtk_widget_destroy)
-    button.connect('clicked', gtk.main_quit)
+    button.connect('clicked', Gtk.main_quit)
 
     return instance
 
 if __name__ == '__main__':
     setup_standalone_signals(PrefsDialog()).show()
-    gtk.main()
+    Gtk.main()

@@ -17,7 +17,7 @@ Free Software Foundation, Inc., 59 Temple Place - Suite 330,
 Boston, MA 02111-1307, USA.
 """
 
-import gtk
+from gi.repository import Gtk
 
 def bindtextdomain(app_name, locale_dir=None):
     """    
@@ -70,7 +70,7 @@ class SimpleGtkApp(CallbacksProxy):
         If callbacks_proxy is specified it will be used as object to
         to connect the signals, otherwise self will be used.
         """        
-        self.builder = gtk.Builder()
+        self.builder = Gtk.Builder()
         self.builder.add_from_file(path)
         if callbacks_proxy:
             self.builder.connect_signals(callbacks_proxy)
@@ -81,13 +81,13 @@ class SimpleGtkApp(CallbacksProxy):
         """
         Quit processing of gtk events.
         """
-        gtk.main_quit()
+        Gtk.main_quit()
 
     def run(self):
         """
         Starts the main gtk loop.
         """
-        gtk.main()
+        Gtk.main()
 
     def get_widget(self, name):
         """

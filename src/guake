@@ -24,10 +24,14 @@ from __future__ import absolute_import
 import pygtk
 pygtk.require('2.0')
 
-import gtk
-import pango
-import gconf
-import vte
+from gi.repository import GdkX11
+from gi.repository import Gdk
+Gdk.init_check([])
+from gi.repository import Gtk
+Gtk.init_check([])
+from gi.repository import Pango
+from gi.repository import GConf
+from gi.repository import Vte
 import dbus
 #import pynotify
 
@@ -42,7 +46,8 @@ import guake.globalhotkeys
 from guake.simplegtkapp import SimpleGtkApp, bindtextdomain
 from guake.prefs import PrefsDialog, LKEY, GKEY
 from guake.dbusiface import DbusManager, DBUS_NAME, DBUS_PATH
-from guake.common import test_gconf, pixmapfile, gladefile, ShowableError, _
+from guake.common import test_gconf, pixmapfile, gladefile, ShowableError, _, \
+    ERASE_BINDINGS_ENUM
 from guake.globals import NAME, VERSION, LOCALE_DIR, KEY, GCONF_PATH, \
     TERMINAL_MATCH_EXPRS, TERMINAL_MATCH_TAGS, \
     ALIGN_LEFT, ALIGN_RIGHT, ALIGN_CENTER
@@ -55,14 +60,14 @@ GNOME_FONT_PATH = '/desktop/gnome/interface/monospace_font_name'
 bindtextdomain(NAME, LOCALE_DIR)
 
 
-class PromptQuitDialog(gtk.MessageDialog):
+class PromptQuitDialog(Gtk.MessageDialog):
     """Prompts the user whether to quit or not if there are procs running.
     """
     def __init__(self, parent, running_procs):
         super(PromptQuitDialog, self).__init__(
             parent,
-            gtk.DIALOG_MODAL | gtk.DIALOG_DESTROY_WITH_PARENT,
-            gtk.MESSAGE_QUESTION, gtk.BUTTONS_YES_NO)
+            Gtk.DIALOG_MODAL | Gtk.DIALOG_DESTROY_WITH_PARENT,
+            Gtk.MESSAGE_QUESTION, Gtk.BUTTONS_YES_NO)
 
         self.set_keep_above(True)
         self.set_markup(_('Do you really want to quit Guake!?'))
@@ -85,7 +90,7 @@ class AboutDialog(SimpleGtkApp):
 
         # images
         ipath = pixmapfile('guake-notification.png')
-        img = gtk.gdk.pixbuf_new_from_file(ipath)
+        img = Gdk.pixbuf_new_from_file(ipath)
         dialog.set_property('logo', img)
 
         dialog.set_name('Guake!')
@@ -102,10 +107,10 @@ class GConfHandler(object):
         """
         self.guake = guake
 
-        client = gconf.client_get_default()
-        client.add_dir(GCONF_PATH, gconf.CLIENT_PRELOAD_RECURSIVE)
+        client = GConf.Client.get_default()
+        client.add_dir(GCONF_PATH, GConf.ClientPreloadType.PRELOAD_RECURSIVE)
 
-        notify_add = client.notify_add
+        notify_add = lambda x, y: client.notify_add(x, y, None)
 
         # these keys does not need to be watched.
         #notify_add(KEY('/general/default_shell'), self.shell_changed)
@@ -180,9 +185,9 @@ class GConfHandler(object):
         this method will be called and will call the resize function
         in guake.
         """
-        window_rect = self.guake.get_final_window_rect()
-        self.guake.window.move(window_rect.x, window_rect.y)
-        self.guake.window.resize(window_rect.width, window_rect.height)
+        x, y, width, height = self.guake.get_final_window_rect()
+        self.guake.window.move(x, y)
+        self.guake.window.resize(width, height)
 
     def scrollbar_toggled(self, client, connection_id, entry, data):
         """If the gconf var use_scrollbar be changed, this method will
@@ -235,7 +240,7 @@ class GConfHandler(object):
         else:
             key = KEY('/style/font/style')
 
-        font = pango.FontDescription(client.get_string(key))
+        font = Pango.font_description_from_string(client.get_string(key))
         for i in self.guake.term_list:
             i.set_font(font)
 
@@ -244,7 +249,7 @@ class GConfHandler(object):
         will be called and will change the font style in all terminals
         open.
         """
-        font = pango.FontDescription(entry.value.get_string())
+        font = Pango.font_description_from_string(entry.value.get_string())
         for i in self.guake.term_list:
             i.set_font(font)
 
@@ -253,7 +258,11 @@ class GConfHandler(object):
         will be called and will change the font color in all terminals
         open.
         """
-        fgcolor = gtk.gdk.color_parse(entry.value.get_string())
+        success, fgcolor = Gdk.color_parse(entry.value.get_string())
+        if not success:
+            # FIXME: handle error case
+            return
+
         for i in self.guake.term_list:
             i.set_color_dim(fgcolor)
             i.set_color_foreground(fgcolor)
@@ -264,12 +273,24 @@ class GConfHandler(object):
         will be called and will change the color scheme in all terminals
         open.
         """
-        fgcolor = gtk.gdk.color_parse(
+        success, fgcolor = Gdk.color_parse(
             client.get_string(KEY('/style/font/color')))
-        bgcolor = gtk.gdk.color_parse(
+        if not success:
+            # FIXME: handle error case
+            return
+        success, bgcolor = Gdk.color_parse(
             client.get_string(KEY('/style/background/color')))
-        palette = [gtk.gdk.color_parse(color) for color in 
-            entry.value.get_string().split(':')]
+        if not success:
+            # FIXME: handle error case
+            return
+        palette = []
+        for color in entry.value.get_string().split(':'):
+            success, pcolor = Gdk.color_parse(color)
+            if not success:
+                # FIXME: handle error case
+                return
+            palette.append(pcolor)
+
         for i in self.guake.term_list:
             i.set_colors(fgcolor, bgcolor, palette)
 
@@ -278,7 +299,11 @@ class GConfHandler(object):
         method will be called and will change the background color in
         all terminals open.
         """
-        bgcolor = gtk.gdk.color_parse(entry.value.get_string())
+        success, bgcolor = Gdk.color_parse(entry.value.get_string())
+        if not success:
+            # FIXME: handle error case
+            return
+
         for i in self.guake.term_list:
             i.set_color_background(bgcolor)
             i.set_background_tint_color(bgcolor)
@@ -323,7 +348,7 @@ class GConfHandler(object):
         all terminals open.
         """
         for i in self.guake.term_list:
-            i.set_backspace_binding(entry.value.get_string())
+            i.set_backspace_binding(ERASE_BINDINGS_ENUM[entry.value.get_string()])
 
     def delete_changed(self, client, connection_id, entry, data):
         """If the gconf var compat_delete be changed, this method
@@ -331,7 +356,7 @@ class GConfHandler(object):
         all terminals open.
         """
         for i in self.guake.term_list:
-            i.set_delete_binding(entry.value.get_string())
+            i.set_delete_binding(ERASE_BINDINGS_ENUM[entry.value.get_string()])
 
 
 class GConfKeyHandler(object):
@@ -343,9 +368,9 @@ class GConfKeyHandler(object):
         """
         self.guake = guake
         self.accel_group = None # see reload_accelerators
-        self.client = gconf.client_get_default()
+        self.client = GConf.Client.get_default()
 
-        notify_add = self.client.notify_add
+        notify_add = lambda x, y: self.client.notify_add(x, y, None)
         notify_add(GKEY('show_hide'), self.reload_globals)
 
         keys = ['toggle_fullscreen', 'new_tab', 'close_tab', 'rename_tab',
@@ -354,7 +379,8 @@ class GConfKeyHandler(object):
                 ]
         for key in keys:
             notify_add(LKEY(key), self.reload_accelerators)
-            self.client.notify(LKEY(key))
+
+        self.reload_accelerators()
 
     def reload_globals(self, client, connection_id, entry, data):
         """Unbind all global hotkeys and rebind the show_hide
@@ -374,7 +400,7 @@ class GConfKeyHandler(object):
         """
         if self.accel_group:
             self.guake.window.remove_accel_group(self.accel_group)
-        self.accel_group = gtk.AccelGroup()
+        self.accel_group = Gtk.AccelGroup()
         self.guake.window.add_accel_group(self.accel_group)
         self.guake.context_menu.set_accel_group(self.accel_group)
         self.load_accelerators()
@@ -383,55 +409,27 @@ class GConfKeyHandler(object):
         """Reads all gconf paths under /apps/guake/keybindings/local
         and adds to the main accel_group.
         """
-        gets = lambda x:self.client.get_string(LKEY(x))
-        key, mask = gtk.accelerator_parse(gets('quit'))
-        if key > 0:
-            self.accel_group.connect_group(key, mask, gtk.ACCEL_VISIBLE,
-                                           self.guake.accel_quit)
+        print 'load_accelerators'
+        accel_handler = {
+            'quit' : self.guake.accel_quit,
+            'new_tab' : self.guake.accel_add,
+            'close_tab' : self.guake.close_tab,
+            'previous_tab' : self.guake.accel_prev,
+            'next_tab' : self.guake.accel_next,
+            'rename_tab' : self.guake.accel_rename,
+            'clipboard_copy' : self.guake.accel_copy_clipboard,
+            'clipboard_paste' : self.guake.accel_paste_clipboard,
+            'toggle_fullscreen' : self.guake.accel_toggle_fullscreen
+        }
 
-        key, mask = gtk.accelerator_parse(gets('new_tab'))
-        if key > 0:
-            self.accel_group.connect_group(key, mask, gtk.ACCEL_VISIBLE,
-                                           self.guake.accel_add)
+        for accel, handler in accel_handler.iteritems():
+            key, mask = Gtk.accelerator_parse(self.client.get_string(LKEY(accel)))
+            if key > 0:
+                self.accel_group.connect(key, mask, Gtk.AccelFlags.VISIBLE,
+                                         handler)
 
-        key, mask = gtk.accelerator_parse(gets('close_tab'))
-        if key > 0:
-            self.accel_group.connect_group(
-                key, mask, gtk.ACCEL_VISIBLE,
-                self.guake.close_tab)
-
-        key, mask = gtk.accelerator_parse(gets('previous_tab'))
-        if key > 0:
-            self.accel_group.connect_group(key, mask, gtk.ACCEL_VISIBLE,
-                                           self.guake.accel_prev)
-
-        key, mask = gtk.accelerator_parse(gets('next_tab'))
-        if key > 0:
-            self.accel_group.connect_group(key, mask, gtk.ACCEL_VISIBLE,
-                                           self.guake.accel_next)
-
-        key, mask = gtk.accelerator_parse(gets('rename_tab'))
-        if key > 0:
-            self.accel_group.connect_group(key, mask, gtk.ACCEL_VISIBLE,
-                                           self.guake.accel_rename)
-
-        key, mask = gtk.accelerator_parse(gets('clipboard_copy'))
-        if key > 0:
-            self.accel_group.connect_group(key, mask, gtk.ACCEL_VISIBLE,
-                                           self.guake.accel_copy_clipboard)
-
-        key, mask = gtk.accelerator_parse(gets('clipboard_paste'))
-        if key > 0:
-            self.accel_group.connect_group(key, mask, gtk.ACCEL_VISIBLE,
-                                           self.guake.accel_paste_clipboard)
-
-        key, mask = gtk.accelerator_parse(gets('toggle_fullscreen'))
-        if key > 0:
-            self.accel_group.connect_group(key, mask, gtk.ACCEL_VISIBLE,
-                                           self.guake.accel_toggle_fullscreen)
-
-class GuakeTerminal(vte.Terminal):
-    """Just a vte.Terminal with some properties already set.
+class GuakeTerminal(Vte.Terminal):
+    """Just a Vte.Terminal with some properties already set.
     """
     def __init__(self):
         super(GuakeTerminal, self).__init__()
@@ -443,23 +441,27 @@ class GuakeTerminal(vte.Terminal):
     def configure_terminal(self):
         """Sets all customized properties on the terminal
         """
-        client = gconf.client_get_default()
+        client = GConf.Client.get_default()
         word_chars = client.get_string(KEY('/general/word_chars'))
         self.set_word_chars(word_chars)
         self.set_audible_bell(False)
         self.set_visible_bell(False)
         self.set_sensitive(True)
-        self.set_flags(gtk.CAN_DEFAULT)
-        self.set_flags(gtk.CAN_FOCUS)
+        self.set_can_default(True)
+        self.set_can_focus(False)
 
     def add_matches(self):
         """Adds all regular expressions declared in
         guake.globals.TERMINAL_MATCH_EXPRS to the terminal to make vte
         highlight text that matches them.
         """
-        for expr in TERMINAL_MATCH_EXPRS:
-            tag = self.match_add(expr)
-            self.match_set_cursor_type(tag, gtk.gdk.HAND2)
+        # FIXME: match_add is deprecated we should use match_add_regex
+        # witch takes GRegex as parameter but first we need to find
+        # a way to construct GRegex objects (GLib.Regex)
+        pass
+        #for expr in TERMINAL_MATCH_EXPRS:
+            #tag = self.match_add(expr)
+            #self.match_set_cursor_type(tag, Gdk.HAND2)
 
     def button_press(self, terminal, event):
         """Handles the button press event in the terminal widget. If
@@ -472,7 +474,7 @@ class GuakeTerminal(vte.Terminal):
             int(event.y / self.get_char_height()))
 
         if event.button == 1 \
-                and event.get_state() & gtk.gdk.CONTROL_MASK \
+                and event.get_state() & Gdk.EventMask.CONTROL_MASK \
                 and matched_string:
             value, tag = matched_string
 
@@ -485,12 +487,12 @@ class GuakeTerminal(vte.Terminal):
             elif TERMINAL_MATCH_TAGS[tag] == 'email':
                 value = 'mailto:%s' % value
 
-            gtk.show_uri(self.window.get_screen(), value,
-                         gtk.gdk.x11_get_server_time(self.window))
+            Gtk.show_uri(self.window.get_screen(), value,
+                         GdkX11.get_server_time(self.window))
         elif event.button == 3 and matched_string:
             self.matched_value = matched_string[0]
 
-class GuakeTerminalBox(gtk.HBox):
+class GuakeTerminalBox(Gtk.HBox):
     """A box to group the terminal and a scrollbar.
     """
     def __init__(self):
@@ -502,16 +504,17 @@ class GuakeTerminalBox(gtk.HBox):
     def add_terminal(self):
         """Packs the terminal widget.
         """
-        self.pack_start(self.terminal, True, True)
+        self.pack_start(self.terminal, True, True, 0)
         self.terminal.show()
 
     def add_scroll_bar(self):
         """Packs the scrollbar.
         """
         adj = self.terminal.get_adjustment()
-        scroll = gtk.VScrollbar(adj)
+        # FIXME: we need to pass adjustment to VScrollbar
+        scroll = Gtk.VScrollbar()
         scroll.set_no_show_all(True)
-        self.pack_start(scroll, False, False)
+        self.pack_start(scroll, False, False, 0)
 
 
 class Guake(SimpleGtkApp):
@@ -519,14 +522,14 @@ class Guake(SimpleGtkApp):
     """
     def __init__(self):
         super(Guake, self).__init__(gladefile('guake.ui'))
-        self.client = gconf.client_get_default()
+        self.client = GConf.Client.get_default()
 
         # setting global hotkey and showing a pretty notification =)
         guake.globalhotkeys.init()
 
         # trayicon!
         img = pixmapfile('guake-tray.png')
-        self.tray_icon = gtk.status_icon_new_from_file(img)
+        self.tray_icon = Gtk.StatusIcon.new_from_file(img)
         self.tray_icon.set_tooltip_text(_('Guake Terminal'))
         self.tray_icon.connect('popup-menu', self.show_menu)
         self.tray_icon.connect('activate', self.show_hide)
@@ -547,16 +550,17 @@ class Guake(SimpleGtkApp):
         self.context_menu = self.get_widget('context-menu')
 
         # check and set ARGB for real transparency
+        screen = self.window.get_screen()
+        # FIXME: get_rgba_colormap is not working
         self.has_argb = False
-        #screen = self.window.get_screen()
-        #colormap = screen.get_rgba_colormap()
-        #if colormap != None and screen.is_composited():
-        #    self.window.set_colormap(colormap)
-        #    self.has_argb = True
-        #else:
-        #    self.has_argb = False
+        visual = screen.get_rgba_visual()
+        if visual and screen.is_composited():
+            self.window.set_visual(visual)
+            self.has_argb = True
+        else:
+            self.has_argb = False
 
-        # List of vte.Terminal widgets, it will be useful when needed
+        # List of Vte.Terminal widgets, it will be useful when needed
         # to get a widget by the current page in self.notebook
         self.term_list = []
 
@@ -580,8 +584,9 @@ class Guake(SimpleGtkApp):
             """Handles double clicks on tabs area and when receive
             one, calls add_tab.
             """
-            if event.button == 1 and event.type == gtk.gdk._2BUTTON_PRESS:
+            if event.button == 1 and event.type == Gdk._2BUTTON_PRESS:
                 self.add_tab()
+
         evtbox = self.get_widget('event-tabs')
         evtbox.connect('button-press-event', double_click)
 
@@ -609,7 +614,10 @@ class Guake(SimpleGtkApp):
 
         # this line is important to resize the main window and make it
         # smaller.
-        self.window.set_geometry_hints(min_width=1, min_height=1)
+        geometry = Gdk.Geometry()
+        geometry.min_width = 1
+        geometry.min_height = 1
+        self.window.set_geometry_hints(None, geometry, Gdk.WindowHints.MIN_SIZE)
 
         # resizer stuff
         self.resizer.connect('motion-notify-event', self.on_resizer_drag)
@@ -624,10 +632,11 @@ class Guake(SimpleGtkApp):
         self.load_config()
 
         key = self.client.get_string(GKEY('show_hide'))
-        keyval, mask = gtk.accelerator_parse(key)
-        label = gtk.accelerator_get_label(keyval, mask)
+        keyval, mask = Gtk.accelerator_parse(key)
+        label = Gtk.accelerator_get_label(keyval, mask)
         filename = pixmapfile('guake-notification.png')
 
+        # FIXME: we need to get pynotify installed under jhbuild
         if not self.hotkeys.bind(key, self.show_hide):
             #notification = pynotify.Notification(
             #    _('Guake!'),
@@ -666,9 +675,9 @@ class Guake(SimpleGtkApp):
     def on_resizer_drag(self, widget, event):
         """Method that handles the resize drag. It does not actuall
         moves the main window. It just set the new window size in
-        gconf.
+        GConf.
         """
-        (x, y), mod = event.device.get_state(widget.window)
+        (x, y), mod = event.device.get_state(widget.get_window())
         if not 'GDK_BUTTON1_MASK' in mod.value_names:
             return
 
@@ -691,15 +700,15 @@ class Guake(SimpleGtkApp):
         visible = window.get_property('visible')
         if value and visible:
             self.losefocus_hide_time = \
-                gtk.gdk.x11_get_server_time(self.window.window)
+                GdkX11.get_server_time(self.window.window)
             self.hide()
 
     def show_menu(self, status_icon, button, activate_time):
         """Show the tray icon menu.
         """
         menu = self.get_widget('tray-menu')
-        menu.popup(None, None, gtk.status_icon_position_menu,
-                   button, activate_time, status_icon)
+        menu.popup(None, None, Gtk.StatusIcon.position_menu,
+                   status_icon, button, activate_time)
 
     def show_context_menu(self, terminal, event):
         """Show the context menu, only with a right click on a vte
@@ -710,19 +719,19 @@ class Guake(SimpleGtkApp):
 
         self.showing_context_menu = True
 
-        guake_clipboard = gtk.clipboard_get()
+        guake_clipboard = Gtk.clipboard_get()
         if not guake_clipboard.wait_is_text_available():
             self.get_widget('context_paste').set_sensitive(False)
         else:
             self.get_widget('context_paste').set_sensitive(True)
-        self.context_menu.popup(None, None, None, 3, gtk.get_current_event_time())
+        self.context_menu.popup(None, None, None, 3, Gtk.get_current_event_time())
         return True
 
     def show_rename_dialog(self, target, event):
         """On double-click over a tab, show the rename dialog.
         """
         if event.button == 1:
-            if event.type == gtk.gdk._2BUTTON_PRESS:
+            if event.type == Gdk._2BUTTON_PRESS:
                 self.accel_rename()
                 self.set_terminal_focus()
                 self.selected_tab.pressed()
@@ -780,19 +789,18 @@ class Guake(SimpleGtkApp):
         if not self.term_list:
             self.add_tab()
 
-        window_rect = self.get_final_window_rect()
-        self.window.move(window_rect.x, window_rect.y)
-        self.window.resize(window_rect.width, window_rect.height)
+        x, y, width, height = self.get_final_window_rect()
+        self.window.move(x, y)
+        self.window.resize(width, height)
         self.window.show_all()
 
         try:
             # does it work in other gtk backends
-            time = gtk.gdk.x11_get_server_time(self.window.window)
+            time = GdkX11.get_server_time(self.window.window)
         except AttributeError:
             time = 0
 
-        self.window.window.show()
-        self.window.window.focus(time)
+        self.window.present_with_time(time)
 
         # This is here because vte color configuration works only
         # after the widget is shown.
@@ -811,27 +819,27 @@ class Guake(SimpleGtkApp):
         horizontal alignment is given by window_alignment.
         """
         screen = self.window.get_screen()
-        height = self.client.get_int(KEY('/general/window_height'))
-        width = 100
+        height_percent = self.client.get_int(KEY('/general/window_height'))
+        width_percent = 100
         halignment = self.client.get_int(KEY('/general/window_halignment'))
 
         # get the rectangle just from the first/default monitor in the
         # future we might create a field to select which monitor you
         # wanna use
-        window_rect = screen.get_monitor_geometry(0)
-        total_width = window_rect.width
-        window_rect.height = window_rect.height * height / 100
-        window_rect.width = window_rect.width * width / 100
+        x, y, width, height = screen.get_monitor_geometry(0)
+        total_width = width
+        height = height * height_percent / 100
+        width = width * width_percent / 100
 
         if width < total_width:
             if halignment == ALIGN_CENTER:
-                window_rect.x = (total_width - window_rect.width) / 2
+                x = (total_width - window_rect.width) / 2
             elif halignment == ALIGN_LEFT:
-                window_rect.x = 0
+                x = 0
             elif halignment == ALIGN_RIGHT:
-                window_rect.x = total_width - window_rect.width
-        window_rect.y = 0
-        return window_rect
+                x = total_width - window_rect.width
+        y = 0
+        return x, y, width, height
 
     def get_running_fg_processes(self):
         """Get the number processes for each terminal/tab. The code is taken
@@ -879,14 +887,14 @@ class Guake(SimpleGtkApp):
             procs = self.get_running_fg_processes()
             if procs >= 1:
                 dialog = PromptQuitDialog(self.window, procs)
-                response = dialog.run() == gtk.RESPONSE_YES
+                response = dialog.run() == Gtk.ResponseType.YES
                 dialog.destroy()
                 if response:
-                    gtk.main_quit()
+                    Gtk.main_quit()
             else:
-                gtk.main_quit()
+                Gtk.main_quit()
         else:
-            gtk.main_quit()
+            Gtk.main_quit()
 
     def accel_add(self, *args):
         """Callback to add a new tab. Called by the accel key.
@@ -930,7 +938,7 @@ class Guake(SimpleGtkApp):
         if current_term.get_has_selection():
             current_term.copy_clipboard()
         elif current_term.matched_value:
-            guake_clipboard = gtk.clipboard_get()
+            guake_clipboard = Gtk.clipboard_get()
             guake_clipboard.set_text(current_term.matched_value)
 
         return True
@@ -989,39 +997,39 @@ class Guake(SimpleGtkApp):
         if not use_them:
             return
         page = self.notebook.page_num(box)
-        self.tabs.get_children()[page].set_label(vte.get_window_title())
+        self.tabs.get_children()[page].set_label(Vte.get_window_title())
 
     def on_rename_activate(self, *args):
         """Shows a dialog to rename the current tab.
         """
-        entry = gtk.Entry()
+        entry = Gtk.Entry()
         entry.set_text(self.selected_tab.get_label())
         entry.set_property('can-default', True)
         entry.show()
 
-        vbox = gtk.VBox()
+        vbox = Gtk.VBox()
         vbox.set_border_width(6)
         vbox.show()
 
-        dialog = gtk.Dialog(_("Rename tab"),
+        dialog = Gtk.Dialog(_("Rename tab"),
                             self.window,
-                            gtk.DIALOG_MODAL | gtk.DIALOG_DESTROY_WITH_PARENT,
-                            (gtk.STOCK_CANCEL, gtk.RESPONSE_REJECT,
-                             gtk.STOCK_OK, gtk.RESPONSE_ACCEPT))
+                            Gtk.DIALOG_MODAL | Gtk.DIALOG_DESTROY_WITH_PARENT,
+                            (Gtk.STOCK_CANCEL, Gtk.ResponseType.REJECT,
+                             Gtk.STOCK_OK, Gtk.ResponseType.ACCEPT))
 
         dialog.set_size_request(300, -1)
-        dialog.vbox.pack_start(vbox)
+        dialog.vbox.pack_start(vbox, True, True, 0)
         dialog.set_border_width(4)
         dialog.set_has_separator(False)
-        dialog.set_default_response(gtk.RESPONSE_ACCEPT)
-        dialog.add_action_widget(entry, gtk.RESPONSE_ACCEPT)
+        dialog.set_default_response(Gtk.ResponseType.ACCEPT)
+        dialog.add_action_widget(entry, Gtk.ResponseType.ACCEPT)
         entry.reparent(vbox)
 
         self.disable_losefocus_hiding = True
         response = dialog.run()
         self.disable_losefocus_hiding = False
 
-        if response == gtk.RESPONSE_ACCEPT:
+        if response == Gtk.ResponseType.ACCEPT:
             self.selected_tab.set_label(entry.get_text())
 
         dialog.destroy()
@@ -1071,19 +1079,27 @@ class Guake(SimpleGtkApp):
         # parameter in fork_command not accepting None as argument.
         # When we pass None as command, vte starts the default user
         # shell.
-        params = {}
+        params = []
+        params.append(0)      # 0: pty_flags
+        params.append('~/')   # 1: working_directory
+        params.append([])     # 2: argv
+        params.append(None)   # 3: envv
+        params.append(0)      # 4: spawn_flags
+        params.append(None)   # 5: child_setup
+        params.append(None)   # 6: child_setup_data
 
         shell = self.client.get_string(KEY('/general/default_shell'))
         if shell and os.path.exists(shell):
-            params['command'] = shell
+            params[2].append(shell)
 
         login_shell = self.client.get_bool(KEY('/general/use_login_shell'))
         if login_shell:
-            params['argv'] = ['-']
+            params[2].append('-')
+        else:
+            params[0] = Vte.PtyFlags.NO_LASTLOG
 
         if self.client.get_bool(KEY('/general/open_tab_cwd')):
-            params['directory'] = self.get_current_dir()
-        params['loglastlog'] = login_shell
+            params[1] = self.get_current_dir()
 
         # Leting caller change/add values to fork params.
         if default_params:
@@ -1097,7 +1113,7 @@ class Guake(SimpleGtkApp):
 
     def update_proxy_vars(self):
         """This method updates http{s,}_proxy environment variables
-        with values found in gconf.
+        with values found in GConf.
         """
         proxy = '/system/http_proxy/'
         if self.client.get_bool(proxy + 'use_http_proxy'):
@@ -1140,20 +1156,20 @@ class Guake(SimpleGtkApp):
         # to be used by dbus interface. I'm testing if directory is a
         # string because when binded to a signal, the first param can
         # be a button not a directory.
-        default_params = {}
-        if isinstance(directory, basestring):
-            default_params['directory'] = directory
+        #default_params = {}
+        #if isinstance(directory, basestring):
+        #    default_params['working_directory'] = directory
 
-        final_params = self.get_fork_params(default_params)
-        pid = box.terminal.fork_command(**final_params)
+        final_params = self.get_fork_params()
+        success, pid = box.terminal.fork_command_full(*final_params)
         self.pid_list.append(pid)
 
         # Adding a new radio button to the tabbar
         label = box.terminal.get_window_title() or _("Terminal")
         tabs = self.tabs.get_children()
-        parent = tabs and tabs[0] or None
+        parent = tabs and tabs or []
 
-        bnt = gtk.RadioButton(group=parent, label=label)
+        bnt = Gtk.RadioButton.new_with_label(parent, label)
         bnt.set_property('can-focus', False)
         bnt.set_property('draw-indicator', False)
         bnt.connect('button-press-event', self.show_tab_menu)
@@ -1164,7 +1180,7 @@ class Guake(SimpleGtkApp):
                     ))
         bnt.show()
 
-        self.tabs.pack_start(bnt, expand=False, padding=1)
+        self.tabs.pack_start(bnt, False, False, 1)
 
         self.notebook.append_page(box, None)
         self.notebook.set_current_page(self.notebook.page_num(box))
@@ -1174,7 +1190,7 @@ class Guake(SimpleGtkApp):
     def delete_tab(self, pagepos, kill=True):
         """This function will destroy the notebook page, terminal and
         tab widgets and will call the function to kill interpreter
-        forked by vte.
+        forked by Vte.
         """
         self.tabs.get_children()[pagepos].destroy()
         self.notebook.remove_page(pagepos)
@@ -1249,7 +1265,7 @@ class Guake(SimpleGtkApp):
         self.selected_tab = self.tabs.get_children()[pagepos]
         return pagepos
 
-def main():
+def handle_params(remote_object):
     """Parses the command line parameters and decide if dbus methods
     should be called or not. If there is already a guake instance
     running it will be used and a True value will be returned,
@@ -1295,18 +1311,6 @@ def main():
 
     options = parser.parse_args()[0]
 
-    # Trying to get an already running instance of guake. If it is not
-    # possible, lets create a new instance. This function will return
-    # a boolean value depending on this decision.
-    try:
-        bus = dbus.SessionBus()
-        remote_object = bus.get_object(DBUS_NAME, DBUS_PATH)
-        already_running = True
-    except dbus.DBusException:
-        instance = Guake()
-        remote_object = DbusManager(instance)
-        already_running = False
-
     called_with_param = False
 
     if options.show_hide:
@@ -1347,12 +1351,7 @@ def main():
         remote_object.quit()
         called_with_param = True
 
-    if not called_with_param and already_running:
-        # here we know that guake was called without any parameter and
-        # it is already running, so, lets toggle its visibility.
-        remote_object.show_hide()
-
-    return already_running
+    return called_with_param
 
 if __name__ == '__main__':
     if not test_gconf():
@@ -1360,5 +1359,19 @@ if __name__ == '__main__':
             _('Gconf Error.\n'
               'Have you installed <b>guake.schemas</b> properly?'))
 
-    if not main():
-        gtk.main()
+    # Trying to get an already running instance of guake. If it is not
+    # possible, lets create a new instance. This function will return
+    # a boolean value depending on this decision.
+    try:
+        bus = dbus.SessionBus()
+        remote_object = bus.get_object(DBUS_NAME, DBUS_PATH)
+        if not handle_params(remote_object):
+            # here we know that guake was called without any parameter and
+            # it is already running, so, lets toggle its visibility.
+            remote_object.show_hide()
+    except dbus.DBusException:
+        print "Creating new guake instance"
+        instance = Guake()
+        remote_object = DbusManager(instance)
+        handle_params(remote_object)
+        instance.run()
