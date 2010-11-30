@@ -10,7 +10,7 @@
     <property name="window_position">GTK_WIN_POS_CENTER_ALWAYS</property>
     <property name="type_hint">GDK_WINDOW_TYPE_HINT_NORMAL</property>
     <property name="has_separator">False</property>
-    <property name="copyright" translatable="yes">Copyright 2007-2009 Lincoln de Sousa
+    <property name="copyright" translatable="yes">Copyright 2007-2010 Lincoln de Sousa
 Copyright 2007 Gabriel Falc&#xE3;o</property>
     <property name="comments" translatable="yes">Guake is an easy to access
 terminal based on fps games terminal</property>
@@ -22,11 +22,11 @@ Guake is distributed in the hope that it will be useful, but WITHOUT ANY WARRANT
 
 You should have received a copy of the GNU General Public License along with Guake; if not, write to the Free Software Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301 USA
 </property>
-    <property name="authors">Lincoln de Sousa &lt;lincoln@guake.org&gt; (Maintainer)
+    <property name="authors">Lincoln de Sousa &lt;lincoln@guake.org&gt;
 Pierre-Yves Chibon (Pingou) &lt;pingou@guake.org&gt;
+Aleksandar Krsteski (SnapShot) &lt;aleksandar@guake.org&gt;
 
-Contributors:
-Aleksandar Krsteski (SnapShot) &lt;alekrsteski@gmail.com&gt;
+Past Contributors:
 Gabriel Falcão &lt;gabriel@guake-terminal.org&gt;</property>
     <property name="translator_credits" translatable="yes">Adolfo González Blázquez &lt;code@infinicode.org&gt; Spanish
 Lincoln de Sousa &lt;lincoln@guake.org&gt; Brazilian Portuguese
