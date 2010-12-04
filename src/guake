@@ -1207,6 +1207,12 @@ class Guake(SimpleGladeApp):
         box.terminal.connect('drag-data-received',
                              self.on_drag_data_received,
                              box)
+
+        #-- Ubuntu has a patch to libvte which disables mouse scrolling in apps
+        #-- like vim and less by default. If this is the case, enable it back.
+        if hasattr(box.terminal, "set_alternate_screen_scroll"):
+            box.terminal.set_alternate_screen_scroll(True)
+
         box.show()
 
         self.term_list.append(box.terminal)
