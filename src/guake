@@ -726,6 +726,12 @@ class Guake(SimpleGtkApp):
         box.terminal.connect('child-exited', self.on_terminal_exited, box)
         box.terminal.connect('window-title-changed',
                              self.on_terminal_title_changed, box)
+
+        #-- Ubuntu has a patch to libvte which disables mouse scrolling in apps
+        #-- like vim and less by default. If this is the case, enable it back.
+        if hasattr(box.terminal, "set_alternate_screen_scroll"):
+            box.terminal.set_alternate_screen_scroll(True)
+
         box.show()
 
         self.term_list.append(box.terminal)
