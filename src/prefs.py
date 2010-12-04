@@ -27,8 +27,8 @@ import gtk
 import gobject
 import gconf
 
-from guake.simplegladeapp import SimpleGladeApp
-from guake.globals import GCONF_PATH, KEY, ALIGN_LEFT, ALIGN_RIGHT, ALIGN_CENTER
+from guake.simplegladeapp import SimpleGladeApp, bindtextdomain
+from guake.globals import NAME, LOCALE_DIR, GCONF_PATH, KEY, ALIGN_LEFT, ALIGN_RIGHT, ALIGN_CENTER
 from guake.common import *
 
 # A regular expression to match possible python interpreters when
@@ -717,5 +717,6 @@ def setup_standalone_signals(instance):
     return instance
 
 if __name__ == '__main__':
+    bindtextdomain(NAME, LOCALE_DIR)
     setup_standalone_signals(PrefsDialog()).show()
     gtk.main()
