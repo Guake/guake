@@ -54,36 +54,36 @@ LKEY = lambda x:GCONF_PATH+'/keybindings/local/' + x
 GKEY = lambda x:GCONF_PATH+'/keybindings/global/' + x
 
 HOTKEYS = [
-    {'label': _('General'),
+    {'label': 'General',
      'keys': [{'key': GKEY('show_hide'),
-               'label': _('Toggle Guake visibility')},
+               'label': 'Toggle Guake visibility'},
               {'key': LKEY('toggle_fullscreen'),
-               'label': _('Toggle Fullscreen')},
+               'label': 'Toggle Fullscreen'},
               {'key': LKEY('quit'),
-               'label': _('Quit')},
+               'label': 'Quit'},
               ]},
 
-    {'label': _('Tab management'),
+    {'label': 'Tab management',
      'keys': [{'key': LKEY('new_tab'),
-               'label': _('New tab')},
+               'label': 'New tab'},
               {'key': LKEY('close_tab'),
-               'label': _('Close tab')},
+               'label': 'Close tab'},
               {'key': LKEY('rename_tab'),
-               'label': _('Rename current tab')},
+               'label': 'Rename current tab'},
               ]},
 
-    {'label': _('Navigation'),
+    {'label': 'Navigation',
      'keys': [{'key': LKEY('previous_tab'),
-               'label': _('Go to previous tab')},
+               'label': 'Go to previous tab'},
               {'key': LKEY('next_tab'),
-               'label': _('Go to next tab')},
+               'label': 'Go to next tab'},
               ]},
 
-    {'label': _('Clipboard'),
+    {'label': 'Clipboard',
      'keys': [{'key': LKEY('clipboard_copy'),
-               'label': _('Copy text to clipboard')},
+               'label': 'Copy text to clipboard'},
               {'key': LKEY('clipboard_paste'),
-               'label': _('Paste text from clipboard')},
+               'label': 'Paste text from clipboard'},
               ]}
     ]
 
@@ -562,7 +562,7 @@ class PrefsDialog(SimpleGladeApp):
         model = self.get_widget('treeview-keys').get_model()
         for group in HOTKEYS:
             giter = model.append(None)
-            model.set(giter, 0, '', 1, group['label'])
+            model.set(giter, 0, '', 1, _(group['label']))
             for item in group['keys']:
                 child = model.append(giter)
                 accel = self.client.get_string(item['key'])
@@ -573,7 +573,7 @@ class PrefsDialog(SimpleGladeApp):
                     hotkey = KeyEntry(0, 0)
                 model.set(child,
                           0, item['key'],
-                          1, item['label'],
+                          1, _(item['label']),
                           2, hotkey,
                           3, True)
         self.get_widget('treeview-keys').expand_all()
