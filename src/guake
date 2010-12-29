@@ -1154,7 +1154,7 @@ class Guake(SimpleGladeApp):
         tabs = self.tabs.get_children()
         parent = tabs and tabs[0] or None
 
-        bnt = gtk.RadioButton(group=parent, label=label)
+        bnt = gtk.RadioButton(group=parent, label=label, use_underline=False)
         bnt.set_property('can-focus', False)
         bnt.set_property('draw-indicator', False)
         bnt.connect('button-press-event', self.show_tab_menu)
