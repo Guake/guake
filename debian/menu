@@ -1,6 +1,0 @@
-?package(guake): \
-   needs="wm" \
-   section="Applications/Accessories" \
-   title="Guake Terminal" \
-   icon="/usr/share/pixmaps/guake/guake.png" \
-   command="/usr/bin/guake"
