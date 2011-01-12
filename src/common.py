@@ -77,3 +77,7 @@ def get_binaries_from_path(compiled_re):
                 if compiled_re.match(j):
                     ret.append(os.path.join(i, j))
     return ret
+
+def shell_quote(text):
+    """ quote text (filename) for inserting into a shell """
+    return r"\'".join("'%s'" % p for p in text.split("'"))

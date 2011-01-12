@@ -39,12 +39,15 @@ import signal
 from thread import start_new_thread
 from time import sleep
 import posix
+from urllib import url2pathname
+from urlparse import urlsplit
 
 import guake.globalhotkeys
 from guake.simplegladeapp import SimpleGladeApp, bindtextdomain
 from guake.prefs import PrefsDialog, LKEY, GKEY
 from guake.dbusiface import DbusManager, DBUS_NAME, DBUS_PATH
 from guake.common import test_gconf, pixmapfile, gladefile, ShowableError, _
+from guake.common import shell_quote
 from guake.globals import NAME, VERSION, LOCALE_DIR, KEY, GCONF_PATH, \
     TERMINAL_MATCH_EXPRS, TERMINAL_MATCH_TAGS, \
     ALIGN_LEFT, ALIGN_RIGHT, ALIGN_CENTER
@@ -1035,6 +1038,27 @@ class Guake(SimpleGladeApp):
         pagepos = tabs.index(self.selected_tab)
         self.delete_tab(pagepos)
 
+    def on_drag_data_received(self, widget, context,
+                              x, y,
+                              selection,
+                              target,
+                              timestamp,
+                              box):
+        urilist = selection.get_uris()
+        pathlist = []
+        for uri in urilist:
+            scheme, netloc, path, query, fragment = urlsplit(uri)
+            if scheme=="file":
+                pathlist.append(url2pathname(path))
+            else:
+                pathlist.append(uri)
+        text = "".join(shell_quote(path)+" " for path in pathlist)
+        box.terminal.feed_child(text)
+
+        #self.window.grab_focus()
+        #print box.terminal.has_focus(), self.window.has_focus
+        return True
+
     # -- tab related functions --
 
     def close_tab(self, *args):
@@ -1129,10 +1153,20 @@ class Guake(SimpleGladeApp):
         """Adds a new tab to the terminal notebook.
         """
         box = GuakeTerminalBox()
+        box.terminal.grab_focus()
+        box.terminal.drag_dest_set(gtk.DEST_DEFAULT_MOTION |
+                                   gtk.DEST_DEFAULT_DROP |
+                                   gtk.DEST_DEFAULT_HIGHLIGHT,
+                                  [('text/uri-list', gtk.TARGET_OTHER_APP, 0)],
+                                  gtk.gdk.ACTION_COPY
+                                 )
         box.terminal.connect('button-press-event', self.show_context_menu)
         box.terminal.connect('child-exited', self.on_terminal_exited, box)
         box.terminal.connect('window-title-changed',
                              self.on_terminal_title_changed, box)
+        box.terminal.connect('drag-data-received',
+                             self.on_drag_data_received,
+                             box)
         box.show()
 
         self.term_list.append(box.terminal)
