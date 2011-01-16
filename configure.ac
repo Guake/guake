@@ -42,10 +42,11 @@ AC_SUBST([PYTHON_LIBS])
 AC_SUBST([PYTHON_CFLAGS])
 
 dnl gtk dependencie
-GTK_REQUIRED=2.10.0
+GTK_REQUIRED=2.99.3
+PYGOBJECT_REQUIRED=2.27.0
 PKG_CHECK_MODULES([DEPENDENCIES], [
-    gtk+-2.0 >= $GTK_REQUIRED
-    pygtk-2.0
+    gtk+-3.0 >= $GTK_REQUIRED
+    pygobject-2.0 >= $PYGOBJECT_REQUIRED
     x11
 ])
 AC_SUBST([DEPENDENCIES_CFLAGS])
@@ -59,7 +60,7 @@ AS_AC_EXPAND(DATADIR, ${datarootdir})
 dnl Checking python-vte
 AC_MSG_CHECKING([for the python-vte package])
 ac_pvte_result=`$PYTHON -c 'try:
-    import vte
+    from gi.repository import Vte
 except Exception, e:
     print str(e)' 2> /dev/null`
 
@@ -67,7 +68,7 @@ if test -z "$ac_pvte_result"; then
     AC_MSG_RESULT([yes])
 else
     AC_MSG_RESULT([no])
-    AC_MSG_ERROR([cannot import Python module "vte".
+    AC_MSG_ERROR([cannot import Python module "Vte".
     Please check if you have python-vte installed. The error was:
     $ac_pvte_result])
 fi
