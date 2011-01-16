@@ -22,7 +22,7 @@
 #define __EGG_ACCELERATORS_H__
 
 #include <X11/Xlib.h>
-#include <gtk/gtkaccelgroup.h>
+#include <gtk/gtk.h>
 #include <gdk/gdk.h>
 
 G_BEGIN_DECLS
