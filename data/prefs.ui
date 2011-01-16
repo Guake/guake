@@ -222,7 +222,7 @@
                                       </packing>
                                     </child>
                                     <child>
-                                      <object class="GtkComboBox" id="default_shell">
+                                      <object class="GtkComboBoxText" id="default_shell">
                                         <property name="visible">True</property>
                                         <property name="model">liststore1</property>
                                         <signal name="changed" handler="on_default_shell_changed" swapped="no"/>
@@ -1359,7 +1359,7 @@
                                 <property name="column_spacing">12</property>
                                 <property name="row_spacing">6</property>
                                 <child>
-                                  <object class="GtkComboBox" id="delete-binding-combobox">
+                                  <object class="GtkComboBoxText" id="delete-binding-combobox">
                                     <property name="visible">True</property>
                                     <property name="model">liststore3</property>
                                     <signal name="changed" handler="on_delete_binding_changed" swapped="no"/>
@@ -1379,7 +1379,7 @@
                                   </packing>
                                 </child>
                                 <child>
-                                  <object class="GtkComboBox" id="backspace-binding-combobox">
+                                  <object class="GtkComboBoxText" id="backspace-binding-combobox">
                                     <property name="visible">True</property>
                                     <property name="model">liststore4</property>
                                     <signal name="changed" handler="on_backspace_binding_changed" swapped="no"/>

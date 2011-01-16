@@ -11,7 +11,7 @@
     <property name="modal">True</property>
     <property name="window_position">center-always</property>
     <property name="type_hint">normal</property>
-    <property name="has_separator">False</property>
+    <!--<property name="has_separator">False</property>-->
     <property name="copyright" translatable="yes">Copyright 2007-2009 Lincoln de Sousa
 Copyright 2007 Gabriel Falcão</property>
     <property name="comments" translatable="yes">Guake is an easy to access

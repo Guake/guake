@@ -278,10 +278,11 @@ class PrefsDialog(SimpleGtkApp):
 
         self.client = GConf.Client.get_default()
 
+        # FIXME: doesn't work on Gtk3
         # setting evtbox title bg
-        eventbox = self.get_widget('eventbox-title')
-        eventbox.modify_bg(Gtk.StateType.NORMAL,
-                           eventbox.get_colormap().alloc_color("#ffffff"))
+        #eventbox = self.get_widget('eventbox-title')
+        #eventbox.modify_bg(Gtk.StateType.NORMAL,
+        #                   Gdk.colormap_get_system().alloc_color("#ffffff"))
 
         # images
         ipath = pixmapfile('guake-notification.png')
@@ -312,7 +313,7 @@ class PrefsDialog(SimpleGtkApp):
         renderer.connect('accel-cleared', self.on_key_cleared, model)
 
         column = Gtk.TreeViewColumn(_('Shortcut'), renderer)
-        column.set_cell_data_func(renderer, self.cell_data_func)
+        column.set_cell_data_func(renderer, self.cell_data_func, None)
         column.set_property('expand', False)
         treeview.append_column(column)
 
@@ -421,8 +422,11 @@ class PrefsDialog(SimpleGtkApp):
         """
         palette = palette.split(':')
         for i in range(16):
-            color = Gdk.color_parse(palette[i])
-            self.get_widget('palette_%d' % i).set_color(color)
+            success, color = Gdk.color_parse(palette[i])
+            if success:
+                self.get_widget('palette_%d' % i).set_color(color)
+            else:
+                warnings.warn('Unable to parse color %s' % palette[i])
 
     def reload_erase_combos(self, btn=None):
         """Read from gconf the value of compat_{backspace,delete} vars
@@ -509,20 +513,20 @@ class PrefsDialog(SimpleGtkApp):
         self.get_widget('font_style').set_font_name(value)
 
         # font color
-        val = self.client.get_string(KEY('/style/font/color'))
-        try:
-            color = Gdk.color_parse(val)
+        value = self.client.get_string(KEY('/style/font/color'))
+        success, color = Gdk.color_parse(value)
+        if success:
             self.get_widget('font_color').set_color(color)
-        except (ValueError, TypeError):
-            warnings.warn('Unable to parse color %s' % val, Warning)
+        else:
+            warnings.warn('Unable to parse color %s' % value, Warning)
 
         # background color
         value = self.client.get_string(KEY('/style/background/color'))
-        try:
-            color = Gdk.color_parse(value)
+        success, color = Gdk.color_parse(value)
+        if success:
             self.get_widget('background_color').set_color(color)
-        except (ValueError, TypeError):
-            warnings.warn('Unable to parse color %s' % val, Warning)
+        else:
+            warnings.warn('Unable to parse color %s' % value, Warning)
 
         # palette
         value = self.client.get_string(KEY('/style/font/palette'))
@@ -567,7 +571,8 @@ class PrefsDialog(SimpleGtkApp):
         model = self.get_widget('treeview-keys').get_model()
         for group in HOTKEYS:
             giter = model.append(None)
-            model.set(giter, 0, '', 1, group['label'])
+            model.set_value(giter, 0, '')
+            model.set_value(giter, 1, group['label'])
             for item in group['keys']:
                 child = model.append(giter)
                 accel = self.client.get_string(item['key'])
@@ -576,11 +581,10 @@ class PrefsDialog(SimpleGtkApp):
                     hotkey = KeyEntry(*params)
                 else:
                     hotkey = KeyEntry(0, 0)
-                model.set(child,
-                          0, item['key'],
-                          1, item['label'],
-                          2, hotkey,
-                          3, True)
+                model.set_value(child, 0, item['key'])
+                model.set_value(child, 1, item['label'])
+                model.set_value(child, 2, hotkey)
+                model.set_value(child, 3, True)
         self.get_widget('treeview-keys').expand_all()
 
     # -- key handling --
@@ -652,7 +656,7 @@ class PrefsDialog(SimpleGtkApp):
 
         self.client.set_string(gconf_path, 'disabled')
 
-    def cell_data_func(self, column, renderer, model, giter):
+    def cell_data_func(self, column, renderer, model, giter, data):
         """Defines the way that each renderer will handle the key
         object and the mask it sets the properties for a cellrenderer
         key.
