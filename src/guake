@@ -32,6 +32,8 @@ from pango import FontDescription
 import pynotify
 import gconf
 import dbus
+from xdg.DesktopEntry import DesktopEntry
+import xdg.Exceptions
 
 import os
 import sys
@@ -1044,19 +1046,38 @@ class Guake(SimpleGladeApp):
                               target,
                               timestamp,
                               box):
-        urilist = selection.get_uris()
-        pathlist = []
-        for uri in urilist:
-            scheme, netloc, path, query, fragment = urlsplit(uri)
-            if scheme=="file":
-                pathlist.append(url2pathname(path))
-            else:
-                pathlist.append(uri)
-        text = "".join(shell_quote(path)+" " for path in pathlist)
-        box.terminal.feed_child(text)
+        droppeduris = selection.get_uris()
 
-        #self.window.grab_focus()
-        #print box.terminal.has_focus(), self.window.has_focus
+        # url-unquote the list, strip file:// schemes, handle .desktop-s
+        pathlist = []
+        app = None
+        for uri in droppeduris:
+            scheme, _, path, _, _ = urlsplit(uri)
+
+            if scheme!="file":
+                pathlist.append(uri)
+            else:
+                filename = url2pathname(path)
+
+                desktopentry = DesktopEntry()
+                try:
+                    desktopentry.parse(filename)
+                except xdg.Exceptions.ParsingError:
+                    pathlist.append(filename)
+                    continue
+
+                if desktopentry.getType()=='Link':
+                    pathlist.append(desktopentry.getURL())
+
+                if desktopentry.getType()=='Application':
+                    app = desktopentry.getExec()
+
+        if app and len(droppeduris)==1:
+            text = app
+        else:
+            text = str.join("", (shell_quote(path)+" " for path in pathlist))
+
+        box.terminal.feed_child(text)
         return True
 
     # -- tab related functions --
