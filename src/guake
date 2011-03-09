@@ -627,9 +627,8 @@ class Guake(SimpleGtkApp):
         geometry.min_height = 1
         self.window.set_geometry_hints(None, geometry, Gdk.WindowHints.MIN_SIZE)
 
-        # FIXME: Guake crashes in on_resizer_drag on Gtk3
         # resizer stuff
-        #self.resizer.connect('motion-notify-event', self.on_resizer_drag)
+        self.resizer.connect('motion-notify-event', self.on_resizer_drag)
 
         # adding the first tab on guake
         self.add_tab()
@@ -725,13 +724,12 @@ class Guake(SimpleGtkApp):
 
         self.showing_context_menu = True
 
-        # FIXME: fix Clipboard.get()... gets atom Gdk.Atom.intern is not introspectable
-        #guake_clipboard = Gtk.Clipboard.get(69)
-        #if not guake_clipboard.wait_is_text_available():
-        #    self.get_widget('context_paste').set_sensitive(False)
-        #else:
-        #    self.get_widget('context_paste').set_sensitive(True)
-        self.context_menu.popup(None, None, None, None, 3, Gtk.get_current_event_time())
+        guake_clipboard = Gtk.Clipboard.get(Gdk.atom_intern("CLIPBOARD", True))
+        if not guake_clipboard.wait_is_text_available():
+            self.get_widget('context_paste').set_sensitive(False)
+        else:
+            self.get_widget('context_paste').set_sensitive(True)
+        self.context_menu.popup_for_device(None, None, None, None, None, 3, Gtk.get_current_event_time())
         return True
 
     def show_rename_dialog(self, target, event):
@@ -830,25 +828,24 @@ class Guake(SimpleGtkApp):
         width_percent = 100
         halignment = self.client.get_int(KEY('/general/window_halignment'))
 
-        # FIXME: fix get_monitor_geometry
         # get the rectangle just from the first/default monitor in the
         # future we might create a field to select which monitor you
         # wanna use
-        #geometry = screen.get_monitor_geometry(0)
-        x = 0 #geometry.x
-        y = 0 #geometry.y
-        total_width = 1280 #geometry.width
-        width = 1280 * width_percent / 100
-        height = 800 * height_percent / 100
+        geometry = screen.get_monitor_geometry(0)
 
-        if width < total_width:
+        x = 0
+        y = 0
+        width = geometry.width * width_percent / 100
+        height = geometry.height * height_percent / 100
+
+        if width < geometry.x:
             if halignment == ALIGN_CENTER:
-                x = (total_width - window_rect.width) / 2
+                x = (geometry.width - width) / 2
             elif halignment == ALIGN_LEFT:
                 x = 0
             elif halignment == ALIGN_RIGHT:
-                x = total_width - window_rect.width
-        y = 0
+                x = geometry.width - width
+
         return x, y, width, height
 
     def get_running_fg_processes(self):
