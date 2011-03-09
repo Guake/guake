@@ -476,10 +476,10 @@ class GuakeTerminal(Vte.Terminal):
         """
         self.matched_value = ''
         matched_string = self.match_check(
-            int(event.button.x / self.get_char_width()),
-            int(event.button.y / self.get_char_height()))
+            int(event.x / self.get_char_width()),
+            int(event.y / self.get_char_height()))
 
-        if event.button.button == 1 \
+        if event.button == 1 \
                 and event.get_state()[1] & Gdk.ModifierType.CONTROL_MASK \
                 and matched_string:
             value, tag = matched_string
@@ -495,7 +495,7 @@ class GuakeTerminal(Vte.Terminal):
 
             Gtk.show_uri(self.window.get_screen(), value,
                          GdkX11.get_server_time(self.window))
-        elif event.button.button == 3 and matched_string:
+        elif event.button == 3 and matched_string:
             self.matched_value = matched_string[0]
 
 class GuakeTerminalBox(Gtk.HBox):
@@ -591,8 +591,8 @@ class Guake(SimpleGtkApp):
             # Gdk.EventType.2BUTTON_PRESS is not working in python because
             # it starts with number so use Gdk.EventType(value = 5) to construct
             # 2BUTTON_PRESS event type
-            if event.button.button == 1 and \
-                event.button.type == Gdk.EventType(value = 5):
+            if event.button == 1 and \
+                event.type == Gdk.EventType(value = 5):
                 self.add_tab()
 
         evtbox = self.get_widget('event-tabs')
@@ -682,7 +682,7 @@ class Guake(SimpleGtkApp):
         moves the main window. It just set the new window size in
         GConf.
         """
-        (x, y), mod = event.button.device.get_state(widget.get_window())
+        (x, y), mod = event.device.get_state(widget.get_window())
         if not Gdk.ModifierType.BUTTON1_MASK in mod:
             return
 
@@ -714,13 +714,13 @@ class Guake(SimpleGtkApp):
         menu = self.get_widget('tray-menu')
         # FIXME: we should use Gtk.StatusIcon.position_menu here as callback
         #        but it crashes in Gtk3
-        menu.popup(None, None, None, None, button, activate_time)
+        menu.popup_for_device(None, None, None, None, None, button, activate_time)
 
     def show_context_menu(self, terminal, event):
         """Show the context menu, only with a right click on a vte
         Terminal.
         """
-        if event.button.button != 3:
+        if event.button != 3:
             return False
 
         self.showing_context_menu = True
@@ -737,8 +737,8 @@ class Guake(SimpleGtkApp):
     def show_rename_dialog(self, target, event):
         """On double-click over a tab, show the rename dialog.
         """
-        if event.button.button == 1:
-            if event.button.type == Gdk.EventType(value = 5): # 5 == GDK_2BUTTON_PRESS
+        if event.button == 1:
+            if event.type == Gdk.EventType(value = 5): # 5 == GDK_2BUTTON_PRESS
                 self.accel_rename()
                 self.set_terminal_focus()
                 self.selected_tab.pressed()
@@ -748,7 +748,7 @@ class Guake(SimpleGtkApp):
         """Shows the tab menu with a right click. After that, the
         focus come back to the terminal.
         """
-        if event.button.button == 3:
+        if event.button == 3:
             self.showing_context_menu = True
             self.selected_tab = target
             menu = self.get_widget('tab-menu')
