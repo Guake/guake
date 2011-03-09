@@ -628,7 +628,10 @@ class Guake(SimpleGtkApp):
         self.window.set_geometry_hints(None, geometry, Gdk.WindowHints.MIN_SIZE)
 
         # resizer stuff
+        self.resizer_held = False
         self.resizer.connect('motion-notify-event', self.on_resizer_drag)
+        self.resizer.connect('button-press-event', self.on_resizer_button)
+        self.resizer.connect('button-release-event', self.on_resizer_button)
 
         # adding the first tab on guake
         self.add_tab()
@@ -676,14 +679,21 @@ class Guake(SimpleGtkApp):
         index = self.notebook.get_current_page()
         self.term_list[tab or index].feed_child(command)
 
+    def on_resizer_button(self, widget, event):
+        if event.type == Gdk.EventType.BUTTON_PRESS:
+            self.resizer_held = True
+        else:
+            self.resizer_held = False
+
     def on_resizer_drag(self, widget, event):
         """Method that handles the resize drag. It does not actuall
         moves the main window. It just set the new window size in
         GConf.
         """
-        (x, y), mod = event.device.get_state(widget.get_window())
-        if not Gdk.ModifierType.BUTTON1_MASK in mod:
+        if not self.resizer_held:
             return
+
+        screen, x, y = event.device.get_position()
 
         max_height = self.window.get_screen().get_height()
         percent = y / (max_height / 100)
