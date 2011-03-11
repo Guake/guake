@@ -29,7 +29,7 @@ Gtk.init_check([])
 from gi.repository import GObject
 from gi.repository import GConf
 
-from guake.simplegtkapp import SimpleGtkApp, CallbacksProxy
+from guake.simplegtkapp import SimpleGtkApp
 from guake.globals import GCONF_PATH, KEY, ALIGN_LEFT, ALIGN_RIGHT, ALIGN_CENTER
 from guake.common import *
 
@@ -119,151 +119,6 @@ PALETTES = [
     '#ffffffffffff'
 ]
 
-class PrefsCallbacks(CallbacksProxy):
-    """Holds callbacks that will be used in the PrefsDialg class.
-    """
-
-    def __init__(self):
-        self.client = GConf.Client.get_default()
-
-    # general tab
-
-    def on_default_shell_changed(self, combo):
-        """Changes the activity of default_shell in gconf
-        """
-        citer = combo.get_active_iter()
-        if not citer:
-            return
-        shell = combo.get_model().get_value(citer, 0)
-        # we unset the value (restore to default) when user chooses to use
-        # user shell as guake shell interpreter.
-        if shell == USER_SHELL_VALUE:
-            self.client.unset(KEY('/general/default_shell'))
-        else:
-            self.client.set_string(KEY('/general/default_shell'), shell)
-
-    def on_use_login_shell_toggled(self, chk):
-        """Changes the activity of use_login_shell in gconf
-        """
-        self.client.set_bool(KEY('/general/use_login_shell'), chk.get_active())
-
-    def on_open_tab_cwd_toggled(self, chk):
-        """Changes the activity of open_tab_cwd in gconf
-        """
-        self.client.set_bool(KEY('/general/open_tab_cwd'), chk.get_active())
-
-
-    def on_use_trayicon_toggled(self, chk):
-        """Changes the activity of use_trayicon in gconf
-        """
-        self.client.set_bool(KEY('/general/use_trayicon'), chk.get_active())
-
-    def on_use_popup_toggled(self, chk):
-        """Changes the activity of use_popup in gconf
-        """
-        self.client.set_bool(KEY('/general/use_popup'), chk.get_active())
-
-    def on_window_ontop_toggled(self, chk):
-        """Changes the activity of window_ontop in gconf
-        """
-        self.client.set_bool(KEY('/general/window_ontop'), chk.get_active())
-
-    def on_window_losefocus_toggled(self, chk):
-        """Changes the activity of window_losefocus in gconf
-        """
-        self.client.set_bool(KEY('/general/window_losefocus'), chk.get_active())
-
-    def on_window_tabbar_toggled(self, chk):
-        """Changes the activity of window_tabbar in gconf
-        """
-        self.client.set_bool(KEY('/general/window_tabbar'), chk.get_active())
-
-    def on_window_height_value_changed(self, hscale):
-        """Changes the value of window_height in gconf
-        """
-        val = hscale.get_value()
-        self.client.set_int(KEY('/general/window_height'), int(val))
-
-    def on_prompt_on_quit_toggled(self, chk):
-        """Set the `prompt on quit' property in gconf
-        """
-        self.client.set_bool(KEY('/general/prompt_on_quit'), chk.get_active())
-
-    # scrolling tab
-
-    def on_use_scrollbar_toggled(self, chk):
-        """Changes the activity of use_scrollbar in gconf
-        """
-        self.client.set_bool(KEY('/general/use_scrollbar'), chk.get_active())
-
-    def on_history_size_value_changed(self, spin):
-        """Changes the value of history_size in gconf
-        """
-        val = int(spin.get_value())
-        self.client.set_int(KEY('/general/history_size'), val)
-
-    def on_scroll_output_toggled(self, chk):
-        """Changes the activity of scroll_output in gconf
-        """
-        self.client.set_bool(KEY('/general/scroll_output'), chk.get_active())
-
-    def on_scroll_keystroke_toggled(self, chk):
-        """Changes the activity of scroll_keystroke in gconf
-        """
-        self.client.set_bool(KEY('/general/scroll_keystroke'), chk.get_active())
-
-    # appearance tab
-
-    def on_use_default_font_toggled(self, chk):
-        """Changes the activity of use_default_font in gconf
-        """
-        self.client.set_bool(KEY('/general/use_default_font'), chk.get_active())
-
-    def on_font_style_font_set(self, fbtn):
-        """Changes the value of font_style in gconf
-        """
-        self.client.set_string(KEY('/style/font/style'), fbtn.get_font_name())
-
-    def on_font_color_color_set(self, btn):
-        """Changes the value of font_color in gconf
-        """
-        color = hexify_color(btn.get_color())
-        self.client.set_string(KEY('/style/font/color'), color)
-
-    def on_background_color_color_set(self, btn):
-        """Changes the value of background_color in gconf
-        """
-        color = hexify_color(btn.get_color())
-        self.client.set_string(KEY('/style/background/color'), color)
-
-    def on_background_image_changed(self, btn):
-        """Changes the value of background_image in gconf
-        """
-        filename = btn.get_filename()
-        if os.path.isfile(filename or ''):
-            self.client.set_string(KEY('/style/background/image'), filename)
-
-    def on_transparency_value_changed(self, hscale):
-        """Changes the value of background_transparency in gconf
-        """
-        value = hscale.get_value()
-        self.client.set_int(KEY('/style/background/transparency'), int(value))
-
-    # compatibility tab
-
-    def on_backspace_binding_changed(self, combo):
-        """Changes the value of compat_backspace in gconf
-        """
-        val = combo.get_active_text()
-        self.client.set_string(KEY('/general/compat_backspace'),
-                               ERASE_BINDINGS[val])
-
-    def on_delete_binding_changed(self, combo):
-        """Changes the value of compat_delete in gconf
-        """
-        val = combo.get_active_text()
-        self.client.set_string(KEY('/general/compat_delete'),
-                               ERASE_BINDINGS[val])
 
 
 class PrefsDialog(SimpleGtkApp):
@@ -273,8 +128,7 @@ class PrefsDialog(SimpleGtkApp):
         """Setup the preferences dialog interface, loading images,
         adding filters to file choosers and connecting some signals.
         """
-        super(PrefsDialog, self).__init__(gladefile('prefs.ui'),
-                                          PrefsCallbacks())
+        super(PrefsDialog, self).__init__(gladefile('prefs.ui'))
 
         self.client = GConf.Client.get_default()
 
@@ -378,36 +232,6 @@ class PrefsDialog(SimpleGtkApp):
         self.client.unset(KEY('/style/background/image'))
         self.bgfilechooser.unselect_all()
 
-    def on_reset_compat_defaults_clicked(self, bnt):
-        """Reset default values to compat_{backspace,delete} gconf
-        keys. The default values are retrivied from the guake.schemas
-        file.
-        """
-        self.client.unset(KEY('/general/compat_backspace'))
-        self.client.unset(KEY('/general/compat_delete'))
-        self.reload_erase_combos()
-
-    def on_palette_name_changed(self, combo):
-        """Changes the value of palette in gconf
-        """
-        palette_index = combo.get_active()
-        if palette_index == 4:
-            return
-        self.client.set_string(KEY('/style/font/palette'), 
-            PALETTES[palette_index]) 
-        self.set_palette_colors(PALETTES[palette_index])
-
-    def on_palette_color_set(self, btn):
-        """Changes the value of palette in gconf
-        """
-        palette = []
-        for i in range(16):
-            palette.append(hexify_color(
-                self.get_widget('palette_%d' % i).get_color()))
-        palette = ':'.join(palette)
-        self.client.set_string(KEY('/style/font/palette'), palette)
-        self.set_palette_name(palette)
-
     def set_palette_name(self, palette):
         """If the given palette matches an existing one, shows it in the
         combobox
@@ -428,7 +252,7 @@ class PrefsDialog(SimpleGtkApp):
             else:
                 warnings.warn('Unable to parse color %s' % palette[i])
 
-    def reload_erase_combos(self, btn=None):
+    def reload_erase_combos(self):
         """Read from gconf the value of compat_{backspace,delete} vars
         and select the right option in combos.
         """
@@ -695,6 +519,179 @@ class PrefsDialog(SimpleGtkApp):
             GObject.idle_add(real_cb)
 
         return True
+
+    # general tab
+
+    def on_default_shell_changed(self, combo):
+        """Changes the activity of default_shell in gconf
+        """
+        citer = combo.get_active_iter()
+        if not citer:
+            return
+        shell = combo.get_model().get_value(citer, 0)
+        # we unset the value (restore to default) when user chooses to use
+        # user shell as guake shell interpreter.
+        if shell == USER_SHELL_VALUE:
+            self.client.unset(KEY('/general/default_shell'))
+        else:
+            self.client.set_string(KEY('/general/default_shell'), shell)
+
+    def on_use_login_shell_toggled(self, chk):
+        """Changes the activity of use_login_shell in gconf
+        """
+        self.client.set_bool(KEY('/general/use_login_shell'), chk.get_active())
+
+    def on_open_tab_cwd_toggled(self, chk):
+        """Changes the activity of open_tab_cwd in gconf
+        """
+        self.client.set_bool(KEY('/general/open_tab_cwd'), chk.get_active())
+
+
+    def on_use_trayicon_toggled(self, chk):
+        """Changes the activity of use_trayicon in gconf
+        """
+        self.client.set_bool(KEY('/general/use_trayicon'), chk.get_active())
+
+    def on_use_popup_toggled(self, chk):
+        """Changes the activity of use_popup in gconf
+        """
+        self.client.set_bool(KEY('/general/use_popup'), chk.get_active())
+
+    def on_window_ontop_toggled(self, chk):
+        """Changes the activity of window_ontop in gconf
+        """
+        self.client.set_bool(KEY('/general/window_ontop'), chk.get_active())
+
+    def on_window_losefocus_toggled(self, chk):
+        """Changes the activity of window_losefocus in gconf
+        """
+        self.client.set_bool(KEY('/general/window_losefocus'), chk.get_active())
+
+    def on_window_tabbar_toggled(self, chk):
+        """Changes the activity of window_tabbar in gconf
+        """
+        self.client.set_bool(KEY('/general/window_tabbar'), chk.get_active())
+
+    def on_window_height_value_changed(self, hscale):
+        """Changes the value of window_height in gconf
+        """
+        val = hscale.get_value()
+        self.client.set_int(KEY('/general/window_height'), int(val))
+
+    def on_prompt_on_quit_toggled(self, chk):
+        """Set the `prompt on quit' property in gconf
+        """
+        self.client.set_bool(KEY('/general/prompt_on_quit'), chk.get_active())
+
+    # scrolling tab
+
+    def on_use_scrollbar_toggled(self, chk):
+        """Changes the activity of use_scrollbar in gconf
+        """
+        self.client.set_bool(KEY('/general/use_scrollbar'), chk.get_active())
+
+    def on_history_size_value_changed(self, spin):
+        """Changes the value of history_size in gconf
+        """
+        val = int(spin.get_value())
+        self.client.set_int(KEY('/general/history_size'), val)
+
+    def on_scroll_output_toggled(self, chk):
+        """Changes the activity of scroll_output in gconf
+        """
+        self.client.set_bool(KEY('/general/scroll_output'), chk.get_active())
+
+    def on_scroll_keystroke_toggled(self, chk):
+        """Changes the activity of scroll_keystroke in gconf
+        """
+        self.client.set_bool(KEY('/general/scroll_keystroke'), chk.get_active())
+
+    # appearance tab
+
+    def on_use_default_font_toggled(self, chk):
+        """Changes the activity of use_default_font in gconf
+        """
+        self.client.set_bool(KEY('/general/use_default_font'), chk.get_active())
+
+    def on_font_style_font_set(self, fbtn):
+        """Changes the value of font_style in gconf
+        """
+        self.client.set_string(KEY('/style/font/style'), fbtn.get_font_name())
+
+    def on_font_color_color_set(self, btn):
+        """Changes the value of font_color in gconf
+        """
+        color = hexify_color(btn.get_color())
+        self.client.set_string(KEY('/style/font/color'), color)
+
+    def on_background_color_color_set(self, btn):
+        """Changes the value of background_color in gconf
+        """
+        color = hexify_color(btn.get_color())
+        self.client.set_string(KEY('/style/background/color'), color)
+
+    def on_palette_name_changed(self, combo):
+        """Changes the value of palette in gconf
+        """
+        palette_index = combo.get_active()
+        if palette_index == 4:
+            return
+        self.client.set_string(KEY('/style/font/palette'),
+            PALETTES[palette_index])
+        self.set_palette_colors(PALETTES[palette_index])
+
+    def on_palette_color_set(self, btn):
+        """Changes the value of palette in gconf
+        """
+        palette = []
+        for i in range(16):
+            palette.append(hexify_color(
+                self.get_widget('palette_%d' % i).get_color()))
+        palette = ':'.join(palette)
+        self.client.set_string(KEY('/style/font/palette'), palette)
+        self.set_palette_name(palette)
+
+    def on_background_image_changed(self, btn):
+        """Changes the value of background_image in gconf
+        """
+        filename = btn.get_filename()
+        if os.path.isfile(filename or ''):
+            self.client.set_string(KEY('/style/background/image'), filename)
+
+    def on_transparency_value_changed(self, hscale):
+        """Changes the value of background_transparency in gconf
+        """
+        value = hscale.get_value()
+        self.client.set_int(KEY('/style/background/transparency'), int(value))
+
+    # compatibility tab
+
+    def on_backspace_binding_changed(self, combo):
+        """Changes the value of compat_backspace in gconf
+        """
+        val = combo.get_active_text()
+        if not val:
+            return
+        self.client.set_string(KEY('/general/compat_backspace'),
+                               ERASE_BINDINGS[val])
+
+    def on_delete_binding_changed(self, combo):
+        """Changes the value of compat_delete in gconf
+        """
+        val = combo.get_active_text()
+        if not val:
+            return
+        self.client.set_string(KEY('/general/compat_delete'),
+                               ERASE_BINDINGS[val])
+
+    def on_reset_compat_defaults_clicked(self, btn):
+        """Reset default values to compat_{backspace,delete} gconf
+        keys. The default values are retrivied from the guake.schemas
+        file.
+        """
+        self.client.unset(KEY('/general/compat_backspace'))
+        self.client.unset(KEY('/general/compat_delete'))
+        self.dialog.reload_erase_combos()
 
 class KeyEntry(object):
     def __init__(self, keycode, mask):

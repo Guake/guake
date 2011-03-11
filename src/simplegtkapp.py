@@ -44,38 +44,20 @@ def bindtextdomain(app_name, locale_dir=None):
         print "Warning", app_name, e
         __builtins__.__dict__["_"] = lambda x : x
 
-class CallbacksProxy(object):
-    # -- predefined callbacks --
-    def gtk_main_quit(self, *args):
-        """
-        Calls self.quit()
-        """
-        self.quit()
-
-    def gtk_widget_destroy(self, widget, *args):
-        """
-        Destroyes the widget.
-        """
-        widget.destroy()
-
-class SimpleGtkApp(CallbacksProxy):
+class SimpleGtkApp(object):
     """
     Basic GtkBuilder wrapper that implements the functions from
     simplegladeapp.py used by Guake with the purpose to minimize
     the changes required in Guake while porting it to GtkBuilder.
     """
-    def __init__(self, path, callbacks_proxy=None):
+    def __init__(self, path):
         """
         Load a GtkBuilder ui definition file specified by path.
-        If callbacks_proxy is specified it will be used as object to
-        to connect the signals, otherwise self will be used.
+        Self will be used as object to to connect the signals.
         """        
         self.builder = Gtk.Builder()
         self.builder.add_from_file(path)
-        if callbacks_proxy:
-            self.builder.connect_signals(callbacks_proxy)
-        else:
-            self.builder.connect_signals(self)
+        self.builder.connect_signals(self)
 
     def quit(self):
         """
@@ -100,3 +82,16 @@ class SimpleGtkApp(CallbacksProxy):
         Returns all the interface widgets.
         """
         return self.builder.get_objects()
+
+    # -- predefined callbacks --
+    def gtk_main_quit(self, *args):
+        """
+        Calls self.quit()
+        """
+        self.quit()
+
+    def gtk_widget_destroy(self, widget, *args):
+        """
+        Destroyes the widget.
+        """
+        widget.destroy()
