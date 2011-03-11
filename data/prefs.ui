@@ -454,7 +454,6 @@
                               <object class="GtkHScale" id="window_height">
                                 <property name="visible">True</property>
                                 <property name="can_focus">True</property>
-                                <property name="update_policy">discontinuous</property>
                                 <property name="adjustment">adjustment1</property>
                                 <property name="digits">0</property>
                                 <property name="draw_value">False</property>
@@ -1446,7 +1445,6 @@
                                     <property name="receives_default">False</property>
                                     <property name="use_underline">True</property>
                                     <signal name="clicked" handler="on_reset_compat_defaults_clicked" swapped="no"/>
-                                    <signal name="clicked" handler="reload_erase_combos" swapped="no"/>
                                   </object>
                                 </child>
                               </object>
