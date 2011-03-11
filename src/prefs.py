@@ -19,13 +19,8 @@
 # Boston, MA 02111-1307, USA.
 from __future__ import absolute_import
 
-import pygtk
-pygtk.require('2.0')
-
-from gi.repository import Gdk
-Gdk.init_check([])
 from gi.repository import Gtk
-Gtk.init_check([])
+from gi.repository import Gdk
 from gi.repository import GObject
 from gi.repository import GConf
 
@@ -723,5 +718,6 @@ def setup_standalone_signals(instance):
     return instance
 
 if __name__ == '__main__':
+    Gtk.init_check(sys.argv)
     setup_standalone_signals(PrefsDialog()).show()
     Gtk.main()

@@ -21,16 +21,11 @@ Boston, MA 02111-1307, USA.
 """
 from __future__ import absolute_import
 
-import pygtk
-pygtk.require('2.0')
-
-from gi.repository import GLib
 from gi.repository import Gtk
-Gtk.init_check([])
 from gi.repository import Gdk
-Gdk.init_check([])
 from gi.repository import GdkX11
 from gi.repository import GdkPixbuf
+from gi.repository import GLib
 from gi.repository import Pango
 from gi.repository import GConf
 from gi.repository import Vte
@@ -1371,6 +1366,7 @@ def handle_params(remote_object):
     return called_with_param
 
 if __name__ == '__main__':
+    Gtk.init_check(sys.argv)
     if not test_gconf():
         raise ShowableError(_('Guake can not init!'),
             _('Gconf Error.\n'
