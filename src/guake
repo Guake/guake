@@ -256,7 +256,7 @@ class Guake(SimpleGtkApp):
             command += '\n'
 
         index = self.notebook.get_current_page()
-        self.term_list[tab or index].feed_child(command)
+        self.term_list[tab or index].feed_child(command, -1)
 
     def on_resizer_button(self, widget, event):
         if event.type == Gdk.EventType.BUTTON_PRESS:
