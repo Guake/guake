@@ -718,6 +718,7 @@ def setup_standalone_signals(instance):
     return instance
 
 if __name__ == '__main__':
+    import sys
     Gtk.init_check(sys.argv)
     setup_standalone_signals(PrefsDialog()).show()
     Gtk.main()
