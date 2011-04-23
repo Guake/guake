@@ -63,8 +63,8 @@ class PromptQuitDialog(Gtk.MessageDialog):
     def __init__(self, parent, running_procs):
         super(PromptQuitDialog, self).__init__(
             parent,
-            Gtk.DIALOG_MODAL | Gtk.DIALOG_DESTROY_WITH_PARENT,
-            Gtk.MESSAGE_QUESTION, Gtk.BUTTONS_YES_NO)
+            Gtk.DialogFlags.MODAL | Gtk.DialogFlags.DESTROY_WITH_PARENT,
+            Gtk.MessageType.QUESTION, Gtk.ButtonsType.YES_NO)
 
         self.set_keep_above(True)
         self.set_markup(_('Do you really want to quit Guake!?'))
