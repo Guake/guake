@@ -47,9 +47,9 @@ from guake.dbusiface import DbusManager, DBUS_NAME, DBUS_PATH
 from guake.common import test_gconf, pixmapfile, gladefile, ShowableError, _, \
     ERASE_BINDINGS_ENUM
 from guake.globals import NAME, VERSION, LOCALE_DIR, KEY, GCONF_PATH, \
-    TERMINAL_MATCH_EXPRS, TERMINAL_MATCH_TAGS, \
     ALIGN_LEFT, ALIGN_RIGHT, ALIGN_CENTER
 from guake.conf import GConfHandler, GConfKeyHandler
+from guake.terminal import TerminalBox
 
 Notify.init('Guake!')
 
@@ -92,94 +92,6 @@ class AboutDialog(SimpleGtkApp):
 
         dialog.set_name('Guake!')
         dialog.set_version(VERSION)
-
-
-class GuakeTerminal(Vte.Terminal):
-    """Just a Vte.Terminal with some properties already set.
-    """
-    def __init__(self):
-        super(GuakeTerminal, self).__init__()
-        self.configure_terminal()
-        self.add_matches()
-        self.connect('button-press-event', self.button_press)
-        self.matched_value = ''
-
-    def configure_terminal(self):
-        """Sets all customized properties on the terminal
-        """
-        client = GConf.Client.get_default()
-        word_chars = client.get_string(KEY('/general/word_chars'))
-        self.set_word_chars(word_chars)
-        self.set_audible_bell(False)
-        self.set_visible_bell(False)
-        self.set_sensitive(True)
-        self.set_can_default(True)
-        self.set_can_focus(True)
-
-    def add_matches(self):
-        """Adds all regular expressions declared in
-        guake.globals.TERMINAL_MATCH_EXPRS to the terminal to make vte
-        highlight text that matches them.
-        """
-        # FIXME: match_add is deprecated we should use match_add_regex
-        # witch takes GRegex as parameter but first we need to find
-        # a way to construct GRegex objects (GLib.Regex)
-        pass
-        #for expr in TERMINAL_MATCH_EXPRS:
-            #tag = self.match_add(expr)
-            #self.match_set_cursor_type(tag, Gdk.HAND2)
-
-    def button_press(self, terminal, event):
-        """Handles the button press event in the terminal widget. If
-        any match string is caught, another aplication is open to
-        handle the matched resource uri.
-        """
-        self.matched_value = ''
-        matched_string = self.match_check(
-            int(event.x / self.get_char_width()),
-            int(event.y / self.get_char_height()))
-
-        if event.button == 1 \
-                and event.get_state()[1] & Gdk.ModifierType.CONTROL_MASK \
-                and matched_string:
-            value, tag = matched_string
-
-            if TERMINAL_MATCH_TAGS[tag] == 'schema':
-                # value here should not be changed, it is right and
-                # ready to be used.
-                pass
-            elif TERMINAL_MATCH_TAGS[tag] == 'http':
-                value = 'http://%s' % value
-            elif TERMINAL_MATCH_TAGS[tag] == 'email':
-                value = 'mailto:%s' % value
-
-            Gtk.show_uri(self.window.get_screen(), value,
-                         GdkX11.get_server_time(self.window))
-        elif event.button == 3 and matched_string:
-            self.matched_value = matched_string[0]
-
-class GuakeTerminalBox(Gtk.HBox):
-    """A box to group the terminal and a scrollbar.
-    """
-    def __init__(self):
-        super(GuakeTerminalBox, self).__init__()
-        self.terminal = GuakeTerminal()
-        self.add_terminal()
-        self.add_scroll_bar()
-
-    def add_terminal(self):
-        """Packs the terminal widget.
-        """
-        self.pack_start(self.terminal, True, True, 0)
-        self.terminal.show()
-
-    def add_scroll_bar(self):
-        """Packs the scrollbar.
-        """
-        adj = self.terminal.get_vadjustment()
-        scroll = Gtk.VScrollbar.new(adj)
-        scroll.set_no_show_all(True)
-        self.pack_start(scroll, False, False, 0)
 
 
 class Guake(SimpleGtkApp):
@@ -814,7 +726,7 @@ class Guake(SimpleGtkApp):
     def add_tab(self, directory=None):
         """Adds a new tab to the terminal notebook.
         """
-        box = GuakeTerminalBox()
+        box = TerminalBox()
         box.terminal.connect('button-press-event', self.show_context_menu)
         box.terminal.connect('child-exited', self.on_terminal_exited, box)
         box.terminal.connect('window-title-changed',

@@ -19,11 +19,10 @@ Free Software Foundation, Inc., 59 Temple Place - Suite 330,
 Boston, MA 02111-1307, USA.
 """
 
-__all__ = [
+__all__ = (
     'NAME', 'VERSION', 'IMAGE_DIR', 'GLADE_DIR', 'LOCALE_DIR',
-    'GCONF_PATH', 'KEY', 'TERMINAL_MATCH_EXPRS', 'TERMINAL_MATCH_TAGS',
-    'ALIGN_CENTER', 'ALIGN_RIGHT', 'ALIGN_LEFT',
-    ]
+    'GCONF_PATH', 'KEY', 'ALIGN_CENTER', 'ALIGN_RIGHT', 'ALIGN_LEFT',
+)
 
 NAME = 'guake'
 VERSION = '@VERSION@'
@@ -34,25 +33,4 @@ LOCALE_DIR = '@DATADIR@/locale'
 # Gconf stuff. Yep, it is hardcoded =)
 GCONF_PATH = '/apps/guake'
 KEY = lambda x: (GCONF_PATH+x)
-
-# regular expressions to highlight links in terminal. This code was
-# lovely stolen from the great gnome-terminal project, thank you =)
-USERCHARS = "-[:alnum:]"
-PASSCHARS = "-[:alnum:],?;.:/!%$^*&~\"#'"
-HOSTCHARS = "-[:alnum:]"
-HOST      = "[" + HOSTCHARS + "]+(\\.[" + HOSTCHARS + "]+)*"
-PORT      = "(:[:digit:]{1,5})?"
-PATHCHARS =  "-[:alnum:]_$.+!*(),;:@&=?/~#%"
-SCHEME    = "(news:|telnet:|nntp:|file:/|https?:|ftps?:|webcal:)"
-USER      = "[" + USERCHARS + "]+(:[" + PASSCHARS + "]+)?"
-URLPATH   = "/[" + PATHCHARS + "]*[^]'.}>) \t\r\n,\\\"]"
-
-TERMINAL_MATCH_EXPRS = [
-  "\<" + SCHEME + "//(" + USER + "@)?" + HOST + PORT + "(" + URLPATH + ")?\>/?",
-  "\<(www|ftp)[" + HOSTCHARS + "]*\." + HOST + PORT + "(" +URLPATH + ")?\>/?",
-  "\<(mailto:)?[" + USERCHARS + "][" + USERCHARS + ".]*@[" + HOSTCHARS +
-  "]+\." + HOST + "\>"
-  ]
-
-TERMINAL_MATCH_TAGS = 'schema', 'http', 'email'
 ALIGN_CENTER, ALIGN_LEFT, ALIGN_RIGHT = range(3)
