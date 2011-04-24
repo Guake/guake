@@ -18,6 +18,8 @@ Boston, MA 02111-1307, USA.
 """
 
 from gi.repository import Gtk
+from gi.repository import Gdk
+from gi.repository import GdkX11
 from gi.repository import Vte
 from gi.repository import GConf
 from guake.globals import KEY
@@ -91,12 +93,11 @@ class Terminal(Vte.Terminal):
         matched_string = self.match_check(
             int(event.x / self.get_char_width()),
             int(event.y / self.get_char_height()))
+        value, tag = matched_string
 
         if event.button == 1 \
-                and event.get_state()[1] & Gdk.ModifierType.CONTROL_MASK \
-                and matched_string:
-            value, tag = matched_string
-
+                and event.get_state() & Gdk.ModifierType.CONTROL_MASK \
+                and value:
             if TERMINAL_MATCH_TAGS[tag] == 'schema':
                 # value here should not be changed, it is right and
                 # ready to be used.
@@ -106,8 +107,8 @@ class Terminal(Vte.Terminal):
             elif TERMINAL_MATCH_TAGS[tag] == 'email':
                 value = 'mailto:%s' % value
 
-            Gtk.show_uri(self.window.get_screen(), value,
-                         GdkX11.get_server_time(self.window))
+            Gtk.show_uri(self.get_screen(), value,
+                         GdkX11.x11_get_server_time(self.get_window()))
         elif event.button == 3 and matched_string:
             self.matched_value = matched_string[0]
 
