@@ -134,7 +134,6 @@ class Guake(SimpleGtkApp):
                 event.type == Gdk.EventType(value=5):
                 self.add_tab()
 
-        # evtbox = self.get_widget('event-tabs')
         self.notebook.connect('button-press-event', double_click)
 
         self.mainframe = self.get_widget('mainframe')
