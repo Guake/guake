@@ -646,7 +646,7 @@ class Guake(SimpleGtkApp):
                 directory = cwd
         return directory
 
-    def get_fork_params(self, default_params=None):
+    def get_fork_params(self, directory=None):
         """Return all parameters to be passed to the fork_command
         method of a vte terminal. Params returned can be expanded by
         the `params' parameter that receive a dictionary.
@@ -677,9 +677,9 @@ class Guake(SimpleGtkApp):
         if self.client.get_bool(KEY('/general/open_tab_cwd')):
             params[1] = self.get_current_dir()
 
-        # Leting caller change/add values to fork params.
-        if default_params:
-            params.update(default_params)
+        # Letting caller change/add values to fork params.
+        if directory:
+            params[1] = directory
 
         # Environment variables are not actually parameters but they
         # need to be set before calling terminal.fork_command()
@@ -728,15 +728,7 @@ class Guake(SimpleGtkApp):
 
         self.term_list.append(box.terminal)
 
-        # We can choose the directory to vte launch. It is important
-        # to be used by dbus interface. I'm testing if directory is a
-        # string because when binded to a signal, the first param can
-        # be a button not a directory.
-        #default_params = {}
-        #if isinstance(directory, basestring):
-        #    default_params['working_directory'] = directory
-
-        final_params = self.get_fork_params()
+        final_params = self.get_fork_params(directory)
         success, pid = box.terminal.fork_command_full(*final_params)
         self.pid_list.append(pid)
 
