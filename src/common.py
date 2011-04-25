@@ -26,11 +26,7 @@ from gi.repository import Vte
 
 import sys
 import os
-import locale
 import gettext
-import time
-import subprocess
-import re
 import guake.globals
 
 # Internationalization purposes.
@@ -81,6 +77,8 @@ def get_binaries_from_path(compiled_re):
     return ret
 
 # map from string to enum type for VTE erase bindings
-ERASE_BINDINGS_ENUM = {'ascii-delete' : Vte.TerminalEraseBinding.ASCII_DELETE,
-                       'delete-sequence' : Vte.TerminalEraseBinding.DELETE_SEQUENCE,
-                       'ascii-backspace' : Vte.TerminalEraseBinding.ASCII_BACKSPACE}
+ERASE_BINDINGS_ENUM = {
+    'ascii-delete' : Vte.TerminalEraseBinding.ASCII_DELETE,
+    'delete-sequence' : Vte.TerminalEraseBinding.DELETE_SEQUENCE,
+    'ascii-backspace' : Vte.TerminalEraseBinding.ASCII_BACKSPACE
+}

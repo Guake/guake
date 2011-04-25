@@ -40,7 +40,7 @@ def bindtextdomain(app_name, locale_dir=None):
         gettext.bindtextdomain(app_name, locale_dir)
         gettext.textdomain(app_name)
         gettext.install(app_name, locale_dir, unicode = 1)
-    except (IOError,locale.Error), e:
+    except (IOError, locale.Error), e:
         print "Warning", app_name, e
         __builtins__.__dict__["_"] = lambda x : x
 

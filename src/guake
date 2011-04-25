@@ -25,8 +25,6 @@ from gi.repository import Gtk
 from gi.repository import Gdk
 from gi.repository import GdkX11
 from gi.repository import GdkPixbuf
-from gi.repository import GLib
-from gi.repository import Pango
 from gi.repository import GConf
 from gi.repository import Vte
 from gi.repository import Notify
@@ -35,18 +33,16 @@ import dbus
 import os
 import sys
 import signal
+import posix
 from thread import start_new_thread
 from time import sleep
-import posix
-import warnings
 
 import guake.globalhotkeys
 from guake.simplegtkapp import SimpleGtkApp, bindtextdomain
-from guake.prefs import PrefsDialog, LKEY, GKEY
+from guake.prefs import PrefsDialog, GKEY
 from guake.dbusiface import DbusManager, DBUS_NAME, DBUS_PATH
-from guake.common import test_gconf, pixmapfile, gladefile, ShowableError, _, \
-    ERASE_BINDINGS_ENUM
-from guake.globals import NAME, VERSION, LOCALE_DIR, KEY, GCONF_PATH, \
+from guake.common import test_gconf, pixmapfile, gladefile, ShowableError, _
+from guake.globals import NAME, VERSION, LOCALE_DIR, KEY, \
     ALIGN_LEFT, ALIGN_RIGHT, ALIGN_CENTER
 from guake.conf import GConfHandler, GConfKeyHandler
 from guake.terminal import TerminalBox
@@ -295,9 +291,10 @@ class Guake(SimpleGtkApp):
         """Show the tray icon menu.
         """
         menu = self.get_widget('tray-menu')
-        # FIXME: we should use Gtk.StatusIcon.position_menu here as callback
-        #        but it crashes in Gtk3
-        menu.popup_for_device(None, None, None, None, None, button, activate_time)
+        # FIXME: we should use Gtk.StatusIcon.position_menu here as
+        # callback but it crashes in Gtk3
+        menu.popup_for_device(
+            None, None, None, None, None, button, activate_time)
 
     def show_context_menu(self, terminal, event):
         """Show the context menu, only with a right click on a vte
@@ -313,7 +310,9 @@ class Guake(SimpleGtkApp):
             self.get_widget('context_paste').set_sensitive(False)
         else:
             self.get_widget('context_paste').set_sensitive(True)
-        self.context_menu.popup_for_device(None, None, None, None, None, 3, Gtk.get_current_event_time())
+        self.context_menu.popup_for_device(
+            None, None, None, None, None, 3,
+            Gtk.get_current_event_time())
         return True
 
     def show_rename_dialog(self, target, event):
@@ -441,7 +440,7 @@ class Guake(SimpleGtkApp):
             term_pid = self.pid_list[term_idx]
             fgpid = posix.tcgetpgrp(fdpty)
             if not (fgpid == -1 or fgpid == term_pid):
-            	total_procs += 1
+                total_procs += 1
             term_idx += 1
         return total_procs
 
@@ -595,11 +594,12 @@ class Guake(SimpleGtkApp):
         entry.set_property('can-default', True)
         entry.show()
 
-        dialog = Gtk.Dialog(_("Rename tab"),
-                            self.window,
-                            Gtk.DialogFlags.MODAL | Gtk.DialogFlags.DESTROY_WITH_PARENT,
-                            (Gtk.STOCK_CANCEL, Gtk.ResponseType.REJECT,
-                             Gtk.STOCK_OK, Gtk.ResponseType.ACCEPT))
+        dialog = Gtk.Dialog(
+            _("Rename tab"),
+            self.window,
+            Gtk.DialogFlags.MODAL | Gtk.DialogFlags.DESTROY_WITH_PARENT,
+            (Gtk.STOCK_CANCEL, Gtk.ResponseType.REJECT,
+             Gtk.STOCK_OK, Gtk.ResponseType.ACCEPT))
 
         dialog.set_size_request(300, -1)
         dialog.set_border_width(4)

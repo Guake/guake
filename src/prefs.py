@@ -25,7 +25,7 @@ from gi.repository import GObject
 from gi.repository import GConf
 
 from guake.simplegtkapp import SimpleGtkApp
-from guake.globals import GCONF_PATH, KEY, ALIGN_LEFT, ALIGN_RIGHT, ALIGN_CENTER
+from guake.globals import GCONF_PATH, KEY
 from guake.common import *
 
 import re
