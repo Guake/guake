@@ -111,10 +111,6 @@ class Guake(SimpleGtkApp):
         self.tray_icon.connect('popup-menu', self.show_menu)
         self.tray_icon.connect('activate', self.show_hide)
 
-        # adding images from a different path.
-        ipath = pixmapfile('guake.png')
-        self.get_widget('image1').set_from_file(ipath)
-
         # important widgets
         self.window = self.get_widget('window-root')
         self.notebook = self.get_widget('notebook-teminals')
