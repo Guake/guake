@@ -124,18 +124,7 @@ class PrefsDialog(SimpleGtkApp):
         adding filters to file choosers and connecting some signals.
         """
         super(PrefsDialog, self).__init__(gladefile('prefs.ui'))
-
         self.client = GConf.Client.get_default()
-
-        # FIXME: doesn't work on Gtk3
-        # setting evtbox title bg
-        #eventbox = self.get_widget('eventbox-title')
-        #eventbox.modify_bg(Gtk.StateType.NORMAL,
-        #                   Gdk.colormap_get_system().alloc_color("#ffffff"))
-
-        # images
-        ipath = pixmapfile('guake-notification.png')
-        self.get_widget('image_logo').set_from_file(ipath)
 
         # the first position in tree will store the keybinding path in gconf,
         # and the user doesn't worry with this, lest hide that =D
