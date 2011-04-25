@@ -354,10 +354,8 @@ class Guake(SimpleGtkApp):
         event_time = self.hotkeys.get_current_event_time()
 
         # do nothing if hide has occured in losefocus event in "future"
-        if self.losefocus_hide_time and \
-                self.losefocus_hide_time >= event_time:
-            pass
-        else:
+        if not (self.losefocus_hide_time and \
+                    self.losefocus_hide_time >= event_time):
             if not self.window.get_property('visible'):
                 self.show()
                 self.set_terminal_focus()
