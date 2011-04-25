@@ -114,14 +114,33 @@ class Guake(SimpleGtkApp):
         # adding images from a different path.
         ipath = pixmapfile('guake.png')
         self.get_widget('image1').set_from_file(ipath)
-        ipath = pixmapfile('add_tab.png')
-        self.get_widget('image2').set_from_file(ipath)
 
         # important widgets
         self.window = self.get_widget('window-root')
         self.notebook = self.get_widget('notebook-teminals')
-        self.tabs = self.get_widget('hbox-tabs')
-        self.toolbar = self.get_widget('toolbar')
+
+        # Adding the `new tab' button as an action widget of the tabs
+        # notebook.
+        add_button = Gtk.Button.new_from_stock(Gtk.STOCK_NEW)
+        add_button.connect('clicked', self.add_tab)
+        add_button.show()
+        self.notebook.set_action_widget(add_button, Gtk.PackType.END)
+
+        # double click stuff
+        def double_click(hbox, event):
+            """Handles double clicks on tabs area and when receive
+            one, calls add_tab.
+            """
+            # Gdk.EventType.2BUTTON_PRESS is not working in python because
+            # it starts with number so use Gdk.EventType(value = 5) to construct
+            # 2BUTTON_PRESS event type
+            if event.button == 1 and \
+                event.type == Gdk.EventType(value=5):
+                self.add_tab()
+
+        # evtbox = self.get_widget('event-tabs')
+        self.notebook.connect('button-press-event', double_click)
+
         self.mainframe = self.get_widget('mainframe')
         self.resizer = self.get_widget('resizer')
         self.context_menu = self.get_widget('context-menu')
@@ -144,31 +163,11 @@ class Guake(SimpleGtkApp):
         # used to kill the process when closing a tab
         self.pid_list = []
 
-        # It's intended to know which tab was selected to
-        # close/rename. This attribute will be set in
-        # self.show_tab_menu
-        self.selected_tab = None
-
         # holds fullscreen status
         self.fullscreen = False
 
         # holds the timestamp of the hide triggered in losefocus event
         self.losefocus_hide_time = 0
-
-        # double click stuff
-        def double_click(hbox, event):
-            """Handles double clicks on tabs area and when receive
-            one, calls add_tab.
-            """
-            # Gdk.EventType.2BUTTON_PRESS is not working in python because
-            # it starts with number so use Gdk.EventType(value = 5) to construct
-            # 2BUTTON_PRESS event type
-            if event.button == 1 and \
-                event.type == Gdk.EventType(value = 5):
-                self.add_tab()
-
-        evtbox = self.get_widget('event-tabs')
-        evtbox.connect('button-press-event', double_click)
 
         # Flag to prevent guake hide when window_losefocus is true and
         # user tries to use the context menu.
@@ -235,6 +234,14 @@ class Guake(SimpleGtkApp):
                 _('Guake is now running,\n'
                   'press <b>%s</b> to use it.') % label, filename)
             notification.show()
+
+    @property
+    def current_tab(self):
+        return self.notebook.get_nth_page(self.notebook.get_current_page())
+
+    @property
+    def current_label(self):
+        return self.notebook.get_tab_label(self.current_tab)
 
     def execute_command(self, command, tab=None):
         """Execute the `command' in the `tab'. If tab is None, the
@@ -321,7 +328,6 @@ class Guake(SimpleGtkApp):
             if event.type == Gdk.EventType(value = 5): # 5 == GDK_2BUTTON_PRESS
                 self.accel_rename()
                 self.set_terminal_focus()
-                self.selected_tab.pressed()
                 return
 
     def show_tab_menu(self, target, event):
@@ -330,7 +336,6 @@ class Guake(SimpleGtkApp):
         """
         if event.button == 3:
             self.showing_context_menu = True
-            self.selected_tab = target
             menu = self.get_widget('tab-menu')
             menu.popup(None, None, None, None, 3, event.get_time())
         self.set_terminal_focus()
@@ -513,8 +518,6 @@ class Guake(SimpleGtkApp):
         """Callback to show the rename tab dialog. Called by the accel
         key.
         """
-        pagepos = self.notebook.get_current_page()
-        self.selected_tab = self.tabs.get_children()[pagepos]
         self.on_rename_activate()
         return True
 
@@ -566,10 +569,10 @@ class Guake(SimpleGtkApp):
             # their default state.
             self.client.notify(KEY('/general/window_tabbar'))
             self.client.notify(KEY('/general/show_resizer'))
+
             # make sure the window size is correct after returning
             # from fullscreen
             self.client.notify(KEY('/general/window_height'))
-
         return True
 
     # -- callbacks --
@@ -582,17 +585,18 @@ class Guake(SimpleGtkApp):
         self.delete_tab(self.notebook.page_num(widget), kill=False)
 
     def on_terminal_title_changed(self, vte, box):
-        use_them = self.client.get_bool(KEY("/general/use_vte_titles"))
-        if not use_them:
-            return
-        page = self.notebook.page_num(box)
-        self.tabs.get_children()[page].set_label(vte.get_window_title())
+        """Simple callback to change the current tab label when vte says
+        to do so.
+        """
+        if self.client.get_bool(KEY("/general/use_vte_titles")):
+            self.current_label.set_text(vte.get_window_title())
 
     def on_rename_activate(self, *args):
         """Shows a dialog to rename the current tab.
         """
+
         entry = Gtk.Entry()
-        entry.set_text(self.selected_tab.get_label())
+        entry.set_text(self.current_label.get_text())
         entry.set_property('can-default', True)
         entry.show()
 
@@ -613,7 +617,7 @@ class Guake(SimpleGtkApp):
         self.disable_losefocus_hiding = False
 
         if response == Gtk.ResponseType.ACCEPT:
-            self.selected_tab.set_label(entry.get_text())
+            self.current_label.set_text(entry.get_text())
 
         dialog.destroy()
         self.set_terminal_focus()
@@ -621,25 +625,19 @@ class Guake(SimpleGtkApp):
     def on_close_activate(self, *args):
         """Tab context menu close handler
         """
-        tabs = self.tabs.get_children()
-        pagepos = tabs.index(self.selected_tab)
-        self.delete_tab(pagepos)
+        self.delete_tab(self.notebook.get_current_page())
 
     # -- tab related functions --
 
     def close_tab(self, *args):
         """Closes the current tab.
         """
-        pagepos = self.notebook.get_current_page()
-        self.delete_tab(pagepos)
+        self.delete_tab(self.notebook.get_current_page())
 
     def rename_current_tab(self, new_text):
-        """Sets the `self.selected_tab' var with the selected radio
-        button and change its label to `new_text'.
+        """Sets the text of the current label.
         """
-        pagepos = self.notebook.get_current_page()
-        self.selected_tab = self.tabs.get_children()[pagepos]
-        self.selected_tab.set_label(new_text)
+        self.current_label.set_text(new_text)
 
     def get_current_dir(self):
         """Gets the working directory of the current tab to create a
@@ -749,28 +747,7 @@ class Guake(SimpleGtkApp):
 
         # Adding a new radio button to the tabbar
         label = box.terminal.get_window_title() or _("Terminal")
-        tabs = self.tabs.get_children()
-
-        if tabs:
-            bnt = Gtk.RadioButton.new_with_label_from_widget(tabs[0], label)
-        else:
-            bnt = Gtk.RadioButton.new_with_label(None, label)
-
-        bnt.set_property('can-focus', False)
-        bnt.set_property('draw-indicator', False)
-        bnt.connect('button-press-event', self.show_tab_menu)
-        bnt.connect('button-press-event', self.show_rename_dialog)
-        bnt.connect('toggled',
-                    lambda *x:
-                        x[0].get_active() and self.notebook.set_current_page(
-                            self.notebook.page_num(box)
-                        )
-                    )
-        bnt.show()
-
-        self.tabs.pack_start(bnt, False, False, 1)
-
-        self.notebook.append_page(box, None)
+        self.notebook.append_page(box, Gtk.Label(label))
         self.notebook.set_current_page(self.notebook.page_num(box))
         box.terminal.grab_focus()
         self.load_config()
@@ -780,7 +757,6 @@ class Guake(SimpleGtkApp):
         tab widgets and will call the function to kill interpreter
         forked by Vte.
         """
-        self.tabs.get_children()[pagepos].destroy()
         self.notebook.remove_page(pagepos)
         self.term_list.pop(pagepos).destroy()
         pid = self.pid_list.pop(pagepos)
@@ -830,29 +806,12 @@ class Guake(SimpleGtkApp):
         page = self.notebook.get_current_page()
         self.term_list[page].grab_focus()
 
-    def select_current_tab(self, notebook, user_data, page):
-        """When current self.notebook page is changed, the tab bar
-        made with radio buttons must be updated and this method does
-        this work.
-        """
-        if not self.tabs.get_children()[page].get_active():
-            self.tabs.get_children()[page].set_active(True)
-
     def select_tab(self, tab_index):
         """Select an already added tab by its index.
         """
-        try:
-            self.tabs.get_children()[tab_index].set_active(True)
-        except IndexError:
-            pass
+        page = self.notebook.get_nth_page(tab_index)
+        page.set_active(True)
 
-    def get_selected_tab(self):
-        """return the selected tab index, it also set the
-        self.selected_tab var.
-        """
-        pagepos = self.notebook.get_current_page()
-        self.selected_tab = self.tabs.get_children()[pagepos]
-        return pagepos
 
 def handle_params(remote_object):
     """Parses the command line parameters and decide if dbus methods

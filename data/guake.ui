@@ -1,39 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <interface>
   <requires lib="gtk+" version="2.20"/>
-  <!-- interface-naming-policy toplevel-contextual -->
   <object class="GtkAccelGroup" id="accelgroup1"/>
-  <object class="GtkMenu" id="tab-menu">
-    <property name="visible">True</property>
-    <child>
-      <object class="GtkImageMenuItem" id="rename">
-        <property name="label">gtk-edit</property>
-        <property name="visible">True</property>
-        <property name="use_action_appearance">False</property>
-        <property name="use_stock">True</property>
-        <property name="accel_group">accelgroup1</property>
-        <signal name="activate" handler="on_rename_activate" swapped="no"/>
-      </object>
-    </child>
-    <child>
-      <object class="GtkImageMenuItem" id="close">
-        <property name="label">gtk-close</property>
-        <property name="visible">True</property>
-        <property name="use_action_appearance">False</property>
-        <property name="use_stock">True</property>
-        <property name="accel_group">accelgroup1</property>
-        <signal name="activate" handler="on_close_activate" swapped="no"/>
-      </object>
-    </child>
-  </object>
   <object class="GtkMenu" id="context-menu">
     <property name="visible">True</property>
+    <property name="can_focus">False</property>
     <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
     <child>
       <object class="GtkImageMenuItem" id="context_preferences">
         <property name="label">gtk-preferences</property>
         <property name="visible">True</property>
+        <property name="can_focus">False</property>
         <property name="use_action_appearance">False</property>
+        <property name="use_underline">True</property>
         <property name="use_stock">True</property>
         <property name="accel_group">accelgroup1</property>
         <signal name="activate" handler="show_prefs" swapped="no"/>
@@ -42,13 +21,16 @@
     <child>
       <object class="GtkSeparatorMenuItem" id="separador1">
         <property name="visible">True</property>
+        <property name="can_focus">False</property>
       </object>
     </child>
     <child>
       <object class="GtkImageMenuItem" id="context_copy">
         <property name="label">gtk-copy</property>
         <property name="visible">True</property>
+        <property name="can_focus">False</property>
         <property name="use_action_appearance">False</property>
+        <property name="use_underline">True</property>
         <property name="use_stock">True</property>
         <property name="accel_group">accelgroup1</property>
         <signal name="activate" handler="accel_copy_clipboard" swapped="no"/>
@@ -58,7 +40,9 @@
       <object class="GtkImageMenuItem" id="context_paste">
         <property name="label">gtk-paste</property>
         <property name="visible">True</property>
+        <property name="can_focus">False</property>
         <property name="use_action_appearance">False</property>
+        <property name="use_underline">True</property>
         <property name="use_stock">True</property>
         <property name="accel_group">accelgroup1</property>
         <signal name="activate" handler="accel_paste_clipboard" swapped="no"/>
@@ -67,13 +51,16 @@
     <child>
       <object class="GtkSeparatorMenuItem" id="separador2">
         <property name="visible">True</property>
+        <property name="can_focus">False</property>
       </object>
     </child>
     <child>
       <object class="GtkImageMenuItem" id="context_close_tab">
         <property name="label">gtk-close</property>
         <property name="visible">True</property>
+        <property name="can_focus">False</property>
         <property name="use_action_appearance">False</property>
+        <property name="use_underline">True</property>
         <property name="use_stock">True</property>
         <property name="accel_group">accelgroup1</property>
         <signal name="activate" handler="close_tab" swapped="no"/>
@@ -83,20 +70,53 @@
       <object class="GtkImageMenuItem" id="context_close">
         <property name="label">gtk-quit</property>
         <property name="visible">True</property>
+        <property name="can_focus">False</property>
         <property name="use_action_appearance">False</property>
+        <property name="use_underline">True</property>
         <property name="use_stock">True</property>
         <property name="accel_group">accelgroup1</property>
         <signal name="activate" handler="accel_quit" swapped="no"/>
       </object>
     </child>
   </object>
+  <object class="GtkMenu" id="tab-menu">
+    <property name="visible">True</property>
+    <property name="can_focus">False</property>
+    <child>
+      <object class="GtkImageMenuItem" id="rename">
+        <property name="label">gtk-edit</property>
+        <property name="visible">True</property>
+        <property name="can_focus">False</property>
+        <property name="use_action_appearance">False</property>
+        <property name="use_underline">True</property>
+        <property name="use_stock">True</property>
+        <property name="accel_group">accelgroup1</property>
+        <signal name="activate" handler="on_rename_activate" swapped="no"/>
+      </object>
+    </child>
+    <child>
+      <object class="GtkImageMenuItem" id="close">
+        <property name="label">gtk-close</property>
+        <property name="visible">True</property>
+        <property name="can_focus">False</property>
+        <property name="use_action_appearance">False</property>
+        <property name="use_underline">True</property>
+        <property name="use_stock">True</property>
+        <property name="accel_group">accelgroup1</property>
+        <signal name="activate" handler="on_close_activate" swapped="no"/>
+      </object>
+    </child>
+  </object>
   <object class="GtkMenu" id="tray-menu">
     <property name="visible">True</property>
+    <property name="can_focus">False</property>
     <child>
       <object class="GtkImageMenuItem" id="prefs-menuitem">
         <property name="label">gtk-preferences</property>
         <property name="visible">True</property>
+        <property name="can_focus">False</property>
         <property name="use_action_appearance">False</property>
+        <property name="use_underline">True</property>
         <property name="use_stock">True</property>
         <property name="accel_group">accelgroup1</property>
         <signal name="activate" handler="show_prefs" swapped="no"/>
@@ -106,7 +126,9 @@
       <object class="GtkImageMenuItem" id="about-menuitem">
         <property name="label">gtk-about</property>
         <property name="visible">True</property>
+        <property name="can_focus">False</property>
         <property name="use_action_appearance">False</property>
+        <property name="use_underline">True</property>
         <property name="use_stock">True</property>
         <property name="accel_group">accelgroup1</property>
         <signal name="activate" handler="show_about" swapped="no"/>
@@ -115,13 +137,16 @@
     <child>
       <object class="GtkSeparatorMenuItem" id="separador-mmenu">
         <property name="visible">True</property>
+        <property name="can_focus">False</property>
       </object>
     </child>
     <child>
       <object class="GtkImageMenuItem" id="quit-menuitem">
         <property name="label">gtk-quit</property>
         <property name="visible">True</property>
+        <property name="can_focus">False</property>
         <property name="use_action_appearance">False</property>
+        <property name="use_underline">True</property>
         <property name="use_stock">True</property>
         <property name="accel_group">accelgroup1</property>
         <signal name="activate" handler="accel_quit" swapped="no"/>
@@ -129,6 +154,7 @@
     </child>
   </object>
   <object class="GtkWindow" id="window-root">
+    <property name="can_focus">False</property>
     <property name="has_focus">True</property>
     <property name="title" translatable="yes">Guake!</property>
     <property name="skip_taskbar_hint">True</property>
@@ -139,6 +165,7 @@
     <child>
       <object class="GtkVBox" id="mainframe">
         <property name="visible">True</property>
+        <property name="can_focus">False</property>
         <child>
           <object class="GtkNotebook" id="notebook-teminals">
             <property name="visible">True</property>
@@ -146,73 +173,13 @@
             <property name="has_focus">True</property>
             <property name="is_focus">True</property>
             <property name="tab_pos">bottom</property>
-            <property name="show_tabs">False</property>
             <property name="show_border">False</property>
             <property name="enable_popup">True</property>
-            <signal name="switch-page" handler="select_current_tab" swapped="no"/>
           </object>
           <packing>
+            <property name="expand">True</property>
+            <property name="fill">True</property>
             <property name="position">0</property>
-          </packing>
-        </child>
-        <child>
-          <object class="GtkHBox" id="toolbar">
-            <property name="visible">True</property>
-            <property name="events">GDK_EXPOSURE_MASK | GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_MOTION_MASK | GDK_BUTTON1_MOTION_MASK | GDK_BUTTON2_MOTION_MASK | GDK_BUTTON3_MOTION_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK | GDK_KEY_PRESS_MASK | GDK_KEY_RELEASE_MASK | GDK_ENTER_NOTIFY_MASK | GDK_LEAVE_NOTIFY_MASK | GDK_FOCUS_CHANGE_MASK | GDK_STRUCTURE_MASK | GDK_PROPERTY_CHANGE_MASK | GDK_VISIBILITY_NOTIFY_MASK | GDK_PROXIMITY_IN_MASK | GDK_PROXIMITY_OUT_MASK | GDK_SUBSTRUCTURE_MASK | GDK_SCROLL_MASK</property>
-            <!--<property name="extension_events">all</property>-->
-            <property name="no_show_all">True</property>
-            <child>
-              <object class="GtkImage" id="image1">
-                <property name="visible">True</property>
-                <property name="stock">gtk-missing-image</property>
-              </object>
-              <packing>
-                <property name="expand">False</property>
-                <property name="fill">False</property>
-                <property name="padding">6</property>
-                <property name="position">0</property>
-              </packing>
-            </child>
-            <child>
-              <object class="GtkEventBox" id="event-tabs">
-                <property name="visible">True</property>
-                <property name="events">GDK_BUTTON_PRESS_MASK | GDK_STRUCTURE_MASK</property>
-                <child>
-                  <object class="GtkHBox" id="hbox-tabs">
-                    <property name="visible">True</property>
-                  </object>
-                </child>
-              </object>
-              <packing>
-                <property name="position">1</property>
-              </packing>
-            </child>
-            <child>
-              <object class="GtkButton" id="new-tab">
-                <property name="visible">True</property>
-                <property name="can_focus">True</property>
-                <property name="receives_default">True</property>
-                <property name="tooltip_text" translatable="yes">Add a new tab</property>
-                <property name="relief">none</property>
-                <signal name="clicked" handler="add_tab" swapped="no"/>
-                <child>
-                  <object class="GtkImage" id="image2">
-                    <property name="visible">True</property>
-                    <property name="stock">gtk-missing-image</property>
-                  </object>
-                </child>
-              </object>
-              <packing>
-                <property name="expand">False</property>
-                <property name="position">2</property>
-              </packing>
-            </child>
-          </object>
-          <packing>
-            <property name="expand">False</property>
-            <property name="fill">False</property>
-            <property name="padding">2</property>
-            <property name="position">1</property>
           </packing>
         </child>
         <child>
@@ -223,6 +190,7 @@
             <child>
               <object class="GtkFixed" id="fixed1">
                 <property name="visible">True</property>
+                <property name="can_focus">False</property>
               </object>
               <packing>
                 <property name="resize">False</property>
@@ -232,6 +200,7 @@
             <child>
               <object class="GtkFixed" id="fixed2">
                 <property name="visible">True</property>
+                <property name="can_focus">False</property>
               </object>
               <packing>
                 <property name="resize">True</property>
@@ -241,7 +210,8 @@
           </object>
           <packing>
             <property name="expand">False</property>
-            <property name="position">2</property>
+            <property name="fill">True</property>
+            <property name="position">1</property>
           </packing>
         </child>
       </object>
