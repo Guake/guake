@@ -250,10 +250,8 @@ class Guake(SimpleGtkApp):
         self.term_list[tab or index].feed_child(command, -1)
 
     def on_resizer_button(self, widget, event):
-        if event.type == Gdk.EventType.BUTTON_PRESS:
-            self.resizer_held = True
-        else:
-            self.resizer_held = False
+        """Callback called when clicking on the resizer"""
+        self.resizer_held = event.type == Gdk.EventType.BUTTON_PRESS
 
     def on_resizer_drag(self, widget, event):
         """Method that handles the resize drag. It does not actuall
@@ -304,12 +302,9 @@ class Guake(SimpleGtkApp):
             return False
 
         self.showing_context_menu = True
-
         guake_clipboard = Gtk.Clipboard.get(Gdk.atom_intern("CLIPBOARD", True))
-        if not guake_clipboard.wait_is_text_available():
-            self.get_widget('context_paste').set_sensitive(False)
-        else:
-            self.get_widget('context_paste').set_sensitive(True)
+        self.get_widget('context_paste').set_sensitive(
+            guake_clipboard.wait_is_text_available())
         self.context_menu.popup_for_device(
             None, None, None, None, None, 3,
             Gtk.get_current_event_time())
@@ -319,7 +314,7 @@ class Guake(SimpleGtkApp):
         """On double-click over a tab, show the rename dialog.
         """
         if event.button == 1:
-            if event.type == Gdk.EventType(value = 5): # 5 == GDK_2BUTTON_PRESS
+            if event.type == Gdk.EventType(value=5): # 5 == GDK_2BUTTON_PRESS
                 self.accel_rename()
                 self.set_terminal_focus()
                 return
@@ -378,12 +373,7 @@ class Guake(SimpleGtkApp):
         self.window.resize(width, height)
         self.window.show_all()
 
-        try:
-            # does it work in other gtk backends
-            time = GdkX11.x11_get_server_time(self.window.window)
-        except AttributeError:
-            time = 0
-
+        time = GdkX11.x11_get_server_time(self.window.window)
         self.window.present_with_time(time)
 
         # This is here because vte color configuration works only
@@ -428,8 +418,8 @@ class Guake(SimpleGtkApp):
         return x, y, width, height
 
     def get_running_fg_processes(self):
-        """Get the number processes for each terminal/tab. The code is taken
-        from gnome-terminal.
+        """Get the number processes for each terminal/tab. The code is
+        taken from gnome-terminal.
         """
         total_procs = 0
         term_idx = 0
@@ -536,10 +526,10 @@ class Guake(SimpleGtkApp):
         return True
 
     def accel_toggle_fullscreen(self, *args):
-        """Callback toggle the fullscreen status of the main
-        window. It uses the toolbar_visible_in_fullscreen variable
-        from gconf to decide if the tabbar will or not be
-        shown. Called by the accel key.
+        """Callback toggle the fullscreen status of the main window. It
+        uses the toolbar_visible_in_fullscreen variable from gconf to
+        decide if the tabbar will or not be shown. Called by the accel
+        key.
         """
         val = self.client.get_bool(KEY('general/toolbar_visible_in_fullscreen'))
 
@@ -548,8 +538,8 @@ class Guake(SimpleGtkApp):
             self.fullscreen = True
 
             # The resizer widget really don't need to be shown in
-            # fullscreen mode, but tabbar will only be shown if a
-            # hidden gconf key is false.
+            # fullscreen mode, but tabbar will only be shown if a hidden
+            # gconf key is false.
             self.resizer.hide()
             if not val:
                 # FIXME: There's something wrong here, if we just hide
@@ -566,8 +556,8 @@ class Guake(SimpleGtkApp):
             self.client.notify(KEY('/general/window_tabbar'))
             self.client.notify(KEY('/general/show_resizer'))
 
-            # make sure the window size is correct after returning
-            # from fullscreen
+            # make sure the window size is correct after returning from
+            # fullscreen
             self.client.notify(KEY('/general/window_height'))
         return True
 
@@ -637,8 +627,8 @@ class Guake(SimpleGtkApp):
         self.current_label.set_text(new_text)
 
     def get_current_dir(self):
-        """Gets the working directory of the current tab to create a
-        new one in the same dir.
+        """Gets the working directory of the current tab to create a new
+        one in the same dir.
         """
         active_pagepos = self.notebook.get_current_page()
         directory = os.path.expanduser('~')
@@ -649,9 +639,9 @@ class Guake(SimpleGtkApp):
         return directory
 
     def get_fork_params(self, directory=None):
-        """Return all parameters to be passed to the fork_command
-        method of a vte terminal. Params returned can be expanded by
-        the `params' parameter that receive a dictionary.
+        """Return all parameters to be passed to the fork_command method
+        of a vte terminal. Params returned can be expanded by the
+        `params' parameter that receive a dictionary.
         """
         # use dictionary to pass named params to work around command
         # parameter in fork_command not accepting None as argument.
@@ -690,8 +680,8 @@ class Guake(SimpleGtkApp):
         return params
 
     def update_proxy_vars(self):
-        """This method updates http{s,}_proxy environment variables
-        with values found in GConf.
+        """This method updates http{s,}_proxy environment variables with
+        values found in GConf.
         """
         proxy = '/system/http_proxy/'
         if self.client.get_bool(proxy + 'use_http_proxy'):
@@ -759,8 +749,8 @@ class Guake(SimpleGtkApp):
             self.add_tab()
 
     def delete_shell(self, pid):
-        """This function will kill the shell on a tab, trying to send
-        a sigterm and if it doesn't work, a sigkill. Between these two
+        """This function will kill the shell on a tab, trying to send a
+        sigterm and if it doesn't work, a sigkill. Between these two
         signals, we have a timeout of 3 seconds, so is recommended to
         call this in another thread. This doesn't change any thing in
         UI, so you can use python's start_new_thread.
