@@ -29,8 +29,8 @@ To use this you must compile globalhotkeys module, and run this file with
 python. Please only remember to copy your globalhotkeys.so file to a path
 contained in sys.path (maybe you can use PYTHONPATH).
 
-The module contains only 3 functions, init/bind/unbind and they are very simple
-to use.
+The module contains only the init function and the GlobalHotkey class.
+The latter contains the bind, unbind and other very simple to use methods.
 
 What you can not forget?
 ~~~~~~~~~~~~~~~~~~~~~~~~
@@ -63,13 +63,13 @@ failed, you can simply use this program to bind the key that you're running.
 Because you can bind a key once.
 """
 import gtk
-import globalhotkeys
+import guake.globalhotkeys as globalhotkeys
 
 def hammer(*args):
     print args
 
 globalhotkeys.init()
-binded = globalhotkeys.bind('F12', hammer)
+binded = globalhotkeys.GlobalHotkey().bind('F12', hammer)
 if binded:
     print 'great =D'
 else:
