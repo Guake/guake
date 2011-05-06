@@ -1,4 +1,4 @@
-<?xml version="1.0"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <glade-interface>
   <!-- interface-requires gtk+ 2.10 -->
   <!-- interface-naming-policy project-wide -->
@@ -204,6 +204,21 @@
           <widget class="GtkImage" id="paste_icon">
             <property name="visible">True</property>
             <property name="stock">gtk-paste</property>
+            <property name="icon-size">1</property>
+          </widget>
+        </child>
+      </widget>
+    </child>
+    <child>
+      <widget class="GtkImageMenuItem" id="context_open_link">
+        <property name="label" translatable="yes">Open link</property>
+        <property name="visible">True</property>
+        <property name="use_stock">False</property>
+        <signal name="activate" handler="open_link"/>
+        <child internal-child="image">
+          <widget class="GtkImage" id="open_link_icon">
+            <property name="visible">True</property>
+            <property name="stock">gtk-network</property>
             <property name="icon-size">1</property>
           </widget>
         </child>
