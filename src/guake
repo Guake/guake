@@ -715,7 +715,7 @@ class Guake(SimpleGladeApp):
         if not guake_clipboard.wait_is_text_available():
             self.get_widget('context_paste').set_sensitive(False)
         else:
-            self.get_widget('context_paste').set_sensitive(True)           
+            self.get_widget('context_paste').set_sensitive(True)
         if not terminal.matched_value_and_tag:
             self.get_widget('context_open_link').set_sensitive(False)
         else:
