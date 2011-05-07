@@ -449,6 +449,7 @@ class GuakeTerminal(vte.Terminal):
         self.connect('contents-changed', lambda x: self.contents_changed.set())
         self.matched_value = ''
         #self.base_prompt = self.get_text()
+        self.matched_value_and_tag = None
 
     def configure_terminal(self):
         """Sets all customized properties on the terminal
@@ -499,6 +500,7 @@ class GuakeTerminal(vte.Terminal):
                          gtk.gdk.x11_get_server_time(self.window))
         elif event.button == 3 and matched_string:
             self.matched_value = matched_string[0]
+            self.matched_value_and_tag = matched_string
             
     def handle_contents_change(self):
         while not self.contents_changed.wait() and not sleep(1):
@@ -727,6 +729,10 @@ class Guake(SimpleGladeApp):
             self.get_widget('context_paste').set_sensitive(False)
         else:
             self.get_widget('context_paste').set_sensitive(True)
+        if not terminal.matched_value_and_tag:
+            self.get_widget('context_open_link').set_sensitive(False)
+        else:
+            self.get_widget('context_open_link').set_sensitive(True)
         context_menu = self.get_widget('context-menu')
         context_menu.popup(None, None, None, 3, gtk.get_current_event_time())
         return True
@@ -956,6 +962,25 @@ class Guake(SimpleGladeApp):
         pos = self.notebook.get_current_page()
         self.term_list[pos].paste_clipboard()
         return True
+    
+    def open_link(self, *args):
+        """Callback to open a link with an external program
+        """
+        current_term = self.term_list[self.notebook.get_current_page()]
+        if current_term.matched_value_and_tag:
+            value, tag = current_term.matched_value_and_tag
+
+            if TERMINAL_MATCH_TAGS[tag] == 'schema':
+                # value here should not be changed, it is right and
+                # ready to be used.
+                pass
+            elif TERMINAL_MATCH_TAGS[tag] == 'http':
+                value = 'http://%s' % value
+            elif TERMINAL_MATCH_TAGS[tag] == 'email':
+                value = 'mailto:%s' % value
+
+            gtk.show_uri(current_term.window.get_screen(), value,
+                         gtk.gdk.x11_get_server_time(current_term.window))
 
     def accel_toggle_fullscreen(self, *args):
         """Callback toggle the fullscreen status of the main
