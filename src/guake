@@ -37,6 +37,7 @@ import os
 import sys
 import signal
 from thread import start_new_thread
+from threading import Thread, Event
 from time import sleep
 import posix
 
@@ -441,9 +442,11 @@ class GuakeTerminal(vte.Terminal):
         self.configure_terminal()
         self.add_matches()
         self.connect('button-press-event', self.button_press)
-        self.go = self.on_contents_changed()
-        self.go.next()
-        self.connect('contents-changed', self.go.send)
+        self.contents_changed = Event()
+        self.text_handler = Thread(target=self.handle_contents_change)
+        self.text_handler.daemon = True
+        self.text_handler.start()
+        self.connect('contents-changed', lambda x: self.contents_changed.set())
         self.matched_value = ''
         #self.base_prompt = self.get_text()
 
@@ -497,11 +500,10 @@ class GuakeTerminal(vte.Terminal):
         elif event.button == 3 and matched_string:
             self.matched_value = matched_string[0]
             
-    def on_contents_changed(self, *args):
-        import time
-        while not time.sleep(1):
-            _ = yield
+    def handle_contents_change(self):
+        while not self.contents_changed.wait() and not sleep(1):
             print self.get_text(lambda *a: True)
+            self.contents_changed.clear()
 
 
 class GuakeTerminalBox(gtk.HBox):
