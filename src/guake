@@ -450,7 +450,7 @@ class GuakeTerminal(vte.Terminal):
         self.connect('contents-changed', lambda x: self.contents_changed.set())
         self.childs = []
         self.matched_value = ''
-        self.matched_value_and_tag = None
+        self.matched_tag = ''
 
     def configure_terminal(self):
         """Sets all customized properties on the terminal
@@ -500,8 +500,7 @@ class GuakeTerminal(vte.Terminal):
             gtk.show_uri(self.window.get_screen(), value,
                          gtk.gdk.x11_get_server_time(self.window))
         elif event.button == 3 and matched_string:
-            self.matched_value = matched_string[0]
-            self.matched_value_and_tag = matched_string
+            self.matched_value, self.matched_tag = matched_string
             
     def handle_contents_change(self):
         while not self.contents_changed.wait() and not sleep(1):
@@ -735,7 +734,7 @@ class Guake(SimpleGladeApp):
             self.get_widget('context_paste').set_sensitive(False)
         else:
             self.get_widget('context_paste').set_sensitive(True)
-        if not terminal.matched_value_and_tag:
+        if terminal.matched_value == '':
             self.get_widget('context_open_link').set_sensitive(False)
         else:
             self.get_widget('context_open_link').set_sensitive(True)
@@ -973,9 +972,9 @@ class Guake(SimpleGladeApp):
         """Callback to open a link with an external program
         """
         current_term = self.term_list[self.notebook.get_current_page()]
-        if current_term.matched_value_and_tag:
-            value, tag = current_term.matched_value_and_tag
-
+        if current_term.matched_value != '' and current_term.matched_tag != '':
+            value = current_term.matched_value
+            tag = current_term.matched_tag
             if TERMINAL_MATCH_TAGS[tag] == 'schema':
                 # value here should not be changed, it is right and
                 # ready to be used.
