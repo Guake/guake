@@ -77,3 +77,16 @@ def get_binaries_from_path(compiled_re):
                 if compiled_re.match(j):
                     ret.append(os.path.join(i, j))
     return ret
+
+def list_childs(shell_pid):
+    shell_pid = str(shell_pid)
+    pids = [pid for pid in os.listdir('/proc') if pid.isdigit()]
+
+    result = []
+    for pid in pids:
+        with open(os.path.join('/proc', pid, 'stat'), 'rb') as f:
+            ppid = f.readline().split()[3]
+            if ppid == shell_pid:
+                result.append(pid)
+                
+    return result

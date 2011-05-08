@@ -45,7 +45,8 @@ import guake.globalhotkeys
 from guake.simplegladeapp import SimpleGladeApp, bindtextdomain
 from guake.prefs import PrefsDialog, LKEY, GKEY
 from guake.dbusiface import DbusManager, DBUS_NAME, DBUS_PATH
-from guake.common import test_gconf, pixmapfile, gladefile, ShowableError, _
+from guake.common import test_gconf, pixmapfile, gladefile, ShowableError, _, \
+    list_childs
 from guake.globals import NAME, VERSION, LOCALE_DIR, KEY, GCONF_PATH, \
     TERMINAL_MATCH_EXPRS, TERMINAL_MATCH_TAGS, \
     ALIGN_LEFT, ALIGN_RIGHT, ALIGN_CENTER
@@ -447,8 +448,8 @@ class GuakeTerminal(vte.Terminal):
         self.text_handler.daemon = True
         self.text_handler.start()
         self.connect('contents-changed', lambda x: self.contents_changed.set())
+        self.childs = []
         self.matched_value = ''
-        #self.base_prompt = self.get_text()
         self.matched_value_and_tag = None
 
     def configure_terminal(self):
@@ -504,7 +505,12 @@ class GuakeTerminal(vte.Terminal):
             
     def handle_contents_change(self):
         while not self.contents_changed.wait() and not sleep(1):
-            print self.get_text(lambda *a: True)
+            current_childs = list_childs(self.shell_pid)
+            #if len(self.childs) > len(current_childs):
+                # since this shouldn't be called when the terminal is hidden
+                # we assume the user can't spawn a new process that is a direct
+                # child of the shell in less than a second, thus: 
+                #text = self.get_text(lambda *a: True)
             self.contents_changed.clear()
 
 
@@ -1185,6 +1191,7 @@ class Guake(SimpleGladeApp):
 
         final_params = self.get_fork_params(default_params)
         pid = box.terminal.fork_command(**final_params)
+        box.terminal.shell_pid = pid
         self.pid_list.append(pid)
 
         # Adding a new radio button to the tabbar
