@@ -84,11 +84,13 @@ def list_childs(shell_pid):
 
     result = []
     for pid in pids:
-        with open(os.path.join('/proc', pid, 'stat'), 'rb') as f:
-            ppid = f.readline().split()[3]
-            if ppid == shell_pid:
-                result.append((pid, get_command_name(pid)))
-                
+        try:
+            with open(os.path.join('/proc', pid, 'stat'), 'rb') as f:
+                ppid = f.readline().split()[3]
+                if ppid == shell_pid:
+                    result.append((pid, get_command_name(pid)))
+        except IOError:
+            pass # it could fail with very very short lived processes
     return result
     
 def get_command_name(pid):
