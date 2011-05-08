@@ -448,7 +448,7 @@ class GuakeTerminal(vte.Terminal):
         self.text_handler.daemon = True
         self.text_handler.start()
         self.connect('contents-changed', lambda x: self.contents_changed.set())
-        self.childs = []
+        self.watched_childs = []
         self.matched_value = ''
         self.matched_tag = ''
 
@@ -504,12 +504,20 @@ class GuakeTerminal(vte.Terminal):
             
     def handle_contents_change(self):
         while not self.contents_changed.wait() and not sleep(1):
-            current_childs = list_childs(self.shell_pid)
-            #if len(self.childs) > len(current_childs):
-                # since this shouldn't be called when the terminal is hidden
-                # we assume the user can't spawn a new process that is a direct
-                # child of the shell in less than a second, thus: 
-                #text = self.get_text(lambda *a: True)
+            if not self.gtk_window.get_property('visible'):
+                current_childs = list_childs(self.shell_pid)
+                if len(self.watched_childs) > len(current_childs):
+                    # since this isn't reached when the terminal is hidden
+                    # we assume the user can't spawn a new process that is a direct
+                    # child of the shell in less than a second, thus we only check if
+                    # the list shrunk
+                    text = self.get_text(lambda *a: True).strip()
+                    for child in self.watched_childs:
+                        if child not in current_childs:
+                            print "%s exited, last output:\n%s" % (child[1], text)
+                self.watched_childs = current_childs
+            elif self.watched_childs:
+                self.watched_childs = []
             self.contents_changed.clear()
 
 
@@ -1191,6 +1199,7 @@ class Guake(SimpleGladeApp):
         final_params = self.get_fork_params(default_params)
         pid = box.terminal.fork_command(**final_params)
         box.terminal.shell_pid = pid
+        box.terminal.gtk_window = self.window
         self.pid_list.append(pid)
 
         # Adding a new radio button to the tabbar

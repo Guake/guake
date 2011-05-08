@@ -87,6 +87,10 @@ def list_childs(shell_pid):
         with open(os.path.join('/proc', pid, 'stat'), 'rb') as f:
             ppid = f.readline().split()[3]
             if ppid == shell_pid:
-                result.append(pid)
+                result.append((pid, get_command_name(pid)))
                 
     return result
+    
+def get_command_name(pid):
+    with open(os.path.join('/proc', pid, 'comm'), 'rb') as f:
+        return f.readline()[:-1]
