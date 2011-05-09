@@ -31,6 +31,8 @@ import subprocess
 import re
 import guake.globals
 
+from threading import _Event
+
 # Internationalization purposes.
 _ = gettext.gettext
 
@@ -96,3 +98,8 @@ def list_childs(shell_pid):
 def get_command_name(pid):
     with open(os.path.join('/proc', pid, 'comm'), 'rb') as f:
         return f.readline()[:-1]
+        
+class EventChange(_Event):
+    def wait(self, *args, **kwargs):
+        _Event.wait(self, *args, **kwargs)
+        return self._Event__flag

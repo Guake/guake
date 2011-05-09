@@ -37,7 +37,7 @@ import os
 import sys
 import signal
 from thread import start_new_thread
-from threading import Thread, Event
+from threading import Thread
 from time import sleep
 import posix
 
@@ -46,7 +46,7 @@ from guake.simplegladeapp import SimpleGladeApp, bindtextdomain
 from guake.prefs import PrefsDialog, LKEY, GKEY
 from guake.dbusiface import DbusManager, DBUS_NAME, DBUS_PATH
 from guake.common import test_gconf, pixmapfile, gladefile, ShowableError, _, \
-    list_childs
+    list_childs, EventChange
 from guake.globals import NAME, VERSION, LOCALE_DIR, KEY, GCONF_PATH, \
     TERMINAL_MATCH_EXPRS, TERMINAL_MATCH_TAGS, \
     ALIGN_LEFT, ALIGN_RIGHT, ALIGN_CENTER
@@ -443,7 +443,7 @@ class GuakeTerminal(vte.Terminal):
         self.configure_terminal()
         self.add_matches()
         self.connect('button-press-event', self.button_press)
-        self.contents_changed = Event()
+        self.contents_changed = EventChange()
         self.text_handler = Thread(target=self.handle_contents_change)
         self.text_handler.daemon = True
         self.text_handler.start()
@@ -503,7 +503,7 @@ class GuakeTerminal(vte.Terminal):
             self.matched_value, self.matched_tag = matched_string
             
     def handle_contents_change(self):
-        while not self.contents_changed.wait() and not sleep(1):
+        while self.contents_changed.wait() and not sleep(1):
             if not self.gtk_window.get_property('visible'):
                 current_childs = list_childs(self.shell_pid)
                 if len(self.watched_childs) > len(current_childs):
