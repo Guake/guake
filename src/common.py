@@ -80,7 +80,7 @@ def get_binaries_from_path(compiled_re):
                     ret.append(os.path.join(i, j))
     return ret
 
-def list_childs(shell_pid):
+def list_children(shell_pid):
     shell_pid = str(shell_pid)
     pids = [pid for pid in os.listdir('/proc') if pid.isdigit()]
 

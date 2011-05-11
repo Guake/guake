@@ -46,7 +46,7 @@ from guake.simplegladeapp import SimpleGladeApp, bindtextdomain
 from guake.prefs import PrefsDialog, LKEY, GKEY
 from guake.dbusiface import DbusManager, DBUS_NAME, DBUS_PATH
 from guake.common import test_gconf, pixmapfile, gladefile, ShowableError, _, \
-    list_childs, EventChange
+    list_children, EventChange
 from guake.globals import NAME, VERSION, LOCALE_DIR, KEY, GCONF_PATH, \
     TERMINAL_MATCH_EXPRS, TERMINAL_MATCH_TAGS, \
     ALIGN_LEFT, ALIGN_RIGHT, ALIGN_CENTER
@@ -448,7 +448,7 @@ class GuakeTerminal(vte.Terminal):
         self.text_handler.daemon = True
         self.text_handler.start()
         self.connect('contents-changed', lambda x: self.contents_changed.set())
-        self.watched_childs = []
+        self.watched_children = []
         self.matched_value = ''
         self.matched_tag = ''
 
@@ -505,19 +505,19 @@ class GuakeTerminal(vte.Terminal):
     def handle_contents_change(self):
         while self.contents_changed.wait() and not sleep(1):
             if not self.gtk_window.get_property('visible'):
-                current_childs = list_childs(self.shell_pid)
-                if len(self.watched_childs) > len(current_childs):
+                current_children = list_children(self.shell_pid)
+                if len(self.watched_children) > len(current_children):
                     # since this isn't reached when the terminal is hidden
                     # we assume the user can't spawn a new process that is a direct
                     # child of the shell in less than a second, thus we only check if
                     # the list shrunk
                     text = self.get_text(lambda *a: True).strip()
-                    for child in self.watched_childs:
-                        if child not in current_childs:
+                    for child in self.watched_children:
+                        if child not in current_children:
                             print "%s exited, last output:\n%s" % (child[1], text)
-                self.watched_childs = current_childs
-            elif self.watched_childs:
-                self.watched_childs = []
+                self.watched_children = current_children
+            elif self.watched_children:
+                self.watched_children = []
             self.contents_changed.clear()
 
 
