@@ -103,3 +103,22 @@ class EventChange(_Event):
     def wait(self, *args, **kwargs):
         _Event.wait(self, *args, **kwargs)
         return self._Event__flag
+        
+def wrap_lines(text):
+    lines = text.split("\n")
+    wrapped_lines = []
+    for line in lines[-9:]:
+        rest_of_line = line
+        line = []
+        while len(rest_of_line) > 0:
+            line.append(rest_of_line[:46])
+            rest_of_line = rest_of_line[46:]
+        wrapped_lines.append(line)
+    count = 0
+    i = 9
+    for i, line in enumerate(reversed(wrapped_lines), 1):
+        count += len(line)
+        if count > 9:
+            i -= 1
+            break
+    return "\n".join("\n".join(line) for line in wrapped_lines[-i:])

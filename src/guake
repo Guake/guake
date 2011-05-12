@@ -45,8 +45,8 @@ import guake.globalhotkeys
 from guake.simplegladeapp import SimpleGladeApp, bindtextdomain
 from guake.prefs import PrefsDialog, LKEY, GKEY
 from guake.dbusiface import DbusManager, DBUS_NAME, DBUS_PATH
-from guake.common import test_gconf, pixmapfile, gladefile, ShowableError, _, \
-    list_children, EventChange
+from common import test_gconf, pixmapfile, gladefile, ShowableError, _, \
+    list_children, EventChange, wrap_lines
 from guake.globals import NAME, VERSION, LOCALE_DIR, KEY, GCONF_PATH, \
     TERMINAL_MATCH_EXPRS, TERMINAL_MATCH_TAGS, \
     ALIGN_LEFT, ALIGN_RIGHT, ALIGN_CENTER
@@ -54,6 +54,7 @@ from guake.globals import NAME, VERSION, LOCALE_DIR, KEY, GCONF_PATH, \
 pynotify.init('Guake!')
 
 GNOME_FONT_PATH = '/desktop/gnome/interface/monospace_font_name'
+notification_img = pixmapfile('guake-notification.png')
 
 # Loading translation
 bindtextdomain(NAME, LOCALE_DIR)
@@ -503,6 +504,8 @@ class GuakeTerminal(vte.Terminal):
             self.matched_value, self.matched_tag = matched_string
             
     def handle_contents_change(self):
+        appname = _('Guake!')
+        notification = pynotify.Notification(" ")
         while self.contents_changed.wait() and not sleep(1):
             if not self.gtk_window.get_property('visible'):
                 current_children = list_children(self.shell_pid)
@@ -512,9 +515,15 @@ class GuakeTerminal(vte.Terminal):
                     # child of the shell in less than a second, thus we only check if
                     # the list shrunk
                     text = self.get_text(lambda *a: True).strip()
+                    text = "\n".join(wrap_lines(text).split("\n")[-9:])
+                    # veryvery ugly hack to test this before 19.35 PM :P
+                    print len(text.split("\n"))
                     for child in self.watched_children:
                         if child not in current_children:
-                            print "%s exited, last output:\n%s" % (child[1], text)
+                            notification.update(appname,
+                                _("%s exited, last output:\n%s") % (child[1], text),
+                                notification_img)
+                            notification.show()
                 self.watched_children = current_children
             elif self.watched_children:
                 self.watched_children = []
