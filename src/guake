@@ -45,8 +45,8 @@ import guake.globalhotkeys
 from guake.simplegladeapp import SimpleGladeApp, bindtextdomain
 from guake.prefs import PrefsDialog, LKEY, GKEY
 from guake.dbusiface import DbusManager, DBUS_NAME, DBUS_PATH
-from common import test_gconf, pixmapfile, gladefile, ShowableError, _, \
-    list_children, EventChange, wrap_lines
+from guake.common import test_gconf, pixmapfile, gladefile, ShowableError, _, \
+    list_children, EventChange
 from guake.globals import NAME, VERSION, LOCALE_DIR, KEY, GCONF_PATH, \
     TERMINAL_MATCH_EXPRS, TERMINAL_MATCH_TAGS, \
     ALIGN_LEFT, ALIGN_RIGHT, ALIGN_CENTER
@@ -515,9 +515,11 @@ class GuakeTerminal(vte.Terminal):
                     # child of the shell in less than a second, thus we only check if
                     # the list shrunk
                     text = self.get_text(lambda *a: True).strip()
-                    text = "\n".join(wrap_lines(text).split("\n")[-9:])
-                    # veryvery ugly hack to test this before 19.35 PM :P
-                    print len(text.split("\n"))
+                    text = text[-414:].split("\n", 1)[-1:][0].strip()
+                    # we take only the last 46*9 (=414) characters from the text
+                    # the notification will wrap lines longer than 46 and there's
+                    # room only for 9 lines
+                    text = "\n".join(text.split("\n")[-9:])
                     for child in self.watched_children:
                         if child not in current_children:
                             notification.update(appname,
