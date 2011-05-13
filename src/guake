@@ -152,7 +152,7 @@ class GConfHandler(object):
         """
         for t in self.guake.term_list:
             t.watch_commands = entry.value.get_bool()
-            if t.watch_commands:
+            if t.watch_commands and not t.handler_thread.is_alive():
                 t.start_handler_thread()
 
     def show_resizer_toggled(self, client, connection_id, entry, data):
@@ -515,9 +515,9 @@ class GuakeTerminal(vte.Terminal):
             self.matched_value, self.matched_tag = matched_string
     
     def start_handler_thread(self):
-        text_handler = Thread(target=self.handle_contents_change)
-        text_handler.daemon = True
-        text_handler.start()
+        self.handler_thread = Thread(target=self.handle_contents_change)
+        self.handler_thread.daemon = True
+        self.handler_thread.start()
     
     def handle_contents_change(self):
         appname = _('Guake!')
