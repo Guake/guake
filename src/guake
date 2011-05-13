@@ -55,6 +55,7 @@ pynotify.init('Guake!')
 
 GNOME_FONT_PATH = '/desktop/gnome/interface/monospace_font_name'
 notification_img = pixmapfile('guake-notification.png')
+gconf_client = gconf.client_get_default()
 
 # Loading translation
 bindtextdomain(NAME, LOCALE_DIR)
@@ -118,6 +119,8 @@ class GConfHandler(object):
         #notify_add(KEY('/general/use_login_shell'), self.login_shell_toggled)
         #notify_add(KEY('/general/use_popup'), self.popup_toggled)
         #notify_add(KEY('/general/window_losefocus'), self.losefocus_toggled)
+        
+        notify_add(KEY('/general/popup_when_command_terminates'), self.popup_commands_toggled)
 
         notify_add(KEY('/general/show_resizer'), self.show_resizer_toggled)
 
@@ -142,6 +145,15 @@ class GConfHandler(object):
 
         notify_add(KEY('/general/compat_backspace'), self.backspace_changed)
         notify_add(KEY('/general/compat_delete'), self.delete_changed)
+
+    def popup_commands_toggled(self, client, connection_id, entry, data):
+        """If the gconf var popup_when_command_terminates be changed, this method will
+        be called and will set/unset the related flag (and restart the related thread).
+        """
+        for t in self.guake.term_list:
+            t.watch_commands = entry.value.get_bool()
+            if t.watch_commands:
+                t.start_handler_thread()
 
     def show_resizer_toggled(self, client, connection_id, entry, data):
         """If the gconf var show_resizer be changed, this method will
@@ -445,9 +457,8 @@ class GuakeTerminal(vte.Terminal):
         self.add_matches()
         self.connect('button-press-event', self.button_press)
         self.contents_changed = EventChange()
-        self.text_handler = Thread(target=self.handle_contents_change)
-        self.text_handler.daemon = True
-        self.text_handler.start()
+        self.watch_commands = gconf_client.get_bool(KEY('/general/popup_when_command_terminates'))
+        self.start_handler_thread()
         self.connect('contents-changed', lambda x: self.contents_changed.set())
         self.watched_children = []
         self.matched_value = ''
@@ -502,11 +513,16 @@ class GuakeTerminal(vte.Terminal):
                          gtk.gdk.x11_get_server_time(self.window))
         elif event.button == 3 and matched_string:
             self.matched_value, self.matched_tag = matched_string
-            
+    
+    def start_handler_thread(self):
+        text_handler = Thread(target=self.handle_contents_change)
+        text_handler.daemon = True
+        text_handler.start()
+    
     def handle_contents_change(self):
         appname = _('Guake!')
         notification = pynotify.Notification(" ")
-        while self.contents_changed.wait() and not sleep(1):
+        while self.watch_commands and self.contents_changed.wait() and not sleep(1):
             if not self.gtk_window.get_property('visible'):
                 current_children = list_children(self.shell_pid)
                 if len(self.watched_children) > len(current_children):

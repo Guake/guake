@@ -157,6 +157,11 @@ class PrefsCallbacks(object):
         """
         self.client.set_bool(KEY('/general/use_popup'), chk.get_active())
 
+    def on_popup_when_command_terminates_toggled(self, chk):
+        """Changes the activity of popup_when_command_terminates in gconf
+        """
+        self.client.set_bool(KEY('/general/popup_when_command_terminates'), chk.get_active())
+
     def on_window_ontop_toggled(self, chk):
         """Changes the activity of window_ontop in gconf
         """
@@ -458,9 +463,13 @@ class PrefsDialog(SimpleGladeApp):
         value = self.client.get_bool(KEY('/general/use_trayicon'))
         self.get_widget('use_trayicon').set_active(value)
 
-        # popup
+        # popup at startup
         value = self.client.get_bool(KEY('/general/use_popup'))
         self.get_widget('use_popup').set_active(value)
+
+        # popup when command terminates
+        value = self.client.get_bool(KEY('/general/popup_when_command_terminates'))
+        self.get_widget('popup_when_command_terminates').set_active(value)
 
         # prompt on quit
         value = self.client.get_bool(KEY('/general/prompt_on_quit'))
