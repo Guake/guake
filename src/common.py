@@ -104,4 +104,15 @@ class EventChange(_Event):
         _Event.wait(self, *args, **kwargs)
         return self._Event__flag
 
-
+def take_last_lines(text):
+    """ we take only the last 9 lines, minus the new ones that will be created when wrapping
+(by default it wraps at the 46th character)
+    """
+    lines = text.split("\n")[-9:]
+    n_wrappings = [len(line)//46 for line in lines]
+    wrappings = sum(n_wrappings)
+    for i,w in enumerate(n_wrappings):
+        if wrappings < 1:
+            break
+        wrappings -= w+1
+    return "\n".join(lines[i:])
