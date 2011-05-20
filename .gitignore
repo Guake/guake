@@ -21,6 +21,7 @@ mkinstalldirs
 guake.desktop
 guake-prefs.desktop
 org.gnome.Guake.service
+data/org.guake.Guake.service
 Makefile.in.in
 globals.py
 autom4te.cache
@@ -31,3 +32,5 @@ m4/ltsugar.m4
 m4/ltversion.m4
 m4/lt~obsolete.m4
 m4/gnome-doc-utils.m4
+py-compile
+debian
