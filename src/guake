@@ -1106,7 +1106,14 @@ class Guake(SimpleGladeApp):
     def on_close_other_tabs_activate(self, *args):
         """Tab context menu close other tabs handler
         """
-        self.delete_other_tabs(self.selected_tab)
+        tabs = self.tabs.get_children()
+        while len(tabs) > 1:
+            if tabs[0] is self.selected_tab:
+                tbd = 1
+            else:
+                tbd = 0
+            self.delete_tab(tbd)
+            tabs = self.tabs.get_children()
         
     def on_close_activate(self, *args):
         """Tab context menu close handler
@@ -1271,29 +1278,6 @@ class Guake(SimpleGladeApp):
             self.hide()
             # avoiding the delay on next Guake show request
             self.add_tab()
-            
-    def delete_other_tabs(self, tab):
-        tabs = self.tabs.get_children()
-        l = len(tabs)
-        tab_index = tabs.index(tab)
-        page = self.notebook.get_nth_page(tab_index)
-        page.unparent()
-        term = self.term_list.pop(tab_index)
-        pid = self.pid_list.pop(tab_index)
-        tab_button = tabs.pop(tab_index)
-        tab_button.unparent()
-        for tab, pid, term, page_num in zip(tabs, self.pid_list, self.term_list, range(l)):
-            tab.destroy()
-            tabs.remove(tab)
-            term.destroy()
-            self.notebook.remove_page(page_num)
-        
-        self.pid_list = [pid]
-        self.term_list = [term]
-        self.tabs.pack_start(tab_button, expand=False, padding=1)
-        self.notebook.append_page(page)
-        self.notebook.set_current_page(self.notebook.page_num(page))
-        page.terminal.grab_focus()
         
 
     def delete_shell(self, pid):
