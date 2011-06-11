@@ -1102,7 +1102,19 @@ class Guake(SimpleGladeApp):
 
         dialog.destroy()
         self.set_terminal_focus()
-
+        
+    def on_close_other_tabs_activate(self, *args):
+        """Tab context menu close other tabs handler
+        """
+        tabs = self.tabs.get_children()
+        while len(tabs) > 1:
+            if tabs[0] is self.selected_tab:
+                tbd = 1
+            else:
+                tbd = 0
+            self.delete_tab(tbd)
+            tabs = self.tabs.get_children()
+        
     def on_close_activate(self, *args):
         """Tab context menu close handler
         """
@@ -1266,6 +1278,7 @@ class Guake(SimpleGladeApp):
             self.hide()
             # avoiding the delay on next Guake show request
             self.add_tab()
+        
 
     def delete_shell(self, pid):
         """This function will kill the shell on a tab, trying to send

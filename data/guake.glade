@@ -278,6 +278,21 @@
       </widget>
     </child>
     <child>
+      <widget class="GtkImageMenuItem" id="close_other_tabs">
+        <property name="label" translatable="yes">Close other tabs</property>
+        <property name="visible">True</property>
+        <property name="use_stock">False</property>
+        <signal name="activate" handler="on_close_other_tabs_activate"/>
+        <child internal-child="image">
+          <widget class="GtkImage" id="tab_close_other_tabs_icon">
+            <property name="visible">True</property>
+            <property name="stock">gtk-close</property>
+            <property name="icon-size">1</property>
+          </widget>
+        </child>
+      </widget>
+    </child>
+    <child>
       <widget class="GtkImageMenuItem" id="close">
         <property name="label" translatable="yes">Close</property>
         <property name="visible">True</property>
