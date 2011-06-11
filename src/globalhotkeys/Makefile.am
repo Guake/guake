@@ -1,4 +1,4 @@
-guakepyexecdir = $(pkgpyexecdir)
+guakepyexecdir = $(pkgpythondir)
 guakepyexec_LTLIBRARIES = globalhotkeys.la
 
 globalhotkeys_la_SOURCES = \
