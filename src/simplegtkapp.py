@@ -26,7 +26,7 @@ def bindtextdomain(app_name, locale_dir=None):
     languages.
 
     app_name:
-        a domain to look for translations, tipically the name of an application.
+        a domain to look for translations, typically the name of an application.
 
     locale_dir:
         a directory with locales like locale_dir/lang_isocode/LC_MESSAGES/app_name.mo
@@ -73,7 +73,7 @@ class SimpleGtkApp(object):
 
     def get_widget(self, name):
         """
-        Returns the unterface widget specified by the name.
+        Returns the interface widget specified by the name.
         """
         return self.builder.get_object(name)
 

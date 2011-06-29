@@ -49,7 +49,7 @@ class ShowableError(Exception):
 
 def test_gconf():
     c = GConf.Client.get_default()
-    return c.dir_exists('/apps/guake')
+    return c.dir_exists(guake.globals.GCONF_PATH)
 
 def pixmapfile(x):
     f = os.path.join(guake.globals.IMAGE_DIR, x)
