@@ -42,8 +42,7 @@ from guake.simplegtkapp import SimpleGtkApp, bindtextdomain
 from guake.prefs import PrefsDialog, GKEY
 from guake.dbusiface import DbusManager, DBUS_NAME, DBUS_PATH
 from guake.common import test_gconf, pixmapfile, gladefile, ShowableError, _
-from guake.globals import NAME, VERSION, LOCALE_DIR, KEY, \
-    ALIGN_LEFT, ALIGN_RIGHT, ALIGN_CENTER
+from guake.globals import NAME, VERSION, LOCALE_DIR, KEY
 from guake.conf import GConfHandler, GConfKeyHandler
 from guake.terminal import TerminalBox
 
@@ -394,8 +393,6 @@ class Guake(SimpleGtkApp):
         """
         screen = self.window.get_screen()
         height_percent = self.client.get_int(KEY('/general/window_height'))
-        width_percent = 100
-        halignment = self.client.get_int(KEY('/general/window_halignment'))
 
         # get the rectangle just from the first/default monitor in the
         # future we might create a field to select which monitor you
@@ -404,16 +401,8 @@ class Guake(SimpleGtkApp):
 
         x = 0
         y = 0
-        width = geometry.width * width_percent / 100
+        width = geometry.width
         height = geometry.height * height_percent / 100
-
-        if width < geometry.x:
-            if halignment == ALIGN_CENTER:
-                x = (geometry.width - width) / 2
-            elif halignment == ALIGN_LEFT:
-                x = 0
-            elif halignment == ALIGN_RIGHT:
-                x = geometry.width - width
 
         return x, y, width, height
 

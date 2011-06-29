@@ -33,4 +33,3 @@ LOCALE_DIR = '@DATADIR@/locale'
 # Gconf stuff. Yep, it is hardcoded =)
 GCONF_PATH = '/apps/guake'
 KEY = lambda x: (GCONF_PATH+x)
-ALIGN_CENTER, ALIGN_LEFT, ALIGN_RIGHT = range(3)

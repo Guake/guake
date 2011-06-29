@@ -106,13 +106,6 @@ class GConfHandler(object):
     #     else:
     #         self.guake.toolbar.hide()
 
-    def alignment_changed(self, client, connection_id, entry, data):
-        """If the gconf var window_halignment be changed, this method will
-        be called and will call the move function in guake.
-        """
-        window_rect = self.guake.get_final_window_rect()
-        self.guake.window.move(window_rect.x, window_rect.y)
-
     def size_changed(self, client, connection_id, entry, data):
         """If the gconf var window_height or window_width are changed,
         this method will be called and will call the resize function
