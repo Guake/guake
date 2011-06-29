@@ -113,9 +113,9 @@
             <default></default>
             <locale name="C">
                 <short>Window geometry.</short>
-                <long>Guake's main window geometry, i.e. position and size, in
-                X11 format. If the value is not valid, then Guake will guess
-                some reasonable defaults for it.</long>
+                <long>Guake's main window geometry, i.e. position and size. If
+                the value is not valid, then Guake will guess some reasonable
+                default for it.</long>
             </locale>
         </schema>
 

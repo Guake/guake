@@ -112,17 +112,19 @@ class GConfHandler(object):
         """
         try:
             s = entry.value.get_string()
-            valid = self.guake.window.parse_geometry(s)
-        except AttributeError, TypeError:
+            x, y, w, h = map(int, s.split())
+            valid = True
+        except (AttributeError, ValueError):
             valid = False
 
-        print "geometry_changed, s=%s, valid=%s" % (s, valid)
-
-        if not valid:
-            x, y, w, h = self.guake.guess_main_window_rect()
+        if valid:
+            self.guake.window.resize(w, h)
+            self.guake.window.move(x, y)
+        else:
+            rect = self.guake.guess_main_window_rect()
             #-- notify again, now with valid value
             self.guake.client.set_string(KEY('/general/window_geometry'),
-                                         "%dx%d+%d+%d" % (w, h, x, y))
+                                         "%d %d %d %d" % rect)
 
     def scrollbar_toggled(self, client, connection_id, entry, data):
         """If the gconf var use_scrollbar be changed, this method will
