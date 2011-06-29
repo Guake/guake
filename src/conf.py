@@ -54,7 +54,7 @@ class GConfHandler(object):
         notify_add(KEY('/general/use_trayicon'), self.trayicon_toggled)
         notify_add(KEY('/general/window_ontop'), self.ontop_toggled)
         # notify_add(KEY('/general/window_tabbar'), self.tabbar_toggled)
-        notify_add(KEY('/general/window_height'), self.size_changed)
+        notify_add(KEY('/general/window_geometry'), self.geometry_changed)
 
         notify_add(KEY('/general/use_scrollbar'), self.scrollbar_toggled)
         notify_add(KEY('/general/history_size'), self.history_size_changed)
@@ -106,14 +106,23 @@ class GConfHandler(object):
     #     else:
     #         self.guake.toolbar.hide()
 
-    def size_changed(self, client, connection_id, entry, data):
-        """If the gconf var window_height or window_width are changed,
-        this method will be called and will call the resize function
-        in guake.
+    def geometry_changed(self, client, connection_id, entry, data):
+        """If the gconf var window_geometry is changed, this method will be
+        called and new geometry applied.
         """
-        x, y, width, height = self.guake.get_final_window_rect()
-        self.guake.window.move(x, y)
-        self.guake.window.resize(width, height)
+        try:
+            s = entry.value.get_string()
+            valid = self.guake.window.parse_geometry(s)
+        except AttributeError, TypeError:
+            valid = False
+
+        print "geometry_changed, s=%s, valid=%s" % (s, valid)
+
+        if not valid:
+            x, y, w, h = self.guake.guess_main_window_rect()
+            #-- notify again, now with valid value
+            self.guake.client.set_string(KEY('/general/window_geometry'),
+                                         "%dx%d+%d+%d" % (w, h, x, y))
 
     def scrollbar_toggled(self, client, connection_id, entry, data):
         """If the gconf var use_scrollbar be changed, this method will

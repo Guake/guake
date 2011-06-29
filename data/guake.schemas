@@ -106,28 +106,16 @@
         </schema>
 
 	<schema>
-            <key>/schemas/apps/guake/general/window_width</key>
-            <applyto>/apps/guake/general/window_width</applyto>
+            <key>/schemas/apps/guake/general/window_geometry</key>
+            <applyto>/apps/guake/general/window_geometry</applyto>
             <owner>guake</owner>
-            <type>int</type>
-            <default>100</default>
+            <type>string</type>
+            <default></default>
             <locale name="C">
-                <short>Window height.</short>
-                <long>Percent of the screen that will be used by guake
-                  terminal horizontally.</long>
-            </locale>
-        </schema>
-
-	<schema>
-            <key>/schemas/apps/guake/general/window_height</key>
-            <applyto>/apps/guake/general/window_height</applyto>
-            <owner>guake</owner>
-            <type>int</type>
-            <default>50</default>
-            <locale name="C">
-                <short>Window size.</short>
-                <long>Percent of the screen that will be used by guake
-                  terminal vertically.</long>
+                <short>Window geometry.</short>
+                <long>Guake's main window geometry, i.e. position and size, in
+                X11 format. If the value is not valid, then Guake will guess
+                some reasonable defaults for it.</long>
             </locale>
         </schema>
 
