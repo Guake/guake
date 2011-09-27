@@ -576,7 +576,11 @@ class Guake(SimpleGladeApp):
         self.selected_tab = None
 
         # holds fullscreen status
-        self.fullscreen = False
+        self.fullscreen = self.client.get_bool(KEY('/general/start_fullscreen'))
+
+        # set fullscreen?
+        if self.fullscreen:
+             self.window.fullscreen()
 
         # holds the timestamp of the losefocus event
         self.losefocus_time = 0

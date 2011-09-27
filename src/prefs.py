@@ -172,6 +172,11 @@ class PrefsCallbacks(object):
         """
         self.client.set_bool(KEY('/general/window_tabbar'), chk.get_active())
 
+    def on_start_fullscreen_toggled(self, chk):
+        """Changes the activity of start_fullscreen in gconf
+        """
+        self.client.set_bool(KEY('/general/start_fullscreen'), chk.get_active())
+
     def on_window_height_value_changed(self, hscale):
         """Changes the value of window_height in gconf
         """
@@ -477,6 +482,10 @@ class PrefsDialog(SimpleGladeApp):
         # tabbar
         value = self.client.get_bool(KEY('/general/window_tabbar'))
         self.get_widget('window_tabbar').set_active(value)
+
+        # start fullscreen
+        value = self.client.get_bool(KEY('/general/start_fullscreen'))
+        self.get_widget('start_fullscreen').set_active(value)
 
         # scrollbar
         value = self.client.get_bool(KEY('/general/use_scrollbar'))
