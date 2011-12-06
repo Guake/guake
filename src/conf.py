@@ -191,8 +191,8 @@ class GConfHandler(object):
         will be called and will change the font color in all terminals
         open.
         """
-        success, fgcolor = Gdk.color_parse(entry.value.get_string())
-        if not success:
+        fgcolor = Gdk.color_parse(entry.value.get_string())
+        if fgcolor is None:
             warnings.warn('Unable to parse color %s' % fgcolor)
             return
 
@@ -206,22 +206,22 @@ class GConfHandler(object):
         will be called and will change the color scheme in all terminals
         open.
         """
-        success, fgcolor = Gdk.color_parse(
+        fgcolor = Gdk.color_parse(
             client.get_string(KEY('/style/font/color')))
-        if not success:
+        if fgcolor is None:
             warnings.warn('Unable to parse color %s' % client.get_string(KEY('/style/font/color')))
             return
 
-        success, bgcolor = Gdk.color_parse(
+        bgcolor = Gdk.color_parse(
             client.get_string(KEY('/style/background/color')))
-        if not success:
+        if bgcolor is None:
             warnings.warn('Unable to parse color %s' % client.get_string(KEY('/style/background/color')))
             return
 
         palette = []
         for color in entry.value.get_string().split(':'):
-            success, pcolor = Gdk.color_parse(color)
-            if not success:
+            pcolor = Gdk.color_parse(color)
+            if pcolor is None:
                 warnings.warn('Unable to parse color %s' % color)
                 return
             palette.append(pcolor)
@@ -234,8 +234,8 @@ class GConfHandler(object):
         method will be called and will change the background color in
         all terminals open.
         """
-        success, bgcolor = Gdk.color_parse(entry.value.get_string())
-        if not success:
+        bgcolor = Gdk.color_parse(entry.value.get_string())
+        if bgcolor is None:
             warnings.warn('Unable to parse color %s' % entry.value.get_string())
             return
 

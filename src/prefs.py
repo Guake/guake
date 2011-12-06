@@ -230,8 +230,8 @@ class PrefsDialog(SimpleGtkApp):
         """
         palette = palette.split(':')
         for i in range(16):
-            success, color = Gdk.color_parse(palette[i])
-            if success:
+            color = Gdk.color_parse(palette[i])
+            if color is not None:
                 self.get_widget('palette_%d' % i).set_color(color)
             else:
                 warnings.warn('Unable to parse color %s' % palette[i])
@@ -322,16 +322,16 @@ class PrefsDialog(SimpleGtkApp):
 
         # font color
         value = self.client.get_string(KEY('/style/font/color'))
-        success, color = Gdk.color_parse(value)
-        if success:
+        color = Gdk.color_parse(value)
+        if color is not None:
             self.get_widget('font_color').set_color(color)
         else:
             warnings.warn('Unable to parse color %s' % value, Warning)
 
         # background color
         value = self.client.get_string(KEY('/style/background/color'))
-        success, color = Gdk.color_parse(value)
-        if success:
+        color = Gdk.color_parse(value)
+        if color is not None:
             self.get_widget('background_color').set_color(color)
         else:
             warnings.warn('Unable to parse color %s' % value, Warning)
