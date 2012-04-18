@@ -830,6 +830,14 @@ def handle_params(remote_object):
             action='store_true', default=False,
             help=_('Toggles the visibility of the terminal window'))
 
+    parser.add_option('--show', dest="show",
+            action='store_true', default=False,
+            help=_('Shows Guake main window'))
+
+    parser.add_option('--hide', dest='hide',
+            action='store_true', default=False,
+            help=_('Hides Guake main window'))
+
     parser.add_option('-p', '--preferences', dest='show_preferences',
             action='store_true', default=False,
             help=_('Shows Guake preference window'))
@@ -868,6 +876,14 @@ def handle_params(remote_object):
 
     if options.show_hide:
         remote_object.show_hide()
+        called_with_param = True
+
+    if options.show:
+        remote_object.show()
+        called_with_param = True
+
+    if options.hide:
+        remote_object.hide()
         called_with_param = True
 
     if options.show_preferences:
