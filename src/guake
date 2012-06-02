@@ -659,6 +659,10 @@ class Guake(SimpleGtkApp):
         shell = self.client.get_string(KEY('/general/default_shell'))
         if shell and os.path.exists(shell):
             params[2].append(shell)
+        else:
+            # If, by any chance, the `default_shell' variable cannot be
+            # read, guake will fail immediatelly.
+            params[2].append('/bin/sh')
 
         login_shell = self.client.get_bool(KEY('/general/use_login_shell'))
         if login_shell:
