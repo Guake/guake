@@ -881,7 +881,6 @@ def handle_params(remote_object):
     return called_with_param
 
 if __name__ == '__main__':
-    Gtk.init_check(sys.argv)
     if not test_gconf():
         raise ShowableError(_('Guake can not init!'),
             _('Gconf Error.\n'
