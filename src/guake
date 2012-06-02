@@ -389,7 +389,8 @@ class Guake(SimpleGtkApp):
         """Hides the main window of the terminal and sets the visible
         flag to False.
         """
-        self.window.hide() # Don't use hide_all here!
+        self.window.iconify()
+        self.window.set_property('visible', False)
 
     def get_final_window_rect(self):
         """Gets the final size of the main window of guake. The height
