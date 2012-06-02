@@ -890,7 +890,7 @@ def handle_params(remote_object):
 
 if __name__ == '__main__':
     if not test_gconf():
-        raise ShowableError(_('Guake can not init!'),
+         ShowableError(_('Guake can not init!'),
             _('Gconf Error.\n'
               'Have you installed <b>guake.schemas</b> properly?'))
 

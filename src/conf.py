@@ -325,9 +325,9 @@ class GConfKeyHandler(object):
         self.guake.hotkeys.unbind_all()
         key = entry.get_value().get_string()
         if not self.guake.hotkeys.bind(key, self.guake.show_hide):
-            raise ShowableError(_('key binding error'),
-                                _('Unable to bind global <b>%s</b> key') % key,
-                                -1)
+            ShowableError(_('key binding error'),
+                          _('Unable to bind global <b>%s</b> key') % key,
+                          -1)
 
     def reload_accelerators(self, *args):
         """Reassign an accel_group to guake main window and guake

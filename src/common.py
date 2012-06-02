@@ -36,10 +36,10 @@ __all__ = ['_', 'ShowableError', 'test_gconf',
            'pixmapfile', 'gladefile', 'hexify_color',
            'get_binaries_from_path', 'ERASE_BINDINGS_ENUM']
 
-class ShowableError(Exception):
+class ShowableError(object):
     def __init__(self, title, msg, exit_code=1):
-        d = Gtk.MessageDialog(type=Gtk.MESSAGE_ERROR,
-                buttons=Gtk.BUTTONS_CLOSE)
+        d = Gtk.MessageDialog(type=Gtk.MessageType.ERROR,
+                buttons=Gtk.ButtonsType.CLOSE)
         d.set_markup('<b><big>%s</big></b>' % title)
         d.format_secondary_markup(msg)
         d.run()

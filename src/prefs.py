@@ -422,7 +422,7 @@ class PrefsDialog(SimpleGtkApp):
             keyentry = model.get_value(subiter, 2)
             if keyentry and keyentry == hotkey:
                 msg = _("The shortcut \"%s\" is already in use.") % keylabel
-                raise ShowableError(_('Error setting keybinding.'), msg, -1)
+                ShowableError(_('Error setting keybinding.'), msg, -1)
         model.foreach(each_key)
 
         # avoiding problems with common keys
