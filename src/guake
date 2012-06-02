@@ -113,9 +113,13 @@ class Guake(SimpleGtkApp):
 
         # Adding the `new tab' button as an action widget of the tabs
         # notebook.
-        add_button = Gtk.Button.new_from_stock(Gtk.STOCK_NEW)
-        add_button.connect('clicked', self.add_tab)
-        add_button.show()
+        add_button = Gtk.Button()
+        add_button.set_relief(Gtk.ReliefStyle.NONE)
+        add_button.set_tooltip_text(_('New tab'))
+        add_button.add(Gtk.Image.new_from_stock(
+            Gtk.STOCK_NEW, Gtk.IconSize.MENU))
+        add_button.connect('clicked', lambda x: self.add_tab())
+        add_button.show_all()
         self.notebook.set_action_widget(add_button, Gtk.PackType.END)
 
         # double click stuff
