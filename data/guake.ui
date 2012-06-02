@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <interface>
-  <requires lib="gtk+" version="2.20"/>
+  <!-- interface-requires gtk+ 3.0 -->
   <object class="GtkMenu" id="context-menu">
     <property name="visible">True</property>
     <property name="can_focus">False</property>
@@ -8,9 +8,9 @@
     <child>
       <object class="GtkImageMenuItem" id="context_preferences">
         <property name="label">gtk-preferences</property>
+        <property name="use_action_appearance">False</property>
         <property name="visible">True</property>
         <property name="can_focus">False</property>
-        <property name="use_action_appearance">False</property>
         <property name="use_underline">True</property>
         <property name="use_stock">True</property>
         <signal name="activate" handler="show_prefs" swapped="no"/>
@@ -25,9 +25,9 @@
     <child>
       <object class="GtkImageMenuItem" id="context_copy">
         <property name="label">gtk-copy</property>
+        <property name="use_action_appearance">False</property>
         <property name="visible">True</property>
         <property name="can_focus">False</property>
-        <property name="use_action_appearance">False</property>
         <property name="use_underline">True</property>
         <property name="use_stock">True</property>
         <signal name="activate" handler="accel_copy_clipboard" swapped="no"/>
@@ -36,9 +36,9 @@
     <child>
       <object class="GtkImageMenuItem" id="context_paste">
         <property name="label">gtk-paste</property>
+        <property name="use_action_appearance">False</property>
         <property name="visible">True</property>
         <property name="can_focus">False</property>
-        <property name="use_action_appearance">False</property>
         <property name="use_underline">True</property>
         <property name="use_stock">True</property>
         <signal name="activate" handler="accel_paste_clipboard" swapped="no"/>
@@ -53,9 +53,9 @@
     <child>
       <object class="GtkImageMenuItem" id="context_close_tab">
         <property name="label">gtk-close</property>
+        <property name="use_action_appearance">False</property>
         <property name="visible">True</property>
         <property name="can_focus">False</property>
-        <property name="use_action_appearance">False</property>
         <property name="use_underline">True</property>
         <property name="use_stock">True</property>
         <signal name="activate" handler="close_tab" swapped="no"/>
@@ -64,9 +64,9 @@
     <child>
       <object class="GtkImageMenuItem" id="context_close">
         <property name="label">gtk-quit</property>
+        <property name="use_action_appearance">False</property>
         <property name="visible">True</property>
         <property name="can_focus">False</property>
-        <property name="use_action_appearance">False</property>
         <property name="use_underline">True</property>
         <property name="use_stock">True</property>
         <signal name="activate" handler="accel_quit" swapped="no"/>
@@ -79,9 +79,9 @@
     <child>
       <object class="GtkImageMenuItem" id="rename">
         <property name="label">gtk-edit</property>
+        <property name="use_action_appearance">False</property>
         <property name="visible">True</property>
         <property name="can_focus">False</property>
-        <property name="use_action_appearance">False</property>
         <property name="use_underline">True</property>
         <property name="use_stock">True</property>
         <signal name="activate" handler="on_rename_activate" swapped="no"/>
@@ -90,9 +90,9 @@
     <child>
       <object class="GtkImageMenuItem" id="close">
         <property name="label">gtk-close</property>
+        <property name="use_action_appearance">False</property>
         <property name="visible">True</property>
         <property name="can_focus">False</property>
-        <property name="use_action_appearance">False</property>
         <property name="use_underline">True</property>
         <property name="use_stock">True</property>
         <signal name="activate" handler="on_close_activate" swapped="no"/>
@@ -105,9 +105,9 @@
     <child>
       <object class="GtkImageMenuItem" id="prefs-menuitem">
         <property name="label">gtk-preferences</property>
+        <property name="use_action_appearance">False</property>
         <property name="visible">True</property>
         <property name="can_focus">False</property>
-        <property name="use_action_appearance">False</property>
         <property name="use_underline">True</property>
         <property name="use_stock">True</property>
         <signal name="activate" handler="show_prefs" swapped="no"/>
@@ -116,9 +116,9 @@
     <child>
       <object class="GtkImageMenuItem" id="about-menuitem">
         <property name="label">gtk-about</property>
+        <property name="use_action_appearance">False</property>
         <property name="visible">True</property>
         <property name="can_focus">False</property>
-        <property name="use_action_appearance">False</property>
         <property name="use_underline">True</property>
         <property name="use_stock">True</property>
         <signal name="activate" handler="show_about" swapped="no"/>
@@ -133,9 +133,9 @@
     <child>
       <object class="GtkImageMenuItem" id="quit-menuitem">
         <property name="label">gtk-quit</property>
+        <property name="use_action_appearance">False</property>
         <property name="visible">True</property>
         <property name="can_focus">False</property>
-        <property name="use_action_appearance">False</property>
         <property name="use_underline">True</property>
         <property name="use_stock">True</property>
         <signal name="activate" handler="accel_quit" swapped="no"/>
@@ -159,11 +159,8 @@
           <object class="GtkNotebook" id="notebook-teminals">
             <property name="visible">True</property>
             <property name="can_focus">True</property>
-            <property name="has_focus">True</property>
-            <property name="is_focus">True</property>
             <property name="tab_pos">bottom</property>
             <property name="show_border">False</property>
-            <property name="enable_popup">True</property>
           </object>
           <packing>
             <property name="expand">True</property>
@@ -176,9 +173,6 @@
             <property name="visible">True</property>
             <property name="can_focus">True</property>
             <property name="no_show_all">True</property>
-            <child>
-              <placeholder/>
-            </child>
             <child>
               <placeholder/>
             </child>
