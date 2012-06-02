@@ -17,6 +17,8 @@ Free Software Foundation, Inc., 59 Temple Place - Suite 330,
 Boston, MA 02111-1307, USA.
 """
 
+import os
+
 from gi.repository import GConf
 from gi.repository import Gtk
 from gi.repository import Gdk
@@ -255,16 +257,17 @@ class GConfHandler(object):
                 i.set_background_image_file(image)
                 i.set_background_transparent(False)
             else:
-                """We need to clear the image if it's not set but there is
-                a bug in vte python bidnings which doesn't allow None to be
-                passed to set_background_image (C GTK function expects NULL).
-                The user will need to restart Guake after clearing the image.
-                i.set_background_image(None)
+                """We need to clear the image if it's not set but there
+                is a bug in vte python bidnings which doesn't allow None
+                to be passed to set_background_image (C GTK function
+                expects NULL).
+
+                Anyway, it also seem to work with an empty string. Let's
+                keep an eye on this line and make sure things will not
+                break in next versions of the vte binding.
                 """
-                if self.guake.has_argb:
-                    i.set_background_transparent(False)
-                else:
-                    i.set_background_transparent(True)
+                i.set_background_image_file('')
+                i.set_background_transparent(not self.guake.has_argb)
 
     def bgtransparency_changed(self, client, connection_id, entry, data):
         """If the gconf var style/background/transparency be changed, this

@@ -21,6 +21,7 @@ from __future__ import absolute_import
 
 from gi.repository import Gtk
 from gi.repository import Gdk
+from gi.repository import GdkPixbuf
 from gi.repository import GObject
 from gi.repository import GConf
 
@@ -191,7 +192,7 @@ class PrefsDialog(SimpleGtkApp):
         filename = file_chooser.get_preview_filename()
         if filename and os.path.isfile(filename or ''):
             try:
-                mkpb = Gdk.pixbuf_new_from_file_at_size
+                mkpb = GdkPixbuf.Pixbuf.new_from_file_at_size
                 pixbuf = mkpb(filename, 256, 256)
                 preview.set_from_pixbuf(pixbuf)
                 file_chooser.set_preview_widget_active(True)
