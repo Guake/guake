@@ -85,12 +85,6 @@
                                     <property name="visible">True</property>
                                     <property name="can_focus">False</property>
                                     <signal name="changed" handler="on_default_shell_changed" swapped="no"/>
-                                    <child>
-                                      <object class="GtkCellRendererText" id="cellrenderertext1"/>
-                                      <attributes>
-                                        <attribute name="text">0</attribute>
-                                      </attributes>
-                                    </child>
                                   </object>
                                   <packing>
                                     <property name="expand">True</property>
