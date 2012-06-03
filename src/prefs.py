@@ -147,6 +147,7 @@ class PrefsDialog(SimpleGtkApp):
 
         renderer = Gtk.CellRendererAccel()
         renderer.set_property('editable', True)
+        renderer.set_property('accel-mode', Gtk.CellRendererAccelMode.OTHER)
 
         renderer.connect('accel-edited', self.on_key_edited, model)
         renderer.connect('accel-cleared', self.on_key_cleared, model)
@@ -419,12 +420,12 @@ class PrefsDialog(SimpleGtkApp):
             return False
 
         # looking for already used keybindings
-        def each_key(model, path, subiter):
-            keyentry = model.get_value(subiter, 2)
+        for item in [i.iterchildren() for i in model]:
+            keyentry = model.get_value(item.iter, 2)
             if keyentry and keyentry == hotkey:
                 msg = _("The shortcut \"%s\" is already in use.") % keylabel
                 ShowableError(_('Error setting keybinding.'), msg, -1)
-        model.foreach(each_key)
+                return True
 
         # avoiding problems with common keys
         if ((mask == 0 and keycode != 0) and (
@@ -433,8 +434,8 @@ class PrefsDialog(SimpleGtkApp):
             (keycode >= ord('0') and keycode <= ord('9')))):
             dialog = Gtk.MessageDialog(
                 self.get_widget('config-window'),
-                Gtk.DIALOG_MODAL | Gtk.DIALOG_DESTROY_WITH_PARENT,
-                Gtk.MESSAGE_WARNING, Gtk.BUTTONS_OK,
+                Gtk.DialogFlags.MODAL | Gtk.DialogFlags.DESTROY_WITH_PARENT,
+                Gtk.MessageType.WARNING, Gtk.ButtonsType.OK,
                 _("The shortcut \"%s\" cannot be used "
                   "because it will become impossible to "
                   "type using this key.\n\n"
@@ -496,13 +497,10 @@ class PrefsDialog(SimpleGtkApp):
             return False
 
         path, column, cellx, celly = ret
-        if path and len(path) > 1:
-            def real_cb():
-                treeview.grab_focus()
-                treeview.set_cursor(path, column, True)
+        if path and path.get_depth() > 1:
+            treeview.grab_focus()
+            treeview.set_cursor(path, column, True)
             treeview.stop_emission('button-press-event')
-            GObject.idle_add(real_cb)
-
         return True
 
     # general tab
