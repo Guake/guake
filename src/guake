@@ -547,11 +547,7 @@ class Guake(SimpleGtkApp):
             # gconf key is false.
             self.resizer.hide()
             if not val:
-                # FIXME: There's something wrong here, if we just hide
-                # it, when will we show it again?!?! Let's disable this
-                # until answering this question.
-                #self.notebook.set_show_tabs(False)
-                pass
+                self.notebook.set_show_tabs(False)
         else:
             self.window.unfullscreen()
             self.fullscreen = False

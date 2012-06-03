@@ -55,7 +55,7 @@ class GConfHandler(object):
 
         notify_add(KEY('/general/use_trayicon'), self.trayicon_toggled)
         notify_add(KEY('/general/window_ontop'), self.ontop_toggled)
-        # notify_add(KEY('/general/window_tabbar'), self.tabbar_toggled)
+        notify_add(KEY('/general/window_tabbar'), self.tabbar_toggled)
         notify_add(KEY('/general/window_height'), self.size_changed)
 
         notify_add(KEY('/general/use_scrollbar'), self.scrollbar_toggled)
@@ -99,14 +99,11 @@ class GConfHandler(object):
         """
         self.guake.window.set_keep_above(entry.value.get_bool())
 
-    # def tabbar_toggled(self, client, connection_id, entry, data):
-    #     """If the gconf var use_tabbar be changed, this method will be
-    #     called and will show/hide the tabbar.
-    #     """
-    #     if entry.value.get_bool():
-    #         self.guake.toolbar.show()
-    #     else:
-    #         self.guake.toolbar.hide()
+    def tabbar_toggled(self, client, connection_id, entry, data):
+        """If the gconf var use_tabbar be changed, this method will be
+        called and will show/hide the tabbar.
+        """
+        self.guake.notebook.set_show_tabs(entry.value.get_bool())
 
     def alignment_changed(self, client, connection_id, entry, data):
         """If the gconf var window_halignment be changed, this method will
