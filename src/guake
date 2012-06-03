@@ -286,7 +286,7 @@ class Guake(SimpleGtkApp):
         visible = window.get_property('visible')
         if value and visible:
             self.losefocus_hide_time = \
-                GdkX11.x11_get_server_time(self.window.window)
+                GdkX11.x11_get_server_time(self.window.get_window())
             self.hide()
 
     def show_menu(self, status_icon, button, activate_time):
