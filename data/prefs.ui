@@ -1406,13 +1406,12 @@
                               <object class="GtkComboBoxText" id="delete-binding-combobox">
                                 <property name="visible">True</property>
                                 <property name="can_focus">False</property>
+                                <items>
+                                  <item translatable="yes">ASCII DEL</item>
+                                  <item translatable="yes">Escape sequence</item>
+                                  <item translatable="yes">Control-H</item>
+                                </items>
                                 <signal name="changed" handler="on_delete_binding_changed" swapped="no"/>
-                                <child>
-                                  <object class="GtkCellRendererText" id="cellrenderertext3"/>
-                                  <attributes>
-                                    <attribute name="text">0</attribute>
-                                  </attributes>
-                                </child>
                               </object>
                               <packing>
                                 <property name="left_attach">1</property>
@@ -1426,13 +1425,12 @@
                               <object class="GtkComboBoxText" id="backspace-binding-combobox">
                                 <property name="visible">True</property>
                                 <property name="can_focus">False</property>
+                                <items>
+                                  <item translatable="yes">ASCII DEL</item>
+                                  <item translatable="yes">Escape sequence</item>
+                                  <item translatable="yes">Control-H</item>
+                                </items>
                                 <signal name="changed" handler="on_backspace_binding_changed" swapped="no"/>
-                                <child>
-                                  <object class="GtkCellRendererText" id="cellrenderertext4"/>
-                                  <attributes>
-                                    <attribute name="text">0</attribute>
-                                  </attributes>
-                                </child>
                               </object>
                               <packing>
                                 <property name="left_attach">1</property>
@@ -1599,40 +1597,6 @@
       </row>
       <row>
         <col id="0" translatable="yes">Custom</col>
-      </row>
-    </data>
-  </object>
-  <object class="GtkListStore" id="liststore3">
-    <columns>
-      <!-- column-name item -->
-      <column type="gchararray"/>
-    </columns>
-    <data>
-      <row>
-        <col id="0" translatable="yes">ASCII DEL</col>
-      </row>
-      <row>
-        <col id="0" translatable="yes">Escape sequence</col>
-      </row>
-      <row>
-        <col id="0" translatable="yes">Control-H</col>
-      </row>
-    </data>
-  </object>
-  <object class="GtkListStore" id="liststore4">
-    <columns>
-      <!-- column-name item -->
-      <column type="gchararray"/>
-    </columns>
-    <data>
-      <row>
-        <col id="0" translatable="yes">ASCII DEL</col>
-      </row>
-      <row>
-        <col id="0" translatable="yes">Escape sequence</col>
-      </row>
-      <row>
-        <col id="0" translatable="yes">Control-H</col>
       </row>
     </data>
   </object>
