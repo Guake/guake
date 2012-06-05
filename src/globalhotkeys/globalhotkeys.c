@@ -43,7 +43,7 @@ typedef struct {
 } GlobalHotkey;
 
 static void
-caller (char *key, gpointer userdata)
+caller (const char *key, void *userdata)
 {
   PyObject *retval;
   CallableObject *obj = (CallableObject *) userdata;
@@ -122,7 +122,7 @@ GlobalHotkey_unbind_all (GlobalHotkey *self)
   while (PyDict_Next (self->binded, &pos, &key, &value))
     {
       str_key = PyString_AsString (key);
-      keybinder_unbind (str_key, caller);
+      keybinder_unbind (str_key, (KeybinderHandler) caller);
     }
 
   PyDict_Clear (self->binded);
@@ -138,7 +138,7 @@ GlobalHotkey_unbind (GlobalHotkey *self,
   if (!PyArg_ParseTuple (args, "s", &key))
     return NULL;
 
-  keybinder_unbind (key, caller);
+  keybinder_unbind (key, (KeybinderHandler) caller);
   PyDict_DelItemString (self->binded, key);
   return Py_BuildValue ("");
 }
@@ -178,13 +178,13 @@ GlobalHotkey_bind (GlobalHotkey *self,
     {
       /* Let's try to bind the key, if it is not possible, a False
          python value is returned. */
-      if (keybinder_bind (key, caller, co))
+      if (keybinder_bind (key, (KeybinderHandler) caller, co))
         {
           /* If it is not possible to add the entry to the binded
              dict, we should not bind the key */
           if (PyDict_SetItemString (self->binded, key, co->callback) != 0)
             {
-              keybinder_unbind (key, caller);
+              keybinder_unbind (key, (KeybinderHandler) caller);
               return Py_BuildValue ("i", 0);
             }
           else

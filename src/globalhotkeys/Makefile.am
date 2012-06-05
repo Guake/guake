@@ -1,12 +1,7 @@
 guakepyexecdir = $(pkgpyexecdir)
 guakepyexec_LTLIBRARIES = globalhotkeys.la
 
-globalhotkeys_la_SOURCES = \
-	eggaccelerators.c \
-	keybinder.c \
-	globalhotkeys.c \
-	eggaccelerators.h \
-	keybinder.h
+globalhotkeys_la_SOURCES = globalhotkeys.c bind.c keybinder.h
 
 AM_CPPFLAGS = \
 	$(DEPENDENCIES_CFLAGS) \
