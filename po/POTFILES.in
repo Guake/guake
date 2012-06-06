@@ -5,6 +5,6 @@ data/prefs.glade
 data/guake.desktop.in
 data/guake-prefs.desktop.in
 src/dbusiface.py
-src/guake.py
+src/guake
 src/prefs.py
 src/common.py
