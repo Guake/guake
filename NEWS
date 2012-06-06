@@ -1,3 +1,19 @@
+changes since 0.4.2:
+
+  - Better tab titling, based on VTE title sequences (Aleksandar
+    Krsteski & Max Ulidtko)
+  - Some drag & drop support (Max Ulidtko)
+  - Fix for the many times reported "gconf proxy port as int" issue
+    (Pingou)
+  - Better file layout which doesn't modify PYTHONPATH (Max Ulidtko)
+
+Updated translation and new translation:
+
+  - Russian (Vadim Kotov)
+  - Spanish (Ricardo A. Hermosilla Carrillo)
+  - Japanese (kazutaka)
+  - Catalan (el_libre como el chaval)
+
 changes since 0.4.1:
 
 Updated translations and new translations (unsorted):
