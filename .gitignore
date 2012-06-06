@@ -26,6 +26,7 @@ Makefile.in.in
 globals.py
 autom4te.cache
 POTFILES
+m4/intltool.m4
 m4/libtool.m4
 m4/ltoptions.m4
 m4/ltsugar.m4
