@@ -578,9 +578,6 @@ class Guake(SimpleGladeApp):
         # holds fullscreen status
         self.is_fullscreen = False
 
-        if self.client.get_bool(KEY('/general/start_fullscreen')):
-             self.fullscreen()
-
         # holds the timestamp of the losefocus event
         self.losefocus_time = 0
 
@@ -636,6 +633,9 @@ class Guake(SimpleGladeApp):
         keyval, mask = gtk.accelerator_parse(key)
         label = gtk.accelerator_get_label(keyval, mask)
         filename = pixmapfile('guake-notification.png')
+
+        if self.client.get_bool(KEY('/general/start_fullscreen')):
+             self.fullscreen()
 
         if not self.hotkeys.bind(key, self.show_hide):
             notification = pynotify.Notification(
