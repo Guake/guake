@@ -189,8 +189,8 @@ class GConfHandler(object):
         in guake.
         """
         window_rect = self.guake.get_final_window_rect()
-        self.guake.window.move(window_rect.x, window_rect.y)
         self.guake.window.resize(window_rect.width, window_rect.height)
+        self.guake.window.move(window_rect.x, window_rect.y)
 
     def scrollbar_toggled(self, client, connection_id, entry, data):
         """If the gconf var use_scrollbar be changed, this method will
@@ -576,11 +576,10 @@ class Guake(SimpleGladeApp):
         self.selected_tab = None
 
         # holds fullscreen status
-        self.fullscreen = self.client.get_bool(KEY('/general/start_fullscreen'))
+        self.is_fullscreen = False
 
-        # set fullscreen?
-        if self.fullscreen:
-             self.window.fullscreen()
+        if self.client.get_bool(KEY('/general/start_fullscreen')):
+             self.fullscreen()
 
         # holds the timestamp of the losefocus event
         self.losefocus_time = 0
@@ -790,7 +789,7 @@ class Guake(SimpleGladeApp):
         if not self.term_list:
             self.add_tab()
 
-        if not self.fullscreen:
+        if not self.is_fullscreen:
             self.client.notify(KEY('/general/window_height'))
         self.window.show_all()
 
@@ -954,35 +953,38 @@ class Guake(SimpleGladeApp):
 
     def accel_toggle_fullscreen(self, *args):
         """Callback toggle the fullscreen status of the main
-        window. It uses the toolbar_visible_in_fullscreen variable
-        from gconf to decide if the tabbar will or not be
-        shown. Called by the accel key.
+        window. Called by the accel key.
         """
-        val = self.client.get_bool(KEY('general/toolbar_visible_in_fullscreen'))
 
-        if not self.fullscreen:
-            self.window.fullscreen()
-            self.fullscreen = True
-
-            # The resizer widget really don't need to be shown in
-            # fullscreen mode, but tabbar will only be shown if a
-            # hidden gconf key is false.
-            self.resizer.hide()
-            if not val:
-                self.toolbar.hide()
+        if not self.is_fullscreen:
+            self.fullscreen()
         else:
-            self.window.unfullscreen()
-            self.fullscreen = False
-
-            # making sure that tabbar and resizer will come back to
-            # their default state.
-            self.client.notify(KEY('/general/window_tabbar'))
-            self.client.notify(KEY('/general/show_resizer'))
-            # make sure the window size is correct after returning
-            # from fullscreen
-            self.client.notify(KEY('/general/window_height'))
+            self.unfullscreen()
 
         return True
+
+    def fullscreen(self):
+        self.window.fullscreen()
+        self.is_fullscreen = True
+
+        # The resizer widget really don't need to be shown in
+        # fullscreen mode, but tabbar will only be shown if a
+        # hidden gconf key is false.
+        self.resizer.hide()
+        if not self.client.get_bool(KEY('general/toolbar_visible_in_fullscreen')):
+            self.toolbar.hide()
+
+    def unfullscreen(self):
+        self.window.unfullscreen()
+        self.is_fullscreen = False
+
+        # making sure that tabbar and resizer will come back to
+        # their default state.
+        self.client.notify(KEY('/general/window_tabbar'))
+        self.client.notify(KEY('/general/show_resizer'))
+        # make sure the window size is correct after returning
+        # from fullscreen. broken on old compiz/metacity versions :C
+        self.client.notify(KEY('/general/window_height'))
 
     # -- callbacks --
 
@@ -1316,6 +1318,10 @@ def main():
     """
     from optparse import OptionParser
     parser = OptionParser()
+    parser.add_option('-f', '--fullscreen', dest='fullscreen',
+            action='store_true', default=False,
+            help=_('Put Guake in fullscreen mode'))
+
     parser.add_option('-t', '--toggle-visibility', dest='show_hide',
             action='store_true', default=False,
             help=_('Toggles the visibility of the terminal window'))
@@ -1367,6 +1373,9 @@ def main():
         already_running = False
 
     called_with_param = False
+
+    if options.fullscreen:
+        instance.fullscreen()
 
     if options.show_hide:
         remote_object.show_hide()
