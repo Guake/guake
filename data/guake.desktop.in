@@ -10,6 +10,6 @@ TryExec=guake
 Exec=guake
 Icon=guake
 Type=Application
-Categories=GNOME;GTK;Utility;TerminalEmulator;
+Categories=GNOME;GTK;System;Utility;TerminalEmulator;
 StartupNotify=true
 X-GNOME-Autostart-enabled=false
