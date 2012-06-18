@@ -12,4 +12,3 @@ Icon=guake
 Type=Application
 Categories=GNOME;GTK;Utility;TerminalEmulator;
 StartupNotify=true
-X-GNOME-Autostart-enabled=false
