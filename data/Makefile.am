@@ -1,4 +1,4 @@
-SUBDIRS = pixmaps
+SUBDIRS = pixmaps icons
 
 man_MANS = guake.1
 
