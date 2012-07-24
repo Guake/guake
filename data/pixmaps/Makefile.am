@@ -1,6 +1,5 @@
 pixmapsdir = $(datadir)/pixmaps/guake
 pixmaps_DATA = \
-	guake.svg \
 	guake.png \
 	guake-tray.png \
 	guake-notification.png \
