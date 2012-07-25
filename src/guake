@@ -28,6 +28,7 @@ from gi.repository import GdkPixbuf
 from gi.repository import GConf
 from gi.repository import Vte
 from gi.repository import Notify
+from gi.repository import GObject
 import dbus
 
 import os
@@ -51,6 +52,10 @@ Notify.init('Guake!')
 
 # Loading translation
 bindtextdomain(NAME, LOCALE_DIR)
+
+
+# Setting gobject program name
+GObject.set_prgname(NAME)
 
 
 class PromptQuitDialog(Gtk.MessageDialog):
