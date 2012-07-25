@@ -972,7 +972,10 @@ class Guake(SimpleGladeApp):
             if not val:
                 self.toolbar.hide()
         else:
+            window_rect = self.get_final_window_rect()
             self.window.unfullscreen()
+            self.window.resize(window_rect.width, window_rect.height)
+            self.window.move(window_rect.x, window_rect.y)
             self.fullscreen = False
 
             # making sure that tabbar and resizer will come back to
