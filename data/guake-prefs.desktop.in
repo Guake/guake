@@ -2,7 +2,7 @@
 Encoding=UTF-8
 Name=Guake Preferences
 Name[pt_BR]=Preferências do Guake
-Comment=Comment=Configure your Guake sessions
+Comment=Configure your Guake sessions
 Comment[pt_BR]=Configurações do terminal Guake
 TryExec=guake-prefs
 Exec=guake-prefs
