@@ -62,6 +62,10 @@ GNOME_FONT_PATH = '/desktop/gnome/interface/monospace_font_name'
 bindtextdomain(NAME, LOCALE_DIR)
 
 
+# Setting gobject program name
+gobject.set_prgname(NAME)
+
+
 class PromptQuitDialog(gtk.MessageDialog):
     """Prompts the user whether to quit or not if there are procs running.
     """
