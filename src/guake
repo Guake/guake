@@ -959,12 +959,10 @@ class Guake(SimpleGladeApp):
         """Callback toggle the fullscreen status of the main
         window. Called by the accel key.
         """
-
         if not self.is_fullscreen:
             self.fullscreen()
         else:
             self.unfullscreen()
-
         return True
 
     def fullscreen(self):
@@ -986,6 +984,7 @@ class Guake(SimpleGladeApp):
         # their default state.
         self.client.notify(KEY('/general/window_tabbar'))
         self.client.notify(KEY('/general/show_resizer'))
+
         # make sure the window size is correct after returning
         # from fullscreen. broken on old compiz/metacity versions :C
         self.client.notify(KEY('/general/window_height'))
