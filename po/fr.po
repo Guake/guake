@@ -3,14 +3,15 @@
 # This file is distributed under the same license as the guake package.
 # Pierre-Yves Chibon <pingou@pingoured.fr>, 2009.
 # Pablo Martin-Gomez <pablo.martin-gomez@laposte.net>, 2010
-# 
+# Sylvestre Ledru <sylvestre@debian.org>, 2012
+#
 msgid ""
 msgstr ""
 "Project-Id-Version: guake 0.5.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2010-06-30 05:34+0000\n"
 "PO-Revision-Date: 2010-01-25 19:51+0100\n"
-"Last-Translator: Pablo Martin-Gomez <pablo.martin-gomez@laposte.net>\n"
+"Last-Translator: Sylvestre Ledru <sylvestre@debian.org>\n"
 "Language-Team: Français <fedora-trans-fr@redhat.com>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -52,7 +53,7 @@ msgid ""
 "terminal based on fps games terminal"
 msgstr ""
 "Guake est un terminal simple et facilement utilisable\n"
-"basé sur les terminaux disponibles dans les jeux fps."
+"inspiré des terminaux disponibles dans les FPS (jeux)."
 
 #: ../data/about.glade.h:13
 msgid ""
@@ -138,7 +139,7 @@ msgstr "<b>Shell</b>"
 
 #: ../data/prefs.glade.h:9
 msgid "<small><i><b>Note:</b> These options may cause some applications to behave incorrectly.  They are only here to allow you to work around certain applications and operating systems that expect different terminal behavior.</i></small>"
-msgstr "<small><i><b>Note :</b> Ces options peuvent entrainer un comportement anormale. Elles ne sont disponible ici que pour des cas spécifiques où certains logiciels ou système d'exploitation attendent un comportement différent du terminal.</i></small>"
+msgstr "<small><i><b>Note :</b> Ces options peuvent entrainer un comportement anormale. Elles ne sont disponibles ici que pour des cas spécifiques où certains logiciels ou système d'exploitation attendent un comportement différent du terminal.</i></small>"
 
 #: ../data/prefs.glade.h:10
 msgid "<span color=\"black\">Customize behavior and appearance of Guake!</span>"
@@ -164,7 +165,7 @@ msgstr "Apparence"
 
 #: ../data/prefs.glade.h:16
 msgid "Background color:"
-msgstr "Couleur d'arrière-plan "
+msgstr "Couleur d'arrière-plan :"
 
 #: ../data/prefs.glade.h:17
 msgid "Background image:"
@@ -181,7 +182,7 @@ msgstr "Choisissez une police"
 
 #: ../data/prefs.glade.h:20
 msgid "Color palette:"
-msgstr "Palette de couleurs :"
+msgstr "Palette de couleurs :"
 
 #: ../data/prefs.glade.h:21
 msgid "Compatibility"
@@ -189,7 +190,7 @@ msgstr "Compatibilité"
 
 #: ../data/prefs.glade.h:22
 msgid "Default interpreter:"
-msgstr "Interpréteur par défaut :"
+msgstr "Interpréteur par défaut :"
 
 #: ../data/prefs.glade.h:23
 msgid "Enable popup notifications on startup"
@@ -197,7 +198,7 @@ msgstr "Activer la notification par pop-up au démarrage"
 
 #: ../data/prefs.glade.h:24
 msgid "Font:"
-msgstr "Police de caractères :"
+msgstr "Police de caractères :"
 
 #: ../data/prefs.glade.h:25 ../src/prefs.py:55
 msgid "General"
@@ -229,7 +230,7 @@ msgstr "Confirmer pour quitter"
 
 #: ../data/prefs.glade.h:32
 msgid "Scrollback lines:"
-msgstr "Nombres de lignes en mémoire :"
+msgstr "Nombre de lignes en mémoire :"
 
 #: ../data/prefs.glade.h:33
 msgid "Scrolling"
@@ -279,11 +280,11 @@ msgstr "Utiliser la taille de police définie par le système"
 
 #: ../data/prefs.glade.h:47
 msgid "_Backspace key generates:"
-msgstr "La touche _Retour correspond à :"
+msgstr "La touche _Retour correspond à :"
 
 #: ../data/prefs.glade.h:48
 msgid "_Delete key generates:"
-msgstr "La touche _Suppr correspond  à :"
+msgstr "La touche _Suppr correspond à :"
 
 #: ../data/prefs.glade.h:49
 msgid "_Open new tab in current directory"
@@ -299,7 +300,7 @@ msgstr "_Exécuter les commandes comme shell de connexion"
 
 #: ../src/guake.py:67
 msgid "Do you really want to quit Guake!?"
-msgstr "Voulez-vous vraiment quitter Guake !?"
+msgstr "Voulez-vous vraiment quitter Guake !?"
 
 #: ../src/guake.py:70
 msgid "<b>There is one process still running.</b>"
@@ -308,7 +309,7 @@ msgstr "<b>Il y a encore un processus en cours.</b>"
 #: ../src/guake.py:74
 #, python-format
 msgid "<b>There are %d processes running.</b>"
-msgstr "<b>Il y a %d processus en cours.</b>"
+msgstr "<b>Il y a %d processus en cours d'execution.</b>"
 
 #: ../src/guake.py:367
 msgid "key binding error"
@@ -385,7 +386,7 @@ msgstr "Dis au-revoir à Guake =("
 
 #: ../src/guake.py:1349
 msgid "Guake can not init!"
-msgstr "Guake ne peux démarrer"
+msgstr "Guake ne peut pas démarrer !"
 
 #: ../src/guake.py:1350
 msgid ""
@@ -459,11 +460,11 @@ msgstr "Raccourcis"
 #: ../src/prefs.py:605
 #, python-format
 msgid "The shortcut \"%s\" is already in use."
-msgstr "Le raccourcis « %s » est déjà utilisé."
+msgstr "Le raccourci « %s » est déjà utilisé."
 
 #: ../src/prefs.py:606
 msgid "Error setting keybinding."
-msgstr "Erreur d'attribution des raccourcis."
+msgstr "Erreur de configuration des raccourcis."
 
 #: ../src/prefs.py:618
 #, python-format
@@ -475,24 +476,3 @@ msgstr ""
 "Le raccourcis « %s » ne peux être utilisé car il empêche une utilisation normale du clavier.\n"
 "\n"
 "Essayez de l'utiliser en combinaison avec une touche tel que Control, Alt ou Shift.\n"
-
-#~ msgid "<b>Background</b>"
-#~ msgstr "<b>Fond</b>"
-
-#~ msgid "Choose some color"
-#~ msgstr "Choisissez une couleur"
-
-#~ msgid "Image:"
-#~ msgstr "Image :"
-
-#~ msgid "Style:"
-#~ msgstr "Police :"
-
-#~ msgid "Use system defaults"
-#~ msgstr "Utiliser la configuration du système"
-
-#~ msgid "<b>Main Window horizontal alignment</b>"
-#~ msgstr "<b>Position horizontale de la fenêtre principale</b>"
-
-#~ msgid "<b>Main Window width</b>"
-#~ msgstr "<b>Largeur de la fenêtre principale</b>"
