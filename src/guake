@@ -814,6 +814,7 @@ class Guake(SimpleGladeApp):
         """Hides the main window of the terminal and sets the visible
         flag to False.
         """
+        self.window.set_keep_below(True)
         self.window.hide() # Don't use hide_all here!
 
     def get_final_window_rect(self):
