@@ -46,12 +46,18 @@ DEPENDENCIES
  * python-notify
  * python-dbus
  * python-gconf
+ * python-xdg
 
 To build guake, you will need the following packages too:
  * python-dev
  * gtk+-2.0-dev
  * pygtk-dev
  * gconf2-dev (to use some autoconf stuff)
+
+Under Debian/Ubuntu, the following command should install all the build
+dependencies:
+sudo apt-get build-dep guake
+
 
 INSTALLATION
 ~~~~~~~~~~~~

@@ -458,7 +458,7 @@
 
 	* src/guake.py: Added a filter to choose only image files in prefs dialog
 
-	* src/guake.py: Added a error handling for bg_filechooser in prefs dialog
+	* src/guake.py: Added an error handling for bg_filechooser in prefs dialog
 
 2007-06-19  Lincoln de Sousa <lincoln@archlinux-br.org>
 
