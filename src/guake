@@ -793,9 +793,8 @@ class Guake(SimpleGladeApp):
         if not self.term_list:
             self.add_tab()
 
-        if not self.is_fullscreen:
-            self.client.notify(KEY('/general/window_height'))
         self.window.show_all()
+        self.client.notify(KEY('/general/window_height'))
 
         try:
             # does it work in other gtk backends
