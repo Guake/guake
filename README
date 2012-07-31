@@ -46,12 +46,18 @@ DEPENDENCIES
  * python-notify
  * python-dbus
  * python-gconf
+ * python-xdg
 
 To build guake, you will need the following packages too:
  * python-dev
  * gtk+-2.0-dev
  * pygtk-dev
  * gconf2-dev (to use some autoconf stuff)
+
+Under Debian/Ubuntu, the following command should install all the build
+dependencies:
+sudo apt-get build-dep guake
+
 
 INSTALLATION
 ~~~~~~~~~~~~
@@ -67,7 +73,7 @@ of guake from a release file, please do the following::
 
 If you receive a message asking you if you have installed
 guake.schemas properly when launching guake, it means that your
-default sysconfdir is different from the one choosen by autotools. To
+default sysconfdir is different from the one chosen by autotools. To
 fix that, you probably have to append the param `--sysconfdir=/etc' to
 your `./configure' call, like this::
 

@@ -239,7 +239,7 @@ class GConfHandler(object):
     def default_font_toggled(self, client, connection_id, entry, data):
         """If the gconf var use_default_font be changed, this method
         will be called and will change the font style to the gnome
-        default or to the choosen font in style/font/style in all
+        default or to the chosen font in style/font/style in all
         terminals open.
         """
         if entry.value.get_bool():
@@ -475,7 +475,7 @@ class GuakeTerminal(vte.Terminal):
 
     def button_press(self, terminal, event):
         """Handles the button press event in the terminal widget. If
-        any match string is caught, another aplication is open to
+        any match string is caught, another application is open to
         handle the matched resource uri.
         """
         self.matched_value = ''
@@ -614,7 +614,7 @@ class Guake(SimpleGladeApp):
             return True
         self.window.connect('delete-event', destroy)
 
-        # Flag to completly disable losefocus hiding
+        # Flag to completely disable losefocus hiding
         self.disable_losefocus_hiding = False
 
         # this line is important to resize the main window and make it
