@@ -73,7 +73,7 @@ of guake from a release file, please do the following::
 
 If you receive a message asking you if you have installed
 guake.schemas properly when launching guake, it means that your
-default sysconfdir is different from the one choosen by autotools. To
+default sysconfdir is different from the one chosen by autotools. To
 fix that, you probably have to append the param `--sysconfdir=/etc' to
 your `./configure' call, like this::
 
