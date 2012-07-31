@@ -39,7 +39,7 @@ What you can not forget?
 
  - Run every test from a terminal, all messages will be displayed there.
 
- - Globalhotkeys module depends on gtk, so if you dont import gtk before call
+ - Globalhotkeys module depends on gtk, so if you don't import gtk before call
    any funcion in that module, you will see some warnings on your terminal =D
 
  - globalhotkeys.init MUST be called before binding/unbinding keys.
