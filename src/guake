@@ -830,6 +830,15 @@ class Guake(SimpleGladeApp):
         # future we might create a field to select which monitor you
         # wanna use
         window_rect = screen.get_monitor_geometry(0)
+        if os.environ.get('DESKTOP_SESSION')  == "ubuntu":
+            unity_hide = self.client.get_int(KEY('/apps/compiz-1/plugins/unityshell/screen0/options/launcher_hide_mode'))
+            # launcher_hide_mode = 1 => autohide
+            if unity_hide != 1:
+                # Size of the icons for Unity in Ubuntu <= 12.04
+                # TODO Ubuntu 12.10 use dconf : /org/compiz/profiles/unity/plugins/unityshell/icon-size
+                unity_icon_size = self.client.get_int(KEY('/apps/compiz-1/plugins/unityshell/screen0/options/icon_size'))
+                unity_dock = unity_icon_size + 17
+                window_rect.width = window_rect.width - unity_dock
         total_width = window_rect.width
         window_rect.height = window_rect.height * height / 100
         window_rect.width = window_rect.width * width / 100
