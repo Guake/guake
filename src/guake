@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+!/usr/bin/env python
 # -*- coding: utf-8; -*-
 """
 Copyright (C) 2007-2012 Lincoln de Sousa <lincoln@minaslivre.org>
@@ -824,7 +824,7 @@ class Guake(SimpleGladeApp):
         """
         screen = self.window.get_screen()
         height = self.client.get_int(KEY('/general/window_height'))
-        width = self.client.get_int(KEY('/general/window_height'))
+        width = self.client.get_float(KEY('/general/window_width'))
         halignment = self.client.get_int(KEY('/general/window_halignment'))
 
         # get the rectangle just from the first/default monitor in the
@@ -870,6 +870,9 @@ class Guake(SimpleGladeApp):
         self.client.notify(KEY('/general/window_tabbar'))
         self.client.notify(KEY('/general/window_ontop'))
         self.client.notify(KEY('/general/window_height'))
+        self.client.notify(KEY('/general/window_width'))
+
+
         self.client.notify(KEY('/general/use_scrollbar'))
         self.client.notify(KEY('/general/history_size'))
         self.client.notify(KEY('/general/show_resizer'))
