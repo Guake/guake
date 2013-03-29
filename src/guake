@@ -823,7 +823,7 @@ class Guake(SimpleGladeApp):
         """
         screen = self.window.get_screen()
         height = self.client.get_int(KEY('/general/window_height'))
-        width = 100
+        width = self.client.get_int(KEY('/general/window_width'))
         halignment = self.client.get_int(KEY('/general/window_halignment'))
 
         # get the rectangle just from the first/default monitor in the
