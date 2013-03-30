@@ -556,6 +556,8 @@ class Guake(SimpleGladeApp):
         self.toolbar = self.get_widget('toolbar')
         self.mainframe = self.get_widget('mainframe')
         self.resizer = self.get_widget('resizer')
+        self.gototabgroup = gtk.AccelGroup()
+        self.window.add_accel_group(self.gototabgroup)
 
         # check and set ARGB for real transparency
         screen = self.window.get_screen()
@@ -1245,12 +1247,14 @@ class Guake(SimpleGladeApp):
         self.notebook.set_current_page(self.notebook.page_num(box))
         box.terminal.grab_focus()
         self.load_config()
+        self.update_accels()
 
     def delete_tab(self, pagepos, kill=True):
         """This function will destroy the notebook page, terminal and
         tab widgets and will call the function to kill interpreter
         forked by vte.
         """
+        self.disconnect_accels()
         self.tabs.get_children()[pagepos].destroy()
         self.notebook.remove_page(pagepos)
         self.term_list.pop(pagepos).destroy()
@@ -1263,6 +1267,25 @@ class Guake(SimpleGladeApp):
             self.hide()
             # avoiding the delay on next Guake show request
             self.add_tab()
+        self.update_accels()
+
+    def update_accels(self):
+        """Attribute accelerators for first ten tabs"""
+        tabs = self.tabs.get_children()
+        tabaccel = 1
+        for tab in tabs:
+            if tabaccel > 9:
+                break
+            real_accel = ord(str(tabaccel))
+            if tabaccel == 10:
+                real_accel = ord('0')
+            tab.add_accelerator('clicked', self.gototabgroup, real_accel, gtk.gdk.MOD1_MASK, ())
+            tabaccel += 1
+
+    def disconnect_accels(self):
+	"""Disconnect accelerators (to be called upon deleting a tab)"""
+	for i in range(10):
+	    self.gototabgroup.disconnect_key(ord(str(i)), gtk.gdk.MOD1_MASK)
 
     def delete_shell(self, pid):
         """This function will kill the shell on a tab, trying to send
