@@ -1283,9 +1283,9 @@ class Guake(SimpleGladeApp):
             tabaccel += 1
 
     def disconnect_accels(self):
-	"""Disconnect accelerators (to be called upon deleting a tab)"""
-	for i in range(10):
-	    self.gototabgroup.disconnect_key(ord(str(i)), gtk.gdk.MOD1_MASK)
+        """Disconnect accelerators (to be called upon deleting a tab)"""
+        for i in range(10):
+            self.gototabgroup.disconnect_key(ord(str(i)), gtk.gdk.MOD1_MASK)
 
     def delete_shell(self, pid):
         """This function will kill the shell on a tab, trying to send
