@@ -124,7 +124,7 @@
             <type>int</type>
             <default>100</default>
             <locale name="C">
-                <short>Window height.</short>
+                <short>Window width.</short>
                 <long>Percent of the screen that will be used by guake
                   terminal horizontally.</long>
             </locale>
