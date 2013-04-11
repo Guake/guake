@@ -183,6 +183,12 @@ class PrefsCallbacks(object):
         val = hscale.get_value()
         self.client.set_int(KEY('/general/window_height'), int(val))
 
+    def on_window_width_value_changed(self, hscale):
+        """Changes the value of window_width in gconf
+        """
+        val = hscale.get_value()
+        self.client.set_int(KEY('/general/window_width'), int(val))
+
     def on_prompt_on_quit_toggled(self, chk):
         """Set the `prompt on quit' property in gconf
         """
@@ -392,8 +398,8 @@ class PrefsDialog(SimpleGladeApp):
         palette_index = combo.get_active()
         if palette_index == 4:
             return
-        self.client.set_string(KEY('/style/font/palette'), 
-            PALETTES[palette_index]) 
+        self.client.set_string(KEY('/style/font/palette'),
+            PALETTES[palette_index])
         self.set_palette_colors(PALETTES[palette_index])
 
     def on_palette_color_set(self, btn):
@@ -415,7 +421,7 @@ class PrefsDialog(SimpleGladeApp):
         for i in range(len(PALETTES)):
             if palette == PALETTES[i]:
                 self.get_widget('palette_name').set_active(i)
-    
+
     def set_palette_colors(self, palette):
         """Updates the color buttons with the given palette
         """
@@ -532,7 +538,7 @@ class PrefsDialog(SimpleGladeApp):
         value = self.client.get_string(KEY('/style/font/palette'))
         self.set_palette_name(value)
         self.set_palette_colors(value)
-    
+
         # background image
         value = self.client.get_string(KEY('/style/background/image'))
         if os.path.isfile(value or ''):

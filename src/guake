@@ -131,6 +131,7 @@ class GConfHandler(object):
         notify_add(KEY('/general/window_ontop'), self.ontop_toggled)
         notify_add(KEY('/general/window_tabbar'), self.tabbar_toggled)
         notify_add(KEY('/general/window_height'), self.size_changed)
+        notify_add(KEY('/general/window_width'), self.size_changed)
 
         notify_add(KEY('/general/use_scrollbar'), self.scrollbar_toggled)
         notify_add(KEY('/general/history_size'), self.history_size_changed)
@@ -280,7 +281,7 @@ class GConfHandler(object):
             client.get_string(KEY('/style/font/color')))
         bgcolor = gtk.gdk.color_parse(
             client.get_string(KEY('/style/background/color')))
-        palette = [gtk.gdk.color_parse(color) for color in 
+        palette = [gtk.gdk.color_parse(color) for color in
             entry.value.get_string().split(':')]
         for i in self.guake.term_list:
             i.set_colors(fgcolor, bgcolor, palette)
@@ -684,13 +685,25 @@ class Guake(SimpleGladeApp):
             return
 
         max_height = self.window.get_screen().get_height()
-        percent = y / (max_height / 100)
+        height_percent = y / (max_height / 100)
 
-        if percent < 1:
-            percent = 1
+        if height_percent < 1:
+            height_percent = 1
 
-        self.client.set_int(KEY('/general/window_height'), int(percent))
+        self.client.set_int(KEY('/general/window_height'), int(height_percent))
 
+        """
+        Use this code if you want to change width using resizer element.
+        BUT then the resizer element should be put not in the center, but on bottom-left!
+
+        max_width = self.window.get_screen().get_width()
+        width_percent = x / (max_width / 100)
+
+        if width_percent < 1:
+            width_percent = 1
+
+        self.client.set_int(KEY('/general/window_width'), int(width_percent))
+        """
     def on_window_losefocus(self, window, event):
         """Hides terminal main window when it loses the focus and if
         the window_losefocus gconf variable is True.
@@ -781,7 +794,7 @@ class Guake(SimpleGladeApp):
             self.set_terminal_focus()
         else:
             self.hide()
- 
+
     def show(self):
         """Shows the main window and grabs the focus on it.
         """
@@ -795,6 +808,7 @@ class Guake(SimpleGladeApp):
 
         self.window.show_all()
         self.client.notify(KEY('/general/window_height'))
+        self.client.notify(KEY('/general/window_width'))
 
         try:
             # does it work in other gtk backends
@@ -823,7 +837,7 @@ class Guake(SimpleGladeApp):
         """
         screen = self.window.get_screen()
         height = self.client.get_int(KEY('/general/window_height'))
-        width = 100
+        width = self.client.get_int(KEY('/general/window_width'))
         halignment = self.client.get_int(KEY('/general/window_halignment'))
 
         # get the rectangle just from the first/default monitor in the
@@ -881,6 +895,7 @@ class Guake(SimpleGladeApp):
         self.client.notify(KEY('/general/window_tabbar'))
         self.client.notify(KEY('/general/window_ontop'))
         self.client.notify(KEY('/general/window_height'))
+        self.client.notify(KEY('/general/window_width'))
         self.client.notify(KEY('/general/use_scrollbar'))
         self.client.notify(KEY('/general/history_size'))
         self.client.notify(KEY('/general/show_resizer'))
@@ -999,6 +1014,7 @@ class Guake(SimpleGladeApp):
         # make sure the window size is correct after returning
         # from fullscreen. broken on old compiz/metacity versions :C
         self.client.notify(KEY('/general/window_height'))
+        self.client.notify(KEY('/general/window_width'))
 
     # -- callbacks --
 
