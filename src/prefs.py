@@ -34,8 +34,8 @@ import os
 import warnings
 
 # A regular expression to match possible python interpreters when
-# filling interpreters combo in preferences
-PYTHONS = re.compile('^python\d\.\d$')
+# filling interpreters combo in preferences (including bpython and ipython)
+PYTHONS = re.compile('^[a-z]python$|^python\d\.\d$')
 
 # Path to the shells file, it will be used to start to populate
 # interpreters combo, see the next variable, its important to fill the
