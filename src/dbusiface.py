@@ -39,6 +39,15 @@ class DbusManager(dbus.service.Object):
     def show_hide(self):
         self.guake.show_hide()
 
+    @dbus.service.method(DBUS_NAME)
+    def show(self):
+        self.guake.show()
+        self.guake.set_terminal_focus()
+
+    @dbus.service.method(DBUS_NAME)
+    def hide(self):
+        self.guake.hide()
+
     @dbus.service.method(DBUS_NAME, in_signature='s')
     def add_tab(self, directory=''):
         self.guake.add_tab(directory)
@@ -51,9 +60,17 @@ class DbusManager(dbus.service.Object):
     def get_selected_tab(self):
         return self.guake.get_selected_tab()
 
+    @dbus.service.method(DBUS_NAME, out_signature='i')
+    def get_tab_count(self):
+        return len(self.guake.term_list)
+
     @dbus.service.method(DBUS_NAME, in_signature='s')
     def execute_command(self, command):
         self.guake.execute_command(command)
+
+    @dbus.service.method(DBUS_NAME, in_signature='i', out_signature='s')
+    def get_tab_name(self, tab_index=0):
+        return self.guake.term_list[int(tab_index)].get_window_title()
 
     @dbus.service.method(DBUS_NAME, in_signature='s')
     def rename_current_tab(self, new_text):
