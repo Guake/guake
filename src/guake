@@ -1214,6 +1214,7 @@ class Guake(SimpleGladeApp):
             box.terminal.set_alternate_screen_scroll(True)
 
         box.show()
+        box.terminal.set_alternate_screen_scroll(True)
 
         self.term_list.append(box.terminal)
 
