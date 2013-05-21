@@ -301,33 +301,14 @@ class GConfHandler(object):
         will set the transparent flag to false if an image is set in
         all terminals open.
         """
-        image = entry.value.get_string()
-        for i in self.guake.term_list:
-            if image and os.path.exists(image):
-                i.set_background_image_file(image)
-                i.set_background_transparent(False)
-            else:
-                """We need to clear the image if it's not set but there is
-                a bug in vte python bidnings which doesn't allow None to be
-                passed to set_background_image (C GTK function expects NULL).
-                The user will need to restart Guake after clearing the image.
-                i.set_background_image(None)
-                """
-                if self.guake.has_argb:
-                    i.set_background_transparent(False)
-                else:
-                    i.set_background_transparent(True)
+        self.guake.set_background_image(entry.value.get_string())
 
     def bgtransparency_changed(self, client, connection_id, entry, data):
         """If the gconf var style/background/transparency be changed, this
         method will be called and will set the saturation and transparency
         properties in all terminals open.
         """
-        transparency = entry.value.get_int()
-        for i in self.guake.term_list:
-            i.set_background_saturation(transparency / 100.0)
-            if self.guake.has_argb:
-                i.set_opacity(int((100 - transparency) / 100.0 * 65535))
+        self.guake.set_background_transparency(entry.value.get_int())
 
     def backspace_changed(self, client, connection_id, entry, data):
         """If the gconf var compat_backspace be changed, this method
@@ -560,11 +541,21 @@ class Guake(SimpleGladeApp):
         # check and set ARGB for real transparency
         screen = self.window.get_screen()
         colormap = screen.get_rgba_colormap()
-        if colormap != None and screen.is_composited():
-            self.window.set_colormap(colormap)
-            self.has_argb = True
-        else:
+        if colormap == None:
             self.has_argb = False
+        else:
+            self.window.set_colormap(colormap)
+            self.has_argb = self.window.get_screen().is_composited()
+
+            def composited_changed(screen):
+                self.has_argb = screen.is_composited()
+                self.set_background_transparency(
+                    self.client.get_int(KEY('/style/background/transparency')))
+                self.set_background_image(
+                    self.client.get_string(KEY('/style/background/image')))
+
+            self.window.get_screen().connect("composited-changed",
+                                              composited_changed);
 
         # List of vte.Terminal widgets, it will be useful when needed
         # to get a widget by the current page in self.notebook
@@ -658,6 +649,29 @@ class Guake(SimpleGladeApp):
                 _('Guake is now running,\n'
                   'press <b>%s</b> to use it.') % label, filename)
             notification.show()
+
+    def set_background_transparency(self, transparency):
+        for i in self.term_list:
+            i.set_background_saturation(transparency / 100.0)
+            if self.has_argb:
+                i.set_opacity(int((100 - transparency) / 100.0 * 65535))
+
+    def set_background_image(self, image):
+        for i in self.term_list:
+            if image and os.path.exists(image):
+                i.set_background_image_file(image)
+                i.set_background_transparent(False)
+            else:
+                """We need to clear the image if it's not set but there is
+                a bug in vte python bidnings which doesn't allow None to be
+                passed to set_background_image (C GTK function expects NULL).
+                The user will need to restart Guake after clearing the image.
+                i.set_background_image(None)
+                """
+                if self.has_argb:
+                    i.set_background_transparent(False)
+                else:
+                    i.set_background_transparent(True)
 
     def execute_command(self, command, tab=None):
         """Execute the `command' in the `tab'. If tab is None, the
