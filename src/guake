@@ -1207,6 +1207,12 @@ class Guake(SimpleGladeApp):
         box.terminal.connect('drag-data-received',
                              self.on_drag_data_received,
                              box)
+
+        #-- Ubuntu has a patch to libvte which disables mouse scrolling in apps
+        #-- like vim and less by default. If this is the case, enable it back.
+        if hasattr(box.terminal, "set_alternate_screen_scroll"):
+            box.terminal.set_alternate_screen_scroll(True)
+
         box.show()
 
         self.term_list.append(box.terminal)
@@ -1360,6 +1366,14 @@ def main():
             action='store_true', default=False,
             help=_('Toggles the visibility of the terminal window'))
 
+    parser.add_option('--show', dest="show",
+            action='store_true', default=False,
+            help=_('Shows Guake main window'))
+
+    parser.add_option('--hide', dest='hide',
+            action='store_true', default=False,
+            help=_('Hides Guake main window'))
+
     parser.add_option('-p', '--preferences', dest='show_preferences',
             action='store_true', default=False,
             help=_('Shows Guake preference window'))
@@ -1410,6 +1424,14 @@ def main():
 
     if options.fullscreen:
         instance.fullscreen()
+
+    if options.show:
+        remote_object.show()
+        called_with_param = True
+
+    if options.hide:
+        remote_object.hide()
+        called_with_param = True
 
     if options.show_preferences:
         remote_object.show_prefs()
