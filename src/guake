@@ -124,6 +124,7 @@ class GConfHandler(object):
         #notify_add(KEY('/general/use_login_shell'), self.login_shell_toggled)
         #notify_add(KEY('/general/use_popup'), self.popup_toggled)
         #notify_add(KEY('/general/window_losefocus'), self.losefocus_toggled)
+        #notify_add(KEY('/general/use_vte_titles'), self.use_vte_titles_changed)
 
         notify_add(KEY('/general/show_resizer'), self.show_resizer_toggled)
 
