@@ -324,6 +324,23 @@
                                   </packing>
                                 </child>
                                 <child>
+                                  <widget class="GtkCheckButton" id="use_vte_titles">
+                                    <property name="label" translatable="yes">Use VTE titles for tab names</property>
+                                    <property name="visible">True</property>
+                                    <property name="can_focus">True</property>
+                                    <property name="receives_default">False</property>
+                                    <property name="use_underline">True</property>
+                                    <property name="active">True</property>
+                                    <property name="draw_indicator">True</property>
+                                    <signal name="toggled" handler="on_use_vte_titles_toggled"/>
+                                  </widget>
+                                  <packing>
+                                    <property name="expand">False</property>
+                                    <property name="fill">False</property>
+                                    <property name="position">1</property>
+                                  </packing>
+                                </child>
+                                <child>
                                   <widget class="GtkCheckButton" id="window_tabbar">
                                     <property name="label" translatable="yes">Show tab bar</property>
                                     <property name="visible">True</property>
