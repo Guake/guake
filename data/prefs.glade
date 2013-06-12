@@ -325,7 +325,7 @@
                                 </child>
                                 <child>
                                   <widget class="GtkCheckButton" id="use_vte_titles">
-                                    <property name="label" translatable="yes">Use virtual terminal titles</property>
+                                    <property name="label" translatable="yes">Use VTE titles for tab names</property>
                                     <property name="visible">True</property>
                                     <property name="can_focus">True</property>
                                     <property name="receives_default">False</property>
