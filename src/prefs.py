@@ -167,6 +167,11 @@ class PrefsCallbacks(object):
         """
         self.client.set_bool(KEY('/general/window_losefocus'), chk.get_active())
 
+    def on_use_vte_titles_toggled(self, chk):
+        """Changes the activity of use_vte_titles in gconf
+        """
+        self.client.set_bool(KEY('/general/use_vte_titles'), chk.get_active())
+
     def on_window_tabbar_toggled(self, chk):
         """Changes the activity of window_tabbar in gconf
         """
@@ -478,6 +483,10 @@ class PrefsDialog(SimpleGladeApp):
         # losefocus
         value = self.client.get_bool(KEY('/general/window_losefocus'))
         self.get_widget('window_losefocus').set_active(value)
+
+        # use VTE titles
+        value = self.client.get_bool(KEY('/general/use_vte_titles'))
+        self.get_widget('use_vte_titles').set_active(value)
 
         # tabbar
         value = self.client.get_bool(KEY('/general/window_tabbar'))
