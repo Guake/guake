@@ -70,7 +70,7 @@ class DbusManager(dbus.service.Object):
 
     @dbus.service.method(DBUS_NAME, in_signature='i', out_signature='s')
     def get_tab_name(self, tab_index=0):
-        return self.guake.term_list[int(tab_index)].get_window_title()
+        return self.guake.term_list[int(tab_index)].get_window_title() or ''
 
     @dbus.service.method(DBUS_NAME, in_signature='s')
     def rename_current_tab(self, new_text):
