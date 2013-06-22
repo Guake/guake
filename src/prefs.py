@@ -157,6 +157,11 @@ class PrefsCallbacks(object):
         """
         self.client.set_bool(KEY('/general/use_popup'), chk.get_active())
 
+    def on_prompt_on_quit_toggled(self, chk):
+        """Set the `prompt on quit' property in gconf
+        """
+        self.client.set_bool(KEY('/general/prompt_on_quit'), chk.get_active())
+
     def on_window_ontop_toggled(self, chk):
         """Changes the activity of window_ontop in gconf
         """
@@ -182,16 +187,28 @@ class PrefsCallbacks(object):
         """
         self.client.set_bool(KEY('/general/start_fullscreen'), chk.get_active())
 
+    def on_primary_display_toggled(self, chk):
+        """Set the 'appear on primary display' preference in gconf. This
+        property supercedes any value stored in display_n.
+        """
+        self.client.set_bool(KEY('/general/primary_display'), chk.get_active())
+
+    def on_display_n_changed(self, combo):
+        """Set the destination display in gconf. This is superceded by a 'true'
+        value in primary_display.
+        """
+        i = combo.get_active_iter()
+        if not i:
+            return
+        val = combo.get_model().get_value(i, 0)
+        val_int = int(val.split()[0]) # extracts 1 from '1' or from '1 (primary)'
+        self.client.set_int(KEY('/general/display_n'), val_int)
+
     def on_window_height_value_changed(self, hscale):
         """Changes the value of window_height in gconf
         """
         val = hscale.get_value()
         self.client.set_int(KEY('/general/window_height'), int(val))
-
-    def on_prompt_on_quit_toggled(self, chk):
-        """Set the `prompt on quit' property in gconf
-        """
-        self.client.set_bool(KEY('/general/prompt_on_quit'), chk.get_active())
 
     # scrolling tab
 
@@ -293,7 +310,7 @@ class PrefsDialog(SimpleGladeApp):
         self.get_widget('image_logo').set_from_file(ipath)
 
         # the first position in tree will store the keybinding path in gconf,
-        # and the user doesn't worry with this, lest hide that =D
+        # and the user doesn't worry with this, let's hide that =D
         model = gtk.TreeStore(str, str, object, bool)
         treeview = self.get_widget('treeview-keys')
         treeview.set_model(model)
@@ -323,6 +340,7 @@ class PrefsDialog(SimpleGladeApp):
 
         self.populate_shell_combo()
         self.populate_keys_tree()
+        self.populate_display_n()
         self.load_configs()
         self.get_widget('config-window').hide()
 
@@ -375,6 +393,12 @@ class PrefsDialog(SimpleGladeApp):
         """
         self.get_widget('font_style').set_sensitive(not chk.get_active())
 
+    def toggle_display_n_sensitivity(self, chk):
+        """When the user unchecks 'primary display', the option to select an
+        alternate display should be enabeld.
+        """
+        self.get_widget('display_n').set_sensitive(not chk.get_active())
+
     def clear_background_image(self, btn):
         """Unset the gconf variable that holds the name of the
         background image of all terminals.
@@ -420,7 +444,7 @@ class PrefsDialog(SimpleGladeApp):
         for i in range(len(PALETTES)):
             if palette == PALETTES[i]:
                 self.get_widget('palette_name').set_active(i)
-    
+
     def set_palette_colors(self, palette):
         """Updates the color buttons with the given palette
         """
@@ -488,13 +512,34 @@ class PrefsDialog(SimpleGladeApp):
         value = self.client.get_bool(KEY('/general/use_vte_titles'))
         self.get_widget('use_vte_titles').set_active(value)
 
-        # tabbar
+        # tab bar
         value = self.client.get_bool(KEY('/general/window_tabbar'))
         self.get_widget('window_tabbar').set_active(value)
 
         # start fullscreen
         value = self.client.get_bool(KEY('/general/start_fullscreen'))
         self.get_widget('start_fullscreen').set_active(value)
+
+        # display number / use primary display
+        combo = self.get_widget('display_n')
+        dest_screen = self.client.get_int(KEY('/general/display_n'))
+
+        # If Guake is configured to use a screen that is not currently attached,
+        # default to 'primary display' option.
+        screen = self.get_widget('config-window').get_screen()
+        n_screens = screen.get_n_monitors()
+        if dest_screen > n_screens - 1:
+            self.client.set_bool(KEY('/general/primary_display'), True)
+            dest_screen = screen.get_primary_monitor()
+            self.client.set_int(KEY('/general/display_n'), dest_screen)
+
+        for i in combo.get_model():
+            i_int = int(i[0].split()[0]) # extracts 1 from '1' or from '1 (primary)'
+            if i_int == dest_screen:
+                combo.set_active_iter(i.iter)
+
+        value = self.client.get_bool(KEY('/general/primary_display'))
+        self.get_widget('primary_display').set_active(value)
 
         # scrollbar
         value = self.client.get_bool(KEY('/general/use_scrollbar'))
@@ -541,7 +586,7 @@ class PrefsDialog(SimpleGladeApp):
         value = self.client.get_string(KEY('/style/font/palette'))
         self.set_palette_name(value)
         self.set_palette_colors(value)
-    
+
         # background image
         value = self.client.get_string(KEY('/style/background/image'))
         if os.path.isfile(value or ''):
@@ -556,7 +601,7 @@ class PrefsDialog(SimpleGladeApp):
     # -- populate functions --
 
     def populate_shell_combo(self):
-        """Read the /etc/shells and looks for installed pythons to
+        """Read the /etc/shells and looks for installed shells to
         fill the default_shell combobox.
         """
         cb = self.get_widget('default_shell')
@@ -595,6 +640,20 @@ class PrefsDialog(SimpleGladeApp):
                           2, hotkey,
                           3, True)
         self.get_widget('treeview-keys').expand_all()
+
+    def populate_display_n(self):
+        """Get the number of displays and populate this drop-down box
+        with them all.
+        """
+        cb = self.get_widget('display_n')
+        screen = self.get_widget('config-window').get_screen()
+
+        for m in range(0, int(screen.get_n_monitors())):
+            if m == int(screen.get_primary_monitor()):
+                # TODO l10n
+                cb.append_text(str(m) + ' ' + '(primary)')
+            else:
+                cb.append_text(str(m))
 
     # -- key handling --
 
