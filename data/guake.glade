@@ -9,7 +9,7 @@
     <property name="skip_pager_hint">True</property>
     <property name="urgency_hint">True</property>
     <property name="decorated">False</property>
-    <property name="gravity">static</property>
+    <property name="gravity">north</property>
     <child>
       <widget class="GtkVBox" id="mainframe">
         <property name="visible">True</property>
