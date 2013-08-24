@@ -415,6 +415,30 @@
         </schema>
 
         <schema>
+            <key>/schemas/apps/guake/keybindings/local/zoom_in</key>
+            <applyto>/apps/guake/keybindings/local/zoom_in</applyto>
+            <owner>guake</owner>
+            <type>string</type>
+            <default>&lt;Control&gt;plus</default>
+            <locale name="C">
+                <short>Zoom in.</short>
+                <long>Increase the font size of the terminals.</long>
+            </locale>
+        </schema>
+
+        <schema>
+            <key>/schemas/apps/guake/keybindings/local/zoom_out</key>
+            <applyto>/apps/guake/keybindings/local/zoom_out</applyto>
+            <owner>guake</owner>
+            <type>string</type>
+            <default>&lt;Control&gt;minus</default>
+            <locale name="C">
+                <short>Zoom out.</short>
+                <long>Decrease the font size of the terminals.</long>
+            </locale>
+        </schema>
+
+        <schema>
             <key>/schemas/apps/guake/keybindings/local/clipboard_copy</key>
             <applyto>/apps/guake/keybindings/local/clipboard_copy</applyto>
             <owner>guake</owner>
