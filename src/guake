@@ -49,7 +49,7 @@ from guake.simplegladeapp import SimpleGladeApp, bindtextdomain
 from guake.prefs import PrefsDialog, LKEY, GKEY
 from guake.dbusiface import DbusManager, DBUS_NAME, DBUS_PATH
 from guake.common import test_gconf, pixmapfile, gladefile, ShowableError, _
-from guake.common import shell_quote
+from guake.common import shell_quote, clamp
 from guake.globals import NAME, VERSION, LOCALE_DIR, KEY, GCONF_PATH, \
     TERMINAL_MATCH_EXPRS, TERMINAL_MATCH_TAGS, \
     ALIGN_LEFT, ALIGN_RIGHT, ALIGN_CENTER
@@ -363,7 +363,7 @@ class GConfKeyHandler(object):
 
         keys = ['toggle_fullscreen', 'new_tab', 'close_tab', 'rename_tab',
                 'previous_tab', 'next_tab', 'clipboard_copy', 'clipboard_paste',
-                'quit',
+                'quit', 'zoom_in', 'zoom_out'
                 ]
         for key in keys:
             notify_add(LKEY(key), self.reload_accelerators)
@@ -443,15 +443,60 @@ class GConfKeyHandler(object):
             self.accel_group.connect_group(key, mask, gtk.ACCEL_VISIBLE,
                                            self.guake.accel_toggle_fullscreen)
 
+        key, mask = gtk.accelerator_parse(gets('zoom_in'))
+        if key > 0:
+            self.accel_group.connect_group(key, mask, gtk.ACCEL_VISIBLE,
+                                           self.guake.accel_zoom_in)
+
+        key, mask = gtk.accelerator_parse(gets('zoom_out'))
+        if key > 0:
+            self.accel_group.connect_group(key, mask, gtk.ACCEL_VISIBLE,
+                                           self.guake.accel_zoom_out)
+
+
 class GuakeTerminal(vte.Terminal):
     """Just a vte.Terminal with some properties already set.
     """
+
+    MAX_FONT_SCALE_INDEX = 10
+    MIN_FONT_SCALE_INDEX = -5
+
     def __init__(self):
         super(GuakeTerminal, self).__init__()
         self.configure_terminal()
         self.add_matches()
         self.connect('button-press-event', self.button_press)
         self.matched_value = ''
+        self.font_scale_index = 0
+
+    def set_font(self, font):
+        self.font = font
+        self.set_font_scale_index(0)
+
+    def set_font_scale_index(self, scale_index):
+        self.font_scale_index = clamp(scale_index,
+                                      self.MIN_FONT_SCALE_INDEX,
+                                      self.MAX_FONT_SCALE_INDEX)
+        scale_factor = 1.2 ** self.font_scale_index
+
+        font = FontDescription(self.font.to_string())
+        if font.get_size_is_absolute():
+            font.set_absolute_size(int(scale_factor * font.get_size()))
+        else:
+            font.set_size(int(scale_factor * font.get_size()))
+
+        super(GuakeTerminal, self).set_font(font)
+
+    def get_font_scale_index(self):
+        return self.font_scale_index
+
+    def increase_font_size(self):
+        scale_index = self.get_font_scale_index() + 1
+        self.set_font_scale_index(scale_index)
+
+    def decrease_font_size(self):
+        scale_index = self.get_font_scale_index() - 1
+        self.set_font_scale_index(scale_index)
 
     def configure_terminal(self):
         """Sets all customized properties on the terminal
@@ -911,6 +956,20 @@ class Guake(SimpleGladeApp):
                 gtk.main_quit()
         else:
             gtk.main_quit()
+
+    def accel_zoom_in(self, *args):
+        """Callback to zoom in.
+        """
+        for term in self.term_list:
+            term.increase_font_size()
+        return True
+
+    def accel_zoom_out(self, *args):
+        """Callback to zoom out.
+        """
+        for term in self.term_list:
+            term.decrease_font_size()
+        return True
 
     def accel_add(self, *args):
         """Callback to add a new tab. Called by the accel key.

@@ -79,6 +79,13 @@ HOTKEYS = [
                'label': 'Go to next tab'},
               ]},
 
+    {'label': 'Appearance',
+     'keys': [{'key': LKEY('zoom_in'),
+               'label': 'Zoom in'},
+              {'key': LKEY('zoom_out'),
+               'label': 'Zoom out'},
+             ]},
+
     {'label': 'Clipboard',
      'keys': [{'key': LKEY('clipboard_copy'),
                'label': 'Copy text to clipboard'},
