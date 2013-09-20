@@ -23,6 +23,7 @@ from __future__ import absolute_import
 
 import pygtk
 import gobject
+import glib
 pygtk.require('2.0')
 gobject.threads_init()
 
@@ -649,7 +650,7 @@ class Guake(SimpleGladeApp):
                   'Please use Guake Preferences dialog to choose another '
                   'key (The trayicon was enabled)') % label, filename)
             self.client.set_bool(KEY('/general/use_trayicon'), True)
-            notification.show()
+            self.notify(notification)
 
         elif self.client.get_bool(KEY('/general/use_popup')):
             # Pop-up that shows that guake is working properly (if not
@@ -658,7 +659,16 @@ class Guake(SimpleGladeApp):
                 _('Guake!'),
                 _('Guake is now running,\n'
                   'press <b>%s</b> to use it.') % label, filename)
+            self.notify(notification)
+
+    def notify(self, notification):
+        try:
             notification.show()
+        except glib.GError:
+            # Notifications daemon not (still?) running. This is fine, for
+            # instance if guake always starts automatically with the
+            # session, the notification is not particularly useful.
+            pass
 
     def execute_command(self, command, tab=None):
         """Execute the `command' in the `tab'. If tab is None, the
