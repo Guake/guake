@@ -20,6 +20,7 @@ Free Software Foundation, Inc., 59 Temple Place - Suite 330,
 Boston, MA 02111-1307, USA.
 """
 from __future__ import absolute_import
+from __future__ import division
 
 import pygtk
 import gobject
@@ -524,7 +525,7 @@ class GuakeTerminal(vte.Terminal):
         self.font_scale_index = clamp(scale_index, -6, 12)
 
         font = FontDescription(self.font.to_string())
-        scale_factor = 1.2 ** self.font_scale_index
+        scale_factor = 2 ** (self.font_scale_index / 6)
         new_size = int(scale_factor * font.get_size())
 
         if font.get_size_is_absolute():
