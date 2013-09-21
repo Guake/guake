@@ -458,9 +458,6 @@ class GuakeTerminal(vte.Terminal):
     """Just a vte.Terminal with some properties already set.
     """
 
-    MAX_FONT_SCALE_INDEX = 10
-    MIN_FONT_SCALE_INDEX = -5
-
     def __init__(self):
         super(GuakeTerminal, self).__init__()
         self.configure_terminal()
@@ -468,35 +465,6 @@ class GuakeTerminal(vte.Terminal):
         self.connect('button-press-event', self.button_press)
         self.matched_value = ''
         self.font_scale_index = 0
-
-    def set_font(self, font):
-        self.font = font
-        self.set_font_scale_index(0)
-
-    def set_font_scale_index(self, scale_index):
-        self.font_scale_index = clamp(scale_index,
-                                      self.MIN_FONT_SCALE_INDEX,
-                                      self.MAX_FONT_SCALE_INDEX)
-        scale_factor = 1.2 ** self.font_scale_index
-
-        font = FontDescription(self.font.to_string())
-        if font.get_size_is_absolute():
-            font.set_absolute_size(int(scale_factor * font.get_size()))
-        else:
-            font.set_size(int(scale_factor * font.get_size()))
-
-        super(GuakeTerminal, self).set_font(font)
-
-    def get_font_scale_index(self):
-        return self.font_scale_index
-
-    def increase_font_size(self):
-        scale_index = self.get_font_scale_index() + 1
-        self.set_font_scale_index(scale_index)
-
-    def decrease_font_size(self):
-        scale_index = self.get_font_scale_index() - 1
-        self.set_font_scale_index(scale_index)
 
     def configure_terminal(self):
         """Sets all customized properties on the terminal
@@ -547,6 +515,36 @@ class GuakeTerminal(vte.Terminal):
                          gtk.gdk.x11_get_server_time(self.window))
         elif event.button == 3 and matched_string:
             self.matched_value = matched_string[0]
+
+    def set_font(self, font):
+        self.font = font
+        self.set_font_scale_index(0)
+
+    def set_font_scale_index(self, scale_index):
+        self.font_scale_index = clamp(scale_index, -6, 12)
+
+        font = FontDescription(self.font.to_string())
+        scale_factor = 1.2 ** self.font_scale_index
+        new_size = int(scale_factor * font.get_size())
+
+        if font.get_size_is_absolute():
+            font.set_absolute_size(new_size)
+        else:
+            font.set_size(new_size)
+
+        super(GuakeTerminal, self).set_font(font)
+
+    font_scale = property(
+        fset=set_font_scale_index,
+        fget=lambda self: self.font_scale_index
+    )
+
+    def increase_font_size(self):
+        self.font_scale += 1
+
+    def decrease_font_size(self):
+        self.font_scale -= 1
+
 
 class GuakeTerminalBox(gtk.HBox):
     """A box to group the terminal and a scrollbar.
