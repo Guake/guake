@@ -427,6 +427,18 @@
         </schema>
 
         <schema>
+            <key>/schemas/apps/guake/keybindings/local/zoom_in_alt</key>
+            <applyto>/apps/guake/keybindings/local/zoom_in_alt</applyto>
+            <owner>guake</owner>
+            <type>string</type>
+            <default>&lt;Control&gt;equal</default>
+            <locale name="C">
+                <short>Zoom in (alternative)</short>
+                <long>Additional shortcut for zooming in.</long>
+            </locale>
+        </schema>
+
+        <schema>
             <key>/schemas/apps/guake/keybindings/local/zoom_out</key>
             <applyto>/apps/guake/keybindings/local/zoom_out</applyto>
             <owner>guake</owner>
