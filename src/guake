@@ -449,6 +449,11 @@ class GConfKeyHandler(object):
             self.accel_group.connect_group(key, mask, gtk.ACCEL_VISIBLE,
                                            self.guake.accel_zoom_in)
 
+        key, mask = gtk.accelerator_parse(gets('zoom_in_alt'))
+        if key > 0:
+            self.accel_group.connect_group(key, mask, gtk.ACCEL_VISIBLE,
+                                           self.guake.accel_zoom_in)
+
         key, mask = gtk.accelerator_parse(gets('zoom_out'))
         if key > 0:
             self.accel_group.connect_group(key, mask, gtk.ACCEL_VISIBLE,
