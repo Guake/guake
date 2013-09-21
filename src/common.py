@@ -81,3 +81,6 @@ def get_binaries_from_path(compiled_re):
 def shell_quote(text):
     """ quote text (filename) for inserting into a shell """
     return r"\'".join("'%s'" % p for p in text.split("'"))
+
+def clamp(value, lower, upper):
+    return max(min(value, upper), lower)
