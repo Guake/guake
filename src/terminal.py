@@ -17,12 +17,17 @@ Free Software Foundation, Inc., 59 Temple Place - Suite 330,
 Boston, MA 02111-1307, USA.
 """
 
+from __future__ import division
+
 from gi.repository import Gtk
 from gi.repository import Gdk
 from gi.repository import GdkX11
 from gi.repository import Vte
 from gi.repository import GConf
+from gi.repository import Pango
+
 from guake.globals import KEY
+from guake.common import clamp
 
 __all__ = 'Terminal', 'TerminalBox'
 
@@ -55,6 +60,7 @@ class Terminal(Vte.Terminal):
         self.add_matches()
         self.connect('button-press-event', self.button_press)
         self.matched_value = ''
+        self.font_scale_index = 0
 
     def configure_terminal(self):
         """Sets all customized properties on the terminal
@@ -111,6 +117,36 @@ class Terminal(Vte.Terminal):
                          GdkX11.x11_get_server_time(self.get_window()))
         elif event.button == 3 and matched_string:
             self.matched_value = matched_string[0]
+
+    def set_font(self, font):
+        self.font = font
+        self.set_font_scale_index(0)
+
+    def set_font_scale_index(self, scale_index):
+        self.font_scale_index = clamp(scale_index, -6, 12)
+
+        font = Pango.FontDescription(self.font.to_string())
+        scale_factor = 2 ** (self.font_scale_index / 6)
+        new_size = int(scale_factor * font.get_size())
+
+        if font.get_size_is_absolute():
+            font.set_absolute_size(new_size)
+        else:
+            font.set_size(new_size)
+
+        super(Terminal, self).set_font(font)
+
+    font_scale = property(
+        fset=set_font_scale_index,
+        fget=lambda self: self.font_scale_index
+    )
+
+    def increase_font_size(self):
+        self.font_scale += 1
+
+    def decrease_font_size(self):
+        self.font_scale -= 1
+
 
 class TerminalBox(Gtk.HBox):
     """A box to group the terminal and a scrollbar.

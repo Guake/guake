@@ -82,3 +82,6 @@ ERASE_BINDINGS_ENUM = {
     'delete-sequence' : Vte.TerminalEraseBinding.DELETE_SEQUENCE,
     'ascii-backspace' : Vte.TerminalEraseBinding.ASCII_BACKSPACE
 }
+
+def clamp(value, lower, upper):
+    return max(min(value, upper), lower)

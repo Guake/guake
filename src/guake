@@ -482,6 +482,20 @@ class Guake(SimpleGtkApp):
         else:
             Gtk.main_quit()
 
+    def accel_zoom_in(self, *args):
+        """Callback to zoom in.
+        """
+        for term in self.term_list:
+            term.increase_font_size()
+        return True
+
+    def accel_zoom_out(self, *args):
+        """Callback to zoom out.
+        """
+        for term in self.term_list:
+            term.decrease_font_size()
+        return True
+
     def accel_add(self, *args):
         """Callback to add a new tab. Called by the accel key.
         """

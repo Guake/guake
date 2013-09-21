@@ -311,6 +311,7 @@ class GConfKeyHandler(object):
 
         keys = ['toggle_fullscreen', 'new_tab', 'close_tab', 'rename_tab',
                 'previous_tab', 'next_tab', 'clipboard_copy', 'clipboard_paste',
+                'zoom_in', 'zoom_out',
                 'quit',
                 ]
         for key in keys:
@@ -354,7 +355,10 @@ class GConfKeyHandler(object):
             'rename_tab' : self.guake.accel_rename,
             'clipboard_copy' : self.guake.accel_copy_clipboard,
             'clipboard_paste' : self.guake.accel_paste_clipboard,
-            'toggle_fullscreen' : self.guake.accel_toggle_fullscreen
+            'toggle_fullscreen' : self.guake.accel_toggle_fullscreen,
+            'zoom_in': self.guake.accel_zoom_in,
+            'zoom_in_alt': self.guake.accel_zoom_in,
+            'zoom_out': self.guake.accel_zoom_out,
         }
 
         for accel, handler in accel_handler.iteritems():
