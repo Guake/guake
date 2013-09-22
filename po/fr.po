@@ -1,20 +1,27 @@
 # Traduction française de Guake-terminal
-# Copyright (C) 2009 Pierre-Yves Chibon
-# This file is distributed under the same license as the guake package.
+# Copyright (C) Guake Translators
+# This file is distributed under the same license as the Guake package.
+#
+# Translators:
 # Pierre-Yves Chibon <pingou@pingoured.fr>, 2009.
 # Pablo Martin-Gomez <pablo.martin-gomez@laposte.net>, 2010
-# 
+# Thomas Canniot <mrtom@fedoraproject.org>, 2011
+# Sylvestre Ledru <sylvestre@debian.org>, 2012
+# Benjamin Danon <benjamin@sphax3d.org>, 2012
+
 msgid ""
 msgstr ""
-"Project-Id-Version: guake 0.5.0\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-06-30 05:34+0000\n"
-"PO-Revision-Date: 2010-01-25 19:51+0100\n"
-"Last-Translator: Pablo Martin-Gomez <pablo.martin-gomez@laposte.net>\n"
-"Language-Team: Français <fedora-trans-fr@redhat.com>\n"
+"Project-Id-Version: Guake 0.5.0\n"
+"Report-Msgid-Bugs-To: http://guake.org/report\n"
+"POT-Creation-Date: 2010-11-26 07:17+0000\n"
+"PO-Revision-Date: 2012-03-14 10:20+0000\n"
+"Last-Translator: Benjamin Danon <benjamin@sphax3d.org>\n"
+"Language-Team: French (http://www.transifex.com/projects/p/guake/language/fr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Language: fr\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
 #: ../data/about.glade.h:1
 msgid "About Guake"
@@ -171,9 +178,8 @@ msgid "Background image:"
 msgstr "Image d'arrière-plan :"
 
 #: ../data/prefs.glade.h:18
-#, fuzzy
 msgid "Built-in schemes:"
-msgstr "Built-in schemes:"
+msgstr "Arrangements pré-définis :"
 
 #: ../data/prefs.glade.h:19
 msgid "Choose some font"
@@ -287,7 +293,7 @@ msgstr "La touche _Suppr correspond  à :"
 
 #: ../data/prefs.glade.h:49
 msgid "_Open new tab in current directory"
-msgstr "_Ouvrir un nouvel onglet dans le dossier courrant"
+msgstr "_Ouvrir un nouvel onglet dans le dossier courant"
 
 #: ../data/prefs.glade.h:50
 msgid "_Reset Compatibility Options to Defaults"
@@ -475,24 +481,3 @@ msgstr ""
 "Le raccourcis « %s » ne peux être utilisé car il empêche une utilisation normale du clavier.\n"
 "\n"
 "Essayez de l'utiliser en combinaison avec une touche tel que Control, Alt ou Shift.\n"
-
-#~ msgid "<b>Background</b>"
-#~ msgstr "<b>Fond</b>"
-
-#~ msgid "Choose some color"
-#~ msgstr "Choisissez une couleur"
-
-#~ msgid "Image:"
-#~ msgstr "Image :"
-
-#~ msgid "Style:"
-#~ msgstr "Police :"
-
-#~ msgid "Use system defaults"
-#~ msgstr "Utiliser la configuration du système"
-
-#~ msgid "<b>Main Window horizontal alignment</b>"
-#~ msgstr "<b>Position horizontale de la fenêtre principale</b>"
-
-#~ msgid "<b>Main Window width</b>"
-#~ msgstr "<b>Largeur de la fenêtre principale</b>"
