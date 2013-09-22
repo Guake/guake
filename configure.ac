@@ -41,7 +41,7 @@ PYTHON_CFLAGS="-I$PY_PREFIX/include/python$PYTHON_VERSION"
 AC_SUBST([PYTHON_LIBS])
 AC_SUBST([PYTHON_CFLAGS])
 
-dnl gtk dependencie
+dnl gtk dependency
 GTK_REQUIRED=3.0.0
 PKG_CHECK_MODULES([DEPENDENCIES], [
     gtk+-3.0 >= $GTK_REQUIRED
