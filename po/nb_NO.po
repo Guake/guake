@@ -1,11 +1,13 @@
-# Traduction française de Guake-terminal
-# Copyright (C) 2009 Pierre-Yves Chibon
-# This file is distributed under the same license as the guake package.
+# Translation of Guake to Norwegian Bokmål
+# Copyright (C) 2013 Guake Translators
+# This file is distributed under the same license as the Guake package.
+#
+# Translators:
 # Håvard Havdal <haavard@havdal.net>,2009
-# 
+
 msgid ""
 msgstr ""
-"Project-Id-Version: guake 0.5.0\n"
+"Project-Id-Version: Guake 0.4.5\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2010-07-01 05:35+0000\n"
 "PO-Revision-Date: 2010-01-18 15:26+CET\n"

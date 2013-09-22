@@ -1,13 +1,14 @@
 # Brasilian Portuguese translation of Guake.
-# Copyright (C) 2008 Lincoln de Sousa <lincoln@guake-terminal.org>
+# Copyright (C) 2013 Guake Translators
 # This file is distributed under the same license as the Guake package.
+#
+# Translators:
 # Lincoln de Sousa <lincoln@guake-terminal.org>, 2008.
 # Djavan Fagundes <djavan@comum.org>, 2009.
-# 
-# 
+
 msgid ""
 msgstr ""
-"Project-Id-Version: Guake! 3.0.1\n"
+"Project-Id-Version: Guake 0.4.5\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2010-06-24 13:41+0000\n"
 "PO-Revision-Date: 2009-11-14 09:48-0300\n"

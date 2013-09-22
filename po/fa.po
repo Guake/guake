@@ -1,13 +1,13 @@
-# Tradução do Guake-terminal
-# Copyright (C) 2007 Gabriel Falcão <gabrielteratos@gmail.com>
-# Copyright (C) 2007 Lincoln de Sousa <lincoln@archlinux-br.org>
-# This file is distributed under the same license as the guake package.
-# Gabriel Falcão <gabriel@guake-terminal.org>, 2007
+# Translation of Guake to Persian
+# Copyright (C) 2013 Guake Translators
+# This file is distributed under the same license as the Guake package.
 #
+# Translators:
 # Kasra Keshavarz <kasra545@gmail.com>, 2009, 2010.
+
 msgid ""
 msgstr ""
-"Project-Id-Version: guake 0.4.2\n"
+"Project-Id-Version: Guake 0.4.5\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2010-04-17 04:14+0000\n"
 "PO-Revision-Date: 2010-04-17 17:45+0430\n"

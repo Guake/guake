@@ -1,13 +1,13 @@
-# Tradução do Guake-terminal
-# Copyright (C) 2007 Gabriel Falcão <gabrielteratos@gmail.com>
-# Copyright (C) 2007 Lincoln de Sousa <lincoln@archlinux-br.org>
-# This file is distributed under the same license as the guake package.
-# arkus Majer <mm@mpathy.de>, 2009
-# 
-# 
+# Translation of Guake to German
+# Copyright (C) 2009 Guake Translators
+# This file is distributed under the same license as the Guake package.
+#
+# Translators:
+# Markus Majer <mm@mpathy.de>, 2009
+
 msgid ""
 msgstr ""
-"Project-Id-Version: guake 0.2.2\n"
+"Project-Id-Version: Guake 0.4.5\n"
 "Report-Msgid-Bugs-To: guake@lists.guake.org\n"
 "POT-Creation-Date: 2009-11-13 21:08+0000\n"
 "PO-Revision-Date: 2009-11-14 21:48+0100\n"

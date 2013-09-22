@@ -1,10 +1,13 @@
-# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
-# This file is distributed under the same license as the PACKAGE package.
+# Translation of Guake to Punjabi/Panjabi
+# Copyright (C) 2012 Guake Translators
+# This file is distributed under the same license as the Guake package.
 #
+# Translators:
 # A S Alam <aalam@users.sf.net>, 2010.
+
 msgid ""
 msgstr ""
-"Project-Id-Version: \n"
+"Project-Id-Version: Guake 0.4.5\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2010-07-13 05:34+0000\n"
 "PO-Revision-Date: 2010-07-13 08:13+0530\n"
