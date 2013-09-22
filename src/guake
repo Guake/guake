@@ -27,7 +27,6 @@ from gi.repository import GdkX11
 from gi.repository import GdkPixbuf
 from gi.repository import GConf
 from gi.repository import Vte
-from gi.repository import Notify
 from gi.repository import GObject
 import dbus
 
@@ -39,6 +38,7 @@ from thread import start_new_thread
 from time import sleep
 
 import guake.globalhotkeys
+import guake.notifier
 from guake.simplegtkapp import SimpleGtkApp, bindtextdomain
 from guake.prefs import PrefsDialog, GKEY
 from guake.dbusiface import DbusManager, DBUS_NAME, DBUS_PATH
@@ -47,8 +47,6 @@ from guake.globals import NAME, VERSION, LOCALE_DIR, KEY, \
     ALIGN_LEFT, ALIGN_RIGHT, ALIGN_CENTER
 from guake.conf import GConfHandler, GConfKeyHandler
 from guake.terminal import TerminalBox
-
-Notify.init('Guake!')
 
 # Loading translation
 bindtextdomain(NAME, LOCALE_DIR)
@@ -219,21 +217,19 @@ class Guake(SimpleGtkApp):
         filename = pixmapfile('guake-notification.png')
 
         if not self.hotkeys.bind(key, self.show_hide):
-            notification = Notify.Notification.new(
+            guake.notifier.show_message(
                 _('Guake!'),
                 _('A problem happened when binding <b>%s</b> key.\n'
                   'Please use Guake Preferences dialog to choose another '
                   'key (The trayicon was enabled)') % label, filename)
-            notification.show()
             self.client.set_bool(KEY('/general/use_trayicon'), True)
         elif self.client.get_bool(KEY('/general/use_popup')):
             # Pop-up that shows that guake is working properly (if not
             # unset in the preferences windows)
-            notification = Notify.Notification.new(
+            guake.notifier.show_message(
                 _('Guake!'),
                 _('Guake is now running,\n'
                   'press <b>%s</b> to use it.') % label, filename)
-            notification.show()
 
     @property
     def current_tab(self):
