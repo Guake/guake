@@ -1,21 +1,22 @@
 # SOME DESCRIPTIVE TITLE.
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 # 
+# Translators:
+# Berk Demirkır <bdemirkir@gmail.com>, 2012
 msgid ""
 msgstr ""
-"Project-Id-Version: guake 0.4.1\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-06-30 05:34+0000\n"
-"PO-Revision-Date: 2010-07-01 13:23+0200\n"
-"Last-Translator: Berk Demirkır <perq87@gmail.com>\n"
-"Language-Team: Turkish <guake@lists.guake.org>\n"
+"Project-Id-Version: Guake\n"
+"Report-Msgid-Bugs-To: http://guake.org/report\n"
+"POT-Creation-Date: 2010-11-26 07:17+0000\n"
+"PO-Revision-Date: 2012-07-30 08:02+0000\n"
+"Last-Translator: Berk Demirkır <bdemirkir@gmail.com>\n"
+"Language-Team: Turkish (http://www.transifex.com/projects/p/guake/language/tr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Poedit-Language: Turkish\n"
-"X-Poedit-Country: TURKEY\n"
+"Language: tr\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
 #: ../data/about.glade.h:1
 msgid "About Guake"
@@ -30,31 +31,19 @@ msgid ""
 "Nishio Futoshi <futoshi@momonga-linux.org> Japanese\n"
 "Pavel Alexeev <Pahan@Hubbitus.spb.su> Russian\n"
 "Piotr Drąg <piotrdrag@gmail.com> Polish"
-msgstr ""
-"Adolfo González Blázquez <code@infinicode.org> Spanish\n"
-"Lincoln de Sousa <lincoln@guake.org> Brazilian Portuguese\n"
-"Markus Majer <mm@mpathy.de> German\n"
-"Mieszko Ślusarczyk <mieszkoslusarczyk@gmail.com> Polish\n"
-"Nishio Futoshi <futoshi@momonga-linux.org> Japanese\n"
-"Pavel Alexeev <Pahan@Hubbitus.spb.su> Russian\n"
-"Piotr Drąg <piotrdrag@gmail.com> Polish\n"
-"Berk Demirkır <perq87@gmail.com> Turkish"
+msgstr "Adolfo González Blázquez <code@infinicode.org> Spanish\nLincoln de Sousa <lincoln@guake.org> Brazilian Portuguese\nMarkus Majer <mm@mpathy.de> German\nMieszko Ślusarczyk <mieszkoslusarczyk@gmail.com> Polish\nNishio Futoshi <futoshi@momonga-linux.org> Japanese\nPavel Alexeev <Pahan@Hubbitus.spb.su> Russian\nPiotr Drąg <piotrdrag@gmail.com> Polish\nBerk Demirkır <perq87@gmail.com> Turkish"
 
 #: ../data/about.glade.h:9
 msgid ""
 "Copyright 2007-2009 Lincoln de Sousa\n"
 "Copyright 2007 Gabriel Falc&#xE3;o"
-msgstr ""
-"Copyright 2007-2009 Lincoln de Sousa\n"
-"Copyright 2007 Gabriel Falc&#xE3;o"
+msgstr "Copyright 2007-2009 Lincoln de Sousa\nCopyright 2007 Gabriel Falc&#xE3;o"
 
 #: ../data/about.glade.h:11
 msgid ""
 "Guake is an easy to access\n"
 "terminal based on fps games terminal"
-msgstr ""
-"Guake, kullanımı kolay\n"
-"fps oyunlarından esinlenmiş bir uçbirim yazılımıdır."
+msgstr "Guake, kullanımı kolay\nfps oyunlarından esinlenmiş bir uçbirim yazılımıdır."
 
 #: ../data/about.glade.h:13
 msgid ""
@@ -63,12 +52,7 @@ msgid ""
 "Guake is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more details.\n"
 "\n"
 "You should have received a copy of the GNU General Public License along with Guake; if not, write to the Free Software Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301 USA\n"
-msgstr ""
-"Guake özgür bir yazılımdır; onu Özgün Yazılım Vakfı tarafından dağıtılan GNU Genel Kamu Lisansı'nın sürüm iki (ya da tercihen) daha sonraki sürümleri koşulları altında dağıtabilir ve/veya değiştirebilirsiniz.\n"
-"\n"
-"Guake kullanışlı olması umuduyla dağıtılmıştır, ancak HİÇBİR GARANTİSİ YOKTUR; hatta SATILABİLİRLİK ya da BİR AMACA HİZMET gibi garantisi de yoktur. Daha fazla ayrıntı için GNU Genel Kamu Lisansı'na bakın.\n"
-"\n"
-"GNU Genel Kamu Lisansı'nın bir kopyasını Guake ile almış olmalısınız, eğer almadıysanız Özgür Yazılım Vakfı, Inc. 51 Franklin St. Fifth Floor, Boston, MA  02110-1301 USA adresine yazın\n"
+msgstr "Guake özgür bir yazılımdır; onu Özgün Yazılım Vakfı tarafından dağıtılan GNU Genel Kamu Lisansı'nın sürüm iki (ya da tercihen) daha sonraki sürümleri koşulları altında dağıtabilir ve/veya değiştirebilirsiniz.\n\nGuake kullanışlı olması umuduyla dağıtılmıştır, ancak HİÇBİR GARANTİSİ YOKTUR; hatta SATILABİLİRLİK ya da BİR AMACA HİZMET gibi garantisi de yoktur. Daha fazla ayrıntı için GNU Genel Kamu Lisansı'na bakın.\n\nGNU Genel Kamu Lisansı'nın bir kopyasını Guake ile almış olmalısınız, eğer almadıysanız Özgür Yazılım Vakfı, Inc. 51 Franklin St. Fifth Floor, Boston, MA  02110-1301 USA adresine yazın\n"
 
 #: ../data/about.glade.h:19
 msgid "http://guake.org"
@@ -139,7 +123,11 @@ msgid "<b>Shell</b>"
 msgstr "<b>Kabuk</b>"
 
 #: ../data/prefs.glade.h:9
-msgid "<small><i><b>Note:</b> These options may cause some applications to behave incorrectly.  They are only here to allow you to work around certain applications and operating systems that expect different terminal behavior.</i></small>"
+msgid ""
+"<small><i><b>Note:</b> These options may cause some applications to behave "
+"incorrectly.  They are only here to allow you to work around certain "
+"applications and operating systems that expect different terminal "
+"behavior.</i></small>"
 msgstr "<small><i><b>Note:</b> Bu ayarlar bazı programların hatalı davranmasına sebep olabilir. Bu ayarlar sadece farklı uçbirim davranışları bekleyen programlar ve işletim sistemleri için vardır.</i></small>"
 
 #: ../data/prefs.glade.h:10
@@ -155,10 +143,7 @@ msgid ""
 "ASCII DEL\n"
 "Escape sequence\n"
 "Control-H"
-msgstr ""
-"ASCII DEL\n"
-"Esc dizisi\n"
-"Ctrl-H"
+msgstr "ASCII DEL\nEsc dizisi\nCtrl-H"
 
 #: ../data/prefs.glade.h:15
 msgid "Appearance"
@@ -259,12 +244,7 @@ msgid ""
 "XTerm\n"
 "Rxvt\n"
 "Custom\n"
-msgstr ""
-"Tango\n"
-"Linux uçbirim\n"
-"XTerm\n"
-"Rxvt\n"
-"Özel\n"
+msgstr "Tango\nLinux uçbirim\nXTerm\nRxvt\nÖzel\n"
 
 #: ../data/prefs.glade.h:44
 msgid "Text color:"
@@ -329,18 +309,14 @@ msgstr "Guake Uçbirim"
 msgid ""
 "A problem happened when binding <b>%s</b> key.\n"
 "Please use Guake Preferences dialog to choose another key (The trayicon was enabled)"
-msgstr ""
-"<b>%s</b> tuşunu kısayol olarak atarken bir hata oluştu.\n"
-"Lütfen Guake Seçenekler penceresini kullanarak yeni bir kısayol seçin. (Simge sistem çekmecesindedir)"
+msgstr "<b>%s</b> tuşunu kısayol olarak atarken bir hata oluştu.\nLütfen Guake Seçenekler penceresini kullanarak yeni bir kısayol seçin. (Simge sistem çekmecesindedir)"
 
 #: ../src/guake.py:647
 #, python-format
 msgid ""
 "Guake is now running,\n"
 "press <b>%s</b> to use it."
-msgstr ""
-"Guake çalışıyor.\n"
-"<b>%s</b> tuşu ile kullanmaya başlayın."
+msgstr "Guake çalışıyor.\n<b>%s</b> tuşu ile kullanmaya başlayın."
 
 #: ../src/guake.py:997
 msgid "Rename tab"
@@ -392,9 +368,7 @@ msgstr "Guake başlatılamadı!"
 msgid ""
 "Gconf Error.\n"
 "Have you installed <b>guake.schemas</b> properlly?"
-msgstr ""
-"Gconf Hatası.\n"
-"<b>guake.schemas</b>'ı doğru şekilde yüklediniz mi?"
+msgstr "Gconf Hatası.\n<b>guake.schemas</b>'ı doğru şekilde yüklediniz mi?"
 
 #. string to show in prefereces dialog for user shell option
 #: ../src/prefs.py:42
@@ -472,7 +446,4 @@ msgid ""
 "The shortcut \"%s\" cannot be used because it will become impossible to type using this key.\n"
 "\n"
 "Please try with a key such as Control, Alt or Shift at the same time.\n"
-msgstr ""
-"\"%s\" kısayolu kullanılamaz çünkü bu tuş kullanılarak yazmak imkansız olur.\n"
-"\n"
-"Ctrl, Alt veya Shift tuşları ile beraber kullanmayı deneyin.\n"
+msgstr "\"%s\" kısayolu kullanılamaz çünkü bu tuş kullanılarak yazmak imkansız olur.\n\nCtrl, Alt veya Shift tuşları ile beraber kullanmayı deneyin.\n"
