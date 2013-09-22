@@ -30,7 +30,6 @@ gobject.threads_init()
 import gtk
 import vte
 from pango import FontDescription
-import pynotify
 import gconf
 import dbus
 from xdg.DesktopEntry import DesktopEntry
@@ -46,6 +45,7 @@ from urllib import url2pathname
 from urlparse import urlsplit
 
 import guake.globalhotkeys
+import guake.notifier
 from guake.simplegladeapp import SimpleGladeApp, bindtextdomain
 from guake.prefs import PrefsDialog, LKEY, GKEY
 from guake.dbusiface import DbusManager, DBUS_NAME, DBUS_PATH
@@ -54,8 +54,6 @@ from guake.common import shell_quote, clamp
 from guake.globals import NAME, VERSION, LOCALE_DIR, KEY, GCONF_PATH, \
     TERMINAL_MATCH_EXPRS, TERMINAL_MATCH_TAGS, \
     ALIGN_LEFT, ALIGN_RIGHT, ALIGN_CENTER
-
-pynotify.init('Guake!')
 
 GNOME_FONT_PATH = '/desktop/gnome/interface/monospace_font_name'
 
@@ -692,7 +690,7 @@ class Guake(SimpleGladeApp):
              self.fullscreen()
 
         if not self.hotkeys.bind(key, self.show_hide):
-            notification = pynotify.Notification(
+            guake.notifier.show_message(
                 _('Guake!'),
                 _('A problem happened when binding <b>%s</b> key.\n'
                   'Please use Guake Preferences dialog to choose another '
@@ -703,11 +701,10 @@ class Guake(SimpleGladeApp):
         elif self.client.get_bool(KEY('/general/use_popup')):
             # Pop-up that shows that guake is working properly (if not
             # unset in the preferences windows)
-            notification = pynotify.Notification(
+            guake.notifier.show_message(
                 _('Guake!'),
                 _('Guake is now running,\n'
                   'press <b>%s</b> to use it.') % label, filename)
-            notification.show()
 
     def execute_command(self, command, tab=None):
         """Execute the `command' in the `tab'. If tab is None, the
