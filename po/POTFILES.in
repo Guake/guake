@@ -1,10 +1,13 @@
 [encoding: UTF-8]
-data/about.glade
-data/guake.glade
-data/prefs.glade
+data/about.ui
+data/guake.ui
+data/prefs.ui
 data/guake.desktop.in
 data/guake-prefs.desktop.in
-src/dbusiface.py
-src/guake.py
-src/prefs.py
 src/common.py
+src/conf.py
+src/dbusiface.py
+src/guake
+src/guake-prefs
+src/notifier.py
+src/terminal.py
