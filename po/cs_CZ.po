@@ -1,12 +1,13 @@
-# SOME DESCRIPTIVE TITLE.
-# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
-# This file is distributed under the same license as the PACKAGE package.
-# 
+# Translation of Guake to Czech
+# Copyright (C) 2011 Guake Translators
+# This file is distributed under the same license as the Guake package.
+#
 # Translators:
 # Martin Lukeš <martin.meridius@gmail.com>, 2011
+
 msgid ""
 msgstr ""
-"Project-Id-Version: Guake\n"
+"Project-Id-Version: Guake 0.4.5\n"
 "Report-Msgid-Bugs-To: http://guake.org/report\n"
 "POT-Creation-Date: 2010-11-26 07:17+0000\n"
 "PO-Revision-Date: 2011-03-22 15:26+0000\n"

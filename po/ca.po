@@ -1,11 +1,13 @@
-# SOME DESCRIPTIVE TITLE.
-# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
-# This file is distributed under the same license as the PACKAGE package.
+# Translation of Guake to Catalan
+# Copyright (C) Guake Translators
+# This file is distributed under the same license as the Guake package.
 # 
 # Translators:
+# Raül Cambeiro <xrulet@gmail.com> 2013
+
 msgid ""
 msgstr ""
-"Project-Id-Version: guake.master\n"
+"Project-Id-Version: Guake 0.4.5\n"
 "Report-Msgid-Bugs-To: http://guake.org/report\n"
 "POT-Creation-Date: 2010-11-26 07:17+0000\n"
 "PO-Revision-Date: 2013-03-07 07:41+0000\n"
