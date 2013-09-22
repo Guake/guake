@@ -1,12 +1,13 @@
-# translation of guake.master.po to Chinese
-# Chineses translation of Guake-terminal
-# Copyright (C) 2008 Pavel Alexeev (Pahan-Hubbitus)
-# This file is distributed under the same license as the guake package.
-# 甘露(Gan Lu) <rhythm.gan@gmail.com>, 2010.
+# Translation of Guake to Chinese
+# Copyright (C) 2013 Guake Translators
+# This file is distributed under the same license as the Guake package.
 #
+# Translators:
+# 甘露(Gan Lu) <rhythm.gan@gmail.com>, 2010.
+
 msgid ""
 msgstr ""
-"Project-Id-Version: Guake\n"
+"Project-Id-Version: Guake 0.4.5\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2010-06-24 13:41+0000\n"
 "PO-Revision-Date: \n"

@@ -1,14 +1,14 @@
-# SOME DESCRIPTIVE TITLE.
-# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
-# This file is distributed under the same license as the PACKAGE package.
-# 
+# Translation of Guake to Galician
+# Copyright (C) 2012 Guake Translators
+# This file is distributed under the same license as the Guake package.
+#
 # Translators:
 # Antón Méixome <meixome@certima.net>, 2012
 # osl <tecnicosl@uvigo.es>, 2012
 
 msgid ""
 msgstr ""
-"Project-Id-Version: Guake\n"
+"Project-Id-Version: Guake 0.4.5\n"
 "Report-Msgid-Bugs-To: http://guake.org/report\n"
 "POT-Creation-Date: 2010-11-26 07:17+0000\n"
 "PO-Revision-Date: 2012-11-12 20:06+0000\n"

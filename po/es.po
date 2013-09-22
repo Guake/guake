@@ -8,7 +8,7 @@
 # Ricardo Hermosilla <ra.hermosillac@gmail.com>, 2012
 msgid ""
 msgstr ""
-"Project-Id-Version: Guake\n"
+"Project-Id-Version: Guake 0.4.5\n"
 "Report-Msgid-Bugs-To: http://guake.org/report\n"
 "POT-Creation-Date: 2010-11-26 07:17+0000\n"
 "PO-Revision-Date: 2012-12-21 04:31+0000\n"
