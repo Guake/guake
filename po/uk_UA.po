@@ -4,12 +4,12 @@
 # This file is distributed under the same license as the Guake package.
 #
 # Translators:
-# ulidtko <ulidtko@gmail.com>, 2011
+# Максим Іванов <ulidtko@gmail.com>, 2011
 # Сергій Дубик <dubyk@ukr.net>, 2011
 
 msgid ""
 msgstr ""
-"Project-Id-Version: Guake\n"
+"Project-Id-Version: Guake 0.4.5\n"
 "Report-Msgid-Bugs-To: http://guake.org/report\n"
 "POT-Creation-Date: 2010-11-26 07:17+0000\n"
 "PO-Revision-Date: 2011-09-22 10:04+0000\n"

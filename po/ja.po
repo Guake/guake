@@ -1,10 +1,13 @@
 # Japanese translation of the Guake software
-# Copyright (C) 2008 THE Guake'S COPYRIGHT HOLDER
+# Copyright (C) 2013 Guake Translators
 # This file is distributed under the same license as the Guake package.
+#
+# Translators:
 # Nishio Futoshi <futoshi@momonga-linux.org>, 2008, 2010.
+
 msgid ""
 msgstr ""
-"Project-Id-Version: guake-0.4.2\n"
+"Project-Id-Version: Guake 0.4.5\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2010-10-17 06:24+0000\n"
 "PO-Revision-Date: 2010-07-24 14:58+0900\n"
