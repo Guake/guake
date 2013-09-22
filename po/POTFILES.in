@@ -8,3 +8,4 @@ src/dbusiface.py
 src/guake
 src/prefs.py
 src/common.py
+src/notifier.py
