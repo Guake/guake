@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8; -*-
 """
-Copyright (C) 2007-2011 Lincoln de Sousa <lincoln@guake.org>
+Copyright (C) 2007-2012 Lincoln de Sousa <lincoln@guake.org>
 Copyright (C) 2007 Gabriel Falcão <gabrielteratos@gmail.com>
 
 This program is free software; you can redistribute it and/or
@@ -30,12 +30,18 @@ from gi.repository import Vte
 from gi.repository import GObject
 import dbus
 
+#from xdg.DesktopEntry import DesktopEntry
+#import xdg.Exceptions
+
 import os
 import sys
 import signal
 import posix
 from thread import start_new_thread
 from time import sleep
+
+#from urllib import url2pathname
+#from urlparse import urlsplit
 
 import guake.globalhotkeys
 import guake.notifier
@@ -150,8 +156,6 @@ class Guake(SimpleGtkApp):
         if visual and screen.is_composited():
             self.window.set_visual(visual)
             self.has_argb = True
-        else:
-            self.has_argb = False
 
         # List of Vte.Terminal widgets, it will be useful when needed
         # to get a widget by the current page in self.notebook
@@ -186,7 +190,7 @@ class Guake(SimpleGtkApp):
             return True
         self.window.connect('delete-event', destroy)
 
-        # Flag to completly disable losefocus hiding
+        # Flag to completely disable losefocus hiding
         self.disable_losefocus_hiding = False
 
         # this line is important to resize the main window and make it
@@ -215,6 +219,9 @@ class Guake(SimpleGtkApp):
         keyval, mask = Gtk.accelerator_parse(key)
         label = Gtk.accelerator_get_label(keyval, mask)
         filename = pixmapfile('guake-notification.png')
+
+        if self.client.get_bool(KEY('/general/start_fullscreen')):
+             self.fullscreen()
 
         if not self.hotkeys.bind(key, self.show_hide):
             guake.notifier.show_message(
@@ -630,6 +637,46 @@ class Guake(SimpleGtkApp):
         """
         self.delete_tab(self.notebook.get_current_page())
 
+#    def on_drag_data_received(self, widget, context,
+#                              x, y,
+#                              selection,
+#                              target,
+#                              timestamp,
+#                              box):
+#        droppeduris = selection.get_uris()
+#
+#        # url-unquote the list, strip file:// schemes, handle .desktop-s
+#        pathlist = []
+#        app = None
+#        for uri in droppeduris:
+#            scheme, _, path, _, _ = urlsplit(uri)
+#
+#            if scheme!="file":
+#                pathlist.append(uri)
+#            else:
+#                filename = url2pathname(path)
+#
+#                desktopentry = DesktopEntry()
+#                try:
+#                    desktopentry.parse(filename)
+#                except xdg.Exceptions.ParsingError:
+#                    pathlist.append(filename)
+#                    continue
+#
+#                if desktopentry.getType()=='Link':
+#                    pathlist.append(desktopentry.getURL())
+#
+#                if desktopentry.getType()=='Application':
+#                    app = desktopentry.getExec()
+#
+#        if app and len(droppeduris)==1:
+#            text = app
+#        else:
+#            text = str.join("", (shell_quote(path)+" " for path in pathlist))
+#
+#        box.terminal.feed_child(text)
+#        return True
+
     # -- tab related functions --
 
     def close_tab(self, *args):
@@ -736,6 +783,9 @@ class Guake(SimpleGtkApp):
         box.terminal.connect('child-exited', self.on_terminal_exited, box)
         box.terminal.connect('window-title-changed',
                              self.on_terminal_title_changed, box)
+        #box.terminal.connect('drag-data-received',
+        #                     self.on_drag_data_received,
+        #                     box)
 
         #-- Ubuntu has a patch to libvte which disables mouse scrolling in apps
         #-- like vim and less by default. If this is the case, enable it back.

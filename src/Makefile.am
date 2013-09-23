@@ -8,3 +8,5 @@ guakemodule_PYTHON = __init__.py \
 
 guakedir = $(bindir)
 bin_SCRIPTS = guake guake-prefs
+
+EXTRA_DIST = $(bin_SCRIPTS)

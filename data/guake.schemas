@@ -105,6 +105,18 @@
             </locale>
         </schema>
 
+        <schema>
+            <key>/schemas/apps/guake/general/start_fullscreen</key>
+            <applyto>/apps/guake/general/start_fullscreen</applyto>
+            <owner>guake</owner>
+            <type>bool</type>
+            <default>false</default>
+            <locale name="C">
+                <short>Start fullscreen.</short>
+                <long>When true, the program will start in fullscreen mode.</long>
+            </locale>
+        </schema>
+
 	<schema>
             <key>/schemas/apps/guake/general/window_width</key>
             <applyto>/apps/guake/general/window_width</applyto>

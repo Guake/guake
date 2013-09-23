@@ -10,4 +10,5 @@ src/dbusiface.py
 src/guake
 src/guake-prefs
 src/notifier.py
+src/prefs.py
 src/terminal.py
