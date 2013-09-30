@@ -1075,7 +1075,10 @@ class Guake(SimpleGladeApp):
         if not use_them:
             return
         page = self.notebook.page_num(box)
-        self.tabs.get_children()[page].set_label(vte.get_window_title())
+        tab = self.tabs.get_children()[page]
+        # if tab has been renamed by user, don't override.
+        if not getattr(tab, 'custom_label_set', False):
+            tab.set_label(vte.get_window_title())
 
     def on_rename_activate(self, *args):
         """Shows a dialog to rename the current tab.
@@ -1108,7 +1111,13 @@ class Guake(SimpleGladeApp):
         self.disable_losefocus_hiding = False
 
         if response == gtk.RESPONSE_ACCEPT:
-            self.selected_tab.set_label(entry.get_text())
+            new_text = entry.get_text()
+            self.selected_tab.set_label(new_text)
+            # if user sets empty name, consider he wants default behavior.
+            setattr(self.selected_tab, 'custom_label_set', bool(new_text))
+            # trigger titling handler in case that custom label has been reset
+            current_vte = self.term_list[self.notebook.get_current_page()]
+            current_vte.emit('window-title-changed')
 
         dialog.destroy()
         self.set_terminal_focus()
@@ -1175,6 +1184,14 @@ class Guake(SimpleGladeApp):
         pagepos = self.notebook.get_current_page()
         self.selected_tab = self.tabs.get_children()[pagepos]
         self.selected_tab.set_label(new_text)
+
+        # it's hard to pass an empty string as a command line argument,
+        # so we'll interpret single dash "-" as a "reset custom title" request
+        setattr(self.selected_tab, 'custom_label_set', new_text != "-")
+
+        # trigger titling handler in case that custom label has been reset
+        current_vte = self.term_list[self.notebook.get_current_page()]
+        current_vte.emit('window-title-changed')
 
     def get_current_dir(self):
         """Gets the working directory of the current tab to create a
@@ -1440,8 +1457,9 @@ def main():
             help=_('Execute an arbitrary command in the selected tab.'))
 
     parser.add_option('-r', '--rename-tab', dest='rename_tab',
+            metavar='TITLE',
             action='store', default='',
-            help=_('Rename the selected tab.'))
+            help=_('Rename the selected tab. Reset to default if TITLE is a single dash "-".'))
 
     parser.add_option('-q', '--quit', dest='quit',
             action='store_true', default=False,
