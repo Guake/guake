@@ -1355,7 +1355,7 @@ class Guake(SimpleGladeApp):
         call this in another thread. This doesn't change any thing in
         UI, so you can use python's start_new_thread.
         """
-		  try:
+        try:
             os.kill(pid, signal.SIGTERM)
         except OSError:
             pass
