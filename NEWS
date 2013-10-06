@@ -1,3 +1,14 @@
+changes since 0.4.4:
+  - Custom tab titles are no longer overriden by VTE ones (rgaudin)
+  - Absent notifications daemon is no longer fatal
+  - Fix for <Ctrl>key hotkeys being recorded as <Primary>key (Ian MacLeod)
+  - Font resizing using <Ctrl>+ and <Ctrl>- (Eiichi Sato)
+  - D-Bus and commandline interface improvements
+  - L10n:
+    * Norwegian Bokmål po file renamed to nb_NO.po (Bjørn Lie)
+    * Added translations: Croatian, Czech, Dutch, Galician, Indonesian, Ukrainian.
+    * Updated translations: Catalan, French, German, Hungarian, Spanish, Swedish.
+
 changes since 0.4.3:
 
   - New icon for both guake and guake-prefs
