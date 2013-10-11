@@ -513,7 +513,7 @@
             <default>true</default>
             <locale name="C">
                 <short>If guake must show a control to make resizing more handful</short>
-                <long>When true, guake shows a resizer on its bottom to allow user 
+                <long>When true, guake shows a resizer on its bottom to allow user
                 resize guake.</long>
             </locale>
         </schema>
@@ -529,5 +529,19 @@
                 <long>Set it as false to enjoy guake's fullscreen.</long>
             </locale>
         </schema>
+
+        <schema>
+            <key>/schemas/apps/guake/general/focus_if_open</key>
+            <applyto>/apps/guake/general/focus_if_open</applyto>
+            <owner>guake</owner>
+            <type>bool</type>
+            <default>true</default>
+            <locale name="C">
+                <short>Give focus to guake if tab is opened.</short>
+                <long>If the guake window is out of focus but open,
+                enabling this will give it back the focus instead of closing the window.</long>
+            </locale>
+        </schema>
+
     </schemalist>
 </gconfschemafile>

@@ -280,7 +280,7 @@ class GConfHandler(object):
             client.get_string(KEY('/style/font/color')))
         bgcolor = gtk.gdk.color_parse(
             client.get_string(KEY('/style/background/color')))
-        palette = [gtk.gdk.color_parse(color) for color in 
+        palette = [gtk.gdk.color_parse(color) for color in
             entry.value.get_string().split(':')]
         for i in self.guake.term_list:
             i.set_colors(fgcolor, bgcolor, palette)
@@ -826,9 +826,13 @@ class Guake(SimpleGladeApp):
         if not self.window.get_property('visible'):
             self.show()
             self.set_terminal_focus()
-        else:
+        elif not self.client.get_bool(KEY('general/focus_if_open')) and \
+                self.window.window.get_state() == gtk.gdk.WINDOW_STATE_ABOVE:
             self.hide()
- 
+        else:
+            self.show()
+            self.set_terminal_focus()
+
     def show(self):
         """Shows the main window and grabs the focus on it.
         """
