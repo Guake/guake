@@ -1,4 +1,4 @@
-language: c
+language: cpp
 compiler: 
   - cpp
 before_script:
