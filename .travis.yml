@@ -1,0 +1,5 @@
+language: c
+compiler: 
+ - cpp
+ - clang
+script: ./autogen.sh && ./configure && make
