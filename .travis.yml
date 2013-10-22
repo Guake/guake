@@ -1,5 +1,9 @@
 language: c
 compiler: 
- - cpp
- - clang
-script: ./autogen.sh && ./configure && make
+  - cpp
+before_script:
+  - sudo apt-get install gnome-common gtk-doc-tools libglib2.0-dev
+script:
+  - ./autogen.sh
+  - ./configure
+  - make
