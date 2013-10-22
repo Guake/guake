@@ -7,7 +7,7 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: el\n"
+"Project-Id-Version: Guake 0.4.5\n"
 "Report-Msgid-Bugs-To: guake@lists.guake.org\n"
 "POT-Creation-Date: 2009-06-09 01:24+0200\n"
 "PO-Revision-Date: 2009-08-25 18:58+0300\n"

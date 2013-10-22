@@ -1,27 +1,27 @@
-# Translation of Guake to Turkish
-# Copyright (C) 2012 Guake Translators
+# Translation of Guake to Czech
+# Copyright (C) 2011 Guake Translators
 # This file is distributed under the same license as the Guake package.
 #
 # Translators:
-# Berk Demirkır <bdemirkir@gmail.com>, 2012
+# Martin Lukeš <martin.meridius@gmail.com>, 2011
 
 msgid ""
 msgstr ""
 "Project-Id-Version: Guake 0.4.5\n"
 "Report-Msgid-Bugs-To: http://guake.org/report\n"
 "POT-Creation-Date: 2010-11-26 07:17+0000\n"
-"PO-Revision-Date: 2012-07-30 08:02+0000\n"
-"Last-Translator: Berk Demirkır <bdemirkir@gmail.com>\n"
-"Language-Team: Turkish (http://www.transifex.com/projects/p/guake/language/tr/)\n"
+"PO-Revision-Date: 2011-03-22 15:26+0000\n"
+"Last-Translator: Martin Lukeš <martin.meridius@gmail.com>\n"
+"Language-Team: Czech (Czech Republic) (http://www.transifex.com/projects/p/guake/language/cs_CZ/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Language: tr\n"
-"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+"Language: cs_CZ\n"
+"Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
 
 #: ../data/about.glade.h:1
 msgid "About Guake"
-msgstr "Guake Hakkında"
+msgstr "O Guake"
 
 #: ../data/about.glade.h:2
 msgid ""
@@ -32,7 +32,7 @@ msgid ""
 "Nishio Futoshi <futoshi@momonga-linux.org> Japanese\n"
 "Pavel Alexeev <Pahan@Hubbitus.spb.su> Russian\n"
 "Piotr Drąg <piotrdrag@gmail.com> Polish"
-msgstr "Adolfo González Blázquez <code@infinicode.org> Spanish\nLincoln de Sousa <lincoln@guake.org> Brazilian Portuguese\nMarkus Majer <mm@mpathy.de> German\nMieszko Ślusarczyk <mieszkoslusarczyk@gmail.com> Polish\nNishio Futoshi <futoshi@momonga-linux.org> Japanese\nPavel Alexeev <Pahan@Hubbitus.spb.su> Russian\nPiotr Drąg <piotrdrag@gmail.com> Polish\nBerk Demirkır <perq87@gmail.com> Turkish"
+msgstr "Adolfo González Blázquez <code@infinicode.org> Spanish\nLincoln de Sousa <lincoln@guake.org> Brazilian Portuguese\nMarkus Majer <mm@mpathy.de> German\nMieszko Ślusarczyk <mieszkoslusarczyk@gmail.com> Polish\nNishio Futoshi <futoshi@momonga-linux.org> Japanese\nPavel Alexeev <Pahan@Hubbitus.spb.su> Russian\nPiotr Drąg <piotrdrag@gmail.com> Polish"
 
 #: ../data/about.glade.h:9
 msgid ""
@@ -44,7 +44,7 @@ msgstr "Copyright 2007-2009 Lincoln de Sousa\nCopyright 2007 Gabriel Falc&#xE3;o
 msgid ""
 "Guake is an easy to access\n"
 "terminal based on fps games terminal"
-msgstr "Guake, kullanımı kolay\nfps oyunlarından esinlenmiş bir uçbirim yazılımıdır."
+msgstr "Guake je snadno přístupný\nterminál podobný těm z fps her"
 
 #: ../data/about.glade.h:13
 msgid ""
@@ -53,7 +53,7 @@ msgid ""
 "Guake is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more details.\n"
 "\n"
 "You should have received a copy of the GNU General Public License along with Guake; if not, write to the Free Software Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301 USA\n"
-msgstr "Guake özgür bir yazılımdır; onu Özgün Yazılım Vakfı tarafından dağıtılan GNU Genel Kamu Lisansı'nın sürüm iki (ya da tercihen) daha sonraki sürümleri koşulları altında dağıtabilir ve/veya değiştirebilirsiniz.\n\nGuake kullanışlı olması umuduyla dağıtılmıştır, ancak HİÇBİR GARANTİSİ YOKTUR; hatta SATILABİLİRLİK ya da BİR AMACA HİZMET gibi garantisi de yoktur. Daha fazla ayrıntı için GNU Genel Kamu Lisansı'na bakın.\n\nGNU Genel Kamu Lisansı'nın bir kopyasını Guake ile almış olmalısınız, eğer almadıysanız Özgür Yazılım Vakfı, Inc. 51 Franklin St. Fifth Floor, Boston, MA  02110-1301 USA adresine yazın\n"
+msgstr "Guake je svobodný software; můžete jej šířit a/nebo upravovat podle podmínek GNU General Public License, vydávané Free Software Foundation; buď verze 2 této licence, anebo (podle vašeho uvážení) kterékoli její pozdější verze.\n\nGuake je distribuován v naději, že to bude užitečný, ale BEZ JAKÉKOLIV ZÁRUKY; dokonce i bez záruky PRODEJNOSTI nebo VHODNOSTI PRO URČITÝ ÚČEL.  Pro více podrobností se podívejte na GNU General Public License.\n\nKopii GNU General Public License byste měli obdržet spolu s Guake; pokud ne, napište na Free Software Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301 USA\n"
 
 #: ../data/about.glade.h:19
 msgid "http://guake.org"
@@ -61,19 +61,19 @@ msgstr "http://guake.org"
 
 #: ../data/guake.glade.h:1 ../src/guake.py:1264
 msgid "Add a new tab"
-msgstr "Yeni sekme ekle"
+msgstr "Přidat novou kartu"
 
 #: ../data/guake.glade.h:2
 msgid "Close"
-msgstr "Kapat"
+msgstr "Zavřít"
 
 #: ../data/guake.glade.h:3
 msgid "Close Tab"
-msgstr "Sekmeyi Kapat"
+msgstr "Zavřít kartu"
 
 #: ../data/guake.glade.h:4
 msgid "Copy"
-msgstr "Kopyala"
+msgstr "Kopírovat"
 
 #: ../data/guake.glade.h:5 ../src/guake.py:635 ../src/guake.py:646
 msgid "Guake!"
@@ -81,47 +81,47 @@ msgstr "Guake!"
 
 #: ../data/guake.glade.h:6
 msgid "Paste"
-msgstr "Yapıştır"
+msgstr "Vložit"
 
 #: ../data/guake.glade.h:7 ../src/prefs.py:61
 msgid "Quit"
-msgstr "Çıkış"
+msgstr "Zavřít"
 
 #: ../data/guake.glade.h:8
 msgid "Rename"
-msgstr "Yeniden Adlandır"
+msgstr "Přejmenovat"
 
 #: ../data/prefs.glade.h:1
 msgid "<b>Effects</b>"
-msgstr "<b>Efektler</b>"
+msgstr "<b>Efekty</b>"
 
 #: ../data/prefs.glade.h:2
 msgid "<b>General</b>"
-msgstr "<b>Genel</b>"
+msgstr "<b>Obecné</b>"
 
 #: ../data/prefs.glade.h:3
 msgid "<b>Keyboard compatibility</b>"
-msgstr "<b>Klavye uyumluluğu</b>"
+msgstr "<b>Kompatibilita klávesnic</b>"
 
 #: ../data/prefs.glade.h:4
 msgid "<b>Main Window height</b>"
-msgstr "<b>Uçbirim Pencere yüksekliği</b>"
+msgstr "<b>Výška okna s terminálem</b>"
 
 #: ../data/prefs.glade.h:5
 msgid "<b>Main Window</b>"
-msgstr "<b>Uçbirim Penceresi</b>"
+msgstr "<b>Okno s terminálem</b>"
 
 #: ../data/prefs.glade.h:6
 msgid "<b>Palette</b>"
-msgstr "<b>Palet</b>"
+msgstr "<b>Paleta</b>"
 
 #: ../data/prefs.glade.h:7
 msgid "<b>Scroll</b>"
-msgstr "<b>Ekran Kaydırma</b>"
+msgstr "<b>Posun</b>"
 
 #: ../data/prefs.glade.h:8
 msgid "<b>Shell</b>"
-msgstr "<b>Kabuk</b>"
+msgstr "<b>Shell</b>"
 
 #: ../data/prefs.glade.h:9
 msgid ""
@@ -129,114 +129,114 @@ msgid ""
 "incorrectly.  They are only here to allow you to work around certain "
 "applications and operating systems that expect different terminal "
 "behavior.</i></small>"
-msgstr "<small><i><b>Note:</b> Bu ayarlar bazı programların hatalı davranmasına sebep olabilir. Bu ayarlar sadece farklı uçbirim davranışları bekleyen programlar ve işletim sistemleri için vardır.</i></small>"
+msgstr "<small><i><b>Poznámka:</b> Tyto volby mohou způsobit, že některé aplikace nebudou fungovat správně.  Jsou tu pouze proto, abyste mohli obejít skutečnost, že některé aplikace a operační systémy očekávají jiné chování terminálu.</i></small>"
 
 #: ../data/prefs.glade.h:10
 msgid "<span color=\"black\">Customize behavior and appearance of Guake!</span>"
-msgstr "<span color=\"black\">Guake'in davranışlarını ve görünümünü özelleştirin!</span>"
+msgstr "<span color=\"black\">Upravit chování a vzhled Guake!</span>"
 
 #: ../data/prefs.glade.h:11
 msgid "<span size=\"18000\" color=\"black\"><b>Guake properties</b></span>"
-msgstr "<span size=\"18000\" color=\"black\"><b>Guake özellikleri</b></span>"
+msgstr "<span size=\"18000\" color=\"black\"><b>Nastavení Guake</b></span>"
 
 #: ../data/prefs.glade.h:12
 msgid ""
 "ASCII DEL\n"
 "Escape sequence\n"
 "Control-H"
-msgstr "ASCII DEL\nEsc dizisi\nCtrl-H"
+msgstr "ASCII DEL\nEscape sekvence\nCtrl-H"
 
 #: ../data/prefs.glade.h:15
 msgid "Appearance"
-msgstr "Görünüm"
+msgstr "Vzhled"
 
 #: ../data/prefs.glade.h:16
 msgid "Background color:"
-msgstr "Arkaplan rengi:"
+msgstr "Barevná výplň:"
 
 #: ../data/prefs.glade.h:17
 msgid "Background image:"
-msgstr "Arkaplan resmi:"
+msgstr "Obrázek na pozadí:"
 
 #: ../data/prefs.glade.h:18
 msgid "Built-in schemes:"
-msgstr "Varsayılan düzenler:"
+msgstr "Zabudovaná schémata:"
 
 #: ../data/prefs.glade.h:19
 msgid "Choose some font"
-msgstr "Font seçin"
+msgstr "Vyberte písmo terminálu"
 
 #: ../data/prefs.glade.h:20
 msgid "Color palette:"
-msgstr "Renk Paleti:"
+msgstr "Paleta barev:"
 
 #: ../data/prefs.glade.h:21
 msgid "Compatibility"
-msgstr "Uyumluluk"
+msgstr "Kompatibilita"
 
 #: ../data/prefs.glade.h:22
 msgid "Default interpreter:"
-msgstr "Varsayılan yorumlayıcı:"
+msgstr "Výchozí interpret shellu:"
 
 #: ../data/prefs.glade.h:23
 msgid "Enable popup notifications on startup"
-msgstr "Başlangıçta popup uyarılarını göster"
+msgstr "Zobrazovat vyskakovací zprávy po spuštění"
 
 #: ../data/prefs.glade.h:24
 msgid "Font:"
-msgstr "Yazıtipi:"
+msgstr "Písmo:"
 
 #: ../data/prefs.glade.h:25 ../src/prefs.py:55
 msgid "General"
-msgstr "Genel"
+msgstr "Obecné"
 
 #: ../data/prefs.glade.h:26
 msgid "Guake Preferences"
-msgstr "Guake Tercihleri"
+msgstr "Nastavení Guake"
 
 #: ../data/prefs.glade.h:27
 msgid "Hide on lose focus"
-msgstr "Focus kaybedildiğinde gizle"
+msgstr "Skrýt při ztrátě aktivity okna"
 
 #: ../data/prefs.glade.h:28
 msgid "Keyboard shortcuts"
-msgstr "Klavye kısayolları"
+msgstr "Klávesové zkratky"
 
 #: ../data/prefs.glade.h:29
 msgid "On key stroke"
-msgstr "Tuşa basıldığında"
+msgstr "Při stisku klávesy"
 
 #: ../data/prefs.glade.h:30
 msgid "On output"
-msgstr "Çıktı üretildiğinde"
+msgstr "Při výstupu"
 
 #: ../data/prefs.glade.h:31
 msgid "Prompt on quit"
-msgstr "Çıkmadan önce sor"
+msgstr "Zeptat se na ukončení"
 
 #: ../data/prefs.glade.h:32
 msgid "Scrollback lines:"
-msgstr "Satır hafızası:"
+msgstr "Pamatovat si řádek:"
 
 #: ../data/prefs.glade.h:33
 msgid "Scrolling"
-msgstr "Kaydırma"
+msgstr "Rolování"
 
 #: ../data/prefs.glade.h:34
 msgid "Show scrollbar"
-msgstr "Kaydırma çubuğunu görüntüle"
+msgstr "Zobrazit posuvník"
 
 #: ../data/prefs.glade.h:35
 msgid "Show tab bar"
-msgstr "Sekme çubuğunu görüntüle"
+msgstr "Zobrazit lištu karet"
 
 #: ../data/prefs.glade.h:36
 msgid "Show tray icon"
-msgstr "Sistem tepsisinde simge göster"
+msgstr "Zobrazit ikonu v oznamovací oblasti"
 
 #: ../data/prefs.glade.h:37
 msgid "Stay on top"
-msgstr "Her zaman üstte kal"
+msgstr "Vždy navrchu"
 
 #: ../data/prefs.glade.h:38
 msgid ""
@@ -245,201 +245,201 @@ msgid ""
 "XTerm\n"
 "Rxvt\n"
 "Custom\n"
-msgstr "Tango\nLinux uçbirim\nXTerm\nRxvt\nÖzel\n"
+msgstr "Tango\nLinux console\nXTerm\nRxvt\nCustom\n"
 
 #: ../data/prefs.glade.h:44
 msgid "Text color:"
-msgstr "Metin rengi:"
+msgstr "Barva textu:"
 
 #: ../data/prefs.glade.h:45
 msgid "Transparency:"
-msgstr "Şeffaflık:"
+msgstr "Průhlednost:"
 
 #: ../data/prefs.glade.h:46
 msgid "Use the system fixed width font"
-msgstr "Sistemin sabit genişlikli yazıtipini kullan"
+msgstr "Používat systémové písmo s pevnou šířkou"
 
 #: ../data/prefs.glade.h:47
 msgid "_Backspace key generates:"
-msgstr "_Backspace tuşu yerine:"
+msgstr "Klávesa _Backspace generuje:"
 
 #: ../data/prefs.glade.h:48
 msgid "_Delete key generates:"
-msgstr "_Delete tuşu yerine:"
+msgstr "Klávesa _Delete generuje:"
 
 #: ../data/prefs.glade.h:49
 msgid "_Open new tab in current directory"
-msgstr "_Yeni sekmeyi klasörde aç"
+msgstr "Otevřít novou kartu v aktuálním adresáři"
 
 #: ../data/prefs.glade.h:50
 msgid "_Reset Compatibility Options to Defaults"
-msgstr "Uyumluluk aya_rlarını varsayılan hale getir"
+msgstr "Obnovit standardní nastavení pro kompatibilitu"
 
 #: ../data/prefs.glade.h:51
 msgid "_Run command as a login shell"
-msgstr "Komutu gi_riş kabuğu olarak çalıştır."
+msgstr "_Spustit příkaz jako přihlašovací shell"
 
 #: ../src/guake.py:67
 msgid "Do you really want to quit Guake!?"
-msgstr "Guake'den çıkmak istediğinize emin misiniz?"
+msgstr "Opravdu chcete ukončit Guake!?"
 
 #: ../src/guake.py:70
 msgid "<b>There is one process still running.</b>"
-msgstr "<b>Halen çalışan bir işlem var.</b>"
+msgstr "<b>Stále zde běží jeden proces.</b>"
 
 #: ../src/guake.py:74
 #, python-format
 msgid "<b>There are %d processes running.</b>"
-msgstr "<b>Çalışan %d işlem var.</b>"
+msgstr "<b>Stále zde běží %d procesů.</b>"
 
 #: ../src/guake.py:367
 msgid "key binding error"
-msgstr "kısayol atama hatası"
+msgstr "chyba klávesových zkratek"
 
 #: ../src/guake.py:368
 #, python-format
 msgid "Unable to bind global <b>%s</b> key"
-msgstr "Genel <b>%s</b> tuşu atanamadı"
+msgstr "Nelze nastavit globální <b>%s</b> klávesu"
 
 #: ../src/guake.py:530
 msgid "Guake Terminal"
-msgstr "Guake Uçbirim"
+msgstr "Guake Terminal"
 
 #: ../src/guake.py:636
 #, python-format
 msgid ""
 "A problem happened when binding <b>%s</b> key.\n"
 "Please use Guake Preferences dialog to choose another key (The trayicon was enabled)"
-msgstr "<b>%s</b> tuşunu kısayol olarak atarken bir hata oluştu.\nLütfen Guake Seçenekler penceresini kullanarak yeni bir kısayol seçin. (Simge sistem çekmecesindedir)"
+msgstr "Při nastavování klávesové zkratky <b>%s</b> nastala chyba.\nPro výběr jiné zkratky použijte, prosím, okno Nastavení. (Ikona v oznamovací oblasti byla povolena.)"
 
 #: ../src/guake.py:647
 #, python-format
 msgid ""
 "Guake is now running,\n"
 "press <b>%s</b> to use it."
-msgstr "Guake çalışıyor.\n<b>%s</b> tuşu ile kullanmaya başlayın."
+msgstr "Guake je nyní spuštěno,\npro použití stiskněte <b>%s</b>."
 
 #: ../src/guake.py:997
 msgid "Rename tab"
-msgstr "Sekmeyi yeniden adlandır"
+msgstr "Přejmenovat kartu"
 
 #. Adding a new radio button to the tabbar
 #: ../src/guake.py:1142
 #, python-format
 msgid "Terminal %s"
-msgstr "Uçbirim %s"
+msgstr "Terminál %s"
 
 #: ../src/guake.py:1252
 msgid "Toggles the visibility of the terminal window"
-msgstr "Uçbirim penceresinin görüntüler veya gizler"
+msgstr "Zobrazí / skryje okno terminálu"
 
 #: ../src/guake.py:1256
 msgid "Shows Guake preference window"
-msgstr "Guake seçenekler penceresini gösterir"
+msgstr "Zobrazí okno nastavení Guake"
 
 #: ../src/guake.py:1260
 msgid "Shows Guake's about info"
-msgstr "Guake'nin hakkında bilgisini gösterir"
+msgstr "Zobrazí info o Guake"
 
 #: ../src/guake.py:1268
 msgid "Select a tab"
-msgstr "Bir sekme seçin"
+msgstr "Vybrat kartu"
 
 #: ../src/guake.py:1272
 msgid "Return the selectd tab index."
-msgstr "Seçilmiş sekme sıra numarasını döndürür."
+msgstr "Vypsat pořadí vybrané karty."
 
 #: ../src/guake.py:1276
 msgid "Execute an arbitrary command in the selected tab."
-msgstr "Seçili sekmede sınırsız komut çalıştırır."
+msgstr "Spustit ve vybrané kartě libovolný příkaz."
 
 #: ../src/guake.py:1280
 msgid "Rename the selected tab."
-msgstr "Seçilen sekmeyi yeniden adlandırır."
+msgstr "Přejmenovat vybranou kartu."
 
 #: ../src/guake.py:1284
 msgid "Says to Guake go away =("
-msgstr "Guake'e güle güle der =("
+msgstr "Řekne Guake, aby šlo pryč =("
 
 #: ../src/guake.py:1349
 msgid "Guake can not init!"
-msgstr "Guake başlatılamadı!"
+msgstr "Guake nelze spustit!"
 
 #: ../src/guake.py:1350
 msgid ""
 "Gconf Error.\n"
 "Have you installed <b>guake.schemas</b> properlly?"
-msgstr "Gconf Hatası.\n<b>guake.schemas</b>'ı doğru şekilde yüklediniz mi?"
+msgstr "Chyba v Gconf.\nMáte správně nainstalován <b>guake.schemas</b>?"
 
 #. string to show in prefereces dialog for user shell option
 #: ../src/prefs.py:42
 msgid "<user shell>"
-msgstr "<kullanıcı kabuğu>"
+msgstr "<uživatelský shell>"
 
 #: ../src/prefs.py:57
 msgid "Toggle Guake visibility"
-msgstr "Guake'i görüntüle veya gizle"
+msgstr "Přepnout viditelnost Guake"
 
 #: ../src/prefs.py:59
 msgid "Toggle Fullscreen"
-msgstr "Tam ekran moduna gir veya çık"
+msgstr "Přepnout na celou obrazovku"
 
 #: ../src/prefs.py:64
 msgid "Tab management"
-msgstr "Sekme yönetimi"
+msgstr "Správa karet"
 
 #: ../src/prefs.py:66
 msgid "New tab"
-msgstr "Yeni sekme"
+msgstr "Nová karta"
 
 #: ../src/prefs.py:68
 msgid "Close tab"
-msgstr "Sekmeyi kapat"
+msgstr "Zavřít kartu"
 
 #: ../src/prefs.py:70
 msgid "Rename current tab"
-msgstr "Geçerli sekmeyi yeniden adlandır"
+msgstr "Přejmenovat současnou kartu"
 
 #: ../src/prefs.py:73
 msgid "Navigation"
-msgstr "Gezinti"
+msgstr "Navigace"
 
 #: ../src/prefs.py:75
 msgid "Go to previous tab"
-msgstr "Önceki sekmeye geç"
+msgstr "Přejít na předchozí kartu"
 
 #: ../src/prefs.py:77
 msgid "Go to next tab"
-msgstr "Sonraki sekmeye geç"
+msgstr "Přejít na následující kartu"
 
 #: ../src/prefs.py:80
 msgid "Clipboard"
-msgstr "Pano"
+msgstr "Schránka"
 
 #: ../src/prefs.py:82
 msgid "Copy text to clipboard"
-msgstr "Metni panoya kopyala"
+msgstr "Kopírovat text do schránky"
 
 #: ../src/prefs.py:84
 msgid "Paste text from clipboard"
-msgstr "Panodan metni yapıştır"
+msgstr "Vložit text ze schránky"
 
 #: ../src/prefs.py:297
 msgid "Action"
-msgstr "İşlev"
+msgstr "Akce"
 
 #: ../src/prefs.py:307
 msgid "Shortcut"
-msgstr "Kısayol"
+msgstr "Klávesová zkratka"
 
 #: ../src/prefs.py:605
 #, python-format
 msgid "The shortcut \"%s\" is already in use."
-msgstr "\"%s\" kısayolu zaten kullanılıyor."
+msgstr "Klávesová zkratka \"%s\" je již používá."
 
 #: ../src/prefs.py:606
 msgid "Error setting keybinding."
-msgstr "Kısayol atamasında hata."
+msgstr "Chyba při nastavování klávesové zkratky."
 
 #: ../src/prefs.py:618
 #, python-format
@@ -447,4 +447,4 @@ msgid ""
 "The shortcut \"%s\" cannot be used because it will become impossible to type using this key.\n"
 "\n"
 "Please try with a key such as Control, Alt or Shift at the same time.\n"
-msgstr "\"%s\" kısayolu kullanılamaz çünkü bu tuş kullanılarak yazmak imkansız olur.\n\nCtrl, Alt veya Shift tuşları ile beraber kullanmayı deneyin.\n"
+msgstr "Klávesovou zkratku \"%s\" nelze nastavit, protože by nebylo možné s ní normálně psát.\n\nZkuste to znovu s klávesami jako Ctrl, Alt, nebo Shift.\n"

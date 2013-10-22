@@ -1,3 +1,12 @@
+2013-09-22  Maxim Ivanov <ulidtko@gmail.com>
+
+	* Renamed no.po -> nb_NO.po. Thanks to Bjørn Lie (zaitor).
+	* Added translations: Croatian, Czech, Dutch, Galician, Indonesian, Ukrainian.
+	* Updated translations: Catalan, French, German, Hungarian, Spanish,
+	Swedish.
+
+	Thanks to all the teams at Transifex; you guys rock!
+
 2009-10-04  Lincoln de Sousa  <lincoln@minaslivre.org>
 
 	* hu.po: Added. Thanks to Kruxer.

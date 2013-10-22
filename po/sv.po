@@ -1,19 +1,23 @@
-# Swedish translation for guake.
-# Copyright (C) 2010 Free Software Foundation, Inc.
-# This file is distributed under the same license as the guake package.
-# Daniel Nylander <po@danielnylander.se>, 2010.
+# Swedish translation for Guake.
+# Copyright (C) Guake Translators
+# This file is distributed under the same license as the Guake package.
 #
+# Translators:
+# Daniel Nylander <po@danielnylander.se>, 2011
+
 msgid ""
 msgstr ""
-"Project-Id-Version: guake\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-03-15 04:44+0000\n"
-"PO-Revision-Date: 2010-03-15 09:57+0100\n"
+"Project-Id-Version: Guake 0.4.5\n"
+"Report-Msgid-Bugs-To: http://guake.org/report\n"
+"POT-Creation-Date: 2010-11-26 07:17+0000\n"
+"PO-Revision-Date: 2011-10-08 05:54+0000\n"
 "Last-Translator: Daniel Nylander <po@danielnylander.se>\n"
-"Language-Team: Swedish <tp-sv@listor.tp-sv.se>\n"
+"Language-Team: Swedish (http://www.transifex.com/projects/p/guake/language/sv/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Language: sv\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #: ../data/about.glade.h:1
 msgid "About Guake"
@@ -28,30 +32,19 @@ msgid ""
 "Nishio Futoshi <futoshi@momonga-linux.org> Japanese\n"
 "Pavel Alexeev <Pahan@Hubbitus.spb.su> Russian\n"
 "Piotr Drąg <piotrdrag@gmail.com> Polish"
-msgstr ""
-"Adolfo González Blázquez <code@infinicode.org> Spanska\n"
-"Lincoln de Sousa <lincoln@guake.org> Brasiliansk portugisiska\n"
-"Markus Majer <mm@mpathy.de> Tyska\n"
-"Mieszko Ślusarczyk <mieszkoslusarczyk@gmail.com> Polska\n"
-"Nishio Futoshi <futoshi@momonga-linux.org> Japanska\n"
-"Pavel Alexeev <Pahan@Hubbitus.spb.su> Ryska\n"
-"Piotr Drąg <piotrdrag@gmail.com> Polska"
+msgstr "Adolfo González Blázquez <code@infinicode.org> Spanska\nLincoln de Sousa <lincoln@guake.org> Brasiliansk portugisiska\nMarkus Majer <mm@mpathy.de> Tyska\nMieszko Ślusarczyk <mieszkoslusarczyk@gmail.com> Polska\nNishio Futoshi <futoshi@momonga-linux.org> Japanska\nPavel Alexeev <Pahan@Hubbitus.spb.su> Ryska\nPiotr Drąg <piotrdrag@gmail.com> Polska"
 
 #: ../data/about.glade.h:9
 msgid ""
 "Copyright 2007-2009 Lincoln de Sousa\n"
 "Copyright 2007 Gabriel Falc&#xE3;o"
-msgstr ""
-"Copyright 2007-2009 Lincoln de Sousa\n"
-"Copyright 2007 Gabriel Falc&#xE3;o"
+msgstr "Copyright 2007-2009 Lincoln de Sousa\nCopyright 2007 Gabriel Falc&#xE3;o"
 
 #: ../data/about.glade.h:11
 msgid ""
 "Guake is an easy to access\n"
 "terminal based on fps games terminal"
-msgstr ""
-"Guake är en lättåtkomlig terminal\n"
-"baserad på fps games terminal"
+msgstr "Guake är en lättåtkomlig terminal\nbaserad på fps games terminal"
 
 #: ../data/about.glade.h:13
 msgid ""
@@ -60,19 +53,13 @@ msgid ""
 "Guake is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more details.\n"
 "\n"
 "You should have received a copy of the GNU General Public License along with Guake; if not, write to the Free Software Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301 USA\n"
-msgstr ""
-"Guake är fri programvara. Du kan distribuera det och/eller modifiera det under villkoren i GNU General Public License, publicerad av Free Software Foundation, antingen version 2 eller (om du så vill) någon senare version.\n"
-"\n"
-"Guake distribueras i hopp om att det ska vara användbart, men UTAN NÅGON SOM HELST GARANTI, även utan underförstådd garanti om SÄLJBARHET eller LÄMPLIGHET FÖR NÅGOT SPECIELLT ÄNDAMÅL. Se GNU General Public License för ytterligare information.\n"
-"\n"
-"Du bör ha fått en kopia av GNU General Public License tillsammans med Brasero. Om inte, skriv till Free Software Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301 USA\n"
+msgstr "Guake är fri programvara. Du kan distribuera det och/eller modifiera det under villkoren i GNU General Public License, publicerad av Free Software Foundation, antingen version 2 eller (om du så vill) någon senare version.\n\nGuake distribueras i hopp om att det ska vara användbart, men UTAN NÅGON SOM HELST GARANTI, även utan underförstådd garanti om SÄLJBARHET eller LÄMPLIGHET FÖR NÅGOT SPECIELLT ÄNDAMÅL. Se GNU General Public License för ytterligare information.\n\nDu bör ha fått en kopia av GNU General Public License tillsammans med Brasero. Om inte, skriv till Free Software Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301 USA\n"
 
 #: ../data/about.glade.h:19
 msgid "http://guake.org"
 msgstr "http://guake.org"
 
-#: ../data/guake.glade.h:1
-#: ../src/guake.py:1200
+#: ../data/guake.glade.h:1 ../src/guake.py:1264
 msgid "Add a new tab"
 msgstr "Lägg till ny flik"
 
@@ -88,9 +75,7 @@ msgstr "Stäng flik"
 msgid "Copy"
 msgstr "Kopiera"
 
-#: ../data/guake.glade.h:5
-#: ../src/guake.py:610
-#: ../src/guake.py:621
+#: ../data/guake.glade.h:5 ../src/guake.py:635 ../src/guake.py:646
 msgid "Guake!"
 msgstr "Guake!"
 
@@ -98,8 +83,7 @@ msgstr "Guake!"
 msgid "Paste"
 msgstr "Klistra in"
 
-#: ../data/guake.glade.h:7
-#: ../src/prefs.py:61
+#: ../data/guake.glade.h:7 ../src/prefs.py:61
 msgid "Quit"
 msgstr "Avsluta"
 
@@ -108,28 +92,28 @@ msgid "Rename"
 msgstr "Byt namn"
 
 #: ../data/prefs.glade.h:1
-msgid "<b>Background</b>"
-msgstr "<b>Bakgrund</b>"
+msgid "<b>Effects</b>"
+msgstr "<b>Effekter</b>"
 
 #: ../data/prefs.glade.h:2
-msgid "<b>Fonts</b>"
-msgstr "<b>Typsnitt</b>"
-
-#: ../data/prefs.glade.h:3
 msgid "<b>General</b>"
 msgstr "<b>Allmänt</b>"
 
-#: ../data/prefs.glade.h:4
+#: ../data/prefs.glade.h:3
 msgid "<b>Keyboard compatibility</b>"
 msgstr "<b>Tangentbordskompatibilitet</b>"
 
-#: ../data/prefs.glade.h:5
+#: ../data/prefs.glade.h:4
 msgid "<b>Main Window height</b>"
 msgstr "<b>Höjd för huvudfönster</b>"
 
-#: ../data/prefs.glade.h:6
+#: ../data/prefs.glade.h:5
 msgid "<b>Main Window</b>"
 msgstr "<b>Huvudfönster</b>"
+
+#: ../data/prefs.glade.h:6
+msgid "<b>Palette</b>"
+msgstr "<b>Palett</b>"
 
 #: ../data/prefs.glade.h:7
 msgid "<b>Scroll</b>"
@@ -140,7 +124,11 @@ msgid "<b>Shell</b>"
 msgstr "<b>Skal</b>"
 
 #: ../data/prefs.glade.h:9
-msgid "<small><i><b>Note:</b> These options may cause some applications to behave incorrectly.  They are only here to allow you to work around certain applications and operating systems that expect different terminal behavior.</i></small>"
+msgid ""
+"<small><i><b>Note:</b> These options may cause some applications to behave "
+"incorrectly.  They are only here to allow you to work around certain "
+"applications and operating systems that expect different terminal "
+"behavior.</i></small>"
 msgstr "<small><i><b>Observera:</b> Dessa alternativ kan orsaka att vissa program uppträder på ett felaktigt sätt.  De finns endast här för att låta dig göra temporära lösningar för vissa program och operativsystem som förväntar ett annat terminalbeteende.</i></small>"
 
 #: ../data/prefs.glade.h:10
@@ -156,125 +144,138 @@ msgid ""
 "ASCII DEL\n"
 "Escape sequence\n"
 "Control-H"
-msgstr ""
-"ASCII DEL\n"
-"Escape-sekvens\n"
-"Control-H"
+msgstr "ASCII DEL\nEscape-sekvens\nControl-H"
 
 #: ../data/prefs.glade.h:15
 msgid "Appearance"
 msgstr "Utseende"
 
 #: ../data/prefs.glade.h:16
-msgid "Choose some color"
-msgstr "Välj en färg"
+msgid "Background color:"
+msgstr "Bakgrundsfärg:"
 
 #: ../data/prefs.glade.h:17
+msgid "Background image:"
+msgstr "Bakgrundsbild:"
+
+#: ../data/prefs.glade.h:18
+msgid "Built-in schemes:"
+msgstr "Inbyggda scheman:"
+
+#: ../data/prefs.glade.h:19
 msgid "Choose some font"
 msgstr "Välj ett typsnitt"
 
-#: ../data/prefs.glade.h:18
-msgid "Color:"
-msgstr "Färg:"
+#: ../data/prefs.glade.h:20
+msgid "Color palette:"
+msgstr "Färgpalett:"
 
-#: ../data/prefs.glade.h:19
+#: ../data/prefs.glade.h:21
 msgid "Compatibility"
 msgstr "Kompatibilitet"
 
-#: ../data/prefs.glade.h:20
+#: ../data/prefs.glade.h:22
 msgid "Default interpreter:"
 msgstr "Standardtolk:"
 
-#: ../data/prefs.glade.h:21
+#: ../data/prefs.glade.h:23
 msgid "Enable popup notifications on startup"
 msgstr "Aktivera popupnotifieringar vid uppstart"
 
-#: ../data/prefs.glade.h:22
-#: ../src/prefs.py:55
+#: ../data/prefs.glade.h:24
+msgid "Font:"
+msgstr "Typsnitt:"
+
+#: ../data/prefs.glade.h:25 ../src/prefs.py:55
 msgid "General"
 msgstr "Allmänt"
 
-#: ../data/prefs.glade.h:23
+#: ../data/prefs.glade.h:26
 msgid "Guake Preferences"
 msgstr "Inställningar för Guake"
 
-#: ../data/prefs.glade.h:24
+#: ../data/prefs.glade.h:27
 msgid "Hide on lose focus"
 msgstr "Dölj när fokus tappas"
 
-#: ../data/prefs.glade.h:25
-msgid "Image:"
-msgstr "Bild:"
-
-#: ../data/prefs.glade.h:26
+#: ../data/prefs.glade.h:28
 msgid "Keyboard shortcuts"
 msgstr "Tangentbordsgenvägar"
 
-#: ../data/prefs.glade.h:27
+#: ../data/prefs.glade.h:29
 msgid "On key stroke"
 msgstr "Vid tangenttryckning"
 
-#: ../data/prefs.glade.h:28
+#: ../data/prefs.glade.h:30
 msgid "On output"
 msgstr "Vid utdata"
 
-#: ../data/prefs.glade.h:29
+#: ../data/prefs.glade.h:31
 msgid "Prompt on quit"
 msgstr "Fråga vid avslut"
 
-#: ../data/prefs.glade.h:30
+#: ../data/prefs.glade.h:32
 msgid "Scrollback lines:"
 msgstr "Rader i rullningshistorik:"
 
-#: ../data/prefs.glade.h:31
+#: ../data/prefs.glade.h:33
 msgid "Scrolling"
 msgstr "Rullning"
 
-#: ../data/prefs.glade.h:32
+#: ../data/prefs.glade.h:34
 msgid "Show scrollbar"
 msgstr "Visa rullningslist"
 
-#: ../data/prefs.glade.h:33
+#: ../data/prefs.glade.h:35
 msgid "Show tab bar"
 msgstr "Visa flikrad"
 
-#: ../data/prefs.glade.h:34
+#: ../data/prefs.glade.h:36
 msgid "Show tray icon"
 msgstr "Visa aktivitetsikon"
 
-#: ../data/prefs.glade.h:35
+#: ../data/prefs.glade.h:37
 msgid "Stay on top"
 msgstr "Lägg överst"
 
-#: ../data/prefs.glade.h:36
-msgid "Style:"
-msgstr "Stil:"
+#: ../data/prefs.glade.h:38
+msgid ""
+"Tango\n"
+"Linux console\n"
+"XTerm\n"
+"Rxvt\n"
+"Custom\n"
+msgstr "Tango\nLinux-konsol\nXTerm\nRxvt\nAnpassad\n"
 
-#: ../data/prefs.glade.h:37
+#: ../data/prefs.glade.h:44
+msgid "Text color:"
+msgstr "Textfärg:"
+
+#: ../data/prefs.glade.h:45
 msgid "Transparency:"
 msgstr "Genomskinlighet:"
 
-#: ../data/prefs.glade.h:38
-msgid "Use system defaults"
-msgstr "Använd systemets standard"
+#: ../data/prefs.glade.h:46
+msgid "Use the system fixed width font"
+msgstr "Använd systemets typsnitt med fast bredd"
 
-#: ../data/prefs.glade.h:39
+#: ../data/prefs.glade.h:47
 msgid "_Backspace key generates:"
 msgstr "_Backspace-tangenten genererar:"
 
-#: ../data/prefs.glade.h:40
+#: ../data/prefs.glade.h:48
 msgid "_Delete key generates:"
 msgstr "_Delete-tangenten genererar:"
 
-#: ../data/prefs.glade.h:41
+#: ../data/prefs.glade.h:49
 msgid "_Open new tab in current directory"
 msgstr "_Öppna ny flik i aktuell katalog"
 
-#: ../data/prefs.glade.h:42
+#: ../data/prefs.glade.h:50
 msgid "_Reset Compatibility Options to Defaults"
 msgstr "Åt_erställ kompatibilitetsalternativ till standardvärden"
 
-#: ../data/prefs.glade.h:43
+#: ../data/prefs.glade.h:51
 msgid "_Run command as a login shell"
 msgstr "_Kör kommando som ett inloggningsskal"
 
@@ -291,90 +292,84 @@ msgstr "<b>Det finns fortfarande en process igång.</b>"
 msgid "<b>There are %d processes running.</b>"
 msgstr "<b>Det finns %d processer igång.</b>"
 
-#: ../src/guake.py:352
+#: ../src/guake.py:367
 msgid "key binding error"
 msgstr "tangentbindningsfel"
 
-#: ../src/guake.py:353
+#: ../src/guake.py:368
 #, python-format
 msgid "Unable to bind global <b>%s</b> key"
 msgstr "Kunde inte binda allmän <b>%s</b>-tangent"
 
-#: ../src/guake.py:515
+#: ../src/guake.py:530
 msgid "Guake Terminal"
 msgstr "Guake Terminal"
 
-#: ../src/guake.py:611
+#: ../src/guake.py:636
 #, python-format
 msgid ""
 "A problem happened when binding <b>%s</b> key.\n"
 "Please use Guake Preferences dialog to choose another key (The trayicon was enabled)"
-msgstr ""
-"Ett problem inträffade vid bindning av <b>%s</b>-tangenten.\n"
-"Använd inställningsdialogen i Guake för att välja en annan tangent (Aktivitetsikonen var aktiverad)"
+msgstr "Ett problem inträffade vid bindning av <b>%s</b>-tangenten.\nAnvänd inställningsdialogen i Guake för att välja en annan tangent (Aktivitetsikonen var aktiverad)"
 
-#: ../src/guake.py:622
+#: ../src/guake.py:647
 #, python-format
 msgid ""
 "Guake is now running,\n"
 "press <b>%s</b> to use it."
-msgstr ""
-"Guake är nu igång, tryck\n"
-"<b>%s</b> för att använda den."
+msgstr "Guake är nu igång, tryck\n<b>%s</b> för att använda den."
 
-#: ../src/guake.py:968
+#: ../src/guake.py:997
 msgid "Rename tab"
 msgstr "Byt namn på flik"
 
 #. Adding a new radio button to the tabbar
-#: ../src/guake.py:1078
+#: ../src/guake.py:1142
 #, python-format
 msgid "Terminal %s"
 msgstr "Terminal %s"
 
-#: ../src/guake.py:1188
+#: ../src/guake.py:1252
 msgid "Toggles the visibility of the terminal window"
 msgstr "Växlar synligheten för terminalfönstret"
 
-#: ../src/guake.py:1192
+#: ../src/guake.py:1256
 msgid "Shows Guake preference window"
 msgstr "Visar Guakes inställningsfönster"
 
-#: ../src/guake.py:1196
+#: ../src/guake.py:1260
 msgid "Shows Guake's about info"
 msgstr "Visar information om Guake"
 
-#: ../src/guake.py:1204
+#: ../src/guake.py:1268
 msgid "Select a tab"
 msgstr "Välj en flik"
 
-#: ../src/guake.py:1208
+#: ../src/guake.py:1272
 msgid "Return the selectd tab index."
 msgstr "Returnerar valt flikindex"
 
-#: ../src/guake.py:1212
+#: ../src/guake.py:1276
 msgid "Execute an arbitrary command in the selected tab."
 msgstr "Kör ett godtyckligt kommando i markerad flik."
 
-#: ../src/guake.py:1216
+#: ../src/guake.py:1280
 msgid "Rename the selected tab."
 msgstr "Byt namn på markerad flik."
 
-#: ../src/guake.py:1220
+#: ../src/guake.py:1284
 msgid "Says to Guake go away =("
 msgstr "Säger till Guake att försvinna =("
 
-#: ../src/guake.py:1285
+#: ../src/guake.py:1349
 msgid "Guake can not init!"
 msgstr "Guake kan inte initiera!"
 
-#: ../src/guake.py:1286
+#: ../src/guake.py:1350
 msgid ""
 "Gconf Error.\n"
 "Have you installed <b>guake.schemas</b> properlly?"
-msgstr ""
-"Fel i Gconf.\n"
-"Har du installerat <b>guake.schemas</b> korrekt?"
+msgstr "Fel i Gconf.\nHar du installerat <b>guake.schemas</b> korrekt?"
 
 #. string to show in prefereces dialog for user shell option
 #: ../src/prefs.py:42
@@ -429,31 +424,27 @@ msgstr "Kopiera text till urklipp"
 msgid "Paste text from clipboard"
 msgstr "Klistra in text från urklipp"
 
-#: ../src/prefs.py:271
+#: ../src/prefs.py:297
 msgid "Action"
 msgstr "Åtgärd"
 
-#: ../src/prefs.py:281
+#: ../src/prefs.py:307
 msgid "Shortcut"
 msgstr "Genväg"
 
-#: ../src/prefs.py:536
+#: ../src/prefs.py:605
 #, python-format
 msgid "The shortcut \"%s\" is already in use."
 msgstr "Genvägen \"%s\" används redan."
 
-#: ../src/prefs.py:537
+#: ../src/prefs.py:606
 msgid "Error setting keybinding."
 msgstr "Fel vid inställning av tangentbindning."
 
-#: ../src/prefs.py:549
+#: ../src/prefs.py:618
 #, python-format
 msgid ""
 "The shortcut \"%s\" cannot be used because it will become impossible to type using this key.\n"
 "\n"
 "Please try with a key such as Control, Alt or Shift at the same time.\n"
-msgstr ""
-"Genvägen \"%s\" kan inte användas därför att den blir omöjlig att ange med denna tangent.\n"
-"\n"
-"Prova med en tangent såsom Control, Alt eller Skift på samma gång.\n"
-
+msgstr "Genvägen \"%s\" kan inte användas därför att den blir omöjlig att ange med denna tangent.\n\nProva med en tangent såsom Control, Alt eller Skift på samma gång.\n"
