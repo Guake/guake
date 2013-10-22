@@ -1,21 +1,26 @@
 # Traduction française de Guake-terminal
-# Copyright (C) 2009 Pierre-Yves Chibon
-# This file is distributed under the same license as the guake package.
+# Copyright (C) Guake Translators
+# This file is distributed under the same license as the Guake package.
+#
+# Translators:
 # Pierre-Yves Chibon <pingou@pingoured.fr>, 2009.
 # Pablo Martin-Gomez <pablo.martin-gomez@laposte.net>, 2010
+# Thomas Canniot <mrtom@fedoraproject.org>, 2011
 # Sylvestre Ledru <sylvestre@debian.org>, 2012
-#
+# Benjamin Danon <benjamin@sphax3d.org>, 2012
 msgid ""
 msgstr ""
-"Project-Id-Version: guake 0.5.0\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-06-30 05:34+0000\n"
-"PO-Revision-Date: 2010-01-25 19:51+0100\n"
-"Last-Translator: Sylvestre Ledru <sylvestre@debian.org>\n"
-"Language-Team: Français <fedora-trans-fr@redhat.com>\n"
+"Project-Id-Version: Guake 0.4.5\n"
+"Report-Msgid-Bugs-To: http://guake.org/report\n"
+"POT-Creation-Date: 2010-11-26 07:17+0000\n"
+"PO-Revision-Date: 2012-03-14 10:20+0000\n"
+"Last-Translator: Benjamin Danon <benjamin@sphax3d.org>\n"
+"Language-Team: French (http://www.transifex.com/projects/p/guake/language/fr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Language: fr\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
 #: ../data/about.glade.h:1
 msgid "About Guake"
@@ -30,30 +35,19 @@ msgid ""
 "Nishio Futoshi <futoshi@momonga-linux.org> Japanese\n"
 "Pavel Alexeev <Pahan@Hubbitus.spb.su> Russian\n"
 "Piotr Drąg <piotrdrag@gmail.com> Polish"
-msgstr ""
-"Adolfo González Blázquez <code@infinicode.org> Spanish\r\n"
-"Lincoln de Sousa <lincoln@guake.org> Brazilian Portuguese\r\n"
-"Markus Majer <mm@mpathy.de> German\r\n"
-"Mieszko Ślusarczyk <mieszkoslusarczyk@gmail.com> Polish\r\n"
-"Nishio Futoshi <futoshi@momonga-linux.org> Japanese\r\n"
-"Pavel Alexeev <Pahan@Hubbitus.spb.su> Russian\r\n"
-"Piotr Drąg <piotrdrag@gmail.com> Polish"
+msgstr "Adolfo González Blázquez <code@infinicode.org> Spanish\r\nLincoln de Sousa <lincoln@guake.org> Brazilian Portuguese\r\nMarkus Majer <mm@mpathy.de> German\r\nMieszko Ślusarczyk <mieszkoslusarczyk@gmail.com> Polish\r\nNishio Futoshi <futoshi@momonga-linux.org> Japanese\r\nPavel Alexeev <Pahan@Hubbitus.spb.su> Russian\r\nPiotr Drąg <piotrdrag@gmail.com> Polish"
 
 #: ../data/about.glade.h:9
 msgid ""
 "Copyright 2007-2009 Lincoln de Sousa\n"
 "Copyright 2007 Gabriel Falc&#xE3;o"
-msgstr ""
-"Copyright 2007-2009 Lincoln de Sousa\n"
-"Copyright 2007 Gabriel Falc&#xE3;o"
+msgstr "Copyright 2007-2009 Lincoln de Sousa\nCopyright 2007 Gabriel Falc&#xE3;o"
 
 #: ../data/about.glade.h:11
 msgid ""
 "Guake is an easy to access\n"
 "terminal based on fps games terminal"
-msgstr ""
-"Guake est un terminal simple et facilement utilisable\n"
-"inspiré des terminaux disponibles dans les FPS (jeux)."
+msgstr "Guake est un terminal simple et facilement utilisable\nbasé sur les terminaux disponibles dans les jeux fps."
 
 #: ../data/about.glade.h:13
 msgid ""
@@ -62,12 +56,7 @@ msgid ""
 "Guake is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more details.\n"
 "\n"
 "You should have received a copy of the GNU General Public License along with Guake; if not, write to the Free Software Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301 USA\n"
-msgstr ""
-"Guake is free software; you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation; either version 2 of the License, or (at your option) any later version.\n"
-"\n"
-"Guake is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more details.\n"
-"\n"
-"You should have received a copy of the GNU General Public License along with Guake; if not, write to the Free Software Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301 USA\n"
+msgstr "Guake is free software; you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation; either version 2 of the License, or (at your option) any later version.\n\nGuake is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more details.\n\nYou should have received a copy of the GNU General Public License along with Guake; if not, write to the Free Software Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301 USA\n"
 
 #: ../data/about.glade.h:19
 msgid "http://guake.org"
@@ -138,8 +127,12 @@ msgid "<b>Shell</b>"
 msgstr "<b>Shell</b>"
 
 #: ../data/prefs.glade.h:9
-msgid "<small><i><b>Note:</b> These options may cause some applications to behave incorrectly.  They are only here to allow you to work around certain applications and operating systems that expect different terminal behavior.</i></small>"
-msgstr "<small><i><b>Note :</b> Ces options peuvent entrainer un comportement anormale. Elles ne sont disponibles ici que pour des cas spécifiques où certains logiciels ou système d'exploitation attendent un comportement différent du terminal.</i></small>"
+msgid ""
+"<small><i><b>Note:</b> These options may cause some applications to behave "
+"incorrectly.  They are only here to allow you to work around certain "
+"applications and operating systems that expect different terminal "
+"behavior.</i></small>"
+msgstr "<small><i><b>Note :</b> Ces options peuvent entrainer un comportement anormale. Elles ne sont disponible ici que pour des cas spécifiques où certains logiciels ou système d'exploitation attendent un comportement différent du terminal.</i></small>"
 
 #: ../data/prefs.glade.h:10
 msgid "<span color=\"black\">Customize behavior and appearance of Guake!</span>"
@@ -154,10 +147,7 @@ msgid ""
 "ASCII DEL\n"
 "Escape sequence\n"
 "Control-H"
-msgstr ""
-"ASCII DEL\n"
-"Séquence d'échap.\n"
-"Control-H"
+msgstr "ASCII DEL\nSéquence d'échap.\nControl-H"
 
 #: ../data/prefs.glade.h:15
 msgid "Appearance"
@@ -165,16 +155,15 @@ msgstr "Apparence"
 
 #: ../data/prefs.glade.h:16
 msgid "Background color:"
-msgstr "Couleur d'arrière-plan :"
+msgstr "Couleur d'arrière-plan "
 
 #: ../data/prefs.glade.h:17
 msgid "Background image:"
 msgstr "Image d'arrière-plan :"
 
 #: ../data/prefs.glade.h:18
-#, fuzzy
 msgid "Built-in schemes:"
-msgstr "Built-in schemes:"
+msgstr "Arrangements pré-définis :"
 
 #: ../data/prefs.glade.h:19
 msgid "Choose some font"
@@ -182,7 +171,7 @@ msgstr "Choisissez une police"
 
 #: ../data/prefs.glade.h:20
 msgid "Color palette:"
-msgstr "Palette de couleurs :"
+msgstr "Palette de couleurs :"
 
 #: ../data/prefs.glade.h:21
 msgid "Compatibility"
@@ -190,7 +179,7 @@ msgstr "Compatibilité"
 
 #: ../data/prefs.glade.h:22
 msgid "Default interpreter:"
-msgstr "Interpréteur par défaut :"
+msgstr "Interpréteur par défaut :"
 
 #: ../data/prefs.glade.h:23
 msgid "Enable popup notifications on startup"
@@ -198,7 +187,7 @@ msgstr "Activer la notification par pop-up au démarrage"
 
 #: ../data/prefs.glade.h:24
 msgid "Font:"
-msgstr "Police de caractères :"
+msgstr "Police de caractères :"
 
 #: ../data/prefs.glade.h:25 ../src/prefs.py:55
 msgid "General"
@@ -230,7 +219,7 @@ msgstr "Confirmer pour quitter"
 
 #: ../data/prefs.glade.h:32
 msgid "Scrollback lines:"
-msgstr "Nombre de lignes en mémoire :"
+msgstr "Nombres de lignes en mémoire :"
 
 #: ../data/prefs.glade.h:33
 msgid "Scrolling"
@@ -259,12 +248,7 @@ msgid ""
 "XTerm\n"
 "Rxvt\n"
 "Custom\n"
-msgstr ""
-"Tango\n"
-"Console Linux\n"
-"XTerm\n"
-"Rxvt\n"
-"Personnalisé\n"
+msgstr "Tango\nConsole Linux\nXTerm\nRxvt\nPersonnalisé\n"
 
 #: ../data/prefs.glade.h:44
 msgid "Text color:"
@@ -280,15 +264,15 @@ msgstr "Utiliser la taille de police définie par le système"
 
 #: ../data/prefs.glade.h:47
 msgid "_Backspace key generates:"
-msgstr "La touche _Retour correspond à :"
+msgstr "La touche _Retour correspond à :"
 
 #: ../data/prefs.glade.h:48
 msgid "_Delete key generates:"
-msgstr "La touche _Suppr correspond à :"
+msgstr "La touche _Suppr correspond  à :"
 
 #: ../data/prefs.glade.h:49
 msgid "_Open new tab in current directory"
-msgstr "_Ouvrir un nouvel onglet dans le dossier courrant"
+msgstr "_Ouvrir un nouvel onglet dans le dossier courant"
 
 #: ../data/prefs.glade.h:50
 msgid "_Reset Compatibility Options to Defaults"
@@ -300,7 +284,7 @@ msgstr "_Exécuter les commandes comme shell de connexion"
 
 #: ../src/guake.py:67
 msgid "Do you really want to quit Guake!?"
-msgstr "Voulez-vous vraiment quitter Guake !?"
+msgstr "Voulez-vous vraiment quitter Guake !?"
 
 #: ../src/guake.py:70
 msgid "<b>There is one process still running.</b>"
@@ -309,7 +293,7 @@ msgstr "<b>Il y a encore un processus en cours.</b>"
 #: ../src/guake.py:74
 #, python-format
 msgid "<b>There are %d processes running.</b>"
-msgstr "<b>Il y a %d processus en cours d'execution.</b>"
+msgstr "<b>Il y a %d processus en cours.</b>"
 
 #: ../src/guake.py:367
 msgid "key binding error"
@@ -329,18 +313,14 @@ msgstr "Terminal Guake"
 msgid ""
 "A problem happened when binding <b>%s</b> key.\n"
 "Please use Guake Preferences dialog to choose another key (The trayicon was enabled)"
-msgstr ""
-"Un problème est survenu lors de la liaison avec la touche <b>%s</b>.\n"
-"Merci d'utiliser la fenêtre de préférences de Guake pour choisir une autre touche (icône de notification activée)"
+msgstr "Un problème est survenu lors de la liaison avec la touche <b>%s</b>.\nMerci d'utiliser la fenêtre de préférences de Guake pour choisir une autre touche (icône de notification activée)"
 
 #: ../src/guake.py:647
 #, python-format
 msgid ""
 "Guake is now running,\n"
 "press <b>%s</b> to use it."
-msgstr ""
-"Guake est en cours de fonctionnement,\n"
-"appuyer sur <b>%s</b> pour l'utiliser."
+msgstr "Guake est en cours de fonctionnement,\nappuyer sur <b>%s</b> pour l'utiliser."
 
 #: ../src/guake.py:997
 msgid "Rename tab"
@@ -386,15 +366,13 @@ msgstr "Dis au-revoir à Guake =("
 
 #: ../src/guake.py:1349
 msgid "Guake can not init!"
-msgstr "Guake ne peut pas démarrer !"
+msgstr "Guake ne peux démarrer"
 
 #: ../src/guake.py:1350
 msgid ""
 "Gconf Error.\n"
 "Have you installed <b>guake.schemas</b> properlly?"
-msgstr ""
-"Erreur Gconf.\n"
-"Avez-vous installé <b>guake.schemas</b> correctement ?"
+msgstr "Erreur Gconf.\nAvez-vous installé <b>guake.schemas</b> correctement ?"
 
 #. string to show in prefereces dialog for user shell option
 #: ../src/prefs.py:42
@@ -460,11 +438,11 @@ msgstr "Raccourcis"
 #: ../src/prefs.py:605
 #, python-format
 msgid "The shortcut \"%s\" is already in use."
-msgstr "Le raccourci « %s » est déjà utilisé."
+msgstr "Le raccourcis « %s » est déjà utilisé."
 
 #: ../src/prefs.py:606
 msgid "Error setting keybinding."
-msgstr "Erreur de configuration des raccourcis."
+msgstr "Erreur d'attribution des raccourcis."
 
 #: ../src/prefs.py:618
 #, python-format
@@ -472,7 +450,4 @@ msgid ""
 "The shortcut \"%s\" cannot be used because it will become impossible to type using this key.\n"
 "\n"
 "Please try with a key such as Control, Alt or Shift at the same time.\n"
-msgstr ""
-"Le raccourcis « %s » ne peux être utilisé car il empêche une utilisation normale du clavier.\n"
-"\n"
-"Essayez de l'utiliser en combinaison avec une touche tel que Control, Alt ou Shift.\n"
+msgstr "Le raccourcis « %s » ne peux être utilisé car il empêche une utilisation normale du clavier.\n\nEssayez de l'utiliser en combinaison avec une touche tel que Control, Alt ou Shift.\n"

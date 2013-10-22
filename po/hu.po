@@ -1,21 +1,24 @@
-# Tradução do Guake-terminal
-# Copyright (C) 2007 Gabriel Falcão <gabrielteratos@gmail.com>
-# Copyright (C) 2007 Lincoln de Sousa <lincoln@archlinux-br.org>
-# This file is distributed under the same license as the guake package.
+# Translation of Guake to Hungarian
+# Copyright (C) 2013 Guake Translators
+# This file is distributed under the same license as the Guake package.
+# 
+# Translators:
 # Dávid Horváth <chronos.hun@gmail.com>,2009
-#
-#
+# Péter Trombitás <trombipeti@gmail.com>, 2012
+
 msgid ""
 msgstr ""
-"Project-Id-Version: guake 0.2.2\n"
-"Report-Msgid-Bugs-To: guake@lists.guake.org\n"
-"POT-Creation-Date: 2009-04-12 20:24-0300\n"
-"PO-Revision-Date: 2009-09-26 19:15+0100\n"
-"Last-Translator: Dávid Horváth <chronos.hun@gmail.com>\n"
-"Language-Team: guake@lists.guake.org\n"
+"Project-Id-Version: Guake 0.4.5\n"
+"Report-Msgid-Bugs-To: http://guake.org/report\n"
+"POT-Creation-Date: 2010-11-26 07:17+0000\n"
+"PO-Revision-Date: 2012-06-12 20:33+0000\n"
+"Last-Translator: Péter Trombitás <trombipeti@gmail.com>\n"
+"Language-Team: Hungarian (http://www.transifex.com/projects/p/guake/language/hu/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Language: hu\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #: ../data/about.glade.h:1
 msgid "About Guake"
@@ -24,38 +27,25 @@ msgstr "Guake-ről"
 #: ../data/about.glade.h:2
 msgid ""
 "Adolfo González Blázquez <code@infinicode.org> Spanish\n"
-"Lincoln de Sousa <lincoln@guake-terminal.org> Brazilian Portuguese\n"
+"Lincoln de Sousa <lincoln@guake.org> Brazilian Portuguese\n"
 "Markus Majer <mm@mpathy.de> German\n"
 "Mieszko Ślusarczyk <mieszkoslusarczyk@gmail.com> Polish\n"
 "Nishio Futoshi <futoshi@momonga-linux.org> Japanese\n"
 "Pavel Alexeev <Pahan@Hubbitus.spb.su> Russian\n"
 "Piotr Drąg <piotrdrag@gmail.com> Polish"
-msgstr ""
-"Adolfo González Blázquez <code@infinicode.org> Spanish\n"
-"Lincoln de Sousa <lincoln@guake-terminal.org> Brazilian Portuguese\n"
-"Markus Majer <mm@mpathy.de> German\n"
-"Arne Schröder <arne.c.schroeder@googlemail.com> German\n"
-"Mieszko Ślusarczyk <mieszkoslusarczyk@gmail.com> Polish\n"
-"Nishio Futoshi <futoshi@momonga-linux.org> Japanese\n"
-"Pavel Alexeev <Pahan@Hubbitus.spb.su> Russian\n"
-"Piotr Drąg <piotrdrag@gmail.com> Polish\n"
-"Dávid Horváth <chronos.hun@gmail.com> Hungarian"
+msgstr "Adolfo González Blázquez <code@infinicode.org> Spanyol\nLincoln de Sousa <lincoln@guake.org> Portugál (Brazília)\nMarkus Majer <mm@mpathy.de> Német\nMieszko Ślusarczyk <mieszkoslusarczyk@gmail.com> Lengyel\nPiotr Drąg <piotrdrag@gmail.com> Lengyek\nNishio Futoshi <futoshi@momonga-linux.org> Japán\nPavel Alexeev <Pahan@Hubbitus.spb.su> Orosz\nTrombitás Péter <trombipeti@gmail.com> Magyar"
 
 #: ../data/about.glade.h:9
 msgid ""
 "Copyright 2007-2009 Lincoln de Sousa\n"
 "Copyright 2007 Gabriel Falc&#xE3;o"
-msgstr ""
-"Copyright 2007-2008 Lincoln de Sousa\n"
-"Copyright 2007 Gabriel Falc&#xE3;o"
+msgstr "Copyright 2007-2008 Lincoln de Sousa\nCopyright 2007 Gabriel Falc&#xE3;o"
 
 #: ../data/about.glade.h:11
 msgid ""
 "Guake is an easy to access\n"
 "terminal based on fps games terminal"
-msgstr ""
-"Guake egy könnyen hozzáférhető\n"
-" FPS játékokban megszokott terminál"
+msgstr "Guake egy könnyen hozzáférhető\n FPS játékokban megszokott terminál"
 
 #: ../data/about.glade.h:13
 msgid ""
@@ -64,15 +54,13 @@ msgid ""
 "Guake is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more details.\n"
 "\n"
 "You should have received a copy of the GNU General Public License along with Guake; if not, write to the Free Software Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301 USA\n"
-msgstr ""
-"Guake\n"
-"Ez a program szabad szoftver; terjeszthető illetve módosítható a  Free Software Foundation által kiadott GNU General Public License dokumentumában leírtak; akár a licenc 2-es, akár (tetszőleges) későbbi  változata szerint. Ez a program abban a reményben kerül közreadásra, hogy hasznos lesz,  de minden egyéb GARANCIA NÉLKÜL, az ELADHATÓSÁGRA vagy VALAMELY CÉLRA  VALÓ ALKALMAZHATÓSÁGRA való származtatott garanciát is beleértve.  További részleteket a GNU General Public License tartalmaz. A felhasználónak a programmal együtt meg kell kapnia a GNU General  Public License egy példányát; ha mégsem kapta meg, akkor ezt a Free Software Foundationnak küldött levélben jelezze  (cím: Free Software Foundation Inc., 59 Temple Place, Suite 330,  Boston, MA 02111-1307, USA.)\n"
+msgstr "Guake\nEz a program szabad szoftver; terjeszthető illetve módosítható a  Free Software Foundation által kiadott GNU General Public License dokumentumában leírtak; akár a licenc 2-es, akár (tetszőleges) későbbi  változata szerint. Ez a program abban a reményben kerül közreadásra, hogy hasznos lesz,  de minden egyéb GARANCIA NÉLKÜL, az ELADHATÓSÁGRA vagy VALAMELY CÉLRA  VALÓ ALKALMAZHATÓSÁGRA való származtatott garanciát is beleértve.  További részleteket a GNU General Public License tartalmaz. A felhasználónak a programmal együtt meg kell kapnia a GNU General  Public License egy példányát; ha mégsem kapta meg, akkor ezt a Free Software Foundationnak küldött levélben jelezze  (cím: Free Software Foundation Inc., 59 Temple Place, Suite 330,  Boston, MA 02111-1307, USA.)\n"
 
 #: ../data/about.glade.h:19
-msgid "http://guake-terminal.org"
-msgstr "http://guake-terminal.org"
+msgid "http://guake.org"
+msgstr "http://guake.org"
 
-#: ../data/guake.glade.h:1
+#: ../data/guake.glade.h:1 ../src/guake.py:1264
 msgid "Add a new tab"
 msgstr "Új lap hozzáadása"
 
@@ -88,9 +76,7 @@ msgstr "Lap bezárása"
 msgid "Copy"
 msgstr "Másol"
 
-#: ../data/guake.glade.h:5
-#: ../src/guake.py:572
-#: ../src/guake.py:583
+#: ../data/guake.glade.h:5 ../src/guake.py:635 ../src/guake.py:646
 msgid "Guake!"
 msgstr "Guake!"
 
@@ -98,8 +84,7 @@ msgstr "Guake!"
 msgid "Paste"
 msgstr "Beilleszt"
 
-#: ../data/guake.glade.h:7
-#: ../src/prefs.py:61
+#: ../data/guake.glade.h:7 ../src/prefs.py:61
 msgid "Quit"
 msgstr "Kilépés"
 
@@ -108,28 +93,28 @@ msgid "Rename"
 msgstr "Átnevez"
 
 #: ../data/prefs.glade.h:1
-msgid "<b>Background</b>"
-msgstr "<b>Háttér</b>"
+msgid "<b>Effects</b>"
+msgstr "<b>Effektek</b>"
 
 #: ../data/prefs.glade.h:2
-msgid "<b>Fonts</b>"
-msgstr "<b>Betűtípus</b>"
-
-#: ../data/prefs.glade.h:3
 msgid "<b>General</b>"
 msgstr "<b>Általános</b>"
 
-#: ../data/prefs.glade.h:4
+#: ../data/prefs.glade.h:3
 msgid "<b>Keyboard compatibility</b>"
 msgstr "<b>Billentyűkiosztás kompatibilitása </b>"
 
-#: ../data/prefs.glade.h:5
-msgid "<b>Main Window size</b>"
-msgstr "<b>Fő ablak mérete</b>"
+#: ../data/prefs.glade.h:4
+msgid "<b>Main Window height</b>"
+msgstr "<b>Főablak magassága</b>"
 
-#: ../data/prefs.glade.h:6
+#: ../data/prefs.glade.h:5
 msgid "<b>Main Window</b>"
 msgstr "<b>Fő ablak</b>"
+
+#: ../data/prefs.glade.h:6
+msgid "<b>Palette</b>"
+msgstr "<b>Paletta</b>"
 
 #: ../data/prefs.glade.h:7
 msgid "<b>Scroll</b>"
@@ -140,7 +125,11 @@ msgid "<b>Shell</b>"
 msgstr "<b>Héj (shell)</b>"
 
 #: ../data/prefs.glade.h:9
-msgid "<small><i><b>Note:</b> These options may cause some applications to behave incorrectly.  They are only here to allow you to work around certain applications and operating systems that expect different terminal behavior.</i></small>"
+msgid ""
+"<small><i><b>Note:</b> These options may cause some applications to behave "
+"incorrectly.  They are only here to allow you to work around certain "
+"applications and operating systems that expect different terminal "
+"behavior.</i></small>"
 msgstr "<small><i><b>Megjegyzés:</b> Ezek a beállítások hatással lehetnek más programokra, melyek nem biztos hogy helyesen fognak működni. Ezek csak a finomhangolás jellegük miatt maradtak itt.</i></small>"
 
 #: ../data/prefs.glade.h:10
@@ -156,192 +145,232 @@ msgid ""
 "ASCII DEL\n"
 "Escape sequence\n"
 "Control-H"
-msgstr ""
-"ASCII DEL\n"
-"Escape szekvencia\n"
-"Control-H"
+msgstr "ASCII DEL\nEscape szekvencia\nControl-H"
 
 #: ../data/prefs.glade.h:15
 msgid "Appearance"
 msgstr "Megjelenés"
 
 #: ../data/prefs.glade.h:16
-msgid "Choose some color"
-msgstr "Szín kiválasztása"
+msgid "Background color:"
+msgstr "Háttérszín:"
 
 #: ../data/prefs.glade.h:17
+msgid "Background image:"
+msgstr "Háttérkép:"
+
+#: ../data/prefs.glade.h:18
+msgid "Built-in schemes:"
+msgstr "Beépített sémák:"
+
+#: ../data/prefs.glade.h:19
 msgid "Choose some font"
 msgstr "Betűtípus kiválasztása"
 
-#: ../data/prefs.glade.h:18
-msgid "Color:"
-msgstr "Szín:"
+#: ../data/prefs.glade.h:20
+msgid "Color palette:"
+msgstr "Színpaletta:"
 
-#: ../data/prefs.glade.h:19
+#: ../data/prefs.glade.h:21
 msgid "Compatibility"
 msgstr "Egyéb"
 
-#: ../data/prefs.glade.h:20
+#: ../data/prefs.glade.h:22
 msgid "Default interpreter:"
 msgstr "Alapértelmezett héj:"
 
-#: ../data/prefs.glade.h:21
+#: ../data/prefs.glade.h:23
 msgid "Enable popup notifications on startup"
 msgstr "Felugró üzenetek engedélyezése induláskor"
 
-#: ../data/prefs.glade.h:22
-#: ../src/prefs.py:55
+#: ../data/prefs.glade.h:24
+msgid "Font:"
+msgstr "Betűtípus:"
+
+#: ../data/prefs.glade.h:25 ../src/prefs.py:55
 msgid "General"
 msgstr "Általános"
 
-#: ../data/prefs.glade.h:23
+#: ../data/prefs.glade.h:26
 msgid "Guake Preferences"
 msgstr "Guake beállítások"
 
-#: ../data/prefs.glade.h:24
+#: ../data/prefs.glade.h:27
 msgid "Hide on lose focus"
 msgstr "Fókusz elvesztésekor elrejtés"
 
-#: ../data/prefs.glade.h:25
-msgid "Image:"
-msgstr "Kép:"
-
-#: ../data/prefs.glade.h:26
+#: ../data/prefs.glade.h:28
 msgid "Keyboard shortcuts"
 msgstr "Gyorsbillentyűk"
 
-#: ../data/prefs.glade.h:27
+#: ../data/prefs.glade.h:29
 msgid "On key stroke"
 msgstr "Billentyűkombináció lenyomásakor"
 
-#: ../data/prefs.glade.h:28
+#: ../data/prefs.glade.h:30
 msgid "On output"
 msgstr "Kimenetnél"
 
-#: ../data/prefs.glade.h:29
+#: ../data/prefs.glade.h:31
+msgid "Prompt on quit"
+msgstr "Figyelmeztetés kilépéskor"
+
+#: ../data/prefs.glade.h:32
 msgid "Scrollback lines:"
 msgstr "Sor megtartása:"
 
-#: ../data/prefs.glade.h:30
+#: ../data/prefs.glade.h:33
 msgid "Scrolling"
 msgstr "Görgetés"
 
-#: ../data/prefs.glade.h:31
+#: ../data/prefs.glade.h:34
 msgid "Show scrollbar"
 msgstr "Görgetősáv mutatása"
 
-#: ../data/prefs.glade.h:32
+#: ../data/prefs.glade.h:35
 msgid "Show tab bar"
 msgstr "Lapok mutatása"
 
-#: ../data/prefs.glade.h:33
+#: ../data/prefs.glade.h:36
 msgid "Show tray icon"
 msgstr "Tálca ikon mutatása"
 
-#: ../data/prefs.glade.h:34
+#: ../data/prefs.glade.h:37
 msgid "Stay on top"
 msgstr "Mindíg felül"
 
-#: ../data/prefs.glade.h:35
-msgid "Style:"
-msgstr "Stílus:"
+#: ../data/prefs.glade.h:38
+msgid ""
+"Tango\n"
+"Linux console\n"
+"XTerm\n"
+"Rxvt\n"
+"Custom\n"
+msgstr "Tango\nLinux konzol\nXTerm\nRxvt\nEgyéni\n"
 
-#: ../data/prefs.glade.h:36
+#: ../data/prefs.glade.h:44
+msgid "Text color:"
+msgstr "Szövegszín:"
+
+#: ../data/prefs.glade.h:45
 msgid "Transparency:"
 msgstr "Átlátszóság:"
 
-#: ../data/prefs.glade.h:37
-msgid "Use system defaults"
-msgstr "Rendszerbeállítások használata"
+#: ../data/prefs.glade.h:46
+msgid "Use the system fixed width font"
+msgstr "A rendszer rögzített szélességű betűtípusának használata"
 
-#: ../data/prefs.glade.h:38
+#: ../data/prefs.glade.h:47
 msgid "_Backspace key generates:"
 msgstr "_Backspace működése:"
 
-#: ../data/prefs.glade.h:39
+#: ../data/prefs.glade.h:48
 msgid "_Delete key generates:"
 msgstr "_Delete működése:"
 
-#: ../data/prefs.glade.h:40
+#: ../data/prefs.glade.h:49
+msgid "_Open new tab in current directory"
+msgstr "Új lap megnyitása a _jelenlegi könyvtárban"
+
+#: ../data/prefs.glade.h:50
 msgid "_Reset Compatibility Options to Defaults"
 msgstr "_Kompatibilitási beállítások visszaállítása "
 
-#: ../data/prefs.glade.h:41
+#: ../data/prefs.glade.h:51
 msgid "_Run command as a login shell"
 msgstr "_Parancs futtatása bejelentkező héjban (login shell)"
 
-#: ../src/dbusiface.py:63
-msgid "Could not connect to dbus session bus. dbus will be unavailable.\n"
-msgstr "Nem tudtam dbus-hoz csatlakozni. dbus nem elérhető.\n"
+#: ../src/guake.py:67
+msgid "Do you really want to quit Guake!?"
+msgstr "Biztosan kilép a Guake-ből!?"
 
-#: ../src/guake.py:317
+#: ../src/guake.py:70
+msgid "<b>There is one process still running.</b>"
+msgstr "<b>Egy folyamat még fut.</b>"
+
+#: ../src/guake.py:74
+#, python-format
+msgid "<b>There are %d processes running.</b>"
+msgstr "<b>%d folyamat még fut.</b>"
+
+#: ../src/guake.py:367
 msgid "key binding error"
 msgstr "Hiba történt a billentyűkombináció hozzárendelésekor"
 
-#: ../src/guake.py:318
+#: ../src/guake.py:368
 #, python-format
 msgid "Unable to bind global <b>%s</b> key"
 msgstr "Globális billentyűkombináció hozzárendelése meghiúsult:<b>%s</b>."
 
-#: ../src/guake.py:480
-msgid "Guake-Terminal"
-msgstr "Guake-Terminál"
+#: ../src/guake.py:530
+msgid "Guake Terminal"
+msgstr "Guake Terminál"
 
-#: ../src/guake.py:573
+#: ../src/guake.py:636
 #, python-format
 msgid ""
 "A problem happened when binding <b>%s</b> key.\n"
 "Please use Guake Preferences dialog to choose another key (The trayicon was enabled)"
-msgstr ""
-"Hiba történt a <b>%s</b> billentyűkombináció hozzárendelésekor.\n"
-"Kérlek állíts be egy másikat a Guake beállítások panelen."
+msgstr "Hiba történt a <b>%s</b> billentyűkombináció hozzárendelésekor.\nKérlek állíts be egy másikat a Guake beállítások panelen."
 
-#: ../src/guake.py:584
+#: ../src/guake.py:647
 #, python-format
 msgid ""
-"Guake is already running,\n"
+"Guake is now running,\n"
 "press <b>%s</b> to use it."
-msgstr ""
-"A Guake már fut.\n"
-"Nyomd meg a <b>%s</b>-t, és előbújik."
+msgstr "A Guake fut,\na használathoz nyomja meg a(z) <b>%s</b> gombot."
 
-#: ../src/guake.py:854
+#: ../src/guake.py:997
 msgid "Rename tab"
 msgstr "Lap átnevezése"
 
 #. Adding a new radio button to the tabbar
-#: ../src/guake.py:942
+#: ../src/guake.py:1142
 #, python-format
 msgid "Terminal %s"
 msgstr "Terminál %s"
 
-#: ../src/guake.py:1027
+#: ../src/guake.py:1252
 msgid "Toggles the visibility of the terminal window"
 msgstr "Guake láthatóságának váltása"
 
-#: ../src/guake.py:1031
+#: ../src/guake.py:1256
 msgid "Shows Guake preference window"
 msgstr "Guake beállításainak mutatása"
 
-#: ../src/guake.py:1035
+#: ../src/guake.py:1260
 msgid "Shows Guake's about info"
 msgstr "Guake-ről"
 
-#: ../src/guake.py:1039
+#: ../src/guake.py:1268
+msgid "Select a tab"
+msgstr "Lap kiválasztása"
+
+#: ../src/guake.py:1272
+msgid "Return the selectd tab index."
+msgstr "A kiválasztott lap indexének visszaadása."
+
+#: ../src/guake.py:1276
+msgid "Execute an arbitrary command in the selected tab."
+msgstr "Egyéni parancs végrehajtása a kiválasztott lapon"
+
+#: ../src/guake.py:1280
+msgid "Rename the selected tab."
+msgstr "A kiválasztott lap átnevezése."
+
+#: ../src/guake.py:1284
 msgid "Says to Guake go away =("
 msgstr "Elbúcsúzás Guake-től =("
 
-#: ../src/guake.py:1076
+#: ../src/guake.py:1349
 msgid "Guake can not init!"
 msgstr "Guake nem tud elindulni!"
 
-#: ../src/guake.py:1077
+#: ../src/guake.py:1350
 msgid ""
 "Gconf Error.\n"
 "Have you installed <b>guake.schemas</b> properlly?"
-msgstr ""
-"Gconf hiba.\n"
-"Helyesen installáltad a <b>guake.schemas</b>-kat?"
+msgstr "Gconf hiba.\nHelyesen installáltad a <b>guake.schemas</b>-kat?"
 
 #. string to show in prefereces dialog for user shell option
 #: ../src/prefs.py:42
@@ -396,60 +425,27 @@ msgstr "Másolás vágólapra"
 msgid "Paste text from clipboard"
 msgstr "Beillesztés vágólapról"
 
-#: ../src/prefs.py:260
+#: ../src/prefs.py:297
 msgid "Action"
 msgstr "Művelet"
 
-#: ../src/prefs.py:270
+#: ../src/prefs.py:307
 msgid "Shortcut"
 msgstr "Gyorsbillentyű"
 
-#: ../src/prefs.py:525
+#: ../src/prefs.py:605
 #, python-format
 msgid "The shortcut \"%s\" is already in use."
 msgstr "A \"%s\" gyorsbillentyű már használatban van."
 
-#: ../src/prefs.py:526
+#: ../src/prefs.py:606
 msgid "Error setting keybinding."
 msgstr "Hiba a billentyűkiosztás alkalmazásával"
 
-#: ../src/prefs.py:538
+#: ../src/prefs.py:618
 #, python-format
 msgid ""
 "The shortcut \"%s\" cannot be used because it will become impossible to type using this key.\n"
 "\n"
 "Please try with a key such as Control, Alt or Shift at the same time.\n"
-msgstr ""
-"A gyorsbillentyű \"%s\" nem használható, ellehetetlenítené a gépelést. \n"
-"\n"
-"Kérlek használj általános billentyűket mint a Control, Alt vagy Shift egyszerre.\n"
-
-#: ../src/common.py:91
-msgid "Program not found in path"
-msgstr "Alkalmazás nem található az elérési útvonalon"
-
-#: ../src/common.py:92
-msgid "You don't have any available program to interpret this uri. To solve this problem just install gnome-open or xdg-open and try again."
-msgstr "Ehhez az URI-hez nincs program társítva. Megoldásként installáld a gnome-open vagy xdg-open programokat, és próbáld ismét."
-
-#~ msgid "<b>Window behavior</b>"
-#~ msgstr "<b>Fensterverhalten</b>"
-#~ msgid "Desaturation:"
-#~ msgstr "Verblassen:"
-#~ msgid "Style"
-#~ msgstr "Stil"
-#~ msgid "Global hotkeys"
-#~ msgstr "Globale Kürzel"
-#~ msgid "Local hotkeys"
-#~ msgstr "Lokale Kürzel"
-#~ msgid "<b>Tab position</b>"
-#~ msgstr "<b>Posición de las pestañas</b>"
-#~ msgid "Bottom"
-#~ msgstr "Abajo"
-#~ msgid "Top"
-#~ msgstr "Arriba"
-#~ msgid "New Tab"
-#~ msgstr "Nueva pestaña"
-#~ msgid "<b><big>Guake Properties</big></b>"
-#~ msgstr "<b><big>Preferencias de Guake</big></b>"
-
+msgstr "A gyorsbillentyű \"%s\" nem használható, ellehetetlenítené a gépelést. \n\nKérlek használj általános billentyűket mint a Control, Alt vagy Shift egyszerre.\n"

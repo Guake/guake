@@ -16,10 +16,11 @@ General Public License for more details.
 
 You should have received a copy of the GNU General Public
 License along with this program; if not, write to the
-Free Software Foundation, Inc., 59 Temple Place - Suite 330,
-Boston, MA 02111-1307, USA.
+Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor,
+Boston, MA 02110-1301 USA
 """
 from __future__ import absolute_import
+from __future__ import division
 
 import pygtk
 import gobject
@@ -29,7 +30,6 @@ gobject.threads_init()
 import gtk
 import vte
 from pango import FontDescription
-import pynotify
 import gconf
 import dbus
 from xdg.DesktopEntry import DesktopEntry
@@ -45,16 +45,15 @@ from urllib import url2pathname
 from urlparse import urlsplit
 
 import guake.globalhotkeys
+import guake.notifier
 from guake.simplegladeapp import SimpleGladeApp, bindtextdomain
 from guake.prefs import PrefsDialog, LKEY, GKEY
 from guake.dbusiface import DbusManager, DBUS_NAME, DBUS_PATH
 from guake.common import test_gconf, pixmapfile, gladefile, ShowableError, _
-from guake.common import shell_quote
+from guake.common import shell_quote, clamp
 from guake.globals import NAME, VERSION, LOCALE_DIR, KEY, GCONF_PATH, \
     TERMINAL_MATCH_EXPRS, TERMINAL_MATCH_TAGS, \
     ALIGN_LEFT, ALIGN_RIGHT, ALIGN_CENTER
-
-pynotify.init('Guake!')
 
 GNOME_FONT_PATH = '/desktop/gnome/interface/monospace_font_name'
 
@@ -363,7 +362,7 @@ class GConfKeyHandler(object):
 
         keys = ['toggle_fullscreen', 'new_tab', 'close_tab', 'rename_tab',
                 'previous_tab', 'next_tab', 'clipboard_copy', 'clipboard_paste',
-                'quit',
+                'quit', 'zoom_in', 'zoom_out'
                 ]
         for key in keys:
             notify_add(LKEY(key), self.reload_accelerators)
@@ -443,15 +442,33 @@ class GConfKeyHandler(object):
             self.accel_group.connect_group(key, mask, gtk.ACCEL_VISIBLE,
                                            self.guake.accel_toggle_fullscreen)
 
+        key, mask = gtk.accelerator_parse(gets('zoom_in'))
+        if key > 0:
+            self.accel_group.connect_group(key, mask, gtk.ACCEL_VISIBLE,
+                                           self.guake.accel_zoom_in)
+
+        key, mask = gtk.accelerator_parse(gets('zoom_in_alt'))
+        if key > 0:
+            self.accel_group.connect_group(key, mask, gtk.ACCEL_VISIBLE,
+                                           self.guake.accel_zoom_in)
+
+        key, mask = gtk.accelerator_parse(gets('zoom_out'))
+        if key > 0:
+            self.accel_group.connect_group(key, mask, gtk.ACCEL_VISIBLE,
+                                           self.guake.accel_zoom_out)
+
+
 class GuakeTerminal(vte.Terminal):
     """Just a vte.Terminal with some properties already set.
     """
+
     def __init__(self):
         super(GuakeTerminal, self).__init__()
         self.configure_terminal()
         self.add_matches()
         self.connect('button-press-event', self.button_press)
         self.matched_value = ''
+        self.font_scale_index = 0
 
     def configure_terminal(self):
         """Sets all customized properties on the terminal
@@ -502,6 +519,36 @@ class GuakeTerminal(vte.Terminal):
                          gtk.gdk.x11_get_server_time(self.window))
         elif event.button == 3 and matched_string:
             self.matched_value = matched_string[0]
+
+    def set_font(self, font):
+        self.font = font
+        self.set_font_scale_index(0)
+
+    def set_font_scale_index(self, scale_index):
+        self.font_scale_index = clamp(scale_index, -6, 12)
+
+        font = FontDescription(self.font.to_string())
+        scale_factor = 2 ** (self.font_scale_index / 6)
+        new_size = int(scale_factor * font.get_size())
+
+        if font.get_size_is_absolute():
+            font.set_absolute_size(new_size)
+        else:
+            font.set_size(new_size)
+
+        super(GuakeTerminal, self).set_font(font)
+
+    font_scale = property(
+        fset=set_font_scale_index,
+        fget=lambda self: self.font_scale_index
+    )
+
+    def increase_font_size(self):
+        self.font_scale += 1
+
+    def decrease_font_size(self):
+        self.font_scale -= 1
+
 
 class GuakeTerminalBox(gtk.HBox):
     """A box to group the terminal and a scrollbar.
@@ -643,7 +690,7 @@ class Guake(SimpleGladeApp):
              self.fullscreen()
 
         if not self.hotkeys.bind(key, self.show_hide):
-            notification = pynotify.Notification(
+            guake.notifier.show_message(
                 _('Guake!'),
                 _('A problem happened when binding <b>%s</b> key.\n'
                   'Please use Guake Preferences dialog to choose another '
@@ -654,11 +701,10 @@ class Guake(SimpleGladeApp):
         elif self.client.get_bool(KEY('/general/use_popup')):
             # Pop-up that shows that guake is working properly (if not
             # unset in the preferences windows)
-            notification = pynotify.Notification(
+            guake.notifier.show_message(
                 _('Guake!'),
                 _('Guake is now running,\n'
                   'press <b>%s</b> to use it.') % label, filename)
-            notification.show()
 
     def execute_command(self, command, tab=None):
         """Execute the `command' in the `tab'. If tab is None, the
@@ -912,6 +958,20 @@ class Guake(SimpleGladeApp):
         else:
             gtk.main_quit()
 
+    def accel_zoom_in(self, *args):
+        """Callback to zoom in.
+        """
+        for term in self.term_list:
+            term.increase_font_size()
+        return True
+
+    def accel_zoom_out(self, *args):
+        """Callback to zoom out.
+        """
+        for term in self.term_list:
+            term.decrease_font_size()
+        return True
+
     def accel_add(self, *args):
         """Callback to add a new tab. Called by the accel key.
         """
@@ -1015,7 +1075,10 @@ class Guake(SimpleGladeApp):
         if not use_them:
             return
         page = self.notebook.page_num(box)
-        self.tabs.get_children()[page].set_label(vte.get_window_title())
+        tab = self.tabs.get_children()[page]
+        # if tab has been renamed by user, don't override.
+        if not getattr(tab, 'custom_label_set', False):
+            tab.set_label(vte.get_window_title())
 
     def on_rename_activate(self, *args):
         """Shows a dialog to rename the current tab.
@@ -1048,7 +1111,13 @@ class Guake(SimpleGladeApp):
         self.disable_losefocus_hiding = False
 
         if response == gtk.RESPONSE_ACCEPT:
-            self.selected_tab.set_label(entry.get_text())
+            new_text = entry.get_text()
+            self.selected_tab.set_label(new_text)
+            # if user sets empty name, consider he wants default behavior.
+            setattr(self.selected_tab, 'custom_label_set', bool(new_text))
+            # trigger titling handler in case that custom label has been reset
+            current_vte = self.term_list[self.notebook.get_current_page()]
+            current_vte.emit('window-title-changed')
 
         dialog.destroy()
         self.set_terminal_focus()
@@ -1115,6 +1184,14 @@ class Guake(SimpleGladeApp):
         pagepos = self.notebook.get_current_page()
         self.selected_tab = self.tabs.get_children()[pagepos]
         self.selected_tab.set_label(new_text)
+
+        # it's hard to pass an empty string as a command line argument,
+        # so we'll interpret single dash "-" as a "reset custom title" request
+        setattr(self.selected_tab, 'custom_label_set', new_text != "-")
+
+        # trigger titling handler in case that custom label has been reset
+        current_vte = self.term_list[self.notebook.get_current_page()]
+        current_vte.emit('window-title-changed')
 
     def get_current_dir(self):
         """Gets the working directory of the current tab to create a
@@ -1298,7 +1375,10 @@ class Guake(SimpleGladeApp):
         call this in another thread. This doesn't change any thing in
         UI, so you can use python's start_new_thread.
         """
-        os.kill(pid, signal.SIGTERM)
+        try:
+            os.kill(pid, signal.SIGTERM)
+        except OSError:
+            pass
         num_tries = 30
 
         while num_tries > 0:
@@ -1400,8 +1480,9 @@ def main():
             help=_('Execute an arbitrary command in the selected tab.'))
 
     parser.add_option('-r', '--rename-tab', dest='rename_tab',
+            metavar='TITLE',
             action='store', default='',
-            help=_('Rename the selected tab.'))
+            help=_('Rename the selected tab. Reset to default if TITLE is a single dash "-".'))
 
     parser.add_option('-q', '--quit', dest='quit',
             action='store_true', default=False,
