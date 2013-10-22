@@ -1,6 +1,5 @@
 <gconfschemafile>
     <schemalist>
-
         <schema>
             <key>/schemas/apps/guake/general/default_shell</key>
             <applyto>/apps/guake/general/default_shell</applyto>
@@ -28,7 +27,7 @@
             </locale>
         </schema>
 
-	<schema>
+        <schema>
             <key>/schemas/apps/guake/general/use_trayicon</key>
             <applyto>/apps/guake/general/use_trayicon</applyto>
             <owner>guake</owner>
@@ -40,7 +39,7 @@
             </locale>
         </schema>
 
-	<schema>
+        <schema>
             <key>/schemas/apps/guake/general/use_popup</key>
             <applyto>/apps/guake/general/use_popup</applyto>
             <owner>guake</owner>
@@ -53,7 +52,7 @@
             </locale>
         </schema>
 
-	<schema>
+        <schema>
             <key>/schemas/apps/guake/general/prompt_on_quit</key>
             <applyto>/apps/guake/general/prompt_on_quit</applyto>
             <owner>guake</owner>
@@ -117,7 +116,7 @@
             </locale>
         </schema>
 
-	<schema>
+        <schema>
             <key>/schemas/apps/guake/general/window_width</key>
             <applyto>/apps/guake/general/window_width</applyto>
             <owner>guake</owner>
@@ -130,7 +129,7 @@
             </locale>
         </schema>
 
-	<schema>
+        <schema>
             <key>/schemas/apps/guake/general/window_height</key>
             <applyto>/apps/guake/general/window_height</applyto>
             <owner>guake</owner>
@@ -143,18 +142,18 @@
             </locale>
         </schema>
 
-	<schema>
-	    <key>/schemas/apps/guake/general/window_halignment</key>
-	    <applyto>/apps/guake/general/window_halignment</applyto>
-	    <owner>guake</owner>
-	    <type>int</type>
-	    <default>0</default>
-	    <locale name="C">
-	    <short>Window horizontal alignment.</short>
-	    <long>Place Guake at:
-	          0: center, 1: left, 2: right</long>
-	    </locale>
-	</schema>
+        <schema>
+            <key>/schemas/apps/guake/general/window_halignment</key>
+            <applyto>/apps/guake/general/window_halignment</applyto>
+            <owner>guake</owner>
+            <type>int</type>
+            <default>0</default>
+            <locale name="C">
+            <short>Window horizontal alignment.</short>
+            <long>Place Guake at:
+                  0: center, 1: left, 2: right</long>
+            </locale>
+        </schema>
 
         <schema>
             <key>/schemas/apps/guake/general/use_scrollbar</key>
@@ -220,7 +219,7 @@
             </locale>
         </schema>
 
-	<schema>
+        <schema>
             <key>/schemas/apps/guake/general/use_vte_titles</key>
             <applyto>/apps/guake/general/use_vte_titles</applyto>
             <owner>guake</owner>
@@ -411,6 +410,42 @@
             <locale name="C">
                 <short>Rename tab.</short>
                 <long>Shows a dialog to rename the current tab.</long>
+            </locale>
+        </schema>
+
+        <schema>
+            <key>/schemas/apps/guake/keybindings/local/zoom_in</key>
+            <applyto>/apps/guake/keybindings/local/zoom_in</applyto>
+            <owner>guake</owner>
+            <type>string</type>
+            <default>&lt;Control&gt;plus</default>
+            <locale name="C">
+                <short>Zoom in.</short>
+                <long>Increase the font size of the terminals.</long>
+            </locale>
+        </schema>
+
+        <schema>
+            <key>/schemas/apps/guake/keybindings/local/zoom_in_alt</key>
+            <applyto>/apps/guake/keybindings/local/zoom_in_alt</applyto>
+            <owner>guake</owner>
+            <type>string</type>
+            <default>&lt;Control&gt;equal</default>
+            <locale name="C">
+                <short>Zoom in (alternative)</short>
+                <long>Additional shortcut for zooming in.</long>
+            </locale>
+        </schema>
+
+        <schema>
+            <key>/schemas/apps/guake/keybindings/local/zoom_out</key>
+            <applyto>/apps/guake/keybindings/local/zoom_out</applyto>
+            <owner>guake</owner>
+            <type>string</type>
+            <default>&lt;Control&gt;minus</default>
+            <locale name="C">
+                <short>Zoom out.</short>
+                <long>Decrease the font size of the terminals.</long>
             </locale>
         </schema>
 

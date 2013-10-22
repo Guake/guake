@@ -1,23 +1,29 @@
-# Traduction française de Guake-terminal
-# Copyright (C) 2009 Pierre-Yves Chibon
-# This file is distributed under the same license as the guake package.
-# Håvard Havdal <haavard@havdal.net>,2009
-# 
+# Translation of Guake to Croatian
+# Copyright (C) 2013 Guake Translators
+# This file is distributed under the same license as the Guake package.
+#
+# Translators:
+# Notes and help by Igor (nick igorsub) <igor6130@gmail.com>, 2010
+# Pavel Alexeev <pahan@hubbitus.info>, 2010
+# gogo <trebelnik2@gmail.com>, 2012
+
 msgid ""
 msgstr ""
-"Project-Id-Version: guake 0.5.0\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-07-01 05:35+0000\n"
-"PO-Revision-Date: 2010-01-18 15:26+CET\n"
-"Last-Translator: Håvard Havdal <haavard@havdal.net>\n"
-"Language-Team: guake@lists.guake.org\n"
+"Project-Id-Version: Guake 0.4.5\n"
+"Report-Msgid-Bugs-To: http://guake.org/report\n"
+"POT-Creation-Date: 2010-11-26 07:17+0000\n"
+"PO-Revision-Date: 2013-06-09 23:46+0000\n"
+"Last-Translator: gogo <trebelnik2@gmail.com>\n"
+"Language-Team: Croatian (http://www.transifex.com/projects/p/guake/language/hr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Language: hr\n"
+"Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
 
 #: ../data/about.glade.h:1
 msgid "About Guake"
-msgstr "Om Guake"
+msgstr "О Guake"
 
 #: ../data/about.glade.h:2
 msgid ""
@@ -28,30 +34,19 @@ msgid ""
 "Nishio Futoshi <futoshi@momonga-linux.org> Japanese\n"
 "Pavel Alexeev <Pahan@Hubbitus.spb.su> Russian\n"
 "Piotr Drąg <piotrdrag@gmail.com> Polish"
-msgstr ""
-"Adolfo González Blázquez <code@infinicode.org> Spanish\r\n"
-"Lincoln de Sousa <lincoln@guake.org> Brazilian Portuguese\r\n"
-"Markus Majer <mm@mpathy.de> German\r\n"
-"Mieszko Ślusarczyk <mieszkoslusarczyk@gmail.com> Polish\r\n"
-"Nishio Futoshi <futoshi@momonga-linux.org> Japanese\r\n"
-"Pavel Alexeev <Pahan@Hubbitus.spb.su> Russian\r\n"
-"Piotr Drąg <piotrdrag@gmail.com> Polish"
+msgstr "Adolfo González Blázquez <code@infinicode.org> Španjolski\nLincoln de Sousa <lincoln@guake.org> Brazil Portugalski\nGoran Vidovic <trebelnik2@gmail.com> Hrvatski\nMarkus Majer <mm@mpathy.de> Njemački\nMieszko Ślusarczyk <mieszkoslusarczyk@gmail.com> Poljski\nNishio Futoshi <futoshi@momonga-linux.org> Japanski\nPavel Alexeev <Pahan@Hubbitus.spb.su> Ruski\nPiotr Drąg <piotrdrag@gmail.com> Poljski"
 
 #: ../data/about.glade.h:9
 msgid ""
 "Copyright 2007-2009 Lincoln de Sousa\n"
 "Copyright 2007 Gabriel Falc&#xE3;o"
-msgstr ""
-"Copyright 2007-2009 Lincoln de Sousa\n"
-"Copyright 2007 Gabriel Falc&#xE3;o"
+msgstr "Autorsko pavo 2007-2009 Lincoln de Sousa\nAutorsko pavo 2007 Gabriel Falc&#xE3;o"
 
 #: ../data/about.glade.h:11
 msgid ""
 "Guake is an easy to access\n"
 "terminal based on fps games terminal"
-msgstr ""
-"Guake er en lett tilgjengelig\n"
-"terminal basert på fps spill terminal."
+msgstr "Guake je lako dostupan terminal,\ntemeljen na terminalu iz FPS igre Quake"
 
 #: ../data/about.glade.h:13
 msgid ""
@@ -60,12 +55,7 @@ msgid ""
 "Guake is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more details.\n"
 "\n"
 "You should have received a copy of the GNU General Public License along with Guake; if not, write to the Free Software Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301 USA\n"
-msgstr ""
-"Guake er fri programvare; du kan redistribuere og/eller modifisere den under betingelsene til GNU General Public License som er publisert av Free Software Foundation; enten versjon 2 av lisensen, eller (etter din mening) enhver senere versjon.\n"
-"\n"
-"Guake distribueres i det håp at det vil være nyttig, men UTEN NOEN GARANTI; uten selv de underforståtte garantier om salgbarhet eller anvendelighet FOR ET BESTEMT FORMÅL. See the GNU General Public License for flere detaljer.\n"
-"\n"
-"Du bør ha mottatt en kopi av GNU General Public License sammen med Guake; hvis ikke, skriv til Free Software Foundation, Inc., 51 Fanklin St, Fifth Floor, Boston, MA 02110-1301 USA\n"
+msgstr "Guake je slobodan software; možete ga redistribuirati i/ili modificirati pod uvjetima GNU Opće javne licence objavljene od Fundacije slobodnog softvera; ili inačice 2 Licence ili (po vašemu mišljenju) svaka kasnija inačica.\n\nGuake je distribuiran u nadi da će biti koristan ali BEZ IKAKVOG JAMSTVA; čak i bez podrazumjevanog jamstva ili POGODNOSTI ZA ODREĐENU NAMJENU. Pogledajte GNU Opću javnu licencu za više informacija.\n\nTrebali ste dobiti primjerak GNU Opće javne licence uz Guake, ako niste obratite se Fundaciji slobodnog softvera, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301 USA\n"
 
 #: ../data/about.glade.h:19
 msgid "http://guake.org"
@@ -73,19 +63,19 @@ msgstr "http://guake.org"
 
 #: ../data/guake.glade.h:1 ../src/guake.py:1264
 msgid "Add a new tab"
-msgstr "Legg til fane"
+msgstr "Dodaj novu karticu"
 
 #: ../data/guake.glade.h:2
 msgid "Close"
-msgstr "Lukk"
+msgstr "Zatvori"
 
 #: ../data/guake.glade.h:3
 msgid "Close Tab"
-msgstr "Lukk fane"
+msgstr "Zatvori karticu"
 
 #: ../data/guake.glade.h:4
 msgid "Copy"
-msgstr "Kopier"
+msgstr "Kopiraj"
 
 #: ../data/guake.glade.h:5 ../src/guake.py:635 ../src/guake.py:646
 msgid "Guake!"
@@ -93,161 +83,162 @@ msgstr "Guake!"
 
 #: ../data/guake.glade.h:6
 msgid "Paste"
-msgstr "Lim inn"
+msgstr "Zalijepi"
 
 #: ../data/guake.glade.h:7 ../src/prefs.py:61
 msgid "Quit"
-msgstr "Avslutt"
+msgstr "Zatvori"
 
 #: ../data/guake.glade.h:8
 msgid "Rename"
-msgstr "Gi nytt navn"
+msgstr "Preimenuj"
 
 #: ../data/prefs.glade.h:1
 msgid "<b>Effects</b>"
-msgstr "<b>Effekter</b>"
+msgstr "<b>Efekti</b>"
 
 #: ../data/prefs.glade.h:2
 msgid "<b>General</b>"
-msgstr "<b>Generell</b>"
+msgstr "<b>Općenito</b>"
 
 #: ../data/prefs.glade.h:3
 msgid "<b>Keyboard compatibility</b>"
-msgstr "<b>Tastatur kompabilitet</b>"
+msgstr "<b>Кompatibilnost tipkovnice</b>"
 
 #: ../data/prefs.glade.h:4
 msgid "<b>Main Window height</b>"
-msgstr "<b>Hovedvindu høyde</b>"
+msgstr "<b>Visina glavnog prozora</b>"
 
 #: ../data/prefs.glade.h:5
 msgid "<b>Main Window</b>"
-msgstr "<b>Hovedvindu</b>"
+msgstr "<b>Glavni prozor</b>"
 
 #: ../data/prefs.glade.h:6
 msgid "<b>Palette</b>"
-msgstr "<b>Palette</b>"
+msgstr "<b>Boje</b>"
 
 #: ../data/prefs.glade.h:7
 msgid "<b>Scroll</b>"
-msgstr "<b>Skroll</b>"
+msgstr "<b>Pomicanje kotačićem miša</b>"
 
 #: ../data/prefs.glade.h:8
 msgid "<b>Shell</b>"
-msgstr "<b>Skall</b>"
+msgstr "<b>Ljuska</b>"
 
 #: ../data/prefs.glade.h:9
-msgid "<small><i><b>Note:</b> These options may cause some applications to behave incorrectly.  They are only here to allow you to work around certain applications and operating systems that expect different terminal behavior.</i></small>"
-msgstr "<small><i><b>Merk:</b> Dette er alternativer som kan forårsake noen applikasjoner til å oppføre seg unøyaktig. De er kun her for å tillate deg til å arbeide rundt visse applikasjoner og operativ systemer som forventer forskjellig terminaloppførsel.</i></small>"
+msgid ""
+"<small><i><b>Note:</b> These options may cause some applications to behave "
+"incorrectly.  They are only here to allow you to work around certain "
+"applications and operating systems that expect different terminal "
+"behavior.</i></small>"
+msgstr "<small><i><b>Napomena:</b> Ove mogućnosti mogu prouzrokovati neispravno ponašanje nekih aplikacija. Оne su ovdje samo za rad sa određenim aplikacijama i operativnim sustavima, to očekuje drugačije ponašanje terminala.</i></small>"
 
 #: ../data/prefs.glade.h:10
 msgid "<span color=\"black\">Customize behavior and appearance of Guake!</span>"
-msgstr "<span color=\"black\">Personaliser Guake!</span>"
+msgstr "<span color=\"black\">Prilagodite ponašanje i izgled Guakea!</span>"
 
 #: ../data/prefs.glade.h:11
 msgid "<span size=\"18000\" color=\"black\"><b>Guake properties</b></span>"
-msgstr "<span size=\"18000\" color=\"black\"><b>Guake egenskaper</b></span>"
+msgstr "<span size=\"18000\" color=\"black\"><b>Guake svojstva</b></span>"
 
 #: ../data/prefs.glade.h:12
 msgid ""
 "ASCII DEL\n"
 "Escape sequence\n"
 "Control-H"
-msgstr ""
-"ASCII DEL\n"
-"Escape sequence\n"
-"Control-H"
+msgstr "ASCII DEL\nEscape slijed\nControl-H"
 
 #: ../data/prefs.glade.h:15
 msgid "Appearance"
-msgstr "Utseende"
+msgstr "Izgled"
 
 #: ../data/prefs.glade.h:16
 msgid "Background color:"
-msgstr "Bakgrunnsfarge:"
+msgstr "Boja pozadine:"
 
 #: ../data/prefs.glade.h:17
 msgid "Background image:"
-msgstr "Bakgrunnsbildet:"
+msgstr "Slika pozadine:"
 
 #: ../data/prefs.glade.h:18
 msgid "Built-in schemes:"
-msgstr "Bygd inn skjemaer"
+msgstr "Ugrađene sheme:"
 
 #: ../data/prefs.glade.h:19
 msgid "Choose some font"
-msgstr "Velg en skrifttype"
+msgstr "Odaberite neka slova"
 
 #: ../data/prefs.glade.h:20
 msgid "Color palette:"
-msgstr "Farge palette:"
+msgstr "Paleta boja:"
 
 #: ../data/prefs.glade.h:21
 msgid "Compatibility"
-msgstr "Kompabilitet"
+msgstr "Kompatibilnost"
 
 #: ../data/prefs.glade.h:22
 msgid "Default interpreter:"
-msgstr "Standard tolk:"
+msgstr "Zadani interpretator:"
 
 #: ../data/prefs.glade.h:23
 msgid "Enable popup notifications on startup"
-msgstr "Aktiver popupvarslinger ved oppstart"
+msgstr "Omogući obavijesti skočnog prozora prilikom pokretanja"
 
 #: ../data/prefs.glade.h:24
 msgid "Font:"
-msgstr "Skrifttype:"
+msgstr "Slova:"
 
 #: ../data/prefs.glade.h:25 ../src/prefs.py:55
 msgid "General"
-msgstr "Generell"
+msgstr "Općenito"
 
 #: ../data/prefs.glade.h:26
 msgid "Guake Preferences"
-msgstr "Guake egenskaper"
+msgstr "Guake osobitosti"
 
 #: ../data/prefs.glade.h:27
 msgid "Hide on lose focus"
-msgstr "Skjul ved inaktivt vindu"
+msgstr "Sakrij pri gubitku fokusa"
 
 #: ../data/prefs.glade.h:28
 msgid "Keyboard shortcuts"
-msgstr "Hurtigtaster"
+msgstr "Prečaci tipkovnice"
 
 #: ../data/prefs.glade.h:29
 msgid "On key stroke"
-msgstr "Ved tastetrykk"
+msgstr "Pri pritisku tipke"
 
 #: ../data/prefs.glade.h:30
 msgid "On output"
-msgstr "On output"
+msgstr "Pri izlazu"
 
 #: ../data/prefs.glade.h:31
 msgid "Prompt on quit"
-msgstr "Promt on quit"
+msgstr "Upozori pri zatvaranju"
 
 #: ../data/prefs.glade.h:32
 msgid "Scrollback lines:"
-msgstr "Skrollback linjer:"
+msgstr "Redci pomicanja:"
 
 #: ../data/prefs.glade.h:33
 msgid "Scrolling"
-msgstr "Skrolling"
+msgstr "Pomicanje kotačićem miša"
 
 #: ../data/prefs.glade.h:34
 msgid "Show scrollbar"
-msgstr "Vis skrollbar"
+msgstr "Prikaži traku pomicanja"
 
 #: ../data/prefs.glade.h:35
 msgid "Show tab bar"
-msgstr "Vis fanelinje"
+msgstr "Prikaži donju traku"
 
 #: ../data/prefs.glade.h:36
 msgid "Show tray icon"
-msgstr "Vis trayikon"
+msgstr "Prikaži ikonu u traci sustava"
 
 #: ../data/prefs.glade.h:37
 msgid "Stay on top"
-msgstr "Alltid øverst"
+msgstr "Uvijek na vrhu"
 
 #: ../data/prefs.glade.h:38
 msgid ""
@@ -256,66 +247,61 @@ msgid ""
 "XTerm\n"
 "Rxvt\n"
 "Custom\n"
-msgstr ""
-"Tango\n"
-"Linux console\n"
-"XTerm\n"
-"Rxvt\n"
-"Custom\n"
+msgstr "Tango\nLinux konzola\nXTerm\nRxvt\nPrilagođeno\n"
 
 #: ../data/prefs.glade.h:44
 msgid "Text color:"
-msgstr "Tekst farge:"
+msgstr "Boja teksta:"
 
 #: ../data/prefs.glade.h:45
 msgid "Transparency:"
-msgstr "Gjennomsiktighet"
+msgstr "Prozirnost:"
 
 #: ../data/prefs.glade.h:46
 msgid "Use the system fixed width font"
-msgstr "Bruk breddefont"
+msgstr "Koristi širinu slova ispravljenu sustavom"
 
 #: ../data/prefs.glade.h:47
 msgid "_Backspace key generates:"
-msgstr "_Tilbaketast genererer:"
+msgstr "_'Backspace' tipka generira:"
 
 #: ../data/prefs.glade.h:48
 msgid "_Delete key generates:"
-msgstr "_Slettetast genererer:"
+msgstr "_'Delete' tipka generira:"
 
 #: ../data/prefs.glade.h:49
 msgid "_Open new tab in current directory"
-msgstr "_Åpne ny fane i aktiv sti"
+msgstr "_Оtvori novu karticu u trenutnom direktoriju"
 
 #: ../data/prefs.glade.h:50
 msgid "_Reset Compatibility Options to Defaults"
-msgstr "_Tilbakestill kompabilitet alternativer til standard"
+msgstr "_Vrati mogućnosti kompatibilnosti na početno"
 
 #: ../data/prefs.glade.h:51
 msgid "_Run command as a login shell"
-msgstr "_Kjør kommando som loginskall"
+msgstr "_Pokreni naredbu kao ljusku prijave"
 
 #: ../src/guake.py:67
 msgid "Do you really want to quit Guake!?"
-msgstr "Vil du virkelig avslutte Guake!?"
+msgstr "Sigurno želite zatvoriti Guake!?"
 
 #: ../src/guake.py:70
 msgid "<b>There is one process still running.</b>"
-msgstr "<b>Det er forsatt én prosess kjørende.</b>"
+msgstr "<b>Jedan proces se još uvijek izvodi.</b>"
 
 #: ../src/guake.py:74
 #, python-format
 msgid "<b>There are %d processes running.</b>"
-msgstr "<b>Det er %d prosesser kjørende.</b>"
+msgstr "<b>Još uvijek se %d procesa izvodi.</b>"
 
 #: ../src/guake.py:367
 msgid "key binding error"
-msgstr "Hurtigtast error"
+msgstr "Greška dodjeljivanja tipke"
 
 #: ../src/guake.py:368
 #, python-format
 msgid "Unable to bind global <b>%s</b> key"
-msgstr "Kunne ikke lagre <b>%s</b> tasten"
+msgstr "Nemoguće je dodjeliti globalnu <b>%s</b> tipku"
 
 #: ../src/guake.py:530
 msgid "Guake Terminal"
@@ -326,22 +312,18 @@ msgstr "Guake Terminal"
 msgid ""
 "A problem happened when binding <b>%s</b> key.\n"
 "Please use Guake Preferences dialog to choose another key (The trayicon was enabled)"
-msgstr ""
-"Et problem har oppstått under lagringen av <b>%s</b> tasten.\n"
-"Vennligst benytt guake egenskaper for å velge en annen tast"
+msgstr "Problem je nastao dodjeljivanjem <b>%s</b> tipke.\nKoristite Guake dijalog osobitosti za odabir druge tipke (ikona u traci sustava je omogućena)"
 
 #: ../src/guake.py:647
 #, python-format
 msgid ""
 "Guake is now running,\n"
 "press <b>%s</b> to use it."
-msgstr ""
-"Guake er nå startet,\n"
-"trykk <b>%s</b> for å ta den i bruk."
+msgstr "Guake je pokrenut,\npritisnite <b>%s</b> za korištenje."
 
 #: ../src/guake.py:997
 msgid "Rename tab"
-msgstr "Gi nytt navn til fane"
+msgstr "Preimenuj karticu"
 
 #. Adding a new radio button to the tabbar
 #: ../src/guake.py:1142
@@ -351,117 +333,115 @@ msgstr "Terminal %s"
 
 #: ../src/guake.py:1252
 msgid "Toggles the visibility of the terminal window"
-msgstr "Endrer synligheten av terminalvinduet"
+msgstr "Isključivanje/Uključivanje vidljivosti prozora terminala"
 
 #: ../src/guake.py:1256
 msgid "Shows Guake preference window"
-msgstr "Viser Guake egenskapervinduet"
+msgstr "Prikazuje Guake prozor osobitosti"
 
 #: ../src/guake.py:1260
 msgid "Shows Guake's about info"
-msgstr "Viser Guakes om informasjon"
+msgstr "Prikazuje Guake prozor informacija"
 
 #: ../src/guake.py:1268
 msgid "Select a tab"
-msgstr "Velg en fane"
+msgstr "Odaberi karticu"
 
 #: ../src/guake.py:1272
 msgid "Return the selectd tab index."
-msgstr "Gå tilbake til den valgte faneindex."
+msgstr "Vrati indeks odabrane kartice."
 
 #: ../src/guake.py:1276
 msgid "Execute an arbitrary command in the selected tab."
-msgstr "Utføre en vilkårlig kommandoen i den valgte fanen."
+msgstr "Izvrši proizvoljnu naredbu u odabranoj kartici."
 
 #: ../src/guake.py:1280
 msgid "Rename the selected tab."
-msgstr "Gi nytt navn til aktiv fane."
+msgstr "Preimenuj odabranu karticu."
 
 #: ../src/guake.py:1284
 msgid "Says to Guake go away =("
-msgstr "Sier til Guake at den skal gå vekk =("
+msgstr "Recite Guakeu, odlazi! =("
 
 #: ../src/guake.py:1349
 msgid "Guake can not init!"
-msgstr "Guake kan ikke init!"
+msgstr "Guake se ne može pokrenuti!"
 
 #: ../src/guake.py:1350
 msgid ""
 "Gconf Error.\n"
 "Have you installed <b>guake.schemas</b> properlly?"
-msgstr ""
-"Gconf error.\n"
-"Har du installert <b>guake.schemas</b> ordentlig?"
+msgstr "Gconf greška.\nJeste li instalirali <b>guake.schemas</b> ispravno?"
 
 #. string to show in prefereces dialog for user shell option
 #: ../src/prefs.py:42
 msgid "<user shell>"
-msgstr "<bruker skall>"
+msgstr "<Korisnikova ljuska>"
 
 #: ../src/prefs.py:57
 msgid "Toggle Guake visibility"
-msgstr "Endrer Guakes synslighet"
+msgstr "Prikaži/Sakrij Guake"
 
 #: ../src/prefs.py:59
 msgid "Toggle Fullscreen"
-msgstr "Endre til fullskjerm"
+msgstr "Cijelozaslonski prikaz"
 
 #: ../src/prefs.py:64
 msgid "Tab management"
-msgstr "Fanebehandler"
+msgstr "Upravljanje karticama"
 
 #: ../src/prefs.py:66
 msgid "New tab"
-msgstr "Ny fane"
+msgstr "Nova kartica"
 
 #: ../src/prefs.py:68
 msgid "Close tab"
-msgstr "Lukk fane"
+msgstr "Zatvori karticu"
 
 #: ../src/prefs.py:70
 msgid "Rename current tab"
-msgstr "Gi nytt navn til aktiv fane"
+msgstr "Preimenuj trenutnu karticu"
 
 #: ../src/prefs.py:73
 msgid "Navigation"
-msgstr "Navigasjon"
+msgstr "Navigacija"
 
 #: ../src/prefs.py:75
 msgid "Go to previous tab"
-msgstr "Gå til forrige fane"
+msgstr "Idi na prijašnju karticu"
 
 #: ../src/prefs.py:77
 msgid "Go to next tab"
-msgstr "Gå til neste fane"
+msgstr "Idi na sljedeću karticu"
 
 #: ../src/prefs.py:80
 msgid "Clipboard"
-msgstr "Utklippstavle"
+msgstr "Međuspremnik"
 
 #: ../src/prefs.py:82
 msgid "Copy text to clipboard"
-msgstr "Kopier tekst til utklippstavle"
+msgstr "Kopiraj tekst u međuspremnik"
 
 #: ../src/prefs.py:84
 msgid "Paste text from clipboard"
-msgstr "Lim inn tekst fra utklippstavle"
+msgstr "Zalijepi tekst iz međuspremnika"
 
 #: ../src/prefs.py:297
 msgid "Action"
-msgstr "Handling"
+msgstr "Radnja"
 
 #: ../src/prefs.py:307
 msgid "Shortcut"
-msgstr "Snarvei"
+msgstr "Tipke prečaca"
 
 #: ../src/prefs.py:605
 #, python-format
 msgid "The shortcut \"%s\" is already in use."
-msgstr "Hurtigtasten \"%s\" er allerede i bruk"
+msgstr "Prečac \"%s\" se već koristi."
 
 #: ../src/prefs.py:606
 msgid "Error setting keybinding."
-msgstr "Kunne ikke lagre hurtigtasten."
+msgstr "Greška u dodjeljivanju tipke."
 
 #: ../src/prefs.py:618
 #, python-format
@@ -469,28 +449,4 @@ msgid ""
 "The shortcut \"%s\" cannot be used because it will become impossible to type using this key.\n"
 "\n"
 "Please try with a key such as Control, Alt or Shift at the same time.\n"
-msgstr ""
-"Hurtigtast \"%s\" kan ikke bli benyttet, det vil bli umulig å skrive ved bruk av denne tasten.\n"
-"\n"
-"Vennligst prøv med en tast som for eksempel Control, Alt eller Shift.\n"
-
-#~ msgid "<b>Background</b>"
-#~ msgstr "<b>Bakgrunn</b>"
-
-#~ msgid "Choose some color"
-#~ msgstr "Velg en farge"
-
-#~ msgid "Image:"
-#~ msgstr "Bildet:"
-
-#~ msgid "Style:"
-#~ msgstr "Stil:"
-
-#~ msgid "Use system defaults"
-#~ msgstr "Bruk systeminstillinger"
-
-#~ msgid "<b>Main Window horizontal alignment</b>"
-#~ msgstr "<b>Position horizontale de la fenêtre principale</b>"
-
-#~ msgid "<b>Main Window width</b>"
-#~ msgstr "<b>Largeur de la fenêtre principale</b>"
+msgstr "Tipka prečaca \"%s\", se ne može koristiti zato jer  ju je nemoguće upisati koristeći ovu tipku.\n\nPokušajte sa tipkom poput 'Control', 'Alt' ili 'Shift'.\n"

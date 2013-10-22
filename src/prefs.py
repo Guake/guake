@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8; -*-
 #
-# Copyright (C) 2008 Lincoln de Sousa <lincoln@minaslivre.org>
+# Copyright (C) 2007-2013 Guake authors
 #
 # This program is free software; you can redistribute it and/or
 # modify it under the terms of the GNU General Public License as
@@ -15,8 +15,8 @@
 #
 # You should have received a copy of the GNU General Public
 # License along with this program; if not, write to the
-# Free Software Foundation, Inc., 59 Temple Place - Suite 330,
-# Boston, MA 02111-1307, USA.
+# Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor,
+# Boston, MA 02110-1301 USA
 from __future__ import absolute_import
 
 import re
@@ -78,6 +78,15 @@ HOTKEYS = [
               {'key': LKEY('next_tab'),
                'label': 'Go to next tab'},
               ]},
+
+    {'label': 'Appearance',
+     'keys': [{'key': LKEY('zoom_out'),
+               'label': 'Zoom out'},
+              {'key': LKEY('zoom_in'),
+               'label': 'Zoom in'},
+              {'key': LKEY('zoom_in_alt'),
+               'label': 'Zoom in (alternative)'},
+             ]},
 
     {'label': 'Clipboard',
      'keys': [{'key': LKEY('clipboard_copy'),

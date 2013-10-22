@@ -1,5 +1,4 @@
-# Copyright (C) 2007-2012 Lincoln de Sousa <lincoln@minaslivre.org>
-# Copyright (C) 2007 Gabriel Falcão <gabrielteratos@gmail.com>
+# Copyright (C) 2007-2013 Guake authors
 #
 # This program is free software; you can redistribute it and/or
 # modify it under the terms of the GNU General Public License as
@@ -16,7 +15,7 @@
 # Free Software Foundation, Inc., 59 Temple Place - Suite 330,
 # Boston, MA 02111-1307, USA.
 
-AC_INIT([guake], [0.4.4], [http://guake.org/])
+AC_INIT([guake], [0.4.5], [http://guake.org/])
 
 AC_CONFIG_HEADERS([config.h])
 
@@ -41,7 +40,7 @@ PYTHON_CFLAGS="-I$PY_PREFIX/include/python$PYTHON_VERSION"
 AC_SUBST([PYTHON_LIBS])
 AC_SUBST([PYTHON_CFLAGS])
 
-dnl gtk dependencie
+dnl gtk dependency
 GTK_REQUIRED=2.10.0
 PKG_CHECK_MODULES([DEPENDENCIES], [
     gtk+-2.0 >= $GTK_REQUIRED
@@ -81,7 +80,7 @@ AM_GCONF_SOURCE_2
 
 dnl Internationalization
 GETTEXT_PACKAGE=guake
-ALL_LINGUAS="pt_BR ja es ru pl no de it fa hu el zh_CN fr"
+ALL_LINGUAS="ca cs_CZ de el es fa fr gl hr hu id it ja nb_NO nl pa pl pt_BR ru sv tr uk_UA zh_CN"
 
 AC_SUBST([GETTEXT_PACKAGE])
 AC_SUBST([ALL_LINGUAS])

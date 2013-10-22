@@ -1,7 +1,6 @@
 # -*- coding: utf-8; -*-
 """
-Copyright (C) 2007-2009 Lincoln de Sousa <lincoln@minaslivre.org>
-Copyright (C) 2007 Gabriel Falcão <gabrielteratos@gmail.com>
+Copyright (C) 2007-2013 Guake authors
 
 This program is free software; you can redistribute it and/or
 modify it under the terms of the GNU General Public License as
@@ -15,8 +14,8 @@ General Public License for more details.
 
 You should have received a copy of the GNU General Public
 License along with this program; if not, write to the
-Free Software Foundation, Inc., 59 Temple Place - Suite 330,
-Boston, MA 02111-1307, USA.
+Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor,
+Boston, MA 02110-1301 USA
 """
 from __future__ import absolute_import
 
@@ -81,3 +80,6 @@ def get_binaries_from_path(compiled_re):
 def shell_quote(text):
     """ quote text (filename) for inserting into a shell """
     return r"\'".join("'%s'" % p for p in text.split("'"))
+
+def clamp(value, lower, upper):
+    return max(min(value, upper), lower)

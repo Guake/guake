@@ -1,13 +1,14 @@
-# translation of guake.master.po to Russian
-# Russian translation of Guake-terminal
-# Copyright (C) 2008 Pavel Alexeev (Pahan-Hubbitus)
-# This file is distributed under the same license as the guake package.
+# Translation of Guake to Russian
+# Copyright (C) 2013 Guake Translators
+# This file is distributed under the same license as the Guake package.
+#
+# Translators:
 # Pavel Alexeev <pahan@hubbitus.info>, 2010.
 # Notes and help by Igor (nick igorsub) <igor6130@gmail.com>, 2010
-# 
+
 msgid ""
 msgstr ""
-"Project-Id-Version: guake.master\n"
+"Project-Id-Version: Guake 0.4.5\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2010-08-01 05:45+0000\n"
 "PO-Revision-Date: 2010-01-25 20:29+0300\n"

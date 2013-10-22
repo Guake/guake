@@ -9,14 +9,11 @@ environment. Its style of window is based on an fps games, and one of
 its goals is be easy to reach.
 
 Guake is written mostly in python and has a little piece in C (global
-hotkey stuff). The code is placed in the src directory. Files and
-images are in the data directory. If you're looking for translation
-stuff, you should take a look at the po directory.
-
+hotkeys stuff). The code is placed in the src directory. Files and
+images are in the data directory. Translation stuff is in the po directory.
 
 Features? Bugs? Information?
-Feel free to consult our website at:
-http://guake.org/
+Visit http://guake.org/
 
 
 LICENSE
@@ -62,14 +59,12 @@ sudo apt-get build-dep guake
 INSTALLATION
 ~~~~~~~~~~~~
 We are using an autotools based installation, so if you got the source
-of guake from a release file, please do the following::
+of guake from a release tarball, please do the following:
 
-    $ gunzip -c guake-x.x.x.tar.gz | tar x
+    $ tar -xzvf guake-x.x.x.tar.gz
     $ cd guake-x.x.x
     $ ./configure && make
-    $ su
-    (give the root password here!)
-    # make install
+    $ sudo make install
 
 If you receive a message asking you if you have installed
 guake.schemas properly when launching guake, it means that your
