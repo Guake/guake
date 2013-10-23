@@ -5,6 +5,6 @@ before_script:
   - sudo apt-get install build-essential python autoconf
   - sudo apt-get install gnome-common gtk-doc-tools libglib2.0-dev libgtk2.0-dev libgconf2-dev
   - sudo apt-get install python-gtk2 python-gtk2-dev python-vte
-install: "pip install vte --use-mirrors"
+install: "pip install -r python-requirements.txt --use-mirrors"
 script:
   - ./autogen.sh && ./configure && make
