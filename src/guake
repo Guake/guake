@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python2
 # -*- coding: utf-8; -*-
 """
 Copyright (C) 2007-2012 Lincoln de Sousa <lincoln@minaslivre.org>
@@ -280,7 +280,7 @@ class GConfHandler(object):
             client.get_string(KEY('/style/font/color')))
         bgcolor = gtk.gdk.color_parse(
             client.get_string(KEY('/style/background/color')))
-        palette = [gtk.gdk.color_parse(color) for color in 
+        palette = [gtk.gdk.color_parse(color) for color in
             entry.value.get_string().split(':')]
         for i in self.guake.term_list:
             i.set_colors(fgcolor, bgcolor, palette)
@@ -828,7 +828,7 @@ class Guake(SimpleGladeApp):
             self.set_terminal_focus()
         else:
             self.hide()
- 
+
     def show(self):
         """Shows the main window and grabs the focus on it.
         """
@@ -873,10 +873,11 @@ class Guake(SimpleGladeApp):
         width = 100
         halignment = self.client.get_int(KEY('/general/window_halignment'))
 
-        # get the rectangle just from the first/default monitor in the
+        # get the rectangle just from the primary monitor in the
         # future we might create a field to select which monitor you
         # wanna use
-        window_rect = screen.get_monitor_geometry(0)
+        primary_monitor_nr = screen.get_primary_monitor()
+        window_rect = screen.get_monitor_geometry(primary_monitor_nr)
         if os.environ.get('DESKTOP_SESSION')  == "ubuntu":
             unity_hide = self.client.get_int(KEY('/apps/compiz-1/plugins/' \
                 'unityshell/screen0/options/launcher_hide_mode'))
@@ -895,11 +896,11 @@ class Guake(SimpleGladeApp):
 
         if width < total_width:
             if halignment == ALIGN_CENTER:
-                window_rect.x = (total_width - window_rect.width) / 2
+                window_rect.x += (total_width - window_rect.width) / 2
             elif halignment == ALIGN_LEFT:
-                window_rect.x = 0
+                window_rect.x += 0
             elif halignment == ALIGN_RIGHT:
-                window_rect.x = total_width - window_rect.width
+                window_rect.x += total_width - window_rect.width
         window_rect.y = 0
         return window_rect
 
