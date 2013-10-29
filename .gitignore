@@ -3,6 +3,8 @@
 *~
 *.py[co]
 *.gmo
+*.orig
+*.pot
 Makefile
 Makefile.in
 config.*
