@@ -50,6 +50,11 @@ of `autoconf'.
 
    The simplest way to compile this package is:
 
+Install the dependencies:
+   For ubuntu:
+     sudo apt-get build-dep guake
+     sudo apt-get install automake libgconf2-dev python-glade2
+
   1. `cd' to the directory containing the package's source code and type
      `./configure' to configure the package for your system.
 
