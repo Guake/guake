@@ -1339,6 +1339,10 @@ class Guake(SimpleGladeApp):
         box.terminal.grab_focus()
         self.load_config()
 
+        if self.is_fullscreen :
+            self.fullscreen()
+
+
     def delete_tab(self, pagepos, kill=True):
         """This function will destroy the notebook page, terminal and
         tab widgets and will call the function to kill interpreter
