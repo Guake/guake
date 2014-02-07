@@ -402,6 +402,126 @@
         </schema>
 
         <schema>
+            <key>/schemas/apps/guake/keybindings/local/switch_tab1</key>
+            <applyto>/apps/guake/keybindings/local/switch_tab1</applyto>
+            <owner>guake</owner>
+            <type>string</type>
+            <default>&lt;Alt&gt;1</default>
+            <locale name="C">
+                <short>First tab.</short>
+                <long>Switch to the first tab.</long>
+            </locale>
+        </schema>
+
+        <schema>
+            <key>/schemas/apps/guake/keybindings/local/switch_tab2</key>
+            <applyto>/apps/guake/keybindings/local/switch_tab2</applyto>
+            <owner>guake</owner>
+            <type>string</type>
+            <default>&lt;Alt&gt;2</default>
+            <locale name="C">
+                <short>Second tab.</short>
+                <long>Switch to the second tab.</long>
+            </locale>
+        </schema>
+
+        <schema>
+            <key>/schemas/apps/guake/keybindings/local/switch_tab3</key>
+            <applyto>/apps/guake/keybindings/local/switch_tab3</applyto>
+            <owner>guake</owner>
+            <type>string</type>
+            <default>&lt;Alt&gt;3</default>
+            <locale name="C">
+                <short>Third tab.</short>
+                <long>Switch to the third tab.</long>
+            </locale>
+        </schema>
+
+        <schema>
+            <key>/schemas/apps/guake/keybindings/local/switch_tab4</key>
+            <applyto>/apps/guake/keybindings/local/switch_tab4</applyto>
+            <owner>guake</owner>
+            <type>string</type>
+            <default>&lt;Alt&gt;4</default>
+            <locale name="C">
+                <short>Fourth tab.</short>
+                <long>Switch to the fourth tab.</long>
+            </locale>
+        </schema>
+
+        <schema>
+            <key>/schemas/apps/guake/keybindings/local/switch_tab5</key>
+            <applyto>/apps/guake/keybindings/local/switch_tab5</applyto>
+            <owner>guake</owner>
+            <type>string</type>
+            <default>&lt;Alt&gt;5</default>
+            <locale name="C">
+                <short>Fifth tab.</short>
+                <long>Switch to the fifth tab.</long>
+            </locale>
+        </schema>
+
+        <schema>
+            <key>/schemas/apps/guake/keybindings/local/switch_tab6</key>
+            <applyto>/apps/guake/keybindings/local/switch_tab6</applyto>
+            <owner>guake</owner>
+            <type>string</type>
+            <default>&lt;Alt&gt;6</default>
+            <locale name="C">
+                <short>Sixth tab.</short>
+                <long>Switch to the sixth tab.</long>
+            </locale>
+        </schema>
+
+        <schema>
+            <key>/schemas/apps/guake/keybindings/local/switch_tab7</key>
+            <applyto>/apps/guake/keybindings/local/switch_tab7</applyto>
+            <owner>guake</owner>
+            <type>string</type>
+            <default>&lt;Alt&gt;7</default>
+            <locale name="C">
+                <short>Seventh tab.</short>
+                <long>Switch to the seventh tab.</long>
+            </locale>
+        </schema>
+
+        <schema>
+            <key>/schemas/apps/guake/keybindings/local/switch_tab8</key>
+            <applyto>/apps/guake/keybindings/local/switch_tab8</applyto>
+            <owner>guake</owner>
+            <type>string</type>
+            <default>&lt;Alt&gt;8</default>
+            <locale name="C">
+                <short>eighth tab.</short>
+                <long>Switch to the eighth tab.</long>
+            </locale>
+        </schema>
+
+        <schema>
+            <key>/schemas/apps/guake/keybindings/local/switch_tab9</key>
+            <applyto>/apps/guake/keybindings/local/switch_tab9</applyto>
+            <owner>guake</owner>
+            <type>string</type>
+            <default>&lt;Alt&gt;9</default>
+            <locale name="C">
+                <short>Ninth tab.</short>
+                <long>Switch to the ninth tab.</long>
+            </locale>
+        </schema>
+
+        <schema>
+            <key>/schemas/apps/guake/keybindings/local/switch_tab10</key>
+            <applyto>/apps/guake/keybindings/local/switch_tab10</applyto>
+            <owner>guake</owner>
+            <type>string</type>
+            <default>&lt;Alt&gt;0</default>
+            <locale name="C">
+                <short>Tenth tab.</short>
+                <long>Switch to the tenth tab.</long>
+            </locale>
+        </schema>
+
+        <schema>
             <key>/schemas/apps/guake/keybindings/local/rename_tab</key>
             <applyto>/apps/guake/keybindings/local/rename_tab</applyto>
             <owner>guake</owner>
