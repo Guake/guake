@@ -406,7 +406,7 @@
             <applyto>/apps/guake/keybindings/local/switch_tab1</applyto>
             <owner>guake</owner>
             <type>string</type>
-            <default>&lt;Alt&gt;1</default>
+            <default>F1</default>
             <locale name="C">
                 <short>First tab.</short>
                 <long>Switch to the first tab.</long>
@@ -418,7 +418,7 @@
             <applyto>/apps/guake/keybindings/local/switch_tab2</applyto>
             <owner>guake</owner>
             <type>string</type>
-            <default>&lt;Alt&gt;2</default>
+            <default>F2</default>
             <locale name="C">
                 <short>Second tab.</short>
                 <long>Switch to the second tab.</long>
@@ -430,7 +430,7 @@
             <applyto>/apps/guake/keybindings/local/switch_tab3</applyto>
             <owner>guake</owner>
             <type>string</type>
-            <default>&lt;Alt&gt;3</default>
+            <default>F3</default>
             <locale name="C">
                 <short>Third tab.</short>
                 <long>Switch to the third tab.</long>
@@ -442,7 +442,7 @@
             <applyto>/apps/guake/keybindings/local/switch_tab4</applyto>
             <owner>guake</owner>
             <type>string</type>
-            <default>&lt;Alt&gt;4</default>
+            <default>F4</default>
             <locale name="C">
                 <short>Fourth tab.</short>
                 <long>Switch to the fourth tab.</long>
@@ -454,7 +454,7 @@
             <applyto>/apps/guake/keybindings/local/switch_tab5</applyto>
             <owner>guake</owner>
             <type>string</type>
-            <default>&lt;Alt&gt;5</default>
+            <default>F5</default>
             <locale name="C">
                 <short>Fifth tab.</short>
                 <long>Switch to the fifth tab.</long>
@@ -466,7 +466,7 @@
             <applyto>/apps/guake/keybindings/local/switch_tab6</applyto>
             <owner>guake</owner>
             <type>string</type>
-            <default>&lt;Alt&gt;6</default>
+            <default>F6</default>
             <locale name="C">
                 <short>Sixth tab.</short>
                 <long>Switch to the sixth tab.</long>
@@ -478,7 +478,7 @@
             <applyto>/apps/guake/keybindings/local/switch_tab7</applyto>
             <owner>guake</owner>
             <type>string</type>
-            <default>&lt;Alt&gt;7</default>
+            <default>F7</default>
             <locale name="C">
                 <short>Seventh tab.</short>
                 <long>Switch to the seventh tab.</long>
@@ -490,7 +490,7 @@
             <applyto>/apps/guake/keybindings/local/switch_tab8</applyto>
             <owner>guake</owner>
             <type>string</type>
-            <default>&lt;Alt&gt;8</default>
+            <default>F8</default>
             <locale name="C">
                 <short>eighth tab.</short>
                 <long>Switch to the eighth tab.</long>
@@ -502,7 +502,7 @@
             <applyto>/apps/guake/keybindings/local/switch_tab9</applyto>
             <owner>guake</owner>
             <type>string</type>
-            <default>&lt;Alt&gt;9</default>
+            <default>F9</default>
             <locale name="C">
                 <short>Ninth tab.</short>
                 <long>Switch to the ninth tab.</long>
@@ -514,7 +514,7 @@
             <applyto>/apps/guake/keybindings/local/switch_tab10</applyto>
             <owner>guake</owner>
             <type>string</type>
-            <default>&lt;Alt&gt;0</default>
+            <default>F10</default>
             <locale name="C">
                 <short>Tenth tab.</short>
                 <long>Switch to the tenth tab.</long>
@@ -526,7 +526,7 @@
             <applyto>/apps/guake/keybindings/local/rename_tab</applyto>
             <owner>guake</owner>
             <type>string</type>
-            <default>F2</default>
+            <default>&lt;Control&gt;F2</default>
             <locale name="C">
                 <short>Rename tab.</short>
                 <long>Shows a dialog to rename the current tab.</long>
@@ -633,7 +633,7 @@
             <default>true</default>
             <locale name="C">
                 <short>If guake must show a control to make resizing more handful</short>
-                <long>When true, guake shows a resizer on its bottom to allow user 
+                <long>When true, guake shows a resizer on its bottom to allow user
                 resize guake.</long>
             </locale>
         </schema>
