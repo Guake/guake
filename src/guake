@@ -1353,16 +1353,16 @@ class Guake(SimpleGladeApp):
         self.notebook.set_current_page(self.notebook.page_num(box))
         box.terminal.grab_focus()
         self.load_config()
-       
+
     def on_drag_tab(self, widget, context, selection, targetType, eventTime):
         tab_pos = self.tabs.get_children().index(widget)
         selection.set(selection.target, 32, str(tab_pos))
-       
+
     def on_drop_tab(self, widget, context, x, y, selection, targetType, data):
         old_tab_pos = int(selection.get_text())
         new_tab_pos = self.tabs.get_children().index(widget)
         self.move_tab(old_tab_pos, new_tab_pos)
-       
+
     def move_tab(self, old_tab_pos, new_tab_pos):
         self.notebook.reorder_child(self.notebook.get_nth_page(old_tab_pos), new_tab_pos)
         self.pid_list.insert(new_tab_pos, self.pid_list.pop(old_tab_pos))
