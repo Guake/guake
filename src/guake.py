@@ -1537,11 +1537,9 @@ def main():
 
     if options.show:
         remote_object.show()
-        called_with_param = True
 
     if options.hide:
         remote_object.hide()
-        called_with_param = True
 
     if options.show_preferences:
         remote_object.show_prefs()
