@@ -1,7 +1,7 @@
 2008-11-25  Gabriel Falcão <gabriel@nacaolivre.org>
 
 	* src/guake.py: Applying Licio's (liciofernando@gmail.com) patch for
-	dual head monitors. 
+	dual head monitors.
 
 2008-08-09  Gabriel Falcão <gabriel@nacaolivre.org>
 
@@ -554,7 +554,7 @@
 	* src/guake.py: Changing window_size from string to int, renaming
 	add_tab.svg to add_tab.png, adding keyboard bindings to add a new tab and
 	walk through tabs.
-	
+
 	* src/guake.py (Guake): Renaming setTerminalFocus to set_terminal_focus,
 	animateHide to animate_hide, animateShow to animate_show, delete_page to
 	delete_tab. Adding load_accelerators.
