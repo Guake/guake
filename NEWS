@@ -1,3 +1,9 @@
+Version 0.5.0 (2014.02.22):
+  - tab can be moved
+  - add change tab hotkey (F1-F10 by default) and is display on tab
+  - new contributor:
+    * Gaetan Semet <gaetan@xeberon.net>
+
 changes since 0.4.4:
   - Custom tab titles are no longer overriden by VTE ones (rgaudin)
   - Absent notifications daemon is no longer fatal
@@ -110,7 +116,7 @@ Bugs/Features:
   - Improve regex to use character classes (improve the support of certain locales) #156
   - Ask user if he really wants to quit when there is a child process #158
   - Double click on a tab allows you to rename the tab #165
-  - Add more information on the INSTALL file 
+  - Add more information on the INSTALL file
   - Tray icon position fixed #161
 
 Infrastructure:
