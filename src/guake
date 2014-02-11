@@ -45,6 +45,7 @@ import sys
 
 from thread import start_new_thread
 from time import sleep
+from urllib import quote_plus
 from urllib import url2pathname
 from urlparse import urlsplit
 
@@ -1323,6 +1324,7 @@ class Guake(SimpleGladeApp):
                     proxy + 'authentication_user')
                 auth_pass = self.client.get_string(
                     proxy + 'authentication_password')
+                auth_pass = quote_plus(auth_pass,'')
                 os.environ['http_proxy'] = 'http://%s:%s@%s:%d' % (
                     auth_user, auth_pass, host, port)
                 os.environ['https_proxy'] = 'http://%s:%s@%s:%d' % (
