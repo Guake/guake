@@ -120,10 +120,10 @@
             <key>/schemas/apps/guake/general/window_width</key>
             <applyto>/apps/guake/general/window_width</applyto>
             <owner>guake</owner>
-            <type>int</type>
+            <type>float</type>
             <default>100</default>
             <locale name="C">
-                <short>Window height.</short>
+                <short>Window Width.</short>
                 <long>Percent of the screen that will be used by guake
                   terminal horizontally.</long>
             </locale>
