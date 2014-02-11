@@ -22,39 +22,61 @@ Boston, MA 02110-1301 USA
 from __future__ import absolute_import
 from __future__ import division
 
-import pygtk
 import gobject
+import pygtk
+
 pygtk.require('2.0')
 gobject.threads_init()
 
+import dbus
+import gconf
 import gtk
 import vte
-from pango import FontDescription
-import gconf
-import dbus
-from xdg.DesktopEntry import DesktopEntry
 import xdg.Exceptions
 
+from pango import FontDescription
+from xdg.DesktopEntry import DesktopEntry
+
 import os
-import sys
+import posix
 import signal
+import sys
+
 from thread import start_new_thread
 from time import sleep
-import posix
 from urllib import url2pathname
 from urlparse import urlsplit
 
 
 import guake.globalhotkeys
 import guake.notifier
-from guake.simplegladeapp import SimpleGladeApp, bindtextdomain
-from guake.prefs import PrefsDialog, LKEY, GKEY
-from guake.dbusiface import DbusManager, DBUS_NAME, DBUS_PATH
-from guake.common import test_gconf, pixmapfile, gladefile, ShowableError, _
-from guake.common import shell_quote, clamp
-from guake.globals import NAME, VERSION, LOCALE_DIR, KEY, GCONF_PATH, \
-    TERMINAL_MATCH_EXPRS, TERMINAL_MATCH_TAGS, \
-    ALIGN_LEFT, ALIGN_RIGHT, ALIGN_CENTER
+
+from guake.common import ShowableError
+from guake.common import _
+from guake.common import clamp
+from guake.common import gladefile
+from guake.common import pixmapfile
+from guake.common import shell_quote
+from guake.common import test_gconf
+from guake.dbusiface import DBUS_NAME
+from guake.dbusiface import DBUS_PATH
+from guake.dbusiface import DbusManager
+from guake.globals import ALIGN_CENTER
+from guake.globals import ALIGN_LEFT
+from guake.globals import ALIGN_RIGHT
+from guake.globals import GCONF_PATH
+from guake.globals import KEY
+from guake.globals import LOCALE_DIR
+from guake.globals import NAME
+from guake.globals import TERMINAL_MATCH_EXPRS
+from guake.globals import TERMINAL_MATCH_TAGS
+from guake.globals import VERSION
+from guake.prefs import GKEY
+from guake.prefs import LKEY
+from guake.prefs import PrefsDialog
+from guake.simplegladeapp import SimpleGladeApp
+from guake.simplegladeapp import bindtextdomain
+
 
 GNOME_FONT_PATH = '/desktop/gnome/interface/monospace_font_name'
 
@@ -120,11 +142,11 @@ class GConfHandler(object):
         notify_add = client.notify_add
 
         # these keys does not need to be watched.
-        #notify_add(KEY('/general/default_shell'), self.shell_changed)
-        #notify_add(KEY('/general/use_login_shell'), self.login_shell_toggled)
-        #notify_add(KEY('/general/use_popup'), self.popup_toggled)
-        #notify_add(KEY('/general/window_losefocus'), self.losefocus_toggled)
-        #notify_add(KEY('/general/use_vte_titles'), self.use_vte_titles_changed)
+        # notify_add(KEY('/general/default_shell'), self.shell_changed)
+        # notify_add(KEY('/general/use_login_shell'), self.login_shell_toggled)
+        # notify_add(KEY('/general/use_popup'), self.popup_toggled)
+        # notify_add(KEY('/general/window_losefocus'), self.losefocus_toggled)
+        # notify_add(KEY('/general/use_vte_titles'), self.use_vte_titles_changed)
 
         notify_add(KEY('/general/show_resizer'), self.show_resizer_toggled)
 
@@ -283,7 +305,7 @@ class GConfHandler(object):
         bgcolor = gtk.gdk.color_parse(
             client.get_string(KEY('/style/background/color')))
         palette = [gtk.gdk.color_parse(color) for color in
-            entry.value.get_string().split(':')]
+                   entry.value.get_string().split(':')]
         for i in self.guake.term_list:
             i.set_colors(fgcolor, bgcolor, palette)
 
@@ -356,7 +378,7 @@ class GConfKeyHandler(object):
         to be used in internal methods.
         """
         self.guake = guake
-        self.accel_group = None # see reload_accelerators
+        self.accel_group = None  # see reload_accelerators
         self.client = gconf.client_get_default()
 
         notify_add = self.client.notify_add
@@ -399,7 +421,7 @@ class GConfKeyHandler(object):
         """Reads all gconf paths under /apps/guake/keybindings/local
         and adds to the main accel_group.
         """
-        gets = lambda x:self.client.get_string(LKEY(x))
+        gets = lambda x: self.client.get_string(LKEY(x))
         key, mask = gtk.accelerator_parse(gets('quit'))
         if key > 0:
             self.accel_group.connect_group(key, mask, gtk.ACCEL_VISIBLE,
@@ -656,6 +678,7 @@ class Guake(SimpleGladeApp):
         # Flag to prevent guake hide when window_losefocus is true and
         # user tries to use the context menu.
         self.showing_context_menu = False
+
         def hide_context_menu(menu):
             """Turn context menu flag off to make sure it is not being
             shown.
@@ -697,7 +720,7 @@ class Guake(SimpleGladeApp):
         filename = pixmapfile('guake-notification.png')
 
         if self.client.get_bool(KEY('/general/start_fullscreen')):
-             self.fullscreen()
+            self.fullscreen()
 
         if not self.hotkeys.bind(key, self.show_hide):
             guake.notifier.show_message(
@@ -870,7 +893,7 @@ class Guake(SimpleGladeApp):
         """Hides the main window of the terminal and sets the visible
         flag to False.
         """
-        self.window.hide() # Don't use hide_all here!
+        self.window.hide()  # Don't use hide_all here!
 
     def get_final_window_rect(self):
         """Gets the final size of the main window of guake. The height
@@ -893,16 +916,16 @@ class Guake(SimpleGladeApp):
         # wanna use
         primary_monitor_nr = screen.get_primary_monitor()
         window_rect = screen.get_monitor_geometry(primary_monitor_nr)
-        if os.environ.get('DESKTOP_SESSION')  == "ubuntu":
-            unity_hide = self.client.get_int(KEY('/apps/compiz-1/plugins/' \
-                'unityshell/screen0/options/launcher_hide_mode'))
+        if os.environ.get('DESKTOP_SESSION') == "ubuntu":
+            unity_hide = self.client.get_int(KEY('/apps/compiz-1/plugins/'
+                                                 'unityshell/screen0/options/launcher_hide_mode'))
             # launcher_hide_mode = 1 => autohide
             if unity_hide != 1:
                 # Size of the icons for Unity in Ubuntu <= 12.04
                 # TODO Ubuntu 12.10 use dconf :
                 # /org/compiz/profiles/unity/plugins/unityshell/icon-size
-                unity_icon_size = self.client.get_int(KEY('/apps/compiz-1/' \
-                    'plugins/unityshell/screen0/options/icon_size'))
+                unity_icon_size = self.client.get_int(KEY('/apps/compiz-1/'
+                                                          'plugins/unityshell/screen0/options/icon_size'))
                 unity_dock = unity_icon_size + 17
                 window_rect.width = window_rect.width - unity_dock
         total_width = window_rect.width
@@ -930,7 +953,7 @@ class Guake(SimpleGladeApp):
             term_pid = self.pid_list[term_idx]
             fgpid = posix.tcgetpgrp(fdpty)
             if not (fgpid == -1 or fgpid == term_pid):
-            	total_procs += 1
+                total_procs += 1
             term_idx += 1
         return total_procs
 
@@ -999,7 +1022,7 @@ class Guake(SimpleGladeApp):
         """Callback to go to the previous tab. Called by the accel key.
         """
         if self.notebook.get_current_page() == 0:
-            self.notebook.set_current_page(self.notebook.get_n_pages()-1)
+            self.notebook.set_current_page(self.notebook.get_n_pages() - 1)
         else:
             self.notebook.prev_page()
         return True
@@ -1007,7 +1030,7 @@ class Guake(SimpleGladeApp):
     def accel_next(self, *args):
         """Callback to go to the next tab. Called by the accel key.
         """
-        if self.notebook.get_current_page()+1 == self.notebook.get_n_pages():
+        if self.notebook.get_current_page() + 1 == self.notebook.get_n_pages():
             self.notebook.set_current_page(0)
         else:
             self.notebook.next_page()
@@ -1170,7 +1193,7 @@ class Guake(SimpleGladeApp):
         for uri in droppeduris:
             scheme, _, path, _, _ = urlsplit(uri)
 
-            if scheme!="file":
+            if scheme != "file":
                 pathlist.append(uri)
             else:
                 filename = url2pathname(path)
@@ -1182,16 +1205,16 @@ class Guake(SimpleGladeApp):
                     pathlist.append(filename)
                     continue
 
-                if desktopentry.getType()=='Link':
+                if desktopentry.getType() == 'Link':
                     pathlist.append(desktopentry.getURL())
 
-                if desktopentry.getType()=='Application':
+                if desktopentry.getType() == 'Application':
                     app = desktopentry.getExec()
 
-        if app and len(droppeduris)==1:
+        if app and len(droppeduris) == 1:
             text = app
         else:
-            text = str.join("", (shell_quote(path)+" " for path in pathlist))
+            text = str.join("", (shell_quote(path) + " " for path in pathlist))
 
         box.terminal.feed_child(text)
         return True
@@ -1302,9 +1325,9 @@ class Guake(SimpleGladeApp):
         box.terminal.drag_dest_set(gtk.DEST_DEFAULT_MOTION |
                                    gtk.DEST_DEFAULT_DROP |
                                    gtk.DEST_DEFAULT_HIGHLIGHT,
-                                  [('text/uri-list', gtk.TARGET_OTHER_APP, 0)],
-                                  gtk.gdk.ACTION_COPY
-                                 )
+                                   [('text/uri-list', gtk.TARGET_OTHER_APP, 0)],
+                                   gtk.gdk.ACTION_COPY
+                                   )
         box.terminal.connect('button-press-event', self.show_context_menu)
         box.terminal.connect('child-exited', self.on_terminal_exited, box)
         box.terminal.connect('window-title-changed',
@@ -1458,6 +1481,7 @@ class Guake(SimpleGladeApp):
         self.selected_tab = self.tabs.get_children()[pagepos]
         return pagepos
 
+
 def main():
     """Parses the command line parameters and decide if dbus methods
     should be called or not. If there is already a guake instance
@@ -1467,53 +1491,53 @@ def main():
     from optparse import OptionParser
     parser = OptionParser()
     parser.add_option('-f', '--fullscreen', dest='fullscreen',
-            action='store_true', default=False,
-            help=_('Put Guake in fullscreen mode'))
+                      action='store_true', default=False,
+                      help=_('Put Guake in fullscreen mode'))
 
     parser.add_option('-t', '--toggle-visibility', dest='show_hide',
-            action='store_true', default=False,
-            help=_('Toggles the visibility of the terminal window'))
+                      action='store_true', default=False,
+                      help=_('Toggles the visibility of the terminal window'))
 
     parser.add_option('--show', dest="show",
-            action='store_true', default=False,
-            help=_('Shows Guake main window'))
+                      action='store_true', default=False,
+                      help=_('Shows Guake main window'))
 
     parser.add_option('--hide', dest='hide',
-            action='store_true', default=False,
-            help=_('Hides Guake main window'))
+                      action='store_true', default=False,
+                      help=_('Hides Guake main window'))
 
     parser.add_option('-p', '--preferences', dest='show_preferences',
-            action='store_true', default=False,
-            help=_('Shows Guake preference window'))
+                      action='store_true', default=False,
+                      help=_('Shows Guake preference window'))
 
     parser.add_option('-a', '--about', dest='show_about',
-            action='store_true', default=False,
-            help=_('Shows Guake\'s about info'))
+                      action='store_true', default=False,
+                      help=_('Shows Guake\'s about info'))
 
     parser.add_option('-n', '--new-tab', dest='new_tab',
-            action='store', default='',
-            help=_('Add a new tab'))
+                      action='store', default='',
+                      help=_('Add a new tab'))
 
     parser.add_option('-s', '--select-tab', dest='select_tab',
-            action='store', default='',
-            help=_('Select a tab'))
+                      action='store', default='',
+                      help=_('Select a tab'))
 
     parser.add_option('-g', '--selected-tab', dest='selected_tab',
-            action='store_true', default=False,
-            help=_('Return the selectd tab index.'))
+                      action='store_true', default=False,
+                      help=_('Return the selectd tab index.'))
 
     parser.add_option('-e', '--execute-command', dest='command',
-            action='store', default='',
-            help=_('Execute an arbitrary command in the selected tab.'))
+                      action='store', default='',
+                      help=_('Execute an arbitrary command in the selected tab.'))
 
     parser.add_option('-r', '--rename-tab', dest='rename_tab',
-            metavar='TITLE',
-            action='store', default='',
-            help=_('Rename the selected tab. Reset to default if TITLE is a single dash "-".'))
+                      metavar='TITLE',
+                      action='store', default='',
+                      help=_('Rename the selected tab. Reset to default if TITLE is a single dash "-".'))
 
     parser.add_option('-q', '--quit', dest='quit',
-            action='store_true', default=False,
-            help=_('Says to Guake go away =('))
+                      action='store_true', default=False,
+                      help=_('Says to Guake go away =('))
 
     options = parser.parse_args()[0]
 
@@ -1584,8 +1608,8 @@ def main():
 if __name__ == '__main__':
     if not test_gconf():
         raise ShowableError(_('Guake can not init!'),
-            _('Gconf Error.\n'
-              'Have you installed <b>guake.schemas</b> properly?'))
+                            _('Gconf Error.\n'
+                              'Have you installed <b>guake.schemas</b> properly?'))
 
     if not main():
         gtk.main()
