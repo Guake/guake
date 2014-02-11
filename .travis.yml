@@ -1,5 +1,5 @@
 language: python
-compiler: 
+compiler:
   - gcc
 before_script:
   - sudo apt-get install build-essential python autoconf
@@ -7,4 +7,5 @@ before_script:
   - sudo apt-get install python-gtk2 python-gtk2-dev python-vte
 install: "pip install -r python-requirements.txt --use-mirrors"
 script:
+  - echo "import vte ; print vte" | python
   - ./autogen.sh && ./configure && make
