@@ -21,38 +21,56 @@ Boston, MA 02110-1301 USA
 """
 from __future__ import absolute_import
 
-from gi.repository import Gtk
-from gi.repository import Gdk
-from gi.repository import GdkX11
-from gi.repository import GdkPixbuf
-from gi.repository import GConf
-from gi.repository import Vte
-from gi.repository import GObject
 import dbus
 
-#from xdg.DesktopEntry import DesktopEntry
-#import xdg.Exceptions
+from gi.repository import GConf
+from gi.repository import GObject
+from gi.repository import Gdk
+from gi.repository import GdkPixbuf
+from gi.repository import GdkX11
+from gi.repository import Gtk
+from gi.repository import Vte
+
+# from xdg.DesktopEntry import DesktopEntry
+# import xdg.Exceptions
 
 import os
-import sys
-import signal
 import posix
+import signal
+import sys
+
 from thread import start_new_thread
 from time import sleep
 
-#from urllib import url2pathname
-#from urlparse import urlsplit
+# from urllib import url2pathname
+# from urlparse import urlsplit
 
 import guake.globalhotkeys
 import guake.notifier
-from guake.simplegtkapp import SimpleGtkApp, bindtextdomain
-from guake.prefs import PrefsDialog, GKEY
-from guake.dbusiface import DbusManager, DBUS_NAME, DBUS_PATH
-from guake.common import test_gconf, pixmapfile, gladefile, ShowableError, _
-from guake.globals import NAME, VERSION, LOCALE_DIR, KEY, \
-    ALIGN_LEFT, ALIGN_RIGHT, ALIGN_CENTER
-from guake.conf import GConfHandler, GConfKeyHandler
+
+from guake.common import ShowableError
+from guake.common import _
+from guake.common import gladefile
+from guake.common import pixmapfile
+from guake.common import test_gconf
+from guake.conf import GConfHandler
+from guake.conf import GConfKeyHandler
+from guake.dbusiface import DBUS_NAME
+from guake.dbusiface import DBUS_PATH
+from guake.dbusiface import DbusManager
+from guake.globals import ALIGN_CENTER
+from guake.globals import ALIGN_LEFT
+from guake.globals import ALIGN_RIGHT
+from guake.globals import KEY
+from guake.globals import LOCALE_DIR
+from guake.globals import NAME
+from guake.globals import VERSION
+from guake.prefs import GKEY
+from guake.prefs import PrefsDialog
+from guake.simplegtkapp import SimpleGtkApp
+from guake.simplegtkapp import bindtextdomain
 from guake.terminal import TerminalBox
+
 
 # Loading translation
 bindtextdomain(NAME, LOCALE_DIR)
@@ -140,7 +158,7 @@ class Guake(SimpleGtkApp):
             # it starts with number so use Gdk.EventType(value = 5) to construct
             # 2BUTTON_PRESS event type
             if event.button == 1 and \
-                event.type == Gdk.EventType(value=5):
+                    event.type == Gdk.EventType(value=5):
                 self.add_tab()
 
         self.notebook.connect('button-press-event', double_click)
@@ -174,6 +192,7 @@ class Guake(SimpleGtkApp):
         # Flag to prevent guake hide when window_losefocus is true and
         # user tries to use the context menu.
         self.showing_context_menu = False
+
         def hide_context_menu(menu):
             """Turn context menu flag off to make sure it is not being
             shown.
@@ -221,7 +240,7 @@ class Guake(SimpleGtkApp):
         filename = pixmapfile('guake-notification.png')
 
         if self.client.get_bool(KEY('/general/start_fullscreen')):
-             self.fullscreen()
+            self.fullscreen()
 
         if not self.hotkeys.bind(key, self.show_hide):
             guake.notifier.show_message(
@@ -326,7 +345,7 @@ class Guake(SimpleGtkApp):
         """On double-click over a tab, show the rename dialog.
         """
         if event.button == 1:
-            if event.type == Gdk.EventType(value=5): # 5 == GDK_2BUTTON_PRESS
+            if event.type == Gdk.EventType(value=5):  # 5 == GDK_2BUTTON_PRESS
                 self.accel_rename()
                 self.set_terminal_focus()
                 return
@@ -361,14 +380,14 @@ class Guake(SimpleGtkApp):
         event_time = self.hotkeys.get_current_event_time()
 
         # do nothing if hide has occured in losefocus event in "future"
-        if not (self.losefocus_hide_time and \
-                    self.losefocus_hide_time >= event_time):
+        if not (self.losefocus_hide_time and
+                self.losefocus_hide_time >= event_time):
             if not self.window.get_property('visible'):
                 self.show()
                 self.set_terminal_focus()
             else:
                 self.hide()
- 
+
     def show(self):
         """Shows the main window and grabs the focus on it.
         """
@@ -783,7 +802,7 @@ class Guake(SimpleGtkApp):
         box.terminal.connect('child-exited', self.on_terminal_exited, box)
         box.terminal.connect('window-title-changed',
                              self.on_terminal_title_changed, box)
-        #box.terminal.connect('drag-data-received',
+        # box.terminal.connect('drag-data-received',
         #                     self.on_drag_data_received,
         #                     box)
 
@@ -877,48 +896,48 @@ def handle_params(remote_object):
     from optparse import OptionParser
     parser = OptionParser()
     parser.add_option('-t', '--toggle-visibility', dest='show_hide',
-            action='store_true', default=False,
-            help=_('Toggles the visibility of the terminal window'))
+                      action='store_true', default=False,
+                      help=_('Toggles the visibility of the terminal window'))
 
     parser.add_option('--show', dest="show",
-            action='store_true', default=False,
-            help=_('Shows Guake main window'))
+                      action='store_true', default=False,
+                      help=_('Shows Guake main window'))
 
     parser.add_option('--hide', dest='hide',
-            action='store_true', default=False,
-            help=_('Hides Guake main window'))
+                      action='store_true', default=False,
+                      help=_('Hides Guake main window'))
 
     parser.add_option('-p', '--preferences', dest='show_preferences',
-            action='store_true', default=False,
-            help=_('Shows Guake preference window'))
+                      action='store_true', default=False,
+                      help=_('Shows Guake preference window'))
 
     parser.add_option('-a', '--about', dest='show_about',
-            action='store_true', default=False,
-            help=_('Shows Guake\'s about info'))
+                      action='store_true', default=False,
+                      help=_('Shows Guake\'s about info'))
 
     parser.add_option('-n', '--new-tab', dest='new_tab',
-            action='store', default='',
-            help=_('Add a new tab'))
+                      action='store', default='',
+                      help=_('Add a new tab'))
 
     parser.add_option('-s', '--select-tab', dest='select_tab',
-            action='store', default='',
-            help=_('Select a tab'))
+                      action='store', default='',
+                      help=_('Select a tab'))
 
     parser.add_option('-g', '--selected-tab', dest='selected_tab',
-            action='store_true', default=False,
-            help=_('Return the selectd tab index.'))
+                      action='store_true', default=False,
+                      help=_('Return the selectd tab index.'))
 
     parser.add_option('-e', '--execute-command', dest='command',
-            action='store', default='',
-            help=_('Execute an arbitrary command in the selected tab.'))
+                      action='store', default='',
+                      help=_('Execute an arbitrary command in the selected tab.'))
 
     parser.add_option('-r', '--rename-tab', dest='rename_tab',
-            action='store', default='',
-            help=_('Rename the selected tab.'))
+                      action='store', default='',
+                      help=_('Rename the selected tab.'))
 
     parser.add_option('-q', '--quit', dest='quit',
-            action='store_true', default=False,
-            help=_('Says to Guake go away =('))
+                      action='store_true', default=False,
+                      help=_('Says to Guake go away =('))
 
     options = parser.parse_args()[0]
 
@@ -974,9 +993,9 @@ def handle_params(remote_object):
 
 if __name__ == '__main__':
     if not test_gconf():
-         ShowableError(_('Guake can not init!'),
-            _('Gconf Error.\n'
-              'Have you installed <b>guake.schemas</b> properly?'))
+        ShowableError(_('Guake can not init!'),
+                      _('Gconf Error.\n'
+                        'Have you installed <b>guake.schemas</b> properly?'))
 
     # Trying to get an already running instance of guake. If it is not
     # possible, lets create a new instance. This function will return
