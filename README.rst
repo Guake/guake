@@ -54,20 +54,34 @@ To build guake, you will need the following packages too:
  * pygtk-dev
  * gconf2-dev (to use some autoconf stuff)
 
+Ubuntu
+------
+
 Under Debian/Ubuntu, the following command should install all the build
-dependencies:
-sudo apt-get build-dep guake
+dependencies::
 
+    sudo apt-get build-dep guake
 
-INSTALLATION
+For manual dependency listing::
+
+    sudo apt-get install build-essential python autoconf
+    sudo apt-get install gnome-common gtk-doc-tools libglib2.0-dev libgtk2.0-dev libgconf2-dev
+    sudo apt-get install python-gtk2 python-gtk2-dev python-vte
+
+RedHat/Fedora
+-------------
+
+TBD
+
+Compilation
 ~~~~~~~~~~~~
 
 We are using an autotools based installation, so if you got the source
 of guake from a release tarball, please do the following::
 
-    $ tar -xzvf guake-x.x.x.tar.gz
-    $ cd guake-x.x.x
-    $ ./configure && make
+    $ git clone https://github.com/Guake/guake.git
+    $ cd guake
+    $ ./autogen.sh && ./configure && make
     $ sudo make install
 
 If you receive a message asking you if you have installed
