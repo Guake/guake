@@ -215,6 +215,21 @@
       </widget>
     </child>
     <child>
+      <widget class="GtkImageMenuItem" id="context_add_tab">
+        <property name="label" translatable="yes">New Tab</property>
+        <property name="visible">True</property>
+        <property name="use_stock">False</property>
+        <signal name="activate" handler="add_tab"/>
+        <child internal-child="image">
+          <widget class="GtkImage" id="add_tab_icon">
+            <property name="visible">True</property>
+            <property name="stock">gtk-close</property>
+            <property name="icon-size">1</property>
+          </widget>
+        </child>
+      </widget>
+    </child>
+    <child>
       <widget class="GtkImageMenuItem" id="context_close_tab">
         <property name="label" translatable="yes">Close Tab</property>
         <property name="visible">True</property>
@@ -227,6 +242,11 @@
             <property name="icon-size">1</property>
           </widget>
         </child>
+      </widget>
+    </child>
+    <child>
+      <widget class="GtkSeparatorMenuItem" id="separador3">
+        <property name="visible">True</property>
       </widget>
     </child>
     <child>
