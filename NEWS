@@ -1,8 +1,11 @@
 Version 0.5.0 (2014.02.22):
-  - tab can be moved
-  - add change tab hotkey (F1-F10 by default) and is display on tab
-  - new contributor:
+  - Tab can be moved
+  - Add change tab hotkey (F1-F10 by default) and is display on tab
+  - Add "New tab" menu item
+  - New maintainers:
     * Gaetan Semet <gaetan@xeberon.net>
+  - Contributors:
+    * @koter84
 
 changes since 0.4.4:
   - Custom tab titles are no longer overriden by VTE ones (rgaudin)
