@@ -99,3 +99,10 @@ file by hand doing the following::
 
 For more install details, please read the `INSTALL` file.
 
+Git hook
+~~~~~~~~
+
+Please install this git hook if you want to beauty your patch before submission::
+
+    $ cd guake
+    $ ln -s git-hooks/post-commit .git/hooks/
