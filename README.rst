@@ -1,3 +1,4 @@
+=================
 Guake README file
 =================
 
@@ -13,7 +14,7 @@ hotkeys stuff). The code is placed in the src directory. Files and
 images are in the data directory. Translation stuff is in the po directory.
 
 Features? Bugs? Information?
-Visit http://guake.org/
+Visit: http://guake.org/
 
 
 LICENSE
@@ -37,6 +38,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA
 
 DEPENDENCIES
 ~~~~~~~~~~~~
+
  * Python2.4+
  * pygtk2.10 (gtk.StatusIcon)
  * python-vte
@@ -46,6 +48,7 @@ DEPENDENCIES
  * python-xdg
 
 To build guake, you will need the following packages too:
+
  * python-dev
  * gtk+-2.0-dev
  * pygtk-dev
@@ -58,8 +61,9 @@ sudo apt-get build-dep guake
 
 INSTALLATION
 ~~~~~~~~~~~~
+
 We are using an autotools based installation, so if you got the source
-of guake from a release tarball, please do the following:
+of guake from a release tarball, please do the following::
 
     $ tar -xzvf guake-x.x.x.tar.gz
     $ cd guake-x.x.x
