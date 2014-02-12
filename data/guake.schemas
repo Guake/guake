@@ -649,5 +649,19 @@
                 <long>Set it as false to enjoy guake's fullscreen.</long>
             </locale>
         </schema>
+
+        <schema>
+            <key>/schemas/apps/guake/general/focus_if_open</key>
+            <applyto>/apps/guake/general/focus_if_open</applyto>
+            <owner>guake</owner>
+            <type>bool</type>
+            <default>true</default>
+            <locale name="C">
+                <short>Give focus to guake if tab is opened.</short>
+                <long>If the guake window is out of focus but open,
+                enabling this will give it back the focus instead of closing the window.</long>
+            </locale>
+        </schema>
+
     </schemalist>
 </gconfschemafile>
