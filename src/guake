@@ -150,6 +150,10 @@ class GConfHandler(object):
         # notify_add(KEY('/general/window_losefocus'), self.losefocus_toggled)
         # notify_add(KEY('/general/use_vte_titles'), self.use_vte_titles_changed)
 
+        # Notification is not required for primary_display/display_n because
+        # get_final_window_rect polls gconf and is called whenever Guake is
+        # shown or resized
+
         notify_add(KEY('/general/show_resizer'), self.show_resizer_toggled)
 
         notify_add(KEY('/general/use_trayicon'), self.trayicon_toggled)
@@ -940,11 +944,24 @@ class Guake(SimpleGladeApp):
             width = self.client.get_int(KEY('/general/window_width'))
         halignment = self.client.get_int(KEY('/general/window_halignment'))
 
-        # get the rectangle just from the primary monitor in the
-        # future we might create a field to select which monitor you
-        # wanna use
-        primary_monitor_nr = screen.get_primary_monitor()
-        window_rect = screen.get_monitor_geometry(primary_monitor_nr)
+        use_primary = self.client.get_bool(KEY('/general/primary_display'))
+        dest_screen = self.client.get_int(KEY('/general/display_n'))
+
+        if use_primary:
+            dest_screen = screen.get_primary_monitor()
+
+        # If Guake is configured to use a screen that is not currently attached,
+        # default to 'primary display' option.
+        n_screens = screen.get_n_monitors()
+        if dest_screen > n_screens - 1:
+            self.client.set_bool(KEY('/general/primary_display'), True)
+            self.client.set_int(KEY('/general/display_n'), dest_screen)
+            dest_screen = screen.get_primary_monitor()
+
+        # get the rectangle just from the destination monitor
+        window_rect = screen.get_monitor_geometry(dest_screen)
+
+
         if os.environ.get('DESKTOP_SESSION') == "ubuntu":
             unity_hide = self.client.get_int(KEY('/apps/compiz-1/plugins/'
                                                  'unityshell/screen0/options/launcher_hide_mode'))
@@ -994,6 +1011,8 @@ class Guake(SimpleGladeApp):
         self.client.notify(KEY('/general/use_trayicon'))
         self.client.notify(KEY('/general/prompt_on_quit'))
         self.client.notify(KEY('/general/window_tabbar'))
+        self.client.notify(KEY('/general/primary_display'))
+        self.client.notify(KEY('/general/display_n'))
         self.client.notify(KEY('/general/window_ontop'))
         self.client.notify(KEY('/general/window_height'))
         self.client.notify(KEY('/general/window_width'))
