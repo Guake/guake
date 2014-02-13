@@ -2,13 +2,16 @@ language: python
 python:
     - "2.6"
     - "2.7"
+virtualenv:
+    system_site_packages: true
 compiler:
-  - gcc
+    - gcc
 before_script:
-  - sudo apt-get install build-essential python autoconf
-  - sudo apt-get install gnome-common gtk-doc-tools libglib2.0-dev libgtk2.0-dev libgconf2-dev
-  - sudo apt-get install python-gtk2 python-gtk2-dev python-vte
-install: "pip install -r python-requirements.txt --use-mirrors"
+    - sudo apt-get install build-essential python autoconf
+    - sudo apt-get install gnome-common gtk-doc-tools libglib2.0-dev libgtk2.0-dev libgconf2-dev
+    - sudo apt-get install python-gtk2 python-gtk2-dev python-vte
+install:
+    - pip install -r python-requirements.txt --use-mirrors
 script:
-  - echo "import vte ; print vte" | python
-  - ./autogen.sh && ./configure && make
+    - echo "import vte ; print vte" | python
+    - ./autogen.sh && ./configure && make
