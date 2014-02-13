@@ -340,7 +340,7 @@ msgstr "Guake 终端"
 #, python-format
 msgid ""
 "A problem happened when binding <b>%s</b> key.\n"
-"Please use Guake Preferences dialog to choose another key (The trayicon was enabled)"
+"Please use Guake Preferences dialog to choose another key"
 msgstr ""
 "绑定 <b>%s</b> 键时出现问题。\n"
 "请使用 Guake 首选项对话框选择另外的键（托盘图标已启用）"
@@ -381,7 +381,7 @@ msgid "Select a tab"
 msgstr "选择一个标签页"
 
 #: ../src/guake.py:1272
-msgid "Return the selectd tab index."
+msgid "Return the selected tab index."
 msgstr "回到选定的标签页索引"
 
 #: ../src/guake.py:1276

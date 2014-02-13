@@ -311,7 +311,7 @@ msgstr "Термінал Guake"
 #, python-format
 msgid ""
 "A problem happened when binding <b>%s</b> key.\n"
-"Please use Guake Preferences dialog to choose another key (The trayicon was enabled)"
+"Please use Guake Preferences dialog to choose another key"
 msgstr "Виникла проблема при спробі призначити клавіатурне скорочення <b>%s</b>. Будь ласка, скористайтесь діалогом налаштувань, щоб вибрати іншу гарячу клавішу (значок у таці був задіяний)."
 
 #: ../src/guake.py:647
@@ -348,7 +348,7 @@ msgid "Select a tab"
 msgstr "Вибрати вкладку"
 
 #: ../src/guake.py:1272
-msgid "Return the selectd tab index."
+msgid "Return the selected tab index."
 msgstr "Повернути індекс вибраної вкладки."
 
 #: ../src/guake.py:1276

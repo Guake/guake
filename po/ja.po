@@ -322,7 +322,7 @@ msgstr "Guake 端末"
 #, python-format
 msgid ""
 "A problem happened when binding <b>%s</b> key.\n"
-"Please use Guake Preferences dialog to choose another key (The trayicon was enabled)"
+"Please use Guake Preferences dialog to choose another key"
 msgstr ""
 "<b>%s</b>キーの割り当てで問題が発生しました。\n"
 "設定画面で別のキーを選択してください。(通知エリアのアイコンが有効でした)"
@@ -363,7 +363,7 @@ msgid "Select a tab"
 msgstr "タブを選択"
 
 #: ../src/guake.py:1272
-msgid "Return the selectd tab index."
+msgid "Return the selected tab index."
 msgstr "選択したタブのインデックスを返す"
 
 #: ../src/guake.py:1276

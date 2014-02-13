@@ -401,7 +401,7 @@ msgid "Select a tab"
 msgstr "Wybór karty"
 
 #: ../src/guake.py:1232
-msgid "Return the selectd tab index."
+msgid "Return the selected tab index."
 msgstr "Powrót do wybranego indeksu kart."
 
 #: ../src/guake.py:1236

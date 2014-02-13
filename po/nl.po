@@ -309,7 +309,7 @@ msgstr "Guake Terminal"
 #, python-format
 msgid ""
 "A problem happened when binding <b>%s</b> key.\n"
-"Please use Guake Preferences dialog to choose another key (The trayicon was enabled)"
+"Please use Guake Preferences dialog to choose another key"
 msgstr "Er heeft zich een probleem voorgedaan bij het binden van toets <b>%s</b>.\nGebruik het Guake Instellingen-dialoogvenster om een andere toets te binden (Het notificatievak-pictogram was geactiveerd)"
 
 #: ../src/guake.py:647
@@ -346,7 +346,7 @@ msgid "Select a tab"
 msgstr "Selecteer een tab"
 
 #: ../src/guake.py:1272
-msgid "Return the selectd tab index."
+msgid "Return the selected tab index."
 msgstr "Geef de geselecteerde tabindex"
 
 #: ../src/guake.py:1276
