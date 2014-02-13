@@ -232,6 +232,18 @@
         </schema>
 
         <schema>
+            <key>/schemas/apps/guake/style/cursor_shape</key>
+            <applyto>/apps/guake/style/cursor_shape</applyto>
+            <owner>guake</owner>
+            <type>int</type>
+            <default>0</default>
+            <locale name="C">
+                <short>Cursor shape of the terminal</short>
+                <long>Controls the shape of the cursor in the terminals. 0: Block, 1: I-Beam, 2: Underline</long>
+            </locale>
+        </schema>
+
+        <schema>
             <key>/schemas/apps/guake/style/font/style</key>
             <applyto>/apps/guake/style/font/style</applyto>
             <owner>guake</owner>

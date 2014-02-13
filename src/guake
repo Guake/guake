@@ -157,6 +157,7 @@ class GConfHandler(object):
         notify_add(KEY('/general/window_tabbar'), self.tabbar_toggled)
         notify_add(KEY('/general/window_height'), self.size_changed)
         notify_add(KEY('/general/window_width'), self.size_changed)
+        notify_add(KEY('/style/cursor_shape'), self.cursor_shape_changed)
 
         notify_add(KEY('/general/use_scrollbar'), self.scrollbar_toggled)
         notify_add(KEY('/general/history_size'), self.history_size_changed)
@@ -222,16 +223,22 @@ class GConfHandler(object):
         self.guake.window.resize(window_rect.width, window_rect.height)
         self.guake.window.move(window_rect.x, window_rect.y)
 
+    def cursor_shape_changed(self, client, connection_id, entry, data):
+        """Called when the cursor shape settings has been changed
+        """
+        for term in self.guake.term_list:
+            term.set_property("cursor-shape", entry.value.get_int())
+
     def scrollbar_toggled(self, client, connection_id, entry, data):
         """If the gconf var use_scrollbar be changed, this method will
         be called and will show/hide scrollbars of all terminals open.
         """
-        for i in self.guake.term_list:
+        for term in self.guake.term_list:
             # There is an hbox in each tab of the main notebook and it
             # contains a Terminal and a Scrollbar. Since only have the
             # Terminal here, we're going to use this to get the
             # scrollbar and hide/show it.
-            hbox = i.get_parent()
+            hbox = term.get_parent()
             terminal, scrollbar = hbox.get_children()
             if entry.value.get_bool():
                 scrollbar.show()
@@ -496,6 +503,8 @@ class GuakeTerminal(vte.Terminal):
         self.set_sensitive(True)
         self.set_flags(gtk.CAN_DEFAULT)
         self.set_flags(gtk.CAN_FOCUS)
+        cursor_shape = client.get_int(KEY('/style/cursor_shape'))
+        client.set_int(KEY('/style/cursor_shape'), cursor_shape)
 
     def add_matches(self):
         """Adds all regular expressions declared in
@@ -992,6 +1001,7 @@ class Guake(SimpleGladeApp):
         self.client.notify(KEY('/general/history_size'))
         self.client.notify(KEY('/general/show_resizer'))
         self.client.notify(KEY('/general/use_vte_titles'))
+        self.client.notify(KEY('/style/cursor_shape'))
         self.client.notify(KEY('/style/font/style'))
         self.client.notify(KEY('/style/font/color'))
         self.client.notify(KEY('/style/font/palette'))
