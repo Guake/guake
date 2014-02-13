@@ -370,7 +370,7 @@ msgid "Select a tab"
 msgstr "ਟੈਬ ਚੁਣੋ"
 
 #: ../src/guake.py:1272
-msgid "Return the selectd tab index."
+msgid "Return the selected tab index."
 msgstr "ਚੁਣੇ ਟੈਬ ਇੰਡੈਕਸ ਉੱਤੇ ਵਾਪਸ ਜਾਉ।"
 
 #: ../src/guake.py:1276
