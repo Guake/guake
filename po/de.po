@@ -268,7 +268,7 @@ msgstr "Unfähig das Kürzel auf <b>%s</b> zu ändern."
 #, python-format
 msgid ""
 "A problem happened when binding <b>%s</b> key.\n"
-"Please use Guake Preferences dialog to choose another key (The trayicon was enabled)"
+"Please use Guake Preferences dialog to choose another key"
 msgstr ""
 "Ein Problem trat auf beim Verknüfen mit <b>%s</b>.\n"
 "Bitte benutzen Sie die Einstellungen um eine andere Taste oder ein anderes Tastenkürzel zu wählen."
@@ -452,7 +452,7 @@ msgid "Execute an arbitrary command in the selected tab."
 msgstr "Eigenen Befehl im ausgewählten Tab ausführen"
 
 #: ../src/guake.py:1211
-msgid "Return the selectd tab index."
+msgid "Return the selected tab index."
 msgstr ""
 
 #: ../data/prefs.glade.h:6

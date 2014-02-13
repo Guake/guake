@@ -328,7 +328,7 @@ msgstr "Guake Terminal"
 #, python-format
 msgid ""
 "A problem happened when binding <b>%s</b> key.\n"
-"Please use Guake Preferences dialog to choose another key (The trayicon was enabled)"
+"Please use Guake Preferences dialog to choose another key"
 msgstr ""
 "Problema durante l'impostazione del tasto <b>%s</b>.\n"
 "Per favore usa la finestra delle preferenze di Guake per scegliere un nuovo tasto (è stata abilitata l'icona nel vassoio)"
@@ -369,7 +369,7 @@ msgid "Select a tab"
 msgstr "Seleziona una scheda"
 
 #: ../src/guake.py:1272
-msgid "Return the selectd tab index."
+msgid "Return the selected tab index."
 msgstr "Restituisce l'indice della scheda selezionata."
 
 #: ../src/guake.py:1276

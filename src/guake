@@ -733,7 +733,7 @@ class Guake(SimpleGladeApp):
                 _('Guake!'),
                 _('A problem happened when binding <b>%s</b> key.\n'
                   'Please use Guake Preferences dialog to choose another '
-                  'key (The trayicon was enabled)') % label, filename)
+                  'key') % label, filename)
             self.client.set_bool(KEY('/general/use_trayicon'), True)
 
         elif self.client.get_bool(KEY('/general/use_popup')):
@@ -1576,7 +1576,7 @@ def main():
 
     parser.add_option('-g', '--selected-tab', dest='selected_tab',
                       action='store_true', default=False,
-                      help=_('Return the selectd tab index.'))
+                      help=_('Return the selected tab index.'))
 
     parser.add_option('-e', '--execute-command', dest='command',
                       action='store', default='',

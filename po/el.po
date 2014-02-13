@@ -342,7 +342,7 @@ msgid "Select a tab"
 msgstr "Επιλέξτε μία καρτέλα"
 
 #: ../src/guake.py:1114
-msgid "Return the selectd tab index."
+msgid "Return the selected tab index."
 msgstr "Restituisce l'indice della scheda selezionata."
 
 #: ../src/guake.py:1118

@@ -396,8 +396,8 @@ msgid "Select a tab"
 msgstr "Select a tab"
 
 #: ../src/guake.py:1232
-msgid "Return the selectd tab index."
-msgstr "Return the selectd tab index."
+msgid "Return the selected tab index."
+msgstr "Return the selected tab index."
 
 #: ../src/guake.py:1236
 msgid "Execute an arbitrary command in the selected tab."
