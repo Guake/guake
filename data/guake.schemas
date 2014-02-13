@@ -1,6 +1,34 @@
 <gconfschemafile>
     <schemalist>
         <schema>
+            <key>/schemas/apps/guake/general/primary_display</key>
+            <applyto>/apps/guake/general/primary_display</applyto>
+            <owner>guake</owner>
+            <type>bool</type>
+            <default>true</default>
+            <locale name="C">
+                <short>Appear on the primary display.</short>
+                <long>Appear on the primary display. This overrides any setting
+                in display_n.</long>
+            </locale>
+        </schema>
+
+        <schema>
+            <key>/schemas/apps/guake/general/display_n</key>
+            <applyto>/apps/guake/general/display_n</applyto>
+            <owner>guake</owner>
+            <type>int</type>
+            <default>0</default>
+            <locale name="C">
+                <short>Display to appear on.</short>
+                <long>Display to appear on if the primary_display option is not
+                set. If this is set to an invalid value (as in the case of
+                removing a screen from a system), the invalid value is
+                automatically updated to the current primary screen.</long>
+            </locale>
+        </schema>
+
+        <schema>
             <key>/schemas/apps/guake/general/default_shell</key>
             <applyto>/apps/guake/general/default_shell</applyto>
             <owner>guake</owner>
