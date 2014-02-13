@@ -650,7 +650,7 @@ class Guake(SimpleGladeApp):
                     self.client.get_string(KEY('/style/background/image')))
 
             self.window.get_screen().connect("composited-changed",
-                                              composited_changed);
+                                             composited_changed)
 
         # List of vte.Terminal widgets, it will be useful when needed
         # to get a widget by the current page in self.notebook
@@ -960,7 +960,6 @@ class Guake(SimpleGladeApp):
 
         # get the rectangle just from the destination monitor
         window_rect = screen.get_monitor_geometry(dest_screen)
-
 
         if os.environ.get('DESKTOP_SESSION') == "ubuntu":
             unity_hide = self.client.get_int(KEY('/apps/compiz-1/plugins/'
@@ -1357,7 +1356,7 @@ class Guake(SimpleGladeApp):
                     proxy + 'authentication_user')
                 auth_pass = self.client.get_string(
                     proxy + 'authentication_password')
-                auth_pass = quote_plus(auth_pass,'')
+                auth_pass = quote_plus(auth_pass, '')
                 os.environ['http_proxy'] = 'http://%s:%s@%s:%d' % (
                     auth_user, auth_pass, host, port)
                 os.environ['https_proxy'] = 'http://%s:%s@%s:%d' % (
