@@ -85,7 +85,7 @@ while read line; do
 done < ${tempfile}
 
 echo "${MAGENTA}Validating the following commits:${NORM}"
-git log "$REVRANGE" --pretty=oneline || exit 1
+git --no-pager log "$REVRANGE" --pretty=oneline || exit 1
 
 if $slow; then
     status "running tests"
