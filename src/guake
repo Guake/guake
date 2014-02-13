@@ -906,6 +906,10 @@ class Guake(SimpleGladeApp):
             self.add_tab()
 
         self.window.show_all()
+
+        # this work arround an issue in fluxbox
+        self.window.move(window_rect.x, window_rect.y)
+
         self.client.notify(KEY('/general/window_height'))
 
         try:
