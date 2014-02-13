@@ -19,21 +19,30 @@
 # Boston, MA 02110-1301 USA
 from __future__ import absolute_import
 
-import re
 import os
+import re
 import warnings
 
-import gtk
-import gobject
 import gconf
+import gobject
+import gtk
 
-from guake.simplegladeapp import SimpleGladeApp, bindtextdomain
-from guake.globals import NAME, LOCALE_DIR, GCONF_PATH, KEY, ALIGN_LEFT, ALIGN_RIGHT, ALIGN_CENTER
-from guake.common import *
+from guake.common import ShowableError
+from guake.common import _
+from guake.common import get_binaries_from_path
+from guake.common import gladefile
+from guake.common import hexify_color
+from guake.common import pixmapfile
+from guake.globals import GCONF_PATH
+from guake.globals import KEY
+from guake.globals import LOCALE_DIR
+from guake.globals import NAME
+from guake.simplegladeapp import SimpleGladeApp
+from guake.simplegladeapp import bindtextdomain
 
 # A regular expression to match possible python interpreters when
 # filling interpreters combo in preferences (including bpython and ipython)
-PYTHONS = re.compile('^[a-z]python$|^python\d\.\d$')
+PYTHONS = re.compile(r'^[a-z]python$|^python\d\.\d$')
 
 # Path to the shells file, it will be used to start to populate
 # interpreters combo, see the next variable, its important to fill the
@@ -50,8 +59,8 @@ ERASE_BINDINGS = {'ASCII DEL': 'ascii-delete',
 
 # Stuff used to build the treeview that will allow the user to change
 # keybindings in the preferences window.
-LKEY = lambda x:GCONF_PATH+'/keybindings/local/' + x
-GKEY = lambda x:GCONF_PATH+'/keybindings/global/' + x
+LKEY = lambda x: GCONF_PATH + '/keybindings/local/' + x
+GKEY = lambda x: GCONF_PATH + '/keybindings/global/' + x
 
 HOTKEYS = [
     {'label': 'General',
@@ -106,7 +115,7 @@ HOTKEYS = [
                'label': 'Zoom in'},
               {'key': LKEY('zoom_in_alt'),
                'label': 'Zoom in (alternative)'},
-             ]},
+              ]},
 
     {'label': 'Clipboard',
      'keys': [{'key': LKEY('clipboard_copy'),
@@ -114,7 +123,7 @@ HOTKEYS = [
               {'key': LKEY('clipboard_paste'),
                'label': 'Paste text from clipboard'},
               ]}
-    ]
+]
 
 PALETTES = [
     # tango
@@ -141,6 +150,7 @@ PALETTES = [
     '#0000ffff0000:#ffffffff0000:#00000000ffff:#ffff0000ffff:#0000ffffffff:'
     '#ffffffffffff'
 ]
+
 
 class PrefsCallbacks(object):
     """Holds callbacks that will be used in the PrefsDialg class.
@@ -174,7 +184,6 @@ class PrefsCallbacks(object):
         """Changes the activity of open_tab_cwd in gconf
         """
         self.client.set_bool(KEY('/general/open_tab_cwd'), chk.get_active())
-
 
     def on_use_trayicon_toggled(self, chk):
         """Changes the activity of use_trayicon in gconf
@@ -230,7 +239,7 @@ class PrefsCallbacks(object):
         if not i:
             return
         val = combo.get_model().get_value(i, 0)
-        val_int = int(val.split()[0]) # extracts 1 from '1' or from '1 (primary)'
+        val_int = int(val.split()[0])  # extracts 1 from '1' or from '1 (primary)'
         self.client.set_int(KEY('/general/display_n'), val_int)
 
     def on_window_height_value_changed(self, hscale):
@@ -450,8 +459,8 @@ class PrefsDialog(SimpleGladeApp):
         palette_index = combo.get_active()
         if palette_index == 4:
             return
-        self.client.set_string(KEY('/style/font/palette'), 
-            PALETTES[palette_index]) 
+        self.client.set_string(KEY('/style/font/palette'),
+                               PALETTES[palette_index])
         self.set_palette_colors(PALETTES[palette_index])
 
     def on_palette_color_set(self, btn):
@@ -508,7 +517,7 @@ class PrefsDialog(SimpleGladeApp):
         combo = self.get_widget('default_shell')
         # get the value for defualt shell. If unset, set to USER_SHELL_VALUE.
         value = self.client.get_string(KEY('/general/default_shell')) or \
-                USER_SHELL_VALUE
+            USER_SHELL_VALUE
         for i in combo.get_model():
             if i[0] == value:
                 combo.set_active_iter(i.iter)
@@ -563,7 +572,7 @@ class PrefsDialog(SimpleGladeApp):
             self.client.set_int(KEY('/general/display_n'), dest_screen)
 
         for i in combo.get_model():
-            i_int = int(i[0].split()[0]) # extracts 1 from '1' or from '1 (primary)'
+            i_int = int(i[0].split()[0])  # extracts 1 from '1' or from '1 (primary)'
             if i_int == dest_screen:
                 combo.set_active_iter(i.iter)
 
@@ -718,7 +727,7 @@ class PrefsDialog(SimpleGladeApp):
         if ((mask == 0 and keycode != 0) and (
             (keycode >= ord('a') and keycode <= ord('z')) or
             (keycode >= ord('A') and keycode <= ord('Z')) or
-            (keycode >= ord('0') and keycode <= ord('9')))):
+                (keycode >= ord('0') and keycode <= ord('9')))):
             dialog = gtk.MessageDialog(
                 self.get_widget('config-window'),
                 gtk.DIALOG_MODAL | gtk.DIALOG_DESTROY_WITH_PARENT,
@@ -748,7 +757,7 @@ class PrefsDialog(SimpleGladeApp):
         giter = model.get_iter(path)
         gconf_path = model.get_value(giter, 0)
 
-        accel = self.client.get_string(gconf_path)
+        self.client.get_string(gconf_path)
         model.set_value(giter, 2, KeyEntry(0, 0))
 
         self.client.set_string(gconf_path, 'disabled')
@@ -793,6 +802,7 @@ class PrefsDialog(SimpleGladeApp):
 
         return True
 
+
 class KeyEntry(object):
     def __init__(self, keycode, mask):
         self.keycode = keycode
@@ -805,6 +815,7 @@ class KeyEntry(object):
     def __eq__(self, rval):
         return self.keycode == rval.keycode and \
             self.mask == rval.mask
+
 
 def setup_standalone_signals(instance):
     """Called when prefs dialog is running in standalone mode. It
