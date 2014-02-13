@@ -39,7 +39,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA
 DEPENDENCIES
 ~~~~~~~~~~~~
 
- * Python2.4+
+ * Python2.7+
  * pygtk2.10 (gtk.StatusIcon)
  * python-vte
  * python-notify
@@ -62,7 +62,7 @@ dependencies::
 
     sudo apt-get build-dep guake
 
-For manual dependency listing::
+For manual dependency listing (Ubuntu 13.10)::
 
     sudo apt-get install build-essential python autoconf
     sudo apt-get install gnome-common gtk-doc-tools libglib2.0-dev libgtk2.0-dev libgconf2-dev
