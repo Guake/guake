@@ -555,6 +555,9 @@ class PrefsDialog(SimpleGladeApp):
         value = self.client.get_int(KEY('/general/window_height'))
         self.get_widget('window_height').set_value(value)
 
+        value = self.client.get_bool(KEY('/general/open_tab_cwd'))
+        self.get_widget('open_tab_cwd').set_value(value)
+
         # tab bar
         value = self.client.get_bool(KEY('/general/window_tabbar'))
         self.get_widget('window_tabbar').set_active(value)
