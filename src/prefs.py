@@ -40,6 +40,7 @@ from guake.globals import NAME
 from guake.simplegladeapp import SimpleGladeApp
 from guake.simplegladeapp import bindtextdomain
 
+
 # A regular expression to match possible python interpreters when
 # filling interpreters combo in preferences (including bpython and ipython)
 PYTHONS = re.compile(r'^[a-z]python$|^python\d\.\d$')
@@ -514,6 +515,7 @@ class PrefsDialog(SimpleGladeApp):
         and Appearance tabs from gconf.
         """
         # default_shell
+
         combo = self.get_widget('default_shell')
         # get the value for defualt shell. If unset, set to USER_SHELL_VALUE.
         value = self.client.get_string(KEY('/general/default_shell')) or \
@@ -549,6 +551,9 @@ class PrefsDialog(SimpleGladeApp):
         # use VTE titles
         value = self.client.get_bool(KEY('/general/use_vte_titles'))
         self.get_widget('use_vte_titles').set_active(value)
+
+        value = self.client.get_int(KEY('/general/window_height'))
+        self.get_widget('window_height').set_value(value)
 
         # tab bar
         value = self.client.get_bool(KEY('/general/window_tabbar'))
