@@ -166,20 +166,6 @@
     <property name="visible">True</property>
     <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
     <child>
-      <widget class="GtkImageMenuItem" id="context_preferences">
-        <property name="label">gtk-preferences</property>
-        <property name="visible">True</property>
-        <property name="use_underline">True</property>
-        <property name="use_stock">True</property>
-        <signal name="activate" handler="show_prefs"/>
-      </widget>
-    </child>
-    <child>
-      <widget class="GtkSeparatorMenuItem" id="separador1">
-        <property name="visible">True</property>
-      </widget>
-    </child>
-    <child>
       <widget class="GtkImageMenuItem" id="context_copy">
         <property name="label" translatable="yes">Copy</property>
         <property name="visible">True</property>
@@ -246,6 +232,20 @@
     </child>
     <child>
       <widget class="GtkSeparatorMenuItem" id="separador3">
+        <property name="visible">True</property>
+      </widget>
+    </child>
+    <child>
+      <widget class="GtkImageMenuItem" id="context_preferences">
+        <property name="label">gtk-preferences</property>
+        <property name="visible">True</property>
+        <property name="use_underline">True</property>
+        <property name="use_stock">True</property>
+        <signal name="activate" handler="show_prefs"/>
+      </widget>
+    </child>
+    <child>
+      <widget class="GtkSeparatorMenuItem" id="separador1">
         <property name="visible">True</property>
       </widget>
     </child>
