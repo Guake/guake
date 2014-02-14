@@ -1428,7 +1428,7 @@ class Guake(SimpleGladeApp):
                     lambda *x: self.notebook.set_current_page(
                         self.notebook.page_num(box)
                     ))
-        bnt.modify_bg(gtk.STATE_ACTIVE, gtk.gdk.Color("#CEE0A6"))
+        bnt.modify_bg(gtk.STATE_ACTIVE, gtk.gdk.Color("#ff9431"))
         drag_drop_type = ("text/plain", gtk.TARGET_SAME_APP, 80)
         bnt.drag_dest_set(gtk.DEST_DEFAULT_ALL, [drag_drop_type], gtk.gdk.ACTION_MOVE)
         bnt.connect("drag_data_received", self.on_drop_tab)
