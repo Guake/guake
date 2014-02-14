@@ -22,7 +22,8 @@ Guake is distributed in the hope that it will be useful, but WITHOUT ANY WARRANT
 
 You should have received a copy of the GNU General Public License along with Guake; if not, write to the Free Software Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301 USA
 </property>
-    <property name="authors">Lincoln de Sousa &lt;lincoln@guake.org&gt;
+    <property name="authors">Gaetan Semet &lt;gaetan@xeberon.net&gt;
+Lincoln de Sousa &lt;lincoln@guake.org&gt;
 Pierre-Yves Chibon (Pingou) &lt;pingou@guake.org&gt;
 Aleksandar Krsteski (SnapShot) &lt;aleksandar@guake.org&gt;
 
