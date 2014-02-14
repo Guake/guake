@@ -1,0 +1,10 @@
+[Desktop Entry]
+Name=Autoconfigure Guake
+Comment=Autoconfigure the start of the Guake terminal
+TryExec=~/scripts/guake-autoconfigure.sh
+Exec=~/scripts/guake-autoconfigure.sh
+Icon=/usr/share/pixmaps/guake/guake.png
+Type=Application
+Categories=GNOME;GTK;Utility;TerminalEmulator;
+StartupNotify=true
+X-GNOME-Autostart-enabled=true

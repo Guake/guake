@@ -1,0 +1,10 @@
+[Desktop Entry]
+Name=Autostart Guake Terminal
+Comment=Automatically start Guake terminal at login
+TryExec=guake
+Exec=guake
+Icon=/usr/share/pixmaps/guake/guake.png
+Type=Application
+Categories=GNOME;GTK;Utility;TerminalEmulator;
+StartupNotify=true
+X-GNOME-Autostart-enabled=true
