@@ -204,7 +204,8 @@ static PyObject *
 GlobalHotkey_get_current_event_time (GlobalHotkey *self)
 {
   guint32 ret = keybinder_get_current_event_time ();
-  return Py_BuildValue ("i", ret);
+  // "I" means "unsigned integer"
+  return Py_BuildValue ("I", ret);
 }
 
 static struct PyMemberDef GlobalHotkey_members[] = {
