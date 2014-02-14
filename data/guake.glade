@@ -245,6 +245,15 @@
       </widget>
     </child>
     <child>
+      <widget class="GtkImageMenuItem" id="context_about">
+        <property name="label">gtk-about</property>
+        <property name="visible">True</property>
+        <property name="use_underline">True</property>
+        <property name="use_stock">True</property>
+        <signal name="activate" handler="show_about"/>
+      </widget>
+    </child>
+    <child>
       <widget class="GtkSeparatorMenuItem" id="separador1">
         <property name="visible">True</property>
       </widget>
