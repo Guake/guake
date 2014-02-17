@@ -1,0 +1,5 @@
+  File "./src/guake", line 552
+    subpr ocess.call([self.EDITOR, self.EDITOR_CMDLINE % {"filename": g.group(1),
+              ^
+SyntaxError: invalid syntax
+
