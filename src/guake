@@ -38,9 +38,12 @@ import xdg.Exceptions
 from pango import FontDescription
 from xdg.DesktopEntry import DesktopEntry
 
+import logging
 import os
 import posix
+import re
 import signal
+import subprocess
 import sys
 
 from thread import start_new_thread
@@ -513,6 +516,10 @@ class GuakeTerminal(vte.Terminal):
         cursor_shape = client.get_int(KEY('/style/cursor_shape'))
         client.set_int(KEY('/style/cursor_shape'), cursor_shape)
 
+    PYTHON_MATCH = r"^\s\sFile\s\"(.*)\",\sline\s([0-9]+),"
+    EDITOR = "subl"
+    EDITOR_CMDLINE = "%(filename)s:%(line_number)s"
+
     def add_matches(self):
         """Adds all regular expressions declared in
         guake.globals.TERMINAL_MATCH_EXPRS to the terminal to make vte
@@ -521,6 +528,9 @@ class GuakeTerminal(vte.Terminal):
         for expr in TERMINAL_MATCH_EXPRS:
             tag = self.match_add(expr)
             self.match_set_cursor_type(tag, gtk.gdk.HAND2)
+
+        tag = self.match_add(self.PYTHON_MATCH)
+        self.match_set_cursor_type(tag, gtk.gdk.HAND2)
 
     def button_press(self, terminal, event):
         """Handles the button press event in the terminal widget. If
@@ -536,18 +546,23 @@ class GuakeTerminal(vte.Terminal):
                 and event.get_state() & gtk.gdk.CONTROL_MASK \
                 and matched_string:
             value, tag = matched_string
+            g = re.compile(self.PYTHON_MATCH).match(value)
+            if g and len(g.groups()) == 2:
+                logging.debug("Opening file %s at line %s", g.group(1), g.group(2))
+                subprocess.call([self.EDITOR, self.EDITOR_CMDLINE % {"filename": g.group(1),
+                                                                     "line_number": g.group(2)}])
+            else:
+                if TERMINAL_MATCH_TAGS[tag] == 'schema':
+                    # value here should not be changed, it is right and
+                    # ready to be used.
+                    pass
+                elif TERMINAL_MATCH_TAGS[tag] == 'http':
+                    value = 'http://%s' % value
+                elif TERMINAL_MATCH_TAGS[tag] == 'email':
+                    value = 'mailto:%s' % value
 
-            if TERMINAL_MATCH_TAGS[tag] == 'schema':
-                # value here should not be changed, it is right and
-                # ready to be used.
-                pass
-            elif TERMINAL_MATCH_TAGS[tag] == 'http':
-                value = 'http://%s' % value
-            elif TERMINAL_MATCH_TAGS[tag] == 'email':
-                value = 'mailto:%s' % value
-
-            gtk.show_uri(self.window.get_screen(), value,
-                         gtk.gdk.x11_get_server_time(self.window))
+                gtk.show_uri(self.window.get_screen(), value,
+                             gtk.gdk.x11_get_server_time(self.window))
         elif event.button == 3 and matched_string:
             self.matched_value = matched_string[0]
 
