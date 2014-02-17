@@ -516,7 +516,7 @@ class GuakeTerminal(vte.Terminal):
         cursor_shape = client.get_int(KEY('/style/cursor_shape'))
         client.set_int(KEY('/style/cursor_shape'), cursor_shape)
 
-    PYTHON_MATCH = r"^\s\sFile\s\"(.*)\",\sline\s([0-9]+),"
+    PYTHON_MATCH = r"^\s\sFile\s\"(.*)\",\sline\s([0-9]+)"
     EDITOR = "subl"
     EDITOR_CMDLINE = "%(filename)s:%(line_number)s"
 
