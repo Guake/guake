@@ -46,6 +46,7 @@ DEPENDENCIES
  * python-dbus
  * python-gconf
  * python-xdg
+ * python-appindicator (ubuntu)
 
 To build guake, you will need the following packages too:
 
@@ -66,7 +67,7 @@ For manual dependency listing (Ubuntu 13.10)::
 
     sudo apt-get install build-essential python autoconf
     sudo apt-get install gnome-common gtk-doc-tools libglib2.0-dev libgtk2.0-dev libgconf2-dev
-    sudo apt-get install python-gtk2 python-gtk2-dev python-vte glade python-glade2
+    sudo apt-get install python-gtk2 python-gtk2-dev python-vte glade python-glade2 python-appindicator
 
 RedHat/Fedora
 -------------
