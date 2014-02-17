@@ -1,0 +1,7 @@
+Traceback (most recent call last):
+  File "/path/to/filename", line 56, in the_function
+    line = of_code()
+  File "/path/to/another/filename", line 56, in the_other_function
+    another_line = of_code()
+  File "/path/to/another/filename/again", line 56, in the_last_function
+    the_last_line = 1
