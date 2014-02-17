@@ -193,9 +193,9 @@ class GConfHandler(object):
         """If the gconf var use_trayicon be changed, this method will
         be called and will show/hide the trayicon.
         """
-        if hasattr(self.guake.tray_icon, 'set_status'): 
-            self.guake.tray_icon.set_status(entry.value.get_bool()) 
-        else: 
+        if hasattr(self.guake.tray_icon, 'set_status'):
+            self.guake.tray_icon.set_status(entry.value.get_bool())
+        else:
             self.guake.tray_icon.set_visible(entry.value.get_bool())
 
     def ontop_toggled(self, client, connection_id, entry, data):
@@ -923,6 +923,7 @@ class Guake(SimpleGladeApp):
         if not self.term_list:
             self.add_tab()
 
+        self.window.set_keep_below(False)
         self.window.show_all()
 
         # this work arround an issue in fluxbox
@@ -948,6 +949,7 @@ class Guake(SimpleGladeApp):
         """Hides the main window of the terminal and sets the visible
         flag to False.
         """
+        self.window.set_keep_below(True)
         self.window.hide()  # Don't use hide_all here!
 
     def get_final_window_rect(self):
