@@ -236,6 +236,26 @@
       </widget>
     </child>
     <child>
+      <widget class="GtkImageMenuItem" id="context_search_on_web">
+        <property name="label" translatable="yes">Search on web</property>
+        <property name="visible">True</property>
+        <property name="use_stock">False</property>
+        <signal name="activate" handler="search_on_web"/>
+        <child internal-child="image">
+          <widget class="GtkImage" id="search_on_web_icon">
+            <property name="visible">True</property>
+            <property name="stock">gtk-close</property>
+            <property name="icon-size">1</property>
+          </widget>
+        </child>
+      </widget>
+    </child>
+    <child>
+      <widget class="GtkSeparatorMenuItem" id="separador3">
+        <property name="visible">True</property>
+      </widget>
+    </child>
+    <child>
       <widget class="GtkImageMenuItem" id="context_preferences">
         <property name="label">gtk-preferences</property>
         <property name="visible">True</property>
