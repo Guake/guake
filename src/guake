@@ -507,6 +507,7 @@ class GuakeTerminal(vte.Terminal):
         self.connect('button-press-event', self.button_press)
         self.matched_value = ''
         self.font_scale_index = 0
+        self.pid = None
 
     def configure_terminal(self):
         """Sets all customized properties on the terminal
@@ -526,7 +527,7 @@ class GuakeTerminal(vte.Terminal):
         # Python backtrace
         (r"^\s\sFile\s\".*\",\sline\s[0-9]+", r"^\s\sFile\s\"(.*)\",\sline\s([0-9]+)"),
         # GCC error (in current directory only)
-        (r"[a-zA-Z0-9\_\-]+\.(c|cxx|cpp|cc)\:[0-9]+", r"(.*)\:([0-9]+)")
+        (r"^[a-zA-Z0-9\/\_\-]+\.(c|cxx|cpp|cc|py)\:[0-9]+", r"^(.*)\:([0-9]+)")
     ]
 
     EDITOR = "subl"
@@ -546,9 +547,12 @@ class GuakeTerminal(vte.Terminal):
             self.match_set_cursor_type(tag, gtk.gdk.HAND2)
 
     def get_current_directory(self):
-        v_pid = self.fork_command()
-        working_dir = os.readlink('/proc/%s/cwd' % (v_pid,))
-        return working_dir
+        directory = os.path.expanduser('~')
+        if self.pid is not None:
+            cwd = os.readlink("/proc/%d/cwd" % self.pid)
+            if os.path.exists(cwd):
+                directory = cwd
+        return directory
 
     def button_press(self, terminal, event):
         """Handles the button press event in the terminal widget. If
@@ -572,8 +576,8 @@ class GuakeTerminal(vte.Terminal):
                     filename = g.group(1)
                     line_number = g.group(2)
                     filepath = filename
-                    # curdir = self.get_current_directory()
-                    # filepath = os.path.join(curdir, filename)
+                    curdir = self.get_current_directory()
+                    filepath = os.path.join(curdir, filename)
                     if not os.path.exists(filepath):
                         logging.info("Cannot open file %s, it doesn't exists (current dir: %s)", filepath,
                                      os.path.curdir)
@@ -1478,6 +1482,7 @@ class Guake(SimpleGladeApp):
 
         final_params = self.get_fork_params(default_params)
         pid = box.terminal.fork_command(**final_params)
+        box.terminal.pid = pid
         self.pid_list.append(pid)
 
         # Adding a new radio button to the tabbar
