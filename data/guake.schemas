@@ -418,6 +418,18 @@
         </schema>
 
         <schema>
+            <key>/schemas/apps/guake/keybindings/local/search_on_web</key>
+            <applyto>/apps/guake/keybindings/local/search_on_web</applyto>
+            <owner>guake</owner>
+            <type>string</type>
+            <default>&lt;Control&gt;&lt;Shift&gt;l</default>
+            <locale name="C">
+                <short>Search current selected text on the web</short>
+                <long>Accelerator to active function that search on the web the current selected text on the terminal.</long>
+            </locale>
+        </schema>
+
+        <schema>
             <key>/schemas/apps/guake/keybindings/local/previous_tab</key>
             <applyto>/apps/guake/keybindings/local/previous_tab</applyto>
             <owner>guake</owner>

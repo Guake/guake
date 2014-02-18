@@ -123,7 +123,13 @@ HOTKEYS = [
                'label': 'Copy text to clipboard'},
               {'key': LKEY('clipboard_paste'),
                'label': 'Paste text from clipboard'},
-              ]}
+              ]},
+
+    {'label': 'Extra features',
+     'keys': [
+              {'key': LKEY('search_on_web'),
+               'label': 'Search select text on web'},
+     ]},
 ]
 
 PALETTES = [

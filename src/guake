@@ -386,7 +386,7 @@ class GConfKeyHandler(object):
 
         keys = ['toggle_fullscreen', 'new_tab', 'close_tab', 'rename_tab',
                 'previous_tab', 'next_tab', 'clipboard_copy', 'clipboard_paste',
-                'quit', 'zoom_in', 'zoom_out',
+                'quit', 'zoom_in', 'zoom_out', "search_on_web",
                 'switch_tab1', 'switch_tab2', 'switch_tab3', 'switch_tab4', 'switch_tab5',
                 'switch_tab6', 'switch_tab7', 'switch_tab8', 'switch_tab9', 'switch_tab10'
                 ]
@@ -462,6 +462,12 @@ class GConfKeyHandler(object):
         if key > 0:
             self.accel_group.connect_group(key, mask, gtk.ACCEL_VISIBLE,
                                            self.guake.accel_paste_clipboard)
+
+        print "gets('search_on_web')", gets('search_on_web')
+        key, mask = gtk.accelerator_parse(gets('search_on_web'))
+        if key > 0:
+            self.accel_group.connect_group(key, mask, gtk.ACCEL_VISIBLE,
+                                           self.guake.search_on_web)
 
         key, mask = gtk.accelerator_parse(gets('toggle_fullscreen'))
         if key > 0:
@@ -1598,6 +1604,20 @@ class Guake(SimpleGladeApp):
         pagepos = self.notebook.get_current_page()
         self.selected_tab = self.tabs.get_children()[pagepos]
         return pagepos
+
+    def search_on_web(self, *args):
+        """search on web the selected text
+        """
+        current_term = self.term_list[self.notebook.get_current_page()]
+
+        if current_term.get_has_selection():
+            current_term.copy_clipboard()
+            guake_clipboard = gtk.clipboard_get()
+            new_text = guake_clipboard.wait_for_text()
+
+            search_url = "https://www.google.com/#q=%s&safe=off" % (new_text,)
+            gtk.show_uri(current_term.window.get_screen(), search_url,
+                         gtk.gdk.x11_get_server_time(current_term.window))
 
 
 def main():
