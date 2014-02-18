@@ -1,0 +1,6 @@
+/bin/bash ../../libtool  --tag=CC   --mode=compile gcc -DHAVE_CONFIG_H -I. -I../..  -pthread -I/usr/include/gtk-2.0 -I/usr/lib/x86_64-linux-gnu/gtk-2.0/include -I/usr/include/atk-1.0 -I/usr/include/cairo -I/usr/include/gdk-pixbuf-2.0 -I/usr/include/pango-1.0 -I/usr/include/gio-unix-2.0/ -I/usr/include/glib-2.0 -I/usr/lib/x86_64-linux-gnu/glib-2.0/include -I/usr/include/pixman-1 -I/usr/include/freetype2 -I/usr/include/libpng12 -I/usr/include/harfbuzz -I/usr/include/pygtk-2.0   -I/usr/include/python2.7   -g -O2 -MT eggaccelerators.lo -MD -MP -MF .deps/eggaccelerators.Tpo -c -o eggaccelerators.lo eggaccelerators.c
+libtool: compile:  gcc -DHAVE_CONFIG_H -I. -I../.. -pthread -I/usr/include/gtk-2.0 -I/usr/lib/x86_64-linux-gnu/gtk-2.0/include -I/usr/include/atk-1.0 -I/usr/include/cairo -I/usr/include/gdk-pixbuf-2.0 -I/usr/include/pango-1.0 -I/usr/include/gio-unix-2.0/ -I/usr/include/glib-2.0 -I/usr/lib/x86_64-linux-gnu/glib-2.0/include -I/usr/include/pixman-1 -I/usr/include/freetype2 -I/usr/include/libpng12 -I/usr/include/harfbuzz -I/usr/include/pygtk-2.0 -I/usr/include/python2.7 -g -O2 -MT eggaccelerators.lo -MD -MP -MF .deps/eggaccelerators.Tpo -c eggaccelerators.c  -fPIC -DPIC -o .libs/eggaccelerators.o
+eggaccelerators.c:24:19: error: missing terminating > character
+ #include <string.h
+                   ^
+make: *** [eggaccelerators.lo] Error 1
