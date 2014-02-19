@@ -902,6 +902,24 @@ class Guake(SimpleGladeApp):
             self.get_widget('context_paste').set_sensitive(False)
         else:
             self.get_widget('context_paste').set_sensitive(True)
+
+        current_selection = ''
+        current_term = self.term_list[self.notebook.get_current_page()]
+        if current_term.get_has_selection():
+            current_term.copy_clipboard()
+            guake_clipboard = gtk.clipboard_get()
+            current_selection = guake_clipboard.wait_for_text().rstrip()
+
+            if len(current_selection) > 20:
+                current_selection = current_selection[:17] + "..."
+
+        if current_selection:
+            self.get_widget('context_search_on_web').set_label(_("Search on Web: '%s'") % current_selection)
+            self.get_widget('context_search_on_web').set_sensitive(True)
+        else:
+            self.get_widget('context_search_on_web').set_label(_("Search on Web (no selection)"))
+            self.get_widget('context_search_on_web').set_sensitive(False)
+
         context_menu = self.get_widget('context-menu')
         context_menu.popup(None, None, None, 3, gtk.get_current_event_time())
         return True
@@ -1618,11 +1636,13 @@ class Guake(SimpleGladeApp):
         if current_term.get_has_selection():
             current_term.copy_clipboard()
             guake_clipboard = gtk.clipboard_get()
-            new_text = guake_clipboard.wait_for_text()
-
-            search_url = "https://www.google.com/#q=%s&safe=off" % (new_text,)
-            gtk.show_uri(current_term.window.get_screen(), search_url,
-                         gtk.gdk.x11_get_server_time(current_term.window))
+            search_query = guake_clipboard.wait_for_text()
+            search_query = quote_plus(search_query)
+            if search_query:
+                search_url = "https://www.google.com/#q=%s&safe=off" % (new_text,)
+                gtk.show_uri(current_term.window.get_screen(), search_url,
+                             gtk.gdk.x11_get_server_time(current_term.window))
+        return True
 
 
 def main():
