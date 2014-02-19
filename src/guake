@@ -463,12 +463,6 @@ class GConfKeyHandler(object):
             self.accel_group.connect_group(key, mask, gtk.ACCEL_VISIBLE,
                                            self.guake.accel_paste_clipboard)
 
-        print "gets('search_on_web')", gets('search_on_web')
-        key, mask = gtk.accelerator_parse(gets('search_on_web'))
-        if key > 0:
-            self.accel_group.connect_group(key, mask, gtk.ACCEL_VISIBLE,
-                                           self.guake.search_on_web)
-
         key, mask = gtk.accelerator_parse(gets('toggle_fullscreen'))
         if key > 0:
             self.accel_group.connect_group(key, mask, gtk.ACCEL_VISIBLE,
@@ -494,6 +488,14 @@ class GConfKeyHandler(object):
             if key > 0:
                 self.accel_group.connect_group(key, mask, gtk.ACCEL_VISIBLE,
                                                self.guake.gen_accel_switch_tabN(tab - 1))
+
+        try:
+            key, mask = gtk.accelerator_parse(gets('search_on_web'))
+            if key > 0:
+                self.accel_group.connect_group(key, mask, gtk.ACCEL_VISIBLE,
+                                               self.guake.search_on_web)
+        except Exception as e:
+            print "Exception occured: %s" % (str(e,))
 
 
 class GuakeTerminal(vte.Terminal):
