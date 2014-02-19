@@ -527,7 +527,7 @@ class GuakeTerminal(vte.Terminal):
         # Python backtrace
         (r"^\s\sFile\s\".*\",\sline\s[0-9]+", r"^\s\sFile\s\"(.*)\",\sline\s([0-9]+)"),
         # GCC error (in current directory only)
-        (r"^[a-zA-Z0-9\/\_\-]+\.(c|cxx|cpp|cc|py)\:[0-9]+", r"^(.*)\:([0-9]+)")
+        (r"^[a-zA-Z0-9\/\_\-\.]+\.?[a-zA-Z0-9]+\:[0-9]+", r"^(.*)\:([0-9]+)")
     ]
 
     EDITOR = "subl"
