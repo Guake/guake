@@ -23,35 +23,29 @@ Boston, MA 02110-1301 USA
 from __future__ import absolute_import
 from __future__ import division
 
-import gobject
-import pygtk
-
-pygtk.require('2.0')
-gobject.threads_init()
-
 import dbus
 import gconf
+import gobject
 import gtk
-import vte
-import xdg.Exceptions
-
-from pango import FontDescription
-from xdg.DesktopEntry import DesktopEntry
-
 import logging
 import os
 import posix
+import pygtk
 import re
 import signal
 import subprocess
 import sys
+import vte
+import xdg.Exceptions
 
+from pango import FontDescription
 from thread import start_new_thread
 from time import sleep
 from urllib import quote_plus
+from urllib import quote_plus
 from urllib import url2pathname
 from urlparse import urlsplit
-
+from xdg.DesktopEntry import DesktopEntry
 
 import guake.globalhotkeys
 import guake.notifier
@@ -84,6 +78,10 @@ from guake.simplegladeapp import bindtextdomain
 
 
 GNOME_FONT_PATH = '/desktop/gnome/interface/monospace_font_name'
+
+
+pygtk.require('2.0')
+gobject.threads_init()
 
 # Loading translation
 bindtextdomain(NAME, LOCALE_DIR)
