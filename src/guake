@@ -42,7 +42,6 @@ from pango import FontDescription
 from thread import start_new_thread
 from time import sleep
 from urllib import quote_plus
-from urllib import quote_plus
 from urllib import url2pathname
 from urlparse import urlsplit
 from xdg.DesktopEntry import DesktopEntry
@@ -1639,7 +1638,7 @@ class Guake(SimpleGladeApp):
             search_query = guake_clipboard.wait_for_text()
             search_query = quote_plus(search_query)
             if search_query:
-                search_url = "https://www.google.com/#q=%s&safe=off" % (new_text,)
+                search_url = "https://www.google.com/#q=%s&safe=off" % (search_query,)
                 gtk.show_uri(current_term.window.get_screen(), search_url,
                              gtk.gdk.x11_get_server_time(current_term.window))
         return True
