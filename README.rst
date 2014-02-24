@@ -57,7 +57,8 @@ To build guake, you will need the following packages too:
 
 For Python 3, you need this package too:
 
- * python3-dev 
+ * python3-dev
+ * python3.3-dev
 
 Ubuntu
 ------
