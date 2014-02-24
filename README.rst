@@ -2,8 +2,8 @@
 Guake README file
 =================
 
-INTRO
-~~~~~
+Introduction
+~~~~~~~~~~~~
 
 Guake is a dropdown terminal made for the GNOME desktop
 environment. Its style of window is based on an fps games, and one of
@@ -17,7 +17,7 @@ Features? Bugs? Information?
 Visit: http://guake.org/
 
 
-LICENSE
+License
 ~~~~~~~
 
 This program is free software; you can redistribute it and/or modify
@@ -36,7 +36,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA
 02110-1301, USA.
 
 
-DEPENDENCIES
+Dependencies
 ~~~~~~~~~~~~
 
  * Python2.7+
@@ -54,6 +54,10 @@ To build guake, you will need the following packages too:
  * gtk+-2.0-dev
  * pygtk-dev
  * gconf2-dev (to use some autoconf stuff)
+
+For Python 3, you need this package too:
+
+ * python3-dev 
 
 Ubuntu
 ------
