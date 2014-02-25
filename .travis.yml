@@ -2,7 +2,7 @@ language: python
 python:
     # - "2.6": python 2.6 doesn't work with python-vte package
     - "2.7"
-    - "3.2"
+    # - "3.2": python 33 fails in travis due to missing Python.h
 virtualenv:
     system_site_packages: true
 compiler:
