@@ -14,5 +14,6 @@ before_install:
     - sudo apt-get install -qq python3-dev
 install:
     - pip install -r python-requirements.txt --use-mirrors
+    - find /usr/include
 script:
     - ./autogen.sh && ./configure && make
