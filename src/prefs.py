@@ -37,6 +37,7 @@ from guake.globals import GCONF_PATH
 from guake.globals import KEY
 from guake.globals import LOCALE_DIR
 from guake.globals import NAME
+from guake.globals import QUICK_OPEN_MATCHERS
 from guake.simplegladeapp import SimpleGladeApp
 from guake.simplegladeapp import bindtextdomain
 
@@ -212,15 +213,23 @@ class PrefsCallbacks(object):
         """
         self.client.set_bool(KEY('/general/window_ontop'), chk.get_active())
 
+    def on_quick_open_enable_toggled(self, chk):
+        """Changes the activity of window_ontop in gconf
+        """
+        self.client.set_bool(KEY('/general/quick_open_enable'), chk.get_active())
+
     def on_window_losefocus_toggled(self, chk):
         """Changes the activity of window_losefocus in gconf
         """
         self.client.set_bool(KEY('/general/window_losefocus'), chk.get_active())
 
-    def on_use_vte_titles_toggled(self, chk):
-        """Changes the activity of use_vte_titles in gconf
+    def on_window_losefocus_toggled(self, chk):
+        """Changes the activity of window_losefocus in gconf
         """
-        self.client.set_bool(KEY('/general/use_vte_titles'), chk.get_active())
+        self.client.set_bool(KEY('/general/window_losefocus'), chk.get_active())
+
+    def on_quick_open_command_line_changed(self, edt):
+        self.client.set_string(KEY('/general/quick_open_command_line'), edt.get_text())
 
     def on_window_tabbar_toggled(self, chk):
         """Changes the activity of window_tabbar in gconf
@@ -444,6 +453,11 @@ class PrefsDialog(SimpleGladeApp):
         """
         self.get_widget('display_n').set_sensitive(not chk.get_active())
 
+    def toggle_quick_open_command_line_sensitivity(self, chk):
+        """When the user unchecks 'enable quick open', the command line should be disabled
+        """
+        self.get_widget('quick_open_command_line').set_sensitive(chk.get_active())
+
     def clear_background_image(self, btn):
         """Unset the gconf variable that holds the name of the
         background image of all terminals.
@@ -575,6 +589,20 @@ class PrefsDialog(SimpleGladeApp):
         # display number / use primary display
         combo = self.get_widget('display_n')
         dest_screen = self.client.get_int(KEY('/general/display_n'))
+
+        value = self.client.get_bool(KEY('/general/quick_open_enable'))
+        self.get_widget('quick_open_enable').set_active(value)
+        self.get_widget('quick_open_command_line').set_sensitive(value)
+        text = gtk.TextBuffer()
+        text = self.get_widget('quick_open_supported_patterns').get_buffer()
+        for title, matcher, _ in QUICK_OPEN_MATCHERS:
+            text.insert_at_cursor("%s: %s\n" % (title, matcher))
+        self.get_widget('quick_open_supported_patterns').set_buffer(text)
+
+        value = self.client.get_string(KEY('/general/quick_open_command_line'))
+        if value is None:
+            value = "subl %(file_path)s:%(line_number)s"
+        self.get_widget('quick_open_command_line').set_text(value)
 
         # If Guake is configured to use a screen that is not currently attached,
         # default to 'primary display' option.

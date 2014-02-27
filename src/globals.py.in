@@ -55,3 +55,13 @@ TERMINAL_MATCH_EXPRS = [
 
 TERMINAL_MATCH_TAGS = 'schema', 'http', 'email'
 ALIGN_CENTER, ALIGN_LEFT, ALIGN_RIGHT = range(3)
+
+# tuple (title/quick matcher/filename and line number extractor)
+QUICK_OPEN_MATCHERS = [
+    ("Python traceback",
+     r"^\s\sFile\s\".*\",\sline\s[0-9]+",
+     r"^\s\sFile\s\"(.*)\",\sline\s([0-9]+)"),
+    ("line starts by 'Filename:line' pattern (GCC/make). File path should exists.",
+      r"^[a-zA-Z0-9\/\_\-\.]+\.?[a-zA-Z0-9]+\:[0-9]+",
+      r"^(.*)\:([0-9]+)")
+]
