@@ -74,10 +74,10 @@ from guake.prefs import LKEY
 from guake.prefs import PrefsDialog
 from guake.simplegladeapp import SimpleGladeApp
 from guake.simplegladeapp import bindtextdomain
+from guake.globals import QUICK_OPEN_MATCHERS
 
 
 GNOME_FONT_PATH = '/desktop/gnome/interface/monospace_font_name'
-
 
 pygtk.require('2.0')
 gobject.threads_init()
@@ -149,6 +149,7 @@ class GConfHandler(object):
         # notify_add(KEY('/general/use_popup'), self.popup_toggled)
         # notify_add(KEY('/general/window_losefocus'), self.losefocus_toggled)
         # notify_add(KEY('/general/use_vte_titles'), self.use_vte_titles_changed)
+        # notify_add(KEY('/general/quick_open_enable'), self.on_quick_open_enable_changed)
 
         # Notification is not required for primary_display/display_n because
         # get_final_window_rect polls gconf and is called whenever Guake is
@@ -522,16 +523,6 @@ class GuakeTerminal(vte.Terminal):
         cursor_shape = client.get_int(KEY('/style/cursor_shape'))
         client.set_int(KEY('/style/cursor_shape'), cursor_shape)
 
-    ADDITIONAL_MATCHERS = [
-        # Python backtrace
-        (r"^\s\sFile\s\".*\",\sline\s[0-9]+", r"^\s\sFile\s\"(.*)\",\sline\s([0-9]+)"),
-        # GCC error (in current directory only)
-        (r"^[a-zA-Z0-9\/\_\-\.]+\.?[a-zA-Z0-9]+\:[0-9]+", r"^(.*)\:([0-9]+)")
-    ]
-
-    EDITOR = "subl"
-    EDITOR_CMDLINE = "%(filename)s:%(line_number)s"
-
     def add_matches(self):
         """Adds all regular expressions declared in
         guake.globals.TERMINAL_MATCH_EXPRS to the terminal to make vte
@@ -541,7 +532,7 @@ class GuakeTerminal(vte.Terminal):
             tag = self.match_add(expr)
             self.match_set_cursor_type(tag, gtk.gdk.HAND2)
 
-        for match, _ in self.ADDITIONAL_MATCHERS:
+        for _, match, _ in QUICK_OPEN_MATCHERS:
             tag = self.match_add(match)
             self.match_set_cursor_type(tag, gtk.gdk.HAND2)
 
@@ -569,23 +560,28 @@ class GuakeTerminal(vte.Terminal):
             value, tag = matched_string
             # First searching in additional matchers
             found = False
-            for _, extractor in self.ADDITIONAL_MATCHERS:
-                g = re.compile(extractor).match(value)
-                if g and len(g.groups()) == 2:
-                    filename = g.group(1)
-                    line_number = g.group(2)
-                    filepath = filename
-                    curdir = self.get_current_directory()
-                    filepath = os.path.join(curdir, filename)
-                    if not os.path.exists(filepath):
-                        logging.info("Cannot open file %s, it doesn't exists (current dir: %s)", filepath,
-                                     os.path.curdir)
-                        return
-                    logging.debug("Opening file %s at line %s", filepath, line_number)
-                    subprocess.call([self.EDITOR, self.EDITOR_CMDLINE % {"filename": filepath,
-                                                                         "line_number": line_number}])
-                    found = True
-                    break
+            client = gconf.client_get_default()
+            use_quick_open = client.get_bool(KEY("/general/quick_open_enable"))
+            cmdline = client.get_string(KEY("/general/quick_open_command_line"))
+            if use_quick_open:
+                for _, _, extractor in QUICK_OPEN_MATCHERS:
+                    g = re.compile(extractor).match(value)
+                    if g and len(g.groups()) == 2:
+                        filename = g.group(1)
+                        line_number = g.group(2)
+                        filepath = filename
+                        curdir = self.get_current_directory()
+                        filepath = os.path.join(curdir, filename)
+                        if not os.path.exists(filepath):
+                            logging.info("Cannot open file %s, it doesn't exists (current dir: %s)", filepath,
+                                         os.path.curdir)
+                            return
+                        logging.debug("Opening file %s at line %s", filepath, line_number)
+                        resolved_cmdline = cmdline % {"file_path": filepath, "line_number": line_number}
+                        logging.debug("Command line: %s", resolved_cmdline)
+                        subprocess.call(resolved_cmdline, shell=True)
+                        found = True
+                        break
             if not found:
                 if TERMINAL_MATCH_TAGS[tag] == 'schema':
                     # value here should not be changed, it is right and
@@ -1111,6 +1107,8 @@ class Guake(SimpleGladeApp):
         self.client.notify(KEY('/general/history_size'))
         self.client.notify(KEY('/general/show_resizer'))
         self.client.notify(KEY('/general/use_vte_titles'))
+        self.client.notify(KEY('/general/quick_open_enable'))
+        self.client.notify(KEY('/general/quick_open_command_line'))
         self.client.notify(KEY('/style/cursor_shape'))
         self.client.notify(KEY('/style/font/style'))
         self.client.notify(KEY('/style/font/color'))
