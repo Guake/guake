@@ -133,6 +133,37 @@
         </schema>
 
         <schema>
+            <key>/schemas/apps/guake/general/quick_open_enable</key>
+            <applyto>/apps/guake/general/quick_open_enable</applyto>
+            <owner>guake</owner>
+            <type>bool</type>
+            <default>false</default>
+            <locale name="C">
+                <short>Enable Quick Open feature.</short>
+                <long>If this property is set as true, guake will
+                open a text editor when the user does a Ctrl+Click
+                on a filename printed in the terminal.</long>
+            </locale>
+        </schema>
+
+        <schema>
+            <key>/schemas/apps/guake/general/quick_open_command_line</key>
+            <applyto>/apps/guake/general/quick_open_command_line</applyto>
+            <owner>guake</owner>
+            <type>string</type>
+            <default>gedit %(file_path)s</default>
+            <locale name="C">
+                <short>Command line pattern to start a editor.</short>
+                <long>This property gives the command line to execute when
+                doing a Quick Open. You can enter the following python
+                string pattern in it: '%(file_path)s' will be replaced
+                with the full path to the captured filename,
+                '%(line_number)s' will be replaced by the line number if
+                found (set to the empty string otherwise).</long>
+            </locale>
+        </schema>
+
+        <schema>
             <key>/schemas/apps/guake/general/start_fullscreen</key>
             <applyto>/apps/guake/general/start_fullscreen</applyto>
             <owner>guake</owner>
