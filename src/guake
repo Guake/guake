@@ -997,7 +997,7 @@ class Guake(SimpleGladeApp):
         self.window.show_all()
 
         if self.selected_color is None:
-            self.selected_color = getattr(self.window.get_style(), "base")[int(gtk.STATE_SELECTED)]
+            self.selected_color = getattr(self.window.get_style(), "light")[int(gtk.STATE_SELECTED)]
 
             # Reapply the tab color to all button in the tab list, since at least one don't have the select color
             # set. This needs to happen AFTER the first show_all, since before the gtk has not loaded the right
