@@ -2,16 +2,18 @@ language: python
 python:
     # - "2.6": python 2.6 doesn't work with python-vte package
     - "2.7"
-    - "3.3"
+    # - "3.2": python 33 fails in travis due to missing Python.h
 virtualenv:
     system_site_packages: true
 compiler:
     - gcc
-before_script:
-    - sudo apt-get install build-essential python autoconf
-    - sudo apt-get install gnome-common gtk-doc-tools libglib2.0-dev libgtk2.0-dev libgconf2-dev
-    - sudo apt-get install python-gtk2 python-gtk2-dev python-vte python-appindicator
+before_install:
+    - sudo apt-get install -qq build-essential python autoconf
+    - sudo apt-get install -qq gnome-common gtk-doc-tools libglib2.0-dev libgtk2.0-dev libgconf2-dev
+    - sudo apt-get install -qq python-gtk2 python-gtk2-dev python-vte python-appindicator 
+    - sudo apt-get install -qq python3-dev
 install:
     - pip install -r python-requirements.txt --use-mirrors
+    - find /usr/include
 script:
     - ./autogen.sh && ./configure && make
