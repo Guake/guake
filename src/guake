@@ -663,6 +663,10 @@ class Guake(SimpleGladeApp):
         # setting global hotkey and showing a pretty notification =)
         guake.globalhotkeys.init()
 
+        # Cannot use "getattr(gtk.Window().get_style(), "base")[int(gtk.STATE_SELECTED)]"
+        # since theme has not been applied before first show_all
+        self.selected_color = None
+
         # trayicon!
         try:
             import appindicator
@@ -991,6 +995,16 @@ class Guake(SimpleGladeApp):
 
         self.window.set_keep_below(False)
         self.window.show_all()
+
+        if self.selected_color is None:
+            self.selected_color = getattr(self.window.get_style(), "base")[int(gtk.STATE_SELECTED)]
+
+            # Reapply the tab color to all button in the tab list, since at least one don't have the select color
+            # set. This needs to happen AFTER the first show_all, since before the gtk has not loaded the right
+            # colors yet.
+            for tab in self.tabs.get_children():
+                if isinstance(tab, gtk.RadioButton):
+                    tab.modify_bg(gtk.STATE_ACTIVE, gtk.gdk.Color(str(self.selected_color)))
 
         # this work arround an issue in fluxbox
         self.window.move(window_rect.x, window_rect.y)
@@ -1516,32 +1530,8 @@ class Guake(SimpleGladeApp):
                     lambda *x: self.notebook.set_current_page(
                         self.notebook.page_num(box)
                     ))
-        #print "gtk.Style", gtk.Style
-        widget = gtk.Entry() ## for example
-        #style = widget.get_style()
-        #states = [m for m in dir(gtk) if m.startswith("STATE_")]
-        #styles = [m for m in dir(style) if type(getattr(style, m)) == type(style.light)]
-        #styles = [m for m in styles if not m.endswith("_gc")]
-        #for style in styles:
-        #    for state in states:
-        #        the_style = getattr(widget.get_style(), style)
-        #        the_state = getattr(gtk, state)
-        #
-        #        color = the_style[the_state]
-        #        print "color", color, "style", style, "state", state
-        # color #9c9a94 style base state STATE_ACTIVE
-        # color #eeebe7 style base state STATE_INSENSITIVE
-        # color #fff style base state STATE_NORMAL
-        # color #fff style base state STATE_PRELIGHT
-        # color #4b6983 style base state STATE_SELECTED
-        # color #c4c2bd style bg state STATE_ACTIVE
-        # color #dcdad5 style bg state STATE_INSENSITIVE
-        # color #dcdad5 style bg state STATE_NORMAL
-        # color #eeebe7 style bg state STATE_PRELIGHT
-        # color #4b6983 style bg state STATE_SELECTED
-        color = getattr(widget.get_style(), "bg")[int(gtk.STATE_ACTIVE)]
-        # print "color", color
-        bnt.modify_bg(gtk.STATE_ACTIVE, gtk.gdk.Color(str(color)))
+        if self.selected_color is not None:
+            bnt.modify_bg(gtk.STATE_ACTIVE, gtk.gdk.Color(str(self.selected_color)))
         drag_drop_type = ("text/plain", gtk.TARGET_SAME_APP, 80)
         bnt.drag_dest_set(gtk.DEST_DEFAULT_ALL, [drag_drop_type], gtk.gdk.ACTION_MOVE)
         bnt.connect("drag_data_received", self.on_drop_tab)
