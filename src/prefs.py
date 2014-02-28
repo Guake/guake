@@ -362,6 +362,8 @@ class PrefsDialog(SimpleGladeApp):
         # images
         ipath = pixmapfile('guake-notification.png')
         self.get_widget('image_logo').set_from_file(ipath)
+        ipath = pixmapfile('quick-open.png')
+        self.get_widget('image_quick_open').set_from_file(ipath)
 
         # the first position in tree will store the keybinding path in gconf,
         # and the user doesn't worry with this, let's hide that =D
