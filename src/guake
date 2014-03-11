@@ -164,6 +164,7 @@ class GConfHandler(object):
         notify_add(KEY('/general/window_tabbar'), self.tabbar_toggled)
         notify_add(KEY('/general/window_height'), self.size_changed)
         notify_add(KEY('/general/window_width'), self.size_changed)
+        notify_add(KEY('/style/cursor_blink_mode'), self.cursor_blink_mode_changed)
         notify_add(KEY('/style/cursor_shape'), self.cursor_shape_changed)
 
         notify_add(KEY('/general/use_scrollbar'), self.scrollbar_toggled)
@@ -232,6 +233,12 @@ class GConfHandler(object):
         window_rect = self.guake.get_final_window_rect()
         self.guake.window.resize(window_rect.width, window_rect.height)
         self.guake.window.move(window_rect.x, window_rect.y)
+
+    def cursor_blink_mode_changed(self, client, connection_id, entry, data):
+        """Called when cursor blink mode settings has been changed
+        """
+        for term in self.guake.term_list:
+            term.set_property("cursor-blink-mode", entry.value.get_int())
 
     def cursor_shape_changed(self, client, connection_id, entry, data):
         """Called when the cursor shape settings has been changed
@@ -513,6 +520,8 @@ class GuakeTerminal(vte.Terminal):
         self.set_sensitive(True)
         self.set_flags(gtk.CAN_DEFAULT)
         self.set_flags(gtk.CAN_FOCUS)
+        cursor_blink_mode = client.get_int(KEY('/style/cursor_blink_mode'))
+        client.set_int(KEY('/style/cursor_blink_mode'), cursor_blink_mode)
         cursor_shape = client.get_int(KEY('/style/cursor_shape'))
         client.set_int(KEY('/style/cursor_shape'), cursor_shape)
 
