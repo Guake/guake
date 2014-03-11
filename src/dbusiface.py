@@ -64,6 +64,14 @@ class DbusManager(dbus.service.Object):
         return len(self.guake.term_list)
 
     @dbus.service.method(DBUS_NAME, in_signature='s')
+    def set_bgcolor(self, bgcolor):
+        self.guake.set_bgcolor(bgcolor)
+
+    @dbus.service.method(DBUS_NAME, in_signature='s')
+    def set_fgcolor(self, fgcolor):
+        self.guake.set_fgcolor(fgcolor)
+
+    @dbus.service.method(DBUS_NAME, in_signature='s')
     def execute_command(self, command):
         self.guake.execute_command(command)
 
