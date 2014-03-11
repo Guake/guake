@@ -310,9 +310,9 @@ class GConfHandler(object):
         """
         fgcolor = gtk.gdk.color_parse(entry.value.get_string())
         for i in self.guake.term_list:
-            i.set_color_dim(fgcolor)
-            i.set_color_foreground(fgcolor)
-            i.set_color_bold(fgcolor)
+            i.set_color_dim(i.custom_fgcolor or fgcolor)
+            i.set_color_foreground(i.custom_fgcolor or fgcolor)
+            i.set_color_bold(i.custom_fgcolor or fgcolor)
 
     def fpalette_changed(self, client, connection_id, entry, data):
         """If the gconf var style/font/palette be changed, this method
@@ -335,8 +335,8 @@ class GConfHandler(object):
         """
         bgcolor = gtk.gdk.color_parse(entry.value.get_string())
         for i in self.guake.term_list:
-            i.set_color_background(bgcolor)
-            i.set_background_tint_color(bgcolor)
+            i.set_color_background(i.custom_bgcolor or bgcolor)
+            i.set_background_tint_color(i.custom_bgcolor or bgcolor)
 
     def bgimage_changed(self, client, connection_id, entry, data):
         """If the gconf var style/background/image be changed, this
@@ -501,6 +501,8 @@ class GuakeTerminal(vte.Terminal):
         self.connect('button-press-event', self.button_press)
         self.matched_value = ''
         self.font_scale_index = 0
+        self.custom_bgcolor = None
+        self.custom_fgcolor = None
 
     def configure_terminal(self):
         """Sets all customized properties on the terminal
@@ -824,6 +826,20 @@ class Guake(SimpleGladeApp):
                     i.set_background_transparent(False)
                 else:
                     i.set_background_transparent(True)
+
+    def set_bgcolor(self, bgcolor, tab=None):
+        """Set the background color of `tab' or the current tab to `bgcolor'."""
+        if not self.term_list:
+            self.add_tab()
+        index = tab or self.notebook.get_current_page()
+        self.term_list[index].custom_bgcolor = gtk.gdk.color_parse(bgcolor)
+
+    def set_fgcolor(self, fgcolor, tab=None):
+        """Set the foreground color of `tab' or the current tab to `fgcolor'."""
+        if not self.term_list:
+            self.add_tab()
+        index = tab or self.notebook.get_current_page()
+        self.term_list[index].custom_fgcolor = gtk.gdk.color_parse(fgcolor)
 
     def execute_command(self, command, tab=None):
         """Execute the `command' in the `tab'. If tab is None, the
@@ -1648,6 +1664,14 @@ def main():
                       action='store', default='',
                       help=_('Execute an arbitrary command in the selected tab.'))
 
+    parser.add_option('--bgcolor', dest='bgcolor',
+                      action='store', default='',
+                      help=_('Set the hexadecimal (#rrggbb) background color of the selected tab.'))
+
+    parser.add_option('--fgcolor', dest='fgcolor',
+                      action='store', default='',
+                      help=_('Set the hexadecimal (#rrggbb) foreground color of the selected tab.'))
+
     parser.add_option('-r', '--rename-tab', dest='rename_tab',
                       metavar='TITLE',
                       action='store', default='',
@@ -1702,6 +1726,14 @@ def main():
 
     if options.command:
         remote_object.execute_command(options.command)
+        only_show_hide = False
+
+    if options.bgcolor:
+        remote_object.set_bgcolor(options.bgcolor)
+        only_show_hide = False
+
+    if options.fgcolor:
+        remote_object.set_fgcolor(options.fgcolor)
         only_show_hide = False
 
     if options.rename_tab:
