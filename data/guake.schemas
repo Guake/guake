@@ -260,6 +260,18 @@
         </schema>
 
         <schema>
+            <key>/schemas/apps/guake/style/cursor_blink_mode</key>
+            <applyto>/apps/guake/style/cursor_blink_mode</applyto>
+            <owner>guake</owner>
+            <type>int</type>
+            <default>0</default>
+            <locale name="C">
+                <short>Cursor blink mode of the terminal</short>
+                <long>Controls the blink mode of the cursor in the terminals. 0: Follow GTK+ setting, 1: Blink on, 2: Blink off</long>
+            </locale>
+        </schema>
+
+        <schema>
             <key>/schemas/apps/guake/style/cursor_shape</key>
             <applyto>/apps/guake/style/cursor_shape</applyto>
             <owner>guake</owner>
