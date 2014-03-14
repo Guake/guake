@@ -391,7 +391,7 @@ class GConfKeyHandler(object):
         notify_add = self.client.notify_add
         notify_add(GKEY('show_hide'), self.reload_globals)
 
-        keys = ['toggle_fullscreen', 'new_tab', 'close_tab', 'rename_tab',
+        keys = ['toggle_fullscreen', 'new_tab', 'close_tab', 'rename_current_tab',
                 'previous_tab', 'next_tab', 'clipboard_copy', 'clipboard_paste',
                 'quit', 'zoom_in', 'zoom_out',
                 'switch_tab1', 'switch_tab2', 'switch_tab3', 'switch_tab4', 'switch_tab5',
@@ -458,7 +458,7 @@ class GConfKeyHandler(object):
         key, mask = gtk.accelerator_parse(gets('rename_tab'))
         if key > 0:
             self.accel_group.connect_group(key, mask, gtk.ACCEL_VISIBLE,
-                                           self.guake.accel_rename)
+                                           self.guake.accel_rename_current_tab)
 
         key, mask = gtk.accelerator_parse(gets('clipboard_copy'))
         if key > 0:
@@ -905,12 +905,12 @@ class Guake(SimpleGladeApp):
         context_menu.popup(None, None, None, 3, gtk.get_current_event_time())
         return True
 
-    def show_rename_dialog(self, target, event):
+    def show_rename_current_tab_dialog(self, target, event):
         """On double-click over a tab, show the rename dialog.
         """
         if event.button == 1:
             if event.type == gtk.gdk._2BUTTON_PRESS:
-                self.accel_rename()
+                self.accel_rename_current_tab()
                 self.set_terminal_focus()
                 self.selected_tab.pressed()
                 return
@@ -1168,13 +1168,13 @@ class Guake(SimpleGladeApp):
 
         return callback
 
-    def accel_rename(self, *args):
+    def accel_rename_current_tab(self, *args):
         """Callback to show the rename tab dialog. Called by the accel
         key.
         """
         pagepos = self.notebook.get_current_page()
         self.selected_tab = self.tabs.get_children()[pagepos]
-        self.on_rename_activate()
+        self.on_rename_current_tab_activate()
         return True
 
     def accel_copy_clipboard(self, *args):
@@ -1255,7 +1255,7 @@ class Guake(SimpleGladeApp):
         if not getattr(tab, 'custom_label_set', False):
             tab.set_label(vte.get_window_title())
 
-    def on_rename_activate(self, *args):
+    def on_rename_current_tab_activate(self, *args):
         """Shows a dialog to rename the current tab.
         """
         entry = gtk.Entry()
@@ -1351,6 +1351,19 @@ class Guake(SimpleGladeApp):
         """
         pagepos = self.notebook.get_current_page()
         self.delete_tab(pagepos)
+
+    def rename_tab(self, tab_index, new_text):
+        """Rename an already added tab by its index.
+        """
+        try:
+            tab = self.tabs.get_children()[tab_index]
+        except IndexError:
+            pass
+        else:
+            tab.set_label(new_text)
+            setattr(tab, 'custom_label_set', new_text != "-")
+            current_vte = self.term_list[tab_index]
+            current_vte.emit('window-title-changed')
 
     def rename_current_tab(self, new_text):
         """Sets the `self.selected_tab' var with the selected radio
@@ -1492,7 +1505,7 @@ class Guake(SimpleGladeApp):
         bnt.set_property('can-focus', False)
         bnt.set_property('draw-indicator', False)
         bnt.connect('button-press-event', self.show_tab_menu)
-        bnt.connect('button-press-event', self.show_rename_dialog)
+        bnt.connect('button-press-event', self.show_rename_current_tab_dialog)
         bnt.connect('clicked',
                     lambda *x: self.notebook.set_current_page(
                         self.notebook.page_num(box)
@@ -1657,10 +1670,19 @@ def main():
                       action='store', default='',
                       help=_('Execute an arbitrary command in the selected tab.'))
 
-    parser.add_option('-r', '--rename-tab', dest='rename_tab',
+    parser.add_option('-i', '--tab-index', dest='tab_index',
+                      action='store', default='0',
+                      help=_('Specify the tab to rename. Default is 0.'))
+
+    parser.add_option('--rename-tab', dest='rename_tab',
                       metavar='TITLE',
                       action='store', default='',
-                      help=_('Rename the selected tab. Reset to default if TITLE is a single dash "-".'))
+                      help=_('Rename the specified tab. Reset to default if TITLE is a single dash "-".'))
+
+    parser.add_option('-r', '--rename-current-tab', dest='rename_current_tab',
+                      metavar='TITLE',
+                      action='store', default='',
+                      help=_('Rename the current tab. Reset to default if TITLE is a single dash "-".'))
 
     parser.add_option('-q', '--quit', dest='quit',
                       action='store_true', default=False,
@@ -1713,8 +1735,12 @@ def main():
         remote_object.execute_command(options.command)
         only_show_hide = False
 
-    if options.rename_tab:
-        remote_object.rename_current_tab(options.rename_tab)
+    if options.tab_index and options.rename_tab:
+        remote_object.rename_tab(int(options.tab_index), options.rename_tab)
+        only_show_hide = False
+
+    if options.rename_current_tab:
+        remote_object.rename_current_tab(options.rename_current_tab)
         only_show_hide = False
 
     if options.show_about:
