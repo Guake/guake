@@ -1352,6 +1352,19 @@ class Guake(SimpleGladeApp):
         pagepos = self.notebook.get_current_page()
         self.delete_tab(pagepos)
 
+    def rename_tab(self, tab_index, new_text):
+        """Rename an already added tab by its index.
+        """
+        try:
+            tab = self.tabs.get_children()[tab_index]
+        except IndexError:
+            pass
+        else:
+            tab.set_label(new_text)
+            setattr(tab, 'custom_label_set', new_text != "-")
+            current_vte = self.term_list[tab_index]
+            current_vte.emit('window-title-changed')
+
     def rename_current_tab(self, new_text):
         """Sets the `self.selected_tab' var with the selected radio
         button and change its label to `new_text'.
@@ -1657,6 +1670,15 @@ def main():
                       action='store', default='',
                       help=_('Execute an arbitrary command in the selected tab.'))
 
+    parser.add_option('-i', '--tab-index', dest='tab_index',
+                      action='store', default='0',
+                      help=_('Specify the tab to rename. Default is 0.'))
+
+    parser.add_option('--rename-tab', dest='rename_tab',
+                      metavar='TITLE',
+                      action='store', default='',
+                      help=_('Rename the specified tab. Reset to default if TITLE is a single dash "-".'))
+
     parser.add_option('-r', '--rename-current-tab', dest='rename_current_tab',
                       metavar='TITLE',
                       action='store', default='',
@@ -1711,6 +1733,10 @@ def main():
 
     if options.command:
         remote_object.execute_command(options.command)
+        only_show_hide = False
+
+    if options.tab_index and options.rename_tab:
+        remote_object.rename_tab(int(options.tab_index), options.rename_tab)
         only_show_hide = False
 
     if options.rename_current_tab:
