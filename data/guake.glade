@@ -281,9 +281,9 @@
         <property name="label" translatable="yes">Rename</property>
         <property name="visible">True</property>
         <property name="use_stock">False</property>
-        <signal name="activate" handler="on_rename_activate"/>
+        <signal name="activate" handler="on_rename_current_tab_activate"/>
         <child internal-child="image">
-          <widget class="GtkImage" id="tab_rename_icon">
+          <widget class="GtkImage" id="tab_rename_current_tab_icon">
             <property name="visible">True</property>
             <property name="stock">gtk-edit</property>
             <property name="icon-size">1</property>
