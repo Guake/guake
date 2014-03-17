@@ -1742,11 +1742,11 @@ def main():
 
     parser.add_option('-n', '--new-tab', dest='new_tab',
                       action='store', default='',
-                      help=_('Add a new tab'))
+                      help=_('Add a new tab (with current directory set to NEW_TAB)'))
 
     parser.add_option('-s', '--select-tab', dest='select_tab',
                       action='store', default='',
-                      help=_('Select a tab'))
+                      help=_('Select a tab (SELECT_TAB is the index of the tab)'))
 
     parser.add_option('-g', '--selected-tab', dest='selected_tab',
                       action='store_true', default=False,
