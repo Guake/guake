@@ -749,6 +749,9 @@ class Guake(SimpleGladeApp):
         # holds the timestamp of the losefocus event
         self.losefocus_time = 0
 
+        # holds the timestamp of the previous show/hide action
+        self.prev_showhide_time = 0
+
         # double click stuff
         def double_click(hbox, event):
             """Handles double clicks on tabs area and when receive
@@ -980,7 +983,13 @@ class Guake(SimpleGladeApp):
             self.losefocus_time = 0
             return
         
-        if not self.window.get_visible():
+        # limit rate at which the visibility can be toggled.
+        if self.prev_showhide_time and \
+                (event_time - self.prev_showhide_time) < 65:
+            return
+        self.prev_showhide_time = event_time
+
+        if not self.window.get_property('visible'):
             self.show()
             self.set_terminal_focus()
         elif self.client.get_bool(KEY('/general/focus_if_open')) and \
@@ -1566,6 +1575,9 @@ class Guake(SimpleGladeApp):
         self.notebook.set_current_page(self.notebook.page_num(box))
         box.terminal.grab_focus()
         self.load_config()
+
+        if self.is_fullscreen :
+            self.fullscreen()
 
     def on_drag_tab(self, widget, context, selection, targetType, eventTime):
         tab_pos = self.tabs.get_children().index(widget)
