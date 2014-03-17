@@ -189,6 +189,24 @@
     <property name="visible">True</property>
     <property name="can_focus">False</property>
     <child>
+      <widget class="GtkImageMenuItem" id="add">
+        <property name="label" translatable="yes">New Tab</property>
+        <property name="visible">True</property>
+        <property name="can_focus">False</property>
+        <property name="use_action_appearance">False</property>
+        <property name="use_stock">False</property>
+        <signal name="activate" handler="add_tab" swapped="no"/>
+        <child internal-child="image">
+          <widget class="GtkImage" id="tab_add_icon">
+            <property name="visible">True</property>
+            <property name="can_focus">False</property>
+            <property name="stock">gtk-edit</property>
+            <property name="icon-size">1</property>
+          </widget>
+        </child>
+      </widget>
+    </child>
+    <child>
       <widget class="GtkImageMenuItem" id="rename">
         <property name="label" translatable="yes">Rename</property>
         <property name="visible">True</property>
