@@ -213,7 +213,7 @@
         <property name="can_focus">False</property>
         <property name="use_action_appearance">False</property>
         <property name="use_stock">False</property>
-        <signal name="activate" handler="on_rename_activate" swapped="no"/>
+        <signal name="activate" handler="on_rename_current_tab_activate" swapped="no"/>
         <child internal-child="image">
           <widget class="GtkImage" id="tab_rename_icon">
             <property name="visible">True</property>
