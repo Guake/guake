@@ -79,7 +79,7 @@ HOTKEYS = [
                'label': 'New tab'},
               {'key': LKEY('close_tab'),
                'label': 'Close tab'},
-              {'key': LKEY('rename_tab'),
+              {'key': LKEY('rename_current_tab'),
                'label': 'Rename current tab'},
               ]},
 

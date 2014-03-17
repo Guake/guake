@@ -617,13 +617,13 @@
         </schema>
 
         <schema>
-            <key>/schemas/apps/guake/keybindings/local/rename_tab</key>
-            <applyto>/apps/guake/keybindings/local/rename_tab</applyto>
+            <key>/schemas/apps/guake/keybindings/local/rename_current_tab</key>
+            <applyto>/apps/guake/keybindings/local/rename_current_tab</applyto>
             <owner>guake</owner>
             <type>string</type>
             <default>&lt;Control&gt;F2</default>
             <locale name="C">
-                <short>Rename tab.</short>
+                <short>Rename current tab.</short>
                 <long>Shows a dialog to rename the current tab.</long>
             </locale>
         </schema>
