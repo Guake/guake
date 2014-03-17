@@ -998,7 +998,7 @@ class Guake(SimpleGladeApp):
                 (self.losefocus_time - event_time) < 10:
             self.losefocus_time = 0
             return
-        
+
         # limit rate at which the visibility can be toggled.
         if self.prev_showhide_time and \
                 (event_time - self.prev_showhide_time) < 65:
@@ -1764,7 +1764,7 @@ def main():
                       action='store', default='',
                       help=_('Set the hexadecimal (#rrggbb) background color of the selected tab.'))
 
-        parser.add_option('--fgcolor', dest='fgcolor',
+    parser.add_option('--fgcolor', dest='fgcolor',
                       action='store', default='',
                       help=_('Set the hexadecimal (#rrggbb) foreground color of the selected tab.'))
 
