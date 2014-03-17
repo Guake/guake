@@ -1743,7 +1743,7 @@ Custom
                                         <property name="yalign">7.4505801528346183e-09</property>
                                         <property name="label" translatable="yes">&lt;small&gt;&lt;i&gt;Use the following elements in the open editor command line: 
  - &lt;b&gt;%(file_path)s&lt;/b&gt;: path to the file that has been clicked
- - &lt;b&gt;%(fine_number)s&lt;/b&gt;: if your editor supports it, you can directly open the file to a given line number when found on the screen.
+ - &lt;b&gt;%(line_number)s&lt;/b&gt;: if your editor supports it, you can directly open the file to a given line number when found on the screen.
 
 For example, for sublime, use &lt;b&gt;subl %(file_path)s:%(line_number)s&lt;/b&gt;
 &lt;/i&gt;&lt;/small&gt;</property>
