@@ -950,16 +950,15 @@ class Guake(SimpleGladeApp):
                 (self.losefocus_time - event_time) < 10:
             self.losefocus_time = 0
             return
-
-        if not self.window.get_property('visible'):
+        
+        if not self.window.get_visible():
             self.show()
             self.set_terminal_focus()
-        elif not self.client.get_bool(KEY('general/focus_if_open')) and \
-                self.window.window.get_state() == gtk.gdk.WINDOW_STATE_ABOVE:
-            self.hide()
+        elif self.client.get_bool(KEY('/general/focus_if_open')) and \
+                self.window.window.get_state():
+            self.window.window.focus()
         else:
-            self.show()
-            self.set_terminal_focus()
+            self.hide()
 
     def show(self):
         """Shows the main window and grabs the focus on it.
