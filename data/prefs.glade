@@ -383,24 +383,6 @@
                                       </packing>
                                     </child>
                                     <child>
-                                      <widget class="GtkCheckButton" id="use_vte_titles">
-                                        <property name="label" translatable="yes">Use VTE titles for tab names</property>
-                                        <property name="visible">True</property>
-                                        <property name="can_focus">True</property>
-                                        <property name="receives_default">False</property>
-                                        <property name="use_action_appearance">False</property>
-                                        <property name="use_underline">True</property>
-                                        <property name="active">True</property>
-                                        <property name="draw_indicator">True</property>
-                                        <signal name="toggled" handler="on_use_vte_titles_toggled" swapped="no"/>
-                                      </widget>
-                                      <packing>
-                                        <property name="expand">False</property>
-                                        <property name="fill">False</property>
-                                        <property name="position">1</property>
-                                      </packing>
-                                    </child>
-                                    <child>
                                       <widget class="GtkCheckButton" id="window_losefocus">
                                         <property name="label" translatable="yes">Hide on lose focus</property>
                                         <property name="visible">True</property>
@@ -411,6 +393,24 @@
                                         <property name="active">True</property>
                                         <property name="draw_indicator">True</property>
                                         <signal name="toggled" handler="on_window_losefocus_toggled" swapped="no"/>
+                                      </widget>
+                                      <packing>
+                                        <property name="expand">False</property>
+                                        <property name="fill">False</property>
+                                        <property name="position">1</property>
+                                      </packing>
+                                    </child>
+                                    <child>
+                                      <widget class="GtkCheckButton" id="use_vte_titles">
+                                        <property name="label" translatable="yes">Use VTE titles for tab names</property>
+                                        <property name="visible">True</property>
+                                        <property name="can_focus">True</property>
+                                        <property name="receives_default">False</property>
+                                        <property name="use_action_appearance">False</property>
+                                        <property name="use_underline">True</property>
+                                        <property name="active">True</property>
+                                        <property name="draw_indicator">True</property>
+                                        <signal name="toggled" handler="on_use_vte_titles_toggled" swapped="no"/>
                                       </widget>
                                       <packing>
                                         <property name="expand">False</property>
@@ -852,13 +852,13 @@
                   </packing>
                 </child>
                 <child>
-                  <widget class="GtkLabel" id="label3">
+                  <widget class="GtkLabel" id="label1">
                     <property name="visible">True</property>
                     <property name="can_focus">False</property>
-                    <property name="label" translatable="yes">Compatibility</property>
+                    <property name="label" translatable="yes">Scrolling</property>
                   </widget>
                   <packing>
-                    <property name="position">5</property>
+                    <property name="position">1</property>
                     <property name="tab_fill">False</property>
                     <property name="type">tab</property>
                   </packing>
@@ -1741,7 +1741,7 @@ Custom
                                         <property name="can_focus">False</property>
                                         <property name="xalign">0</property>
                                         <property name="yalign">7.4505801528346183e-09</property>
-                                        <property name="label" translatable="yes">&lt;small&gt;&lt;i&gt;Use the following elements in the open editor command line: 
+                                        <property name="label" translatable="yes">&lt;small&gt;&lt;i&gt;Use the following elements in the open editor command line:
  - &lt;b&gt;%(file_path)s&lt;/b&gt;: path to the file that has been clicked
  - &lt;b&gt;%(line_number)s&lt;/b&gt;: if your editor supports it, you can directly open the file to a given line number when found on the screen.
 
@@ -2043,10 +2043,10 @@ Control-H</property>
                   </packing>
                 </child>
                 <child>
-                  <widget class="GtkLabel" id="label1">
+                  <widget class="GtkLabel" id="label3">
                     <property name="visible">True</property>
                     <property name="can_focus">False</property>
-                    <property name="label" translatable="yes">Scrolling</property>
+                    <property name="label" translatable="yes">Compatibility</property>
                   </widget>
                   <packing>
                     <property name="position">5</property>
