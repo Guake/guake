@@ -392,7 +392,7 @@ class GConfKeyHandler(object):
         notify_add(GKEY('show_hide'), self.reload_globals)
 
         keys = ['toggle_fullscreen', 'new_tab', 'hsplit_terminal', 'vsplit_terminal',
-                'close_tab', 'rename_current_tab',
+                'close_terminal', 'rename_current_tab',
                 'previous_tab', 'next_tab', 'clipboard_copy', 'clipboard_paste',
                 'quit', 'zoom_in', 'zoom_out', "search_on_web",
                 'switch_tab1', 'switch_tab2', 'switch_tab3', 'switch_tab4', 'switch_tab5',
@@ -450,11 +450,11 @@ class GConfKeyHandler(object):
             self.accel_group.connect_group(key, mask, gtk.ACCEL_VISIBLE,
                                            self.guake.accel_vsplit)
 
-        key, mask = gtk.accelerator_parse(gets('close_tab'))
+        key, mask = gtk.accelerator_parse(gets('close_terminal'))
         if key > 0:
             self.accel_group.connect_group(
                 key, mask, gtk.ACCEL_VISIBLE,
-                self.guake.close_tab)
+                self.guake.close_terminal)
 
         key, mask = gtk.accelerator_parse(gets('previous_tab'))
         if key > 0:
@@ -1620,6 +1620,39 @@ class Guake(SimpleGladeApp):
 
         if self.is_fullscreen :
             self.fullscreen()
+
+    def split_dfs(self, widget):
+        if widget is not None:
+            yield widget
+            if type(widget) in (gtk.VPaned, gtk.HPaned):
+                child_pair = widget.children()
+                assert (len(child_pair) == 2, "There should always be two elements in a split!")
+                for data in self.split_dfs(child_pair[0]):
+                    yield data
+                for data in self.split_dfs(child_pair[1]):
+                    yield data
+
+    def close_terminal(self, *args):
+        """Closes the current terminal.
+        """
+        terminal = self.window.focus_widget
+        if not terminal:
+            return
+        terminal_box = terminal.parent
+        parent_widget = terminal_box.parent
+        if type(parent_widget) in (gtk.VPaned, gtk.HPaned):
+            child_pair = parent_widget.children()
+            assert(len(child_pair) == 2, "There should always be two elements in a split!")
+            new_parent_widget = parent_widget.parent
+            new_child_widget = child_pair[1 - child_pair.index(terminal_box)]
+            parent_widget.remove(new_child_widget)
+            new_parent_widget.remove(parent_widget)
+            new_parent_widget.add(new_child_widget)
+            terminal_box.destroy()
+            parent_widget.destroy()
+            next(self.split_dfs(new_child_widget)).terminal.grab_focus()
+        else:
+            self.close_tab(*args)
 
     def split_terminal(self, horizontal=True, directory=None):
         terminal = self.window.focus_widget

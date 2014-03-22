@@ -473,8 +473,8 @@
         </schema>
 
         <schema>
-            <key>/schemas/apps/guake/keybindings/local/close_tab</key>
-            <applyto>/apps/guake/keybindings/local/close_tab</applyto>
+            <key>/schemas/apps/guake/keybindings/local/close_terminal</key>
+            <applyto>/apps/guake/keybindings/local/close_terminal</applyto>
             <owner>guake</owner>
             <type>string</type>
             <default>&lt;Control&gt;&lt;Shift&gt;w</default>

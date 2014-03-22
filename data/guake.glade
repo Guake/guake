@@ -127,15 +127,15 @@
       </widget>
     </child>
     <child>
-      <widget class="GtkImageMenuItem" id="context_close_tab">
+      <widget class="GtkImageMenuItem" id="context_close_terminal">
         <property name="label" translatable="yes">Close Tab</property>
         <property name="visible">True</property>
         <property name="can_focus">False</property>
         <property name="use_action_appearance">False</property>
         <property name="use_stock">False</property>
-        <signal name="activate" handler="close_tab" swapped="no"/>
+        <signal name="activate" handler="close_terminal" swapped="no"/>
         <child internal-child="image">
-          <widget class="GtkImage" id="close_tab_icon">
+          <widget class="GtkImage" id="close_terminal_icon">
             <property name="visible">True</property>
             <property name="can_focus">False</property>
             <property name="stock">gtk-remove</property>
