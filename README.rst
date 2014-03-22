@@ -97,12 +97,12 @@ default sysconfdir is different from the one chosen by autotools. To
 fix that, you probably have to append the param `--sysconfdir=/etc' to
 your `./configure' call, like this::
 
-    $ ./configure --sysconfidir=/etc && make
+    $ ./configure --sysconfdir=/etc && make
 
-If it is not enought you can call, you can install the gconf schemas
-file by hand doing the following::
+If it is not enought you can install the gconf schemas
+file by hand by doing the following::
 
-    # gconftool-2 --makefile-install-rule data/guake.schemas
+    # GCONF_CONFIG_SOURCE="" gconftool-2 --makefile-install-rule data/guake.schemas
 
 For more install details, please read the `INSTALL` file.
 
