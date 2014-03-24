@@ -588,7 +588,7 @@ class GuakeTerminal(vte.Terminal):
                         if not os.path.exists(filepath):
                             logging.info("Cannot open file %s, it doesn't exists (current dir: %s)", filepath,
                                          os.path.curdir)
-                            return
+                            continue
                         logging.debug("Opening file %s at line %s", filepath, line_number)
                         resolved_cmdline = cmdline % {"file_path": filepath, "line_number": line_number}
                         logging.debug("Command line: %s", resolved_cmdline)
