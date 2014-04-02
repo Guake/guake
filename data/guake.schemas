@@ -14,6 +14,19 @@
         </schema>
 
         <schema>
+            <key>/schemas/apps/guake/general/mouse_display</key>
+            <applyto>/apps/guake/general/mouse_display</applyto>
+            <owner>guake</owner>
+            <type>bool</type>
+            <default>true</default>
+            <locale name="C">
+                <short>Appear on the mouse display.</short>
+                <long>Appear on the mouse display. This overrides any setting
+                in display_n.</long>
+            </locale>
+        </schema>
+
+        <schema>
             <key>/schemas/apps/guake/general/display_n</key>
             <applyto>/apps/guake/general/display_n</applyto>
             <owner>guake</owner>
@@ -21,10 +34,11 @@
             <default>0</default>
             <locale name="C">
                 <short>Display to appear on.</short>
-                <long>Display to appear on if the primary_display option is not
-                set. If this is set to an invalid value (as in the case of
-                removing a screen from a system), the invalid value is
-                automatically updated to the current primary screen.</long>
+                <long>Display to appear on if the primary_display or 
+                mouse_display option are not set. If this is set to an invalid
+                value (as in the case of removing a screen from a system), the
+                invalid value is automatically updated to the current primary 
+                screen.</long>
             </locale>
         </schema>
 
