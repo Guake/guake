@@ -81,7 +81,7 @@ RedHat/Fedora
 TBD
 
 ArchLinux
----------
+~~~~~~~~~
 
 Guake can be found in the [official repositories](https://www.archlinux.org/packages/?name=guake) 
 and installed by running
