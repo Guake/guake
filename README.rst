@@ -80,6 +80,14 @@ RedHat/Fedora
 
 TBD
 
+ArchLinux
+---------
+
+Guake can be found in the `official repositories <https://www.archlinux.org/packages/?name=guake>`_
+and installed by running
+
+    sudo pacman -S guake
+
 Compilation
 ~~~~~~~~~~~~
 
