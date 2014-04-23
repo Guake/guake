@@ -84,7 +84,7 @@ ArchLinux
 ---------
 
 Guake can be found in the `official repositories <https://www.archlinux.org/packages/?name=guake>`_
-and installed by running
+and installed by running::
 
     sudo pacman -S guake
 
@@ -117,7 +117,7 @@ For more install details, please read the `INSTALL` file.
 Git hook
 ~~~~~~~~
 
-Please install this git hook if you want to beauty your patch before submission::
+Please install this git hook if you want to beautify your patch before submission::
 
     $ cd guake
     $ ln -s git-hooks/post-commit .git/hooks/
