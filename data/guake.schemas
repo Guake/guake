@@ -449,8 +449,32 @@
         </schema>
 
         <schema>
-            <key>/schemas/apps/guake/keybindings/local/close_tab</key>
-            <applyto>/apps/guake/keybindings/local/close_tab</applyto>
+            <key>/schemas/apps/guake/keybindings/local/hsplit_terminal</key>
+            <applyto>/apps/guake/keybindings/local/hsplit_terminal</applyto>
+            <owner>guake</owner>
+            <type>string</type>
+            <default>&lt;Control&gt;&lt;Shift&gt;o</default>
+            <locale name="C">
+                <short>Split terminal horizontally.</short>
+                <long>Calls the function to split a terminal horizontally in guake tab.</long>
+            </locale>
+        </schema>
+
+        <schema>
+            <key>/schemas/apps/guake/keybindings/local/vsplit_terminal</key>
+            <applyto>/apps/guake/keybindings/local/vsplit_terminal</applyto>
+            <owner>guake</owner>
+            <type>string</type>
+            <default>&lt;Control&gt;&lt;Shift&gt;e</default>
+            <locale name="C">
+                <short>Split terminal vertically.</short>
+                <long>Calls the function to split a terminal vertically in guake tab.</long>
+            </locale>
+        </schema>
+
+        <schema>
+            <key>/schemas/apps/guake/keybindings/local/close_terminal</key>
+            <applyto>/apps/guake/keybindings/local/close_terminal</applyto>
             <owner>guake</owner>
             <type>string</type>
             <default>&lt;Control&gt;&lt;Shift&gt;w</default>

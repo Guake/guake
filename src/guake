@@ -391,7 +391,8 @@ class GConfKeyHandler(object):
         notify_add = self.client.notify_add
         notify_add(GKEY('show_hide'), self.reload_globals)
 
-        keys = ['toggle_fullscreen', 'new_tab', 'close_tab', 'rename_current_tab',
+        keys = ['toggle_fullscreen', 'new_tab', 'hsplit_terminal', 'vsplit_terminal',
+                'close_terminal', 'rename_current_tab',
                 'previous_tab', 'next_tab', 'clipboard_copy', 'clipboard_paste',
                 'quit', 'zoom_in', 'zoom_out', "search_on_web",
                 'switch_tab1', 'switch_tab2', 'switch_tab3', 'switch_tab4', 'switch_tab5',
@@ -439,11 +440,21 @@ class GConfKeyHandler(object):
             self.accel_group.connect_group(key, mask, gtk.ACCEL_VISIBLE,
                                            self.guake.accel_add)
 
-        key, mask = gtk.accelerator_parse(gets('close_tab'))
+        key, mask = gtk.accelerator_parse(gets('hsplit_terminal'))
+        if key > 0:
+            self.accel_group.connect_group(key, mask, gtk.ACCEL_VISIBLE,
+                                           self.guake.accel_hsplit)
+
+        key, mask = gtk.accelerator_parse(gets('vsplit_terminal'))
+        if key > 0:
+            self.accel_group.connect_group(key, mask, gtk.ACCEL_VISIBLE,
+                                           self.guake.accel_vsplit)
+
+        key, mask = gtk.accelerator_parse(gets('close_terminal'))
         if key > 0:
             self.accel_group.connect_group(
                 key, mask, gtk.ACCEL_VISIBLE,
-                self.guake.close_tab)
+                self.guake.close_terminal)
 
         key, mask = gtk.accelerator_parse(gets('previous_tab'))
         if key > 0:
@@ -1205,6 +1216,18 @@ class Guake(SimpleGladeApp):
         self.add_tab()
         return True
 
+    def accel_hsplit(self, *args):
+        """Callback to split a terminal horizontally. Called by the accel key.
+        """
+        self.hsplit_terminal()
+        return True
+
+    def accel_vsplit(self, *args):
+        """Callback to split a terminal horizontally. Called by the accel key.
+        """
+        self.vsplit_terminal()
+        return True
+
     def accel_prev(self, *args):
         """Callback to go to the previous tab. Called by the accel key.
         """
@@ -1521,9 +1544,7 @@ class Guake(SimpleGladeApp):
                 os.environ['https_proxy'] = 'http://%s:%d' % (
                     ssl_host, ssl_port)
 
-    def add_tab(self, directory=None):
-        """Adds a new tab to the terminal notebook.
-        """
+    def add_terminal(self, directory=None):
         box = GuakeTerminalBox()
         box.terminal.grab_focus()
         box.terminal.drag_dest_set(gtk.DEST_DEFAULT_MOTION |
@@ -1561,7 +1582,12 @@ class Guake(SimpleGladeApp):
         pid = box.terminal.fork_command(**final_params)
         box.terminal.pid = pid
         self.pid_list.append(pid)
+        return box
 
+    def add_tab(self, directory=None):
+        """Adds a new tab to the terminal notebook.
+        """
+        box = self.add_terminal(directory)
         # Adding a new radio button to the tabbar
         label = box.terminal.get_window_title() or _("Terminal")
         tabs = self.tabs.get_children()
@@ -1594,6 +1620,72 @@ class Guake(SimpleGladeApp):
 
         if self.is_fullscreen :
             self.fullscreen()
+
+    def split_dfs(self, widget):
+        if widget is not None:
+            yield widget
+            if type(widget) in (gtk.VPaned, gtk.HPaned):
+                child_pair = widget.children()
+                assert (len(child_pair) == 2, "There should always be two elements in a split!")
+                for data in self.split_dfs(child_pair[0]):
+                    yield data
+                for data in self.split_dfs(child_pair[1]):
+                    yield data
+
+    def close_terminal(self, *args):
+        """Closes the current terminal.
+        """
+        terminal = self.window.focus_widget
+        if not terminal:
+            return
+        terminal_box = terminal.parent
+        parent_widget = terminal_box.parent
+        if type(parent_widget) in (gtk.VPaned, gtk.HPaned):
+            child_pair = parent_widget.children()
+            assert(len(child_pair) == 2, "There should always be two elements in a split!")
+            new_parent_widget = parent_widget.parent
+            new_child_widget = child_pair[1 - child_pair.index(terminal_box)]
+            parent_widget.remove(new_child_widget)
+            new_parent_widget.remove(parent_widget)
+            new_parent_widget.add(new_child_widget)
+            terminal_box.destroy()
+            parent_widget.destroy()
+            next(self.split_dfs(new_child_widget)).terminal.grab_focus()
+        else:
+            self.close_tab(*args)
+
+    def split_terminal(self, horizontal=True, directory=None):
+        terminal = self.window.focus_widget
+
+        terminal_box = terminal.parent
+        parent_widget = terminal_box.parent
+        frame = gtk.HPaned() if horizontal else gtk.VPaned()
+        frame.show()
+        height = parent_widget.allocation.height
+        width = parent_widget.allocation.width
+        parent_widget.remove(terminal_box)
+
+        new_terminal_box = self.add_terminal(directory)
+        self.load_config()
+
+        if horizontal:
+            width //= 2
+        else:
+            height //= 2
+        terminal_box.set_size_request(width, height)
+        new_terminal_box.set_size_request(width, height)
+
+        frame.add(terminal_box)
+        frame.add(new_terminal_box)
+
+        parent_widget.add(frame)
+        new_terminal_box.terminal.grab_focus()
+
+    def hsplit_terminal(self, directory=None):
+        self.split_terminal(True, directory)
+
+    def vsplit_terminal(self, directory=None):
+        self.split_terminal(False, directory)
 
     def on_drag_tab(self, widget, context, selection, targetType, eventTime):
         tab_pos = self.tabs.get_children().index(widget)

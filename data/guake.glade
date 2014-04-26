@@ -91,15 +91,51 @@
       </widget>
     </child>
     <child>
-      <widget class="GtkImageMenuItem" id="context_close_tab">
+      <widget class="GtkImageMenuItem" id="context_hsplit_terminal">
+        <property name="label" translatable="yes">Split Horizontally</property>
+        <property name="visible">True</property>
+        <property name="can_focus">False</property>
+        <property name="use_action_appearance">False</property>
+        <property name="use_stock">False</property>
+        <signal name="activate" handler="hsplit_terminal" swapped="no"/>
+        <child internal-child="image">
+          <widget class="GtkImage" id="hsplit_terminal_icon">
+            <property name="visible">True</property>
+            <property name="can_focus">False</property>
+            <property name="stock">gtk-hsplit</property>
+            <property name="icon-size">1</property>
+          </widget>
+        </child>
+      </widget>
+    </child>
+    <child>
+      <widget class="GtkImageMenuItem" id="context_vsplit_terminal">
+        <property name="label" translatable="yes">Split Vertically</property>
+        <property name="visible">True</property>
+        <property name="can_focus">False</property>
+        <property name="use_action_appearance">False</property>
+        <property name="use_stock">False</property>
+        <signal name="activate" handler="vsplit_terminal" swapped="no"/>
+        <child internal-child="image">
+          <widget class="GtkImage" id="vsplit_terminal_icon">
+            <property name="visible">True</property>
+            <property name="can_focus">False</property>
+            <property name="stock">gtk-vsplit</property>
+            <property name="icon-size">1</property>
+          </widget>
+        </child>
+      </widget>
+    </child>
+    <child>
+      <widget class="GtkImageMenuItem" id="context_close_terminal">
         <property name="label" translatable="yes">Close Tab</property>
         <property name="visible">True</property>
         <property name="can_focus">False</property>
         <property name="use_action_appearance">False</property>
         <property name="use_stock">False</property>
-        <signal name="activate" handler="close_tab" swapped="no"/>
+        <signal name="activate" handler="close_terminal" swapped="no"/>
         <child internal-child="image">
-          <widget class="GtkImage" id="close_tab_icon">
+          <widget class="GtkImage" id="close_terminal_icon">
             <property name="visible">True</property>
             <property name="can_focus">False</property>
             <property name="stock">gtk-remove</property>
