@@ -1008,8 +1008,9 @@ class Guake(SimpleGladeApp):
         if not self.window.get_property('visible'):
             self.show()
             self.set_terminal_focus()
-        elif self.client.get_bool(KEY('/general/focus_if_open')) and \
-                self.window.window.get_state():
+        elif (self.client.get_bool(KEY('/general/focus_if_open')) and
+                self.window.window and
+                not self.window.window.get_state()):
             self.window.window.focus()
         else:
             self.hide()
