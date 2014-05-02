@@ -41,7 +41,6 @@ from guake.globals import QUICK_OPEN_MATCHERS
 from guake.simplegladeapp import SimpleGladeApp
 from guake.simplegladeapp import bindtextdomain
 
-
 # A regular expression to match possible python interpreters when
 # filling interpreters combo in preferences (including bpython and ipython)
 PYTHONS = re.compile(r'^[a-z]python$|^python\d\.\d$')
@@ -247,9 +246,15 @@ class PrefsCallbacks(object):
         """
         self.client.set_bool(KEY('/general/primary_display'), chk.get_active())
 
+    def on_mouse_display_toggled(self, chk):
+        """Set the 'appear on mouse display' preference in gconf. This
+        property supercedes any value stored in display_n.
+        """
+        self.client.set_bool(KEY('/general/mouse_display'), chk.get_active())
+
     def on_display_n_changed(self, combo):
         """Set the destination display in gconf. This is superceded by a 'true'
-        value in primary_display.
+        value in primary_display or mouse_display.
         """
         i = combo.get_active_iter()
         if not i:
@@ -453,6 +458,12 @@ class PrefsDialog(SimpleGladeApp):
         """When the user unchecks 'primary display', the option to select an
         alternate display should be enabeld.
         """
+        other = self.get_widget('primary_display' if 'mouse_display' == chk.get_name()\
+                           else 'mouse_display')
+
+        if chk.get_active():
+          other.set_active(False)
+
         self.get_widget('display_n').set_sensitive(not chk.get_active())
 
     def toggle_quick_open_command_line_sensitivity(self, chk):
@@ -612,6 +623,7 @@ class PrefsDialog(SimpleGladeApp):
         n_screens = screen.get_n_monitors()
         if dest_screen > n_screens - 1:
             self.client.set_bool(KEY('/general/primary_display'), True)
+            self.client.set_bool(KEY('/general/mouse_display'), False)
             dest_screen = screen.get_primary_monitor()
             self.client.set_int(KEY('/general/display_n'), dest_screen)
 
@@ -622,6 +634,10 @@ class PrefsDialog(SimpleGladeApp):
 
         value = self.client.get_bool(KEY('/general/primary_display'))
         self.get_widget('primary_display').set_active(value)
+
+        # use display where the mouse is currently
+        value = self.client.get_bool(KEY('/general/mouse_display'))
+        self.get_widget('mouse_display').set_active(value)
 
         # scrollbar
         value = self.client.get_bool(KEY('/general/use_scrollbar'))
