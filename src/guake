@@ -455,7 +455,7 @@ class GConfKeyHandler(object):
             self.accel_group.connect_group(key, mask, gtk.ACCEL_VISIBLE,
                                            self.guake.accel_next)
 
-        key, mask = gtk.accelerator_parse(gets('rename_tab'))
+        key, mask = gtk.accelerator_parse(gets('rename_current_tab'))
         if key > 0:
             self.accel_group.connect_group(key, mask, gtk.ACCEL_VISIBLE,
                                            self.guake.accel_rename_current_tab)
