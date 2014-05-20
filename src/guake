@@ -791,6 +791,12 @@ class Guake(SimpleGladeApp):
         # smaller.
         self.window.set_geometry_hints(min_width=1, min_height=1)
 
+        # special trick to avoid the "lost guake on Ubuntu 'Show Desktop'" problem.
+        # DOCK makes the window foundable after having being "lost" after "Show Desktop"
+        self.window.set_type_hint(gtk.gdk.WINDOW_TYPE_HINT_DOCK)
+        # Restore back to normal behavior
+        self.window.set_type_hint(gtk.gdk.WINDOW_TYPE_HINT_NORMAL)
+
         # resizer stuff
         self.resizer.connect('motion-notify-event', self.on_resizer_drag)
 
