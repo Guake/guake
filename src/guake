@@ -47,6 +47,7 @@ from urllib import quote_plus
 from urllib import url2pathname
 from urlparse import urlsplit
 from xdg.DesktopEntry import DesktopEntry
+from xml.sax.saxutils import escape as xml_escape
 
 import guake.globalhotkeys
 import guake.notifier
@@ -410,7 +411,7 @@ class GConfKeyHandler(object):
         key = entry.get_value().get_string()
         if not self.guake.hotkeys.bind(key, self.guake.show_hide):
             raise ShowableError(_('key binding error'),
-                                _('Unable to bind global <b>%s</b> key') % key,
+                                _('Unable to bind global <b>%s</b> key') % xml_escape(key),
                                 -1)
 
     def reload_accelerators(self, *args):
@@ -822,7 +823,7 @@ class Guake(SimpleGladeApp):
                 _('Guake!'),
                 _('A problem happened when binding <b>%s</b> key.\n'
                   'Please use Guake Preferences dialog to choose another '
-                  'key') % label, filename)
+                  'key') % xml_escape(label), filename)
             self.client.set_bool(KEY('/general/use_trayicon'), True)
 
         elif self.client.get_bool(KEY('/general/use_popup')):
@@ -831,7 +832,7 @@ class Guake(SimpleGladeApp):
             guake.notifier.show_message(
                 _('Guake!'),
                 _('Guake is now running,\n'
-                  'press <b>%s</b> to use it.') % label, filename)
+                  'press <b>%s</b> to use it.') % xml_escape(label), filename)
 
     def set_background_transparency(self, transparency):
         for i in self.term_list:
