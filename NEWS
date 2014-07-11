@@ -2,7 +2,12 @@ Version 0.5.0 (2014.02.22):
   - Tab can be moved
   - Add change tab hotkey (F1-F10 by default) and is display on tab
   - Add "New tab" menu item
-  - New maintainers:
+  - Quick open file path within the terminal output
+  - gconf only settings:
+     - startup scripts
+     - vertical aligments
+  - minor bug fixes
+  - New maintainer:
     * Gaetan Semet <gaetan@xeberon.net>
   - Contributors:
     * @koter84
