@@ -683,6 +683,8 @@ class Guake(SimpleGladeApp):
         # since theme has not been applied before first show_all
         self.selected_color = None
 
+        self.isPromptQuitDialogOpened = False
+
         # trayicon!
         try:
             import appindicator
@@ -912,6 +914,9 @@ class Guake(SimpleGladeApp):
         the window_losefocus gconf variable is True.
         """
         if self.disable_losefocus_hiding or self.showing_context_menu:
+            return
+
+        if self.isPromptQuitDialogOpened:
             return
 
         value = self.client.get_bool(KEY('/general/window_losefocus'))
@@ -1202,9 +1207,11 @@ class Guake(SimpleGladeApp):
         if self.client.get_bool(KEY('/general/prompt_on_quit')):
             procs = self.get_running_fg_processes()
             if procs >= 1:
+                self.isPromptQuitDialogOpened = True
                 dialog = PromptQuitDialog(self.window, procs)
                 response = dialog.run() == gtk.RESPONSE_YES
                 dialog.destroy()
+                self.isPromptQuitDialogOpened = False
                 if response:
                     gtk.main_quit()
             else:
