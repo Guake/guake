@@ -1,4 +1,3 @@
-#!/usr/bin/env python
 """
 Copyright (C) 2013 Maxim Ivanov <ulidtko@gmail.com>
 
