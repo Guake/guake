@@ -222,11 +222,6 @@ class PrefsCallbacks(object):
         """
         self.client.set_bool(KEY('/general/window_losefocus'), chk.get_active())
 
-    def on_window_losefocus_toggled(self, chk):
-        """Changes the activity of window_losefocus in gconf
-        """
-        self.client.set_bool(KEY('/general/window_losefocus'), chk.get_active())
-
     def on_quick_open_command_line_changed(self, edt):
         self.client.set_string(KEY('/general/quick_open_command_line'), edt.get_text())
 
@@ -239,12 +234,6 @@ class PrefsCallbacks(object):
         """Changes the activity of start_fullscreen in gconf
         """
         self.client.set_bool(KEY('/general/start_fullscreen'), chk.get_active())
-
-    def on_primary_display_toggled(self, chk):
-        """Set the 'appear on primary display' preference in gconf. This
-        property supercedes any value stored in display_n.
-        """
-        self.client.set_bool(KEY('/general/primary_display'), chk.get_active())
 
     def on_mouse_display_toggled(self, chk):
         """Set the 'appear on mouse display' preference in gconf. This
@@ -265,8 +254,7 @@ class PrefsCallbacks(object):
         self.client.set_int(KEY('/general/window_valignment'), 1 if v else 0)
 
     def on_display_n_changed(self, combo):
-        """Set the destination display in gconf. This is superceded by a 'true'
-        value in primary_display or mouse_display.
+        """Set the destination display in gconf.
         """
         i = combo.get_active_iter()
         if not i:
@@ -470,12 +458,6 @@ class PrefsDialog(SimpleGladeApp):
         """When the user unchecks 'primary display', the option to select an
         alternate display should be enabeld.
         """
-        other = self.get_widget('primary_display' if 'mouse_display' == chk.get_name()
-                                else 'mouse_display')
-
-        if chk.get_active():
-            other.set_active(False)
-
         self.get_widget('display_n').set_sensitive(not chk.get_active())
 
     def toggle_quick_open_command_line_sensitivity(self, chk):
@@ -620,7 +602,7 @@ class PrefsDialog(SimpleGladeApp):
         self.get_widget('quick_open_command_line').set_sensitive(value)
         text = gtk.TextBuffer()
         text = self.get_widget('quick_open_supported_patterns').get_buffer()
-        for title, matcher, _ in QUICK_OPEN_MATCHERS:
+        for title, matcher, _useless in QUICK_OPEN_MATCHERS:
             text.insert_at_cursor("%s: %s\n" % (title, matcher))
         self.get_widget('quick_open_supported_patterns').set_buffer(text)
 
@@ -634,7 +616,6 @@ class PrefsDialog(SimpleGladeApp):
         screen = self.get_widget('config-window').get_screen()
         n_screens = screen.get_n_monitors()
         if dest_screen > n_screens - 1:
-            self.client.set_bool(KEY('/general/primary_display'), True)
             self.client.set_bool(KEY('/general/mouse_display'), False)
             dest_screen = screen.get_primary_monitor()
             self.client.set_int(KEY('/general/display_n'), dest_screen)
@@ -643,9 +624,6 @@ class PrefsDialog(SimpleGladeApp):
             i_int = int(i[0].split()[0])  # extracts 1 from '1' or from '1 (primary)'
             if i_int == dest_screen:
                 combo.set_active_iter(i.iter)
-
-        value = self.client.get_bool(KEY('/general/primary_display'))
-        self.get_widget('primary_display').set_active(value)
 
         # use display where the mouse is currently
         value = self.client.get_bool(KEY('/general/mouse_display'))
