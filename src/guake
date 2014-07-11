@@ -38,8 +38,6 @@ import sys
 import vte
 import xdg.Exceptions
 
-from pprint import pprint
-
 from pango import FontDescription
 from thread import start_new_thread
 from time import sleep
@@ -66,7 +64,6 @@ from guake.globals import ALIGN_BOTTOM
 from guake.globals import ALIGN_CENTER
 from guake.globals import ALIGN_LEFT
 from guake.globals import ALIGN_RIGHT
-from guake.globals import ALIGN_TOP
 from guake.globals import GCONF_PATH
 from guake.globals import KEY
 from guake.globals import LOCALE_DIR
@@ -550,7 +547,7 @@ class GuakeTerminal(vte.Terminal):
             tag = self.match_add(expr)
             self.match_set_cursor_type(tag, gtk.gdk.HAND2)
 
-        for _, match, _ in QUICK_OPEN_MATCHERS:
+        for _useless, match, _otheruseless in QUICK_OPEN_MATCHERS:
             tag = self.match_add(match)
             self.match_set_cursor_type(tag, gtk.gdk.HAND2)
 
@@ -582,7 +579,7 @@ class GuakeTerminal(vte.Terminal):
             use_quick_open = client.get_bool(KEY("/general/quick_open_enable"))
             cmdline = client.get_string(KEY("/general/quick_open_command_line"))
             if use_quick_open:
-                for _, _, extractor in QUICK_OPEN_MATCHERS:
+                for _useless, _otheruseless, extractor in QUICK_OPEN_MATCHERS:
                     g = re.compile(extractor).match(value)
                     if g and len(g.groups()) == 2:
                         filename = g.group(1)
@@ -1891,6 +1888,14 @@ def main():
         # it is already running, so, lets toggle its visibility.
         remote_object.show_hide()
 
+    if not already_running:
+        startup_script = instance.client.get_string(KEY("/general/startup_script"))
+        if startup_script:
+            print "Calling startup script: ", startup_script
+            pid = subprocess.Popen([startup_script], shell=True, stdin=None, stdout=None,
+                                   stderr=None, close_fds=True)
+            print "Script started with pid", pid
+            # Please ensure this is the last line !!!!
     return already_running
 
 if __name__ == '__main__':

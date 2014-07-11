@@ -178,6 +178,21 @@
         </schema>
 
         <schema>
+            <key>/schemas/apps/guake/general/startup_script</key>
+            <applyto>/apps/guake/general/startup_script</applyto>
+            <owner>guake</owner>
+            <type>string</type>
+            <default></default>
+            <locale name="C">
+                <short>Startup script to execute when guake starts</short>
+                <long>This property allows you to execute a startup bash
+                script each time guake starts. You can configure your
+                initial tab settings within this script. Please see
+                the command line argument of guake ('guake --help')
+                for complete help.</long>
+            </locale>
+        </schema>
+        <schema>
             <key>/schemas/apps/guake/general/start_fullscreen</key>
             <applyto>/apps/guake/general/start_fullscreen</applyto>
             <owner>guake</owner>
