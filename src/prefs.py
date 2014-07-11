@@ -252,6 +252,18 @@ class PrefsCallbacks(object):
         """
         self.client.set_bool(KEY('/general/mouse_display'), chk.get_active())
 
+    def on_right_align_toggled(self, chk):
+        """set the horizontal alignment setting.
+        """
+        v = chk.get_active()
+        self.client.set_int(KEY('/general/window_halignment'), 1 if v else 0)
+
+    def on_bottom_align_toggled(self, chk):
+        """set the vertical alignment setting.
+        """
+        v = chk.get_active()
+        self.client.set_int(KEY('/general/window_valignment'), 1 if v else 0)
+
     def on_display_n_changed(self, combo):
         """Set the destination display in gconf. This is superceded by a 'true'
         value in primary_display or mouse_display.
@@ -458,11 +470,11 @@ class PrefsDialog(SimpleGladeApp):
         """When the user unchecks 'primary display', the option to select an
         alternate display should be enabeld.
         """
-        other = self.get_widget('primary_display' if 'mouse_display' == chk.get_name()\
-                           else 'mouse_display')
+        other = self.get_widget('primary_display' if 'mouse_display' == chk.get_name()
+                                else 'mouse_display')
 
         if chk.get_active():
-          other.set_active(False)
+            other.set_active(False)
 
         self.get_widget('display_n').set_sensitive(not chk.get_active())
 
@@ -692,6 +704,9 @@ class PrefsDialog(SimpleGladeApp):
 
         value = self.client.get_int(KEY('/style/background/transparency'))
         self.get_widget('background_transparency').set_value(value)
+
+        value = self.client.get_int(KEY('/general/window_valignment'))
+        self.get_widget('right_align').set_active(value)
 
         # it's a separated method, to be reused.
         self.reload_erase_combos()
