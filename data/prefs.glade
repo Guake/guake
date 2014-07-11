@@ -139,7 +139,6 @@
                                 <property name="visible">True</property>
                                 <property name="can_focus">False</property>
                                 <property name="spacing">6</property>
-                                <property name="homogeneous">True</property>
                                 <child>
                                   <widget class="GtkHBox" id="hbox1">
                                     <property name="visible">True</property>
@@ -192,39 +191,50 @@
                                   </packing>
                                 </child>
                                 <child>
-                                  <widget class="GtkCheckButton" id="use_login_shell">
-                                    <property name="label" translatable="yes">_Run command as a login shell</property>
+                                  <widget class="GtkHBox" id="hbox8">
                                     <property name="visible">True</property>
-                                    <property name="can_focus">True</property>
-                                    <property name="receives_default">False</property>
-                                    <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
-                                    <property name="use_action_appearance">False</property>
-                                    <property name="use_underline">True</property>
-                                    <property name="draw_indicator">True</property>
-                                    <signal name="toggled" handler="on_use_login_shell_toggled" swapped="no"/>
+                                    <property name="can_focus">False</property>
+                                    <child>
+                                      <widget class="GtkCheckButton" id="use_login_shell">
+                                        <property name="label" translatable="yes">_Run command as a login shell</property>
+                                        <property name="visible">True</property>
+                                        <property name="can_focus">True</property>
+                                        <property name="receives_default">False</property>
+                                        <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
+                                        <property name="use_action_appearance">False</property>
+                                        <property name="use_underline">True</property>
+                                        <property name="draw_indicator">True</property>
+                                        <signal name="toggled" handler="on_use_login_shell_toggled" swapped="no"/>
+                                      </widget>
+                                      <packing>
+                                        <property name="expand">True</property>
+                                        <property name="fill">True</property>
+                                        <property name="position">0</property>
+                                      </packing>
+                                    </child>
+                                    <child>
+                                      <widget class="GtkCheckButton" id="open_tab_cwd">
+                                        <property name="label" translatable="yes">_Open new tab in current directory</property>
+                                        <property name="visible">True</property>
+                                        <property name="can_focus">True</property>
+                                        <property name="receives_default">False</property>
+                                        <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
+                                        <property name="use_action_appearance">False</property>
+                                        <property name="use_underline">True</property>
+                                        <property name="draw_indicator">True</property>
+                                        <signal name="toggled" handler="on_open_tab_cwd_toggled" swapped="no"/>
+                                      </widget>
+                                      <packing>
+                                        <property name="expand">True</property>
+                                        <property name="fill">True</property>
+                                        <property name="position">1</property>
+                                      </packing>
+                                    </child>
                                   </widget>
                                   <packing>
                                     <property name="expand">True</property>
                                     <property name="fill">True</property>
                                     <property name="position">1</property>
-                                  </packing>
-                                </child>
-                                <child>
-                                  <widget class="GtkCheckButton" id="open_tab_cwd">
-                                    <property name="label" translatable="yes">_Open new tab in current directory</property>
-                                    <property name="visible">True</property>
-                                    <property name="can_focus">True</property>
-                                    <property name="receives_default">False</property>
-                                    <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
-                                    <property name="use_action_appearance">False</property>
-                                    <property name="use_underline">True</property>
-                                    <property name="draw_indicator">True</property>
-                                    <signal name="toggled" handler="on_open_tab_cwd_toggled" swapped="no"/>
-                                  </widget>
-                                  <packing>
-                                    <property name="expand">True</property>
-                                    <property name="fill">True</property>
-                                    <property name="position">2</property>
                                   </packing>
                                 </child>
                               </widget>
@@ -268,54 +278,73 @@
                                 <property name="spacing">6</property>
                                 <property name="homogeneous">True</property>
                                 <child>
-                                  <widget class="GtkCheckButton" id="use_trayicon">
-                                    <property name="label" translatable="yes">Show tray icon</property>
+                                  <widget class="GtkTable" id="table5">
                                     <property name="visible">True</property>
-                                    <property name="can_focus">True</property>
-                                    <property name="receives_default">False</property>
-                                    <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
-                                    <property name="use_action_appearance">False</property>
-                                    <property name="draw_indicator">True</property>
-                                    <signal name="toggled" handler="on_use_trayicon_toggled" swapped="no"/>
+                                    <property name="can_focus">False</property>
+                                    <property name="n_rows">2</property>
+                                    <property name="n_columns">2</property>
+                                    <child>
+                                      <widget class="GtkCheckButton" id="use_trayicon">
+                                        <property name="label" translatable="yes">Show tray icon</property>
+                                        <property name="visible">True</property>
+                                        <property name="can_focus">True</property>
+                                        <property name="receives_default">False</property>
+                                        <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
+                                        <property name="use_action_appearance">False</property>
+                                        <property name="draw_indicator">True</property>
+                                        <signal name="toggled" handler="on_use_trayicon_toggled" swapped="no"/>
+                                      </widget>
+                                    </child>
+                                    <child>
+                                      <widget class="GtkCheckButton" id="use_popup">
+                                        <property name="label" translatable="yes">Enable popup notifications on startup</property>
+                                        <property name="visible">True</property>
+                                        <property name="can_focus">True</property>
+                                        <property name="receives_default">False</property>
+                                        <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
+                                        <property name="use_action_appearance">False</property>
+                                        <property name="draw_indicator">True</property>
+                                        <signal name="toggled" handler="on_use_popup_toggled" swapped="no"/>
+                                      </widget>
+                                      <packing>
+                                        <property name="left_attach">1</property>
+                                        <property name="right_attach">2</property>
+                                      </packing>
+                                    </child>
+                                    <child>
+                                      <widget class="GtkCheckButton" id="prompt_on_quit">
+                                        <property name="label" translatable="yes">Prompt on quit</property>
+                                        <property name="visible">True</property>
+                                        <property name="can_focus">True</property>
+                                        <property name="receives_default">False</property>
+                                        <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
+                                        <property name="use_action_appearance">False</property>
+                                        <property name="draw_indicator">True</property>
+                                        <signal name="toggled" handler="on_prompt_on_quit_toggled" swapped="no"/>
+                                      </widget>
+                                      <packing>
+                                        <property name="top_attach">1</property>
+                                        <property name="bottom_attach">2</property>
+                                      </packing>
+                                    </child>
+                                    <child>
+                                      <widget class="GtkLabel" id="label27">
+                                        <property name="visible">True</property>
+                                        <property name="can_focus">False</property>
+                                      </widget>
+                                      <packing>
+                                        <property name="left_attach">1</property>
+                                        <property name="right_attach">2</property>
+                                        <property name="top_attach">1</property>
+                                        <property name="bottom_attach">2</property>
+                                        <property name="y_options"/>
+                                      </packing>
+                                    </child>
                                   </widget>
                                   <packing>
                                     <property name="expand">True</property>
                                     <property name="fill">True</property>
                                     <property name="position">0</property>
-                                  </packing>
-                                </child>
-                                <child>
-                                  <widget class="GtkCheckButton" id="use_popup">
-                                    <property name="label" translatable="yes">Enable popup notifications on startup</property>
-                                    <property name="visible">True</property>
-                                    <property name="can_focus">True</property>
-                                    <property name="receives_default">False</property>
-                                    <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
-                                    <property name="use_action_appearance">False</property>
-                                    <property name="draw_indicator">True</property>
-                                    <signal name="toggled" handler="on_use_popup_toggled" swapped="no"/>
-                                  </widget>
-                                  <packing>
-                                    <property name="expand">True</property>
-                                    <property name="fill">True</property>
-                                    <property name="position">1</property>
-                                  </packing>
-                                </child>
-                                <child>
-                                  <widget class="GtkCheckButton" id="prompt_on_quit">
-                                    <property name="label" translatable="yes">Prompt on quit</property>
-                                    <property name="visible">True</property>
-                                    <property name="can_focus">True</property>
-                                    <property name="receives_default">False</property>
-                                    <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
-                                    <property name="use_action_appearance">False</property>
-                                    <property name="draw_indicator">True</property>
-                                    <signal name="toggled" handler="on_prompt_on_quit_toggled" swapped="no"/>
-                                  </widget>
-                                  <packing>
-                                    <property name="expand">True</property>
-                                    <property name="fill">True</property>
-                                    <property name="position">2</property>
                                   </packing>
                                 </child>
                               </widget>
@@ -362,7 +391,6 @@
                                     <property name="visible">True</property>
                                     <property name="can_focus">False</property>
                                     <property name="spacing">6</property>
-                                    <property name="homogeneous">True</property>
                                     <child>
                                       <widget class="GtkCheckButton" id="window_ontop">
                                         <property name="label" translatable="yes">Stay on top</property>
@@ -490,7 +518,6 @@
                                   <widget class="GtkVBox" id="vbox10">
                                     <property name="visible">True</property>
                                     <property name="can_focus">False</property>
-                                    <property name="homogeneous">True</property>
                                     <child>
                                       <widget class="GtkCheckButton" id="right_align">
                                         <property name="label" translatable="yes">Bottom align window instead of top align</property>
@@ -566,31 +593,25 @@
                                       </packing>
                                     </child>
                                     <child>
-                                      <widget class="GtkLabel" id="lblSpacer">
-                                        <property name="width_request">160</property>
+                                      <widget class="GtkLabel" id="label29">
                                         <property name="visible">True</property>
                                         <property name="can_focus">False</property>
-                                        <property name="xalign">0</property>
-                                        <property name="use_markup">True</property>
                                       </widget>
                                       <packing>
-                                        <property name="expand">False</property>
+                                        <property name="expand">True</property>
                                         <property name="fill">False</property>
-                                        <property name="position">2</property>
+                                        <property name="position">3</property>
                                       </packing>
                                     </child>
                                     <child>
-                                      <widget class="GtkLabel" id="lblSpacer2">
-                                        <property name="width_request">160</property>
+                                      <widget class="GtkLabel" id="label32">
                                         <property name="visible">True</property>
                                         <property name="can_focus">False</property>
-                                        <property name="xalign">0</property>
-                                        <property name="use_markup">True</property>
                                       </widget>
                                       <packing>
-                                        <property name="expand">False</property>
+                                        <property name="expand">True</property>
                                         <property name="fill">False</property>
-                                        <property name="position">3</property>
+                                        <property name="position">4</property>
                                       </packing>
                                     </child>
                                   </widget>
@@ -1613,13 +1634,21 @@ Custom
                                         <property name="wrap">True</property>
                                       </widget>
                                       <packing>
-                                        <property name="expand">True</property>
+                                        <property name="expand">False</property>
                                         <property name="fill">False</property>
                                         <property name="position">0</property>
                                       </packing>
                                     </child>
                                     <child>
-                                      <placeholder/>
+                                      <widget class="GtkLabel" id="label22">
+                                        <property name="visible">True</property>
+                                        <property name="can_focus">False</property>
+                                      </widget>
+                                      <packing>
+                                        <property name="expand">False</property>
+                                        <property name="fill">False</property>
+                                        <property name="position">1</property>
+                                      </packing>
                                     </child>
                                   </widget>
                                   <packing>
@@ -1637,7 +1666,7 @@ Custom
                                   </widget>
                                   <packing>
                                     <property name="expand">True</property>
-                                    <property name="fill">True</property>
+                                    <property name="fill">False</property>
                                     <property name="position">1</property>
                                   </packing>
                                 </child>
@@ -1795,7 +1824,6 @@ For example, for sublime, use &lt;b&gt;subl %(file_path)s:%(line_number)s&lt;/b&
                         </child>
                         <child>
                           <widget class="GtkFrame" id="frame9">
-                            <property name="height_request">300</property>
                             <property name="visible">True</property>
                             <property name="can_focus">False</property>
                             <property name="label_xalign">0</property>
@@ -1827,8 +1855,8 @@ For example, for sublime, use &lt;b&gt;subl %(file_path)s:%(line_number)s&lt;/b&
                             </child>
                           </widget>
                           <packing>
-                            <property name="expand">True</property>
-                            <property name="fill">True</property>
+                            <property name="expand">False</property>
+                            <property name="fill">False</property>
                             <property name="position">2</property>
                           </packing>
                         </child>
