@@ -34,9 +34,9 @@
             <default>0</default>
             <locale name="C">
                 <short>Display to appear on.</short>
-                <long>Display to appear on if the primary_display or
-                mouse_display option are not set. If this is set to an invalid
-                value (as in the case of removing a screen from a system), the
+                <long>Display to appear on if the  mouse_display option is not set.
+                If this is set to an invalid value (as in the case of removing a
+                screen from a system), the
                 invalid value is automatically updated to the current primary
                 screen.</long>
             </locale>

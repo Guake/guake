@@ -153,7 +153,7 @@ class GConfHandler(object):
         # notify_add(KEY('/general/use_vte_titles'), self.use_vte_titles_changed)
         # notify_add(KEY('/general/quick_open_enable'), self.on_quick_open_enable_changed)
 
-        # Notification is not required for primary_display/mouse_display/display_n because
+        # Notification is not required for mouse_display/display_n because
         # get_final_window_rect polls gconf and is called whenever Guake is
         # shown or resized
 
@@ -569,9 +569,9 @@ class GuakeTerminal(vte.Terminal):
             int(event.x / self.get_char_width()),
             int(event.y / self.get_char_height()))
 
-        if event.button == 1 \
-                and event.get_state() & gtk.gdk.CONTROL_MASK \
-                and matched_string:
+        if (event.button == 1
+                and event.get_state() & gtk.gdk.CONTROL_MASK
+                and matched_string):
             value, tag = matched_string
             # First searching in additional matchers
             found = False
@@ -1096,12 +1096,8 @@ class Guake(SimpleGladeApp):
         halignment = self.client.get_int(KEY('/general/window_halignment'))
         valignment = self.client.get_int(KEY('/general/window_valignment'))
 
-        use_primary = self.client.get_bool(KEY('/general/primary_display'))
         use_mouse = self.client.get_bool(KEY('/general/mouse_display'))
         dest_screen = self.client.get_int(KEY('/general/display_n'))
-
-        if use_primary:
-            dest_screen = screen.get_primary_monitor()
 
         if use_mouse:
             x, y, _ = screen.get_root_window().get_pointer()
@@ -1111,7 +1107,6 @@ class Guake(SimpleGladeApp):
         # default to 'primary display' option.
         n_screens = screen.get_n_monitors()
         if dest_screen > n_screens - 1:
-            self.client.set_bool(KEY('/general/primary_display'), True)
             self.client.set_bool(KEY('/general/mouse_display'), False)
             self.client.set_int(KEY('/general/display_n'), dest_screen)
             dest_screen = screen.get_primary_monitor()
@@ -1176,7 +1171,6 @@ class Guake(SimpleGladeApp):
         self.client.notify(KEY('/general/prompt_on_quit'))
         self.client.notify(KEY('/general/window_tabbar'))
         self.client.notify(KEY('/general/mouse_display'))
-        self.client.notify(KEY('/general/primary_display'))
         self.client.notify(KEY('/general/display_n'))
         self.client.notify(KEY('/general/window_ontop'))
         self.client.notify(KEY('/general/window_height'))
