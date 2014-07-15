@@ -898,7 +898,11 @@ class Guake(SimpleGladeApp):
         if not 'GDK_BUTTON1_MASK' in mod.value_names:
             return
 
-        max_height = self.window.get_screen().get_height()
+        screen = self.window.get_screen()
+        x, y, _ = screen.get_root_window().get_pointer()
+        screen_no = screen.get_monitor_at_point(x, y)
+
+        max_height = screen.get_monitor_geometry(screen_no).height
         percent = y / (max_height / 100)
 
         if percent < 1:
@@ -1133,7 +1137,7 @@ class Guake(SimpleGladeApp):
         window_rect.height = window_rect.height * height / 100
         window_rect.width = window_rect.width * width / 100
 
-        if width < total_width:
+        if window_rect.width < total_width:
             if halignment == ALIGN_CENTER:
                 window_rect.x += (total_width - window_rect.width) / 2
             elif halignment == ALIGN_LEFT:
