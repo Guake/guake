@@ -59,6 +59,11 @@ For Python 3, you need this package too:
 
  * python3-dev
 
+To edit the glade file, you can use the glade editor. Ensure to use
+the gtk-2 version:
+
+ * glade-gtk2
+
 Ubuntu
 ------
 
@@ -75,6 +80,8 @@ For manual dependency listing (Ubuntu 13.10)::
     sudo apt-get install python-vte
     # uncomment for Python 3
     # sudo apt-get install python3-dev
+    # uncomment for glade Gtk-2 editor
+    # sudo apt-get install glade-gtk2
 
 RedHat/Fedora
 -------------
