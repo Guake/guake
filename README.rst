@@ -86,7 +86,9 @@ For manual dependency listing (Ubuntu 13.10)::
 RedHat/Fedora
 -------------
 
-TBD
+For Fedora 19 and above, Guake is available in the official repositories and can be installed by running::
+
+    sudo yum install guake
 
 ArchLinux
 ---------
