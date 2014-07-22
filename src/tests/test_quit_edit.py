@@ -1,7 +1,6 @@
-import unittest
 import guake
+import unittest
 
-print os.sys
 
 class TestQuickEdit(unittest.TestCase):
     def testMatch(self):
