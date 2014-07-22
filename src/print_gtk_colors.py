@@ -1,16 +1,17 @@
 #!/usr/bin/env python
-import pygtk
 import gtk
 
 
-def format_color_string( Color ):
-    return "%s %s %s" % (Color.red /256, Color.green/256,  Color.blue/256)
+def format_color_string(color):
+    return "%s %s %s" % (color.red / 256, color.green / 256, color.blue / 256)
 
-def print_hex_color( Color ):
-    return "#" + hex(Color.red/256)[2:] + hex(Color.green/256)[2:] + hex(Color.blue/256)[2:]
 
-def format_color_key( key, Color):
-    return "\"%s\"=\"%s\" (%s)\n" % (key, format_color_string( Color ), print_hex_color( Color ))
+def print_hex_color(color):
+    return "#" + hex(color.red / 256)[2:] + hex(color.green / 256)[2:] + hex(color.blue / 256)[2:]
+
+
+def format_color_key(key, color):
+    return "\"%s\"=\"%s\" (%s)\n" % (key, format_color_string(color), print_hex_color(color))
 
 invisible1 = gtk.Invisible()
 style1 = invisible1.style
@@ -18,7 +19,7 @@ style1 = invisible1.style
 button1 = gtk.Button()
 buttonstyle = button1.style
 
-scroll1 =  gtk.VScrollbar()
+scroll1 = gtk.VScrollbar()
 scrollbarstyle = scroll1.style
 
 menu1 = gtk.Menu()

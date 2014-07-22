@@ -18,14 +18,13 @@ Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor,
 Boston, MA 02110-1301 USA
 """
 import dbus
-import dbus.service
 import dbus.glib
-import gtk
-import guake.common
+import dbus.service
 dbus.glib.threads_init()
 
 DBUS_PATH = '/org/guake/RemoteControl'
 DBUS_NAME = 'org.guake.RemoteControl'
+
 
 class DbusManager(dbus.service.Object):
     def __init__(self, guakeinstance):
