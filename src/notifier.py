@@ -24,9 +24,9 @@ pynotify.init("Guake")
 
 __all__ = ['show_message']
 
-RETRY_INTERVAL = 3 # seconds
+RETRY_INTERVAL = 3  # seconds
 
-retry_limit = 5 # tries
+retry_limit = 5  # tries
 
 
 def show_message(brief, body=None, icon=None):
