@@ -1,5 +1,21 @@
 #! /bin/bash
-REVRANGE="$1..HEAD"
+
+if [[ ! -z $1 ]] && [[ $1 == "--help" ]]; then
+    echo "USAGE: validate.sh [oldrev [--quick]]"
+    echo "  This script will test a set of patches (oldrev..HEAD) for basic acceptability as a patch"
+    echo "  Run it in an activated virtualenv with the current Buildbot installed, as well as"
+    echo "      sphinx, pyflakes, mock, and so on"
+    echo "To use a different directory for tests, pass TRIALTMP=/path as an env variable"
+    echo "if --quick is passed validate will skip unit tests and concentrate on coding style"
+    echo
+    echo "If no argument is given, all files from current directory will be inspected"
+    exit 1
+fi
+
+REVRANGE=
+if [ ! -z $1 ]; then
+    REVRANGE="$1..HEAD"
+fi
 TRIAL_TESTS=
 
 # some colors
@@ -12,15 +28,6 @@ LTCYAN="$_ESC[1;36m"
 YELLOW="$_ESC[1;33m"
 NORM="$_ESC[0;0m"
 
-if [ $# -eq 0 ]; then
-    echo "USAGE: validate.sh oldrev [--quick]"
-    echo "  This script will test a set of patches (oldrev..HEAD) for basic acceptability as a patch"
-    echo "  Run it in an activated virtualenv with the current Buildbot installed, as well as"
-    echo "      sphinx, pyflakes, mock, and so on"
-    echo "To use a different directory for tests, pass TRIALTMP=/path as an env variable"
-    echo "if --quick is passed validate will skip unit tests and concentrate on coding style"
-    exit 1
-fi
 
 status() {
     echo "${LTCYAN}-- ${*} --${NORM}"
@@ -65,38 +72,42 @@ run_tests() {
     trial --reporter text ${TEMP_DIRECTORY_OPT} ${TRIAL_TESTS}
 }
 
-if ! git diff --no-ext-diff --quiet --exit-code; then
-    not_ok "changed files in working copy"
+if [ -z $REVRANGE ]; then
+    py_files=$(find . -name '*.py' | grep -E '(src\/guake$|\.py$)')
+else
+
+    if ! git diff --no-ext-diff --quiet --exit-code; then
+        not_ok "changed files in working copy"
+        if $slow; then
+            exit 1
+        fi
+    fi
+    # get a list of changed files, used below; this uses a tempfile to work around
+    # shell behavior when piping to 'while'
+    tempfile=$(mktemp)
+    trap 'rm -f ${tempfile}' 1 2 3 15
+    git diff --name-only $REVRANGE | grep -E '(src\/guake$|\.py$)' | grep -v '\(^master/\(contrib\|docs\)\|/setup\.py\)' > ${tempfile}
+    py_files=()
+    while read line; do
+        if test -f "${line}"; then
+            py_files+=($line)
+        fi
+    done < ${tempfile}
+
+    echo "${MAGENTA}Validating the following commits:${NORM}"
+    git --no-pager log "$REVRANGE" --pretty=oneline || exit 1
+
     if $slow; then
-        exit 1
+        status "running tests"
+        run_tests || not_ok "tests failed"
     fi
+
+    status "checking formatting"
+    check_tabs && not_ok "$REVRANGE adds tabs"
+
+    status "checking for release notes"
+    check_relnotes || warning "$REVRANGE does not add release notes"
 fi
-
-# get a list of changed files, used below; this uses a tempfile to work around
-# shell behavior when piping to 'while'
-tempfile=$(mktemp)
-trap 'rm -f ${tempfile}' 1 2 3 15
-git diff --name-only $REVRANGE | grep -E '(src\/guake$|\.py$)' | grep -v '\(^master/\(contrib\|docs\)\|/setup\.py\)' > ${tempfile}
-py_files=()
-while read line; do
-    if test -f "${line}"; then
-        py_files+=($line)
-    fi
-done < ${tempfile}
-
-echo "${MAGENTA}Validating the following commits:${NORM}"
-git --no-pager log "$REVRANGE" --pretty=oneline || exit 1
-
-if $slow; then
-    status "running tests"
-    run_tests || not_ok "tests failed"
-fi
-
-status "checking formatting"
-check_tabs && not_ok "$REVRANGE adds tabs"
-
-status "checking for release notes"
-check_relnotes || warning "$REVRANGE does not add release notes"
 
 status "checking import module convention in modified files"
 RES=true
