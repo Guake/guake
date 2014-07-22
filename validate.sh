@@ -73,7 +73,9 @@ run_tests() {
 }
 
 if [ -z $REVRANGE ]; then
-    py_files=$(find . -name '*.py' | grep -E '(src\/guake$|\.py$)')
+    py_files=$(find . -name '*.py' | grep -E '(src\/guake$|\.py$)' | grep -v 'src/globals.py')
+    echo "Validating files: "
+    echo $py_files
 else
 
     if ! git diff --no-ext-diff --quiet --exit-code; then
