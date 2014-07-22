@@ -72,7 +72,7 @@ dependencies::
 
     sudo apt-get build-dep guake
 
-For manual dependency listing (Ubuntu 13.10)::
+For compiling from these sources, please install the following packages (Ubuntu 13.10)::
 
     sudo apt-get install build-essential python autoconf
     sudo apt-get install gnome-common gtk-doc-tools libglib2.0-dev libgtk2.0-dev libgconf2-dev
@@ -90,6 +90,10 @@ For Fedora 19 and above, Guake is available in the official repositories and can
 
     sudo yum install guake
 
+For compiling from these sources, please install the following packages (Fedora 19)::
+
+    TBD
+
 ArchLinux
 ---------
 
@@ -98,8 +102,12 @@ and installed by running::
 
     sudo pacman -S guake
 
+For compiling from these sources, please install the following packages (TBD)::
+
+    TBD
+
 Compilation
-~~~~~~~~~~~~
+~~~~~~~~~~~
 
 We are using an autotools based installation, so if you got the source
 of guake from a release tarball, please do the following::
@@ -110,10 +118,10 @@ of guake from a release tarball, please do the following::
     $ sudo make install
 
 If you receive a message asking you if you have installed
-guake.schemas properly when launching guake, it means that your
+``guake.schemas`` properly when launching guake, it means that your
 default sysconfdir is different from the one chosen by autotools. To
-fix that, you probably have to append the param `--sysconfdir=/etc' to
-your `./configure' call, like this::
+fix that, you probably have to append the param ``--sysconfdir=/etc`` to
+your ``./configure`` call, like this::
 
     $ ./configure --sysconfdir=/etc && make
 
@@ -122,7 +130,7 @@ file by hand by doing the following::
 
     # GCONF_CONFIG_SOURCE="" gconftool-2 --makefile-install-rule data/guake.schemas
 
-For more install details, please read the `INSTALL` file.
+For more install details, please read the ``INSTALL`` file.
 
 Git hook
 ~~~~~~~~
