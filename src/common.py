@@ -35,6 +35,7 @@ __all__ = ['_', 'ShowableError', 'test_gconf',
 
 
 class ShowableError(Exception):
+
     def __init__(self, title, msg, exit_code=1):
         d = gtk.MessageDialog(type=gtk.MESSAGE_ERROR,
                               buttons=gtk.BUTTONS_CLOSE)

@@ -3,6 +3,7 @@ import unittest
 
 
 class TestQuickEdit(unittest.TestCase):
+
     def testMatch(self):
         print guake
 
