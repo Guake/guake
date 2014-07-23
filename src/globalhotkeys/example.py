@@ -62,8 +62,9 @@ if you want to test your program when it shoud say to the user that the binding
 failed, you can simply use this program to bind the key that you're running.
 Because you can bind a key once.
 """
-import gtk
 import globalhotkeys
+import gtk
+
 
 def hammer(*args):
     print args

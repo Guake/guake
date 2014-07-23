@@ -160,6 +160,7 @@ PALETTES = [
 
 
 class PrefsCallbacks(object):
+
     """Holds callbacks that will be used in the PrefsDialg class.
     """
 
@@ -347,8 +348,10 @@ class PrefsCallbacks(object):
 
 
 class PrefsDialog(SimpleGladeApp):
+
     """The Guake Preferences dialog.
     """
+
     def __init__(self):
         """Setup the preferences dialog interface, loading images,
         adding filters to file choosers and connecting some signals.
@@ -857,6 +860,7 @@ class PrefsDialog(SimpleGladeApp):
 
 
 class KeyEntry(object):
+
     def __init__(self, keycode, mask):
         self.keycode = keycode
         self.mask = mask

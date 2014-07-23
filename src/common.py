@@ -19,16 +19,12 @@ Boston, MA 02110-1301 USA
 """
 from __future__ import absolute_import
 
-import gtk
 import gconf
-import sys
-import os
-import locale
 import gettext
-import time
-import subprocess
-import re
+import gtk
 import guake.globals
+import os
+import sys
 
 # Internationalization purposes.
 _ = gettext.gettext
@@ -37,10 +33,12 @@ __all__ = ['_', 'ShowableError', 'test_gconf',
            'pixmapfile', 'gladefile', 'hexify_color',
            'get_binaries_from_path']
 
+
 class ShowableError(Exception):
+
     def __init__(self, title, msg, exit_code=1):
         d = gtk.MessageDialog(type=gtk.MESSAGE_ERROR,
-                buttons=gtk.BUTTONS_CLOSE)
+                              buttons=gtk.BUTTONS_CLOSE)
         d.set_markup('<b><big>%s</big></b>' % title)
         d.format_secondary_markup(msg)
         d.run()
@@ -48,9 +46,11 @@ class ShowableError(Exception):
         if exit_code != -1:
             sys.exit(exit_code)
 
+
 def test_gconf():
     c = gconf.client_get_default()
     return c.dir_exists('/apps/guake')
+
 
 def pixmapfile(x):
     f = os.path.join(guake.globals.IMAGE_DIR, x)
@@ -58,15 +58,18 @@ def pixmapfile(x):
         raise IOError('No such file or directory: %s' % f)
     return os.path.abspath(f)
 
+
 def gladefile(x):
     f = os.path.join(guake.globals.GLADE_DIR, x)
     if not os.path.exists(f):
         raise IOError('No such file or directory: %s' % f)
     return os.path.abspath(f)
 
+
 def hexify_color(c):
     h = lambda x: hex(x).replace('0x', '').zfill(4)
     return '#%s%s%s' % (h(c.red), h(c.green), h(c.blue))
+
 
 def get_binaries_from_path(compiled_re):
     ret = []
@@ -77,9 +80,11 @@ def get_binaries_from_path(compiled_re):
                     ret.append(os.path.join(i, j))
     return ret
 
+
 def shell_quote(text):
     """ quote text (filename) for inserting into a shell """
     return r"\'".join("'%s'" % p for p in text.split("'"))
+
 
 def clamp(value, lower, upper):
     return max(min(value, upper), lower)
