@@ -8,12 +8,14 @@ virtualenv:
 compiler:
     - gcc
 before_install:
-    - sudo apt-get install -qq build-essential python autoconf
-    - sudo apt-get install -qq gnome-common gtk-doc-tools libglib2.0-dev libgtk2.0-dev libgconf2-dev
-    - sudo apt-get install -qq python-gtk2 python-gtk2-dev python-vte python-appindicator 
-    - sudo apt-get install -qq python3-dev
+    - sudo apt-get update -qq
+    - sudo apt-get install -qq --fix-missing build-essential python autoconf
+    - sudo apt-get install -qq --fix-missing gnome-common gtk-doc-tools libglib2.0-dev libgtk2.0-dev libgconf2-dev
+    - sudo apt-get install -qq --fix-missing python-gtk2 python-gtk2-dev python-vte python-appindicator
+    - sudo apt-get install -qq --fix-missing python3-dev
 install:
     - pip install -r python-requirements.txt --use-mirrors
     - find /usr/include
 script:
+    - ./validate.sh
     - ./autogen.sh && ./configure && make

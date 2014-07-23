@@ -31,20 +31,21 @@ import pygtk
 pygtk.require('2.0')
 
 import os
-import sys
 import re
+import sys
 
-import tokenize
 import gtk
 import gtk.glade
-import weakref
 import inspect
+import tokenize
+import weakref
 
 __version__ = "1.0"
 __author__ = 'Sandino "tigrux" Flores-Moreno'
 
+
 def bindtextdomain(app_name, locale_dir=None):
-    """    
+    """
     Bind the domain represented by app_name to the locale directory locale_dir.
     It has the effect of loading translations, enabling applications for different
     languages.
@@ -55,7 +56,7 @@ def bindtextdomain(app_name, locale_dir=None):
     locale_dir:
         a directory with locales like locale_dir/lang_isocode/LC_MESSAGES/app_name.mo
         If omitted or None, then the current binding for app_name is used.
-    """    
+    """
     try:
         import locale
         import gettext
@@ -65,10 +66,10 @@ def bindtextdomain(app_name, locale_dir=None):
         gettext.textdomain(app_name)
         gtk.glade.bindtextdomain(app_name, locale_dir)
         gtk.glade.textdomain(app_name)
-        gettext.install(app_name, locale_dir, unicode = 1)
-    except (IOError,locale.Error), e:
+        gettext.install(app_name, locale_dir, unicode=1)
+    except (IOError, locale.Error), e:
         print "Warning", app_name, e
-        __builtins__.__dict__["_"] = lambda x : x
+        __builtins__.__dict__["_"] = lambda x: x
 
 
 class SimpleGladeApp(object):
@@ -100,15 +101,15 @@ class SimpleGladeApp(object):
             It is useful to set attributes of new instances, for example:
                 glade_app = SimpleGladeApp("ui.glade", foo="some value", bar="another value")
             sets two attributes (foo and bar) to glade_app.
-        """        
+        """
         if os.path.isfile(path):
             self.glade_path = path
         else:
-            glade_dir = os.path.dirname( sys.argv[0] )
+            glade_dir = os.path.dirname(sys.argv[0])
             self.glade_path = os.path.join(glade_dir, path)
         for key, value in kwargs.items():
             try:
-                setattr(self, key, weakref.proxy(value) )
+                setattr(self, key, weakref.proxy(value))
             except TypeError:
                 setattr(self, key, value)
         self.glade = None
@@ -151,7 +152,7 @@ class SimpleGladeApp(object):
         callbacks_proxy:
             an instance with methods as code of callbacks.
             It means it has methods like on_button1_clicked, on_entry1_activate, etc.
-        """        
+        """
         self.glade.signal_autoconnect(callbacks_proxy)
 
     def normalize_names(self):
@@ -166,12 +167,12 @@ class SimpleGladeApp(object):
         for widget in self.get_widgets():
             widget_name = gtk.Widget.get_name(widget)
             prefixes_name_l = widget_name.split(":")
-            prefixes = prefixes_name_l[ : -1]
+            prefixes = prefixes_name_l[: -1]
             widget_api_name = prefixes_name_l[-1]
             widget_api_name = "_".join(re.findall(tokenize.Name, widget_api_name))
             gtk.Widget.set_name(widget, widget_api_name)
             if hasattr(self, widget_api_name):
-                raise AttributeError("instance %s already has an attribute %s" % (self,widget_api_name))
+                raise AttributeError("instance %s already has an attribute %s" % (self, widget_api_name))
             else:
                 setattr(self, widget_api_name, widget)
                 if prefixes:
@@ -191,18 +192,18 @@ class SimpleGladeApp(object):
         prefix_actions_proxy:
             An instance with methods as prefix actions.
             It means it has methods like prefix_foo, prefix_bar, etc.
-        """        
+        """
         prefix_s = "prefix_"
         prefix_pos = len(prefix_s)
 
-        is_method = lambda t : callable( t[1] )
-        is_prefix_action = lambda t : t[0].startswith(prefix_s)
-        drop_prefix = lambda (k,w): (k[prefix_pos:],w)
+        is_method = lambda t: callable(t[1])
+        is_prefix_action = lambda t: t[0].startswith(prefix_s)
+        drop_prefix = lambda (k, w): (k[prefix_pos:], w)
 
         members_t = inspect.getmembers(prefix_actions_proxy)
         methods_t = filter(is_method, members_t)
         prefix_actions_t = filter(is_prefix_action, methods_t)
-        prefix_actions_d = dict( map(drop_prefix, prefix_actions_t) )
+        prefix_actions_d = dict(map(drop_prefix, prefix_actions_t))
 
         for widget in self.get_widgets():
             prefixes = gtk.Widget.get_data(widget, "prefixes")
@@ -213,8 +214,8 @@ class SimpleGladeApp(object):
                         prefix_action(widget)
 
     def custom_handler(self,
-            glade, function_name, widget_name,
-            str1, str2, int1, int2):
+                       glade, function_name, widget_name,
+                       str1, str2, int1, int2):
         """
         Generic handler for creating custom widgets, internally used to
         enable custom widgets (custom widgets of glade).
@@ -268,7 +269,7 @@ class SimpleGladeApp(object):
         """
         widget.destroy()
 
-    def gtk_window_activate_default(self, window, *args):
+    def gtk_window_activate_default(self, widget, *args):
         """
         Predefined callback.
         The default widget of the window is activated.
@@ -316,7 +317,7 @@ class SimpleGladeApp(object):
         """
         Quit processing events.
         The default implementation calls gtk.main_quit()
-        
+
         Useful for applications that needs a non gtk main loop.
         For example, applications based on gstreamer needs to override
         this method with gst.main_quit()
