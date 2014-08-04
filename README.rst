@@ -67,7 +67,8 @@ the gtk-2 version:
 Ubuntu
 ------
 
-Under Debian/Ubuntu, the following command should install all the build
+Under Debian/Ubuntu, make sure you have source code repositories 
+enabled, then the following command should install all the build
 dependencies::
 
     sudo apt-get build-dep guake
