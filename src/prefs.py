@@ -602,10 +602,16 @@ class PrefsDialog(SimpleGladeApp):
         value = self.client.get_bool(KEY('/general/use_vte_titles'))
         self.get_widget('use_vte_titles').set_active(value)
 
-        value = self.client.get_int(KEY('/general/window_height'))
+        try:
+            value = self.client.get_int(KEY('/general/window_height'))
+        except:
+            value = self.client.get_float(KEY('/general/window_height'))
         self.get_widget('window_height').set_value(value)
 
-        value = self.client.get_int(KEY('/general/window_width'))
+        try:
+            value = self.client.get_int(KEY('/general/window_width'))
+        except:
+            value = self.client.get_float(KEY('/general/window_width'))
         self.get_widget('window_width').set_value(value)
 
         value = self.client.get_int(KEY('/general/window_halignment'))
