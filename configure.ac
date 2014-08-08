@@ -85,8 +85,6 @@ ALL_LINGUAS="ca cs_CZ de el es fa fr gl hr hu id it ja nb_NO nl pa pl pt_BR ru s
 AC_SUBST([GETTEXT_PACKAGE])
 AC_SUBST([ALL_LINGUAS])
 
-AC_PREFIX_DEFAULT(/usr)
-
 dnl output files
 AC_CONFIG_FILES([
     Makefile
