@@ -33,6 +33,9 @@ from guake.common import get_binaries_from_path
 from guake.common import gladefile
 from guake.common import hexify_color
 from guake.common import pixmapfile
+from guake.globals import ALIGN_CENTER
+from guake.globals import ALIGN_LEFT
+from guake.globals import ALIGN_RIGHT
 from guake.globals import GCONF_PATH
 from guake.globals import KEY
 from guake.globals import LOCALE_DIR
@@ -269,6 +272,23 @@ class PrefsCallbacks(object):
         """
         val = hscale.get_value()
         self.client.set_int(KEY('/general/window_height'), int(val))
+
+    def on_window_width_value_changed(self, wscale):
+        """Changes the value of window_width in gconf
+        """
+        val = wscale.get_value()
+        self.client.set_int(KEY('/general/window_width'), int(val))
+
+    def on_window_halign_value_changed(self, halign_button):
+        """Changes the value of window_halignment in gconf
+        """
+        if halign_button.get_active():
+            which_align = {
+                'radiobutton_align_left': ALIGN_LEFT,
+                'radiobutton_align_right': ALIGN_RIGHT,
+                'radiobutton_align_center': ALIGN_CENTER
+            }
+            self.client.set_int(KEY('/general/window_halignment'), which_align[halign_button.get_name()])
 
     # scrolling tab
 
@@ -584,6 +604,17 @@ class PrefsDialog(SimpleGladeApp):
 
         value = self.client.get_int(KEY('/general/window_height'))
         self.get_widget('window_height').set_value(value)
+
+        value = self.client.get_int(KEY('/general/window_width'))
+        self.get_widget('window_width').set_value(value)
+
+        value = self.client.get_int(KEY('/general/window_halignment'))
+        which_button = {
+            ALIGN_RIGHT: 'radiobutton_align_right',
+            ALIGN_LEFT: 'radiobutton_align_left',
+            ALIGN_CENTER: 'radiobutton_align_center'
+        }
+        self.get_widget(which_button[value]).set_active(True)
 
         value = self.client.get_bool(KEY('/general/open_tab_cwd'))
         self.get_widget('open_tab_cwd').set_active(value)
