@@ -13,7 +13,7 @@ AC_DEFUN([AS_AC_EXPAND],
   prefix_save=$prefix
   exec_prefix_save=$exec_prefix
 
-  dnl if no prefix given, then use /usr/local, the default prefix
+  dnl if no prefix given, then use /usr, the default prefix
   if test "x$prefix" = "xNONE"; then
     prefix=$ac_default_prefix
   fi
