@@ -395,7 +395,7 @@ class GConfKeyHandler(object):
 
         keys = ['toggle_fullscreen', 'new_tab', 'close_tab', 'rename_current_tab',
                 'previous_tab', 'next_tab', 'clipboard_copy', 'clipboard_paste',
-                'quit', 'zoom_in', 'zoom_out', "search_on_web",
+                'quit', 'zoom_in', 'zoom_out', 'increase_height', 'decrease_height', "search_on_web",
                 'switch_tab1', 'switch_tab2', 'switch_tab3', 'switch_tab4', 'switch_tab5',
                 'switch_tab6', 'switch_tab7', 'switch_tab8', 'switch_tab9', 'switch_tab10'
                 ]
@@ -491,6 +491,16 @@ class GConfKeyHandler(object):
         if key > 0:
             self.accel_group.connect_group(key, mask, gtk.ACCEL_VISIBLE,
                                            self.guake.accel_zoom_out)
+
+        key, mask = gtk.accelerator_parse(gets('increase_height'))
+        if key > 0:
+            self.accel_group.connect_group(key, mask, gtk.ACCEL_VISIBLE,
+                                           self.guake.accel_increase_height)
+
+        key, mask = gtk.accelerator_parse(gets('decrease_height'))
+        if key > 0:
+            self.accel_group.connect_group(key, mask, gtk.ACCEL_VISIBLE,
+                                           self.guake.accel_decrease_height)
 
         for tab in xrange(1, 11):
             key, mask = gtk.accelerator_parse(gets('switch_tab%d' % tab))
@@ -1226,6 +1236,28 @@ class Guake(SimpleGladeApp):
         """
         for term in self.term_list:
             term.decrease_font_size()
+        return True
+
+    def accel_increase_height(self, *args):
+        """Callback to increase height.
+        """
+        try:
+            height = self.client.get_float(KEY('/general/window_height'))
+        except:
+            height = self.client.get_int(KEY('/general/window_height'))
+
+        self.client.set_int(KEY('/general/window_height'), int(height) + 2)
+        return True
+
+    def accel_decrease_height(self, *args):
+        """Callback to decrease height.
+        """
+        try:
+            height = self.client.get_float(KEY('/general/window_height'))
+        except:
+            height = self.client.get_int(KEY('/general/window_height'))
+
+        self.client.set_int(KEY('/general/window_height'), int(height) - 2)
         return True
 
     def accel_add(self, *args):

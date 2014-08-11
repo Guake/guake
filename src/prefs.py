@@ -116,6 +116,10 @@ HOTKEYS = [
                'label': 'Zoom in'},
               {'key': LKEY('zoom_in_alt'),
                'label': 'Zoom in (alternative)'},
+              {'key': LKEY('increase_height'),
+               'label': 'Increase height'},
+              {'key': LKEY('decrease_height'),
+               'label': 'Decrease height'},
               ]},
 
     {'label': 'Clipboard',
