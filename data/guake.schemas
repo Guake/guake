@@ -707,6 +707,30 @@
         </schema>
 
         <schema>
+            <key>/schemas/apps/guake/keybindings/local/increase_height</key>
+            <applyto>/apps/guake/keybindings/local/increase_height</applyto>
+            <owner>guake</owner>
+            <type>string</type>
+            <default>&lt;Control&gt;Down</default>
+            <locale name="C">
+                <short>Increase height.</short>
+                <long>Increase the screen height.</long>
+            </locale>
+        </schema>
+
+        <schema>
+            <key>/schemas/apps/guake/keybindings/local/decrease_height</key>
+            <applyto>/apps/guake/keybindings/local/decrease_height</applyto>
+            <owner>guake</owner>
+            <type>string</type>
+            <default>&lt;Control&gt;Up</default>
+            <locale name="C">
+                <short>Decrease height.</short>
+                <long>Decrease the screen height.</long>
+            </locale>
+        </schema>
+
+        <schema>
             <key>/schemas/apps/guake/keybindings/local/clipboard_copy</key>
             <applyto>/apps/guake/keybindings/local/clipboard_copy</applyto>
             <owner>guake</owner>
