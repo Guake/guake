@@ -1093,23 +1093,13 @@ class Guake(SimpleGladeApp):
         self.window.set_keep_below(True)
         self.window.hide()  # Don't use hide_all here!
 
-    def get_final_window_rect(self):
-        """Gets the final size of the main window of guake. The height
-        is the window_height property, width is window_width and the
-        horizontal alignment is given by window_alignment.
+    def get_final_window_monitor(self):
+        """Gets the final screen number for the main window of guake.
         """
-        screen = self.window.get_screen()
-        try:
-            height = self.client.get_float(KEY('/general/window_height'))
-        except:
-            height = self.client.get_int(KEY('/general/window_height'))
-        try:
-            width = self.client.get_float(KEY('/general/window_width'))
-        except:
-            width = self.client.get_int(KEY('/general/window_width'))
-        halignment = self.client.get_int(KEY('/general/window_halignment'))
-        valignment = self.client.get_int(KEY('/general/window_valignment'))
 
+        screen = self.window.get_screen()
+
+        # fetch settings
         use_mouse = self.client.get_bool(KEY('/general/mouse_display'))
         dest_screen = self.client.get_int(KEY('/general/display_n'))
 
@@ -1125,8 +1115,30 @@ class Guake(SimpleGladeApp):
             self.client.set_int(KEY('/general/display_n'), dest_screen)
             dest_screen = screen.get_primary_monitor()
 
+        return dest_screen
+
+    def get_final_window_rect(self):
+        """Gets the final size of the main window of guake. The height
+        is the window_height property, width is window_width and the
+        horizontal alignment is given by window_alignment.
+        """
+
+        # fetch settings
+        try:
+            height = self.client.get_float(KEY('/general/window_height'))
+        except:
+            height = self.client.get_int(KEY('/general/window_height'))
+        try:
+            width = self.client.get_float(KEY('/general/window_width'))
+        except:
+            width = self.client.get_int(KEY('/general/window_width'))
+        halignment = self.client.get_int(KEY('/general/window_halignment'))
+        valignment = self.client.get_int(KEY('/general/window_valignment'))
+
         # get the rectangle just from the destination monitor
-        window_rect = screen.get_monitor_geometry(dest_screen)
+        screen = self.window.get_screen()
+        monitor = self.get_final_window_monitor()
+        window_rect = screen.get_monitor_geometry(monitor)
 
         if os.environ.get('DESKTOP_SESSION') == "ubuntu":
             unity_hide = self.client.get_int(KEY('/apps/compiz-1/plugins/'
