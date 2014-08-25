@@ -1115,6 +1115,10 @@ class Guake(SimpleGladeApp):
             self.client.set_int(KEY('/general/display_n'), dest_screen)
             dest_screen = screen.get_primary_monitor()
 
+        # Use primary display if configured (by magic number -1)
+        if dest_screen == -1:
+            dest_screen = screen.get_primary_monitor()
+
         return dest_screen
 
     def get_final_window_rect(self):
