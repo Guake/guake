@@ -664,10 +664,18 @@ class PrefsDialog(SimpleGladeApp):
             dest_screen = screen.get_primary_monitor()
             self.client.set_int(KEY('/general/display_n'), dest_screen)
 
-        for i in combo.get_model():
-            i_int = int(i[0].split()[0])  # extracts 1 from '1' or from '1 (primary)'
-            if i_int == dest_screen:
-                combo.set_active_iter(i.iter)
+        if dest_screen == -1:
+          first_item = combo.get_model().get_iter_first()
+          combo.set_active_iter(first_item)
+        else:
+          seen_first = False # first item "always on primary" is special
+          for i in combo.get_model():
+            if seen_first:
+              i_int = int(i[0].split()[0])  # extracts 1 from '1' or from '1 (primary)'
+              if i_int == dest_screen:
+                  combo.set_active_iter(i.iter)
+            else:
+              seen_first = True
 
         # use display where the mouse is currently
         value = self.client.get_bool(KEY('/general/mouse_display'))
