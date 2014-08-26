@@ -64,6 +64,7 @@ from guake.globals import ALIGN_BOTTOM
 from guake.globals import ALIGN_CENTER
 from guake.globals import ALIGN_LEFT
 from guake.globals import ALIGN_RIGHT
+from guake.globals import ALWAYS_ON_PRIMARY
 from guake.globals import GCONF_PATH
 from guake.globals import KEY
 from guake.globals import LOCALE_DIR
@@ -1115,8 +1116,8 @@ class Guake(SimpleGladeApp):
             self.client.set_int(KEY('/general/display_n'), dest_screen)
             dest_screen = screen.get_primary_monitor()
 
-        # Use primary display if configured (by magic number -1)
-        if dest_screen == -1:
+        # Use primary display if configured
+        if dest_screen == ALWAYS_ON_PRIMARY:
             dest_screen = screen.get_primary_monitor()
 
         return dest_screen
