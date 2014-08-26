@@ -264,11 +264,19 @@ class PrefsCallbacks(object):
     def on_display_n_changed(self, combo):
         """Set the destination display in gconf.
         """
+
         i = combo.get_active_iter()
         if not i:
             return
-        val = combo.get_model().get_value(i, 0)
-        val_int = int(val.split()[0])  # extracts 1 from '1' or from '1 (primary)'
+
+        model = combo.get_model()
+        first_item_path = model.get_path(model.get_iter_first())
+
+        if model.get_path(i) == first_item_path:
+          val_int = -1
+        else:
+          val = model.get_value(i, 0)
+          val_int = int(val.split()[0])  # extracts 1 from '1' or from '1 (primary)'
         self.client.set_int(KEY('/general/display_n'), val_int)
 
     def on_window_height_value_changed(self, hscale):
