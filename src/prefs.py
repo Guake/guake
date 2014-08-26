@@ -778,10 +778,12 @@ class PrefsDialog(SimpleGladeApp):
 
     def populate_display_n(self):
         """Get the number of displays and populate this drop-down box
-        with them all.
+        with them all. Prepend the "always on primary" option.
         """
         cb = self.get_widget('display_n')
         screen = self.get_widget('config-window').get_screen()
+
+        cb.append_text("always on primary")
 
         for m in range(0, int(screen.get_n_monitors())):
             if m == int(screen.get_primary_monitor()):
