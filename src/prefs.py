@@ -482,7 +482,7 @@ class PrefsDialog(SimpleGladeApp):
         self.get_widget('font_style').set_sensitive(not chk.get_active())
 
     def toggle_display_n_sensitivity(self, chk):
-        """When the user unchecks 'primary display', the option to select an
+        """When the user unchecks 'on mouse display', the option to select an
         alternate display should be enabeld.
         """
         self.get_widget('display_n').set_sensitive(not chk.get_active())
