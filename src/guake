@@ -1697,7 +1697,7 @@ class Guake(SimpleGladeApp):
         UI, so you can use python's start_new_thread.
         """
         try:
-            os.kill(pid, signal.SIGTERM)
+            os.kill(pid, signal.SIGHUP)
         except OSError:
             pass
         num_tries = 30
