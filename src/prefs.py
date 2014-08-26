@@ -36,6 +36,7 @@ from guake.common import pixmapfile
 from guake.globals import ALIGN_CENTER
 from guake.globals import ALIGN_LEFT
 from guake.globals import ALIGN_RIGHT
+from guake.globals import ALWAYS_ON_PRIMARY
 from guake.globals import GCONF_PATH
 from guake.globals import KEY
 from guake.globals import LOCALE_DIR
@@ -273,7 +274,7 @@ class PrefsCallbacks(object):
         first_item_path = model.get_path(model.get_iter_first())
 
         if model.get_path(i) == first_item_path:
-          val_int = -1
+          val_int = ALWAYS_ON_PRIMARY
         else:
           val = model.get_value(i, 0)
           val_int = int(val.split()[0])  # extracts 1 from '1' or from '1 (primary)'
@@ -672,7 +673,7 @@ class PrefsDialog(SimpleGladeApp):
             dest_screen = screen.get_primary_monitor()
             self.client.set_int(KEY('/general/display_n'), dest_screen)
 
-        if dest_screen == -1:
+        if dest_screen == ALWAYS_ON_PRIMARY:
           first_item = combo.get_model().get_iter_first()
           combo.set_active_iter(first_item)
         else:

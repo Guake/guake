@@ -21,7 +21,8 @@ Boston, MA 02110-1301 USA
 __all__ = [
     'NAME', 'VERSION', 'IMAGE_DIR', 'GLADE_DIR', 'LOCALE_DIR',
     'GCONF_PATH', 'KEY', 'TERMINAL_MATCH_EXPRS', 'TERMINAL_MATCH_TAGS',
-    'ALIGN_CENTER', 'ALIGN_RIGHT', 'ALIGN_LEFT', 'ALIGN_TOP', 'ALIGN_BOTTOM'
+    'ALIGN_CENTER', 'ALIGN_RIGHT', 'ALIGN_LEFT', 'ALIGN_TOP', 'ALIGN_BOTTOM',
+    'ALWAYS_ON_PRIMARY'
     ]
 
 NAME = 'guake'
@@ -56,6 +57,7 @@ TERMINAL_MATCH_EXPRS = [
 TERMINAL_MATCH_TAGS = 'schema', 'http', 'email'
 ALIGN_CENTER, ALIGN_LEFT, ALIGN_RIGHT = range(3)
 ALIGN_TOP, ALIGN_BOTTOM = range(2)
+ALWAYS_ON_PRIMARY = -1
 
 # tuple (title/quick matcher/filename and line number extractor)
 QUICK_OPEN_MATCHERS = [
