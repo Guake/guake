@@ -274,10 +274,10 @@ class PrefsCallbacks(object):
         first_item_path = model.get_path(model.get_iter_first())
 
         if model.get_path(i) == first_item_path:
-          val_int = ALWAYS_ON_PRIMARY
+            val_int = ALWAYS_ON_PRIMARY
         else:
-          val = model.get_value(i, 0)
-          val_int = int(val.split()[0])  # extracts 1 from '1' or from '1 (primary)'
+            val = model.get_value(i, 0)
+            val_int = int(val.split()[0])  # extracts 1 from '1' or from '1 (primary)'
         self.client.set_int(KEY('/general/display_n'), val_int)
 
     def on_window_height_value_changed(self, hscale):
@@ -674,17 +674,17 @@ class PrefsDialog(SimpleGladeApp):
             self.client.set_int(KEY('/general/display_n'), dest_screen)
 
         if dest_screen == ALWAYS_ON_PRIMARY:
-          first_item = combo.get_model().get_iter_first()
-          combo.set_active_iter(first_item)
+            first_item = combo.get_model().get_iter_first()
+            combo.set_active_iter(first_item)
         else:
-          seen_first = False # first item "always on primary" is special
-          for i in combo.get_model():
-            if seen_first:
-              i_int = int(i[0].split()[0])  # extracts 1 from '1' or from '1 (primary)'
-              if i_int == dest_screen:
-                  combo.set_active_iter(i.iter)
-            else:
-              seen_first = True
+            seen_first = False  # first item "always on primary" is special
+            for i in combo.get_model():
+                if seen_first:
+                    i_int = int(i[0].split()[0])  # extracts 1 from '1' or from '1 (primary)'
+                    if i_int == dest_screen:
+                        combo.set_active_iter(i.iter)
+                else:
+                    seen_first = True
 
         # use display where the mouse is currently
         value = self.client.get_bool(KEY('/general/mouse_display'))
