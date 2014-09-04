@@ -860,7 +860,7 @@ class Guake(SimpleGladeApp):
                 i.set_background_transparent(False)
             else:
                 """We need to clear the image if it's not set but there is
-                a bug in vte python bidnings which doesn't allow None to be
+                a bug in vte python bindings which doesn't allow None to be
                 passed to set_background_image (C GTK function expects NULL).
                 The user will need to restart Guake after clearing the image.
                 i.set_background_image(None)
