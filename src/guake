@@ -64,6 +64,7 @@ from guake.globals import ALIGN_BOTTOM
 from guake.globals import ALIGN_CENTER
 from guake.globals import ALIGN_LEFT
 from guake.globals import ALIGN_RIGHT
+from guake.globals import ALWAYS_ON_PRIMARY
 from guake.globals import GCONF_PATH
 from guake.globals import KEY
 from guake.globals import LOCALE_DIR
@@ -1093,23 +1094,13 @@ class Guake(SimpleGladeApp):
         self.window.set_keep_below(True)
         self.window.hide()  # Don't use hide_all here!
 
-    def get_final_window_rect(self):
-        """Gets the final size of the main window of guake. The height
-        is the window_height property, width is window_width and the
-        horizontal alignment is given by window_alignment.
+    def get_final_window_monitor(self):
+        """Gets the final screen number for the main window of guake.
         """
-        screen = self.window.get_screen()
-        try:
-            height = self.client.get_float(KEY('/general/window_height'))
-        except:
-            height = self.client.get_int(KEY('/general/window_height'))
-        try:
-            width = self.client.get_float(KEY('/general/window_width'))
-        except:
-            width = self.client.get_int(KEY('/general/window_width'))
-        halignment = self.client.get_int(KEY('/general/window_halignment'))
-        valignment = self.client.get_int(KEY('/general/window_valignment'))
 
+        screen = self.window.get_screen()
+
+        # fetch settings
         use_mouse = self.client.get_bool(KEY('/general/mouse_display'))
         dest_screen = self.client.get_int(KEY('/general/display_n'))
 
@@ -1125,8 +1116,34 @@ class Guake(SimpleGladeApp):
             self.client.set_int(KEY('/general/display_n'), dest_screen)
             dest_screen = screen.get_primary_monitor()
 
+        # Use primary display if configured
+        if dest_screen == ALWAYS_ON_PRIMARY:
+            dest_screen = screen.get_primary_monitor()
+
+        return dest_screen
+
+    def get_final_window_rect(self):
+        """Gets the final size of the main window of guake. The height
+        is the window_height property, width is window_width and the
+        horizontal alignment is given by window_alignment.
+        """
+
+        # fetch settings
+        try:
+            height_percents = self.client.get_float(KEY('/general/window_height'))
+        except:
+            height_percents = self.client.get_int(KEY('/general/window_height'))
+        try:
+            width_percents = self.client.get_float(KEY('/general/window_width'))
+        except:
+            width_percents = self.client.get_int(KEY('/general/window_width'))
+        halignment = self.client.get_int(KEY('/general/window_halignment'))
+        valignment = self.client.get_int(KEY('/general/window_valignment'))
+
         # get the rectangle just from the destination monitor
-        window_rect = screen.get_monitor_geometry(dest_screen)
+        screen = self.window.get_screen()
+        monitor = self.get_final_window_monitor()
+        window_rect = screen.get_monitor_geometry(monitor)
 
         if os.environ.get('DESKTOP_SESSION') == "ubuntu":
             unity_hide = self.client.get_int(KEY('/apps/compiz-1/plugins/'
@@ -1144,8 +1161,8 @@ class Guake(SimpleGladeApp):
         total_width = window_rect.width
         total_height = window_rect.height
 
-        window_rect.height = window_rect.height * height / 100
-        window_rect.width = window_rect.width * width / 100
+        window_rect.height = window_rect.height * height_percents / 100
+        window_rect.width = window_rect.width * width_percents / 100
 
         if window_rect.width < total_width:
             if halignment == ALIGN_CENTER:
@@ -1154,10 +1171,9 @@ class Guake(SimpleGladeApp):
                 window_rect.x += 0
             elif halignment == ALIGN_RIGHT:
                 window_rect.x += total_width - window_rect.width
-        window_rect.y = 0
-        if height < total_height:
+        if window_rect.height < total_height:
             if valignment == ALIGN_BOTTOM:
-                window_rect.y = (total_height - window_rect.height)
+                window_rect.y += (total_height - window_rect.height)
 
         return window_rect
 

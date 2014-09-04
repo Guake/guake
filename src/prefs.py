@@ -36,6 +36,7 @@ from guake.common import pixmapfile
 from guake.globals import ALIGN_CENTER
 from guake.globals import ALIGN_LEFT
 from guake.globals import ALIGN_RIGHT
+from guake.globals import ALWAYS_ON_PRIMARY
 from guake.globals import GCONF_PATH
 from guake.globals import KEY
 from guake.globals import LOCALE_DIR
@@ -264,11 +265,19 @@ class PrefsCallbacks(object):
     def on_display_n_changed(self, combo):
         """Set the destination display in gconf.
         """
+
         i = combo.get_active_iter()
         if not i:
             return
-        val = combo.get_model().get_value(i, 0)
-        val_int = int(val.split()[0])  # extracts 1 from '1' or from '1 (primary)'
+
+        model = combo.get_model()
+        first_item_path = model.get_path(model.get_iter_first())
+
+        if model.get_path(i) == first_item_path:
+            val_int = ALWAYS_ON_PRIMARY
+        else:
+            val = model.get_value(i, 0)
+            val_int = int(val.split()[0])  # extracts 1 from '1' or from '1 (primary)'
         self.client.set_int(KEY('/general/display_n'), val_int)
 
     def on_window_height_value_changed(self, hscale):
@@ -482,7 +491,7 @@ class PrefsDialog(SimpleGladeApp):
         self.get_widget('font_style').set_sensitive(not chk.get_active())
 
     def toggle_display_n_sensitivity(self, chk):
-        """When the user unchecks 'primary display', the option to select an
+        """When the user unchecks 'on mouse display', the option to select an
         alternate display should be enabeld.
         """
         self.get_widget('display_n').set_sensitive(not chk.get_active())
@@ -664,10 +673,18 @@ class PrefsDialog(SimpleGladeApp):
             dest_screen = screen.get_primary_monitor()
             self.client.set_int(KEY('/general/display_n'), dest_screen)
 
-        for i in combo.get_model():
-            i_int = int(i[0].split()[0])  # extracts 1 from '1' or from '1 (primary)'
-            if i_int == dest_screen:
-                combo.set_active_iter(i.iter)
+        if dest_screen == ALWAYS_ON_PRIMARY:
+            first_item = combo.get_model().get_iter_first()
+            combo.set_active_iter(first_item)
+        else:
+            seen_first = False  # first item "always on primary" is special
+            for i in combo.get_model():
+                if seen_first:
+                    i_int = int(i[0].split()[0])  # extracts 1 from '1' or from '1 (primary)'
+                    if i_int == dest_screen:
+                        combo.set_active_iter(i.iter)
+                else:
+                    seen_first = True
 
         # use display where the mouse is currently
         value = self.client.get_bool(KEY('/general/mouse_display'))
@@ -778,10 +795,12 @@ class PrefsDialog(SimpleGladeApp):
 
     def populate_display_n(self):
         """Get the number of displays and populate this drop-down box
-        with them all.
+        with them all. Prepend the "always on primary" option.
         """
         cb = self.get_widget('display_n')
         screen = self.get_widget('config-window').get_screen()
+
+        cb.append_text("always on primary")
 
         for m in range(0, int(screen.get_n_monitors())):
             if m == int(screen.get_primary_monitor()):
