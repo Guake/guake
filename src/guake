@@ -1028,7 +1028,7 @@ class Guake(SimpleGladeApp):
             return
 
         # limit rate at which the visibility can be toggled.
-        if self.prev_showhide_time and \
+        if self.prev_showhide_time and event_time and \
                 (event_time - self.prev_showhide_time) < 65:
             return
         self.prev_showhide_time = event_time
