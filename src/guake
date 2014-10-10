@@ -94,8 +94,10 @@ gobject.set_prgname(NAME)
 
 
 class PromptQuitDialog(gtk.MessageDialog):
+
     """Prompts the user whether to quit or not if there are procs running.
     """
+
     def __init__(self, parent, running_procs):
         super(PromptQuitDialog, self).__init__(
             parent,
@@ -115,8 +117,10 @@ class PromptQuitDialog(gtk.MessageDialog):
 
 
 class AboutDialog(SimpleGladeApp):
+
     """The About Guake dialog class
     """
+
     def __init__(self):
         super(AboutDialog, self).__init__(gladefile('about.glade'),
                                           root='aboutdialog')
@@ -132,9 +136,11 @@ class AboutDialog(SimpleGladeApp):
 
 
 class GConfHandler(object):
+
     """Handles gconf changes, if any gconf variable is changed, a
     different method is called to handle this change.
     """
+
     def __init__(self, guake):
         """Constructor of GConfHandler, just add the guake dir to the
         gconf client and bind the keys to its handler methods.
@@ -381,8 +387,10 @@ class GConfHandler(object):
 
 
 class GConfKeyHandler(object):
+
     """Handles changes in keyboard shortcuts.
     """
+
     def __init__(self, guake):
         """Constructor of Keyboard, only receives the guake instance
         to be used in internal methods.
@@ -519,6 +527,7 @@ class GConfKeyHandler(object):
 
 
 class GuakeTerminal(vte.Terminal):
+
     """Just a vte.Terminal with some properties already set.
     """
 
@@ -654,8 +663,10 @@ class GuakeTerminal(vte.Terminal):
 
 
 class GuakeTerminalBox(gtk.HBox):
+
     """A box to group the terminal and a scrollbar.
     """
+
     def __init__(self):
         super(GuakeTerminalBox, self).__init__()
         self.terminal = GuakeTerminal()
@@ -678,8 +689,10 @@ class GuakeTerminalBox(gtk.HBox):
 
 
 class Guake(SimpleGladeApp):
+
     """Guake main class. Handles specialy the main window.
     """
+
     def __init__(self):
         super(Guake, self).__init__(gladefile('guake.glade'))
         self.client = gconf.client_get_default()
@@ -906,7 +919,7 @@ class Guake(SimpleGladeApp):
         gconf.
         """
         (x, y), mod = event.device.get_state(widget.window)
-        if not 'GDK_BUTTON1_MASK' in mod.value_names:
+        if 'GDK_BUTTON1_MASK' not in mod.value_names:
             return
 
         screen = self.window.get_screen()
@@ -1617,8 +1630,8 @@ class Guake(SimpleGladeApp):
                              self.on_drag_data_received,
                              box)
 
-        #-- Ubuntu has a patch to libvte which disables mouse scrolling in apps
-        #-- like vim and less by default. If this is the case, enable it back.
+        # -- Ubuntu has a patch to libvte which disables mouse scrolling in apps
+        # -- like vim and less by default. If this is the case, enable it back.
         if hasattr(box.terminal, "set_alternate_screen_scroll"):
             box.terminal.set_alternate_screen_scroll(True)
 
