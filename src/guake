@@ -82,6 +82,9 @@ from guake.simplegladeapp import bindtextdomain
 
 GNOME_FONT_PATH = '/desktop/gnome/interface/monospace_font_name'
 
+global instance
+instance = None
+
 pygtk.require('2.0')
 gobject.threads_init()
 
@@ -605,16 +608,21 @@ class GuakeTerminal(vte.Terminal):
                         filename = g.group(1)
                         line_number = g.group(2)
                         filepath = filename
-                        curdir = self.get_current_directory()
-                        filepath = os.path.join(curdir, filename)
-                        if not os.path.exists(filepath):
-                            logging.info("Cannot open file %s, it doesn't exists (current dir: %s)", filepath,
-                                         os.path.curdir)
-                            continue
+                        # We run the command line directly in the tab
+                        # so relative path is enough
+                        # curdir = self.get_current_directory()
+                        # filepath = os.path.join(curdir, filename)
+                        # Disable file existence checking, because it
+                        # doesn't work in ssh sessions (traceback)
+                        # if not os.path.exists(filepath):
+                        #    logging.info("Cannot open file %s, it doesn't exists (current dir: %s)", filepath,
+                        #                 os.path.curdir)
+                        #    continue
                         logging.debug("Opening file %s at line %s", filepath, line_number)
                         resolved_cmdline = cmdline % {"file_path": filepath, "line_number": line_number}
                         logging.debug("Command line: %s", resolved_cmdline)
-                        subprocess.call(resolved_cmdline, shell=True)
+                        global instance
+                        instance.execute_command(resolved_cmdline)
                         found = True
                         break
             if not found:
@@ -1881,6 +1889,7 @@ def main():
         remote_object = bus.get_object(DBUS_NAME, DBUS_PATH)
         already_running = True
     except dbus.DBusException:
+        global instance
         instance = Guake()
         remote_object = DbusManager(instance)
         already_running = False
