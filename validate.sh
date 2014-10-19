@@ -1,4 +1,4 @@
-#! /bin/bash
+#!/bin/bash
 
 if [[ ! -z $1 ]] && [[ $1 == "--help" ]]; then
     echo "USAGE: validate.sh [oldrev [--quick]]"
@@ -29,31 +29,38 @@ YELLOW="$_ESC[1;33m"
 NORM="$_ESC[0;0m"
 
 
-status() {
+function status()
+{
     echo "${LTCYAN}-- ${*} --${NORM}"
 }
+
 slow=true
 if [[ $2 == '--quick' ]]; then
     slow=false
 fi
 ok=true
 problem_summary=""
-not_ok() {
+
+function not_ok()
+{
     ok=false
     echo "${RED}** ${*} **${NORM}"
     problem_summary="$problem_summary"$'\n'"${RED}**${NORM} ${*}"
 }
 
-warning() {
+function warning()
+{
     echo "${YELLOW}** ${*} **${NORM}"
     problem_summary="$problem_summary"$'\n'"${YELLOW}**${NORM} ${*} (warning)"
 }
 
-check_tabs() {
+function check_tabs()
+{
     git diff "$REVRANGE" | grep -q $'+.*\t'
 }
 
-check_relnotes() {
+function check_relnotes()
+{
     if git diff --exit-code "$REVRANGE" master/docs/relnotes/index.rst >/dev/null 2>&1; then
         return 1
     else
@@ -61,7 +68,8 @@ check_relnotes() {
     fi
 }
 
-run_tests() {
+function run_tests()
+{
     if [ -z $TRIAL_TESTS ]; then
         return
     fi
