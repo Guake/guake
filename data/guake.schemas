@@ -165,6 +165,21 @@
         </schema>
 
         <schema>
+            <key>/schemas/apps/guake/general/quick_open_in_current_terminal</key>
+            <applyto>/apps/guake/general/quick_open_in_current_terminal</applyto>
+            <owner>guake</owner>
+            <type>bool</type>
+            <default>false</default>
+            <locale name="C">
+                <short>Quick open the file in the current terminal.</short>
+                <long>If this property is set as true, guake will
+                use the current terminal to execute the Quick open
+                feature. Use if you want to inherit your terminal
+                environment in your text editor</long>
+            </locale>
+        </schema>
+
+        <schema>
             <key>/schemas/apps/guake/general/startup_script</key>
             <applyto>/apps/guake/general/startup_script</applyto>
             <owner>guake</owner>

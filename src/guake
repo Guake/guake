@@ -162,6 +162,7 @@ class GConfHandler(object):
         # notify_add(KEY('/general/window_losefocus'), self.losefocus_toggled)
         # notify_add(KEY('/general/use_vte_titles'), self.use_vte_titles_changed)
         # notify_add(KEY('/general/quick_open_enable'), self.on_quick_open_enable_changed)
+        # notify_add(KEY('/general/quick_open_in_current_terminal'), self.on_quick_open_in_current_terminal_changed)
 
         # Notification is not required for mouse_display/display_n because
         # get_final_window_rect polls gconf and is called whenever Guake is
@@ -600,6 +601,7 @@ class GuakeTerminal(vte.Terminal):
             found = False
             client = gconf.client_get_default()
             use_quick_open = client.get_bool(KEY("/general/quick_open_enable"))
+            quick_open_in_current_terminal = client.get_bool(KEY("/general/quick_open_in_current_terminal"))
             cmdline = client.get_string(KEY("/general/quick_open_command_line"))
             if use_quick_open:
                 for _useless, _otheruseless, extractor in QUICK_OPEN_MATCHERS:
@@ -608,22 +610,31 @@ class GuakeTerminal(vte.Terminal):
                         filename = g.group(1)
                         line_number = g.group(2)
                         filepath = filename
-                        # We run the command line directly in the tab
-                        # so relative path is enough
-                        # curdir = self.get_current_directory()
-                        # filepath = os.path.join(curdir, filename)
-                        # Disable file existence checking, because it
-                        # doesn't work in ssh sessions (traceback)
-                        # if not os.path.exists(filepath):
-                        #    logging.info("Cannot open file %s, it doesn't exists (current dir: %s)", filepath,
-                        #                 os.path.curdir)
-                        #    continue
+                        if not quick_open_in_current_terminal:
+                            curdir = self.get_current_directory()
+                            filepath = os.path.join(curdir, filename)
+                            if not os.path.exists(filepath):
+                                logging.info("Cannot open file %s, it doesn't exists locally"
+                                             "(current dir: %s)", filepath,
+                                             os.path.curdir)
+                                continue
+                        # for quick_open_in_current_terminal, we run the command line directly in
+                        # the tab so relative path is enough.
+                        #
+                        # We do not test for file existence, because it doesn't work in ssh
+                        # sessions.
                         logging.debug("Opening file %s at line %s", filepath, line_number)
-                        resolved_cmdline = cmdline % {"file_path": filepath, "line_number": line_number}
+                        resolved_cmdline = cmdline % {"file_path": filepath,
+                                                      "line_number": line_number}
                         logging.debug("Command line: %s", resolved_cmdline)
-                        global instance
-                        instance.execute_command(resolved_cmdline)
-                        found = True
+                        if quick_open_in_current_terminal:
+                            logging.debug("Executing it in current tab")
+                            global instance
+                            instance.execute_command(resolved_cmdline)
+                            found = True
+                        else:
+                            logging.debug("Executing it independently")
+                            subprocess.call(resolved_cmdline, shell=True)
                         break
             if not found:
                 if TERMINAL_MATCH_TAGS[tag] == 'schema':
