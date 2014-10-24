@@ -1908,7 +1908,7 @@ def main():
     only_show_hide = True
 
     if options.fullscreen:
-        instance.fullscreen()
+        remote_object.fullscreen()
 
     if options.show:
         remote_object.show()
