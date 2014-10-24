@@ -232,6 +232,9 @@ class PrefsCallbacks(object):
         """
         self.client.set_bool(KEY('/general/quick_open_enable'), chk.get_active())
 
+    def on_quick_open_in_current_terminal_toggled(self, chk):
+        self.client.set_bool(KEY('/general/quick_open_in_current_terminal'), chk.get_active())
+
     def on_window_losefocus_toggled(self, chk):
         """Changes the activity of window_losefocus in gconf
         """
@@ -506,6 +509,7 @@ class PrefsDialog(SimpleGladeApp):
         """When the user unchecks 'enable quick open', the command line should be disabled
         """
         self.get_widget('quick_open_command_line').set_sensitive(chk.get_active())
+        self.get_widget('quick_open_on_terminal').set_sensitive(chk.get_active())
 
     def clear_background_image(self, btn):
         """Unset the gconf variable that holds the name of the
@@ -659,6 +663,7 @@ class PrefsDialog(SimpleGladeApp):
         value = self.client.get_bool(KEY('/general/quick_open_enable'))
         self.get_widget('quick_open_enable').set_active(value)
         self.get_widget('quick_open_command_line').set_sensitive(value)
+        self.get_widget('quick_open_in_current_terminal').set_sensitive(value)
         text = gtk.TextBuffer()
         text = self.get_widget('quick_open_supported_patterns').get_buffer()
         for title, matcher, _useless in QUICK_OPEN_MATCHERS:
@@ -669,6 +674,9 @@ class PrefsDialog(SimpleGladeApp):
         if value is None:
             value = "subl %(file_path)s:%(line_number)s"
         self.get_widget('quick_open_command_line').set_text(value)
+
+        value = self.client.get_bool(KEY('/general/quick_open_in_current_terminal'))
+        self.get_widget('quick_open_in_current_terminal').set_active(value)
 
         # If Guake is configured to use a screen that is not currently attached,
         # default to 'primary display' option.
