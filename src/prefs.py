@@ -509,7 +509,7 @@ class PrefsDialog(SimpleGladeApp):
         """When the user unchecks 'enable quick open', the command line should be disabled
         """
         self.get_widget('quick_open_command_line').set_sensitive(chk.get_active())
-        self.get_widget('quick_open_on_terminal').set_sensitive(chk.get_active())
+        self.get_widget('quick_open_in_current_terminal').set_sensitive(chk.get_active())
 
     def clear_background_image(self, btn):
         """Unset the gconf variable that holds the name of the
