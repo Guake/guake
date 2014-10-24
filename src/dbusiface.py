@@ -47,6 +47,10 @@ class DbusManager(dbus.service.Object):
     def hide(self):
         self.guake.hide()
 
+    @dbus.service.method(DBUS_NAME)
+    def fullscreen(self):
+        self.guake.fullscreen()
+
     @dbus.service.method(DBUS_NAME, in_signature='s')
     def add_tab(self, directory=''):
         self.guake.add_tab(directory)
