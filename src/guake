@@ -763,7 +763,7 @@ class Guake(SimpleGladeApp):
         # check and set ARGB for real transparency
         screen = self.window.get_screen()
         colormap = screen.get_rgba_colormap()
-        if colormap == None:
+        if colormap is None:
             self.has_argb = False
         else:
             self.window.set_colormap(colormap)
