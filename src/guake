@@ -310,6 +310,9 @@ class GConfHandler(object):
         else:
             key = KEY('/style/font/style')
 
+        if client.get_string(key) is None:
+            print "cannot use system font, using settings"
+            key = KEY('/style/font/style')
         font = FontDescription(client.get_string(key))
         for i in self.guake.term_list:
             i.set_font(font)
