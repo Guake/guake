@@ -80,7 +80,9 @@ from guake.simplegladeapp import SimpleGladeApp
 from guake.simplegladeapp import bindtextdomain
 
 
-GNOME_FONT_PATH = '/desktop/gnome/interface/monospace_font_name'
+GCONF_MONOSPACE_FONT_PATH = '/desktop/gnome/interface/monospace_font_name'
+DCONF_MONOSPACE_FONT_PATH = 'org.gnome.desktop.interface'
+DCONF_MONOSPACE_FONT_KEY = 'monospace-font-name'
 
 global instance
 instance = None
@@ -305,15 +307,27 @@ class GConfHandler(object):
         default or to the chosen font in style/font/style in all
         terminals open.
         """
+        font_name = None
         if entry.value.get_bool():
-            key = GNOME_FONT_PATH
+            # cannot directly use the Gio API since it requires to rework completely
+            # the library inclusion, remove dependencies on gobject and so on.
+            # Instead, issuing a direct command line request
+            proc = subprocess.Popen(['gsettings', 'get', DCONF_MONOSPACE_FONT_PATH,
+                                     DCONF_MONOSPACE_FONT_KEY], stdout=subprocess.PIPE)
+            font_name = proc.stdout.readline().replace("'", "")
+            if font_name is None:
+                # Back to gconf
+                font_name = client.get_string(GCONF_MONOSPACE_FONT_PATH)
         else:
             key = KEY('/style/font/style')
+            font_name = client.get_string(key)
 
-        if client.get_string(key) is None:
-            print "cannot use system font, using settings"
-            key = KEY('/style/font/style')
-        font = FontDescription(client.get_string(key))
+        if not font_name:
+            print "Error: unable to find font name !!!"
+            return
+        font = FontDescription(font_name)
+        if not font:
+            return
         for i in self.guake.term_list:
             i.set_font(font)
 
