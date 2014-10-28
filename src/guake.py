@@ -1083,19 +1083,29 @@ class Guake(SimpleGladeApp):
 
         GDK_WINDOW_STATE_STICKY = 8
         GDK_WINDOW_STATE_WITHDRAWN = 1
+        GDK_WINDOW_STATE_ABOVE = 32
+
         if self.window.window:
             print "DBG: gtk.gdk.WindowState =", self.window.window.get_state()
             print "DBG: gtk.gdk.WindowState =", int(self.window.window.get_state())
+            print ("DBG: GDK_WINDOW_STATE_STICKY? %s" %
+                   (bool(int(self.window.window.get_state()) & GDK_WINDOW_STATE_STICKY),))
+            print ("DBG: GDK_WINDOW_STATE_WITHDRAWN? %s" %
+                   (bool(int(self.window.window.get_state()) & GDK_WINDOW_STATE_WITHDRAWN,)))
+            print ("DBG: GDK_WINDOW_STATE_ABOVE? %s" %
+                   (bool(int(self.window.window.get_state()) & GDK_WINDOW_STATE_ABOVE,)))
         if not self.window.get_property('visible'):
             print "DBG: Showing the terminal"
             self.show()
             self.set_terminal_focus()
         elif (self.client.get_bool(KEY('/general/focus_if_open')) and
                 self.window.window and
-                self.window.window.get_state() in [GDK_WINDOW_STATE_STICKY,
-                                                   GDK_WINDOW_STATE_WITHDRAWN]):
+                (int(self.window.window.get_state()) & GDK_WINDOW_STATE_STICKY or
+                 int(self.window.window.get_state()) & GDK_WINDOW_STATE_WITHDRAWN
+                 )):
             print "DBG: Restoring the focus to the terminal"
             self.window.window.focus()
+            self.set_terminal_focus()
         else:
             print "DBG: hiding the terminal"
             self.hide()
