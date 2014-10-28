@@ -1083,14 +1083,23 @@ class Guake(SimpleGladeApp):
             return
         self.prev_showhide_time = event_time
 
+        GDK_WINDOW_STATE_STICKY = 8
+        GDK_WINDOW_STATE_WITHDRAWN = 1
+        if self.window.window:
+            print "Dbg: gtk.gdk.WindowState =", self.window.window.get_state()
+            print "Dbg: gtk.gdk.WindowState =", int(self.window.window.get_state())
         if not self.window.get_property('visible'):
+            print "Showing the terminal"
             self.show()
             self.set_terminal_focus()
         elif (self.client.get_bool(KEY('/general/focus_if_open')) and
                 self.window.window and
-                not self.window.window.get_state()):
+                self.window.window.get_state() in [GDK_WINDOW_STATE_STICKY,
+                                                   GDK_WINDOW_STATE_WITHDRAWN]):
+            print "Restoring the focus to the terminal"
             self.window.window.focus()
         else:
+            print "hiding the terminal"
             self.hide()
 
     def show(self):
