@@ -654,17 +654,18 @@ class GuakeTerminal(vte.Terminal):
                             subprocess.call(resolved_cmdline, shell=True)
                         break
             if not found:
-                if TERMINAL_MATCH_TAGS[tag] == 'schema':
-                    # value here should not be changed, it is right and
-                    # ready to be used.
-                    pass
-                elif TERMINAL_MATCH_TAGS[tag] == 'http':
-                    value = 'http://%s' % value
-                elif TERMINAL_MATCH_TAGS[tag] == 'email':
-                    value = 'mailto:%s' % value
-
-                gtk.show_uri(self.window.get_screen(), value,
-                             gtk.gdk.x11_get_server_time(self.window))
+                print "found", found
+                if tag in TERMINAL_MATCH_TAGS:
+                    if TERMINAL_MATCH_TAGS[tag] == 'schema':
+                        # value here should not be changed, it is right and
+                        # ready to be used.
+                        pass
+                    elif TERMINAL_MATCH_TAGS[tag] == 'http':
+                        value = 'http://%s' % value
+                    elif TERMINAL_MATCH_TAGS[tag] == 'email':
+                        value = 'mailto:%s' % value
+                    gtk.show_uri(self.window.get_screen(), value,
+                                 gtk.gdk.x11_get_server_time(self.window))
         elif event.button == 3 and matched_string:
             self.matched_value = matched_string[0]
 
@@ -1994,6 +1995,7 @@ def main():
     return already_running
 
 if __name__ == '__main__':
+    print "sys.args", sys.argv
     if not test_gconf():
         raise ShowableError(_('Guake can not init!'),
                             _('Gconf Error.\n'
