@@ -2012,7 +2012,6 @@ def main():
     return already_running
 
 if __name__ == '__main__':
-    print "sys.args", sys.argv
     if not test_gconf():
         raise ShowableError(_('Guake can not init!'),
                             _('Gconf Error.\n'
