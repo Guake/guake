@@ -1,5 +1,5 @@
 ==============================================
-Welcome to Quake Terminal online Documentation
+Welcome to Guake Terminal online Documentation
 ==============================================
 
 Contents:
