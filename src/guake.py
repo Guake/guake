@@ -84,7 +84,6 @@ GCONF_MONOSPACE_FONT_PATH = '/desktop/gnome/interface/monospace_font_name'
 DCONF_MONOSPACE_FONT_PATH = 'org.gnome.desktop.interface'
 DCONF_MONOSPACE_FONT_KEY = 'monospace-font-name'
 
-global instance
 instance = None
 
 pygtk.require('2.0')
@@ -646,7 +645,6 @@ class GuakeTerminal(vte.Terminal):
                         logging.debug("Command line: %s", resolved_cmdline)
                         if quick_open_in_current_terminal:
                             logging.debug("Executing it in current tab")
-                            global instance
                             instance.execute_command(resolved_cmdline)
                             found = True
                         else:
