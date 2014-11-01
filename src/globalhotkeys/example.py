@@ -70,7 +70,7 @@ def hammer(*args):
     print args
 
 globalhotkeys.init()
-binded = globalhotkeys.bind('F12', hammer)
+binded = globalhotkeys.GlobalHotkey().bind('F12', hammer)
 if binded:
     print 'great =D'
 else:
