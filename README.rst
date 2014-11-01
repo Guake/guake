@@ -13,7 +13,10 @@ placed in the src directory. Files and images are in the data directory. Transla
 po directory.
 
 Features? Bugs? Information?
+----------------------------
+
 Visit: http://guake.org/
+
 Source Code available at: https://github.com/Guake/guake/
 
 
