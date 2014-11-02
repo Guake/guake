@@ -47,6 +47,7 @@ Dependencies
  * python-gconf
  * python-xdg
  * python-appindicator (ubuntu)
+ * notify-osd (ubuntu)
 
 To build guake, you will need the following packages too:
 
@@ -77,6 +78,7 @@ For compiling from these sources, please install the following packages (Ubuntu 
     sudo apt-get install gnome-common gtk-doc-tools libglib2.0-dev libgtk2.0-dev libgconf2-dev
     sudo apt-get install python-gtk2 python-gtk2-dev python-vte glade python-glade2 python-appindicator
     sudo apt-get install python-vte
+    sudo apt-get install notify-osd
     # uncomment for Python 3
     # sudo apt-get install python3-dev
     # uncomment for glade Gtk-2 editor
