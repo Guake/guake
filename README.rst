@@ -80,7 +80,7 @@ For compiling from these sources, please install the following packages (Ubuntu 
     sudo apt-get install python-gtk2 python-gtk2-dev python-vte glade python-glade2 python-appindicator
     sudo apt-get install python-vte
     sudo apt-get install notify-osd
-    sudo apt-get install libutempter
+    sudo apt-get install libutempter0
     # uncomment for Python 3
     # sudo apt-get install python3-dev
     # uncomment for glade Gtk-2 editor
