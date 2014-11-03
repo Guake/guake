@@ -78,7 +78,19 @@ from guake.prefs import LKEY
 from guake.prefs import PrefsDialog
 from guake.simplegladeapp import SimpleGladeApp
 from guake.simplegladeapp import bindtextdomain
-
+libutempter = None
+try:
+    from atexit import register as at_exit_call
+    from ctypes import cdll
+    libutempter = cdll.LoadLibrary('libutempter.so.0')
+    if libutempter is not None:
+        # We absolutly need to remove the old tty from the utmp !!!!!!!!!!
+        at_exit_call(libutempter.utempter_remove_added_record)
+except Exception as e:
+    libutempter = None
+    sys.stderr.write('[WARN] Unable to load the library libutempter !\n')
+    sys.stderr.write('[WARN] The <wall> command will not work in guake !\n')
+    sys.stderr.write('[WARN] ' + str(e) + '\n')
 
 GCONF_MONOSPACE_FONT_PATH = '/desktop/gnome/interface/monospace_font_name'
 DCONF_MONOSPACE_FONT_PATH = 'org.gnome.desktop.interface'
@@ -1451,6 +1463,8 @@ class Guake(SimpleGladeApp):
         this is the method that does that, or, at least calls
         `delete_tab' method to do the work.
         """
+        if libutempter is not None:
+            libutempter.utempter_remove_record(term.get_pty())
         self.delete_tab(self.notebook.page_num(widget), kill=False)
 
     def on_terminal_title_changed(self, vte, box):
@@ -1702,6 +1716,9 @@ class Guake(SimpleGladeApp):
 
         final_params = self.get_fork_params(default_params)
         pid = box.terminal.fork_command(**final_params)
+        if libutempter is not None:
+            # After the fork_command we add this new tty to utmp !
+            libutempter.utempter_add_record(box.terminal.get_pty(), os.uname()[1])
         box.terminal.pid = pid
         self.pid_list.append(pid)
 
