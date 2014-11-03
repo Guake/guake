@@ -624,6 +624,7 @@ class GuakeTerminal(vte.Terminal):
         if (event.button == 1
                 and event.get_state() & gtk.gdk.CONTROL_MASK
                 and matched_string):
+            print "matched string:", matched_string
             value, tag = matched_string
             # First searching in additional matchers
             found = False
@@ -658,13 +659,15 @@ class GuakeTerminal(vte.Terminal):
                         if quick_open_in_current_terminal:
                             logging.debug("Executing it in current tab")
                             instance.execute_command(resolved_cmdline)
-                            found = True
                         else:
                             logging.debug("Executing it independently")
                             subprocess.call(resolved_cmdline, shell=True)
+                        found = True
                         break
             if not found:
-                print "found", found
+                print "found tag:", tag
+                print "found item:", value
+                print "TERMINAL_MATCH_TAGS", TERMINAL_MATCH_TAGS
                 if tag in TERMINAL_MATCH_TAGS:
                     if TERMINAL_MATCH_TAGS[tag] == 'schema':
                         # value here should not be changed, it is right and
@@ -672,10 +675,19 @@ class GuakeTerminal(vte.Terminal):
                         pass
                     elif TERMINAL_MATCH_TAGS[tag] == 'http':
                         value = 'http://%s' % value
+                    elif TERMINAL_MATCH_TAGS[tag] == 'https':
+                        value = 'https://%s' % value
+                    elif TERMINAL_MATCH_TAGS[tag] == 'ftp':
+                        value = 'ftp://%s' % value
                     elif TERMINAL_MATCH_TAGS[tag] == 'email':
                         value = 'mailto:%s' % value
-                    gtk.show_uri(self.window.get_screen(), value,
-                                 gtk.gdk.x11_get_server_time(self.window))
+
+                if value:
+                    cmd = ["xdg-open", value]
+                    print "Opening link: {}".format(cmd)
+                    subprocess.Popen(cmd, shell=False)
+                    # gtk.show_uri(self.window.get_screen(), value,
+                    #              gtk.gdk.x11_get_server_time(self.window))
         elif event.button == 3 and matched_string:
             self.matched_value = matched_string[0]
 
