@@ -78,7 +78,10 @@ from guake.prefs import LKEY
 from guake.prefs import PrefsDialog
 from guake.simplegladeapp import SimpleGladeApp
 from guake.simplegladeapp import bindtextdomain
-
+from atexit import register as at_exit_call;
+from ctypes import cdll;
+libutempter = cdll.LoadLibrary('libutempter.so.0');
+at_exit_call(libutempter.utempter_remove_added_record);
 
 GCONF_MONOSPACE_FONT_PATH = '/desktop/gnome/interface/monospace_font_name'
 DCONF_MONOSPACE_FONT_PATH = 'org.gnome.desktop.interface'
@@ -1451,6 +1454,7 @@ class Guake(SimpleGladeApp):
         this is the method that does that, or, at least calls
         `delete_tab' method to do the work.
         """
+        libutempter.utempter_remove_added_record();
         self.delete_tab(self.notebook.page_num(widget), kill=False)
 
     def on_terminal_title_changed(self, vte, box):
@@ -1702,6 +1706,8 @@ class Guake(SimpleGladeApp):
 
         final_params = self.get_fork_params(default_params)
         pid = box.terminal.fork_command(**final_params)
+        # After the fork_command we add this new tty to utmp !
+        libutempter.utempter_add_record(box.terminal.get_pty(), os.uname()[1]);
         box.terminal.pid = pid
         self.pid_list.append(pid)
 
