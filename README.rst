@@ -48,6 +48,7 @@ Dependencies
  * python-xdg
  * python-appindicator (ubuntu)
  * notify-osd (ubuntu)
+ * libutempter
 
 To build guake, you will need the following packages too:
 
