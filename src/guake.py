@@ -178,7 +178,7 @@ class GConfHandler(object):
         # notify_add(KEY('/general/quick_open_in_current_terminal'), self.on_quick_open_in_current_terminal_changed)
 
         # Notification is not required for mouse_display/display_n because
-        # get_final_window_rect polls gconf and is called whenever Guake is
+        # set_final_window_rect polls gconf and is called whenever Guake is
         # shown or resized
 
         notify_add(KEY('/general/show_resizer'), self.show_resizer_toggled)
@@ -248,17 +248,14 @@ class GConfHandler(object):
         """If the gconf var window_halignment be changed, this method will
         be called and will call the move function in guake.
         """
-        window_rect = self.guake.get_final_window_rect()
-        self.guake.window.move(window_rect.x, window_rect.y)
+        self.guake.set_final_window_rect()
 
     def size_changed(self, client, connection_id, entry, data):
         """If the gconf var window_height or window_width are changed,
         this method will be called and will call the resize function
         in guake.
         """
-        window_rect = self.guake.get_final_window_rect()
-        self.guake.window.resize(window_rect.width, window_rect.height)
-        self.guake.window.move(window_rect.x, window_rect.y)
+        self.guake.set_final_window_rect()
 
     def cursor_blink_mode_changed(self, client, connection_id, entry, data):
         """Called when cursor blink mode settings has been changed
@@ -1138,7 +1135,7 @@ class Guake(SimpleGladeApp):
         """Shows the main window and grabs the focus on it.
         """
         # setting window in all desktops
-        window_rect = self.get_final_window_rect()
+        window_rect = self.set_final_window_rect()
         self.get_widget('window-root').stick()
 
         # add tab must be called before window.show to avoid a
@@ -1212,8 +1209,8 @@ class Guake(SimpleGladeApp):
 
         return dest_screen
 
-    def get_final_window_rect(self):
-        """Gets the final size of the main window of guake. The height
+    def set_final_window_rect(self):
+        """Sets the final size and location of the main window of guake. The height
         is the window_height property, width is window_width and the
         horizontal alignment is given by window_alignment.
         """
@@ -1264,6 +1261,9 @@ class Guake(SimpleGladeApp):
         if window_rect.height < total_height:
             if valignment == ALIGN_BOTTOM:
                 window_rect.y += (total_height - window_rect.height)
+
+        self.window.resize(window_rect.width, window_rect.height)
+        self.window.move(window_rect.x, window_rect.y)
 
         return window_rect
 
@@ -1453,11 +1453,9 @@ class Guake(SimpleGladeApp):
             self.toolbar.hide()
 
     def unfullscreen(self):
-        window_rect = self.get_final_window_rect()
+        self.set_final_window_rect()
         self.window.unfullscreen()
         self.is_fullscreen = False
-        self.window.resize(window_rect.width, window_rect.height)
-        self.window.move(window_rect.x, window_rect.y)
 
         # making sure that tabbar and resizer will come back to
         # their default state.
