@@ -188,6 +188,8 @@ class GConfHandler(object):
         notify_add(KEY('/general/window_tabbar'), self.tabbar_toggled)
         notify_add(KEY('/general/window_height'), self.size_changed)
         notify_add(KEY('/general/window_width'), self.size_changed)
+        notify_add(KEY('/general/window_height_f'), self.size_changed)
+        notify_add(KEY('/general/window_width_f'), self.size_changed)
         notify_add(KEY('/general/window_valignment'), self.alignment_changed)
         notify_add(KEY('/general/window_halignment'), self.alignment_changed)
         notify_add(KEY('/style/cursor_blink_mode'), self.cursor_blink_mode_changed)
@@ -249,6 +251,7 @@ class GConfHandler(object):
         be called and will call the move function in guake.
         """
         self.guake.set_final_window_rect()
+        print "moving to x={}, y={}".format(window_rect.x, window_rect.y)
 
     def size_changed(self, client, connection_id, entry, data):
         """If the gconf var window_height or window_width are changed,
@@ -1216,16 +1219,20 @@ class Guake(SimpleGladeApp):
         """
 
         # fetch settings
-        try:
-            height_percents = self.client.get_float(KEY('/general/window_height'))
-        except:
+        height_percents = self.client.get_float(KEY('/general/window_height_f'))
+        if not height_percents:
             height_percents = self.client.get_int(KEY('/general/window_height'))
-        try:
-            width_percents = self.client.get_float(KEY('/general/window_width'))
-        except:
+
+        width_percents = self.client.get_float(KEY('/general/window_width_f'))
+        if not width_percents:
             width_percents = self.client.get_int(KEY('/general/window_width'))
         halignment = self.client.get_int(KEY('/general/window_halignment'))
         valignment = self.client.get_int(KEY('/general/window_valignment'))
+
+        print "height_percents", height_percents
+        print "width_percents", width_percents
+        print "halignment", halignment
+        print "valignment", valignment
 
         # get the rectangle just from the destination monitor
         screen = self.window.get_screen()
@@ -1242,21 +1249,40 @@ class Guake(SimpleGladeApp):
                 # /org/compiz/profiles/unity/plugins/unityshell/icon-size
                 unity_icon_size = self.client.get_int(KEY('/apps/compiz-1/'
                                                           'plugins/unityshell/screen0/options/icon_size'))
-                unity_dock = unity_icon_size + 17
+                if not unity_icon_size:
+                    # If not found, it should be because of newer implementation of unity.
+                    # Dock is 64 pixel of width on my system, hope this is so on others...
+                    unity_dock = 64
+                else:
+                    unity_dock = unity_icon_size + 17
+                print "correcting window width because of launcher width {} (from {} to {})".format(
+                    unity_dock, window_rect.width, window_rect.width - unity_dock)
+
                 window_rect.width = window_rect.width - unity_dock
 
         total_width = window_rect.width
         total_height = window_rect.height
 
+        print "total_width", total_width
+        print "total_height", total_height
+
         window_rect.height = window_rect.height * height_percents / 100
         window_rect.width = window_rect.width * width_percents / 100
 
+        print "window_rect.x", window_rect.x
+        print "window_rect.y", window_rect.y
+        print "window_rect.height", window_rect.height
+        print "window_rect.width", window_rect.width
+
         if window_rect.width < total_width:
             if halignment == ALIGN_CENTER:
+                print "aligning to center!"
                 window_rect.x += (total_width - window_rect.width) / 2
             elif halignment == ALIGN_LEFT:
+                print "aligning to left!"
                 window_rect.x += 0
             elif halignment == ALIGN_RIGHT:
+                print "aligning to right!"
                 window_rect.x += total_width - window_rect.width
         if window_rect.height < total_height:
             if valignment == ALIGN_BOTTOM:
@@ -1264,6 +1290,7 @@ class Guake(SimpleGladeApp):
 
         self.window.resize(window_rect.width, window_rect.height)
         self.window.move(window_rect.x, window_rect.y)
+        print "Moving/Resizing to: window_rect", window_rect
 
         return window_rect
 
