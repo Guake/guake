@@ -175,7 +175,7 @@
                                         <property name="visible">True</property>
                                         <property name="can_focus">False</property>
                                         <property name="items" translatable="yes"/>
-                                        <signal name="changed" handler="on_default_shell_changed"/>
+                                        <signal name="changed" handler="on_default_shell_changed" swapped="no"/>
                                       </widget>
                                       <packing>
                                         <property name="expand">True</property>
@@ -204,7 +204,7 @@
                                         <property name="use_action_appearance">False</property>
                                         <property name="use_underline">True</property>
                                         <property name="draw_indicator">True</property>
-                                        <signal name="toggled" handler="on_use_login_shell_toggled"/>
+                                        <signal name="toggled" handler="on_use_login_shell_toggled" swapped="no"/>
                                       </widget>
                                       <packing>
                                         <property name="expand">True</property>
@@ -222,7 +222,7 @@
                                         <property name="use_action_appearance">False</property>
                                         <property name="use_underline">True</property>
                                         <property name="draw_indicator">True</property>
-                                        <signal name="toggled" handler="on_open_tab_cwd_toggled"/>
+                                        <signal name="toggled" handler="on_open_tab_cwd_toggled" swapped="no"/>
                                       </widget>
                                       <packing>
                                         <property name="expand">True</property>
@@ -292,7 +292,7 @@
                                         <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
                                         <property name="use_action_appearance">False</property>
                                         <property name="draw_indicator">True</property>
-                                        <signal name="toggled" handler="on_use_trayicon_toggled"/>
+                                        <signal name="toggled" handler="on_use_trayicon_toggled" swapped="no"/>
                                       </widget>
                                     </child>
                                     <child>
@@ -304,7 +304,7 @@
                                         <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
                                         <property name="use_action_appearance">False</property>
                                         <property name="draw_indicator">True</property>
-                                        <signal name="toggled" handler="on_use_popup_toggled"/>
+                                        <signal name="toggled" handler="on_use_popup_toggled" swapped="no"/>
                                       </widget>
                                       <packing>
                                         <property name="left_attach">1</property>
@@ -320,7 +320,7 @@
                                         <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
                                         <property name="use_action_appearance">False</property>
                                         <property name="draw_indicator">True</property>
-                                        <signal name="toggled" handler="on_prompt_on_quit_toggled"/>
+                                        <signal name="toggled" handler="on_prompt_on_quit_toggled" swapped="no"/>
                                       </widget>
                                       <packing>
                                         <property name="top_attach">1</property>
@@ -402,30 +402,12 @@
                                         <property name="focus_on_click">False</property>
                                         <property name="active">True</property>
                                         <property name="draw_indicator">True</property>
-                                        <signal name="toggled" handler="on_window_ontop_toggled"/>
+                                        <signal name="toggled" handler="on_window_ontop_toggled" swapped="no"/>
                                       </widget>
                                       <packing>
                                         <property name="expand">False</property>
                                         <property name="fill">True</property>
                                         <property name="position">0</property>
-                                      </packing>
-                                    </child>
-                                    <child>
-                                      <widget class="GtkCheckButton" id="use_vte_titles">
-                                        <property name="label" translatable="yes">Use VTE titles for tab names</property>
-                                        <property name="visible">True</property>
-                                        <property name="can_focus">True</property>
-                                        <property name="receives_default">False</property>
-                                        <property name="use_action_appearance">False</property>
-                                        <property name="use_underline">True</property>
-                                        <property name="active">True</property>
-                                        <property name="draw_indicator">True</property>
-                                        <signal name="toggled" handler="on_use_vte_titles_toggled"/>
-                                      </widget>
-                                      <packing>
-                                        <property name="expand">False</property>
-                                        <property name="fill">False</property>
-                                        <property name="position">1</property>
                                       </packing>
                                     </child>
                                     <child>
@@ -438,7 +420,25 @@
                                         <property name="use_underline">True</property>
                                         <property name="active">True</property>
                                         <property name="draw_indicator">True</property>
-                                        <signal name="toggled" handler="on_window_losefocus_toggled"/>
+                                        <signal name="toggled" handler="on_window_losefocus_toggled" swapped="no"/>
+                                      </widget>
+                                      <packing>
+                                        <property name="expand">False</property>
+                                        <property name="fill">False</property>
+                                        <property name="position">1</property>
+                                      </packing>
+                                    </child>
+                                    <child>
+                                      <widget class="GtkCheckButton" id="use_vte_titles">
+                                        <property name="label" translatable="yes">Use VTE titles for tab names</property>
+                                        <property name="visible">True</property>
+                                        <property name="can_focus">True</property>
+                                        <property name="receives_default">False</property>
+                                        <property name="use_action_appearance">False</property>
+                                        <property name="use_underline">True</property>
+                                        <property name="active">True</property>
+                                        <property name="draw_indicator">True</property>
+                                        <signal name="toggled" handler="on_use_vte_titles_toggled" swapped="no"/>
                                       </widget>
                                       <packing>
                                         <property name="expand">False</property>
@@ -455,7 +455,7 @@
                                         <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
                                         <property name="use_action_appearance">False</property>
                                         <property name="draw_indicator">True</property>
-                                        <signal name="toggled" handler="on_window_tabbar_toggled"/>
+                                        <signal name="toggled" handler="on_window_tabbar_toggled" swapped="no"/>
                                       </widget>
                                       <packing>
                                         <property name="expand">True</property>
@@ -472,7 +472,7 @@
                                         <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
                                         <property name="use_action_appearance">False</property>
                                         <property name="draw_indicator">True</property>
-                                        <signal name="toggled" handler="on_start_fullscreen_toggled"/>
+                                        <signal name="toggled" handler="on_start_fullscreen_toggled" swapped="no"/>
                                       </widget>
                                       <packing>
                                         <property name="expand">True</property>
@@ -519,14 +519,14 @@
                                     <property name="visible">True</property>
                                     <property name="can_focus">False</property>
                                     <child>
-                                      <widget class="GtkCheckButton" id="right_align">
+                                      <widget class="GtkCheckButton" id="top_align">
                                         <property name="label" translatable="yes">Bottom align window instead of top align</property>
                                         <property name="visible">True</property>
                                         <property name="can_focus">True</property>
                                         <property name="receives_default">False</property>
                                         <property name="use_action_appearance">False</property>
                                         <property name="draw_indicator">True</property>
-                                        <signal name="toggled" handler="on_bottom_align_toggled"/>
+                                        <signal name="toggled" handler="on_bottom_align_toggled" swapped="no"/>
                                       </widget>
                                       <packing>
                                         <property name="expand">True</property>
@@ -542,8 +542,8 @@
                                         <property name="receives_default">False</property>
                                         <property name="use_action_appearance">False</property>
                                         <property name="draw_indicator">True</property>
-                                        <signal name="toggled" handler="on_mouse_display_toggled"/>
-                                        <signal name="toggled" handler="toggle_display_n_sensitivity"/>
+                                        <signal name="toggled" handler="on_mouse_display_toggled" swapped="no"/>
+                                        <signal name="toggled" handler="toggle_display_n_sensitivity" swapped="no"/>
                                       </widget>
                                       <packing>
                                         <property name="expand">True</property>
@@ -577,7 +577,7 @@
                                             <property name="visible">True</property>
                                             <property name="can_focus">False</property>
                                             <property name="items" translatable="yes"/>
-                                            <signal name="changed" handler="on_display_n_changed"/>
+                                            <signal name="changed" handler="on_display_n_changed" swapped="no"/>
                                           </widget>
                                           <packing>
                                             <property name="expand">True</property>
@@ -661,10 +661,10 @@
                                 <property name="can_focus">True</property>
                                 <property name="update_policy">discontinuous</property>
                                 <property name="adjustment">50 10 110 10 10 10</property>
-                                <property name="digits">0</property>
+                                <property name="digits">2</property>
                                 <property name="draw_value">False</property>
                                 <property name="value_pos">right</property>
-                                <signal name="value_changed" handler="on_window_height_value_changed"/>
+                                <signal name="value_changed" handler="on_window_height_value_changed" swapped="no"/>
                               </widget>
                             </child>
                           </widget>
@@ -705,10 +705,10 @@
                                 <property name="can_focus">True</property>
                                 <property name="update_policy">discontinuous</property>
                                 <property name="adjustment">50 10 110 10 10 10</property>
-                                <property name="digits">0</property>
+                                <property name="digits">2</property>
                                 <property name="draw_value">False</property>
                                 <property name="value_pos">right</property>
-                                <signal name="value_changed" handler="on_window_width_value_changed"/>
+                                <signal name="value_changed" handler="on_window_width_value_changed" swapped="no"/>
                               </widget>
                             </child>
                           </widget>
@@ -755,7 +755,7 @@
                                     <property name="receives_default">False</property>
                                     <property name="use_action_appearance">False</property>
                                     <property name="draw_indicator">True</property>
-                                    <signal name="toggled" handler="on_window_halign_value_changed"/>
+                                    <signal name="toggled" handler="on_window_halign_value_changed" swapped="no"/>
                                   </widget>
                                   <packing>
                                     <property name="expand">False</property>
@@ -773,7 +773,7 @@
                                     <property name="active">True</property>
                                     <property name="draw_indicator">True</property>
                                     <property name="group">radiobutton_align_left</property>
-                                    <signal name="toggled" handler="on_window_halign_value_changed"/>
+                                    <signal name="toggled" handler="on_window_halign_value_changed" swapped="no"/>
                                   </widget>
                                   <packing>
                                     <property name="expand">False</property>
@@ -790,7 +790,7 @@
                                     <property name="use_action_appearance">False</property>
                                     <property name="draw_indicator">True</property>
                                     <property name="group">radiobutton_align_left</property>
-                                    <signal name="toggled" handler="on_window_halign_value_changed"/>
+                                    <signal name="toggled" handler="on_window_halign_value_changed" swapped="no"/>
                                   </widget>
                                   <packing>
                                     <property name="expand">False</property>
@@ -865,7 +865,7 @@
                                     <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
                                     <property name="use_action_appearance">False</property>
                                     <property name="draw_indicator">True</property>
-                                    <signal name="toggled" handler="on_use_scrollbar_toggled"/>
+                                    <signal name="toggled" handler="on_use_scrollbar_toggled" swapped="no"/>
                                   </widget>
                                   <packing>
                                     <property name="expand">True</property>
@@ -904,7 +904,7 @@
                                         <property name="adjustment">512 256 100000 1 1 0</property>
                                         <property name="snap_to_ticks">True</property>
                                         <property name="numeric">True</property>
-                                        <signal name="value_changed" handler="on_history_size_value_changed"/>
+                                        <signal name="value_changed" handler="on_history_size_value_changed" swapped="no"/>
                                       </widget>
                                       <packing>
                                         <property name="expand">False</property>
@@ -968,7 +968,7 @@
                                     <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
                                     <property name="use_action_appearance">False</property>
                                     <property name="draw_indicator">True</property>
-                                    <signal name="toggled" handler="on_scroll_output_toggled"/>
+                                    <signal name="toggled" handler="on_scroll_output_toggled" swapped="no"/>
                                   </widget>
                                   <packing>
                                     <property name="expand">True</property>
@@ -985,7 +985,7 @@
                                     <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
                                     <property name="use_action_appearance">False</property>
                                     <property name="draw_indicator">True</property>
-                                    <signal name="toggled" handler="on_scroll_keystroke_toggled"/>
+                                    <signal name="toggled" handler="on_scroll_keystroke_toggled" swapped="no"/>
                                   </widget>
                                   <packing>
                                     <property name="expand">True</property>
@@ -1079,8 +1079,8 @@
                                     <property name="receives_default">False</property>
                                     <property name="use_action_appearance">False</property>
                                     <property name="draw_indicator">True</property>
-                                    <signal name="toggled" handler="on_use_default_font_toggled"/>
-                                    <signal name="toggled" handler="toggle_style_sensitivity"/>
+                                    <signal name="toggled" handler="on_use_default_font_toggled" swapped="no"/>
+                                    <signal name="toggled" handler="toggle_style_sensitivity" swapped="no"/>
                                   </widget>
                                   <packing>
                                     <property name="right_attach">2</property>
@@ -1111,7 +1111,7 @@
                                     <property name="use_action_appearance">False</property>
                                     <property name="focus_on_click">False</property>
                                     <property name="title" translatable="yes">Choose some font</property>
-                                    <signal name="font_set" handler="on_font_style_font_set"/>
+                                    <signal name="font_set" handler="on_font_style_font_set" swapped="no"/>
                                   </widget>
                                   <packing>
                                     <property name="left_attach">1</property>
@@ -1162,7 +1162,7 @@
                                         <property name="receives_default">True</property>
                                         <property name="use_action_appearance">False</property>
                                         <property name="color">#000000000000</property>
-                                        <signal name="color_set" handler="on_font_color_color_set"/>
+                                        <signal name="color_set" handler="on_font_color_color_set" swapped="no"/>
                                       </widget>
                                       <packing>
                                         <property name="expand">False</property>
@@ -1193,7 +1193,7 @@
                                         <property name="receives_default">True</property>
                                         <property name="use_action_appearance">False</property>
                                         <property name="color">#000000000000</property>
-                                        <signal name="color_set" handler="on_background_color_color_set"/>
+                                        <signal name="color_set" handler="on_background_color_color_set" swapped="no"/>
                                       </widget>
                                       <packing>
                                         <property name="expand">False</property>
@@ -1301,7 +1301,7 @@ XTerm
 Rxvt
 Custom
 </property>
-                                    <signal name="changed" handler="on_palette_name_changed"/>
+                                    <signal name="changed" handler="on_palette_name_changed" swapped="no"/>
                                   </widget>
                                   <packing>
                                     <property name="left_attach">1</property>
@@ -1324,7 +1324,7 @@ Custom
                                         <property name="receives_default">True</property>
                                         <property name="use_action_appearance">False</property>
                                         <property name="color">#000000000000</property>
-                                        <signal name="color_set" handler="on_palette_color_set"/>
+                                        <signal name="color_set" handler="on_palette_color_set" swapped="no"/>
                                       </widget>
                                     </child>
                                     <child>
@@ -1334,7 +1334,7 @@ Custom
                                         <property name="receives_default">True</property>
                                         <property name="use_action_appearance">False</property>
                                         <property name="color">#000000000000</property>
-                                        <signal name="color_set" handler="on_palette_color_set"/>
+                                        <signal name="color_set" handler="on_palette_color_set" swapped="no"/>
                                       </widget>
                                       <packing>
                                         <property name="left_attach">2</property>
@@ -1348,7 +1348,7 @@ Custom
                                         <property name="receives_default">True</property>
                                         <property name="use_action_appearance">False</property>
                                         <property name="color">#000000000000</property>
-                                        <signal name="color_set" handler="on_palette_color_set"/>
+                                        <signal name="color_set" handler="on_palette_color_set" swapped="no"/>
                                       </widget>
                                       <packing>
                                         <property name="left_attach">1</property>
@@ -1362,7 +1362,7 @@ Custom
                                         <property name="receives_default">True</property>
                                         <property name="use_action_appearance">False</property>
                                         <property name="color">#000000000000</property>
-                                        <signal name="color_set" handler="on_palette_color_set"/>
+                                        <signal name="color_set" handler="on_palette_color_set" swapped="no"/>
                                       </widget>
                                       <packing>
                                         <property name="left_attach">1</property>
@@ -1378,7 +1378,7 @@ Custom
                                         <property name="receives_default">True</property>
                                         <property name="use_action_appearance">False</property>
                                         <property name="color">#000000000000</property>
-                                        <signal name="color_set" handler="on_palette_color_set"/>
+                                        <signal name="color_set" handler="on_palette_color_set" swapped="no"/>
                                       </widget>
                                       <packing>
                                         <property name="left_attach">2</property>
@@ -1394,7 +1394,7 @@ Custom
                                         <property name="receives_default">True</property>
                                         <property name="use_action_appearance">False</property>
                                         <property name="color">#000000000000</property>
-                                        <signal name="color_set" handler="on_palette_color_set"/>
+                                        <signal name="color_set" handler="on_palette_color_set" swapped="no"/>
                                       </widget>
                                       <packing>
                                         <property name="top_attach">1</property>
@@ -1408,7 +1408,7 @@ Custom
                                         <property name="receives_default">True</property>
                                         <property name="use_action_appearance">False</property>
                                         <property name="color">#000000000000</property>
-                                        <signal name="color_set" handler="on_palette_color_set"/>
+                                        <signal name="color_set" handler="on_palette_color_set" swapped="no"/>
                                       </widget>
                                       <packing>
                                         <property name="left_attach">3</property>
@@ -1424,7 +1424,7 @@ Custom
                                         <property name="receives_default">True</property>
                                         <property name="use_action_appearance">False</property>
                                         <property name="color">#000000000000</property>
-                                        <signal name="color_set" handler="on_palette_color_set"/>
+                                        <signal name="color_set" handler="on_palette_color_set" swapped="no"/>
                                       </widget>
                                       <packing>
                                         <property name="left_attach">3</property>
@@ -1438,7 +1438,7 @@ Custom
                                         <property name="receives_default">True</property>
                                         <property name="use_action_appearance">False</property>
                                         <property name="color">#000000000000</property>
-                                        <signal name="color_set" handler="on_palette_color_set"/>
+                                        <signal name="color_set" handler="on_palette_color_set" swapped="no"/>
                                       </widget>
                                       <packing>
                                         <property name="left_attach">4</property>
@@ -1452,7 +1452,7 @@ Custom
                                         <property name="receives_default">True</property>
                                         <property name="use_action_appearance">False</property>
                                         <property name="color">#000000000000</property>
-                                        <signal name="color_set" handler="on_palette_color_set"/>
+                                        <signal name="color_set" handler="on_palette_color_set" swapped="no"/>
                                       </widget>
                                       <packing>
                                         <property name="left_attach">4</property>
@@ -1468,7 +1468,7 @@ Custom
                                         <property name="receives_default">True</property>
                                         <property name="use_action_appearance">False</property>
                                         <property name="color">#000000000000</property>
-                                        <signal name="color_set" handler="on_palette_color_set"/>
+                                        <signal name="color_set" handler="on_palette_color_set" swapped="no"/>
                                       </widget>
                                       <packing>
                                         <property name="left_attach">5</property>
@@ -1484,7 +1484,7 @@ Custom
                                         <property name="receives_default">True</property>
                                         <property name="use_action_appearance">False</property>
                                         <property name="color">#000000000000</property>
-                                        <signal name="color_set" handler="on_palette_color_set"/>
+                                        <signal name="color_set" handler="on_palette_color_set" swapped="no"/>
                                       </widget>
                                       <packing>
                                         <property name="left_attach">5</property>
@@ -1498,7 +1498,7 @@ Custom
                                         <property name="receives_default">True</property>
                                         <property name="use_action_appearance">False</property>
                                         <property name="color">#000000000000</property>
-                                        <signal name="color_set" handler="on_palette_color_set"/>
+                                        <signal name="color_set" handler="on_palette_color_set" swapped="no"/>
                                       </widget>
                                       <packing>
                                         <property name="left_attach">6</property>
@@ -1512,7 +1512,7 @@ Custom
                                         <property name="receives_default">True</property>
                                         <property name="use_action_appearance">False</property>
                                         <property name="color">#000000000000</property>
-                                        <signal name="color_set" handler="on_palette_color_set"/>
+                                        <signal name="color_set" handler="on_palette_color_set" swapped="no"/>
                                       </widget>
                                       <packing>
                                         <property name="left_attach">6</property>
@@ -1528,7 +1528,7 @@ Custom
                                         <property name="receives_default">True</property>
                                         <property name="use_action_appearance">False</property>
                                         <property name="color">#000000000000</property>
-                                        <signal name="color_set" handler="on_palette_color_set"/>
+                                        <signal name="color_set" handler="on_palette_color_set" swapped="no"/>
                                       </widget>
                                       <packing>
                                         <property name="left_attach">7</property>
@@ -1544,7 +1544,7 @@ Custom
                                         <property name="receives_default">True</property>
                                         <property name="use_action_appearance">False</property>
                                         <property name="color">#000000000000</property>
-                                        <signal name="color_set" handler="on_palette_color_set"/>
+                                        <signal name="color_set" handler="on_palette_color_set" swapped="no"/>
                                       </widget>
                                       <packing>
                                         <property name="left_attach">7</property>
@@ -1628,7 +1628,7 @@ Custom
                                     <property name="adjustment">0 0 100 1 10 10</property>
                                     <property name="draw_value">False</property>
                                     <property name="value_pos">right</property>
-                                    <signal name="value_changed" handler="on_transparency_value_changed"/>
+                                    <signal name="value_changed" handler="on_transparency_value_changed" swapped="no"/>
                                   </widget>
                                   <packing>
                                     <property name="left_attach">1</property>
@@ -1660,7 +1660,7 @@ Custom
                                       <widget class="GtkFileChooserButton" id="background_image">
                                         <property name="visible">True</property>
                                         <property name="can_focus">False</property>
-                                        <signal name="selection_changed" handler="on_background_image_changed"/>
+                                        <signal name="selection_changed" handler="on_background_image_changed" swapped="no"/>
                                       </widget>
                                       <packing>
                                         <property name="expand">True</property>
@@ -1674,7 +1674,7 @@ Custom
                                         <property name="can_focus">True</property>
                                         <property name="receives_default">True</property>
                                         <property name="use_action_appearance">False</property>
-                                        <signal name="clicked" handler="clear_background_image"/>
+                                        <signal name="clicked" handler="clear_background_image" swapped="no"/>
                                         <child>
                                           <widget class="GtkImage" id="image1">
                                             <property name="visible">True</property>
@@ -1848,8 +1848,8 @@ Custom
                                         <property name="receives_default">False</property>
                                         <property name="use_action_appearance">False</property>
                                         <property name="draw_indicator">True</property>
-                                        <signal name="toggled" handler="on_quick_open_enable_toggled"/>
-                                        <signal name="toggled" handler="toggle_quick_open_command_line_sensitivity"/>
+                                        <signal name="toggled" handler="on_quick_open_enable_toggled" swapped="no"/>
+                                        <signal name="toggled" handler="toggle_quick_open_command_line_sensitivity" swapped="no"/>
                                       </widget>
                                       <packing>
                                         <property name="expand">False</property>
@@ -1899,7 +1899,7 @@ Custom
                                             <property name="secondary_icon_activatable">False</property>
                                             <property name="primary_icon_sensitive">True</property>
                                             <property name="secondary_icon_sensitive">True</property>
-                                            <signal name="changed" handler="on_quick_open_command_line_changed"/>
+                                            <signal name="changed" handler="on_quick_open_command_line_changed" swapped="no"/>
                                           </widget>
                                           <packing>
                                             <property name="expand">True</property>
@@ -1943,7 +1943,7 @@ For example, for sublime, use &lt;b&gt;subl %(file_path)s:%(line_number)s&lt;/b&
                                         <property name="receives_default">False</property>
                                         <property name="use_action_appearance">False</property>
                                         <property name="draw_indicator">True</property>
-                                        <signal name="toggled" handler="on_quick_open_in_current_terminal_toggled"/>
+                                        <signal name="toggled" handler="on_quick_open_in_current_terminal_toggled" swapped="no"/>
                                       </widget>
                                       <packing>
                                         <property name="expand">True</property>
@@ -2125,7 +2125,7 @@ For example, for sublime, use &lt;b&gt;subl %(file_path)s:%(line_number)s&lt;/b&
                                     <property name="items" translatable="yes">ASCII DEL
 Escape sequence
 Control-H</property>
-                                    <signal name="changed" handler="on_delete_binding_changed"/>
+                                    <signal name="changed" handler="on_delete_binding_changed" swapped="no"/>
                                   </widget>
                                   <packing>
                                     <property name="left_attach">1</property>
@@ -2142,7 +2142,7 @@ Control-H</property>
                                     <property name="items" translatable="yes">ASCII DEL
 Escape sequence
 Control-H</property>
-                                    <signal name="changed" handler="on_backspace_binding_changed"/>
+                                    <signal name="changed" handler="on_backspace_binding_changed" swapped="no"/>
                                   </widget>
                                   <packing>
                                     <property name="left_attach">1</property>
@@ -2204,8 +2204,8 @@ Control-H</property>
                                     <property name="receives_default">False</property>
                                     <property name="use_action_appearance">False</property>
                                     <property name="use_underline">True</property>
-                                    <signal name="clicked" handler="on_reset_compat_defaults_clicked"/>
-                                    <signal name="clicked" handler="reload_erase_combos"/>
+                                    <signal name="clicked" handler="on_reset_compat_defaults_clicked" swapped="no"/>
+                                    <signal name="clicked" handler="reload_erase_combos" swapped="no"/>
                                   </widget>
                                 </child>
                               </widget>
@@ -2268,7 +2268,7 @@ Control-H</property>
                     <property name="receives_default">False</property>
                     <property name="use_action_appearance">False</property>
                     <property name="use_stock">True</property>
-                    <signal name="clicked" handler="gtk_widget_destroy" object="config-window"/>
+                    <signal name="clicked" handler="gtk_widget_destroy" object="config-window" swapped="yes"/>
                   </widget>
                   <packing>
                     <property name="expand">False</property>

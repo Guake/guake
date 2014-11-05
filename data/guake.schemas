@@ -220,13 +220,26 @@
         </schema>
 
         <schema>
-            <key>/schemas/apps/guake/general/window_height</key>
-            <applyto>/apps/guake/general/window_height</applyto>
+            <key>/schemas/apps/guake/general/window_width_f</key>
+            <applyto>/apps/guake/general/window_width_f</applyto>
             <owner>guake</owner>
-            <type>int</type>
+            <type>float</type>
+            <default>100</default>
+            <locale name="C">
+                <short>Window width (float).</short>
+                <long>Percent of the screen that will be used by guake
+                  terminal horizontally.</long>
+            </locale>
+        </schema>
+
+        <schema>
+            <key>/schemas/apps/guake/general/window_height_f</key>
+            <applyto>/apps/guake/general/window_height_f</applyto>
+            <owner>guake</owner>
+            <type>float</type>
             <default>50</default>
             <locale name="C">
-                <short>Window height.</short>
+                <short>Window height (float).</short>
                 <long>Percent of the screen that will be used by guake
                   terminal vertically.</long>
             </locale>
