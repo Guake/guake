@@ -251,7 +251,6 @@ class GConfHandler(object):
         be called and will call the move function in guake.
         """
         self.guake.set_final_window_rect()
-        print "moving to x={}, y={}".format(window_rect.x, window_rect.y)
 
     def size_changed(self, client, connection_id, entry, data):
         """If the gconf var window_height or window_width are changed,
