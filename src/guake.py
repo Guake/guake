@@ -1426,6 +1426,7 @@ class Guake(SimpleGladeApp):
         """Callback toggle whether the window should hide when it loses
         focus. Called by the accel key.
         """
+        # use temporary setting -- don't change conf key
         self.disable_losefocus_hiding = not self.disable_losefocus_hiding
         return True
 
@@ -1500,9 +1501,11 @@ class Guake(SimpleGladeApp):
         dialog.add_action_widget(entry, gtk.RESPONSE_ACCEPT)
         entry.reparent(vbox)
 
+        # don't hide on lose focus until the rename is finished
+        current_hide_setting = self.disable_losefocus_hiding
         self.disable_losefocus_hiding = True
         response = dialog.run()
-        self.disable_losefocus_hiding = False
+        self.disable_losefocus_hiding = current_hide_setting
 
         if response == gtk.RESPONSE_ACCEPT:
             new_text = entry.get_text()
