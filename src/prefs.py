@@ -73,6 +73,8 @@ HOTKEYS = [
                'label': 'Toggle Guake visibility'},
               {'key': LKEY('toggle_fullscreen'),
                'label': 'Toggle Fullscreen'},
+              {'key': LKEY('toggle_hide_on_lose_focus'),
+               'label': 'Toggle Hide on Lose Focus'},
               {'key': LKEY('quit'),
                'label': 'Quit'},
               ]},
