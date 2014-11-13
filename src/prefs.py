@@ -296,12 +296,14 @@ class PrefsCallbacks(object):
         """
         val = hscale.get_value()
         self.client.set_int(KEY('/general/window_height'), int(val))
+        self.client.set_float(KEY('/general/window_height_f'), float(val))
 
     def on_window_width_value_changed(self, wscale):
         """Changes the value of window_width in gconf
         """
         val = wscale.get_value()
         self.client.set_int(KEY('/general/window_width'), int(val))
+        self.client.set_float(KEY('/general/window_width_f'), float(val))
 
     def on_window_halign_value_changed(self, halign_button):
         """Changes the value of window_halignment in gconf
@@ -627,16 +629,14 @@ class PrefsDialog(SimpleGladeApp):
         value = self.client.get_bool(KEY('/general/use_vte_titles'))
         self.get_widget('use_vte_titles').set_active(value)
 
-        try:
+        value = self.client.get_float(KEY('/general/window_height_f'))
+        if not value:
             value = self.client.get_int(KEY('/general/window_height'))
-        except:
-            value = self.client.get_float(KEY('/general/window_height'))
         self.get_widget('window_height').set_value(value)
 
-        try:
+        value = self.client.get_float(KEY('/general/window_width_f'))
+        if not value:
             value = self.client.get_int(KEY('/general/window_width'))
-        except:
-            value = self.client.get_float(KEY('/general/window_width'))
         self.get_widget('window_width').set_value(value)
 
         value = self.client.get_int(KEY('/general/window_halignment'))
@@ -761,7 +761,7 @@ class PrefsDialog(SimpleGladeApp):
         self.get_widget('background_transparency').set_value(value)
 
         value = self.client.get_int(KEY('/general/window_valignment'))
-        self.get_widget('right_align').set_active(value)
+        self.get_widget('top_align').set_active(value)
 
         # it's a separated method, to be reused.
         self.reload_erase_combos()
