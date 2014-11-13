@@ -16,3 +16,4 @@ Icon=guake
 Type=Application
 Categories=GNOME;GTK;System;Utility;TerminalEmulator;
 StartupNotify=true
+Keywords=Terminal;Utility;

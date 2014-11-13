@@ -78,7 +78,19 @@ from guake.prefs import LKEY
 from guake.prefs import PrefsDialog
 from guake.simplegladeapp import SimpleGladeApp
 from guake.simplegladeapp import bindtextdomain
-
+libutempter = None
+try:
+    from atexit import register as at_exit_call
+    from ctypes import cdll
+    libutempter = cdll.LoadLibrary('libutempter.so.0')
+    if libutempter is not None:
+        # We absolutly need to remove the old tty from the utmp !!!!!!!!!!
+        at_exit_call(libutempter.utempter_remove_added_record)
+except Exception as e:
+    libutempter = None
+    sys.stderr.write('[WARN] Unable to load the library libutempter !\n')
+    sys.stderr.write('[WARN] The <wall> command will not work in guake !\n')
+    sys.stderr.write('[WARN] ' + str(e) + '\n')
 
 GCONF_MONOSPACE_FONT_PATH = '/desktop/gnome/interface/monospace_font_name'
 DCONF_MONOSPACE_FONT_PATH = 'org.gnome.desktop.interface'
@@ -176,6 +188,8 @@ class GConfHandler(object):
         notify_add(KEY('/general/window_tabbar'), self.tabbar_toggled)
         notify_add(KEY('/general/window_height'), self.size_changed)
         notify_add(KEY('/general/window_width'), self.size_changed)
+        notify_add(KEY('/general/window_height_f'), self.size_changed)
+        notify_add(KEY('/general/window_width_f'), self.size_changed)
         notify_add(KEY('/general/window_valignment'), self.alignment_changed)
         notify_add(KEY('/general/window_halignment'), self.alignment_changed)
         notify_add(KEY('/style/cursor_blink_mode'), self.cursor_blink_mode_changed)
@@ -614,6 +628,7 @@ class GuakeTerminal(vte.Terminal):
         if (event.button == 1
                 and event.get_state() & gtk.gdk.CONTROL_MASK
                 and matched_string):
+            print "matched string:", matched_string
             value, tag = matched_string
             # First searching in additional matchers
             found = False
@@ -648,13 +663,15 @@ class GuakeTerminal(vte.Terminal):
                         if quick_open_in_current_terminal:
                             logging.debug("Executing it in current tab")
                             instance.execute_command(resolved_cmdline)
-                            found = True
                         else:
                             logging.debug("Executing it independently")
                             subprocess.call(resolved_cmdline, shell=True)
+                        found = True
                         break
             if not found:
-                print "found", found
+                print "found tag:", tag
+                print "found item:", value
+                print "TERMINAL_MATCH_TAGS", TERMINAL_MATCH_TAGS
                 if tag in TERMINAL_MATCH_TAGS:
                     if TERMINAL_MATCH_TAGS[tag] == 'schema':
                         # value here should not be changed, it is right and
@@ -662,10 +679,19 @@ class GuakeTerminal(vte.Terminal):
                         pass
                     elif TERMINAL_MATCH_TAGS[tag] == 'http':
                         value = 'http://%s' % value
+                    elif TERMINAL_MATCH_TAGS[tag] == 'https':
+                        value = 'https://%s' % value
+                    elif TERMINAL_MATCH_TAGS[tag] == 'ftp':
+                        value = 'ftp://%s' % value
                     elif TERMINAL_MATCH_TAGS[tag] == 'email':
                         value = 'mailto:%s' % value
-                    gtk.show_uri(self.window.get_screen(), value,
-                                 gtk.gdk.x11_get_server_time(self.window))
+
+                if value:
+                    cmd = ["xdg-open", value]
+                    print "Opening link: {}".format(cmd)
+                    subprocess.Popen(cmd, shell=False)
+                    # gtk.show_uri(self.window.get_screen(), value,
+                    #              gtk.gdk.x11_get_server_time(self.window))
         elif event.button == 3 and matched_string:
             self.matched_value = matched_string[0]
 
@@ -1197,16 +1223,20 @@ class Guake(SimpleGladeApp):
         """
 
         # fetch settings
-        try:
-            height_percents = self.client.get_float(KEY('/general/window_height'))
-        except:
+        height_percents = self.client.get_float(KEY('/general/window_height_f'))
+        if not height_percents:
             height_percents = self.client.get_int(KEY('/general/window_height'))
-        try:
-            width_percents = self.client.get_float(KEY('/general/window_width'))
-        except:
+
+        width_percents = self.client.get_float(KEY('/general/window_width_f'))
+        if not width_percents:
             width_percents = self.client.get_int(KEY('/general/window_width'))
         halignment = self.client.get_int(KEY('/general/window_halignment'))
         valignment = self.client.get_int(KEY('/general/window_valignment'))
+
+        print "height_percents", height_percents
+        print "width_percents", width_percents
+        print "halignment", halignment
+        print "valignment", valignment
 
         # get the rectangle just from the destination monitor
         screen = self.window.get_screen()
@@ -1223,21 +1253,40 @@ class Guake(SimpleGladeApp):
                 # /org/compiz/profiles/unity/plugins/unityshell/icon-size
                 unity_icon_size = self.client.get_int(KEY('/apps/compiz-1/'
                                                           'plugins/unityshell/screen0/options/icon_size'))
-                unity_dock = unity_icon_size + 17
+                if not unity_icon_size:
+                    # If not found, it should be because of newer implementation of unity.
+                    # Dock is 64 pixel of width on my system, hope this is so on others...
+                    unity_dock = 64
+                else:
+                    unity_dock = unity_icon_size + 17
+                print "correcting window width because of launcher width {} (from {} to {})".format(
+                    unity_dock, window_rect.width, window_rect.width - unity_dock)
+
                 window_rect.width = window_rect.width - unity_dock
 
         total_width = window_rect.width
         total_height = window_rect.height
 
+        print "total_width", total_width
+        print "total_height", total_height
+
         window_rect.height = window_rect.height * height_percents / 100
         window_rect.width = window_rect.width * width_percents / 100
 
+        print "window_rect.x", window_rect.x
+        print "window_rect.y", window_rect.y
+        print "window_rect.height", window_rect.height
+        print "window_rect.width", window_rect.width
+
         if window_rect.width < total_width:
             if halignment == ALIGN_CENTER:
+                print "aligning to center!"
                 window_rect.x += (total_width - window_rect.width) / 2
             elif halignment == ALIGN_LEFT:
+                print "aligning to left!"
                 window_rect.x += 0
             elif halignment == ALIGN_RIGHT:
+                print "aligning to right!"
                 window_rect.x += total_width - window_rect.width
         if window_rect.height < total_height:
             if valignment == ALIGN_BOTTOM:
@@ -1245,6 +1294,7 @@ class Guake(SimpleGladeApp):
 
         self.window.resize(window_rect.width, window_rect.height)
         self.window.move(window_rect.x, window_rect.y)
+        print "Moving/Resizing to: window_rect", window_rect
 
         return window_rect
 
@@ -1463,6 +1513,8 @@ class Guake(SimpleGladeApp):
         this is the method that does that, or, at least calls
         `delete_tab' method to do the work.
         """
+        if libutempter is not None:
+            libutempter.utempter_remove_record(term.get_pty())
         self.delete_tab(self.notebook.page_num(widget), kill=False)
 
     def on_terminal_title_changed(self, vte, box):
@@ -1716,6 +1768,9 @@ class Guake(SimpleGladeApp):
 
         final_params = self.get_fork_params(default_params)
         pid = box.terminal.fork_command(**final_params)
+        if libutempter is not None:
+            # After the fork_command we add this new tty to utmp !
+            libutempter.utempter_add_record(box.terminal.get_pty(), os.uname()[1])
         box.terminal.pid = pid
         self.pid_list.append(pid)
 
