@@ -1204,6 +1204,7 @@ class Guake(SimpleGladeApp):
         flag to False.
         """
         self.hidden = True
+        self.get_widget('window-root').unstick()
         self.window.hide()  # Don't use hide_all here!
 
     def get_final_window_monitor(self):
