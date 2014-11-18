@@ -4,8 +4,8 @@ data/guake.glade
 data/prefs.glade
 data/guake.desktop.in
 data/guake-prefs.desktop.in
-src/dbusiface.py
-src/guake
-src/prefs.py
-src/common.py
-src/notifier.py
+guake/dbusiface.py
+guake/main.py
+guake/prefs.py
+guake/common.py
+guake/notifier.py
