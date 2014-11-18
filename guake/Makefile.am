@@ -3,7 +3,7 @@ SUBDIRS = globalhotkeys
 guakemoduledir = $(pkgpythondir)
 guakemodule_PYTHON = __init__.py \
                      globals.py common.py simplegladeapp.py dbusiface.py \
-                     guake.py \
+                     main.py \
                      prefs.py \
                      notifier.py
 
