@@ -59,7 +59,7 @@ msgstr "Guake är fri programvara. Du kan distribuera det och/eller modifiera de
 msgid "http://guake.org"
 msgstr "http://guake.org"
 
-#: ../data/guake.glade.h:1 ../src/guake.py:1264
+#: ../data/guake.glade.h:1 ../guake/guake.py:1264
 msgid "Add a new tab"
 msgstr "Lägg till ny flik"
 
@@ -75,7 +75,7 @@ msgstr "Stäng flik"
 msgid "Copy"
 msgstr "Kopiera"
 
-#: ../data/guake.glade.h:5 ../src/guake.py:635 ../src/guake.py:646
+#: ../data/guake.glade.h:5 ../guake/guake.py:635 ../guake/guake.py:646
 msgid "Guake!"
 msgstr "Guake!"
 
@@ -83,7 +83,7 @@ msgstr "Guake!"
 msgid "Paste"
 msgstr "Klistra in"
 
-#: ../data/guake.glade.h:7 ../src/prefs.py:61
+#: ../data/guake.glade.h:7 ../guake/prefs.py:61
 msgid "Quit"
 msgstr "Avsluta"
 
@@ -186,7 +186,7 @@ msgstr "Aktivera popupnotifieringar vid uppstart"
 msgid "Font:"
 msgstr "Typsnitt:"
 
-#: ../data/prefs.glade.h:25 ../src/prefs.py:55
+#: ../data/prefs.glade.h:25 ../guake/prefs.py:55
 msgid "General"
 msgstr "Allmänt"
 
@@ -279,169 +279,169 @@ msgstr "Åt_erställ kompatibilitetsalternativ till standardvärden"
 msgid "_Run command as a login shell"
 msgstr "_Kör kommando som ett inloggningsskal"
 
-#: ../src/guake.py:67
+#: ../guake/guake.py:67
 msgid "Do you really want to quit Guake!?"
 msgstr "Vill du verkligen avsluta Guake!?"
 
-#: ../src/guake.py:70
+#: ../guake/guake.py:70
 msgid "<b>There is one process still running.</b>"
 msgstr "<b>Det finns fortfarande en process igång.</b>"
 
-#: ../src/guake.py:74
+#: ../guake/guake.py:74
 #, python-format
 msgid "<b>There are %d processes running.</b>"
 msgstr "<b>Det finns %d processer igång.</b>"
 
-#: ../src/guake.py:367
+#: ../guake/guake.py:367
 msgid "key binding error"
 msgstr "tangentbindningsfel"
 
-#: ../src/guake.py:368
+#: ../guake/guake.py:368
 #, python-format
 msgid "Unable to bind global <b>%s</b> key"
 msgstr "Kunde inte binda allmän <b>%s</b>-tangent"
 
-#: ../src/guake.py:530
+#: ../guake/guake.py:530
 msgid "Guake Terminal"
 msgstr "Guake Terminal"
 
-#: ../src/guake.py:636
+#: ../guake/guake.py:636
 #, python-format
 msgid ""
 "A problem happened when binding <b>%s</b> key.\n"
 "Please use Guake Preferences dialog to choose another key"
 msgstr "Ett problem inträffade vid bindning av <b>%s</b>-tangenten.\nAnvänd inställningsdialogen i Guake för att välja en annan tangent (Aktivitetsikonen var aktiverad)"
 
-#: ../src/guake.py:647
+#: ../guake/guake.py:647
 #, python-format
 msgid ""
 "Guake is now running,\n"
 "press <b>%s</b> to use it."
 msgstr "Guake är nu igång, tryck\n<b>%s</b> för att använda den."
 
-#: ../src/guake.py:997
+#: ../guake/guake.py:997
 msgid "Rename tab"
 msgstr "Byt namn på flik"
 
 #. Adding a new radio button to the tabbar
-#: ../src/guake.py:1142
+#: ../guake/guake.py:1142
 #, python-format
 msgid "Terminal %s"
 msgstr "Terminal %s"
 
-#: ../src/guake.py:1252
+#: ../guake/guake.py:1252
 msgid "Toggles the visibility of the terminal window"
 msgstr "Växlar synligheten för terminalfönstret"
 
-#: ../src/guake.py:1256
+#: ../guake/guake.py:1256
 msgid "Shows Guake preference window"
 msgstr "Visar Guakes inställningsfönster"
 
-#: ../src/guake.py:1260
+#: ../guake/guake.py:1260
 msgid "Shows Guake's about info"
 msgstr "Visar information om Guake"
 
-#: ../src/guake.py:1268
+#: ../guake/guake.py:1268
 msgid "Select a tab"
 msgstr "Välj en flik"
 
-#: ../src/guake.py:1272
+#: ../guake/guake.py:1272
 msgid "Return the selected tab index."
 msgstr "Returnerar valt flikindex"
 
-#: ../src/guake.py:1276
+#: ../guake/guake.py:1276
 msgid "Execute an arbitrary command in the selected tab."
 msgstr "Kör ett godtyckligt kommando i markerad flik."
 
-#: ../src/guake.py:1280
+#: ../guake/guake.py:1280
 msgid "Rename the selected tab."
 msgstr "Byt namn på markerad flik."
 
-#: ../src/guake.py:1284
+#: ../guake/guake.py:1284
 msgid "Says to Guake go away =("
 msgstr "Säger till Guake att försvinna =("
 
-#: ../src/guake.py:1349
+#: ../guake/guake.py:1349
 msgid "Guake can not init!"
 msgstr "Guake kan inte initiera!"
 
-#: ../src/guake.py:1350
+#: ../guake/guake.py:1350
 msgid ""
 "Gconf Error.\n"
 "Have you installed <b>guake.schemas</b> properlly?"
 msgstr "Fel i Gconf.\nHar du installerat <b>guake.schemas</b> korrekt?"
 
 #. string to show in prefereces dialog for user shell option
-#: ../src/prefs.py:42
+#: ../guake/prefs.py:42
 msgid "<user shell>"
 msgstr "<användarskal>"
 
-#: ../src/prefs.py:57
+#: ../guake/prefs.py:57
 msgid "Toggle Guake visibility"
 msgstr "Växla synlighet för Guake"
 
-#: ../src/prefs.py:59
+#: ../guake/prefs.py:59
 msgid "Toggle Fullscreen"
 msgstr "Växla helskärm"
 
-#: ../src/prefs.py:64
+#: ../guake/prefs.py:64
 msgid "Tab management"
 msgstr "Flikhantering"
 
-#: ../src/prefs.py:66
+#: ../guake/prefs.py:66
 msgid "New tab"
 msgstr "Ny flik"
 
-#: ../src/prefs.py:68
+#: ../guake/prefs.py:68
 msgid "Close tab"
 msgstr "Stäng flik"
 
-#: ../src/prefs.py:70
+#: ../guake/prefs.py:70
 msgid "Rename current tab"
 msgstr "Byt namn på aktuell flik"
 
-#: ../src/prefs.py:73
+#: ../guake/prefs.py:73
 msgid "Navigation"
 msgstr "Navigering"
 
-#: ../src/prefs.py:75
+#: ../guake/prefs.py:75
 msgid "Go to previous tab"
 msgstr "Gå till föregående flik"
 
-#: ../src/prefs.py:77
+#: ../guake/prefs.py:77
 msgid "Go to next tab"
 msgstr "Gå till nästa flik"
 
-#: ../src/prefs.py:80
+#: ../guake/prefs.py:80
 msgid "Clipboard"
 msgstr "Urklipp"
 
-#: ../src/prefs.py:82
+#: ../guake/prefs.py:82
 msgid "Copy text to clipboard"
 msgstr "Kopiera text till urklipp"
 
-#: ../src/prefs.py:84
+#: ../guake/prefs.py:84
 msgid "Paste text from clipboard"
 msgstr "Klistra in text från urklipp"
 
-#: ../src/prefs.py:297
+#: ../guake/prefs.py:297
 msgid "Action"
 msgstr "Åtgärd"
 
-#: ../src/prefs.py:307
+#: ../guake/prefs.py:307
 msgid "Shortcut"
 msgstr "Genväg"
 
-#: ../src/prefs.py:605
+#: ../guake/prefs.py:605
 #, python-format
 msgid "The shortcut \"%s\" is already in use."
 msgstr "Genvägen \"%s\" används redan."
 
-#: ../src/prefs.py:606
+#: ../guake/prefs.py:606
 msgid "Error setting keybinding."
 msgstr "Fel vid inställning av tangentbindning."
 
-#: ../src/prefs.py:618
+#: ../guake/prefs.py:618
 #, python-format
 msgid ""
 "The shortcut \"%s\" cannot be used because it will become impossible to type using this key.\n"

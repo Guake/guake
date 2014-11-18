@@ -60,7 +60,7 @@ msgstr "Guake\nEz a program szabad szoftver; terjeszthető illetve módosíthat�
 msgid "http://guake.org"
 msgstr "http://guake.org"
 
-#: ../data/guake.glade.h:1 ../src/guake.py:1264
+#: ../data/guake.glade.h:1 ../guake/guake.py:1264
 msgid "Add a new tab"
 msgstr "Új lap hozzáadása"
 
@@ -76,7 +76,7 @@ msgstr "Lap bezárása"
 msgid "Copy"
 msgstr "Másol"
 
-#: ../data/guake.glade.h:5 ../src/guake.py:635 ../src/guake.py:646
+#: ../data/guake.glade.h:5 ../guake/guake.py:635 ../guake/guake.py:646
 msgid "Guake!"
 msgstr "Guake!"
 
@@ -84,7 +84,7 @@ msgstr "Guake!"
 msgid "Paste"
 msgstr "Beilleszt"
 
-#: ../data/guake.glade.h:7 ../src/prefs.py:61
+#: ../data/guake.glade.h:7 ../guake/prefs.py:61
 msgid "Quit"
 msgstr "Kilépés"
 
@@ -187,7 +187,7 @@ msgstr "Felugró üzenetek engedélyezése induláskor"
 msgid "Font:"
 msgstr "Betűtípus:"
 
-#: ../data/prefs.glade.h:25 ../src/prefs.py:55
+#: ../data/prefs.glade.h:25 ../guake/prefs.py:55
 msgid "General"
 msgstr "Általános"
 
@@ -280,169 +280,169 @@ msgstr "_Kompatibilitási beállítások visszaállítása "
 msgid "_Run command as a login shell"
 msgstr "_Parancs futtatása bejelentkező héjban (login shell)"
 
-#: ../src/guake.py:67
+#: ../guake/guake.py:67
 msgid "Do you really want to quit Guake!?"
 msgstr "Biztosan kilép a Guake-ből!?"
 
-#: ../src/guake.py:70
+#: ../guake/guake.py:70
 msgid "<b>There is one process still running.</b>"
 msgstr "<b>Egy folyamat még fut.</b>"
 
-#: ../src/guake.py:74
+#: ../guake/guake.py:74
 #, python-format
 msgid "<b>There are %d processes running.</b>"
 msgstr "<b>%d folyamat még fut.</b>"
 
-#: ../src/guake.py:367
+#: ../guake/guake.py:367
 msgid "key binding error"
 msgstr "Hiba történt a billentyűkombináció hozzárendelésekor"
 
-#: ../src/guake.py:368
+#: ../guake/guake.py:368
 #, python-format
 msgid "Unable to bind global <b>%s</b> key"
 msgstr "Globális billentyűkombináció hozzárendelése meghiúsult:<b>%s</b>."
 
-#: ../src/guake.py:530
+#: ../guake/guake.py:530
 msgid "Guake Terminal"
 msgstr "Guake Terminál"
 
-#: ../src/guake.py:636
+#: ../guake/guake.py:636
 #, python-format
 msgid ""
 "A problem happened when binding <b>%s</b> key.\n"
 "Please use Guake Preferences dialog to choose another key"
 msgstr "Hiba történt a <b>%s</b> billentyűkombináció hozzárendelésekor.\nKérlek állíts be egy másikat a Guake beállítások panelen."
 
-#: ../src/guake.py:647
+#: ../guake/guake.py:647
 #, python-format
 msgid ""
 "Guake is now running,\n"
 "press <b>%s</b> to use it."
 msgstr "A Guake fut,\na használathoz nyomja meg a(z) <b>%s</b> gombot."
 
-#: ../src/guake.py:997
+#: ../guake/guake.py:997
 msgid "Rename tab"
 msgstr "Lap átnevezése"
 
 #. Adding a new radio button to the tabbar
-#: ../src/guake.py:1142
+#: ../guake/guake.py:1142
 #, python-format
 msgid "Terminal %s"
 msgstr "Terminál %s"
 
-#: ../src/guake.py:1252
+#: ../guake/guake.py:1252
 msgid "Toggles the visibility of the terminal window"
 msgstr "Guake láthatóságának váltása"
 
-#: ../src/guake.py:1256
+#: ../guake/guake.py:1256
 msgid "Shows Guake preference window"
 msgstr "Guake beállításainak mutatása"
 
-#: ../src/guake.py:1260
+#: ../guake/guake.py:1260
 msgid "Shows Guake's about info"
 msgstr "Guake-ről"
 
-#: ../src/guake.py:1268
+#: ../guake/guake.py:1268
 msgid "Select a tab"
 msgstr "Lap kiválasztása"
 
-#: ../src/guake.py:1272
+#: ../guake/guake.py:1272
 msgid "Return the selected tab index."
 msgstr "A kiválasztott lap indexének visszaadása."
 
-#: ../src/guake.py:1276
+#: ../guake/guake.py:1276
 msgid "Execute an arbitrary command in the selected tab."
 msgstr "Egyéni parancs végrehajtása a kiválasztott lapon"
 
-#: ../src/guake.py:1280
+#: ../guake/guake.py:1280
 msgid "Rename the selected tab."
 msgstr "A kiválasztott lap átnevezése."
 
-#: ../src/guake.py:1284
+#: ../guake/guake.py:1284
 msgid "Says to Guake go away =("
 msgstr "Elbúcsúzás Guake-től =("
 
-#: ../src/guake.py:1349
+#: ../guake/guake.py:1349
 msgid "Guake can not init!"
 msgstr "Guake nem tud elindulni!"
 
-#: ../src/guake.py:1350
+#: ../guake/guake.py:1350
 msgid ""
 "Gconf Error.\n"
 "Have you installed <b>guake.schemas</b> properlly?"
 msgstr "Gconf hiba.\nHelyesen installáltad a <b>guake.schemas</b>-kat?"
 
 #. string to show in prefereces dialog for user shell option
-#: ../src/prefs.py:42
+#: ../guake/prefs.py:42
 msgid "<user shell>"
 msgstr "<felhasználói héj>"
 
-#: ../src/prefs.py:57
+#: ../guake/prefs.py:57
 msgid "Toggle Guake visibility"
 msgstr "Guake láthatósága"
 
-#: ../src/prefs.py:59
+#: ../guake/prefs.py:59
 msgid "Toggle Fullscreen"
 msgstr "Teljes képernyő"
 
-#: ../src/prefs.py:64
+#: ../guake/prefs.py:64
 msgid "Tab management"
 msgstr "Lapok kezelése"
 
-#: ../src/prefs.py:66
+#: ../guake/prefs.py:66
 msgid "New tab"
 msgstr "Új lap"
 
-#: ../src/prefs.py:68
+#: ../guake/prefs.py:68
 msgid "Close tab"
 msgstr "Lap bezárása"
 
-#: ../src/prefs.py:70
+#: ../guake/prefs.py:70
 msgid "Rename current tab"
 msgstr "Lap átnevezése"
 
-#: ../src/prefs.py:73
+#: ../guake/prefs.py:73
 msgid "Navigation"
 msgstr "Navigáció"
 
-#: ../src/prefs.py:75
+#: ../guake/prefs.py:75
 msgid "Go to previous tab"
 msgstr "Előző lap"
 
-#: ../src/prefs.py:77
+#: ../guake/prefs.py:77
 msgid "Go to next tab"
 msgstr "Következő lap"
 
-#: ../src/prefs.py:80
+#: ../guake/prefs.py:80
 msgid "Clipboard"
 msgstr "Vágólap"
 
-#: ../src/prefs.py:82
+#: ../guake/prefs.py:82
 msgid "Copy text to clipboard"
 msgstr "Másolás vágólapra"
 
-#: ../src/prefs.py:84
+#: ../guake/prefs.py:84
 msgid "Paste text from clipboard"
 msgstr "Beillesztés vágólapról"
 
-#: ../src/prefs.py:297
+#: ../guake/prefs.py:297
 msgid "Action"
 msgstr "Művelet"
 
-#: ../src/prefs.py:307
+#: ../guake/prefs.py:307
 msgid "Shortcut"
 msgstr "Gyorsbillentyű"
 
-#: ../src/prefs.py:605
+#: ../guake/prefs.py:605
 #, python-format
 msgid "The shortcut \"%s\" is already in use."
 msgstr "A \"%s\" gyorsbillentyű már használatban van."
 
-#: ../src/prefs.py:606
+#: ../guake/prefs.py:606
 msgid "Error setting keybinding."
 msgstr "Hiba a billentyűkiosztás alkalmazásával"
 
-#: ../src/prefs.py:618
+#: ../guake/prefs.py:618
 #, python-format
 msgid ""
 "The shortcut \"%s\" cannot be used because it will become impossible to type using this key.\n"

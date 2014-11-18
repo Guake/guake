@@ -74,7 +74,7 @@ msgstr ""
 msgid "http://guake.org"
 msgstr "http://guake.org"
 
-#: ../data/guake.glade.h:1 ../src/guake.py:1264
+#: ../data/guake.glade.h:1 ../guake/guake.py:1264
 msgid "Add a new tab"
 msgstr "Adicionar uma nova aba"
 
@@ -90,7 +90,7 @@ msgstr "Fechar aba"
 msgid "Copy"
 msgstr "Copiar"
 
-#: ../data/guake.glade.h:5 ../src/guake.py:635 ../src/guake.py:646
+#: ../data/guake.glade.h:5 ../guake/guake.py:635 ../guake/guake.py:646
 msgid "Guake!"
 msgstr "Guake!"
 
@@ -98,7 +98,7 @@ msgstr "Guake!"
 msgid "Paste"
 msgstr "Colar"
 
-#: ../data/guake.glade.h:7 ../src/prefs.py:61
+#: ../data/guake.glade.h:7 ../guake/prefs.py:61
 msgid "Quit"
 msgstr "Sair"
 
@@ -200,7 +200,7 @@ msgstr "Habilitar notificações ao iniciar"
 msgid "Font:"
 msgstr "Fonte:"
 
-#: ../data/prefs.glade.h:25 ../src/prefs.py:55
+#: ../data/prefs.glade.h:25 ../guake/prefs.py:55
 msgid "General"
 msgstr "Geral"
 
@@ -298,33 +298,33 @@ msgstr "_Restaurar padrões para as opções de compatibilidade"
 msgid "_Run command as a login shell"
 msgstr "_Executar comando em shell de login"
 
-#: ../src/guake.py:67
+#: ../guake/guake.py:67
 msgid "Do you really want to quit Guake!?"
 msgstr "Você realmente deseja sair do Guake!?"
 
-#: ../src/guake.py:70
+#: ../guake/guake.py:70
 msgid "<b>There is one process still running.</b>"
 msgstr "<b>Ainda há um processo sendo executado.</b>"
 
-#: ../src/guake.py:74
+#: ../guake/guake.py:74
 #, python-format
 msgid "<b>There are %d processes running.</b>"
 msgstr "<b>Há %d processos sendo executados.</b>"
 
-#: ../src/guake.py:367
+#: ../guake/guake.py:367
 msgid "key binding error"
 msgstr "erro na associação de atalhos"
 
-#: ../src/guake.py:368
+#: ../guake/guake.py:368
 #, python-format
 msgid "Unable to bind global <b>%s</b> key"
 msgstr "Impossível associar a tecla <b>%s</b>"
 
-#: ../src/guake.py:530
+#: ../guake/guake.py:530
 msgid "Guake Terminal"
 msgstr "Terminal Guake"
 
-#: ../src/guake.py:636
+#: ../guake/guake.py:636
 #, python-format
 msgid ""
 "A problem happened when binding <b>%s</b> key.\n"
@@ -333,7 +333,7 @@ msgstr ""
 "Um problema aconteceu ao tentar associar a tecla <b>%s</b>.\n"
 "Por favor use a janela de preferências do Guake para escolher outra tecla."
 
-#: ../src/guake.py:647
+#: ../guake/guake.py:647
 #, python-format
 msgid ""
 "Guake is now running,\n"
@@ -342,53 +342,53 @@ msgstr ""
 "O Guake está em execução,\n"
 "aperte <b>%s</b> para usá-lo."
 
-#: ../src/guake.py:997
+#: ../guake/guake.py:997
 msgid "Rename tab"
 msgstr "Renomear aba"
 
 #. Adding a new radio button to the tabbar
-#: ../src/guake.py:1142
+#: ../guake/guake.py:1142
 #, python-format
 msgid "Terminal %s"
 msgstr "Terminal %s"
 
-#: ../src/guake.py:1252
+#: ../guake/guake.py:1252
 msgid "Toggles the visibility of the terminal window"
 msgstr "Alterna a visibilidade da janela do terminal"
 
-#: ../src/guake.py:1256
+#: ../guake/guake.py:1256
 msgid "Shows Guake preference window"
 msgstr "Exibe a janela de preferências do Guake"
 
-#: ../src/guake.py:1260
+#: ../guake/guake.py:1260
 msgid "Shows Guake's about info"
 msgstr "Mostra a janela \"Sobre o Guake\""
 
-#: ../src/guake.py:1268
+#: ../guake/guake.py:1268
 msgid "Select a tab"
 msgstr "Selecionar uma aba"
 
-#: ../src/guake.py:1272
+#: ../guake/guake.py:1272
 msgid "Return the selected tab index."
 msgstr "Retornar a posição da tabela selecionada."
 
-#: ../src/guake.py:1276
+#: ../guake/guake.py:1276
 msgid "Execute an arbitrary command in the selected tab."
 msgstr "Executar um comando arbitrário na aba selecionada."
 
-#: ../src/guake.py:1280
+#: ../guake/guake.py:1280
 msgid "Rename the selected tab."
 msgstr "Renomear aba selecionada."
 
-#: ../src/guake.py:1284
+#: ../guake/guake.py:1284
 msgid "Says to Guake go away =("
 msgstr "Diz ao Guake para ir embora =("
 
-#: ../src/guake.py:1349
+#: ../guake/guake.py:1349
 msgid "Guake can not init!"
 msgstr "Guake não pode iniciar!"
 
-#: ../src/guake.py:1350
+#: ../guake/guake.py:1350
 msgid ""
 "Gconf Error.\n"
 "Have you installed <b>guake.schemas</b> properlly?"
@@ -397,76 +397,76 @@ msgstr ""
 "Você instalou o arquivo <b>guake.schemas</b> corretamente?"
 
 #. string to show in prefereces dialog for user shell option
-#: ../src/prefs.py:42
+#: ../guake/prefs.py:42
 msgid "<user shell>"
 msgstr "<user shell>"
 
-#: ../src/prefs.py:57
+#: ../guake/prefs.py:57
 msgid "Toggle Guake visibility"
 msgstr "Alternar a visibilidade do Guake"
 
-#: ../src/prefs.py:59
+#: ../guake/prefs.py:59
 msgid "Toggle Fullscreen"
 msgstr "Alternar tela cheia"
 
-#: ../src/prefs.py:64
+#: ../guake/prefs.py:64
 msgid "Tab management"
 msgstr "Gerenciamento das abas"
 
-#: ../src/prefs.py:66
+#: ../guake/prefs.py:66
 msgid "New tab"
 msgstr "Nova aba"
 
-#: ../src/prefs.py:68
+#: ../guake/prefs.py:68
 msgid "Close tab"
 msgstr "Fechar aba"
 
-#: ../src/prefs.py:70
+#: ../guake/prefs.py:70
 msgid "Rename current tab"
 msgstr "Renomear aba atual"
 
-#: ../src/prefs.py:73
+#: ../guake/prefs.py:73
 msgid "Navigation"
 msgstr "Navegação"
 
-#: ../src/prefs.py:75
+#: ../guake/prefs.py:75
 msgid "Go to previous tab"
 msgstr "Ir para a aba anterior"
 
-#: ../src/prefs.py:77
+#: ../guake/prefs.py:77
 msgid "Go to next tab"
 msgstr "Ir para a próxima aba"
 
-#: ../src/prefs.py:80
+#: ../guake/prefs.py:80
 msgid "Clipboard"
 msgstr "Área de transferência"
 
-#: ../src/prefs.py:82
+#: ../guake/prefs.py:82
 msgid "Copy text to clipboard"
 msgstr "Copiar texto para a área de transferência"
 
-#: ../src/prefs.py:84
+#: ../guake/prefs.py:84
 msgid "Paste text from clipboard"
 msgstr "Colar texto da área de transferência"
 
-#: ../src/prefs.py:297
+#: ../guake/prefs.py:297
 msgid "Action"
 msgstr "Ação"
 
-#: ../src/prefs.py:307
+#: ../guake/prefs.py:307
 msgid "Shortcut"
 msgstr "Atalho"
 
-#: ../src/prefs.py:605
+#: ../guake/prefs.py:605
 #, python-format
 msgid "The shortcut \"%s\" is already in use."
 msgstr "O atalho \"%s\" já esta sendo usado."
 
-#: ../src/prefs.py:606
+#: ../guake/prefs.py:606
 msgid "Error setting keybinding."
 msgstr "Erro ao configurar atalho."
 
-#: ../src/prefs.py:618
+#: ../guake/prefs.py:618
 #, python-format
 msgid ""
 "The shortcut \"%s\" cannot be used because it will become impossible to type using this key.\n"
