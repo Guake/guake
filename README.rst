@@ -124,12 +124,12 @@ tarball, please do the following::
 Testing as an unprivileged user
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-To run Guake as an unprivileged user for testing purposes, after `make` continue with
+To run Guake as an unprivileged user for testing purposes, after `make` continue with::
 
     $ gconftool-2 --install-schema-file=data/guake.schemas
     $ PYTHONPATH=. python guake/main.py
 
-If you run into
+If you run into::
 
     ImportError: No module named globalhotkeys
 
@@ -139,7 +139,7 @@ please check for `guake/guake.py*` leftover files and delete, if any.
 System-wide installation
 ~~~~~~~~~~~~~~~~~~~~~~~~
 
-To install Guake to all users, after `make` continue with
+To install Guake to all users, after `make` continue with::
 
     $ sudo make install
 
