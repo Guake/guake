@@ -95,9 +95,9 @@ AC_CONFIG_FILES([
     data/pixmaps/Makefile
     data/icons/Makefile
     po/Makefile.in
-    src/Makefile
-    src/globalhotkeys/Makefile
-    src/globals.py
+    guake/Makefile
+    guake/globalhotkeys/Makefile
+    guake/globals.py
 ])
 
 AC_OUTPUT

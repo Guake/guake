@@ -25,11 +25,24 @@ __all__ = [
     'ALWAYS_ON_PRIMARY'
     ]
 
+import inspect
+import os
+
+def is_run_from_git_workdir():
+    self_path = os.path.abspath(inspect.getfile(inspect.currentframe()))
+    return os.path.exists('%s.in' % self_path)
+
 NAME = 'guake'
 VERSION = '@VERSION@'
-IMAGE_DIR = '@DATADIR@/pixmaps/' + NAME
-GLADE_DIR = '@DATADIR@/' + NAME
-LOCALE_DIR = '@DATADIR@/locale'
+
+if is_run_from_git_workdir():
+    IMAGE_DIR = 'data/pixmaps'
+    GLADE_DIR = 'data'
+    LOCALE_DIR = 'locale'
+else:
+    IMAGE_DIR = '@DATADIR@/pixmaps/' + NAME
+    GLADE_DIR = '@DATADIR@/' + NAME
+    LOCALE_DIR = '@DATADIR@/locale'
 
 # Gconf stuff. Yep, it is hardcoded =)
 GCONF_PATH = '/apps/guake'
