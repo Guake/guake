@@ -19,4 +19,4 @@
 
 PYTHON="/usr/bin/env python2"
 
-exec $PYTHON -m guake.prefs $@
+exec $PYTHON -m guake.prefs "$@"
