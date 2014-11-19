@@ -31,7 +31,7 @@ AC_PROG_INTLTOOL([0.35.0])
 AM_GLIB_GNU_GETTEXT
 
 dnl python checks
-AM_PATH_PYTHON(2.5.0)
+AM_PATH_PYTHON(2.7)
 
 PY_PREFIX=`$PYTHON -c 'import sys ; print sys.prefix'`
 PYTHON_LIBS="-lpython$PYTHON_VERSION"
