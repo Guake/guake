@@ -85,7 +85,7 @@ msgstr ""
 msgid "http://guake-terminal.org"
 msgstr "http://guake-terminal.org"
 
-#: ../data/guake.glade.h:1 ../src/guake.py:1106
+#: ../data/guake.glade.h:1 ../guake/guake.py:1106
 msgid "Add a new tab"
 msgstr "Προσθήκη νέας καρτέλας"
 
@@ -101,7 +101,7 @@ msgstr "Κλείσιμο Καρτέλας"
 msgid "Copy"
 msgstr "Αντιγραφή"
 
-#: ../data/guake.glade.h:5 ../src/guake.py:578 ../src/guake.py:589
+#: ../data/guake.glade.h:5 ../guake/guake.py:578 ../guake/guake.py:589
 msgid "Guake!"
 msgstr "Guake!"
 
@@ -109,7 +109,7 @@ msgstr "Guake!"
 msgid "Paste"
 msgstr "Επικόλληση"
 
-#: ../data/guake.glade.h:7 ../src/prefs.py:61
+#: ../data/guake.glade.h:7 ../guake/prefs.py:61
 msgid "Quit"
 msgstr "Έξοδος"
 
@@ -203,7 +203,7 @@ msgstr "Προκαθορισμένος μεταγλωττιστής:"
 msgid "Enable popup notifications on startup"
 msgstr "Ενεργοποίηση αναδυόμενων ειδοποιήσεων κατά την εκκίνηση"
 
-#: ../data/prefs.glade.h:22 ../src/prefs.py:55
+#: ../data/prefs.glade.h:22 ../guake/prefs.py:55
 msgid "General"
 msgstr "Γενικά"
 
@@ -283,20 +283,20 @@ msgstr "_Επαναφορά των Προκαθορισμένων Ρυθμίσε
 msgid "_Run command as a login shell"
 msgstr "_Εκτέλεση εντολής ως κέλυφος σύνδεσης"
 
-#: ../src/guake.py:320
+#: ../guake/guake.py:320
 msgid "key binding error"
 msgstr "σφάλμα συντόμευσης πληκτρολογίου"
 
-#: ../src/guake.py:321
+#: ../guake/guake.py:321
 #, python-format
 msgid "Unable to bind global <b>%s</b> key"
 msgstr "Αδυναμία καθολικής σύνδεσης του πλήκτρου \"%s\""
 
-#: ../src/guake.py:483
+#: ../guake/guake.py:483
 msgid "Guake-Terminal"
 msgstr "Guake-Terminal"
 
-#: ../src/guake.py:579
+#: ../guake/guake.py:579
 #, python-format
 msgid ""
 "A problem happened when binding <b>%s</b> key.\n"
@@ -306,7 +306,7 @@ msgstr ""
 "Παρουσιάστηκε ένα πρόβλημα κατά την σύνδεση του πλήκτρου <b>%s</b>.\n"
 "Παρακαλώ χρησιμοποιήστε την φόρμα Ρυθμίσεων του Guake και επιλέξτε ένα διαφορετικό πλήκτρο (Το εικονίδιο συστήματος ήταν ενεργοποιημένο)"
 
-#: ../src/guake.py:590
+#: ../guake/guake.py:590
 #, python-format
 msgid ""
 "Guake is already running,\n"
@@ -315,53 +315,53 @@ msgstr ""
 "Το Guake εκτελείται ήδη,\n"
 "πατήστε <b>%s</b> για να το χρησιμοποιήσετε."
 
-#: ../src/guake.py:882
+#: ../guake/guake.py:882
 msgid "Rename tab"
 msgstr "Μετονομασία καρτέλας"
 
 #. Adding a new radio button to the tabbar
-#: ../src/guake.py:991
+#: ../guake/guake.py:991
 #, python-format
 msgid "Terminal %s"
 msgstr "Τερματικό %s"
 
-#: ../src/guake.py:1094
+#: ../guake/guake.py:1094
 msgid "Toggles the visibility of the terminal window"
 msgstr "Εναλλάσει την ορατότητα του τερματικού παραθύρου"
 
-#: ../src/guake.py:1098
+#: ../guake/guake.py:1098
 msgid "Shows Guake preference window"
 msgstr "Εμφανίζει το παράθυρο προτιμήσεων του Guake"
 
-#: ../src/guake.py:1102
+#: ../guake/guake.py:1102
 msgid "Shows Guake's about info"
 msgstr "Εμφανίζει πληροφορίες περί του Guake"
 
-#: ../src/guake.py:1110
+#: ../guake/guake.py:1110
 msgid "Select a tab"
 msgstr "Επιλέξτε μία καρτέλα"
 
-#: ../src/guake.py:1114
+#: ../guake/guake.py:1114
 msgid "Return the selected tab index."
 msgstr "Restituisce l'indice della scheda selezionata."
 
-#: ../src/guake.py:1118
+#: ../guake/guake.py:1118
 msgid "Execute an arbitrary command in the selected tab."
 msgstr "Εκτέλεσε μία εντολή στην επιλεγμένη καρτέλα"
 
-#: ../src/guake.py:1122
+#: ../guake/guake.py:1122
 msgid "Rename the selected tab."
 msgstr "Μετονομασία της επιλεγμένης καρτέλας"
 
-#: ../src/guake.py:1126
+#: ../guake/guake.py:1126
 msgid "Says to Guake go away =("
 msgstr "Λέει στο Guake να φύγει =("
 
-#: ../src/guake.py:1191
+#: ../guake/guake.py:1191
 msgid "Guake can not init!"
 msgstr "Το Guake δεν μπορεί να ξεκινήσει!"
 
-#: ../src/guake.py:1192
+#: ../guake/guake.py:1192
 msgid ""
 "Gconf Error.\n"
 "Have you installed <b>guake.schemas</b> properlly?"
@@ -370,76 +370,76 @@ msgstr ""
 "Έχετε εγκαταστήσει το <b>guake.schemas</b> σωστά;"
 
 #. string to show in prefereces dialog for user shell option
-#: ../src/prefs.py:42
+#: ../guake/prefs.py:42
 msgid "<user shell>"
 msgstr "<κέλυφος χρήστη>"
 
-#: ../src/prefs.py:57
+#: ../guake/prefs.py:57
 msgid "Toggle Guake visibility"
 msgstr "Εναλλαγή ορατότητας του Guake"
 
-#: ../src/prefs.py:59
+#: ../guake/prefs.py:59
 msgid "Toggle Fullscreen"
 msgstr "Εναλλαγή πλήρους οθόνης"
 
-#: ../src/prefs.py:64
+#: ../guake/prefs.py:64
 msgid "Tab management"
 msgstr "Διαχείρηση καρτελών"
 
-#: ../src/prefs.py:66
+#: ../guake/prefs.py:66
 msgid "New tab"
 msgstr "Νέα καρτέλα"
 
-#: ../src/prefs.py:68
+#: ../guake/prefs.py:68
 msgid "Close tab"
 msgstr "Κλείσμο καρτέλας"
 
-#: ../src/prefs.py:70
+#: ../guake/prefs.py:70
 msgid "Rename current tab"
 msgstr "Μετονομασία τρέχουσας καρτέλας"
 
-#: ../src/prefs.py:73
+#: ../guake/prefs.py:73
 msgid "Navigation"
 msgstr "Πλοήγηση"
 
-#: ../src/prefs.py:75
+#: ../guake/prefs.py:75
 msgid "Go to previous tab"
 msgstr "Μετάβαση στην προηγούμενη καρτέλα"
 
-#: ../src/prefs.py:77
+#: ../guake/prefs.py:77
 msgid "Go to next tab"
 msgstr "Μετάβαση στην επόμενη καρτέλα"
 
-#: ../src/prefs.py:80
+#: ../guake/prefs.py:80
 msgid "Clipboard"
 msgstr "Πρόχειρο"
 
-#: ../src/prefs.py:82
+#: ../guake/prefs.py:82
 msgid "Copy text to clipboard"
 msgstr "Αντιγραφή κειμένου στο πρόχειρο"
 
-#: ../src/prefs.py:84
+#: ../guake/prefs.py:84
 msgid "Paste text from clipboard"
 msgstr "Επικόλληση κειμένου από το πρόχειρο"
 
-#: ../src/prefs.py:260
+#: ../guake/prefs.py:260
 msgid "Action"
 msgstr "Ενέργεια"
 
-#: ../src/prefs.py:270
+#: ../guake/prefs.py:270
 msgid "Shortcut"
 msgstr "Συντόμευση"
 
-#: ../src/prefs.py:525
+#: ../guake/prefs.py:525
 #, python-format
 msgid "The shortcut \"%s\" is already in use."
 msgstr "Η συντόμευση \"%s\" είναι σε χρήση."
 
-#: ../src/prefs.py:526
+#: ../guake/prefs.py:526
 msgid "Error setting keybinding."
 msgstr "Σφάλμα κατά τη ρύθμιση συντομεύσεων πληκτρολογίου"
 
-#: ../src/prefs.py:538
+#: ../guake/prefs.py:538
 #, python-format
 msgid ""
 "The shortcut \"%s\" cannot be used because it will become impossible to type "

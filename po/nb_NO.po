@@ -73,7 +73,7 @@ msgstr ""
 msgid "http://guake.org"
 msgstr "http://guake.org"
 
-#: ../data/guake.glade.h:1 ../src/guake.py:1264
+#: ../data/guake.glade.h:1 ../guake/guake.py:1264
 msgid "Add a new tab"
 msgstr "Legg til fane"
 
@@ -89,7 +89,7 @@ msgstr "Lukk fane"
 msgid "Copy"
 msgstr "Kopier"
 
-#: ../data/guake.glade.h:5 ../src/guake.py:635 ../src/guake.py:646
+#: ../data/guake.glade.h:5 ../guake/guake.py:635 ../guake/guake.py:646
 msgid "Guake!"
 msgstr "Guake!"
 
@@ -97,7 +97,7 @@ msgstr "Guake!"
 msgid "Paste"
 msgstr "Lim inn"
 
-#: ../data/guake.glade.h:7 ../src/prefs.py:61
+#: ../data/guake.glade.h:7 ../guake/prefs.py:61
 msgid "Quit"
 msgstr "Avslutt"
 
@@ -199,7 +199,7 @@ msgstr "Aktiver popupvarslinger ved oppstart"
 msgid "Font:"
 msgstr "Skrifttype:"
 
-#: ../data/prefs.glade.h:25 ../src/prefs.py:55
+#: ../data/prefs.glade.h:25 ../guake/prefs.py:55
 msgid "General"
 msgstr "Generell"
 
@@ -297,33 +297,33 @@ msgstr "_Tilbakestill kompabilitet alternativer til standard"
 msgid "_Run command as a login shell"
 msgstr "_Kjør kommando som loginskall"
 
-#: ../src/guake.py:67
+#: ../guake/guake.py:67
 msgid "Do you really want to quit Guake!?"
 msgstr "Vil du virkelig avslutte Guake!?"
 
-#: ../src/guake.py:70
+#: ../guake/guake.py:70
 msgid "<b>There is one process still running.</b>"
 msgstr "<b>Det er forsatt én prosess kjørende.</b>"
 
-#: ../src/guake.py:74
+#: ../guake/guake.py:74
 #, python-format
 msgid "<b>There are %d processes running.</b>"
 msgstr "<b>Det er %d prosesser kjørende.</b>"
 
-#: ../src/guake.py:367
+#: ../guake/guake.py:367
 msgid "key binding error"
 msgstr "Hurtigtast error"
 
-#: ../src/guake.py:368
+#: ../guake/guake.py:368
 #, python-format
 msgid "Unable to bind global <b>%s</b> key"
 msgstr "Kunne ikke lagre <b>%s</b> tasten"
 
-#: ../src/guake.py:530
+#: ../guake/guake.py:530
 msgid "Guake Terminal"
 msgstr "Guake Terminal"
 
-#: ../src/guake.py:636
+#: ../guake/guake.py:636
 #, python-format
 msgid ""
 "A problem happened when binding <b>%s</b> key.\n"
@@ -332,7 +332,7 @@ msgstr ""
 "Et problem har oppstått under lagringen av <b>%s</b> tasten.\n"
 "Vennligst benytt guake egenskaper for å velge en annen tast"
 
-#: ../src/guake.py:647
+#: ../guake/guake.py:647
 #, python-format
 msgid ""
 "Guake is now running,\n"
@@ -341,53 +341,53 @@ msgstr ""
 "Guake er nå startet,\n"
 "trykk <b>%s</b> for å ta den i bruk."
 
-#: ../src/guake.py:997
+#: ../guake/guake.py:997
 msgid "Rename tab"
 msgstr "Gi nytt navn til fane"
 
 #. Adding a new radio button to the tabbar
-#: ../src/guake.py:1142
+#: ../guake/guake.py:1142
 #, python-format
 msgid "Terminal %s"
 msgstr "Terminal %s"
 
-#: ../src/guake.py:1252
+#: ../guake/guake.py:1252
 msgid "Toggles the visibility of the terminal window"
 msgstr "Endrer synligheten av terminalvinduet"
 
-#: ../src/guake.py:1256
+#: ../guake/guake.py:1256
 msgid "Shows Guake preference window"
 msgstr "Viser Guake egenskapervinduet"
 
-#: ../src/guake.py:1260
+#: ../guake/guake.py:1260
 msgid "Shows Guake's about info"
 msgstr "Viser Guakes om informasjon"
 
-#: ../src/guake.py:1268
+#: ../guake/guake.py:1268
 msgid "Select a tab"
 msgstr "Velg en fane"
 
-#: ../src/guake.py:1272
+#: ../guake/guake.py:1272
 msgid "Return the selected tab index."
 msgstr "Gå tilbake til den valgte faneindex."
 
-#: ../src/guake.py:1276
+#: ../guake/guake.py:1276
 msgid "Execute an arbitrary command in the selected tab."
 msgstr "Utføre en vilkårlig kommandoen i den valgte fanen."
 
-#: ../src/guake.py:1280
+#: ../guake/guake.py:1280
 msgid "Rename the selected tab."
 msgstr "Gi nytt navn til aktiv fane."
 
-#: ../src/guake.py:1284
+#: ../guake/guake.py:1284
 msgid "Says to Guake go away =("
 msgstr "Sier til Guake at den skal gå vekk =("
 
-#: ../src/guake.py:1349
+#: ../guake/guake.py:1349
 msgid "Guake can not init!"
 msgstr "Guake kan ikke init!"
 
-#: ../src/guake.py:1350
+#: ../guake/guake.py:1350
 msgid ""
 "Gconf Error.\n"
 "Have you installed <b>guake.schemas</b> properlly?"
@@ -396,76 +396,76 @@ msgstr ""
 "Har du installert <b>guake.schemas</b> ordentlig?"
 
 #. string to show in prefereces dialog for user shell option
-#: ../src/prefs.py:42
+#: ../guake/prefs.py:42
 msgid "<user shell>"
 msgstr "<bruker skall>"
 
-#: ../src/prefs.py:57
+#: ../guake/prefs.py:57
 msgid "Toggle Guake visibility"
 msgstr "Endrer Guakes synslighet"
 
-#: ../src/prefs.py:59
+#: ../guake/prefs.py:59
 msgid "Toggle Fullscreen"
 msgstr "Endre til fullskjerm"
 
-#: ../src/prefs.py:64
+#: ../guake/prefs.py:64
 msgid "Tab management"
 msgstr "Fanebehandler"
 
-#: ../src/prefs.py:66
+#: ../guake/prefs.py:66
 msgid "New tab"
 msgstr "Ny fane"
 
-#: ../src/prefs.py:68
+#: ../guake/prefs.py:68
 msgid "Close tab"
 msgstr "Lukk fane"
 
-#: ../src/prefs.py:70
+#: ../guake/prefs.py:70
 msgid "Rename current tab"
 msgstr "Gi nytt navn til aktiv fane"
 
-#: ../src/prefs.py:73
+#: ../guake/prefs.py:73
 msgid "Navigation"
 msgstr "Navigasjon"
 
-#: ../src/prefs.py:75
+#: ../guake/prefs.py:75
 msgid "Go to previous tab"
 msgstr "Gå til forrige fane"
 
-#: ../src/prefs.py:77
+#: ../guake/prefs.py:77
 msgid "Go to next tab"
 msgstr "Gå til neste fane"
 
-#: ../src/prefs.py:80
+#: ../guake/prefs.py:80
 msgid "Clipboard"
 msgstr "Utklippstavle"
 
-#: ../src/prefs.py:82
+#: ../guake/prefs.py:82
 msgid "Copy text to clipboard"
 msgstr "Kopier tekst til utklippstavle"
 
-#: ../src/prefs.py:84
+#: ../guake/prefs.py:84
 msgid "Paste text from clipboard"
 msgstr "Lim inn tekst fra utklippstavle"
 
-#: ../src/prefs.py:297
+#: ../guake/prefs.py:297
 msgid "Action"
 msgstr "Handling"
 
-#: ../src/prefs.py:307
+#: ../guake/prefs.py:307
 msgid "Shortcut"
 msgstr "Snarvei"
 
-#: ../src/prefs.py:605
+#: ../guake/prefs.py:605
 #, python-format
 msgid "The shortcut \"%s\" is already in use."
 msgstr "Hurtigtasten \"%s\" er allerede i bruk"
 
-#: ../src/prefs.py:606
+#: ../guake/prefs.py:606
 msgid "Error setting keybinding."
 msgstr "Kunne ikke lagre hurtigtasten."
 
-#: ../src/prefs.py:618
+#: ../guake/prefs.py:618
 #, python-format
 msgid ""
 "The shortcut \"%s\" cannot be used because it will become impossible to type using this key.\n"

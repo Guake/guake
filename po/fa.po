@@ -91,7 +91,7 @@ msgstr ""
 msgid "http://guake.org"
 msgstr "http://guake.org"
 
-#: ../data/guake.glade.h:1 ../src/guake.py:1224
+#: ../data/guake.glade.h:1 ../guake/guake.py:1224
 msgid "Add a new tab"
 msgstr "افزودن زبانه‌ی جدید"
 
@@ -107,7 +107,7 @@ msgstr "بستن زبانه"
 msgid "Copy"
 msgstr "رونوشت کردن"
 
-#: ../data/guake.glade.h:5 ../src/guake.py:628 ../src/guake.py:639
+#: ../data/guake.glade.h:5 ../guake/guake.py:628 ../guake/guake.py:639
 msgid "Guake!"
 msgstr "Guake!"
 
@@ -115,7 +115,7 @@ msgstr "Guake!"
 msgid "Paste"
 msgstr "چسباندن"
 
-#: ../data/guake.glade.h:7 ../src/prefs.py:61
+#: ../data/guake.glade.h:7 ../guake/prefs.py:61
 msgid "Quit"
 msgstr "خروج"
 
@@ -225,7 +225,7 @@ msgstr "فعال کردن پنجره‌های اطلاعیه در شروع"
 msgid "Font:"
 msgstr "قلم:"
 
-#: ../data/prefs.glade.h:25 ../src/prefs.py:55
+#: ../data/prefs.glade.h:25 ../guake/prefs.py:55
 msgid "General"
 msgstr "عمومی"
 
@@ -323,33 +323,33 @@ msgstr "_تنظیم مجدد ترجیحات سازگاری به پیشفرض"
 msgid "_Run command as a login shell"
 msgstr "_اجرا دستور به عنوان خط فرمان ورود به سیستم"
 
-#: ../src/guake.py:67
+#: ../guake/guake.py:67
 msgid "Do you really want to quit Guake!?"
 msgstr "واقعا مایل به خارج شدن از Guake هستید!؟"
 
-#: ../src/guake.py:70
+#: ../guake/guake.py:70
 msgid "<b>There is one process still running.</b>"
 msgstr "<b>روند دیگری هنوز در حال اجراست</b>"
 
-#: ../src/guake.py:74
+#: ../guake/guake.py:74
 #, python-format
 msgid "<b>There are %d processes running.</b>"
 msgstr "<b>روندهای %d در حال اجرا هستند.</b>"
 
-#: ../src/guake.py:367
+#: ../guake/guake.py:367
 msgid "key binding error"
 msgstr "خطا در باگزاری کلید"
 
-#: ../src/guake.py:368
+#: ../guake/guake.py:368
 #, python-format
 msgid "Unable to bind global <b>%s</b> key"
 msgstr "نمی‌توان کلید <b>%s</b> را بارگزاری کرد"
 
-#: ../src/guake.py:530
+#: ../guake/guake.py:530
 msgid "Guake Terminal"
 msgstr "Guake Terminal"
 
-#: ../src/guake.py:629
+#: ../guake/guake.py:629
 #, python-format
 msgid ""
 "A problem happened when binding <b>%s</b> key.\n"
@@ -360,7 +360,7 @@ msgstr ""
 "لطفا از برگه‌ی تنظیمات Guake برای انتخاب کلید دیگر استفاده کنید(آیکون مخفی "
 "فعال شده بود)"
 
-#: ../src/guake.py:640
+#: ../guake/guake.py:640
 #, python-format
 msgid ""
 "Guake is now running,\n"
@@ -369,53 +369,53 @@ msgstr ""
 "هم‌اکنون Guake در حال اجرا می‌باشد،\n"
 "برای استفاده کلید <b>%s</b> را فشار دهید."
 
-#: ../src/guake.py:990
+#: ../guake/guake.py:990
 msgid "Rename tab"
 msgstr "نام زبانه را تغییر بده"
 
 #. Adding a new radio button to the tabbar
-#: ../src/guake.py:1102
+#: ../guake/guake.py:1102
 #, python-format
 msgid "Terminal %s"
 msgstr "ترمینال %s"
 
-#: ../src/guake.py:1212
+#: ../guake/guake.py:1212
 msgid "Toggles the visibility of the terminal window"
 msgstr "Toggles the visibility of the terminal window"
 
-#: ../src/guake.py:1216
+#: ../guake/guake.py:1216
 msgid "Shows Guake preference window"
 msgstr "Shows Guake preference window"
 
-#: ../src/guake.py:1220
+#: ../guake/guake.py:1220
 msgid "Shows Guake's about info"
 msgstr "Shows Guake's about info"
 
-#: ../src/guake.py:1228
+#: ../guake/guake.py:1228
 msgid "Select a tab"
 msgstr "Select a tab"
 
-#: ../src/guake.py:1232
+#: ../guake/guake.py:1232
 msgid "Return the selected tab index."
 msgstr "Return the selected tab index."
 
-#: ../src/guake.py:1236
+#: ../guake/guake.py:1236
 msgid "Execute an arbitrary command in the selected tab."
 msgstr "Execute an arbitrary command in the selected tab."
 
-#: ../src/guake.py:1240
+#: ../guake/guake.py:1240
 msgid "Rename the selected tab."
 msgstr "Rename the selected tab."
 
-#: ../src/guake.py:1244
+#: ../guake/guake.py:1244
 msgid "Says to Guake go away =("
 msgstr "Says to Guake go away =("
 
-#: ../src/guake.py:1309
+#: ../guake/guake.py:1309
 msgid "Guake can not init!"
 msgstr "برنامه‌ی Guake قابل بارگزاری نیست!"
 
-#: ../src/guake.py:1310
+#: ../guake/guake.py:1310
 msgid ""
 "Gconf Error.\n"
 "Have you installed <b>guake.schemas</b> properlly?"
@@ -424,76 +424,76 @@ msgstr ""
 "آیا <b>guake.schemas</b> را به طور صحیح نصب کرده‌اید؟"
 
 #. string to show in prefereces dialog for user shell option
-#: ../src/prefs.py:42
+#: ../guake/prefs.py:42
 msgid "<user shell>"
 msgstr "<user shell>"
 
-#: ../src/prefs.py:57
+#: ../guake/prefs.py:57
 msgid "Toggle Guake visibility"
 msgstr "تغییر پدیداری Guake"
 
-#: ../src/prefs.py:59
+#: ../guake/prefs.py:59
 msgid "Toggle Fullscreen"
 msgstr "‌تغییر به تمام‌صفحه"
 
-#: ../src/prefs.py:64
+#: ../guake/prefs.py:64
 msgid "Tab management"
 msgstr "مدیریت زبانه"
 
-#: ../src/prefs.py:66
+#: ../guake/prefs.py:66
 msgid "New tab"
 msgstr "زبانه‌ی جدید"
 
-#: ../src/prefs.py:68
+#: ../guake/prefs.py:68
 msgid "Close tab"
 msgstr "بستن زبانه"
 
-#: ../src/prefs.py:70
+#: ../guake/prefs.py:70
 msgid "Rename current tab"
 msgstr "نام زبانه‌ی فعلی را تغییر بده"
 
-#: ../src/prefs.py:73
+#: ../guake/prefs.py:73
 msgid "Navigation"
 msgstr "Navigation"
 
-#: ../src/prefs.py:75
+#: ../guake/prefs.py:75
 msgid "Go to previous tab"
 msgstr "رفتن به زبانه‌ی قبلی"
 
-#: ../src/prefs.py:77
+#: ../guake/prefs.py:77
 msgid "Go to next tab"
 msgstr "رفتن به زبانه‌ی بعدی"
 
-#: ../src/prefs.py:80
+#: ../guake/prefs.py:80
 msgid "Clipboard"
 msgstr "حافظه‌ی موقت"
 
-#: ../src/prefs.py:82
+#: ../guake/prefs.py:82
 msgid "Copy text to clipboard"
 msgstr "کپی متن به حافظه‌ی موقت"
 
-#: ../src/prefs.py:84
+#: ../guake/prefs.py:84
 msgid "Paste text from clipboard"
 msgstr "چشباندن متن از حافظه‌ی موقت"
 
-#: ../src/prefs.py:297
+#: ../guake/prefs.py:297
 msgid "Action"
 msgstr "حرکت"
 
-#: ../src/prefs.py:307
+#: ../guake/prefs.py:307
 msgid "Shortcut"
 msgstr "میانبر"
 
-#: ../src/prefs.py:605
+#: ../guake/prefs.py:605
 #, python-format
 msgid "The shortcut \"%s\" is already in use."
 msgstr "میانبر \"%s\" هم‌اکنون در حال استفاده می‌باشد."
 
-#: ../src/prefs.py:606
+#: ../guake/prefs.py:606
 msgid "Error setting keybinding."
 msgstr "خطا در بارگزاری کلید."
 
-#: ../src/prefs.py:618
+#: ../guake/prefs.py:618
 #, python-format
 msgid ""
 "The shortcut \"%s\" cannot be used because it will become impossible to type "

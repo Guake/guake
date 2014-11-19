@@ -60,7 +60,7 @@ msgstr "Guake is free software; you can redistribute it and/or modify it under t
 msgid "http://guake.org"
 msgstr "http://guake.org"
 
-#: ../data/guake.glade.h:1 ../src/guake.py:1264
+#: ../data/guake.glade.h:1 ../guake/guake.py:1264
 msgid "Add a new tab"
 msgstr "Engadir unha nova lapela"
 
@@ -76,7 +76,7 @@ msgstr "Pechar lapela"
 msgid "Copy"
 msgstr "Copiar"
 
-#: ../data/guake.glade.h:5 ../src/guake.py:635 ../src/guake.py:646
+#: ../data/guake.glade.h:5 ../guake/guake.py:635 ../guake/guake.py:646
 msgid "Guake!"
 msgstr "Guake!"
 
@@ -84,7 +84,7 @@ msgstr "Guake!"
 msgid "Paste"
 msgstr "Pegar"
 
-#: ../data/guake.glade.h:7 ../src/prefs.py:61
+#: ../data/guake.glade.h:7 ../guake/prefs.py:61
 msgid "Quit"
 msgstr "Saír"
 
@@ -187,7 +187,7 @@ msgstr "Activar notificacións mediante xanela emerxente no inicio"
 msgid "Font:"
 msgstr "Tipo de letra:"
 
-#: ../data/prefs.glade.h:25 ../src/prefs.py:55
+#: ../data/prefs.glade.h:25 ../guake/prefs.py:55
 msgid "General"
 msgstr "Xeral"
 
@@ -280,169 +280,169 @@ msgstr "_Reiniciar as opcións de compatibilidade predeterminadas"
 msgid "_Run command as a login shell"
 msgstr "_Executar a orde como intérprete de ordes de inicio de sesión "
 
-#: ../src/guake.py:67
+#: ../guake/guake.py:67
 msgid "Do you really want to quit Guake!?"
 msgstr "Confirma que quere saír do Guake?"
 
-#: ../src/guake.py:70
+#: ../guake/guake.py:70
 msgid "<b>There is one process still running.</b>"
 msgstr "<b>Queda un proceso aínda en execución.</b>"
 
-#: ../src/guake.py:74
+#: ../guake/guake.py:74
 #, python-format
 msgid "<b>There are %d processes running.</b>"
 msgstr "<b>Quedan %d procesos en execución.</b>"
 
-#: ../src/guake.py:367
+#: ../guake/guake.py:367
 msgid "key binding error"
 msgstr "erro de combinación de teclas"
 
-#: ../src/guake.py:368
+#: ../guake/guake.py:368
 #, python-format
 msgid "Unable to bind global <b>%s</b> key"
 msgstr "Non foi posíbel combinar a clave global <b>%s</b> "
 
-#: ../src/guake.py:530
+#: ../guake/guake.py:530
 msgid "Guake Terminal"
 msgstr "Terminal Guake"
 
-#: ../src/guake.py:636
+#: ../guake/guake.py:636
 #, python-format
 msgid ""
 "A problem happened when binding <b>%s</b> key.\n"
 "Please use Guake Preferences dialog to choose another key"
 msgstr "Produciuse un problema ao combinar a clave <b>%s</b>.\nUse as preferencias do Guake para escoller outra tecla (A icona de notificación estaba activada)"
 
-#: ../src/guake.py:647
+#: ../guake/guake.py:647
 #, python-format
 msgid ""
 "Guake is now running,\n"
 "press <b>%s</b> to use it."
 msgstr "Guake está agora en execución,\nprema <b>%s</b> para usalo."
 
-#: ../src/guake.py:997
+#: ../guake/guake.py:997
 msgid "Rename tab"
 msgstr "Renomear lapela"
 
 #. Adding a new radio button to the tabbar
-#: ../src/guake.py:1142
+#: ../guake/guake.py:1142
 #, python-format
 msgid "Terminal %s"
 msgstr "Terminal %s"
 
-#: ../src/guake.py:1252
+#: ../guake/guake.py:1252
 msgid "Toggles the visibility of the terminal window"
 msgstr "Alterna a visibilidade da xanela do terminal"
 
-#: ../src/guake.py:1256
+#: ../guake/guake.py:1256
 msgid "Shows Guake preference window"
 msgstr "Amosa a xanela de preferencias do Guake"
 
-#: ../src/guake.py:1260
+#: ../guake/guake.py:1260
 msgid "Shows Guake's about info"
 msgstr "Amosa info sobre o Guake!"
 
-#: ../src/guake.py:1268
+#: ../guake/guake.py:1268
 msgid "Select a tab"
 msgstr "Seleccionar unha lapela"
 
-#: ../src/guake.py:1272
+#: ../guake/guake.py:1272
 msgid "Return the selected tab index."
 msgstr "Volver ao índice da lapela seleccionada."
 
-#: ../src/guake.py:1276
+#: ../guake/guake.py:1276
 msgid "Execute an arbitrary command in the selected tab."
 msgstr "Executar unha orde arbitraria na lapela seleccionada."
 
-#: ../src/guake.py:1280
+#: ../guake/guake.py:1280
 msgid "Rename the selected tab."
 msgstr "Renomear a lapela seleccionada."
 
-#: ../src/guake.py:1284
+#: ../guake/guake.py:1284
 msgid "Says to Guake go away =("
 msgstr "Despedirse do Guake =("
 
-#: ../src/guake.py:1349
+#: ../guake/guake.py:1349
 msgid "Guake can not init!"
 msgstr "Guake non pode iniciarse!"
 
-#: ../src/guake.py:1350
+#: ../guake/guake.py:1350
 msgid ""
 "Gconf Error.\n"
 "Have you installed <b>guake.schemas</b> properlly?"
 msgstr "Erro de Gconf.\nInstalou correctamente <b>guake.schemas</b>?"
 
 #. string to show in prefereces dialog for user shell option
-#: ../src/prefs.py:42
+#: ../guake/prefs.py:42
 msgid "<user shell>"
 msgstr "<usuario de shell>"
 
-#: ../src/prefs.py:57
+#: ../guake/prefs.py:57
 msgid "Toggle Guake visibility"
 msgstr "Alternar a visibilidade do Guake"
 
-#: ../src/prefs.py:59
+#: ../guake/prefs.py:59
 msgid "Toggle Fullscreen"
 msgstr "Alternar a pantalla completa"
 
-#: ../src/prefs.py:64
+#: ../guake/prefs.py:64
 msgid "Tab management"
 msgstr "Xestión de lapela"
 
-#: ../src/prefs.py:66
+#: ../guake/prefs.py:66
 msgid "New tab"
 msgstr "Nova lapela"
 
-#: ../src/prefs.py:68
+#: ../guake/prefs.py:68
 msgid "Close tab"
 msgstr "Pechar lapela"
 
-#: ../src/prefs.py:70
+#: ../guake/prefs.py:70
 msgid "Rename current tab"
 msgstr "Renomear a lapela actual"
 
-#: ../src/prefs.py:73
+#: ../guake/prefs.py:73
 msgid "Navigation"
 msgstr "Navegación"
 
-#: ../src/prefs.py:75
+#: ../guake/prefs.py:75
 msgid "Go to previous tab"
 msgstr "Ir á lapela anterior"
 
-#: ../src/prefs.py:77
+#: ../guake/prefs.py:77
 msgid "Go to next tab"
 msgstr "Ir á lapela seguinte"
 
-#: ../src/prefs.py:80
+#: ../guake/prefs.py:80
 msgid "Clipboard"
 msgstr "Portapapeis"
 
-#: ../src/prefs.py:82
+#: ../guake/prefs.py:82
 msgid "Copy text to clipboard"
 msgstr "Copiar o texto ao portapapeis"
 
-#: ../src/prefs.py:84
+#: ../guake/prefs.py:84
 msgid "Paste text from clipboard"
 msgstr "Pegar o texto do portapapeis"
 
-#: ../src/prefs.py:297
+#: ../guake/prefs.py:297
 msgid "Action"
 msgstr "Acción"
 
-#: ../src/prefs.py:307
+#: ../guake/prefs.py:307
 msgid "Shortcut"
 msgstr "Atallo de teclado"
 
-#: ../src/prefs.py:605
+#: ../guake/prefs.py:605
 #, python-format
 msgid "The shortcut \"%s\" is already in use."
 msgstr "O atallo «%s» xa está ocupado."
 
-#: ../src/prefs.py:606
+#: ../guake/prefs.py:606
 msgid "Error setting keybinding."
 msgstr "Produciuse un erro na configuración da combinación de teclas."
 
-#: ../src/prefs.py:618
+#: ../guake/prefs.py:618
 #, python-format
 msgid ""
 "The shortcut \"%s\" cannot be used because it will become impossible to type using this key.\n"

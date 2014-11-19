@@ -52,7 +52,7 @@ msgstr ""
 "\n"
 "Sie sollten ein Exemplar der GNU General Public License zusammen mit diesem Programm erhalten haben. Falls nicht, siehe <http://www.gnu.org/licenses/>.\n"
 
-#: ../data/guake.glade.h:1 ../src/guake.py:1203
+#: ../data/guake.glade.h:1 ../guake/guake.py:1203
 msgid "Add a new tab"
 msgstr "Tab hinzufügen"
 
@@ -68,7 +68,7 @@ msgstr "Tab Schließen"
 msgid "Copy"
 msgstr "Kopieren"
 
-#: ../data/guake.glade.h:5 ../src/guake.py:612 ../src/guake.py:623
+#: ../data/guake.glade.h:5 ../guake/guake.py:612 ../guake/guake.py:623
 msgid "Guake!"
 msgstr "Guake!"
 
@@ -76,7 +76,7 @@ msgstr "Guake!"
 msgid "Paste"
 msgstr "Einfügen"
 
-#: ../data/guake.glade.h:7 ../src/prefs.py:61
+#: ../data/guake.glade.h:7 ../guake/prefs.py:61
 msgid "Quit"
 msgstr "Beenden"
 
@@ -162,7 +162,7 @@ msgstr "Standard-Interpreter:"
 msgid "Enable popup notifications on startup"
 msgstr "Popup Benachrichtigung beim Start erlauben"
 
-#: ../data/prefs.glade.h:24 ../src/prefs.py:55
+#: ../data/prefs.glade.h:24 ../guake/prefs.py:55
 msgid "General"
 msgstr "Allgemein"
 
@@ -242,29 +242,29 @@ msgstr "_Zurücksetzen der Kompatibilitätsoptionen "
 msgid "_Run command as a login shell"
 msgstr "Führe Kommando als Login Shell aus"
 
-#: ../src/guake.py:67
+#: ../guake/guake.py:67
 msgid "Do you really want to quit Guake!?"
 msgstr "Möchten sie Guake wirklich beenden!?"
 
-#: ../src/guake.py:70
+#: ../guake/guake.py:70
 msgid "<b>There is one process still running.</b>"
 msgstr "<b>Es existiert noch ein laufender Prozess</b>"
 
-#: ../src/guake.py:74
+#: ../guake/guake.py:74
 #, python-format
 msgid "<b>There are %d processes running.</b>"
 msgstr "<b>Es existieren noch %d laufende Prozesse"
 
-#: ../src/guake.py:354
+#: ../guake/guake.py:354
 msgid "key binding error"
 msgstr "Fehler beim Ändern des Kürzels"
 
-#: ../src/guake.py:355
+#: ../guake/guake.py:355
 #, python-format
 msgid "Unable to bind global <b>%s</b> key"
 msgstr "Unfähig das Kürzel auf <b>%s</b> zu ändern."
 
-#: ../src/guake.py:613
+#: ../guake/guake.py:613
 #, python-format
 msgid ""
 "A problem happened when binding <b>%s</b> key.\n"
@@ -273,37 +273,37 @@ msgstr ""
 "Ein Problem trat auf beim Verknüfen mit <b>%s</b>.\n"
 "Bitte benutzen Sie die Einstellungen um eine andere Taste oder ein anderes Tastenkürzel zu wählen."
 
-#: ../src/guake.py:971
+#: ../guake/guake.py:971
 msgid "Rename tab"
 msgstr "Tab umbenennen"
 
 #. Adding a new radio button to the tabbar
-#: ../src/guake.py:1081
+#: ../guake/guake.py:1081
 #, python-format
 msgid "Terminal %s"
 msgstr "Terminal %s"
 
-#: ../src/guake.py:1191
+#: ../guake/guake.py:1191
 msgid "Toggles the visibility of the terminal window"
 msgstr "Ändert die Sichtbarkeit des Terminal-Fensters."
 
-#: ../src/guake.py:1195
+#: ../guake/guake.py:1195
 msgid "Shows Guake preference window"
 msgstr "Zeigt die Einstellungen von Guake"
 
-#: ../src/guake.py:1199
+#: ../guake/guake.py:1199
 msgid "Shows Guake's about info"
 msgstr "Zeigt Guake's Programminformationen"
 
-#: ../src/guake.py:1223
+#: ../guake/guake.py:1223
 msgid "Says to Guake go away =("
 msgstr "Sagt Guake das es verschwinden soll :o("
 
-#: ../src/guake.py:1288
+#: ../guake/guake.py:1288
 msgid "Guake can not init!"
 msgstr "Guake kann nicht starten!"
 
-#: ../src/guake.py:1289
+#: ../guake/guake.py:1289
 msgid ""
 "Gconf Error.\n"
 "Have you installed <b>guake.schemas</b> properlly?"
@@ -312,76 +312,76 @@ msgstr ""
 "Haben Sie die <b>guake.schemas</b> korrekt installiert?"
 
 #. string to show in prefereces dialog for user shell option
-#: ../src/prefs.py:42
+#: ../guake/prefs.py:42
 msgid "<user shell>"
 msgstr "<user shell>"
 
-#: ../src/prefs.py:57
+#: ../guake/prefs.py:57
 msgid "Toggle Guake visibility"
 msgstr "Guake Terimal Sichtbarkeit umschalten"
 
-#: ../src/prefs.py:59
+#: ../guake/prefs.py:59
 msgid "Toggle Fullscreen"
 msgstr "Vollbild"
 
-#: ../src/prefs.py:64
+#: ../guake/prefs.py:64
 msgid "Tab management"
 msgstr "Tab Verwaltung"
 
-#: ../src/prefs.py:66
+#: ../guake/prefs.py:66
 msgid "New tab"
 msgstr "Neuer Tab"
 
-#: ../src/prefs.py:68
+#: ../guake/prefs.py:68
 msgid "Close tab"
 msgstr "Tab schließen"
 
-#: ../src/prefs.py:70
+#: ../guake/prefs.py:70
 msgid "Rename current tab"
 msgstr "Aktuellen Tab umbenennen"
 
-#: ../src/prefs.py:73
+#: ../guake/prefs.py:73
 msgid "Navigation"
 msgstr "Navigation"
 
-#: ../src/prefs.py:75
+#: ../guake/prefs.py:75
 msgid "Go to previous tab"
 msgstr "Gehe zum vorigen Tab"
 
-#: ../src/prefs.py:77
+#: ../guake/prefs.py:77
 msgid "Go to next tab"
 msgstr "Gehe zum nächsten Tab"
 
-#: ../src/prefs.py:80
+#: ../guake/prefs.py:80
 msgid "Clipboard"
 msgstr "Zwischenablage"
 
-#: ../src/prefs.py:82
+#: ../guake/prefs.py:82
 msgid "Copy text to clipboard"
 msgstr "Kopiere Text zur Zwischenablage"
 
-#: ../src/prefs.py:84
+#: ../guake/prefs.py:84
 msgid "Paste text from clipboard"
 msgstr "Füge Text aus der Zwischenablage ein"
 
-#: ../src/prefs.py:286
+#: ../guake/prefs.py:286
 msgid "Action"
 msgstr "Aktion"
 
-#: ../src/prefs.py:296
+#: ../guake/prefs.py:296
 msgid "Shortcut"
 msgstr "Kürzel"
 
-#: ../src/prefs.py:577
+#: ../guake/prefs.py:577
 #, python-format
 msgid "The shortcut \"%s\" is already in use."
 msgstr "Das Tastenkürzel \"%s\" ist bereits belegt."
 
-#: ../src/prefs.py:578
+#: ../guake/prefs.py:578
 msgid "Error setting keybinding."
 msgstr "Fehler beim Setzten des Tastenkürzels"
 
-#: ../src/prefs.py:590
+#: ../guake/prefs.py:590
 #, python-format
 msgid ""
 "The shortcut \"%s\" cannot be used because it will become impossible to type using this key.\n"
@@ -392,7 +392,7 @@ msgstr ""
 "\n"
 "Versuchen Sie es mit den Tasten Strg, Alt oder Shift zur gleichen Zeit.\n"
 
-#: ../src/guake.py:1207
+#: ../guake/guake.py:1207
 msgid "Select a tab"
 msgstr "Tab auswählen"
 
@@ -400,7 +400,7 @@ msgstr "Tab auswählen"
 msgid "_Open new tab in current directory"
 msgstr "_Neuen Tab in aktuellem Verzeichnis öffnen"
 
-#: ../src/guake.py:624
+#: ../guake/guake.py:624
 #, python-format
 msgid ""
 "Guake is now running,\n"
@@ -439,19 +439,19 @@ msgstr "http://guake.org"
 msgid "<b>Main Window height</b>"
 msgstr "<b>Höhe des Hauptfensters</b>"
 
-#: ../src/guake.py:517
+#: ../guake/guake.py:517
 msgid "Guake Terminal"
 msgstr "Guake Terminal"
 
-#: ../src/guake.py:1219
+#: ../guake/guake.py:1219
 msgid "Rename the selected tab."
 msgstr "Gewählten Tab umbenennen"
 
-#: ../src/guake.py:1215
+#: ../guake/guake.py:1215
 msgid "Execute an arbitrary command in the selected tab."
 msgstr "Eigenen Befehl im ausgewählten Tab ausführen"
 
-#: ../src/guake.py:1211
+#: ../guake/guake.py:1211
 msgid "Return the selected tab index."
 msgstr ""
 
