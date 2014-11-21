@@ -23,10 +23,11 @@ __all__ = [
     'GCONF_PATH', 'KEY', 'TERMINAL_MATCH_EXPRS', 'TERMINAL_MATCH_TAGS',
     'ALIGN_CENTER', 'ALIGN_RIGHT', 'ALIGN_LEFT', 'ALIGN_TOP', 'ALIGN_BOTTOM',
     'ALWAYS_ON_PRIMARY'
-    ]
+]
 
 import inspect
 import os
+
 
 def is_run_from_git_workdir():
     self_path = os.path.abspath(inspect.getfile(inspect.currentframe()))
@@ -46,26 +47,26 @@ else:
 
 # Gconf stuff. Yep, it is hardcoded =)
 GCONF_PATH = '/apps/guake'
-KEY = lambda x: (GCONF_PATH+x)
+KEY = lambda x: (GCONF_PATH + x)
 
 # regular expressions to highlight links in terminal. This code was
 # lovely stolen from the great gnome-terminal project, thank you =)
 USERCHARS = "-[:alnum:]"
 PASSCHARS = "-[:alnum:],?;.:/!%$^*&~\"#'"
 HOSTCHARS = "-[:alnum:]"
-HOST      = "[" + HOSTCHARS + "]+(\\.[" + HOSTCHARS + "]+)*"
-PORT      = "(:[[:digit:]]{1,5})?"
-PATHCHARS =  "-[:alnum:]_$.+!*(),;:@&=?/~#%"
-SCHEME    = "(news:|telnet:|nntp:|file:/|https?:|ftps?:|webcal:)"
-USER      = "[" + USERCHARS + "]+(:[" + PASSCHARS + "]+)?"
-URLPATH   = "/[" + PATHCHARS + "]*[^]'.}>) \t\r\n,\\\"]"
+HOST = "[" + HOSTCHARS + "]+(\\.[" + HOSTCHARS + "]+)*"
+PORT = "(:[[:digit:]]{1,5})?"
+PATHCHARS = "-[:alnum:]_$.+!*(),;:@&=?/~#%"
+SCHEME = "(news:|telnet:|nntp:|file:/|https?:|ftps?:|webcal:)"
+USER = "[" + USERCHARS + "]+(:[" + PASSCHARS + "]+)?"
+URLPATH = "/[" + PATHCHARS + "]*[^]'.}>) \t\r\n,\\\"]"
 
 TERMINAL_MATCH_EXPRS = [
-  "\<" + SCHEME + "//(" + USER + "@)?" + HOST + PORT + "(" + URLPATH + ")?\>/?",
-  "\<(www|ftp)[" + HOSTCHARS + "]*\." + HOST + PORT + "(" +URLPATH + ")?\>/?",
-  "\<(mailto:)?[" + USERCHARS + "][" + USERCHARS + ".]*@[" + HOSTCHARS +
-  "]+\." + HOST + "\>"
-  ]
+    r"\<" + SCHEME + "//(" + USER + r"@)?" + HOST + PORT + "(" + URLPATH + r")?\>/?",
+    r"\<(www|ftp)[" + HOSTCHARS + r"]*\." + HOST + PORT + "(" + URLPATH + r")?\>/?",
+    r"\<(mailto:)?[" + USERCHARS + "][" + USERCHARS + ".]*@[" + HOSTCHARS +
+    r"]+\." + HOST + r"\>"
+]
 
 TERMINAL_MATCH_TAGS = 'schema', 'http', 'email'
 ALIGN_CENTER, ALIGN_LEFT, ALIGN_RIGHT = range(3)
@@ -78,6 +79,6 @@ QUICK_OPEN_MATCHERS = [
      r"^\s\sFile\s\".*\",\sline\s[0-9]+",
      r"^\s\sFile\s\"(.*)\",\sline\s([0-9]+)"),
     ("line starts by 'Filename:line' pattern (GCC/make). File path should exists.",
-      r"^[a-zA-Z0-9\/\_\-\.\ ]+\.?[a-zA-Z0-9]+\:[0-9]+",
-      r"^(.*)\:([0-9]+)")
+     r"^[a-zA-Z0-9\/\_\-\.\ ]+\.?[a-zA-Z0-9]+\:[0-9]+",
+     r"^(.*)\:([0-9]+)")
 ]
