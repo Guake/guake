@@ -81,7 +81,7 @@ function run_tests()
 }
 
 if [ -z $REVRANGE ]; then
-    py_files=$(find . -name '*.py' | grep -E '(guake\/guake$|\.py$)' | grep -v 'guake/globals.py')
+    py_files=$(find . -name "*.py" -o -name "*.py.in"   | grep -v -E 'guake/globals.py$')
     echo "Validating files: "
     echo $py_files
 else
