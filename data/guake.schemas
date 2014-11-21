@@ -845,7 +845,7 @@
             <type>bool</type>
             <default>true</default>
             <locale name="C">
-                <short>Give focus to guake if tab is opened.</short>
+                <short>Give focus to guake if tab is opened (OBSOLETE).</short>
                 <long>If the guake window is out of focus but open,
                 enabling this will give it back the focus instead of closing the window.</long>
             </locale>
