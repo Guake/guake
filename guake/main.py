@@ -1130,25 +1130,30 @@ class Guake(SimpleGladeApp):
             self.set_terminal_focus()
             return
 
-        if self.client.get_bool(KEY('/general/focus_if_open')):
-            restore_focus = False
-            if self.window.window:
-                state = int(self.window.window.get_state())
-                if ((state & GDK_WINDOW_STATE_STICKY or
-                        state & GDK_WINDOW_STATE_WITHDRAWN
-                     )):
-                    restore_focus = True
-            else:
-                restore_focus = True
-            # if not self.hidden:
-            #     restore_focus = True
-            if restore_focus:
-                print "DBG: Restoring the focus to the terminal"
-                self.hide()
-                self.show()
-                self.window.window.focus()
-                self.set_terminal_focus()
-                return
+        # Disable the focus_if_open feature
+        #  - if doesn't work seamlessly on all system
+        #  - self.window.window.get_state doesn't provides us the right information on all
+        #    systems, especially on MATE/XFCE
+        #
+        # if self.client.get_bool(KEY('/general/focus_if_open')):
+        #     restore_focus = False
+        #     if self.window.window:
+        #         state = int(self.window.window.get_state())
+        #         if ((state & GDK_WINDOW_STATE_STICKY or
+        #                 state & GDK_WINDOW_STATE_WITHDRAWN
+        #              )):
+        #             restore_focus = True
+        #     else:
+        #         restore_focus = True
+        # if not self.hidden:
+        # restore_focus = True
+        #     if restore_focus:
+        #         print "DBG: Restoring the focus to the terminal"
+        #         self.hide()
+        #         self.show()
+        #         self.window.window.focus()
+        #         self.set_terminal_focus()
+        #         return
 
         print "DBG: hiding the terminal"
         self.hide()

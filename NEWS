@@ -1,7 +1,10 @@
-Version 0.5.1 (2014.12.01):
+Version 0.5.2 (2014.12.22):
  - bug fixes
+ - Disable the 'focus_if_open' feature (hidden trigger, true per default). Restaure focus does not
+   work in all systems.
 
- Version 0.5.2 (2014.11.06):
+
+ Version 0.5.1 (2014.11.06):
  - bug fixes
 
 Version 0.5.0 (2014.02.22):
