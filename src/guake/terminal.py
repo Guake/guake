@@ -17,8 +17,8 @@ from guake.globals import KEY
 from guake.globals import QUICK_OPEN_MATCHERS
 from guake.globals import TERMINAL_MATCH_EXPRS
 from guake.globals import TERMINAL_MATCH_TAGS
-from guake.main import instance
 
+__all__ = ["GuakeTerminalBox"]
 
 class GuakeTerminal(vte.Terminal):
 
@@ -120,7 +120,9 @@ class GuakeTerminal(vte.Terminal):
                         logging.debug("Command line: %s", resolved_cmdline)
                         if quick_open_in_current_terminal:
                             logging.debug("Executing it in current tab")
-                            instance.execute_command(resolved_cmdline)
+                            if resolved_cmdline[-1] != '\n':
+                                resolved_cmdline += '\n'
+                            self.feed_child(resolved_cmdline)
                         else:
                             logging.debug("Executing it independently")
                             subprocess.call(resolved_cmdline, shell=True)
