@@ -20,7 +20,7 @@ simplegladeapp.py - Module that provides an object oriented abstraction
 to pygtk and libglade.
 
     - Adding `object' as base class to SimpleGladeApp class.
-    by Lincoln de Sousa <lincoln@archlinux-br.org>
+      by Lincoln de Sousa <lincoln@archlinux-br.org>
 
     - Commenting `setlocale' call to avoid problems with languages with
       sufixes (as pt_BR.utf8) by Lincoln de Sousa <lincoln@archlinux-br.org>
