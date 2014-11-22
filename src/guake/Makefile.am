@@ -10,7 +10,8 @@ guakemodule_PYTHON = __init__.py \
                      prefs.py \
                      notifier.py \
                      about.py \
-                     gconfhandler.py
+                     gconfhandler.py \
+                     terminal.py
 
 guakedir = $(bindir)
 bin_SCRIPTS = guake guake-prefs

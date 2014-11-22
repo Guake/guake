@@ -23,4 +23,3 @@ class AboutDialog(SimpleGladeApp):
 
         dialog.set_name('Guake!')
         dialog.set_version(VERSION)
-
