@@ -36,9 +36,12 @@ def showMessage(brief, body=None, icon=None):
     try:
         notification = Notify.Notification.new(brief, body, icon)
         notification.show()
+    # pylint: disable=catching-non-exception
     except GLib.GError:
         printWarning()
         GLib.timeout_add_seconds(RETRY_INTERVAL, lambda: retry(brief, body, icon))
+
+# pylint: enable=catching-non-exception
 
 
 def retry(*args):
