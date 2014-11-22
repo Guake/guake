@@ -35,3 +35,4 @@ m4/gnome-doc-utils.m4
 m4/intltool.m4
 py-compile
 data/org.guake.Guake.service
+ar-lib
