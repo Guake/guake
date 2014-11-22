@@ -46,6 +46,7 @@ from xml.sax.saxutils import escape as xml_escape
 import guake.globalhotkeys
 import guake.notifier
 
+from guake.about import AboutDialog
 from guake.common import ShowableError
 from guake.common import _
 from guake.common import gladefile
@@ -55,6 +56,8 @@ from guake.common import test_gconf
 from guake.dbusiface import DBUS_NAME
 from guake.dbusiface import DBUS_PATH
 from guake.dbusiface import DbusManager
+from guake.gconfhandler import GConfHandler
+from guake.gconfhandler import GConfKeyHandler
 from guake.globals import ALIGN_BOTTOM
 from guake.globals import ALIGN_CENTER
 from guake.globals import ALIGN_LEFT
@@ -64,11 +67,9 @@ from guake.globals import KEY
 from guake.globals import LOCALE_DIR
 from guake.globals import NAME
 from guake.prefs import GKEY
-from guake.about import AboutDialog
 from guake.prefs import PrefsDialog
 from guake.simplegladeapp import SimpleGladeApp
 from guake.simplegladeapp import bindtextdomain
-from guake.gconfhandler import GConfHandler, GConfKeyHandler
 from guake.terminal import GuakeTerminalBox
 
 
