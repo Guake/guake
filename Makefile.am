@@ -1,4 +1,4 @@
-SUBDIRS = guake data po
+SUBDIRS = src/guake data po
 
 EXTRA_DIST = \
 	AUTHORS \
