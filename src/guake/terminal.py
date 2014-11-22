@@ -29,7 +29,9 @@ from gi.repository import Pango
 from guake.globals import KEY
 from guake.common import clamp
 
-__all__ = 'Terminal', 'TerminalBox'
+
+__all__ = ['Terminal', 'TerminalBox']
+
 
 # regular expressions to highlight links in terminal. This code was
 # lovely stolen from the great gnome-terminal project, thank you =)
@@ -55,8 +57,18 @@ TERMINAL_MATCH_EXPRS = [
         host=HOST,
         user=USER,
         port=PORT,
-        urlpath=URLPATH
+        urlpath=URLPATH,
     ),
+]
+
+# tuple (title/quick matcher/filename and line number extractor)
+QUICK_OPEN_MATCHERS = [
+    ("Python traceback",
+     r"^\s\sFile\s\".*\",\sline\s[0-9]+",
+     r"^\s\sFile\s\"(.*)\",\sline\s([0-9]+)"),
+    ("line starts by 'Filename:line' pattern (GCC/make). File path should exists.",
+     r"^[a-zA-Z0-9\/\_\-\.\ ]+\.?[a-zA-Z0-9]+\:[0-9]+",
+     r"^(.*)\:([0-9]+)")
 ]
 
 
@@ -179,4 +191,3 @@ class TerminalBox(Gtk.HBox):
         scroll = Gtk.VScrollbar.new(adj)
         scroll.set_no_show_all(True)
         self.pack_start(scroll, False, False, 0)
-
