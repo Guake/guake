@@ -2,15 +2,15 @@ SUBDIRS = globalhotkeys
 
 guakemoduledir = $(pkgpythondir)
 guakemodule_PYTHON = __init__.py \
-                     globals.py \
-                     common.py \
-                     simplegladeapp.py \
-                     dbusiface.py \
-                     main.py \
-                     prefs.py \
-                     notifier.py \
                      about.py \
+                     common.py \
+                     dbusiface.py \
                      gconfhandler.py \
+                     globals.py \
+                     main.py \
+                     notifier.py \
+                     prefs.py \
+                     simplegladeapp.py \
                      terminal.py
 
 guakedir = $(bindir)
