@@ -81,7 +81,7 @@ function run_tests()
 }
 
 if [ -z $REVRANGE ]; then
-    py_files=$(find . -name "*.py" -o -name "*.py.in"   | grep -v -E 'guake/globals.py$')
+    py_files=$(find . -name "*.py" -o -name "*.py.in"   | grep -v -E 'src/guake/globals.py$')
     echo "Validating files: "
     echo $py_files
 else
@@ -96,7 +96,7 @@ else
     # shell behavior when piping to 'while'
     tempfile=$(mktemp)
     trap 'rm -f ${tempfile}' 1 2 3 15
-    git diff --name-only $REVRANGE | grep -E '(guake\/guake$|\.py$)' | grep -v '\(^master/\(contrib\|docs\)\|/setup\.py\)' > ${tempfile}
+    git diff --name-only $REVRANGE | grep -E '(src/guake\/guake$|\.py$)' | grep -v '\(^master/\(contrib\|docs\)\|/setup\.py\)' > ${tempfile}
     py_files=()
     while read line; do
         if test -f "${line}"; then
