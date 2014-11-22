@@ -47,11 +47,13 @@ def bindtextdomain(app_name, locale_dir=None):
 
 
 class SimpleGtk3App(object):
+
     """
     Basic GtkBuilder wrapper that implements the functions from
     simplegladeapp.py used by Guake with the purpose to minimize
     the changes required in Guake while porting it to GtkBuilder.
     """
+
     def __init__(self, path):
         """
         Load a GtkBuilder ui definition file specified by path.

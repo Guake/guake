@@ -19,15 +19,15 @@ Boston, MA 02110-1301 USA
 
 from __future__ import division
 
-from gi.repository import Gtk
+from gi.repository import GConf
 from gi.repository import Gdk
 from gi.repository import GdkX11
-from gi.repository import Vte
-from gi.repository import GConf
+from gi.repository import Gtk
 from gi.repository import Pango
+from gi.repository import Vte
 
-from guake.globals import KEY
 from guake.common import clamp
+from guake.globals import KEY
 
 
 __all__ = ['Terminal', 'TerminalBox']
@@ -35,29 +35,36 @@ __all__ = ['Terminal', 'TerminalBox']
 
 # regular expressions to highlight links in terminal. This code was
 # lovely stolen from the great gnome-terminal project, thank you =)
-USERCHARS = "-[:alnum:]"
-PASSCHARS = "-[:alnum:],?;.:/!%$^*&~\"#'"
-HOSTCHARS = "-[:alnum:]"
-HOST = "[{hostchars}]+(\\.[{hostchars}]+)*".format(hostchars=HOSTCHARS)
-PORT = "(:[:digit:]{1,5})?"
-PATHCHARS = "-[:alnum:]_$.+!*(),;:@&=?/~#%"
-SCHEME = "(news:|telnet:|nntp:|file:/|https?:|ftps?:|webcal:)"
-USER = "[{userchars}]+(:[{passchars}]+)?".format(
+USERCHARS = r"-[:alnum:]"
+PASSCHARS = r"-[:alnum:],?;.:/!%$^*&~\"#'"
+HOSTCHARS = r"-[:alnum:]"
+HOST = r"[{hostchars}]+(\\.[{hostchars}]+)*".format(hostchars=HOSTCHARS)
+PORT = r"(:[:digit:]{1,5})?"
+PATHCHARS = r"-[:alnum:]_$.+!*(),;:@&=?/~#%"
+SCHEME = r"(news:|telnet:|nntp:|file:/|https?:|ftps?:|webcal:)"
+USER = r"[{userchars}]+(:[{passchars}]+)?".format(
     userchars=USERCHARS,
     passchars=PASSCHARS)
-URLPATH = "/[{pathchars}]*[^]'.}>) \t\r\n,\\\"]".format(pathchars=PATHCHARS)
+URLPATH = r"/[{pathchars}]*[^]'.>) \t\r\n,\\\"]".format(pathchars=PATHCHARS)
 TERMINAL_MATCH_TAGS = 'schema', 'http', 'email'
 TERMINAL_MATCH_EXPRS = [
-    r"\<{scheme}//({user}@)?{host}{port}({urlpath})?\>/?".format(),
-    r"\<(www|ftp)[{hostchars}]*\.{host}{port}({urlpath})?\>/?".format(),
-    r"\<(mailto:)?[{userchars}][{userchars}.]*@[{hostchars}]+\.{host}\>".format(
+    r"\<{scheme}//({user}@)?{host}{port}({urlpath})?\>/?".format(
         scheme=SCHEME,
+        user=USER,
+        host=HOST,
+        port=PORT,
+        urlpath=URLPATH,
+    ),
+    r"\<(www|ftp)[{hostchars}]*\.{host}{port}({urlpath})?\>/?".format(
+        hostchars=HOSTCHARS,
+        host=HOST,
+        port=PORT,
+        urlpath=URLPATH,
+    ),
+    r"\<(mailto:)?[{userchars}][{userchars}.]*@[{hostchars}]+\.{host}\>".format(
         hostchars=HOSTCHARS,
         userchars=USERCHARS,
         host=HOST,
-        user=USER,
-        port=PORT,
-        urlpath=URLPATH,
     ),
 ]
 
@@ -73,8 +80,10 @@ QUICK_OPEN_MATCHERS = [
 
 
 class Terminal(Vte.Terminal):
+
     """Just a Vte.Terminal with some properties already set.
     """
+
     def __init__(self):
         super(Terminal, self).__init__()
         self.configure_terminal()
@@ -170,8 +179,10 @@ class Terminal(Vte.Terminal):
 
 
 class TerminalBox(Gtk.HBox):
+
     """A box to group the terminal and a scrollbar.
     """
+
     def __init__(self):
         super(TerminalBox, self).__init__()
         self.terminal = Terminal()

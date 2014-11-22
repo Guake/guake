@@ -1,9 +1,9 @@
 import gtk
 
-from guake.simplegladeapp import SimpleGladeApp
 from guake.common import gladefile
-from guake.globals import VERSION
 from guake.common import pixmapfile
+from guake.globals import VERSION
+from guake.simplegladeapp import SimpleGladeApp
 
 
 class AboutDialog(SimpleGladeApp):
