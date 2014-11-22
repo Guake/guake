@@ -72,9 +72,9 @@ from guake.globals import NAME
 from guake.globals import QUICK_OPEN_MATCHERS
 from guake.globals import TERMINAL_MATCH_EXPRS
 from guake.globals import TERMINAL_MATCH_TAGS
-from guake.globals import VERSION
 from guake.prefs import GKEY
 from guake.prefs import LKEY
+from guake.about import AboutDialog
 from guake.prefs import PrefsDialog
 from guake.simplegladeapp import SimpleGladeApp
 from guake.simplegladeapp import bindtextdomain
@@ -130,25 +130,6 @@ class PromptQuitDialog(gtk.MessageDialog):
             self.format_secondary_markup(
                 _("<b>There are %d processes running.</b>" % running_procs)
             )
-
-
-class AboutDialog(SimpleGladeApp):
-
-    """The About Guake dialog class
-    """
-
-    def __init__(self):
-        super(AboutDialog, self).__init__(gladefile('about.glade'),
-                                          root='aboutdialog')
-        dialog = self.get_widget('aboutdialog')
-
-        # images
-        ipath = pixmapfile('guake-notification.png')
-        img = gtk.gdk.pixbuf_new_from_file(ipath)
-        dialog.set_property('logo', img)
-
-        dialog.set_name('Guake!')
-        dialog.set_version(VERSION)
 
 
 class GConfHandler(object):
