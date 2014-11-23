@@ -48,6 +48,11 @@ class DbusManager(dbus.service.Object):
         self.guake.set_terminal_focus()
 
     @dbus.service.method(DBUS_NAME)
+    def show_from_remote(self):
+        self.guake.show_from_remote()
+        self.guake.set_terminal_focus()
+
+    @dbus.service.method(DBUS_NAME)
     def hide(self):
         self.guake.hide()
 
