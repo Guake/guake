@@ -141,7 +141,8 @@ class GuakeTerminal(vte.Terminal):
             found = False
             client = gconf.client_get_default()
             use_quick_open = client.get_bool(KEY("/general/quick_open_enable"))
-            quick_open_in_current_terminal = client.get_bool(KEY("/general/quick_open_in_current_terminal"))
+            quick_open_in_current_terminal = client.get_bool(
+                KEY("/general/quick_open_in_current_terminal"))
             cmdline = client.get_string(KEY("/general/quick_open_command_line"))
             if use_quick_open:
                 for _useless, _otheruseless, extractor in QUICK_OPEN_MATCHERS:

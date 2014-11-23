@@ -145,7 +145,8 @@ class Guake(SimpleGladeApp):
             self.tray_icon.connect('popup-menu', self.show_menu)
             self.tray_icon.connect('activate', self.show_hide)
         else:
-            self.tray_icon = appindicator.Indicator(_("guake-indicator"), _("guake-tray"), appindicator.CATEGORY_OTHER)
+            self.tray_icon = appindicator.Indicator(
+                _("guake-indicator"), _("guake-tray"), appindicator.CATEGORY_OTHER)
             self.tray_icon.set_icon("guake-tray")
             self.tray_icon.set_status(appindicator.STATUS_ACTIVE)
             menu = self.get_widget('tray-menu')
@@ -415,7 +416,8 @@ class Guake(SimpleGladeApp):
                 current_selection = current_selection[:17] + "..."
 
         if current_selection:
-            self.get_widget('context_search_on_web').set_label(_("Search on Web: '%s'") % current_selection)
+            self.get_widget('context_search_on_web').set_label(
+                _("Search on Web: '%s'") % current_selection)
             self.get_widget('context_search_on_web').set_sensitive(True)
         else:
             self.get_widget('context_search_on_web').set_label(_("Search on Web (no selection)"))
@@ -550,9 +552,9 @@ class Guake(SimpleGladeApp):
         if self.selected_color is None:
             self.selected_color = getattr(self.window.get_style(), "light")[int(gtk.STATE_SELECTED)]
 
-            # Reapply the tab color to all button in the tab list, since at least one don't have the select color
-            # set. This needs to happen AFTER the first show_all, since before the gtk has not loaded the right
-            # colors yet.
+            # Reapply the tab color to all button in the tab list, since at least one don't have the
+            # select color set. This needs to happen AFTER the first show_all, since before the gtk
+            # has not loaded the right colors yet.
             for tab in self.tabs.get_children():
                 if isinstance(tab, gtk.RadioButton):
                     tab.modify_bg(gtk.STATE_ACTIVE, gtk.gdk.Color(str(self.selected_color)))
@@ -655,16 +657,17 @@ class Guake(SimpleGladeApp):
                 # Size of the icons for Unity in Ubuntu <= 12.04
                 # TODO Ubuntu 12.10 use dconf :
                 # /org/compiz/profiles/unity/plugins/unityshell/icon-size
-                unity_icon_size = self.client.get_int(KEY('/apps/compiz-1/'
-                                                          'plugins/unityshell/screen0/options/icon_size'))
+                unity_icon_size = self.client.get_int(KEY(
+                    '/apps/compiz-1/plugins/unityshell/screen0/options/icon_size'))
                 if not unity_icon_size:
                     # If not found, it should be because of newer implementation of unity.
                     # Dock is 64 pixel of width on my system, hope this is so on others...
                     unity_dock = 64
                 else:
                     unity_dock = unity_icon_size + 17
-                print "correcting window width because of launcher width {} (from {} to {})".format(
-                    unity_dock, window_rect.width, window_rect.width - unity_dock)
+                print ("correcting window width because of launcher width {} "
+                       "(from {} to {})".format(
+                           unity_dock, window_rect.width, window_rect.width - unity_dock))
 
                 window_rect.width = window_rect.width - unity_dock
 
