@@ -25,14 +25,10 @@ import gconf
 import gobject
 import gtk
 import os
-import posix
 import pygtk
-import signal
 import sys
 import xdg.Exceptions
 
-from thread import start_new_thread
-from time import sleep
 from urllib import quote_plus
 from urllib import url2pathname
 from urlparse import urlsplit
@@ -205,14 +201,6 @@ class Guake(SimpleGladeApp):
             self.window.get_screen().connect("composited-changed",
                                              composited_changed)
 
-        # List of vte.Terminal widgets, it will be useful when needed
-        # to get a widget by the current page in self.notebook
-        self.term_list = []
-
-        # This is the pid of shells forked by each terminal. Will be
-        # used to kill the process when closing a tab
-        self.pid_list = []
-
         # It's intended to know which tab was selected to
         # close/rename. This attribute will be set in
         # self.show_tab_menu
@@ -309,41 +297,43 @@ class Guake(SimpleGladeApp):
                   'press <b>%s</b> to use it.') % xml_escape(label), filename)
 
     def set_background_transparency(self, transparency):
-        for i in self.term_list:
-            i.set_background_saturation(transparency / 100.0)
+        for t in self.notebook.iter_terminals():
+            t.set_background_saturation(transparency / 100.0)
             if self.has_argb:
-                i.set_opacity(int((100 - transparency) / 100.0 * 65535))
+                t.set_opacity(int((100 - transparency) / 100.0 * 65535))
 
     def set_background_image(self, image):
-        for i in self.term_list:
+        for t in self.notebook.iter_terminals():
             if image and os.path.exists(image):
-                i.set_background_image_file(image)
-                i.set_background_transparent(False)
+                t.set_background_image_file(image)
+                t.set_background_transparent(False)
             else:
                 """We need to clear the image if it's not set but there is
                 a bug in vte python bindings which doesn't allow None to be
                 passed to set_background_image (C GTK function expects NULL).
                 The user will need to restart Guake after clearing the image.
-                i.set_background_image(None)
+                r.set_background_image(None)
                 """
                 if self.has_argb:
-                    i.set_background_transparent(False)
+                    t.set_background_transparent(False)
                 else:
-                    i.set_background_transparent(True)
+                    t.set_background_transparent(True)
 
     def set_bgcolor(self, bgcolor, tab=None):
         """Set the background color of `tab' or the current tab to `bgcolor'."""
-        if not self.term_list:
+        if not self.notebook.has_term():
             self.add_tab()
         index = tab or self.notebook.get_current_page()
-        self.term_list[index].custom_bgcolor = gtk.gdk.color_parse(bgcolor)
+        for terminal in self.notebook.get_terminals_for_tab(index):
+            terminal.custom_bgcolor = gtk.gdk.color_parse(bgcolor)
 
     def set_fgcolor(self, fgcolor, tab=None):
         """Set the foreground color of `tab' or the current tab to `fgcolor'."""
-        if not self.term_list:
+        if not self.notebook.has_term():
             self.add_tab()
         index = tab or self.notebook.get_current_page()
-        self.term_list[index].custom_fgcolor = gtk.gdk.color_parse(fgcolor)
+        for terminal in self.notebook.get_terminals_for_tab(index):
+            terminal.custom_fgcolor = gtk.gdk.color_parse(fgcolor)
 
     def execute_command(self, command, tab=None):
         """Execute the `command' in the `tab'. If tab is None, the
@@ -351,14 +341,17 @@ class Guake(SimpleGladeApp):
         tab. Command should end with '\n', otherwise it will be
         appended to the string.
         """
-        if not self.term_list:
+        if not self.notebook.has_term():
             self.add_tab()
 
         if command[-1] != '\n':
             command += '\n'
 
         index = self.notebook.get_current_page()
-        self.term_list[tab or index].feed_child(command)
+        index = tab or self.notebook.get_current_page()
+        for terminal in self.notebook.get_terminals_for_tab(index):
+            terminal.feed_child(command)
+            break
 
     def on_resizer_drag(self, widget, event):
         """Method that handles the resize drag. It does not actuall
@@ -421,7 +414,7 @@ class Guake(SimpleGladeApp):
             self.get_widget('context_paste').set_sensitive(True)
 
         current_selection = ''
-        current_term = self.term_list[self.notebook.get_current_page()]
+        current_term = self.notebook.get_current_terminal()
         if current_term.get_has_selection():
             current_term.copy_clipboard()
             guake_clipboard = gtk.clipboard_get()
@@ -558,7 +551,7 @@ class Guake(SimpleGladeApp):
 
         # add tab must be called before window.show to avoid a
         # blank screen before adding the tab.
-        if not self.term_list:
+        if not self.notebook.has_term():
             self.add_tab()
 
         self.window.set_keep_below(False)
@@ -729,19 +722,10 @@ class Guake(SimpleGladeApp):
         return window_rect
 
     def get_running_fg_processes(self):
-        """Get the number processes for each terminal/tab. The code is taken
+        """Get the number of processes for each terminal/tab. The code is taken
         from gnome-terminal.
         """
-        total_procs = 0
-        term_idx = 0
-        for terminal in self.term_list:
-            fdpty = terminal.get_pty()
-            term_pid = self.pid_list[term_idx]
-            fgpid = posix.tcgetpgrp(fdpty)
-            if not (fgpid == -1 or fgpid == term_pid):
-                total_procs += 1
-            term_idx += 1
-        return total_procs
+        return self.notebook.get_running_fg_processes()
 
     # -- configuration --
 
@@ -794,14 +778,14 @@ class Guake(SimpleGladeApp):
     def accel_zoom_in(self, *args):
         """Callback to zoom in.
         """
-        for term in self.term_list:
+        for term in self.notebook.iter_terminals():
             term.increase_font_size()
         return True
 
     def accel_zoom_out(self, *args):
         """Callback to zoom out.
         """
-        for term in self.term_list:
+        for term in self.notebook.iter_terminals():
             term.decrease_font_size()
         return True
 
@@ -874,7 +858,7 @@ class Guake(SimpleGladeApp):
         """Callback to copy text in the shown terminal. Called by the
         accel key.
         """
-        current_term = self.term_list[self.notebook.get_current_page()]
+        current_term = self.notebook.get_current_terminal()
 
         if current_term.get_has_selection():
             current_term.copy_clipboard()
@@ -888,8 +872,7 @@ class Guake(SimpleGladeApp):
         """Callback to paste text in the shown terminal. Called by the
         accel key.
         """
-        pos = self.notebook.get_current_page()
-        self.term_list[pos].paste_clipboard()
+        self.notebook.get_current_terminal().paste_clipboard()
         return True
 
     def accel_toggle_fullscreen(self, *args):
@@ -994,7 +977,7 @@ class Guake(SimpleGladeApp):
             # if user sets empty name, consider he wants default behavior.
             setattr(self.selected_tab, 'custom_label_set', bool(new_text))
             # trigger titling handler in case that custom label has been reset
-            current_vte = self.term_list[self.notebook.get_current_page()]
+            current_vte = self.notebook.get_current_terminal()
             current_vte.emit('window-title-changed')
 
         dialog.destroy()
@@ -1065,8 +1048,9 @@ class Guake(SimpleGladeApp):
         else:
             tab.set_label(new_text)
             setattr(tab, 'custom_label_set', new_text != "-")
-            current_vte = self.term_list[tab_index]
-            current_vte.emit('window-title-changed')
+            terminals = self.notebook.get_terminals_for_tab(tab_index)
+            for current_vte in terminals:
+                current_vte.emit('window-title-changed')
 
     def rename_current_tab(self, new_text):
         """Sets the `self.selected_tab' var with the selected radio
@@ -1081,17 +1065,17 @@ class Guake(SimpleGladeApp):
         setattr(self.selected_tab, 'custom_label_set', new_text != "-")
 
         # trigger titling handler in case that custom label has been reset
-        current_vte = self.term_list[self.notebook.get_current_page()]
+        current_vte = self.notebook.get_current_terminal()
         current_vte.emit('window-title-changed')
 
     def get_current_dir(self):
         """Gets the working directory of the current tab to create a
         new one in the same dir.
         """
-        active_pagepos = self.notebook.get_current_page()
+        active_terminal = self.notebook.get_current_terminal()
         directory = os.path.expanduser('~')
-        if active_pagepos >= 0:
-            cwd = os.readlink("/proc/%d/cwd" % self.pid_list[active_pagepos])
+        if active_terminal:
+            cwd = os.readlink("/proc/%d/cwd" % active_terminal.get_pid())
             if os.path.exists(cwd):
                 directory = cwd
         return directory
@@ -1185,7 +1169,7 @@ class Guake(SimpleGladeApp):
 
         box.show()
 
-        self.term_list.append(box.terminal)
+        self.notebook.append_tab(box.terminal)
 
         # We can choose the directory to vte launch. It is important
         # to be used by dbus interface. I'm testing if directory is a
@@ -1201,7 +1185,6 @@ class Guake(SimpleGladeApp):
             # After the fork_command we add this new tty to utmp !
             libutempter.utempter_add_record(box.terminal.get_pty(), os.uname()[1])
         box.terminal.pid = pid
-        self.pid_list.append(pid)
 
         # Adding a new radio button to the tabbar
         label = box.terminal.get_window_title() or _("Terminal")
@@ -1247,8 +1230,6 @@ class Guake(SimpleGladeApp):
 
     def move_tab(self, old_tab_pos, new_tab_pos):
         self.notebook.reorder_child(self.notebook.get_nth_page(old_tab_pos), new_tab_pos)
-        self.pid_list.insert(new_tab_pos, self.pid_list.pop(old_tab_pos))
-        self.term_list.insert(new_tab_pos, self.term_list.pop(old_tab_pos))
         self.tabs.reorder_child(self.tabs.get_children()[old_tab_pos], new_tab_pos)
 
     def delete_tab(self, pagepos, kill=True):
@@ -1257,57 +1238,17 @@ class Guake(SimpleGladeApp):
         forked by vte.
         """
         self.tabs.get_children()[pagepos].destroy()
-        self.notebook.remove_page(pagepos)
-        self.term_list.pop(pagepos).destroy()
-        pid = self.pid_list.pop(pagepos)
+        self.notebook.delete_tab(pagepos, kill=kill)
 
-        if kill:
-            start_new_thread(self.delete_shell, (pid,))
-
-        if not self.term_list:
+        if not self.notebook.has_term():
             self.hide()
             # avoiding the delay on next Guake show request
             self.add_tab()
 
-    def delete_shell(self, pid):
-        """This function will kill the shell on a tab, trying to send
-        a sigterm and if it doesn't work, a sigkill. Between these two
-        signals, we have a timeout of 3 seconds, so is recommended to
-        call this in another thread. This doesn't change any thing in
-        UI, so you can use python's start_new_thread.
-        """
-        try:
-            os.kill(pid, signal.SIGHUP)
-        except OSError:
-            pass
-        num_tries = 30
-
-        while num_tries > 0:
-            try:
-                # Try to wait for the pid to be closed. If it does not
-                # exist anymore, an OSError is raised and we can
-                # safely ignore it.
-                if os.waitpid(pid, os.WNOHANG)[0] != 0:
-                    break
-            except OSError:
-                break
-            sleep(0.1)
-            num_tries -= 1
-
-        if num_tries == 0:
-            try:
-                os.kill(pid, signal.SIGKILL)
-                os.waitpid(pid, 0)
-            except OSError:
-                # if this part of code was reached, means that SIGTERM
-                # did the work and SIGKILL wasnt needed.
-                pass
-
     def set_terminal_focus(self):
         """Grabs the focus on the current tab.
         """
-        page = self.notebook.get_current_page()
-        self.term_list[page].grab_focus()
+        self.notebook.get_current_terminal().grab_focus()
 
     def select_current_tab(self, notebook, user_data, page):
         """When current self.notebook page is changed, the tab bar
@@ -1336,7 +1277,7 @@ class Guake(SimpleGladeApp):
     def search_on_web(self, *args):
         """search on web the selected text
         """
-        current_term = self.term_list[self.notebook.get_current_page()]
+        current_term = self.notebook.get_current_terminal()
 
         if current_term.get_has_selection():
             current_term.copy_clipboard()
