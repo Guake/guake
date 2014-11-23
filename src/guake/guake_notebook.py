@@ -20,7 +20,7 @@ class GuakeNotebook(Notebook):
         # used to kill the process when closing a tab
         self.pid_list = []
 
-    def has_tab(self):
+    def has_term(self):
         return self.term_list
 
     def get_tab_count(self):
