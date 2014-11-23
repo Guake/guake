@@ -22,7 +22,7 @@ from __future__ import absolute_import
 
 __all__ = [
     'NAME', 'VERSION', 'IMAGE_DIR', 'GLADE_DIR', 'LOCALE_DIR',
-    'GCONF_PATH', 'KEY', 'TERMINAL_MATCH_EXPRS', 'TERMINAL_MATCH_TAGS',
+    'GCONF_PATH', 'KEY',
     'ALIGN_CENTER', 'ALIGN_RIGHT', 'ALIGN_LEFT', 'ALIGN_TOP', 'ALIGN_BOTTOM',
     'ALWAYS_ON_PRIMARY'
 ]
@@ -51,8 +51,6 @@ else:
 GCONF_PATH = '/apps/guake'
 KEY = lambda x: (GCONF_PATH + x)
 
-
-TERMINAL_MATCH_TAGS = 'schema', 'http', 'email'
 ALIGN_CENTER, ALIGN_LEFT, ALIGN_RIGHT = range(3)
 ALIGN_TOP, ALIGN_BOTTOM = range(2)
 ALWAYS_ON_PRIMARY = -1
