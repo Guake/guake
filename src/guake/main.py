@@ -37,7 +37,7 @@ from guake.dbusiface import DBUS_NAME
 from guake.dbusiface import DBUS_PATH
 from guake.dbusiface import DbusManager
 from guake.globals import KEY
-from guake.guake import Guake
+from guake.guake_app import Guake
 
 
 def main():
@@ -202,7 +202,8 @@ def main():
             # Please ensure this is the last line !!!!
     return already_running
 
-if __name__ == '__main__':
+
+def exec_main():
     if not test_gconf():
         raise ShowableError(_('Guake can not init!'),
                             _('Gconf Error.\n'
@@ -210,3 +211,6 @@ if __name__ == '__main__':
 
     if not main():
         gtk.main()
+
+if __name__ == '__main__':
+    exec_main()
