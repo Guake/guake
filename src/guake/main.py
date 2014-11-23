@@ -137,7 +137,7 @@ def main():
         remote_object.show()
 
     if options.hide:
-        remote_object.hide()
+        remote_object.hide_from_remote()
 
     if options.show_preferences:
         remote_object.show_prefs()
