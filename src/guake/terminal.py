@@ -85,6 +85,9 @@ class GuakeTerminal(vte.Terminal):
         self.custom_bgcolor = None
         self.custom_fgcolor = None
 
+    def get_pid(self):
+        return self.pid
+
     def configure_terminal(self):
         """Sets all customized properties on the terminal
         """
