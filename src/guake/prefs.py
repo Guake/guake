@@ -37,8 +37,9 @@ from guake.globals import ALIGN_CENTER
 from guake.globals import ALIGN_LEFT
 from guake.globals import ALIGN_RIGHT
 from guake.globals import ALWAYS_ON_PRIMARY
-from guake.globals import GCONF_PATH
+from guake.globals import GKEY
 from guake.globals import KEY
+from guake.globals import LKEY
 from guake.globals import LOCALE_DIR
 from guake.globals import NAME
 from guake.simplegladeapp import SimpleGladeApp
@@ -61,11 +62,6 @@ USER_SHELL_VALUE = _('<user shell>')
 ERASE_BINDINGS = {'ASCII DEL': 'ascii-delete',
                   'Escape sequence': 'delete-sequence',
                   'Control-H': 'ascii-backspace'}
-
-# Stuff used to build the treeview that will allow the user to change
-# keybindings in the preferences window.
-LKEY = lambda x: GCONF_PATH + '/keybindings/local/' + x
-GKEY = lambda x: GCONF_PATH + '/keybindings/global/' + x
 
 HOTKEYS = [
     {'label': 'General',

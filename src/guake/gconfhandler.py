@@ -11,9 +11,9 @@ from xml.sax.saxutils import escape as xml_escape
 from guake.common import ShowableError
 from guake.common import _
 from guake.globals import GCONF_PATH
+from guake.globals import GKEY
 from guake.globals import KEY
-from guake.prefs import GKEY
-from guake.prefs import LKEY
+from guake.globals import LKEY
 
 
 GCONF_MONOSPACE_FONT_PATH = '/desktop/gnome/interface/monospace_font_name'
