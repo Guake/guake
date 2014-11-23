@@ -41,9 +41,9 @@ from guake.globals import GCONF_PATH
 from guake.globals import KEY
 from guake.globals import LOCALE_DIR
 from guake.globals import NAME
-from guake.terminal import QUICK_OPEN_MATCHERS
 from guake.simplegladeapp import SimpleGladeApp
 from guake.simplegladeapp import bindtextdomain
+from guake.terminal import QUICK_OPEN_MATCHERS
 
 # A regular expression to match possible python interpreters when
 # filling interpreters combo in preferences (including bpython and ipython)
