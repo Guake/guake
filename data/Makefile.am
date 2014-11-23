@@ -19,7 +19,7 @@ desktop_in_files = guake.desktop.in guake-prefs.desktop.in
 desktop_DATA = $(desktop_in_files:.desktop.in=.desktop)
 
 @INTLTOOL_SCHEMAS_RULE@
-schemadir = $(sysconfdir)/gconf/schemas
+schemadir = $(GCONF_SCHEMA_FILE_DIR)
 schema_DATA = guake.schemas
 
 EXTRA_DIST = \
