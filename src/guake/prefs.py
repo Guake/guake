@@ -225,8 +225,13 @@ class PrefsCallbacks(object):
         """
         self.client.set_bool(KEY('/general/window_ontop'), chk.get_active())
 
+    def on_tab_ontop_toggled(self, chk):
+        """Changes the activity of tab_ontop in gconf
+        """
+        self.client.set_bool(KEY('/general/tab_ontop'), chk.get_active())
+
     def on_quick_open_enable_toggled(self, chk):
-        """Changes the activity of window_ontop in gconf
+        """Changes the activity of quick_open_enable in gconf
         """
         self.client.set_bool(KEY('/general/quick_open_enable'), chk.get_active())
 
@@ -617,6 +622,10 @@ class PrefsDialog(SimpleGladeApp):
         # ontop
         value = self.client.get_bool(KEY('/general/window_ontop'))
         self.get_widget('window_ontop').set_active(value)
+
+        # tab ontop
+        value = self.client.get_bool(KEY('/general/tab_ontop'))
+        self.get_widget('tab_ontop').set_active(value)
 
         # losefocus
         value = self.client.get_bool(KEY('/general/window_losefocus'))

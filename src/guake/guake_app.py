@@ -179,7 +179,8 @@ class Guake(SimpleGladeApp):
         self.notebook.set_property("enable_popup", True)
         self.notebook.connect("switch_page", self.select_current_tab)
         self.mainframe.add(self.notebook)
-        self.mainframe.reorder_child(self.notebook, 0)
+        self.set_tab_position()
+
         self.tabs = self.get_widget('hbox-tabs')
         self.toolbar = self.get_widget('toolbar')
         self.mainframe = self.get_widget('mainframe')
@@ -1347,3 +1348,9 @@ class Guake(SimpleGladeApp):
                 gtk.show_uri(current_term.window.get_screen(), search_url,
                              gtk.gdk.x11_get_server_time(current_term.window))
         return True
+
+    def set_tab_position(self, *args):
+        if self.client.get_bool(KEY('/general/tab_ontop')):
+            self.mainframe.reorder_child(self.notebook, 2)
+        else:
+            self.mainframe.reorder_child(self.notebook, 0)

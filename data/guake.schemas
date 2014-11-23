@@ -108,6 +108,20 @@
         </schema>
 
         <schema>
+            <key>/schemas/apps/guake/general/tab_ontop</key>
+            <applyto>/apps/guake/general/tab_ontop</applyto>
+            <owner>guake</owner>
+            <type>bool</type>
+            <default>false</default>
+            <locale name="C">
+                <short>Tab on top.</short>
+                <long>Makes tab bar on top of the Guake window. Per default,
+                 tabs appears bellow the terminal. Setting this to True will
+                 move the tab on top of the terminal. Requires a restart.</long>
+            </locale>
+        </schema>
+
+        <schema>
             <key>/schemas/apps/guake/general/window_losefocus</key>
             <applyto>/apps/guake/general/window_losefocus</applyto>
             <owner>guake</owner>
