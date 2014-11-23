@@ -8,6 +8,7 @@ guakemodule_PYTHON = __init__.py \
                      gconfhandler.py \
                      globals.py \
                      guake_app.py \
+                     guake_notebook.py \
                      main.py \
                      notifier.py \
                      prefs.py \
