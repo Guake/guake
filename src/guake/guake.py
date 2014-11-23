@@ -34,10 +34,10 @@ from guake.globals import ALIGN_CENTER
 from guake.globals import ALIGN_LEFT
 from guake.globals import ALIGN_RIGHT
 from guake.globals import ALWAYS_ON_PRIMARY
+from guake.globals import GKEY
 from guake.globals import KEY
 from guake.globals import LOCALE_DIR
 from guake.globals import NAME
-from guake.prefs import GKEY
 from guake.prefs import PrefsDialog
 from guake.simplegladeapp import SimpleGladeApp
 from guake.simplegladeapp import bindtextdomain
