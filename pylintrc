@@ -151,10 +151,10 @@ disable=
 output-format=text
 
 # Include message's id in output
-include-ids=yes
+# include-ids=yes
 
 # Include symbolic ids of messages in output
-symbols=yes
+# symbols=yes
 
 # Put messages in a separate file for each module / package specified on the
 # command line instead of printing them on stdout. Reports (if any) will be
@@ -175,7 +175,10 @@ evaluation=10.0 - ((float(5 * error + warning + refactor + convention) / stateme
 # evaluation report (RP0004).
 comment=no
 
-msg-template={path}:{line}: [{msg_id}({symbol}), {obj}] {msg}'
+# Template used to display messages. This is a python new-style format string
+# used to format the message information. See doc for all details
+msg-template={path}:{line}: [{msg_id}({symbol}), {obj}] {msg}
+
 
 
 [MISCELLANEOUS]
