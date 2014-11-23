@@ -1286,6 +1286,7 @@ class Guake(SimpleGladeApp):
         """
         try:
             self.tabs.get_children()[tab_index].set_active(True)
+            return tab_index
         except IndexError:
             pass
 
@@ -1424,7 +1425,9 @@ def main():
 
     if options.select_tab:
         selected = int(options.select_tab)
-        remote_object.select_tab(selected)
+        i = remote_object.select_tab(selected)
+        if i is None:
+            sys.stdout.write('invalid index: %d\n' % selected)
         only_show_hide = False
 
     if options.selected_tab:
