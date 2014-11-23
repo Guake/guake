@@ -41,7 +41,7 @@ from guake.globals import GCONF_PATH
 from guake.globals import KEY
 from guake.globals import LOCALE_DIR
 from guake.globals import NAME
-from guake.globals import QUICK_OPEN_MATCHERS
+from guake.terminal import QUICK_OPEN_MATCHERS
 from guake.simplegladeapp import SimpleGladeApp
 from guake.simplegladeapp import bindtextdomain
 
