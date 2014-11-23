@@ -120,6 +120,10 @@ tarball, please do the following::
     $ cd guake
     $ ./autogen.sh && ./configure && make
 
+For Ubuntu user, we have a script that does all these steps for you. Use::
+
+    $ ./dev.sh
+
 
 Testing as an unprivileged user
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -133,8 +137,11 @@ If you run into::
 
     ImportError: No module named globalhotkeys
 
-please check for `guake/guake.py*` leftover files and delete, if any.
+please check for ``guake/guake.py*`` leftover files and delete, if any.
 
+**Note**: Ubuntu users, you can use the following command::
+
+   $ ./dev.sh --no-install
 
 System-wide installation
 ~~~~~~~~~~~~~~~~~~~~~~~~
@@ -167,7 +174,26 @@ Please install this git hook if you want to beautify your patch before submissio
     $ cd guake
     $ ln -s git-hooks/post-commit .git/hooks/
 
+Validate your code
+------------------
+
+We are strict on code styling, with pep8 and pylint running automatically in travis in
+order to reject badly shaped patches. Please use the following command to validate all
+python files::
+
+    $ ./validate.sh
+
 Update NEWS
 -----------
 
 Add your change in the ``NEWS`` file. The ``ChangeLog`` files is not more used.
+
+Travis build
+------------
+
+Travis automatically check pull requests are compiling and check for code style.
+
+Status of the master branch: |travis-badge|_
+
+.. |travis-badge| image:: https://travis-ci.org/Guake/guake.png?branch=master
+.. _travis-badge: https://travis-ci.org/Guake/guake
