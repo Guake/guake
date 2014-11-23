@@ -29,7 +29,6 @@ load-plugins=
 
 # Following are the checks we don't care about, and thus should remain disabled
 #
-# C0102: Black listed name "%s"
 # C0111: Missing docstring
 # C0302: Too many lines in module (%s)*
 # R0201: Method could be a function*
@@ -54,7 +53,6 @@ load-plugins=
 # W0633: Attempting to unpack a non-sequence
 
 disable=
-  C0102,
   C0103,
   C0111,
   C0302,
