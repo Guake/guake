@@ -56,6 +56,7 @@ class GConfHandler(object):
 
         notify_add(KEY('/general/use_trayicon'), self.trayicon_toggled)
         notify_add(KEY('/general/window_ontop'), self.ontop_toggled)
+        notify_add(KEY('/general/tab_ontop'), self.tab_ontop_toggled)
         notify_add(KEY('/general/window_tabbar'), self.tabbar_toggled)
         notify_add(KEY('/general/window_height'), self.size_changed)
         notify_add(KEY('/general/window_width'), self.size_changed)
@@ -107,6 +108,11 @@ class GConfHandler(object):
         main window.
         """
         self.guake.window.set_keep_above(entry.value.get_bool())
+
+    def tab_ontop_toggled(self, client, connection_id, entry, data):
+        """ tab_ontop changed
+        """
+        self.guake.set_tab_position()
 
     def tabbar_toggled(self, client, connection_id, entry, data):
         """If the gconf var use_tabbar be changed, this method will be
