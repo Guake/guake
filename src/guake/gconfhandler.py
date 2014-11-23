@@ -45,7 +45,8 @@ class GConfHandler(object):
         # notify_add(KEY('/general/window_losefocus'), self.losefocus_toggled)
         # notify_add(KEY('/general/use_vte_titles'), self.use_vte_titles_changed)
         # notify_add(KEY('/general/quick_open_enable'), self.on_quick_open_enable_changed)
-        # notify_add(KEY('/general/quick_open_in_current_terminal'), self.on_quick_open_in_current_terminal_changed)
+        # notify_add(KEY('/general/quick_open_in_current_terminal'),
+        #   self.on_quick_open_in_current_terminal_changed)
 
         # Notification is not required for mouse_display/display_n because
         # set_final_window_rect polls gconf and is called whenever Guake is
@@ -305,7 +306,8 @@ class GConfKeyHandler(object):
 
         keys = ['toggle_fullscreen', 'new_tab', 'close_tab', 'rename_current_tab',
                 'previous_tab', 'next_tab', 'clipboard_copy', 'clipboard_paste',
-                'quit', 'zoom_in', 'zoom_out', 'increase_height', 'decrease_height', "search_on_web",
+                'quit', 'zoom_in', 'zoom_out', 'increase_height', 'decrease_height',
+                "search_on_web",
                 'switch_tab1', 'switch_tab2', 'switch_tab3', 'switch_tab4', 'switch_tab5',
                 'switch_tab6', 'switch_tab7', 'switch_tab8', 'switch_tab9', 'switch_tab10'
                 ]

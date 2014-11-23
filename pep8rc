@@ -11,9 +11,8 @@ max-line-length = 100
 # E126 continuation line over-indented for hanging indent
 # E128 continuation line under-indented for visual indent
 # E211 whitespace before '('
-# E501 line too long (102 > 100 characters)
 # E711 comparison to None should be 'if cond is None:'
 # E712 comparison to False should be 'if cond is False:' or 'if not cond:'
 # E721 do not compare types, use 'isinstance()'
 
-ignore = E122,E126,E128,E211,E501,E711,E712,E721
+ignore = E122,E126,E128,E211,E711,E712,E721
