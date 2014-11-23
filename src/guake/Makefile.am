@@ -7,7 +7,7 @@ guakemodule_PYTHON = __init__.py \
                      dbusiface.py \
                      gconfhandler.py \
                      globals.py \
-                     guake.py \
+                     guake_app.py \
                      main.py \
                      notifier.py \
                      prefs.py \

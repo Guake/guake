@@ -6,11 +6,10 @@ import gconf
 import gtk
 import logging
 import os
+import pango
 import re
 import subprocess
 import vte
-
-from pango import FontDescription
 
 from guake.common import clamp
 from guake.globals import KEY
@@ -192,7 +191,7 @@ class GuakeTerminal(vte.Terminal):
     def set_font_scale_index(self, scale_index):
         self.font_scale_index = clamp(scale_index, -6, 12)
 
-        font = FontDescription(self.font.to_string())
+        font = pango.FontDescription(self.font.to_string())
         scale_factor = 2 ** (self.font_scale_index / 6)
         new_size = int(scale_factor * font.get_size())
 

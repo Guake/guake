@@ -127,7 +127,7 @@ Testing as an unprivileged user
 To run Guake as an unprivileged user for testing purposes, after `make` continue with::
 
     $ gconftool-2 --install-schema-file=data/guake.schemas
-    $ PYTHONPATH=. python guake/main.py
+    $ PYTHONPATH=src python src/guake/main.py
 
 If you run into::
 
