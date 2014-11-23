@@ -38,3 +38,4 @@ m4/gnome-doc-utils.m4
 py-compile
 debian
 compile
+doc/src/conf.py
