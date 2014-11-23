@@ -1,4 +1,8 @@
-Version 0.5.2 (2014.12.22):
+Version 0.6.0 (2014.12.14):
+ - Split Terminal
+ - Save Sesstion
+
+Version 0.5.2 (2014.11.23):
  - bug fixes
  - Disable the 'focus_if_open' feature (hidden trigger, true per default). Restaure focus does not
    work in all systems.
