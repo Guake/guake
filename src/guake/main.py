@@ -28,6 +28,8 @@ import gtk
 import subprocess
 import sys
 
+from optparse import OptionParser
+
 from guake.common import ShowableError
 from guake.common import _
 from guake.common import test_gconf
@@ -44,7 +46,6 @@ def main():
     running it will be used and a True value will be returned,
     otherwise, false will be returned.
     """
-    from optparse import OptionParser
     parser = OptionParser()
     parser.add_option('-f', '--fullscreen', dest='fullscreen',
                       action='store_true', default=False,
