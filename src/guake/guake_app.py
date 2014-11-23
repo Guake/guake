@@ -58,6 +58,7 @@ from guake.globals import GKEY
 from guake.globals import KEY
 from guake.globals import LOCALE_DIR
 from guake.globals import NAME
+from guake.guake_notebook import GuakeNotebook
 from guake.prefs import PrefsDialog
 from guake.simplegladeapp import SimpleGladeApp
 from guake.simplegladeapp import bindtextdomain
@@ -165,7 +166,26 @@ class Guake(SimpleGladeApp):
 
         # important widgets
         self.window = self.get_widget('window-root')
-        self.notebook = self.get_widget('notebook-teminals')
+        self.mainframe = self.get_widget('mainframe')
+        self.notebook = GuakeNotebook()
+        self.notebook.set_property("tab_pos", "bottom")
+        self.notebook.set_property("show_tabs", False)
+        self.notebook.set_property("show_border", False)
+        self.notebook.connect("switch_page", self.select_current_tab)
+
+        # <widget class="GtkNotebook" id="notebook-teminals">
+        #   <property name="visible">True</property>
+        #   <property name="can_focus">True</property>
+        #   <property name="has_focus">True</property>
+        #   <property name="is_focus">True</property>
+        #   <property name="tab_pos">bottom</property>
+        #   <property name="show_tabs">False</property>
+        #   <property name="show_border">False</property>
+        #   <property name="enable_popup">True</property>
+        #   <signal name="switch_page" handler="select_current_tab"/>
+        # </widget>
+        self.mainframe.add(self.notebook)
+        self.mainframe.reorder_child(self.notebook, 0)
         self.tabs = self.get_widget('hbox-tabs')
         self.toolbar = self.get_widget('toolbar')
         self.mainframe = self.get_widget('mainframe')
