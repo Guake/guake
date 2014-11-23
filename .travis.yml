@@ -18,4 +18,5 @@ install:
     - find /usr/include
 script:
     - ./validate.sh
-    - ./autogen.sh && ./configure && make
+    - ./autogen.sh
+    - ./configure && make
