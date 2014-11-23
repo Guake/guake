@@ -98,6 +98,7 @@ AC_CONFIG_FILES([
     src/guake/Makefile
     src/guake/globalhotkeys/Makefile
     src/guake/globals.py
+    doc/src/conf.py
 ])
 
 AC_OUTPUT
