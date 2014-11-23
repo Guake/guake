@@ -139,7 +139,7 @@ def main():
         remote_object.fullscreen()
 
     if options.show:
-        remote_object.show()
+        remote_object.show_from_remote()
 
     if options.hide:
         remote_object.hide_from_remote()

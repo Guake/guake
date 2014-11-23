@@ -586,6 +586,14 @@ class Guake(SimpleGladeApp):
         self.forceHide = True
         self.hide()
 
+    def show_from_remote(self):
+        """Show the main window of the terminal and sets the visible
+        flag to False.
+        """
+        print "show from remote"
+        self.forceHide = True
+        self.show()
+
     def hide(self):
         """Hides the main window of the terminal and sets the visible
         flag to False.
