@@ -50,6 +50,11 @@ else:
 # Gconf stuff. Yep, it is hardcoded =)
 GCONF_PATH = '/apps/guake'
 KEY = lambda x: (GCONF_PATH + x)
+# Stuff used to build the treeview that will allow the user to change
+# keybindings in the preferences window.
+LKEY = lambda x: GCONF_PATH + '/keybindings/local/' + x
+GKEY = lambda x: GCONF_PATH + '/keybindings/global/' + x
+
 
 ALIGN_CENTER, ALIGN_LEFT, ALIGN_RIGHT = range(3)
 ALIGN_TOP, ALIGN_BOTTOM = range(2)
