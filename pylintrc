@@ -153,7 +153,7 @@ output-format=text
 include-ids=yes
 
 # Include symbolic ids of messages in output
-symbols=no
+symbols=yes
 
 # Put messages in a separate file for each module / package specified on the
 # command line instead of printing them on stdout. Reports (if any) will be
