@@ -7,11 +7,5 @@ max-line-length = 100
 # List of currently ignored PEP8 issues.  Some of them definetely should be
 # enabled in future.
 #
-# E122 continuation line missing indentation or outdented
-# E126 continuation line over-indented for hanging indent
-# E128 continuation line under-indented for visual indent
-# E711 comparison to None should be 'if cond is None:'
-# E712 comparison to False should be 'if cond is False:' or 'if not cond:'
-# E721 do not compare types, use 'isinstance()'
 
-ignore = E122,E126,E128,E711,E712,E721
+# ignore =
