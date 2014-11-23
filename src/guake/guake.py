@@ -208,6 +208,7 @@ class Guake(SimpleGladeApp):
             shown.
             """
             self.showing_context_menu = False
+
         self.get_widget('context-menu').connect('hide', hide_context_menu)
         self.get_widget('tab-menu').connect('hide', hide_context_menu)
         self.window.connect('focus-out-event', self.on_window_losefocus)
@@ -217,6 +218,7 @@ class Guake(SimpleGladeApp):
         def destroy(*args):
             self.hide()
             return True
+
         self.window.connect('delete-event', destroy)
 
         # Flag to completely disable losefocus hiding
