@@ -119,6 +119,8 @@ def main():
 
     options = parser.parse_args()[0]
 
+    instance = None
+
     # Trying to get an already running instance of guake. If it is not
     # possible, lets create a new instance. This function will return
     # a boolean value depending on this decision.
@@ -127,7 +129,6 @@ def main():
         remote_object = bus.get_object(DBUS_NAME, DBUS_PATH)
         already_running = True
     except dbus.DBusException:
-        global instance
         instance = Guake()
         remote_object = DbusManager(instance)
         already_running = False
