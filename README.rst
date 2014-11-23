@@ -156,10 +156,18 @@ If it is not enought you can install the gconf schemas file by hand by doing the
 
 For more install details, please read the ``INSTALL`` file.
 
+Development
+~~~~~~~~~~~
+
 Git hook
-~~~~~~~~
+--------
 
 Please install this git hook if you want to beautify your patch before submission::
 
     $ cd guake
     $ ln -s git-hooks/post-commit .git/hooks/
+
+Update NEWS
+-----------
+
+Add your change in the ``NEWS`` file. The ``ChangeLog`` files is not more used.
