@@ -310,7 +310,8 @@ class PrefsCallbacks(object):
                 'radiobutton_align_right': ALIGN_RIGHT,
                 'radiobutton_align_center': ALIGN_CENTER
             }
-            self.client.set_int(KEY('/general/window_halignment'), which_align[halign_button.get_name()])
+            self.client.set_int(KEY('/general/window_halignment'),
+                                which_align[halign_button.get_name()])
 
     # scrolling tab
 

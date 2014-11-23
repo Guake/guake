@@ -172,7 +172,8 @@ class SimpleGladeApp(object):
             widget_api_name = "_".join(re.findall(tokenize.Name, widget_api_name))
             gtk.Widget.set_name(widget, widget_api_name)
             if hasattr(self, widget_api_name):
-                raise AttributeError("instance %s already has an attribute %s" % (self, widget_api_name))
+                raise AttributeError("instance %s already has an attribute %s" %
+                                     (self, widget_api_name))
             else:
                 setattr(self, widget_api_name, widget)
                 if prefixes:

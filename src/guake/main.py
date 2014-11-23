@@ -93,21 +93,25 @@ def main():
 
     parser.add_option('--bgcolor', dest='bgcolor',
                       action='store', default='',
-                      help=_('Set the hexadecimal (#rrggbb) background color of the selected tab.'))
+                      help=_('Set the hexadecimal (#rrggbb) background color of '
+                             'the selected tab.'))
 
     parser.add_option('--fgcolor', dest='fgcolor',
                       action='store', default='',
-                      help=_('Set the hexadecimal (#rrggbb) foreground color of the selected tab.'))
+                      help=_('Set the hexadecimal (#rrggbb) foreground color of the '
+                             'selected tab.'))
 
     parser.add_option('--rename-tab', dest='rename_tab',
                       metavar='TITLE',
                       action='store', default='',
-                      help=_('Rename the specified tab. Reset to default if TITLE is a single dash "-".'))
+                      help=_('Rename the specified tab. Reset to default if TITLE is '
+                             'a single dash "-".'))
 
     parser.add_option('-r', '--rename-current-tab', dest='rename_current_tab',
                       metavar='TITLE',
                       action='store', default='',
-                      help=_('Rename the current tab. Reset to default if TITLE is a single dash "-".'))
+                      help=_('Rename the current tab. Reset to default if TITLE is a '
+                             'single dash "-".'))
 
     parser.add_option('-q', '--quit', dest='quit',
                       action='store_true', default=False,
