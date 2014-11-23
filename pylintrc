@@ -52,7 +52,6 @@ load-plugins=
 # W0601: Global variable %r undefined at the module level
 # W0613: Unused argument %r
 # W0633: Attempting to unpack a non-sequence
-# E1103: %s %r has no %r member (but some types could not be inferred)
 
 disable=
   C0102,
@@ -76,7 +75,6 @@ disable=
   W0511,
   W0601,
   W0613,
-  E1103,
   I0011,
   C0202,
   C0301,
