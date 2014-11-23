@@ -14,11 +14,40 @@ from pango import FontDescription
 
 from guake.common import clamp
 from guake.globals import KEY
-from guake.globals import QUICK_OPEN_MATCHERS
-from guake.globals import TERMINAL_MATCH_EXPRS
-from guake.globals import TERMINAL_MATCH_TAGS
 
 __all__ = ["GuakeTerminalBox"]
+
+
+# regular expressions to highlight links in terminal. This code was
+# lovely stolen from the great gnome-terminal project, thank you =)
+USERCHARS = "-[:alnum:]"
+PASSCHARS = "-[:alnum:],?;.:/!%$^*&~\"#'"
+HOSTCHARS = "-[:alnum:]"
+HOST = "[" + HOSTCHARS + "]+(\\.[" + HOSTCHARS + "]+)*"
+PORT = "(:[[:digit:]]{1,5})?"
+PATHCHARS = "-[:alnum:]_$.+!*(),;:@&=?/~#%"
+SCHEME = "(news:|telnet:|nntp:|file:/|https?:|ftps?:|webcal:)"
+USER = "[" + USERCHARS + "]+(:[" + PASSCHARS + "]+)?"
+URLPATH = "/[" + PATHCHARS + "]*[^]'.}>) \t\r\n,\\\"]"
+
+TERMINAL_MATCH_EXPRS = [
+    r"\<" + SCHEME + "//(" + USER + r"@)?" + HOST + PORT + "(" + URLPATH + r")?\>/?",
+    r"\<(www|ftp)[" + HOSTCHARS + r"]*\." + HOST + PORT + "(" + URLPATH + r")?\>/?",
+    r"\<(mailto:)?[" + USERCHARS + "][" + USERCHARS + ".]*@[" + HOSTCHARS +
+    r"]+\." + HOST + r"\>"
+]
+
+TERMINAL_MATCH_TAGS = 'schema', 'http', 'email'
+
+# tuple (title/quick matcher/filename and line number extractor)
+QUICK_OPEN_MATCHERS = [
+    ("Python traceback",
+     r"^\s\sFile\s\".*\",\sline\s[0-9]+",
+     r"^\s\sFile\s\"(.*)\",\sline\s([0-9]+)"),
+    ("line starts by 'Filename:line' pattern (GCC/make). File path should exists.",
+     r"^[a-zA-Z0-9\/\_\-\.\ ]+\.?[a-zA-Z0-9]+\:[0-9]+",
+     r"^(.*)\:([0-9]+)")
+]
 
 
 class GuakeTerminal(vte.Terminal):
