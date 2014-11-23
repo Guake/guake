@@ -133,6 +133,8 @@ class Guake(SimpleGladeApp):
 
         self.isPromptQuitDialogOpened = False
         self.hidden = True
+        self.forceHide = False
+
         # trayicon!
         try:
             import appindicator
@@ -461,6 +463,10 @@ class Guake(SimpleGladeApp):
     def show_hide(self, *args):
         """Toggles the main window visibility
         """
+        if self.forceHide:
+            self.forceHide = False
+            return
+
         event_time = self.hotkeys.get_current_event_time()
 
         if self.losefocus_time and \
@@ -569,6 +575,14 @@ class Guake(SimpleGladeApp):
         # after the widget is shown.
         self.client.notify(KEY('/style/font/color'))
         self.client.notify(KEY('/style/background/color'))
+
+    def hide_from_remote(self):
+        """Hides the main window of the terminal and sets the visible
+        flag to False.
+        """
+        print "hide from remote"
+        self.forceHide = True
+        self.hide()
 
     def hide(self):
         """Hides the main window of the terminal and sets the visible

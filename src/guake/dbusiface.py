@@ -52,6 +52,10 @@ class DbusManager(dbus.service.Object):
         self.guake.hide()
 
     @dbus.service.method(DBUS_NAME)
+    def hide_from_remote(self):
+        self.guake.hide_from_remote()
+
+    @dbus.service.method(DBUS_NAME)
     def fullscreen(self):
         self.guake.fullscreen()
 
