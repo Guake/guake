@@ -20,6 +20,7 @@ from guake.globals import TERMINAL_MATCH_TAGS
 
 __all__ = ["GuakeTerminalBox"]
 
+
 class GuakeTerminal(vte.Terminal):
 
     """Just a vte.Terminal with some properties already set.
