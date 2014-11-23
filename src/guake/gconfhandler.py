@@ -139,20 +139,20 @@ class GConfHandler(object):
     def cursor_blink_mode_changed(self, client, connection_id, entry, data):
         """Called when cursor blink mode settings has been changed
         """
-        for term in self.guake.term_list:
+        for term in self.guake.notebook.iter_terminals():
             term.set_property("cursor-blink-mode", entry.value.get_int())
 
     def cursor_shape_changed(self, client, connection_id, entry, data):
         """Called when the cursor shape settings has been changed
         """
-        for term in self.guake.term_list:
+        for term in self.guake.notebook.iter_terminals():
             term.set_property("cursor-shape", entry.value.get_int())
 
     def scrollbar_toggled(self, client, connection_id, entry, data):
         """If the gconf var use_scrollbar be changed, this method will
         be called and will show/hide scrollbars of all terminals open.
         """
-        for term in self.guake.term_list:
+        for term in self.guake.notebook.iter_terminals():
             # There is an hbox in each tab of the main notebook and it
             # contains a Terminal and a Scrollbar. Since only have the
             # Terminal here, we're going to use this to get the
@@ -169,7 +169,7 @@ class GConfHandler(object):
         be called and will set the scrollback_lines property of all
         terminals open.
         """
-        for i in self.guake.term_list:
+        for i in self.guake.notebook.iter_terminals():
             i.set_scrollback_lines(entry.value.get_int())
 
     def keystroke_output(self, client, connection_id, entry, data):
@@ -177,7 +177,7 @@ class GConfHandler(object):
         be called and will set the scroll_on_output in all terminals
         open.
         """
-        for i in self.guake.term_list:
+        for i in self.guake.notebook.iter_terminals():
             i.set_scroll_on_output(entry.value.get_bool())
 
     def keystroke_toggled(self, client, connection_id, entry, data):
@@ -185,7 +185,7 @@ class GConfHandler(object):
         will be called and will set the scroll_on_keystroke in all
         terminals open.
         """
-        for i in self.guake.term_list:
+        for i in self.guake.notebook.iter_terminals():
             i.set_scroll_on_keystroke(entry.value.get_bool())
 
     def default_font_toggled(self, client, connection_id, entry, data):
@@ -215,7 +215,7 @@ class GConfHandler(object):
         font = FontDescription(font_name)
         if not font:
             return
-        for i in self.guake.term_list:
+        for i in self.guake.notebook.iter_terminals():
             i.set_font(font)
 
     def fstyle_changed(self, client, connection_id, entry, data):
@@ -224,7 +224,7 @@ class GConfHandler(object):
         open.
         """
         font = FontDescription(entry.value.get_string())
-        for i in self.guake.term_list:
+        for i in self.guake.notebook.iter_terminals():
             i.set_font(font)
 
     def fcolor_changed(self, client, connection_id, entry, data):
@@ -233,7 +233,7 @@ class GConfHandler(object):
         open.
         """
         fgcolor = gtk.gdk.color_parse(entry.value.get_string())
-        for i in self.guake.term_list:
+        for i in self.guake.notebook.iter_terminals():
             i.set_color_dim(i.custom_fgcolor or fgcolor)
             i.set_color_foreground(i.custom_fgcolor or fgcolor)
             i.set_color_bold(i.custom_fgcolor or fgcolor)
@@ -249,7 +249,7 @@ class GConfHandler(object):
             client.get_string(KEY('/style/background/color')))
         palette = [gtk.gdk.color_parse(color) for color in
                    entry.value.get_string().split(':')]
-        for i in self.guake.term_list:
+        for i in self.guake.notebook.iter_terminals():
             i.set_colors(fgcolor, bgcolor, palette)
 
     def bgcolor_changed(self, client, connection_id, entry, data):
@@ -258,7 +258,7 @@ class GConfHandler(object):
         all terminals open.
         """
         bgcolor = gtk.gdk.color_parse(entry.value.get_string())
-        for i in self.guake.term_list:
+        for i in self.guake.notebook.iter_terminals():
             i.set_color_background(i.custom_bgcolor or bgcolor)
             i.set_background_tint_color(i.custom_bgcolor or bgcolor)
 
@@ -282,7 +282,7 @@ class GConfHandler(object):
         will be called and will change the binding configuration in
         all terminals open.
         """
-        for i in self.guake.term_list:
+        for i in self.guake.notebook.iter_terminals():
             i.set_backspace_binding(entry.value.get_string())
 
     def delete_changed(self, client, connection_id, entry, data):
@@ -290,7 +290,7 @@ class GConfHandler(object):
         will be called and will change the binding configuration in
         all terminals open.
         """
-        for i in self.guake.term_list:
+        for i in self.guake.notebook.iter_terminals():
             i.set_delete_binding(entry.value.get_string())
 
 
