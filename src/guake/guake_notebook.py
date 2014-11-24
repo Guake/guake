@@ -30,6 +30,8 @@ class GuakeNotebook(Notebook):
         return [self.term_list[index]]
 
     def get_current_terminal(self):
+        if self.get_current_page() == -1:
+            return None
         return self.term_list[self.get_current_page()]
 
     def get_running_fg_processes(self):
