@@ -163,6 +163,7 @@ class Guake(SimpleGladeApp):
         # important widgets
         self.window = self.get_widget('window-root')
         self.mainframe = self.get_widget('mainframe')
+        self.mainframe.remove(self.get_widget('notebook-teminals'))
         self.notebook = GuakeNotebook()
         self.notebook.set_name("notebook-teminals")
         self.notebook.set_property("tab_pos", "bottom")
@@ -1295,3 +1296,4 @@ class Guake(SimpleGladeApp):
             self.mainframe.reorder_child(self.notebook, 2)
         else:
             self.mainframe.reorder_child(self.notebook, 0)
+        self.mainframe.pack_start(self.mainframe, expand=True, fill=True, padding=0)
