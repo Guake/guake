@@ -4,21 +4,34 @@
 # of Guake sources. Nothing say it will work directly on your environment. Use with caution!
 
 NO_INSTALL=false
+EXEC_AUTOGEN=false
 
 echo "execute guake for developer."
 echo "use --no-install to avoid installing guake on your system"
 echo "(beware, gconf schema will be altered)"
+echo "use --reinstall to force complete reinstall"
 
 if [[ $1 == "--no-install" ]]; then
     NO_INSTALL=true
 fi
 
+if [[ $1 == "--reinstall" ]]; then
+    EXEC_AUTOGEN=true
+fi
+
 if [[ ! -f configure ]]; then
+    EXEC_AUTOGEN=true
+fi
+
+if [[ $EXEC_AUTOGEN == true ]]; then
     sudo apt-get install -y build-essential python autoconf
     sudo apt-get install -y gnome-common gtk-doc-tools libglib2.0-dev libgtk2.0-dev libgconf2-dev
     sudo apt-get install -y python-gtk2 python-gtk2-dev python-vte glade python-glade2
     sudo apt-get install -y python-vte python-gconf python-appindicator
     sudo apt-get install -y notify-osd libutempter0 glade-gtk2
+    if [[ -f Makefile ]]; then
+        make clean
+    fi
     ./autogen.sh
 fi
 
