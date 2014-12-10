@@ -359,6 +359,7 @@ class Guake(SimpleGladeApp):
 
         # Workspaces tracking
         self.boxes_by_workspaces = {}
+        self.active_by_workspaces = {}
         self.screen = wnck.screen_get_default()
         self.screen.connect( "active-workspace-changed", self.workspace_changed )
 
@@ -570,6 +571,7 @@ class Guake(SimpleGladeApp):
 
         if previous_workspace:
             prev_w_num = previous_workspace.get_number()
+            self.active_by_workspaces[prev_w_num] = self.get_active_box()
             if prev_w_num != w_num:
                 # Workspace did change
                 for box, bnt in self.boxes_by_workspaces[prev_w_num]:
@@ -582,8 +584,20 @@ class Guake(SimpleGladeApp):
                     for box, bnt in self.boxes_by_workspaces[w_num]:
                         box.show()
                         bnt.show()
-
+                    self.set_active_box(self.active_by_workspaces[w_num])
         self.current_workspace = w_num
+
+    def get_active_box(self):
+        """Return the currently shown GuakeTerminalBox.
+        """
+        page_num = self.notebook.get_current_page()
+        return self.notebook.get_nth_page(page_num)
+
+    def set_active_box(self, box):
+        """Show the given GuakeTerminalBox.
+        """
+        page_num = self.notebook.page_num(box)
+        self.notebook.set_current_page(page_num)
 
     def execute_command(self, command, tab=None):
         """Execute the `command' in the `tab'. If tab is None, the
