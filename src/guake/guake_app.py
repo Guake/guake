@@ -359,6 +359,7 @@ class Guake(SimpleGladeApp):
 
         # Workspaces tracking
         self.boxes_by_workspaces = {}
+        self.visible_by_workspaces = {}
         self.active_by_workspaces = {}
         self.screen = wnck.screen_get_default()
         self.screen.connect( "active-workspace-changed", self.workspace_changed )
@@ -569,6 +570,8 @@ class Guake(SimpleGladeApp):
 
         w_num = workspace.get_number()
 
+        self.current_workspace = w_num
+
         if previous_workspace:
             prev_w_num = previous_workspace.get_number()
             self.active_by_workspaces[prev_w_num] = self.get_active_box()
@@ -584,8 +587,18 @@ class Guake(SimpleGladeApp):
                     for box, bnt in self.boxes_by_workspaces[w_num]:
                         box.show()
                         bnt.show()
+                if w_num not in self.visible_by_workspaces:
+                    # Never shown in this workspace
+                    self.visible_by_workspaces[w_num] = False
+                if self.visible_by_workspaces[w_num]:
                     self.set_active_box(self.active_by_workspaces[w_num])
-        self.current_workspace = w_num
+                    self.show()
+                    self.set_terminal_focus()
+                else:
+                    self.hide()
+        else:
+            # guake just started - so it is invisible
+            self.visible_by_workspaces[w_num] = False
 
     def get_active_box(self):
         """Return the currently shown GuakeTerminalBox.
@@ -884,7 +897,7 @@ class Guake(SimpleGladeApp):
             self.add_tab()
 
         self.window.set_keep_below(False)
-        self.window.show_all()
+        self.window.show()
 
         if self.selected_color is None:
             self.selected_color = getattr(self.window.get_style(), "light")[int(gtk.STATE_SELECTED)]
@@ -948,6 +961,7 @@ class Guake(SimpleGladeApp):
         # widget is shown.
         self.client.notify(KEY('/style/font/color'))
         self.client.notify(KEY('/style/background/color'))
+        self.visible_by_workspaces[self.current_workspace] = True
 
         self.printDebug("Current window position: %r", self.window.get_position())
 
@@ -977,6 +991,7 @@ class Guake(SimpleGladeApp):
         self.hidden = True
         self.get_widget('window-root').unstick()
         self.window.hide()  # Don't use hide_all here!
+        self.visible_by_workspaces[self.current_workspace] = False
 
     def get_final_window_monitor(self):
         """Gets the final screen number for the main window of guake.
