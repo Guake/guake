@@ -1920,7 +1920,9 @@ class Guake(SimpleGladeApp):
                 bnt.destroy()
                 break
 
-        if not self.notebook.has_term():
+        # FIXME: rather adapt self.notebook.has_term():
+        if not self.boxes_by_workspaces[self.current_workspace]:
+            # No more boxes in current workspace
             self.hide()
             # avoiding the delay on next Guake show request
             self.add_tab()
