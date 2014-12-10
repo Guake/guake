@@ -568,6 +568,21 @@ class Guake(SimpleGladeApp):
 
         w_num = workspace.get_number()
 
+        if previous_workspace:
+            prev_w_num = previous_workspace.get_number()
+            if prev_w_num != w_num:
+                # Workspace did change
+                for box, bnt in self.boxes_by_workspaces[prev_w_num]:
+                    box.hide()
+                    bnt.hide()
+                if not w_num in self.boxes_by_workspaces:
+                    # New workspace - hence empty
+                    self.add_tab()
+                else:
+                    for box, bnt in self.boxes_by_workspaces[w_num]:
+                        box.show()
+                        bnt.show()
+
         self.current_workspace = w_num
 
     def execute_command(self, command, tab=None):
