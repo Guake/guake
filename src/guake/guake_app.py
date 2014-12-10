@@ -25,6 +25,7 @@ from __future__ import print_function
 import gconf
 import gobject
 import gtk
+import glib
 import json
 import keybinder
 import logging
@@ -357,6 +358,7 @@ class Guake(SimpleGladeApp):
         self.resizer.connect('motion-notify-event', self.on_resizer_drag)
 
         # Workspaces tracking
+        self.boxes_by_workspaces = {}
         self.screen = wnck.screen_get_default()
         self.screen.connect( "active-workspace-changed", self.workspace_changed )
 
@@ -1762,7 +1764,20 @@ class Guake(SimpleGladeApp):
         if self.is_fullscreen:
             self.fullscreen()
 
+        # If the program is just starting, wnck is still not ready to give us
+        # the workspace - so use idle_add:
+        glib.idle_add(self.assign_workspace, box, bnt)
+
         return str(box.terminal.get_uuid())
+
+    def assign_workspace(self, box, bnt):
+        w = self.screen.get_active_workspace()
+        w_num = w.get_number()
+
+        if not w_num in self.boxes_by_workspaces:
+            self.boxes_by_workspaces[w_num] = []
+
+        self.boxes_by_workspaces[w_num].append( (box, bnt) )
 
     def save_tab(self, directory=None):
         self.preventHide = True
