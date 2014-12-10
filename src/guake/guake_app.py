@@ -42,6 +42,7 @@ from urllib import url2pathname
 from urlparse import urlsplit
 from xdg.DesktopEntry import DesktopEntry
 from xml.sax.saxutils import escape as xml_escape
+import wnck
 
 import guake.notifier
 
@@ -355,6 +356,10 @@ class Guake(SimpleGladeApp):
         # resizer stuff
         self.resizer.connect('motion-notify-event', self.on_resizer_drag)
 
+        # Workspaces tracking
+        self.screen = wnck.screen_get_default()
+        self.screen.connect( "active-workspace-changed", self.workspace_changed )
+
         # adding the first tab on guake
         self.add_tab()
 
@@ -554,6 +559,14 @@ class Guake(SimpleGladeApp):
         index = tab or self.notebook.get_current_page()
         for terminal in self.notebook.get_terminals_for_tab(index):
             terminal.custom_fgcolor = gtk.gdk.color_parse(fgcolor)
+
+    def workspace_changed(self, screen, previous_workspace):
+
+        workspace = self.screen.get_active_workspace()
+
+        w_num = workspace.get_number()
+
+        self.current_workspace = w_num
 
     def execute_command(self, command, tab=None):
         """Execute the `command' in the `tab'. If tab is None, the
