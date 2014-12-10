@@ -1894,6 +1894,16 @@ class Guake(SimpleGladeApp):
 
         self.tabs.get_children()[pagepos].destroy()
         self.notebook.delete_tab(pagepos, kill=kill)
+        tab = self.tabs.get_children()[pagepos]
+
+        current_boxes = self.boxes_by_workspaces[self.current_workspace]
+        for rel_pos in range(len(current_boxes)):
+            box, bnt = current_boxes[rel_pos]
+            if bnt is tab:
+                current_boxes.pop(rel_pos)
+                box.destroy()
+                bnt.destroy()
+                break
 
         if not self.notebook.has_term():
             self.hide()
