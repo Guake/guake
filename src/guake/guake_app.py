@@ -1651,14 +1651,21 @@ class Guake(SimpleGladeApp):
         """Gets the working directory of the current tab to create a
         new one in the same dir.
         """
-        active_terminal = self.notebook.get_current_terminal()
-        directory = os.path.expanduser('~')
-        if active_terminal:
-            active_pid = active_terminal.get_pid()
-            if active_pid:
-                cwd = os.readlink("/proc/{0}/cwd".format(active_pid))
-                if os.path.exists(cwd):
-                    directory = cwd
+        if (hasattr(self, "current_workspace") and
+            self.current_workspace in self.active_by_workspaces):
+            active_box = self.active_by_workspaces[self.current_workspace]
+            active_terminal = active_box.terminal
+            directory = os.path.expanduser('~')
+            if active_terminal:
+                active_pid = active_terminal.get_pid()
+                if active_pid:
+                    cwd = os.readlink("/proc/{0}/cwd".format(active_pid))
+                    if os.path.exists(cwd):
+                        directory = cwd
+        else:
+            # Do not carry working dir across workspaces:
+            directory = os.path.expanduser('~')
+
         return directory
 
     def get_fork_params(self, default_params=None, box=None):
