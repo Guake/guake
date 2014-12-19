@@ -1964,7 +1964,10 @@ class Guake(SimpleGladeApp):
             # avoiding the delay on next Guake show request
             self.add_tab()
         else:
-            self.set_terminal_focus()
+            # FIXME: pretty arbitrary...
+            box, bnt = self.boxes_by_workspaces[self.current_workspace][-1]
+            self.active_by_workspaces[self.current_workspace] = box
+            self.set_active_box(box)
 
         self.was_deleted_tab = True
         abbreviate_tab_names = self.client.get_bool(KEY('/general/abbreviate_tab_names'))
