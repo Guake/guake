@@ -375,7 +375,7 @@ class Guake(SimpleGladeApp):
 
         window_rect = self.window.get_size()
         self.window.resize(window_rect[0], y)
-        self.client.set_int(KEY('/general/window_height'), int(percent))
+        # self.client.set_int(KEY('/general/window_height'), int(percent))
 
     def on_window_losefocus(self, window, event):
         """Hides terminal main window when it loses the focus and if
