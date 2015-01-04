@@ -317,6 +317,16 @@ class PrefsCallbacks(object):
             }
             self.client.set_int(KEY('/general/window_halignment'),
                                 which_align[halign_button.get_name()])
+    
+    def on_use_visible_bell_toggled(self,chk):
+        """Changes the value of use_visible_bell in gconf
+        """
+        self.client.set_bool(KEY('/general/use_visible_bell'), chk.get_active())
+        
+    def on_use_audible_bell_toggled(self,chk):
+        """Changes the value of use_audible_bell in gconf
+        """
+        self.client.set_bool(KEY('/general/use_audible_bell'), chk.get_active())
 
     # scrolling tab
 
@@ -663,6 +673,14 @@ class PrefsDialog(SimpleGladeApp):
         # start fullscreen
         value = self.client.get_bool(KEY('/general/start_fullscreen'))
         self.get_widget('start_fullscreen').set_active(value)
+        
+        # use visible bell
+        value = self.client.get_bool(KEY('/general/use_visible_bell'))
+        self.get_widget('use_visible_bell').set_active(value)
+
+        # use audible bell
+        value = self.client.get_bool(KEY('/general/use_audible_bell'))
+        self.get_widget('use_audible_bell').set_active(value)
 
         # display number / use primary display
         combo = self.get_widget('display_n')

@@ -221,6 +221,32 @@
         </schema>
 
         <schema>
+            <key>/schemas/apps/guake/general/use_audible_bell</key>
+            <applyto>/apps/guake/general/use_audible_bell</applyto>
+            <owner>guake</owner>
+            <type>bool</type>
+            <default>false</default>
+            <locale name="C">
+                <short>Audible bell</short>
+                <long>If true, the system alert sound
+                will be played on a bell character.</long>
+            </locale>
+        </schema>
+
+        <schema>
+            <key>/schemas/apps/guake/general/use_visible_bell</key>
+            <applyto>/apps/guake/general/use_visible_bell</applyto>
+            <owner>guake</owner>
+            <type>bool</type>
+            <default>false</default>
+            <locale name="C">
+                <short>Visible bell</short>
+                <long>If true, the terminal will flash
+                on a bell character.</long>
+            </locale>
+        </schema>
+
+        <schema>
             <key>/schemas/apps/guake/general/window_width</key>
             <applyto>/apps/guake/general/window_width</applyto>
             <owner>guake</owner>
