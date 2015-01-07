@@ -1247,6 +1247,8 @@ class Guake(SimpleGladeApp):
             self.hide()
             # avoiding the delay on next Guake show request
             self.add_tab()
+        else:
+            self.set_terminal_focus()
 
     def set_terminal_focus(self):
         """Grabs the focus on the current tab.
