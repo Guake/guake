@@ -5,6 +5,7 @@
 *.gmo
 *.orig
 *.pot
+*.deb
 Makefile
 Makefile.in
 config.*
@@ -39,3 +40,6 @@ py-compile
 debian
 compile
 doc/src/conf.py
+doc-pak/
+description-pak
+backup-*.tgz
