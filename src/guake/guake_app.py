@@ -904,7 +904,7 @@ class Guake(SimpleGladeApp):
         # fullscreen mode, but tabbar will only be shown if a
         # hidden gconf key is false.
         self.resizer.hide()
-        if not self.client.get_bool(KEY('general/toolbar_visible_in_fullscreen')):
+        if not self.client.get_bool(KEY('/general/toolbar_visible_in_fullscreen')):
             self.toolbar.hide()
 
     def unfullscreen(self):
