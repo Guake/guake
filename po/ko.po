@@ -360,95 +360,97 @@ msgstr "선택된 탭으로 이동합니다."
 
 #: ../guake/guake.py:1276
 msgid "Execute an arbitrary command in the selected tab."
-msgstr "Executa una ordre arbitrària a la pestanya seleccionada."
+msgstr "선택된 탭에서 임의의 명령을 실행합니다."
 
 #: ../guake/guake.py:1280
 msgid "Rename the selected tab."
-msgstr "Canvia el nom de la pestanya seleccionada."
+msgstr "선택된 탭의 이름을 변경합니다."
 
 #: ../guake/guake.py:1284
 msgid "Says to Guake go away =("
-msgstr "Fa que el Guake desaparegui"
+msgstr "Says to Guake go away =("
 
 #: ../guake/guake.py:1349
 msgid "Guake can not init!"
-msgstr "No s'ha pogut iniciar el Guake."
+msgstr "Guake 가 초기화를 할 수 없습니다."
 
 #: ../guake/guake.py:1350
 msgid ""
 "Gconf Error.\n"
 "Have you installed <b>guake.schemas</b> properlly?"
-msgstr "S'ha produït un error del Gconf.\nHeu instal·lat correctament la propietat <b>guake.schemas</b>?"
+msgstr ""
+"Gconf 에러.\n"
+"<b>guake.schemas</b> 를 정상적으로 설치가 되었습니까?"
 
 #. string to show in prefereces dialog for user shell option
 #: ../guake/prefs.py:42
 msgid "<user shell>"
-msgstr "<intèrpret de l'usuari>"
+msgstr "<사용자 쉘>"
 
 #: ../guake/prefs.py:57
 msgid "Toggle Guake visibility"
-msgstr "Commuta la visibilitat del Guake"
+msgstr "Guake 보이기 설정"
 
 #: ../guake/prefs.py:59
 msgid "Toggle Fullscreen"
-msgstr "Commuta la pantalla completa"
+msgstr "전체 화면 설정"
 
 #: ../guake/prefs.py:64
 msgid "Tab management"
-msgstr "Gestió de pestanyes"
+msgstr "탭 관리"
 
 #: ../guake/prefs.py:66
 msgid "New tab"
-msgstr "Pestanya nova"
+msgstr "새 탭"
 
 #: ../guake/prefs.py:68
 msgid "Close tab"
-msgstr "Tanca la pestanya"
+msgstr "탭 닫기"
 
 #: ../guake/prefs.py:70
 msgid "Rename current tab"
-msgstr "Canvia el nom a la pestanya actual"
+msgstr "현재 탭 이름변경"
 
 #: ../guake/prefs.py:73
 msgid "Navigation"
-msgstr "Navegació"
+msgstr "네비게이션"
 
 #: ../guake/prefs.py:75
 msgid "Go to previous tab"
-msgstr "Vés a la pestanya anterior"
+msgstr "이전탭으로 전환"
 
 #: ../guake/prefs.py:77
 msgid "Go to next tab"
-msgstr "Vés a la pestanya següent"
+msgstr "다음탭으로 전환"
 
 #: ../guake/prefs.py:80
 msgid "Clipboard"
-msgstr "Porta-retalls"
+msgstr "클립보드"
 
 #: ../guake/prefs.py:82
 msgid "Copy text to clipboard"
-msgstr "Copia text al porta-retalls"
+msgstr "텍스트를 클립보드로 복사합니다."
 
 #: ../guake/prefs.py:84
 msgid "Paste text from clipboard"
-msgstr "Enganxa el text del porta-retalls"
+msgstr "클립보드에 있는 텍스트를 붙여넣습니다"
 
 #: ../guake/prefs.py:297
 msgid "Action"
-msgstr "Acció"
+msgstr "액션"
 
 #: ../guake/prefs.py:307
 msgid "Shortcut"
-msgstr "Drecera"
+msgstr "단축키"
 
 #: ../guake/prefs.py:605
 #, python-format
 msgid "The shortcut \"%s\" is already in use."
-msgstr "La drecera \"%s\" ja s'està fent servir."
+msgstr "지정된 \"%s\" 단축키는 이미 사용중입니다."
 
 #: ../guake/prefs.py:606
 msgid "Error setting keybinding."
-msgstr "S'ha produït un error en definir la drecera."
+msgstr "키 바인딩에 에러가 발견되었습니다."
 
 #: ../guake/prefs.py:618
 #, python-format
@@ -456,4 +458,7 @@ msgid ""
 "The shortcut \"%s\" cannot be used because it will become impossible to type using this key.\n"
 "\n"
 "Please try with a key such as Control, Alt or Shift at the same time.\n"
-msgstr "No es pot emprar \"%s\"  com a drecera perquè seria impossible escriure amb aquesta tecla.\nProveu de combinar-la amb tecles com la de Control, Majúscula o Alternativa.\n"
+msgstr ""
+"지정된 \"%s\" 키는 입력시 사용되기 때문에 단출키로 사용할 수 없습니다.\n"
+"\n"
+"Ctrl, Alt, Shift 등의 조합으로 사용해주세요.\n"
