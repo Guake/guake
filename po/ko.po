@@ -130,8 +130,8 @@ msgid ""
 "applications and operating systems that expect different terminal "
 "behavior.</i></small>"
 msgstr ""
-"<small><i><b>Note:</b> 이 설정을 잘 못 변경시 다른 프로그램 동작에 영향을 끼칠 수 있습니다. "
-"여기 옵션들은 프로그램과 운영체제 시스템의 터미널의 예상치 못한 행동을 유발 할 수 있기 때문에"
+"<small><i><b>알림:</b> 이 설정을 잘 못 변경시 다른 프로그램 동작에 영향을 끼칠 수 있습니다. "
+"여기 옵션들은 프로그램과 운영체제 시스템의 터미널의 예상치 못한 행동을 유발 할 수 있기 때문에 "
 "확실한 경우에만 변경하시기 바랍니다.</i></small>"
 
 #: ../data/prefs.glade.h:10
@@ -389,7 +389,7 @@ msgstr "<사용자 쉘>"
 
 #: ../guake/prefs.py:57
 msgid "Toggle Guake visibility"
-msgstr "Guake 보이기 설정"
+msgstr "Guake 보이기/감추기"
 
 #: ../guake/prefs.py:59
 msgid "Toggle Fullscreen"
@@ -415,6 +415,10 @@ msgstr "현재 탭 이름변경"
 msgid "Navigation"
 msgstr "네비게이션"
 
+#: ../guake/prefs.py:74
+msgid "Toggle Hide on Lose Focus"
+msgstr "포커스를 잃을 때 감추기 기능 사용"
+
 #: ../guake/prefs.py:75
 msgid "Go to previous tab"
 msgstr "이전탭으로 전환"
@@ -429,11 +433,68 @@ msgstr "클립보드"
 
 #: ../guake/prefs.py:82
 msgid "Copy text to clipboard"
-msgstr "텍스트를 클립보드로 복사합니다."
+msgstr "글자를 클립보드로 복사"
 
 #: ../guake/prefs.py:84
 msgid "Paste text from clipboard"
-msgstr "클립보드에 있는 텍스트를 붙여넣습니다"
+msgstr "클립보드의 글자를 붙여넣기"
+
+#: ../guake/prefs.py:93
+msgid "Go to first tab"
+msgstr "첫 번째 탭으로 이동"
+
+msgid "Go to second tab"
+msgstr "두 번째 탭으로 이동"
+
+msgid "Go to third tab"
+msgstr "세 번째 탭으로 이동"
+
+msgid "Go to fourth tab"
+msgstr "네 번째 탭으로 이동"
+
+msgid "Go to fifth tab"
+msgstr "다섯 번째 탭으로 이동"
+
+msgid "Go to sixth tab"
+msgstr "여섯 번째 탭으로 이동"
+
+msgid "Go to seventh tab"
+msgstr "일곱 번째 탭으로 이동"
+
+msgid "Go to eighth tab"
+msgstr "여덞 번째 탭으로 이동"
+
+msgid "Go to ninth tab"
+msgstr "아홉 번째 탭으로 이동"
+
+msgid "Go to tenth tab"
+msgstr "열 번째 탭으로 이동"
+
+msgid "Zoom out"
+msgstr "화면 확대"
+
+msgid "Zoom in"
+msgstr "화면 축소"
+
+msgid "Zoom in (alternative)"
+msgstr "화면 축소 (추가 단축키)"
+
+msgid "Increase height"
+msgstr "높이 키우기"
+
+msgid "Decrease height"
+msgstr "높이 줄이기"
+
+msgid "Extra features"
+msgstr "추가 기능"
+
+msgid "Search select text on web"
+msgstr "선택된 텍스트를 웹에 검색"
+
+
+
+
+
 
 #: ../guake/prefs.py:297
 msgid "Action"
@@ -462,3 +523,89 @@ msgstr ""
 "지정된 \"%s\" 키는 입력시 사용되기 때문에 단출키로 사용할 수 없습니다.\n"
 "\n"
 "Ctrl, Alt, Shift 등의 조합으로 사용해주세요.\n"
+
+#: ../guake/data/prefs.glade:349
+msgid "_Flash terminal on bell"
+msgstr "알림시 터미널 깜빡이기"
+
+#: ../guake/data/prefs.glade:332
+msgid "_Play system alert sound on bell"
+msgstr "알림시 시스템 경고음 울리기"
+
+#: ../guake/data/guake.schemas:218
+msgid "Start fullscreen"
+msgstr "전체화면으로 시작하기"
+
+
+#: ../guake/prefs.py:448
+msgid "Use VTE titles for tab names"
+msgstr "탭 이름에 VTE 타일 사용하기"
+
+
+
+#: ../guake/data/prefs.glade:715
+msgid "<b>Main Window Height</b>"
+msgstr "<b>메인 윈도우 높이 설정</b>"
+
+
+#: ../guake/data/prefs.glade:759
+msgid "<b>Main Window Width</b>"
+msgstr "<b>메인 윈도우 너미 설정</b>"
+
+#: ../guake/data/prefs.glade:848
+msgid "<b>Main Window Horizontal Alignment</b>"
+msgstr "<b>메인 윈도우 수평 정렬</b>"
+
+#: ../guake/data/prefs.glade:790
+msgid "Left"
+msgstr "왼쪽"
+
+#: ../guake/data/prefs.glade:806
+msgid "Center"
+msgstr "가운데"
+
+#: ../guake/data/prefs.glade:824
+msgid "Right"
+msgstr "오른쪽"
+
+#: ../guake/data/prefs.glade:664
+msgid "<b>Placement</b>"
+msgstr "<b>배치</b>"
+
+#: ../guake/data/prefs.glade:556
+msgid "Bottom align window instead of top align"
+msgstr "창을 밑바닥에 붙이기"
+
+#: ../guake/data/prefs.glade:572
+msgid "Appear on mouse display"
+msgstr "마우스 커서가 위치한 디스플레이에 보이기"
+
+#: ../guake/data/prefs.glade:598
+msgid "Appear on display:"
+msgstr "창이 보일 디스플레이"
+
+#: ../guake/data/prefs.glade:630
+msgid "Place tabs on top"
+msgstr "탭을 최상위로 배치하기"
+
+#: ../guake/data/guake.glade:77
+msgid "New Tab"
+msgstr "새 탭"
+
+
+#: ../guake/data/guake.glade:95
+msgid "Rename Tab"
+msgstr "탭 이름 변경"
+
+#: ../guake/data/prefs.glade:1852
+msgid "<b>Quick Open configuration</b>"
+msgstr "<b>빠른 열기 설정</b>"
+
+#: ../guake/data/prefs.glade:1803
+msgid "<small>Quick open is a feature allowing you to open a file directly into your favorite text editor by clicking on its filename when it appears in your terminal. Only a predefined set of text patterns are supported for the moment.</small>"
+
+msgstr "<small>빠른 열기는 새로운 기능으로 터미널에 나타난 파일 이름을 클릭할 경우 지정된 텍스트 에디터로 열 수 있습니다. 당분간 미리 지정된 텍스트 패턴만 지원됩니다.</small>"
+
+#: ../guake/data/prefs.glade:2067
+msgid "Quick Open"
+msgstr "빠른 열기"
