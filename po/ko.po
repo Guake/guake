@@ -317,44 +317,46 @@ msgid ""
 "A problem happened when binding <b>%s</b> key.\n"
 "Please use Guake Preferences dialog to choose another key"
 msgstr ""
-"A problem happened when binding <b>%s</b> key.\n"
-"Please use Guake Preferences dialog to choose another key"
+"<b>%s</b> 키를 바인딩 할때 문제가 발생되었습니다.\n"
+"Guake 대화상자 설정 탭에서 다른키를 선택하여주세요."
 #: ../guake/guake.py:647
 #, python-format
 msgid ""
 "Guake is now running,\n"
 "press <b>%s</b> to use it."
-msgstr "El Guake està en execució,\npremeu <b>%s</b> per fer-lo servir."
+msgstr ""
+"Guake 가 실행중입니다.,\n"
+"<b>%s</b> 키를 눌러서 실행합니다."
 
 #: ../guake/guake.py:997
 msgid "Rename tab"
-msgstr "Canvia el nom de la pestanya"
+msgstr "탭 이름변경"
 
 #. Adding a new radio button to the tabbar
 #: ../guake/guake.py:1142
 #, python-format
 msgid "Terminal %s"
-msgstr "Terminal %s"
+msgstr "터미널 %s"
 
 #: ../guake/guake.py:1252
 msgid "Toggles the visibility of the terminal window"
-msgstr "Commuta la visibilitat de la finestra del terminal"
+msgstr "터미널 창 보이기/숨기기 토글"
 
 #: ../guake/guake.py:1256
 msgid "Shows Guake preference window"
-msgstr "Mostra la finestra de preferències del Guake"
+msgstr "Guake 설정 윈도우 보이기"
 
 #: ../guake/guake.py:1260
 msgid "Shows Guake's about info"
-msgstr "Mostra informació diversa del Guake"
+msgstr "Guake 정보 보기"
 
 #: ../guake/guake.py:1268
 msgid "Select a tab"
-msgstr "Selecciona una pestanya"
+msgstr "탭 선택"
 
 #: ../guake/guake.py:1272
 msgid "Return the selected tab index."
-msgstr "Retorna l'índex de la pestanya seleccionada."
+msgstr "선택된 탭으로 이동합니다."
 
 #: ../guake/guake.py:1276
 msgid "Execute an arbitrary command in the selected tab."
