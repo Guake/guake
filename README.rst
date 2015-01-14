@@ -2,6 +2,11 @@
 Guake README file
 =================
 
+|travis-badge|_
+
+.. |travis-badge| image:: https://travis-ci.org/Guake/guake.png?branch=master
+.. _travis-badge: https://travis-ci.org/Guake/guake
+
 Introduction
 ~~~~~~~~~~~~
 
@@ -193,7 +198,4 @@ Travis build
 
 Travis automatically check pull requests are compiling and check for code style.
 
-Status of the master branch: |travis-badge|_
-
-.. |travis-badge| image:: https://travis-ci.org/Guake/guake.png?branch=master
-.. _travis-badge: https://travis-ci.org/Guake/guake
+Status of the master branch: https://travis-ci.org/Guake/guake.png?branch=master
