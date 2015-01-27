@@ -1,11 +1,12 @@
 [encoding: UTF-8]
 data/about.glade
-data/guake.glade
-data/prefs.glade
+data/guake-autoconfigure.desktop.in
+data/guake-autostart.desktop.in
 data/guake.desktop.in
+data/guake.glade
 data/guake-prefs.desktop.in
-guake/dbusiface.py
-guake/main.py
-guake/prefs.py
-guake/common.py
-guake/notifier.py
+data/prefs.glade
+src/guake/gconfhandler.py
+src/guake/guake_app.py
+src/guake/main.py
+src/guake/prefs.py
