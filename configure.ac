@@ -80,7 +80,7 @@ AM_GCONF_SOURCE_2
 
 dnl Internationalization
 GETTEXT_PACKAGE=guake
-ALL_LINGUAS="ca cs_CZ de el es fa fr gl hr hu id it ja nb_NO nl pa pl pt_BR ru sv tr uk_UA zh_CN"
+ALL_LINGUAS="ca cs de el es fa fr gl hr hu id it ja nb nl pa pl pt_BR ru sv tr uk zh_CN"
 
 AC_SUBST([GETTEXT_PACKAGE])
 AC_SUBST([ALL_LINGUAS])
