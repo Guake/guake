@@ -1880,7 +1880,7 @@ Custom
                                     <property name="can_focus">False</property>
                                     <child>
                                       <widget class="GtkCheckButton" id="quick_open_enable">
-                                        <property name="label" translatable="yes">Enable Quick Open when Cltr+clicking on a filename in the terminal</property>
+                                        <property name="label" translatable="yes">Enable Quick Open when Ctrl+clicking on a filename in the terminal</property>
                                         <property name="visible">True</property>
                                         <property name="can_focus">True</property>
                                         <property name="receives_default">False</property>
