@@ -1337,6 +1337,7 @@ Solarized
 Linux console
 XTerm
 Rxvt
+Monokai
 Custom
 </property>
                                     <signal name="changed" handler="on_palette_name_changed" swapped="no"/>
