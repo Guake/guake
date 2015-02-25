@@ -1338,6 +1338,7 @@ Linux console
 XTerm
 Rxvt
 Monokai
+Cobalt2
 Custom
 </property>
                                     <signal name="changed" handler="on_palette_name_changed" swapped="no"/>
