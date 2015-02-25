@@ -1338,6 +1338,7 @@ Linux console
 XTerm
 Rxvt
 Monokai
+Lucario
 Custom
 </property>
                                     <signal name="changed" handler="on_palette_name_changed" swapped="no"/>
