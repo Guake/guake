@@ -838,6 +838,20 @@ class Guake(SimpleGladeApp):
             self.notebook.next_page()
         return True
 
+    def accel_move_tab_left(self, *args):
+        """ Callback to move a tab to the left """
+        pos = self.notebook.get_current_page()
+        if pos != 0:
+            self.move_tab(pos, pos - 1)
+        return True
+
+    def accel_move_tab_right(self, *args):
+        """ Callback to move a tab to the right """
+        pos = self.notebook.get_current_page()
+        if pos != self.notebook.get_n_pages() - 1:
+            self.move_tab(pos, pos + 1)
+        return True
+
     def gen_accel_switch_tabN(self, N):
         """Generates callback (which called by accel key) to go to the Nth tab.
         """
