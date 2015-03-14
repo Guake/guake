@@ -8,4 +8,6 @@ max-line-length = 100
 # enabled in future.
 #
 
-# ignore =
+ignore = E731,E402
+# E731: ignore use def instead of lambda assignation
+# E402: ignore module level import not at top of file
