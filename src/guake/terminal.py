@@ -135,9 +135,8 @@ class GuakeTerminal(vte.Terminal):
             int(event.x / self.get_char_width()),
             int(event.y / self.get_char_height()))
 
-        if (event.button == 1
-                and event.get_state() & gtk.gdk.CONTROL_MASK
-                and matched_string):
+        if (event.button == 1 and event.get_state() & gtk.gdk.CONTROL_MASK and
+                matched_string):
             print "matched string:", matched_string
             value, tag = matched_string
             # First searching in additional matchers

@@ -19,6 +19,9 @@ Boston, MA 02110-1301 USA
 """
 from __future__ import absolute_import
 
+import inspect
+import os
+
 
 __all__ = [
     'NAME', 'VERSION', 'IMAGE_DIR', 'GLADE_DIR', 'LOCALE_DIR',
@@ -26,9 +29,6 @@ __all__ = [
     'ALIGN_CENTER', 'ALIGN_RIGHT', 'ALIGN_LEFT', 'ALIGN_TOP', 'ALIGN_BOTTOM',
     'ALWAYS_ON_PRIMARY'
 ]
-
-import inspect
-import os
 
 
 def is_run_from_git_workdir():
