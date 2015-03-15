@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: guake\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-01-27 15:59+0100\n"
-"PO-Revision-Date: 2015-01-27 16:00+0100\n"
+"POT-Creation-Date: 2015-03-15 23:25+0100\n"
+"PO-Revision-Date: 2015-03-15 23:27+0100\n"
 "Last-Translator: Piotr Drąg <piotrdrag@gmail.com>\n"
 "Language-Team: Polish <trans-pl@lists.fedoraproject.org>\n"
 "Language: pl\n"
@@ -372,6 +372,10 @@ msgid ""
 "Linux console\n"
 "XTerm\n"
 "Rxvt\n"
+"Monokai\n"
+"Lucario\n"
+"Cobalt2\n"
+"Flatland\n"
 "Custom\n"
 msgstr ""
 "Tango\n"
@@ -379,25 +383,29 @@ msgstr ""
 "Konsola systemu Linux\n"
 "XTerm\n"
 "Rxvt\n"
+"Monokai\n"
+"Lucario\n"
+"Cobalt2\n"
+"Flatland\n"
 "Własna\n"
 
-#: ../data/prefs.glade.h:53
+#: ../data/prefs.glade.h:57
 msgid "<b>Effects</b>"
 msgstr "<b>Efekty</b>"
 
-#: ../data/prefs.glade.h:54
+#: ../data/prefs.glade.h:58
 msgid "Transparency:"
 msgstr "Przezroczystość:"
 
-#: ../data/prefs.glade.h:55
+#: ../data/prefs.glade.h:59
 msgid "Background image:"
 msgstr "Obraz tła:"
 
-#: ../data/prefs.glade.h:56
+#: ../data/prefs.glade.h:60
 msgid "Appearance"
 msgstr "Wygląd"
 
-#: ../data/prefs.glade.h:57
+#: ../data/prefs.glade.h:61
 msgid ""
 "<small>Quick open is a feature allowing you to open a file directly into "
 "your favorite text editor by clicking on its filename when it appears in "
@@ -409,21 +417,21 @@ msgstr ""
 "terminalu. W tej chwili obsługiwany jest tylko pewien zestaw wzorców "
 "tekstowych.</small>"
 
-#: ../data/prefs.glade.h:58
+#: ../data/prefs.glade.h:62
 msgid "<b>Quick Open configuration</b>"
 msgstr "<b>Konfiguracja szybkiego otwierania</b>"
 
-#: ../data/prefs.glade.h:59
+#: ../data/prefs.glade.h:63
 msgid "Enable Quick Open when Ctrl+clicking on a filename in the terminal"
 msgstr ""
 "Szybkie otwieranie po kliknięciu na nazwie pliku w terminalu przytrzymując "
 "klawisz Ctrl"
 
-#: ../data/prefs.glade.h:60
+#: ../data/prefs.glade.h:64
 msgid "Editor command line:"
 msgstr "Polecenie edytora:"
 
-#: ../data/prefs.glade.h:62
+#: ../data/prefs.glade.h:66
 #, no-c-format
 msgid ""
 "<small><i>Use the following elements in the open editor command line:\n"
@@ -444,23 +452,23 @@ msgstr ""
 "%(line_number)s</b>\n"
 "</i></small>"
 
-#: ../data/prefs.glade.h:68
+#: ../data/prefs.glade.h:72
 msgid "Quick open in current terminal"
 msgstr "Szybkie otwieranie w bieżącym terminalu"
 
-#: ../data/prefs.glade.h:69
+#: ../data/prefs.glade.h:73
 msgid "Quick Open"
 msgstr "Szybkie otwieranie"
 
-#: ../data/prefs.glade.h:70
+#: ../data/prefs.glade.h:74
 msgid "Currently supported patterns:"
 msgstr "Obecnie obsługiwane wzorce:"
 
-#: ../data/prefs.glade.h:71
+#: ../data/prefs.glade.h:75
 msgid "Keyboard shortcuts"
 msgstr "Skróty klawiszowe"
 
-#: ../data/prefs.glade.h:72
+#: ../data/prefs.glade.h:76
 msgid ""
 "<small><i><b>Note:</b> These options may cause some applications to behave "
 "incorrectly.  They are only here to allow you to work around certain "
@@ -472,7 +480,7 @@ msgstr ""
 "określonymi programami i systemami operacyjnymi, które oczekują innego "
 "zachowania terminala.</i></small>"
 
-#: ../data/prefs.glade.h:73
+#: ../data/prefs.glade.h:77
 msgid ""
 "ASCII DEL\n"
 "Escape sequence\n"
@@ -482,23 +490,23 @@ msgstr ""
 "Sekwencja Escape\n"
 "Control-H"
 
-#: ../data/prefs.glade.h:76
+#: ../data/prefs.glade.h:80
 msgid "_Backspace key generates:"
 msgstr "Klawisz _Backspace generuje:"
 
-#: ../data/prefs.glade.h:77
+#: ../data/prefs.glade.h:81
 msgid "_Delete key generates:"
 msgstr "Klawisz _Delete generuje:"
 
-#: ../data/prefs.glade.h:78
+#: ../data/prefs.glade.h:82
 msgid "_Reset Compatibility Options to Defaults"
 msgstr "P_rzywróć domyślne opcje zgodności"
 
-#: ../data/prefs.glade.h:79
+#: ../data/prefs.glade.h:83
 msgid "<b>Keyboard compatibility</b>"
 msgstr "<b>Zgodność klawiatury</b>"
 
-#: ../data/prefs.glade.h:80
+#: ../data/prefs.glade.h:84
 msgid "Compatibility"
 msgstr "Zgodność"
 
@@ -564,12 +572,12 @@ msgstr "Wyszukiwanie w sieci: \"%s\""
 msgid "Search on Web (no selection)"
 msgstr "Wyszukiwanie w sieci (bez zaznaczenia)"
 
-#: ../src/guake/guake_app.py:957
+#: ../src/guake/guake_app.py:971
 msgid "Rename tab"
 msgstr "Zmiana nazwy karty"
 
 #. Adding a new radio button to the tabbar
-#: ../src/guake/guake_app.py:1193
+#: ../src/guake/guake_app.py:1207
 msgid "Terminal"
 msgstr "Terminal"
 
@@ -660,24 +668,24 @@ msgstr ""
 msgid "<user shell>"
 msgstr "<powłoka użytkownika>"
 
-#: ../src/guake/prefs.py:448
+#: ../src/guake/prefs.py:476
 msgid "Action"
 msgstr "Działanie"
 
-#: ../src/guake/prefs.py:458
+#: ../src/guake/prefs.py:486
 msgid "Shortcut"
 msgstr "Skrót"
 
-#: ../src/guake/prefs.py:878
+#: ../src/guake/prefs.py:906
 #, python-format
 msgid "The shortcut \"%s\" is already in use."
 msgstr "Skrót \"%s\" jest już używany."
 
-#: ../src/guake/prefs.py:879
+#: ../src/guake/prefs.py:907
 msgid "Error setting keybinding."
 msgstr "Błąd podczas ustawiania dowiązania klawiszy."
 
-#: ../src/guake/prefs.py:891
+#: ../src/guake/prefs.py:919
 #, python-format
 msgid ""
 "The shortcut \"%s\" cannot be used because it will become impossible to type "
