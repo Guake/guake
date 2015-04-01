@@ -3,7 +3,7 @@
 # This script is used by the main developer to quickly compile and install the current version
 # of Guake sources. Nothing say it will work directly on your environment. Use with caution!
 
-NO_INSTALL=false
+NO_INSTALL=true
 EXEC_AUTOGEN=false
 
 echo "execute guake for developer."
@@ -11,8 +11,8 @@ echo "use --no-install to avoid installing guake on your system"
 echo "(beware, gconf schema will be altered)"
 echo "use --reinstall to force complete reinstall"
 
-if [[ $1 == "--no-install" ]]; then
-    NO_INSTALL=true
+if [[ $1 == "--install" ]]; then
+    NO_INSTALL=false
 fi
 
 if [[ $1 == "--reinstall" ]]; then
