@@ -1,4 +1,9 @@
 #!/usr/bin/env python
+
+from __future__ import absolute_import
+from __future__ import division
+from __future__ import print_function
+
 import gtk
 
 
@@ -59,4 +64,4 @@ format += format_color_key('GradientActiveTitle', style1.bg[gtk.STATE_NORMAL])
 format += format_color_key('GradientInactiveTitle', style1.bg[gtk.STATE_NORMAL])
 format += format_color_key('MenuHilight', menustyle.bg[gtk.STATE_NORMAL])
 
-print format
+print(format)

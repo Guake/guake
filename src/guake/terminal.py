@@ -18,9 +18,9 @@ License along with this program; if not, write to the
 Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor,
 Boston, MA 02110-1301 USA
 """
-
 from __future__ import absolute_import
 from __future__ import division
+from __future__ import print_function
 
 import gconf
 import gtk
@@ -137,7 +137,7 @@ class GuakeTerminal(vte.Terminal):
 
         if (event.button == 1 and event.get_state() & gtk.gdk.CONTROL_MASK and
                 matched_string):
-            print "matched string:", matched_string
+            print("matched string:", matched_string)
             value, tag = matched_string
             # First searching in additional matchers
             found = False
@@ -181,9 +181,9 @@ class GuakeTerminal(vte.Terminal):
                         found = True
                         break
             if not found:
-                print "found tag:", tag
-                print "found item:", value
-                print "TERMINAL_MATCH_TAGS", TERMINAL_MATCH_TAGS
+                print("found tag:", tag)
+                print("found item:", value)
+                print("TERMINAL_MATCH_TAGS", TERMINAL_MATCH_TAGS)
                 if tag in TERMINAL_MATCH_TAGS:
                     if TERMINAL_MATCH_TAGS[tag] == 'schema':
                         # value here should not be changed, it is right and
@@ -200,7 +200,7 @@ class GuakeTerminal(vte.Terminal):
 
                 if value:
                     cmd = ["xdg-open", value]
-                    print "Opening link: {}".format(cmd)
+                    print("Opening link: {}".format(cmd))
                     subprocess.Popen(cmd, shell=False)
                     # gtk.show_uri(self.window.get_screen(), value,
                     #              gtk.gdk.x11_get_server_time(self.window))

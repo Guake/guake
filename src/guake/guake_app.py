@@ -20,6 +20,8 @@ Boston, MA 02110-1301 USA
 """
 from __future__ import absolute_import
 from __future__ import division
+from __future__ import print_function
+
 
 import gconf
 import gobject
@@ -429,10 +431,10 @@ class Guake(SimpleGladeApp):
         if current_selection:
             self.get_widget('context_search_on_web').set_label(
                 _("Search on Web: '%s'") % current_selection)
-            self.get_widget('context_search_on_web').set_sensitive(True)
+            self.get_widget('context_search_on_web').set_visible(True)
         else:
             self.get_widget('context_search_on_web').set_label(_("Search on Web (no selection)"))
-            self.get_widget('context_search_on_web').set_sensitive(False)
+            self.get_widget('context_search_on_web').set_visible(False)
 
         context_menu = self.get_widget('context-menu')
         context_menu.popup(None, None, None, 3, gtk.get_current_event_time())
@@ -498,10 +500,10 @@ class Guake(SimpleGladeApp):
         GDK_WINDOW_STATE_WITHDRAWN = 1
         GDK_WINDOW_STATE_ABOVE = 32
 
-        print "DBG Window display"
+        print("DBG Window display")
         if self.window.window:
-            print "DBG: gtk.gdk.WindowState =", self.window.window.get_state()
-            print "DBG: gtk.gdk.WindowState =", int(self.window.window.get_state())
+            print("DBG: gtk.gdk.WindowState =", self.window.window.get_state())
+            print("DBG: gtk.gdk.WindowState =", int(self.window.window.get_state()))
             print("DBG: GDK_WINDOW_STATE_STICKY? %s" %
                   (bool(int(self.window.window.get_state()) & GDK_WINDOW_STATE_STICKY),))
             print("DBG: GDK_WINDOW_STATE_WITHDRAWN? %s" %
@@ -510,7 +512,7 @@ class Guake(SimpleGladeApp):
                   (bool(int(self.window.window.get_state()) & GDK_WINDOW_STATE_ABOVE,)))
 
         if not self.window.get_property('visible'):
-            print "DBG: Showing the terminal"
+            print("DBG: Showing the terminal")
             self.show()
             self.set_terminal_focus()
             return
@@ -533,14 +535,14 @@ class Guake(SimpleGladeApp):
         # if not self.hidden:
         # restore_focus = True
         #     if restore_focus:
-        #         print "DBG: Restoring the focus to the terminal"
+        #         print("DBG: Restoring the focus to the terminal")
         #         self.hide()
         #         self.show()
         #         self.window.window.focus()
         #         self.set_terminal_focus()
         #         return
 
-        print "DBG: hiding the terminal"
+        print("DBG: hiding the terminal")
         self.hide()
 
     def show(self):
@@ -593,7 +595,7 @@ class Guake(SimpleGladeApp):
         """Hides the main window of the terminal and sets the visible
         flag to False.
         """
-        print "hide from remote"
+        print("hide from remote")
         self.forceHide = True
         self.hide()
 
@@ -601,7 +603,7 @@ class Guake(SimpleGladeApp):
         """Show the main window of the terminal and sets the visible
         flag to False.
         """
-        print "show from remote"
+        print("show from remote")
         self.forceHide = True
         self.show()
 
@@ -658,10 +660,10 @@ class Guake(SimpleGladeApp):
         halignment = self.client.get_int(KEY('/general/window_halignment'))
         valignment = self.client.get_int(KEY('/general/window_valignment'))
 
-        # print "height_percents", height_percents
-        # print "width_percents", width_percents
-        # print "halignment", halignment
-        # print "valignment", valignment
+        # print("height_percents", height_percents)
+        # print("width_percents", width_percents)
+        # print("halignment", halignment)
+        # print("valignment", valignment)
 
         # get the rectangle just from the destination monitor
         screen = self.window.get_screen()
@@ -693,26 +695,26 @@ class Guake(SimpleGladeApp):
         total_width = window_rect.width
         total_height = window_rect.height
 
-        # print "total_width", total_width
-        # print "total_height", total_height
+        # print("total_width", total_width)
+        # print("total_height", total_height)
 
         window_rect.height = window_rect.height * height_percents / 100
         window_rect.width = window_rect.width * width_percents / 100
 
-        # print "window_rect.x", window_rect.x
-        # print "window_rect.y", window_rect.y
-        # print "window_rect.height", window_rect.height
-        # print "window_rect.width", window_rect.width
+        # print("window_rect.x", window_rect.x)
+        # print("window_rect.y", window_rect.y)
+        # print("window_rect.height", window_rect.height)
+        # print("window_rect.width", window_rect.width)
 
         if window_rect.width < total_width:
             if halignment == ALIGN_CENTER:
-                # print "aligning to center!"
+                # print("aligning to center!")
                 window_rect.x += (total_width - window_rect.width) / 2
             elif halignment == ALIGN_LEFT:
-                # print "aligning to left!"
+                # print("aligning to left!")
                 window_rect.x += 0
             elif halignment == ALIGN_RIGHT:
-                # print "aligning to right!"
+                # print("aligning to right!")
                 window_rect.x += total_width - window_rect.width
         if window_rect.height < total_height:
             if valignment == ALIGN_BOTTOM:
@@ -720,7 +722,7 @@ class Guake(SimpleGladeApp):
 
         self.window.resize(window_rect.width, window_rect.height)
         self.window.move(window_rect.x, window_rect.y)
-        # print "Moving/Resizing to: window_rect", window_rect
+        # print("Moving/Resizing to: window_rect", window_rect)
 
         return window_rect
 
