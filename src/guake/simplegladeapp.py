@@ -26,6 +26,9 @@ to pygtk and libglade.
       sufixes (as pt_BR.utf8) by Lincoln de Sousa <lincoln@archlinux-br.org>
 """
 
+from __future__ import absolute_import
+from __future__ import division
+from __future__ import print_function
 
 import pygtk
 pygtk.require('2.0')
@@ -68,7 +71,7 @@ def bindtextdomain(app_name, locale_dir=None):
         gtk.glade.textdomain(app_name)
         gettext.install(app_name, locale_dir, unicode=1)
     except (IOError, locale.Error), e:
-        print "Warning", app_name, e
+        print("Warning", app_name, e)
         __builtins__.__dict__["_"] = lambda x: x
 
 

@@ -16,6 +16,9 @@ License along with this program; if not, write to the
 Free Software Foundation, Inc., 59 Temple Place - Suite 330,
 Boston, MA 02111-1307, USA.
 """
+from __future__ import absolute_import
+from __future__ import division
+from __future__ import print_function
 
 from textwrap import dedent
 
@@ -52,10 +55,10 @@ def retry(*args):
 
 def print_warning():
     if not hasattr(print_warning, 'already_printed'):
-        print dedent('''
+        print(dedent('''
             Notification service is not running (yet). Guake can't display notifications!
               We'll retry a few times more a bit later, but you can use
               the following command to disable the startup notification:
             $ gconftool-2 --type bool --set /apps/guake/general/use_popup false
-        ''').strip()
+        ''').strip())
         print_warning.already_printed = True

@@ -22,6 +22,7 @@ Boston, MA 02110-1301 USA
 
 from __future__ import absolute_import
 from __future__ import division
+from __future__ import print_function
 
 import dbus
 import gtk
@@ -200,10 +201,10 @@ def main():
     if not already_running:
         startup_script = instance.client.get_string(KEY("/general/startup_script"))
         if startup_script:
-            print "Calling startup script: ", startup_script
+            print("Calling startup script: ", startup_script)
             pid = subprocess.Popen([startup_script], shell=True, stdin=None, stdout=None,
                                    stderr=None, close_fds=True)
-            print "Script started with pid", pid
+            print("Script started with pid", pid)
             # Please ensure this is the last line !!!!
     return already_running
 

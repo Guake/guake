@@ -16,6 +16,9 @@ License along with this program; if not, write to the
 Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor,
 Boston, MA 02110-1301 USA
 """
+from __future__ import absolute_import
+from __future__ import division
+from __future__ import print_function
 
 from gi.repository import Gtk
 
@@ -42,7 +45,7 @@ def bindtextdomain(app_name, locale_dir=None):
         gettext.textdomain(app_name)
         gettext.install(app_name, locale_dir, unicode=1)
     except (IOError, locale.Error), e:
-        print "Warning", app_name, e
+        print("Warning", app_name, e)
         __builtins__.__dict__["_"] = lambda x: x
 
 
