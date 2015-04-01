@@ -502,12 +502,12 @@ class Guake(SimpleGladeApp):
         if self.window.window:
             print "DBG: gtk.gdk.WindowState =", self.window.window.get_state()
             print "DBG: gtk.gdk.WindowState =", int(self.window.window.get_state())
-            print ("DBG: GDK_WINDOW_STATE_STICKY? %s" %
-                   (bool(int(self.window.window.get_state()) & GDK_WINDOW_STATE_STICKY),))
-            print ("DBG: GDK_WINDOW_STATE_WITHDRAWN? %s" %
-                   (bool(int(self.window.window.get_state()) & GDK_WINDOW_STATE_WITHDRAWN,)))
-            print ("DBG: GDK_WINDOW_STATE_ABOVE? %s" %
-                   (bool(int(self.window.window.get_state()) & GDK_WINDOW_STATE_ABOVE,)))
+            print("DBG: GDK_WINDOW_STATE_STICKY? %s" %
+                  (bool(int(self.window.window.get_state()) & GDK_WINDOW_STATE_STICKY),))
+            print("DBG: GDK_WINDOW_STATE_WITHDRAWN? %s" %
+                  (bool(int(self.window.window.get_state()) & GDK_WINDOW_STATE_WITHDRAWN,)))
+            print("DBG: GDK_WINDOW_STATE_ABOVE? %s" %
+                  (bool(int(self.window.window.get_state()) & GDK_WINDOW_STATE_ABOVE,)))
 
         if not self.window.get_property('visible'):
             print "DBG: Showing the terminal"
@@ -684,9 +684,9 @@ class Guake(SimpleGladeApp):
                     unity_dock = 64
                 else:
                     unity_dock = unity_icon_size + 17
-                print ("correcting window width because of launcher width {} "
-                       "(from {} to {})".format(
-                           unity_dock, window_rect.width, window_rect.width - unity_dock))
+                print("correcting window width because of launcher width {} "
+                      "(from {} to {})".format(
+                          unity_dock, window_rect.width, window_rect.width - unity_dock))
 
                 window_rect.width = window_rect.width - unity_dock
 
@@ -1084,6 +1084,7 @@ class Guake(SimpleGladeApp):
         # trigger titling handler in case that custom label has been reset
         current_vte = self.notebook.get_current_terminal()
         current_vte.emit('window-title-changed')
+        self.notebook.get_current_terminal().grab_focus()
 
     def get_current_dir(self):
         """Gets the working directory of the current tab to create a
