@@ -759,6 +759,7 @@ class Guake(SimpleGladeApp):
         self.client.notify(KEY('/style/background/image'))
         self.client.notify(KEY('/style/background/transparency'))
         self.client.notify(KEY('/general/use_default_font'))
+        self.client.notify(KEY('/general/use_palette_font_and_background_color'))
         self.client.notify(KEY('/general/compat_backspace'))
         self.client.notify(KEY('/general/compat_delete'))
 
