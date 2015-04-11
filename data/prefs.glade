@@ -1453,15 +1453,138 @@ Underline</property>
                                   <widget class="GtkComboBox" id="palette_name">
                                     <property name="visible">True</property>
                                     <property name="can_focus">False</property>
-                                    <property name="items" translatable="yes">Tango
-Solarized Dark
-Linux console
-XTerm
-Rxvt
-Monokai
-Lucario
+                                    <property name="items" translatable="yes">3024 Day
+3024 Night
+Adventure Time
+Afterglow
+Alien Blood
+Argonaut
+Arthur
+Atom
+Belafonte Day
+Belafonte Night
+Birdsofparadise
+Blazer
+Borland
+Broadcast
+Brogrammer
+C64
+Chalk
+Chalkboard
+Ciapre
+Clrs
+Cobalt Neon
 Cobalt2
+Crayon Pony Fish
+Dark Pastel
+Darkside
+Desert
+Dimmed Monokai
+Dracula
+Earthsong
+Elemental
+Espresso Libre
+Espresso
+Fideloper
+Fishtank
+Flat
 Flatland
+Frontend Delight
+Frontend Fun Forrest
+Frontend Galaxy
+Github
+Grape
+Grass
+Hardcore
+Harper
+Highway
+Hipster Green
+Homebrew
+Hurtado
+Hybrid
+Ic Green Ppl
+Ic Orange Ppl
+Idle Toes
+Ir Black
+Jackie Brown
+Japanesque
+Jellybeans
+Kibble
+Later This Evening
+Lavandula
+Linux Console
+Liquid Carbon Transparent
+Liquid Carbon
+Lucario
+Man Page
+Mathias
+Medallion
+Misterioso
+Molokai
+Mona Lisa
+Monokai Cobalt2
+Monokai Soda
+Monokai
+N0tch2k
+Neopolitan
+Neutron
+Nightlion V1
+Nightlion V2
+Novel
+Obsidian
+Ocean
+Ollie
+One Dark
+Paul Millr
+Pencil Dark
+Pencil Light
+Pnevma
+Pro
+Red Alert
+Red Sands
+Rippedcasts
+Royal
+Rxvt
+Sea Shells
+Seafoam Pastel
+Seti
+Shaman
+Slate
+Smyck
+Soft Server
+Solarized Darcula
+Solarized Dark Higher Contrast
+Solarized Dark
+Solarized Light
+Space Gray Eighties
+Space Gray
+Spacedust
+Spring
+Square
+Sundried
+Symphonic
+Tango
+Teerb
+Terminal Basic
+Thayer Bright
+Tomorrow Night Blue
+Tomorrow Night Bright
+Tomorrow Night Eighties
+Tomorrow Night
+Tomorrow
+Toy Chest
+Treehouse
+Twilight
+Urple
+Vaughn
+Vibrant Ink
+Warm Neon
+Wez
+Wild Cherry
+Wombat
+Wryan
+Xterm
+Zenburn
 Custom
 </property>
                                     <signal name="changed" handler="on_palette_name_changed" swapped="no"/>
