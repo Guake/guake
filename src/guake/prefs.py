@@ -149,31 +149,31 @@ PALETTES = [
     '#000000000000:#cccc00000000:#4e4e9a9a0606:#c4c4a0a00000:#34346565a4a4:'
     '#757550507b7b:#060698209a9a:#d3d3d7d7cfcf:#555557575353:#efef29292929:'
     '#8a8ae2e23434:#fcfce9e94f4f:#72729f9fcfcf:#adad7f7fa8a8:#3434e2e2e2e2:'
-    '#eeeeeeeeecec',
+    '#eeeeeeeeecec:#ffffffffffff:#000000000000',
 
-    # solarized
-    '#070736364242:#DCDC32322F2F:#858599990000:#B5B589890000:#26268B8BD2D2:'
-    '#D3D336368282:#2A2AA1A19898:#EEEEE8E8D5D5:#00002B2B3636:#CBCB4B4B1616:'
-    '#58586E6E7575:#65657B7B8383:#838394949696:#6C6C7171C4C4:#9393A1A1A1A1:'
-    '#FDFDF6F6E3E3',
+    # solarized dark
+    '#000027273131:#D0D01B1B2424:#727289890505:#A5A577770505:#20207575C7C7:'
+    '#C6C61B1B6E6E:#252591918585:#E9E9E2E2CBCB:#00001E1E2626:#BDBD36361212:'
+    '#46465A5A6161:#525267676F6F:#707081818383:#58585656B9B9:#818190908F8F:'
+    '#FCFCF4F4DCDC:#00002B2B3636:#070736364242'
 
     # linux console
     '#000000000000:#aaaa00000000:#0000aaaa0000:#aaaa55550000:#00000000aaaa:'
     '#aaaa0000aaaa:#0000aaaaaaaa:#aaaaaaaaaaaa:#555555555555:#ffff55555555:'
     '#5555ffff5555:#ffffffff5555:#55555555ffff:#ffff5555ffff:#5555ffffffff:'
-    '#ffffffffffff',
+    '#ffffffffffff:#000000000000:#ffffffffffff',
 
     # xterm
     '#000000000000:#cdcb00000000:#0000cdcb0000:#cdcbcdcb0000:#1e1a908fffff:'
     '#cdcb0000cdcb:#0000cdcbcdcb:#e5e2e5e2e5e2:#4ccc4ccc4ccc:#ffff00000000:'
     '#0000ffff0000:#ffffffff0000:#46458281b4ae:#ffff0000ffff:#0000ffffffff:'
-    '#ffffffffffff',
+    '#ffffffffffff:#000000000000:#ffffffffffff',
 
     # rxvt
     '#000000000000:#cdcd00000000:#0000cdcd0000:#cdcdcdcd0000:#00000000cdcd:'
     '#cdcd0000cdcd:#0000cdcdcdcd:#fafaebebd7d7:#404040404040:#ffff00000000:'
     '#0000ffff0000:#ffffffff0000:#00000000ffff:#ffff0000ffff:#0000ffffffff:'
-    '#ffffffffffff',
+    '#ffffffffffff:#000000000000:#ffffffffffff',
 
     # monokai
     '#1C1C1D1D1919:#D0D01B1B2424:#A7A7D3D32C2C:#D8D8CFCF6767:#6161B8B8D0D0:'
