@@ -149,55 +149,55 @@ PALETTES = [
     '#000000000000:#cccc00000000:#4e4e9a9a0606:#c4c4a0a00000:#34346565a4a4:'
     '#757550507b7b:#060698209a9a:#d3d3d7d7cfcf:#555557575353:#efef29292929:'
     '#8a8ae2e23434:#fcfce9e94f4f:#72729f9fcfcf:#adad7f7fa8a8:#3434e2e2e2e2:'
-    '#eeeeeeeeecec',
+    '#eeeeeeeeecec:#FFFFFFFFFFFF:#000000000000',
 
     # solarized
     '#070736364242:#DCDC32322F2F:#858599990000:#B5B589890000:#26268B8BD2D2:'
     '#D3D336368282:#2A2AA1A19898:#EEEEE8E8D5D5:#00002B2B3636:#CBCB4B4B1616:'
     '#58586E6E7575:#65657B7B8383:#838394949696:#6C6C7171C4C4:#9393A1A1A1A1:'
-    '#FDFDF6F6E3E3',
+    '#FDFDF6F6E3E3:#FFFFFFFFFFFF:#000000000000',
 
     # linux console
     '#000000000000:#aaaa00000000:#0000aaaa0000:#aaaa55550000:#00000000aaaa:'
     '#aaaa0000aaaa:#0000aaaaaaaa:#aaaaaaaaaaaa:#555555555555:#ffff55555555:'
     '#5555ffff5555:#ffffffff5555:#55555555ffff:#ffff5555ffff:#5555ffffffff:'
-    '#ffffffffffff',
+    '#ffffffffffff:#FFFFFFFFFFFF:#000000000000',
 
     # xterm
     '#000000000000:#cdcb00000000:#0000cdcb0000:#cdcbcdcb0000:#1e1a908fffff:'
     '#cdcb0000cdcb:#0000cdcbcdcb:#e5e2e5e2e5e2:#4ccc4ccc4ccc:#ffff00000000:'
     '#0000ffff0000:#ffffffff0000:#46458281b4ae:#ffff0000ffff:#0000ffffffff:'
-    '#ffffffffffff',
+    '#ffffffffffff:#FFFFFFFFFFFF:#000000000000',
 
     # rxvt
     '#000000000000:#cdcd00000000:#0000cdcd0000:#cdcdcdcd0000:#00000000cdcd:'
     '#cdcd0000cdcd:#0000cdcdcdcd:#fafaebebd7d7:#404040404040:#ffff00000000:'
     '#0000ffff0000:#ffffffff0000:#00000000ffff:#ffff0000ffff:#0000ffffffff:'
-    '#ffffffffffff',
+    '#ffffffffffff:#FFFFFFFFFFFF:#000000000000',
 
     # monokai
     '#1C1C1D1D1919:#D0D01B1B2424:#A7A7D3D32C2C:#D8D8CFCF6767:#6161B8B8D0D0:'
     '#69695A5ABBBB:#D5D538386464:#FEFEFFFFFEFE:#1C1C1D1D1919:#D0D01B1B2424:'
     '#A7A7D3D32C2C:#D8D8CFCF6767:#6161B8B8D0D0:#69695A5ABBBB:#D5D538386464:'
-    '#FEFEFFFFFEFE',
+    '#FEFEFFFFFEFE:#FFFFFFFFFFFF:#000000000000',
 
     # lucario
     '#4E4E4E4E4E4E:#FFFF6B6B6060:#FAFAB0B03636:#FFFFFFFFB6B6:#56569696EDED:'
     '#FFFF7373FDFD:#8E8EE4E47878:#EEEEEEEEEEEE:#4F4F4F4F4F4F:#F9F968686060:'
     '#FAFAB0B03636:#FDFDFFFFB8B8:#6B6B9F9FEDED:#FCFC6E6EF9F9:#8E8EE4E47878:'
-    '#FFFFFFFFFFFF',
+    '#FFFFFFFFFFFF:#FFFFFFFFFFFF:#000000000000',
 
     # cobalt2
     '#000000000000:#FFFF00000000:#3737DDDD2121:#FEFEE4E40909:#14146060D2D2:'
     '#FFFF00005D5D:#0000BBBBBBBB:#BBBBBBBBBBBB:#555555555555:#F4F40D0D1717:'
     '#3B3BCFCF1D1D:#ECECC8C80909:#55555555FFFF:#FFFF5555FFFF:#6A6AE3E3F9F9:'
-    '#FFFFFFFFFFFF',
+    '#FFFFFFFFFFFF:#FFFFFFFFFFFF:#000000000000',
 
     # flatland
     '#1C1C1D1D1919:#F1F182823838:#9E9ED2D26464:#F3F3EFEF6D6D:#4F4F9696BEBE:'
     '#69695A5ABBBB:#D5D538386464:#FEFEFFFFFEFE:#1C1C1D1D1919:#D1D12A2A2424:'
     '#A7A7D3D32C2C:#FFFF89894848:#6161B8B8D0D0:#69695A5ABBBB:#D5D538386464:'
-    '#FEFEFFFFFEFE'
+    '#FEFEFFFFFEFE:#FFFFFFFFFFFF:#000000000000',
 ]
 
 
@@ -388,6 +388,11 @@ class PrefsCallbacks(object):
         """
         self.client.set_bool(KEY('/general/use_default_font'), chk.get_active())
 
+    def on_use_palette_font_and_background_color_toggled(self, chk):
+        """Changes the activity of use_palette_font_and_background_color in gconf
+        """
+        self.client.set_bool(KEY('/general/use_palette_font_and_background_color'), chk.get_active())
+
     def on_font_style_font_set(self, fbtn):
         """Changes the value of font_style in gconf
         """
@@ -545,6 +550,14 @@ class PrefsDialog(SimpleGladeApp):
         """
         self.get_widget('font_style').set_sensitive(not chk.get_active())
 
+    def toggle_use_font_background_sensitivity(self, chk):
+        """If the user chooses to use the gnome default font
+        configuration it means that he will not be able to use the
+        font selector.
+        """
+        self.get_widget('palette_16').set_sensitive(chk.get_active())
+        self.get_widget('palette_17').set_sensitive(chk.get_active())
+
     def toggle_display_n_sensitivity(self, chk):
         """When the user unchecks 'on mouse display', the option to select an
         alternate display should be enabeld.
@@ -587,7 +600,7 @@ class PrefsDialog(SimpleGladeApp):
         """Changes the value of palette in gconf
         """
         palette = []
-        for i in range(16):
+        for i in range(18):
             palette.append(hexify_color(
                 self.get_widget('palette_%d' % i).get_color()))
         palette = ':'.join(palette)
@@ -607,7 +620,7 @@ class PrefsDialog(SimpleGladeApp):
         """Updates the color buttons with the given palette
         """
         palette = palette.split(':')
-        for i in range(16):
+        for i in range(18):
             color = gtk.gdk.color_parse(palette[i])
             self.get_widget('palette_%d' % i).set_color(color)
 
@@ -780,6 +793,12 @@ class PrefsDialog(SimpleGladeApp):
         value = self.client.get_bool(KEY('/general/use_default_font'))
         self.get_widget('use_default_font').set_active(value)
         self.get_widget('font_style').set_sensitive(not value)
+
+        # use font and background color
+        value = self.client.get_bool(KEY('/general/use_palette_font_and_background_color'))
+        self.get_widget('use_palette_font_and_background_color').set_active(value)
+        self.get_widget('palette_16').set_sensitive(value)
+        self.get_widget('palette_17').set_sensitive(value)
 
         # font
         value = self.client.get_string(KEY('/style/font/style'))
