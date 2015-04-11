@@ -391,7 +391,8 @@ class PrefsCallbacks(object):
     def on_use_palette_font_and_background_color_toggled(self, chk):
         """Changes the activity of use_palette_font_and_background_color in gconf
         """
-        self.client.set_bool(KEY('/general/use_palette_font_and_background_color'), chk.get_active())
+        self.client.set_bool(
+            KEY('/general/use_palette_font_and_background_color'), chk.get_active())
 
     def on_font_style_font_set(self, fbtn):
         """Changes the value of font_style in gconf
