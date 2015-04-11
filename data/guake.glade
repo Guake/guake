@@ -127,7 +127,7 @@
       </widget>
     </child>
     <child>
-      <widget class="GtkSeparatorMenuItem" id="separador3">
+      <widget class="GtkSeparatorMenuItem" id="separator_search">
         <property name="visible">True</property>
         <property name="can_focus">False</property>
       </widget>
