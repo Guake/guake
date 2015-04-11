@@ -432,9 +432,11 @@ class Guake(SimpleGladeApp):
             self.get_widget('context_search_on_web').set_label(
                 _("Search on Web: '%s'") % current_selection)
             self.get_widget('context_search_on_web').set_visible(True)
+            self.get_widget('separator_search').set_visible(True)
         else:
             self.get_widget('context_search_on_web').set_label(_("Search on Web (no selection)"))
             self.get_widget('context_search_on_web').set_visible(False)
+            self.get_widget('separator_search').set_visible(False)
 
         context_menu = self.get_widget('context-menu')
         context_menu.popup(None, None, None, 3, gtk.get_current_event_time())
