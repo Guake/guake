@@ -73,6 +73,8 @@ class GConfHandler(object):
         notify_add(KEY('/general/scroll_keystroke'), self.keystroke_toggled)
 
         notify_add(KEY('/general/use_default_font'), self.default_font_toggled)
+        notify_add(KEY('/general/use_palette_font_and_background_color'),
+                   self.palette_font_and_background_color_toggled)
         notify_add(KEY('/style/font/style'), self.fstyle_changed)
         notify_add(KEY('/style/font/color'), self.fcolor_changed)
         notify_add(KEY('/style/font/palette'), self.fpalette_changed)
@@ -218,6 +220,13 @@ class GConfHandler(object):
         for i in self.guake.notebook.iter_terminals():
             i.set_font(font)
 
+    def palette_font_and_background_color_toggled(self, client, connection_id, entry, data):
+        """If the gconf var use_palette_font_and_background_color be changed, this method
+        will be called and will change the font color and the background color to the color
+        defined in the palette.
+        """
+        pass
+
     def fstyle_changed(self, client, connection_id, entry, data):
         """If the gconf var style/font/style be changed, this method
         will be called and will change the font style in all terminals
@@ -233,6 +242,12 @@ class GConfHandler(object):
         open.
         """
         fgcolor = gtk.gdk.color_parse(entry.value.get_string())
+        use_palette_font_and_background_color = client.get_bool(
+            KEY('/general/use_palette_font_and_background_color'))
+        if use_palette_font_and_background_color:
+            print "do not set text color from user"
+            return
+        print "fgcolor=", fgcolor
         for i in self.guake.notebook.iter_terminals():
             i.set_color_dim(i.custom_fgcolor or fgcolor)
             i.set_color_foreground(i.custom_fgcolor or fgcolor)
@@ -249,14 +264,32 @@ class GConfHandler(object):
             client.get_string(KEY('/style/background/color')))
         palette = [gtk.gdk.color_parse(color) for color in
                    entry.value.get_string().split(':')]
+
+        use_palette_font_and_background_color = client.get_bool(
+            KEY('/general/use_palette_font_and_background_color'))
+        if use_palette_font_and_background_color:
+            print "yes use font and background color from the palette !!!"
+            fgcolor = palette[16]
+            bgcolor = palette[17]
         for i in self.guake.notebook.iter_terminals():
-            i.set_colors(fgcolor, bgcolor, palette)
+            i.set_color_dim(fgcolor)
+            i.set_color_foreground(fgcolor)
+            i.set_color_bold(fgcolor)
+            i.set_color_background(bgcolor)
+            i.set_background_tint_color(bgcolor)
+        for i in self.guake.notebook.iter_terminals():
+            i.set_colors(fgcolor, bgcolor, palette[:16])
 
     def bgcolor_changed(self, client, connection_id, entry, data):
         """If the gconf var style/background/color be changed, this
         method will be called and will change the background color in
         all terminals open.
         """
+        use_palette_font_and_background_color = client.get_bool(
+            KEY('/general/use_palette_font_and_background_color'))
+        if use_palette_font_and_background_color:
+            print "do not set background from user"
+            return
         bgcolor = gtk.gdk.color_parse(entry.value.get_string())
         for i in self.guake.notebook.iter_terminals():
             i.set_color_background(i.custom_bgcolor or bgcolor)

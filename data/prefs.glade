@@ -373,6 +373,9 @@
                                         <property name="y_options"/>
                                       </packing>
                                     </child>
+                                    <child>
+                                      <placeholder/>
+                                    </child>
                                   </widget>
                                   <packing>
                                     <property name="expand">True</property>
@@ -1116,6 +1119,7 @@
                                     <property name="can_focus">True</property>
                                     <property name="receives_default">False</property>
                                     <property name="use_action_appearance">False</property>
+                                    <property name="yalign">1</property>
                                     <property name="draw_indicator">True</property>
                                     <signal name="toggled" handler="on_use_default_font_toggled" swapped="no"/>
                                     <signal name="toggled" handler="toggle_style_sensitivity" swapped="no"/>
@@ -1295,7 +1299,7 @@
                               <widget class="GtkTable" id="table2">
                                 <property name="visible">True</property>
                                 <property name="can_focus">False</property>
-                                <property name="n_rows">2</property>
+                                <property name="n_rows">3</property>
                                 <property name="n_columns">2</property>
                                 <property name="column_spacing">12</property>
                                 <property name="row_spacing">6</property>
@@ -1479,7 +1483,7 @@ Custom
                                     <property name="visible">True</property>
                                     <property name="can_focus">False</property>
                                     <property name="n_rows">2</property>
-                                    <property name="n_columns">8</property>
+                                    <property name="n_columns">10</property>
                                     <property name="column_spacing">6</property>
                                     <property name="row_spacing">6</property>
                                     <child>
@@ -1716,6 +1720,60 @@ Custom
                                         <property name="right_attach">8</property>
                                       </packing>
                                     </child>
+                                    <child>
+                                      <widget class="GtkColorButton" id="palette_16">
+                                        <property name="visible">True</property>
+                                        <property name="can_focus">True</property>
+                                        <property name="receives_default">True</property>
+                                        <property name="tooltip" translatable="yes">Font color</property>
+                                        <property name="use_action_appearance">False</property>
+                                        <property name="color">#000000000000</property>
+                                        <signal name="color_set" handler="on_palette_color_set" swapped="no"/>
+                                      </widget>
+                                      <packing>
+                                        <property name="left_attach">9</property>
+                                        <property name="right_attach">10</property>
+                                      </packing>
+                                    </child>
+                                    <child>
+                                      <widget class="GtkColorButton" id="palette_17">
+                                        <property name="visible">True</property>
+                                        <property name="can_focus">True</property>
+                                        <property name="receives_default">True</property>
+                                        <property name="tooltip" translatable="yes">Backgrount color</property>
+                                        <property name="use_action_appearance">False</property>
+                                        <property name="color">#000000000000</property>
+                                        <signal name="color_set" handler="on_palette_color_set" swapped="no"/>
+                                      </widget>
+                                      <packing>
+                                        <property name="left_attach">9</property>
+                                        <property name="right_attach">10</property>
+                                        <property name="top_attach">1</property>
+                                        <property name="bottom_attach">2</property>
+                                      </packing>
+                                    </child>
+                                    <child>
+                                      <widget class="GtkVSeparator" id="vseparator1">
+                                        <property name="visible">True</property>
+                                        <property name="can_focus">False</property>
+                                      </widget>
+                                      <packing>
+                                        <property name="left_attach">8</property>
+                                        <property name="right_attach">9</property>
+                                      </packing>
+                                    </child>
+                                    <child>
+                                      <widget class="GtkVSeparator" id="vseparator2">
+                                        <property name="visible">True</property>
+                                        <property name="can_focus">False</property>
+                                      </widget>
+                                      <packing>
+                                        <property name="left_attach">8</property>
+                                        <property name="right_attach">9</property>
+                                        <property name="top_attach">1</property>
+                                        <property name="bottom_attach">2</property>
+                                      </packing>
+                                    </child>
                                   </widget>
                                   <packing>
                                     <property name="left_attach">1</property>
@@ -1724,6 +1782,29 @@ Custom
                                     <property name="bottom_attach">2</property>
                                     <property name="y_options"/>
                                   </packing>
+                                </child>
+                                <child>
+                                  <widget class="GtkCheckButton" id="use_palette_font_and_background_color">
+                                    <property name="label" translatable="yes">Use font and background color from the palette</property>
+                                    <property name="visible">True</property>
+                                    <property name="can_focus">True</property>
+                                    <property name="receives_default">False</property>
+                                    <property name="use_action_appearance">False</property>
+                                    <property name="draw_indicator">True</property>
+                                    <signal name="toggled" handler="on_use_palette_font_and_background_color_toggled" swapped="no"/>
+                                    <signal name="toggled" handler="toggle_use_font_background_sensitivity" swapped="no"/>
+                                  </widget>
+                                  <packing>
+                                    <property name="left_attach">1</property>
+                                    <property name="right_attach">2</property>
+                                    <property name="top_attach">2</property>
+                                    <property name="bottom_attach">3</property>
+                                    <property name="x_options">GTK_FILL</property>
+                                    <property name="y_options"/>
+                                  </packing>
+                                </child>
+                                <child>
+                                  <placeholder/>
                                 </child>
                               </widget>
                             </child>

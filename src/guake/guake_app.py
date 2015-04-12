@@ -432,9 +432,11 @@ class Guake(SimpleGladeApp):
             self.get_widget('context_search_on_web').set_label(
                 _("Search on Web: '%s'") % current_selection)
             self.get_widget('context_search_on_web').set_visible(True)
+            self.get_widget('separator_search').set_visible(True)
         else:
             self.get_widget('context_search_on_web').set_label(_("Search on Web (no selection)"))
             self.get_widget('context_search_on_web').set_visible(False)
+            self.get_widget('separator_search').set_visible(False)
 
         context_menu = self.get_widget('context-menu')
         context_menu.popup(None, None, None, 3, gtk.get_current_event_time())
@@ -759,6 +761,7 @@ class Guake(SimpleGladeApp):
         self.client.notify(KEY('/style/background/image'))
         self.client.notify(KEY('/style/background/transparency'))
         self.client.notify(KEY('/general/use_default_font'))
+        self.client.notify(KEY('/general/use_palette_font_and_background_color'))
         self.client.notify(KEY('/general/compat_backspace'))
         self.client.notify(KEY('/general/compat_delete'))
 
