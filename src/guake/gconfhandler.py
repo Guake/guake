@@ -267,7 +267,7 @@ class GConfHandler(object):
 
         use_palette_font_and_background_color = client.get_bool(
             KEY('/general/use_palette_font_and_background_color'))
-        if use_palette_font_and_background_color:
+        if use_palette_font_and_background_color and len(palette) > 16:
             print "yes use font and background color from the palette !!!"
             fgcolor = palette[16]
             bgcolor = palette[17]
