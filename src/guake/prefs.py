@@ -621,7 +621,7 @@ class PrefsDialog(SimpleGladeApp):
         """Updates the color buttons with the given palette
         """
         palette = palette.split(':')
-        for i in range(18):
+        for i in range(len(palette)):
             color = gtk.gdk.color_parse(palette[i])
             self.get_widget('palette_%d' % i).set_color(color)
 
