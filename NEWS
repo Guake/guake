@@ -1,6 +1,8 @@
-Version 0.6.0 (2014.12.14):
- - Split Terminal
- - Save Session
+Version 0.6.0 (2015.04.22):
+ - Save current terminal to find
+ - Hotkeys for moving tab
+ - plenty of color palettes
+ - bug fixes
 
 Version 0.5.2 (2014.11.23):
  - bug fixes
