@@ -877,7 +877,7 @@
             <applyto>/apps/guake/general/word_chars</applyto>
             <owner>guake</owner>
             <type>string</type>
-            <default>-A-Za-z0-9,./?%&amp;#:_</default>
+            <default>-A-Za-z0-9,./?%&amp;#:_~</default>
             <locale name="C">
                 <!-- these comments were stolen from gnome-terminal,
                      thanks gnome-temrinal buddies -->
