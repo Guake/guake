@@ -803,7 +803,8 @@ class PrefsDialog(SimpleGladeApp):
 
         # font
         value = self.client.get_string(KEY('/style/font/style'))
-        self.get_widget('font_style').set_font_name(value)
+        if value:
+            self.get_widget('font_style').set_font_name(value)
 
         # font color
         val = self.client.get_string(KEY('/style/font/color'))
