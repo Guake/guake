@@ -74,7 +74,7 @@
     </child>
     <child>
       <widget class="GtkImageMenuItem" id="context_add_tab">
-        <property name="label" translatable="yes">Save Current Tab</property>
+        <property name="label" translatable="yes">Save to File...</property>
         <property name="visible">True</property>
         <property name="can_focus">False</property>
         <property name="use_action_appearance">False</property>
