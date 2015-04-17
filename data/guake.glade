@@ -73,7 +73,7 @@
       </widget>
     </child>
     <child>
-      <widget class="GtkImageMenuItem" id="context_add_tab">
+      <widget class="GtkImageMenuItem" id="context_save_tab">
         <property name="label" translatable="yes">Save to File...</property>
         <property name="visible">True</property>
         <property name="can_focus">False</property>
@@ -82,6 +82,24 @@
         <signal name="activate" handler="save_tab"/>
         <child internal-child="image">
           <widget class="GtkImage" id="save_tab_icon">
+            <property name="visible">True</property>
+            <property name="can_focus">False</property>
+            <property name="stock">gtk-add</property>
+            <property name="icon-size">1</property>
+          </widget>
+        </child>
+      </widget>
+    </child>
+    <child>
+      <widget class="GtkImageMenuItem" id="context_find_tab">
+        <property name="label" translatable="yes">Find...</property>
+        <property name="visible">True</property>
+        <property name="can_focus">False</property>
+        <property name="use_action_appearance">False</property>
+        <property name="use_stock">False</property>
+        <signal name="activate" handler="find_tab"/>
+        <child internal-child="image">
+          <widget class="GtkImage" id="find_tab_icon">
             <property name="visible">True</property>
             <property name="can_focus">False</property>
             <property name="stock">gtk-add</property>

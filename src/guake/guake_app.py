@@ -22,7 +22,6 @@ from __future__ import absolute_import
 from __future__ import division
 from __future__ import print_function
 
-
 import gconf
 import gobject
 import gtk
@@ -80,6 +79,11 @@ except Exception as e:
     sys.stderr.write('[WARN] ' + str(e) + '\n')
 
 instance = None
+RESPONSE_FORWARD = 0
+RESPONSE_BACKWARD = 1
+
+# Disable find feature until python-vte hasn't been updated
+enable_find = False
 
 pygtk.require('2.0')
 gobject.threads_init()
@@ -133,6 +137,7 @@ class Guake(SimpleGladeApp):
         self.isPromptQuitDialogOpened = False
         self.hidden = True
         self.forceHide = False
+        self.preventHide = False
 
         # trayicon!
         try:
@@ -280,6 +285,8 @@ class Guake(SimpleGladeApp):
         label = gtk.accelerator_get_label(keyval, mask)
         filename = pixmapfile('guake-notification.png')
 
+        self.get_widget("context_find_tab").set_visible(enable_find)
+
         if self.client.get_bool(KEY('/general/start_fullscreen')):
             self.fullscreen()
 
@@ -389,6 +396,9 @@ class Guake(SimpleGladeApp):
         if self.isPromptQuitDialogOpened:
             return
 
+        if self.preventHide:
+            return
+
         value = self.client.get_bool(KEY('/general/window_losefocus'))
         visible = window.get_property('visible')
         if value and visible:
@@ -482,6 +492,9 @@ class Guake(SimpleGladeApp):
         """
         if self.forceHide:
             self.forceHide = False
+            return
+
+        if self.preventHide:
             return
 
         event_time = self.hotkeys.get_current_event_time()
@@ -613,6 +626,8 @@ class Guake(SimpleGladeApp):
         """Hides the main window of the terminal and sets the visible
         flag to False.
         """
+        if self.preventHide:
+            return
         self.hidden = True
         self.get_widget('window-root').unstick()
         self.window.hide()  # Don't use hide_all here!
@@ -1243,6 +1258,7 @@ class Guake(SimpleGladeApp):
             self.fullscreen()
 
     def save_tab(self, directory=None):
+        self.preventHide = True
         current_term = self.notebook.get_current_terminal()
         current_term.select_all()
         current_term.copy_clipboard()
@@ -1251,7 +1267,7 @@ class Guake(SimpleGladeApp):
         current_selection = guake_clipboard.wait_for_text().rstrip()
 
         dialog = gtk.FileChooserDialog(_("Save to.."),
-                                       None,
+                                       self.window,
                                        gtk.FILE_CHOOSER_ACTION_SAVE,
                                        (gtk.STOCK_CANCEL, gtk.RESPONSE_CANCEL,
                                         gtk.STOCK_OPEN, gtk.RESPONSE_OK))
@@ -1273,6 +1289,52 @@ class Guake(SimpleGladeApp):
             with open(filename, "w") as f:
                 f.write(current_selection)
         dialog.destroy()
+        self.preventHide = False
+
+    def find_tab(self, directory=None):
+        print("find")
+        self.preventHide = True
+        search_text = gtk.TextView()
+
+        dialog = gtk.Dialog(_("Find"), self.window,
+                            gtk.DIALOG_DESTROY_WITH_PARENT,
+                            (_("Forward"), RESPONSE_FORWARD,
+                             _("Backward"), RESPONSE_BACKWARD,
+                             gtk.STOCK_CANCEL, gtk.RESPONSE_NONE))
+        dialog.vbox.pack_end(search_text, True, True, 0)
+        dialog.buffer = search_text.get_buffer()
+        dialog.connect("response", self._dialog_response_callback)
+
+        search_text.show()
+        search_text.grab_focus()
+        dialog.show_all()
+        # Note: beware to reset preventHide when closing the find dialog
+
+    def _dialog_response_callback(self, dialog, response_id):
+        if (response_id != RESPONSE_FORWARD and
+                response_id != RESPONSE_BACKWARD):
+            dialog.destroy()
+            self.preventHide = False
+            return
+
+        start, end = dialog.buffer.get_bounds()
+        search_string = start.get_text(end)
+
+        print("Searching for '{}' {}\n".format(
+            search_string,
+            "forward" if response_id == RESPONSE_FORWARD else "backward"))
+
+        current_term = self.notebook.get_current_terminal()
+        print("type", type(current_term))
+        print("dir", dir(current_term))
+        current_term.search_set_gregex()
+        current_term.search_get_gregex()
+
+        # buffer = self.text_view.get_buffer()
+        # if response_id == RESPONSE_FORWARD:
+        #     buffer.search_forward(search_string, self)
+        # elif response_id == RESPONSE_BACKWARD:
+        #     buffer.search_backward(search_string, self)
 
     def on_drag_tab(self, widget, context, selection, targetType, eventTime):
         tab_pos = self.tabs.get_children().index(widget)
