@@ -1242,6 +1242,38 @@ class Guake(SimpleGladeApp):
         if self.is_fullscreen:
             self.fullscreen()
 
+    def save_tab(self, directory=None):
+        current_term = self.notebook.get_current_terminal()
+        current_term.select_all()
+        current_term.copy_clipboard()
+        current_term.select_none()
+        guake_clipboard = gtk.clipboard_get()
+        current_selection = guake_clipboard.wait_for_text().rstrip()
+
+        dialog = gtk.FileChooserDialog(_("Save to.."),
+                                       None,
+                                       gtk.FILE_CHOOSER_ACTION_SAVE,
+                                       (gtk.STOCK_CANCEL, gtk.RESPONSE_CANCEL,
+                                        gtk.STOCK_OPEN, gtk.RESPONSE_OK))
+        dialog.set_default_response(gtk.RESPONSE_OK)
+        filter = gtk.FileFilter()
+        filter.set_name(_("All files"))
+        filter.add_pattern("*")
+        dialog.add_filter(filter)
+
+        filter = gtk.FileFilter()
+        filter.set_name(_("Text and Logs"))
+        filter.add_pattern("*.log")
+        filter.add_pattern("*.txt")
+        dialog.add_filter(filter)
+
+        response = dialog.run()
+        if response == gtk.RESPONSE_OK:
+            filename = dialog.get_filename()
+            with open(filename, "w") as f:
+                f.write(current_selection)
+        dialog.destroy()
+
     def on_drag_tab(self, widget, context, selection, targetType, eventTime):
         tab_pos = self.tabs.get_children().index(widget)
         selection.set(selection.target, 32, str(tab_pos))
