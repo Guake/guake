@@ -15,7 +15,7 @@
 # Free Software Foundation, Inc., 59 Temple Place - Suite 330,
 # Boston, MA 02111-1307, USA.
 
-AC_INIT([guake], [0.6.0], [http://guake.org/])
+AC_INIT([guake], [0.6.1], [http://guake.org/])
 
 AC_CONFIG_HEADERS([config.h])
 

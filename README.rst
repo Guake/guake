@@ -193,6 +193,18 @@ Update NEWS
 
 Add your change in the ``NEWS`` file. The ``ChangeLog`` files is not more used.
 
+New version
+-----------
+
+To start development on a new version:
+- update ``configure.ac``::
+
+    AC_INIT([guake], [0.x.y], [http://guake.org/])
+
+- add a new section in the ``NEWS`` file
+
+When read, create a new release on the github site.
+
 Travis build
 ------------
 
