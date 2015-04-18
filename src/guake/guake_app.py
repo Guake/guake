@@ -1250,7 +1250,7 @@ class Guake(SimpleGladeApp):
         guake_clipboard = gtk.clipboard_get()
         current_selection = guake_clipboard.wait_for_text().rstrip()
 
-        dialog = gtk.FileChooserDialog(_("Save to.."),
+        dialog = gtk.FileChooserDialog(_("Save to..."),
                                        None,
                                        gtk.FILE_CHOOSER_ACTION_SAVE,
                                        (gtk.STOCK_CANCEL, gtk.RESPONSE_CANCEL,
