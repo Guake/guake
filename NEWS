@@ -1,4 +1,4 @@
-Version 0.6.0 (2015.04.22):
+Version 0.6.0 (2015.04.18):
 This version is poor in new feature, I just don't have time to work on Guake. I got a lot of
 incompatibility reports on new systems, such as Wayland. Port to gtk3 is still a must have, but
 all features of the VTE component does not seem to have been ported.
