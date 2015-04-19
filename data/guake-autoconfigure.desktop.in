@@ -1,6 +1,6 @@
 [Desktop Entry]
-_Name=Autoconfigure Guake
-_Comment=Autoconfigure the start of the Guake terminal
+Name=Autoconfigure Guake
+Comment=Autoconfigure the start of the Guake terminal
 TryExec=~/scripts/guake-autoconfigure.sh
 Exec=~/scripts/guake-autoconfigure.sh
 Icon=/usr/share/pixmaps/guake/guake.png
