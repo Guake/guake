@@ -1,6 +1,6 @@
 [Desktop Entry]
-_Name=Autostart Guake Terminal
-_Comment=Automatically start Guake terminal at login
+Name=Autostart Guake Terminal
+Comment=Automatically start Guake terminal at login
 TryExec=guake
 Exec=guake
 Icon=/usr/share/pixmaps/guake/guake.png
