@@ -1,16 +1,19 @@
+Version 0.6.2:
+- Packaging issue fixes
+
 Version 0.6.1:
 - bug fixes
 
 Version 0.6.0 (2015.04.18):
-This version is poor in new feature, I just don't have time to work on Guake. I got a lot of
-incompatibility reports on new systems, such as Wayland. Port to gtk3 is still a must have, but
-all features of the VTE component does not seem to have been ported.
+  This version is poor in new feature, I just don't have time to work on Guake. I got a lot of
+  incompatibility reports on new systems, such as Wayland. Port to gtk3 is still a must have, but
+  all features of the VTE component does not seem to have been ported.
 
-Features:
- - Save current terminal to find
- - Hotkeys for moving tab
- - plenty of color palettes (thanks @varemenos !)
- - bug fixes
+  Features:
+   - Save current terminal buffer to file
+   - Hotkeys for moving tab
+   - plenty of color palettes (thanks @varemenos !)
+   - bug fixes
 
 Version 0.5.2 (2014.11.23):
  - bug fixes
