@@ -601,6 +601,17 @@ class PrefsDialog(SimpleGladeApp):
                                PALETTES[palette_index])
         self.set_palette_colors(PALETTES[palette_index])
 
+    def on_cursor_shape_changed(self, combo):
+        """Changes the value of cursor_shape in gconf
+        """
+        index = combo.get_active()
+        self.client.set_int(KEY('/style/cursor_shape'), index)
+
+    def on_blink_cursor_toggled(self, chk):
+        """Changes the value of blink_cursor in gconf
+        """
+        self.client.set_int(KEY('/style/cursor_blink_mode'), chk.get_active())
+
     def on_palette_color_set(self, btn):
         """Changes the value of palette in gconf
         """
@@ -620,6 +631,12 @@ class PrefsDialog(SimpleGladeApp):
         for i in range(len(PALETTES)):
             if palette == PALETTES[i]:
                 self.get_widget('palette_name').set_active(i)
+
+    def set_cursor_shape(self, shape_index):
+        self.get_widget('cursor_shape').set_active(shape_index)
+
+    def set_cursor_blink_mode(self, mode_index):
+        self.get_widget('cursor_blink_mode').set_active(mode_index)
 
     def set_palette_colors(self, palette):
         """Updates the color buttons with the given palette
@@ -830,6 +847,14 @@ class PrefsDialog(SimpleGladeApp):
         value = self.client.get_string(KEY('/style/font/palette'))
         self.set_palette_name(value)
         self.set_palette_colors(value)
+
+        # cursor shape
+        value = self.client.get_int(KEY('/style/cursor_shape'))
+        self.set_cursor_shape(value)
+
+        # cursor blink
+        value = self.client.get_int(KEY('/style/cursor_blink_mode'))
+        self.set_cursor_blink_mode(value)
 
         # background image
         value = self.client.get_string(KEY('/style/background/image'))
