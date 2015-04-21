@@ -822,6 +822,30 @@
         </schema>
 
         <schema>
+            <key>/schemas/apps/guake/keybindings/local/increase_transparency</key>
+            <applyto>/apps/guake/keybindings/local/increase_transparency</applyto>
+            <owner>guake</owner>
+            <type>string</type>
+            <default>&lt;Control&gt;Shift&gt;Up</default>
+            <locale name="C">
+                <short>Increase transparency.</short>
+                <long>Increase the terminal transparency.</long>
+            </locale>
+        </schema>
+
+        <schema>
+            <key>/schemas/apps/guake/keybindings/local/decrease_transparency</key>
+            <applyto>/apps/guake/keybindings/local/decrease_transparency</applyto>
+            <owner>guake</owner>
+            <type>string</type>
+            <default>&lt;Control&gt;Shift&gt;Down</default>
+            <locale name="C">
+                <short>Decrease transparency.</short>
+                <long>Decrease the terminal transparency.</long>
+            </locale>
+        </schema>
+
+        <schema>
             <key>/schemas/apps/guake/keybindings/local/clipboard_copy</key>
             <applyto>/apps/guake/keybindings/local/clipboard_copy</applyto>
             <owner>guake</owner>

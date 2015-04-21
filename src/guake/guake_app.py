@@ -835,6 +835,20 @@ class Guake(SimpleGladeApp):
         self.client.set_int(KEY('/general/window_height'), int(height) - 2)
         return True
 
+    def accel_increase_transparency(self, *args):
+        """Callback to increase transparency.
+        """
+        transparency = self.client.get_int(KEY('/style/background/transparency'))
+        self.client.set_int(KEY('/style/background/transparency'), int(transparency) + 2)
+        return True
+
+    def accel_decrease_transparency(self, *args):
+        """Callback to decrease transparency.
+        """
+        transparency = self.client.get_int(KEY('/style/background/transparency'))
+        self.client.set_int(KEY('/style/background/transparency'), int(transparency) - 2)
+        return True
+
     def accel_add(self, *args):
         """Callback to add a new tab. Called by the accel key.
         """
