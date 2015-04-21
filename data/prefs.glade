@@ -447,24 +447,6 @@
                                       </packing>
                                     </child>
                                     <child>
-                                      <widget class="GtkCheckButton" id="use_vte_titles">
-                                        <property name="label" translatable="yes">Use VTE titles for tab names</property>
-                                        <property name="visible">True</property>
-                                        <property name="can_focus">True</property>
-                                        <property name="receives_default">False</property>
-                                        <property name="use_action_appearance">False</property>
-                                        <property name="use_underline">True</property>
-                                        <property name="active">True</property>
-                                        <property name="draw_indicator">True</property>
-                                        <signal name="toggled" handler="on_use_vte_titles_toggled" swapped="no"/>
-                                      </widget>
-                                      <packing>
-                                        <property name="expand">False</property>
-                                        <property name="fill">False</property>
-                                        <property name="position">1</property>
-                                      </packing>
-                                    </child>
-                                    <child>
                                       <widget class="GtkCheckButton" id="window_losefocus">
                                         <property name="label" translatable="yes">Hide on lose focus</property>
                                         <property name="visible">True</property>
@@ -475,6 +457,24 @@
                                         <property name="active">True</property>
                                         <property name="draw_indicator">True</property>
                                         <signal name="toggled" handler="on_window_losefocus_toggled" swapped="no"/>
+                                      </widget>
+                                      <packing>
+                                        <property name="expand">False</property>
+                                        <property name="fill">False</property>
+                                        <property name="position">1</property>
+                                      </packing>
+                                    </child>
+                                    <child>
+                                      <widget class="GtkCheckButton" id="use_vte_titles">
+                                        <property name="label" translatable="yes">Use VTE titles for tab names</property>
+                                        <property name="visible">True</property>
+                                        <property name="can_focus">True</property>
+                                        <property name="receives_default">False</property>
+                                        <property name="use_action_appearance">False</property>
+                                        <property name="use_underline">True</property>
+                                        <property name="active">True</property>
+                                        <property name="draw_indicator">True</property>
+                                        <signal name="toggled" handler="on_use_vte_titles_toggled" swapped="no"/>
                                       </widget>
                                       <packing>
                                         <property name="expand">False</property>
@@ -1885,7 +1885,7 @@ Custom
                                         <property name="width_request">300</property>
                                         <property name="visible">True</property>
                                         <property name="can_focus">False</property>
-                                        <property name="label" translatable="yes">&lt;small&gt;Quick open is a feature allowing you to open a file directly into your favorite text editor by clicking on its filename when it appears in your terminal. Only a predefined set of text patterns are supported for the moment.&lt;/small&gt;</property>
+                                        <property name="label" translatable="yes">&lt;small&gt;Quick open is a feature allowing you to open a file directly into your favorite text editor by clicking on its filename when it appears in your terminal. See bellow to see the list of text patterns, used to extract filename, currently supported for the moment.&lt;/small&gt;</property>
                                         <property name="use_markup">True</property>
                                         <property name="justify">fill</property>
                                         <property name="wrap">True</property>
@@ -2111,6 +2111,9 @@ For example, for sublime, use &lt;b&gt;subl %(file_path)s:%(line_number)s&lt;/b&
                                     <property name="visible">True</property>
                                     <property name="can_focus">True</property>
                                     <property name="editable">False</property>
+                                    <property name="indent">15</property>
+                                    <property name="cursor_visible">False</property>
+                                    <property name="accepts_tab">False</property>
                                   </widget>
                                 </child>
                               </widget>
@@ -2119,7 +2122,7 @@ For example, for sublime, use &lt;b&gt;subl %(file_path)s:%(line_number)s&lt;/b&
                               <widget class="GtkLabel" id="label12">
                                 <property name="visible">True</property>
                                 <property name="can_focus">False</property>
-                                <property name="label" translatable="yes">Currently supported patterns:</property>
+                                <property name="label" translatable="yes">Here is the list of supported patterns: (to add your own, please contac the Guake's authors)</property>
                                 <property name="use_markup">True</property>
                               </widget>
                               <packing>
