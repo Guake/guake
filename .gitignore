@@ -2,6 +2,7 @@
 *.l[oa]
 *~
 *.py[co]
+*.mo
 *.gmo
 *.orig
 *.pot
