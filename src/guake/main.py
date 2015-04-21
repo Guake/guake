@@ -26,6 +26,7 @@ from __future__ import print_function
 
 import dbus
 import gtk
+import os
 import subprocess
 import sys
 
@@ -47,6 +48,12 @@ def main():
     running it will be used and a True value will be returned,
     otherwise, false will be returned.
     """
+
+    # COLORTERM is an environment variable set by some terminal emulators such as gnome-terminal.
+    # To avoid confusing applications running inside Guake, clean up COLORTERM at startup.
+    if "COLORTERM" in os.environ:
+        del os.environ['COLORTERM']
+
     parser = OptionParser()
     parser.add_option('-f', '--fullscreen', dest='fullscreen',
                       action='store_true', default=False,
