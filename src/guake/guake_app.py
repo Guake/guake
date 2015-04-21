@@ -108,13 +108,17 @@ class PromptQuitDialog(gtk.MessageDialog):
 
         self.set_keep_above(True)
         self.set_markup(_('Do you really want to quit Guake!?'))
-        if running_procs == 1:
+        if running_procs == 0:
+            self.format_secondary_markup(
+                _("<b>There is no process running.</b>")
+            )
+        elif running_procs == 1:
             self.format_secondary_markup(
                 _("<b>There is one process still running.</b>")
             )
         elif running_procs > 1:
             self.format_secondary_markup(
-                _("<b>There are %d processes running.</b>" % running_procs)
+                _("<b>There are %d processes still running.</b>" % running_procs)
             )
 
 
@@ -785,15 +789,12 @@ class Guake(SimpleGladeApp):
         """
         if self.client.get_bool(KEY('/general/prompt_on_quit')):
             procs = self.get_running_fg_processes()
-            if procs >= 1:
-                self.isPromptQuitDialogOpened = True
-                dialog = PromptQuitDialog(self.window, procs)
-                response = dialog.run() == gtk.RESPONSE_YES
-                dialog.destroy()
-                self.isPromptQuitDialogOpened = False
-                if response:
-                    gtk.main_quit()
-            else:
+            self.isPromptQuitDialogOpened = True
+            dialog = PromptQuitDialog(self.window, procs)
+            response = dialog.run() == gtk.RESPONSE_YES
+            dialog.destroy()
+            self.isPromptQuitDialogOpened = False
+            if response:
                 gtk.main_quit()
         else:
             gtk.main_quit()
