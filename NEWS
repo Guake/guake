@@ -3,6 +3,7 @@ Verison 0.7.0:
 - Fix issue with the quit confirmation dialog box (#499)
 - Add shortcut for transparency level (#481)
 - Add label to tell user how to disable a shortcut (#488)
+- Expose cursor_shape and blink cursor method in pref window (#505)
 
 Version 0.6.2:
 - Packaging issue fixes
