@@ -171,6 +171,21 @@ For more install details, please read the ``INSTALL`` file.
 Development
 ~~~~~~~~~~~
 
+Upate translation
+-----------------
+
+First update all translation files:
+
+    $ cd po
+    $ make update-po
+
+Then use your favorite po editor, such as ``poedit``.
+
+Once finished, compile your result with
+
+    $ cd po
+    $ make
+
 Git hook
 --------
 
