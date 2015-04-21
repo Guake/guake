@@ -765,8 +765,9 @@ class Guake(SimpleGladeApp):
         self.client.notify(KEY('/general/mouse_display'))
         self.client.notify(KEY('/general/display_n'))
         self.client.notify(KEY('/general/window_ontop'))
-        self.client.notify(KEY('/general/window_height'))
-        self.client.notify(KEY('/general/window_width'))
+        if not self.is_fullscreen:
+            self.client.notify(KEY('/general/window_height'))
+            self.client.notify(KEY('/general/window_width'))
         self.client.notify(KEY('/general/use_scrollbar'))
         self.client.notify(KEY('/general/history_size'))
         self.client.notify(KEY('/general/show_resizer'))
