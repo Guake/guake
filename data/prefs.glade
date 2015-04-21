@@ -2161,14 +2161,29 @@ For example, for sublime, use &lt;b&gt;subl %(file_path)s:%(line_number)s&lt;/b&
                   </packing>
                 </child>
                 <child>
-                  <widget class="GtkHBox" id="hbox3">
+                  <widget class="GtkVBox" id="vbox19">
                     <property name="visible">True</property>
                     <property name="can_focus">False</property>
-                    <property name="border_width">8</property>
+                    <property name="spacing">2</property>
+                    <child>
+                      <widget class="GtkLabel" id="label29">
+                        <property name="visible">True</property>
+                        <property name="can_focus">False</property>
+                        <property name="xpad">10</property>
+                        <property name="ypad">10</property>
+                        <property name="label" translatable="yes">To change a shortcut simply click on its name.
+To disable a shortcut, press the "Backspace" key.</property>
+                      </widget>
+                      <packing>
+                        <property name="expand">False</property>
+                        <property name="fill">True</property>
+                        <property name="position">0</property>
+                      </packing>
+                    </child>
                     <child>
                       <widget class="GtkScrolledWindow" id="scrolledwindow1">
                         <property name="visible">True</property>
-                        <property name="can_focus">True</property>
+                        <property name="can_focus">False</property>
                         <property name="hscrollbar_policy">automatic</property>
                         <property name="vscrollbar_policy">automatic</property>
                         <property name="shadow_type">in</property>
@@ -2183,7 +2198,7 @@ For example, for sublime, use &lt;b&gt;subl %(file_path)s:%(line_number)s&lt;/b&
                       <packing>
                         <property name="expand">True</property>
                         <property name="fill">True</property>
-                        <property name="position">0</property>
+                        <property name="position">1</property>
                       </packing>
                     </child>
                   </widget>
