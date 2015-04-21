@@ -128,6 +128,10 @@ HOTKEYS = [
                'label': 'Increase height'},
               {'key': LKEY('decrease_height'),
                'label': 'Decrease height'},
+              {'key': LKEY('increase_transparency'),
+               'label': 'Increase transparency'},
+              {'key': LKEY('decrease_transparency'),
+               'label': 'Decrease transparency'},
               ]},
 
     {'label': 'Clipboard',
