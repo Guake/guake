@@ -5,11 +5,13 @@
 
 NO_INSTALL=true
 EXEC_AUTOGEN=false
+EXEC_UPDATE_PO=false
 
 echo "execute guake for developer."
 echo "use --no-install to avoid installing guake on your system"
 echo "(beware, gconf schema will be altered)"
 echo "use --reinstall to force complete reinstall"
+echo "use --update-po to force update translations"
 
 if [[ $1 == "--install" ]]; then
     NO_INSTALL=false
@@ -17,6 +19,10 @@ fi
 
 if [[ $1 == "--reinstall" ]]; then
     EXEC_AUTOGEN=true
+fi
+
+if [[ $1 == "--update-po" ]]; then
+    EXEC_UPDATE_PO=true
 fi
 
 if [[ ! -f configure ]]; then
@@ -36,6 +42,12 @@ if [[ $EXEC_AUTOGEN == true ]]; then
 fi
 
 make || exit 1
+if [[ $EXEC_UPDATE_PO == true ]]; then
+    cd po
+    make update-po || exit 1
+    make || exit 1
+    cd ..
+fi
 
 if [[ $NO_INSTALL == true ]]; then
     gconftool-2 --install-schema-file=data/guake.schemas
