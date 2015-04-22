@@ -6,6 +6,7 @@ Verison 0.7.0:
 - Expose cursor_shape and blink cursor method in pref window (#505)
 - some window management bug fixes (#506, #445)
 - expose Guake startup script to the pref window (#198)
+- Force $TERM environment variable to 'xterm-256color' in terminals (#341)
 
 Version 0.6.2:
 - Packaging issue fixes
