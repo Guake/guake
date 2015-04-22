@@ -51,10 +51,10 @@ fi
 
 if [[ $NO_INSTALL == true ]]; then
     gconftool-2 --install-schema-file=data/guake.schemas
-    PYTHONPATH=src python src/guake/main.py
+    PYTHONPATH=src python src/guake/main.py --no-startup-script
 else
   sudo make install && gconftool-2 --install-schema-file=/usr/local/etc/gconf/schemas/guake.schemas || exit 1
 
   guake --quit 2> /dev/null
-  guake
+  guake --no-startup-script
 fi
