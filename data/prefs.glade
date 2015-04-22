@@ -281,7 +281,7 @@
                                   <widget class="GtkTable" id="table5">
                                     <property name="visible">True</property>
                                     <property name="can_focus">False</property>
-                                    <property name="n_rows">3</property>
+                                    <property name="n_rows">4</property>
                                     <property name="n_columns">2</property>
                                     <child>
                                       <widget class="GtkCheckButton" id="use_trayicon">
@@ -371,6 +371,51 @@
                                         <property name="top_attach">1</property>
                                         <property name="bottom_attach">2</property>
                                         <property name="y_options"/>
+                                      </packing>
+                                    </child>
+                                    <child>
+                                      <widget class="GtkEntry" id="startup_script">
+                                        <property name="visible">True</property>
+                                        <property name="can_focus">True</property>
+                                        <property name="tooltip" translatable="yes">Path to a bash script that would be automatically executed when guake starts, unless you specify --no-startup-script.
+
+This would typically use the configuration by command line feature of guake:
+
+#!/bin/bash
+
+sleep 5  # it is advised to wait a bit guake has been successfully started
+
+guake -r "main" -e "cd ~/projects/myproject/main"
+guake -r "prod" -e "cd ~/projects/myproject/prod"
+</property>
+                                        <property name="invisible_char">•</property>
+                                        <property name="invisible_char_set">True</property>
+                                        <property name="primary_icon_activatable">False</property>
+                                        <property name="secondary_icon_activatable">False</property>
+                                        <property name="primary_icon_sensitive">True</property>
+                                        <property name="secondary_icon_sensitive">True</property>
+                                        <signal name="changed" handler="on_startup_script_changed" swapped="no"/>
+                                      </widget>
+                                      <packing>
+                                        <property name="left_attach">1</property>
+                                        <property name="right_attach">2</property>
+                                        <property name="top_attach">3</property>
+                                        <property name="bottom_attach">4</property>
+                                      </packing>
+                                    </child>
+                                    <child>
+                                      <widget class="GtkLabel" id="lbl_startup_script">
+                                        <property name="width_request">160</property>
+                                        <property name="visible">True</property>
+                                        <property name="can_focus">False</property>
+                                        <property name="xalign">0</property>
+                                        <property name="label" translatable="yes">Path to script to execute on Guake start</property>
+                                        <property name="use_markup">True</property>
+                                        <property name="single_line_mode">True</property>
+                                      </widget>
+                                      <packing>
+                                        <property name="top_attach">3</property>
+                                        <property name="bottom_attach">4</property>
                                       </packing>
                                     </child>
                                     <child>

@@ -272,6 +272,9 @@ class PrefsCallbacks(object):
     def on_quick_open_in_current_terminal_toggled(self, chk):
         self.client.set_bool(KEY('/general/quick_open_in_current_terminal'), chk.get_active())
 
+    def on_startup_script_changed(self, edt):
+        self.client.set_string(KEY('/general/startup_script'), edt.get_text())
+
     def on_window_losefocus_toggled(self, chk):
         """Changes the activity of window_losefocus in gconf
         """
@@ -768,6 +771,9 @@ class PrefsDialog(SimpleGladeApp):
 
         value = self.client.get_bool(KEY('/general/quick_open_in_current_terminal'))
         self.get_widget('quick_open_in_current_terminal').set_active(value)
+
+        value = self.client.get_string(KEY('/general/startup_script'))
+        self.get_widget('startup_script').set_text(value)
 
         # If Guake is configured to use a screen that is not currently attached,
         # default to 'primary display' option.
