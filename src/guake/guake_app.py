@@ -570,7 +570,8 @@ class Guake(SimpleGladeApp):
         self.hidden = False
 
         # setting window in all desktops
-        window_rect = self.set_final_window_rect()
+        if not self.is_fullscreen:
+            window_rect = self.set_final_window_rect()
         self.get_widget('window-root').stick()
 
         # add tab must be called before window.show to avoid a
@@ -592,9 +593,9 @@ class Guake(SimpleGladeApp):
                     tab.modify_bg(gtk.STATE_ACTIVE, gtk.gdk.Color(str(self.selected_color)))
 
         # this work arround an issue in fluxbox
-        self.window.move(window_rect.x, window_rect.y)
-
-        self.client.notify(KEY('/general/window_height'))
+        if not self.is_fullscreen:
+            self.window.move(window_rect.x, window_rect.y)
+            self.client.notify(KEY('/general/window_height'))
 
         try:
             # does it work in other gtk backends
@@ -764,8 +765,9 @@ class Guake(SimpleGladeApp):
         self.client.notify(KEY('/general/mouse_display'))
         self.client.notify(KEY('/general/display_n'))
         self.client.notify(KEY('/general/window_ontop'))
-        self.client.notify(KEY('/general/window_height'))
-        self.client.notify(KEY('/general/window_width'))
+        if not self.is_fullscreen:
+            self.client.notify(KEY('/general/window_height'))
+            self.client.notify(KEY('/general/window_width'))
         self.client.notify(KEY('/general/use_scrollbar'))
         self.client.notify(KEY('/general/history_size'))
         self.client.notify(KEY('/general/show_resizer'))
