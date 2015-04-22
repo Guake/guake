@@ -1365,6 +1365,7 @@ class Guake(SimpleGladeApp):
     def move_tab(self, old_tab_pos, new_tab_pos):
         self.notebook.reorder_child(self.notebook.get_nth_page(old_tab_pos), new_tab_pos)
         self.tabs.reorder_child(self.tabs.get_children()[old_tab_pos], new_tab_pos)
+        self.notebook.set_current_page(new_tab_pos)
 
     def delete_tab(self, pagepos, kill=True):
         """This function will destroy the notebook page, terminal and
@@ -1385,6 +1386,11 @@ class Guake(SimpleGladeApp):
         """Grabs the focus on the current tab.
         """
         self.notebook.get_current_terminal().grab_focus()
+        self.notebook.set_current_page(self.get_selected_tab())
+        # Hack to fix "Not focused on openning if tab was moved" (#441)
+        pos = self.get_selected_tab()
+        self.select_tab(0)
+        self.select_tab(pos)
 
     def select_current_tab(self, notebook, user_data, page):
         """When current self.notebook page is changed, the tab bar
