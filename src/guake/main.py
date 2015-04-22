@@ -54,6 +54,9 @@ def main():
     if "COLORTERM" in os.environ:
         del os.environ['COLORTERM']
 
+    # Force to xterm-256 colors for compatibility with some old command line programs
+    os.environ["TERM"] = "xterm-256color"
+
     parser = OptionParser()
     parser.add_option('-f', '--fullscreen', dest='fullscreen',
                       action='store_true', default=False,
