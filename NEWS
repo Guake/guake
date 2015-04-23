@@ -1,16 +1,15 @@
 Verison 0.7.0:
-- remove COLORTERM environment variable (#488)
+- Reorganised palette definition, add a demo terminal in preference panel (#504, #273, #220)
+- Plenty of other new color palettes (thanks again @varemenos ! #504)
+- don't propagate COLORTERM environment variable in terminal (#488)
+- Force $TERM environment variable to 'xterm-256color' in terminals (#341)
 - Fix issue with the quit confirmation dialog box (#499)
 - Add shortcut for transparency level (#481)
 - Add label to tell user how to disable a shortcut (#488)
 - Expose cursor_shape and blink cursor method in pref window (#505)
-- some window management bug fixes (#506, #445)
-- expose Guake startup script to the pref window (#198)
-- Force $TERM environment variable to 'xterm-256color' in terminals (#341)
+- Expose Guake startup script to the pref window (#198)
+- Some window management bug fixes (#506, #445)
 - Fix "Not focused on openning if tab was moved" (#441)
-- Reorganised palette definition, add demo terminal in pref (#504, #273, #220)
-- plenty of other new color palettes (thanks again @varemenos ! #504)
-
 
 Version 0.6.2:
 - Packaging issue fixes
