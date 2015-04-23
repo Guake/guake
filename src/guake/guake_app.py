@@ -778,6 +778,7 @@ class Guake(SimpleGladeApp):
         self.client.notify(KEY('/style/font/style'))
         self.client.notify(KEY('/style/font/color'))
         self.client.notify(KEY('/style/font/palette'))
+        self.client.notify(KEY('/style/font/palette_name'))
         self.client.notify(KEY('/style/background/color'))
         self.client.notify(KEY('/style/background/image'))
         self.client.notify(KEY('/style/background/transparency'))
