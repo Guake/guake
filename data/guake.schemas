@@ -459,6 +459,17 @@
                 <long>Color scheme that will be used in terminal.</long>
             </locale>
         </schema>
+        <schema>
+            <key>/schemas/apps/guake/style/font/palette_name</key>
+            <applyto>/apps/guake/style/font/palette_name</applyto>
+            <owner>guake</owner>
+            <type>string</type>
+            <default>Tango</default>
+            <locale name="C">
+                <short>Color scheme name.</short>
+                <long>Color scheme name that will be used in terminal.</long>
+            </locale>
+        </schema>
 
         <schema>
             <key>/schemas/apps/guake/style/background/color</key>

@@ -14,7 +14,8 @@ guakemodule_PYTHON = __init__.py \
                      notifier.py \
                      prefs.py \
                      simplegladeapp.py \
-                     terminal.py
+                     terminal.py \
+                     palettes.py
 
 guakedir = $(bindir)
 bin_SCRIPTS = guake guake-prefs

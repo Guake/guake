@@ -78,6 +78,7 @@ class GConfHandler(object):
         notify_add(KEY('/style/font/style'), self.fstyle_changed)
         notify_add(KEY('/style/font/color'), self.fcolor_changed)
         notify_add(KEY('/style/font/palette'), self.fpalette_changed)
+        # notify_add(KEY('/style/font/palette_name'), self.fpalette_changed)
         notify_add(KEY('/style/background/color'), self.bgcolor_changed)
         notify_add(KEY('/style/background/image'), self.bgimage_changed)
         notify_add(KEY('/style/background/transparency'),
@@ -245,9 +246,7 @@ class GConfHandler(object):
         use_palette_font_and_background_color = client.get_bool(
             KEY('/general/use_palette_font_and_background_color'))
         if use_palette_font_and_background_color:
-            print "do not set text color from user"
             return
-        print "fgcolor=", fgcolor
         for i in self.guake.notebook.iter_terminals():
             i.set_color_dim(i.custom_fgcolor or fgcolor)
             i.set_color_foreground(i.custom_fgcolor or fgcolor)
@@ -268,7 +267,6 @@ class GConfHandler(object):
         use_palette_font_and_background_color = client.get_bool(
             KEY('/general/use_palette_font_and_background_color'))
         if use_palette_font_and_background_color and len(palette) > 16:
-            print "yes use font and background color from the palette !!!"
             fgcolor = palette[16]
             bgcolor = palette[17]
         for i in self.guake.notebook.iter_terminals():
