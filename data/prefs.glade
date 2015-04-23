@@ -1454,7 +1454,7 @@ Underline</property>
                                     <property name="visible">True</property>
                                     <property name="can_focus">False</property>
                                     <property name="items" translatable="yes">Tango
-Solarized
+Solarized Dark
 Linux console
 XTerm
 Rxvt
