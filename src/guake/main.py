@@ -208,14 +208,15 @@ def main():
         # it is already running, so, lets toggle its visibility.
         remote_object.show_hide()
 
-    if options.execute_startup_script and not already_running:
-        startup_script = instance.client.get_string(KEY("/general/startup_script"))
-        if startup_script:
-            print("Calling startup script:", startup_script)
-            pid = subprocess.Popen([startup_script], shell=True, stdin=None, stdout=None,
-                                   stderr=None, close_fds=True)
-            print("Startup script started with pid:", pid)
-            # Please ensure this is the last line !!!!
+    if options.execute_startup_script:
+        if not already_running:
+            startup_script = instance.client.get_string(KEY("/general/startup_script"))
+            if startup_script:
+                print("Calling startup script:", startup_script)
+                pid = subprocess.Popen([startup_script], shell=True, stdin=None, stdout=None,
+                                       stderr=None, close_fds=True)
+                print("Startup script started with pid:", pid)
+                # Please ensure this is the last line !!!!
     else:
         print("--no-startup-script argument defined, so don't execute the startup script")
     return already_running
