@@ -1002,12 +1002,6 @@ class PrefsCallbacks(object):
         """
         self.client.set_bool(KEY('/general/use_default_font'), chk.get_active())
 
-    def on_use_palette_font_and_background_color_toggled(self, chk):
-        """Changes the activity of use_palette_font_and_background_color in gconf
-        """
-        self.client.set_bool(
-            KEY('/general/use_palette_font_and_background_color'), chk.get_active())
-
     def on_font_style_font_set(self, fbtn):
         """Changes the value of font_style in gconf
         """
@@ -1165,14 +1159,6 @@ class PrefsDialog(SimpleGladeApp):
         """
         self.get_widget('font_style').set_sensitive(not chk.get_active())
 
-    def toggle_use_font_background_sensitivity(self, chk):
-        """If the user chooses to use the gnome default font
-        configuration it means that he will not be able to use the
-        font selector.
-        """
-        self.get_widget('palette_16').set_sensitive(chk.get_active())
-        self.get_widget('palette_17').set_sensitive(chk.get_active())
-
     def toggle_display_n_sensitivity(self, chk):
         """When the user unchecks 'on mouse display', the option to select an
         alternate display should be enabeld.
@@ -1211,22 +1197,11 @@ class PrefsDialog(SimpleGladeApp):
                                PALETTES[palette_index])
         self.set_palette_colors(PALETTES[palette_index])
 
-    def on_cursor_shape_changed(self, combo):
-        """Changes the value of cursor_shape in gconf
-        """
-        index = combo.get_active()
-        self.client.set_int(KEY('/style/cursor_shape'), index)
-
-    def on_blink_cursor_toggled(self, chk):
-        """Changes the value of blink_cursor in gconf
-        """
-        self.client.set_int(KEY('/style/cursor_blink_mode'), chk.get_active())
-
     def on_palette_color_set(self, btn):
         """Changes the value of palette in gconf
         """
         palette = []
-        for i in range(18):
+        for i in range(16):
             palette.append(hexify_color(
                 self.get_widget('palette_%d' % i).get_color()))
         palette = ':'.join(palette)
@@ -1242,17 +1217,11 @@ class PrefsDialog(SimpleGladeApp):
             if palette == PALETTES[i]:
                 self.get_widget('palette_name').set_active(i)
 
-    def set_cursor_shape(self, shape_index):
-        self.get_widget('cursor_shape').set_active(shape_index)
-
-    def set_cursor_blink_mode(self, mode_index):
-        self.get_widget('cursor_blink_mode').set_active(mode_index)
-
     def set_palette_colors(self, palette):
         """Updates the color buttons with the given palette
         """
         palette = palette.split(':')
-        for i in range(len(palette)):
+        for i in range(16):
             color = gtk.gdk.color_parse(palette[i])
             self.get_widget('palette_%d' % i).set_color(color)
 
@@ -1379,9 +1348,6 @@ class PrefsDialog(SimpleGladeApp):
         value = self.client.get_bool(KEY('/general/quick_open_in_current_terminal'))
         self.get_widget('quick_open_in_current_terminal').set_active(value)
 
-        value = self.client.get_string(KEY('/general/startup_script'))
-        self.get_widget('startup_script').set_text(value)
-
         # If Guake is configured to use a screen that is not currently attached,
         # default to 'primary display' option.
         screen = self.get_widget('config-window').get_screen()
@@ -1429,16 +1395,9 @@ class PrefsDialog(SimpleGladeApp):
         self.get_widget('use_default_font').set_active(value)
         self.get_widget('font_style').set_sensitive(not value)
 
-        # use font and background color
-        value = self.client.get_bool(KEY('/general/use_palette_font_and_background_color'))
-        self.get_widget('use_palette_font_and_background_color').set_active(value)
-        self.get_widget('palette_16').set_sensitive(value)
-        self.get_widget('palette_17').set_sensitive(value)
-
         # font
         value = self.client.get_string(KEY('/style/font/style'))
-        if value:
-            self.get_widget('font_style').set_font_name(value)
+        self.get_widget('font_style').set_font_name(value)
 
         # font color
         val = self.client.get_string(KEY('/style/font/color'))
@@ -1460,14 +1419,6 @@ class PrefsDialog(SimpleGladeApp):
         value = self.client.get_string(KEY('/style/font/palette'))
         self.set_palette_name(value)
         self.set_palette_colors(value)
-
-        # cursor shape
-        value = self.client.get_int(KEY('/style/cursor_shape'))
-        self.set_cursor_shape(value)
-
-        # cursor blink
-        value = self.client.get_int(KEY('/style/cursor_blink_mode'))
-        self.set_cursor_blink_mode(value)
 
         # background image
         value = self.client.get_string(KEY('/style/background/image'))
