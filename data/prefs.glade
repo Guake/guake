@@ -1416,7 +1416,7 @@ Underline</property>
                               <widget class="GtkTable" id="table2">
                                 <property name="visible">True</property>
                                 <property name="can_focus">False</property>
-                                <property name="n_rows">3</property>
+                                <property name="n_rows">4</property>
                                 <property name="n_columns">2</property>
                                 <property name="column_spacing">12</property>
                                 <property name="row_spacing">6</property>
@@ -1453,140 +1453,7 @@ Underline</property>
                                   <widget class="GtkComboBox" id="palette_name">
                                     <property name="visible">True</property>
                                     <property name="can_focus">False</property>
-                                    <property name="items" translatable="yes">3024 Day
-3024 Night
-Adventure Time
-Afterglow
-Alien Blood
-Argonaut
-Arthur
-Atom
-Belafonte Day
-Belafonte Night
-Birdsofparadise
-Blazer
-Borland
-Broadcast
-Brogrammer
-C64
-Chalk
-Chalkboard
-Ciapre
-Clrs
-Cobalt Neon
-Cobalt2
-Crayon Pony Fish
-Dark Pastel
-Darkside
-Desert
-Dimmed Monokai
-Dracula
-Earthsong
-Elemental
-Espresso Libre
-Espresso
-Fideloper
-Fishtank
-Flat
-Flatland
-Frontend Delight
-Frontend Fun Forrest
-Frontend Galaxy
-Github
-Grape
-Grass
-Hardcore
-Harper
-Highway
-Hipster Green
-Homebrew
-Hurtado
-Hybrid
-Ic Green Ppl
-Ic Orange Ppl
-Idle Toes
-Ir Black
-Jackie Brown
-Japanesque
-Jellybeans
-Kibble
-Later This Evening
-Lavandula
-Linux Console
-Liquid Carbon Transparent
-Liquid Carbon
-Lucario
-Man Page
-Mathias
-Medallion
-Misterioso
-Molokai
-Mona Lisa
-Monokai Cobalt2
-Monokai Soda
-Monokai
-N0tch2k
-Neopolitan
-Neutron
-Nightlion V1
-Nightlion V2
-Novel
-Obsidian
-Ocean
-Ollie
-One Dark
-Paul Millr
-Pencil Dark
-Pencil Light
-Pnevma
-Pro
-Red Alert
-Red Sands
-Rippedcasts
-Royal
-Rxvt
-Sea Shells
-Seafoam Pastel
-Seti
-Shaman
-Slate
-Smyck
-Soft Server
-Solarized Darcula
-Solarized Dark Higher Contrast
-Solarized Dark
-Solarized Light
-Space Gray Eighties
-Space Gray
-Spacedust
-Spring
-Square
-Sundried
-Symphonic
-Tango
-Teerb
-Terminal Basic
-Thayer Bright
-Tomorrow Night Blue
-Tomorrow Night Bright
-Tomorrow Night Eighties
-Tomorrow Night
-Tomorrow
-Toy Chest
-Treehouse
-Twilight
-Urple
-Vaughn
-Vibrant Ink
-Warm Neon
-Wez
-Wild Cherry
-Wombat
-Wryan
-Xterm
-Zenburn
-Custom
-</property>
+                                    <property name="items" translatable="yes"/>
                                     <signal name="changed" handler="on_palette_name_changed" swapped="no"/>
                                   </widget>
                                   <packing>
@@ -1918,6 +1785,38 @@ Custom
                                     <property name="bottom_attach">3</property>
                                     <property name="x_options">GTK_FILL</property>
                                     <property name="y_options"/>
+                                  </packing>
+                                </child>
+                                <child>
+                                  <widget class="GtkLabel" id="label36">
+                                    <property name="visible">True</property>
+                                    <property name="can_focus">False</property>
+                                    <property name="xalign">0</property>
+                                    <property name="yalign">0</property>
+                                    <property name="label" translatable="yes">Demo:</property>
+                                    <property name="use_markup">True</property>
+                                  </widget>
+                                  <packing>
+                                    <property name="top_attach">3</property>
+                                    <property name="bottom_attach">4</property>
+                                    <property name="x_options">GTK_FILL</property>
+                                    <property name="y_options">GTK_FILL</property>
+                                  </packing>
+                                </child>
+                                <child>
+                                  <widget class="GtkVBox" id="demo_terminal_box">
+                                    <property name="height_request">100</property>
+                                    <property name="visible">True</property>
+                                    <property name="can_focus">False</property>
+                                    <child>
+                                      <placeholder/>
+                                    </child>
+                                  </widget>
+                                  <packing>
+                                    <property name="left_attach">1</property>
+                                    <property name="right_attach">2</property>
+                                    <property name="top_attach">3</property>
+                                    <property name="bottom_attach">4</property>
                                   </packing>
                                 </child>
                                 <child>

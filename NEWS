@@ -8,6 +8,7 @@ Verison 0.7.0:
 - expose Guake startup script to the pref window (#198)
 - Force $TERM environment variable to 'xterm-256color' in terminals (#341)
 - Fix "Not focused on openning if tab was moved" (#441)
+- Reorganised palette definition, add demo terminal in pref (#504, #273, #220)
 
 
 Version 0.6.2:
