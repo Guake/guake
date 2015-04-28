@@ -445,6 +445,7 @@ class Guake(SimpleGladeApp):
             if len(current_selection) > 20:
                 current_selection = current_selection[:17] + "..."
 
+        self.get_widget('separator_search').set_visible(False)
         if current_selection:
             self.get_widget('context_search_on_web').set_label(
                 _("Search on Web: '%s'") % current_selection)
@@ -453,7 +454,15 @@ class Guake(SimpleGladeApp):
         else:
             self.get_widget('context_search_on_web').set_label(_("Search on Web (no selection)"))
             self.get_widget('context_search_on_web').set_visible(False)
-            self.get_widget('separator_search').set_visible(False)
+
+        link = self.getCurrentTerminalLinkUnderCursor()
+        if link:
+            self.get_widget('context_browse_on_web').set_visible(True)
+            self.get_widget('context_browse_on_web').set_label(_("Open Link: {}".format(link)))
+            self.get_widget('separator_search').set_visible(True)
+        else:
+            self.get_widget('context_browse_on_web').set_label(_("Open Link..."))
+            self.get_widget('context_browse_on_web').set_visible(False)
 
         context_menu = self.get_widget('context-menu')
         context_menu.popup(None, None, None, 3, gtk.get_current_event_time())
@@ -1451,6 +1460,17 @@ class Guake(SimpleGladeApp):
                 gtk.show_uri(current_term.window.get_screen(), search_url,
                              gtk.gdk.x11_get_server_time(current_term.window))
         return True
+
+    def getCurrentTerminalLinkUnderCursor(self):
+        current_term = self.notebook.get_current_terminal()
+        l = current_term.found_link
+        print("Current link under cursor: {}".format(l))
+        if l:
+            return l
+
+    def browse_on_web(self, *args):
+        print("browsing {}...".format(self.getCurrentTerminalLinkUnderCursor()))
+        self.notebook.get_current_terminal().browse_link_under_cursor()
 
     def set_tab_position(self, *args):
         if self.client.get_bool(KEY('/general/tab_ontop')):
