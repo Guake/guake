@@ -476,24 +476,6 @@ guake -r "prod" -e "cd ~/projects/myproject/prod"
                                       </packing>
                                     </child>
                                     <child>
-                                      <widget class="GtkCheckButton" id="use_vte_titles">
-                                        <property name="label" translatable="yes">Use VTE titles for tab names</property>
-                                        <property name="visible">True</property>
-                                        <property name="can_focus">True</property>
-                                        <property name="receives_default">False</property>
-                                        <property name="use_action_appearance">False</property>
-                                        <property name="use_underline">True</property>
-                                        <property name="active">True</property>
-                                        <property name="draw_indicator">True</property>
-                                        <signal name="toggled" handler="on_use_vte_titles_toggled" swapped="no"/>
-                                      </widget>
-                                      <packing>
-                                        <property name="expand">False</property>
-                                        <property name="fill">False</property>
-                                        <property name="position">1</property>
-                                      </packing>
-                                    </child>
-                                    <child>
                                       <widget class="GtkCheckButton" id="window_losefocus">
                                         <property name="label" translatable="yes">Hide on lose focus</property>
                                         <property name="visible">True</property>
@@ -504,6 +486,24 @@ guake -r "prod" -e "cd ~/projects/myproject/prod"
                                         <property name="active">True</property>
                                         <property name="draw_indicator">True</property>
                                         <signal name="toggled" handler="on_window_losefocus_toggled" swapped="no"/>
+                                      </widget>
+                                      <packing>
+                                        <property name="expand">False</property>
+                                        <property name="fill">False</property>
+                                        <property name="position">1</property>
+                                      </packing>
+                                    </child>
+                                    <child>
+                                      <widget class="GtkCheckButton" id="use_vte_titles">
+                                        <property name="label" translatable="yes">Use VTE titles for tab names</property>
+                                        <property name="visible">True</property>
+                                        <property name="can_focus">True</property>
+                                        <property name="receives_default">False</property>
+                                        <property name="use_action_appearance">False</property>
+                                        <property name="use_underline">True</property>
+                                        <property name="active">True</property>
+                                        <property name="draw_indicator">True</property>
+                                        <signal name="toggled" handler="on_use_vte_titles_toggled" swapped="no"/>
                                       </widget>
                                       <packing>
                                         <property name="expand">False</property>
@@ -582,7 +582,7 @@ guake -r "prod" -e "cd ~/projects/myproject/prod"
                                     <property name="visible">True</property>
                                     <property name="can_focus">False</property>
                                     <child>
-                                      <widget class="GtkHBox" id="hbox1">
+                                      <widget class="GtkHButtonBox" id="hbuttonbox2">
                                         <property name="visible">True</property>
                                         <property name="can_focus">False</property>
                                         <property name="homogeneous">True</property>
@@ -593,13 +593,12 @@ guake -r "prod" -e "cd ~/projects/myproject/prod"
                                             <property name="can_focus">True</property>
                                             <property name="receives_default">False</property>
                                             <property name="use_action_appearance">False</property>
-                                            <property name="active">True</property>
                                             <property name="draw_indicator">True</property>
                                             <signal name="toggled" handler="on_window_halign_value_changed" swapped="no"/>
                                           </widget>
                                           <packing>
                                             <property name="expand">False</property>
-                                            <property name="fill">False</property>
+                                            <property name="fill">True</property>
                                             <property name="position">0</property>
                                           </packing>
                                         </child>
@@ -612,10 +611,12 @@ guake -r "prod" -e "cd ~/projects/myproject/prod"
                                             <property name="use_action_appearance">False</property>
                                             <property name="active">True</property>
                                             <property name="draw_indicator">True</property>
+                                            <property name="group">radiobutton_align_left</property>
+                                            <signal name="toggled" handler="on_window_halign_value_changed" swapped="no"/>
                                           </widget>
                                           <packing>
                                             <property name="expand">False</property>
-                                            <property name="fill">False</property>
+                                            <property name="fill">True</property>
                                             <property name="position">1</property>
                                           </packing>
                                         </child>
@@ -626,12 +627,13 @@ guake -r "prod" -e "cd ~/projects/myproject/prod"
                                             <property name="can_focus">True</property>
                                             <property name="receives_default">False</property>
                                             <property name="use_action_appearance">False</property>
-                                            <property name="active">True</property>
                                             <property name="draw_indicator">True</property>
+                                            <property name="group">radiobutton_align_left</property>
+                                            <signal name="toggled" handler="on_window_halign_value_changed" swapped="no"/>
                                           </widget>
                                           <packing>
                                             <property name="expand">False</property>
-                                            <property name="fill">False</property>
+                                            <property name="fill">True</property>
                                             <property name="position">2</property>
                                           </packing>
                                         </child>
