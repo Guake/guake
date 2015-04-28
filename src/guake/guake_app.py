@@ -27,8 +27,8 @@ import gobject
 import gtk
 import os
 import platform
-import subprocess
 import pygtk
+import subprocess
 import sys
 import xdg.Exceptions
 
@@ -695,22 +695,32 @@ class Guake(SimpleGladeApp):
         monitor = self.get_final_window_monitor()
         window_rect = screen.get_monitor_geometry(monitor)
 
-        if os.environ.get('DESKTOP_SESSION') == "ubuntu":
+        if platform.linux_distribution()[0].lower() == "ubuntu":
 
-            # For Ubuntu 12.10 and above, use dconf :
-            # For Ubuntu 12.04 and below, use
-            # see if unity dock is hide => unity_hide
+            # For Ubuntu 12.10 and above, try to use dconf:
+            # see if unity dock is hiden => unity_hide
             # and the width of unity dock. => unity_dock
-            if float(platform.dist()[1])>=12.10:
-                unity_hide = int(subprocess.check_output(
-                    ['/usr/bin/dconf', 'read',
-                     '/org/compiz/profiles/unity/plugins/unityshell/launcher-hide-mode']))
-                unity_dock = int(subprocess.check_output(
-                    ['/usr/bin/dconf', 'read',
-                     '/org/compiz/profiles/unity/plugins/unityshell/icon-size']))
-            else:
-                unity_hide = self.client.get_int(KEY('/apps/compiz-1/plugins/'
-                                                     'unityshell/screen0/options/launcher_hide_mode'))
+            found = False
+            unity_hide = 0
+            # float() conversion might mess things up. Add 0.01 so the comparison will always be
+            # valid, even in case of float("10.10") = 10.099999999999999
+            if float(platform.linux_distribution()[1]) + 0.01 >= 12.10:
+                try:
+                    unity_hide = int(subprocess.check_output(
+                        ['/usr/bin/dconf', 'read',
+                         '/org/compiz/profiles/unity/plugins/unityshell/launcher-hide-mode']))
+                    unity_dock = int(subprocess.check_output(
+                        ['/usr/bin/dconf', 'read',
+                         '/org/compiz/profiles/unity/plugins/unityshell/icon-size']))
+                    found = True
+                except:
+                    # in case of error, just ignore it, 'found' will not be set to True and so
+                    # we execute the fallback
+                    pass
+            if not found:
+                # Fallback: try to bet from gconf
+                unity_hide = self.client.get_int(KEY(
+                    '/apps/compiz-1/plugins/unityshell/screen0/options/launcher_hide_mode'))
                 unity_icon_size = self.client.get_int(KEY(
                     '/apps/compiz-1/plugins/unityshell/screen0/options/icon_size'))
                 unity_dock = unity_icon_size + 17
