@@ -10,6 +10,8 @@ Verison 0.7.0:
 - Expose Guake startup script to the pref window (#198)
 - Some window management bug fixes (#506, #445)
 - Fix "Not focused on openning if tab was moved" (#441)
+- Add contextual menu item 'Open Link' on right click on a link (5476653)
+- Fix compatibility with Ubuntu 15.04 (#509)
 
 Version 0.6.2:
 - Packaging issue fixes
