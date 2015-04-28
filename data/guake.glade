@@ -175,6 +175,24 @@
       </widget>
     </child>
     <child>
+      <widget class="GtkImageMenuItem" id="context_browse_on_web">
+        <property name="label" translatable="yes">Open link...</property>
+        <property name="visible">True</property>
+        <property name="can_focus">False</property>
+        <property name="use_action_appearance">False</property>
+        <property name="use_stock">False</property>
+        <signal name="activate" handler="browse_on_web"/>
+        <child internal-child="image">
+          <widget class="GtkImage" id="browse_on_web_icon">
+            <property name="visible">True</property>
+            <property name="can_focus">False</property>
+            <property name="stock">gtk-find</property>
+            <property name="icon-size">1</property>
+          </widget>
+        </child>
+      </widget>
+    </child>
+    <child>
       <widget class="GtkImageMenuItem" id="context_search_on_web">
         <property name="label" translatable="yes">Search on Web</property>
         <property name="visible">True</property>

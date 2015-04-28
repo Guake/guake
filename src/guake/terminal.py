@@ -84,6 +84,7 @@ class GuakeTerminal(vte.Terminal):
         self.pid = None
         self.custom_bgcolor = None
         self.custom_fgcolor = None
+        self.found_link = None
 
     def get_pid(self):
         return self.pid
@@ -135,12 +136,12 @@ class GuakeTerminal(vte.Terminal):
             int(event.x / self.get_char_width()),
             int(event.y / self.get_char_height()))
 
-        if (event.button == 1 and event.get_state() & gtk.gdk.CONTROL_MASK and
-                matched_string):
+        self.found_link = None
+        if (event.button == 1 and (event.get_state() & gtk.gdk.CONTROL_MASK) and matched_string):
             print("matched string:", matched_string)
             value, tag = matched_string
             # First searching in additional matchers
-            found = False
+            found_additional_matcher = False
             client = gconf.client_get_default()
             use_quick_open = client.get_bool(KEY("/general/quick_open_enable"))
             quick_open_in_current_terminal = client.get_bool(
@@ -178,34 +179,44 @@ class GuakeTerminal(vte.Terminal):
                         else:
                             logging.debug("Executing it independently")
                             subprocess.call(resolved_cmdline, shell=True)
-                        found = True
+                        found_additional_matcher = True
                         break
-            if not found:
-                print("found tag:", tag)
-                print("found item:", value)
-                print("TERMINAL_MATCH_TAGS", TERMINAL_MATCH_TAGS)
-                if tag in TERMINAL_MATCH_TAGS:
-                    if TERMINAL_MATCH_TAGS[tag] == 'schema':
-                        # value here should not be changed, it is right and
-                        # ready to be used.
-                        pass
-                    elif TERMINAL_MATCH_TAGS[tag] == 'http':
-                        value = 'http://%s' % value
-                    elif TERMINAL_MATCH_TAGS[tag] == 'https':
-                        value = 'https://%s' % value
-                    elif TERMINAL_MATCH_TAGS[tag] == 'ftp':
-                        value = 'ftp://%s' % value
-                    elif TERMINAL_MATCH_TAGS[tag] == 'email':
-                        value = 'mailto:%s' % value
-
-                if value:
-                    cmd = ["xdg-open", value]
-                    print("Opening link: {}".format(cmd))
-                    subprocess.Popen(cmd, shell=False)
-                    # gtk.show_uri(self.window.get_screen(), value,
-                    #              gtk.gdk.x11_get_server_time(self.window))
+            if not found_additional_matcher:
+                self.found_link = self.handleTerminalMatch(matched_string)
+                if self.found_link:
+                    self.browse_link_under_cursor()
         elif event.button == 3 and matched_string:
+            self.found_link = self.handleTerminalMatch(matched_string)
             self.matched_value = matched_string[0]
+
+    def handleTerminalMatch(self, matched_string):
+        value, tag = matched_string
+        print("found tag:", tag)
+        print("found item:", value)
+        print("TERMINAL_MATCH_TAGS", TERMINAL_MATCH_TAGS)
+        if tag in TERMINAL_MATCH_TAGS:
+            if TERMINAL_MATCH_TAGS[tag] == 'schema':
+                # value here should not be changed, it is right and
+                # ready to be used.
+                pass
+            elif TERMINAL_MATCH_TAGS[tag] == 'http':
+                value = 'http://%s' % value
+            elif TERMINAL_MATCH_TAGS[tag] == 'https':
+                value = 'https://%s' % value
+            elif TERMINAL_MATCH_TAGS[tag] == 'ftp':
+                value = 'ftp://%s' % value
+            elif TERMINAL_MATCH_TAGS[tag] == 'email':
+                value = 'mailto:%s' % value
+
+        if value:
+            return value
+
+    def browse_link_under_cursor(self):
+        if not self.found_link:
+            return
+        print("Opening link: {}".format(self.found_link))
+        cmd = ["xdg-open", self.found_link]
+        subprocess.Popen(cmd, shell=False)
 
     def set_font(self, font):
         self.font = font
