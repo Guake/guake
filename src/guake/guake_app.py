@@ -26,9 +26,12 @@ import gconf
 import gobject
 import gtk
 import os
+import platform
+import subprocess
 import pygtk
 import sys
 import xdg.Exceptions
+
 
 from urllib import quote_plus
 from urllib import url2pathname
@@ -693,21 +696,27 @@ class Guake(SimpleGladeApp):
         window_rect = screen.get_monitor_geometry(monitor)
 
         if os.environ.get('DESKTOP_SESSION') == "ubuntu":
-            unity_hide = self.client.get_int(KEY('/apps/compiz-1/plugins/'
-                                                 'unityshell/screen0/options/launcher_hide_mode'))
-            # launcher_hide_mode = 1 => autohide
-            if unity_hide != 1:
-                # Size of the icons for Unity in Ubuntu <= 12.04
-                # TODO Ubuntu 12.10 use dconf :
-                # /org/compiz/profiles/unity/plugins/unityshell/icon-size
+
+            # For Ubuntu 12.10 and above, use dconf :
+            # For Ubuntu 12.04 and below, use
+            # see if unity dock is hide => unity_hide
+            # and the width of unity dock. => unity_dock
+            if float(platform.dist()[1])>=12.10:
+                unity_hide = int(subprocess.check_output(
+                    ['/usr/bin/dconf', 'read',
+                     '/org/compiz/profiles/unity/plugins/unityshell/launcher-hide-mode']))
+                unity_dock = int(subprocess.check_output(
+                    ['/usr/bin/dconf', 'read',
+                     '/org/compiz/profiles/unity/plugins/unityshell/icon-size']))
+            else:
+                unity_hide = self.client.get_int(KEY('/apps/compiz-1/plugins/'
+                                                     'unityshell/screen0/options/launcher_hide_mode'))
                 unity_icon_size = self.client.get_int(KEY(
                     '/apps/compiz-1/plugins/unityshell/screen0/options/icon_size'))
-                if not unity_icon_size:
-                    # If not found, it should be because of newer implementation of unity.
-                    # Dock is 64 pixel of width on my system, hope this is so on others...
-                    unity_dock = 64
-                else:
-                    unity_dock = unity_icon_size + 17
+                unity_dock = unity_icon_size + 17
+
+            # launcher_hide_mode = 1 => autohide
+            if unity_hide != 1:
                 print("correcting window width because of launcher width {} "
                       "(from {} to {})".format(
                           unity_dock, window_rect.width, window_rect.width - unity_dock))
