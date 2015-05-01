@@ -24,6 +24,14 @@ class GuakeNotebook(Notebook):
         # used to kill the process when closing a tab
         self.pid_list = []
 
+    def reorder_child(self, child, position):
+        """ We should also reorder elements in term_list
+        """
+        old_pos = self.get_children().index(child)
+        terms = self.term_list
+        terms[old_pos], terms[position] = terms[position], terms[old_pos]
+        super(GuakeNotebook, self).reorder_child(child, position)
+
     def has_term(self):
         return self.term_list
 
