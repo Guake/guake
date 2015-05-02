@@ -12,6 +12,7 @@ Verison 0.7.0:
 - Fix "Not focused on openning if tab was moved" (#441)
 - Add contextual menu item 'Open Link' on right click on a link (5476653)
 - Fix compatibility with Ubuntu 15.04 (#509)
+- Guake Turns Gray sometimes (#473, #512)
 
 Version 0.6.2:
 - Packaging issue fixes
@@ -173,9 +174,6 @@ Bugs/Features:
 Infrastructure:
   - Move from guake-terminal.org to guake.org
   - Set up a mailing-list at: http://lists.guake.org/cgi-bin/mailman/listinfo/guake
-
-
-
 
 changes since 0.2
 
