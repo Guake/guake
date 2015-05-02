@@ -1,4 +1,10 @@
-Verison 0.7.0:
+Version 0.7.0:
+
+I had more time working on Guake recently, so I fixed some long term issues, and exposed some
+internal settings into the preference window.
+
+Here is the complete changelog for this release:
+
 - Reorganised palette definition, add a demo terminal in preference panel (#504, #273, #220)
 - Plenty of other new color palettes (thanks again @varemenos ! #504)
 - don't propagate COLORTERM environment variable in terminal (#488)
@@ -12,7 +18,7 @@ Verison 0.7.0:
 - Fix "Not focused on openning if tab was moved" (#441)
 - Add contextual menu item 'Open Link' on right click on a link (5476653)
 - Fix compatibility with Ubuntu 15.04 (#509)
-- Guake Turns Gray sometimes (#473, #512)
+- Fix Guake Turns Gray sometimes (#473, #512)
 
 Version 0.6.2:
 - Packaging issue fixes
