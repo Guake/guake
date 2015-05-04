@@ -440,9 +440,11 @@ class Guake(SimpleGladeApp):
         if current_term.get_has_selection():
             current_term.copy_clipboard()
             guake_clipboard = gtk.clipboard_get()
-            current_selection = guake_clipboard.wait_for_text().rstrip()
+            current_selection = guake_clipboard.wait_for_text()
+            if current_selection:
+                current_selection.rstrip()
 
-            if len(current_selection) > 20:
+            if current_selection and len(current_selection) > 20:
                 current_selection = current_selection[:17] + "..."
 
         self.get_widget('separator_search').set_visible(False)
