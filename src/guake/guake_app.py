@@ -681,17 +681,15 @@ class Guake(SimpleGladeApp):
 
     def is_using_unity(self):
         linux_distrib = platform.linux_distribution()
-        if linux_distrib[0].lower() == "ubuntu":
-            if float(linux_distrib[1]) - 0.01 >= 15.04:
-                if os.environ.get('DESKTOP_SESSION').lower() == "ubuntu":
-                    return True
-                elif os.environ.get('DESKTOP_SESSION').lower() == "gnome":  # gnome shell
-                    return False
-                elif os.environ.get('DESKTOP_SESSION').lower() == "mate":  # gnome Mate
-                    return False
-                elif os.environ.get('DESKTOP_SESSION').lower() == "lubuntu":  # gnome Lubuntu
-                    return False
-            elif os.environ.get('DESKTOP_SESSION').lower() == "ubuntu":
+        if linux_distrib[0].lower() != "ubuntu":
+            return False
+
+        # http://askubuntu.com/questions/70296/is-there-an-environment-variable-that-is-set-for-unity
+        if float(linux_distrib[1]) - 0.01 <= 11.10:
+            if os.environ.get('DESKTOP_SESSION').lower() == "gnome".lower():
+                return True
+        else:
+            if os.environ.get('XDG_CURRENT_DESKTOP').lower() == "unity".lower():
                 return True
         return False
 
