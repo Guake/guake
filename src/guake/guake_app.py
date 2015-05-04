@@ -685,11 +685,13 @@ class Guake(SimpleGladeApp):
             return False
 
         # http://askubuntu.com/questions/70296/is-there-an-environment-variable-that-is-set-for-unity
-        if float(linux_distrib[1]) - 0.01 <= 11.10:
+        if float(linux_distrib[1]) - 0.01 < 11.10:
             if os.environ.get('DESKTOP_SESSION').lower() == "gnome".lower():
+                print("Unity detected")
                 return True
         else:
             if os.environ.get('XDG_CURRENT_DESKTOP').lower() == "unity".lower():
+                print("Unity detected")
                 return True
         return False
 
