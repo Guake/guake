@@ -1,7 +1,10 @@
 [Desktop Entry]
 Encoding=UTF-8
-_Name=Guake Preferences
-_Comment=Configure your Guake sessions
+Name=Guake Preferences
+Name[pt_BR]=Preferências do Guake
+Comment=Configure your Guake sessions
+Comment[pt_BR]=Configurações do terminal Guake
+Comment[fr_FR]=Configurer votre session Guake
 TryExec=guake-prefs
 Exec=guake-prefs
 Icon=guake-prefs
@@ -10,4 +13,4 @@ Type=Application
 StartupNotify=true
 Categories=GTK;GNOME;Settings;X-GNOME-PersonalSettings;
 X-Desktop-File-Install-Version=0.15
-_Keywords=Terminal;Utility;
+Keywords=Terminal;Utility;
