@@ -357,7 +357,7 @@ PALETTES = {
         '#000000000000:#aaaa00000000:#0000aaaa0000:#aaaa55550000:#00000000aaaa:'
         '#aaaa0000aaaa:#0000aaaaaaaa:#aaaaaaaaaaaa:#555555555556:#ffff55555555:'
         '#5555ffff5555:#ffffffff5555:#55555555ffff:#ffff5555ffff:#5555ffffffff:'
-        '#ffffffffffff:#000000000000:#ffffffffffff'
+        '#ffffffffffff:#ffffffffffff:#000000000000'
     ),
     'Liquid Carbon Transparent': (
         '#000000000000:#FFFF2F2F2F2F:#54549A9A6F6F:#CCCCACAC0000:#00009999CCCC:'
@@ -549,7 +549,7 @@ PALETTES = {
         '#000000000000:#cdcd00000000:#0000cdcd0000:#cdcdcdcd0000:#00000000cdcd:'
         '#cdcd0000cdcd:#0000cdcdcdcd:#fafaebebd7d7:#404040404040:#ffff00000000:'
         '#0000ffff0000:#ffffffff0000:#00000000ffff:#ffff0000ffff:#0000ffffffff:'
-        '#ffffffffffff:#000000000000:#ffffffffffff'
+        '#ffffffffffff:#ffffffffffff:#000000000000'
     ),
     'Sea Shells': (
         '#171738384C4C:#D1D150502323:#02027C7C9B9B:#FCFCA0A02F2F:#1E1E49495050:'
@@ -663,7 +663,7 @@ PALETTES = {
         '#000000000000:#cccc00000000:#4e4e9a9a0606:#c4c4a0a00000:#34346565a4a4:'
         '#757550507b7b:#060698209a9a:#d3d3d7d7cfcf:#555557575353:#efef29292929:'
         '#8a8ae2e23434:#fcfce9e94f4f:#72729f9fcfcf:#adad7f7fa8a8:#3434e2e2e2e2:'
-        '#eeeeeeeeecec:#ffffffffffff:#000000000000'
+        '#eeeeeeeeecec:#000000000000:#ffffffffffff'
     ),
     'Teerb': (
         '#1C1C1C1C1C1C:#D6D686868686:#AEAED6D68686:#D7D7AFAF8787:#8686AEAED6D6:'
@@ -783,7 +783,7 @@ PALETTES = {
         '#000000000000:#cdcb00000000:#0000cdcb0000:#cdcbcdcb0000:#1e1a908fffff:'
         '#cdcb0000cdcb:#0000cdcbcdcb:#e5e2e5e2e5e2:#4ccc4ccc4ccc:#ffff00000000:'
         '#0000ffff0000:#ffffffff0000:#46458281b4ae:#ffff0000ffff:#0000ffffffff:'
-        '#ffffffffffff:#000000000000:#ffffffffffff'
+        '#ffffffffffff:#ffffffffffff:#000000000000'
     ),
     'Zenburn': (
         '#4D4D4D4D4D4D:#707050505050:#6060B4B48A8A:#F0F0DFDFAFAF:#505060607070:'
