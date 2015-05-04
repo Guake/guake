@@ -679,6 +679,22 @@ class Guake(SimpleGladeApp):
 
         return dest_screen
 
+    def is_using_unity(self):
+        linux_distrib = platform.linux_distribution()
+        if linux_distrib[0].lower() == "ubuntu":
+            if float(linux_distrib[1]) - 0.01 >= 15.04:
+                if os.environ.get('DESKTOP_SESSION').lower() == "ubuntu":
+                    return True
+                elif os.environ.get('DESKTOP_SESSION').lower() == "gnome":  # gnome shell
+                    return False
+                elif os.environ.get('DESKTOP_SESSION').lower() == "mate":  # gnome Mate
+                    return False
+                elif os.environ.get('DESKTOP_SESSION').lower() == "lubuntu":  # gnome Lubuntu
+                    return False
+            elif os.environ.get('DESKTOP_SESSION').lower() == "ubuntu":
+                return True
+        return False
+
     def set_final_window_rect(self):
         """Sets the final size and location of the main window of guake. The height
         is the window_height property, width is window_width and the
@@ -706,7 +722,7 @@ class Guake(SimpleGladeApp):
         monitor = self.get_final_window_monitor()
         window_rect = screen.get_monitor_geometry(monitor)
 
-        if platform.linux_distribution()[0].lower() == "ubuntu":
+        if self.is_using_unity():
 
             # For Ubuntu 12.10 and above, try to use dconf:
             # see if unity dock is hiden => unity_hide
