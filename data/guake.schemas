@@ -500,7 +500,7 @@
             <applyto>/apps/guake/style/background/transparency</applyto>
             <owner>guake</owner>
             <type>int</type>
-            <default>80</default>
+            <default>10</default>
             <locale name="C">
                 <short>Background transparency.</short>
                 <long>Alpha that will be applied to the terminal
