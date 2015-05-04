@@ -593,7 +593,6 @@ class PrefsDialog(SimpleGladeApp):
         found = False
         print("wanting palette", palette_name)
         for i in combo.get_model():
-            print("i[0]", i[0], "i", i)
             if i[0] == palette_name:
                 combo.set_active_iter(i.iter)
                 found = True
