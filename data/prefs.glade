@@ -157,7 +157,7 @@ This would typically use the configuration by command line feature of Guake:
 
 #!/bin/bash
 
-sleep 5  # it is advised to wait a bit after Guake has been successfully started
+sleep 5  # it is advised to wait a bit before Guake has been successfully started
 
 guake -r "main" -e "cd ~/projects/myproject/main"
 guake -r "prod" -e "cd ~/projects/myproject/prod"
