@@ -157,7 +157,15 @@ class GuakeTerminal(vte.Terminal):
                         if not quick_open_in_current_terminal:
                             curdir = self.get_current_directory()
                             filepath = os.path.join(curdir, filename)
-                            if not os.path.exists(filepath):
+                            filepaths = [filepath]
+                            tmp_filepath = filepath
+                            # Also check files patterns that ends with one or 2 ':'
+                            for _ in range(2):
+                                if ':' not in tmp_filepath:
+                                    break
+                                tmp_filepath = tmp_filepath.rpartition(':')[0]
+                                filepaths.append(tmp_filepath)
+                            if not any(filepaths, os.path.exists):
                                 logging.info("Cannot open file %s, it doesn't exists locally"
                                              "(current dir: %s)", filepath,
                                              os.path.curdir)
