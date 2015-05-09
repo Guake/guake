@@ -1,3 +1,10 @@
+Version 0.7.1:
+- Background and font color inversed for some color schemes (#516)
+- Guake width wrong on non-Unity Ubuntu desktop (#517)
+- Add get_gtktab_name dbus interface (#529, #530)
+- Fix issue with selection copy (#514)
+- I18n fixes and updated Polish translation (#519)
+
 Version 0.7.0:
 
 I had more time working on Guake recently, so I fixed some long term issues, and exposed some
