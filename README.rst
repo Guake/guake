@@ -86,6 +86,7 @@ For compiling from these sources, please install the following packages (Ubuntu 
     sudo apt-get install python-vte python-gconf
     sudo apt-get install notify-osd
     sudo apt-get install libutempter0
+    sudo apt-get install python-notify
     # uncomment for Python 3
     # sudo apt-get install python3-dev
     # uncomment for glade Gtk-2 editor
