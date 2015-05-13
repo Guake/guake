@@ -23,6 +23,7 @@ from __future__ import division
 from __future__ import print_function
 
 import gconf
+import glib
 import gobject
 import gtk
 import os
@@ -96,6 +97,11 @@ bindtextdomain(NAME, LOCALE_DIR)
 
 # Setting gobject program name
 gobject.set_prgname(NAME)
+
+GDK_WINDOW_STATE_WITHDRAWN = 1
+GDK_WINDOW_STATE_ICONIFIED = 2
+GDK_WINDOW_STATE_STICKY = 8
+GDK_WINDOW_STATE_ABOVE = 32
 
 
 class PromptQuitDialog(gtk.MessageDialog):
@@ -260,7 +266,11 @@ class Guake(SimpleGladeApp):
             self.hide()
             return True
 
+        def window_event(*args):
+            return self.window_event(*args)
+
         self.window.connect('delete-event', destroy)
+        self.window.connect('window-state-event', window_event)
 
         # Flag to completely disable losefocus hiding
         self.disable_losefocus_hiding = False
@@ -505,6 +515,16 @@ class Guake(SimpleGladeApp):
         self.hide()
         PrefsDialog().show()
 
+    def is_iconified(self):
+        if self.window.window:
+            cur_state = int(self.window.window.get_state())
+            return bool(cur_state & GDK_WINDOW_STATE_ICONIFIED)
+        return False
+
+    def window_event(self, window, event):
+        state = event.new_window_state
+        print("Received window state event: {0}".format(state))
+
     def show_hide(self, *args):
         """Toggles the main window visibility
         """
@@ -529,20 +549,18 @@ class Guake(SimpleGladeApp):
             return
         self.prev_showhide_time = event_time
 
-        GDK_WINDOW_STATE_STICKY = 8
-        GDK_WINDOW_STATE_WITHDRAWN = 1
-        GDK_WINDOW_STATE_ABOVE = 32
-
         print("DBG Window display")
         if self.window.window:
-            print("DBG: gtk.gdk.WindowState =", self.window.window.get_state())
-            print("DBG: gtk.gdk.WindowState =", int(self.window.window.get_state()))
-            print("DBG: GDK_WINDOW_STATE_STICKY? %s" %
-                  (bool(int(self.window.window.get_state()) & GDK_WINDOW_STATE_STICKY),))
-            print("DBG: GDK_WINDOW_STATE_WITHDRAWN? %s" %
-                  (bool(int(self.window.window.get_state()) & GDK_WINDOW_STATE_WITHDRAWN,)))
-            print("DBG: GDK_WINDOW_STATE_ABOVE? %s" %
-                  (bool(int(self.window.window.get_state()) & GDK_WINDOW_STATE_ABOVE,)))
+            cur_state = int(self.window.window.get_state())
+            is_sticky = bool(cur_state & GDK_WINDOW_STATE_STICKY)
+            is_withdrawn = bool(cur_state & GDK_WINDOW_STATE_WITHDRAWN)
+            is_above = bool(cur_state & GDK_WINDOW_STATE_ABOVE)
+            is_iconified = self.is_iconified()
+            print("DBG: gtk.gdk.WindowState =", cur_state)
+            print("DBG: GDK_WINDOW_STATE_STICKY? {0}".format(is_sticky))
+            print("DBG: GDK_WINDOW_STATE_WITHDRAWN? {0}".format(is_withdrawn))
+            print("DBG: GDK_WINDOW_STATE_ABOVE? {0}".format(is_above))
+            print("DBG: GDK_WINDOW_STATE_ICONIFIED? {0}".format(is_iconified))
 
         if not self.window.get_property('visible'):
             print("DBG: Showing the terminal")
@@ -617,16 +635,45 @@ class Guake(SimpleGladeApp):
         except AttributeError:
             time = 0
 
+        # When minized, the window manager seems to refuse to resume
+        print("self.window", dir(self.window))
+        # is_iconified = self.is_iconified()
+        # if is_iconified:
+        #     print("Is iconified. Ubuntu Trick => removing skip_taskbar_hint and skip_pager_hint "
+        #           "so deiconify can work!")
+        #     self.get_widget('window-root').set_skip_taskbar_hint(False)
+        #     self.get_widget('window-root').set_skip_pager_hint(False)
+        #     self.get_widget('window-root').set_urgency_hint(False)
+        #     print("get_skip_taskbar_hint: {}".format(
+        #         self.get_widget('window-root').get_skip_taskbar_hint()))
+        #     print("get_skip_pager_hint: {}".format(
+        #         self.get_widget('window-root').get_skip_pager_hint()))
+        #     print("get_urgency_hint: {}".format(
+        #         self.get_widget('window-root').get_urgency_hint()))
+        #     glib.timeout_add_seconds(1, lambda: self.timeout_restore(time))
+
+        print("order to present and deiconify")
+        self.window.present()
+        self.window.deiconify()
+        self.window.window.deiconify()
         self.window.window.show()
         self.window.window.focus(time)
+        self.window.set_type_hint(gtk.gdk.WINDOW_TYPE_HINT_DOCK)
+        self.window.set_type_hint(gtk.gdk.WINDOW_TYPE_HINT_NORMAL)
 
-        # This is here because vte color configuration works only
-        # after the widget is shown.
+        # print("Restoring skip_taskbar_hint and skip_pager_hint")
+        # if is_iconified:
+        #     self.get_widget('window-root').set_skip_taskbar_hint(False)
+        #     self.get_widget('window-root').set_skip_pager_hint(False)
+        #     self.get_widget('window-root').set_urgency_hint(False)
+
+        # This is here because vte color configuration works only after the widget is shown.
         self.client.notify(KEY('/style/font/color'))
         self.client.notify(KEY('/style/background/color'))
 
     def hide_from_remote(self):
-        """Hides the main window of the terminal and sets the visible
+        """
+        Hides the main window of the terminal and sets the visible
         flag to False.
         """
         print("hide from remote")
