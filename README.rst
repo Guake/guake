@@ -22,7 +22,7 @@ Features? Bugs? Information?
 
 Source Code available at: https://github.com/Guake/guake/
 
-Important note: Do **NOT** use the domain guake.org, it has been registered by someone outside of the 
+**Important note**: Do **NOT** use the domain guake.org, it has been registered by someone outside of the 
 team.
 
 
