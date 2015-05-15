@@ -12,8 +12,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Guake 0.4.5\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-05-15 10:10+0200\n"
-"PO-Revision-Date: 2012-03-14 10:20+0000\n"
+"POT-Creation-Date: 2015-05-15 10:26+0200\n"
+"PO-Revision-Date: 2015-05-15 10:31+0100\n"
 "Last-Translator: Benjamin Danon <benjamin@sphax3d.org>\n"
 "Language-Team: French (http://www.transifex.com/projects/p/guake/language/"
 "fr/)\n"
@@ -22,18 +22,19 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
+"X-Generator: Poedit 1.5.4\n"
 
 #: ../data/about.glade.h:1
 msgid "About Guake"
 msgstr "À propos de Guake"
 
 #: ../data/about.glade.h:2
-#, fuzzy
 msgid ""
-"Copyright 2013-2014 Gaetan semet\n"
+"Copyright 2013-2015 Gaetan semet\n"
 "Copyright 2007-2010 Lincoln de Sousa\n"
 "Copyright 2007 Gabriel Falc&#xE3;o"
 msgstr ""
+"Copyright 2013-2015 Gaetan semet\n"
 "Copyright 2007-2009 Lincoln de Sousa\n"
 "Copyright 2007 Gabriel Falc&#xE3;o"
 
@@ -80,7 +81,6 @@ msgstr ""
 "Fifth Floor, Boston, MA  02110-1301 USA\n"
 
 #: ../data/about.glade.h:14
-#, fuzzy
 msgid ""
 "Adolfo González Blázquez <code@infinicode.org> Spanish\n"
 "Lincoln de Sousa <lincoln@guake.org> Brazilian Portuguese\n"
@@ -92,13 +92,15 @@ msgid ""
 "Sangwoo Joo <sangwoojoo@naver.com> Korean\n"
 "    "
 msgstr ""
-"Adolfo González Blázquez <code@infinicode.org> Spanish\r\n"
-"Lincoln de Sousa <lincoln@guake.org> Brazilian Portuguese\r\n"
-"Markus Majer <mm@mpathy.de> German\r\n"
-"Mieszko Ślusarczyk <mieszkoslusarczyk@gmail.com> Polish\r\n"
-"Nishio Futoshi <futoshi@momonga-linux.org> Japanese\r\n"
-"Pavel Alexeev <Pahan@Hubbitus.spb.su> Russian\r\n"
-"Piotr Drąg <piotrdrag@gmail.com> Polish"
+"Adolfo González Blázquez <code@infinicode.org> Spanish\n"
+"Lincoln de Sousa <lincoln@guake.org> Brazilian Portuguese\n"
+"Markus Majer <mm@mpathy.de> German\n"
+"Mieszko Ślusarczyk <mieszkoslusarczyk@gmail.com> Polish\n"
+"Nishio Futoshi <futoshi@momonga-linux.org> Japanese\n"
+"Pavel Alexeev <Pahan@Hubbitus.spb.su> Russian\n"
+"Piotr Drąg <piotrdrag@gmail.com> Polish\n"
+"Sangwoo Joo <sangwoojoo@naver.com> Korean\n"
+"    "
 
 #: ../data/guake.glade.h:1
 msgid "Copy"
@@ -114,21 +116,19 @@ msgstr "Active/Désactive le plein écran"
 
 #: ../data/guake.glade.h:4
 msgid "Save to File..."
-msgstr ""
+msgstr "Enregister..."
 
 #: ../data/guake.glade.h:5
 msgid "Find..."
-msgstr ""
+msgstr "Recherche..."
 
 #: ../data/guake.glade.h:6
-#, fuzzy
 msgid "New Tab"
 msgstr "Nouvel onglet"
 
 #: ../data/guake.glade.h:7
-#, fuzzy
 msgid "Rename Tab"
-msgstr "Renomme l'onglet"
+msgstr "Renommer l'onglet"
 
 #: ../data/guake.glade.h:8
 msgid "Close Tab"
@@ -136,11 +136,11 @@ msgstr "Fermer onglet"
 
 #: ../data/guake.glade.h:9
 msgid "Open link..."
-msgstr ""
+msgstr "Ouvrir le lien..."
 
 #: ../data/guake.glade.h:10
 msgid "Search on Web"
-msgstr ""
+msgstr "Rechercher sur le Web"
 
 #: ../data/guake.glade.h:11
 msgid "Quit"
@@ -188,6 +188,19 @@ msgid ""
 "guake -r \"main\" -e \"cd ~/projects/myproject/main\"\n"
 "guake -r \"prod\" -e \"cd ~/projects/myproject/prod\"\n"
 msgstr ""
+"Chemin vers un script bash qui sera automatiquement executé lors du "
+"lancement de Guake, sauf si vous avez spécifié l'argument --no-startup-"
+"script.\n"
+"\n"
+"Utilisez ce script pour configurer votre instance Guake par la ligne de "
+"command, comme par exemple:\n"
+"#!/bin/bash\n"
+"\n"
+"sleep 5  # it is advised to wait a bit before Guake has been successfully "
+"started\n"
+"\n"
+"guake -r \"main\" -e \"cd ~/projects/myproject/main\"\n"
+"guake -r \"prod\" -e \"cd ~/projects/myproject/prod\"\n"
 
 #: ../data/prefs.glade.h:15
 msgid "Enable popup notifications on startup"
@@ -203,15 +216,15 @@ msgstr "Confirmer pour quitter"
 
 #: ../data/prefs.glade.h:18
 msgid "_Flash terminal on bell"
-msgstr ""
+msgstr "_Flash du terminal lors d'un \"bell\""
 
 #: ../data/prefs.glade.h:19
 msgid "_Play system alert sound on bell"
-msgstr ""
+msgstr "_Jouer une alerte system sur un signal \"bell\""
 
 #: ../data/prefs.glade.h:20
 msgid "Path to script executed on Guake start:"
-msgstr ""
+msgstr "Chemin vers le script à executer lors du lancement de Guake:"
 
 #: ../data/prefs.glade.h:21
 msgid "<b>General</b>"
@@ -219,23 +232,21 @@ msgstr "<b>Général</b>"
 
 #: ../data/prefs.glade.h:22
 msgid "Bottom align window instead of top align"
-msgstr ""
+msgstr "Aligner la fenêtre par le bas au lieu de par le haut"
 
 #: ../data/prefs.glade.h:23
 msgid "Appear on mouse display"
-msgstr ""
+msgstr "Apparition sur la fenêtre de la souris"
 
 #: ../data/prefs.glade.h:24
 msgid "Appear on display:"
-msgstr ""
+msgstr "Apparition sur l'écran:"
 
 #: ../data/prefs.glade.h:25
-#, fuzzy
 msgid "Place tabs on top"
-msgstr "Reste au premier plan"
+msgstr "Rester au premier plan"
 
 #: ../data/prefs.glade.h:26
-#, fuzzy
 msgid "<b>Placement</b>"
 msgstr "<b>Palette</b>"
 
@@ -249,14 +260,13 @@ msgstr "Cacher lors de la perte du focus"
 
 #: ../data/prefs.glade.h:29
 msgid "Use VTE titles for tab names"
-msgstr ""
+msgstr "Utiliser les titres VTE pour le nom des tabs"
 
 #: ../data/prefs.glade.h:30
 msgid "Show tab bar"
 msgstr "Afficher la barre d'onglets"
 
 #: ../data/prefs.glade.h:31
-#, fuzzy
 msgid "Start fullscreen"
 msgstr "Active/Désactive le plein écran"
 
@@ -266,30 +276,27 @@ msgstr "<b>Fenêtre principale</b>"
 
 #: ../data/prefs.glade.h:33
 msgid "Left"
-msgstr ""
+msgstr "Gauche"
 
 #: ../data/prefs.glade.h:34
 msgid "Center"
-msgstr ""
+msgstr "Centre"
 
 #: ../data/prefs.glade.h:35
 msgid "Right"
-msgstr ""
+msgstr "Droit"
 
 #: ../data/prefs.glade.h:36
-#, fuzzy
 msgid "<b>Main Window Horizontal Alignment</b>"
-msgstr "<b>Hauteur de la fenêtre principale</b>"
+msgstr "<b>Alignement horizontal de la fenêtre principale</b>"
 
 #: ../data/prefs.glade.h:37
-#, fuzzy
 msgid "<b>Main Window Height</b>"
 msgstr "<b>Hauteur de la fenêtre principale</b>"
 
 #: ../data/prefs.glade.h:38
-#, fuzzy
 msgid "<b>Main Window Width</b>"
-msgstr "<b>Hauteur de la fenêtre principale</b>"
+msgstr "<b>Largeur de la fenêtre principale</b>"
 
 #: ../data/prefs.glade.h:39
 msgid "General"
@@ -313,7 +320,7 @@ msgstr "<b>Shell</b>"
 
 #: ../data/prefs.glade.h:44
 msgid "Shell"
-msgstr ""
+msgstr "Shell"
 
 #: ../data/prefs.glade.h:45
 msgid "Show scrollbar"
@@ -361,7 +368,7 @@ msgstr "Couleur d'arrière-plan "
 
 #: ../data/prefs.glade.h:56
 msgid "Cursor shape:"
-msgstr ""
+msgstr "Forme du curseur"
 
 #: ../data/prefs.glade.h:57
 msgid ""
@@ -369,10 +376,13 @@ msgid ""
 "I-Beam\n"
 "Underline"
 msgstr ""
+"Block\n"
+"Faisceau en forme de I\n"
+"Souligner"
 
 #: ../data/prefs.glade.h:60
 msgid "Cursor blink mode:"
-msgstr ""
+msgstr "Mode de clignotement du curseur:"
 
 #: ../data/prefs.glade.h:61
 msgid ""
@@ -380,6 +390,9 @@ msgid ""
 "Blink on\n"
 "Blink off"
 msgstr ""
+"Suivre les paramètres GTK\n"
+"Activé\n"
+"Désactivé"
 
 #: ../data/prefs.glade.h:64
 msgid "<b>Palette</b>"
@@ -394,22 +407,20 @@ msgid "Color palette:"
 msgstr "Palette de couleurs :"
 
 #: ../data/prefs.glade.h:67
-#, fuzzy
 msgid "Font color"
-msgstr "Couleur du texte :"
+msgstr "Couleur du texte"
 
 #: ../data/prefs.glade.h:68
-#, fuzzy
 msgid "Background color"
-msgstr "Couleur d'arrière-plan "
+msgstr "Couleur d'arrière-plan"
 
 #: ../data/prefs.glade.h:69
 msgid "Use font and background color from the palette"
-msgstr ""
+msgstr "Utiliser les couleurs de la palette pour la police et le fond"
 
 #: ../data/prefs.glade.h:70
 msgid "Demo:"
-msgstr ""
+msgstr "Demo:"
 
 #: ../data/prefs.glade.h:71
 msgid "<b>Effects</b>"
@@ -434,18 +445,24 @@ msgid ""
 "your terminal. See the list of currently supported text patterns used to "
 "extract filename below.</small>"
 msgstr ""
+"<small>Ouverture Rapide vous permet d'ouvrir un fichier directement dans "
+"votre éditeur de texte préféré lors d'un clic sur un nom de fichier dans le "
+"terminal. Veuillez consulter ci-dessous la liste des motifs de texte utilisé "
+"pour extraire les noms de fichiers.</small>"
 
 #: ../data/prefs.glade.h:76
 msgid "<b>Quick Open configuration</b>"
-msgstr ""
+msgstr "<b>Configuration de l'Ouverture Rapide</b>"
 
 #: ../data/prefs.glade.h:77
 msgid "Enable Quick Open when Ctrl+clicking on a filename in the terminal"
 msgstr ""
+"Activer l'Ouverture Rapide lors d'un Ctrl+clic sur un nom de fichier dans le "
+"terminal"
 
 #: ../data/prefs.glade.h:78
 msgid "Editor command line:"
-msgstr ""
+msgstr "Ligne de commande de l'éditeur:"
 
 #: ../data/prefs.glade.h:80
 #, no-c-format
@@ -458,26 +475,39 @@ msgid ""
 "For example, for sublime, use <b>subl %(file_path)s:%(line_number)s</b>\n"
 "</i></small>"
 msgstr ""
+"<small><i>Utilisez les élements suivant dans votre ligne de commande::\n"
+" - <b>%(file_path)s</b>: chemin vers le fichier qui a été cliqué\n"
+" - <b>%(line_number)s</b>: si votre éditeur le supporte, vous pouvez lui "
+"spécifier le numéro de la ligne dans le fichier, s'il a été trouvé par le "
+"motif\n"
+"\n"
+"Par exemple, la ligne de command pour l'éditeur Sublime Text, est: <b>subl "
+"%(file_path)s:%(line_number)s</b>\n"
+"</i></small>"
 
 #: ../data/prefs.glade.h:86
 msgid "Quick open in current terminal"
-msgstr ""
+msgstr "Ouverture Rapide dans le terminal courant"
 
 #: ../data/prefs.glade.h:87
 msgid "Quick Open"
-msgstr ""
+msgstr "Ouverture Rapide"
 
 #: ../data/prefs.glade.h:88
 msgid ""
 "Here is the list of supported patterns: (to add your own, please contact the "
 "Guake's authors)"
 msgstr ""
+"Voici la liste des motifs supportés (pour ajouter votre propre motif, "
+"contacter l'équipe de dévelopment)"
 
 #: ../data/prefs.glade.h:89
 msgid ""
 "To change a shortcut simply click on its name.\n"
 "To disable a shortcut, press the \"Backspace\" key."
 msgstr ""
+"Pour changer un raccourcis, cliquer sur son nom.\n"
+"Pour désactiver un raccourcis, appuyer sur la touche \"Retour Arrière\"."
 
 #: ../data/prefs.glade.h:91
 msgid "Keyboard shortcuts"
@@ -535,35 +565,33 @@ msgid "Unable to bind global <b>%s</b> key"
 msgstr "Impossible de combiner la touche <b>%s</b>"
 
 #: ../src/guake/guake_app.py:118
-#, fuzzy
 msgid "Do you really want to quit Guake?"
-msgstr "Voulez-vous vraiment quitter Guake !?"
+msgstr "Voulez-vous vraiment quitter Guake ?"
 
 #: ../src/guake/guake_app.py:121
-#, fuzzy
 msgid "<b>There is no process running.</b>"
-msgstr "<b>Il y a encore un processus en cours.</b>"
+msgstr "<b>Il y n'a pas de processus actif.</b>"
 
 #: ../src/guake/guake_app.py:125
 msgid "<b>There is one process still running.</b>"
 msgstr "<b>Il y a encore un processus en cours.</b>"
 
 #: ../src/guake/guake_app.py:129
-#, fuzzy, python-format
+#, python-format
 msgid "<b>There are %d processes still running.</b>"
-msgstr "<b>Il y a %d processus en cours.</b>"
+msgstr "<b>Il y a %d processus encore actifs.</b>"
 
 #: ../src/guake/guake_app.py:165
 msgid "guake-indicator"
-msgstr ""
+msgstr "guake-indicator"
 
 #: ../src/guake/guake_app.py:165
 msgid "guake-tray"
-msgstr ""
+msgstr "guake-tray"
 
 #: ../src/guake/guake_app.py:169
 msgid "Show"
-msgstr ""
+msgstr "Afficher"
 
 #: ../src/guake/guake_app.py:306
 #, python-format
@@ -587,19 +615,19 @@ msgstr ""
 #: ../src/guake/guake_app.py:456
 #, python-format
 msgid "Search on Web: '%s'"
-msgstr ""
+msgstr "Rechercher sur le Web: '%s'"
 
 #: ../src/guake/guake_app.py:460
 msgid "Search on Web (no selection)"
-msgstr ""
+msgstr "Rechercher sur le Web (pas de sélection)"
 
 #: ../src/guake/guake_app.py:466
 msgid "Open Link: {}"
-msgstr ""
+msgstr "Ouvrir le lien: {}"
 
 #: ../src/guake/guake_app.py:469
 msgid "Open Link..."
-msgstr ""
+msgstr "Ouvrir le lien..."
 
 #: ../src/guake/guake_app.py:1095
 msgid "Rename tab"
@@ -607,51 +635,48 @@ msgstr "Renomme l'onglet"
 
 #. Adding a new radio button to the tabbar
 #: ../src/guake/guake_app.py:1332
-#, fuzzy
 msgid "Terminal"
 msgstr "Terminal %s"
 
 #: ../src/guake/guake_app.py:1373
 msgid "Save to..."
-msgstr ""
+msgstr "Enregistrer sous..."
 
 #: ../src/guake/guake_app.py:1380
 msgid "All files"
-msgstr ""
+msgstr "Tous les fichiers"
 
 #: ../src/guake/guake_app.py:1385
 msgid "Text and Logs"
-msgstr ""
+msgstr "Textes et logs"
 
 #: ../src/guake/guake_app.py:1403
 msgid "Find"
-msgstr ""
+msgstr "Rechercher"
 
 #: ../src/guake/guake_app.py:1405
 msgid "Forward"
-msgstr ""
+msgstr "Suivant"
 
 #: ../src/guake/guake_app.py:1406
 msgid "Backward"
-msgstr ""
+msgstr "Précédent"
 
 #: ../src/guake/main.py:63
 msgid "Put Guake in fullscreen mode"
-msgstr ""
+msgstr "Placer Guake en mode plein écran"
 
 #: ../src/guake/main.py:67
 msgid "Toggles the visibility of the terminal window"
 msgstr "Active/Désactive la visibilité de la fenêtre principale"
 
 #: ../src/guake/main.py:71
-#, fuzzy
 msgid "Shows Guake main window"
-msgstr "Afficher la fenêtre de préférences de Guake"
+msgstr "Afficher la fenêtre principale de Guake"
 
 #: ../src/guake/main.py:75
-#, fuzzy
 msgid "Hides Guake main window"
-msgstr "Afficher la fenêtre de préférences de Guake"
+msgstr "Afficher la fenêtre principale de Guake"
 
 #: ../src/guake/main.py:79
 msgid "Shows Guake preference window"
@@ -662,13 +687,12 @@ msgid "Shows Guake's about info"
 msgstr "Afficher les informations à propos de Guake"
 
 #: ../src/guake/main.py:87
-#, fuzzy
 msgid "Add a new tab (with current directory set to NEW_TAB)"
-msgstr "_Ouvrir un nouvel onglet dans le dossier courant"
+msgstr "_Ouvrir un nouvel onglet (le dossier courant est spécifié par NEW_TAB)"
 
 #: ../src/guake/main.py:91
 msgid "Select a tab (SELECT_TAB is the index of the tab)"
-msgstr ""
+msgstr "Selectionner un onglet (SELECT_TAB est l'index du tab)"
 
 #: ../src/guake/main.py:95
 msgid "Return the selected tab index."
@@ -680,25 +704,32 @@ msgstr "Exécute une commande dans un onglet sélectionné"
 
 #: ../src/guake/main.py:103
 msgid "Specify the tab to rename. Default is 0."
-msgstr ""
+msgstr "Spécifier un onglet à renommer. Defaut: 0"
 
 #: ../src/guake/main.py:107
 msgid "Set the hexadecimal (#rrggbb) background color of the selected tab."
 msgstr ""
+"Choisir la couleur hexadécimale (#rrggbb) du fond pour l'onglet sectionné"
 
 #: ../src/guake/main.py:112
 msgid "Set the hexadecimal (#rrggbb) foreground color of the selected tab."
 msgstr ""
+"Choisir la couleur hexadécimale (#rrggbb) de la police pour l'onglet "
+"sectionné"
 
 #: ../src/guake/main.py:118
 msgid ""
 "Rename the specified tab. Reset to default if TITLE is a single dash \"-\"."
 msgstr ""
+"Renommer l'onglet spécifié. Pour remettre à la valeur par defaut, mettre "
+"TITRE à \"-\"."
 
 #: ../src/guake/main.py:124
 msgid ""
 "Rename the current tab. Reset to default if TITLE is a single dash \"-\"."
 msgstr ""
+"Renommer  the tab actuel. Pour remettre à la valeur par défaut, utiliser \"-"
+"\"."
 
 #: ../src/guake/main.py:129
 msgid "Says to Guake go away =("
@@ -706,14 +737,13 @@ msgstr "Dis au-revoir à Guake =("
 
 #: ../src/guake/main.py:133
 msgid "Do not execute the start up script"
-msgstr ""
+msgstr "Ne pas executer le script de démarrage"
 
 #: ../src/guake/main.py:227
 msgid "Guake can not init!"
 msgstr "Guake ne peux démarrer"
 
 #: ../src/guake/main.py:228
-#, fuzzy
 msgid ""
 "Gconf Error.\n"
 "Have you installed <b>guake.schemas</b> properly?"
@@ -736,7 +766,7 @@ msgstr "Raccourcis"
 
 #: ../src/guake/prefs.py:584 ../src/guake/prefs.py:630
 msgid "Custom"
-msgstr ""
+msgstr "Personnalisé"
 
 #: ../src/guake/prefs.py:961
 #, python-format
