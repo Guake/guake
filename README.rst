@@ -20,9 +20,10 @@ po directory.
 Features? Bugs? Information?
 ----------------------------
 
-Visit: http://guake.org/
-
 Source Code available at: https://github.com/Guake/guake/
+
+**Important note**: Do **NOT** use the domain guake.org, it has been registered by someone outside of the 
+team.
 
 
 License
@@ -86,6 +87,7 @@ For compiling from these sources, please install the following packages (Ubuntu 
     sudo apt-get install python-vte python-gconf
     sudo apt-get install notify-osd
     sudo apt-get install libutempter0
+    sudo apt-get install python-notify
     # uncomment for Python 3
     # sudo apt-get install python3-dev
     # uncomment for glade Gtk-2 editor

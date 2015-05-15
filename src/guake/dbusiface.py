@@ -78,7 +78,7 @@ class DbusManager(dbus.service.Object):
 
     @dbus.service.method(DBUS_NAME, out_signature='i')
     def get_tab_count(self):
-        return len(self.guake.term_list)
+        return len(self.guake.notebook.term_list)
 
     @dbus.service.method(DBUS_NAME, in_signature='s')
     def set_bgcolor(self, bgcolor):
@@ -94,7 +94,7 @@ class DbusManager(dbus.service.Object):
 
     @dbus.service.method(DBUS_NAME, in_signature='i', out_signature='s')
     def get_tab_name(self, tab_index=0):
-        return self.guake.term_list[int(tab_index)].get_window_title() or ''
+        return self.guake.notebook.term_list[int(tab_index)].get_window_title() or ''
 
     @dbus.service.method(DBUS_NAME, in_signature='is')
     def rename_tab(self, tab_index, new_text):
@@ -115,3 +115,7 @@ class DbusManager(dbus.service.Object):
     @dbus.service.method(DBUS_NAME)
     def quit(self):
         self.guake.quit()
+
+    @dbus.service.method(DBUS_NAME, in_signature='i', out_signature='s')
+    def get_gtktab_name(self, tab_index=0):
+        return self.guake.tabs.get_children()[tab_index].get_label()

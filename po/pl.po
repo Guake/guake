@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: guake\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-04-18 03:31+0200\n"
-"PO-Revision-Date: 2015-04-18 03:32+0200\n"
+"POT-Creation-Date: 2015-05-04 17:12+0200\n"
+"PO-Revision-Date: 2015-05-04 17:13+0200\n"
 "Last-Translator: Piotr Drąg <piotrdrag@gmail.com>\n"
 "Language-Team: Polish <trans-pl@lists.fedoraproject.org>\n"
 "Language: pl\n"
@@ -100,34 +100,6 @@ msgstr ""
 "Sangwoo Joo <sangwoojoo@naver.com> koreański\n"
 "    "
 
-#: ../data/guake-autoconfigure.desktop.in.h:1
-msgid "Autoconfigure Guake"
-msgstr "Automatyczna konfiguracja Guake"
-
-#: ../data/guake-autoconfigure.desktop.in.h:2
-msgid "Autoconfigure the start of the Guake terminal"
-msgstr "Automatycznie konfiguruje uruchamianie terminala Guake"
-
-#: ../data/guake-autostart.desktop.in.h:1
-msgid "Autostart Guake Terminal"
-msgstr "Automatyczne uruchamianie terminala Guake"
-
-#: ../data/guake-autostart.desktop.in.h:2
-msgid "Automatically start Guake terminal at login"
-msgstr "Automatycznie uruchamia terminal Guake podczas logowania"
-
-#: ../data/guake.desktop.in.h:1 ../src/guake/guake_app.py:143
-msgid "Guake Terminal"
-msgstr "Terminal Guake"
-
-#: ../data/guake.desktop.in.h:2
-msgid "Use the command line in a Quake-like terminal"
-msgstr "Używanie wiersza poleceń w terminalu w stylu gry Quake"
-
-#: ../data/guake.desktop.in.h:3 ../data/guake-prefs.desktop.in.h:3
-msgid "Terminal;Utility;"
-msgstr "Terminal;Konsola;Narzędzie;"
-
 #: ../data/guake.glade.h:1
 msgid "Copy"
 msgstr "Skopiuj"
@@ -145,49 +117,53 @@ msgid "Save to File..."
 msgstr "Zapisz do pliku..."
 
 #: ../data/guake.glade.h:5
+msgid "Find..."
+msgstr "Znajdź..."
+
+#: ../data/guake.glade.h:6
 msgid "New Tab"
 msgstr "Nowa karta"
 
-#: ../data/guake.glade.h:6
+#: ../data/guake.glade.h:7
 msgid "Rename Tab"
 msgstr "Zmień nazwę karty"
 
-#: ../data/guake.glade.h:7
+#: ../data/guake.glade.h:8
 msgid "Close Tab"
 msgstr "Zamknij kartę"
 
-#: ../data/guake.glade.h:8
+#: ../data/guake.glade.h:9
+msgid "Open link..."
+msgstr "Otwórz odnośnik..."
+
+#: ../data/guake.glade.h:10
 msgid "Search on Web"
 msgstr "Znajdź w sieci"
 
-#: ../data/guake.glade.h:9
+#: ../data/guake.glade.h:11
 msgid "Quit"
 msgstr "Zakończ"
 
-#: ../data/guake.glade.h:10
+#: ../data/guake.glade.h:12
 msgid "Rename"
 msgstr "Zmień nazwę"
 
-#: ../data/guake.glade.h:11
+#: ../data/guake.glade.h:13
 msgid "Close"
 msgstr "Zamknij"
 
-#: ../data/guake.glade.h:12 ../src/guake/guake_app.py:288
-#: ../src/guake/guake_app.py:298
+#: ../data/guake.glade.h:14 ../src/guake/guake_app.py:302
+#: ../src/guake/guake_app.py:312
 msgid "Guake!"
 msgstr "Guake!"
 
-#: ../data/guake.glade.h:13
+#: ../data/guake.glade.h:15
 msgid "Add a new tab"
 msgstr "Dodaje nową kartę"
 
-#: ../data/guake-prefs.desktop.in.h:1 ../data/prefs.glade.h:1
+#: ../data/prefs.glade.h:1
 msgid "Guake Preferences"
 msgstr "Preferencje programu Guake"
-
-#: ../data/guake-prefs.desktop.in.h:2
-msgid "Configure your Guake sessions"
-msgstr "Konfiguruje sesje programu Guake"
 
 #: ../data/prefs.glade.h:2
 msgid "<span size=\"18000\" color=\"black\"><b>Guake properties</b></span>"
@@ -202,252 +178,297 @@ msgstr ""
 "span>"
 
 #: ../data/prefs.glade.h:4
-msgid "Default interpreter:"
-msgstr "Domyślna powłoka:"
+msgid ""
+"Path to a bash script that would be automatically executed when Guake "
+"starts, unless you specify --no-startup-script.\n"
+"\n"
+"This would typically use the configuration by command line feature of "
+"Guake:\n"
+"\n"
+"#!/bin/bash\n"
+"\n"
+"sleep 5  # it is advised to wait a bit after Guake has been successfully "
+"started\n"
+"\n"
+"guake -r \"main\" -e \"cd ~/projects/myproject/main\"\n"
+"guake -r \"prod\" -e \"cd ~/projects/myproject/prod\"\n"
+msgstr ""
+"Ścieżka do skryptu powłoki bash automatycznie wykonywanego podczas "
+"uruchamiania programu Guake, jeśli nie podano opcji --no-startup-script.\n"
+"\n"
+"Zwykle używa to funkcji konfiguracji przez wiersz poleceń programu Guake:\n"
+"\n"
+"#!/bin/bash\n"
+"\n"
+"sleep 5  # zalecane jest odczekanie chwilę przed pomyślnym uruchomieniem "
+"programu Guake\n"
+"\n"
+"guake -r \"main\" -e \"cd ~/projekty/mójprojekt/main\"\n"
+"guake -r \"prod\" -e \"cd ~/projekty/mójprojekt/prod\"\n"
 
-#: ../data/prefs.glade.h:5
-msgid "_Run command as a login shell"
-msgstr "U_ruchamianie polecenia jako powłokę logowania"
-
-#: ../data/prefs.glade.h:6
-msgid "_Open new tab in current directory"
-msgstr "_Otwieranie nowych kart w bieżącym katalogu"
-
-#: ../data/prefs.glade.h:7
-msgid "<b>Shell</b>"
-msgstr "<b>Powłoka</b>"
-
-#: ../data/prefs.glade.h:8
-msgid "Show tray icon"
-msgstr "Ikona obszaru powiadamiania"
-
-#: ../data/prefs.glade.h:9
+#: ../data/prefs.glade.h:15
 msgid "Enable popup notifications on startup"
 msgstr "Wyskakujące powiadomienia podczas uruchamiania"
 
-#: ../data/prefs.glade.h:10
+#: ../data/prefs.glade.h:16
+msgid "Show tray icon"
+msgstr "Ikona obszaru powiadamiania"
+
+#: ../data/prefs.glade.h:17
 msgid "Prompt on quit"
 msgstr "Potwierdzenie podczas kończenia działania"
 
-#: ../data/prefs.glade.h:11
-msgid "_Play system alert sound on bell"
-msgstr "Systemowy _dźwięk alarmu jako dzwonek"
-
-#: ../data/prefs.glade.h:12
+#: ../data/prefs.glade.h:18
 msgid "_Flash terminal on bell"
 msgstr "_Miganie terminalem jako dzwonek"
 
-#: ../data/prefs.glade.h:13
+#: ../data/prefs.glade.h:19
+msgid "_Play system alert sound on bell"
+msgstr "Systemowy _dźwięk alarmu jako dzwonek"
+
+#: ../data/prefs.glade.h:20
+msgid "Path to script executed on Guake start:"
+msgstr "Ścieżka do skryptu wykonywanego podczas uruchamiania programu Guake:"
+
+#: ../data/prefs.glade.h:21
 msgid "<b>General</b>"
 msgstr "<b>Ogólne</b>"
 
-#: ../data/prefs.glade.h:14
-msgid "Stay on top"
-msgstr "Zawsze na wierzchu"
-
-#: ../data/prefs.glade.h:15
-msgid "Use VTE titles for tab names"
-msgstr "Tytuły VTE dla nazw kart"
-
-#: ../data/prefs.glade.h:16
-msgid "Hide on lose focus"
-msgstr "Ukrycie po utracie aktywności"
-
-#: ../data/prefs.glade.h:17
-msgid "Show tab bar"
-msgstr "Pasek kart"
-
-#: ../data/prefs.glade.h:18
-msgid "Start fullscreen"
-msgstr "Uruchamianie w trybie pełnoekranowym"
-
-#: ../data/prefs.glade.h:19
-msgid "<b>Main Window</b>"
-msgstr "<b>Główne okno</b>"
-
-#: ../data/prefs.glade.h:20
+#: ../data/prefs.glade.h:22
 msgid "Bottom align window instead of top align"
 msgstr "Okno na dole zamiast na górze"
 
-#: ../data/prefs.glade.h:21
+#: ../data/prefs.glade.h:23
 msgid "Appear on mouse display"
 msgstr "Wyświetlanie na ekranie z kursorem"
 
-#: ../data/prefs.glade.h:22
+#: ../data/prefs.glade.h:24
 msgid "Appear on display:"
 msgstr "Wyświetlanie na ekranie:"
 
-#: ../data/prefs.glade.h:23
+#: ../data/prefs.glade.h:25
 msgid "Place tabs on top"
 msgstr "Karty na górze"
 
-#: ../data/prefs.glade.h:24
+#: ../data/prefs.glade.h:26
 msgid "<b>Placement</b>"
 msgstr "<b>Umieszczenie</b>"
 
-#: ../data/prefs.glade.h:25
-msgid "<b>Main Window Height</b>"
-msgstr "<b>Wysokość głównego okna</b>"
-
-#: ../data/prefs.glade.h:26
-msgid "<b>Main Window Width</b>"
-msgstr "<b>Szerokość głównego okna</b>"
-
 #: ../data/prefs.glade.h:27
+msgid "Stay on top"
+msgstr "Zawsze na wierzchu"
+
+#: ../data/prefs.glade.h:28
+msgid "Hide on lose focus"
+msgstr "Ukrycie po utracie aktywności"
+
+#: ../data/prefs.glade.h:29
+msgid "Use VTE titles for tab names"
+msgstr "Tytuły VTE dla nazw kart"
+
+#: ../data/prefs.glade.h:30
+msgid "Show tab bar"
+msgstr "Pasek kart"
+
+#: ../data/prefs.glade.h:31
+msgid "Start fullscreen"
+msgstr "Uruchamianie w trybie pełnoekranowym"
+
+#: ../data/prefs.glade.h:32
+msgid "<b>Main Window</b>"
+msgstr "<b>Główne okno</b>"
+
+#: ../data/prefs.glade.h:33
 msgid "Left"
 msgstr "Po lewej"
 
-#: ../data/prefs.glade.h:28
+#: ../data/prefs.glade.h:34
 msgid "Center"
 msgstr "Na środku"
 
-#: ../data/prefs.glade.h:29
+#: ../data/prefs.glade.h:35
 msgid "Right"
 msgstr "Po prawej"
 
-#: ../data/prefs.glade.h:30
+#: ../data/prefs.glade.h:36
 msgid "<b>Main Window Horizontal Alignment</b>"
 msgstr "<b>Pionowe wyrównanie głównego okna</b>"
 
-#: ../data/prefs.glade.h:31
+#: ../data/prefs.glade.h:37
+msgid "<b>Main Window Height</b>"
+msgstr "<b>Wysokość głównego okna</b>"
+
+#: ../data/prefs.glade.h:38
+msgid "<b>Main Window Width</b>"
+msgstr "<b>Szerokość głównego okna</b>"
+
+#: ../data/prefs.glade.h:39
 msgid "General"
 msgstr "Ogólne"
 
-#: ../data/prefs.glade.h:32
+#: ../data/prefs.glade.h:40
+msgid "Default interpreter:"
+msgstr "Domyślna powłoka:"
+
+#: ../data/prefs.glade.h:41
+msgid "_Run command as a login shell"
+msgstr "U_ruchamianie polecenia jako powłokę logowania"
+
+#: ../data/prefs.glade.h:42
+msgid "_Open new tab in current directory"
+msgstr "_Otwieranie nowych kart w bieżącym katalogu"
+
+#: ../data/prefs.glade.h:43
+msgid "<b>Shell</b>"
+msgstr "<b>Powłoka</b>"
+
+#: ../data/prefs.glade.h:44
+msgid "Shell"
+msgstr "Powłoka"
+
+#: ../data/prefs.glade.h:45
 msgid "Show scrollbar"
 msgstr "Pasek przewijania"
 
-#: ../data/prefs.glade.h:33
+#: ../data/prefs.glade.h:46
 msgid "Scrollback lines:"
 msgstr "Przewijanie:"
 
-#: ../data/prefs.glade.h:34
+#: ../data/prefs.glade.h:47
 msgid "On output"
 msgstr "Na wyjściu"
 
-#: ../data/prefs.glade.h:35
+#: ../data/prefs.glade.h:48
 msgid "On key stroke"
 msgstr "Podczas wciśnięcia klawisza"
 
-#: ../data/prefs.glade.h:36
+#: ../data/prefs.glade.h:49
 msgid "<b>Scroll</b>"
 msgstr "<b>Przewijanie</b>"
 
-#: ../data/prefs.glade.h:37
+#: ../data/prefs.glade.h:50
 msgid "Scrolling"
 msgstr "Przewijanie"
 
-#: ../data/prefs.glade.h:38
+#: ../data/prefs.glade.h:51
 msgid "Use the system fixed width font"
 msgstr "Systemowa czcionka o stałej szerokości"
 
-#: ../data/prefs.glade.h:39
+#: ../data/prefs.glade.h:52
 msgid "Font:"
 msgstr "Czcionka:"
 
-#: ../data/prefs.glade.h:40
+#: ../data/prefs.glade.h:53
 msgid "Choose some font"
 msgstr "Wybór czcionki"
 
-#: ../data/prefs.glade.h:41
+#: ../data/prefs.glade.h:54
 msgid "Text color:"
 msgstr "Kolor tekstu:"
 
-#: ../data/prefs.glade.h:42
+#: ../data/prefs.glade.h:55
 msgid "Background color:"
 msgstr "Kolor tła:"
 
-#: ../data/prefs.glade.h:43
+#: ../data/prefs.glade.h:56
+msgid "Cursor shape:"
+msgstr "Kształt kursora:"
+
+#: ../data/prefs.glade.h:57
+msgid ""
+"Block\n"
+"I-Beam\n"
+"Underline"
+msgstr ""
+"Blokowy\n"
+"Linia pionowa\n"
+"Podkreślenie"
+
+#: ../data/prefs.glade.h:60
+msgid "Cursor blink mode:"
+msgstr "Tryb migania kursora:"
+
+#: ../data/prefs.glade.h:61
+msgid ""
+"Follow GTK+ setting\n"
+"Blink on\n"
+"Blink off"
+msgstr ""
+"Ustawienie biblioteki GTK+\n"
+"Miganie\n"
+"Bez migania"
+
+#: ../data/prefs.glade.h:64
 msgid "<b>Palette</b>"
 msgstr "<b>Paleta</b>"
 
-#: ../data/prefs.glade.h:44
+#: ../data/prefs.glade.h:65
 msgid "Built-in schemes:"
 msgstr "Wbudowane schematy:"
 
-#: ../data/prefs.glade.h:45
+#: ../data/prefs.glade.h:66
 msgid "Color palette:"
 msgstr "Paleta kolorów:"
 
-#: ../data/prefs.glade.h:46
-msgid ""
-"Tango\n"
-"Solarized\n"
-"Linux console\n"
-"XTerm\n"
-"Rxvt\n"
-"Monokai\n"
-"Lucario\n"
-"Cobalt2\n"
-"Flatland\n"
-"Custom\n"
-msgstr ""
-"Tango\n"
-"Solarized\n"
-"Konsola systemu Linux\n"
-"XTerm\n"
-"Rxvt\n"
-"Monokai\n"
-"Lucario\n"
-"Cobalt2\n"
-"Flatland\n"
-"Własna\n"
-
-#: ../data/prefs.glade.h:57
+#: ../data/prefs.glade.h:67
 msgid "Font color"
 msgstr "Kolor czcionki"
 
-#: ../data/prefs.glade.h:58
-msgid "Backgrount color"
+#: ../data/prefs.glade.h:68
+msgid "Background color"
 msgstr "Kolor tła"
 
-#: ../data/prefs.glade.h:59
+#: ../data/prefs.glade.h:69
 msgid "Use font and background color from the palette"
 msgstr "Kolor czcionki i tła z palety"
 
-#: ../data/prefs.glade.h:60
+#: ../data/prefs.glade.h:70
+msgid "Demo:"
+msgstr "Demo:"
+
+#: ../data/prefs.glade.h:71
 msgid "<b>Effects</b>"
 msgstr "<b>Efekty</b>"
 
-#: ../data/prefs.glade.h:61
+#: ../data/prefs.glade.h:72
 msgid "Transparency:"
 msgstr "Przezroczystość:"
 
-#: ../data/prefs.glade.h:62
+#: ../data/prefs.glade.h:73
 msgid "Background image:"
 msgstr "Obraz tła:"
 
-#: ../data/prefs.glade.h:63
+#: ../data/prefs.glade.h:74
 msgid "Appearance"
 msgstr "Wygląd"
 
-#: ../data/prefs.glade.h:64
+#: ../data/prefs.glade.h:75
 msgid ""
 "<small>Quick open is a feature allowing you to open a file directly into "
 "your favorite text editor by clicking on its filename when it appears in "
-"your terminal. Only a predefined set of text patterns are supported for the "
-"moment.</small>"
+"your terminal. See the list of currently supported text patterns used to "
+"extract filename below.</small>"
 msgstr ""
 "<small>Szybkie otwieranie jest funkcją umożliwiającą otwieranie plików "
-"bezpośrednio w wybranym edytorze tekstu przez kliknięcie na nazwę pliku w "
-"terminalu. W tej chwili obsługiwany jest tylko pewien zestaw wzorców "
-"tekstowych.</small>"
+"bezpośrednio w wybranym edytorze tekstu przez kliknięcie nazwy pliku w "
+"terminalu. Poniżej znajduje się lista obecnie obsługiwanych wzorców "
+"używanych do wyodrębniania nazw plików.</small>"
 
-#: ../data/prefs.glade.h:65
+#: ../data/prefs.glade.h:76
 msgid "<b>Quick Open configuration</b>"
 msgstr "<b>Konfiguracja szybkiego otwierania</b>"
 
-#: ../data/prefs.glade.h:66
+#: ../data/prefs.glade.h:77
 msgid "Enable Quick Open when Ctrl+clicking on a filename in the terminal"
 msgstr ""
 "Szybkie otwieranie po kliknięciu na nazwie pliku w terminalu przytrzymując "
 "klawisz Ctrl"
 
-#: ../data/prefs.glade.h:67
+#: ../data/prefs.glade.h:78
 msgid "Editor command line:"
 msgstr "Polecenie edytora:"
 
-#: ../data/prefs.glade.h:69
+#: ../data/prefs.glade.h:80
 #, no-c-format
 msgid ""
 "<small><i>Use the following elements in the open editor command line:\n"
@@ -468,23 +489,35 @@ msgstr ""
 "%(line_number)s</b>\n"
 "</i></small>"
 
-#: ../data/prefs.glade.h:75
+#: ../data/prefs.glade.h:86
 msgid "Quick open in current terminal"
 msgstr "Szybkie otwieranie w bieżącym terminalu"
 
-#: ../data/prefs.glade.h:76
+#: ../data/prefs.glade.h:87
 msgid "Quick Open"
 msgstr "Szybkie otwieranie"
 
-#: ../data/prefs.glade.h:77
-msgid "Currently supported patterns:"
-msgstr "Obecnie obsługiwane wzorce:"
+#: ../data/prefs.glade.h:88
+msgid ""
+"Here is the list of supported patterns: (to add your own, please contact the "
+"Guake's authors)"
+msgstr ""
+"Lista obsługiwanych wzorców (aby dodać własne, prosimy skontaktować się z "
+"autorami programu Guake):"
 
-#: ../data/prefs.glade.h:78
+#: ../data/prefs.glade.h:89
+msgid ""
+"To change a shortcut simply click on its name.\n"
+"To disable a shortcut, press the \"Backspace\" key."
+msgstr ""
+"Klikając nazwę skrótu można go zmienić.\n"
+"Naciśnięcie klawisza \"Backspace\" wyłącza skrót."
+
+#: ../data/prefs.glade.h:91
 msgid "Keyboard shortcuts"
 msgstr "Skróty klawiszowe"
 
-#: ../data/prefs.glade.h:79
+#: ../data/prefs.glade.h:92
 msgid ""
 "<small><i><b>Note:</b> These options may cause some applications to behave "
 "incorrectly.  They are only here to allow you to work around certain "
@@ -496,7 +529,7 @@ msgstr ""
 "określonymi programami i systemami operacyjnymi, które oczekują innego "
 "zachowania terminala.</i></small>"
 
-#: ../data/prefs.glade.h:80
+#: ../data/prefs.glade.h:93
 msgid ""
 "ASCII DEL\n"
 "Escape sequence\n"
@@ -506,61 +539,69 @@ msgstr ""
 "Sekwencja Escape\n"
 "Control-H"
 
-#: ../data/prefs.glade.h:83
+#: ../data/prefs.glade.h:96
 msgid "_Backspace key generates:"
 msgstr "Klawisz _Backspace generuje:"
 
-#: ../data/prefs.glade.h:84
+#: ../data/prefs.glade.h:97
 msgid "_Delete key generates:"
 msgstr "Klawisz _Delete generuje:"
 
-#: ../data/prefs.glade.h:85
+#: ../data/prefs.glade.h:98
 msgid "_Reset Compatibility Options to Defaults"
 msgstr "P_rzywróć domyślne opcje zgodności"
 
-#: ../data/prefs.glade.h:86
+#: ../data/prefs.glade.h:99
 msgid "<b>Keyboard compatibility</b>"
 msgstr "<b>Zgodność klawiatury</b>"
 
-#: ../data/prefs.glade.h:87
+#: ../data/prefs.glade.h:100
 msgid "Compatibility"
 msgstr "Zgodność"
 
-#: ../src/guake/gconfhandler.py:365
+#: ../src/guake/gconfhandler.py:364
 msgid "key binding error"
 msgstr "błąd podczas dowiązywania klawisza"
 
-#: ../src/guake/gconfhandler.py:366
+#: ../src/guake/gconfhandler.py:365
 #, python-format
 msgid "Unable to bind global <b>%s</b> key"
 msgstr "Nie można dowiązać globalnego klawisza <b>%s</b>"
 
-#: ../src/guake/guake_app.py:106
+#: ../src/guake/guake_app.py:113
 msgid "Do you really want to quit Guake!?"
 msgstr "Na pewno zakończyć program Guake?"
 
-#: ../src/guake/guake_app.py:109
+#: ../src/guake/guake_app.py:116
+msgid "<b>There is no process running.</b>"
+msgstr "<b>Żaden proces nie jest uruchomiony.</b>"
+
+#: ../src/guake/guake_app.py:120
 msgid "<b>There is one process still running.</b>"
 msgstr "<b>Jeden proces jest ciągle uruchomiony.</b>"
 
-#: ../src/guake/guake_app.py:113
+#: ../src/guake/guake_app.py:124
 #, python-format
-msgid "<b>There are %d processes running.</b>"
-msgstr "<b>Uruchomione procesy: %d.</b>"
+msgid "<b>There are %d processes still running.</b>"
+msgstr "<b>Nadal uruchomione procesy: %d.</b>"
 
-#: ../src/guake/guake_app.py:148
+#: ../src/guake/guake_app.py:155
+msgid "Guake Terminal"
+msgstr "Terminal Guake"
+
+#: ../src/guake/guake_app.py:160
 msgid "guake-indicator"
 msgstr "guake-indicator"
 
-#: ../src/guake/guake_app.py:148
+#: ../src/guake/guake_app.py:160
 msgid "guake-tray"
 msgstr "guake-tray"
 
-#: ../src/guake/guake_app.py:152
+#: ../src/guake/guake_app.py:164
 msgid "Show"
 msgstr "Wyświetl"
 
-#: ../src/guake/guake_app.py:289
+#: ../src/guake/guake_app.py:303
 #, python-format
 msgid ""
 "A problem happened when binding <b>%s</b> key.\n"
@@ -570,7 +611,7 @@ msgstr ""
 "Proszę użyć okna dialogowego preferencji programu Guake, aby wybrać inny "
 "klawisz"
 
-#: ../src/guake/guake_app.py:299
+#: ../src/guake/guake_app.py:313
 #, python-format
 msgid ""
 "Guake is now running,\n"
@@ -579,111 +620,135 @@ msgstr ""
 "Program Guake jest teraz uruchomiony,\n"
 "należy nacisnąć <b>%s</b>, aby go użyć."
 
-#: ../src/guake/guake_app.py:433
+#: ../src/guake/guake_app.py:453
 #, python-format
 msgid "Search on Web: '%s'"
 msgstr "Wyszukiwanie w sieci: \"%s\""
 
-#: ../src/guake/guake_app.py:437
+#: ../src/guake/guake_app.py:457
 msgid "Search on Web (no selection)"
 msgstr "Wyszukiwanie w sieci (bez zaznaczenia)"
 
-#: ../src/guake/guake_app.py:976
+#: ../src/guake/guake_app.py:463
+msgid "Open Link: {}"
+msgstr "Otwórz odnośnik: {}"
+
+#: ../src/guake/guake_app.py:466
+msgid "Open Link..."
+msgstr "Otwórz odnośnik..."
+
+#: ../src/guake/guake_app.py:1053
 msgid "Rename tab"
 msgstr "Zmiana nazwy karty"
 
 #. Adding a new radio button to the tabbar
-#: ../src/guake/guake_app.py:1213
+#: ../src/guake/guake_app.py:1290
 msgid "Terminal"
 msgstr "Terminal"
 
-#: ../src/guake/guake_app.py:1253
+#: ../src/guake/guake_app.py:1331
 msgid "Save to..."
 msgstr "Zapisanie do..."
 
-#: ../src/guake/guake_app.py:1260
+#: ../src/guake/guake_app.py:1338
 msgid "All files"
 msgstr "Wszystkie pliki"
 
-#: ../src/guake/guake_app.py:1265
+#: ../src/guake/guake_app.py:1343
 msgid "Text and Logs"
 msgstr "Pliki tekstowe i dzienniki"
 
-#: ../src/guake/main.py:53
+#: ../src/guake/guake_app.py:1361
+msgid "Find"
+msgstr "Znajdź"
+
+#: ../src/guake/guake_app.py:1363
+msgid "Forward"
+msgstr "Dalej"
+
+#: ../src/guake/guake_app.py:1364
+msgid "Backward"
+msgstr "Wstecz"
+
+#: ../src/guake/main.py:63
 msgid "Put Guake in fullscreen mode"
 msgstr "Umieszcza program Guake w trybie pełnoekranowym"
 
-#: ../src/guake/main.py:57
+#: ../src/guake/main.py:67
 msgid "Toggles the visibility of the terminal window"
 msgstr "Przełącza widoczność okna terminala"
 
-#: ../src/guake/main.py:61
+#: ../src/guake/main.py:71
 msgid "Shows Guake main window"
 msgstr "Wyświetla główne okno programu Guake"
 
-#: ../src/guake/main.py:65
+#: ../src/guake/main.py:75
 msgid "Hides Guake main window"
 msgstr "Ukrywa główne okno programu Guake"
 
-#: ../src/guake/main.py:69
+#: ../src/guake/main.py:79
 msgid "Shows Guake preference window"
 msgstr "Wyświetla okno preferencji programu Guake"
 
-#: ../src/guake/main.py:73
+#: ../src/guake/main.py:83
 msgid "Shows Guake's about info"
 msgstr "Wyświetla informacje o programie Guake"
 
-#: ../src/guake/main.py:77
+#: ../src/guake/main.py:87
 msgid "Add a new tab (with current directory set to NEW_TAB)"
 msgstr "Dodaje nową kartę (z bieżącym katalogiem ustawionym na NEW_TAB)"
 
-#: ../src/guake/main.py:81
+#: ../src/guake/main.py:91
 msgid "Select a tab (SELECT_TAB is the index of the tab)"
 msgstr "Wybiera kartę (SELECT_TAB jest indeksem kart)"
 
-#: ../src/guake/main.py:85
+#: ../src/guake/main.py:95
 msgid "Return the selected tab index."
 msgstr "Wyświetla wybrany indeks kart."
 
-#: ../src/guake/main.py:89
+#: ../src/guake/main.py:99
 msgid "Execute an arbitrary command in the selected tab."
 msgstr "Wykonuje podane polecenie w wybranej karcie."
 
-#: ../src/guake/main.py:93
+#: ../src/guake/main.py:103
 msgid "Specify the tab to rename. Default is 0."
 msgstr "Podaje kartę do zmiany nazwy. Domyślnie 0."
 
-#: ../src/guake/main.py:97
+#: ../src/guake/main.py:107
 msgid "Set the hexadecimal (#rrggbb) background color of the selected tab."
 msgstr "Ustawia szesnastkowy (#rrggbb) kolor tła wybranej karty."
 
-#: ../src/guake/main.py:102
+#: ../src/guake/main.py:112
 msgid "Set the hexadecimal (#rrggbb) foreground color of the selected tab."
 msgstr "Ustawia szesnastkowy (#rrggbb) kolor tekstu wybranej karty."
 
-#: ../src/guake/main.py:108
+#: ../src/guake/main.py:118
 msgid ""
 "Rename the specified tab. Reset to default if TITLE is a single dash \"-\"."
 msgstr ""
 "Zmienia nazwę podanej karty. Przywraca domyślą, jeśli TITLE jest pojedynczym "
 "myślnikiem \"-\"."
 
-#: ../src/guake/main.py:114
+#: ../src/guake/main.py:124
 msgid ""
 "Rename the current tab. Reset to default if TITLE is a single dash \"-\"."
 msgstr ""
 "Zmienia nazwę bieżącej karty. Przywraca domyślą, jeśli TITLE jest "
 "pojedynczym myślnikiem \"-\"."
 
-#: ../src/guake/main.py:119
+#: ../src/guake/main.py:129
 msgid "Says to Guake go away =("
 msgstr "Mówi programowi Guake, aby sobie poszedł =("
 
-#: ../src/guake/main.py:214
+#: ../src/guake/main.py:133
+msgid "Do not execute the start up script"
+msgstr "Bez wykonywania skryptu startowego"
+
+#: ../src/guake/main.py:227
 msgid "Guake can not init!"
 msgstr "Nie można zainicjować programu Guake."
 
-#: ../src/guake/main.py:215
+#: ../src/guake/main.py:228
 msgid ""
 "Gconf Error.\n"
 "Have you installed <b>guake.schemas</b> properly?"
@@ -692,28 +757,32 @@ msgstr ""
 "Na pewno poprawnie zainstalowano <b>guake.schemas</b>?"
 
 #. string to show in prefereces dialog for user shell option
-#: ../src/guake/prefs.py:61
+#: ../src/guake/prefs.py:64
 msgid "<user shell>"
 msgstr "<powłoka użytkownika>"
 
-#: ../src/guake/prefs.py:484
+#: ../src/guake/prefs.py:438
 msgid "Action"
 msgstr "Działanie"
 
-#: ../src/guake/prefs.py:494
+#: ../src/guake/prefs.py:448
 msgid "Shortcut"
 msgstr "Skrót"
 
-#: ../src/guake/prefs.py:929
+#: ../src/guake/prefs.py:584 ../src/guake/prefs.py:631
+msgid "Custom"
+msgstr "Własne"
+
+#: ../src/guake/prefs.py:962
 #, python-format
 msgid "The shortcut \"%s\" is already in use."
 msgstr "Skrót \"%s\" jest już używany."
 
-#: ../src/guake/prefs.py:930
+#: ../src/guake/prefs.py:963
 msgid "Error setting keybinding."
 msgstr "Błąd podczas ustawiania dowiązania klawiszy."
 
-#: ../src/guake/prefs.py:942
+#: ../src/guake/prefs.py:975
 #, python-format
 msgid ""
 "The shortcut \"%s\" cannot be used because it will become impossible to type "
@@ -726,3 +795,24 @@ msgstr ""
 "\n"
 "Proszę spróbować z klawiszem takim jak Ctrl, Alt lub Shift w tym samym "
 "czasie.\n"
+
+#~ msgid "Configure your Guake sessions"
+#~ msgstr "Konfiguruje sesje programu Guake"
+
+#~ msgid "Terminal;Utility;"
+#~ msgstr "Terminal;Konsola;Narzędzie;"
+
+#~ msgid "Autoconfigure Guake"
+#~ msgstr "Automatyczna konfiguracja Guake"
+
+#~ msgid "Autoconfigure the start of the Guake terminal"
+#~ msgstr "Automatycznie konfiguruje uruchamianie terminala Guake"
+
+#~ msgid "Autostart Guake Terminal"
+#~ msgstr "Automatyczne uruchamianie terminala Guake"
+
+#~ msgid "Automatically start Guake terminal at login"
+#~ msgstr "Automatycznie uruchamia terminal Guake podczas logowania"
+
+#~ msgid "Use the command line in a Quake-like terminal"
+#~ msgstr "Wiersz poleceń w terminalu w stylu gry Quake"
