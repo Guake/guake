@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: guake\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-05-04 17:12+0200\n"
+"POT-Creation-Date: 2015-05-15 10:10+0200\n"
 "PO-Revision-Date: 2015-05-04 17:13+0200\n"
 "Last-Translator: Piotr Drąg <piotrdrag@gmail.com>\n"
 "Language-Team: Polish <trans-pl@lists.fedoraproject.org>\n"
@@ -152,14 +152,10 @@ msgstr "Zmień nazwę"
 msgid "Close"
 msgstr "Zamknij"
 
-#: ../data/guake.glade.h:14 ../src/guake/guake_app.py:302
-#: ../src/guake/guake_app.py:312
-msgid "Guake!"
-msgstr "Guake!"
-
-#: ../data/guake.glade.h:15
-msgid "Add a new tab"
-msgstr "Dodaje nową kartę"
+#: ../data/guake.glade.h:14 ../src/guake/guake_app.py:160
+#: ../src/guake/guake_app.py:305 ../src/guake/guake_app.py:315
+msgid "Guake Terminal"
+msgstr "Terminal Guake"
 
 #: ../data/prefs.glade.h:1
 msgid "Guake Preferences"
@@ -178,6 +174,7 @@ msgstr ""
 "span>"
 
 #: ../data/prefs.glade.h:4
+#, fuzzy
 msgid ""
 "Path to a bash script that would be automatically executed when Guake "
 "starts, unless you specify --no-startup-script.\n"
@@ -187,7 +184,7 @@ msgid ""
 "\n"
 "#!/bin/bash\n"
 "\n"
-"sleep 5  # it is advised to wait a bit after Guake has been successfully "
+"sleep 5  # it is advised to wait a bit before Guake has been successfully "
 "started\n"
 "\n"
 "guake -r \"main\" -e \"cd ~/projects/myproject/main\"\n"
@@ -568,40 +565,37 @@ msgstr "błąd podczas dowiązywania klawisza"
 msgid "Unable to bind global <b>%s</b> key"
 msgstr "Nie można dowiązać globalnego klawisza <b>%s</b>"
 
-#: ../src/guake/guake_app.py:113
-msgid "Do you really want to quit Guake!?"
+#: ../src/guake/guake_app.py:118
+#, fuzzy
+msgid "Do you really want to quit Guake?"
 msgstr "Na pewno zakończyć program Guake?"
 
-#: ../src/guake/guake_app.py:116
+#: ../src/guake/guake_app.py:121
 msgid "<b>There is no process running.</b>"
 msgstr "<b>Żaden proces nie jest uruchomiony.</b>"
 
-#: ../src/guake/guake_app.py:120
+#: ../src/guake/guake_app.py:125
 msgid "<b>There is one process still running.</b>"
 msgstr "<b>Jeden proces jest ciągle uruchomiony.</b>"
 
-#: ../src/guake/guake_app.py:124
+#: ../src/guake/guake_app.py:129
 #, python-format
 msgid "<b>There are %d processes still running.</b>"
 msgstr "<b>Nadal uruchomione procesy: %d.</b>"
 
-#: ../src/guake/guake_app.py:155
-msgid "Guake Terminal"
-msgstr "Terminal Guake"
-
-#: ../src/guake/guake_app.py:160
+#: ../src/guake/guake_app.py:165
 msgid "guake-indicator"
 msgstr "guake-indicator"
 
-#: ../src/guake/guake_app.py:160
+#: ../src/guake/guake_app.py:165
 msgid "guake-tray"
 msgstr "guake-tray"
 
-#: ../src/guake/guake_app.py:164
+#: ../src/guake/guake_app.py:169
 msgid "Show"
 msgstr "Wyświetl"
 
-#: ../src/guake/guake_app.py:303
+#: ../src/guake/guake_app.py:306
 #, python-format
 msgid ""
 "A problem happened when binding <b>%s</b> key.\n"
@@ -611,7 +605,7 @@ msgstr ""
 "Proszę użyć okna dialogowego preferencji programu Guake, aby wybrać inny "
 "klawisz"
 
-#: ../src/guake/guake_app.py:313
+#: ../src/guake/guake_app.py:316
 #, python-format
 msgid ""
 "Guake is now running,\n"
@@ -620,53 +614,53 @@ msgstr ""
 "Program Guake jest teraz uruchomiony,\n"
 "należy nacisnąć <b>%s</b>, aby go użyć."
 
-#: ../src/guake/guake_app.py:453
+#: ../src/guake/guake_app.py:456
 #, python-format
 msgid "Search on Web: '%s'"
 msgstr "Wyszukiwanie w sieci: \"%s\""
 
-#: ../src/guake/guake_app.py:457
+#: ../src/guake/guake_app.py:460
 msgid "Search on Web (no selection)"
 msgstr "Wyszukiwanie w sieci (bez zaznaczenia)"
 
-#: ../src/guake/guake_app.py:463
+#: ../src/guake/guake_app.py:466
 msgid "Open Link: {}"
 msgstr "Otwórz odnośnik: {}"
 
-#: ../src/guake/guake_app.py:466
+#: ../src/guake/guake_app.py:469
 msgid "Open Link..."
 msgstr "Otwórz odnośnik..."
 
-#: ../src/guake/guake_app.py:1053
+#: ../src/guake/guake_app.py:1095
 msgid "Rename tab"
 msgstr "Zmiana nazwy karty"
 
 #. Adding a new radio button to the tabbar
-#: ../src/guake/guake_app.py:1290
+#: ../src/guake/guake_app.py:1332
 msgid "Terminal"
 msgstr "Terminal"
 
-#: ../src/guake/guake_app.py:1331
+#: ../src/guake/guake_app.py:1373
 msgid "Save to..."
 msgstr "Zapisanie do..."
 
-#: ../src/guake/guake_app.py:1338
+#: ../src/guake/guake_app.py:1380
 msgid "All files"
 msgstr "Wszystkie pliki"
 
-#: ../src/guake/guake_app.py:1343
+#: ../src/guake/guake_app.py:1385
 msgid "Text and Logs"
 msgstr "Pliki tekstowe i dzienniki"
 
-#: ../src/guake/guake_app.py:1361
+#: ../src/guake/guake_app.py:1403
 msgid "Find"
 msgstr "Znajdź"
 
-#: ../src/guake/guake_app.py:1363
+#: ../src/guake/guake_app.py:1405
 msgid "Forward"
 msgstr "Dalej"
 
-#: ../src/guake/guake_app.py:1364
+#: ../src/guake/guake_app.py:1406
 msgid "Backward"
 msgstr "Wstecz"
 
@@ -769,20 +763,20 @@ msgstr "Działanie"
 msgid "Shortcut"
 msgstr "Skrót"
 
-#: ../src/guake/prefs.py:584 ../src/guake/prefs.py:631
+#: ../src/guake/prefs.py:584 ../src/guake/prefs.py:630
 msgid "Custom"
 msgstr "Własne"
 
-#: ../src/guake/prefs.py:962
+#: ../src/guake/prefs.py:961
 #, python-format
 msgid "The shortcut \"%s\" is already in use."
 msgstr "Skrót \"%s\" jest już używany."
 
-#: ../src/guake/prefs.py:963
+#: ../src/guake/prefs.py:962
 msgid "Error setting keybinding."
 msgstr "Błąd podczas ustawiania dowiązania klawiszy."
 
-#: ../src/guake/prefs.py:975
+#: ../src/guake/prefs.py:974
 #, python-format
 msgid ""
 "The shortcut \"%s\" cannot be used because it will become impossible to type "
@@ -795,6 +789,12 @@ msgstr ""
 "\n"
 "Proszę spróbować z klawiszem takim jak Ctrl, Alt lub Shift w tym samym "
 "czasie.\n"
+
+#~ msgid "Guake!"
+#~ msgstr "Guake!"
+
+#~ msgid "Add a new tab"
+#~ msgstr "Dodaje nową kartę"
 
 #~ msgid "Configure your Guake sessions"
 #~ msgstr "Konfiguruje sesje programu Guake"
