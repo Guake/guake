@@ -173,9 +173,6 @@ class Guake(SimpleGladeApp):
             menu.prepend(show)
             self.tray_icon.set_menu(menu)
 
-        # adding images from a different path.
-        ipath = pixmapfile('guake.png')
-        self.get_widget('image1').set_from_file(ipath)
         # important widgets
         self.window = self.get_widget('window-root')
         self.mainframe = self.get_widget('mainframe')
