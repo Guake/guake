@@ -23,7 +23,6 @@ from __future__ import division
 from __future__ import print_function
 
 import gconf
-import glib
 import gobject
 import gtk
 import os
