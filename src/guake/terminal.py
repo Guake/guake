@@ -165,10 +165,16 @@ class GuakeTerminal(vte.Terminal):
                                     break
                                 tmp_filepath = tmp_filepath.rpartition(':')[0]
                                 filepaths.append(tmp_filepath)
-                            if not any(filepaths, os.path.exists):
+                            print("Testing existance of the following files: {!r}"
+                                  .format(filepaths))
+                            for filepath in filepaths:
+                                if os.path.exists(filepath):
+                                    break
+                            else:
                                 logging.info("Cannot open file %s, it doesn't exists locally"
                                              "(current dir: %s)", filepath,
                                              os.path.curdir)
+                                print("No file exist")
                                 continue
                         # for quick_open_in_current_terminal, we run the command line directly in
                         # the tab so relative path is enough.
