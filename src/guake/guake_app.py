@@ -115,7 +115,7 @@ class PromptQuitDialog(gtk.MessageDialog):
             gtk.MESSAGE_QUESTION, gtk.BUTTONS_YES_NO)
 
         self.set_keep_above(True)
-        self.set_markup(_('Do you really want to quit Guake!?'))
+        self.set_markup(_('Do you really want to quit Guake?'))
         if running_procs == 0:
             self.format_secondary_markup(
                 _("<b>There is no process running.</b>")
@@ -302,7 +302,7 @@ class Guake(SimpleGladeApp):
 
         if not self.hotkeys.bind(key, self.show_hide):
             guake.notifier.show_message(
-                _('Guake!'),
+                _('Guake Terminal'),
                 _('A problem happened when binding <b>%s</b> key.\n'
                   'Please use Guake Preferences dialog to choose another '
                   'key') % xml_escape(label), filename)
@@ -312,7 +312,7 @@ class Guake(SimpleGladeApp):
             # Pop-up that shows that guake is working properly (if not
             # unset in the preferences windows)
             guake.notifier.show_message(
-                _('Guake!'),
+                _('Guake Terminal'),
                 _('Guake is now running,\n'
                   'press <b>%s</b> to use it.') % xml_escape(label), filename)
 
