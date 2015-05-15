@@ -237,7 +237,7 @@ msgstr "Tálca ikon mutatása"
 
 #: ../data/prefs.glade.h:37
 msgid "Stay on top"
-msgstr "Mindíg felül"
+msgstr "Mindig felül"
 
 #: ../data/prefs.glade.h:38
 msgid ""
