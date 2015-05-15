@@ -4,19 +4,19 @@
 #
 # Translators:
 # Raül Cambeiro <xrulet@gmail.com> 2013
-
 msgid ""
 msgstr ""
 "Project-Id-Version: Guake 0.4.5\n"
-"Report-Msgid-Bugs-To: http://guake.org/report\n"
-"POT-Creation-Date: 2010-11-26 07:17+0000\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2015-05-15 10:10+0200\n"
 "PO-Revision-Date: 2013-03-07 07:41+0000\n"
 "Last-Translator: Raül Cambeiro <xrulet@gmail.com>\n"
-"Language-Team: Catalan (http://www.transifex.com/projects/p/guake/language/ca/)\n"
+"Language-Team: Catalan (http://www.transifex.com/projects/p/guake/language/"
+"ca/)\n"
+"Language: ca\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Language: ca\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #: ../data/about.glade.h:1
@@ -24,6 +24,59 @@ msgid "About Guake"
 msgstr "Quant al Guake"
 
 #: ../data/about.glade.h:2
+#, fuzzy
+msgid ""
+"Copyright 2013-2014 Gaetan semet\n"
+"Copyright 2007-2010 Lincoln de Sousa\n"
+"Copyright 2007 Gabriel Falc&#xE3;o"
+msgstr ""
+"Copyright 2007-2009 Lincoln de Sousa\n"
+"Copyright 2007 Gabriel Falcão"
+
+#: ../data/about.glade.h:5
+msgid ""
+"Guake is an easy to access\n"
+"terminal based on fps games terminal"
+msgstr ""
+"El Guake és un terminal de fàcil accés\n"
+"basat en els terminals dels jocs FPS"
+
+#: ../data/about.glade.h:7
+msgid "http://guake.org"
+msgstr "http://guake.org"
+
+#: ../data/about.glade.h:8
+msgid ""
+"Guake is free software; you can redistribute it and/or modify it under the "
+"terms of the GNU General Public License as published by the Free Software "
+"Foundation; either version 2 of the License, or (at your option) any later "
+"version.\n"
+"\n"
+"Guake is distributed in the hope that it will be useful, but WITHOUT ANY "
+"WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS "
+"FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more "
+"details.\n"
+"\n"
+"You should have received a copy of the GNU General Public License along with "
+"Guake; if not, write to the Free Software Foundation, Inc., 51 Franklin St, "
+"Fifth Floor, Boston, MA  02110-1301 USA\n"
+msgstr ""
+"El Guake és programari lliure: podeu redistribuir-lo o modificar-lo sota els "
+"termes de la Llicència Pública General de GNU publicada per la Free Software "
+"Foundation, ja sigui la versió 2 de la llicència o (a la vostra elecció) "
+"qualsevol versió posterior.\n"
+"\n"
+"El Guake es distribueix amb l'esperança que serà útil, però SENSE CAP "
+"GARANTIA, ni tan sols la garantia implícita de COMERCIABILITAT o ADEQUACIÓ "
+"PER A UN OBJECTIU CONCRET. Vegeu la Llicència Pública General de GNU per a "
+"més detalls.\n"
+"\n"
+"Hauríeu d'haver rebut una còpia de la Llicència Pública General de GNU amb "
+"el Guake. Si no és així, escriviu a la Free Software Foundation, Inc., 51 "
+"Franklin St, Fifth Floor, Boston, MA  02110-1301 USA\n"
+
+#: ../data/about.glade.h:14
+#, fuzzy
 msgid ""
 "Adolfo González Blázquez <code@infinicode.org> Spanish\n"
 "Lincoln de Sousa <lincoln@guake.org> Brazilian Portuguese\n"
@@ -31,420 +84,732 @@ msgid ""
 "Mieszko Ślusarczyk <mieszkoslusarczyk@gmail.com> Polish\n"
 "Nishio Futoshi <futoshi@momonga-linux.org> Japanese\n"
 "Pavel Alexeev <Pahan@Hubbitus.spb.su> Russian\n"
-"Piotr Drąg <piotrdrag@gmail.com> Polish"
-msgstr "Adolfo González Blázquez <code@infinicode.org> Castellà\nLincoln de Sousa <lincoln@guake.org> Portuguès brasiler\nMarkus Majer <mm@mpathy.de> Alemany\nMieszko Ślusarczyk <mieszkoslusarczyk@gmail.com> Polonès\nNishio Futoshi <futoshi@momonga-linux.org> Japonès\nPavel Alexeev <Pahan@Hubbitus.spb.su> Rus\nPiotr Drąg <piotrdrag@gmail.com> Polonès"
+"Piotr Drąg <piotrdrag@gmail.com> Polish\n"
+"Sangwoo Joo <sangwoojoo@naver.com> Korean\n"
+"    "
+msgstr ""
+"Adolfo González Blázquez <code@infinicode.org> Castellà\n"
+"Lincoln de Sousa <lincoln@guake.org> Portuguès brasiler\n"
+"Markus Majer <mm@mpathy.de> Alemany\n"
+"Mieszko Ślusarczyk <mieszkoslusarczyk@gmail.com> Polonès\n"
+"Nishio Futoshi <futoshi@momonga-linux.org> Japonès\n"
+"Pavel Alexeev <Pahan@Hubbitus.spb.su> Rus\n"
+"Piotr Drąg <piotrdrag@gmail.com> Polonès"
 
-#: ../data/about.glade.h:9
-msgid ""
-"Copyright 2007-2009 Lincoln de Sousa\n"
-"Copyright 2007 Gabriel Falc&#xE3;o"
-msgstr "Copyright 2007-2009 Lincoln de Sousa\nCopyright 2007 Gabriel Falcão"
-
-#: ../data/about.glade.h:11
-msgid ""
-"Guake is an easy to access\n"
-"terminal based on fps games terminal"
-msgstr "El Guake és un terminal de fàcil accés\nbasat en els terminals dels jocs FPS"
-
-#: ../data/about.glade.h:13
-msgid ""
-"Guake is free software; you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation; either version 2 of the License, or (at your option) any later version.\n"
-"\n"
-"Guake is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more details.\n"
-"\n"
-"You should have received a copy of the GNU General Public License along with Guake; if not, write to the Free Software Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301 USA\n"
-msgstr "El Guake és programari lliure: podeu redistribuir-lo o modificar-lo sota els termes de la Llicència Pública General de GNU publicada per la Free Software Foundation, ja sigui la versió 2 de la llicència o (a la vostra elecció) qualsevol versió posterior.\n\nEl Guake es distribueix amb l'esperança que serà útil, però SENSE CAP GARANTIA, ni tan sols la garantia implícita de COMERCIABILITAT o ADEQUACIÓ PER A UN OBJECTIU CONCRET. Vegeu la Llicència Pública General de GNU per a més detalls.\n\nHauríeu d'haver rebut una còpia de la Llicència Pública General de GNU amb el Guake. Si no és així, escriviu a la Free Software Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301 USA\n"
-
-#: ../data/about.glade.h:19
-msgid "http://guake.org"
-msgstr "http://guake.org"
-
-#: ../data/guake.glade.h:1 ../guake/guake.py:1264
-msgid "Add a new tab"
-msgstr "Afegeix una pestanya nova"
-
-#: ../data/guake.glade.h:2
-msgid "Close"
-msgstr "Tanca"
-
-#: ../data/guake.glade.h:3
-msgid "Close Tab"
-msgstr "Tanca la pestanya"
-
-#: ../data/guake.glade.h:4
+#: ../data/guake.glade.h:1
 msgid "Copy"
 msgstr "Copia"
 
-#: ../data/guake.glade.h:5 ../guake/guake.py:635 ../guake/guake.py:646
-msgid "Guake!"
-msgstr "Guake!"
-
-#: ../data/guake.glade.h:6
+#: ../data/guake.glade.h:2
 msgid "Paste"
 msgstr "Enganxa"
 
-#: ../data/guake.glade.h:7 ../guake/prefs.py:61
+#: ../data/guake.glade.h:3
+msgid "Toggle Fullscreen"
+msgstr "Commuta la pantalla completa"
+
+#: ../data/guake.glade.h:4
+msgid "Save to File..."
+msgstr ""
+
+#: ../data/guake.glade.h:5
+msgid "Find..."
+msgstr ""
+
+#: ../data/guake.glade.h:6
+#, fuzzy
+msgid "New Tab"
+msgstr "Pestanya nova"
+
+#: ../data/guake.glade.h:7
+#, fuzzy
+msgid "Rename Tab"
+msgstr "Canvia el nom de la pestanya"
+
+#: ../data/guake.glade.h:8
+msgid "Close Tab"
+msgstr "Tanca la pestanya"
+
+#: ../data/guake.glade.h:9
+msgid "Open link..."
+msgstr ""
+
+#: ../data/guake.glade.h:10
+msgid "Search on Web"
+msgstr ""
+
+#: ../data/guake.glade.h:11
 msgid "Quit"
 msgstr "Surt"
 
-#: ../data/guake.glade.h:8
+#: ../data/guake.glade.h:12
 msgid "Rename"
 msgstr "Canvia el nom"
 
+#: ../data/guake.glade.h:13
+msgid "Close"
+msgstr "Tanca"
+
+#: ../data/guake.glade.h:14 ../src/guake/guake_app.py:160
+#: ../src/guake/guake_app.py:305 ../src/guake/guake_app.py:315
+msgid "Guake Terminal"
+msgstr "Terminal Guake"
+
 #: ../data/prefs.glade.h:1
-msgid "<b>Effects</b>"
-msgstr "<b>Efectes</b>"
+msgid "Guake Preferences"
+msgstr "Preferències del Guake"
 
 #: ../data/prefs.glade.h:2
+msgid "<span size=\"18000\" color=\"black\"><b>Guake properties</b></span>"
+msgstr ""
+"<span size=\"18000\" color=\"black\"><b>Propietats del Guake</b></span>"
+
+#: ../data/prefs.glade.h:3
+msgid ""
+"<span color=\"black\">Customize behavior and appearance of Guake!</span>"
+msgstr ""
+"<span color=\"black\">Personalitzeu el comportament i l'aparença del Guake!</"
+"span>"
+
+#: ../data/prefs.glade.h:4
+msgid ""
+"Path to a bash script that would be automatically executed when Guake "
+"starts, unless you specify --no-startup-script.\n"
+"\n"
+"This would typically use the configuration by command line feature of "
+"Guake:\n"
+"\n"
+"#!/bin/bash\n"
+"\n"
+"sleep 5  # it is advised to wait a bit before Guake has been successfully "
+"started\n"
+"\n"
+"guake -r \"main\" -e \"cd ~/projects/myproject/main\"\n"
+"guake -r \"prod\" -e \"cd ~/projects/myproject/prod\"\n"
+msgstr ""
+
+#: ../data/prefs.glade.h:15
+msgid "Enable popup notifications on startup"
+msgstr "Habilita les notificacions emergents en arrencar"
+
+#: ../data/prefs.glade.h:16
+msgid "Show tray icon"
+msgstr "Mostra una icona a la safata"
+
+#: ../data/prefs.glade.h:17
+msgid "Prompt on quit"
+msgstr "Demana confirmació per sortir"
+
+#: ../data/prefs.glade.h:18
+msgid "_Flash terminal on bell"
+msgstr ""
+
+#: ../data/prefs.glade.h:19
+msgid "_Play system alert sound on bell"
+msgstr ""
+
+#: ../data/prefs.glade.h:20
+msgid "Path to script executed on Guake start:"
+msgstr ""
+
+#: ../data/prefs.glade.h:21
 msgid "<b>General</b>"
 msgstr "<b>General</b>"
 
-#: ../data/prefs.glade.h:3
-msgid "<b>Keyboard compatibility</b>"
-msgstr "<b>Compatibilitat del teclat</b>"
+#: ../data/prefs.glade.h:22
+msgid "Bottom align window instead of top align"
+msgstr ""
 
-#: ../data/prefs.glade.h:4
-msgid "<b>Main Window height</b>"
-msgstr "<b>Alçària de la finestra principal</b>"
+#: ../data/prefs.glade.h:23
+msgid "Appear on mouse display"
+msgstr ""
 
-#: ../data/prefs.glade.h:5
+#: ../data/prefs.glade.h:24
+msgid "Appear on display:"
+msgstr ""
+
+#: ../data/prefs.glade.h:25
+#, fuzzy
+msgid "Place tabs on top"
+msgstr "Resta al damunt"
+
+#: ../data/prefs.glade.h:26
+#, fuzzy
+msgid "<b>Placement</b>"
+msgstr "<b>Paleta</b>"
+
+#: ../data/prefs.glade.h:27
+msgid "Stay on top"
+msgstr "Resta al damunt"
+
+#: ../data/prefs.glade.h:28
+msgid "Hide on lose focus"
+msgstr "Amaga-la en perdre el focus"
+
+#: ../data/prefs.glade.h:29
+msgid "Use VTE titles for tab names"
+msgstr ""
+
+#: ../data/prefs.glade.h:30
+msgid "Show tab bar"
+msgstr "Mostra la barra de pestanyes"
+
+#: ../data/prefs.glade.h:31
+#, fuzzy
+msgid "Start fullscreen"
+msgstr "Commuta la pantalla completa"
+
+#: ../data/prefs.glade.h:32
 msgid "<b>Main Window</b>"
 msgstr "<b>Finestra principal</b>"
 
-#: ../data/prefs.glade.h:6
-msgid "<b>Palette</b>"
-msgstr "<b>Paleta</b>"
+#: ../data/prefs.glade.h:33
+msgid "Left"
+msgstr ""
 
-#: ../data/prefs.glade.h:7
-msgid "<b>Scroll</b>"
-msgstr "<b>Desplaçament</b>"
+#: ../data/prefs.glade.h:34
+msgid "Center"
+msgstr ""
 
-#: ../data/prefs.glade.h:8
+#: ../data/prefs.glade.h:35
+msgid "Right"
+msgstr ""
+
+#: ../data/prefs.glade.h:36
+#, fuzzy
+msgid "<b>Main Window Horizontal Alignment</b>"
+msgstr "<b>Alçària de la finestra principal</b>"
+
+#: ../data/prefs.glade.h:37
+#, fuzzy
+msgid "<b>Main Window Height</b>"
+msgstr "<b>Alçària de la finestra principal</b>"
+
+#: ../data/prefs.glade.h:38
+#, fuzzy
+msgid "<b>Main Window Width</b>"
+msgstr "<b>Alçària de la finestra principal</b>"
+
+#: ../data/prefs.glade.h:39
+msgid "General"
+msgstr "General"
+
+#: ../data/prefs.glade.h:40
+msgid "Default interpreter:"
+msgstr "Intèrpret per defecte:"
+
+#: ../data/prefs.glade.h:41
+msgid "_Run command as a login shell"
+msgstr "_Executa una ordre com a intèrpret d'inici de sessió"
+
+#: ../data/prefs.glade.h:42
+msgid "_Open new tab in current directory"
+msgstr "_Obre les pestanyes noves en el directori actual"
+
+#: ../data/prefs.glade.h:43
 msgid "<b>Shell</b>"
 msgstr "<b>Intèrpret d'ordres</b>"
 
-#: ../data/prefs.glade.h:9
+#: ../data/prefs.glade.h:44
+msgid "Shell"
+msgstr ""
+
+#: ../data/prefs.glade.h:45
+msgid "Show scrollbar"
+msgstr "Mostra la barra de desplaçament"
+
+#: ../data/prefs.glade.h:46
+msgid "Scrollback lines:"
+msgstr "Línies emmagatzemades:"
+
+#: ../data/prefs.glade.h:47
+msgid "On output"
+msgstr "Segons la sortida"
+
+#: ../data/prefs.glade.h:48
+msgid "On key stroke"
+msgstr "En prémer una tecla"
+
+#: ../data/prefs.glade.h:49
+msgid "<b>Scroll</b>"
+msgstr "<b>Desplaçament</b>"
+
+#: ../data/prefs.glade.h:50
+msgid "Scrolling"
+msgstr "Desplaçament"
+
+#: ../data/prefs.glade.h:51
+msgid "Use the system fixed width font"
+msgstr "Utilitza el tipus de lletra d'amplada fixa del sistema"
+
+#: ../data/prefs.glade.h:52
+msgid "Font:"
+msgstr "Tipus de lletra:"
+
+#: ../data/prefs.glade.h:53
+msgid "Choose some font"
+msgstr "Trieu el tipus de lletra"
+
+#: ../data/prefs.glade.h:54
+msgid "Text color:"
+msgstr "Color del text:"
+
+#: ../data/prefs.glade.h:55
+msgid "Background color:"
+msgstr "Color de fons:"
+
+#: ../data/prefs.glade.h:56
+msgid "Cursor shape:"
+msgstr ""
+
+#: ../data/prefs.glade.h:57
+msgid ""
+"Block\n"
+"I-Beam\n"
+"Underline"
+msgstr ""
+
+#: ../data/prefs.glade.h:60
+msgid "Cursor blink mode:"
+msgstr ""
+
+#: ../data/prefs.glade.h:61
+msgid ""
+"Follow GTK+ setting\n"
+"Blink on\n"
+"Blink off"
+msgstr ""
+
+#: ../data/prefs.glade.h:64
+msgid "<b>Palette</b>"
+msgstr "<b>Paleta</b>"
+
+#: ../data/prefs.glade.h:65
+msgid "Built-in schemes:"
+msgstr "Esquemes integrats:"
+
+#: ../data/prefs.glade.h:66
+msgid "Color palette:"
+msgstr "Paleta de colors:"
+
+#: ../data/prefs.glade.h:67
+#, fuzzy
+msgid "Font color"
+msgstr "Color del text:"
+
+#: ../data/prefs.glade.h:68
+#, fuzzy
+msgid "Background color"
+msgstr "Color de fons:"
+
+#: ../data/prefs.glade.h:69
+msgid "Use font and background color from the palette"
+msgstr ""
+
+#: ../data/prefs.glade.h:70
+msgid "Demo:"
+msgstr ""
+
+#: ../data/prefs.glade.h:71
+msgid "<b>Effects</b>"
+msgstr "<b>Efectes</b>"
+
+#: ../data/prefs.glade.h:72
+msgid "Transparency:"
+msgstr "Transparència:"
+
+#: ../data/prefs.glade.h:73
+msgid "Background image:"
+msgstr "Imatge de fons:"
+
+#: ../data/prefs.glade.h:74
+msgid "Appearance"
+msgstr "Aparença"
+
+#: ../data/prefs.glade.h:75
+msgid ""
+"<small>Quick open is a feature allowing you to open a file directly into "
+"your favorite text editor by clicking on its filename when it appears in "
+"your terminal. See the list of currently supported text patterns used to "
+"extract filename below.</small>"
+msgstr ""
+
+#: ../data/prefs.glade.h:76
+msgid "<b>Quick Open configuration</b>"
+msgstr ""
+
+#: ../data/prefs.glade.h:77
+msgid "Enable Quick Open when Ctrl+clicking on a filename in the terminal"
+msgstr ""
+
+#: ../data/prefs.glade.h:78
+msgid "Editor command line:"
+msgstr ""
+
+#: ../data/prefs.glade.h:80
+#, no-c-format
+msgid ""
+"<small><i>Use the following elements in the open editor command line:\n"
+" - <b>%(file_path)s</b>: path to the file that has been clicked\n"
+" - <b>%(line_number)s</b>: if your editor supports it, you can directly open "
+"the file to a given line number when found on the screen.\n"
+"\n"
+"For example, for sublime, use <b>subl %(file_path)s:%(line_number)s</b>\n"
+"</i></small>"
+msgstr ""
+
+#: ../data/prefs.glade.h:86
+msgid "Quick open in current terminal"
+msgstr ""
+
+#: ../data/prefs.glade.h:87
+msgid "Quick Open"
+msgstr ""
+
+#: ../data/prefs.glade.h:88
+msgid ""
+"Here is the list of supported patterns: (to add your own, please contact the "
+"Guake's authors)"
+msgstr ""
+
+#: ../data/prefs.glade.h:89
+msgid ""
+"To change a shortcut simply click on its name.\n"
+"To disable a shortcut, press the \"Backspace\" key."
+msgstr ""
+
+#: ../data/prefs.glade.h:91
+msgid "Keyboard shortcuts"
+msgstr "Dreceres de teclat"
+
+#: ../data/prefs.glade.h:92
 msgid ""
 "<small><i><b>Note:</b> These options may cause some applications to behave "
 "incorrectly.  They are only here to allow you to work around certain "
-"applications and operating systems that expect different terminal "
-"behavior.</i></small>"
-msgstr "<small><i><b>Nota:</b> aquestes opcions poden fer que algunes aplicacions no funcionin correctament. Només hi són per poder evitar certs aspectes d'aquelles aplicacions i sistemes operatius que esperen un comportament diferent del terminal.</i></small>"
+"applications and operating systems that expect different terminal behavior.</"
+"i></small>"
+msgstr ""
+"<small><i><b>Nota:</b> aquestes opcions poden fer que algunes aplicacions no "
+"funcionin correctament. Només hi són per poder evitar certs aspectes "
+"d'aquelles aplicacions i sistemes operatius que esperen un comportament "
+"diferent del terminal.</i></small>"
 
-#: ../data/prefs.glade.h:10
-msgid "<span color=\"black\">Customize behavior and appearance of Guake!</span>"
-msgstr "<span color=\"black\">Personalitzeu el comportament i l'aparença del Guake!</span>"
-
-#: ../data/prefs.glade.h:11
-msgid "<span size=\"18000\" color=\"black\"><b>Guake properties</b></span>"
-msgstr "<span size=\"18000\" color=\"black\"><b>Propietats del Guake</b></span>"
-
-#: ../data/prefs.glade.h:12
+#: ../data/prefs.glade.h:93
 msgid ""
 "ASCII DEL\n"
 "Escape sequence\n"
 "Control-H"
-msgstr "ASCII DEL\nSeqüència d'escapament\nControl-H"
+msgstr ""
+"ASCII DEL\n"
+"Seqüència d'escapament\n"
+"Control-H"
 
-#: ../data/prefs.glade.h:15
-msgid "Appearance"
-msgstr "Aparença"
-
-#: ../data/prefs.glade.h:16
-msgid "Background color:"
-msgstr "Color de fons:"
-
-#: ../data/prefs.glade.h:17
-msgid "Background image:"
-msgstr "Imatge de fons:"
-
-#: ../data/prefs.glade.h:18
-msgid "Built-in schemes:"
-msgstr "Esquemes integrats:"
-
-#: ../data/prefs.glade.h:19
-msgid "Choose some font"
-msgstr "Trieu el tipus de lletra"
-
-#: ../data/prefs.glade.h:20
-msgid "Color palette:"
-msgstr "Paleta de colors:"
-
-#: ../data/prefs.glade.h:21
-msgid "Compatibility"
-msgstr "Compatibilitat"
-
-#: ../data/prefs.glade.h:22
-msgid "Default interpreter:"
-msgstr "Intèrpret per defecte:"
-
-#: ../data/prefs.glade.h:23
-msgid "Enable popup notifications on startup"
-msgstr "Habilita les notificacions emergents en arrencar"
-
-#: ../data/prefs.glade.h:24
-msgid "Font:"
-msgstr "Tipus de lletra:"
-
-#: ../data/prefs.glade.h:25 ../guake/prefs.py:55
-msgid "General"
-msgstr "General"
-
-#: ../data/prefs.glade.h:26
-msgid "Guake Preferences"
-msgstr "Preferències del Guake"
-
-#: ../data/prefs.glade.h:27
-msgid "Hide on lose focus"
-msgstr "Amaga-la en perdre el focus"
-
-#: ../data/prefs.glade.h:28
-msgid "Keyboard shortcuts"
-msgstr "Dreceres de teclat"
-
-#: ../data/prefs.glade.h:29
-msgid "On key stroke"
-msgstr "En prémer una tecla"
-
-#: ../data/prefs.glade.h:30
-msgid "On output"
-msgstr "Segons la sortida"
-
-#: ../data/prefs.glade.h:31
-msgid "Prompt on quit"
-msgstr "Demana confirmació per sortir"
-
-#: ../data/prefs.glade.h:32
-msgid "Scrollback lines:"
-msgstr "Línies emmagatzemades:"
-
-#: ../data/prefs.glade.h:33
-msgid "Scrolling"
-msgstr "Desplaçament"
-
-#: ../data/prefs.glade.h:34
-msgid "Show scrollbar"
-msgstr "Mostra la barra de desplaçament"
-
-#: ../data/prefs.glade.h:35
-msgid "Show tab bar"
-msgstr "Mostra la barra de pestanyes"
-
-#: ../data/prefs.glade.h:36
-msgid "Show tray icon"
-msgstr "Mostra una icona a la safata"
-
-#: ../data/prefs.glade.h:37
-msgid "Stay on top"
-msgstr "Resta al damunt"
-
-#: ../data/prefs.glade.h:38
-msgid ""
-"Tango\n"
-"Linux console\n"
-"XTerm\n"
-"Rxvt\n"
-"Custom\n"
-msgstr "Tango\nConsola de Linux\nXTerm\nRxvt\nPersonalitzat\n"
-
-#: ../data/prefs.glade.h:44
-msgid "Text color:"
-msgstr "Color del text:"
-
-#: ../data/prefs.glade.h:45
-msgid "Transparency:"
-msgstr "Transparència:"
-
-#: ../data/prefs.glade.h:46
-msgid "Use the system fixed width font"
-msgstr "Utilitza el tipus de lletra d'amplada fixa del sistema"
-
-#: ../data/prefs.glade.h:47
+#: ../data/prefs.glade.h:96
 msgid "_Backspace key generates:"
 msgstr "La tecla de _retrocés genera:"
 
-#: ../data/prefs.glade.h:48
+#: ../data/prefs.glade.h:97
 msgid "_Delete key generates:"
 msgstr "La tecla de _supressió genera:"
 
-#: ../data/prefs.glade.h:49
-msgid "_Open new tab in current directory"
-msgstr "_Obre les pestanyes noves en el directori actual"
-
-#: ../data/prefs.glade.h:50
+#: ../data/prefs.glade.h:98
 msgid "_Reset Compatibility Options to Defaults"
 msgstr "Reinicia les _opcions de compatibilitat als valors predeterminats"
 
-#: ../data/prefs.glade.h:51
-msgid "_Run command as a login shell"
-msgstr "_Executa una ordre com a intèrpret d'inici de sessió"
+#: ../data/prefs.glade.h:99
+msgid "<b>Keyboard compatibility</b>"
+msgstr "<b>Compatibilitat del teclat</b>"
 
-#: ../guake/guake.py:67
-msgid "Do you really want to quit Guake!?"
-msgstr "De debò voleu sortir del Guake?"
+#: ../data/prefs.glade.h:100
+msgid "Compatibility"
+msgstr "Compatibilitat"
 
-#: ../guake/guake.py:70
-msgid "<b>There is one process still running.</b>"
-msgstr "<b>Encara hi ha un procés en execució.</b>"
-
-#: ../guake/guake.py:74
-#, python-format
-msgid "<b>There are %d processes running.</b>"
-msgstr "<b>Encara hi ha %d processos en execució.</b>"
-
-#: ../guake/guake.py:367
+#: ../src/guake/gconfhandler.py:364
 msgid "key binding error"
 msgstr "S'ha produït un error en definir la drecera de teclat"
 
-#: ../guake/guake.py:368
+#: ../src/guake/gconfhandler.py:365
 #, python-format
 msgid "Unable to bind global <b>%s</b> key"
 msgstr "No s'ha pogut enllaçar la tecla global <b>%s</b>."
 
-#: ../guake/guake.py:530
-msgid "Guake Terminal"
-msgstr "Terminal Guake"
+#: ../src/guake/guake_app.py:118
+#, fuzzy
+msgid "Do you really want to quit Guake?"
+msgstr "De debò voleu sortir del Guake?"
 
-#: ../guake/guake.py:636
+#: ../src/guake/guake_app.py:121
+#, fuzzy
+msgid "<b>There is no process running.</b>"
+msgstr "<b>Encara hi ha un procés en execució.</b>"
+
+#: ../src/guake/guake_app.py:125
+msgid "<b>There is one process still running.</b>"
+msgstr "<b>Encara hi ha un procés en execució.</b>"
+
+#: ../src/guake/guake_app.py:129
+#, fuzzy, python-format
+msgid "<b>There are %d processes still running.</b>"
+msgstr "<b>Encara hi ha %d processos en execució.</b>"
+
+#: ../src/guake/guake_app.py:165
+msgid "guake-indicator"
+msgstr ""
+
+#: ../src/guake/guake_app.py:165
+msgid "guake-tray"
+msgstr ""
+
+#: ../src/guake/guake_app.py:169
+msgid "Show"
+msgstr ""
+
+#: ../src/guake/guake_app.py:306
 #, python-format
 msgid ""
 "A problem happened when binding <b>%s</b> key.\n"
 "Please use Guake Preferences dialog to choose another key"
-msgstr "S'ha produït un problema en definir la drecera amb la tecla <b>%s</b>.\nEmpreu la finestra Preferències del Guake per triar una altra tecla (la icona de la safata era habilitada)."
+msgstr ""
+"S'ha produït un problema en definir la drecera amb la tecla <b>%s</b>.\n"
+"Empreu la finestra Preferències del Guake per triar una altra tecla (la "
+"icona de la safata era habilitada)."
 
-#: ../guake/guake.py:647
+#: ../src/guake/guake_app.py:316
 #, python-format
 msgid ""
 "Guake is now running,\n"
 "press <b>%s</b> to use it."
-msgstr "El Guake està en execució,\npremeu <b>%s</b> per fer-lo servir."
+msgstr ""
+"El Guake està en execució,\n"
+"premeu <b>%s</b> per fer-lo servir."
 
-#: ../guake/guake.py:997
+#: ../src/guake/guake_app.py:456
+#, python-format
+msgid "Search on Web: '%s'"
+msgstr ""
+
+#: ../src/guake/guake_app.py:460
+msgid "Search on Web (no selection)"
+msgstr ""
+
+#: ../src/guake/guake_app.py:466
+msgid "Open Link: {}"
+msgstr ""
+
+#: ../src/guake/guake_app.py:469
+msgid "Open Link..."
+msgstr ""
+
+#: ../src/guake/guake_app.py:1095
 msgid "Rename tab"
 msgstr "Canvia el nom de la pestanya"
 
 #. Adding a new radio button to the tabbar
-#: ../guake/guake.py:1142
-#, python-format
-msgid "Terminal %s"
+#: ../src/guake/guake_app.py:1332
+#, fuzzy
+msgid "Terminal"
 msgstr "Terminal %s"
 
-#: ../guake/guake.py:1252
+#: ../src/guake/guake_app.py:1373
+msgid "Save to..."
+msgstr ""
+
+#: ../src/guake/guake_app.py:1380
+msgid "All files"
+msgstr ""
+
+#: ../src/guake/guake_app.py:1385
+msgid "Text and Logs"
+msgstr ""
+
+#: ../src/guake/guake_app.py:1403
+msgid "Find"
+msgstr ""
+
+#: ../src/guake/guake_app.py:1405
+msgid "Forward"
+msgstr ""
+
+#: ../src/guake/guake_app.py:1406
+msgid "Backward"
+msgstr ""
+
+#: ../src/guake/main.py:63
+msgid "Put Guake in fullscreen mode"
+msgstr ""
+
+#: ../src/guake/main.py:67
 msgid "Toggles the visibility of the terminal window"
 msgstr "Commuta la visibilitat de la finestra del terminal"
 
-#: ../guake/guake.py:1256
+#: ../src/guake/main.py:71
+#, fuzzy
+msgid "Shows Guake main window"
+msgstr "Mostra la finestra de preferències del Guake"
+
+#: ../src/guake/main.py:75
+#, fuzzy
+msgid "Hides Guake main window"
+msgstr "Mostra la finestra de preferències del Guake"
+
+#: ../src/guake/main.py:79
 msgid "Shows Guake preference window"
 msgstr "Mostra la finestra de preferències del Guake"
 
-#: ../guake/guake.py:1260
+#: ../src/guake/main.py:83
 msgid "Shows Guake's about info"
 msgstr "Mostra informació diversa del Guake"
 
-#: ../guake/guake.py:1268
-msgid "Select a tab"
-msgstr "Selecciona una pestanya"
+#: ../src/guake/main.py:87
+#, fuzzy
+msgid "Add a new tab (with current directory set to NEW_TAB)"
+msgstr "_Obre les pestanyes noves en el directori actual"
 
-#: ../guake/guake.py:1272
+#: ../src/guake/main.py:91
+msgid "Select a tab (SELECT_TAB is the index of the tab)"
+msgstr ""
+
+#: ../src/guake/main.py:95
 msgid "Return the selected tab index."
 msgstr "Retorna l'índex de la pestanya seleccionada."
 
-#: ../guake/guake.py:1276
+#: ../src/guake/main.py:99
 msgid "Execute an arbitrary command in the selected tab."
 msgstr "Executa una ordre arbitrària a la pestanya seleccionada."
 
-#: ../guake/guake.py:1280
-msgid "Rename the selected tab."
-msgstr "Canvia el nom de la pestanya seleccionada."
+#: ../src/guake/main.py:103
+msgid "Specify the tab to rename. Default is 0."
+msgstr ""
 
-#: ../guake/guake.py:1284
+#: ../src/guake/main.py:107
+msgid "Set the hexadecimal (#rrggbb) background color of the selected tab."
+msgstr ""
+
+#: ../src/guake/main.py:112
+msgid "Set the hexadecimal (#rrggbb) foreground color of the selected tab."
+msgstr ""
+
+#: ../src/guake/main.py:118
+msgid ""
+"Rename the specified tab. Reset to default if TITLE is a single dash \"-\"."
+msgstr ""
+
+#: ../src/guake/main.py:124
+msgid ""
+"Rename the current tab. Reset to default if TITLE is a single dash \"-\"."
+msgstr ""
+
+#: ../src/guake/main.py:129
 msgid "Says to Guake go away =("
 msgstr "Fa que el Guake desaparegui"
 
-#: ../guake/guake.py:1349
+#: ../src/guake/main.py:133
+msgid "Do not execute the start up script"
+msgstr ""
+
+#: ../src/guake/main.py:227
 msgid "Guake can not init!"
 msgstr "No s'ha pogut iniciar el Guake."
 
-#: ../guake/guake.py:1350
+#: ../src/guake/main.py:228
+#, fuzzy
 msgid ""
 "Gconf Error.\n"
-"Have you installed <b>guake.schemas</b> properlly?"
-msgstr "S'ha produït un error del Gconf.\nHeu instal·lat correctament la propietat <b>guake.schemas</b>?"
+"Have you installed <b>guake.schemas</b> properly?"
+msgstr ""
+"S'ha produït un error del Gconf.\n"
+"Heu instal·lat correctament la propietat <b>guake.schemas</b>?"
 
 #. string to show in prefereces dialog for user shell option
-#: ../guake/prefs.py:42
+#: ../src/guake/prefs.py:64
 msgid "<user shell>"
 msgstr "<intèrpret de l'usuari>"
 
-#: ../guake/prefs.py:57
-msgid "Toggle Guake visibility"
-msgstr "Commuta la visibilitat del Guake"
-
-#: ../guake/prefs.py:59
-msgid "Toggle Fullscreen"
-msgstr "Commuta la pantalla completa"
-
-#: ../guake/prefs.py:64
-msgid "Tab management"
-msgstr "Gestió de pestanyes"
-
-#: ../guake/prefs.py:66
-msgid "New tab"
-msgstr "Pestanya nova"
-
-#: ../guake/prefs.py:68
-msgid "Close tab"
-msgstr "Tanca la pestanya"
-
-#: ../guake/prefs.py:70
-msgid "Rename current tab"
-msgstr "Canvia el nom a la pestanya actual"
-
-#: ../guake/prefs.py:73
-msgid "Navigation"
-msgstr "Navegació"
-
-#: ../guake/prefs.py:75
-msgid "Go to previous tab"
-msgstr "Vés a la pestanya anterior"
-
-#: ../guake/prefs.py:77
-msgid "Go to next tab"
-msgstr "Vés a la pestanya següent"
-
-#: ../guake/prefs.py:80
-msgid "Clipboard"
-msgstr "Porta-retalls"
-
-#: ../guake/prefs.py:82
-msgid "Copy text to clipboard"
-msgstr "Copia text al porta-retalls"
-
-#: ../guake/prefs.py:84
-msgid "Paste text from clipboard"
-msgstr "Enganxa el text del porta-retalls"
-
-#: ../guake/prefs.py:297
+#: ../src/guake/prefs.py:438
 msgid "Action"
 msgstr "Acció"
 
-#: ../guake/prefs.py:307
+#: ../src/guake/prefs.py:448
 msgid "Shortcut"
 msgstr "Drecera"
 
-#: ../guake/prefs.py:605
+#: ../src/guake/prefs.py:584 ../src/guake/prefs.py:630
+msgid "Custom"
+msgstr ""
+
+#: ../src/guake/prefs.py:961
 #, python-format
 msgid "The shortcut \"%s\" is already in use."
 msgstr "La drecera \"%s\" ja s'està fent servir."
 
-#: ../guake/prefs.py:606
+#: ../src/guake/prefs.py:962
 msgid "Error setting keybinding."
 msgstr "S'ha produït un error en definir la drecera."
 
-#: ../guake/prefs.py:618
+#: ../src/guake/prefs.py:974
 #, python-format
 msgid ""
-"The shortcut \"%s\" cannot be used because it will become impossible to type using this key.\n"
+"The shortcut \"%s\" cannot be used because it will become impossible to type "
+"using this key.\n"
 "\n"
 "Please try with a key such as Control, Alt or Shift at the same time.\n"
-msgstr "No es pot emprar \"%s\"  com a drecera perquè seria impossible escriure amb aquesta tecla.\nProveu de combinar-la amb tecles com la de Control, Majúscula o Alternativa.\n"
+msgstr ""
+"No es pot emprar \"%s\"  com a drecera perquè seria impossible escriure amb "
+"aquesta tecla.\n"
+"Proveu de combinar-la amb tecles com la de Control, Majúscula o "
+"Alternativa.\n"
+
+#~ msgid "Add a new tab"
+#~ msgstr "Afegeix una pestanya nova"
+
+#~ msgid "Guake!"
+#~ msgstr "Guake!"
+
+#~ msgid ""
+#~ "Tango\n"
+#~ "Linux console\n"
+#~ "XTerm\n"
+#~ "Rxvt\n"
+#~ "Custom\n"
+#~ msgstr ""
+#~ "Tango\n"
+#~ "Consola de Linux\n"
+#~ "XTerm\n"
+#~ "Rxvt\n"
+#~ "Personalitzat\n"
+
+#~ msgid "Select a tab"
+#~ msgstr "Selecciona una pestanya"
+
+#~ msgid "Rename the selected tab."
+#~ msgstr "Canvia el nom de la pestanya seleccionada."
+
+#~ msgid "Toggle Guake visibility"
+#~ msgstr "Commuta la visibilitat del Guake"
+
+#~ msgid "Tab management"
+#~ msgstr "Gestió de pestanyes"
+
+#~ msgid "Close tab"
+#~ msgstr "Tanca la pestanya"
+
+#~ msgid "Rename current tab"
+#~ msgstr "Canvia el nom a la pestanya actual"
+
+#~ msgid "Navigation"
+#~ msgstr "Navegació"
+
+#~ msgid "Go to previous tab"
+#~ msgstr "Vés a la pestanya anterior"
+
+#~ msgid "Go to next tab"
+#~ msgstr "Vés a la pestanya següent"
+
+#~ msgid "Clipboard"
+#~ msgstr "Porta-retalls"
+
+#~ msgid "Copy text to clipboard"
+#~ msgstr "Copia text al porta-retalls"
+
+#~ msgid "Paste text from clipboard"
+#~ msgstr "Enganxa el text del porta-retalls"
