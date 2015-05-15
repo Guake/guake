@@ -43,5 +43,5 @@ class AboutDialog(SimpleGladeApp):
         img = gtk.gdk.pixbuf_new_from_file(ipath)
         dialog.set_property('logo', img)
 
-        dialog.set_name('Guake!')
+        dialog.set_name('Guake Terminal')
         dialog.set_version(VERSION)
