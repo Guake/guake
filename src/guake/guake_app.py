@@ -176,9 +176,6 @@ class Guake(SimpleGladeApp):
         # adding images from a different path.
         ipath = pixmapfile('guake.png')
         self.get_widget('image1').set_from_file(ipath)
-        ipath = pixmapfile('add_tab.png')
-        self.get_widget('image2').set_from_file(ipath)
-
         # important widgets
         self.window = self.get_widget('window-root')
         self.mainframe = self.get_widget('mainframe')
