@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: guake\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-05-15 10:26+0200\n"
-"PO-Revision-Date: 2015-05-04 17:13+0200\n"
+"POT-Creation-Date: 2015-05-16 17:02+0200\n"
+"PO-Revision-Date: 2015-05-16 17:03+0200\n"
 "Last-Translator: Piotr Drąg <piotrdrag@gmail.com>\n"
 "Language-Team: Polish <trans-pl@lists.fedoraproject.org>\n"
 "Language: pl\n"
@@ -25,27 +25,26 @@ msgid "About Guake"
 msgstr "O programie Guake"
 
 #: ../data/about.glade.h:2
-#, fuzzy
 msgid ""
-"Copyright 2013-2015 Gaetan semet\n"
+"Copyright 2013-2015 Gaetan Semet\n"
 "Copyright 2007-2010 Lincoln de Sousa\n"
 "Copyright 2007 Gabriel Falc&#xE3;o"
 msgstr ""
-"Copyright 2013-2014 Gaetan semet\n"
+"Copyright 2013-2015 Gaetan Semet\n"
 "Copyright 2007-2010 Lincoln de Sousa\n"
 "Copyright 2007 Gabriel Falc&#xE3;o"
 
 #: ../data/about.glade.h:5
 msgid ""
 "Guake is an easy to access\n"
-"terminal based on fps games terminal"
+"terminal based on FPS games terminal"
 msgstr ""
 "Guake jest łatwo dostępnym\n"
 "terminalem opartym na grach FPS"
 
 #: ../data/about.glade.h:7
-msgid "http://guake.org"
-msgstr "http://guake.org"
+msgid "https://github.com/Guake/guake/"
+msgstr "https://github.com/Guake/guake/"
 
 #: ../data/about.glade.h:8
 msgid ""
@@ -153,8 +152,9 @@ msgstr "Zmień nazwę"
 msgid "Close"
 msgstr "Zamknij"
 
-#: ../data/guake.glade.h:14 ../src/guake/guake_app.py:160
-#: ../src/guake/guake_app.py:305 ../src/guake/guake_app.py:315
+#: ../data/guake.glade.h:14 ../src/guake/about.py:46
+#: ../src/guake/guake_app.py:160 ../src/guake/guake_app.py:305
+#: ../src/guake/guake_app.py:315
 msgid "Guake Terminal"
 msgstr "Terminal Guake"
 
@@ -175,7 +175,6 @@ msgstr ""
 "span>"
 
 #: ../data/prefs.glade.h:4
-#, fuzzy
 msgid ""
 "Path to a bash script that would be automatically executed when Guake "
 "starts, unless you specify --no-startup-script.\n"
@@ -567,7 +566,6 @@ msgid "Unable to bind global <b>%s</b> key"
 msgstr "Nie można dowiązać globalnego klawisza <b>%s</b>"
 
 #: ../src/guake/guake_app.py:118
-#, fuzzy
 msgid "Do you really want to quit Guake?"
 msgstr "Na pewno zakończyć program Guake?"
 
@@ -790,12 +788,6 @@ msgstr ""
 "\n"
 "Proszę spróbować z klawiszem takim jak Ctrl, Alt lub Shift w tym samym "
 "czasie.\n"
-
-#~ msgid "Guake!"
-#~ msgstr "Guake!"
-
-#~ msgid "Add a new tab"
-#~ msgstr "Dodaje nową kartę"
 
 #~ msgid "Configure your Guake sessions"
 #~ msgstr "Konfiguruje sesje programu Guake"
