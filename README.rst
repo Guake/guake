@@ -216,7 +216,7 @@ New version
 To start development on a new version:
 - update ``configure.ac``::
 
-    AC_INIT([guake], [0.x.y], [http://guake.org/])
+    AC_INIT([guake], [0.x.y], [https://github.com/Guake/guake/])
 
 - add a new section in the ``NEWS`` file
 
