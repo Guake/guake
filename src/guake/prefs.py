@@ -201,6 +201,11 @@ class PrefsCallbacks(object):
         """
         self.client.set_bool(KEY('/general/prompt_on_quit'), chk.get_active())
 
+    def on_prompt_on_close_tab_changed(self, combo):
+        """Set the `prompt_on_close_tab' property in gconf
+        """
+        self.client.set_int(KEY('/general/prompt_on_close_tab'), combo.get_active())
+
     def on_window_ontop_toggled(self, chk):
         """Changes the activity of window_ontop in gconf
         """
@@ -506,6 +511,12 @@ class PrefsDialog(SimpleGladeApp):
         else:
             file_chooser.set_preview_widget_active(False)
 
+    def toggle_prompt_on_quit_sensitivity(self, combo):
+        """If toggle_on_close_tabs is set to 2 (Always), prompt_on_quit has no
+        effect.
+        """
+        self.get_widget('prompt_on_quit').set_sensitive(combo.get_active() != 2)
+
     def toggle_style_sensitivity(self, chk):
         """If the user chooses to use the gnome default font
         configuration it means that he will not be able to use the
@@ -690,6 +701,11 @@ class PrefsDialog(SimpleGladeApp):
         # prompt on quit
         value = self.client.get_bool(KEY('/general/prompt_on_quit'))
         self.get_widget('prompt_on_quit').set_active(value)
+
+        # prompt on close_tab
+        value = self.client.get_int(KEY('/general/prompt_on_close_tab'))
+        self.get_widget('prompt_on_close_tab').set_active(value)
+        self.get_widget('prompt_on_quit').set_sensitive(value != 2)
 
         # ontop
         value = self.client.get_bool(KEY('/general/window_ontop'))
