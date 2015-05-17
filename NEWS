@@ -1,4 +1,4 @@
-Version 0.7.1:
+Version 0.7.1 (dev):
 - Background and font color inversed for some color schemes (#516)
 - Guake width wrong on non-Unity Ubuntu desktop (#517)
 - Add get_gtktab_name dbus interface (#529, #530)
@@ -6,7 +6,7 @@ Version 0.7.1:
 - I18n fixes and updated Polish translation (#519). Thanks a lot @piotrdrag!
 - Remove add and guake icon in tab (#543)
 
-Version 0.7.0:
+Version 0.7.0 (2015.05.02):
 
 I had more time working on Guake recently, so I fixed some long term issues, and exposed some
 internal settings into the preference window.
@@ -30,10 +30,10 @@ Here is the complete changelog for this release:
 - Fix compatibility with Ubuntu 15.04 (#509)
 - Fix Guake Turns Gray sometimes (#473, #512)
 
-Version 0.6.2:
+Version 0.6.2 (2015.04.20):
 - Packaging issue fixes
 
-Version 0.6.1:
+Version 0.6.1 (2015.04.19):
 - bug fixes
 
 Version 0.6.0 (2015.04.18):
