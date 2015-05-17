@@ -3,7 +3,8 @@ Version 0.7.1:
 - Guake width wrong on non-Unity Ubuntu desktop (#517)
 - Add get_gtktab_name dbus interface (#529, #530)
 - Fix issue with selection copy (#514)
-- I18n fixes and updated Polish translation (#519)
+- I18n fixes and updated Polish translation (#519). Thanks a lot @piotrdrag!
+- Remove add and guake icon in tab (#543)
 
 Version 0.7.0:
 
