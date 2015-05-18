@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: guake\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-05-18 18:05+0200\n"
-"PO-Revision-Date: 2015-05-16 17:03+0200\n"
+"POT-Creation-Date: 2015-05-18 18:50+0200\n"
+"PO-Revision-Date: 2015-05-18 18:52+0200\n"
 "Last-Translator: Piotr Drąg <piotrdrag@gmail.com>\n"
 "Language-Team: Polish <trans-pl@lists.fedoraproject.org>\n"
 "Language: pl\n"
@@ -208,7 +208,6 @@ msgid "Show tray icon"
 msgstr "Ikona obszaru powiadamiania"
 
 #: ../data/prefs.glade.h:17
-#, fuzzy
 msgid "Always prompt on quit"
 msgstr "Potwierdzenie podczas kończenia działania"
 
@@ -225,9 +224,8 @@ msgid "Path to script executed on Guake start:"
 msgstr "Ścieżka do skryptu wykonywanego podczas uruchamiania programu Guake:"
 
 #: ../data/prefs.glade.h:21
-#, fuzzy
 msgid "Prompt on close tab:"
-msgstr "Potwierdzenie podczas kończenia działania"
+msgstr "Potwierdzenie podczas zamykania karty:"
 
 #: ../data/prefs.glade.h:22
 msgid ""
@@ -235,6 +233,9 @@ msgid ""
 "With process running\n"
 "Always"
 msgstr ""
+"Nigdy\n"
+"Kiedy jest uruchomiony proces\n"
+"Zawsze"
 
 #: ../data/prefs.glade.h:25
 msgid "<b>General</b>"
@@ -575,9 +576,8 @@ msgid "Unable to bind global <b>%s</b> key"
 msgstr "Nie można dowiązać globalnego klawisza <b>%s</b>"
 
 #: ../src/guake/guake_app.py:117
-#, fuzzy
 msgid "Do you want to close the tab?"
-msgstr "Na pewno zakończyć program Guake?"
+msgstr "Zamknąć kartę?"
 
 #: ../src/guake/guake_app.py:120
 msgid "Do you really want to quit Guake?"
@@ -585,27 +585,25 @@ msgstr "Na pewno zakończyć program Guake?"
 
 #: ../src/guake/guake_app.py:122
 msgid " and one tab open"
-msgstr ""
+msgstr " i jest jedna otwarta karta"
 
 #: ../src/guake/guake_app.py:124
 #, python-brace-format
 msgid " and {0} tabs open"
-msgstr ""
+msgstr " i więcej kart jest otwartych: {0}"
 
 #: ../src/guake/guake_app.py:127
-#, fuzzy
 msgid "There are no processes running"
-msgstr "<b>Żaden proces nie jest uruchomiony.</b>"
+msgstr "Żaden proces nie jest uruchomiony"
 
 #: ../src/guake/guake_app.py:129
-#, fuzzy
 msgid "There is a process still running"
-msgstr "<b>Jeden proces jest ciągle uruchomiony.</b>"
+msgstr "Jeden proces jest ciągle uruchomiony"
 
 #: ../src/guake/guake_app.py:131
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid "There are {0} processes still running"
-msgstr "<b>Nadal uruchomione procesy: %d.</b>"
+msgstr "Nadal uruchomione procesy: %d"
 
 #: ../src/guake/guake_app.py:170
 msgid "guake-indicator"
@@ -813,9 +811,6 @@ msgstr ""
 "\n"
 "Proszę spróbować z klawiszem takim jak Ctrl, Alt lub Shift w tym samym "
 "czasie.\n"
-
-#~ msgid "https://github.com/Guake/guake/"
-#~ msgstr "https://github.com/Guake/guake/"
 
 #~ msgid "Configure your Guake sessions"
 #~ msgstr "Konfiguruje sesje programu Guake"
