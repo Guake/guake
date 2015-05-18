@@ -48,16 +48,18 @@ class GuakeNotebook(Notebook):
 
     def get_running_fg_processes(self):
         total_procs = 0
-        term_idx = 0
         for page_index in range(self.get_tab_count()):
-            terminals = self.get_terminals_for_tab(page_index)
-            for terminal in terminals:
-                fdpty = terminal.get_pty()
-                term_pid = terminal.get_pid()
-                fgpid = posix.tcgetpgrp(fdpty)
-                if not (fgpid == -1 or fgpid == term_pid):
-                    total_procs += 1
-                term_idx += 1
+            total_procs += self.get_running_fg_processes_tab(page_index)
+        return total_procs
+
+    def get_running_fg_processes_tab(self, index):
+        total_procs = 0
+        for terminal in self.get_terminals_for_tab(index):
+            fdpty = terminal.get_pty()
+            term_pid = terminal.get_pid()
+            fgpid = posix.tcgetpgrp(fdpty)
+            if not (fgpid == -1 or fgpid == term_pid):
+                total_procs += 1
         return total_procs
 
     def iter_terminals(self):
