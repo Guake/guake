@@ -1,4 +1,4 @@
-Version 0.7.1 (dev):
+Version 0.7.1 (2015.05.18):
 - Background and font color inversed for some color schemes (#516)
 - Guake width wrong on non-Unity Ubuntu desktop (#517)
 - Add get_gtktab_name dbus interface (#529, #530)
