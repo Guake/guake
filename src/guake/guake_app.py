@@ -114,25 +114,25 @@ class PromptQuitDialog(gtk.MessageDialog):
             gtk.MESSAGE_QUESTION, gtk.BUTTONS_YES_NO)
 
         if tabs == -1:
-            primary_msg = 'Do you want to close the tab?'
+            primary_msg = _('Do you want to close the tab?')
             tab_str = ''
         else:
-            primary_msg = 'Do you really want to quit Guake?'
+            primary_msg = _('Do you really want to quit Guake?')
             if tabs == 1:
-                tab_str = " and one tab open"
+                tab_str = _(" and one tab open")
             else:
-                tab_str = " and {} tabs open".format(tabs)
+                tab_str = _(" and {0} tabs open").format(tabs)
 
         if procs == 0:
-            proc_str = "There are no processes running"
+            proc_str = _("There are no processes running")
         elif procs == 1:
-            proc_str = "There is a process still running"
+            proc_str = _("There is a process still running")
         else:
-            proc_str = "There are {} processes still running".format(procs)
+            proc_str = _("There are {0} processes still running").format(procs)
 
         self.set_keep_above(True)
-        self.set_markup(_(primary_msg))
-        self.format_secondary_markup(_("<b>{}{}.</b>".format(proc_str, tab_str)))
+        self.set_markup(primary_msg)
+        self.format_secondary_markup("<b>{0}{1}.</b>".format(proc_str, tab_str))
 
 
 class Guake(SimpleGladeApp):
