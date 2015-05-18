@@ -593,17 +593,6 @@
             </locale>
         </schema>
 
-        <schema>
-            <key>/schemas/apps/guake/keybindings/local/previous_tab</key>
-            <applyto>/apps/guake/keybindings/local/previous_tab</applyto>
-            <owner>guake</owner>
-            <type>string</type>
-            <default>&lt;Control&gt;Page_Up</default>
-            <locale name="C">
-                <short>Previous tab.</short>
-                <long>Shows the previous tab.</long>
-            </locale>
-        </schema>
 
         <schema>
             <key>/schemas/apps/guake/keybindings/local/move_tab_left</key>
@@ -616,16 +605,27 @@
                 <long>Move the current tab to the left</long>
             </locale>
         </schema>
-
         <schema>
             <key>/schemas/apps/guake/keybindings/local/move_tab_right</key>
             <applyto>/apps/guake/keybindings/local/move_tab_right</applyto>
             <owner>guake</owner>
             <type>string</type>
-            <default>&lt;Control&gt;Page_Down</default>
+            <default>&lt;Control&gt;Shift&gt;Page_Down</default>
             <locale name="C">
                 <short>Move right current tab</short>
                 <long>Move the current tab to the right</long>
+            </locale>
+        </schema>
+
+        <schema>
+            <key>/schemas/apps/guake/keybindings/local/previous_tab</key>
+            <applyto>/apps/guake/keybindings/local/previous_tab</applyto>
+            <owner>guake</owner>
+            <type>string</type>
+            <default>&lt;Control&gt;Page_Up</default>
+            <locale name="C">
+                <short>Previous tab.</short>
+                <long>Shows the previous tab.</long>
             </locale>
         </schema>
         <schema>
