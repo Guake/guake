@@ -32,7 +32,6 @@ import subprocess
 import sys
 import xdg.Exceptions
 
-
 from urllib import quote_plus
 from urllib import url2pathname
 from urlparse import urlsplit
@@ -105,29 +104,35 @@ GDK_WINDOW_STATE_ABOVE = 32
 
 class PromptQuitDialog(gtk.MessageDialog):
 
-    """Prompts the user whether to quit or not if there are procs running.
+    """Prompts the user whether to quit/close a tab.
     """
 
-    def __init__(self, parent, running_procs):
+    def __init__(self, parent, procs, tabs):
         super(PromptQuitDialog, self).__init__(
             parent,
             gtk.DIALOG_MODAL | gtk.DIALOG_DESTROY_WITH_PARENT,
             gtk.MESSAGE_QUESTION, gtk.BUTTONS_YES_NO)
 
+        if tabs == -1:
+            primary_msg = 'Do you want to close the tab?'
+            tab_str = ''
+        else:
+            primary_msg = 'Do you really want to quit Guake?'
+            if tabs == 1:
+                tab_str = " and one tab open"
+            else:
+                tab_str = " and {} tabs open".format(tabs)
+
+        if procs == 0:
+            proc_str = "There are no processes running"
+        elif procs == 1:
+            proc_str = "There is a process still running"
+        else:
+            proc_str = "There are {} processes still running".format(procs)
+
         self.set_keep_above(True)
-        self.set_markup(_('Do you really want to quit Guake?'))
-        if running_procs == 0:
-            self.format_secondary_markup(
-                _("<b>There is no process running.</b>")
-            )
-        elif running_procs == 1:
-            self.format_secondary_markup(
-                _("<b>There is one process still running.</b>")
-            )
-        elif running_procs > 1:
-            self.format_secondary_markup(
-                _("<b>There are %d processes still running.</b>" % running_procs)
-            )
+        self.set_markup(_(primary_msg))
+        self.format_secondary_markup(_("<b>{}{}.</b>".format(proc_str, tab_str)))
 
 
 class Guake(SimpleGladeApp):
@@ -146,7 +151,7 @@ class Guake(SimpleGladeApp):
         # since theme has not been applied before first show_all
         self.selected_color = None
 
-        self.isPromptQuitDialogOpened = False
+        self.prompt_dialog = None
         self.hidden = True
         self.forceHide = False
         self.preventHide = False
@@ -403,7 +408,7 @@ class Guake(SimpleGladeApp):
         if self.disable_losefocus_hiding or self.showing_context_menu:
             return
 
-        if self.isPromptQuitDialogOpened:
+        if self.prompt_dialog is not None:
             return
 
         if self.preventHide:
@@ -834,12 +839,6 @@ class Guake(SimpleGladeApp):
 
         return window_rect
 
-    def get_running_fg_processes(self):
-        """Get the number of processes for each terminal/tab. The code is taken
-        from gnome-terminal.
-        """
-        return self.notebook.get_running_fg_processes()
-
     # -- configuration --
 
     def load_config(self):
@@ -847,6 +846,7 @@ class Guake(SimpleGladeApp):
         """
         self.client.notify(KEY('/general/use_trayicon'))
         self.client.notify(KEY('/general/prompt_on_quit'))
+        self.client.notify(KEY('/general/prompt_on_close_tab'))
         self.client.notify(KEY('/general/window_tabbar'))
         self.client.notify(KEY('/general/mouse_display'))
         self.client.notify(KEY('/general/display_n'))
@@ -873,17 +873,31 @@ class Guake(SimpleGladeApp):
         self.client.notify(KEY('/general/compat_backspace'))
         self.client.notify(KEY('/general/compat_delete'))
 
+    def run_quit_dialog(self, procs, tab):
+        """Run the "are you sure" dialog for closing a tab, or quitting Guake
+        """
+        # Stop an open "close tab" dialog from obstructing a quit
+        if self.prompt_dialog is not None:
+            self.prompt_dialog.destroy()
+        self.prompt_dialog = PromptQuitDialog(self.window, procs, tab)
+        response = self.prompt_dialog.run() == gtk.RESPONSE_YES
+        self.prompt_dialog.destroy()
+        self.prompt_dialog = None
+        # Keep Guake focussed after dismissing tab-close prompt
+        if tab == -1:
+            self.window.present()
+        return response
+
     def accel_quit(self, *args):
         """Callback to prompt the user whether to quit Guake or not.
         """
-        if self.client.get_bool(KEY('/general/prompt_on_quit')):
-            procs = self.get_running_fg_processes()
-            self.isPromptQuitDialogOpened = True
-            dialog = PromptQuitDialog(self.window, procs)
-            response = dialog.run() == gtk.RESPONSE_YES
-            dialog.destroy()
-            self.isPromptQuitDialogOpened = False
-            if response:
+        procs = self.notebook.get_running_fg_processes()
+        tabs = self.notebook.get_tab_count()
+        prompt_cfg = self.client.get_bool(KEY('/general/prompt_on_quit'))
+        prompt_tab_cfg = self.client.get_int(KEY('/general/prompt_on_close_tab'))
+        # "Prompt on tab close" config overrides "prompt on quit" config
+        if prompt_cfg or (prompt_tab_cfg == 1 and procs > 0) or (prompt_tab_cfg == 2):
+            if self.run_quit_dialog(procs, tabs):
                 gtk.main_quit()
         else:
             gtk.main_quit()
@@ -1459,6 +1473,13 @@ class Guake(SimpleGladeApp):
         tab widgets and will call the function to kill interpreter
         forked by vte.
         """
+        # Run prompt if necessary
+        procs = self.notebook.get_running_fg_processes_tab(pagepos)
+        prompt_cfg = self.client.get_int(KEY('/general/prompt_on_close_tab'))
+        if (prompt_cfg == 1 and procs > 0) or (prompt_cfg == 2):
+            if not self.run_quit_dialog(procs, -1):
+                return
+
         self.tabs.get_children()[pagepos].destroy()
         self.notebook.delete_tab(pagepos, kill=kill)
 

@@ -88,9 +88,21 @@
             <type>bool</type>
             <default>true</default>
             <locale name="C">
-                <short>Prompt when quiting.</short>
-                <long>Ask for confirmation when guiting Guake and there
-                processes running.</long>
+                <short>Prompt when quitting.</short>
+                <long>Ask for confirmation when quitting Guake.</long>
+            </locale>
+        </schema>
+
+        <schema>
+            <key>/schemas/apps/guake/general/prompt_on_close_tab</key>
+            <applyto>/apps/guake/general/prompt_on_close_Tab</applyto>
+            <owner>guake</owner>
+            <type>int</type>
+            <default>0</default>
+            <locale name="C">
+                <short>Prompt when closing tabs.</short>
+                <long>0: Never 1: If process is running 2: Always. 
+                Also prompts on quit.</long>
             </locale>
         </schema>
 
