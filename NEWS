@@ -5,6 +5,7 @@ Version 0.7.1 (dev):
 - Fix issue with selection copy (#514)
 - I18n fixes and updated Polish translation (#519). Thanks a lot @piotrdrag!
 - Remove add and guake icon in tab (#543)
+- prompt_on_close_tab option (#546) Thanks a lot @tobz1000!
 
 Version 0.7.0 (2015.05.02):
 
