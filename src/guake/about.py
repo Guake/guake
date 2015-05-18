@@ -22,9 +22,9 @@ from __future__ import absolute_import
 
 import gtk
 
+from guake.common import _
 from guake.common import gladefile
 from guake.common import pixmapfile
-from guake.common import _
 from guake.globals import VERSION
 from guake.simplegladeapp import SimpleGladeApp
 
