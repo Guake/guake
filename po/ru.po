@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Guake 0.4.5\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-05-18 10:27+0200\n"
+"POT-Creation-Date: 2015-05-18 10:30+0200\n"
 "PO-Revision-Date: 2010-01-25 20:29+0300\n"
 "Last-Translator: Pavel Alexeev <pahan@hubbitus.info>\n"
 "Language-Team: Russian<guake@lists.guake.org>\n"
@@ -542,9 +542,40 @@ msgstr "ошибка привязки клавиши"
 msgid "Unable to bind global <b>%s</b> key"
 msgstr "Невозможно назначить глобальную <b>%s</b> клавишу"
 
-#: ../src/guake/guake_app.py:135
-msgid "<b>{}{}.</b>"
+#: ../src/guake/guake_app.py:117
+#, fuzzy
+msgid "Do you want to close the tab?"
+msgstr "Вы действительно хотите выйти из Guake!?"
+
+#: ../src/guake/guake_app.py:120
+#, fuzzy
+msgid "Do you really want to quit Guake?"
+msgstr "Вы действительно хотите выйти из Guake!?"
+
+#: ../src/guake/guake_app.py:122
+#, fuzzy
+msgid " and one tab open"
+msgstr "Новая вкладка"
+
+#: ../src/guake/guake_app.py:124
+#, python-brace-format
+msgid " and {0} tabs open"
 msgstr ""
+
+#: ../src/guake/guake_app.py:127
+#, fuzzy
+msgid "There are no processes running"
+msgstr "<b>Имеется один выполняемый процесс.</b>"
+
+#: ../src/guake/guake_app.py:129
+#, fuzzy
+msgid "There is a process still running"
+msgstr "<b>Имеется один выполняемый процесс.</b>"
+
+#: ../src/guake/guake_app.py:131
+#, fuzzy, python-brace-format
+msgid "There are {0} processes still running"
+msgstr "<b>Выполняется процессов: %d.</b>"
 
 #: ../src/guake/guake_app.py:170
 msgid "guake-indicator"
@@ -755,24 +786,6 @@ msgstr ""
 
 #~ msgid "http://guake.org"
 #~ msgstr "http://guake.org"
-
-#, fuzzy
-#~ msgid "Do you really want to quit Guake?"
-#~ msgstr "Вы действительно хотите выйти из Guake!?"
-
-#, fuzzy
-#~ msgid "<b>There is no process running.</b>"
-#~ msgstr "<b>Имеется один выполняемый процесс.</b>"
-
-#~ msgid "<b>There is one process still running.</b>"
-#~ msgstr "<b>Имеется один выполняемый процесс.</b>"
-
-#, fuzzy
-#~ msgid "<b>There are %d processes still running.</b>"
-#~ msgstr "<b>Выполняется процессов: %d.</b>"
-
-#~ msgid "Add a new tab"
-#~ msgstr "Новая вкладка"
 
 #~ msgid "Guake!"
 #~ msgstr "Guake!"

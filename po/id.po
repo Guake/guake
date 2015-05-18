@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Guake 0.4.5\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-05-18 10:27+0200\n"
+"POT-Creation-Date: 2015-05-18 10:30+0200\n"
 "PO-Revision-Date: 2013-05-20 07:04+0000\n"
 "Last-Translator: operamaniac <rizkiaulia.r@gmail.com>\n"
 "Language-Team: Indonesian (http://www.transifex.com/projects/p/guake/"
@@ -528,8 +528,35 @@ msgstr ""
 msgid "Unable to bind global <b>%s</b> key"
 msgstr ""
 
-#: ../src/guake/guake_app.py:135
-msgid "<b>{}{}.</b>"
+#: ../src/guake/guake_app.py:117
+msgid "Do you want to close the tab?"
+msgstr ""
+
+#: ../src/guake/guake_app.py:120
+msgid "Do you really want to quit Guake?"
+msgstr ""
+
+#: ../src/guake/guake_app.py:122
+#, fuzzy
+msgid " and one tab open"
+msgstr "Tambah tab baru"
+
+#: ../src/guake/guake_app.py:124
+#, python-brace-format
+msgid " and {0} tabs open"
+msgstr ""
+
+#: ../src/guake/guake_app.py:127
+msgid "There are no processes running"
+msgstr ""
+
+#: ../src/guake/guake_app.py:129
+msgid "There is a process still running"
+msgstr ""
+
+#: ../src/guake/guake_app.py:131
+#, python-brace-format
+msgid "There are {0} processes still running"
 msgstr ""
 
 #: ../src/guake/guake_app.py:170
@@ -725,9 +752,6 @@ msgstr ""
 
 #~ msgid "http://guake.org"
 #~ msgstr "http://guake.org"
-
-#~ msgid "Add a new tab"
-#~ msgstr "Tambah tab baru"
 
 #~ msgid "Guake!"
 #~ msgstr "Guake!"
