@@ -1,4 +1,18 @@
 Version 0.7.1 (2015.05.18):
+
+Some bug fixes, and cleared issues with new palette colors.
+
+As side note, our domain 'guake.org' has been squatted by an outsider that seems only interested in
+getting money to release the website. Since Guake is a small project, based on pure OpenSource
+spirit, we do not want to loose more time on this subject. The guake website will be deployed on a
+new URL:
+
+    http://guake-project.org
+
+Please do **NOT** use guake.org anymore, until we can retrieve it. We cannot be hold responsible for
+its content.
+
+Bug fixes:
 - Background and font color inversed for some color schemes (#516)
 - Guake width wrong on non-Unity Ubuntu desktop (#517)
 - Add get_gtktab_name dbus interface (#529, #530)
