@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Guake 0.4.5\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-05-18 10:27+0200\n"
+"POT-Creation-Date: 2015-05-18 10:30+0200\n"
 "PO-Revision-Date: 2009-11-14 09:48-0300\n"
 "Last-Translator: Djavan Fagundes <djavan@comum.org>\n"
 "Language-Team: Portuguese/Brazil <gnome-l10n-br@listas.cipsga.org.br>\n"
@@ -542,9 +542,40 @@ msgstr "erro na associação de atalhos"
 msgid "Unable to bind global <b>%s</b> key"
 msgstr "Impossível associar a tecla <b>%s</b>"
 
-#: ../src/guake/guake_app.py:135
-msgid "<b>{}{}.</b>"
+#: ../src/guake/guake_app.py:117
+#, fuzzy
+msgid "Do you want to close the tab?"
+msgstr "Você realmente deseja sair do Guake!?"
+
+#: ../src/guake/guake_app.py:120
+#, fuzzy
+msgid "Do you really want to quit Guake?"
+msgstr "Você realmente deseja sair do Guake!?"
+
+#: ../src/guake/guake_app.py:122
+#, fuzzy
+msgid " and one tab open"
+msgstr "Adicionar uma nova aba"
+
+#: ../src/guake/guake_app.py:124
+#, python-brace-format
+msgid " and {0} tabs open"
 msgstr ""
+
+#: ../src/guake/guake_app.py:127
+#, fuzzy
+msgid "There are no processes running"
+msgstr "<b>Ainda há um processo sendo executado.</b>"
+
+#: ../src/guake/guake_app.py:129
+#, fuzzy
+msgid "There is a process still running"
+msgstr "<b>Ainda há um processo sendo executado.</b>"
+
+#: ../src/guake/guake_app.py:131
+#, fuzzy, python-brace-format
+msgid "There are {0} processes still running"
+msgstr "<b>Há %d processos sendo executados.</b>"
 
 #: ../src/guake/guake_app.py:170
 msgid "guake-indicator"
@@ -755,24 +786,6 @@ msgstr ""
 
 #~ msgid "http://guake.org"
 #~ msgstr "http://guake.org"
-
-#, fuzzy
-#~ msgid "Do you really want to quit Guake?"
-#~ msgstr "Você realmente deseja sair do Guake!?"
-
-#, fuzzy
-#~ msgid "<b>There is no process running.</b>"
-#~ msgstr "<b>Ainda há um processo sendo executado.</b>"
-
-#~ msgid "<b>There is one process still running.</b>"
-#~ msgstr "<b>Ainda há um processo sendo executado.</b>"
-
-#, fuzzy
-#~ msgid "<b>There are %d processes still running.</b>"
-#~ msgstr "<b>Há %d processos sendo executados.</b>"
-
-#~ msgid "Add a new tab"
-#~ msgstr "Adicionar uma nova aba"
 
 #~ msgid "Guake!"
 #~ msgstr "Guake!"

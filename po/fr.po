@@ -12,8 +12,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Guake 0.4.5\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-05-18 10:27+0200\n"
-"PO-Revision-Date: 2015-05-15 10:31+0100\n"
+"POT-Creation-Date: 2015-05-18 10:30+0200\n"
+"PO-Revision-Date: 2015-05-18 10:32+0100\n"
 "Last-Translator: Benjamin Danon <benjamin@sphax3d.org>\n"
 "Language-Team: French (http://www.transifex.com/projects/p/guake/language/"
 "fr/)\n"
@@ -207,9 +207,8 @@ msgid "Show tray icon"
 msgstr "Afficher l'icône de notification"
 
 #: ../data/prefs.glade.h:17
-#, fuzzy
 msgid "Always prompt on quit"
-msgstr "Confirmer pour quitter"
+msgstr "Toujours confirmer pour quitter"
 
 #: ../data/prefs.glade.h:18
 msgid "_Flash terminal on bell"
@@ -224,9 +223,8 @@ msgid "Path to script executed on Guake start:"
 msgstr "Chemin vers le script à executer lors du lancement de Guake:"
 
 #: ../data/prefs.glade.h:21
-#, fuzzy
 msgid "Prompt on close tab:"
-msgstr "Confirmer pour quitter"
+msgstr "Confirmer la fermeture d'onglet:"
 
 #: ../data/prefs.glade.h:22
 msgid ""
@@ -234,6 +232,9 @@ msgid ""
 "With process running\n"
 "Always"
 msgstr ""
+"Jamais\n"
+"Si des processus sont toujours en cours\n"
+"Toujours"
 
 #: ../data/prefs.glade.h:25
 msgid "<b>General</b>"
@@ -573,9 +574,35 @@ msgstr "Combinaison de touches invalide"
 msgid "Unable to bind global <b>%s</b> key"
 msgstr "Impossible de combiner la touche <b>%s</b>"
 
-#: ../src/guake/guake_app.py:135
-msgid "<b>{}{}.</b>"
-msgstr ""
+#: ../src/guake/guake_app.py:117
+msgid "Do you want to close the tab?"
+msgstr "Voulez-vous vraiment fermer l'onglet?"
+
+#: ../src/guake/guake_app.py:120
+msgid "Do you really want to quit Guake?"
+msgstr "Voulez-vous vraiment quitter Guake ?"
+
+#: ../src/guake/guake_app.py:122
+msgid " and one tab open"
+msgstr "et un tab ouvert"
+
+#: ../src/guake/guake_app.py:124
+#, python-brace-format
+msgid " and {0} tabs open"
+msgstr "et {0} onglets ouverts"
+
+#: ../src/guake/guake_app.py:127
+msgid "There are no processes running"
+msgstr "Il y n'a pas de processus actif."
+
+#: ../src/guake/guake_app.py:129
+msgid "There is a process still running"
+msgstr "Il y a encore un processus en cours."
+
+#: ../src/guake/guake_app.py:131
+#, python-brace-format
+msgid "There are {0} processes still running"
+msgstr "Il y a {0} processus encore actifs."
 
 #: ../src/guake/guake_app.py:170
 msgid "guake-indicator"
@@ -787,23 +814,11 @@ msgstr ""
 "Essayez de l'utiliser en combinaison avec une touche tel que Control, Alt ou "
 "Shift.\n"
 
+#~ msgid "<b>{}{}.</b>"
+#~ msgstr "<b>{}{}.</b>"
+
 #~ msgid "http://guake.org"
 #~ msgstr "http://guake.org"
-
-#~ msgid "Do you really want to quit Guake?"
-#~ msgstr "Voulez-vous vraiment quitter Guake ?"
-
-#~ msgid "<b>There is no process running.</b>"
-#~ msgstr "<b>Il y n'a pas de processus actif.</b>"
-
-#~ msgid "<b>There is one process still running.</b>"
-#~ msgstr "<b>Il y a encore un processus en cours.</b>"
-
-#~ msgid "<b>There are %d processes still running.</b>"
-#~ msgstr "<b>Il y a %d processus encore actifs.</b>"
-
-#~ msgid "Add a new tab"
-#~ msgstr "Ajouter un nouvel onglet"
 
 #~ msgid "Guake!"
 #~ msgstr "Guake !"
