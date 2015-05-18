@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Guake 0.4.5\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-05-18 10:30+0200\n"
+"POT-Creation-Date: 2015-05-18 18:05+0200\n"
 "PO-Revision-Date: 2010-01-25 20:29+0300\n"
 "Last-Translator: Pavel Alexeev <pahan@hubbitus.info>\n"
 "Language-Team: Russian<guake@lists.guake.org>\n"
@@ -28,7 +28,7 @@ msgstr "О Guake"
 #: ../data/about.glade.h:2
 #, fuzzy
 msgid ""
-"Copyright 2013-2015 Gaetan semet\n"
+"Copyright 2013-2015 Gaetan Semet\n"
 "Copyright 2007-2010 Lincoln de Sousa\n"
 "Copyright 2007 Gabriel Falc&#xE3;o"
 msgstr ""
@@ -36,9 +36,10 @@ msgstr ""
 "Copyright 2007 Gabriel Falc&#xE3;o"
 
 #: ../data/about.glade.h:5
+#, fuzzy
 msgid ""
 "Guake is an easy to access\n"
-"terminal based on fps games terminal"
+"terminal based on FPS games terminal"
 msgstr ""
 "Guake это терминал быстрого доступа\n"
 "наподобие тех, что используются в играх"
@@ -147,8 +148,9 @@ msgstr "Переименовать"
 msgid "Close"
 msgstr "Закрыть"
 
-#: ../data/guake.glade.h:14 ../src/guake/guake_app.py:165
-#: ../src/guake/guake_app.py:310 ../src/guake/guake_app.py:320
+#: ../data/guake.glade.h:14 ../src/guake/about.py:47
+#: ../src/guake/guake_app.py:165 ../src/guake/guake_app.py:310
+#: ../src/guake/guake_app.py:320
 msgid "Guake Terminal"
 msgstr "Guake Terminal"
 
