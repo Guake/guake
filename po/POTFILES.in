@@ -6,6 +6,7 @@ data/guake.desktop.in
 data/guake.glade
 data/guake-prefs.desktop.in
 data/prefs.glade
+src/guake/about.py
 src/guake/gconfhandler.py
 src/guake/guake_app.py
 src/guake/main.py
