@@ -584,8 +584,7 @@ class Guake(SimpleGladeApp):
 
     def window_event(self, window, event):
         state = event.new_window_state
-        log.debug("Received window state event. Window: {0}. Event: {1}".format(window,
-                                                                                state))
+        log.debug("Received window state event. Window: %s. Event: %s", window, state)
 
     def show_hide(self, *args):
         """Toggles the main window visibility
@@ -618,11 +617,11 @@ class Guake(SimpleGladeApp):
             is_withdrawn = bool(cur_state & GDK_WINDOW_STATE_WITHDRAWN)
             is_above = bool(cur_state & GDK_WINDOW_STATE_ABOVE)
             is_iconified = self.is_iconified()
-            log.debug("gtk.gdk.WindowState =", cur_state)
-            log.debug("GDK_WINDOW_STATE_STICKY? {0}".format(is_sticky))
-            log.debug("GDK_WINDOW_STATE_WITHDRAWN? {0}".format(is_withdrawn))
-            log.debug("GDK_WINDOW_STATE_ABOVE? {0}".format(is_above))
-            log.debug("GDK_WINDOW_STATE_ICONIFIED? {0}".format(is_iconified))
+            log.debug("gtk.gdk.WindowState = %s", cur_state)
+            log.debug("GDK_WINDOW_STATE_STICKY? %s", is_sticky)
+            log.debug("GDK_WINDOW_STATE_WITHDRAWN? %s", is_withdrawn)
+            log.debug("GDK_WINDOW_STATE_ABOVE? %s", is_above)
+            log.debug("GDK_WINDOW_STATE_ICONIFIED? %s", is_iconified)
 
         if not self.window.get_property('visible'):
             log.debug("Showing the terminal")
@@ -655,7 +654,7 @@ class Guake(SimpleGladeApp):
         #         self.set_terminal_focus()
         #         return
 
-        log.debug("DBG: hiding the terminal")
+        log.debug("hiding the terminal")
         self.hide()
 
     def show(self):
@@ -698,7 +697,7 @@ class Guake(SimpleGladeApp):
             time = 0
 
         # When minized, the window manager seems to refuse to resume
-        log.debug("self.window: {0}. Dir={1}".format(type(self.window), dir(self.window)))
+        log.debug("self.window: %s. Dir=%s", type(self.window), dir(self.window))
         # is_iconified = self.is_iconified()
         # if is_iconified:
         #     log.debug("Is iconified. Ubuntu Trick => removing skip_taskbar_hint and skip_pager_hint "
@@ -863,9 +862,11 @@ class Guake(SimpleGladeApp):
 
             # launcher_hide_mode = 1 => autohide
             if unity_hide != 1:
-                log.debug("correcting window width because of launcher width {} "
-                          "(from {} to {})".format(
-                              unity_dock, window_rect.width, window_rect.width - unity_dock))
+                log.debug("correcting window width because of launcher width %s "
+                          "(from %s to %s)",
+                          unity_dock,
+                          window_rect.width,
+                          window_rect.width - unity_dock)
 
                 window_rect.width = window_rect.width - unity_dock
 
@@ -1144,7 +1145,7 @@ class Guake(SimpleGladeApp):
         this is the method that does that, or, at least calls
         `delete_tab' method to do the work.
         """
-        log.debug("Terminal exited: {0}".format(term))
+        log.debug("Terminal exited: %s", term)
         if libutempter is not None:
             libutempter.utempter_remove_record(term.get_pty())
         self.delete_tab(self.notebook.page_num(widget), kill=False)
@@ -1503,13 +1504,13 @@ class Guake(SimpleGladeApp):
         start, end = dialog.buffer.get_bounds()
         search_string = start.get_text(end)
 
-        log.debug("Searching for '{}' {}\n".format(
-            search_string,
-            "forward" if response_id == RESPONSE_FORWARD else "backward"))
+        log.debug("Searching for %r %s\n",
+                  search_string,
+                  "forward" if response_id == RESPONSE_FORWARD else "backward")
 
         current_term = self.notebook.get_current_terminal()
-        log.debug("type", type(current_term))
-        log.debug("dir", dir(current_term))
+        log.debug("type: %r", type(current_term))
+        log.debug("dir: %r", dir(current_term))
         current_term.search_set_gregex()
         current_term.search_get_gregex()
 
@@ -1608,12 +1609,12 @@ class Guake(SimpleGladeApp):
     def getCurrentTerminalLinkUnderCursor(self):
         current_term = self.notebook.get_current_terminal()
         l = current_term.found_link
-        log.debug("Current link under cursor: {}".format(l))
+        log.debug("Current link under cursor: %s", l)
         if l:
             return l
 
     def browse_on_web(self, *args):
-        log.debug("browsing {}...".format(self.getCurrentTerminalLinkUnderCursor()))
+        log.debug("browsing %s...", self.getCurrentTerminalLinkUnderCursor())
         self.notebook.get_current_terminal().browse_link_under_cursor()
 
     def set_tab_position(self, *args):

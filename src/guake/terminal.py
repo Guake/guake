@@ -31,8 +31,11 @@ import re
 import subprocess
 import vte
 
+
 from guake.common import clamp
 from guake.globals import KEY
+
+log = logging.getLogger(__name__)
 
 __all__ = ["GuakeTerminalBox"]
 
@@ -138,7 +141,7 @@ class GuakeTerminal(vte.Terminal):
 
         self.found_link = None
         if (event.button == 1 and (event.get_state() & gtk.gdk.CONTROL_MASK) and matched_string):
-            print("matched string:", matched_string)
+            log.debug("matched string: %s", matched_string)
             value, tag = matched_string
             # First searching in additional matchers
             found_additional_matcher = False
@@ -165,8 +168,7 @@ class GuakeTerminal(vte.Terminal):
                                     break
                                 tmp_filepath = tmp_filepath.rpartition(':')[0]
                                 filepaths.append(tmp_filepath)
-                            print("Testing existance of the following files: {!r}"
-                                  .format(filepaths))
+                            log.debug("Testing existance of the following files: %r", filepaths)
                             for filepath in filepaths:
                                 if os.path.exists(filepath):
                                     break
@@ -174,7 +176,7 @@ class GuakeTerminal(vte.Terminal):
                                 logging.info("Cannot open file %s, it doesn't exists locally"
                                              "(current dir: %s)", filepath,
                                              os.path.curdir)
-                                print("No file exist")
+                                log.debug("No file exist")
                                 continue
                         # for quick_open_in_current_terminal, we run the command line directly in
                         # the tab so relative path is enough.
@@ -205,9 +207,9 @@ class GuakeTerminal(vte.Terminal):
 
     def handleTerminalMatch(self, matched_string):
         value, tag = matched_string
-        print("found tag:", tag)
-        print("found item:", value)
-        print("TERMINAL_MATCH_TAGS", TERMINAL_MATCH_TAGS)
+        log.debug("found tag: %r", tag)
+        log.debug("found item: %r", value)
+        log.debug("TERMINAL_MATCH_TAGS: %r", TERMINAL_MATCH_TAGS)
         if tag in TERMINAL_MATCH_TAGS:
             if TERMINAL_MATCH_TAGS[tag] == 'schema':
                 # value here should not be changed, it is right and
@@ -228,7 +230,7 @@ class GuakeTerminal(vte.Terminal):
     def browse_link_under_cursor(self):
         if not self.found_link:
             return
-        print("Opening link: {}".format(self.found_link))
+        log.debug("Opening link: %s", self.found_link)
         cmd = ["xdg-open", self.found_link]
         subprocess.Popen(cmd, shell=False)
 

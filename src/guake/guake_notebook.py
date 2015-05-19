@@ -65,8 +65,8 @@ class GuakeNotebook(Notebook):
                 if not (fgpid == -1 or fgpid == term_pid):
                     total_procs += 1
             except OSError:
-                log.debug("Cannot retrieve any pid from terminal {0}, look like it is already dead"
-                          .format(index))
+                log.debug("Cannot retrieve any pid from terminal %s, look like it is already dead",
+                          index)
                 return 0
         return total_procs
 
