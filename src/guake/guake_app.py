@@ -22,9 +22,15 @@ from __future__ import absolute_import
 from __future__ import division
 from __future__ import print_function
 
+try:
+    from colorlog import ColoredFormatter
+except:
+    ColoredFormatter = None
+
 import gconf
 import gobject
 import gtk
+import logging
 import os
 import platform
 import pygtk
@@ -102,6 +108,9 @@ GDK_WINDOW_STATE_STICKY = 8
 GDK_WINDOW_STATE_ABOVE = 32
 
 
+log = logging.getLogger(__name__)
+
+
 class PromptQuitDialog(gtk.MessageDialog):
 
     """Prompts the user whether to quit/close a tab.
@@ -143,6 +152,9 @@ class Guake(SimpleGladeApp):
     def __init__(self):
         super(Guake, self).__init__(gladefile('guake.glade'))
         self.client = gconf.client_get_default()
+
+        self.debug_mode = self.client.get_bool(KEY('/general/debug_mode'))
+        self.setupLogging()
 
         # setting global hotkey and showing a pretty notification =)
         guake.globalhotkeys.init()
@@ -320,6 +332,30 @@ class Guake(SimpleGladeApp):
                 _('Guake Terminal'),
                 _('Guake is now running,\n'
                   'press <b>%s</b> to use it.') % xml_escape(label), filename)
+
+    def setupLogging(self):
+        if self.debug_mode:
+            base_logging_level = logging.DEBUG
+        else:
+            base_logging_level = logging.INFO
+        logging.basicConfig(level=base_logging_level)
+        logger = logging.getLogger(__name__)
+
+        if ColoredFormatter:
+            logging.config.dictConfig({
+                'formatters': {
+                    'colored': {
+                        '()': 'colorlog.ColoredFormatter',
+                        'format': "%(log_color)s%(levelname)-8s%(reset)s %(blue)s%(message)s"
+                    }
+                },
+            })
+
+    def printDebug(self, text):
+        log.debug(text)
+
+    def printInfo(self, text):
+        log.debug(text)
 
     def set_background_transparency(self, transparency):
         for t in self.notebook.iter_terminals():

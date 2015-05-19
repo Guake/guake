@@ -1,6 +1,19 @@
 <gconfschemafile>
     <schemalist>
         <schema>
+            <key>/schemas/apps/guake/general/debug_mode</key>
+            <applyto>/apps/guake/general/debug_mode</applyto>
+            <owner>guake</owner>
+            <type>bool</type>
+            <default></default>
+            <locale name="C">
+                <short>Enable debug mode</short>
+                <long>When debug mode is enabled, logs are printed in the
+                standard output where Guake as been launched</long>
+            </locale>
+        </schema>
+
+        <schema>
             <key>/schemas/apps/guake/general/mouse_display</key>
             <applyto>/apps/guake/general/mouse_display</applyto>
             <owner>guake</owner>
