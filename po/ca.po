@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Guake 0.4.5\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-05-18 18:05+0200\n"
+"POT-Creation-Date: 2015-05-19 18:59+0200\n"
 "PO-Revision-Date: 2013-03-07 07:41+0000\n"
 "Last-Translator: Raül Cambeiro <xrulet@gmail.com>\n"
 "Language-Team: Catalan (http://www.transifex.com/projects/p/guake/language/"
@@ -148,8 +148,8 @@ msgid "Close"
 msgstr "Tanca"
 
 #: ../data/guake.glade.h:14 ../src/guake/about.py:47
-#: ../src/guake/guake_app.py:165 ../src/guake/guake_app.py:310
-#: ../src/guake/guake_app.py:320
+#: ../src/guake/guake_app.py:178 ../src/guake/guake_app.py:323
+#: ../src/guake/guake_app.py:333
 msgid "Guake Terminal"
 msgstr "Terminal Guake"
 
@@ -254,12 +254,12 @@ msgid "Stay on top"
 msgstr "Resta al damunt"
 
 #: ../data/prefs.glade.h:32
-msgid "Hide on lose focus"
-msgstr "Amaga-la en perdre el focus"
-
-#: ../data/prefs.glade.h:33
 msgid "Use VTE titles for tab names"
 msgstr ""
+
+#: ../data/prefs.glade.h:33
+msgid "Hide on lose focus"
+msgstr "Amaga-la en perdre el focus"
 
 #: ../data/prefs.glade.h:34
 msgid "Show tab bar"
@@ -381,14 +381,14 @@ msgid ""
 msgstr ""
 
 #: ../data/prefs.glade.h:64
-msgid "Cursor blink mode:"
-msgstr ""
-
-#: ../data/prefs.glade.h:65
 msgid ""
 "Follow GTK+ setting\n"
 "Blink on\n"
 "Blink off"
+msgstr ""
+
+#: ../data/prefs.glade.h:67
+msgid "Cursor blink mode:"
 msgstr ""
 
 #: ../data/prefs.glade.h:68
@@ -446,18 +446,14 @@ msgid ""
 msgstr ""
 
 #: ../data/prefs.glade.h:80
-msgid "<b>Quick Open configuration</b>"
-msgstr ""
-
-#: ../data/prefs.glade.h:81
 msgid "Enable Quick Open when Ctrl+clicking on a filename in the terminal"
 msgstr ""
 
-#: ../data/prefs.glade.h:82
+#: ../data/prefs.glade.h:81
 msgid "Editor command line:"
 msgstr ""
 
-#: ../data/prefs.glade.h:84
+#: ../data/prefs.glade.h:83
 #, no-c-format
 msgid ""
 "<small><i>Use the following elements in the open editor command line:\n"
@@ -469,18 +465,23 @@ msgid ""
 "</i></small>"
 msgstr ""
 
-#: ../data/prefs.glade.h:90
+#: ../data/prefs.glade.h:89
 msgid "Quick open in current terminal"
 msgstr ""
 
-#: ../data/prefs.glade.h:91
-msgid "Quick Open"
-msgstr ""
-
-#: ../data/prefs.glade.h:92
+#: ../data/prefs.glade.h:90
 msgid ""
 "Here is the list of supported patterns: (to add your own, please contact the "
 "Guake's authors)"
+msgstr ""
+
+#: ../data/prefs.glade.h:91
+#, fuzzy
+msgid "<b>Quick Open</b>"
+msgstr "<b>Paleta</b>"
+
+#: ../data/prefs.glade.h:92
+msgid "Quick Open"
 msgstr ""
 
 #: ../data/prefs.glade.h:93
@@ -535,63 +536,63 @@ msgstr "<b>Compatibilitat del teclat</b>"
 msgid "Compatibility"
 msgstr "Compatibilitat"
 
-#: ../src/guake/gconfhandler.py:364
+#: ../src/guake/gconfhandler.py:370
 msgid "key binding error"
 msgstr "S'ha produït un error en definir la drecera de teclat"
 
-#: ../src/guake/gconfhandler.py:365
+#: ../src/guake/gconfhandler.py:371
 #, python-format
 msgid "Unable to bind global <b>%s</b> key"
 msgstr "No s'ha pogut enllaçar la tecla global <b>%s</b>."
 
-#: ../src/guake/guake_app.py:117
+#: ../src/guake/guake_app.py:127
 #, fuzzy
 msgid "Do you want to close the tab?"
 msgstr "De debò voleu sortir del Guake?"
 
-#: ../src/guake/guake_app.py:120
+#: ../src/guake/guake_app.py:130
 #, fuzzy
 msgid "Do you really want to quit Guake?"
 msgstr "De debò voleu sortir del Guake?"
 
-#: ../src/guake/guake_app.py:122
+#: ../src/guake/guake_app.py:132
 #, fuzzy
 msgid " and one tab open"
 msgstr "Afegeix una pestanya nova"
 
-#: ../src/guake/guake_app.py:124
+#: ../src/guake/guake_app.py:134
 #, python-brace-format
 msgid " and {0} tabs open"
 msgstr ""
 
-#: ../src/guake/guake_app.py:127
+#: ../src/guake/guake_app.py:137
 #, fuzzy
 msgid "There are no processes running"
 msgstr "<b>Encara hi ha un procés en execució.</b>"
 
-#: ../src/guake/guake_app.py:129
+#: ../src/guake/guake_app.py:139
 #, fuzzy
 msgid "There is a process still running"
 msgstr "<b>Encara hi ha un procés en execució.</b>"
 
-#: ../src/guake/guake_app.py:131
+#: ../src/guake/guake_app.py:141
 #, fuzzy, python-brace-format
 msgid "There are {0} processes still running"
 msgstr "<b>Encara hi ha %d processos en execució.</b>"
 
-#: ../src/guake/guake_app.py:170
+#: ../src/guake/guake_app.py:183
 msgid "guake-indicator"
 msgstr ""
 
-#: ../src/guake/guake_app.py:170
+#: ../src/guake/guake_app.py:183
 msgid "guake-tray"
 msgstr ""
 
-#: ../src/guake/guake_app.py:174
+#: ../src/guake/guake_app.py:187
 msgid "Show"
 msgstr ""
 
-#: ../src/guake/guake_app.py:311
+#: ../src/guake/guake_app.py:324
 #, python-format
 msgid ""
 "A problem happened when binding <b>%s</b> key.\n"
@@ -601,7 +602,7 @@ msgstr ""
 "Empreu la finestra Preferències del Guake per triar una altra tecla (la "
 "icona de la safata era habilitada)."
 
-#: ../src/guake/guake_app.py:321
+#: ../src/guake/guake_app.py:334
 #, python-format
 msgid ""
 "Guake is now running,\n"
@@ -610,135 +611,135 @@ msgstr ""
 "El Guake està en execució,\n"
 "premeu <b>%s</b> per fer-lo servir."
 
-#: ../src/guake/guake_app.py:461
+#: ../src/guake/guake_app.py:524
 #, python-format
 msgid "Search on Web: '%s'"
 msgstr ""
 
-#: ../src/guake/guake_app.py:465
+#: ../src/guake/guake_app.py:528
 msgid "Search on Web (no selection)"
 msgstr ""
 
-#: ../src/guake/guake_app.py:471
+#: ../src/guake/guake_app.py:534
 msgid "Open Link: {}"
 msgstr ""
 
-#: ../src/guake/guake_app.py:474
+#: ../src/guake/guake_app.py:537
 msgid "Open Link..."
 msgstr ""
 
-#: ../src/guake/guake_app.py:1109
+#: ../src/guake/guake_app.py:1175
 msgid "Rename tab"
 msgstr "Canvia el nom de la pestanya"
 
 #. Adding a new radio button to the tabbar
-#: ../src/guake/guake_app.py:1346
+#: ../src/guake/guake_app.py:1412
 #, fuzzy
 msgid "Terminal"
 msgstr "Terminal %s"
 
-#: ../src/guake/guake_app.py:1387
+#: ../src/guake/guake_app.py:1453
 msgid "Save to..."
 msgstr ""
 
-#: ../src/guake/guake_app.py:1394
+#: ../src/guake/guake_app.py:1460
 msgid "All files"
 msgstr ""
 
-#: ../src/guake/guake_app.py:1399
+#: ../src/guake/guake_app.py:1465
 msgid "Text and Logs"
 msgstr ""
 
-#: ../src/guake/guake_app.py:1417
+#: ../src/guake/guake_app.py:1483
 msgid "Find"
 msgstr ""
 
-#: ../src/guake/guake_app.py:1419
+#: ../src/guake/guake_app.py:1485
 msgid "Forward"
 msgstr ""
 
-#: ../src/guake/guake_app.py:1420
+#: ../src/guake/guake_app.py:1486
 msgid "Backward"
 msgstr ""
 
-#: ../src/guake/main.py:63
+#: ../src/guake/main.py:67
 msgid "Put Guake in fullscreen mode"
 msgstr ""
 
-#: ../src/guake/main.py:67
+#: ../src/guake/main.py:71
 msgid "Toggles the visibility of the terminal window"
 msgstr "Commuta la visibilitat de la finestra del terminal"
 
-#: ../src/guake/main.py:71
+#: ../src/guake/main.py:75
 #, fuzzy
 msgid "Shows Guake main window"
 msgstr "Mostra la finestra de preferències del Guake"
 
-#: ../src/guake/main.py:75
+#: ../src/guake/main.py:79
 #, fuzzy
 msgid "Hides Guake main window"
 msgstr "Mostra la finestra de preferències del Guake"
 
-#: ../src/guake/main.py:79
+#: ../src/guake/main.py:83
 msgid "Shows Guake preference window"
 msgstr "Mostra la finestra de preferències del Guake"
 
-#: ../src/guake/main.py:83
+#: ../src/guake/main.py:87
 msgid "Shows Guake's about info"
 msgstr "Mostra informació diversa del Guake"
 
-#: ../src/guake/main.py:87
+#: ../src/guake/main.py:91
 #, fuzzy
 msgid "Add a new tab (with current directory set to NEW_TAB)"
 msgstr "_Obre les pestanyes noves en el directori actual"
 
-#: ../src/guake/main.py:91
+#: ../src/guake/main.py:95
 msgid "Select a tab (SELECT_TAB is the index of the tab)"
 msgstr ""
 
-#: ../src/guake/main.py:95
+#: ../src/guake/main.py:99
 msgid "Return the selected tab index."
 msgstr "Retorna l'índex de la pestanya seleccionada."
 
-#: ../src/guake/main.py:99
+#: ../src/guake/main.py:103
 msgid "Execute an arbitrary command in the selected tab."
 msgstr "Executa una ordre arbitrària a la pestanya seleccionada."
 
-#: ../src/guake/main.py:103
+#: ../src/guake/main.py:107
 msgid "Specify the tab to rename. Default is 0."
 msgstr ""
 
-#: ../src/guake/main.py:107
+#: ../src/guake/main.py:111
 msgid "Set the hexadecimal (#rrggbb) background color of the selected tab."
 msgstr ""
 
-#: ../src/guake/main.py:112
+#: ../src/guake/main.py:116
 msgid "Set the hexadecimal (#rrggbb) foreground color of the selected tab."
 msgstr ""
 
-#: ../src/guake/main.py:118
+#: ../src/guake/main.py:122
 msgid ""
 "Rename the specified tab. Reset to default if TITLE is a single dash \"-\"."
 msgstr ""
 
-#: ../src/guake/main.py:124
+#: ../src/guake/main.py:128
 msgid ""
 "Rename the current tab. Reset to default if TITLE is a single dash \"-\"."
 msgstr ""
 
-#: ../src/guake/main.py:129
+#: ../src/guake/main.py:133
 msgid "Says to Guake go away =("
 msgstr "Fa que el Guake desaparegui"
 
-#: ../src/guake/main.py:133
+#: ../src/guake/main.py:137
 msgid "Do not execute the start up script"
 msgstr ""
 
-#: ../src/guake/main.py:227
+#: ../src/guake/main.py:231
 msgid "Guake can not init!"
 msgstr "No s'ha pogut iniciar el Guake."
 
-#: ../src/guake/main.py:228
+#: ../src/guake/main.py:232
 #, fuzzy
 msgid ""
 "Gconf Error.\n"
@@ -748,32 +749,32 @@ msgstr ""
 "Heu instal·lat correctament la propietat <b>guake.schemas</b>?"
 
 #. string to show in prefereces dialog for user shell option
-#: ../src/guake/prefs.py:64
+#: ../src/guake/prefs.py:67
 msgid "<user shell>"
 msgstr "<intèrpret de l'usuari>"
 
-#: ../src/guake/prefs.py:443
+#: ../src/guake/prefs.py:446
 msgid "Action"
 msgstr "Acció"
 
-#: ../src/guake/prefs.py:453
+#: ../src/guake/prefs.py:456
 msgid "Shortcut"
 msgstr "Drecera"
 
-#: ../src/guake/prefs.py:595 ../src/guake/prefs.py:641
+#: ../src/guake/prefs.py:598 ../src/guake/prefs.py:644
 msgid "Custom"
 msgstr ""
 
-#: ../src/guake/prefs.py:977
+#: ../src/guake/prefs.py:978
 #, python-format
 msgid "The shortcut \"%s\" is already in use."
 msgstr "La drecera \"%s\" ja s'està fent servir."
 
-#: ../src/guake/prefs.py:978
+#: ../src/guake/prefs.py:979
 msgid "Error setting keybinding."
 msgstr "S'ha produït un error en definir la drecera."
 
-#: ../src/guake/prefs.py:990
+#: ../src/guake/prefs.py:991
 #, python-format
 msgid ""
 "The shortcut \"%s\" cannot be used because it will become impossible to type "
