@@ -31,6 +31,7 @@ import gconf
 import gobject
 import gtk
 import logging
+import logging.config
 import os
 import platform
 import pygtk
@@ -338,18 +339,44 @@ class Guake(SimpleGladeApp):
             base_logging_level = logging.DEBUG
         else:
             base_logging_level = logging.INFO
-        logging.basicConfig(level=base_logging_level)
-        logger = logging.getLogger(__name__)
 
         if ColoredFormatter:
             logging.config.dictConfig({
+                'version': 1,
+                'disable_existing_loggers': False,
+                'loggers': {
+                    '': {
+                        'handlers': ['default'],
+                        'level': 'DEBUG',
+                        'propagate': True
+                    },
+                },
+                'handlers': {
+                    'default': {
+                        'level': 'DEBUG',
+                        'class': 'logging.StreamHandler',
+                        'formatter': "default",
+                    },
+                },
                 'formatters': {
-                    'colored': {
+                    'default': {
                         '()': 'colorlog.ColoredFormatter',
-                        'format': "%(log_color)s%(levelname)-8s%(reset)s %(blue)s%(message)s"
+                        'format': "%(log_color)s%(levelname)-8s%(reset)s %(message)s",
+                        'log_colors': {
+                            'DEBUG': 'cyan',
+                            'INFO': 'green',
+                            'WARNING': 'yellow',
+                            'ERROR': 'red',
+                            'CRITICAL': 'red,bg_white',
+                        },
                     }
                 },
             })
+        else:
+            logging.basicConfig(level=base_logging_level)
+        log.setLevel(base_logging_level)
+        log.info("Logging configuration complete")
+        log.debug("Debug mode enabled")
 
     def printDebug(self, text):
         log.debug(text)
@@ -557,7 +584,8 @@ class Guake(SimpleGladeApp):
 
     def window_event(self, window, event):
         state = event.new_window_state
-        print("Received window state event: {0}".format(state))
+        log.debug("Received window state event. Window: {0}. Event: {1}".format(window,
+                                                                                state))
 
     def show_hide(self, *args):
         """Toggles the main window visibility
@@ -583,21 +611,21 @@ class Guake(SimpleGladeApp):
             return
         self.prev_showhide_time = event_time
 
-        print("DBG Window display")
+        log.debug("Window display")
         if self.window.window:
             cur_state = int(self.window.window.get_state())
             is_sticky = bool(cur_state & GDK_WINDOW_STATE_STICKY)
             is_withdrawn = bool(cur_state & GDK_WINDOW_STATE_WITHDRAWN)
             is_above = bool(cur_state & GDK_WINDOW_STATE_ABOVE)
             is_iconified = self.is_iconified()
-            print("DBG: gtk.gdk.WindowState =", cur_state)
-            print("DBG: GDK_WINDOW_STATE_STICKY? {0}".format(is_sticky))
-            print("DBG: GDK_WINDOW_STATE_WITHDRAWN? {0}".format(is_withdrawn))
-            print("DBG: GDK_WINDOW_STATE_ABOVE? {0}".format(is_above))
-            print("DBG: GDK_WINDOW_STATE_ICONIFIED? {0}".format(is_iconified))
+            log.debug("gtk.gdk.WindowState =", cur_state)
+            log.debug("GDK_WINDOW_STATE_STICKY? {0}".format(is_sticky))
+            log.debug("GDK_WINDOW_STATE_WITHDRAWN? {0}".format(is_withdrawn))
+            log.debug("GDK_WINDOW_STATE_ABOVE? {0}".format(is_above))
+            log.debug("GDK_WINDOW_STATE_ICONIFIED? {0}".format(is_iconified))
 
         if not self.window.get_property('visible'):
-            print("DBG: Showing the terminal")
+            log.debug("Showing the terminal")
             self.show()
             self.set_terminal_focus()
             return
@@ -620,14 +648,14 @@ class Guake(SimpleGladeApp):
         # if not self.hidden:
         # restore_focus = True
         #     if restore_focus:
-        #         print("DBG: Restoring the focus to the terminal")
+        #         log.debug("DBG: Restoring the focus to the terminal")
         #         self.hide()
         #         self.show()
         #         self.window.window.focus()
         #         self.set_terminal_focus()
         #         return
 
-        print("DBG: hiding the terminal")
+        log.debug("DBG: hiding the terminal")
         self.hide()
 
     def show(self):
@@ -670,23 +698,23 @@ class Guake(SimpleGladeApp):
             time = 0
 
         # When minized, the window manager seems to refuse to resume
-        print("self.window", dir(self.window))
+        log.debug("self.window: {0}. Dir={1}".format(type(self.window), dir(self.window)))
         # is_iconified = self.is_iconified()
         # if is_iconified:
-        #     print("Is iconified. Ubuntu Trick => removing skip_taskbar_hint and skip_pager_hint "
+        #     log.debug("Is iconified. Ubuntu Trick => removing skip_taskbar_hint and skip_pager_hint "
         #           "so deiconify can work!")
         #     self.get_widget('window-root').set_skip_taskbar_hint(False)
         #     self.get_widget('window-root').set_skip_pager_hint(False)
         #     self.get_widget('window-root').set_urgency_hint(False)
-        #     print("get_skip_taskbar_hint: {}".format(
+        #     log.debug("get_skip_taskbar_hint: {}".format(
         #         self.get_widget('window-root').get_skip_taskbar_hint()))
-        #     print("get_skip_pager_hint: {}".format(
+        #     log.debug("get_skip_pager_hint: {}".format(
         #         self.get_widget('window-root').get_skip_pager_hint()))
-        #     print("get_urgency_hint: {}".format(
+        #     log.debug("get_urgency_hint: {}".format(
         #         self.get_widget('window-root').get_urgency_hint()))
         #     glib.timeout_add_seconds(1, lambda: self.timeout_restore(time))
 
-        print("order to present and deiconify")
+        log.debug("order to present and deiconify")
         self.window.present()
         self.window.deiconify()
         self.window.window.deiconify()
@@ -695,7 +723,7 @@ class Guake(SimpleGladeApp):
         self.window.set_type_hint(gtk.gdk.WINDOW_TYPE_HINT_DOCK)
         self.window.set_type_hint(gtk.gdk.WINDOW_TYPE_HINT_NORMAL)
 
-        # print("Restoring skip_taskbar_hint and skip_pager_hint")
+        # log.debug("Restoring skip_taskbar_hint and skip_pager_hint")
         # if is_iconified:
         #     self.get_widget('window-root').set_skip_taskbar_hint(False)
         #     self.get_widget('window-root').set_skip_pager_hint(False)
@@ -710,7 +738,7 @@ class Guake(SimpleGladeApp):
         Hides the main window of the terminal and sets the visible
         flag to False.
         """
-        print("hide from remote")
+        log.debug("hide from remote")
         self.forceHide = True
         self.hide()
 
@@ -718,7 +746,7 @@ class Guake(SimpleGladeApp):
         """Show the main window of the terminal and sets the visible
         flag to False.
         """
-        print("show from remote")
+        log.debug("show from remote")
         self.forceHide = True
         self.show()
 
@@ -768,11 +796,11 @@ class Guake(SimpleGladeApp):
         # http://askubuntu.com/questions/70296/is-there-an-environment-variable-that-is-set-for-unity
         if float(linux_distrib[1]) - 0.01 < 11.10:
             if os.environ.get('DESKTOP_SESSION').lower() == "gnome".lower():
-                print("Unity detected")
+                log.debug("Unity detected")
                 return True
         else:
             if os.environ.get('XDG_CURRENT_DESKTOP').lower() == "unity".lower():
-                print("Unity detected")
+                log.debug("Unity detected")
                 return True
         return False
 
@@ -793,10 +821,10 @@ class Guake(SimpleGladeApp):
         halignment = self.client.get_int(KEY('/general/window_halignment'))
         valignment = self.client.get_int(KEY('/general/window_valignment'))
 
-        # print("height_percents", height_percents)
-        # print("width_percents", width_percents)
-        # print("halignment", halignment)
-        # print("valignment", valignment)
+        # log.debug("height_percents", height_percents)
+        # log.debug("width_percents", width_percents)
+        # log.debug("halignment", halignment)
+        # log.debug("valignment", valignment)
 
         # get the rectangle just from the destination monitor
         screen = self.window.get_screen()
@@ -835,35 +863,35 @@ class Guake(SimpleGladeApp):
 
             # launcher_hide_mode = 1 => autohide
             if unity_hide != 1:
-                print("correcting window width because of launcher width {} "
-                      "(from {} to {})".format(
-                          unity_dock, window_rect.width, window_rect.width - unity_dock))
+                log.debug("correcting window width because of launcher width {} "
+                          "(from {} to {})".format(
+                              unity_dock, window_rect.width, window_rect.width - unity_dock))
 
                 window_rect.width = window_rect.width - unity_dock
 
         total_width = window_rect.width
         total_height = window_rect.height
 
-        # print("total_width", total_width)
-        # print("total_height", total_height)
+        # log.debug("total_width", total_width)
+        # log.debug("total_height", total_height)
 
         window_rect.height = window_rect.height * height_percents / 100
         window_rect.width = window_rect.width * width_percents / 100
 
-        # print("window_rect.x", window_rect.x)
-        # print("window_rect.y", window_rect.y)
-        # print("window_rect.height", window_rect.height)
-        # print("window_rect.width", window_rect.width)
+        # log.debug("window_rect.x", window_rect.x)
+        # log.debug("window_rect.y", window_rect.y)
+        # log.debug("window_rect.height", window_rect.height)
+        # log.debug("window_rect.width", window_rect.width)
 
         if window_rect.width < total_width:
             if halignment == ALIGN_CENTER:
-                # print("aligning to center!")
+                # log.debug("aligning to center!")
                 window_rect.x += (total_width - window_rect.width) / 2
             elif halignment == ALIGN_LEFT:
-                # print("aligning to left!")
+                # log.debug("aligning to left!")
                 window_rect.x += 0
             elif halignment == ALIGN_RIGHT:
-                # print("aligning to right!")
+                # log.debug("aligning to right!")
                 window_rect.x += total_width - window_rect.width
         if window_rect.height < total_height:
             if valignment == ALIGN_BOTTOM:
@@ -871,7 +899,7 @@ class Guake(SimpleGladeApp):
 
         self.window.resize(window_rect.width, window_rect.height)
         self.window.move(window_rect.x, window_rect.y)
-        # print("Moving/Resizing to: window_rect", window_rect)
+        # log.debug("Moving/Resizing to: window_rect", window_rect)
 
         return window_rect
 
@@ -1116,6 +1144,7 @@ class Guake(SimpleGladeApp):
         this is the method that does that, or, at least calls
         `delete_tab' method to do the work.
         """
+        log.debug("Terminal exited: {0}".format(term))
         if libutempter is not None:
             libutempter.utempter_remove_record(term.get_pty())
         self.delete_tab(self.notebook.page_num(widget), kill=False)
@@ -1446,7 +1475,7 @@ class Guake(SimpleGladeApp):
         self.preventHide = False
 
     def find_tab(self, directory=None):
-        print("find")
+        log.debug("find")
         self.preventHide = True
         search_text = gtk.TextView()
 
@@ -1474,13 +1503,13 @@ class Guake(SimpleGladeApp):
         start, end = dialog.buffer.get_bounds()
         search_string = start.get_text(end)
 
-        print("Searching for '{}' {}\n".format(
+        log.debug("Searching for '{}' {}\n".format(
             search_string,
             "forward" if response_id == RESPONSE_FORWARD else "backward"))
 
         current_term = self.notebook.get_current_terminal()
-        print("type", type(current_term))
-        print("dir", dir(current_term))
+        log.debug("type", type(current_term))
+        log.debug("dir", dir(current_term))
         current_term.search_set_gregex()
         current_term.search_get_gregex()
 
@@ -1579,12 +1608,12 @@ class Guake(SimpleGladeApp):
     def getCurrentTerminalLinkUnderCursor(self):
         current_term = self.notebook.get_current_terminal()
         l = current_term.found_link
-        print("Current link under cursor: {}".format(l))
+        log.debug("Current link under cursor: {}".format(l))
         if l:
             return l
 
     def browse_on_web(self, *args):
-        print("browsing {}...".format(self.getCurrentTerminalLinkUnderCursor()))
+        log.debug("browsing {}...".format(self.getCurrentTerminalLinkUnderCursor()))
         self.notebook.get_current_terminal().browse_link_under_cursor()
 
     def set_tab_position(self, *args):
