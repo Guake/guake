@@ -134,8 +134,9 @@ should install all the build dependencies::
 For compiling from these sources, please install the following packages (Ubuntu 13.10)::
 
     sudo apt-get install build-essential python autoconf
-    sudo apt-get install gnome-common gtk-doc-tools libglib2.0-dev libgtk2.0-dev libgconf2-dev
-    sudo apt-get install python-gtk2 python-gtk2-dev python-vte glade python-glade2 python-appindicator
+    sudo apt-get install gnome-common gtk-doc-tools libglib2.0-dev libgtk2.0-dev
+    sudo apt-get install python-gtk2 python-gtk2-dev python-vte glade python-glade2
+    sudo apt-get install libgconf2-dev python-appindicator
     sudo apt-get install python-vte python-gconf
     sudo apt-get install notify-osd
     sudo apt-get install libutempter0
@@ -218,7 +219,7 @@ this::
 
 If it is not enought you can install the gconf schemas file by hand by doing the following::
 
-    # GCONF_CONFIG_SOURCE="" gconftool-2 --makefile-install-rule data/guake.schemas
+    $ GCONF_CONFIG_SOURCE="" gconftool-2 --makefile-install-rule data/guake.schemas
 
 For more install details, please read the ``INSTALL`` file.
 
@@ -228,14 +229,14 @@ Development
 Upate translation
 -----------------
 
-First update all translation files:
+First update all translation files::
 
     $ cd po
     $ make update-po
 
 Then use your favorite po editor, such as ``poedit``.
 
-Once finished, compile your result with
+Once finished, compile your result with::
 
     $ cd po
     $ make
@@ -266,6 +267,7 @@ New version
 -----------
 
 To start development on a new version:
+
 - update ``configure.ac``::
 
     AC_INIT([guake], [0.x.y], [http://guake-project.org/])
