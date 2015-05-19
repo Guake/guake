@@ -95,6 +95,14 @@ It will install all dependencies, compiles and install all files to ``/usr/local
 
         $ ./dev.sh
 
+PPA
+***
+
+An external, unofficial PPA for latest version of Ubuntu seems to integrate Guake regularly. Check
+it at the following URL:
+
+    https://launchpad.net/~webupd8team/+archive/ubuntu/unstable
+
 Details:
 ********
 
