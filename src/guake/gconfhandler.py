@@ -1,8 +1,11 @@
 from __future__ import absolute_import
 from __future__ import division
+from __future__ import print_function
+
 
 import gconf
 import gtk
+import logging
 import subprocess
 
 from pango import FontDescription
@@ -19,6 +22,9 @@ from guake.globals import LKEY
 GCONF_MONOSPACE_FONT_PATH = '/desktop/gnome/interface/monospace_font_name'
 DCONF_MONOSPACE_FONT_PATH = 'org.gnome.desktop.interface'
 DCONF_MONOSPACE_FONT_KEY = 'monospace-font-name'
+
+
+log = logging.getLogger(__name__)
 
 
 class GConfHandler(object):
@@ -213,7 +219,7 @@ class GConfHandler(object):
             font_name = client.get_string(key)
 
         if not font_name:
-            print "Error: unable to find font name !!!"
+            log.error("Error: unable to find font name !!!")
             return
         font = FontDescription(font_name)
         if not font:
@@ -286,7 +292,7 @@ class GConfHandler(object):
         use_palette_font_and_background_color = client.get_bool(
             KEY('/general/use_palette_font_and_background_color'))
         if use_palette_font_and_background_color:
-            print "do not set background from user"
+            log.debug("do not set background from user")
             return
         bgcolor = gtk.gdk.color_parse(entry.value.get_string())
         for i in self.guake.notebook.iter_terminals():
@@ -488,5 +494,5 @@ class GConfKeyHandler(object):
             if key > 0:
                 self.accel_group.connect_group(key, mask, gtk.ACCEL_VISIBLE,
                                                self.guake.search_on_web)
-        except Exception as e:
-            print "Exception occured: %s" % (str(e,))
+        except Exception:
+            log.exception("Exception occured")

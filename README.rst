@@ -71,6 +71,11 @@ To edit the glade file, you can use the glade editor. Ensure to use the gtk-2 ve
 
  * glade-gtk2
 
+To have beautiful color logs when you debug Guake, install colorlog, so you'll have great logs in
+the terminal that launched Guake!
+
+ * pip install colorlog
+
 Ubuntu
 ------
 
