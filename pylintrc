@@ -135,7 +135,7 @@ disable=
   W1501,
   superfluous-parens,
   bad-continuation,
-  locally-enabled,
+  locally-enabled
 
 [REPORTS]
 
@@ -199,7 +199,7 @@ ignore-imports=no
 [FORMAT]
 
 # Maximum number of characters on a single line.
-max-line-length=80
+max-line-length=119
 
 # Maximum number of lines in a module
 max-module-lines=1000
