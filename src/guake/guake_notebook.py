@@ -60,9 +60,14 @@ class GuakeNotebook(Notebook):
         for terminal in self.get_terminals_for_tab(index):
             fdpty = terminal.get_pty()
             term_pid = terminal.get_pid()
-            fgpid = posix.tcgetpgrp(fdpty)
-            if not (fgpid == -1 or fgpid == term_pid):
-                total_procs += 1
+            try:
+                fgpid = posix.tcgetpgrp(fdpty)
+                if not (fgpid == -1 or fgpid == term_pid):
+                    total_procs += 1
+            except OSError:
+                log.debug("Cannot retrieve any pid from terminal {0}, look like it is already dead"
+                          .format(index))
+                return 0
         return total_procs
 
     def iter_terminals(self):
