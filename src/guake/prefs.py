@@ -24,6 +24,7 @@ from __future__ import print_function
 import gconf
 import gobject
 import gtk
+import logging
 import os
 import re
 import warnings
@@ -50,6 +51,8 @@ from guake.simplegladeapp import SimpleGladeApp
 from guake.simplegladeapp import bindtextdomain
 from guake.terminal import GuakeTerminal
 from guake.terminal import QUICK_OPEN_MATCHERS
+
+log = logging.getLogger(__name__)
 
 # A regular expression to match possible python interpreters when
 # filling interpreters combo in preferences (including bpython and ipython)
@@ -602,7 +605,7 @@ class PrefsDialog(SimpleGladeApp):
         """
         combo = self.get_widget('palette_name')
         found = False
-        print("wanting palette", palette_name)
+        log.debug("wanting palette: {0}".format(palette_name))
         for i in combo.get_model():
             if i[0] == palette_name:
                 combo.set_active_iter(i.iter)
@@ -680,8 +683,7 @@ class PrefsDialog(SimpleGladeApp):
 
         combo = self.get_widget('default_shell')
         # get the value for defualt shell. If unset, set to USER_SHELL_VALUE.
-        value = self.client.get_string(KEY('/general/default_shell')) or \
-            USER_SHELL_VALUE
+        value = self.client.get_string(KEY('/general/default_shell')) or USER_SHELL_VALUE
         for i in combo.get_model():
             if i[0] == value:
                 combo.set_active_iter(i.iter)
@@ -902,8 +904,7 @@ class PrefsDialog(SimpleGladeApp):
             lines = open(SHELLS_FILE).readlines()
             for i in lines:
                 possible = i.strip()
-                if possible and not possible.startswith('#') and \
-                   os.path.exists(possible):
+                if possible and not possible.startswith('#') and os.path.exists(possible):
                     cb.append_text(possible)
 
         for i in get_binaries_from_path(PYTHONS):
@@ -1069,8 +1070,7 @@ class KeyEntry(object):
             self.keycode, self.mask)
 
     def __eq__(self, rval):
-        return self.keycode == rval.keycode and \
-            self.mask == rval.mask
+        return self.keycode == rval.keycode and self.mask == rval.mask
 
 
 def setup_standalone_signals(instance):

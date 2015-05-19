@@ -26,6 +26,7 @@ from __future__ import print_function
 
 import dbus
 import gtk
+import logging
 import os
 import subprocess
 import sys
@@ -40,6 +41,9 @@ from guake.dbusiface import DBUS_PATH
 from guake.dbusiface import DbusManager
 from guake.globals import KEY
 from guake.guake_app import Guake
+
+
+log = logging.getLogger(__name__)
 
 
 def main():
@@ -212,13 +216,13 @@ def main():
         if not already_running:
             startup_script = instance.client.get_string(KEY("/general/startup_script"))
             if startup_script:
-                print("Calling startup script:", startup_script)
+                log.info("Calling startup script:", startup_script)
                 pid = subprocess.Popen([startup_script], shell=True, stdin=None, stdout=None,
                                        stderr=None, close_fds=True)
-                print("Startup script started with pid:", pid)
+                log.info("Startup script started with pid:", pid)
                 # Please ensure this is the last line !!!!
     else:
-        print("--no-startup-script argument defined, so don't execute the startup script")
+        log.info("--no-startup-script argument defined, so don't execute the startup script")
     return already_running
 
 

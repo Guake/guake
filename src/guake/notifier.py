@@ -20,11 +20,14 @@ from __future__ import absolute_import
 from __future__ import division
 from __future__ import print_function
 
-from textwrap import dedent
-
 import glib
+import logging
+
 import pynotify
 
+from textwrap import dedent
+
+log = logging.getLogger(__name__)
 pynotify.init("Guake")
 
 __all__ = ['show_message']
@@ -55,7 +58,7 @@ def retry(*args):
 
 def print_warning():
     if not hasattr(print_warning, 'already_printed'):
-        print(dedent('''
+        log.info(dedent('''
             Notification service is not running (yet). Guake can't display notifications!
               We'll retry a few times more a bit later, but you can use
               the following command to disable the startup notification:
