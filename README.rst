@@ -11,16 +11,36 @@ Introduction
 ~~~~~~~~~~~~
 
 Guake is a dropdown terminal made for the GNOME desktop environment. Its style of window is based on
-an fps games, and one of its goals is be easy to reach.
+an FPS games, and one of its goals is be easy to reach.
 
-Guake is written mostly in python and has a little piece in C (global hotkeys stuff). The code is
-placed in the guake directory. Files and images are in the data directory. Translation stuff is in
-the po directory.
+Guake is written mostly in python and has a little piece in C (global hotkeys capture). The code is
+placed in the ``guake`` directory. Files and images are in the ``data`` directory. Translation files
+are in the ``po`` directory.
 
-Features? Bugs? Information?
-----------------------------
+Features
+--------
+
+- Lightweight
+- Simple Easy and Elegant
+- Functional
+- Powerful
+- Good Looking
+- Smooth integration of terminal into GUI
+- Appears when you call and disappear once you are done by pressing a predefined hotkey (F12 by
+  default)
+- Compiz transparency support
+- Customizable hotkeys for tabs management, background transparency, font size,...
+- Extremely configurable
+- Plenty of color palette
+- Configure Guake startup by running a bash script when Guake starts
+- Able to run on more than one monitor
+
+Bugs? Information?
+------------------
 
 Source Code available at: https://github.com/Guake/guake/
+
+Official Homepage: http://guake-project.org
 
 **Important note**: Do **NOT** use the domain guake.org, it has been registered by someone outside
 the team. We cannot be hold responsible for the content on this web site.
