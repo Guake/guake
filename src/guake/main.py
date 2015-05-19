@@ -216,10 +216,10 @@ def main():
         if not already_running:
             startup_script = instance.client.get_string(KEY("/general/startup_script"))
             if startup_script:
-                log.info("Calling startup script:", startup_script)
+                log.info("Calling startup script: %s", startup_script)
                 pid = subprocess.Popen([startup_script], shell=True, stdin=None, stdout=None,
                                        stderr=None, close_fds=True)
-                log.info("Startup script started with pid:", pid)
+                log.info("Startup script started with pid: %s", pid)
                 # Please ensure this is the last line !!!!
     else:
         log.info("--no-startup-script argument defined, so don't execute the startup script")
