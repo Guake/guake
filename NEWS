@@ -1,5 +1,8 @@
 Version 0.7.2 (dev)
 
+Bug fixes:
+- Fix Ctrl+D regresion (#550)
+
 Version 0.7.1 (2015.05.18):
 
 Some bug fixes, and cleared issues with new palette colors.
