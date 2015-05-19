@@ -605,7 +605,7 @@ class PrefsDialog(SimpleGladeApp):
         """
         combo = self.get_widget('palette_name')
         found = False
-        log.debug("wanting palette: {0}".format(palette_name))
+        log.debug("wanting palette: %r", palette_name)
         for i in combo.get_model():
             if i[0] == palette_name:
                 combo.set_active_iter(i.iter)
