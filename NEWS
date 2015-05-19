@@ -1,14 +1,16 @@
 Version 0.7.2 (dev)
+====================
 
 Bug fixes:
 - Fix Ctrl+D regresion (#550)
 
 Version 0.7.1 (2015.05.18):
+===========================
 
 Some bug fixes, and cleared issues with new palette colors.
 
 As side note, our domain 'guake.org' has been squatted by an outsider that seems only interested in
-getting money to release the domaine. Since Guake is a small project, based on 100% OpenSource
+getting money to release the domain. Since Guake is a small project, based on 100% OpenSource
 spirit, we do not want to loose more time on this subject. The guake website will be deployed soon
 on a new URL:
 
@@ -28,6 +30,7 @@ Bug fixes:
 - Fix default shortcuts for move tabs
 
 Version 0.7.0 (2015.05.02):
+===========================
 
 I had more time working on Guake recently, so I fixed some long term issues, and exposed some
 internal settings into the preference window.
@@ -52,12 +55,15 @@ Here is the complete changelog for this release:
 - Fix Guake Turns Gray sometimes (#473, #512)
 
 Version 0.6.2 (2015.04.20):
+===========================
 - Packaging issue fixes
 
 Version 0.6.1 (2015.04.19):
+===========================
 - bug fixes
 
 Version 0.6.0 (2015.04.18):
+===========================
   This version is poor in new feature, I just don't have time to work on Guake. I got a lot of
   incompatibility reports on new systems, such as Wayland. Port to gtk3 is still a must have, but
   all features of the VTE component does not seem to have been ported.
@@ -69,6 +75,7 @@ Version 0.6.0 (2015.04.18):
    - bug fixes
 
 Version 0.5.2 (2014.11.23):
+===========================
  - bug fixes
  - Disable the 'focus_if_open' feature (hidden trigger, true per default). Restaure focus does not
    work in all systems.
@@ -76,9 +83,11 @@ Version 0.5.2 (2014.11.23):
    branch.
 
  Version 0.5.1 (2014.11.06):
+ ===========================
   - minor bug fixes release
 
 Version 0.5.0 (2014.02.22):
+===========================
   - Tab can be moved
   - Add change tab hotkey (F1-F10 by default) and is display on tab
   - Add "New tab" menu item

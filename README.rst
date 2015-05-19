@@ -76,8 +76,27 @@ the terminal that launched Guake!
 
  * pip install colorlog
 
+Installation
+~~~~~~~~~~~~
+
 Ubuntu
 ------
+
+Execute the following command to install guake with all default options::
+
+    $ ./dev.sh --install
+
+It will install all dependencies, compiles and install all files to ``/usr/local``.
+
+**Note**:
+
+    Use the following command to start guake without installing it (you need to have installed it at
+    least once)::
+
+        $ ./dev.sh
+
+Details:
+********
 
 Under Debian/Ubuntu, make sure you have source code repositories enabled, then the following command
 should install all the build dependencies::
@@ -153,7 +172,7 @@ please check for ``guake/guake.py*`` leftover files and delete, if any.
 
 **Note**: Ubuntu users, you can use the following command::
 
-   $ ./dev.sh --no-install
+   $ ./dev.sh
 
 System-wide installation
 ~~~~~~~~~~~~~~~~~~~~~~~~
