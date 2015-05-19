@@ -22,18 +22,19 @@ Features
 
 - Lightweight
 - Simple Easy and Elegant
-- Functional
-- Powerful
-- Good Looking
 - Smooth integration of terminal into GUI
 - Appears when you call and disappear once you are done by pressing a predefined hotkey (F12 by
   default)
 - Compiz transparency support
-- Customizable hotkeys for tabs management, background transparency, font size,...
-- Extremely configurable
+- Multi tab
 - Plenty of color palette
+- Quick Open in your favorite text editor on a click on a file name (with line number support)
+- Customizable hotkeys for tabs access, reorganization, background transparency, font size,...
+- Extremely configurable
 - Configure Guake startup by running a bash script when Guake starts
-- Able to run on more than one monitor
+- Multi-monitor support (open on a specified monitor, open on mouse monitor)
+- Save terminal content to file
+- Open URL to your browser
 
 Bugs? Information?
 ------------------
