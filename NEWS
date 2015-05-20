@@ -1,9 +1,9 @@
-Version 0.7.2 (dev)
-====================
+Version 0.7.2 (2015.05.20)
+==========================
 
   Bug fixes:
   - Fix Ctrl+D regresion (#550)
-  - update Quick Open Pref Window
+  - update Quick Open Preference Window
 
 Version 0.7.1 (2015.05.18):
 ===========================
