@@ -22,16 +22,22 @@ from __future__ import absolute_import
 from __future__ import division
 from __future__ import print_function
 
+try:
+    from colorlog import ColoredFormatter
+except:
+    ColoredFormatter = None
+
 import gconf
 import gobject
 import gtk
+import logging
+import logging.config
 import os
 import platform
 import pygtk
 import subprocess
 import sys
 import xdg.Exceptions
-
 
 from urllib import quote_plus
 from urllib import url2pathname
@@ -97,32 +103,46 @@ bindtextdomain(NAME, LOCALE_DIR)
 # Setting gobject program name
 gobject.set_prgname(NAME)
 
+GDK_WINDOW_STATE_WITHDRAWN = 1
+GDK_WINDOW_STATE_ICONIFIED = 2
+GDK_WINDOW_STATE_STICKY = 8
+GDK_WINDOW_STATE_ABOVE = 32
+
+
+log = logging.getLogger(__name__)
+
 
 class PromptQuitDialog(gtk.MessageDialog):
 
-    """Prompts the user whether to quit or not if there are procs running.
+    """Prompts the user whether to quit/close a tab.
     """
 
-    def __init__(self, parent, running_procs):
+    def __init__(self, parent, procs, tabs):
         super(PromptQuitDialog, self).__init__(
             parent,
             gtk.DIALOG_MODAL | gtk.DIALOG_DESTROY_WITH_PARENT,
             gtk.MESSAGE_QUESTION, gtk.BUTTONS_YES_NO)
 
+        if tabs == -1:
+            primary_msg = _('Do you want to close the tab?')
+            tab_str = ''
+        else:
+            primary_msg = _('Do you really want to quit Guake?')
+            if tabs == 1:
+                tab_str = _(" and one tab open")
+            else:
+                tab_str = _(" and {0} tabs open").format(tabs)
+
+        if procs == 0:
+            proc_str = _("There are no processes running")
+        elif procs == 1:
+            proc_str = _("There is a process still running")
+        else:
+            proc_str = _("There are {0} processes still running").format(procs)
+
         self.set_keep_above(True)
-        self.set_markup(_('Do you really want to quit Guake!?'))
-        if running_procs == 0:
-            self.format_secondary_markup(
-                _("<b>There is no process running.</b>")
-            )
-        elif running_procs == 1:
-            self.format_secondary_markup(
-                _("<b>There is one process still running.</b>")
-            )
-        elif running_procs > 1:
-            self.format_secondary_markup(
-                _("<b>There are %d processes still running.</b>" % running_procs)
-            )
+        self.set_markup(primary_msg)
+        self.format_secondary_markup("<b>{0}{1}.</b>".format(proc_str, tab_str))
 
 
 class Guake(SimpleGladeApp):
@@ -134,6 +154,9 @@ class Guake(SimpleGladeApp):
         super(Guake, self).__init__(gladefile('guake.glade'))
         self.client = gconf.client_get_default()
 
+        self.debug_mode = self.client.get_bool(KEY('/general/debug_mode'))
+        self.setupLogging()
+
         # setting global hotkey and showing a pretty notification =)
         guake.globalhotkeys.init()
 
@@ -141,7 +164,7 @@ class Guake(SimpleGladeApp):
         # since theme has not been applied before first show_all
         self.selected_color = None
 
-        self.isPromptQuitDialogOpened = False
+        self.prompt_dialog = None
         self.hidden = True
         self.forceHide = False
         self.preventHide = False
@@ -167,12 +190,6 @@ class Guake(SimpleGladeApp):
             show.show()
             menu.prepend(show)
             self.tray_icon.set_menu(menu)
-
-        # adding images from a different path.
-        ipath = pixmapfile('guake.png')
-        self.get_widget('image1').set_from_file(ipath)
-        ipath = pixmapfile('add_tab.png')
-        self.get_widget('image2').set_from_file(ipath)
 
         # important widgets
         self.window = self.get_widget('window-root')
@@ -229,7 +246,7 @@ class Guake(SimpleGladeApp):
 
         # holds the timestamp of the previous show/hide action
         self.prev_showhide_time = 0
-
+        
         # double click stuff
         def double_click(hbox, event):
             """Handles double clicks on tabs area and when receive
@@ -239,6 +256,25 @@ class Guake(SimpleGladeApp):
                 self.add_tab()
         evtbox = self.get_widget('event-tabs')
         evtbox.connect('button-press-event', double_click)
+        
+        def scroll_manager(hbox,event):
+            adj = self.get_widget('tabs-scrolledwindow').get_hadjustment()
+            adj.set_page_increment(1)
+            if event.direction == gtk.gdk.SCROLL_DOWN:
+                if self.notebook.get_current_page()+1<self.notebook.get_tab_count():
+                    self.notebook.next_page()
+                else:
+                    return ;
+
+            if event.direction == gtk.gdk.SCROLL_UP:
+                self.notebook.prev_page()
+
+            current_page = self.notebook.get_current_page()
+            tab = self.tabs.get_children()[current_page]
+            rectangle=tab.get_allocation()
+            adj.set_value(rectangle.x)
+        
+        evtbox.connect('scroll-event', scroll_manager)
 
         # Flag to prevent guake hide when window_losefocus is true and
         # user tries to use the context menu.
@@ -260,7 +296,11 @@ class Guake(SimpleGladeApp):
             self.hide()
             return True
 
+        def window_event(*args):
+            return self.window_event(*args)
+
         self.window.connect('delete-event', destroy)
+        self.window.connect('window-state-event', window_event)
 
         # Flag to completely disable losefocus hiding
         self.disable_losefocus_hiding = False
@@ -299,7 +339,7 @@ class Guake(SimpleGladeApp):
 
         if not self.hotkeys.bind(key, self.show_hide):
             guake.notifier.show_message(
-                _('Guake!'),
+                _('Guake Terminal'),
                 _('A problem happened when binding <b>%s</b> key.\n'
                   'Please use Guake Preferences dialog to choose another '
                   'key') % xml_escape(label), filename)
@@ -309,9 +349,59 @@ class Guake(SimpleGladeApp):
             # Pop-up that shows that guake is working properly (if not
             # unset in the preferences windows)
             guake.notifier.show_message(
-                _('Guake!'),
+                _('Guake Terminal'),
                 _('Guake is now running,\n'
                   'press <b>%s</b> to use it.') % xml_escape(label), filename)
+
+    def setupLogging(self):
+        if self.debug_mode:
+            base_logging_level = logging.DEBUG
+        else:
+            base_logging_level = logging.INFO
+
+        if ColoredFormatter:
+            logging.config.dictConfig({
+                'version': 1,
+                'disable_existing_loggers': False,
+                'loggers': {
+                    '': {
+                        'handlers': ['default'],
+                        'level': 'DEBUG',
+                        'propagate': True
+                    },
+                },
+                'handlers': {
+                    'default': {
+                        'level': 'DEBUG',
+                        'class': 'logging.StreamHandler',
+                        'formatter': "default",
+                    },
+                },
+                'formatters': {
+                    'default': {
+                        '()': 'colorlog.ColoredFormatter',
+                        'format': "%(log_color)s%(levelname)-8s%(reset)s %(message)s",
+                        'log_colors': {
+                            'DEBUG': 'cyan',
+                            'INFO': 'green',
+                            'WARNING': 'yellow',
+                            'ERROR': 'red',
+                            'CRITICAL': 'red,bg_white',
+                        },
+                    }
+                },
+            })
+        else:
+            logging.basicConfig(level=base_logging_level)
+        log.setLevel(base_logging_level)
+        log.info("Logging configuration complete")
+        log.debug("Debug mode enabled")
+
+    def printDebug(self, text):
+        log.debug(text)
+
+    def printInfo(self, text):
+        log.debug(text)
 
     def set_background_transparency(self, transparency):
         for t in self.notebook.iter_terminals():
@@ -400,7 +490,7 @@ class Guake(SimpleGladeApp):
         if self.disable_losefocus_hiding or self.showing_context_menu:
             return
 
-        if self.isPromptQuitDialogOpened:
+        if self.prompt_dialog is not None:
             return
 
         if self.preventHide:
@@ -505,6 +595,16 @@ class Guake(SimpleGladeApp):
         self.hide()
         PrefsDialog().show()
 
+    def is_iconified(self):
+        if self.window.window:
+            cur_state = int(self.window.window.get_state())
+            return bool(cur_state & GDK_WINDOW_STATE_ICONIFIED)
+        return False
+
+    def window_event(self, window, event):
+        state = event.new_window_state
+        log.debug("Received window state event. Window: %s. Event: %s", window, state)
+
     def show_hide(self, *args):
         """Toggles the main window visibility
         """
@@ -529,23 +629,21 @@ class Guake(SimpleGladeApp):
             return
         self.prev_showhide_time = event_time
 
-        GDK_WINDOW_STATE_STICKY = 8
-        GDK_WINDOW_STATE_WITHDRAWN = 1
-        GDK_WINDOW_STATE_ABOVE = 32
-
-        print("DBG Window display")
+        log.debug("Window display")
         if self.window.window:
-            print("DBG: gtk.gdk.WindowState =", self.window.window.get_state())
-            print("DBG: gtk.gdk.WindowState =", int(self.window.window.get_state()))
-            print("DBG: GDK_WINDOW_STATE_STICKY? %s" %
-                  (bool(int(self.window.window.get_state()) & GDK_WINDOW_STATE_STICKY),))
-            print("DBG: GDK_WINDOW_STATE_WITHDRAWN? %s" %
-                  (bool(int(self.window.window.get_state()) & GDK_WINDOW_STATE_WITHDRAWN,)))
-            print("DBG: GDK_WINDOW_STATE_ABOVE? %s" %
-                  (bool(int(self.window.window.get_state()) & GDK_WINDOW_STATE_ABOVE,)))
+            cur_state = int(self.window.window.get_state())
+            is_sticky = bool(cur_state & GDK_WINDOW_STATE_STICKY)
+            is_withdrawn = bool(cur_state & GDK_WINDOW_STATE_WITHDRAWN)
+            is_above = bool(cur_state & GDK_WINDOW_STATE_ABOVE)
+            is_iconified = self.is_iconified()
+            log.debug("gtk.gdk.WindowState = %s", cur_state)
+            log.debug("GDK_WINDOW_STATE_STICKY? %s", is_sticky)
+            log.debug("GDK_WINDOW_STATE_WITHDRAWN? %s", is_withdrawn)
+            log.debug("GDK_WINDOW_STATE_ABOVE? %s", is_above)
+            log.debug("GDK_WINDOW_STATE_ICONIFIED? %s", is_iconified)
 
         if not self.window.get_property('visible'):
-            print("DBG: Showing the terminal")
+            log.debug("Showing the terminal")
             self.show()
             self.set_terminal_focus()
             return
@@ -568,14 +666,14 @@ class Guake(SimpleGladeApp):
         # if not self.hidden:
         # restore_focus = True
         #     if restore_focus:
-        #         print("DBG: Restoring the focus to the terminal")
+        #         log.debug("DBG: Restoring the focus to the terminal")
         #         self.hide()
         #         self.show()
         #         self.window.window.focus()
         #         self.set_terminal_focus()
         #         return
 
-        print("DBG: hiding the terminal")
+        log.debug("hiding the terminal")
         self.hide()
 
     def show(self):
@@ -617,19 +715,48 @@ class Guake(SimpleGladeApp):
         except AttributeError:
             time = 0
 
+        # When minized, the window manager seems to refuse to resume
+        log.debug("self.window: %s. Dir=%s", type(self.window), dir(self.window))
+        # is_iconified = self.is_iconified()
+        # if is_iconified:
+        #     log.debug("Is iconified. Ubuntu Trick => removing skip_taskbar_hint and skip_pager_hint "
+        #           "so deiconify can work!")
+        #     self.get_widget('window-root').set_skip_taskbar_hint(False)
+        #     self.get_widget('window-root').set_skip_pager_hint(False)
+        #     self.get_widget('window-root').set_urgency_hint(False)
+        #     log.debug("get_skip_taskbar_hint: {}".format(
+        #         self.get_widget('window-root').get_skip_taskbar_hint()))
+        #     log.debug("get_skip_pager_hint: {}".format(
+        #         self.get_widget('window-root').get_skip_pager_hint()))
+        #     log.debug("get_urgency_hint: {}".format(
+        #         self.get_widget('window-root').get_urgency_hint()))
+        #     glib.timeout_add_seconds(1, lambda: self.timeout_restore(time))
+
+        log.debug("order to present and deiconify")
+        self.window.present()
+        self.window.deiconify()
+        self.window.window.deiconify()
         self.window.window.show()
         self.window.window.focus(time)
+        self.window.set_type_hint(gtk.gdk.WINDOW_TYPE_HINT_DOCK)
+        self.window.set_type_hint(gtk.gdk.WINDOW_TYPE_HINT_NORMAL)
 
-        # This is here because vte color configuration works only
-        # after the widget is shown.
+        # log.debug("Restoring skip_taskbar_hint and skip_pager_hint")
+        # if is_iconified:
+        #     self.get_widget('window-root').set_skip_taskbar_hint(False)
+        #     self.get_widget('window-root').set_skip_pager_hint(False)
+        #     self.get_widget('window-root').set_urgency_hint(False)
+
+        # This is here because vte color configuration works only after the widget is shown.
         self.client.notify(KEY('/style/font/color'))
         self.client.notify(KEY('/style/background/color'))
 
     def hide_from_remote(self):
-        """Hides the main window of the terminal and sets the visible
+        """
+        Hides the main window of the terminal and sets the visible
         flag to False.
         """
-        print("hide from remote")
+        log.debug("hide from remote")
         self.forceHide = True
         self.hide()
 
@@ -637,7 +764,7 @@ class Guake(SimpleGladeApp):
         """Show the main window of the terminal and sets the visible
         flag to False.
         """
-        print("show from remote")
+        log.debug("show from remote")
         self.forceHide = True
         self.show()
 
@@ -687,11 +814,11 @@ class Guake(SimpleGladeApp):
         # http://askubuntu.com/questions/70296/is-there-an-environment-variable-that-is-set-for-unity
         if float(linux_distrib[1]) - 0.01 < 11.10:
             if os.environ.get('DESKTOP_SESSION').lower() == "gnome".lower():
-                print("Unity detected")
+                log.debug("Unity detected")
                 return True
         else:
             if os.environ.get('XDG_CURRENT_DESKTOP').lower() == "unity".lower():
-                print("Unity detected")
+                log.debug("Unity detected")
                 return True
         return False
 
@@ -712,10 +839,10 @@ class Guake(SimpleGladeApp):
         halignment = self.client.get_int(KEY('/general/window_halignment'))
         valignment = self.client.get_int(KEY('/general/window_valignment'))
 
-        # print("height_percents", height_percents)
-        # print("width_percents", width_percents)
-        # print("halignment", halignment)
-        # print("valignment", valignment)
+        # log.debug("height_percents", height_percents)
+        # log.debug("width_percents", width_percents)
+        # log.debug("halignment", halignment)
+        # log.debug("valignment", valignment)
 
         # get the rectangle just from the destination monitor
         screen = self.window.get_screen()
@@ -754,35 +881,37 @@ class Guake(SimpleGladeApp):
 
             # launcher_hide_mode = 1 => autohide
             if unity_hide != 1:
-                print("correcting window width because of launcher width {} "
-                      "(from {} to {})".format(
-                          unity_dock, window_rect.width, window_rect.width - unity_dock))
+                log.debug("correcting window width because of launcher width %s "
+                          "(from %s to %s)",
+                          unity_dock,
+                          window_rect.width,
+                          window_rect.width - unity_dock)
 
                 window_rect.width = window_rect.width - unity_dock
 
         total_width = window_rect.width
         total_height = window_rect.height
 
-        # print("total_width", total_width)
-        # print("total_height", total_height)
+        # log.debug("total_width", total_width)
+        # log.debug("total_height", total_height)
 
         window_rect.height = window_rect.height * height_percents / 100
         window_rect.width = window_rect.width * width_percents / 100
 
-        # print("window_rect.x", window_rect.x)
-        # print("window_rect.y", window_rect.y)
-        # print("window_rect.height", window_rect.height)
-        # print("window_rect.width", window_rect.width)
+        # log.debug("window_rect.x", window_rect.x)
+        # log.debug("window_rect.y", window_rect.y)
+        # log.debug("window_rect.height", window_rect.height)
+        # log.debug("window_rect.width", window_rect.width)
 
         if window_rect.width < total_width:
             if halignment == ALIGN_CENTER:
-                # print("aligning to center!")
+                # log.debug("aligning to center!")
                 window_rect.x += (total_width - window_rect.width) / 2
             elif halignment == ALIGN_LEFT:
-                # print("aligning to left!")
+                # log.debug("aligning to left!")
                 window_rect.x += 0
             elif halignment == ALIGN_RIGHT:
-                # print("aligning to right!")
+                # log.debug("aligning to right!")
                 window_rect.x += total_width - window_rect.width
         if window_rect.height < total_height:
             if valignment == ALIGN_BOTTOM:
@@ -790,15 +919,9 @@ class Guake(SimpleGladeApp):
 
         self.window.resize(window_rect.width, window_rect.height)
         self.window.move(window_rect.x, window_rect.y)
-        # print("Moving/Resizing to: window_rect", window_rect)
+        # log.debug("Moving/Resizing to: window_rect", window_rect)
 
         return window_rect
-
-    def get_running_fg_processes(self):
-        """Get the number of processes for each terminal/tab. The code is taken
-        from gnome-terminal.
-        """
-        return self.notebook.get_running_fg_processes()
 
     # -- configuration --
 
@@ -807,6 +930,7 @@ class Guake(SimpleGladeApp):
         """
         self.client.notify(KEY('/general/use_trayicon'))
         self.client.notify(KEY('/general/prompt_on_quit'))
+        self.client.notify(KEY('/general/prompt_on_close_tab'))
         self.client.notify(KEY('/general/window_tabbar'))
         self.client.notify(KEY('/general/mouse_display'))
         self.client.notify(KEY('/general/display_n'))
@@ -833,17 +957,31 @@ class Guake(SimpleGladeApp):
         self.client.notify(KEY('/general/compat_backspace'))
         self.client.notify(KEY('/general/compat_delete'))
 
+    def run_quit_dialog(self, procs, tab):
+        """Run the "are you sure" dialog for closing a tab, or quitting Guake
+        """
+        # Stop an open "close tab" dialog from obstructing a quit
+        if self.prompt_dialog is not None:
+            self.prompt_dialog.destroy()
+        self.prompt_dialog = PromptQuitDialog(self.window, procs, tab)
+        response = self.prompt_dialog.run() == gtk.RESPONSE_YES
+        self.prompt_dialog.destroy()
+        self.prompt_dialog = None
+        # Keep Guake focussed after dismissing tab-close prompt
+        if tab == -1:
+            self.window.present()
+        return response
+
     def accel_quit(self, *args):
         """Callback to prompt the user whether to quit Guake or not.
         """
-        if self.client.get_bool(KEY('/general/prompt_on_quit')):
-            procs = self.get_running_fg_processes()
-            self.isPromptQuitDialogOpened = True
-            dialog = PromptQuitDialog(self.window, procs)
-            response = dialog.run() == gtk.RESPONSE_YES
-            dialog.destroy()
-            self.isPromptQuitDialogOpened = False
-            if response:
+        procs = self.notebook.get_running_fg_processes()
+        tabs = self.notebook.get_tab_count()
+        prompt_cfg = self.client.get_bool(KEY('/general/prompt_on_quit'))
+        prompt_tab_cfg = self.client.get_int(KEY('/general/prompt_on_close_tab'))
+        # "Prompt on tab close" config overrides "prompt on quit" config
+        if prompt_cfg or (prompt_tab_cfg == 1 and procs > 0) or (prompt_tab_cfg == 2):
+            if self.run_quit_dialog(procs, tabs):
                 gtk.main_quit()
         else:
             gtk.main_quit()
@@ -1026,6 +1164,7 @@ class Guake(SimpleGladeApp):
         this is the method that does that, or, at least calls
         `delete_tab' method to do the work.
         """
+        log.debug("Terminal exited: %s", term)
         if libutempter is not None:
             libutempter.utempter_remove_record(term.get_pty())
         self.delete_tab(self.notebook.page_num(widget), kill=False)
@@ -1356,7 +1495,7 @@ class Guake(SimpleGladeApp):
         self.preventHide = False
 
     def find_tab(self, directory=None):
-        print("find")
+        log.debug("find")
         self.preventHide = True
         search_text = gtk.TextView()
 
@@ -1384,13 +1523,13 @@ class Guake(SimpleGladeApp):
         start, end = dialog.buffer.get_bounds()
         search_string = start.get_text(end)
 
-        print("Searching for '{}' {}\n".format(
-            search_string,
-            "forward" if response_id == RESPONSE_FORWARD else "backward"))
+        log.debug("Searching for %r %s\n",
+                  search_string,
+                  "forward" if response_id == RESPONSE_FORWARD else "backward")
 
         current_term = self.notebook.get_current_terminal()
-        print("type", type(current_term))
-        print("dir", dir(current_term))
+        log.debug("type: %r", type(current_term))
+        log.debug("dir: %r", dir(current_term))
         current_term.search_set_gregex()
         current_term.search_get_gregex()
 
@@ -1419,6 +1558,13 @@ class Guake(SimpleGladeApp):
         tab widgets and will call the function to kill interpreter
         forked by vte.
         """
+        # Run prompt if necessary
+        procs = self.notebook.get_running_fg_processes_tab(pagepos)
+        prompt_cfg = self.client.get_int(KEY('/general/prompt_on_close_tab'))
+        if (prompt_cfg == 1 and procs > 0) or (prompt_cfg == 2):
+            if not self.run_quit_dialog(procs, -1):
+                return
+
         self.tabs.get_children()[pagepos].destroy()
         self.notebook.delete_tab(pagepos, kill=kill)
 
@@ -1482,12 +1628,12 @@ class Guake(SimpleGladeApp):
     def getCurrentTerminalLinkUnderCursor(self):
         current_term = self.notebook.get_current_terminal()
         l = current_term.found_link
-        print("Current link under cursor: {}".format(l))
+        log.debug("Current link under cursor: %s", l)
         if l:
             return l
 
     def browse_on_web(self, *args):
-        print("browsing {}...".format(self.getCurrentTerminalLinkUnderCursor()))
+        log.debug("browsing %s...", self.getCurrentTerminalLinkUnderCursor())
         self.notebook.get_current_terminal().browse_link_under_cursor()
 
     def set_tab_position(self, *args):
