@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <glade-interface>
-  <!-- interface-requires gtk+ 2.10 -->
+  <!-- interface-requires gtk+ 2.16 -->
   <!-- interface-naming-policy project-wide -->
   <widget class="GtkMenu" id="context-menu">
     <property name="visible">True</property>
@@ -13,7 +13,7 @@
         <property name="can_focus">False</property>
         <property name="use_action_appearance">False</property>
         <property name="use_stock">False</property>
-        <signal name="activate" handler="accel_copy_clipboard"/>
+        <signal name="activate" handler="accel_copy_clipboard" swapped="no"/>
         <child internal-child="image">
           <widget class="GtkImage" id="copy_icon">
             <property name="visible">True</property>
@@ -31,7 +31,7 @@
         <property name="can_focus">False</property>
         <property name="use_action_appearance">False</property>
         <property name="use_stock">False</property>
-        <signal name="activate" handler="accel_paste_clipboard"/>
+        <signal name="activate" handler="accel_paste_clipboard" swapped="no"/>
         <child internal-child="image">
           <widget class="GtkImage" id="paste_icon">
             <property name="visible">True</property>
@@ -55,7 +55,7 @@
         <property name="can_focus">False</property>
         <property name="use_action_appearance">False</property>
         <property name="use_stock">False</property>
-        <signal name="activate" handler="accel_toggle_fullscreen"/>
+        <signal name="activate" handler="accel_toggle_fullscreen" swapped="no"/>
         <child internal-child="image">
           <widget class="GtkImage" id="toggle_fullscreen_icon">
             <property name="visible">True</property>
@@ -79,7 +79,7 @@
         <property name="can_focus">False</property>
         <property name="use_action_appearance">False</property>
         <property name="use_stock">False</property>
-        <signal name="activate" handler="save_tab"/>
+        <signal name="activate" handler="save_tab" swapped="no"/>
         <child internal-child="image">
           <widget class="GtkImage" id="save_tab_icon">
             <property name="visible">True</property>
@@ -97,7 +97,7 @@
         <property name="can_focus">False</property>
         <property name="use_action_appearance">False</property>
         <property name="use_stock">False</property>
-        <signal name="activate" handler="find_tab"/>
+        <signal name="activate" handler="find_tab" swapped="no"/>
         <child internal-child="image">
           <widget class="GtkImage" id="find_tab_icon">
             <property name="visible">True</property>
@@ -121,7 +121,7 @@
         <property name="can_focus">False</property>
         <property name="use_action_appearance">False</property>
         <property name="use_stock">False</property>
-        <signal name="activate" handler="add_tab"/>
+        <signal name="activate" handler="add_tab" swapped="no"/>
         <child internal-child="image">
           <widget class="GtkImage" id="add_tab_icon">
             <property name="visible">True</property>
@@ -139,7 +139,7 @@
         <property name="can_focus">False</property>
         <property name="use_action_appearance">False</property>
         <property name="use_stock">False</property>
-        <signal name="activate" handler="accel_rename_current_tab"/>
+        <signal name="activate" handler="accel_rename_current_tab" swapped="no"/>
         <child internal-child="image">
           <widget class="GtkImage" id="tab_rename_icon">
             <property name="visible">True</property>
@@ -157,7 +157,7 @@
         <property name="can_focus">False</property>
         <property name="use_action_appearance">False</property>
         <property name="use_stock">False</property>
-        <signal name="activate" handler="close_tab"/>
+        <signal name="activate" handler="close_tab" swapped="no"/>
         <child internal-child="image">
           <widget class="GtkImage" id="close_tab_icon">
             <property name="visible">True</property>
@@ -181,7 +181,7 @@
         <property name="can_focus">False</property>
         <property name="use_action_appearance">False</property>
         <property name="use_stock">False</property>
-        <signal name="activate" handler="browse_on_web"/>
+        <signal name="activate" handler="browse_on_web" swapped="no"/>
         <child internal-child="image">
           <widget class="GtkImage" id="browse_on_web_icon">
             <property name="visible">True</property>
@@ -199,7 +199,7 @@
         <property name="can_focus">False</property>
         <property name="use_action_appearance">False</property>
         <property name="use_stock">False</property>
-        <signal name="activate" handler="search_on_web"/>
+        <signal name="activate" handler="search_on_web" swapped="no"/>
         <child internal-child="image">
           <widget class="GtkImage" id="search_on_web_icon">
             <property name="visible">True</property>
@@ -224,7 +224,7 @@
         <property name="use_action_appearance">False</property>
         <property name="use_underline">True</property>
         <property name="use_stock">True</property>
-        <signal name="activate" handler="show_prefs"/>
+        <signal name="activate" handler="show_prefs" swapped="no"/>
       </widget>
     </child>
     <child>
@@ -235,7 +235,7 @@
         <property name="use_action_appearance">False</property>
         <property name="use_underline">True</property>
         <property name="use_stock">True</property>
-        <signal name="activate" handler="show_about"/>
+        <signal name="activate" handler="show_about" swapped="no"/>
       </widget>
     </child>
     <child>
@@ -251,7 +251,7 @@
         <property name="can_focus">False</property>
         <property name="use_action_appearance">False</property>
         <property name="use_stock">False</property>
-        <signal name="activate" handler="accel_quit"/>
+        <signal name="activate" handler="accel_quit" swapped="no"/>
         <child internal-child="image">
           <widget class="GtkImage" id="close_icon">
             <property name="visible">True</property>
@@ -273,7 +273,7 @@
         <property name="can_focus">False</property>
         <property name="use_action_appearance">False</property>
         <property name="use_stock">False</property>
-        <signal name="activate" handler="add_tab"/>
+        <signal name="activate" handler="add_tab" swapped="no"/>
         <child internal-child="image">
           <widget class="GtkImage" id="tab_add_icon">
             <property name="visible">True</property>
@@ -291,9 +291,9 @@
         <property name="can_focus">False</property>
         <property name="use_action_appearance">False</property>
         <property name="use_stock">False</property>
-        <signal name="activate" handler="on_rename_current_tab_activate"/>
+        <signal name="activate" handler="on_rename_current_tab_activate" swapped="no"/>
         <child internal-child="image">
-          <widget class="GtkImage" id="tab_rename_icon">
+          <widget class="GtkImage" id="tab_rename_icon1">
             <property name="visible">True</property>
             <property name="can_focus">False</property>
             <property name="stock">gtk-edit</property>
@@ -309,7 +309,7 @@
         <property name="can_focus">False</property>
         <property name="use_action_appearance">False</property>
         <property name="use_stock">False</property>
-        <signal name="activate" handler="on_close_activate"/>
+        <signal name="activate" handler="on_close_activate" swapped="no"/>
         <child internal-child="image">
           <widget class="GtkImage" id="tab_close_icon">
             <property name="visible">True</property>
@@ -332,7 +332,7 @@
         <property name="use_action_appearance">False</property>
         <property name="use_underline">True</property>
         <property name="use_stock">True</property>
-        <signal name="activate" handler="show_prefs"/>
+        <signal name="activate" handler="show_prefs" swapped="no"/>
       </widget>
     </child>
     <child>
@@ -343,7 +343,7 @@
         <property name="use_action_appearance">False</property>
         <property name="use_underline">True</property>
         <property name="use_stock">True</property>
-        <signal name="activate" handler="show_about"/>
+        <signal name="activate" handler="show_about" swapped="no"/>
       </widget>
     </child>
     <child>
@@ -359,7 +359,7 @@
         <property name="can_focus">False</property>
         <property name="use_action_appearance">False</property>
         <property name="use_stock">False</property>
-        <signal name="activate" handler="accel_quit"/>
+        <signal name="activate" handler="accel_quit" swapped="no"/>
         <child internal-child="image">
           <widget class="GtkImage" id="tray_quit_icon">
             <property name="visible">True</property>
@@ -374,7 +374,7 @@
   <widget class="GtkWindow" id="window-root">
     <property name="can_focus">False</property>
     <property name="has_focus">True</property>
-    <property name="title" translatable="yes">Guake Terminal</property>
+    <property name="title" translatable="yes">Guake!</property>
     <property name="skip_taskbar_hint">True</property>
     <property name="skip_pager_hint">True</property>
     <property name="urgency_hint">True</property>
@@ -394,7 +394,7 @@
             <property name="show_tabs">False</property>
             <property name="show_border">False</property>
             <property name="enable_popup">True</property>
-            <signal name="switch_page" handler="select_current_tab"/>
+            <signal name="switch_page" handler="select_current_tab" swapped="no"/>
           </widget>
           <packing>
             <property name="expand">True</property>
@@ -410,14 +410,51 @@
             <property name="extension_events">all</property>
             <property name="no_show_all">True</property>
             <child>
-              <widget class="GtkEventBox" id="event-tabs">
+              <widget class="GtkImage" id="image1">
                 <property name="visible">True</property>
                 <property name="can_focus">False</property>
-                <property name="events">GDK_BUTTON_PRESS_MASK | GDK_STRUCTURE_MASK</property>
+                <property name="stock">gtk-missing-image</property>
+              </widget>
+              <packing>
+                <property name="expand">False</property>
+                <property name="fill">False</property>
+                <property name="padding">6</property>
+                <property name="position">0</property>
+              </packing>
+            </child>
+            <child>
+              <widget class="GtkScrolledWindow" id="tabs-scrolledwindow">
+                <property name="visible">True</property>
+                <property name="can_focus">True</property>
+                <property name="hscrollbar_policy">automatic</property>
+                <property name="vscrollbar_policy">never</property>
                 <child>
-                  <widget class="GtkHBox" id="hbox-tabs">
+                  <widget class="GtkViewport" id="tabs-viewport">
                     <property name="visible">True</property>
                     <property name="can_focus">False</property>
+                    <property name="shadow_type">none</property>
+                    <child>
+                      <widget class="GtkEventBox" id="event-tabs">
+                        <property name="visible">True</property>
+                        <property name="can_focus">False</property>
+                        <property name="events">GDK_BUTTON_PRESS_MASK | GDK_STRUCTURE_MASK</property>
+                        <child>
+                          <widget class="GtkHBox" id="hbox-tabs">
+                            <property name="visible">True</property>
+                            <property name="can_focus">False</property>
+                            <child>
+                              <placeholder/>
+                            </child>
+                            <child>
+                              <placeholder/>
+                            </child>
+                            <child>
+                              <placeholder/>
+                            </child>
+                          </widget>
+                        </child>
+                      </widget>
+                    </child>
                   </widget>
                 </child>
               </widget>
@@ -425,6 +462,29 @@
                 <property name="expand">True</property>
                 <property name="fill">True</property>
                 <property name="position">1</property>
+              </packing>
+            </child>
+            <child>
+              <widget class="GtkButton" id="button1">
+                <property name="visible">True</property>
+                <property name="can_focus">True</property>
+                <property name="receives_default">True</property>
+                <property name="tooltip" translatable="yes">Add a new tab</property>
+                <property name="use_action_appearance">False</property>
+                <property name="relief">none</property>
+                <signal name="clicked" handler="add_tab" swapped="no"/>
+                <child>
+                  <widget class="GtkImage" id="image2">
+                    <property name="visible">True</property>
+                    <property name="can_focus">False</property>
+                    <property name="stock">gtk-missing-image</property>
+                  </widget>
+                </child>
+              </widget>
+              <packing>
+                <property name="expand">False</property>
+                <property name="fill">True</property>
+                <property name="position">2</property>
               </packing>
             </child>
           </widget>
