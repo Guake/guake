@@ -1,6 +1,20 @@
 Version 0.7.3 (dev)
 ==========================
 
+  The new website is now online:
+
+    http://guake-project.org/
+
+  Source code can be found:
+
+    https://github.com/Guake/guake-website
+
+  It is not the state of the art of Web Development, but it was a pretty good exercise to update my
+  knowlegdes on HTML5 development:
+   - coffeescript
+   - jade
+   - less
+
   Bug fixes:
 
 Version 0.7.2 (2015.05.20)
