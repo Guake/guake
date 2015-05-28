@@ -10,10 +10,12 @@ Version 0.7.3 (dev)
     https://github.com/Guake/guake-website
 
   It is not the state of the art of Web Development, but it was a pretty good exercise to update my
-  knowlegdes on HTML5 development:
+  knowlegdes on HTML5 development, on the following technologies:
    - coffeescript
    - jade
    - less
+   - bootstrap
+   - grunt (gulp is way better, and faster)
 
   Bug fixes:
 
