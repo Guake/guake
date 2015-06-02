@@ -5,7 +5,7 @@
             <applyto>/apps/guake/general/debug_mode</applyto>
             <owner>guake</owner>
             <type>bool</type>
-            <default></default>
+            <default>false</default>
             <locale name="C">
                 <short>Enable debug mode</short>
                 <long>When debug mode is enabled, logs are printed in the
