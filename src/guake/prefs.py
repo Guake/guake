@@ -951,6 +951,9 @@ class PrefsDialog(SimpleGladeApp):
 
     # -- key handling --
 
+    def set_keybinder(self, keybinder):
+        self.keybinder = keybinder
+
     def on_key_edited(self, renderer, path, keycode, mask, keyval, model):
         """Callback that handles key edition in cellrenderer. It makes
         some tests to validate the key, like looking for already in
@@ -1001,6 +1004,10 @@ class PrefsDialog(SimpleGladeApp):
         # setting new value in ui
         giter = model.get_iter(path)
         model.set_value(giter, 2, hotkey)
+
+	# unbind previous key if it's the show/hide key
+        if(gconf_path == "/apps/guake/keybindings/global/show_hide"):
+	    self.keybinder.unbind(self.client.get_string(gconf_path))
 
         # setting the new value in gconf
         self.client.set_string(gconf_path, key)
