@@ -1005,9 +1005,9 @@ class PrefsDialog(SimpleGladeApp):
         giter = model.get_iter(path)
         model.set_value(giter, 2, hotkey)
 
-	# unbind previous key if it's the show/hide key
+        # unbind previous key if it's the show/hide key
         if(gconf_path == "/apps/guake/keybindings/global/show_hide"):
-	    self.keybinder.unbind(self.client.get_string(gconf_path))
+            self.keybinder.unbind(self.client.get_string(gconf_path))
 
         # setting the new value in gconf
         self.client.set_string(gconf_path, key)
