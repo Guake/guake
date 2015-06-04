@@ -18,7 +18,7 @@ Version 0.7.3 (dev)
    - grunt (gulp is way better, and faster)
 
   Bug fixes:
-   - Fixes #558 by replacing GlobalHotkeys with keybinder
+   - Fixes #558 by replacing GlobalHotkeys with keybinder (Fixed by @jenrik)
 
 Version 0.7.2 (2015.05.20)
 ==========================
