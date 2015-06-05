@@ -35,7 +35,7 @@ if [[ $EXEC_AUTOGEN == true ]]; then
     sudo apt-get install -y python-gtk2 python-gtk2-dev python-vte glade python-glade2
     sudo apt-get install -y python-vte python-gconf python-appindicator
     sudo apt-get install -y notify-osd libutempter0 glade-gtk2
-    sudo apt-get install -y python-notify
+    sudo apt-get install -y python-notify python-xdg
     sudo pip install colorlog
     if [[ -f Makefile ]]; then
         make clean
