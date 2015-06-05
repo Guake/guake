@@ -45,7 +45,7 @@ from urlparse import urlsplit
 from xdg.DesktopEntry import DesktopEntry
 from xml.sax.saxutils import escape as xml_escape
 
-import guake.globalhotkeys
+import keybinder
 import guake.notifier
 
 from guake.about import AboutDialog
@@ -156,9 +156,6 @@ class Guake(SimpleGladeApp):
 
         self.debug_mode = self.client.get_bool(KEY('/general/debug_mode'))
         self.setupLogging()
-
-        # setting global hotkey and showing a pretty notification =)
-        guake.globalhotkeys.init()
 
         # Cannot use "getattr(gtk.Window().get_style(), "base")[int(gtk.STATE_SELECTED)]"
         # since theme has not been applied before first show_all
@@ -305,7 +302,7 @@ class Guake(SimpleGladeApp):
         # loading and setting up configuration stuff
         GConfHandler(self)
         GConfKeyHandler(self)
-        self.hotkeys = guake.globalhotkeys.GlobalHotkey()
+        self.hotkeys = keybinder
         self.load_config()
 
         key = self.client.get_string(GKEY('show_hide'))
@@ -574,7 +571,9 @@ class Guake(SimpleGladeApp):
         Preferences window.
         """
         self.hide()
-        PrefsDialog().show()
+        prefsdialog = PrefsDialog()
+        prefsdialog.set_keybinder(keybinder)
+        prefsdialog.show()
 
     def is_iconified(self):
         if self.window.window:
