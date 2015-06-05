@@ -364,7 +364,6 @@ class GConfKeyHandler(object):
         method. If more global hotkeys should be added, just connect
         the gconf key to the watch system and add.
         """
-        self.guake.hotkeys.unbind_all()
         key = entry.get_value().get_string()
         if not self.guake.hotkeys.bind(key, self.guake.show_hide):
             raise ShowableError(_('key binding error'),
