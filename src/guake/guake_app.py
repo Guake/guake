@@ -45,8 +45,8 @@ from urlparse import urlsplit
 from xdg.DesktopEntry import DesktopEntry
 from xml.sax.saxutils import escape as xml_escape
 
-import keybinder
 import guake.notifier
+import keybinder
 
 from guake.about import AboutDialog
 from guake.common import _
