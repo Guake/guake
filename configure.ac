@@ -96,7 +96,6 @@ AC_CONFIG_FILES([
     data/icons/Makefile
     po/Makefile.in
     src/guake/Makefile
-    src/guake/globalhotkeys/Makefile
     src/guake/globals.py
     doc/src/conf.py
 ])
