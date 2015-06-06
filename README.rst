@@ -68,13 +68,14 @@ Dependencies
 
  * Python2.7+
  * pygtk2.10 (gtk.StatusIcon)
- * python-vte
- * python-notify
+ * notify-osd (ubuntu)
+ * python-appindicator (ubuntu)
  * python-dbus
  * python-gconf
+ * python-keybinder
+ * python-notify
+ * python-vte
  * python-xdg
- * python-appindicator (ubuntu)
- * notify-osd (ubuntu)
  * libutempter
 
 To build guake, you will need the following packages too:
@@ -138,7 +139,7 @@ For compiling from these sources, please install the following packages (Ubuntu 
     sudo apt-get install gnome-common gtk-doc-tools libglib2.0-dev libgtk2.0-dev
     sudo apt-get install python-gtk2 python-gtk2-dev python-vte glade python-glade2
     sudo apt-get install libgconf2-dev python-appindicator
-    sudo apt-get install python-vte python-gconf
+    sudo apt-get install python-vte python-gconf python-keybinder
     sudo apt-get install notify-osd
     sudo apt-get install libutempter0
     sudo apt-get install python-notify

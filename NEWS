@@ -1,25 +1,25 @@
 Version 0.8.0 (dev)
 ==========================
 
-  The new website is now online:
+  This releases introduces two major change in the project
+
+  First, the new homepage is now online:
 
     http://guake-project.org/
 
-  Source code can be found:
-
-    https://github.com/Guake/guake-website
-
-  It is not the state of the art of Web Development, but it was a pretty good exercise to update my
-  knowlegdes on HTML5 development, on the following technologies:
-   - coffeescript
-   - jade
-   - less
-   - bootstrap
-   - grunt (gulp is way better, and faster)
+  The second major change in the project is the abandon of our internal hotkey manager
+  ``globalhotkey``, which was responsible for binding hotkeys globally to the window manager. This
+  piece of code was extremely old and hard to maintain. This was also unnecessarily complexifying
+  the build process of Guake. Thanks to the contribution of @jenrik, we are now using a pretty
+  common package ``keybinder`` (Ubuntu: ``python-keybinder``).
 
   Bug fixes:
    - Guake fails to start due to a GlobalHotkey related C call (#558) fixed by replacing
      GlobalHotkeys with keybinder (Fixed by @jenrik)
+
+  Source code of the Web site can be found here:
+
+    https://github.com/Guake/guake-website
 
 Version 0.7.2 (2015.05.20)
 ==========================
