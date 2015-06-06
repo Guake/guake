@@ -11,12 +11,13 @@ import subprocess
 from pango import FontDescription
 from xml.sax.saxutils import escape as xml_escape
 
-from guake.common import ShowableError
+from guake.common import pixmapfile
 from guake.common import _
 from guake.globals import GCONF_PATH
 from guake.globals import GKEY
 from guake.globals import KEY
 from guake.globals import LKEY
+import guake.notifier
 
 
 GCONF_MONOSPACE_FONT_PATH = '/desktop/gnome/interface/monospace_font_name'
@@ -345,8 +346,15 @@ class GConfKeyHandler(object):
         self.client = gconf.client_get_default()
 
         notify_add = self.client.notify_add
-        notify_add(GKEY('show_hide'), self.reload_globals)
 
+        # Setup global keys
+        self.globalhotkeys = {}
+        globalkeys = ['show_hide']
+        for key in globalkeys:
+            notify_add(GKEY(key), self.reload_global)
+            self.client.notify(GKEY(key))
+
+        # Setup local keys
         keys = ['toggle_fullscreen', 'new_tab', 'close_tab', 'rename_current_tab',
                 'previous_tab', 'next_tab', 'clipboard_copy', 'clipboard_paste',
                 'quit', 'zoom_in', 'zoom_out', 'increase_height', 'decrease_height',
@@ -359,16 +367,27 @@ class GConfKeyHandler(object):
             notify_add(LKEY(key), self.reload_accelerators)
             self.client.notify(LKEY(key))
 
-    def reload_globals(self, client, connection_id, entry, data):
+    def reload_global(self, client, connection_id, entry, data):
         """Unbind all global hotkeys and rebind the show_hide
         method. If more global hotkeys should be added, just connect
         the gconf key to the watch system and add.
         """
+        gkey = entry.get_key()
         key = entry.get_value().get_string()
+        try:
+            self.guake.hotkeys.unbind(self.globalhotkeys[gkey])
+        except KeyError:
+            pass
+        self.globalhotkeys[gkey] = key
         if not self.guake.hotkeys.bind(key, self.guake.show_hide):
-            raise ShowableError(_('key binding error'),
-                                _('Unable to bind global <b>%s</b> key') % xml_escape(key),
-                                -1)
+            keyval, mask = gtk.accelerator_parse(key)
+            label = gtk.accelerator_get_label(keyval, mask)
+            filename = pixmapfile('guake-notification.png')
+            guake.notifier.show_message(
+                _('Guake Terminal'),
+                _('A problem happened when binding <b>%s</b> key.\n'
+                  'Please use Guake Preferences dialog to choose another '
+                  'key') % xml_escape(label), filename)
 
     def reload_accelerators(self, *args):
         """Reassign an accel_group to guake main window and guake
