@@ -14,8 +14,8 @@ Version 0.8.0 (dev)
   common package ``keybinder`` (Ubuntu: ``python-keybinder``).
 
   Bug fixes:
-   - Guake fails to start due to a GlobalHotkey related C call (#558) fixed by replacing
-     GlobalHotkeys with keybinder (Fixed by @jenrik)
+   - Guake fails to start due to a GlobalHotkey related C call fixed by replacing GlobalHotkeys with
+     keybinder. Fixed by @jenrik. (#558, #510)
 
   Source code of the Web site can be found here:
 
