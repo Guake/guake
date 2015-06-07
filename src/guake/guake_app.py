@@ -253,24 +253,24 @@ class Guake(SimpleGladeApp):
                 self.add_tab()
         evtbox = self.get_widget('event-tabs')
         evtbox.connect('button-press-event', double_click)
-        
-        def scroll_manager(hbox,event):
+
+        def scroll_manager(hbox, event):
             adj = self.get_widget('tabs-scrolledwindow').get_hadjustment()
             adj.set_page_increment(1)
             if event.direction == gtk.gdk.SCROLL_DOWN:
-                if self.notebook.get_current_page()+1<self.notebook.get_tab_count():
+                if self.notebook.get_current_page() + 1 < self.notebook.get_tab_count():
                     self.notebook.next_page()
                 else:
-                    return ;
+                    return
 
             if event.direction == gtk.gdk.SCROLL_UP:
                 self.notebook.prev_page()
 
             current_page = self.notebook.get_current_page()
             tab = self.tabs.get_children()[current_page]
-            rectangle=tab.get_allocation()
+            rectangle = tab.get_allocation()
             adj.set_value(rectangle.x)
-        
+
         evtbox.connect('scroll-event', scroll_manager)
 
         # Flag to prevent guake hide when window_losefocus is true and
@@ -1630,4 +1630,4 @@ class Guake(SimpleGladeApp):
             self.mainframe.reorder_child(self.notebook, 2)
         else:
             self.mainframe.reorder_child(self.notebook, 0)
-        self.mainframe.pack_start(self.mainframe, expand=True, fill=True, padding=0)
+        self.mainframe.pack_start(self.notebook, expand=True, fill=True, padding=0)
