@@ -410,19 +410,6 @@
             <property name="extension_events">all</property>
             <property name="no_show_all">True</property>
             <child>
-              <widget class="GtkImage" id="image1">
-                <property name="visible">True</property>
-                <property name="can_focus">False</property>
-                <property name="stock">gtk-missing-image</property>
-              </widget>
-              <packing>
-                <property name="expand">False</property>
-                <property name="fill">False</property>
-                <property name="padding">6</property>
-                <property name="position">0</property>
-              </packing>
-            </child>
-            <child>
               <widget class="GtkScrolledWindow" id="tabs-scrolledwindow">
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
