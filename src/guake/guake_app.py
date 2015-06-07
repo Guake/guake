@@ -301,8 +301,8 @@ class Guake(SimpleGladeApp):
 
         # loading and setting up configuration stuff
         GConfHandler(self)
-        GConfKeyHandler(self)
         self.hotkeys = keybinder
+        GConfKeyHandler(self)
         self.load_config()
 
         key = self.client.get_string(GKEY('show_hide'))
@@ -315,15 +315,7 @@ class Guake(SimpleGladeApp):
         if self.client.get_bool(KEY('/general/start_fullscreen')):
             self.fullscreen()
 
-        if not self.hotkeys.bind(key, self.show_hide):
-            guake.notifier.show_message(
-                _('Guake Terminal'),
-                _('A problem happened when binding <b>%s</b> key.\n'
-                  'Please use Guake Preferences dialog to choose another '
-                  'key') % xml_escape(label), filename)
-            self.client.set_bool(KEY('/general/use_trayicon'), True)
-
-        elif self.client.get_bool(KEY('/general/use_popup')):
+        if self.client.get_bool(KEY('/general/use_popup')):
             # Pop-up that shows that guake is working properly (if not
             # unset in the preferences windows)
             guake.notifier.show_message(
@@ -571,9 +563,7 @@ class Guake(SimpleGladeApp):
         Preferences window.
         """
         self.hide()
-        prefsdialog = PrefsDialog()
-        prefsdialog.set_keybinder(keybinder)
-        prefsdialog.show()
+        PrefsDialog().show()
 
     def is_iconified(self):
         if self.window.window:
