@@ -12,8 +12,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Guake 0.4.5\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-05-19 18:59+0200\n"
-"PO-Revision-Date: 2015-05-19 18:59+0100\n"
+"POT-Creation-Date: 2015-06-07 19:28+0200\n"
+"PO-Revision-Date: 2015-06-07 19:33+0100\n"
 "Last-Translator: Benjamin Danon <benjamin@sphax3d.org>\n"
 "Language-Team: French (http://www.transifex.com/projects/p/guake/language/"
 "fr/)\n"
@@ -22,7 +22,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
-"X-Generator: Poedit 1.5.4\n"
+"X-Generator: Poedit 1.7.5\n"
 
 #: ../data/about.glade.h:1
 msgid "About Guake"
@@ -150,11 +150,13 @@ msgstr "Renommer"
 msgid "Close"
 msgstr "Fermer"
 
-#: ../data/guake.glade.h:14 ../src/guake/about.py:47
-#: ../src/guake/guake_app.py:178 ../src/guake/guake_app.py:323
-#: ../src/guake/guake_app.py:333
-msgid "Guake Terminal"
-msgstr "Terminal Guake"
+#: ../data/guake.glade.h:14
+msgid "Guake!"
+msgstr "Guake !"
+
+#: ../data/guake.glade.h:15
+msgid "Add a new tab"
+msgstr "Ajouter un nouvel onglet"
 
 #: ../data/prefs.glade.h:1
 msgid "Guake Preferences"
@@ -566,14 +568,20 @@ msgstr "<b>Configuration clavier</b>"
 msgid "Compatibility"
 msgstr "Compatibilité"
 
-#: ../src/guake/gconfhandler.py:370
-msgid "key binding error"
-msgstr "Combinaison de touches invalide"
+#: ../src/guake/about.py:47 ../src/guake/gconfhandler.py:388
+#: ../src/guake/guake_app.py:175 ../src/guake/guake_app.py:341
+msgid "Guake Terminal"
+msgstr "Terminal Guake"
 
-#: ../src/guake/gconfhandler.py:371
+#: ../src/guake/gconfhandler.py:389
 #, python-format
-msgid "Unable to bind global <b>%s</b> key"
-msgstr "Impossible de combiner la touche <b>%s</b>"
+msgid ""
+"A problem happened when binding <b>%s</b> key.\n"
+"Please use Guake Preferences dialog to choose another key"
+msgstr ""
+"Un problème est survenu lors de la liaison avec la touche <b>%s</b>.\n"
+"Merci d'utiliser la fenêtre de préférences de Guake pour choisir une autre "
+"touche (icône de notification activée)"
 
 #: ../src/guake/guake_app.py:127
 msgid "Do you want to close the tab?"
@@ -605,29 +613,19 @@ msgstr "Il y a encore un processus en cours."
 msgid "There are {0} processes still running"
 msgstr "Il y a {0} processus encore actifs."
 
-#: ../src/guake/guake_app.py:183
+#: ../src/guake/guake_app.py:180
 msgid "guake-indicator"
 msgstr "guake-indicator"
 
-#: ../src/guake/guake_app.py:183
+#: ../src/guake/guake_app.py:180
 msgid "guake-tray"
 msgstr "guake-tray"
 
-#: ../src/guake/guake_app.py:187
+#: ../src/guake/guake_app.py:184
 msgid "Show"
 msgstr "Afficher"
 
-#: ../src/guake/guake_app.py:324
-#, python-format
-msgid ""
-"A problem happened when binding <b>%s</b> key.\n"
-"Please use Guake Preferences dialog to choose another key"
-msgstr ""
-"Un problème est survenu lors de la liaison avec la touche <b>%s</b>.\n"
-"Merci d'utiliser la fenêtre de préférences de Guake pour choisir une autre "
-"touche (icône de notification activée)"
-
-#: ../src/guake/guake_app.py:334
+#: ../src/guake/guake_app.py:342
 #, python-format
 msgid ""
 "Guake is now running,\n"
@@ -636,53 +634,53 @@ msgstr ""
 "Guake est en cours de fonctionnement,\n"
 "appuyer sur <b>%s</b> pour l'utiliser."
 
-#: ../src/guake/guake_app.py:524
+#: ../src/guake/guake_app.py:532
 #, python-format
 msgid "Search on Web: '%s'"
 msgstr "Rechercher sur le Web: '%s'"
 
-#: ../src/guake/guake_app.py:528
+#: ../src/guake/guake_app.py:536
 msgid "Search on Web (no selection)"
 msgstr "Rechercher sur le Web (pas de sélection)"
 
-#: ../src/guake/guake_app.py:534
+#: ../src/guake/guake_app.py:542
 msgid "Open Link: {}"
 msgstr "Ouvrir le lien: {}"
 
-#: ../src/guake/guake_app.py:537
+#: ../src/guake/guake_app.py:545
 msgid "Open Link..."
 msgstr "Ouvrir le lien..."
 
-#: ../src/guake/guake_app.py:1175
+#: ../src/guake/guake_app.py:1183
 msgid "Rename tab"
 msgstr "Renomme l'onglet"
 
 #. Adding a new radio button to the tabbar
-#: ../src/guake/guake_app.py:1412
+#: ../src/guake/guake_app.py:1420
 msgid "Terminal"
 msgstr "Terminal %s"
 
-#: ../src/guake/guake_app.py:1453
+#: ../src/guake/guake_app.py:1461
 msgid "Save to..."
 msgstr "Enregistrer sous..."
 
-#: ../src/guake/guake_app.py:1460
+#: ../src/guake/guake_app.py:1468
 msgid "All files"
 msgstr "Tous les fichiers"
 
-#: ../src/guake/guake_app.py:1465
+#: ../src/guake/guake_app.py:1473
 msgid "Text and Logs"
 msgstr "Textes et logs"
 
-#: ../src/guake/guake_app.py:1483
+#: ../src/guake/guake_app.py:1491
 msgid "Find"
 msgstr "Rechercher"
 
-#: ../src/guake/guake_app.py:1485
+#: ../src/guake/guake_app.py:1493
 msgid "Forward"
 msgstr "Suivant"
 
-#: ../src/guake/guake_app.py:1486
+#: ../src/guake/guake_app.py:1494
 msgid "Backward"
 msgstr "Précédent"
 
@@ -815,6 +813,12 @@ msgstr ""
 "Essayez de l'utiliser en combinaison avec une touche tel que Control, Alt ou "
 "Shift.\n"
 
+#~ msgid "key binding error"
+#~ msgstr "Combinaison de touches invalide"
+
+#~ msgid "Unable to bind global <b>%s</b> key"
+#~ msgstr "Impossible de combiner la touche <b>%s</b>"
+
 #~ msgid "<b>Quick Open configuration</b>"
 #~ msgstr "<b>Configuration de l'Ouverture Rapide</b>"
 
@@ -823,9 +827,6 @@ msgstr ""
 
 #~ msgid "http://guake.org"
 #~ msgstr "http://guake.org"
-
-#~ msgid "Guake!"
-#~ msgstr "Guake !"
 
 #~ msgid ""
 #~ "Tango\n"
