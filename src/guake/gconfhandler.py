@@ -11,13 +11,14 @@ import subprocess
 from pango import FontDescription
 from xml.sax.saxutils import escape as xml_escape
 
-from guake.common import pixmapfile
+import guake.notifier
+
 from guake.common import _
+from guake.common import pixmapfile
 from guake.globals import GCONF_PATH
 from guake.globals import GKEY
 from guake.globals import KEY
 from guake.globals import LKEY
-import guake.notifier
 
 
 GCONF_MONOSPACE_FONT_PATH = '/desktop/gnome/interface/monospace_font_name'
