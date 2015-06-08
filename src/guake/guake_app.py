@@ -662,7 +662,7 @@ class Guake(SimpleGladeApp):
 
     def window_event(self, window, event):
         state = event.new_window_state
-        log.debug("Received window state event. Window: %s. Event: %s", window, state)
+        log.debug("Received window state event: %s", state)
 
     def show_hide(self, *args):
         """Toggles the main window visibility
@@ -688,6 +688,8 @@ class Guake(SimpleGladeApp):
             return
         self.prev_showhide_time = event_time
 
+        log.debug("")
+        log.debug("=" * 80)
         log.debug("Window display")
         if self.window.window:
             cur_state = int(self.window.window.get_state())
@@ -790,6 +792,8 @@ class Guake(SimpleGladeApp):
         #     log.debug("get_urgency_hint: {}".format(
         #         self.get_widget('window-root').get_urgency_hint()))
         #     glib.timeout_add_seconds(1, lambda: self.timeout_restore(time))
+        #
+        log.debug("Current window geometry: {!r}".format(self.window.window.get_geometry()))
 
         log.debug("order to present and deiconify")
         self.window.present()
@@ -873,11 +877,9 @@ class Guake(SimpleGladeApp):
         # http://askubuntu.com/questions/70296/is-there-an-environment-variable-that-is-set-for-unity
         if float(linux_distrib[1]) - 0.01 < 11.10:
             if os.environ.get('DESKTOP_SESSION', '').lower() == "gnome".lower():
-                log.debug("Unity detected")
                 return True
         else:
             if os.environ.get('XDG_CURRENT_DESKTOP', '').lower() == "unity".lower():
-                log.debug("Unity detected")
                 return True
         return False
 
@@ -898,15 +900,18 @@ class Guake(SimpleGladeApp):
         halignment = self.client.get_int(KEY('/general/window_halignment'))
         valignment = self.client.get_int(KEY('/general/window_valignment'))
 
-        # log.debug("height_percents", height_percents)
-        # log.debug("width_percents", width_percents)
-        # log.debug("halignment", halignment)
-        # log.debug("valignment", valignment)
+        log.debug("set_final_window_rect")
+        log.debug("height_percents = {}".format(height_percents))
+        log.debug("width_percents = {}".format(width_percents))
+        log.debug("halignment = {}".format(halignment))
+        log.debug("valignment = {}".format(valignment))
 
         # get the rectangle just from the destination monitor
         screen = self.window.get_screen()
         monitor = self.get_final_window_monitor()
         window_rect = screen.get_monitor_geometry(monitor)
+        log.debug("Current screen geometry: {!r}".format(window_rect))
+        log.debug("is unity: {}".format(self.is_using_unity()))
 
         if self.is_using_unity():
 
@@ -957,10 +962,11 @@ class Guake(SimpleGladeApp):
         window_rect.height = window_rect.height * height_percents / 100
         window_rect.width = window_rect.width * width_percents / 100
 
-        # log.debug("window_rect.x", window_rect.x)
-        # log.debug("window_rect.y", window_rect.y)
-        # log.debug("window_rect.height", window_rect.height)
-        # log.debug("window_rect.width", window_rect.width)
+        log.debug("BEFORE SETTINGS APPLICATION")
+        log.debug("window_rect.x: {}".format(window_rect.x))
+        log.debug("window_rect.y: {}".format(window_rect.y))
+        log.debug("window_rect.height: {}".format(window_rect.height))
+        log.debug("window_rect.width: {}".format(window_rect.width))
 
         if window_rect.width < total_width:
             if halignment == ALIGN_CENTER:
@@ -976,9 +982,14 @@ class Guake(SimpleGladeApp):
             if valignment == ALIGN_BOTTOM:
                 window_rect.y += (total_height - window_rect.height)
 
+        log.debug("RESIZING MAIN WINDOW TO THE FOLLOWING VALUES:")
+        log.debug("window_rect.x: {}".format(window_rect.x))
+        log.debug("window_rect.y: {}".format(window_rect.y))
+        log.debug("window_rect.height: {}".format(window_rect.height))
+        log.debug("window_rect.width: {}".format(window_rect.width))
+
         self.window.resize(window_rect.width, window_rect.height)
         self.window.move(window_rect.x, window_rect.y)
-        # log.debug("Moving/Resizing to: window_rect", window_rect)
 
         return window_rect
 
