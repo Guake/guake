@@ -775,7 +775,7 @@ class Guake(SimpleGladeApp):
             time = 0
 
         # When minized, the window manager seems to refuse to resume
-        log.debug("self.window: %s. Dir=%s", type(self.window), dir(self.window))
+        # log.debug("self.window: %s. Dir=%s", type(self.window), dir(self.window))
         # is_iconified = self.is_iconified()
         # if is_iconified:
         #     log.debug("Is iconified. Ubuntu Trick => removing skip_taskbar_hint and skip_pager_hint "
