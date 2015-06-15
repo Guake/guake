@@ -97,7 +97,8 @@ class GuakeTerminal(vte.Terminal):
         """
         client = gconf.client_get_default()
         word_chars = client.get_string(KEY('/general/word_chars'))
-        self.set_word_chars(word_chars)
+        if word_chars:
+            self.set_word_chars(word_chars)
         self.set_audible_bell(client.get_bool(KEY('/general/use_audible_bell')))
         self.set_visible_bell(client.get_bool(KEY('/general/use_visible_bell')))
         self.set_sensitive(True)
