@@ -38,6 +38,8 @@ import pygtk
 import subprocess
 import sys
 import xdg.Exceptions
+import json
+from os.path import expanduser
 
 from urllib import quote_plus
 from urllib import url2pathname
@@ -244,6 +246,25 @@ class Guake(SimpleGladeApp):
         # holds the timestamp of the previous show/hide action
         self.prev_showhide_time = 0
 
+        # custom context-menu row creation
+        def context_menu_row_creation(cmd):
+            item = gtk.MenuItem()
+            button = gtk.MenuItem(cmd)
+            button.show()
+            item.connect("activate", self.execute_context_menu_cmd,cmd)
+            item.add(button)
+            item.show()
+            self.get_widget('context-menu').append(item)
+
+        # Set up context menu
+        try:
+            with open(expanduser("~")+'/.config/guake/custom_command.json') as data_file:    
+                data = json.load(data_file)
+            for single_cmd in data['cmds']:
+                context_menu_row_creation(single_cmd)
+        except :
+            print("Custom command file not found")
+
         # double click stuff
         def double_click(hbox, event):
             """Handles double clicks on tabs area and when receive
@@ -341,6 +362,10 @@ class Guake(SimpleGladeApp):
                 _('Guake Terminal'),
                 _('Guake is now running,\n'
                   'press <b>%s</b> to use it.') % xml_escape(label), filename)
+
+    # execute contextual menu call
+    def execute_context_menu_cmd (self,item,cmd) :
+        self.execute_command(cmd)
 
     def setupLogging(self):
         if self.debug_mode:
