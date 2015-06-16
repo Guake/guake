@@ -30,6 +30,7 @@ except:
 import gconf
 import gobject
 import gtk
+import json
 import logging
 import logging.config
 import os
@@ -38,7 +39,7 @@ import pygtk
 import subprocess
 import sys
 import xdg.Exceptions
-import json
+
 from os.path import expanduser
 
 from urllib import quote_plus
@@ -246,24 +247,50 @@ class Guake(SimpleGladeApp):
         # holds the timestamp of the previous show/hide action
         self.prev_showhide_time = 0
 
+        # returns position where the custom cmd must be placed on the context-menu
+        def context_menu_get_insert_pos():
+            # assuming that the quit menuitem is always the last one and with a separator before him
+            return len(self.get_widget('context-menu').get_children())-2
+
         # custom context-menu row creation
         def context_menu_row_creation(cmd):
+
+            # print separator (only first time)
+            if context_menu_row_creation.cmd_counter==0:
+                sep = gtk.SeparatorMenuItem()
+                self.get_widget('context-menu').insert(sep,context_menu_get_insert_pos())
+                sep.show()
+
+            # print custom command
             item = gtk.MenuItem()
             button = gtk.MenuItem(cmd)
             button.show()
             item.connect("activate", self.execute_context_menu_cmd,cmd)
             item.add(button)
             item.show()
-            self.get_widget('context-menu').append(item)
+
+            # append custom command
+            context_menu_row_creation.cmd_counter=context_menu_row_creation.cmd_counter+1
+            self.get_widget('context-menu').insert(item,context_menu_get_insert_pos())
 
         # Set up context menu
+        context_menu_row_creation.cmd_counter=0
+        custom_commands=None
         try:
-            with open(expanduser("~")+'/.config/guake/custom_command.json') as data_file:    
-                data = json.load(data_file)
-            for single_cmd in data['cmds']:
-                context_menu_row_creation(single_cmd)
+            with open(self.client.get_string(KEY('/general/custom_command_file'))) as data_file:
+                custom_commands = json.load(data_file)     
         except :
-            print("Custom command file not found")
+            try:
+                with open(expanduser("~")+'/.config/guake/custom_command.json') as data_file:
+                    custom_commands = json.load(data_file)
+            except:
+                print("Valid custom command file not found")
+
+        print(custom_commands)
+        if custom_commands!=None:
+            for single_cmd in custom_commands['cmds']:
+                context_menu_row_creation(single_cmd)
+
 
         # double click stuff
         def double_click(hbox, event):
