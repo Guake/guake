@@ -276,17 +276,13 @@ class Guake(SimpleGladeApp):
         # Set up context menu
         context_menu_row_creation.cmd_counter=0
         custom_commands=None
+        print(os.path.expanduser(self.client.get_string(KEY('/general/custom_command_file'))))
         try:
-            with open(self.client.get_string(KEY('/general/custom_command_file'))) as data_file:
+            with open(os.path.expanduser(self.client.get_string(KEY('/general/custom_command_file')))) as data_file:
                 custom_commands = json.load(data_file)     
-        except :
-            try:
-                with open(expanduser("~")+'/.config/guake/custom_command.json') as data_file:
-                    custom_commands = json.load(data_file)
-            except:
-                print("Valid custom command file not found")
+        except:
+            print("Valid custom command file not found")
 
-        print(custom_commands)
         if custom_commands!=None:
             for single_cmd in custom_commands['cmds']:
                 context_menu_row_creation(single_cmd)
