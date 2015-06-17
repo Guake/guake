@@ -987,5 +987,20 @@
             </locale>
         </schema>
 
+        <schema>
+            <key>/schemas/apps/guake/general/custom_command_file</key>
+            <applyto>/apps/guake/general/custom_command_file</applyto>
+            <owner>guake</owner>
+            <type>string</type>
+            <default>~/.config/guake/custom_command.json</default>
+            <locale name="C">
+                <short>Path to the default custom command json file.</short>
+                <long>Path to the default custom command json file.
+                If is blank or the json file is not in a proper format
+                the terminal context menu will be built without custom commands.
+                If the file is a valid json with recognized structure theterminak
+                context menu will be buit with the commands read inside.</long>
+            </locale>
+        </schema>
     </schemalist>
 </gconfschemafile>
