@@ -39,8 +39,7 @@ import pygtk
 import subprocess
 import sys
 import xdg.Exceptions
-
-from os.path import expanduser
+import urllib2
 
 from urllib import quote_plus
 from urllib import url2pathname
@@ -275,18 +274,19 @@ class Guake(SimpleGladeApp):
 
         # Set up context menu
         context_menu_row_creation.cmd_counter=0
-        custom_commands=None
-        print(os.path.expanduser(self.client.get_string(KEY('/general/custom_command_file'))))
+
         try:
-            with open(os.path.expanduser(self.client.get_string(KEY('/general/custom_command_file')))) as data_file:
-                custom_commands = json.load(data_file)     
+            data_file = urllib2.urlopen(self.client.get_string(KEY('/general/custom_command_file')))
+            custom_commands = json.load(data_file)
+            if custom_commands!=None:
+                for single_cmd in custom_commands['cmds']:
+                    context_menu_row_creation(single_cmd)
         except:
             print("Valid custom command file not found")
 
-        if custom_commands!=None:
-            for single_cmd in custom_commands['cmds']:
-                context_menu_row_creation(single_cmd)
-
+        finally:
+            if data_file:
+                data_file.close()
 
         # double click stuff
         def double_click(hbox, event):
