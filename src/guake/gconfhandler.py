@@ -94,6 +94,10 @@ class GConfHandler(object):
 
         notify_add(KEY('/general/compat_backspace'), self.backspace_changed)
         notify_add(KEY('/general/compat_delete'), self.delete_changed)
+        notify_add(KEY('/general/custom_command_file'), self.custom_command_file_changed)
+
+    def custom_command_file_changed(self,client, connection_id, entry, data):
+        self.guake.read_custom_commands_file()
 
     def show_resizer_toggled(self, client, connection_id, entry, data):
         """If the gconf var show_resizer be changed, this method will
