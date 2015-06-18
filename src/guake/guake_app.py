@@ -372,6 +372,7 @@ class Guake(SimpleGladeApp):
 
     # function to read file stored at /general/custom_command_file and launch the context menu builder
     def read_custom_commands_file(self):
+        data_file=None
         try:
             data_file = urllib2.urlopen(self.client.get_string(KEY('/general/custom_command_file')))
             custom_commands = json.load(data_file)
