@@ -31,8 +31,7 @@ class GuakeNotebook(Notebook):
         """ We should also reorder elements in term_list
         """
         old_pos = self.get_children().index(child)
-        terms = self.term_list
-        terms[old_pos], terms[position] = terms[position], terms[old_pos]
+        self.term_list.insert(position, self.term_list.pop(old_pos))
         super(GuakeNotebook, self).reorder_child(child, position)
 
     def has_term(self):
