@@ -1,11 +1,22 @@
 Version 0.8.0 (dev)
 ==========================
 
-  This releases introduces two major change in the project
+  I have been extremely busy the previous 3 months, so I have almost not worked on Guake. I wanted
+  to introduce in the next version some major features heavily asked, like session save and split
+  terminal. They will have to wait a bit more.
+
+  As a result, most of the contribution are from external contributors. Thank you very much for
+  all these patches!
+
+  This releases introduces two major changes in the project, thus the minor version change.
 
   First, the new homepage is now online:
 
     http://guake-project.org/
+  
+  As I remind you, Guake has *not* control over the old domain guake.org. So far the content is
+  still one of the old content of this domain. So please use http://guake-project.org to reference
+  Guake.
 
   The second major change in the project is the abandon of our internal hotkey manager
   ``globalhotkey``, which was responsible for binding hotkeys globally to the window manager. This
@@ -27,6 +38,11 @@ Version 0.7.2 (2015.05.20)
   Bug fixes:
   - Fix Ctrl+D regresion (#550)
   - update Quick Open Preference Window
+  - Fix icon issue with appindicator (#591)
+  - swap terms correctly when moving tabs (#473, #512, #588)
+  - Remove last reference to --show-hide (#587)
+  - fixed and completed german translation (#585)
+  - Drop duplicated man page (a526046a)
 
 Version 0.7.1 (2015.05.18):
 ===========================
