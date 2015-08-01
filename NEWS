@@ -18,6 +18,10 @@ Version 0.8.0 (dev)
   still one of the old content of this domain. So please use http://guake-project.org to reference
   Guake.
 
+  Source code of the Web site can be found here:
+
+    https://github.com/Guake/guake-website
+
   The second major change in the project is the abandon of our internal hotkey manager
   ``globalhotkey``, which was responsible for binding hotkeys globally to the window manager. This
   piece of code was extremely old and hard to maintain. This was also unnecessarily complexifying
@@ -25,12 +29,14 @@ Version 0.8.0 (dev)
   common package ``keybinder`` (Ubuntu: ``python-keybinder``).
 
   Bug fixes:
-   - Guake fails to start due to a GlobalHotkey related C call fixed by replacing GlobalHotkeys with
-     keybinder. Fixed by @jenrik. (#558, #510)
+  - Guake fails to start due to a GlobalHotkey related C call fixed by replacing GlobalHotkeys with
+    keybinder. Fixed by @jenrik. (#558, #510)
+  - Fix icon issue with appindicator (#591)
+  - swap terms correctly when moving tabs (#473, #512, #588)
+  - Remove last reference to --show-hide (#587)
+  - fixed and completed german translation (#585)
+  - Drop duplicated man page (a526046a)
 
-  Source code of the Web site can be found here:
-
-    https://github.com/Guake/guake-website
 
 Version 0.7.2 (2015.05.20)
 ==========================
@@ -38,11 +44,6 @@ Version 0.7.2 (2015.05.20)
   Bug fixes:
   - Fix Ctrl+D regresion (#550)
   - update Quick Open Preference Window
-  - Fix icon issue with appindicator (#591)
-  - swap terms correctly when moving tabs (#473, #512, #588)
-  - Remove last reference to --show-hide (#587)
-  - fixed and completed german translation (#585)
-  - Drop duplicated man page (a526046a)
 
 Version 0.7.1 (2015.05.18):
 ===========================
