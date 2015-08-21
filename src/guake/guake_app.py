@@ -38,8 +38,8 @@ import platform
 import pygtk
 import subprocess
 import sys
-import xdg.Exceptions
 import urllib2
+import xdg.Exceptions
 
 from urllib import quote_plus
 from urllib import url2pathname
@@ -246,8 +246,8 @@ class Guake(SimpleGladeApp):
         # holds the timestamp of the previous show/hide action
         self.prev_showhide_time = 0
 
-        #initialize cmd_counter and read custom command file
-        self.cmd_counter=0
+        # initialize cmd_counter and read custom command file
+        self.cmd_counter = 0
         self.read_custom_commands_file()
 
         # double click stuff
@@ -351,57 +351,66 @@ class Guake(SimpleGladeApp):
     # returns position where the custom cmd must be placed on the context-menu
     def context_menu_get_insert_pos(self):
         # assuming that the quit menuitem is always the last one and with a separator before him
-        return len(self.get_widget('context-menu').get_children())-2
+        return len(self.get_widget('context-menu').get_children()) - 2
 
     # custom context-menu row creation
-    def context_menu_row_creation(self,cmd):
-        #first time a separator is printed
-        if self.cmd_counter==0:
+    def context_menu_row_creation(self, cmd):
+        # first time a separator is printed
+        if self.cmd_counter == 0:
             sep = gtk.SeparatorMenuItem()
-            self.get_widget('context-menu').insert(sep,self.context_menu_get_insert_pos())
+            self.get_widget('context-menu').insert(sep, self.context_menu_get_insert_pos())
             sep.show()
 
         # print custom command
         item = gtk.MenuItem(cmd)
-        item.connect("activate", self.execute_context_menu_cmd,cmd)
+        item.connect("activate", self.execute_context_menu_cmd, cmd)
         item.show()
 
         # append custom command
-        self.cmd_counter+=1
-        self.get_widget('context-menu').insert(item,self.context_menu_get_insert_pos())
+        self.cmd_counter += 1
+        self.get_widget('context-menu').insert(item, self.context_menu_get_insert_pos())
 
     # function to read file stored at /general/custom_command_file and launch the context menu builder
     def read_custom_commands_file(self):
-        data_file=None
+        data_file = None
+        file_name = os.path.expanduser(self.client.get_string(KEY('/general/custom_command_file')))
+        if not file_name:
+            print("No custom command file")
+            return
         try:
-            data_file = urllib2.urlopen(self.client.get_string(KEY('/general/custom_command_file')))
-            custom_commands = json.load(data_file)
+            with open(file_name) as f:
+                data_file = f.read()
+        except:
+            date_file = None
+        if not data_file:
+            print("Empty custom commands for file: {}".format(file_name))
+            return
+        try:
+            custom_commands = json.loads(data_file)
+            print("custom_commands {!r}".format(custom_commands))
             # case of reload configuration file (remove old entries)
-            if self.cmd_counter>0:
-                itemlist=self.get_widget('context-menu').get_children()[2:]
-                mark_for_remove=0
+            if self.cmd_counter > 0:
+                itemlist = self.get_widget('context-menu').get_children()[2:]
+                mark_for_remove = 0
                 for i in reversed(itemlist):
-                    if type(i) is gtk.MenuItem:
+                    if isinstance(i, gtk.MenuItem):
                         self.get_widget('context-menu').remove(i)
-                        self.cmd_counter-=1
-                        if self.cmd_counter==0:
-                            mark_for_remove=1
-                    if type(i) is gtk.SeparatorMenuItem and mark_for_remove==1:
-                        mark_for_remove=0
+                        self.cmd_counter -= 1
+                        if self.cmd_counter == 0:
+                            mark_for_remove = 1
+                    if isinstance(i, gtk.SeparatorMenuItem) and mark_for_remove == 1:
+                        mark_for_remove = 0
                         self.get_widget('context-menu').remove(i)
 
             for single_cmd in custom_commands['cmds']:
                 self.context_menu_row_creation(single_cmd)
-        except Exception, err :
+        except Exception, err:
             print("Valid custom command file not found")
             print(err)
-
-        finally:
-            if data_file:
-                data_file.close()
+            raise
 
     # execute contextual menu call
-    def execute_context_menu_cmd (self,item,cmd) :
+    def execute_context_menu_cmd(self, item, cmd):
         self.execute_command(cmd)
 
     def setupLogging(self):
