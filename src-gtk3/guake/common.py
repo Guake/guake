@@ -47,8 +47,8 @@ __all__ = [
 class ShowableError(Exception):
 
     def __init__(self, title, msg, exit_code=1):
-        d = gtk.MessageDialog(type=gtk.MESSAGE_ERROR,
-                              buttons=gtk.BUTTONS_CLOSE)
+        d = Gtk.Dialog(type=Gtk.MESSAGE_ERROR,
+                       buttons=Gtk.BUTTONS_CLOSE)
         d.set_markup('<b><big>%s</big></b>' % title)
         d.format_secondary_markup(msg)
         d.run()

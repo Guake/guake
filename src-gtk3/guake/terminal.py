@@ -23,14 +23,12 @@ from __future__ import unicode_literals
 
 from gi.repository import Gdk
 from gi.repository import GdkX11
-from gi.repository import Gio
 from gi.repository import Gtk
 from gi.repository import Pango
 from gi.repository import Vte
 
 from guake.common import clamp
-from guake.globals import KEY
-
+# from guake.globals import KEY
 
 __all__ = ['Terminal', 'TerminalBox']
 
