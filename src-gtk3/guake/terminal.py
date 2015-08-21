@@ -19,10 +19,11 @@ Boston, MA 02110-1301 USA
 from __future__ import absolute_import
 from __future__ import division
 from __future__ import print_function
+from __future__ import unicode_literals
 
-from gi.repository import GConf
 from gi.repository import Gdk
 from gi.repository import GdkX11
+from gi.repository import Gio
 from gi.repository import Gtk
 from gi.repository import Pango
 from gi.repository import Vte
@@ -96,11 +97,11 @@ class Terminal(Vte.Terminal):
     def configure_terminal(self):
         """Sets all customized properties on the terminal
         """
-        client = GConf.Client.get_default()
-        word_chars = client.get_string(KEY('/general/word_chars'))
-        self.set_word_chars(word_chars)
-        self.set_audible_bell(client.get_bool(KEY('/general/use_audible_bell')))
-        self.set_visible_bell(client.get_bool(KEY('/general/use_visible_bell')))
+        # client = GConf.Client.get_default()
+        # word_chars = client.get_string(KEY('/general/word_chars'))
+        # self.set_word_chars(word_chars)
+        # self.set_audible_bell(client.get_bool(KEY('/general/use_audible_bell')))
+        # self.set_visible_bell(client.get_bool(KEY('/general/use_visible_bell')))
         self.set_sensitive(True)
         self.set_can_default(True)
         self.set_can_focus(True)
