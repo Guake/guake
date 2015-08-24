@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schemalist>
+    <schema id="guake" path="/org/guake/">
+        <child name="general" schema="guake.general"/>
+        <child name="shell" schema="guake.shell"/>
+        <child name="appearance" schema="guake.appearance"/>
+        <child name="quick-open" schema="guake.quick-open"/>
+        <child name="sessions" schema="guake.sessions"/>
+        <child name="keybindings" schema="guake.keybindings"/>
+        <child name="custom-commands" schema="guake.custom-commands"/>
+    </schema>
+    <schema id="guake.general" path="/org/guake/general/">
+        <key name="debug-mode" type="b">
+            <default>false</default>
+            <summary>Debug Mode</summary>
+            <description>
+
+                When enabled, debug logs will be sent to logging system
+
+            </description>
+        </key>
+    </schema>
+    <schema id="guake.shell" path="/org/guake/shell/">
+        <key name="default-shell" type="s">
+            <default>''</default>
+            <summary>Default shell</summary>
+            <description>
+
+                Overide your default shell when using Guake
+
+            </description>
+        </key>
+    </schema>
+    <schema id="guake.appearance" path="/org/guake/appearance/">
+        <key name="opacity" type="i">
+            <range min="0" max="100"/>
+            <default>80</default>
+            <summary>Opacity level</summary>
+            <description>
+
+                Define the opacity of the main Guake Terminal window. 0 means transparent, while
+                100 mean full opacity.
+
+            </description>
+        </key>
+    </schema>
+    <schema id="guake.quick-open" path="/org/guake/quick-open/">
+        <key name="enable-quick-open" type="b">
+            <default>true</default>
+            <summary>Enable Quick Open</summary>
+            <description>
+
+                Enable the quick open feature, when user click on a filename in the terminal.
+
+            </description>
+        </key>
+    </schema>
+    <schema id="guake.sessions" path="/org/guake/sessions/">
+        <key name="enable-session" type="b">
+            <default>true</default>
+            <summary>Enable session mangement</summary>
+            <description>
+
+                Enable the session saving and restore
+
+            </description>
+        </key>
+    </schema>
+    <schema id="guake.keybindings" path="/org/guake/keybindings/">
+        <key name="show-hide" type="s">
+            <default>'F12'</default>
+            <summary>Keybinding to show/hide guake</summary>
+            <description>
+
+                Global keybinding to allow user call guake from each place after it's opened without
+                clicks.
+
+            </description>
+        </key>
+    </schema>
+    <schema id="guake.custom-commands" path="/org/guake/custom-commands/">
+        <key name="enable-custom-commands" type="b">
+            <default>true</default>
+            <summary>Enable custom commands menu</summary>
+            <description>
+
+                Enable the custom commands menu
+
+            </description>
+        </key>
+    </schema>
+</schemalist>
