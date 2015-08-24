@@ -1484,6 +1484,24 @@ Blink off</property>
                                   </packing>
                                 </child>
                                 <child>
+                                  <widget class="GtkCheckButton" id="allow_bold">
+                                    <property name="label" translatable="yes">Allow bold font</property>
+                                    <property name="visible">True</property>
+                                    <property name="can_focus">True</property>
+                                    <property name="receives_default">False</property>
+                                    <property name="use_action_appearance">False</property>
+                                    <property name="yalign">1</property>
+                                    <property name="draw_indicator">True</property>
+                                    <signal name="toggled" handler="on_allow_bold_toggled" swapped="no"/>
+                                  </widget>
+                                  <packing>
+                                    <property name="top_attach">3</property>
+                                    <property name="bottom_attach">4</property>
+                                    <property name="x_options">GTK_FILL</property>
+                                    <property name="y_options"/>
+                                  </packing>
+                                </child>
+                                <child>
                                   <placeholder/>
                                 </child>
                                 <child>
