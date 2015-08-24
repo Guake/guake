@@ -1,0 +1,420 @@
+<schemalist>
+    <schema id="guake" path="/apps/guake/">
+        <child name="general" schema="guake.general"/>
+        <child name="style" schema="guake.style"/>
+        <child name="keybindings" schema="guake.keybindings"/>
+    </schema>
+    <schema id="guake.general" path="/apps/guake/general/">
+        <key name="debug-mode" type="b">
+            <default>false</default>
+            <summary>Enable debug mode</summary>
+            <description>When debug mode is enabled, logs are printed in the standard output where Guake as been launched</description>
+        </key>
+        <key name="mouse-display" type="b">
+            <default>true</default>
+            <summary>Appear on the mouse display.</summary>
+            <description>Appear on the mouse display. This overrides any setting in display_n.</description>
+        </key>
+        <key name="display-n" type="i">
+            <default>0</default>
+            <summary>Display to appear on.</summary>
+            <description>Display to appear on if the  mouse_display option is not set. If this is set to an invalid value (as in the case of removing a screen from a system), the invalid value is automatically updated to the current primary screen.</description>
+        </key>
+        <key name="default-shell" type="s">
+            <default>''</default>
+            <summary>Path to the default shell.</summary>
+            <description>Path to the default shell. Set to empty to use default user shell. If invalid path is set here, guake will fallback to user shell.</description>
+        </key>
+        <key name="use-login-shell" type="b">
+            <default>false</default>
+            <summary>Login shell</summary>
+            <description>If true, the commands in terminal will be executed in a login shell.</description>
+        </key>
+        <key name="use-trayicon" type="b">
+            <default>true</default>
+            <summary>Sets the tray visibility.</summary>
+            <description>When true tray is visible.</description>
+        </key>
+        <key name="use-popup" type="b">
+            <default>true</default>
+            <summary>Sets the popup notifications visibility.</summary>
+            <description>When true, popup notifications will be shown when Guake starts.</description>
+        </key>
+        <key name="prompt-on-quit" type="b">
+            <default>true</default>
+            <summary>Prompt when quitting.</summary>
+            <description>Ask for confirmation when quitting Guake.</description>
+        </key>
+        <key name="prompt-on-close-Tab" type="i">
+            <default>0</default>
+            <summary>Prompt when closing tabs.</summary>
+            <description>0: Never 1: If process is running 2: Always.  Also prompts on quit.</description>
+        </key>
+        <key name="window-ontop" type="b">
+            <default>true</default>
+            <summary>Stay on top.</summary>
+            <description>Makes guake window be on top of all other windows in the desktop.</description>
+        </key>
+        <key name="tab-ontop" type="b">
+            <default>false</default>
+            <summary>Tab on top.</summary>
+            <description>Makes tab bar on top of the Guake window. Per default, tabs appears bellow the terminal. Setting this to True will move the tab on top of the terminal. Requires a restart.</description>
+        </key>
+        <key name="window-losefocus" type="b">
+            <default>false</default>
+            <summary>Determine if guake hides on lose focus.</summary>
+            <description>If this property is set as true, guake will be hidden when the main window lose the focus (when Alt+Tab be pressed for example).</description>
+        </key>
+        <key name="window-tabbar" type="b">
+            <default>true</default>
+            <summary>The tab bar visibility.</summary>
+            <description>When true, the tab bar is visible.</description>
+        </key>
+        <key name="quick-open-enable" type="b">
+            <default>false</default>
+            <summary>Enable Quick Open feature.</summary>
+            <description>If this property is set as true, guake will open a text editor when the user does a Ctrl+Click on a filename printed in the terminal.</description>
+        </key>
+        <key name="quick-open-command-line" type="s">
+            <default>'gedit %(file_path)s'</default>
+            <summary>Command line pattern to start a editor.</summary>
+            <description>This property gives the command line to execute when doing a Quick Open. You can enter the following python string pattern in it: '%(file_path)s' will be replaced with the full path to the captured filename, '%(line_number)s' will be replaced by the line number if found (set to the empty string otherwise).</description>
+        </key>
+        <key name="quick-open-in-current-terminal" type="b">
+            <default>false</default>
+            <summary>Quick open the file in the current terminal.</summary>
+            <description>If this property is set as true, guake will use the current terminal to execute the Quick open feature. Use if you want to inherit your terminal environment in your text editor</description>
+        </key>
+        <key name="startup-script" type="s">
+            <default>''</default>
+            <summary>Startup script to execute when guake starts</summary>
+            <description>This property allows you to execute a startup bash script each time guake starts. You can configure your initial tab settings within this script. Please see the command line argument of guake ('guake --help') for complete help.</description>
+        </key>
+        <key name="start-fullscreen" type="b">
+            <default>false</default>
+            <summary>Start fullscreen.</summary>
+            <description>When true, the program will start in fullscreen mode.</description>
+        </key>
+        <key name="use-audible-bell" type="b">
+            <default>false</default>
+            <summary>Audible bell</summary>
+            <description>If true, the system alert sound will be played on a bell character.</description>
+        </key>
+        <key name="use-visible-bell" type="b">
+            <default>false</default>
+            <summary>Visible bell</summary>
+            <description>If true, the terminal will flash on a bell character.</description>
+        </key>
+        <key name="window-width" type="i">
+            <default>100</default>
+            <summary>Window width.</summary>
+            <description>Percent of the screen that will be used by guake terminal horizontally.</description>
+        </key>
+        <key name="window-width-f" type="d">
+            <default>100</default>
+            <summary>Window width (float).</summary>
+            <description>Percent of the screen that will be used by guake terminal horizontally.</description>
+        </key>
+        <key name="window-height-f" type="d">
+            <default>50</default>
+            <summary>Window height (float).</summary>
+            <description>Percent of the screen that will be used by guake terminal vertically.</description>
+        </key>
+        <key name="window-halignment" type="i">
+            <default>0</default>
+            <summary>Window horizontal alignment.</summary>
+            <description>Place Guake at: 0: center, 1: left, 2: right</description>
+        </key>
+        <key name="window-valignment" type="i">
+            <default>0</default>
+            <summary>Window vertical alignment.</summary>
+            <description>Place Guake at: 0: top, 1: bottom</description>
+        </key>
+        <key name="use-scrollbar" type="b">
+            <default>true</default>
+            <summary>Sets the scrollbar visibility.</summary>
+            <description>When true, scrollbar is visible.</description>
+        </key>
+        <key name="history-size" type="i">
+            <default>1024</default>
+            <summary>History Size.</summary>
+            <description>The number of scrollback lines to save in history.</description>
+        </key>
+        <key name="scroll-output" type="b">
+            <default>false</default>
+            <summary>Scroll on output</summary>
+            <description>If true, whenever there is new output in the terminal, it will scroll to the bottom.</description>
+        </key>
+        <key name="scroll-keystroke" type="b">
+            <default>true</default>
+            <summary>Scroll on keystroke</summary>
+            <description>If true and a key is pressed, the terminal is scrolled to the bottom.</description>
+        </key>
+        <key name="use-default-font" type="b">
+            <default>true</default>
+            <summary>Use default font</summary>
+            <description>If true, Guake will use the GNOME monospace default font.</description>
+        </key>
+        <key name="use-palette-font-and-background-color" type="b">
+            <default>true</default>
+            <summary>Use palette font and backgrount colors</summary>
+            <description>If true, the terminal font and background colors will use the value defined in the palette. If false, it will use the value defined by the user.</description>
+        </key>
+        <key name="use-vte-titles" type="b">
+            <default>true</default>
+            <summary>Use terminal titles for tab naming</summary>
+            <description>Any terminal program can set the terminal's title via special escape sequences. Some shells (e.g. bash) display user's prompt there (though you can adjust that to any arbitrary text in bashrc or similar) and update it automatically as the prompt changes. So you can have easy automatically updating meaningful tab titles with this option turned on.</description>
+        </key>
+        <key name="compat-backspace" type="s">
+            <default>'ascii-delete'</default>
+            <summary>Backspace Compatibility</summary>
+            <description>Defines the behavior of backscape key.</description>
+        </key>
+        <key name="compat-delete" type="s">
+            <default>'delete-sequence'</default>
+            <summary>Delete Compatibility</summary>
+            <description>Defines the behavior of delete key.</description>
+        </key>
+        <key name="word-chars" type="s">
+            <default>'-A-Za-z0-9,./?%&amp;#:_~'</default>
+            <summary>Characters that are considered &quot;part of a word&quot;</summary>
+            <description>When selecting text by word, sequences of these characters are considered single words. Ranges can be given as &quot;A-Z&quot;. Literal hyphen (not expressing a range) should be the first character given.</description>
+        </key>
+        <key name="show-resizer" type="b">
+            <default>true</default>
+            <summary>If guake must show a control to make resizing more handful</summary>
+            <description>When true, guake shows a resizer on its bottom to allow user resize guake.</description>
+        </key>
+        <key name="toolbar-visible-in-fullscreen" type="b">
+            <default>true</default>
+            <summary>If the tabs bar must be visible in fullscreen</summary>
+            <description>Set it as false to enjoy guake's fullscreen.</description>
+        </key>
+        <key name="focus-if-open" type="b">
+            <default>true</default>
+            <summary>Give focus to guake if tab is opened (OBSOLETE).</summary>
+            <description>If the guake window is out of focus but open, enabling this will give it back the focus instead of closing the window.</description>
+        </key>
+        <key name="custom-command-file" type="s">
+            <default>'~/.config/guake/custom_command.json'</default>
+            <summary>Path to the default custom command json file.</summary>
+            <description>Path to the default custom command json file. If is blank or the json file is not in a proper format the terminal context menu will be built without custom commands. If the file is a valid json with recognized structure theterminak context menu will be buit with the commands read inside.</description>
+        </key>
+    </schema>
+    <schema id="guake.style" path="/apps/guake/style/">
+        <key name="cursor-blink-mode" type="i">
+            <default>0</default>
+            <summary>Cursor blink mode of the terminal</summary>
+            <description>Controls the blink mode of the cursor in the terminals. 0: Follow GTK+ setting, 1: Blink on, 2: Blink off</description>
+        </key>
+        <key name="cursor-shape" type="i">
+            <default>0</default>
+            <summary>Cursor shape of the terminal</summary>
+            <description>Controls the shape of the cursor in the terminals. 0: Block, 1: I-Beam, 2: Underline</description>
+        </key>
+        <child name="font" schema="guake.style.font"/>
+        <child name="background" schema="guake.style.background"/>
+    </schema>
+    <schema id="guake.style.font" path="/apps/guake/style/font/">
+        <key name="style" type="s">
+            <default>'Monospace 10'</default>
+            <summary>Font style.</summary>
+            <description>Font face and size that will be used in terminal.</description>
+        </key>
+        <key name="color" type="s">
+            <default>'#ffffffffffff'</default>
+            <summary>Font color.</summary>
+            <description>Font color that will be used in terminal.</description>
+        </key>
+        <key name="palette" type="s">
+            <default>'#000000000000:#cccc00000000:#4e4e9a9a0606:#c4c4a0a00000:#34346565a4a4:#757550507b7b:#060698209a9a:#d3d3d7d7cfcf:#555557575353:#efef29292929:#8a8ae2e23434:#fcfce9e94f4f:#72729f9fcfcf:#adad7f7fa8a8:#3434e2e2e2e2:#eeeeeeeeecec'</default>
+            <summary>Color scheme.</summary>
+            <description>Color scheme that will be used in terminal.</description>
+        </key>
+        <key name="palette-name" type="s">
+            <default>'Tango'</default>
+            <summary>Color scheme name.</summary>
+            <description>Color scheme name that will be used in terminal.</description>
+        </key>
+    </schema>
+    <schema id="guake.style.background" path="/apps/guake/style/background/">
+        <key name="color" type="s">
+            <default>'#000000000000'</default>
+            <summary>Background color.</summary>
+            <description>Background color that will be used in terminal.</description>
+        </key>
+        <key name="image" type="s">
+            <default>''</default>
+            <summary>Background image.</summary>
+            <description>Background image that will be used in terminal.</description>
+        </key>
+        <key name="transparency" type="i">
+            <default>10</default>
+            <summary>Background transparency.</summary>
+            <description>Alpha that will be applied to the terminal background.</description>
+        </key>
+    </schema>
+    <schema id="guake.keybindings" path="/apps/guake/keybindings/">
+        <child name="global" schema="guake.keybindings.global"/>
+        <child name="local" schema="guake.keybindings.local"/>
+    </schema>
+    <schema id="guake.keybindings.global" path="/apps/guake/keybindings/global/">
+        <key name="show-hide" type="s">
+            <default>'F12'</default>
+            <summary>Keybinding to show/hide guake.</summary>
+            <description>Global keybinding to allow user call guake from each place after it's opened without clicks.</description>
+        </key>
+    </schema>
+    <schema id="guake.keybindings.local" path="/apps/guake/keybindings/local/">
+        <key name="quit" type="s">
+            <default>'&lt;Control&gt;&lt;Shift&gt;q'</default>
+            <summary>Quit</summary>
+            <description>Quit Guake.</description>
+        </key>
+        <key name="new-tab" type="s">
+            <default>'&lt;Control&gt;&lt;Shift&gt;t'</default>
+            <summary>Add a new tab.</summary>
+            <description>Calls the function to add a new tab in guake window.</description>
+        </key>
+        <key name="close-tab" type="s">
+            <default>'&lt;Control&gt;&lt;Shift&gt;w'</default>
+            <summary>Closes the current tab.</summary>
+            <description>Accelerator to active function that closes the current selected tab.</description>
+        </key>
+        <key name="search-on-web" type="s">
+            <default>'&lt;Control&gt;&lt;Shift&gt;l'</default>
+            <summary>Search current selected text on the web</summary>
+            <description>Accelerator to active function that search on the web the current selected text on the terminal.</description>
+        </key>
+        <key name="move-tab-left" type="s">
+            <default>'&lt;Control&gt;Shift&gt;Page_Up'</default>
+            <summary>Move left current tab</summary>
+            <description>Move the current tab to the left</description>
+        </key>
+        <key name="move-tab-right" type="s">
+            <default>'&lt;Control&gt;Shift&gt;Page_Down'</default>
+            <summary>Move right current tab</summary>
+            <description>Move the current tab to the right</description>
+        </key>
+        <key name="previous-tab" type="s">
+            <default>'&lt;Control&gt;Page_Up'</default>
+            <summary>Previous tab.</summary>
+            <description>Shows the previous tab.</description>
+        </key>
+        <key name="next-tab" type="s">
+            <default>'&lt;Control&gt;Page_Down'</default>
+            <summary>Next tab.</summary>
+            <description>Shows the next tab.</description>
+        </key>
+        <key name="switch-tab1" type="s">
+            <default>'&lt;Control&gt;F1'</default>
+            <summary>First tab.</summary>
+            <description>Switch to the first tab.</description>
+        </key>
+        <key name="switch-tab2" type="s">
+            <default>'&lt;Control&gt;F2'</default>
+            <summary>Second tab.</summary>
+            <description>Switch to the second tab.</description>
+        </key>
+        <key name="switch-tab3" type="s">
+            <default>'&lt;Control&gt;F3'</default>
+            <summary>Third tab.</summary>
+            <description>Switch to the third tab.</description>
+        </key>
+        <key name="switch-tab4" type="s">
+            <default>'&lt;Control&gt;F4'</default>
+            <summary>Fourth tab.</summary>
+            <description>Switch to the fourth tab.</description>
+        </key>
+        <key name="switch-tab5" type="s">
+            <default>'&lt;Control&gt;F5'</default>
+            <summary>Fifth tab.</summary>
+            <description>Switch to the fifth tab.</description>
+        </key>
+        <key name="switch-tab6" type="s">
+            <default>'&lt;Control&gt;F6'</default>
+            <summary>Sixth tab.</summary>
+            <description>Switch to the sixth tab.</description>
+        </key>
+        <key name="switch-tab7" type="s">
+            <default>'&lt;Control&gt;F7'</default>
+            <summary>Seventh tab.</summary>
+            <description>Switch to the seventh tab.</description>
+        </key>
+        <key name="switch-tab8" type="s">
+            <default>'&lt;Control&gt;F8'</default>
+            <summary>eighth tab.</summary>
+            <description>Switch to the eighth tab.</description>
+        </key>
+        <key name="switch-tab9" type="s">
+            <default>'&lt;Control&gt;F9'</default>
+            <summary>Ninth tab.</summary>
+            <description>Switch to the ninth tab.</description>
+        </key>
+        <key name="switch-tab10" type="s">
+            <default>'&lt;Control&gt;F10'</default>
+            <summary>Tenth tab.</summary>
+            <description>Switch to the tenth tab.</description>
+        </key>
+        <key name="rename-current-tab" type="s">
+            <default>'&lt;Control&gt;F2'</default>
+            <summary>Rename current tab.</summary>
+            <description>Shows a dialog to rename the current tab.</description>
+        </key>
+        <key name="zoom-in" type="s">
+            <default>'&lt;Control&gt;plus'</default>
+            <summary>Zoom in.</summary>
+            <description>Increase the font size of the terminals.</description>
+        </key>
+        <key name="zoom-in-alt" type="s">
+            <default>'&lt;Control&gt;equal'</default>
+            <summary>Zoom in (alternative)</summary>
+            <description>Additional shortcut for zooming in.</description>
+        </key>
+        <key name="zoom-out" type="s">
+            <default>'&lt;Control&gt;minus'</default>
+            <summary>Zoom out.</summary>
+            <description>Decrease the font size of the terminals.</description>
+        </key>
+        <key name="increase-height" type="s">
+            <default>'&lt;Control&gt;Down'</default>
+            <summary>Increase height.</summary>
+            <description>Increase the screen height.</description>
+        </key>
+        <key name="decrease-height" type="s">
+            <default>'&lt;Control&gt;Up'</default>
+            <summary>Decrease height.</summary>
+            <description>Decrease the screen height.</description>
+        </key>
+        <key name="increase-transparency" type="s">
+            <default>'&lt;Control&gt;Shift&gt;Up'</default>
+            <summary>Increase transparency.</summary>
+            <description>Increase the terminal transparency.</description>
+        </key>
+        <key name="decrease-transparency" type="s">
+            <default>'&lt;Control&gt;Shift&gt;Down'</default>
+            <summary>Decrease transparency.</summary>
+            <description>Decrease the terminal transparency.</description>
+        </key>
+        <key name="clipboard-copy" type="s">
+            <default>'&lt;Control&gt;&lt;Shift&gt;c'</default>
+            <summary>Copy clipboard.</summary>
+            <description>Copy the clipboard content.</description>
+        </key>
+        <key name="clipboard-paste" type="s">
+            <default>'&lt;Control&gt;&lt;Shift&gt;v'</default>
+            <summary>Paste clipboard.</summary>
+            <description>Paste the clipboard content.</description>
+        </key>
+        <key name="toggle-fullscreen" type="s">
+            <default>'F11'</default>
+            <summary>Toggle Fullscreen.</summary>
+            <description>Toggle main guake window fullscreen.</description>
+        </key>
+        <key name="toggle-hide-on-lose-focus" type="s">
+            <default>'&lt;Control&gt;F1'</default>
+            <summary>Toggle hide on lose focus.</summary>
+            <description>Toggle whether guake will hide when it loses focus.</description>
+        </key>
+    </schema>
+</schemalist>

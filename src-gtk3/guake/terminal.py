@@ -1,5 +1,6 @@
+# -*- coding: utf-8; -*-
 """
-Copyright (C) 2009-2011  Lincoln de Sousa <lincoln@guake.org>
+Copyright (C) 2007-2013 Guake authors
 
 This program is free software; you can redistribute it and/or
 modify it under the terms of the GNU General Public License as

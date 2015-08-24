@@ -21,4 +21,22 @@ import os
 lib = imp.load_source('install-lib.py',
                       os.path.join(os.path.dirname(__file__), "install-lib.py"))
 
-lib.printInfo("Guake installation started")
+parser = lib.addArgumentParser(description="Install Guake on your system")
+(options, args) = lib.parse(parser)
+
+lib.printSeparator("=")
+lib.printInfo("Guake Installation")
+lib.printSeparator("=")
+lib.printDebug("Options: options: {!r}".format(options))
+lib.printDebug("Args: args: {!r}".format(args))
+
+lib.printInfo("Installation in: {}".format(options.prefix))
+
+dataFolder = "data-gtk3"
+
+
+def copyDataFile(filename, dstPath):
+    lib.copyFile(os.path.join(dataFolder, filename), dstPath)
+
+copyDataFile("guake.schema", "share/glib-2.0/schemas/org.gnome.gschema.xml")
+lib.execute("sudo glib-compile-schemas {prefix}/share/glib-2.0/schemas/".format(prefix=options.prefix))
