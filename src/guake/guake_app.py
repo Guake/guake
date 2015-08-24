@@ -38,7 +38,6 @@ import platform
 import pygtk
 import subprocess
 import sys
-import urllib2
 import xdg.Exceptions
 
 from urllib import quote_plus
@@ -381,7 +380,7 @@ class Guake(SimpleGladeApp):
             with open(file_name) as f:
                 data_file = f.read()
         except:
-            date_file = None
+            data_file = None
         if not data_file:
             print("Empty custom commands for file: {}".format(file_name))
             return
