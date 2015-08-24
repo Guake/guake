@@ -350,6 +350,11 @@ class PrefsCallbacks(object):
         """
         self.client.set_bool(KEY('/general/use_default_font'), chk.get_active())
 
+    def on_allow_bold_toggled(self, chk):
+        """Changes the value of allow_bold in gconf
+        """
+        self.client.set_bool(KEY('/style/font/allow_bold'), chk.get_active())
+
     def on_use_palette_font_and_background_color_toggled(self, chk):
         """Changes the activity of use_palette_font_and_background_color in gconf
         """
@@ -863,6 +868,10 @@ class PrefsDialog(SimpleGladeApp):
             self.get_widget('background_color').set_color(color)
         except (ValueError, TypeError):
             warnings.warn('Unable to parse color %s' % val, Warning)
+
+        # allow bold font
+        value = self.client.get_bool(KEY('/style/font/allow_bold'))
+        self.get_widget('allow_bold').set_active(value)
 
         # palette
         self.fill_palette_names()
