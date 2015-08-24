@@ -1376,9 +1376,11 @@ class Guake(SimpleGladeApp):
         active_terminal = self.notebook.get_current_terminal()
         directory = os.path.expanduser('~')
         if active_terminal:
-            cwd = os.readlink("/proc/%d/cwd" % active_terminal.get_pid())
-            if os.path.exists(cwd):
-                directory = cwd
+            active_pid = active_terminal.get_pid()
+            if active_pid:
+                cwd = os.readlink("/proc/{0}/cwd".format(active_pid))
+                if os.path.exists(cwd):
+                    directory = cwd
         return directory
 
     def get_fork_params(self, default_params=None):
