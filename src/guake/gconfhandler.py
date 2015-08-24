@@ -87,6 +87,7 @@ class GConfHandler(object):
         notify_add(KEY('/style/font/color'), self.fcolor_changed)
         notify_add(KEY('/style/font/palette'), self.fpalette_changed)
         # notify_add(KEY('/style/font/palette_name'), self.fpalette_changed)
+        notify_add(KEY('/style/font/allow_bold'), self.allow_bold_toggled)
         notify_add(KEY('/style/background/color'), self.bgcolor_changed)
         notify_add(KEY('/style/background/image'), self.bgimage_changed)
         notify_add(KEY('/style/background/transparency'),
@@ -232,6 +233,14 @@ class GConfHandler(object):
             return
         for i in self.guake.notebook.iter_terminals():
             i.set_font(font)
+
+    def allow_bold_toggled(self, client, connection_id, entry, data):
+        """If the gconf var allow_bold is changed, this method will be called
+        and will change the VTE terminal o.
+        displaying characters in bold font.
+        """
+        for term in self.guake.notebook.iter_terminals():
+            term.set_allow_bold(entry.value.get_bool())
 
     def palette_font_and_background_color_toggled(self, client, connection_id, entry, data):
         """If the gconf var use_palette_font_and_background_color be changed, this method
