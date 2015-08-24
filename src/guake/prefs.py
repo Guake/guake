@@ -402,8 +402,9 @@ class PrefsCallbacks(object):
         self.client.set_string(KEY('/general/compat_delete'),
                                ERASE_BINDINGS[val])
 
-    def on_custom_command_file_chooser_file_changed(self,filechooser):
-        self.client.set_string(KEY('/general/custom_command_file'),filechooser.get_uri())
+    def on_custom_command_file_chooser_file_changed(self, filechooser):
+        self.client.set_string(KEY('/general/custom_command_file'), filechooser.get_uri())
+
 
 class PrefsDialog(SimpleGladeApp):
 
@@ -893,7 +894,7 @@ class PrefsDialog(SimpleGladeApp):
         # it's a separated method, to be reused.
         self.reload_erase_combos()
 
-        #custom command context-menu configuration file
+        # custom command context-menu configuration file
         value = os.path.expanduser(self.client.get_string(KEY('/general/custom_command_file')))
         custom_cmd_filter = gtk.FileFilter()
         custom_cmd_filter.add_pattern("*.json")
