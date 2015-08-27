@@ -408,7 +408,7 @@ class PrefsCallbacks(object):
                                ERASE_BINDINGS[val])
 
     def on_custom_command_file_chooser_file_changed(self, filechooser):
-        self.client.set_string(KEY('/general/custom_command_file'), filechooser.get_uri())
+        self.client.set_string(KEY('/general/custom_command_file'), filechooser.get_filename())
 
 
 class PrefsDialog(SimpleGladeApp):
@@ -906,8 +906,13 @@ class PrefsDialog(SimpleGladeApp):
         # custom command context-menu configuration file
         value = os.path.expanduser(self.client.get_string(KEY('/general/custom_command_file')))
         custom_cmd_filter = gtk.FileFilter()
+        custom_cmd_filter.set_name(_("JSON files"))
         custom_cmd_filter.add_pattern("*.json")
         self.get_widget('custom_command_file_chooser').add_filter(custom_cmd_filter)
+        all_files_filter = gtk.FileFilter()
+        all_files_filter.set_name(_("All files"))
+        all_files_filter.add_pattern("*")
+        self.get_widget('custom_command_file_chooser').add_filter(all_files_filter)
         self.get_widget('custom_command_file_chooser').set_uri(value)
 
     # -- populate functions --
