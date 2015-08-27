@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Guake 0.4.5\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-08-27 13:12+0200\n"
+"POT-Creation-Date: 2015-08-27 13:39+0200\n"
 "PO-Revision-Date: 2010-07-13 08:13+0530\n"
 "Last-Translator: A S Alam <aalam@users.sf.net>\n"
 "Language-Team: Punjabi/Panjabi <punjabi-users@lists.sf.net>\n"
@@ -233,12 +233,12 @@ msgid "Stay on top"
 msgstr "ਹਮੇਸ਼ਾ ਉੱਤੇ ਰੱਖੋ"
 
 #: ../data/prefs.glade.h:32
-msgid "Hide on lose focus"
-msgstr "ਫੋਕਸ ਖਤਮ ਹੋਣ ਉੱਤੇ ਓਹਲੇ ਕਰੋ"
-
-#: ../data/prefs.glade.h:33
 msgid "Use VTE titles for tab names"
 msgstr ""
+
+#: ../data/prefs.glade.h:33
+msgid "Hide on lose focus"
+msgstr "ਫੋਕਸ ਖਤਮ ਹੋਣ ਉੱਤੇ ਓਹਲੇ ਕਰੋ"
 
 #: ../data/prefs.glade.h:34
 msgid "Show tab bar"
@@ -285,146 +285,150 @@ msgid "Custom command file path: "
 msgstr ""
 
 #: ../data/prefs.glade.h:44
+msgid "Please select a json file"
+msgstr ""
+
+#: ../data/prefs.glade.h:45
 msgid "General"
 msgstr "ਆਮ"
 
-#: ../data/prefs.glade.h:45
+#: ../data/prefs.glade.h:46
 msgid "Default interpreter:"
 msgstr "ਡਿਫਾਲਟ ਇੰਟਰਪਰੇਟਰ:"
 
-#: ../data/prefs.glade.h:46
+#: ../data/prefs.glade.h:47
 msgid "_Run command as a login shell"
 msgstr "ਕਮਾਂਡ ਲਾਗਇਨ ਸ਼ੈੱਲ ਵਜੋਂ ਚਲਾਓ(_R)"
 
-#: ../data/prefs.glade.h:47
+#: ../data/prefs.glade.h:48
 msgid "_Open new tab in current directory"
 msgstr "ਮੌਜੂਦਾ ਡਾਇਰੈਕਟਰੀ ਵਿੱਚ ਨਵੀਂ ਟੈਬ ਖੋਲ੍ਹੋ(_O)"
 
-#: ../data/prefs.glade.h:48
+#: ../data/prefs.glade.h:49
 msgid "<b>Shell</b>"
 msgstr "<b>ਸ਼ੈੱਲ</b>"
 
-#: ../data/prefs.glade.h:49
+#: ../data/prefs.glade.h:50
 msgid "Shell"
 msgstr ""
 
-#: ../data/prefs.glade.h:50
+#: ../data/prefs.glade.h:51
 msgid "Show scrollbar"
 msgstr "ਸਕਰੋਲਬਾਰ ਵੇਖੋ"
 
-#: ../data/prefs.glade.h:51
+#: ../data/prefs.glade.h:52
 msgid "Scrollback lines:"
 msgstr "ਸਕਰੋਲਬੈਕ ਲਾਈਨਾਂ:"
 
-#: ../data/prefs.glade.h:52
+#: ../data/prefs.glade.h:53
 msgid "On output"
 msgstr "ਆਉਟਪੁੱਟ ਉੱਤੇ"
 
-#: ../data/prefs.glade.h:53
+#: ../data/prefs.glade.h:54
 msgid "On key stroke"
 msgstr "ਕੁੰਜੀ ਦੱਬਣ ਉੱਤੇ"
 
-#: ../data/prefs.glade.h:54
+#: ../data/prefs.glade.h:55
 msgid "<b>Scroll</b>"
 msgstr "<b>ਸਕਰੋਲ</b>"
 
-#: ../data/prefs.glade.h:55
+#: ../data/prefs.glade.h:56
 msgid "Scrolling"
 msgstr "ਸਕਰੋਲਿੰਗ"
 
-#: ../data/prefs.glade.h:56
+#: ../data/prefs.glade.h:57
 msgid "Use the system fixed width font"
 msgstr "ਸਿਸਟਮ ਸਥਿਰ ਚੌੜਾਈ ਫੋਂਟ ਵਰਤੋਂ"
 
-#: ../data/prefs.glade.h:57
+#: ../data/prefs.glade.h:58
 msgid "Font:"
 msgstr "ਫੋਂਟ:"
 
-#: ../data/prefs.glade.h:58
+#: ../data/prefs.glade.h:59
 msgid "Choose some font"
 msgstr "ਕੁਝ ਫੋਟ ਚੁਣੋ"
 
-#: ../data/prefs.glade.h:59
+#: ../data/prefs.glade.h:60
 msgid "Text color:"
 msgstr "ਟੈਕਸਟ ਰੰਗ:"
 
-#: ../data/prefs.glade.h:60
+#: ../data/prefs.glade.h:61
 msgid "Background color:"
 msgstr "ਬੈਕਗਰਾਊਂਡ ਰੰਗ:"
 
-#: ../data/prefs.glade.h:61
+#: ../data/prefs.glade.h:62
 msgid "Cursor shape:"
 msgstr ""
 
-#: ../data/prefs.glade.h:62
+#: ../data/prefs.glade.h:63
 msgid ""
 "Block\n"
 "I-Beam\n"
 "Underline"
 msgstr ""
 
-#: ../data/prefs.glade.h:65
+#: ../data/prefs.glade.h:66
 msgid ""
 "Follow GTK+ setting\n"
 "Blink on\n"
 "Blink off"
 msgstr ""
 
-#: ../data/prefs.glade.h:68
+#: ../data/prefs.glade.h:69
 msgid "Cursor blink mode:"
 msgstr ""
 
-#: ../data/prefs.glade.h:69
+#: ../data/prefs.glade.h:70
 msgid "Allow bold font"
 msgstr ""
 
-#: ../data/prefs.glade.h:70
+#: ../data/prefs.glade.h:71
 msgid "<b>Palette</b>"
 msgstr "<b>ਰੰਗ-ਪੱਟੀ</b>"
 
-#: ../data/prefs.glade.h:71
+#: ../data/prefs.glade.h:72
 msgid "Built-in schemes:"
 msgstr "ਬਿਲਟ-ਇਨ ਸਕੀਮ:"
 
-#: ../data/prefs.glade.h:72
+#: ../data/prefs.glade.h:73
 msgid "Color palette:"
 msgstr "ਰੰਗ ਪਲੇਅਟ:"
 
-#: ../data/prefs.glade.h:73
+#: ../data/prefs.glade.h:74
 #, fuzzy
 msgid "Font color"
 msgstr "ਟੈਕਸਟ ਰੰਗ:"
 
-#: ../data/prefs.glade.h:74
+#: ../data/prefs.glade.h:75
 #, fuzzy
 msgid "Background color"
 msgstr "ਬੈਕਗਰਾਊਂਡ ਰੰਗ:"
 
-#: ../data/prefs.glade.h:75
+#: ../data/prefs.glade.h:76
 msgid "Use font and background color from the palette"
 msgstr ""
 
-#: ../data/prefs.glade.h:76
+#: ../data/prefs.glade.h:77
 msgid "Demo:"
 msgstr ""
 
-#: ../data/prefs.glade.h:77
+#: ../data/prefs.glade.h:78
 msgid "<b>Effects</b>"
 msgstr "<b>ਪਰਭਾਵ</b>"
 
-#: ../data/prefs.glade.h:78
+#: ../data/prefs.glade.h:79
 msgid "Transparency:"
 msgstr "ਟਰਾਂਸਪਰੇਸੀ:"
 
-#: ../data/prefs.glade.h:79
+#: ../data/prefs.glade.h:80
 msgid "Background image:"
 msgstr "ਬੈਕਗਰਾਊਂਡ ਚਿੱਤਰ:"
 
-#: ../data/prefs.glade.h:80
+#: ../data/prefs.glade.h:81
 msgid "Appearance"
 msgstr "ਦਿੱਖ"
 
-#: ../data/prefs.glade.h:81
+#: ../data/prefs.glade.h:82
 msgid ""
 "<small>Quick open is a feature allowing you to open a file directly into "
 "your favorite text editor by clicking on its filename when it appears in "
@@ -432,15 +436,15 @@ msgid ""
 "extract filename below.</small>"
 msgstr ""
 
-#: ../data/prefs.glade.h:82
+#: ../data/prefs.glade.h:83
 msgid "Enable Quick Open when Ctrl+clicking on a filename in the terminal"
 msgstr ""
 
-#: ../data/prefs.glade.h:83
+#: ../data/prefs.glade.h:84
 msgid "Editor command line:"
 msgstr ""
 
-#: ../data/prefs.glade.h:85
+#: ../data/prefs.glade.h:86
 #, no-c-format
 msgid ""
 "<small><i>Use the following elements in the open editor command line:\n"
@@ -452,36 +456,36 @@ msgid ""
 "</i></small>"
 msgstr ""
 
-#: ../data/prefs.glade.h:91
+#: ../data/prefs.glade.h:92
 msgid "Quick open in current terminal"
 msgstr ""
 
-#: ../data/prefs.glade.h:92
+#: ../data/prefs.glade.h:93
 msgid ""
 "Here is the list of supported patterns: (to add your own, please contact the "
 "Guake's authors)"
 msgstr ""
 
-#: ../data/prefs.glade.h:93
+#: ../data/prefs.glade.h:94
 #, fuzzy
 msgid "<b>Quick Open</b>"
 msgstr "<b>ਰੰਗ-ਪੱਟੀ</b>"
 
-#: ../data/prefs.glade.h:94
+#: ../data/prefs.glade.h:95
 msgid "Quick Open"
 msgstr ""
 
-#: ../data/prefs.glade.h:95
+#: ../data/prefs.glade.h:96
 msgid ""
 "To change a shortcut simply click on its name.\n"
 "To disable a shortcut, press the \"Backspace\" key."
 msgstr ""
 
-#: ../data/prefs.glade.h:97
+#: ../data/prefs.glade.h:98
 msgid "Keyboard shortcuts"
 msgstr "ਕੀਬੋਰਡ ਸ਼ਾਰਟਕੱਟ"
 
-#: ../data/prefs.glade.h:98
+#: ../data/prefs.glade.h:99
 msgid ""
 "<small><i><b>Note:</b> These options may cause some applications to behave "
 "incorrectly.  They are only here to allow you to work around certain "
@@ -489,7 +493,7 @@ msgid ""
 "i></small>"
 msgstr ""
 
-#: ../data/prefs.glade.h:99
+#: ../data/prefs.glade.h:100
 msgid ""
 "ASCII DEL\n"
 "Escape sequence\n"
@@ -499,23 +503,23 @@ msgstr ""
 "Escape sequence\n"
 "Control-H"
 
-#: ../data/prefs.glade.h:102
+#: ../data/prefs.glade.h:103
 msgid "_Backspace key generates:"
 msgstr "ਬੈਕਸਪੇ ਕੁੰਜੀ ਤਿਆਰ ਕਰੇ(_B):"
 
-#: ../data/prefs.glade.h:103
+#: ../data/prefs.glade.h:104
 msgid "_Delete key generates:"
 msgstr ""
 
-#: ../data/prefs.glade.h:104
+#: ../data/prefs.glade.h:105
 msgid "_Reset Compatibility Options to Defaults"
 msgstr "ਅਨੁਕੂਲਤਾ ਚੋਣਾਂ ਡਿਫਾਲਟ ਲਈ ਮੁੜ-ਸੈੱਟ ਕਰੋ(_R)"
 
-#: ../data/prefs.glade.h:105
+#: ../data/prefs.glade.h:106
 msgid "<b>Keyboard compatibility</b>"
 msgstr "<b>ਕੀਬੋਰਡ ਅਨੁਕੂਲਤਾ</b>"
 
-#: ../data/prefs.glade.h:106
+#: ../data/prefs.glade.h:107
 msgid "Compatibility"
 msgstr "ਅਨੁਕੂਲਤਾ"
 
@@ -618,7 +622,7 @@ msgstr "%s ਟਰਮੀਨਲ"
 msgid "Save to..."
 msgstr ""
 
-#: ../src/guake/guake_app.py:1552
+#: ../src/guake/guake_app.py:1552 ../src/guake/prefs.py:913
 msgid "All files"
 msgstr ""
 
@@ -738,16 +742,20 @@ msgstr "ਸ਼ਾਰਟਕੱਟ"
 msgid "Custom"
 msgstr ""
 
-#: ../src/guake/prefs.py:997
+#: ../src/guake/prefs.py:909
+msgid "JSON files"
+msgstr ""
+
+#: ../src/guake/prefs.py:1002
 #, python-format
 msgid "The shortcut \"%s\" is already in use."
 msgstr "ਸ਼ਾਰਟਕੱਟ \"%s\" ਪਹਿਲਾਂ ਹੀ ਵਰਤੋਂ ਅਧੀਨ ਹੈ।"
 
-#: ../src/guake/prefs.py:998
+#: ../src/guake/prefs.py:1003
 msgid "Error setting keybinding."
 msgstr "ਸੈਟਿੰਗ ਕੀ-ਬਾਈਡਿੰਗ ਦੌਰਾਨ ਗਲਤੀ।"
 
-#: ../src/guake/prefs.py:1010
+#: ../src/guake/prefs.py:1015
 #, python-format
 msgid ""
 "The shortcut \"%s\" cannot be used because it will become impossible to type "
