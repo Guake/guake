@@ -1,5 +1,33 @@
-Version 0.8.0 (dev)
-==========================
+Version 0.8.1 (dev)
+===================
+
+  I started working on Guake 1.0.0, and not in a dedicated branch. It is now in its own source
+  folder. We clearly need to move to gtk3 soon, since GTK2 is being discontinued, the VTE is no more
+  maintained for GTK2-Python, and adds lot of cool features.
+
+  So I am now starting to work on a complete rewrite of Guake, so don't expect 0.8.x to see lot of
+  new features, unfortunately. But Guake 1.0.0 will add features such as:
+   - line wrap in terminal
+   - search in terminal
+   - dconf/gsettings to store configuration
+   - GTK3 look and feel
+   - much cleaner build and translation systems
+
+  But, this means I cannot work too much on 0.8.x. I still do some bug fixes, and thanks to external
+  contributors that share the love for Guake, Guake still move on!
+
+  So don't hesitate to have a look in the code to fix any bug you are experiencing and submit a Pull
+  Request.
+
+  New features:
+  - a-la guake-indicator custom commands (#564) - by @Ozzyboshi!
+  - Add option to allow/disallow bold font (#603) - by @helix84!
+
+  Bug fixes:
+  - Terminal widget disappears at random times (#592)
+
+Version 0.8.0
+=============
 
   I have been extremely busy the previous 3 months, so I have almost not worked on Guake. I wanted
   to introduce in the next version some major features heavily asked, like session save and split
@@ -13,7 +41,7 @@ Version 0.8.0 (dev)
   First, the new homepage is now online:
 
     http://guake-project.org/
-  
+
   As I remind you, Guake has *not* control over the old domain guake.org. So far the content is
   still one of the old content of this domain. So please use http://guake-project.org to reference
   Guake.
@@ -36,6 +64,7 @@ Version 0.8.0 (dev)
   - Remove last reference to --show-hide (#587)
   - fixed and completed german translation (#585)
   - Drop duplicated man page (a526046a)
+  - use full path to tray icon with libappindicator (#591)
 
 
 Version 0.7.2 (2015.05.20)
