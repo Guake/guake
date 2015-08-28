@@ -408,7 +408,7 @@ class PrefsCallbacks(object):
                                ERASE_BINDINGS[val])
 
     def on_custom_command_file_chooser_file_changed(self, filechooser):
-        self.client.set_string(KEY('/general/custom_command_file'), filechooser.get_uri())
+        self.client.set_string(KEY('/general/custom_command_file'), filechooser.get_filename())
 
 
 class PrefsDialog(SimpleGladeApp):
