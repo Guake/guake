@@ -913,7 +913,7 @@ class PrefsDialog(SimpleGladeApp):
         all_files_filter.set_name(_("All files"))
         all_files_filter.add_pattern("*")
         self.get_widget('custom_command_file_chooser').add_filter(all_files_filter)
-        self.get_widget('custom_command_file_chooser').set_uri(value)
+        self.get_widget('custom_command_file_chooser').set_filename(value)
 
     # -- populate functions --
 
