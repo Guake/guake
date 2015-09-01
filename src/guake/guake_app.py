@@ -246,6 +246,7 @@ class Guake(SimpleGladeApp):
         self.prev_showhide_time = 0
 
         # load cumstom command menu and menuitems from config file
+        self.custom_command_menuitem = None
         self.load_custom_commands()
 
         # double click stuff
@@ -356,7 +357,7 @@ class Guake(SimpleGladeApp):
         menu.set_submenu(custom_commands_menu)
         menu.show()
         self.get_widget('context-menu').insert(menu, self.context_menu_get_insert_pos())
-        self.custom_command_menuitem=menu
+        self.custom_command_menuitem = menu
 
     # returns position where the custom cmd must be placed on the context-menu
     def context_menu_get_insert_pos(self):
@@ -364,7 +365,7 @@ class Guake(SimpleGladeApp):
         return len(self.get_widget('context-menu').get_children()) - 2
 
     # function to read commands stored at /general/custom_command_file and launch the context menu builder
-    def get_custom_commands(self,menu):
+    def get_custom_commands(self, menu):
 
         file_name = os.path.expanduser(self.client.get_string(KEY('/general/custom_command_file')))
         if not file_name:
@@ -380,7 +381,7 @@ class Guake(SimpleGladeApp):
         try:
             custom_commands = json.loads(data_file)
             for json_object in custom_commands:
-                self.parse_custom_commands(json_object,menu)
+                self.parse_custom_commands(json_object, menu)
 
         except Exception, err:
             print("Valid custom command file not found")
@@ -388,7 +389,7 @@ class Guake(SimpleGladeApp):
             raise
 
     # function to build the custom commands menu and menuitems
-    def parse_custom_commands(self,json_object,menu):
+    def parse_custom_commands(self, json_object, menu):
         if 'type' in json_object:
             newmenu = gtk.Menu()
             newmenuitem = gtk.MenuItem(json_object['description'])
@@ -396,14 +397,14 @@ class Guake(SimpleGladeApp):
             newmenuitem.show()
             menu.append(newmenuitem)
             for item in json_object['items']:
-                self.parse_custom_commands (item,newmenu)
+                self.parse_custom_commands(item, newmenu)
         else:
             menu_item = gtk.MenuItem(json_object['description'])
             custom_command = ""
-            space=""
+            space = ""
             for command in json_object['cmd']:
-                custom_command+=(space+command)
-                space=" "
+                custom_command += (space + command)
+                space = " "
 
             menu_item.connect("activate", self.execute_context_menu_cmd, custom_command)
             menu.append(menu_item)
