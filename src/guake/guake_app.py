@@ -245,9 +245,9 @@ class Guake(SimpleGladeApp):
         # holds the timestamp of the previous show/hide action
         self.prev_showhide_time = 0
 
-        # initialize cmd_counter and read custom command file
-        self.cmd_counter = 0
-        self.read_custom_commands_file()
+        # load cumstom command menu and menuitems from config file
+        self.custom_command_menuitem = None
+        self.load_custom_commands()
 
         # double click stuff
         def double_click(hbox, event):
@@ -347,34 +347,28 @@ class Guake(SimpleGladeApp):
                 _('Guake is now running,\n'
                   'press <b>%s</b> to use it.') % xml_escape(label), filename)
 
+    # load the custom commands infrastucture
+    def load_custom_commands(self):
+        if hasattr(self, 'custom_command_menuitem'):
+            self.get_widget('context-menu').remove(self.custom_command_menuitem)
+        menu = gtk.MenuItem("Custom Commands")
+        custom_commands_menu = gtk.Menu()
+        self.get_custom_commands(custom_commands_menu)
+        menu.set_submenu(custom_commands_menu)
+        menu.show()
+        self.get_widget('context-menu').insert(menu, self.context_menu_get_insert_pos())
+        self.custom_command_menuitem = menu
+
     # returns position where the custom cmd must be placed on the context-menu
     def context_menu_get_insert_pos(self):
         # assuming that the quit menuitem is always the last one and with a separator before him
         return len(self.get_widget('context-menu').get_children()) - 2
 
-    # custom context-menu row creation
-    def context_menu_row_creation(self, cmd):
-        # first time a separator is printed
-        if self.cmd_counter == 0:
-            sep = gtk.SeparatorMenuItem()
-            self.get_widget('context-menu').insert(sep, self.context_menu_get_insert_pos())
-            sep.show()
+    # function to read commands stored at /general/custom_command_file and launch the context menu builder
+    def get_custom_commands(self, menu):
 
-        # print custom command
-        item = gtk.MenuItem(cmd)
-        item.connect("activate", self.execute_context_menu_cmd, cmd)
-        item.show()
-
-        # append custom command
-        self.cmd_counter += 1
-        self.get_widget('context-menu').insert(item, self.context_menu_get_insert_pos())
-
-    # function to read file stored at /general/custom_command_file and launch the context menu builder
-    def read_custom_commands_file(self):
-        data_file = None
         file_name = os.path.expanduser(self.client.get_string(KEY('/general/custom_command_file')))
         if not file_name:
-            print("No custom command file")
             return
         try:
             with open(file_name) as f:
@@ -382,31 +376,39 @@ class Guake(SimpleGladeApp):
         except:
             data_file = None
         if not data_file:
-            print("Empty custom commands for file: {}".format(file_name))
             return
+
         try:
             custom_commands = json.loads(data_file)
-            print("custom_commands {!r}".format(custom_commands))
-            # case of reload configuration file (remove old entries)
-            if self.cmd_counter > 0:
-                itemlist = self.get_widget('context-menu').get_children()[2:]
-                mark_for_remove = 0
-                for i in reversed(itemlist):
-                    if isinstance(i, gtk.MenuItem):
-                        self.get_widget('context-menu').remove(i)
-                        self.cmd_counter -= 1
-                        if self.cmd_counter == 0:
-                            mark_for_remove = 1
-                    if isinstance(i, gtk.SeparatorMenuItem) and mark_for_remove == 1:
-                        mark_for_remove = 0
-                        self.get_widget('context-menu').remove(i)
+            for json_object in custom_commands:
+                self.parse_custom_commands(json_object, menu)
 
-            for single_cmd in custom_commands['cmds']:
-                self.context_menu_row_creation(single_cmd)
         except Exception, err:
             print("Valid custom command file not found")
             print(err)
             raise
+
+    # function to build the custom commands menu and menuitems
+    def parse_custom_commands(self, json_object, menu):
+        if 'type' in json_object:
+            newmenu = gtk.Menu()
+            newmenuitem = gtk.MenuItem(json_object['description'])
+            newmenuitem.set_submenu(newmenu)
+            newmenuitem.show()
+            menu.append(newmenuitem)
+            for item in json_object['items']:
+                self.parse_custom_commands(item, newmenu)
+        else:
+            menu_item = gtk.MenuItem(json_object['description'])
+            custom_command = ""
+            space = ""
+            for command in json_object['cmd']:
+                custom_command += (space + command)
+                space = " "
+
+            menu_item.connect("activate", self.execute_context_menu_cmd, custom_command)
+            menu.append(menu_item)
+            menu_item.show()
 
     # execute contextual menu call
     def execute_context_menu_cmd(self, item, cmd):
