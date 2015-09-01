@@ -349,7 +349,7 @@ class Guake(SimpleGladeApp):
 
     # load the custom commands infrastucture
     def load_custom_commands(self):
-        if hasattr(self, 'custom_command_menuitem'):
+        if hasattr(self, 'custom_command_menuitem') and self.custom_command_menuitem:
             self.get_widget('context-menu').remove(self.custom_command_menuitem)
         menu = gtk.MenuItem("Custom Commands")
         custom_commands_menu = gtk.Menu()
@@ -383,10 +383,8 @@ class Guake(SimpleGladeApp):
             for json_object in custom_commands:
                 self.parse_custom_commands(json_object, menu)
 
-        except Exception, err:
-            print("Valid custom command file not found")
-            print(err)
-            raise
+        except Exception:
+            log.exception("Invalid custom command file {0}. Exception:".format(data_file))
 
     # function to build the custom commands menu and menuitems
     def parse_custom_commands(self, json_object, menu):
