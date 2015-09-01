@@ -384,11 +384,11 @@ class Guake(SimpleGladeApp):
                 self.parse_custom_commands(json_object, menu)
 
         except Exception:
-            log.exception("Invalid custom command file {0}. Exception:".format(data_file))
+            log.exception("Invalid custom command file %s. Exception:", data_file)
 
     # function to build the custom commands menu and menuitems
     def parse_custom_commands(self, json_object, menu):
-        if 'type' in json_object:
+        if json_object.get('type') == "menu":
             newmenu = gtk.Menu()
             newmenuitem = gtk.MenuItem(json_object['description'])
             newmenuitem.set_submenu(newmenu)
@@ -558,8 +558,7 @@ class Guake(SimpleGladeApp):
         value = self.client.get_bool(KEY('/general/window_losefocus'))
         visible = window.get_property('visible')
         if value and visible:
-            self.losefocus_time = \
-                gtk.gdk.x11_get_server_time(self.window.window)
+            self.losefocus_time = gtk.gdk.x11_get_server_time(self.window.window)
             self.hide()
 
     def show_menu(self, status_icon, button, activate_time):
