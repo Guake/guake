@@ -90,6 +90,16 @@
         </child>
       </widget>
     </child>
+        <child>
+      <widget class="GtkImageMenuItem" id="context_reset_terminal">
+        <property name="label" translatable="yes">Reset terminal</property>
+        <property name="visible">True</property>
+        <property name="can_focus">False</property>
+        <property name="use_action_appearance">False</property>
+        <property name="use_stock">False</property>
+        <signal name="activate" handler="reset_terminal" swapped="no"/>
+      </widget>
+    </child>
     <child>
       <widget class="GtkImageMenuItem" id="context_find_tab">
         <property name="label" translatable="yes">Find...</property>
