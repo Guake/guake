@@ -1717,3 +1717,9 @@ class Guake(SimpleGladeApp):
         else:
             self.mainframe.reorder_child(self.notebook, 0)
         self.mainframe.pack_start(self.notebook, expand=True, fill=True, padding=0)
+
+    def reset_terminal(self, directory=None):
+        self.preventHide = True
+        current_term = self.notebook.get_current_terminal()
+        current_term.reset(full=True, clear_history=True)
+        self.preventHide = False
