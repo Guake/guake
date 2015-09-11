@@ -143,7 +143,8 @@ class PromptQuitDialog(gtk.MessageDialog):
 
         self.set_keep_above(True)
         self.set_markup(primary_msg)
-        self.format_secondary_markup("<b>{0}{1}.</b>".format(proc_str, tab_str))
+        self.format_secondary_markup(
+            "<b>{0}{1}.</b>".format(proc_str, tab_str))
 
 
 class Guake(SimpleGladeApp):
@@ -312,7 +313,8 @@ class Guake(SimpleGladeApp):
         self.window.set_geometry_hints(min_width=1, min_height=1)
 
         # special trick to avoid the "lost guake on Ubuntu 'Show Desktop'" problem.
-        # DOCK makes the window foundable after having being "lost" after "Show Desktop"
+        # DOCK makes the window foundable after having being "lost" after "Show
+        # Desktop"
         self.window.set_type_hint(gtk.gdk.WINDOW_TYPE_HINT_DOCK)
         # Restore back to normal behavior
         self.window.set_type_hint(gtk.gdk.WINDOW_TYPE_HINT_NORMAL)
@@ -350,24 +352,29 @@ class Guake(SimpleGladeApp):
     # load the custom commands infrastucture
     def load_custom_commands(self):
         if hasattr(self, 'custom_command_menuitem') and self.custom_command_menuitem:
-            self.get_widget('context-menu').remove(self.custom_command_menuitem)
+            self.get_widget(
+                'context-menu').remove(self.custom_command_menuitem)
         menu = gtk.MenuItem("Custom Commands")
         custom_commands_menu = gtk.Menu()
         self.get_custom_commands(custom_commands_menu)
         menu.set_submenu(custom_commands_menu)
         menu.show()
-        self.get_widget('context-menu').insert(menu, self.context_menu_get_insert_pos())
+        self.get_widget('context-menu').insert(menu,
+                                               self.context_menu_get_insert_pos())
         self.custom_command_menuitem = menu
 
     # returns position where the custom cmd must be placed on the context-menu
     def context_menu_get_insert_pos(self):
-        # assuming that the quit menuitem is always the last one and with a separator before him
+        # assuming that the quit menuitem is always the last one and with a
+        # separator before him
         return len(self.get_widget('context-menu').get_children()) - 2
 
-    # function to read commands stored at /general/custom_command_file and launch the context menu builder
+    # function to read commands stored at /general/custom_command_file and
+    # launch the context menu builder
     def get_custom_commands(self, menu):
 
-        file_name = os.path.expanduser(self.client.get_string(KEY('/general/custom_command_file')))
+        file_name = os.path.expanduser(
+            self.client.get_string(KEY('/general/custom_command_file')))
         if not file_name:
             return
         try:
@@ -384,7 +391,8 @@ class Guake(SimpleGladeApp):
                 self.parse_custom_commands(json_object, menu)
 
         except Exception:
-            log.exception("Invalid custom command file %s. Exception:", data_file)
+            log.exception(
+                "Invalid custom command file %s. Exception:", data_file)
 
     # function to build the custom commands menu and menuitems
     def parse_custom_commands(self, json_object, menu):
@@ -404,7 +412,8 @@ class Guake(SimpleGladeApp):
                 custom_command += (space + command)
                 space = " "
 
-            menu_item.connect("activate", self.execute_context_menu_cmd, custom_command)
+            menu_item.connect(
+                "activate", self.execute_context_menu_cmd, custom_command)
             menu.append(menu_item)
             menu_item.show()
 
@@ -540,7 +549,6 @@ class Guake(SimpleGladeApp):
 
         window_rect = self.window.get_size()
         self.window.resize(window_rect[0], y)
-        log.debug("Saving new height value into gconf {} percents".format(percent))
         self.client.set_int(KEY('/general/window_height'), int(percent))
         self.client.set_float(KEY('/general/window_height_f'), float(percent))
 
@@ -560,7 +568,8 @@ class Guake(SimpleGladeApp):
         value = self.client.get_bool(KEY('/general/window_losefocus'))
         visible = window.get_property('visible')
         if value and visible:
-            self.losefocus_time = gtk.gdk.x11_get_server_time(self.window.window)
+            self.losefocus_time = gtk.gdk.x11_get_server_time(
+                self.window.window)
             self.hide()
 
     def show_menu(self, status_icon, button, activate_time):
@@ -604,16 +613,19 @@ class Guake(SimpleGladeApp):
             self.get_widget('context_search_on_web').set_visible(True)
             self.get_widget('separator_search').set_visible(True)
         else:
-            self.get_widget('context_search_on_web').set_label(_("Search on Web (no selection)"))
+            self.get_widget('context_search_on_web').set_label(
+                _("Search on Web (no selection)"))
             self.get_widget('context_search_on_web').set_visible(False)
 
         link = self.getCurrentTerminalLinkUnderCursor()
         if link:
             self.get_widget('context_browse_on_web').set_visible(True)
-            self.get_widget('context_browse_on_web').set_label(_("Open Link: {}".format(link)))
+            self.get_widget('context_browse_on_web').set_label(
+                _("Open Link: {}".format(link)))
             self.get_widget('separator_search').set_visible(True)
         else:
-            self.get_widget('context_browse_on_web').set_label(_("Open Link..."))
+            self.get_widget('context_browse_on_web').set_label(
+                _("Open Link..."))
             self.get_widget('context_browse_on_web').set_visible(False)
 
         context_menu = self.get_widget('context-menu')
@@ -757,14 +769,16 @@ class Guake(SimpleGladeApp):
         self.window.show_all()
 
         if self.selected_color is None:
-            self.selected_color = getattr(self.window.get_style(), "light")[int(gtk.STATE_SELECTED)]
+            self.selected_color = getattr(self.window.get_style(), "light")[
+                int(gtk.STATE_SELECTED)]
 
             # Reapply the tab color to all button in the tab list, since at least one don't have the
             # select color set. This needs to happen AFTER the first show_all, since before the gtk
             # has not loaded the right colors yet.
             for tab in self.tabs.get_children():
                 if isinstance(tab, gtk.RadioButton):
-                    tab.modify_bg(gtk.STATE_ACTIVE, gtk.gdk.Color(str(self.selected_color)))
+                    tab.modify_bg(gtk.STATE_ACTIVE, gtk.gdk.Color(
+                        str(self.selected_color)))
 
         # this work arround an issue in fluxbox
         if not self.is_fullscreen:
@@ -794,7 +808,8 @@ class Guake(SimpleGladeApp):
         #         self.get_widget('window-root').get_urgency_hint()))
         #     glib.timeout_add_seconds(1, lambda: self.timeout_restore(time))
         #
-        log.debug("Current window geometry: %r", self.window.window.get_geometry())
+        log.debug("Current window geometry: %r",
+                  self.window.window.get_geometry())
 
         log.debug("order to present and deiconify")
         self.window.present()
@@ -811,7 +826,8 @@ class Guake(SimpleGladeApp):
         #     self.get_widget('window-root').set_skip_pager_hint(False)
         #     self.get_widget('window-root').set_urgency_hint(False)
 
-        # This is here because vte color configuration works only after the widget is shown.
+        # This is here because vte color configuration works only after the
+        # widget is shown.
         self.client.notify(KEY('/style/font/color'))
         self.client.notify(KEY('/style/background/color'))
 
@@ -891,9 +907,11 @@ class Guake(SimpleGladeApp):
         """
 
         # fetch settings
-        height_percents = self.client.get_float(KEY('/general/window_height_f'))
+        height_percents = self.client.get_float(
+            KEY('/general/window_height_f'))
         if not height_percents:
-            height_percents = self.client.get_int(KEY('/general/window_height'))
+            height_percents = self.client.get_int(
+                KEY('/general/window_height'))
 
         width_percents = self.client.get_float(KEY('/general/window_width_f'))
         if not width_percents:
@@ -1025,7 +1043,8 @@ class Guake(SimpleGladeApp):
         self.client.notify(KEY('/style/background/image'))
         self.client.notify(KEY('/style/background/transparency'))
         self.client.notify(KEY('/general/use_default_font'))
-        self.client.notify(KEY('/general/use_palette_font_and_background_color'))
+        self.client.notify(
+            KEY('/general/use_palette_font_and_background_color'))
         self.client.notify(KEY('/general/compat_backspace'))
         self.client.notify(KEY('/general/compat_delete'))
 
@@ -1050,7 +1069,8 @@ class Guake(SimpleGladeApp):
         procs = self.notebook.get_running_fg_processes()
         tabs = self.notebook.get_tab_count()
         prompt_cfg = self.client.get_bool(KEY('/general/prompt_on_quit'))
-        prompt_tab_cfg = self.client.get_int(KEY('/general/prompt_on_close_tab'))
+        prompt_tab_cfg = self.client.get_int(
+            KEY('/general/prompt_on_close_tab'))
         # "Prompt on tab close" config overrides "prompt on quit" config
         if prompt_cfg or (prompt_tab_cfg == 1 and procs > 0) or (prompt_tab_cfg == 2):
             if self.run_quit_dialog(procs, tabs):
@@ -1097,15 +1117,19 @@ class Guake(SimpleGladeApp):
     def accel_increase_transparency(self, *args):
         """Callback to increase transparency.
         """
-        transparency = self.client.get_int(KEY('/style/background/transparency'))
-        self.client.set_int(KEY('/style/background/transparency'), int(transparency) + 2)
+        transparency = self.client.get_int(
+            KEY('/style/background/transparency'))
+        self.client.set_int(
+            KEY('/style/background/transparency'), int(transparency) + 2)
         return True
 
     def accel_decrease_transparency(self, *args):
         """Callback to decrease transparency.
         """
-        transparency = self.client.get_int(KEY('/style/background/transparency'))
-        self.client.set_int(KEY('/style/background/transparency'), int(transparency) - 2)
+        transparency = self.client.get_int(
+            KEY('/style/background/transparency'))
+        self.client.set_int(
+            KEY('/style/background/transparency'), int(transparency) - 2)
         return True
 
     def accel_add(self, *args):
@@ -1498,7 +1522,8 @@ class Guake(SimpleGladeApp):
         pid = box.terminal.fork_command(**final_params)
         if libutempter is not None:
             # After the fork_command we add this new tty to utmp !
-            libutempter.utempter_add_record(box.terminal.get_pty(), os.uname()[1])
+            libutempter.utempter_add_record(
+                box.terminal.get_pty(), os.uname()[1])
         box.terminal.pid = pid
 
         # Adding a new radio button to the tabbar
@@ -1516,11 +1541,14 @@ class Guake(SimpleGladeApp):
                         self.notebook.page_num(box)
                     ))
         if self.selected_color is not None:
-            bnt.modify_bg(gtk.STATE_ACTIVE, gtk.gdk.Color(str(self.selected_color)))
+            bnt.modify_bg(gtk.STATE_ACTIVE, gtk.gdk.Color(
+                str(self.selected_color)))
         drag_drop_type = ("text/plain", gtk.TARGET_SAME_APP, 80)
-        bnt.drag_dest_set(gtk.DEST_DEFAULT_ALL, [drag_drop_type], gtk.gdk.ACTION_MOVE)
+        bnt.drag_dest_set(gtk.DEST_DEFAULT_ALL, [
+                          drag_drop_type], gtk.gdk.ACTION_MOVE)
         bnt.connect("drag_data_received", self.on_drop_tab)
-        bnt.drag_source_set(gtk.gdk.BUTTON1_MASK, [drag_drop_type], gtk.gdk.ACTION_MOVE)
+        bnt.drag_source_set(gtk.gdk.BUTTON1_MASK, [
+                            drag_drop_type], gtk.gdk.ACTION_MOVE)
         bnt.connect("drag_data_get", self.on_drag_tab)
         bnt.show()
 
@@ -1626,8 +1654,10 @@ class Guake(SimpleGladeApp):
         self.move_tab(old_tab_pos, new_tab_pos)
 
     def move_tab(self, old_tab_pos, new_tab_pos):
-        self.notebook.reorder_child(self.notebook.get_nth_page(old_tab_pos), new_tab_pos)
-        self.tabs.reorder_child(self.tabs.get_children()[old_tab_pos], new_tab_pos)
+        self.notebook.reorder_child(
+            self.notebook.get_nth_page(old_tab_pos), new_tab_pos)
+        self.tabs.reorder_child(self.tabs.get_children()[
+                                old_tab_pos], new_tab_pos)
         self.notebook.set_current_page(new_tab_pos)
 
     def delete_tab(self, pagepos, kill=True):
@@ -1697,7 +1727,8 @@ class Guake(SimpleGladeApp):
             search_query = guake_clipboard.wait_for_text()
             search_query = quote_plus(search_query)
             if search_query:
-                search_url = "https://www.google.com/#q=%s&safe=off" % (search_query,)
+                search_url = "https://www.google.com/#q=%s&safe=off" % (
+                    search_query,)
                 gtk.show_uri(current_term.window.get_screen(), search_url,
                              gtk.gdk.x11_get_server_time(current_term.window))
         return True
@@ -1718,7 +1749,8 @@ class Guake(SimpleGladeApp):
             self.mainframe.reorder_child(self.notebook, 2)
         else:
             self.mainframe.reorder_child(self.notebook, 0)
-        self.mainframe.pack_start(self.notebook, expand=True, fill=True, padding=0)
+        self.mainframe.pack_start(
+            self.notebook, expand=True, fill=True, padding=0)
 
     def reset_terminal(self, directory=None):
         self.preventHide = True
