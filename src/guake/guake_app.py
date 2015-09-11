@@ -460,7 +460,7 @@ class Guake(SimpleGladeApp):
         log.debug(text)
 
     def printInfo(self, text):
-        log.debug(text)
+        log.info(text)
 
     def set_background_transparency(self, transparency):
         for t in self.notebook.iter_terminals():
@@ -540,7 +540,9 @@ class Guake(SimpleGladeApp):
 
         window_rect = self.window.get_size()
         self.window.resize(window_rect[0], y)
-        # self.client.set_int(KEY('/general/window_height'), int(percent))
+        log.debug("Saving new height value into gconf {} percents".format(percent))
+        self.client.set_int(KEY('/general/window_height'), int(percent))
+        self.client.set_float(KEY('/general/window_height_f'), float(percent))
 
     def on_window_losefocus(self, window, event):
         """Hides terminal main window when it loses the focus and if
