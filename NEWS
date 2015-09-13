@@ -1,5 +1,5 @@
-Version 0.8.1 (dev)
-===================
+Version 0.8.1
+=============
 
   I started working on Guake 1.0.0, and not in a dedicated branch. It is now in its own source
   folder. We clearly need to move to gtk3 soon, since GTK2 is being discontinued, the VTE is no more
@@ -14,7 +14,7 @@ Version 0.8.1 (dev)
    - much cleaner build and translation systems
 
   But, this means I cannot work too much on 0.8.x. I still do some bug fixes, and thanks to external
-  contributors that share the love for Guake, Guake still move on!
+  contributors that share the love for Guake, Guake 0.8 still moves on!
 
   So don't hesitate to have a look in the code to fix any bug you are experiencing and submit a Pull
   Request.
@@ -22,9 +22,11 @@ Version 0.8.1 (dev)
   New features:
   - a-la guake-indicator custom commands (#564) - by @Ozzyboshi!
   - Add option to allow/disallow bold font (#603) - by @helix84!
+  - Clean current terminal item in contextual menu (#608) - by @Denis Subbotin
 
   Bug fixes:
   - Terminal widget disappears at random times (#592)
+  - Typo - by @selivan, @Ruined1
 
 Version 0.8.0
 =============
