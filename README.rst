@@ -10,10 +10,10 @@ Guake README file
 Introduction
 ~~~~~~~~~~~~
 
-Guake is a dropdown terminal made for the GNOME desktop environment. Its style of window is based on
-an FPS games, and one of its goals is be easy to reach.
+Guake is a dropdown terminal made for the GNOME desktop environment. Guake's style of window is based on
+an FPS game, and one of its goals is to be easy to reach.
 
-Guake is written mostly in python and has a little piece in C (global hotkeys capture). The code is
+Guake is mostly written in python and has a little piece in C (global hotkeys capture). The code is
 placed in the ``guake`` directory. Files and images are in the ``data`` directory. Translation files
 are in the ``po`` directory.
 
@@ -23,13 +23,13 @@ Features
 - Lightweight
 - Simple Easy and Elegant
 - Smooth integration of terminal into GUI
-- Appears when you call and disappear once you are done by pressing a predefined hotkey (F12 by
+- Appears when you call and disappears once you are done by pressing a predefined hotkey (F12 by
   default)
 - Compiz transparency support
 - Multi tab
-- Plenty of color palette
-- Quick Open in your favorite text editor on a click on a file name (with line number support)
-- Customizable hotkeys for tabs access, reorganization, background transparency, font size,...
+- Plenty of color palettes
+- Quick Open in your favorite text editor with a click on a file name (with line number support)
+- Customizable hotkeys for tab access, reorganization, background transparency, font size,...
 - Extremely configurable
 - Configure Guake startup by running a bash script when Guake starts
 - Multi-monitor support (open on a specified monitor, open on mouse monitor)
@@ -44,7 +44,7 @@ Source Code available at: https://github.com/Guake/guake/
 Official Homepage: http://guake-project.org
 
 **Important note**: Do **NOT** use the domain guake.org, it has been registered by someone outside
-the team. We cannot be hold responsible for the content on this web site.
+the team. We cannot be held responsible for the content on that web site.
 
 
 License
