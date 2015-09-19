@@ -90,7 +90,7 @@
         </child>
       </widget>
     </child>
-        <child>
+    <child>
       <widget class="GtkImageMenuItem" id="context_reset_terminal">
         <property name="label" translatable="yes">Reset terminal</property>
         <property name="visible">True</property>
