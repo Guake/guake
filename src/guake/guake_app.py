@@ -189,6 +189,9 @@ class Guake(SimpleGladeApp):
             menu.prepend(show)
             self.tray_icon.set_menu(menu)
 
+        ipath = pixmapfile('add_tab.png')
+        self.get_widget('image2').set_from_file(ipath)
+        
         # important widgets
         self.window = self.get_widget('window-root')
         self.mainframe = self.get_widget('mainframe')
