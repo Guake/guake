@@ -39,4 +39,5 @@ def copyDataFile(filename, dstPath):
     lib.copyFile(os.path.join(dataFolder, filename), dstPath)
 
 copyDataFile("guake.schema", "share/glib-2.0/schemas/org.gnome.gschema.xml")
-lib.execute("sudo glib-compile-schemas {prefix}/share/glib-2.0/schemas/".format(prefix=options.prefix))
+lib.execute("sudo glib-compile-schemas {prefix}/share/glib-2.0/schemas/"
+            .format(prefix=options.prefix))
