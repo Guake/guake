@@ -143,8 +143,7 @@ class PromptQuitDialog(gtk.MessageDialog):
 
         self.set_keep_above(True)
         self.set_markup(primary_msg)
-        self.format_secondary_markup(
-            "<b>{0}{1}.</b>".format(proc_str, tab_str))
+        self.format_secondary_markup("<b>{0}{1}.</b>".format(proc_str, tab_str))
 
 
 class Guake(SimpleGladeApp):
@@ -376,8 +375,7 @@ class Guake(SimpleGladeApp):
     # launch the context menu builder
     def get_custom_commands(self, menu):
 
-        file_name = os.path.expanduser(
-            self.client.get_string(KEY('/general/custom_command_file')))
+        file_name = os.path.expanduser(self.client.get_string(KEY('/general/custom_command_file')))
         if not file_name:
             return
         try:
@@ -415,8 +413,7 @@ class Guake(SimpleGladeApp):
                 custom_command += (space + command)
                 space = " "
 
-            menu_item.connect(
-                "activate", self.execute_context_menu_cmd, custom_command)
+            menu_item.connect("activate", self.execute_context_menu_cmd, custom_command)
             menu.append(menu_item)
             menu_item.show()
 
@@ -611,24 +608,21 @@ class Guake(SimpleGladeApp):
 
         self.get_widget('separator_search').set_visible(False)
         if current_selection:
-            self.get_widget('context_search_on_web').set_label(
-                _("Search on Web: '%s'") % current_selection)
+            self.get_widget('context_search_on_web').set_label(_("Search on Web: '%s'") %
+                                                               current_selection)
             self.get_widget('context_search_on_web').set_visible(True)
             self.get_widget('separator_search').set_visible(True)
         else:
-            self.get_widget('context_search_on_web').set_label(
-                _("Search on Web (no selection)"))
+            self.get_widget('context_search_on_web').set_label(_("Search on Web (no selection)"))
             self.get_widget('context_search_on_web').set_visible(False)
 
         link = self.getCurrentTerminalLinkUnderCursor()
         if link:
             self.get_widget('context_browse_on_web').set_visible(True)
-            self.get_widget('context_browse_on_web').set_label(
-                _("Open Link: {}".format(link)))
+            self.get_widget('context_browse_on_web').set_label(_("Open Link: {}".format(link)))
             self.get_widget('separator_search').set_visible(True)
         else:
-            self.get_widget('context_browse_on_web').set_label(
-                _("Open Link..."))
+            self.get_widget('context_browse_on_web').set_label(_("Open Link..."))
             self.get_widget('context_browse_on_web').set_visible(False)
 
         context_menu = self.get_widget('context-menu')
@@ -772,16 +766,14 @@ class Guake(SimpleGladeApp):
         self.window.show_all()
 
         if self.selected_color is None:
-            self.selected_color = getattr(self.window.get_style(), "light")[
-                int(gtk.STATE_SELECTED)]
+            self.selected_color = getattr(self.window.get_style(), "light")[int(gtk.STATE_SELECTED)]
 
             # Reapply the tab color to all button in the tab list, since at least one don't have the
             # select color set. This needs to happen AFTER the first show_all, since before the gtk
             # has not loaded the right colors yet.
             for tab in self.tabs.get_children():
                 if isinstance(tab, gtk.RadioButton):
-                    tab.modify_bg(gtk.STATE_ACTIVE, gtk.gdk.Color(
-                        str(self.selected_color)))
+                    tab.modify_bg(gtk.STATE_ACTIVE, gtk.gdk.Color(str(self.selected_color)))
 
         # this work arround an issue in fluxbox
         if not self.is_fullscreen:
@@ -910,11 +902,9 @@ class Guake(SimpleGladeApp):
         """
 
         # fetch settings
-        height_percents = self.client.get_float(
-            KEY('/general/window_height_f'))
+        height_percents = self.client.get_float(KEY('/general/window_height_f'))
         if not height_percents:
-            height_percents = self.client.get_int(
-                KEY('/general/window_height'))
+            height_percents = self.client.get_int(KEY('/general/window_height'))
 
         width_percents = self.client.get_float(KEY('/general/window_width_f'))
         if not width_percents:
@@ -1046,8 +1036,7 @@ class Guake(SimpleGladeApp):
         self.client.notify(KEY('/style/background/image'))
         self.client.notify(KEY('/style/background/transparency'))
         self.client.notify(KEY('/general/use_default_font'))
-        self.client.notify(
-            KEY('/general/use_palette_font_and_background_color'))
+        self.client.notify(KEY('/general/use_palette_font_and_background_color'))
         self.client.notify(KEY('/general/compat_backspace'))
         self.client.notify(KEY('/general/compat_delete'))
 
@@ -1072,8 +1061,7 @@ class Guake(SimpleGladeApp):
         procs = self.notebook.get_running_fg_processes()
         tabs = self.notebook.get_tab_count()
         prompt_cfg = self.client.get_bool(KEY('/general/prompt_on_quit'))
-        prompt_tab_cfg = self.client.get_int(
-            KEY('/general/prompt_on_close_tab'))
+        prompt_tab_cfg = self.client.get_int(KEY('/general/prompt_on_close_tab'))
         # "Prompt on tab close" config overrides "prompt on quit" config
         if prompt_cfg or (prompt_tab_cfg == 1 and procs > 0) or (prompt_tab_cfg == 2):
             if self.run_quit_dialog(procs, tabs):
@@ -1120,19 +1108,15 @@ class Guake(SimpleGladeApp):
     def accel_increase_transparency(self, *args):
         """Callback to increase transparency.
         """
-        transparency = self.client.get_int(
-            KEY('/style/background/transparency'))
-        self.client.set_int(
-            KEY('/style/background/transparency'), int(transparency) + 2)
+        transparency = self.client.get_int(KEY('/style/background/transparency'))
+        self.client.set_int(KEY('/style/background/transparency'), int(transparency) + 2)
         return True
 
     def accel_decrease_transparency(self, *args):
         """Callback to decrease transparency.
         """
-        transparency = self.client.get_int(
-            KEY('/style/background/transparency'))
-        self.client.set_int(
-            KEY('/style/background/transparency'), int(transparency) - 2)
+        transparency = self.client.get_int(KEY('/style/background/transparency'))
+        self.client.set_int(KEY('/style/background/transparency'), int(transparency) - 2)
         return True
 
     def accel_add(self, *args):
@@ -1539,19 +1523,16 @@ class Guake(SimpleGladeApp):
         bnt.set_property('draw-indicator', False)
         bnt.connect('button-press-event', self.show_tab_menu)
         bnt.connect('button-press-event', self.show_rename_current_tab_dialog)
-        bnt.connect('clicked',
-                    lambda *x: self.notebook.set_current_page(
-                        self.notebook.page_num(box)
-                    ))
+        bnt.connect('clicked', lambda *x: self.notebook.set_current_page(
+            self.notebook.page_num(box)
+        ))
         if self.selected_color is not None:
             bnt.modify_bg(gtk.STATE_ACTIVE, gtk.gdk.Color(
                 str(self.selected_color)))
         drag_drop_type = ("text/plain", gtk.TARGET_SAME_APP, 80)
-        bnt.drag_dest_set(gtk.DEST_DEFAULT_ALL, [
-                          drag_drop_type], gtk.gdk.ACTION_MOVE)
+        bnt.drag_dest_set(gtk.DEST_DEFAULT_ALL, [drag_drop_type], gtk.gdk.ACTION_MOVE)
         bnt.connect("drag_data_received", self.on_drop_tab)
-        bnt.drag_source_set(gtk.gdk.BUTTON1_MASK, [
-                            drag_drop_type], gtk.gdk.ACTION_MOVE)
+        bnt.drag_source_set(gtk.gdk.BUTTON1_MASK, [drag_drop_type], gtk.gdk.ACTION_MOVE)
         bnt.connect("drag_data_get", self.on_drag_tab)
         bnt.show()
 
@@ -1659,8 +1640,7 @@ class Guake(SimpleGladeApp):
     def move_tab(self, old_tab_pos, new_tab_pos):
         self.notebook.reorder_child(
             self.notebook.get_nth_page(old_tab_pos), new_tab_pos)
-        self.tabs.reorder_child(self.tabs.get_children()[
-                                old_tab_pos], new_tab_pos)
+        self.tabs.reorder_child(self.tabs.get_children()[old_tab_pos], new_tab_pos)
         self.notebook.set_current_page(new_tab_pos)
 
     def delete_tab(self, pagepos, kill=True):
@@ -1730,8 +1710,7 @@ class Guake(SimpleGladeApp):
             search_query = guake_clipboard.wait_for_text()
             search_query = quote_plus(search_query)
             if search_query:
-                search_url = "https://www.google.com/#q=%s&safe=off" % (
-                    search_query,)
+                search_url = "https://www.google.com/#q=%s&safe=off" % (search_query,)
                 gtk.show_uri(current_term.window.get_screen(), search_url,
                              gtk.gdk.x11_get_server_time(current_term.window))
         return True
@@ -1752,8 +1731,7 @@ class Guake(SimpleGladeApp):
             self.mainframe.reorder_child(self.notebook, 2)
         else:
             self.mainframe.reorder_child(self.notebook, 0)
-        self.mainframe.pack_start(
-            self.notebook, expand=True, fill=True, padding=0)
+        self.mainframe.pack_start(self.notebook, expand=True, fill=True, padding=0)
 
     def reset_terminal(self, directory=None):
         self.preventHide = True
