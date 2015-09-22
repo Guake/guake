@@ -790,8 +790,9 @@ class Guake(SimpleGladeApp):
         # log.debug("self.window: %s. Dir=%s", type(self.window), dir(self.window))
         # is_iconified = self.is_iconified()
         # if is_iconified:
-        #     log.debug("Is iconified. Ubuntu Trick => removing skip_taskbar_hint and skip_pager_hint "
-        #           "so deiconify can work!")
+        #     log.debug("Is iconified. Ubuntu Trick => "
+        #               "removing skip_taskbar_hint and skip_pager_hint "
+        #               "so deiconify can work!")
         #     self.get_widget('window-root').set_skip_taskbar_hint(False)
         #     self.get_widget('window-root').set_skip_pager_hint(False)
         #     self.get_widget('window-root').set_urgency_hint(False)
