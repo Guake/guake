@@ -913,6 +913,7 @@ Always</property>
                                         <property name="visible">True</property>
                                         <property name="can_focus">False</property>
                                         <property name="items" translatable="yes"/>
+                                        <signal name="changed" handler="on_default_shell_changed" swapped="no"/>
                                       </widget>
                                       <packing>
                                         <property name="expand">True</property>
