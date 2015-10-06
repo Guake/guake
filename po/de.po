@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: Guake 0.4.5\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-08-27 13:39+0200\n"
-"PO-Revision-Date: 2015-10-06 16:14+0100\n"
+"PO-Revision-Date: 2015-10-06 16:40+0100\n"
 "Last-Translator: Airfunker <airfunker@gmail.com>\n"
 "Language-Team: guake@lists.guake.org\n"
 "MIME-Version: 1.0\n"
@@ -236,7 +236,7 @@ msgstr "<b>Allgemein</b>"
 
 #: ../data/prefs.glade.h:26
 msgid "Bottom align window instead of top align"
-msgstr "Fenster an den unteren Rand statt an den oberen Rand setzen."
+msgstr "Fenster an den unteren Rand statt an den oberen Rand setzen"
 
 #: ../data/prefs.glade.h:27
 msgid "Appear on mouse display"
