@@ -9,14 +9,14 @@ msgstr ""
 "Project-Id-Version: Guake 0.4.5\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-08-27 13:39+0200\n"
-"PO-Revision-Date: 2015-07-14 14:06+0100\n"
-"Last-Translator: Florian Idelberger <florian@idelberger.de>\n"
+"PO-Revision-Date: 2015-10-06 16:14+0100\n"
+"Last-Translator: Airfunker <airfunker@gmail.com>\n"
 "Language-Team: guake@lists.guake.org\n"
-"Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Poedit 1.5.4\n"
+"Language: de\n"
 
 #: ../data/about.glade.h:1
 msgid "About Guake"
@@ -101,27 +101,27 @@ msgstr "Einfügen"
 
 #: ../data/guake.glade.h:3
 msgid "Toggle Fullscreen"
-msgstr "Vollbild"
+msgstr "Vollbildmodus aktivieren"
 
 #: ../data/guake.glade.h:4
 msgid "Save to File..."
-msgstr "Speichern unter ..."
+msgstr "Speichern unter..."
 
 #: ../data/guake.glade.h:5
 msgid "Find..."
-msgstr "Suchen ..."
+msgstr "Suchen..."
 
 #: ../data/guake.glade.h:6
 msgid "New Tab"
-msgstr "Neues Tab"
+msgstr "Neuer Reiter"
 
 #: ../data/guake.glade.h:7
 msgid "Rename Tab"
-msgstr "Tab umbenennen"
+msgstr "Reiter umbenennen"
 
 #: ../data/guake.glade.h:8
 msgid "Close Tab"
-msgstr "Tab Schließen"
+msgstr "Reiter schließen"
 
 #: ../data/guake.glade.h:9
 msgid "Open link..."
@@ -149,15 +149,15 @@ msgstr "Guake!"
 
 #: ../data/guake.glade.h:15
 msgid "Add a new tab"
-msgstr "Neuer Tab"
+msgstr "Neuen Reiter hinzufügen"
 
 #: ../data/prefs.glade.h:1
 msgid "Guake Preferences"
-msgstr "Guake Einstellungen"
+msgstr "Guake-Einstellungen"
 
 #: ../data/prefs.glade.h:2
 msgid "<span size=\"18000\" color=\"black\"><b>Guake properties</b></span>"
-msgstr "<span size=\"18000\" color=\"black\"><b>Guake Einstellungen</b></span>"
+msgstr "<span size=\"18000\" color=\"black\"><b>Guake-Einstellungen</b></span>"
 
 #: ../data/prefs.glade.h:3
 msgid ""
@@ -194,11 +194,11 @@ msgstr ""
 
 #: ../data/prefs.glade.h:15
 msgid "Enable popup notifications on startup"
-msgstr "Popup Benachrichtigungen beim Start einschalten"
+msgstr "Popup-Benachrichtigungen beim Start einschalten"
 
 #: ../data/prefs.glade.h:16
 msgid "Show tray icon"
-msgstr "Tray Icon anzeigen"
+msgstr "Symbol in der Benachrichtigungsleiste anzeigen"
 
 #: ../data/prefs.glade.h:17
 msgid "Always prompt on quit"
@@ -218,7 +218,7 @@ msgstr "Pfad zu einem Skript das beim Start ausgeführt wird:"
 
 #: ../data/prefs.glade.h:21
 msgid "Prompt on close tab:"
-msgstr "Beim Beenden eines Tabs nachfragen"
+msgstr "Beim Beenden eines Reiters nachfragen"
 
 #: ../data/prefs.glade.h:22
 msgid ""
@@ -236,7 +236,7 @@ msgstr "<b>Allgemein</b>"
 
 #: ../data/prefs.glade.h:26
 msgid "Bottom align window instead of top align"
-msgstr "Setze das Fenster an den unteren Rand anstatt den oberen Rand."
+msgstr "Fenster an den unteren Rand statt an den oberen Rand setzen."
 
 #: ../data/prefs.glade.h:27
 msgid "Appear on mouse display"
@@ -248,7 +248,7 @@ msgstr "Anzeigedisplay"
 
 #: ../data/prefs.glade.h:29
 msgid "Place tabs on top"
-msgstr "Tabs oben platzieren"
+msgstr "Reiter oben platzieren"
 
 #: ../data/prefs.glade.h:30
 msgid "<b>Placement</b>"
@@ -260,7 +260,7 @@ msgstr "Im Vordergrund bleiben"
 
 #: ../data/prefs.glade.h:32
 msgid "Use VTE titles for tab names"
-msgstr "VTE Titel als Tab Namen benutzen"
+msgstr "VTE-Titel als Reiternamen benutzen"
 
 #: ../data/prefs.glade.h:33
 msgid "Hide on lose focus"
@@ -268,7 +268,7 @@ msgstr "Verstecken, wenn der Fokus verloren geht"
 
 #: ../data/prefs.glade.h:34
 msgid "Show tab bar"
-msgstr "Tab Leiste anzeigen"
+msgstr "Reiterleiste anzeigen"
 
 #: ../data/prefs.glade.h:35
 msgid "Start fullscreen"
@@ -303,13 +303,12 @@ msgid "<b>Main Window Width</b>"
 msgstr "<b>Breite des Hauptfensters</b>"
 
 #: ../data/prefs.glade.h:43
-#, fuzzy
 msgid "Custom command file path: "
-msgstr "Kommandozeilen"
+msgstr "Benutzerdefinierter Befehl"
 
 #: ../data/prefs.glade.h:44
 msgid "Please select a json file"
-msgstr ""
+msgstr "Bitte wählen Sie eine JSON-Datei aus"
 
 #: ../data/prefs.glade.h:45
 msgid "General"
@@ -321,11 +320,11 @@ msgstr "Standard-Interpreter:"
 
 #: ../data/prefs.glade.h:47
 msgid "_Run command as a login shell"
-msgstr "Führe Kommando als Login Shell aus"
+msgstr "Befehl als Loginshell ausführen"
 
 #: ../data/prefs.glade.h:48
 msgid "_Open new tab in current directory"
-msgstr "_Neuen Tab in aktuellem Verzeichnis öffnen"
+msgstr "_Neuen Reiter in aktuellem Verzeichnis öffnen"
 
 #: ../data/prefs.glade.h:49
 msgid "<b>Shell</b>"
@@ -369,7 +368,7 @@ msgstr "Schriftart:"
 
 #: ../data/prefs.glade.h:59
 msgid "Choose some font"
-msgstr "Wähle eine Schrift"
+msgstr "Schrift auswählen"
 
 #: ../data/prefs.glade.h:60
 msgid "Text color:"
@@ -409,7 +408,7 @@ msgstr "Blinkmodus des Zeigers:"
 
 #: ../data/prefs.glade.h:70
 msgid "Allow bold font"
-msgstr ""
+msgstr "Schriftstärke fett erlauben"
 
 #: ../data/prefs.glade.h:71
 msgid "<b>Palette</b>"
@@ -467,7 +466,7 @@ msgstr "<small></small>"
 #: ../data/prefs.glade.h:83
 msgid "Enable Quick Open when Ctrl+clicking on a filename in the terminal"
 msgstr ""
-"Benutze Schnell Öffnen bei Strg+Klick auf einen Dateinamen im Terminal."
+"Schnell-Öffnen bei Strg+Klick auf einen Dateinamen im Terminal aktivieren"
 
 #: ../data/prefs.glade.h:84
 msgid "Editor command line:"
@@ -496,7 +495,7 @@ msgstr ""
 
 #: ../data/prefs.glade.h:92
 msgid "Quick open in current terminal"
-msgstr "Schnell-öffnen im Terminal"
+msgstr "Schnell-Öffnen im Terminal"
 
 #: ../data/prefs.glade.h:93
 msgid ""
@@ -519,12 +518,12 @@ msgid ""
 "To change a shortcut simply click on its name.\n"
 "To disable a shortcut, press the \"Backspace\" key."
 msgstr ""
-"Um ein Tastenkürzel zu ändern, klicke auf dessen Namen.\n"
-"Um ein Tastenkürzel abzuschalten, drücke die \"Rücktaste\"."
+"Um eine Tastenkombination zu ändern, klicke auf dessen Namen.\n"
+"Um eine Tastenkombination abzuschalten, drücke die \"Rücktaste\"."
 
 #: ../data/prefs.glade.h:98
 msgid "Keyboard shortcuts"
-msgstr "Tastenkürzel"
+msgstr "Tastenkombination"
 
 #: ../data/prefs.glade.h:99
 msgid ""
@@ -554,7 +553,7 @@ msgstr "_Rückschritttaste bewirkt:"
 
 #: ../data/prefs.glade.h:104
 msgid "_Delete key generates:"
-msgstr "_Entfernen Taste bewirkt:"
+msgstr "_Entfernen-Taste bewirkt:"
 
 #: ../data/prefs.glade.h:105
 msgid "_Reset Compatibility Options to Defaults"
@@ -571,7 +570,7 @@ msgstr "Kompatibilität"
 #: ../src/guake/about.py:47 ../src/guake/gconfhandler.py:401
 #: ../src/guake/guake_app.py:176 ../src/guake/guake_app.py:346
 msgid "Guake Terminal"
-msgstr "Guake Terminal"
+msgstr "Guake-Terminal"
 
 #: ../src/guake/gconfhandler.py:402
 #, python-format
@@ -580,12 +579,12 @@ msgid ""
 "Please use Guake Preferences dialog to choose another key"
 msgstr ""
 "Ein Problem trat auf beim Verknüfen mit <b>%s</b>.\n"
-"Bitte benutzen Sie die Einstellungen um eine andere Taste oder ein anderes "
-"Tastenkürzel zu wählen."
+"Bitte benutzen Sie die Einstellungen um eine andere Taste oder eine andere "
+"Tastenkombination zu wählen."
 
 #: ../src/guake/guake_app.py:128
 msgid "Do you want to close the tab?"
-msgstr "Möchten sie das Tab wirklich beenden?"
+msgstr "Möchten sie den Reiter wirklich beenden?"
 
 #: ../src/guake/guake_app.py:131
 msgid "Do you really want to quit Guake?"
@@ -593,12 +592,12 @@ msgstr "Möchten sie Guake wirklich beenden?"
 
 #: ../src/guake/guake_app.py:133
 msgid " and one tab open"
-msgstr "und ein offenes Tab"
+msgstr "und ein offener Reiter"
 
 #: ../src/guake/guake_app.py:135
 #, python-brace-format
 msgid " and {0} tabs open"
-msgstr "und {0} tabs offen"
+msgstr "und {0} Reiter offen"
 
 #: ../src/guake/guake_app.py:138
 msgid "There are no processes running"
@@ -653,7 +652,7 @@ msgstr "Link öffnen..."
 
 #: ../src/guake/guake_app.py:1265
 msgid "Rename tab"
-msgstr "Tab umbenennen"
+msgstr "Reiter umbenennen"
 
 #. Adding a new radio button to the tabbar
 #: ../src/guake/guake_app.py:1504
@@ -706,55 +705,55 @@ msgstr "Zeigt die Einstellungen von Guake"
 
 #: ../src/guake/main.py:87
 msgid "Shows Guake's about info"
-msgstr "Zeigt Guake's Programminformationen"
+msgstr "Zeigt die Programminformationen von Guake"
 
 #: ../src/guake/main.py:91
 msgid "Add a new tab (with current directory set to NEW_TAB)"
-msgstr "_Neuen Tab mit aktuellem Verzeichnis NEW_TAB öffnen)"
+msgstr "_Neuen Reiter mit aktuellem Verzeichnis NEW_TAB öffnen)"
 
 #: ../src/guake/main.py:95
 msgid "Select a tab (SELECT_TAB is the index of the tab)"
-msgstr "Wähle ein Tab aus (SELECT_TAB ist der Index des Tabs)"
+msgstr "Wähle einen Reiter aus (SELECT_TAB ist der Index des Reiters)"
 
 #: ../src/guake/main.py:99
 msgid "Return the selected tab index."
-msgstr "Gib den Index des ausgewählten Tabs zurück."
+msgstr "Gib den Index des ausgewählten Reiters zurück."
 
 #: ../src/guake/main.py:103
 msgid "Execute an arbitrary command in the selected tab."
-msgstr "Eigenen Befehl im ausgewählten Tab ausführen"
+msgstr "Eigenen Befehl im ausgewählten Reiter ausführen"
 
 #: ../src/guake/main.py:107
 msgid "Specify the tab to rename. Default is 0."
-msgstr "Benenne das Tab zum Umbenennen. Standard ist 0."
+msgstr "Benenne den Reiter zum Umbenennen. Standard ist 0."
 
 #: ../src/guake/main.py:111
 msgid "Set the hexadecimal (#rrggbb) background color of the selected tab."
 msgstr ""
-"Setze die hexadezimale (#rrggbb) Hintergrundfarbe des ausgewählten Tabs."
+"Hexadezimale (#rrggbb) Hintergrundfarbe des ausgewählten Reiters setzen."
 
 #: ../src/guake/main.py:116
 msgid "Set the hexadecimal (#rrggbb) foreground color of the selected tab."
 msgstr ""
-"Setze die hexadezimale (#rrggbb) Vordergrundfarbe des ausgewählten Tabs."
+"Hexadezimale (#rrggbb) Vordergrundfarbe des ausgewählten Reiters setzen."
 
 #: ../src/guake/main.py:122
 msgid ""
 "Rename the specified tab. Reset to default if TITLE is a single dash \"-\"."
 msgstr ""
-"Das angegebene Tab umbenennen. Auf die Voreinstellung zurücksetzen fall "
+"Den angegebenen Reiter umbenennen. Auf die Voreinstellung zurücksetzen fall "
 "TITLE ein Minus \"-\" ist."
 
 #: ../src/guake/main.py:128
 msgid ""
 "Rename the current tab. Reset to default if TITLE is a single dash \"-\"."
 msgstr ""
-"Das aktuelle Tab umbenennen. Auf die Voreinstellung zurücksetzen fall TITLE "
-"ein Minus \"-\" ist."
+"Den aktuellen Reiter umbenennen. Auf die Voreinstellung zurücksetzen fall "
+"TITLE ein Minus \"-\" ist."
 
 #: ../src/guake/main.py:133
 msgid "Says to Guake go away =("
-msgstr "Sagt Guake das es verschwinden soll :o("
+msgstr "Sagt Guake, dass es verschwinden soll :o("
 
 #: ../src/guake/main.py:137
 msgid "Do not execute the start up script"
@@ -775,7 +774,7 @@ msgstr ""
 #. string to show in prefereces dialog for user shell option
 #: ../src/guake/prefs.py:67
 msgid "<user shell>"
-msgstr "<user shell>"
+msgstr "<Benutzershell>"
 
 #: ../src/guake/prefs.py:454
 msgid "Action"
@@ -790,18 +789,17 @@ msgid "Custom"
 msgstr "Angepasst"
 
 #: ../src/guake/prefs.py:909
-#, fuzzy
 msgid "JSON files"
-msgstr "Alle Dateien"
+msgstr "JSON-Dateien"
 
 #: ../src/guake/prefs.py:1002
 #, python-format
 msgid "The shortcut \"%s\" is already in use."
-msgstr "Das Tastenkürzel \"%s\" ist bereits belegt."
+msgstr "Die Tastenkombination \"%s\" ist bereits belegt."
 
 #: ../src/guake/prefs.py:1003
 msgid "Error setting keybinding."
-msgstr "Fehler beim Setzten des Tastenkürzels"
+msgstr "Fehler beim Setzen der Tastenkombination"
 
 #: ../src/guake/prefs.py:1015
 #, python-format
@@ -811,8 +809,8 @@ msgid ""
 "\n"
 "Please try with a key such as Control, Alt or Shift at the same time.\n"
 msgstr ""
-"Das Tastenkürzel \"%s\" kann nicht genutzt werden, weil es nicht möglich ist "
-"die Kombination zu benutzen.\n"
+"Die Tastenkombination \"%s\" kann nicht genutzt werden, weil es nicht "
+"möglich ist die Kombination zu benutzen.\n"
 "\n"
 "Versuchen Sie es mit den Tasten Strg, Alt oder Shift zur gleichen Zeit.\n"
 
