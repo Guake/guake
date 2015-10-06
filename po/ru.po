@@ -11,8 +11,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Guake 0.4.5\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-08-27 13:39+0200\n"
-"PO-Revision-Date: 2015-10-06 11:17+0300\n"
+"POT-Creation-Date: 2015-10-06 16:38+0300\n"
+"PO-Revision-Date: 2015-10-06 16:43+0300\n"
 "Last-Translator: Ivan Komaritsyn <vantu5z@mail.ru>\n"
 "Language: \n"
 "MIME-Version: 1.0\n"
@@ -100,46 +100,50 @@ msgid "Save to File..."
 msgstr "Сохранить в файл..."
 
 #: ../data/guake.glade.h:5
+msgid "Reset terminal"
+msgstr "Сброс терминала"
+
+#: ../data/guake.glade.h:6
 msgid "Find..."
 msgstr "Найти..."
 
-#: ../data/guake.glade.h:6
+#: ../data/guake.glade.h:7
 msgid "New Tab"
 msgstr "Новая вкладка"
 
-#: ../data/guake.glade.h:7
+#: ../data/guake.glade.h:8
 msgid "Rename Tab"
 msgstr "Переименовать вкладку"
 
-#: ../data/guake.glade.h:8
+#: ../data/guake.glade.h:9
 msgid "Close Tab"
 msgstr "Закрыть вкладку"
 
-#: ../data/guake.glade.h:9
+#: ../data/guake.glade.h:10
 msgid "Open link..."
 msgstr "Открыть ссылку..."
 
-#: ../data/guake.glade.h:10
+#: ../data/guake.glade.h:11
 msgid "Search on Web"
 msgstr "Искать в Интернете"
 
-#: ../data/guake.glade.h:11
+#: ../data/guake.glade.h:12
 msgid "Quit"
 msgstr "Выход"
 
-#: ../data/guake.glade.h:12
+#: ../data/guake.glade.h:13
 msgid "Rename"
 msgstr "Переименовать"
 
-#: ../data/guake.glade.h:13
+#: ../data/guake.glade.h:14
 msgid "Close"
 msgstr "Закрыть"
 
-#: ../data/guake.glade.h:14
+#: ../data/guake.glade.h:15
 msgid "Guake!"
 msgstr "Guake!"
 
-#: ../data/guake.glade.h:15
+#: ../data/guake.glade.h:16
 msgid "Add a new tab"
 msgstr "Добавить новую вкладку"
 
@@ -563,9 +567,9 @@ msgid "Compatibility"
 msgstr "Совместимость"
 
 #: ../src/guake/about.py:47 ../src/guake/gconfhandler.py:401
-#: ../src/guake/guake_app.py:176 ../src/guake/guake_app.py:346
+#: ../src/guake/guake_app.py:176 ../src/guake/guake_app.py:350
 msgid "Guake Terminal"
-msgstr "Guake Terminal"
+msgstr "Терминал Guake"
 
 #: ../src/guake/gconfhandler.py:402
 #, python-format
@@ -619,7 +623,7 @@ msgstr ""
 msgid "Show"
 msgstr "Показать"
 
-#: ../src/guake/guake_app.py:347
+#: ../src/guake/guake_app.py:351
 #, python-format
 msgid ""
 "Guake is now running,\n"
@@ -628,53 +632,53 @@ msgstr ""
 "Guake запущен,\n"
 "нажмите <b>%s</b> чтобы работать с ним."
 
-#: ../src/guake/guake_app.py:602
+#: ../src/guake/guake_app.py:611
 #, python-format
 msgid "Search on Web: '%s'"
 msgstr "Поиск в Интернете: '%s'"
 
-#: ../src/guake/guake_app.py:606
+#: ../src/guake/guake_app.py:616
 msgid "Search on Web (no selection)"
 msgstr "Поиск в Интернете (без выборки)"
 
-#: ../src/guake/guake_app.py:612
+#: ../src/guake/guake_app.py:622
 msgid "Open Link: {}"
 msgstr "Открыть ссылку: {}"
 
-#: ../src/guake/guake_app.py:615
+#: ../src/guake/guake_app.py:625
 msgid "Open Link..."
 msgstr "Открыть ссылку..."
 
-#: ../src/guake/guake_app.py:1265
+#: ../src/guake/guake_app.py:1278
 msgid "Rename tab"
 msgstr "Переименовать вкладку"
 
 #. Adding a new radio button to the tabbar
-#: ../src/guake/guake_app.py:1504
+#: ../src/guake/guake_app.py:1518
 msgid "Terminal"
 msgstr "Терминал"
 
-#: ../src/guake/guake_app.py:1545
+#: ../src/guake/guake_app.py:1562
 msgid "Save to..."
 msgstr "Сохранить как..."
 
-#: ../src/guake/guake_app.py:1552 ../src/guake/prefs.py:913
+#: ../src/guake/guake_app.py:1569 ../src/guake/prefs.py:918
 msgid "All files"
 msgstr "Все файлы"
 
-#: ../src/guake/guake_app.py:1557
+#: ../src/guake/guake_app.py:1574
 msgid "Text and Logs"
 msgstr "Текст и Логи"
 
-#: ../src/guake/guake_app.py:1575
+#: ../src/guake/guake_app.py:1592
 msgid "Find"
 msgstr "Найти"
 
-#: ../src/guake/guake_app.py:1577
+#: ../src/guake/guake_app.py:1594
 msgid "Forward"
 msgstr "Вперёд"
 
-#: ../src/guake/guake_app.py:1578
+#: ../src/guake/guake_app.py:1595
 msgid "Backward"
 msgstr "Назад"
 
@@ -770,32 +774,32 @@ msgstr ""
 msgid "<user shell>"
 msgstr "<шелл пользователя>"
 
-#: ../src/guake/prefs.py:454
+#: ../src/guake/prefs.py:459
 msgid "Action"
 msgstr "Действие"
 
-#: ../src/guake/prefs.py:464
+#: ../src/guake/prefs.py:469
 msgid "Shortcut"
 msgstr "Горячая клавиша"
 
-#: ../src/guake/prefs.py:606 ../src/guake/prefs.py:652
+#: ../src/guake/prefs.py:611 ../src/guake/prefs.py:657
 msgid "Custom"
 msgstr "Дополнительно"
 
-#: ../src/guake/prefs.py:909
+#: ../src/guake/prefs.py:914
 msgid "JSON files"
 msgstr "JSON файлы"
 
-#: ../src/guake/prefs.py:1002
+#: ../src/guake/prefs.py:1007
 #, python-format
 msgid "The shortcut \"%s\" is already in use."
 msgstr "Сокращение \"%s\" уже используется."
 
-#: ../src/guake/prefs.py:1003
+#: ../src/guake/prefs.py:1008
 msgid "Error setting keybinding."
 msgstr "Ошибка назначения клавиш."
 
-#: ../src/guake/prefs.py:1015
+#: ../src/guake/prefs.py:1020
 #, python-format
 msgid ""
 "The shortcut \"%s\" cannot be used because it will become impossible to type "
