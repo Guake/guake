@@ -247,7 +247,7 @@ class PrefsCallbacks(object):
         """Changes the activity of start_fullscreen in gconf
         """
         self.client.set_bool(KEY('/general/start_fullscreen'), chk.get_active())
-        
+
     def on_use_vte_titles_toggled(self, chk):
         """Save `use_vte_titles` property value in gconf
         """
