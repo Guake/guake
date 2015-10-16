@@ -30,9 +30,9 @@ isWindows = False
 if sys.platform.startswith('win32'):
     isWindows = True
 
-####################################################################################################
+#
 # Utility functions
-####################################################################################################
+#
 
 
 class bcolors(object):
@@ -124,7 +124,7 @@ def run_background(cmd, cwd=None, shell=False):
 def execute(cmdLine):
     return run([cmdLine], shell=True)
 
-####################################################################################################
+#
 
 
 def addArgumentParser(description=None):
@@ -149,7 +149,7 @@ def parse(parser):
     return (options, args)
 
 
-####################################################################################################
+#
 
 def makedirs(dirPath):
     try:
