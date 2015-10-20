@@ -1202,6 +1202,7 @@ class Guake(SimpleGladeApp):
         """Callback toggle the fullscreen status of the main
         window. Called by the accel key.
         """
+
         if not self.is_fullscreen:
             self.fullscreen()
         else:
@@ -1228,6 +1229,10 @@ class Guake(SimpleGladeApp):
             self.toolbar.hide()
 
     def unfullscreen(self):
+
+        # Fixes "Guake cannot restore from fullscreen" (#628)
+        self.window.unmaximize()
+
         self.set_final_window_rect()
         self.window.unfullscreen()
         self.is_fullscreen = False
