@@ -248,6 +248,11 @@ class PrefsCallbacks(object):
         """
         self.client.set_bool(KEY('/general/start_fullscreen'), chk.get_active())
 
+    def on_use_vte_titles_toggled(self, chk):
+        """Save `use_vte_titles` property value in gconf
+        """
+        self.client.set_bool(KEY('/general/use_vte_titles'), chk.get_active())
+
     def on_mouse_display_toggled(self, chk):
         """Set the 'appear on mouse display' preference in gconf. This
         property supercedes any value stored in display_n.

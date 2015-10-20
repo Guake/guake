@@ -168,9 +168,24 @@ and installed by running::
 
     sudo pacman -S guake
 
-For compiling from these sources, please install the following packages (TBD)::
+For compiling from these sources, please install the following packages (for Python 2)::
 
-    TBD
+    gnome-common python2-gconf python2-xdg
+  
+To run Guake with Python 2, use the trick described in `Arch Wiki <https://wiki.archlinux.org/index.php/Python#Dealing_with_version_problem_in_build_scripts>`_ and put this as your ``/usr/local/bin/python`` (changing ``/path/to/guake`` into a real path where you cloned the repository)::
+
+    #!/bin/bash
+    script=$(readlink -f -- "$1")
+    case "$script" in (/path/to/guake*)
+        exec python2 "$@"
+        ;;
+    esac
+    
+    exec python3 "$@"
+
+Make it executable with ``chmod +x /usr/local/bin/python``.
+  
+  
 
 Compilation
 ~~~~~~~~~~~
