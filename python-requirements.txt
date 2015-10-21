@@ -1,4 +1,0 @@
-pylint == 1.4.3
-pep8 == 1.5.7
-autopep8 == 1.0.3
-pyflakes == 0.8.1
