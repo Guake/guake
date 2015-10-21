@@ -1,0 +1,13 @@
+[pep8]
+show-source = yes
+statistics = yes
+count = yes
+max-line-length = 100
+
+# List of currently ignored PEP8 issues.  Some of them definetely should be
+# enabled in future.
+#
+
+ignore = E731,E402
+# E731: ignore use def instead of lambda assignation
+# E402: ignore module level import not at top of file
