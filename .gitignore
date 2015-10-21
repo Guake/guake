@@ -44,3 +44,5 @@ doc/src/conf.py
 doc-pak/
 description-pak
 backup-*.tgz
+workdir/
+activate
