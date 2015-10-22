@@ -1,7 +1,9 @@
 language: python
 python:
     - "2.7"
-    - "3.5"
+    # - "3.5"
+    # system packages only supported for python 2.7
+    # http://docs.travis-ci.com/user/languages/python/#Travis-CI-Uses-Isolated-virtualenvs
 virtualenv:
     system_site_packages: true
 compiler:
@@ -11,7 +13,7 @@ before_install:
     - sudo apt-get install -qq --fix-missing build-essential python autoconf
     - sudo apt-get install -qq --fix-missing gnome-common gtk-doc-tools libglib2.0-dev libgtk2.0-dev libgconf2-dev
     - sudo apt-get install -qq --fix-missing python-gtk2 python-gtk2-dev python-vte python-appindicator
-    - sudo apt-get install -qq --fix-missing python3-dev
+    - sudo apt-get install -qq --fix-missing python-dev
 install:
     - pip install --upgrade pip
     - pip install -r requirements.txt
