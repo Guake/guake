@@ -167,8 +167,8 @@ class Guake(SimpleGladeApp):
         self.forceHide = False
         self.preventHide = False
 
-        # trayicon!
-        img = pixmapfile('guake-tray.png')
+        # trayicon! Using SVG handles better different OS trays
+        img = pixmapfile('guake-tray.svg')
         try:
             import appindicator
         except ImportError:
@@ -1071,6 +1071,11 @@ class Guake(SimpleGladeApp):
                 gtk.main_quit()
         else:
             gtk.main_quit()
+
+    def accel_reset_terminal(self, *args):
+        """Callback to reset and clean the terminal"""
+        self.reset_terminal()
+        return True
 
     def accel_zoom_in(self, *args):
         """Callback to zoom in.
