@@ -81,6 +81,8 @@ HOTKEYS = [
                'label': 'Toggle Hide on Lose Focus'},
               {'key': LKEY('quit'),
                'label': 'Quit'},
+              {'key': LKEY('reset_terminal'),
+               'label': 'Reset terminal'},
               ]},
 
     {'label': 'Tab management',
