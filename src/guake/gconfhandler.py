@@ -375,8 +375,8 @@ class GConfKeyHandler(object):
                 'increase_transparency', 'decrease_transparency',
                 "search_on_web", 'move_tab_left', 'move_tab_right',
                 'switch_tab1', 'switch_tab2', 'switch_tab3', 'switch_tab4', 'switch_tab5',
-                'switch_tab6', 'switch_tab7', 'switch_tab8', 'switch_tab9', 'switch_tab10'
-                ]
+                'switch_tab6', 'switch_tab7', 'switch_tab8', 'switch_tab9', 'switch_tab10',
+                'reset_terminal']
         for key in keys:
             notify_add(LKEY(key), self.reload_accelerators)
             self.client.notify(LKEY(key))
@@ -419,6 +419,11 @@ class GConfKeyHandler(object):
         and adds to the main accel_group.
         """
         gets = lambda x: self.client.get_string(LKEY(x))
+        key, mask = gtk.accelerator_parse(gets('reset_terminal'))
+        if key > 0:
+            self.accel_group.connect_group(key, mask, gtk.ACCEL_VISIBLE,
+                                           self.guake.accel_reset_terminal)
+
         key, mask = gtk.accelerator_parse(gets('quit'))
         if key > 0:
             self.accel_group.connect_group(key, mask, gtk.ACCEL_VISIBLE,
