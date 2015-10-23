@@ -374,8 +374,10 @@ class Guake(SimpleGladeApp):
     # function to read commands stored at /general/custom_command_file and
     # launch the context menu builder
     def get_custom_commands(self, menu):
-
-        file_name = os.path.expanduser(self.client.get_string(KEY('/general/custom_command_file')))
+        custom_command_file_path = self.client.get_string(KEY('/general/custom_command_file'))
+        if not custom_command_file_path:
+            return
+        file_name = os.path.expanduser(custom_command_file_path)
         if not file_name:
             return
         try:
