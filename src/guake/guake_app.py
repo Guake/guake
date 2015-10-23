@@ -1072,6 +1072,11 @@ class Guake(SimpleGladeApp):
         else:
             gtk.main_quit()
 
+    def accel_reset_terminal(self, *args):
+        """Callback to reset and clean the terminal"""
+        self.reset_terminal()
+        return True
+
     def accel_zoom_in(self, *args):
         """Callback to zoom in.
         """
