@@ -936,7 +936,7 @@
             <applyto>/apps/guake/keybindings/local/toggle_hide_on_lose_focus</applyto>
             <owner>guake</owner>
             <type>string</type>
-            <default>&lt;Control&gt;F1</default>
+            <default></default>
             <locale name="C">
                 <short>Toggle hide on lose focus.</short>
                 <long>Toggle whether guake will hide when it loses focus.</long>
