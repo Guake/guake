@@ -1,6 +1,18 @@
-Version 0.8.2 (dev)
-===================
+Version 0.8.2
+=============
 
+Bug fix version. Thanks for external contributions!
+
+Feature:
+- new palette 'Bluloco' (my default one now!) (@uloco)
+
+Bug fixes:
+- tab bar width (@ozzyboshi)
+- open new tab in current directory (#578, @Xtreak)
+- fix default interpreter (#619, @Xtreak)
+- fix use VTE title (#524, @Xtreak)
+- Russian tranlation (@vantu5z), german (@Airfunker), spanish (@thardev) chinese (@Xinyu Ng)
+- fix guake cannot restore fullscreen (#628, @thardev)
 
 Version 0.8.1
 =============
