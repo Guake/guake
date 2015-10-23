@@ -167,8 +167,8 @@ class Guake(SimpleGladeApp):
         self.forceHide = False
         self.preventHide = False
 
-        # trayicon!
-        img = pixmapfile('guake-tray.png')
+        # trayicon! Using SVG handles better different OS trays
+        img = pixmapfile('guake-tray.svg')
         try:
             import appindicator
         except ImportError:
