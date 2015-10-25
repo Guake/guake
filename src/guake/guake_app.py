@@ -1221,8 +1221,13 @@ class Guake(SimpleGladeApp):
         """Callback toggle whether the window should hide when it loses
         focus. Called by the accel key.
         """
-        # use temporary setting -- don't change conf key
-        self.disable_losefocus_hiding = not self.disable_losefocus_hiding
+
+        if self.client.get_bool(KEY('/general/window_losefocus')):
+            self.client.set_bool(KEY('/general/window_losefocus'), False)
+            self.disable_losefocus_hiding = True
+        else:
+            self.client.set_bool(KEY('/general/window_losefocus'), True)
+            self.disable_losefocus_hiding = False
         return True
 
     def fullscreen(self):
@@ -1531,7 +1536,6 @@ class Guake(SimpleGladeApp):
         label = box.terminal.get_window_title() or _("Terminal")
         tabs = self.tabs.get_children()
         parent = tabs and tabs[0] or None
-
         bnt = gtk.RadioButton(group=parent, label=label, use_underline=False)
         bnt.set_property('can-focus', False)
         bnt.set_property('draw-indicator', False)
