@@ -1223,9 +1223,11 @@ class Guake(SimpleGladeApp):
         """
 
         if self.client.get_bool(KEY('/general/window_losefocus')):
+            log.debug("WINDOW FOCUS HIDE FALSE")
             self.client.set_bool(KEY('/general/window_losefocus'), False)
             self.disable_losefocus_hiding = True
         else:
+            log.debug("WINDOW FOCUS HIDE TRUE")
             self.client.set_bool(KEY('/general/window_losefocus'), True)
             self.disable_losefocus_hiding = False
         return True
