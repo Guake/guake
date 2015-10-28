@@ -180,6 +180,7 @@ class Guake(SimpleGladeApp):
         else:
             self.tray_icon = appindicator.Indicator(
                 _("guake-indicator"), _("guake-tray"), appindicator.CATEGORY_OTHER)
+            self.tray_icon.set_icon(img)
             self.tray_icon.set_status(appindicator.STATUS_ACTIVE)
             menu = self.get_widget('tray-menu')
             show = gtk.MenuItem(_('Show'))
