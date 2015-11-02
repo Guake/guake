@@ -424,6 +424,18 @@
                 <long>Any terminal program can set the terminal's title via special escape sequences. Some shells (e.g. bash) display user's prompt there (though you can adjust that to any arbitrary text in bashrc or similar) and update it automatically as the prompt changes. So you can have easy automatically updating meaningful tab titles with this option turned on.</long>
             </locale>
         </schema>
+        
+        <schema>
+            <key>/schemas/apps/guake/general/max_tab_name_length</key>
+            <applyto>/apps/guake/general/max_tab_name_length</applyto>
+            <owner>guake</owner>
+            <type>int</type>
+            <default>0</default>
+            <locale name="C">
+                <short>Set max length of the tabs names</short>
+                <long>Controls the maximum length of the tabs names. Maximum length: 100, Minimum length: 1. 0 = unlimited length.</long>
+            </locale>
+        </schema>
 
         <schema>
             <key>/schemas/apps/guake/style/cursor_blink_mode</key>
