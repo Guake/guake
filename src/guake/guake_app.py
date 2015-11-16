@@ -167,8 +167,9 @@ class Guake(SimpleGladeApp):
         self.forceHide = False
         self.preventHide = False
 
-        # trayicon!
-        img = pixmapfile('guake-tray.png')
+        # trayicon! Using SVG handles better different OS trays
+        img = pixmapfile('guake-tray.svg')
+
         try:
             import appindicator
         except ImportError:
@@ -307,9 +308,6 @@ class Guake(SimpleGladeApp):
         self.window.connect('delete-event', destroy)
         self.window.connect('window-state-event', window_event)
 
-        # Flag to completely disable losefocus hiding
-        self.disable_losefocus_hiding = False
-
         # this line is important to resize the main window and make it
         # smaller.
         self.window.set_geometry_hints(min_width=1, min_height=1)
@@ -374,8 +372,10 @@ class Guake(SimpleGladeApp):
     # function to read commands stored at /general/custom_command_file and
     # launch the context menu builder
     def get_custom_commands(self, menu):
-
-        file_name = os.path.expanduser(self.client.get_string(KEY('/general/custom_command_file')))
+        custom_command_file_path = self.client.get_string(KEY('/general/custom_command_file'))
+        if not custom_command_file_path:
+            return
+        file_name = os.path.expanduser(custom_command_file_path)
         if not file_name:
             return
         try:
@@ -556,7 +556,7 @@ class Guake(SimpleGladeApp):
         """Hides terminal main window when it loses the focus and if
         the window_losefocus gconf variable is True.
         """
-        if self.disable_losefocus_hiding or self.showing_context_menu:
+        if self.showing_context_menu:
             return
 
         if self.prompt_dialog is not None:
@@ -1070,6 +1070,11 @@ class Guake(SimpleGladeApp):
         else:
             gtk.main_quit()
 
+    def accel_reset_terminal(self, *args):
+        """Callback to reset and clean the terminal"""
+        self.reset_terminal()
+        return True
+
     def accel_zoom_in(self, *args):
         """Callback to zoom in.
         """
@@ -1110,6 +1115,8 @@ class Guake(SimpleGladeApp):
         """Callback to increase transparency.
         """
         transparency = self.client.get_int(KEY('/style/background/transparency'))
+        if transparency >= 100:
+            return True
         self.client.set_int(KEY('/style/background/transparency'), int(transparency) + 2)
         return True
 
@@ -1117,6 +1124,8 @@ class Guake(SimpleGladeApp):
         """Callback to decrease transparency.
         """
         transparency = self.client.get_int(KEY('/style/background/transparency'))
+        if transparency <= 0:
+            return True
         self.client.set_int(KEY('/style/background/transparency'), int(transparency) - 2)
         return True
 
@@ -1213,8 +1222,11 @@ class Guake(SimpleGladeApp):
         """Callback toggle whether the window should hide when it loses
         focus. Called by the accel key.
         """
-        # use temporary setting -- don't change conf key
-        self.disable_losefocus_hiding = not self.disable_losefocus_hiding
+
+        if self.client.get_bool(KEY('/general/window_losefocus')):
+            self.client.set_bool(KEY('/general/window_losefocus'), False)
+        else:
+            self.client.set_bool(KEY('/general/window_losefocus'), True)
         return True
 
     def fullscreen(self):
@@ -1295,10 +1307,9 @@ class Guake(SimpleGladeApp):
         entry.reparent(vbox)
 
         # don't hide on lose focus until the rename is finished
-        current_hide_setting = self.disable_losefocus_hiding
-        self.disable_losefocus_hiding = True
+        self.preventHide = True
         response = dialog.run()
-        self.disable_losefocus_hiding = current_hide_setting
+        self.preventHide = False
 
         if response == gtk.RESPONSE_ACCEPT:
             new_text = entry.get_text()
@@ -1523,7 +1534,6 @@ class Guake(SimpleGladeApp):
         label = box.terminal.get_window_title() or _("Terminal")
         tabs = self.tabs.get_children()
         parent = tabs and tabs[0] or None
-
         bnt = gtk.RadioButton(group=parent, label=label, use_underline=False)
         bnt.set_property('can-focus', False)
         bnt.set_property('draw-indicator', False)
