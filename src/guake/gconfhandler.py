@@ -96,6 +96,7 @@ class GConfHandler(object):
         notify_add(KEY('/general/compat_backspace'), self.backspace_changed)
         notify_add(KEY('/general/compat_delete'), self.delete_changed)
         notify_add(KEY('/general/custom_command_file'), self.custom_command_file_changed)
+        notify_add(KEY('/general/max_tab_name_length'), self.max_tab_name_length_changed)
 
     def custom_command_file_changed(self, client, connection_id, entry, data):
         self.guake.load_custom_commands()
@@ -344,6 +345,31 @@ class GConfHandler(object):
         """
         for i in self.guake.notebook.iter_terminals():
             i.set_delete_binding(entry.value.get_string())
+
+    def max_tab_name_length_changed(self, client, connection_id, entry, data):
+        """If the gconf var max_tab_name_length be changed, this method will
+        be called and will set the tab name length limit.
+        """
+
+        # avoid get window title before terminal is ready
+        if self.guake.notebook.get_current_terminal().get_window_title() is None:
+            return
+
+        max_name_length = client.get_int(KEY("/general/max_tab_name_length"))
+
+        if max_name_length == 0:
+            max_name_length = None
+
+        vte_titles_on = client.get_bool(KEY("/general/use_vte_titles"))
+        tab_name = self.guake.notebook.get_current_terminal(
+        ).get_window_title() if vte_titles_on else _("Terminal")
+        for tab in self.guake.tabs.get_children():
+            if not getattr(tab, 'custom_label_set', False):
+                tab.set_label(tab_name[:max_name_length])
+            else:
+                # retrieve the custom tab name to restore it
+                tab_custom_name = getattr(tab, 'custom_label_text', False)
+                tab.set_label(tab_custom_name[:max_name_length])
 
 
 class GConfKeyHandler(object):

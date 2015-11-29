@@ -1025,6 +1025,7 @@ class Guake(SimpleGladeApp):
         self.client.notify(KEY('/general/history_size'))
         self.client.notify(KEY('/general/show_resizer'))
         self.client.notify(KEY('/general/use_vte_titles'))
+        self.client.notify(KEY('/general/max_tab_name_length'))
         self.client.notify(KEY('/general/quick_open_enable'))
         self.client.notify(KEY('/general/quick_open_command_line'))
         self.client.notify(KEY('/style/cursor_shape'))
@@ -1278,7 +1279,11 @@ class Guake(SimpleGladeApp):
         tab = self.tabs.get_children()[page]
         # if tab has been renamed by user, don't override.
         if not getattr(tab, 'custom_label_set', False):
-            tab.set_label(vte.get_window_title())
+            vte_title = vte.get_window_title()
+            max_name_length = self.client.get_int(KEY("/general/max_tab_name_length"))
+            if len(vte_title) > max_name_length and max_name_length is not 0:
+                vte_title = vte_title[:max_name_length]
+            tab.set_label(vte_title)
 
     def on_rename_current_tab_activate(self, *args):
         """Shows a dialog to rename the current tab.
@@ -1312,10 +1317,19 @@ class Guake(SimpleGladeApp):
         self.preventHide = False
 
         if response == gtk.RESPONSE_ACCEPT:
+            max_name_length = self.client.get_int(KEY("/general/max_tab_name_length"))
             new_text = entry.get_text()
+            if len(new_text) > max_name_length and max_name_length is not 0:
+                new_text = new_text[:max_name_length]
+
             self.selected_tab.set_label(new_text)
             # if user sets empty name, consider he wants default behavior.
             setattr(self.selected_tab, 'custom_label_set', bool(new_text))
+
+            # holds custom label name of the tab,
+            # we need this to restore the name if the max length is changed
+            setattr(self.selected_tab, 'custom_label_text', new_text)
+
             # trigger titling handler in case that custom label has been reset
             current_vte = self.notebook.get_current_terminal()
             current_vte.emit('window-title-changed')
