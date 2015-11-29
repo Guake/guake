@@ -255,6 +255,12 @@ class PrefsCallbacks(object):
         """
         self.client.set_bool(KEY('/general/use_vte_titles'), chk.get_active())
 
+    def on_max_tab_name_length_changed(self, spin):
+        """Changes the value of max_tab_name_length in gconf
+        """
+        val = int(spin.get_value())
+        self.client.set_int(KEY('/general/max_tab_name_length'), val)
+
     def on_mouse_display_toggled(self, chk):
         """Set the 'appear on mouse display' preference in gconf. This
         property supercedes any value stored in display_n.
@@ -739,6 +745,10 @@ class PrefsDialog(SimpleGladeApp):
         # use VTE titles
         value = self.client.get_bool(KEY('/general/use_vte_titles'))
         self.get_widget('use_vte_titles').set_active(value)
+
+        # max tab name length
+        value = self.client.get_int(KEY('/general/max_tab_name_length'))
+        self.get_widget('max_tab_name_length').set_value(value)
 
         value = self.client.get_float(KEY('/general/window_height_f'))
         if not value:
