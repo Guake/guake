@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: guake\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-12-01 16:49+0100\n"
-"PO-Revision-Date: 2015-05-18 18:52+0200\n"
+"PO-Revision-Date: 2015-12-05 16:30+0100\n"
 "Last-Translator: Piotr Drąg <piotrdrag@gmail.com>\n"
 "Language-Team: Polish <trans-pl@lists.fedoraproject.org>\n"
 "Language: pl\n"
@@ -60,19 +60,19 @@ msgid ""
 msgstr ""
 "Program Guake jest wolnym oprogramowaniem; można go rozprowadzać dalej i/lub "
 "modyfikować na warunkach Powszechnej Licencji Publicznej GNU, wydanej przez "
-"Fundację Wolnego Oprogramowania (Free Software Foundation) - według wersji "
+"Fundację Wolnego Oprogramowania (Free Software Foundation) — według wersji "
 "drugiej tej Licencji lub którejś z późniejszych wersji.\n"
 "\n"
-"Program Guake rozpowszechniany jest z nadzieją, iż będzie on użyteczny - "
+"Program Guake rozpowszechniany jest z nadzieją, iż będzie on użyteczny — "
 "jednak BEZ JAKIEJKOLWIEK GWARANCJI, nawet domyślnej gwarancji PRZYDATNOŚCI "
 "HANDLOWEJ albo PRZYDATNOŚCI DO OKREŚLONYCH ZASTOSOWAŃ. W celu uzyskania "
 "bliższych informacji należy zapoznać się z Powszechną Licencją Publiczną "
 "GNU.\n"
 "\n"
 "Z pewnością wraz z programem Guake dostarczono także egzemplarz Powszechnej "
-"Licencji Publicznej GNU (GNU General Public License); jeśli nie - proszę "
+"Licencji Publicznej GNU (GNU General Public License); jeśli nie — proszę "
 "napisać do Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor, "
-"Boston, MA 02110-130159 USA.\n"
+"Boston, MA 02110-1301 USA.\n"
 
 #: ../data/about.glade.h:13
 msgid ""
@@ -110,16 +110,15 @@ msgstr "Przełącz pełny ekran"
 
 #: ../data/guake.glade.h:4
 msgid "Save to File..."
-msgstr "Zapisz do pliku..."
+msgstr "Zapisz do pliku…"
 
 #: ../data/guake.glade.h:5
-#, fuzzy
 msgid "Reset terminal"
-msgstr "Terminal Guake"
+msgstr "Przywróć terminal"
 
 #: ../data/guake.glade.h:6
 msgid "Find..."
-msgstr "Znajdź..."
+msgstr "Znajdź…"
 
 #: ../data/guake.glade.h:7
 msgid "New Tab"
@@ -135,7 +134,7 @@ msgstr "Zamknij kartę"
 
 #: ../data/guake.glade.h:10
 msgid "Open link..."
-msgstr "Otwórz odnośnik..."
+msgstr "Otwórz odnośnik…"
 
 #: ../data/guake.glade.h:11
 msgid "Search on Web"
@@ -155,12 +154,11 @@ msgstr "Zamknij"
 
 #: ../data/guake.glade.h:15
 msgid "Guake!"
-msgstr ""
+msgstr "Guake!"
 
 #: ../data/guake.glade.h:16
-#, fuzzy
 msgid "Add a new tab"
-msgstr " i jest jedna otwarta karta"
+msgstr "Dodaje nową kartę"
 
 #: ../data/prefs.glade.h:1
 msgid "Guake Preferences"
@@ -279,7 +277,7 @@ msgstr "Tytuły VTE dla nazw kart"
 
 #: ../data/prefs.glade.h:33
 msgid "Max tab name length:"
-msgstr ""
+msgstr "Maksymalna długość nazwy karty:"
 
 #: ../data/prefs.glade.h:34
 msgid "Hide on lose focus"
@@ -322,13 +320,12 @@ msgid "<b>Main Window Width</b>"
 msgstr "<b>Szerokość głównego okna</b>"
 
 #: ../data/prefs.glade.h:44
-#, fuzzy
 msgid "Custom command file path: "
-msgstr "Polecenie edytora:"
+msgstr "Inna ścieżka do pliku polecenia: "
 
 #: ../data/prefs.glade.h:45
 msgid "Please select a json file"
-msgstr ""
+msgstr "Proszę wybrać plik JSON"
 
 #: ../data/prefs.glade.h:46
 msgid "General"
@@ -428,7 +425,7 @@ msgstr "Tryb migania kursora:"
 
 #: ../data/prefs.glade.h:71
 msgid "Allow bold font"
-msgstr ""
+msgstr "Zezwolenie na pogrubioną czcionkę"
 
 #: ../data/prefs.glade.h:72
 msgid "<b>Palette</b>"
@@ -509,8 +506,8 @@ msgid ""
 msgstr ""
 "<small><i>Można używać następujących elementów w poleceniu otwierania "
 "edytora:\n"
-" - <b>%(file_path)s</b>: ścieżka do pliku, który został kliknięty\n"
-" - <b>%(line_number)s</b>: jeśli edytor to obsługuje, można otwierać plik na "
+" • <b>%(file_path)s</b>: ścieżka do pliku, który został kliknięty\n"
+" • <b>%(line_number)s</b>: jeśli edytor to obsługuje, można otwierać plik na "
 "podanym wierszu, jeśli znajduje się na ekranie.\n"
 "\n"
 "Na przykład dla edytora sublime należy użyć <b>subl %(file_path)s:"
@@ -530,9 +527,8 @@ msgstr ""
 "autorami programu Guake):"
 
 #: ../data/prefs.glade.h:95
-#, fuzzy
 msgid "<b>Quick Open</b>"
-msgstr "Szybkie otwieranie"
+msgstr "<b>Szybkie otwieranie</b>"
 
 #: ../data/prefs.glade.h:96
 msgid "Quick Open"
@@ -544,7 +540,7 @@ msgid ""
 "To disable a shortcut, press the \"Backspace\" key."
 msgstr ""
 "Klikając nazwę skrótu można go zmienić.\n"
-"Naciśnięcie klawisza \"Backspace\" wyłącza skrót."
+"Naciśnięcie klawisza „Backspace” wyłącza skrót."
 
 #: ../data/prefs.glade.h:99
 msgid "Keyboard shortcuts"
@@ -640,7 +636,7 @@ msgstr "Jeden proces jest ciągle uruchomiony"
 #: ../src/guake/guake_app.py:142
 #, python-brace-format
 msgid "There are {0} processes still running"
-msgstr "Nadal uruchomione procesy: %d"
+msgstr "Nadal uruchomione procesy: {0}"
 
 #: ../src/guake/guake_app.py:182
 msgid "guake-indicator"
@@ -666,7 +662,7 @@ msgstr ""
 #: ../src/guake/guake_app.py:611
 #, python-format
 msgid "Search on Web: '%s'"
-msgstr "Wyszukiwanie w sieci: \"%s\""
+msgstr "Wyszukiwanie w sieci: „%s”"
 
 #: ../src/guake/guake_app.py:616
 msgid "Search on Web (no selection)"
@@ -678,7 +674,7 @@ msgstr "Otwórz odnośnik: {}"
 
 #: ../src/guake/guake_app.py:625
 msgid "Open Link..."
-msgstr "Otwórz odnośnik..."
+msgstr "Otwórz odnośnik…"
 
 #: ../src/guake/guake_app.py:1300
 msgid "Rename tab"
@@ -686,7 +682,7 @@ msgstr "Zmiana nazwy karty"
 
 #: ../src/guake/guake_app.py:1591
 msgid "Save to..."
-msgstr "Zapisanie do..."
+msgstr "Zapisanie do…"
 
 #: ../src/guake/guake_app.py:1598 ../src/guake/prefs.py:930
 msgid "All files"
@@ -765,14 +761,14 @@ msgid ""
 "Rename the specified tab. Reset to default if TITLE is a single dash \"-\"."
 msgstr ""
 "Zmienia nazwę podanej karty. Przywraca domyślą, jeśli TITLE jest pojedynczym "
-"myślnikiem \"-\"."
+"myślnikiem „-”."
 
 #: ../src/guake/main.py:128
 msgid ""
 "Rename the current tab. Reset to default if TITLE is a single dash \"-\"."
 msgstr ""
 "Zmienia nazwę bieżącej karty. Przywraca domyślą, jeśli TITLE jest "
-"pojedynczym myślnikiem \"-\"."
+"pojedynczym myślnikiem „-”."
 
 #: ../src/guake/main.py:133
 msgid "Says to Guake go away =("
@@ -809,17 +805,16 @@ msgstr "Skrót"
 
 #: ../src/guake/prefs.py:619 ../src/guake/prefs.py:665
 msgid "Custom"
-msgstr "Własne"
+msgstr "Inne"
 
 #: ../src/guake/prefs.py:926
-#, fuzzy
 msgid "JSON files"
-msgstr "Wszystkie pliki"
+msgstr "Pliki JSON"
 
 #: ../src/guake/prefs.py:1019
 #, python-format
 msgid "The shortcut \"%s\" is already in use."
-msgstr "Skrót \"%s\" jest już używany."
+msgstr "Skrót „%s” jest już używany."
 
 #: ../src/guake/prefs.py:1020
 msgid "Error setting keybinding."
@@ -833,20 +828,11 @@ msgid ""
 "\n"
 "Please try with a key such as Control, Alt or Shift at the same time.\n"
 msgstr ""
-"Skrót \"%s\" nie może być używany, ponieważ niemożliwe będzie pisanie "
+"Skrót „%s” nie może być używany, ponieważ niemożliwe będzie pisanie "
 "używając tego klawisza.\n"
 "\n"
 "Proszę spróbować z klawiszem takim jak Ctrl, Alt lub Shift w tym samym "
 "czasie.\n"
-
-#~ msgid "key binding error"
-#~ msgstr "błąd podczas dowiązywania klawisza"
-
-#~ msgid "Unable to bind global <b>%s</b> key"
-#~ msgstr "Nie można dowiązać globalnego klawisza <b>%s</b>"
-
-#~ msgid "<b>Quick Open configuration</b>"
-#~ msgstr "<b>Konfiguracja szybkiego otwierania</b>"
 
 #~ msgid "Configure your Guake sessions"
 #~ msgstr "Konfiguruje sesje programu Guake"
