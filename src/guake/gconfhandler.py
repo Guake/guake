@@ -398,7 +398,7 @@ class GConfKeyHandler(object):
         keys = ['toggle_fullscreen', 'new_tab', 'close_tab', 'rename_current_tab',
                 'previous_tab', 'next_tab', 'clipboard_copy', 'clipboard_paste',
                 'quit', 'zoom_in', 'zoom_out', 'increase_height', 'decrease_height',
-                'increase_transparency', 'decrease_transparency',
+                'increase_transparency', 'decrease_transparency', 'toggle_transparency',
                 "search_on_web", 'move_tab_left', 'move_tab_right',
                 'switch_tab1', 'switch_tab2', 'switch_tab3', 'switch_tab4', 'switch_tab5',
                 'switch_tab6', 'switch_tab7', 'switch_tab8', 'switch_tab9', 'switch_tab10',
@@ -545,6 +545,11 @@ class GConfKeyHandler(object):
         if key > 0:
             self.accel_group.connect_group(key, mask, gtk.ACCEL_VISIBLE,
                                            self.guake.accel_decrease_transparency)
+            
+        key, mask = gtk.accelerator_parse(gets('toggle_transparency'))
+        if key > 0:
+            self.accel_group.connect_group(key, mask, gtk.ACCEL_VISIBLE,
+                                           self.guake.accel_toggle_transparency)
 
         for tab in xrange(1, 11):
             key, mask = gtk.accelerator_parse(gets('switch_tab%d' % tab))

@@ -140,6 +140,8 @@ HOTKEYS = [
                'label': 'Increase transparency'},
               {'key': LKEY('decrease_transparency'),
                'label': 'Decrease transparency'},
+              {'key': LKEY('toggle_transparency'),
+               'label': 'Toggle transparency'}
               ]},
 
     {'label': 'Clipboard',
