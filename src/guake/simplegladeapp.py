@@ -70,7 +70,7 @@ def bindtextdomain(app_name, locale_dir=None):
         gtk.glade.bindtextdomain(app_name, locale_dir)
         gtk.glade.textdomain(app_name)
         gettext.install(app_name, locale_dir, unicode=1)
-    except (IOError, locale.Error), e:
+    except (IOError, locale.Error) as e:
         print("Warning", app_name, e)
         __builtins__.__dict__["_"] = lambda x: x
 
