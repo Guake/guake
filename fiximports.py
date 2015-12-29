@@ -154,7 +154,7 @@ class FixImports(object):
 def main():
     '''I am the main method'''
     if len(sys.argv) != 2:
-        print "usage: %s <python file>" % (sys.argv[0])
+        print "usage: %s <python file>" % (sys.argv[0],)
         sys.exit(1)
 
     filename = sys.argv[1]
