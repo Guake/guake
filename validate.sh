@@ -122,7 +122,7 @@ fi
 status "checking import module convention in modified files"
 RES=true
 for filename in ${py_files[@]}; do
-  if ! python fiximports.py "$filename"; then
+  if ! python2.7 fiximports.py "$filename"; then
     echo "cannot fix imports of $filename"
     RES=false
   fi
