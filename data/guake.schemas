@@ -918,7 +918,19 @@
                 <long>Decrease the terminal transparency.</long>
             </locale>
         </schema>
-
+        
+        <schema>
+            <key>/schemas/apps/guake/keybindings/local/toggle_transparency</key>
+            <applyto>/apps/guake/keybindings/local/toggle_transparency</applyto>
+            <owner>guake</owner>
+            <type>string</type>
+            <default>&lt;Control&gt;Alt&gt;T</default>
+            <locale name="C">
+                <short>Toggle transparency.</short>
+                <long>Toggle the terminal transparency from the actual level to 100% and vice versa.</long>
+            </locale>
+        </schema>
+        
         <schema>
             <key>/schemas/apps/guake/keybindings/local/clipboard_copy</key>
             <applyto>/apps/guake/keybindings/local/clipboard_copy</applyto>

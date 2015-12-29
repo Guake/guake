@@ -109,6 +109,9 @@ GDK_WINDOW_STATE_ICONIFIED = 2
 GDK_WINDOW_STATE_STICKY = 8
 GDK_WINDOW_STATE_ABOVE = 32
 
+# Transparency max level (should be always 100)
+MAX_TRANSPARENCY = 100
+
 
 log = logging.getLogger(__name__)
 
@@ -248,6 +251,12 @@ class Guake(SimpleGladeApp):
 
         # holds the timestamp of the previous show/hide action
         self.prev_showhide_time = 0
+        
+        # holds transparency level
+        self.transparency = 0
+        
+        # Controls the transparency state needed for function accel_toggle_transparency
+        self.transparency_toggled = False
 
         # load cumstom command menu and menuitems from config file
         self.custom_command_menuitem = None
@@ -1116,7 +1125,7 @@ class Guake(SimpleGladeApp):
         """Callback to increase transparency.
         """
         transparency = self.client.get_int(KEY('/style/background/transparency'))
-        if transparency >= 100:
+        if transparency >= MAX_TRANSPARENCY:
             return True
         self.client.set_int(KEY('/style/background/transparency'), int(transparency) + 2)
         return True
@@ -1129,7 +1138,19 @@ class Guake(SimpleGladeApp):
             return True
         self.client.set_int(KEY('/style/background/transparency'), int(transparency) - 2)
         return True
-
+    
+    def accel_toggle_transparency(self, *args):
+        """Callback to toggle transparency.
+        """
+        if self.transparency_toggled:
+            self.client.set_int(KEY('/style/background/transparency'), int(self.transparency))
+            self.transparency_toggled = False
+            return True
+        self.transparency = self.client.get_int(KEY('/style/background/transparency'))
+        self.client.set_int(KEY('/style/background/transparency'), MAX_TRANSPARENCY)
+        self.transparency_toggled = True
+        return True
+    
     def accel_add(self, *args):
         """Callback to add a new tab. Called by the accel key.
         """
