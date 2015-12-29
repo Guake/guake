@@ -251,10 +251,10 @@ class Guake(SimpleGladeApp):
 
         # holds the timestamp of the previous show/hide action
         self.prev_showhide_time = 0
-        
+
         # holds transparency level
         self.transparency = 0
-        
+
         # Controls the transparency state needed for function accel_toggle_transparency
         self.transparency_toggled = False
 
@@ -1138,7 +1138,7 @@ class Guake(SimpleGladeApp):
             return True
         self.client.set_int(KEY('/style/background/transparency'), int(transparency) - 2)
         return True
-    
+
     def accel_toggle_transparency(self, *args):
         """Callback to toggle transparency.
         """
@@ -1150,7 +1150,7 @@ class Guake(SimpleGladeApp):
         self.client.set_int(KEY('/style/background/transparency'), MAX_TRANSPARENCY)
         self.transparency_toggled = True
         return True
-    
+
     def accel_add(self, *args):
         """Callback to add a new tab. Called by the accel key.
         """

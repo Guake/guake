@@ -116,7 +116,7 @@ class ThemeSwatch(gtk.DrawingArea):
 
                     # self.draw_rect(x, y, s, s, color)
                     self.draw_round_rect(x, y, s, s, color)
-                    print "[%7s,%11s]" % (name, self.STYLE_STATES[state]),
+                    print "[%7s,%11s]" % (name, self.STYLE_STATES[state])
 
                     x += g + s
 

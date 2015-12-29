@@ -545,7 +545,7 @@ class GConfKeyHandler(object):
         if key > 0:
             self.accel_group.connect_group(key, mask, gtk.ACCEL_VISIBLE,
                                            self.guake.accel_decrease_transparency)
-            
+
         key, mask = gtk.accelerator_parse(gets('toggle_transparency'))
         if key > 0:
             self.accel_group.connect_group(key, mask, gtk.ACCEL_VISIBLE,
