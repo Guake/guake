@@ -923,7 +923,11 @@ class PrefsDialog(SimpleGladeApp):
         self.reload_erase_combos()
 
         # custom command context-menu configuration file
-        value = os.path.expanduser(self.client.get_string(KEY('/general/custom_command_file')))
+        custom_command_file = self.client.get_string(KEY('/general/custom_command_file'))
+        if custom_command_file:
+            custom_command_file_name = os.path.expanduser(custom_command_file)
+        else:
+            custom_command_file_name = None
         custom_cmd_filter = gtk.FileFilter()
         custom_cmd_filter.set_name(_("JSON files"))
         custom_cmd_filter.add_pattern("*.json")
@@ -932,7 +936,8 @@ class PrefsDialog(SimpleGladeApp):
         all_files_filter.set_name(_("All files"))
         all_files_filter.add_pattern("*")
         self.get_widget('custom_command_file_chooser').add_filter(all_files_filter)
-        self.get_widget('custom_command_file_chooser').set_filename(value)
+        if custom_command_file_name:
+            self.get_widget('custom_command_file_chooser').set_filename(custom_command_file_name)
 
     # -- populate functions --
 
