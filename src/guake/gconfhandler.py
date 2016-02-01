@@ -222,6 +222,7 @@ class GConfHandler(object):
             if font_name is None:
                 # Back to gconf
                 font_name = client.get_string(GCONF_MONOSPACE_FONT_PATH)
+            proc.kill()
         else:
             key = KEY('/style/font/style')
             font_name = client.get_string(key)
