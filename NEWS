@@ -1,3 +1,8 @@
+Version 0.8.5 (under dev)
+=============
+
+
+
 Version 0.8.4
 =============
 
@@ -9,9 +14,11 @@ Bug fixes:
  - Updated pt_BR translation (#686, @matheus-manoel)
  - improved Bluloco theme readability (#693, @uloco)
 
+
 Version 0.8.3
 =============
 Quick fix about missing svg file
+
 
 Version 0.8.2
 =============
@@ -28,6 +35,7 @@ Bug fixes:
 - fix use VTE title (#524, @Xtreak)
 - Russian tranlation (@vantu5z), german (@Airfunker), spanish (@thardev) chinese (@Xinyu Ng)
 - fix guake cannot restore fullscreen (#628, @thardev)
+
 
 Version 0.8.1
 =============
@@ -59,6 +67,7 @@ Version 0.8.1
   - Terminal widget disappears at random times (#592)
   - Typo - by @selivan, @Ruined1
 
+
 Version 0.8.0
 =============
 
@@ -66,8 +75,8 @@ Version 0.8.0
   to introduce in the next version some major features heavily asked, like session save and split
   terminal. They will have to wait a bit more.
 
-  As a result, most of the contribution are from external contributors. Thank you very much for
-  all these patches!
+  As a result, most of the contribution are from external contributors. Thank you very much for all
+  these patches!
 
   This releases introduces two major changes in the project, thus the minor version change.
 
@@ -107,20 +116,21 @@ Version 0.7.2 (2015.05.20)
   - Fix Ctrl+D regresion (#550)
   - update Quick Open Preference Window
 
+
 Version 0.7.1 (2015.05.18):
 ===========================
 
   Some bug fixes, and cleared issues with new palette colors.
 
-  As side note, our domain 'guake.org' has been squatted by an outsider that seems only interested in
-  getting money to release the domain. Since Guake is a small project, based on 100% OpenSource
+  As side note, our domain 'guake.org' has been squatted by an outsider that seems only interested
+  in getting money to release the domain. Since Guake is a small project, based on 100% OpenSource
   spirit, we do not want to loose more time on this subject. The guake website will be deployed soon
   on a new URL:
 
       http://guake-project.org
 
-  Please do **NOT** use guake.org anymore, until we can retrieve it. We cannot be hold responsible for
-  any content on guake.org anymore.
+  Please do **NOT** use guake.org anymore, until we can retrieve it. We cannot be hold responsible
+  for any content on guake.org anymore.
 
   Bug fixes:
   - Background and font color inversed for some color schemes (#516)
@@ -131,6 +141,7 @@ Version 0.7.1 (2015.05.18):
   - Remove add and guake icon in tab (#543)
   - prompt_on_close_tab option (#546) Thanks a lot @tobz1000!
   - Fix default shortcuts for move tabs
+
 
 Version 0.7.0 (2015.05.02):
 ===========================
@@ -156,13 +167,16 @@ Version 0.7.0 (2015.05.02):
   - Fix compatibility with Ubuntu 15.04 (#509)
   - Fix Guake Turns Gray sometimes (#473, #512)
 
+
 Version 0.6.2 (2015.04.20):
 ===========================
   - Packaging issue fixes
 
+
 Version 0.6.1 (2015.04.19):
 ===========================
   - bug fixes
+
 
 Version 0.6.0 (2015.04.18):
 ===========================
@@ -176,17 +190,19 @@ Version 0.6.0 (2015.04.18):
    - plenty of color palettes (thanks @varemenos !)
    - bug fixes
 
+
 Version 0.5.2 (2014.11.23):
 ===========================
  - bug fixes
  - Disable the 'focus_if_open' feature (hidden trigger, true per default). Restaure focus does not
    work in all systems.
- - lot of "componentization" of the code, in preparation to the rebase of 'gtk3'
-   branch.
+ - lot of "componentization" of the code, in preparation to the rebase of 'gtk3' branch.
 
- Version 0.5.1 (2014.11.06):
- ===========================
+
+Version 0.5.1 (2014.11.06):
+===========================
   - minor bug fixes release
+
 
 Version 0.5.0 (2014.02.22):
 ===========================
@@ -203,6 +219,10 @@ Version 0.5.0 (2014.02.22):
   - Contributors:
     * @koter84
     * @kneirinck
+
+
+Versions < 0.5.0
+================
 
 changes since 0.4.4:
   - Custom tab titles are no longer overriden by VTE ones (rgaudin)
@@ -222,29 +242,22 @@ changes since 0.4.3:
   - Updated some autotools files
   - Fixing a typo in the guake-prefs.desktop file (Zaitor)
   - wm_class can't be get by gnome-shell css #414
-  - Add the missing "System" category required by FDO menu specification
-    (Jekyll Wu)
+  - Add the missing "System" category required by FDO menu specification (Jekyll Wu)
   - Do not install the system-wide autostart file (Jekyll Wu)
-  - Call window.move/resize only when not in fullscreen mode #403
+  - Call window.move/resize only when not in fullscreen mode #403 (Empee584)
+  - Terminal scrolls to the wrong position when hiding and unhiding in fullscreen mode #258
     (Empee584)
-  - Terminal scrolls to the wrong position when hiding and unhiding in
-    fullscreen mode #258 (Empee584)
   - Toggle fullscreen malfunction #371 (Empee584 & Sylvestre)
-  - Guake overlaped the second screen in a dual-monitor setup with a
-    sidepanel (Sylvestre)
-  - Tree items in Keyboard shortcuts tab of preferences window not
-    localized #280 (Robertd)
+  - Guake overlaped the second screen in a dual-monitor setup with a sidepanel (Sylvestre)
+  - Tree items in Keyboard shortcuts tab of preferences window not localized #280 (Robertd)
   - Add option to start in fullscreen mode #408 (Dom Sekotill)
-  - Refactoring of the fullscreen logic and addition of the --fullscreen
-    flag (Marcel Partap)
+  - Refactoring of the fullscreen logic and addition of the --fullscreen flag (Marcel Partap)
 
 changes since 0.4.2:
 
-  - Better tab titling, based on VTE title sequences (Aleksandar
-    Krsteski & Max Ulidtko)
+  - Better tab titling, based on VTE title sequences (Aleksandar Krsteski & Max Ulidtko)
   - Some drag & drop support (Max Ulidtko)
-  - Fix for the many times reported "gconf proxy port as int" issue
-    (Pingou)
+  - Fix for the many times reported "gconf proxy port as int" issue (Pingou)
   - Better file layout which doesn't modify PYTHONPATH (Max Ulidtko)
 
 Updated translation and new translation:
@@ -276,11 +289,9 @@ Bugs/Features:
 
   - Calling the hide() method when closing main window: #229 (Lincoln)
 
-  - Fixing dbus path and name for the RemoteControl object: #202
-    (Lincoln)
+  - Fixing dbus path and name for the RemoteControl object: #202 (Lincoln)
 
-  - Setting http{s,}_proxy vars before calling fork_command: #172
-    (Lincoln)
+  - Setting http{s,}_proxy vars before calling fork_command: #172 (Lincoln)
 
   - Adding the `fr' lang to ALL_LINGUAS: #189 (Lincoln)
 
@@ -308,11 +319,8 @@ Bugs/Features:
   - Preferences windows are resizable #149
   - Guake's windows not shown when ran for the first time #174
   - Implement dbus interface to script with guake #150, #138, #105, #126, #128, #109
-  - Command line arguments implemented
-    -n create a new tab
-    -e execute a command on a defined tab
-    -r rename a tab
-    -t toggle visibility
+  - Command line arguments implemented -n create a new tab -e execute a command on a defined tab -r
+    rename a tab -t toggle visibility
   - Improve regex to use character classes (improve the support of certain locales) #156
   - Ask user if he really wants to quit when there is a child process #158
   - Double click on a tab allows you to rename the tab #165
@@ -325,24 +333,21 @@ Infrastructure:
 
 changes since 0.2
 
-        * Making prefs dialog window better, including a better title,
-          fixing some paddings and spaces.
+    * Making prefs dialog window better, including a better title, fixing some paddings and spaces.
 
-        * Added backspace and delete compatibility options (thanks to
-          gnome-terminal guys =)
+    * Added backspace and delete compatibility options (thanks to gnome-terminal guys =)
 
-        * Cleanup of data files (images and glade files), mostly images.
+    * Cleanup of data files (images and glade files), mostly images.
 
-        * Complete rewrite of tab system in the main window.
+    * Complete rewrite of tab system in the main window.
 
-        * Fixing all issues (I think =) in close tab feature.
+    * Fixing all issues (I think =) in close tab feature.
 
-        * Adding tab rename feature.
+    * Adding tab rename feature.
 
-        * Making easier to grab keybinging shortcuts from the prefs
-          screen by using eggcellrendererkeys lib.
+    * Making easier to grab keybinging shortcuts from the prefs screen by using eggcellrendererkeys
+      lib.
 
-        * Now we look for more python interpreters when filling
-          interpreters combo.
+    * Now we look for more python interpreters when filling interpreters combo.
 
-        * Fixing a lot of bugs.
+    * Fixing a lot of bugs.
