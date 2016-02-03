@@ -13,6 +13,9 @@ Bug fixes:
  - fix tray icon does not align in center (#663, @wuxinyumrx)
  - Updated pt_BR translation (#686, @matheus-manoel)
  - improved Bluloco theme readability (#693, @uloco)
+ - ensure gsettings process is well kill (#636)
+ - fix exception in preference panel
+
 
 
 Version 0.8.3
