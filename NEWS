@@ -1,6 +1,13 @@
-Version 0.8.4 (under development)
+Version 0.8.4
 =============
 
+Bug fixes:
+ - Very big icon tray (#598, @thardev)
+ - Feature keyboard shorcut hide on lose focus (#650, #262, #350, @thardev)
+ - Endless transparency and small rework of hide on lose focus (#651, @thardev)
+ - fix tray icon does not align in center (#663, @wuxinyumrx)
+ - Updated pt_BR translation (#686, @matheus-manoel)
+ - improved Bluloco theme readability (#693, @uloco)
 
 Version 0.8.3
 =============
