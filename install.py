@@ -42,7 +42,12 @@ def copyFile(relativeSrcPath, relativeDestPath):
 
 
 parser = lib.addArgumentParser(description="Install Guake on your system")
-parser.add_option("--dev", action="store_true", help="install virtualenv")
+parser.add_option("--dev",
+                  action="store_true",
+                  help="install guake in a virtualenv (for developers)")
+parser.add_option("--update",
+                  action="store_true",
+                  help="update requirements.txt and requirements-dev.txt")
 (options, args) = lib.parse(parser)
 
 lib.printSeparator("=")
@@ -59,9 +64,20 @@ if os.environ.get("VIRTUAL_ENV"):
     dest_path = virtualenv_dest_path
 elif options.dev:
     dest_path = virtualenv_dest_path
-    lib.run(["virtualenv", "workdir"])
+    lib.checkVirtualEnv()
+
+    if os.path.exists(os.path.join(dest_path, "bin", "activate")):
+        lib.printInfo("virtualenv already installed in %s", dest_path)
+    else:
+        lib.run(["virtualenv", dest_path])
     if lib.isMacOsX or lib.isLinux:
-        lib.run(["ln", "-s", os.path.join("workdir", "bin", "activate")])
+        activate_link = os.path.join("workdir", "bin", "activate")
+        if not os.path.exists(activate_link):
+            lib.run(["ln", "-s", activate_link])
+
+    activate_this = os.path.join(dest_path, "bin", "activate_this.py")
+    lib.printInfo("Activating 'virtualenv' with %s", activate_this)
+    execfile(activate_this, dict(__file__=activate_this))
 else:
     lib.printInfo("Installation in: {}".format(dest_path))
 
@@ -69,3 +85,12 @@ dataFolder = "data"
 
 lib.execute("pip install --upgrade pip")
 lib.execute("pip install -r requirements.txt")
+if options.dev:
+    lib.execute("pip install -r requirements-dev.txt")
+
+if options.update:
+    lib.execute("pip-compile requirements-dev.in")
+    lib.execute("pip-compile requirements.in")
+
+if options.dev:
+    lib.printInfo("Virtualenv can be enabled using 'source activate'")

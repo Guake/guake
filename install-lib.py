@@ -5,12 +5,17 @@ from __future__ import unicode_literals
 
 import errno
 import os
+import platform
 import subprocess
 import sys
 
 isWindows = sys.platform.startswith('win32')
 isLinux = sys.platform.startswith("linux")
 isMacOsX = sys.platform.startswith("darwin")
+isUbuntu = False
+_distrib = platform.linux_distribution()
+if len(_distrib) == 3 and _distrib[0].lower() == "ubuntu":
+    isUbuntu = True
 
 ####################################################################################################
 # Utility functions
@@ -49,15 +54,19 @@ def flush():
     sys.stderr.flush()
 
 
-def printInfo(text):
+def printInfo(text, *args):
     text = str(text)
+    if args:
+        text = text % args
     for line in text.split("\n"):
         print(bcolors.OKBLUE + "[INFO ] " + bcolors.ENDC + line)
     flush()
 
 
-def printError(text):
+def printError(text, *args):
     text = str(text)
+    if args:
+        text = text % args
     for line in text.split("\n"):
         print(bcolors.FAIL + "[ERROR] " + bcolors.ENDC + line, file=sys.stderr)
     flush()
@@ -68,22 +77,28 @@ def printSeparator(char="-", color=bcolors.OKGREEN):
     flush()
 
 
-def printNote(text):
+def printNote(text, *args):
     text = str(text)
+    if args:
+        text = text % args
     for line in text.split("\n"):
         print(bcolors.HEADER + "[NOTE ] " + bcolors.ENDC + line)
     flush()
 
 
-def printBoot(text):
+def printBoot(text, *args):
     text = str(text)
+    if args:
+        text = text % args
     for line in text.split("\n"):
         print(bcolors.BOOT + "[BOOT ] " + bcolors.ENDC + line)
     flush()
 
 
-def printDebug(text):
+def printDebug(text, *args):
     text = str(text)
+    if args:
+        text = text % args
     for line in text.split("\n"):
         print(bcolors.BOOT + "[DEBUG] " + bcolors.ENDC + line)
     flush()
@@ -96,8 +111,10 @@ def printCmd(text):
     flush()
 
 
-def printQuestion(text):
+def printQuestion(text, *args):
     text = str(text)
+    if args:
+        text = text % args
     for line in text.split("\n"):
         print(bcolors.OKGREEN + "[???? ] " + bcolors.ENDC + line)
     flush()
@@ -162,6 +179,25 @@ def mkdirs(path):
 
 def execute(cmdLine):
     return run([cmdLine], shell=True)
+
+
+def testExec(executable):
+    try:
+        run(['bash', '-c', "which " + executable])
+        return True
+    except:
+        return False
+
+
+def checkVirtualEnv():
+    printInfo("Checking if 'virtualenv' is installed...")
+    if not testExec("virtualenv"):
+        printError("'virtualenv' does not seems installed on your system!")
+        if isUbuntu:
+            printError("Please install with 'sudo apt-get install python-virtualenv'")
+        else:
+            printError("Please install it")
+        sys.exit(1)
 
 
 def addArgumentParser(description=None):
