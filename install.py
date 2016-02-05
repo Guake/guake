@@ -76,6 +76,8 @@ if options.uninstall_dev:
         activate_link = os.path.join(g_src_dir, "activate")
     lib.rmrv(activate_link)
     lib.rmrv(os.path.join(g_src_dir, "__pycache__"))
+    lib.rmrv(os.path.join(g_src_dir, "Guake.egg-info"))
+    lib.rmrv(os.path.join(g_src_dir, "pbr-1.8.1-py2.7.egg"))
     lib.printInfo("Guake3 virtualenv uninstalled")
     sys.exit(0)
 
