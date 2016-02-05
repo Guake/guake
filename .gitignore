@@ -46,3 +46,5 @@ description-pak
 backup-*.tgz
 workdir/
 activate
+Guake.egg-info/
+pbr-1.8.1-py2.7.egg/
