@@ -229,7 +229,7 @@ def testExec(executable):
 
 if isUbuntu and ubuntuVersionInt <= 1404:
     virtualenv_exec = "virtualenv"
-    virtualenv_cmd = "virtualenv -p python3"
+    virtualenv_cmd = ["virtualenv", "-p", "python3"]
 else:
     virtualenv_exec = "pyvenv"
     virtualenv_cmd = "pyvenv"
@@ -251,7 +251,7 @@ def checkVirtualEnv():
 
 
 def installVirtualEnv(dest_path):
-    run([virtualenv_cmd, dest_path])
+    run(virtualenv_cmd + [dest_path])
 
 
 def addArgumentParser(description=None):
