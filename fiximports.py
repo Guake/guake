@@ -2,6 +2,11 @@
 
 '''Check and sort import statement from a python file '''
 
+from __future__ import absolute_import
+from __future__ import division
+from __future__ import print_function
+from __future__ import unicode_literals
+
 import re
 import sys
 
@@ -98,7 +103,7 @@ class FixImports(object):
         iter = lines.__iter__()
         while True:
             try:
-                line = iter.next()
+                line = next(iter)
             except StopIteration:
                 break
             if self.isImportLine(line):

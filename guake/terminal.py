@@ -26,12 +26,12 @@ from gi.repository import Gdk
 from gi.repository import GdkX11
 from gi.repository import Gtk
 from gi.repository import Pango
-from gi.repository import Vte
+from gi.repository.Vte import Terminal
 
 from guake.common import clamp
 # from guake.globals import KEY
 
-__all__ = ['Terminal', 'TerminalBox']
+__all__ = ['GuakeTerminal', 'TerminalBox']
 
 
 # regular expressions to highlight links in terminal. This code was
@@ -80,9 +80,10 @@ QUICK_OPEN_MATCHERS = [
 ]
 
 
-class Terminal(Vte.Terminal):
+class GuakeTerminal(Terminal):
 
-    """Just a Vte.Terminal with some properties already set.
+    """
+    Just a Vte.Terminal with some properties already set.
     """
 
     def __init__(self):
