@@ -135,7 +135,8 @@ disable=
   W1501,
   superfluous-parens,
   bad-continuation,
-  locally-enabled
+  locally-enabled,
+  undefined-variable
 
 [REPORTS]
 
