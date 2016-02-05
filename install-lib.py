@@ -1,3 +1,37 @@
+'''
+Install Utility
+
+This module allows to bootstrap your developer environment with an easy to write "install" script
+that will replace the need to use external tools such as configure, automake, etc. Everything
+happens in Python!
+
+Ex:
+
+    from __future__ import absolute_import
+    from __future__ import division
+    from __future__ import print_function
+    from __future__ import unicode_literals
+
+    import imp
+
+    # Injecting available targets from installer stage 2
+    lib = imp.load_source('install-lib.py',
+                          os.path.join(os.path.dirname(__file__), "install-lib.py"))
+
+
+This "install" script you will write will have the following properties:
+
+- it can be run **outside** of a virtual env, so it will not benefit from all the fancy packages you
+  will use in your Python program.
+- it handles the installation on the destination system (equivalent to ``sudo make install``)
+- for development, it will automatically create the virtualenv.
+
+Your environment can be automatically compatible with integrated tools such Travis or Pipy that only
+needs the requirements.txt and setup.py to be setup, while you, as a developer, can install or set
+up you environment in a single shot.
+
+
+'''
 from __future__ import absolute_import
 from __future__ import division
 from __future__ import print_function
@@ -226,3 +260,9 @@ def makedirs(dirPath):
         os.makedirs(dirPath)
     except:
         pass
+
+
+def execfile(filepath, global_vars, local_vars=None):
+    with open(filepath) as f:
+        code = compile(f.read(), "somefile.py", 'exec')
+        exec(code, global_vars, local_vars)
