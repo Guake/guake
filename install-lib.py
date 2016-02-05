@@ -51,6 +51,9 @@ isUbuntu = False
 _distrib = platform.linux_distribution()
 if len(_distrib) == 3 and _distrib[0].lower() == "ubuntu":
     isUbuntu = True
+    ubuntuVersion = _distrib[1]
+    ubuntuVersionMajor = int(ubuntuVersion.partition('.')[0])
+    ubuntuVersionInt = ubuntuVersionMajor * 100 + int(ubuntuVersion.partition('.')[2])
 
 ####################################################################################################
 # Utility functions
@@ -224,15 +227,31 @@ def testExec(executable):
         return False
 
 
+if isUbuntu and ubuntuVersionInt <= 1404:
+    virtualenv_exec = "virtualenv"
+    virtualenv_cmd = "virtualenv -p python3"
+else:
+    virtualenv_exec = "pyvenv"
+    virtualenv_cmd = "pyvenv"
+
+
 def checkVirtualEnv():
     printInfo("Checking if 'virtualenv' is installed...")
-    if not testExec("pyvenv"):
-        printError("'pyvenv' does not seems installed on your system!")
+    if not testExec(virtualenv_exec):
+        printError("'%s' does not seems installed on your system!", virtualenv_exec)
         if isUbuntu:
-            printError("Please install with 'sudo apt-get install python3-venv'")
+            if ubuntuVersionInt <= 1404:
+                printError("Please install with 'sudo apt-get install python3-pip ; "
+                           "sudo pip3 install virtualenv'")
+            else:
+                printError("Please install with 'sudo apt-get install python3-venv'")
         else:
             printError("Please install it")
         sys.exit(1)
+
+
+def installVirtualEnv(dest_path):
+    run([virtualenv_cmd, dest_path])
 
 
 def addArgumentParser(description=None):

@@ -90,7 +90,7 @@ elif options.dev:
     if os.path.exists(os.path.join(dest_path, "bin", "activate")):
         lib.printInfo("virtualenv already installed in %s", dest_path)
     else:
-        lib.run(["pyvenv", dest_path])
+        lib.installVirtualEnv(dest_path)
     if lib.isMacOsX or lib.isLinux:
         activate_link = os.path.join(virtualenv_dest_path, "bin", "activate")
         if not os.path.exists(activate_link):
@@ -112,4 +112,4 @@ if options.update:
     lib.execute("pip-compile requirements.in")
 
 if options.dev:
-    lib.printInfo("Virtualenv can be enabled using 'source activate'")
+    lib.printInfo("Virtualenv can be enabled using 'source activate', and left with 'deactivate'")
