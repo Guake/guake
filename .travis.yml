@@ -15,8 +15,9 @@ before_install:
     - sudo apt-get install -qq --fix-missing python-gtk2 python-gtk2-dev python-vte python-appindicator
     - sudo apt-get install -qq --fix-missing python-dev
 install:
-    - pip install --upgrade pip
-    - pip install -r requirements.txt
+    - ./install --dev
+    - ./install --uninstall-dev
+    - ./install --dev
     - find /usr/include
 script:
     - ./validate.sh
