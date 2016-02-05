@@ -78,7 +78,7 @@ elif options.dev:
 
     activate_this = os.path.join(dest_path, "bin", "activate_this.py")
     lib.printInfo("Activating 'virtualenv' with %s", activate_this)
-    execfile(activate_this, dict(__file__=activate_this))
+    lib.execfile(activate_this, dict(__file__=activate_this))
 else:
     lib.printInfo("Installation in: {}".format(dest_path))
 
