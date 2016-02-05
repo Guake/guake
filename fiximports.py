@@ -1,4 +1,5 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
+
 '''Check and sort import statement from a python file '''
 
 import re
@@ -18,10 +19,10 @@ class FixImports(object):
 
     def printErrorMsg(self, filename, lineNb, errorMessage):
         ''' I print the error message following pylint convention'''
-        print ("%(filename)s:%(line_nb)s: %(error_msg)s" %
-               dict(filename=filename,
-                    line_nb=lineNb,
-                    error_msg=errorMessage))
+        print("%(filename)s:%(line_nb)s: %(error_msg)s" %
+              dict(filename=filename,
+                   line_nb=lineNb,
+                   error_msg=errorMessage))
 
     def isImportLine(self, line):
         '''I return True is the given line is an import statement, False otherwize'''
@@ -154,7 +155,7 @@ class FixImports(object):
 def main():
     '''I am the main method'''
     if len(sys.argv) != 2:
-        print "usage: %s <python file>" % (sys.argv[0])
+        print("usage: %s <python file>", sys.argv[0])
         sys.exit(1)
 
     filename = sys.argv[1]
@@ -168,7 +169,7 @@ def main():
     with open(filename, 'w') as filedesc:
         filedesc.write(content)
     if data != content:
-        print "import successfully reordered for file: %s" % (filename)
+        print("import successfully reordered for file: %s", filename)
     sys.exit(0)
 
 if __name__ == "__main__":
