@@ -1199,6 +1199,11 @@ class Guake(SimpleGladeApp):
 
         return callback
 
+    def accel_switch_tab_last(self, *args):
+        last_tab = self.notebook.get_n_pages() - 1
+        self.notebook.set_current_page(last_tab)
+        return True
+
     def accel_rename_current_tab(self, *args):
         """Callback to show the rename tab dialog. Called by the accel
         key.
