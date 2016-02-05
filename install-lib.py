@@ -304,10 +304,9 @@ def rmrv(f):
         os.unlink(f)
     elif not os.path.exists(f):
         return
-    if os.path.isdir(f):
+    elif os.path.isdir(f):
         rmdir(f)
     else:
-        print("f", f)
         os.unlink(f)
 
 
