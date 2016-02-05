@@ -67,6 +67,8 @@ lib.printDebug("Python version: %s", sys.version.partition("\n")[0])
 
 dest_path = options.prefix
 virtualenv_dest_path = os.path.abspath(os.path.join(g_src_dir, "workdir"))
+activate_link = os.path.abspath(os.path.join(g_src_dir, "activate"))
+activate_bin = os.path.join(virtualenv_dest_path, "bin", "activate")
 if options.uninstall_dev:
     lib.printSeparator()
     lib.printDebug("Uninstalling virtualenv")
@@ -89,14 +91,13 @@ elif options.dev:
     dest_path = virtualenv_dest_path
     lib.checkVirtualEnv()
 
-    if os.path.exists(os.path.join(dest_path, "bin", "activate")):
+    if os.path.exists(activate_bin):
         lib.printInfo("virtualenv already installed in %s", dest_path)
     else:
         lib.installVirtualEnv(dest_path)
     if lib.isMacOsX or lib.isLinux:
-        activate_link = os.path.join(virtualenv_dest_path, "bin", "activate")
         if not os.path.exists(activate_link):
-            lib.run(["ln", "-s", activate_link])
+            lib.run(["ln", "-s", activate_bin, activate_link])
 
     lib.activate_this(dest_path)
 else:
