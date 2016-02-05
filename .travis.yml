@@ -4,6 +4,4 @@ python:
 install:
     - ./install.py --dev
     - ./install.py --uninstall-dev
-    - ./install.py --dev
-script:
-    - ./validate.sh
+    - ./install.py --dev --checks
