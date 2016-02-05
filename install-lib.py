@@ -40,6 +40,7 @@ from __future__ import unicode_literals
 import errno
 import os
 import platform
+import shutil
 import subprocess
 import sys
 
@@ -225,10 +226,10 @@ def testExec(executable):
 
 def checkVirtualEnv():
     printInfo("Checking if 'virtualenv' is installed...")
-    if not testExec("virtualenv"):
-        printError("'virtualenv' does not seems installed on your system!")
+    if not testExec("pyvenv"):
+        printError("'pyvenv' does not seems installed on your system!")
         if isUbuntu:
-            printError("Please install with 'sudo apt-get install python-virtualenv'")
+            printError("Please install with 'sudo apt-get install python3-venv'")
         else:
             printError("Please install it")
         sys.exit(1)
@@ -266,3 +267,59 @@ def execfile(filepath, global_vars, local_vars=None):
     with open(filepath) as f:
         code = compile(f.read(), "somefile.py", 'exec')
         exec(code, global_vars, local_vars)
+
+
+def rmdir(path):
+    '''
+    Remove a given directory. Do not fail if it does not exist
+    '''
+    if os.path.exists(path):
+        shutil.rmtree(path)
+
+
+def rmrv(f):
+    '''
+    Dangerous equivalent to 'rm -rf'.
+    '''
+    if os.path.islink(f):
+        os.unlink(f)
+    elif not os.path.exists(f):
+        return
+    if os.path.isdir(f):
+        rmdir(f)
+    else:
+        print("f", f)
+        os.unlink(f)
+
+
+def activate_this(sandbox):
+    '''
+    Activate sandbox
+    '''
+    if isWindows:
+        sandbox_bin = os.path.abspath(os.path.join(sandbox, "Scripts"))
+    else:
+        sandbox_bin = os.path.abspath(os.path.join(sandbox, "bin"))
+    sandbox = os.path.abspath(sandbox)
+    printSeparator()
+    printInfo("Activating sandbox %s", sandbox_bin)
+    printSeparator()
+    old_os_path = os.environ.get('PATH', '')
+    os.environ['PATH'] = os.path.abspath(sandbox_bin) + os.pathsep + old_os_path
+    if sys.platform == 'win32':
+        site_packages = os.path.join(sandbox, 'Lib', 'site-packages')
+    else:
+        site_packages = os.path.join(sandbox, 'lib', 'python%s' % sys.version[:3], 'site-packages')
+    printDebug("site_packages = %r", site_packages)
+    prev_sys_path = list(sys.path)
+    import site
+    site.addsitedir(site_packages)
+    sys.real_prefix = sys.prefix
+    sys.prefix = sandbox
+    # Move the added items to the front of the path:
+    new_sys_path = []
+    for item in list(sys.path):
+        if item not in prev_sys_path:
+            new_sys_path.append(item)
+            sys.path.remove(item)
+    sys.path[:0] = new_sys_path

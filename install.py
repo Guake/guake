@@ -19,6 +19,7 @@ from __future__ import unicode_literals
 import imp
 import os
 import shutil
+import sys
 
 g_prefix = None
 g_src_dir = os.path.abspath(os.path.dirname(__file__))
@@ -49,6 +50,12 @@ parser.add_option("--dev",
 parser.add_option("--update",
                   action="store_true",
                   help="update requirements.txt and requirements-dev.txt")
+parser.add_option("--uninstall-system",
+                  action="store_true",
+                  help="uninstall from the system")
+parser.add_option("--uninstall-dev",
+                  action="store_true",
+                  help="uninstall local virtual env")
 (options, args) = lib.parse(parser)
 
 lib.printSeparator("=")
@@ -56,9 +63,22 @@ lib.printInfo("Guake Installation")
 lib.printSeparator("=")
 lib.printDebug("Options: options: {!r}".format(options))
 lib.printDebug("Args: args: {!r}".format(args))
+lib.printDebug("Python version: %s", sys.version.partition("\n")[0])
 
 dest_path = options.prefix
-virtualenv_dest_path = os.path.abspath(os.path.join(os.path.dirname(__file__), "workdir"))
+virtualenv_dest_path = os.path.abspath(os.path.join(g_src_dir, "workdir"))
+if options.uninstall_dev:
+    lib.printSeparator()
+    lib.printDebug("Uninstalling virtualenv")
+    lib.printSeparator()
+    lib.rmrv(virtualenv_dest_path)
+    if lib.isMacOsX or lib.isLinux:
+        activate_link = os.path.join(g_src_dir, "activate")
+    lib.rmrv(activate_link)
+    lib.rmrv(os.path.join(g_src_dir, "__pycache__"))
+    lib.printInfo("Guake3 virtualenv uninstalled")
+    sys.exit(0)
+
 if os.environ.get("VIRTUAL_ENV"):
     lib.printInfo("Already in a virtual env, installing it inside this virtualenv")
     lib.printInfo("Installation in: {}".format(virtualenv_dest_path))
@@ -70,15 +90,13 @@ elif options.dev:
     if os.path.exists(os.path.join(dest_path, "bin", "activate")):
         lib.printInfo("virtualenv already installed in %s", dest_path)
     else:
-        lib.run(["virtualenv", dest_path])
+        lib.run(["pyvenv", dest_path])
     if lib.isMacOsX or lib.isLinux:
-        activate_link = os.path.join("workdir", "bin", "activate")
+        activate_link = os.path.join(virtualenv_dest_path, "bin", "activate")
         if not os.path.exists(activate_link):
             lib.run(["ln", "-s", activate_link])
 
-    activate_this = os.path.join(dest_path, "bin", "activate_this.py")
-    lib.printInfo("Activating 'virtualenv' with %s", activate_this)
-    lib.execfile(activate_this, dict(__file__=activate_this))
+    lib.activate_this(dest_path)
 else:
     lib.printInfo("Installation in: {}".format(dest_path))
 
