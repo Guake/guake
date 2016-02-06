@@ -129,7 +129,7 @@ for filename in ${py_files[@]}; do
 done
 $RES || warning "some import fixes failed -- not enforcing for now"
 
-status "running autopep8"
+status "running autopep8 ( $(autopep8 --version | sed 's/autopep8 //g') )"
 if [[ -z `which autopep8` ]]; then
     warning "autopep8 is not installed"
 elif [[ ! -f pep8rc ]]; then
@@ -154,7 +154,7 @@ else
     fi
 fi
 
-status "running pep8"
+status "running pep8 ( $(pep8 --version) )"
 if [[ -z `which pep8` ]]; then
     warning "pep8 is not installed"
 elif [[ ! -f pep8rc ]]; then
@@ -169,7 +169,7 @@ else
     $pep8_ok || not_ok "pep8 failed"
 fi
 
-status "running pyflakes"
+status "running pyflakes ( $(pyflakes --version) )"
 if [[ -z `which pyflakes` ]]; then
     warning "pyflakes is not installed"
 else
@@ -183,7 +183,7 @@ else
 fi
 
 
-status "running pylint"
+status "running pylint ( $(pylint --version | head -n 1 | sed 's/,//g' | sed 's/pylint //g' ))"
 if [[ -z `which pylint` ]]; then
     warning "pylint is not installed"
 elif [[ ! -f pylintrc ]]; then
