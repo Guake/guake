@@ -87,7 +87,7 @@ class GuakeTerminal(Terminal):
     """
 
     def __init__(self):
-        super(Terminal, self).__init__()
+        super().__init__()
         self.configure_terminal()
         self.add_matches()
         self.connect('button-press-event', self.button_press)
@@ -166,7 +166,7 @@ class GuakeTerminal(Terminal):
         else:
             font.set_size(new_size)
 
-        super(Terminal, self).set_font(font)
+        super().set_font(font)
 
     font_scale = property(
         fset=set_font_scale_index,
