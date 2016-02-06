@@ -4,4 +4,5 @@
 #
 #    pip-compile requirements.in
 #
+colorlog==2.6.1
 pyyaml==3.11
