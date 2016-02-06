@@ -1,5 +1,6 @@
-autopep8 == 1.0.3
-pep8 == 1.5.7
-pyflakes == 0.8.1
-pylint == 1.4.3
-pip-tools >= 1.5
+autopep8 >= 1.0.3
+pep8 >= 1.5.7
+pyflakes >= 0.8.1
+pylint >= 1.4.3
+pip-tools == 1.5
+pytest >= 2.8
