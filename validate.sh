@@ -81,7 +81,7 @@ function run_tests()
 }
 
 if [ -z $REVRANGE ]; then
-    py_files=$(find . -name "*.py" -o -name "*.py.in" | grep -v -E 'workdir/lib' | grep -v -E 'workdir/bin')
+    py_files=$(find . -name "*.py" -o -name "*.py.in" | grep -v -E 'workdir/' | grep -v -E '.eggs/' | grep -v -E 'workdir/bin')
     echo "Validating files: "
     echo $py_files
 else
