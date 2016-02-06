@@ -47,6 +47,9 @@ parser = lib.addArgumentParser(description="Install Guake on your system")
 parser.add_option("--dev",
                   action="store_true",
                   help="install guake in a virtualenv (for developers)")
+parser.add_option("--tests",
+                  action="store_true",
+                  help="execute unit tests")
 parser.add_option("--checks",
                   action="store_true",
                   help="execute code integrity checks")
@@ -112,6 +115,10 @@ lib.execute("pip install --upgrade pip")
 lib.execute("pip install --upgrade -r requirements.txt")
 if options.dev:
     lib.execute("pip install --upgrade -r requirements-dev.txt")
+    lib.execute("pip install --upgrade -e . --no-use-wheel")
+
+if options.tests:
+    lib.execute("py.test guake")
 
 if options.checks:
     lib.execute("./validate.sh")
