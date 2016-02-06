@@ -109,9 +109,9 @@ else:
 dataFolder = "data"
 
 lib.execute("pip install --upgrade pip")
-lib.execute("pip install -r requirements.txt")
+lib.execute("pip install --upgrade -r requirements.txt")
 if options.dev:
-    lib.execute("pip install -r requirements-dev.txt")
+    lib.execute("pip install --upgrade -r requirements-dev.txt")
 
 if options.checks:
     lib.execute("./validate.sh")
