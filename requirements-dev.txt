@@ -5,18 +5,16 @@
 #    pip-compile requirements-dev.in
 #
 astroid==1.4.4            # via pylint
-autopep8==1.0.3
+autopep8==1.2.1
 click==6.2                # via pip-tools
+colorama==0.3.6           # via pylint
 first==2.0.1              # via pip-tools
 lazy-object-proxy==1.2.1  # via astroid
-logilab-common==1.1.0     # via pylint
-pep8==1.5.7
+pep8==1.7.0
 pip-tools==1.5
-pyflakes==0.8.1
-pylint==1.4.3
-six==1.10.0               # via astroid, logilab-common, pip-tools, pylint
+py==1.4.31                # via pytest
+pyflakes==1.0.0
+pylint==1.5.4
+pytest==2.8.7
+six==1.10.0               # via astroid, pip-tools, pylint
 wrapt==1.10.6             # via astroid
-
-# The following packages are commented out because they are
-# considered to be unsafe in a requirements file:
-# setuptools                # via logilab-common
