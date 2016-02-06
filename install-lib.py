@@ -48,7 +48,10 @@ isWindows = sys.platform.startswith('win32')
 isLinux = sys.platform.startswith("linux")
 isMacOsX = sys.platform.startswith("darwin")
 isUbuntu = False
+# pylint: disable=deprecated-method
 _distrib = platform.linux_distribution()
+# pylint: enable=deprecated-method
+
 if len(_distrib) == 3 and _distrib[0].lower() == "ubuntu":
     isUbuntu = True
     ubuntuVersion = _distrib[1]
