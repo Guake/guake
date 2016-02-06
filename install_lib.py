@@ -63,7 +63,7 @@ if len(_distrib) == 3 and _distrib[0].lower() == "ubuntu":
 ####################################################################################################
 
 
-class bcolors(object):
+class AsciiColor(object):
     HEADER = '\033[95m'
     OKBLUE = '\033[96m'
     OKGREEN = '\033[92m'
@@ -79,15 +79,15 @@ class bcolors(object):
 #  - on windows
 #  - not in a terminal except if we are in Travis CI
 if isWindows or (not os.environ.get("TRAVIS") and not sys.stdout.isatty()):
-    bcolors.HEADER = ''
-    bcolors.OKBLUE = ''
-    bcolors.OKGREEN = ''
-    bcolors.WARNING = ''
-    bcolors.FAIL = ''
-    bcolors.BOLD = ''
-    bcolors.UNDERLINE = ''
-    bcolors.BOOT = ''
-    bcolors.ENDC = ''
+    AsciiColor.HEADER = ''
+    AsciiColor.OKBLUE = ''
+    AsciiColor.OKGREEN = ''
+    AsciiColor.WARNING = ''
+    AsciiColor.FAIL = ''
+    AsciiColor.BOLD = ''
+    AsciiColor.UNDERLINE = ''
+    AsciiColor.BOOT = ''
+    AsciiColor.ENDC = ''
 
 
 def flush():
@@ -100,7 +100,7 @@ def printInfo(text, *args):
     if args:
         text = text % args
     for line in text.split("\n"):
-        print(bcolors.OKBLUE + "[INFO ] " + bcolors.ENDC + line)
+        print(AsciiColor.OKBLUE + "[INFO ] " + AsciiColor.ENDC + line)
     flush()
 
 
@@ -109,12 +109,12 @@ def printError(text, *args):
     if args:
         text = text % args
     for line in text.split("\n"):
-        print(bcolors.FAIL + "[ERROR] " + bcolors.ENDC + line, file=sys.stderr)
+        print(AsciiColor.FAIL + "[ERROR] " + AsciiColor.ENDC + line, file=sys.stderr)
     flush()
 
 
-def printSeparator(char="-", color=bcolors.OKGREEN):
-    print(color + char * 79 + bcolors.ENDC)
+def printSeparator(char="-", color=AsciiColor.OKGREEN):
+    print(color + char * 79 + AsciiColor.ENDC)
     flush()
 
 
@@ -123,7 +123,7 @@ def printNote(text, *args):
     if args:
         text = text % args
     for line in text.split("\n"):
-        print(bcolors.HEADER + "[NOTE ] " + bcolors.ENDC + line)
+        print(AsciiColor.HEADER + "[NOTE ] " + AsciiColor.ENDC + line)
     flush()
 
 
@@ -132,7 +132,7 @@ def printBoot(text, *args):
     if args:
         text = text % args
     for line in text.split("\n"):
-        print(bcolors.BOOT + "[BOOT ] " + bcolors.ENDC + line)
+        print(AsciiColor.BOOT + "[BOOT ] " + AsciiColor.ENDC + line)
     flush()
 
 
@@ -141,14 +141,14 @@ def printDebug(text, *args):
     if args:
         text = text % args
     for line in text.split("\n"):
-        print(bcolors.BOOT + "[DEBUG] " + bcolors.ENDC + line)
+        print(AsciiColor.BOOT + "[DEBUG] " + AsciiColor.ENDC + line)
     flush()
 
 
 def printCmd(text):
     text = str(text)
     for line in text.split("\n"):
-        print(bcolors.OKGREEN + "[CMD  ] " + bcolors.ENDC + line)
+        print(AsciiColor.OKGREEN + "[CMD  ] " + AsciiColor.ENDC + line)
     flush()
 
 
@@ -157,14 +157,14 @@ def printQuestion(text, *args):
     if args:
         text = text % args
     for line in text.split("\n"):
-        print(bcolors.OKGREEN + "[???? ] " + bcolors.ENDC + line)
+        print(AsciiColor.OKGREEN + "[???? ] " + AsciiColor.ENDC + line)
     flush()
     line = sys.stdin.readline()
     return line.strip()
 
 
 def run(cmd, cwd=None, shell=False, extraPath=None):
-    print(bcolors.OKGREEN + "[CMD  ]" + bcolors.ENDC + " {}".format(" ".join(cmd)))
+    print(AsciiColor.OKGREEN + "[CMD  ]" + AsciiColor.ENDC + " {}".format(" ".join(cmd)))
     flush()
     path_bkp = None
     if extraPath and not isWindows:
@@ -173,23 +173,23 @@ def run(cmd, cwd=None, shell=False, extraPath=None):
         path_bkp = os.environ['PATH']
         os.environ['PATH'] = extraPath + ":" + os.environ['PATH']
         cmd = " ".join(cmd)
-        print(bcolors.OKGREEN + "[CMD  ]" + bcolors.ENDC +
+        print(AsciiColor.OKGREEN + "[CMD  ]" + AsciiColor.ENDC +
               " PATH set to: {}".format(os.environ['PATH']))
     subprocess.check_call(cmd, shell=shell, cwd=cwd)
     if extraPath and path_bkp:
         os.environ['PATH'] = path_bkp
 
 
-def run_output(cmd, cwd=None, shell=False):
-    print(bcolors.OKGREEN + "[CMD  ]" + bcolors.ENDC + " {}".format(" ".join(cmd)))
+def runOutput(cmd, cwd=None, shell=False):
+    print(AsciiColor.OKGREEN + "[CMD  ]" + AsciiColor.ENDC + " {}".format(" ".join(cmd)))
     flush()
     s = subprocess.check_output(cmd, shell=shell, cwd=cwd)
     return str(s)
 
 
-def run_nocheck(cmd, cwd=None, shell=False):
+def runNocheck(cmd, cwd=None, shell=False):
     try:
-        print(bcolors.OKGREEN + "[CMD  ]" + bcolors.ENDC + " {}".format(" ".join(cmd)))
+        print(AsciiColor.OKGREEN + "[CMD  ]" + AsciiColor.ENDC + " {}".format(" ".join(cmd)))
         flush()
         subprocess.check_call(cmd, shell=shell, cwd=cwd)
     except Exception as e:
@@ -197,13 +197,13 @@ def run_nocheck(cmd, cwd=None, shell=False):
 
 
 def call(cmd, cwd=None, shell=False):
-    print(bcolors.OKGREEN + "[CMD  ]" + bcolors.ENDC + " {}".format(" ".join(cmd)))
+    print(AsciiColor.OKGREEN + "[CMD  ]" + AsciiColor.ENDC + " {}".format(" ".join(cmd)))
     flush()
     return subprocess.call(cmd, shell=shell, cwd=cwd)
 
 
-def run_background(cmd, cwd=None, shell=False):
-    print(bcolors.OKGREEN + "[CMD (background)" + bcolors.ENDC + "] {}".format(" ".join(cmd)))
+def runBackground(cmd, cwd=None, shell=False):
+    print(AsciiColor.OKGREEN + "[CMD (background)" + AsciiColor.ENDC + "] {}".format(" ".join(cmd)))
     flush()
     subprocess.Popen(cmd, cwd=cwd, shell=shell)
 
@@ -226,7 +226,7 @@ def testExec(executable):
     try:
         run(['bash', '-c', "which " + executable])
         return True
-    except:
+    except Exception:
         return False
 
 
@@ -253,8 +253,8 @@ def checkVirtualEnv():
         sys.exit(1)
 
 
-def installVirtualEnv(dest_path):
-    run(virtualenv_cmd + [dest_path])
+def installVirtualEnv(destPath):
+    run(virtualenv_cmd + [destPath])
 
 
 def addArgumentParser(description=None):
@@ -281,14 +281,14 @@ def parse(parser):
 def makedirs(dirPath):
     try:
         os.makedirs(dirPath)
-    except:
+    except Exception:
         pass
 
 
-def execfile(filepath, global_vars, local_vars=None):
+def execfile(filepath, globalVars, localVars=None):
     with open(filepath) as f:
         code = compile(f.read(), "somefile.py", 'exec')
-        exec(code, global_vars, local_vars)
+        exec(code, globalVars, localVars)
 
 
 def rmdir(path):
@@ -313,7 +313,7 @@ def rmrv(f):
         os.unlink(f)
 
 
-def activate_this(sandbox):
+def activateThis(sandbox):
     '''
     Activate sandbox
     '''

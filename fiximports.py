@@ -18,9 +18,13 @@ class FixImports(object):
     Please use sortImportGroups() method
     '''
 
-    _regexImport = re.compile(r"^import\s+(.*)")
-    _regexFromImport = re.compile(r"^from\s+([a-zA-Z0-9\._]+)\s+import\s+(.*)$")
-    _regexFromFutureImport = re.compile(r"^from\s+__future__\s+import\s+(.*)$")
+    def __init__(self):
+        self.groups = []
+        self.groupStart = None
+
+    _REGEX_IMPORT = re.compile(r"^import\s+(.*)")
+    _REGEX_FROM_IMPORT = re.compile(r"^from\s+([a-zA-Z0-9\._]+)\s+import\s+(.*)$")
+    _REGEX_FROM_FUTURE_IMPORT = re.compile(r"^from\s+__future__\s+import\s+(.*)$")
 
     def printErrorMsg(self, filename, lineNb, errorMessage):
         ''' I print the error message following pylint convention'''
@@ -31,7 +35,7 @@ class FixImports(object):
 
     def isImportLine(self, line):
         '''I return True is the given line is an import statement, False otherwize'''
-        return self._regexImport.match(line) or self._regexFromImport.match(line)
+        return self._REGEX_IMPORT.match(line) or self._REGEX_FROM_IMPORT.match(line)
 
     def isBadLineFixable(self, line):
         '''I return True is the given line is an import line than I know how to split'''
@@ -71,7 +75,7 @@ class FixImports(object):
         return a tuple of order criterias sorted be importance
         '''
         ret = ("__future__" not in line,  # always put __future__ import first
-               self._regexFromImport.match(line) is not None,  # import before from import
+               self._REGEX_FROM_IMPORT.match(line) is not None,  # import before from import
                line,  # then lexicographic order
                )
         return ret
@@ -92,29 +96,27 @@ class FixImports(object):
 
         # First split the import we can split
         newlines = []
-        self.groups = []
-        self.group_start = None
 
         def maybeEndGroup():
-            if self.group_start is not None:
-                self.groups.append((self.group_start, len(newlines)))
-                self.group_start = None
+            if self.groupStart is not None:
+                self.groups.append((self.groupStart, len(newlines)))
+                self.groupStart = None
 
-        iter = lines.__iter__()
+        it = lines.__iter__()
         while True:
             try:
-                line = next(iter)
+                line = next(it)
             except StopIteration:
                 break
             if self.isImportLine(line):
                 # join any continuation lines (\\)
                 while line[-1] == '\\':
-                    line = line[:-1] + iter.next()
-                if self.group_start is None:
-                    self.group_start = len(newlines)
+                    line = line[:-1] + it.next()
+                if self.groupStart is None:
+                    self.groupStart = len(newlines)
 
                 if self.isBadLineFixable(line):
-                    match = self._regexFromImport.match(line)
+                    match = self._REGEX_FROM_IMPORT.match(line)
                     if match:
                         module = match.group(1)
                         imports = [s.strip() for s in match.group(2).split(",")]
@@ -139,8 +141,8 @@ class FixImports(object):
                 splitted_groups_lines.append(line)
                 prev_import_line_type = ""
             else:
-                import_match = self._regexImport.match(line)
-                from_match = self._regexFromImport.match(line)
+                import_match = self._REGEX_IMPORT.match(line)
+                from_match = self._REGEX_FROM_IMPORT.match(line)
                 current_line_type = None
                 if import_match is not None:
                     module = import_match
@@ -148,7 +150,7 @@ class FixImports(object):
                 elif from_match is not None:
                     module = from_match
                     current_line_type = "from"
-                assert(current_line_type)
+                assert current_line_type, "current_line_type is not defined!"
                 if prev_import_line_type and current_line_type != prev_import_line_type:
                     splitted_groups_lines.append("")
                 prev_import_line_type = current_line_type
