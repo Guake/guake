@@ -25,8 +25,8 @@ g_prefix = None
 g_src_dir = os.path.abspath(os.path.dirname(__file__))
 
 # Injecting available targets from installer stage 2
-lib = imp.load_source('install-lib.py',
-                      os.path.join(os.path.dirname(__file__), "install-lib.py"))
+lib = imp.load_source('install_lib.py',
+                      os.path.join(os.path.dirname(__file__), "install_lib.py"))
 
 
 def copyFile(relativeSrcPath, relativeDestPath):
@@ -105,7 +105,7 @@ elif options.dev:
         if not os.path.exists(activate_link):
             lib.run(["ln", "-s", activate_bin, activate_link])
 
-    lib.activate_this(dest_path)
+    lib.activateThis(dest_path)
 else:
     lib.printInfo("Installation in: {}".format(dest_path))
 

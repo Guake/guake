@@ -50,11 +50,11 @@ class MyWindow(Gtk.Window):
             None,
         )
         self.add(terminal)
-        self.dconf_handler = DconfHandler()
-        self.dconf_handler.registerSettingCallback("general",
-                                                   "debug-mode",
-                                                   "boolean",
-                                                   self.on_debug_mode_changed)
+        self.dconfHandler = DconfHandler()
+        self.dconfHandler.registerSettingCallback("general",
+                                                  "debug-mode",
+                                                  "boolean",
+                                                  self.on_debug_mode_changed)
 
     def on_debug_mode_changed(self, key, value):
         print("debug mode {} changed to {}".format(key, value))

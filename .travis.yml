@@ -7,5 +7,4 @@ install:
     - ./install.py --uninstall-dev
     - ./install.py --dev
 script:
-    - ./validate.sh
-    - py.test guake
+    - ./install.py --dev --checks --tests

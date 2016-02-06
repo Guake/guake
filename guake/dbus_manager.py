@@ -39,6 +39,7 @@ class DbusManager(dbus.service.Object):
         self.guake = guakeinstance
         self.bus = dbus.SessionBus()
         bus_name = dbus.service.BusName(DBUS_NAME, bus=self.bus)
+        self.alreadyRunning = False
         super(DbusManager, self).__init__(bus_name, DBUS_PATH)
 
     @dbus.service.method(DBUS_NAME)
@@ -48,80 +49,80 @@ class DbusManager(dbus.service.Object):
     @dbus.service.method(DBUS_NAME)
     def show(self):
         self.guake.show()
-        self.guake.set_terminal_focus()
+        self.guake.setTerminalFocus()
 
     @dbus.service.method(DBUS_NAME)
-    def show_from_remote(self):
-        self.guake.show_from_remote()
-        self.guake.set_terminal_focus()
+    def showFromRemote(self):
+        self.guake.showFromRemote()
+        self.guake.setTerminalFocus()
 
     @dbus.service.method(DBUS_NAME)
     def hide(self):
         self.guake.hide()
 
     @dbus.service.method(DBUS_NAME)
-    def hide_from_remote(self):
-        self.guake.hide_from_remote()
+    def hideFromRemote(self):
+        self.guake.hideFromRemote()
 
     @dbus.service.method(DBUS_NAME)
     def fullscreen(self):
         self.guake.fullscreen()
 
     @dbus.service.method(DBUS_NAME, in_signature='s')
-    def add_tab(self, directory=''):
-        self.guake.add_tab(directory)
+    def addTab(self, directory=''):
+        self.guake.addTab(directory)
 
     @dbus.service.method(DBUS_NAME, in_signature='i')
-    def select_tab(self, tab_index=0):
-        return self.guake.select_tab(int(tab_index))
+    def selectTab(self, tabIndex=0):
+        return self.guake.selectTab(int(tabIndex))
 
     @dbus.service.method(DBUS_NAME, out_signature='i')
-    def get_selected_tab(self):
-        return self.guake.get_selected_tab()
+    def getSelectedTab(self):
+        return self.guake.getSelectedTab()
 
     @dbus.service.method(DBUS_NAME, out_signature='i')
-    def get_tab_count(self):
+    def getTabCount(self):
         return len(self.guake.notebook.term_list)
 
     @dbus.service.method(DBUS_NAME, in_signature='s')
-    def set_bgcolor(self, bgcolor):
-        self.guake.set_bgcolor(bgcolor)
+    def setBgcolor(self, bgcolor):
+        self.guake.setBgcolor(bgcolor)
 
     @dbus.service.method(DBUS_NAME, in_signature='s')
-    def set_fgcolor(self, fgcolor):
-        self.guake.set_fgcolor(fgcolor)
+    def setFgcolor(self, fgcolor):
+        self.guake.setFgcolor(fgcolor)
 
     @dbus.service.method(DBUS_NAME, in_signature='s')
-    def execute_command(self, command):
-        self.guake.execute_command(command)
+    def executeCommand(self, command):
+        self.guake.executeCommand(command)
 
     @dbus.service.method(DBUS_NAME, in_signature='i', out_signature='s')
-    def get_tab_name(self, tab_index=0):
-        return self.guake.notebook.term_list[int(tab_index)].get_window_title() or ''
+    def getTabName(self, tabIndex=0):
+        return self.guake.notebook.term_list[int(tabIndex)].get_window_title() or ''
 
     @dbus.service.method(DBUS_NAME, in_signature='is')
-    def rename_tab(self, tab_index, new_text):
-        self.guake.rename_tab(tab_index, new_text)
+    def renameTab(self, tabIndex, newText):
+        self.guake.renameTab(tabIndex, newText)
 
     @dbus.service.method(DBUS_NAME, in_signature='s')
-    def rename_current_tab(self, new_text):
-        self.guake.rename_current_tab(new_text)
+    def renameCurrentTab(self, newText):
+        self.guake.renameCurrentTab(newText)
 
     @dbus.service.method(DBUS_NAME)
-    def show_about(self):
-        self.guake.show_about()
+    def showAbout(self):
+        self.guake.showAbout()
 
     @dbus.service.method(DBUS_NAME)
-    def show_prefs(self):
-        self.guake.show_prefs()
+    def showPrefs(self):
+        self.guake.showPrefs()
 
     @dbus.service.method(DBUS_NAME)
     def quit(self):
         self.guake.quit()
 
     @dbus.service.method(DBUS_NAME, in_signature='i', out_signature='s')
-    def get_gtktab_name(self, tab_index=0):
-        return self.guake.tabs.get_children()[tab_index].get_label()
+    def get_gtktab_name(self, tabIndex=0):
+        return self.guake.tabs.getChildren()[tabIndex].get_label()
 
 
 def createDbusRemote(instanceCreator):
@@ -132,10 +133,10 @@ def createDbusRemote(instanceCreator):
     try:
         bus = dbus.SessionBus()
         remote_object = bus.get_object(DBUS_NAME, DBUS_PATH)
-        remote_object.already_running = True
+        remote_object.alreadyRunning = True
     except dbus.DBusException:
         print("creating instance")
         instance = instanceCreator()
         remote_object = DbusManager(instance)
-        remote_object.already_running = False
+        remote_object.alreadyRunning = False
     return remote_object

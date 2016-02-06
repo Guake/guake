@@ -39,14 +39,15 @@ __all__ = [
     'ShowableError',
     'pixmapfile',
     'gladefile',
-    'hexify_color',
-    'get_binaries_from_path',
+    'hexifyColor',
+    'getBinariesFromPath',
 ]
 
 
 class ShowableError(Exception):
 
     def __init__(self, title, msg, exit_code=1):
+        super().__init__(title)
         d = Gtk.Dialog(type=Gtk.MESSAGE_ERROR,
                        buttons=Gtk.BUTTONS_CLOSE)
         d.set_markup('<b><big>%s</big></b>' % title)
@@ -71,22 +72,22 @@ def gladefile(x):
     return os.path.abspath(f)
 
 
-def hexify_color(c):
+def hexifyColor(c):
     h = lambda x: hex(x).replace('0x', '').zfill(4)
     return '#%s%s%s' % (h(c.red), h(c.green), h(c.blue))
 
 
-def get_binaries_from_path(compiled_re):
+def getBinariesFromPath(compiledRe):
     ret = []
     for i in os.environ.get('PATH', '').split(os.pathsep):
         if os.path.isdir(i):
             for j in os.listdir(i):
-                if compiled_re.match(j):
+                if compiledRe.match(j):
                     ret.append(os.path.join(i, j))
     return ret
 
 
-def shell_quote(text):
+def shellQuote(text):
     """ quote text (filename) for inserting into a shell """
     return r"\'".join("'%s'" % p for p in text.split("'"))
 
