@@ -8,4 +8,4 @@ install:
     - ./install.py --dev
 script:
     - ./validate.sh
-    - pytest -t guake
+    - py.test guake

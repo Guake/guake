@@ -11,6 +11,8 @@ Makefile
 Makefile.in
 config.*
 configure
+.cache/
+.eggs/
 .libs
 .deps
 intltool-*
