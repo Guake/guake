@@ -5,3 +5,5 @@ install:
     - ./install.py --dev
     - ./install.py --uninstall-dev
     - ./install.py --dev --checks
+script:
+    - pytest -t guake
