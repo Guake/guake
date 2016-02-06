@@ -25,29 +25,29 @@ from __future__ import unicode_literals
 from gi.repository import Gtk
 
 
-def bindtextdomain(app_name, locale_dir=None):
+def bindtextdomain(appName, localeDir=None):
     """
-    Bind the domain represented by app_name to the locale directory locale_dir.
+    Bind the domain represented by appName to the locale directory localeDir.
     It has the effect of loading translations, enabling applications for different
     languages.
 
-    app_name:
+    appName:
         a domain to look for translations, typically the name of an application.
 
-    locale_dir:
-        a directory with locales like locale_dir/lang_isocode/LC_MESSAGES/app_name.mo
-        If omitted or None, then the current binding for app_name is used.
+    localeDir:
+        a directory with locales like localeDir/lang_isocode/LC_MESSAGES/appName.mo
+        If omitted or None, then the current binding for appName is used.
     """
     try:
         import locale
         import gettext
         # FIXME: Commented to avoid problems with a .utf8 LANG variable...
         # locale.setlocale(locale.LC_ALL, "")
-        gettext.bindtextdomain(app_name, locale_dir)
-        gettext.textdomain(app_name)
-        gettext.install(app_name, locale_dir, unicode=1)
+        gettext.bindtextdomain(appName, localeDir)
+        gettext.textdomain(appName)
+        gettext.install(appName, localeDir)
     except (IOError, locale.Error) as e:
-        print("Warning", app_name, e)
+        print("Warning", appName, e)
         __builtins__.__dict__["_"] = lambda x: x
 
 

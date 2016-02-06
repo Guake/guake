@@ -27,8 +27,8 @@ def main():
     pass
 
 
-def exec_main():
+def _execMain():
     main()
 
 if __name__ == '__main__':
-    exec_main()
+    _execMain()

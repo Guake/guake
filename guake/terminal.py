@@ -91,8 +91,10 @@ class GuakeTerminal(Terminal):
         self.configure_terminal()
         self.add_matches()
         self.connect('button-press-event', self.button_press)
-        self.matched_value = ''
-        self.font_scale_index = 0
+        self.matchedValue = ''
+        self.fontScaleIndex = 0
+        self.fontScale = 0
+        self.font = None
 
     def configure_terminal(self):
         """Sets all customized properties on the terminal
@@ -127,7 +129,7 @@ class GuakeTerminal(Terminal):
         any match string is caught, another aplication is open to
         handle the matched resource uri.
         """
-        self.matched_value = ''
+        self.matchedValue = ''
         matched_string = self.match_check(
             int(event.x / self.get_char_width()),
             int(event.y / self.get_char_height()))
@@ -148,17 +150,17 @@ class GuakeTerminal(Terminal):
             Gtk.show_uri(self.get_screen(), value,
                          GdkX11.x11_get_server_time(self.get_window()))
         elif event.button == 3 and matched_string:
-            self.matched_value = matched_string[0]
+            self.matchedValue = matched_string[0]
 
-    def set_font(self, font):
+    def setFont(self, font):
         self.font = font
-        self.set_font_scale_index(0)
+        self.setFontScaleIndex(0)
 
-    def set_font_scale_index(self, scale_index):
-        self.font_scale_index = clamp(scale_index, -6, 12)
+    def setFontScaleIndex(self, scaleIndex):
+        self.fontScaleIndex = clamp(scaleIndex, -6, 12)
 
-        font = Pango.FontDescription(self.font.to_string())
-        scale_factor = 2 ** (self.font_scale_index / 6)
+        font = Pango.FonstDescription(self.font.to_string())
+        scale_factor = 2 ** (self.fontScaleIndex / 6)
         new_size = int(scale_factor * font.get_size())
 
         if font.get_size_is_absolute():
@@ -166,18 +168,18 @@ class GuakeTerminal(Terminal):
         else:
             font.set_size(new_size)
 
-        super().set_font(font)
+        super().setFont(font)
 
     font_scale = property(
-        fset=set_font_scale_index,
-        fget=lambda self: self.font_scale_index
+        fset=setFontScaleIndex,
+        fget=lambda self: self.fontScaleIndex
     )
 
-    def increase_font_size(self):
-        self.font_scale += 1
+    def increaseFontSize(self):
+        self.fontScale += 1
 
-    def decrease_font_size(self):
-        self.font_scale -= 1
+    def decreaseFontSize(self):
+        self.fontScale -= 1
 
 
 class TerminalBox(Gtk.HBox):
