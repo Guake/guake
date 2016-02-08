@@ -73,15 +73,18 @@ lib.printDebug("Python version: %s", sys.version.partition("\n")[0])
 
 dest_path = options.prefix
 virtualenv_dest_path = os.path.abspath(os.path.join(g_src_dir, "workdir"))
-activate_link = os.path.abspath(os.path.join(g_src_dir, "activate"))
-activate_bin = os.path.join(virtualenv_dest_path, "bin", "activate")
+if lib.isWindows:
+    activate_script = os.path.abspath(os.path.join(virtualenv_dest_path, "bin", "activate"))
+else:
+    activate_script = os.path.abspath(os.path.join(virtualenv_dest_path, "Scripts", "activate"))
+
+if lib.isMacOsX or lib.isLinux:
+    activate_link = os.path.abspath(os.path.join(g_src_dir, "activate"))
 if options.uninstall_dev:
     lib.printSeparator()
     lib.printDebug("Uninstalling virtualenv")
     lib.printSeparator()
     lib.rmrv(virtualenv_dest_path)
-    if lib.isMacOsX or lib.isLinux:
-        activate_link = os.path.join(g_src_dir, "activate")
     lib.rmrv(activate_link)
     lib.rmrv(os.path.join(g_src_dir, "__pycache__"))
     lib.rmrv(os.path.join(g_src_dir, "Guake.egg-info"))
@@ -92,20 +95,23 @@ if options.uninstall_dev:
 if os.environ.get("VIRTUAL_ENV"):
     lib.printInfo("Already in a virtual env, installing it inside this virtualenv")
     lib.printInfo("Installation in: {}".format(virtualenv_dest_path))
+    lib.printInfo("VIRTUAL_ENV = %s", os.environ.get("VIRTUAL_ENV"))
     dest_path = virtualenv_dest_path
 elif options.dev:
     dest_path = virtualenv_dest_path
     lib.checkVirtualEnv()
 
-    if os.path.exists(activate_bin):
+    if os.path.exists(activate_script):
         lib.printInfo("virtualenv already installed in %s", dest_path)
     else:
         lib.installVirtualEnv(dest_path)
     if lib.isMacOsX or lib.isLinux:
         if not os.path.exists(activate_link):
-            lib.run(["ln", "-s", activate_bin, activate_link])
+            lib.printInfo("Creating symbolic link %s", activate_link)
+            lib.run(["ln", "-s", activate_script, activate_link])
 
     lib.activateThis(dest_path)
+    lib.printInfo("VIRTUAL_ENV = %s", os.environ.get("VIRTUAL_ENV"))
 else:
     lib.printInfo("Installation in: {}".format(dest_path))
 
@@ -117,11 +123,11 @@ if options.dev:
     lib.execute("pip install --upgrade -r requirements-dev.txt")
     lib.execute("pip install --upgrade -e . --no-use-wheel")
 
-if options.tests:
-    lib.execute("py.test guake")
-
 if options.checks:
     lib.execute("./validate.sh")
+
+if options.tests:
+    lib.execute("py.test guake")
 
 if options.update:
     lib.execute("pip-compile requirements-dev.in")
