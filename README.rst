@@ -154,7 +154,8 @@ RedHat/Fedora
 For Fedora 19 and above, Guake is available in the official repositories and can be installed by
 running::
 
-    sudo yum install guake
+    sudo yum install guake		# for Fedora 19 - 21
+    sudo dnf install guake		# for Fedora 23 and above
 
 For compiling from these sources, please install the following packages (Fedora 19)::
 
