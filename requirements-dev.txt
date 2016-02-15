@@ -16,5 +16,7 @@ py==1.4.31                # via pytest
 pyflakes==1.0.0
 pylint==1.5.4
 pytest==2.8.7
+ruamel.base==1.0.0        # via ruamel.venvgtk
+ruamel.venvgtk==0.4.1
 six==1.10.0               # via astroid, pip-tools, pylint
 wrapt==1.10.6             # via astroid
