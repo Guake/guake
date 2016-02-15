@@ -4,3 +4,4 @@ pyflakes >= 0.8.1
 pylint >= 1.4.3
 pip-tools == 1.5
 pytest >= 2.8
+ruamel.venvgtk == 0.4.1

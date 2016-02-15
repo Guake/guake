@@ -22,9 +22,19 @@ from __future__ import division
 from __future__ import print_function
 from __future__ import unicode_literals
 
+import logging
+
+from guake.logging import setupBasicLogging
+from guake.test_terminal import test
+
+
+logger = logging.getLogger(__name__)
+
 
 def main():
-    pass
+    setupBasicLogging()
+    logger.info("Guake startup")
+    test()
 
 
 def _execMain():
