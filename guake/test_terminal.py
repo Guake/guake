@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 
+# import gi
 import os
-import gi
 
 from gi.repository import GLib
 from gi.repository import Gtk

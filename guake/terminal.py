@@ -25,10 +25,10 @@ from __future__ import unicode_literals
 from gi.repository import Gdk
 from gi.repository import GdkX11
 from gi.repository import Gtk
-from gi.repository import Pango
+# from gi.repository import Pango
 from gi.repository.Vte import Terminal
 
-from guake.common import clamp
+# from guake.common import clamp
 # from guake.globals import KEY
 
 __all__ = ['GuakeTerminal', 'TerminalBox']
@@ -154,26 +154,26 @@ class GuakeTerminal(Terminal):
 
     def setFont(self, font):
         self.font = font
-        self.setFontScaleIndex(0)
+        # self.setFontScaleIndex(0)
 
-    def setFontScaleIndex(self, scaleIndex):
-        self.fontScaleIndex = clamp(scaleIndex, -6, 12)
+    # def setFontScaleIndex(self, scaleIndex):
+        # self.fontScaleIndex = clamp(scaleIndex, -6, 12)
 
-        font = Pango.FonstDescription(self.font.to_string())
-        scale_factor = 2 ** (self.fontScaleIndex / 6)
-        new_size = int(scale_factor * font.get_size())
+        # font = Pango.FonstDescription(self.font.to_string())
+        # scale_factor = 2 ** (self.fontScaleIndex / 6)
+        # new_size = int(scale_factor * font.get_size())
 
-        if font.get_size_is_absolute():
-            font.set_absolute_size(new_size)
-        else:
-            font.set_size(new_size)
+        # if font.get_size_is_absolute():
+        # font.set_absolute_size(new_size)
+        # else:
+        # font.set_size(new_size)
+        #
+        # super().setFont(font)
 
-        super().setFont(font)
-
-    font_scale = property(
-        fset=setFontScaleIndex,
-        fget=lambda self: self.fontScaleIndex
-    )
+    # font_scale = property(
+    #     fset=setFontScaleIndex,
+    #     fget=lambda self: self.fontScaleIndex
+    # )
 
     def increaseFontSize(self):
         self.fontScale += 1
