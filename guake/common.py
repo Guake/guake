@@ -23,74 +23,74 @@ from __future__ import print_function
 from __future__ import unicode_literals
 
 import gettext
-import os
-import sys
+# import os
 
-from gi.repository import Gtk
+# from gi.repository import Gtk
 
-import guake.globals
+# import guake.globals
 
 
 # Internationalization purposes.
 _ = gettext.gettext
 
-__all__ = [
-    '_',
-    'ShowableError',
-    'pixmapfile',
-    'gladefile',
-    'hexifyColor',
-    'getBinariesFromPath',
-]
+# __all__ = [
+#     '_',
+#     'ShowableError',
+#     'pixmapfile',
+#     'gladefile',
+#     'hexifyColor',
+#     'getBinariesFromPath',
+# ]
 
 
 class ShowableError(Exception):
 
-    def __init__(self, title, msg, exit_code=1):
-        super().__init__(title)
-        d = Gtk.Dialog(type=Gtk.MESSAGE_ERROR,
-                       buttons=Gtk.BUTTONS_CLOSE)
-        d.set_markup('<b><big>%s</big></b>' % title)
-        d.format_secondary_markup(msg)
-        d.run()
-        d.destroy()
-        if exit_code != -1:
-            sys.exit(exit_code)
+    # def __init__(self, title, msg, exit_code=1):
+        # super().__init__(title)
+        # d = Gtk.Dialog(type=Gtk.MESSAGE_ERROR,
+        #                buttons=Gtk.BUTTONS_CLOSE)
+        # d.set_markup('<b><big>%s</big></b>' % title)
+        # d.format_secondary_markup(msg)
+        # d.run()
+        # d.destroy()
+        # if exit_code != -1:
+        #     sys.exit(exit_code)
+    pass
 
 
-def pixmapfile(x):
-    f = os.path.join(guake.globals.IMAGE_DIR, x)
-    if not os.path.exists(f):
-        raise IOError('No such file or directory: %s' % f)
-    return os.path.abspath(f)
+# def pixmapfile(x):
+#     f = os.path.join(guake.globals.IMAGE_DIR, x)
+#     if not os.path.exists(f):
+#         raise IOError('No such file or directory: %s' % f)
+#     return os.path.abspath(f)
 
 
-def gladefile(x):
-    f = os.path.join(guake.globals.GLADE_DIR, x)
-    if not os.path.exists(f):
-        raise IOError('No such file or directory: %s' % f)
-    return os.path.abspath(f)
+# def gladefile(x):
+#     f = os.path.join(guake.globals.GLADE_DIR, x)
+#     if not os.path.exists(f):
+#         raise IOError('No such file or directory: %s' % f)
+#     return os.path.abspath(f)
 
 
-def hexifyColor(c):
-    h = lambda x: hex(x).replace('0x', '').zfill(4)
-    return '#%s%s%s' % (h(c.red), h(c.green), h(c.blue))
+# def hexifyColor(c):
+#     h = lambda x: hex(x).replace('0x', '').zfill(4)
+#     return '#%s%s%s' % (h(c.red), h(c.green), h(c.blue))
 
 
-def getBinariesFromPath(compiledRe):
-    ret = []
-    for i in os.environ.get('PATH', '').split(os.pathsep):
-        if os.path.isdir(i):
-            for j in os.listdir(i):
-                if compiledRe.match(j):
-                    ret.append(os.path.join(i, j))
-    return ret
+# def getBinariesFromPath(compiledRe):
+#     ret = []
+#     for i in os.environ.get('PATH', '').split(os.pathsep):
+#         if os.path.isdir(i):
+#             for j in os.listdir(i):
+#                 if compiledRe.match(j):
+#                     ret.append(os.path.join(i, j))
+#     return ret
 
 
-def shellQuote(text):
-    """ quote text (filename) for inserting into a shell """
-    return r"\'".join("'%s'" % p for p in text.split("'"))
+# def shellQuote(text):
+#     """ quote text (filename) for inserting into a shell """
+#     return r"\'".join("'%s'" % p for p in text.split("'"))
 
 
-def clamp(value, lower, upper):
-    return max(min(value, upper), lower)
+# def clamp(value, lower, upper):
+#     return max(min(value, upper), lower)
