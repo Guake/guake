@@ -254,7 +254,7 @@ def checkVirtualEnv():
 
 
 def installVirtualEnv(destPath):
-    run(virtualenv_cmd + [destPath])
+    run([virtualenv_cmd] + [destPath])
 
 
 def addArgumentParser(description=None):
