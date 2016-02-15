@@ -74,9 +74,9 @@ lib.printDebug("Python version: %s", sys.version.partition("\n")[0])
 dest_path = options.prefix
 virtualenv_dest_path = os.path.abspath(os.path.join(g_src_dir, "workdir"))
 if lib.isWindows:
-    activate_script = os.path.abspath(os.path.join(virtualenv_dest_path, "bin", "activate"))
-else:
     activate_script = os.path.abspath(os.path.join(virtualenv_dest_path, "Scripts", "activate"))
+else:
+    activate_script = os.path.abspath(os.path.join(virtualenv_dest_path, "bin", "activate"))
 
 if lib.isMacOsX or lib.isLinux:
     activate_link = os.path.abspath(os.path.join(g_src_dir, "activate"))
@@ -108,13 +108,14 @@ elif options.dev:
     if lib.isMacOsX or lib.isLinux:
         if not os.path.exists(activate_link):
             lib.printInfo("Creating symbolic link %s", activate_link)
-            lib.run(["ln", "-s", activate_script, activate_link])
+            lib.run(["ln", "-sf", activate_script, activate_link])
 
     lib.activateThis(dest_path)
     lib.printInfo("VIRTUAL_ENV = %s", os.environ.get("VIRTUAL_ENV"))
 else:
     lib.printInfo("Installation in: {}".format(dest_path))
 
+# Todo: check installed packages: python3-gi
 dataFolder = "data"
 
 lib.execute("pip install --upgrade pip")
