@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 
-# import gi
+import gi
+import logging
 import os
 
 from gi.repository import GLib
@@ -8,11 +9,19 @@ from gi.repository import Gtk
 from gi.repository import Vte
 
 
-def test():
-    # gi.require_version('Gtk', '3.0')
+logger = logging.getLogger(__name__)
 
+
+def test():
+    gi.require_version('Gtk', '3.0')
+    # before VTE 0.38
+    # vte_terminal_fork_command_full ()
+    # after
+    # vte_terminal_spawn_sync ()
     terminal = Vte.Terminal()
-    terminal.fork_command_full(
+    print("terminal: %s", dir(terminal))
+
+    terminal.spawn_sync(
         Vte.PtyFlags.DEFAULT,
         os.environ['HOME'],
         ["/bin/bash"],

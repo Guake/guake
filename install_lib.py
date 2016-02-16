@@ -253,8 +253,11 @@ def checkVirtualEnv():
         sys.exit(1)
 
 
-def installVirtualEnv(destPath):
-    run([virtualenv_cmd] + [destPath])
+def installVirtualEnv(destPath, systemSitePackages=False):
+    extra = []
+    if systemSitePackages:
+        extra = ["--system-site-package"]
+    run([virtualenv_cmd] + extra + [destPath])
 
 
 def addArgumentParser(description=None):
