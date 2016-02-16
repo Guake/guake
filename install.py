@@ -104,7 +104,7 @@ elif options.dev:
     if os.path.exists(activate_script):
         lib.printInfo("virtualenv already installed in %s", dest_path)
     else:
-        lib.installVirtualEnv(dest_path)
+        lib.installVirtualEnv(dest_path, systemSitePackages=True)
     if lib.isMacOsX or lib.isLinux:
         if not os.path.exists(activate_link):
             lib.printInfo("Creating symbolic link %s", activate_link)
