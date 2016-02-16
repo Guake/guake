@@ -235,7 +235,7 @@ if isUbuntu and ubuntuVersionInt <= 1404:
     virtualenv_cmd = ["virtualenv", "-p", "python3"]
 else:
     virtualenv_exec = "pyvenv"
-    virtualenv_cmd = "pyvenv"
+    virtualenv_cmd = ["pyvenv"]
 
 
 def checkVirtualEnv():
@@ -257,7 +257,7 @@ def installVirtualEnv(destPath, systemSitePackages=False):
     extra = []
     if systemSitePackages:
         extra = ["--system-site-package"]
-    run([virtualenv_cmd] + extra + [destPath])
+    run(virtualenv_cmd + extra + [destPath])
 
 
 def addArgumentParser(description=None):
