@@ -40,7 +40,7 @@ class MyWindow(Gtk.Window):
         Gtk.Window.__init__(self, title="Hello World")
 
         terminal = Terminal()
-        terminal.fork_command_full(
+        terminal.spawn_sync(
             Vte.PtyFlags.DEFAULT,
             os.environ['HOME'],
             ["/bin/bash"],
