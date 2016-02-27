@@ -581,21 +581,11 @@ class Guake(SimpleGladeApp):
                 self.window.window)
             self.hide()
 
-    def show_menu(self, status_icon, button, activate_time):
-        """Show the tray icon menu.
-        """
-        menu = self.get_widget('tray-menu')
-        menu.popup(None, None, gtk.status_icon_position_menu,
-                   button, activate_time, status_icon)
-
-    def show_context_menu(self, terminal, event):
-        """Show the context menu, only with a right click on a vte
-        Terminal.
+    def on_term_click(self, terminal, event):
+        """Handle button presses (right clicks only) on a vtx.Terminal.
         """
         if event.button != 3:
             return False
-
-        self.showing_context_menu = True
 
         guake_clipboard = gtk.clipboard_get()
         if not guake_clipboard.wait_is_text_available():
@@ -614,6 +604,29 @@ class Guake(SimpleGladeApp):
 
             if current_selection and len(current_selection) > 20:
                 current_selection = current_selection[:17] + "..."
+
+        is_ctrl_pressed = event.get_state() & gtk.gdk.CONTROL_MASK
+
+        # If the Ctrl key is pressed than show the context menu unless
+        # paste_on_rclick is disabled, then show it anyways.
+        if is_ctrl_pressed or not self.client.get_bool(KEY('/general/paste_on_rclick')):
+            return self.show_context_menu(terminal, current_selection)
+        else:
+            self.notebook.get_current_terminal().paste_clipboard()
+            return True
+
+    def show_menu(self, status_icon, button, activate_time):
+        """Show the tray icon menu.
+        """
+        menu = self.get_widget('tray-menu')
+        menu.popup(None, None, gtk.status_icon_position_menu,
+                   button, activate_time, status_icon)
+
+    def show_context_menu(self, terminal, current_selection):
+        """Show the context menu.
+        """
+
+        self.showing_context_menu = True
 
         self.get_widget('separator_search').set_visible(False)
         if current_selection:
@@ -1532,7 +1545,7 @@ class Guake(SimpleGladeApp):
                                    [('text/uri-list', gtk.TARGET_OTHER_APP, 0)],
                                    gtk.gdk.ACTION_COPY
                                    )
-        box.terminal.connect('button-press-event', self.show_context_menu)
+        box.terminal.connect('button-press-event', self.on_term_click)
         box.terminal.connect('child-exited', self.on_terminal_exited, box)
         box.terminal.connect('window-title-changed',
                              self.on_terminal_title_changed, box)
