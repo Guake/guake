@@ -13,9 +13,7 @@ Introduction
 Guake is a dropdown terminal made for the GNOME desktop environment. Guake's style of window is based on
 an FPS game, and one of its goals is to be easy to reach.
 
-Guake is mostly written in python and has a little piece in C (global hotkeys capture). The code is
-placed in the ``guake`` directory. Files and images are in the ``data`` directory. Translation files
-are in the ``po`` directory.
+Guake is written in Python. The code is placed in the ``guake`` directory. Files and images are in the ``data`` directory. Translation files are in the ``po`` directory.
 
 Features
 --------
@@ -210,12 +208,6 @@ To run Guake as an unprivileged user for testing purposes, after `make` continue
 
     $ gconftool-2 --install-schema-file=data/guake.schemas
     $ PYTHONPATH=src python src/guake/main.py
-
-If you run into::
-
-    ImportError: No module named globalhotkeys
-
-please check for ``guake/guake.py*`` leftover files and delete, if any.
 
 **Note**: Ubuntu users, you can use the following command::
 
