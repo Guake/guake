@@ -13,7 +13,7 @@ Introduction
 Guake is a dropdown terminal made for the GNOME desktop environment. Guake's style of window is based on
 an FPS game, and one of its goals is to be easy to reach.
 
-Guake is written in Python. The code is placed in the ``guake`` directory. Files and images are in the ``data`` directory. Translation files are in the ``po`` directory.
+Guake is mostly written in Python and has a little piece in C (https://github.com/engla/keybinder). The source code is placed in the ``guake`` directory. Files and images are in the ``data`` directory. Translation files are in the ``po`` directory.
 
 Features
 --------
