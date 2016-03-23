@@ -22,7 +22,7 @@ def test():
     terminal = Vte.Terminal()
     print("terminal: %s", dir(terminal))
 
-    terminal.fork_command_full(
+    terminal.spawn_sync(
         Vte.PtyFlags.DEFAULT,
         os.environ['HOME'],
         ["/bin/bash"],
