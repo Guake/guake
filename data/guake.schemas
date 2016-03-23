@@ -824,6 +824,18 @@
         </schema>
 
         <schema>
+            <key>/schemas/apps/guake/keybindings/local/switch_tab_last</key>
+            <applyto>/apps/guake/keybindings/local/switch_tab_last</applyto>
+            <owner>guake</owner>
+            <type>string</type>
+            <default>&lt;Control&gt;F12</default>
+            <locale name="C">
+                <short>Last tab.</short>
+                <long>Switch to the last tab.</long>
+            </locale>
+        </schema>
+
+        <schema>
             <key>/schemas/apps/guake/keybindings/local/rename_current_tab</key>
             <applyto>/apps/guake/keybindings/local/rename_current_tab</applyto>
             <owner>guake</owner>

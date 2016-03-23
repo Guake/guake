@@ -123,6 +123,8 @@ HOTKEYS = [
                'label': 'Go to ninth tab'},
               {'key': LKEY('switch_tab10'),
                'label': 'Go to tenth tab'},
+              {'key': LKEY('switch_tab_last'),
+               'label': 'Go to last tab'},
               ]},
 
     {'label': 'Appearance',
