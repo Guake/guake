@@ -403,7 +403,7 @@ class GConfKeyHandler(object):
                 "search_on_web", 'move_tab_left', 'move_tab_right',
                 'switch_tab1', 'switch_tab2', 'switch_tab3', 'switch_tab4', 'switch_tab5',
                 'switch_tab6', 'switch_tab7', 'switch_tab8', 'switch_tab9', 'switch_tab10',
-                'reset_terminal']
+                'switch_tab_last', 'reset_terminal']
         for key in keys:
             notify_add(LKEY(key), self.reload_accelerators)
             self.client.notify(LKEY(key))
@@ -557,6 +557,11 @@ class GConfKeyHandler(object):
             if key > 0:
                 self.accel_group.connect_group(key, mask, gtk.ACCEL_VISIBLE,
                                                self.guake.gen_accel_switch_tabN(tab - 1))
+
+        key, mask = gtk.accelerator_parse(gets('switch_tab_last'))
+        if key > 0:
+            self.accel_group.connect_group(key, mask, gtk.ACCEL_VISIBLE,
+                                           self.guake.accel_switch_tab_last)
 
         try:
             key, mask = gtk.accelerator_parse(gets('search_on_web'))
