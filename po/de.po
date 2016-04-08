@@ -269,7 +269,7 @@ msgstr "VTE-Titel als Reiternamen benutzen"
 
 #: ../data/prefs.glade.h:33
 msgid "Max tab name length:"
-msgstr ""
+msgstr "Max. Tab-Namen-Länge:"
 
 #: ../data/prefs.glade.h:34
 msgid "Hide on lose focus"

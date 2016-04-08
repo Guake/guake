@@ -537,7 +537,7 @@ Always</property>
                                         <property name="can_focus">False</property>
                                         <child>
                                           <widget class="GtkLabel" id="lbl_max_tab_name_length">
-                                            <property name="width_request">150</property>
+                                            <property name="width_request">160</property>
                                             <property name="visible">True</property>
                                             <property name="can_focus">False</property>
                                             <property name="xalign">0</property>
