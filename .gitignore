@@ -46,3 +46,4 @@ description-pak
 backup-*.tgz
 workdir/
 activate
+env/

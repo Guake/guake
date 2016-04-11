@@ -678,8 +678,8 @@ class PrefsDialog(SimpleGladeApp):
         """Updates the color buttons with the given palette
         """
         palette = palette.split(':')
-        for i in range(len(palette)):
-            color = gtk.gdk.color_parse(palette[i])
+        for i, pal in enumerate(palette):
+            color = gtk.gdk.color_parse(pal)
             self.get_widget('palette_%d' % i).set_color(color)
 
     def reload_erase_combos(self, btn=None):

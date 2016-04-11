@@ -1,5 +1,8 @@
-import guake
+from __future__ import absolute_import
+
 import unittest
+
+import guake
 
 
 class TestQuickEdit(unittest.TestCase):

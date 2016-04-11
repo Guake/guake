@@ -22,15 +22,11 @@ from __future__ import absolute_import
 from __future__ import division
 from __future__ import print_function
 
-try:
-    from colorlog import ColoredFormatter
-except:
-    ColoredFormatter = None
-
 import gconf
 import gobject
 import gtk
 import json
+import keybinder
 import logging
 import logging.config
 import os
@@ -47,7 +43,13 @@ from xdg.DesktopEntry import DesktopEntry
 from xml.sax.saxutils import escape as xml_escape
 
 import guake.notifier
-import keybinder
+
+try:
+    # pylint: disable=wrong-import-order
+    from colorlog import ColoredFormatter
+    # pylint: enable=wrong-import-order
+except:
+    ColoredFormatter = None
 
 from guake.about import AboutDialog
 from guake.common import _
@@ -74,10 +76,12 @@ from guake.terminal import GuakeTerminalBox
 
 libutempter = None
 try:
+    # pylint: disable=wrong-import-position,wrong-import-order
     # this allow to run some commands that requires libuterm to
     # be injected in current process, as: wall
     from atexit import register as at_exit_call
     from ctypes import cdll
+    # pylint: enable=wrong-import-position,wrong-import-order
     libutempter = cdll.LoadLibrary('libutempter.so.0')
     if libutempter is not None:
         # We absolutly need to remove the old tty from the utmp !!!!!!!!!!
