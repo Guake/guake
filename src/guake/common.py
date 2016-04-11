@@ -19,12 +19,13 @@ Boston, MA 02110-1301 USA
 """
 from __future__ import absolute_import
 
+import os
+import sys
+
 import gconf
 import gettext
 import gtk
 import guake.globals
-import os
-import sys
 
 # Internationalization purposes.
 _ = gettext.gettext

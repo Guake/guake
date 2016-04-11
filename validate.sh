@@ -81,7 +81,7 @@ function run_tests()
 }
 
 if [ -z $REVRANGE ]; then
-    py_files=$(find . -name "*.py" -o -name "*.py.in" | grep -v -E 'src/guake/globals.py$' | grep -v -E 'doc/src/conf.py$')
+    py_files=$(find . -name "*.py" -o -name "*.py.in" | grep -v -E '^./env/' | grep -v -E 'src/guake/globals.py$' | grep -v -E 'doc/src/conf.py$')
     echo "Validating files: "
     echo $py_files
 else
@@ -191,7 +191,7 @@ elif [[ ! -f pylintrc ]]; then
 else
     pylint_ok=true
     for filename in ${py_files[@]}; do
-        if ! pylint --rcfile=pylintrc --disable=R,line-too-long --enable=W0611 --output-format=text --report=no "$filename"; then
+        if ! pylint --rcfile=pylintrc --disable=R,line-too-long --enable=W0611 --output-format=text "$filename"; then
             pylint_ok=false
         fi
     done

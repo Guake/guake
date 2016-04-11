@@ -8,10 +8,10 @@ EXEC_AUTOGEN=false
 EXEC_UPDATE_PO=false
 
 echo "execute guake for developer."
-echo "use --no-install to avoid installing guake on your system"
+echo "use --install to install guake on your system"
 echo "(beware, gconf schema will be altered)"
 echo "use --reinstall to force complete reinstall"
-echo "use --unnstall to force complete reinstall"
+echo "use --uninstall to force complete reinstall"
 echo "use --update-po to force update translations"
 
 if [[ $1 == "--install" ]]; then
@@ -50,6 +50,9 @@ fi
 
 if [[ $UNINSTALL == true ]]; then
     sudo make uninstall
+    if [[ -d env ]]; then
+        rm -rfv env
+    fi
     exit 1
 fi
 
@@ -62,7 +65,15 @@ if [[ $EXEC_UPDATE_PO == true ]]; then
 fi
 
 if [[ $NO_INSTALL == true ]]; then
+    if [[ ! -d env ]]; then
+        virtualenv --system-site-packages env
+    fi
+    echo "sourcing env"
+    source env/bin/activate
+    echo "Installing dev requirements"
+    pip install --upgrade -r python-requirements.txt
     gconftool-2 --install-schema-file=data/guake.schemas
+    echo "Launching guake inside virtualenv"
     PYTHONPATH=src python2.7 src/guake/main.py --no-startup-script
 else
   sudo make install && gconftool-2 --install-schema-file=/usr/local/etc/gconf/schemas/guake.schemas || exit 1
