@@ -470,7 +470,11 @@ msgid ""
 "your favorite text editor by clicking on its filename when it appears in "
 "your terminal. See the list of currently supported text patterns used to "
 "extract filename below.</small>"
-msgstr "<small></small>"
+msgstr ""
+"<small>Schnell-Öffnen bietet die Möglichkeit, eine Datei direkt in einem "
+"bevorzugten Text-Editor durch klicken auf den Dateinamen zu öffnen, wenn "
+"er im Terminal erscheint. In der Liste der verfügbaren Text-Muster finden "
+"sich Beispiele, wie der Dateiname aus dem Terminal extrahiert werden kann.</small>"
 
 #: ../data/prefs.glade.h:84
 msgid "Enable Quick Open when Ctrl+clicking on a filename in the terminal"
@@ -718,7 +722,7 @@ msgstr "Zeigt die Programminformationen von Guake"
 
 #: ../src/guake/main.py:91
 msgid "Add a new tab (with current directory set to NEW_TAB)"
-msgstr "_Neuen Reiter mit aktuellem Verzeichnis NEW_TAB öffnen)"
+msgstr "Neuer Reiter (mit aktuellem Verzeichnis von NEW_TAB)"
 
 #: ../src/guake/main.py:95
 msgid "Select a tab (SELECT_TAB is the index of the tab)"
