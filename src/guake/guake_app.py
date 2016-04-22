@@ -955,7 +955,7 @@ class Guake(SimpleGladeApp):
                          '/org/compiz/profiles/unity/plugins/unityshell/launcher-hide-mode']))
                     unity_dock = int(subprocess.check_output(
                         ['/usr/bin/dconf', 'read',
-                         '/org/compiz/profiles/unity/plugins/unityshell/icon-size']))
+                         '/org/compiz/profiles/unity/plugins/unityshell/icon-size']) or "48")
                     found = True
                 except:
                     # in case of error, just ignore it, 'found' will not be set to True and so
