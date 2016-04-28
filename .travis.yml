@@ -15,7 +15,7 @@ before_install:
     - sudo apt-get install -qq --fix-missing python3-dev
 install:
     - pip install --upgrade pip
-    - pip install -r python-requirements.txt
+    - pip install --upgrade -r python-requirements.txt
     - find /usr/include
 script:
     - ./validate.sh
