@@ -29,6 +29,7 @@ import os
 import pango
 import re
 import subprocess
+import uuid
 import vte
 
 
@@ -88,6 +89,10 @@ class GuakeTerminal(vte.Terminal):
         self.custom_bgcolor = None
         self.custom_fgcolor = None
         self.found_link = None
+        self.uuid = uuid.uuid4()
+
+    def get_uuid(self):
+        return self.uuid
 
     def get_pid(self):
         return self.pid
