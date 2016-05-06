@@ -34,6 +34,7 @@ import platform
 import pygtk
 import subprocess
 import sys
+import uuid
 import xdg.Exceptions
 
 from urllib import quote_plus
@@ -1422,6 +1423,22 @@ class Guake(SimpleGladeApp):
         pagepos = self.notebook.get_current_page()
         self.delete_tab(pagepos)
 
+    def rename_tab_uuid(self, tab_uuid, new_text):
+        """Rename an already added tab by its UUID
+        """
+        try:
+            tab_uuid = uuid.UUID(tab_uuid)
+            tab_index, = (index for index, t in enumerate(self.notebook.iter_terminals()) if t.get_uuid() == tab_uuid)
+            tab = self.tabs.get_children()[tab_index]
+        except ValueError:
+            pass
+        else:
+            tab.set_label(new_text)
+            setattr(tab, 'custom_label_set', new_text != "-")
+            terminals = self.notebook.get_terminals_for_tab(tab_index)
+            for current_vte in terminals:
+                current_vte.emit('window-title-changed')
+
     def rename_tab(self, tab_index, new_text):
         """Rename an already added tab by its index.
         """
@@ -1467,7 +1484,7 @@ class Guake(SimpleGladeApp):
                     directory = cwd
         return directory
 
-    def get_fork_params(self, default_params=None):
+    def get_fork_params(self, default_params=None, box=None):
         """Return all parameters to be passed to the fork_command
         method of a vte terminal. Params returned can be expanded by
         the `params' parameter that receive a dictionary.
@@ -1497,10 +1514,10 @@ class Guake(SimpleGladeApp):
         # Environment variables are not actually parameters but they
         # need to be set before calling terminal.fork_command()
         # method. So I found this place good to do it.
-        self.update_proxy_vars()
+        self.update_proxy_vars(box)
         return params
 
-    def update_proxy_vars(self):
+    def update_proxy_vars(self, box=None):
         """This method updates http{s,}_proxy environment variables
         with values found in gconf.
         """
@@ -1529,6 +1546,10 @@ class Guake(SimpleGladeApp):
                 os.environ['http_proxy'] = 'http://%s:%d' % (host, port)
                 os.environ['https_proxy'] = 'http://%s:%d' % (
                     ssl_host, ssl_port)
+        if box:
+            os.environ['GUAKE_TAB_UUID'] = str(box.terminal.get_uuid())
+        else:
+            del os.environ['GUAKE_TAB_UUID']
 
     def add_tab(self, directory=None):
         """Adds a new tab to the terminal notebook.
@@ -1566,7 +1587,7 @@ class Guake(SimpleGladeApp):
         if isinstance(directory, basestring):
             default_params['directory'] = directory
 
-        final_params = self.get_fork_params(default_params)
+        final_params = self.get_fork_params(default_params, box)
         pid = box.terminal.fork_command(**final_params)
         if libutempter is not None:
             # After the fork_command we add this new tty to utmp !

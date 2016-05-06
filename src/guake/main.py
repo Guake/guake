@@ -30,6 +30,7 @@ import logging
 import os
 import subprocess
 import sys
+import uuid
 
 from optparse import OptionParser
 
@@ -188,7 +189,10 @@ def main():
         only_show_hide = False
 
     if options.tab_index and options.rename_tab:
-        remote_object.rename_tab(int(options.tab_index), options.rename_tab)
+        try:
+            remote_object.rename_tab_uuid(str(uuid.UUID(options.tab_index)), options.rename_tab)
+        except ValueError:
+            remote_object.rename_tab(int(options.tab_index), options.rename_tab)
         only_show_hide = False
 
     if options.bgcolor:
