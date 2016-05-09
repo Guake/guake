@@ -573,7 +573,7 @@ msgstr "Tecla _delete gera:"
 
 #: ../data/prefs.glade.h:106
 msgid "_Reset Compatibility Options to Defaults"
-msgstr "_Restaurar padrões para as opções de compatibilidade"
+msgstr "_Restaurar as opções de compatibilidade padrão"
 
 #: ../data/prefs.glade.h:107
 msgid "<b>Keyboard compatibility</b>"
