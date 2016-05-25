@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: Guake 0.4.5\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-12-01 16:49+0100\n"
-"PO-Revision-Date: 2011-03-22 15:26+0000\n"
+"PO-Revision-Date: 2016-05-25 22:08+0200\n"
 "Last-Translator: Martin Lukeš <martin.meridius@gmail.com>\n"
 "Language-Team: Czech (Czech Republic) (http://www.transifex.com/projects/p/"
 "guake/language/cs_CZ/)\n"
@@ -18,29 +18,29 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
+"X-Generator: Poedit 1.8.7.1\n"
 
 #: ../data/about.glade.h:1
 msgid "About Guake"
 msgstr "O Guake"
 
 #: ../data/about.glade.h:2
-#, fuzzy
 msgid ""
 "Copyright 2013-2015 Gaetan Semet\n"
 "Copyright 2007-2010 Lincoln de Sousa\n"
 "Copyright 2007 Gabriel Falc&#xE3;o"
 msgstr ""
-"Copyright 2007-2009 Lincoln de Sousa\n"
+"Copyright 2013-2015 Gaetan Semet\n"
+"Copyright 2007-2010 Lincoln de Sousa\n"
 "Copyright 2007 Gabriel Falc&#xE3;o"
 
 #: ../data/about.glade.h:5
-#, fuzzy
 msgid ""
 "Guake is an easy to access\n"
 "terminal based on FPS games terminal"
 msgstr ""
 "Guake je snadno přístupný\n"
-"terminál podobný těm z fps her"
+"terminál podobný těm z FPS her"
 
 #: ../data/about.glade.h:7
 msgid ""
@@ -71,7 +71,6 @@ msgstr ""
 "Boston, MA  02110-1301 USA\n"
 
 #: ../data/about.glade.h:13
-#, fuzzy
 msgid ""
 "Adolfo González Blázquez <code@infinicode.org> Spanish\n"
 "Lincoln de Sousa <lincoln@guake.org> Brazilian Portuguese\n"
@@ -89,7 +88,9 @@ msgstr ""
 "Mieszko Ślusarczyk <mieszkoslusarczyk@gmail.com> Polish\n"
 "Nishio Futoshi <futoshi@momonga-linux.org> Japanese\n"
 "Pavel Alexeev <Pahan@Hubbitus.spb.su> Russian\n"
-"Piotr Drąg <piotrdrag@gmail.com> Polish"
+"Piotr Drąg <piotrdrag@gmail.com> Polish\n"
+"Sangwoo Joo <sangwoojoo@naver.com> Korean\n"
+"    "
 
 #: ../data/guake.glade.h:1
 msgid "Copy"
@@ -105,24 +106,21 @@ msgstr "Přepnout na celou obrazovku"
 
 #: ../data/guake.glade.h:4
 msgid "Save to File..."
-msgstr ""
+msgstr "Uložit do souboru..."
 
 #: ../data/guake.glade.h:5
-#, fuzzy
 msgid "Reset terminal"
-msgstr "Guake Terminal"
+msgstr "Inicializovat a vymazat"
 
 #: ../data/guake.glade.h:6
 msgid "Find..."
-msgstr ""
+msgstr "Najít..."
 
 #: ../data/guake.glade.h:7
-#, fuzzy
 msgid "New Tab"
 msgstr "Nová karta"
 
 #: ../data/guake.glade.h:8
-#, fuzzy
 msgid "Rename Tab"
 msgstr "Přejmenovat kartu"
 
@@ -132,15 +130,15 @@ msgstr "Zavřít kartu"
 
 #: ../data/guake.glade.h:10
 msgid "Open link..."
-msgstr ""
+msgstr "Otevřít odkaz..."
 
 #: ../data/guake.glade.h:11
 msgid "Search on Web"
-msgstr ""
+msgstr "Najít na webu"
 
 #: ../data/guake.glade.h:12
 msgid "Quit"
-msgstr "Zavřít"
+msgstr "Ukončit"
 
 #: ../data/guake.glade.h:13
 msgid "Rename"
@@ -155,7 +153,6 @@ msgid "Guake!"
 msgstr "Guake!"
 
 #: ../data/guake.glade.h:16
-#, fuzzy
 msgid "Add a new tab"
 msgstr "Přidat novou kartu"
 
@@ -188,6 +185,18 @@ msgid ""
 "guake -r \"main\" -e \"cd ~/projects/myproject/main\"\n"
 "guake -r \"prod\" -e \"cd ~/projects/myproject/prod\"\n"
 msgstr ""
+"Cesta k bash skriptu, který bude automaticky vykonán při spuštění Guake, "
+"pokud Guake nespustíte s parametrem --no-startup-script.\n"
+"\n"
+"Takový skript se většinou používá k nastavení Guake přes jeho terminálové "
+"rozhraní jako v následujícím příkladu:\n"
+"\n"
+"#!/bin/bash\n"
+"\n"
+"sleep 5  # je doporučeno chvilku počkat, aby se Guake stihlo spustit\n"
+"\n"
+"guake -r \"main\" -e \"cd ~/projects/myproject/main\"\n"
+"guake -r \"prod\" -e \"cd ~/projects/myproject/prod\"\n"
 
 #: ../data/prefs.glade.h:15
 msgid "Enable popup notifications on startup"
@@ -198,26 +207,24 @@ msgid "Show tray icon"
 msgstr "Zobrazit ikonu v oznamovací oblasti"
 
 #: ../data/prefs.glade.h:17
-#, fuzzy
 msgid "Always prompt on quit"
-msgstr "Zeptat se na ukončení"
+msgstr "Vždy se ptát před ukončením"
 
 #: ../data/prefs.glade.h:18
 msgid "_Flash terminal on bell"
-msgstr ""
+msgstr "_Blikat při zvonku terminálu"
 
 #: ../data/prefs.glade.h:19
 msgid "_Play system alert sound on bell"
-msgstr ""
+msgstr "_Přehrát systémový zvuk upozornění"
 
 #: ../data/prefs.glade.h:20
 msgid "Path to script executed on Guake start:"
-msgstr ""
+msgstr "Cesta ke skriptu při spuštění Guake:"
 
 #: ../data/prefs.glade.h:21
-#, fuzzy
 msgid "Prompt on close tab:"
-msgstr "Zeptat se na ukončení"
+msgstr "Zeptat se na zavření karty:"
 
 #: ../data/prefs.glade.h:22
 msgid ""
@@ -225,6 +232,9 @@ msgid ""
 "With process running\n"
 "Always"
 msgstr ""
+"Nikdy\n"
+"Pokud běží proces\n"
+"Vždy"
 
 #: ../data/prefs.glade.h:25
 msgid "<b>General</b>"
@@ -232,25 +242,23 @@ msgstr "<b>Obecné</b>"
 
 #: ../data/prefs.glade.h:26
 msgid "Bottom align window instead of top align"
-msgstr ""
+msgstr "Přichytit okno ke spodnímu okraji obrazovky"
 
 #: ../data/prefs.glade.h:27
 msgid "Appear on mouse display"
-msgstr ""
+msgstr "Zobrazit na displeji s myší"
 
 #: ../data/prefs.glade.h:28
 msgid "Appear on display:"
-msgstr ""
+msgstr "Zobrazit na displeji:"
 
 #: ../data/prefs.glade.h:29
-#, fuzzy
 msgid "Place tabs on top"
-msgstr "Vždy navrchu"
+msgstr "Zobrazit karty navrchu"
 
 #: ../data/prefs.glade.h:30
-#, fuzzy
 msgid "<b>Placement</b>"
-msgstr "<b>Paleta</b>"
+msgstr "<b>Umístění</b>"
 
 #: ../data/prefs.glade.h:31
 msgid "Stay on top"
@@ -258,11 +266,11 @@ msgstr "Vždy navrchu"
 
 #: ../data/prefs.glade.h:32
 msgid "Use VTE titles for tab names"
-msgstr ""
+msgstr "Použít názvy VTE pro názvy karet"
 
 #: ../data/prefs.glade.h:33
 msgid "Max tab name length:"
-msgstr ""
+msgstr "Maximální délka názvu karty:"
 
 #: ../data/prefs.glade.h:34
 msgid "Hide on lose focus"
@@ -273,9 +281,8 @@ msgid "Show tab bar"
 msgstr "Zobrazit lištu karet"
 
 #: ../data/prefs.glade.h:36
-#, fuzzy
 msgid "Start fullscreen"
-msgstr "Přepnout na celou obrazovku"
+msgstr "Spustit na celou obrazovku"
 
 #: ../data/prefs.glade.h:37
 msgid "<b>Main Window</b>"
@@ -283,38 +290,35 @@ msgstr "<b>Okno s terminálem</b>"
 
 #: ../data/prefs.glade.h:38
 msgid "Left"
-msgstr ""
+msgstr "Vlevo"
 
 #: ../data/prefs.glade.h:39
 msgid "Center"
-msgstr ""
+msgstr "Na střed"
 
 #: ../data/prefs.glade.h:40
 msgid "Right"
-msgstr ""
+msgstr "Vpravo"
 
 #: ../data/prefs.glade.h:41
-#, fuzzy
 msgid "<b>Main Window Horizontal Alignment</b>"
-msgstr "<b>Výška okna s terminálem</b>"
+msgstr "<b>Vodorovné umístění okna s terminálem</b>"
 
 #: ../data/prefs.glade.h:42
-#, fuzzy
 msgid "<b>Main Window Height</b>"
 msgstr "<b>Výška okna s terminálem</b>"
 
 #: ../data/prefs.glade.h:43
-#, fuzzy
 msgid "<b>Main Window Width</b>"
-msgstr "<b>Výška okna s terminálem</b>"
+msgstr "<b>Šířka okna s terminálem</b>"
 
 #: ../data/prefs.glade.h:44
 msgid "Custom command file path: "
-msgstr ""
+msgstr "Cesta k souboru s vlastním příkazem: "
 
 #: ../data/prefs.glade.h:45
 msgid "Please select a json file"
-msgstr ""
+msgstr "Vyberte soubor json"
 
 #: ../data/prefs.glade.h:46
 msgid "General"
@@ -330,7 +334,7 @@ msgstr "_Spustit příkaz jako přihlašovací shell"
 
 #: ../data/prefs.glade.h:49
 msgid "_Open new tab in current directory"
-msgstr "Otevřít novou kartu v aktuálním adresáři"
+msgstr "_Otevřít novou kartu v aktuálním adresáři"
 
 #: ../data/prefs.glade.h:50
 msgid "<b>Shell</b>"
@@ -338,7 +342,7 @@ msgstr "<b>Shell</b>"
 
 #: ../data/prefs.glade.h:51
 msgid "Shell"
-msgstr ""
+msgstr "Shell"
 
 #: ../data/prefs.glade.h:52
 msgid "Show scrollbar"
@@ -346,7 +350,7 @@ msgstr "Zobrazit posuvník"
 
 #: ../data/prefs.glade.h:53
 msgid "Scrollback lines:"
-msgstr "Pamatovat si řádek:"
+msgstr "Omezit posuv na:"
 
 #: ../data/prefs.glade.h:54
 msgid "On output"
@@ -362,7 +366,7 @@ msgstr "<b>Posun</b>"
 
 #: ../data/prefs.glade.h:57
 msgid "Scrolling"
-msgstr "Rolování"
+msgstr "Posouvání"
 
 #: ../data/prefs.glade.h:58
 msgid "Use the system fixed width font"
@@ -382,11 +386,11 @@ msgstr "Barva textu:"
 
 #: ../data/prefs.glade.h:62
 msgid "Background color:"
-msgstr "Barevná výplň:"
+msgstr "Barva pozadí:"
 
 #: ../data/prefs.glade.h:63
 msgid "Cursor shape:"
-msgstr ""
+msgstr "Tvar kurzoru:"
 
 #: ../data/prefs.glade.h:64
 msgid ""
@@ -394,6 +398,9 @@ msgid ""
 "I-Beam\n"
 "Underline"
 msgstr ""
+"blokový\n"
+"svislá čára\n"
+"podtrhávací čára"
 
 #: ../data/prefs.glade.h:67
 msgid ""
@@ -401,14 +408,17 @@ msgid ""
 "Blink on\n"
 "Blink off"
 msgstr ""
+"dle nastavení GTK+\n"
+"blikat\n"
+"neblikat"
 
 #: ../data/prefs.glade.h:70
 msgid "Cursor blink mode:"
-msgstr ""
+msgstr "Blikání kurzoru:"
 
 #: ../data/prefs.glade.h:71
 msgid "Allow bold font"
-msgstr ""
+msgstr "Povolit tučný text"
 
 #: ../data/prefs.glade.h:72
 msgid "<b>Palette</b>"
@@ -423,22 +433,20 @@ msgid "Color palette:"
 msgstr "Paleta barev:"
 
 #: ../data/prefs.glade.h:75
-#, fuzzy
 msgid "Font color"
-msgstr "Barva textu:"
+msgstr "Barva textu"
 
 #: ../data/prefs.glade.h:76
-#, fuzzy
 msgid "Background color"
-msgstr "Barevná výplň:"
+msgstr "Barva pozadí"
 
 #: ../data/prefs.glade.h:77
 msgid "Use font and background color from the palette"
-msgstr ""
+msgstr "Použít barvu písma a pozadí z palety"
 
 #: ../data/prefs.glade.h:78
 msgid "Demo:"
-msgstr ""
+msgstr "Náhled:"
 
 #: ../data/prefs.glade.h:79
 msgid "<b>Effects</b>"
@@ -463,14 +471,19 @@ msgid ""
 "your terminal. See the list of currently supported text patterns used to "
 "extract filename below.</small>"
 msgstr ""
+"<small>Snadné otevření je funkce umožňující otevření souboru oblíbeným "
+"textovým editorem pouhým kliknutím na název souboru v terminálu. Seznam "
+"podporovaných textových vzorů použitých pro zjištění názvu souboru naleznete "
+"níže.</small>"
 
 #: ../data/prefs.glade.h:84
 msgid "Enable Quick Open when Ctrl+clicking on a filename in the terminal"
 msgstr ""
+"Aktivovat Snadné otevření při Ctrl+kliknutí na název souboru v terminálu"
 
 #: ../data/prefs.glade.h:85
 msgid "Editor command line:"
-msgstr ""
+msgstr "Příkaz ke spuštění editoru"
 
 #: ../data/prefs.glade.h:87
 #, no-c-format
@@ -483,31 +496,42 @@ msgid ""
 "For example, for sublime, use <b>subl %(file_path)s:%(line_number)s</b>\n"
 "</i></small>"
 msgstr ""
+"<small><i>Použijte následující elementy při spouštění editoru:\n"
+" - <b>%(file_path)s</b>: cesta k souboru, na který bylo kliknuto\n"
+" - <b>%(line_number)s</b>: číslo řádku souboru, na kterém editor otevřít, "
+"pokud to nastavený editor podporuje a číslo bylo v odkazu.\n"
+"\n"
+"Například pro Sublime Text použijte <b>subl %(file_path)s:%(line_number)s</"
+"b>\n"
+"</i></small>"
 
 #: ../data/prefs.glade.h:93
 msgid "Quick open in current terminal"
-msgstr ""
+msgstr "Otevírat v aktuálním terminálu"
 
 #: ../data/prefs.glade.h:94
 msgid ""
 "Here is the list of supported patterns: (to add your own, please contact the "
 "Guake's authors)"
 msgstr ""
+"Zde je seznam podporovaných vzorů: (pro přidání vlastních, kontaktujte "
+"vývojáře Guake)"
 
 #: ../data/prefs.glade.h:95
-#, fuzzy
 msgid "<b>Quick Open</b>"
-msgstr "<b>Paleta</b>"
+msgstr "<b>Snadné otevření</b>"
 
 #: ../data/prefs.glade.h:96
 msgid "Quick Open"
-msgstr ""
+msgstr "Snadné otevření"
 
 #: ../data/prefs.glade.h:97
 msgid ""
 "To change a shortcut simply click on its name.\n"
 "To disable a shortcut, press the \"Backspace\" key."
 msgstr ""
+"Pro změnu klávesové zkratky klikněte na její název.\n"
+"Pro její deaktivaci stiskněte \"Backspace\"."
 
 #: ../data/prefs.glade.h:99
 msgid "Keyboard shortcuts"
@@ -533,7 +557,7 @@ msgid ""
 msgstr ""
 "ASCII DEL\n"
 "Escape sekvence\n"
-"Ctrl-H"
+"Ctrl+H"
 
 #: ../data/prefs.glade.h:104
 msgid "_Backspace key generates:"
@@ -545,7 +569,7 @@ msgstr "Klávesa _Delete generuje:"
 
 #: ../data/prefs.glade.h:106
 msgid "_Reset Compatibility Options to Defaults"
-msgstr "Obnovit standardní nastavení pro kompatibilitu"
+msgstr "_Obnovit standardní nastavení pro kompatibilitu"
 
 #: ../data/prefs.glade.h:107
 msgid "<b>Keyboard compatibility</b>"
@@ -562,7 +586,6 @@ msgstr "Guake Terminal"
 
 #. Adding a new radio button to the tabbar
 #: ../src/guake/gconfhandler.py:365 ../src/guake/guake_app.py:1548
-#, fuzzy
 msgid "Terminal"
 msgstr "Terminál %s"
 
@@ -577,51 +600,46 @@ msgstr ""
 "oblasti byla povolena.)"
 
 #: ../src/guake/guake_app.py:128
-#, fuzzy
 msgid "Do you want to close the tab?"
-msgstr "Opravdu chcete ukončit Guake!?"
+msgstr "Opravdu chcete zavřít kartu?"
 
 #: ../src/guake/guake_app.py:131
-#, fuzzy
 msgid "Do you really want to quit Guake?"
 msgstr "Opravdu chcete ukončit Guake!?"
 
 #: ../src/guake/guake_app.py:133
-#, fuzzy
 msgid " and one tab open"
-msgstr "Přidat novou kartu"
+msgstr " a jedna karta otevřena"
 
 #: ../src/guake/guake_app.py:135
 #, python-brace-format
 msgid " and {0} tabs open"
-msgstr ""
+msgstr " a {0} karet otevřeno"
 
 #: ../src/guake/guake_app.py:138
-#, fuzzy
 msgid "There are no processes running"
-msgstr "<b>Stále zde běží jeden proces.</b>"
+msgstr "Neběží žádné procesy"
 
 #: ../src/guake/guake_app.py:140
-#, fuzzy
 msgid "There is a process still running"
-msgstr "<b>Stále zde běží jeden proces.</b>"
+msgstr "Stále běží jeden proces"
 
 #: ../src/guake/guake_app.py:142
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid "There are {0} processes still running"
-msgstr "<b>Stále zde běží %d procesů.</b>"
+msgstr "Stále běží {0} procesů"
 
 #: ../src/guake/guake_app.py:182
 msgid "guake-indicator"
-msgstr ""
+msgstr "guake-indicator"
 
 #: ../src/guake/guake_app.py:182
 msgid "guake-tray"
-msgstr ""
+msgstr "guake-tray"
 
 #: ../src/guake/guake_app.py:186
 msgid "Show"
-msgstr ""
+msgstr "Zobrazit"
 
 #: ../src/guake/guake_app.py:349
 #, python-format
@@ -630,24 +648,24 @@ msgid ""
 "press <b>%s</b> to use it."
 msgstr ""
 "Guake je nyní spuštěno,\n"
-"pro použití stiskněte <b>%s</b>."
+"pro zobrazení stiskněte <b>%s</b>."
 
 #: ../src/guake/guake_app.py:611
 #, python-format
 msgid "Search on Web: '%s'"
-msgstr ""
+msgstr "Vyhledat na webu: '%s'"
 
 #: ../src/guake/guake_app.py:616
 msgid "Search on Web (no selection)"
-msgstr ""
+msgstr "Vyhledat na webu (bez výběru)"
 
 #: ../src/guake/guake_app.py:622
 msgid "Open Link: {}"
-msgstr ""
+msgstr "Otevřít odkaz: {}"
 
 #: ../src/guake/guake_app.py:625
 msgid "Open Link..."
-msgstr ""
+msgstr "Otevřít odkaz..."
 
 #: ../src/guake/guake_app.py:1300
 msgid "Rename tab"
@@ -655,45 +673,43 @@ msgstr "Přejmenovat kartu"
 
 #: ../src/guake/guake_app.py:1591
 msgid "Save to..."
-msgstr ""
+msgstr "Uložit do..."
 
 #: ../src/guake/guake_app.py:1598 ../src/guake/prefs.py:930
 msgid "All files"
-msgstr ""
+msgstr "Všechny soubory"
 
 #: ../src/guake/guake_app.py:1603
 msgid "Text and Logs"
-msgstr ""
+msgstr "Text a logy"
 
 #: ../src/guake/guake_app.py:1621
 msgid "Find"
-msgstr ""
+msgstr "Vyhledat"
 
 #: ../src/guake/guake_app.py:1623
 msgid "Forward"
-msgstr ""
+msgstr "Vpřed"
 
 #: ../src/guake/guake_app.py:1624
 msgid "Backward"
-msgstr ""
+msgstr "Zpět"
 
 #: ../src/guake/main.py:67
 msgid "Put Guake in fullscreen mode"
-msgstr ""
+msgstr "Přepnout Guake na celou obrazovku"
 
 #: ../src/guake/main.py:71
 msgid "Toggles the visibility of the terminal window"
 msgstr "Zobrazí / skryje okno terminálu"
 
 #: ../src/guake/main.py:75
-#, fuzzy
 msgid "Shows Guake main window"
-msgstr "Zobrazí okno nastavení Guake"
+msgstr "Zobrazí hlavní okno Guake"
 
 #: ../src/guake/main.py:79
-#, fuzzy
 msgid "Hides Guake main window"
-msgstr "Zobrazí okno nastavení Guake"
+msgstr "Skryje hlavní okno Guake"
 
 #: ../src/guake/main.py:83
 msgid "Shows Guake preference window"
@@ -704,43 +720,46 @@ msgid "Shows Guake's about info"
 msgstr "Zobrazí info o Guake"
 
 #: ../src/guake/main.py:91
-#, fuzzy
 msgid "Add a new tab (with current directory set to NEW_TAB)"
-msgstr "Otevřít novou kartu v aktuálním adresáři"
+msgstr "Otevře novou kartu s cestou nastavenou na NEW_TAB"
 
 #: ../src/guake/main.py:95
 msgid "Select a tab (SELECT_TAB is the index of the tab)"
-msgstr ""
+msgstr "Vybere kartu podle indexu SELECT_TAB"
 
 #: ../src/guake/main.py:99
 msgid "Return the selected tab index."
-msgstr "Vypsat pořadí vybrané karty."
+msgstr "Vypíše pořadí vybrané karty."
 
 #: ../src/guake/main.py:103
 msgid "Execute an arbitrary command in the selected tab."
-msgstr "Spustit ve vybrané kartě libovolný příkaz."
+msgstr "Spustí ve vybrané kartě libovolný příkaz."
 
 #: ../src/guake/main.py:107
 msgid "Specify the tab to rename. Default is 0."
-msgstr ""
+msgstr "Vybere kartu k přejmenování. Výchozí je 0."
 
 #: ../src/guake/main.py:111
 msgid "Set the hexadecimal (#rrggbb) background color of the selected tab."
-msgstr ""
+msgstr "Nastaví hexadecimální (#rrggbb) barvu pozadí pro vybranou kartu."
 
 #: ../src/guake/main.py:116
 msgid "Set the hexadecimal (#rrggbb) foreground color of the selected tab."
-msgstr ""
+msgstr "Nastaví hexadecimální (#rrggbb) barvu popředí pro vybranou kartu."
 
 #: ../src/guake/main.py:122
 msgid ""
 "Rename the specified tab. Reset to default if TITLE is a single dash \"-\"."
 msgstr ""
+"Přejmenuje vybranou kartu. Dostane výchozí název, pokud bude TITLE "
+"jednoduchá pomlčka \"-\"."
 
 #: ../src/guake/main.py:128
 msgid ""
 "Rename the current tab. Reset to default if TITLE is a single dash \"-\"."
 msgstr ""
+"Přejmenuje aktuální kartu. Dostane výchozí název, pokud bude TITLE "
+"jednoduchá pomlčka \"-\"."
 
 #: ../src/guake/main.py:133
 msgid "Says to Guake go away =("
@@ -748,14 +767,13 @@ msgstr "Řekne Guake, aby šlo pryč =("
 
 #: ../src/guake/main.py:137
 msgid "Do not execute the start up script"
-msgstr ""
+msgstr "Nespouštět skript po spuštění"
 
 #: ../src/guake/main.py:231
 msgid "Guake can not init!"
 msgstr "Guake nelze spustit!"
 
 #: ../src/guake/main.py:232
-#, fuzzy
 msgid ""
 "Gconf Error.\n"
 "Have you installed <b>guake.schemas</b> properly?"
@@ -778,16 +796,16 @@ msgstr "Klávesová zkratka"
 
 #: ../src/guake/prefs.py:619 ../src/guake/prefs.py:665
 msgid "Custom"
-msgstr ""
+msgstr "Vlastní"
 
 #: ../src/guake/prefs.py:926
 msgid "JSON files"
-msgstr ""
+msgstr "JSON soubory"
 
 #: ../src/guake/prefs.py:1019
 #, python-format
 msgid "The shortcut \"%s\" is already in use."
-msgstr "Klávesová zkratka \"%s\" je již používá."
+msgstr "Klávesová zkratka \"%s\" se již používá."
 
 #: ../src/guake/prefs.py:1020
 msgid "Error setting keybinding."
