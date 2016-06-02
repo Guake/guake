@@ -66,7 +66,7 @@ class DbusManager(dbus.service.Object):
 
     @dbus.service.method(DBUS_NAME, in_signature='s')
     def add_tab(self, directory=''):
-        self.guake.add_tab(directory)
+        return self.guake.add_tab(directory)
 
     @dbus.service.method(DBUS_NAME, in_signature='i')
     def select_tab(self, tab_index=0):
@@ -123,3 +123,11 @@ class DbusManager(dbus.service.Object):
     @dbus.service.method(DBUS_NAME, in_signature='i', out_signature='s')
     def get_gtktab_name(self, tab_index=0):
         return self.guake.tabs.get_children()[tab_index].get_label()
+
+    @dbus.service.method(DBUS_NAME, out_signature='s')
+    def get_selected_uuidtab(self):
+        return self.guake.get_selected_uuidtab()
+
+    @dbus.service.method(DBUS_NAME, in_signature='ss')
+    def execute_command_by_uuid(self, tab_uuid, command):
+        self.guake.execute_command_by_uuid(tab_uuid,command)

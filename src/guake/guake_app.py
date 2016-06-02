@@ -542,6 +542,22 @@ class Guake(SimpleGladeApp):
             terminal.feed_child(command)
             break
 
+    def execute_command_by_uuid(self,tab_uuid,command):
+        """Execute the `command' in the tab whose terminal has the `tab_uuid' uuid
+        """
+        if command[-1] != '\n':
+            command += '\n'
+        try:
+            tab_uuid = uuid.UUID(tab_uuid)
+            tab_index, = (index for index, t in enumerate(self.notebook.iter_terminals()) if t.get_uuid() == tab_uuid)
+            tab = self.tabs.get_children()[tab_index]
+        except ValueError:
+            pass
+        else:
+            terminals = self.notebook.get_terminals_for_tab(tab_index)
+            for current_vte in terminals:
+                current_vte.feed_child(command);
+
     def on_resizer_drag(self, widget, event):
         """Method that handles the resize drag. It does not actuall
         moves the main window. It just set the new window size in
@@ -1627,6 +1643,8 @@ class Guake(SimpleGladeApp):
         if self.is_fullscreen:
             self.fullscreen()
 
+        return str(box.terminal.get_uuid());
+
     def save_tab(self, directory=None):
         self.preventHide = True
         current_term = self.notebook.get_current_terminal()
@@ -1755,6 +1773,13 @@ class Guake(SimpleGladeApp):
         pos = self.get_selected_tab()
         self.select_tab(0)
         self.select_tab(pos)
+
+    def get_selected_uuidtab(self):
+        """Returns the uuid of the current selected terminal
+        """
+        pagepos = self.notebook.get_current_page()
+        terminals = self.notebook.get_terminals_for_tab(pagepos)
+        return str(terminals[0].get_uuid());
 
     def select_current_tab(self, notebook, user_data, page):
         """When current self.notebook page is changed, the tab bar
