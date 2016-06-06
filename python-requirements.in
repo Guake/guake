@@ -1,0 +1,5 @@
+pylint >= 1.5.5
+pep8 >= 1.7.0
+autopep8 >= 1.2.2
+pyflakes >= 1.1.0
+pip-tools
