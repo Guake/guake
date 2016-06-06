@@ -182,21 +182,20 @@ else
     $pyflakes_ok || not_ok "pyflakes failed"
 fi
 
-# Disabled because Travis
-# status "running pylint"
-# if [[ -z `which pylint` ]]; then
-#     warning "pylint is not installed"
-# elif [[ ! -f pylintrc ]]; then
-#     warning "pylintrc not found"
-# else
-#     pylint_ok=true
-#     for filename in ${py_files[@]}; do
-#         if ! pylint --rcfile=pylintrc --disable=R,line-too-long --enable=W0611 --output-format=text "$filename"; then
-#             pylint_ok=false
-#         fi
-#     done
-#     $pylint_ok || not_ok "pylint failed"
-# fi
+status "running pylint"
+if [[ -z `which pylint` ]]; then
+    warning "pylint is not installed"
+elif [[ ! -f pylintrc ]]; then
+    warning "pylintrc not found"
+else
+    pylint_ok=true
+    for filename in ${py_files[@]}; do
+        if ! pylint --rcfile=pylintrc --disable=R,line-too-long --enable=W0611 --output-format=text "$filename"; then
+            pylint_ok=false
+        fi
+    done
+    $pylint_ok || not_ok "pylint failed"
+fi
 
 echo ""
 if $ok; then
