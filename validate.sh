@@ -96,7 +96,7 @@ else
     # shell behavior when piping to 'while'
     tempfile=$(mktemp)
     trap 'rm -f ${tempfile}' 1 2 3 15
-    git diff --name-only $REVRANGE | grep -E '(src/guake\/guake$|\.py$)' | grep -v '\(^master/\(contrib\|docs\)\|/setup\.py\)' > ${tempfile}
+    git diff --name-only $REVRANGE | grep -E '(src/guake\/guake$|\.py$)' | grep -v '\(^master/\(contrib\|docs\)\|/setup\.py|src-gtk3\)' | grep -v -E "^src-gtk3" > ${tempfile}
     py_files=()
     while read line; do
         if test -f "${line}"; then
