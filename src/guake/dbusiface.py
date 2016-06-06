@@ -130,4 +130,4 @@ class DbusManager(dbus.service.Object):
 
     @dbus.service.method(DBUS_NAME, in_signature='ss')
     def execute_command_by_uuid(self, tab_uuid, command):
-        self.guake.execute_command_by_uuid(tab_uuid,command)
+        self.guake.execute_command_by_uuid(tab_uuid, command)
