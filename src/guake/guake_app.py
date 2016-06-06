@@ -46,9 +46,7 @@ from xml.sax.saxutils import escape as xml_escape
 import guake.notifier
 
 try:
-    # pylint: disable=wrong-import-order
     from colorlog import ColoredFormatter
-    # pylint: enable=wrong-import-order
 except:
     ColoredFormatter = None
 
@@ -77,12 +75,10 @@ from guake.terminal import GuakeTerminalBox
 
 libutempter = None
 try:
-    # pylint: disable=wrong-import-position,wrong-import-order
     # this allow to run some commands that requires libuterm to
     # be injected in current process, as: wall
     from atexit import register as at_exit_call
     from ctypes import cdll
-    # pylint: enable=wrong-import-position,wrong-import-order
     libutempter = cdll.LoadLibrary('libutempter.so.0')
     if libutempter is not None:
         # We absolutly need to remove the old tty from the utmp !!!!!!!!!!
