@@ -1,5 +1,17 @@
-Version 0.8.5 (under dev)
+Version 0.8.5
 =============
+
+Minor version today, mostly minor bug fixes and translation update.
+
+I did have time to work on GTK3, maintaining Guake to keep using GTK2 is more and more difficult,
+Travis kind of abandonned the compatibility of PyGtk2.
+
+* Add a shortcut to open the last tab (#706, thanks @evgenius)
+* Fix icon size on Ubuntu (#734)
+* Add tab UUID and selection by UUID (#741, thanks @SoniEx2, @Ozzyboshi)
+* Updated Polish (#705), Chinese (#711), German (#732), Brazil Portuguese (#744), Czech (#747)
+* Fixed doc (#709, #706)
+* Fix some Pep8 issue
 
 
 
