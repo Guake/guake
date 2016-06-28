@@ -646,7 +646,10 @@ class Guake(SimpleGladeApp):
         link = self.getCurrentTerminalLinkUnderCursor()
         if link:
             self.get_widget('context_browse_on_web').set_visible(True)
-            self.get_widget('context_browse_on_web').set_label(_("Open Link: '{}...'".format(link[:25])))
+            if len(link) >= 28:
+                self.get_widget('context_browse_on_web').set_label(_("Open Link: '{}...'".format(link[:25])))
+            else:
+                self.get_widget('context_browse_on_web').set_label(_("Open Link: {}".format(link)))
             self.get_widget('separator_search').set_visible(True)
         else:
             self.get_widget('context_browse_on_web').set_label(_("Open Link..."))
