@@ -1,46 +1,46 @@
-# Translation of Guake to Catalan
+# Translation of Guake to Korean
 # Copyright (C) Guake Translators
 # This file is distributed under the same license as the Guake package.
 #
 # Translators:
 # Sangwoo Joo <sangwoojoo@naver.com> 2015
+# Nessun Kim <nessunkim@gmail.com> 2016
 msgid ""
 msgstr ""
 "Project-Id-Version: Guake 0.4.5\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-12-01 16:49+0100\n"
-"PO-Revision-Date: 2013-03-07 07:41+0000\n"
-"Last-Translator: Raül Cambeiro <xrulet@gmail.com>\n"
-"Language-Team: Catalan (http://www.transifex.com/projects/p/guake/language/"
-"ca/)\n"
-"Language: ca\n"
+"PO-Revision-Date: 2016-07-07 00:03-0700\n"
+"Last-Translator: Nessun Kim <nessunkim@gmail.com>\n"
+"Language-Team: \n"
+"Language: ko\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Poedit 1.8.7.1\n"
 
 #: ../data/about.glade.h:1
 msgid "About Guake"
-msgstr "Guake 에 대해서"
+msgstr "Guake에 대해서"
 
 #: ../data/about.glade.h:2
-#, fuzzy
 msgid ""
 "Copyright 2013-2015 Gaetan Semet\n"
 "Copyright 2007-2010 Lincoln de Sousa\n"
 "Copyright 2007 Gabriel Falc&#xE3;o"
 msgstr ""
+"Copyright 2013-2015 Gaetan Semet\n"
 "Copyright 2007-2009 Lincoln de Sousa\n"
 "Copyright 2007 Gabriel Falcão"
 
 #: ../data/about.glade.h:5
-#, fuzzy
 msgid ""
 "Guake is an easy to access\n"
 "terminal based on FPS games terminal"
 msgstr ""
-"El Guake és un terminal de fàcil accés\n"
-"basat en els terminals dels jocs FPS"
+"Guake는 FPS 게임의 터미널에서 착안한\n"
+"접근이 편리한 터미널입니다."
 
 #: ../data/about.glade.h:7
 msgid ""
@@ -58,22 +58,21 @@ msgid ""
 "Guake; if not, write to the Free Software Foundation, Inc., 51 Franklin St, "
 "Fifth Floor, Boston, MA  02110-1301 USA\n"
 msgstr ""
-"El Guake és programari lliure: podeu redistribuir-lo o modificar-lo sota els "
-"termes de la Llicència Pública General de GNU publicada per la Free Software "
-"Foundation, ja sigui la versió 2 de la llicència o (a la vostra elecció) "
-"qualsevol versió posterior.\n"
+"Guake is free software; you can redistribute it and/or modify it under the "
+"terms of the GNU General Public License as published by the Free Software "
+"Foundation; either version 2 of the License, or (at your option) any later "
+"version.\n"
 "\n"
-"El Guake es distribueix amb l'esperança que serà útil, però SENSE CAP "
-"GARANTIA, ni tan sols la garantia implícita de COMERCIABILITAT o ADEQUACIÓ "
-"PER A UN OBJECTIU CONCRET. Vegeu la Llicència Pública General de GNU per a "
-"més detalls.\n"
+"Guake is distributed in the hope that it will be useful, but WITHOUT ANY "
+"WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS "
+"FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more "
+"details.\n"
 "\n"
-"Hauríeu d'haver rebut una còpia de la Llicència Pública General de GNU amb "
-"el Guake. Si no és així, escriviu a la Free Software Foundation, Inc., 51 "
-"Franklin St, Fifth Floor, Boston, MA  02110-1301 USA\n"
+"You should have received a copy of the GNU General Public License along with "
+"Guake; if not, write to the Free Software Foundation, Inc., 51 Franklin St, "
+"Fifth Floor, Boston, MA  02110-1301 USA\n"
 
 #: ../data/about.glade.h:13
-#, fuzzy
 msgid ""
 "Adolfo González Blázquez <code@infinicode.org> Spanish\n"
 "Lincoln de Sousa <lincoln@guake.org> Brazilian Portuguese\n"
@@ -85,13 +84,14 @@ msgid ""
 "Sangwoo Joo <sangwoojoo@naver.com> Korean\n"
 "    "
 msgstr ""
-"Adolfo González Blázquez <code@infinicode.org> Castellà\n"
-"Lincoln de Sousa <lincoln@guake.org> Portuguès brasiler\n"
-"Markus Majer <mm@mpathy.de> Alemany\n"
-"Mieszko Ślusarczyk <mieszkoslusarczyk@gmail.com> Polonès\n"
-"Nishio Futoshi <futoshi@momonga-linux.org> Japonès\n"
-"Pavel Alexeev <Pahan@Hubbitus.spb.su> Rus\n"
-"Piotr Drąg <piotrdrag@gmail.com> Polonès"
+"Adolfo González Blázquez <code@infinicode.org> 스페인어\n"
+"Lincoln de Sousa <lincoln@guake.org> 브라질 포르투갈어\n"
+"Markus Majer <mm@mpathy.de> 독일어\n"
+"Mieszko Ślusarczyk <mieszkoslusarczyk@gmail.com> 폴란드어\n"
+"Nishio Futoshi <futoshi@momonga-linux.org> 일본어\n"
+"Pavel Alexeev <Pahan@Hubbitus.spb.su> 러시아어\n"
+"Piotr Drąg <piotrdrag@gmail.com> 폴란드어\n"
+"Sangwoo Joo <sangwoojoo@naver.com> 한국어"
 
 #: ../data/guake.glade.h:1
 msgid "Copy"
@@ -107,16 +107,15 @@ msgstr "전체 화면 설정"
 
 #: ../data/guake.glade.h:4
 msgid "Save to File..."
-msgstr ""
+msgstr "파일로 저장"
 
 #: ../data/guake.glade.h:5
-#, fuzzy
 msgid "Reset terminal"
-msgstr "Guake 터미널"
+msgstr "터미널 초기화"
 
 #: ../data/guake.glade.h:6
 msgid "Find..."
-msgstr ""
+msgstr "찾기"
 
 #: ../data/guake.glade.h:7
 msgid "New Tab"
@@ -132,10 +131,9 @@ msgstr "탭 닫기"
 
 #: ../data/guake.glade.h:10
 msgid "Open link..."
-msgstr ""
+msgstr "링크 열기"
 
 #: ../data/guake.glade.h:11
-#, fuzzy
 msgid "Search on Web"
 msgstr "선택된 텍스트를 웹에 검색"
 
@@ -156,9 +154,8 @@ msgid "Guake!"
 msgstr "Guake!"
 
 #: ../data/guake.glade.h:16
-#, fuzzy
 msgid "Add a new tab"
-msgstr "새 탭"
+msgstr "새 탭 열기"
 
 #: ../data/prefs.glade.h:1
 msgid "Guake Preferences"
@@ -189,6 +186,19 @@ msgid ""
 "guake -r \"main\" -e \"cd ~/projects/myproject/main\"\n"
 "guake -r \"prod\" -e \"cd ~/projects/myproject/prod\"\n"
 msgstr ""
+"Guake 시작시 자동으로 실행될 bash script 경로 (실행시 --no-startup-script를 "
+"붙이면 실행되지 않습니다)\n"
+"\n"
+"This would typically use the configuration by command line feature of "
+"Guake:\n"
+"\n"
+"#!/bin/bash\n"
+"\n"
+"sleep 5  # it is advised to wait a bit before Guake has been successfully "
+"started\n"
+"\n"
+"guake -r \"main\" -e \"cd ~/projects/myproject/main\"\n"
+"guake -r \"prod\" -e \"cd ~/projects/myproject/prod\"\n"
 
 #: ../data/prefs.glade.h:15
 msgid "Enable popup notifications on startup"
@@ -199,9 +209,8 @@ msgid "Show tray icon"
 msgstr "트래이 아이콘 보이기"
 
 #: ../data/prefs.glade.h:17
-#, fuzzy
 msgid "Always prompt on quit"
-msgstr "종료시 알림"
+msgstr "Guake 종료시 알림"
 
 #: ../data/prefs.glade.h:18
 msgid "_Flash terminal on bell"
@@ -213,12 +222,11 @@ msgstr "알림시 시스템 경고음 울리기"
 
 #: ../data/prefs.glade.h:20
 msgid "Path to script executed on Guake start:"
-msgstr ""
+msgstr "Guake 시작시 실행될 스크립트 경로:"
 
 #: ../data/prefs.glade.h:21
-#, fuzzy
 msgid "Prompt on close tab:"
-msgstr "종료시 알림"
+msgstr "탭 종료시 알림:"
 
 #: ../data/prefs.glade.h:22
 msgid ""
@@ -226,6 +234,9 @@ msgid ""
 "With process running\n"
 "Always"
 msgstr ""
+"절대 알리지 않음\n"
+"프로세스 실행 중일 때만 알림\n"
+"항상 알림"
 
 #: ../data/prefs.glade.h:25
 msgid "<b>General</b>"
@@ -233,7 +244,7 @@ msgstr "<b>일반</b>"
 
 #: ../data/prefs.glade.h:26
 msgid "Bottom align window instead of top align"
-msgstr "창을 밑바닥에 붙이기"
+msgstr "터미널을 아래에 붙이기"
 
 #: ../data/prefs.glade.h:27
 msgid "Appear on mouse display"
@@ -261,7 +272,7 @@ msgstr "탭 이름에 VTE 타일 사용하기"
 
 #: ../data/prefs.glade.h:33
 msgid "Max tab name length:"
-msgstr ""
+msgstr "탭 이름 최대 길이:"
 
 #: ../data/prefs.glade.h:34
 msgid "Hide on lose focus"
@@ -305,11 +316,11 @@ msgstr "<b>메인 윈도우 너미 설정</b>"
 
 #: ../data/prefs.glade.h:44
 msgid "Custom command file path: "
-msgstr ""
+msgstr "사용자 정의 명령어 파일 위치:"
 
 #: ../data/prefs.glade.h:45
 msgid "Please select a json file"
-msgstr ""
+msgstr "json 파일 선택"
 
 #: ../data/prefs.glade.h:46
 msgid "General"
@@ -333,7 +344,7 @@ msgstr "<b>쉘</b>"
 
 #: ../data/prefs.glade.h:51
 msgid "Shell"
-msgstr ""
+msgstr "쉘"
 
 #: ../data/prefs.glade.h:52
 msgid "Show scrollbar"
@@ -381,7 +392,7 @@ msgstr "배경색:"
 
 #: ../data/prefs.glade.h:63
 msgid "Cursor shape:"
-msgstr ""
+msgstr "커서 모양:"
 
 #: ../data/prefs.glade.h:64
 msgid ""
@@ -389,6 +400,9 @@ msgid ""
 "I-Beam\n"
 "Underline"
 msgstr ""
+"블록\n"
+"I-Beam\n"
+"밑줄"
 
 #: ../data/prefs.glade.h:67
 msgid ""
@@ -396,14 +410,17 @@ msgid ""
 "Blink on\n"
 "Blink off"
 msgstr ""
+"GTK+ 설정에 따름\n"
+"깜빡임\n"
+"깜빡이지 않음"
 
 #: ../data/prefs.glade.h:70
 msgid "Cursor blink mode:"
-msgstr ""
+msgstr "커서 깜빡임:"
 
 #: ../data/prefs.glade.h:71
 msgid "Allow bold font"
-msgstr ""
+msgstr "볼드체 허용"
 
 #: ../data/prefs.glade.h:72
 msgid "<b>Palette</b>"
@@ -418,22 +435,20 @@ msgid "Color palette:"
 msgstr "색상 파레트:"
 
 #: ../data/prefs.glade.h:75
-#, fuzzy
 msgid "Font color"
 msgstr "글자 색상:"
 
 #: ../data/prefs.glade.h:76
-#, fuzzy
 msgid "Background color"
 msgstr "배경색:"
 
 #: ../data/prefs.glade.h:77
 msgid "Use font and background color from the palette"
-msgstr ""
+msgstr "글자색과 배경색을 팔레트에서 가져오기"
 
 #: ../data/prefs.glade.h:78
 msgid "Demo:"
-msgstr ""
+msgstr "미리 보기:"
 
 #: ../data/prefs.glade.h:79
 msgid "<b>Effects</b>"
@@ -445,31 +460,29 @@ msgstr "투명도:"
 
 #: ../data/prefs.glade.h:81
 msgid "Background image:"
-msgstr "배경이미지:"
+msgstr "배경 이미지:"
 
 #: ../data/prefs.glade.h:82
 msgid "Appearance"
 msgstr "모양"
 
 #: ../data/prefs.glade.h:83
-#, fuzzy
 msgid ""
 "<small>Quick open is a feature allowing you to open a file directly into "
 "your favorite text editor by clicking on its filename when it appears in "
 "your terminal. See the list of currently supported text patterns used to "
 "extract filename below.</small>"
 msgstr ""
-"<small>빠른 열기는 새로운 기능으로 터미널에 나타난 파일 이름을 클릭할 경우 지"
-"정된 텍스트 에디터로 열 수 있습니다. 당분간 미리 지정된 텍스트 패턴만 지원됩"
-"니다.</small>"
+"<small>빠른 열기는 파일명을 클릭하면 지정된 텍스트 에디터로 실행할 수 있는 기"
+"능입니다. 아래에서 현재 지원되는 패턴을 확인하실 수 있습니다.</small>"
 
 #: ../data/prefs.glade.h:84
 msgid "Enable Quick Open when Ctrl+clicking on a filename in the terminal"
-msgstr ""
+msgstr "빠른 열기 (파일 이름 위에서 Ctrl+클릭) 활성화"
 
 #: ../data/prefs.glade.h:85
 msgid "Editor command line:"
-msgstr ""
+msgstr "에디터 실행 명령어:"
 
 #: ../data/prefs.glade.h:87
 #, no-c-format
@@ -482,21 +495,27 @@ msgid ""
 "For example, for sublime, use <b>subl %(file_path)s:%(line_number)s</b>\n"
 "</i></small>"
 msgstr ""
+"<small><i>에디터 실행 명령어에 다음 요소를 사용할 수 있습니다:\n"
+" - <b>%(file_path)s</b>: 선택한 파일의 경로\n"
+" - <b>%(line_number)s</b>: 바로 보기 시작할 줄 번호(에디터에서 지원한다면)\n"
+"\n"
+"sublime의 경우, <b>subl %(file_path)s:%(line_number)s</b>를 사용할 수 있습니"
+"다.\n"
+"</i></small>"
 
 #: ../data/prefs.glade.h:93
 msgid "Quick open in current terminal"
-msgstr ""
+msgstr "현재 터미널에서 빠른 열기 사용"
 
 #: ../data/prefs.glade.h:94
 msgid ""
 "Here is the list of supported patterns: (to add your own, please contact the "
 "Guake's authors)"
-msgstr ""
+msgstr "지원되는 패턴 목록: (추가하고 싶다면 Guake의 개발자에게 연락해 주세요)"
 
 #: ../data/prefs.glade.h:95
-#, fuzzy
 msgid "<b>Quick Open</b>"
-msgstr "빠른 열기"
+msgstr "<b>빠른 열기</b>"
 
 #: ../data/prefs.glade.h:96
 msgid "Quick Open"
@@ -507,6 +526,8 @@ msgid ""
 "To change a shortcut simply click on its name.\n"
 "To disable a shortcut, press the \"Backspace\" key."
 msgstr ""
+"단축키를 변경하려면 클릭하세요.\n"
+"해당 단축키를 비활성화하고 싶다면, Backspace 키를 누르세요."
 
 #: ../data/prefs.glade.h:99
 msgid "Keyboard shortcuts"
@@ -561,7 +582,6 @@ msgstr "Guake 터미널"
 
 #. Adding a new radio button to the tabbar
 #: ../src/guake/gconfhandler.py:365 ../src/guake/guake_app.py:1548
-#, fuzzy
 msgid "Terminal"
 msgstr "터미널 %s"
 
@@ -575,51 +595,46 @@ msgstr ""
 "Guake 대화상자 설정 탭에서 다른키를 선택하여주세요."
 
 #: ../src/guake/guake_app.py:128
-#, fuzzy
 msgid "Do you want to close the tab?"
-msgstr "Guake 를 정말로 종료 하겠습니까? "
+msgstr "이 탭을 정말 닫습니까?"
 
 #: ../src/guake/guake_app.py:131
-#, fuzzy
 msgid "Do you really want to quit Guake?"
-msgstr "Guake 를 정말로 종료 하겠습니까? "
+msgstr "Guake를 정말로 종료합니까?"
 
 #: ../src/guake/guake_app.py:133
-#, fuzzy
 msgid " and one tab open"
-msgstr "새 탭 생성하기"
+msgstr "새 탭 열기"
 
 #: ../src/guake/guake_app.py:135
 #, python-brace-format
 msgid " and {0} tabs open"
-msgstr ""
+msgstr "탭 {0}개 열기"
 
 #: ../src/guake/guake_app.py:138
-#, fuzzy
 msgid "There are no processes running"
-msgstr "<b>아직 프로세스가 실행중입니다.</b>"
+msgstr "실행중인 프로세스가 없습니다."
 
 #: ../src/guake/guake_app.py:140
-#, fuzzy
 msgid "There is a process still running"
-msgstr "<b>아직 프로세스가 실행중입니다.</b>"
+msgstr "아직 프로세스가 실행중입니다."
 
 #: ../src/guake/guake_app.py:142
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid "There are {0} processes still running"
-msgstr "<b>아직 %d 개의 프로세스가 실행중입니다.</b>"
+msgstr "아직 {0}개의 프로세스가 실행중입니다."
 
 #: ../src/guake/guake_app.py:182
 msgid "guake-indicator"
-msgstr ""
+msgstr "guake 알림줄"
 
 #: ../src/guake/guake_app.py:182
 msgid "guake-tray"
-msgstr ""
+msgstr "guake 트레이"
 
 #: ../src/guake/guake_app.py:186
 msgid "Show"
-msgstr ""
+msgstr "보이기"
 
 #: ../src/guake/guake_app.py:349
 #, python-format
@@ -633,19 +648,19 @@ msgstr ""
 #: ../src/guake/guake_app.py:611
 #, python-format
 msgid "Search on Web: '%s'"
-msgstr ""
+msgstr "'%s' 웹에서 검색"
 
 #: ../src/guake/guake_app.py:616
 msgid "Search on Web (no selection)"
-msgstr ""
+msgstr "웹에서 검색 (선택 안 함)"
 
 #: ../src/guake/guake_app.py:622
 msgid "Open Link: {}"
-msgstr ""
+msgstr "링크 열기: {}"
 
 #: ../src/guake/guake_app.py:625
 msgid "Open Link..."
-msgstr ""
+msgstr "링크 열기"
 
 #: ../src/guake/guake_app.py:1300
 msgid "Rename tab"
@@ -653,45 +668,43 @@ msgstr "탭 이름변경"
 
 #: ../src/guake/guake_app.py:1591
 msgid "Save to..."
-msgstr ""
+msgstr "다음으로 저장"
 
 #: ../src/guake/guake_app.py:1598 ../src/guake/prefs.py:930
 msgid "All files"
-msgstr ""
+msgstr "모든 파일"
 
 #: ../src/guake/guake_app.py:1603
 msgid "Text and Logs"
-msgstr ""
+msgstr "텍스트와 로그"
 
 #: ../src/guake/guake_app.py:1621
 msgid "Find"
-msgstr ""
+msgstr "찾기"
 
 #: ../src/guake/guake_app.py:1623
 msgid "Forward"
-msgstr ""
+msgstr "다음으로"
 
 #: ../src/guake/guake_app.py:1624
 msgid "Backward"
-msgstr ""
+msgstr "이전으로"
 
 #: ../src/guake/main.py:67
 msgid "Put Guake in fullscreen mode"
-msgstr ""
+msgstr "전체화면으로"
 
 #: ../src/guake/main.py:71
 msgid "Toggles the visibility of the terminal window"
 msgstr "터미널 창 보이기/숨기기 토글"
 
 #: ../src/guake/main.py:75
-#, fuzzy
 msgid "Shows Guake main window"
-msgstr "Guake 설정 윈도우 보이기"
+msgstr "Guake 메인 화면 보이기"
 
 #: ../src/guake/main.py:79
-#, fuzzy
 msgid "Hides Guake main window"
-msgstr "Guake 설정 윈도우 보이기"
+msgstr "Guake 메인 화면 숨기기"
 
 #: ../src/guake/main.py:83
 msgid "Shows Guake preference window"
@@ -702,13 +715,12 @@ msgid "Shows Guake's about info"
 msgstr "Guake 정보 보기"
 
 #: ../src/guake/main.py:91
-#, fuzzy
 msgid "Add a new tab (with current directory set to NEW_TAB)"
 msgstr "새 탭 생성시 현재 디렉토리로 설정"
 
 #: ../src/guake/main.py:95
 msgid "Select a tab (SELECT_TAB is the index of the tab)"
-msgstr ""
+msgstr "탭 선택 (SELECT_TAB은 탭의 번호입니다)"
 
 #: ../src/guake/main.py:99
 msgid "Return the selected tab index."
@@ -720,46 +732,45 @@ msgstr "선택된 탭에서 임의의 명령을 실행합니다."
 
 #: ../src/guake/main.py:107
 msgid "Specify the tab to rename. Default is 0."
-msgstr ""
+msgstr "변경할 이름을 지정하세요. 기본값은 0입니다."
 
 #: ../src/guake/main.py:111
 msgid "Set the hexadecimal (#rrggbb) background color of the selected tab."
-msgstr ""
+msgstr "선택된 탭의 배경색을 #rrggbb와 같이 지정하세요."
 
 #: ../src/guake/main.py:116
 msgid "Set the hexadecimal (#rrggbb) foreground color of the selected tab."
-msgstr ""
+msgstr "선택된 탭의 전경색을 #rrggbb와 같이 지정하세요."
 
 #: ../src/guake/main.py:122
 msgid ""
 "Rename the specified tab. Reset to default if TITLE is a single dash \"-\"."
-msgstr ""
+msgstr "지정된 탭의 이름을 변경합니다. -를 입력하면 기본값으로 되돌립니다."
 
 #: ../src/guake/main.py:128
 msgid ""
 "Rename the current tab. Reset to default if TITLE is a single dash \"-\"."
-msgstr ""
+msgstr "현재 탭의 이름을 변경합니다. -를 입력하면 기본값으로 되돌립니다."
 
 #: ../src/guake/main.py:133
 msgid "Says to Guake go away =("
-msgstr "Says to Guake go away =("
+msgstr "Guake 치워버리기 =("
 
 #: ../src/guake/main.py:137
 msgid "Do not execute the start up script"
-msgstr ""
+msgstr "시작 스크립트를 실행하지 않습니다."
 
 #: ../src/guake/main.py:231
 msgid "Guake can not init!"
-msgstr "Guake 가 초기화를 할 수 없습니다."
+msgstr "Guake 초기화에 실패했습니다."
 
 #: ../src/guake/main.py:232
-#, fuzzy
 msgid ""
 "Gconf Error.\n"
 "Have you installed <b>guake.schemas</b> properly?"
 msgstr ""
 "Gconf 에러.\n"
-"<b>guake.schemas</b> 를 정상적으로 설치가 되었습니까?"
+"<b>guake.schemas</b>를 정상적으로 설치했나요?"
 
 #. string to show in prefereces dialog for user shell option
 #: ../src/guake/prefs.py:67
@@ -776,11 +787,11 @@ msgstr "단축키"
 
 #: ../src/guake/prefs.py:619 ../src/guake/prefs.py:665
 msgid "Custom"
-msgstr ""
+msgstr "사용자 정의"
 
 #: ../src/guake/prefs.py:926
 msgid "JSON files"
-msgstr ""
+msgstr "JSON 파일"
 
 #: ../src/guake/prefs.py:1019
 #, python-format
