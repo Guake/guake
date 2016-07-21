@@ -443,6 +443,9 @@ class PrefsDialog(SimpleGladeApp):
 
         self.client = gconf.client_get_default()
 
+        # window cleanup handler
+        self.get_widget('config-window').connect('destroy', self.on_destroy)
+
         # setting evtbox title bg
         eventbox = self.get_widget('eventbox-title')
         eventbox.modify_bg(gtk.STATE_NORMAL,
@@ -521,6 +524,10 @@ class PrefsDialog(SimpleGladeApp):
         """Calls the main window hide function.
         """
         self.get_widget('config-window').hide()
+
+    def on_destroy(self, window):
+        self.demo_terminal.kill()
+        self.demo_terminal.destroy()
 
     def update_preview(self, file_chooser, preview):
         """Used by filechooser to preview image files
