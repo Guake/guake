@@ -567,15 +567,24 @@ class Guake(SimpleGladeApp):
         screen = self.window.get_screen()
         x, y, _ = screen.get_root_window().get_pointer()
         screen_no = screen.get_monitor_at_point(x, y)
-
+        valignment = self.client.get_int(KEY('/general/window_valignment'))
+        
         max_height = screen.get_monitor_geometry(screen_no).height
-        percent = y / (max_height / 100)
+        if valignment == ALIGN_BOTTOM:
+            percent = 100 * (max_height - y) / max_height
+        else:
+            percent = 100 * y / max_height
 
         if percent < 1:
             percent = 1
 
         window_rect = self.window.get_size()
-        self.window.resize(window_rect[0], y)
+        window_pos = self.window.get_position()
+        if valignment == ALIGN_BOTTOM:
+            self.window.resize(window_rect[0], max_height-y)
+            self.window.move(window_pos[0], y)
+        else:
+            self.window.resize(window_rect[0], y)
         self.client.set_int(KEY('/general/window_height'), int(percent))
         self.client.set_float(KEY('/general/window_height_f'), float(percent))
 
@@ -1842,7 +1851,14 @@ class Guake(SimpleGladeApp):
             self.mainframe.reorder_child(self.notebook, 2)
         else:
             self.mainframe.reorder_child(self.notebook, 0)
-        self.mainframe.pack_start(self.notebook, expand=True, fill=True, padding=0)
+
+        # make sure resizer is at right position depending on window alignment
+        if self.client.get_int(KEY('/general/window_valignment')) == ALIGN_BOTTOM:
+            self.mainframe.reorder_child(self.resizer, 0)
+        else:
+            self.mainframe.reorder_child(self.resizer, -1)
+
+        # self.mainframe.pack_start(self.notebook, expand=True, fill=True, padding=0)
 
     def reset_terminal(self, directory=None):
         self.preventHide = True
