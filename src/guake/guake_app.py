@@ -1026,14 +1026,17 @@ class Guake(SimpleGladeApp):
             if valignment == ALIGN_BOTTOM:
                 window_rect.y += (total_height - window_rect.height)
 
-        log.debug("RESIZING MAIN WINDOW TO THE FOLLOWING VALUES:")
-        log.debug("window_rect.x: %s", window_rect.x)
-        log.debug("window_rect.y: %s", window_rect.y)
-        log.debug("window_rect.height: %s", window_rect.height)
-        log.debug("window_rect.width: %s", window_rect.width)
-
-        self.window.resize(window_rect.width, window_rect.height)
-        self.window.move(window_rect.x, window_rect.y)
+        if width_percents == 100 and height_percents == 100:
+            log.debug("MAXIMIZING MAIN WINDOW")
+            self.window.maximize()
+        else:
+            log.debug("RESIZING MAIN WINDOW TO THE FOLLOWING VALUES:")
+            log.debug("window_rect.x: %s", window_rect.x)
+            log.debug("window_rect.y: %s", window_rect.y)
+            log.debug("window_rect.height: %s", window_rect.height)
+            log.debug("window_rect.width: %s", window_rect.width)
+            self.window.resize(window_rect.width, window_rect.height)
+            self.window.move(window_rect.x, window_rect.y)
 
         return window_rect
 
