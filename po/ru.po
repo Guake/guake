@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: Guake 0.4.5\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-08-05 15:10+0300\n"
-"PO-Revision-Date: 2016-08-05 15:15+0300\n"
+"PO-Revision-Date: 2016-08-05 15:34+0300\n"
 "Last-Translator: Ivan Komaritsyn <vantu5z@mail.ru>\n"
 "Language: \n"
 "MIME-Version: 1.0\n"
@@ -260,7 +260,7 @@ msgstr "Использовать заголовки VTE для названий 
 
 #: ../data/prefs.glade.h:33
 msgid "Max tab name length:"
-msgstr "Максимальная ширина вкладки"
+msgstr "Макс. ширина вкладки"
 
 #: ../data/prefs.glade.h:34
 msgid "Hide on lose focus"
