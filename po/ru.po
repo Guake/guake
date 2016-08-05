@@ -1,18 +1,18 @@
-# Translation of Guake to Russian
+# Translation of Guake to Russian language
 # Copyright (C) 2013 Guake Translators
 # This file is distributed under the same license as the Guake package.
 #
 # Translators:
 # Pavel Alexeev <pahan@hubbitus.info>, 2010.
 # Notes and help by Igor (nick igorsub) <igor6130@gmail.com>, 2010
-# Ivan Komaritsyn <vantu5z@mail.ru>, 2015.
+# Ivan Komaritsyn <vantu5z@mail.ru>, 2015, 2016.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: Guake 0.4.5\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-12-01 16:49+0100\n"
-"PO-Revision-Date: 2015-10-06 16:43+0300\n"
+"POT-Creation-Date: 2016-08-05 15:10+0300\n"
+"PO-Revision-Date: 2016-08-05 15:15+0300\n"
 "Last-Translator: Ivan Komaritsyn <vantu5z@mail.ru>\n"
 "Language: \n"
 "MIME-Version: 1.0\n"
@@ -91,7 +91,7 @@ msgstr "Копировать"
 msgid "Paste"
 msgstr "Вставить"
 
-#: ../data/guake.glade.h:3
+#: ../data/guake.glade.h:3 ../src/guake/prefs.py:79
 msgid "Toggle Fullscreen"
 msgstr "Полноэкранный режим"
 
@@ -99,7 +99,7 @@ msgstr "Полноэкранный режим"
 msgid "Save to File..."
 msgstr "Сохранить в файл..."
 
-#: ../data/guake.glade.h:5
+#: ../data/guake.glade.h:5 ../src/guake/prefs.py:85
 msgid "Reset terminal"
 msgstr "Сброс терминала"
 
@@ -127,7 +127,7 @@ msgstr "Открыть ссылку..."
 msgid "Search on Web"
 msgstr "Искать в Интернете"
 
-#: ../data/guake.glade.h:12
+#: ../data/guake.glade.h:12 ../src/guake/prefs.py:83
 msgid "Quit"
 msgstr "Выход"
 
@@ -260,7 +260,7 @@ msgstr "Использовать заголовки VTE для названий 
 
 #: ../data/prefs.glade.h:33
 msgid "Max tab name length:"
-msgstr ""
+msgstr "Максимальная ширина вкладки"
 
 #: ../data/prefs.glade.h:34
 msgid "Hide on lose focus"
@@ -310,7 +310,7 @@ msgstr "Путь к пользовательской команде"
 msgid "Please select a json file"
 msgstr "Выберите файл json"
 
-#: ../data/prefs.glade.h:46
+#: ../data/prefs.glade.h:46 ../src/guake/prefs.py:75
 msgid "General"
 msgstr "Общие"
 
@@ -450,7 +450,7 @@ msgstr "Прозрачность:"
 msgid "Background image:"
 msgstr "Фоновое изображение:"
 
-#: ../data/prefs.glade.h:82
+#: ../data/prefs.glade.h:82 ../src/guake/prefs.py:130
 msgid "Appearance"
 msgstr "Оформление"
 
@@ -570,17 +570,17 @@ msgstr "<b>Клавиатурная совместимость</b>"
 msgid "Compatibility"
 msgstr "Совместимость"
 
-#: ../src/guake/about.py:47 ../src/guake/gconfhandler.py:427
-#: ../src/guake/guake_app.py:177 ../src/guake/guake_app.py:348
+#: ../src/guake/about.py:47 ../src/guake/gconfhandler.py:429
+#: ../src/guake/guake_app.py:181 ../src/guake/guake_app.py:358
 msgid "Guake Terminal"
 msgstr "Терминал Guake"
 
 #. Adding a new radio button to the tabbar
-#: ../src/guake/gconfhandler.py:365 ../src/guake/guake_app.py:1548
+#: ../src/guake/gconfhandler.py:367 ../src/guake/guake_app.py:1629
 msgid "Terminal"
 msgstr "Терминал"
 
-#: ../src/guake/gconfhandler.py:428
+#: ../src/guake/gconfhandler.py:430
 #, python-format
 msgid ""
 "A problem happened when binding <b>%s</b> key.\n"
@@ -590,49 +590,49 @@ msgstr ""
 "Пожалуйста, воспользуйтесь диалогом настройки, чтобы выбрать другую клавишу "
 "(иконка в трее была включена)"
 
-#: ../src/guake/guake_app.py:128
+#: ../src/guake/guake_app.py:132
 msgid "Do you want to close the tab?"
 msgstr "Вы действительно хотите выйти закрыть вкладку?"
 
-#: ../src/guake/guake_app.py:131
+#: ../src/guake/guake_app.py:135
 msgid "Do you really want to quit Guake?"
 msgstr "Вы действительно хотите выйти из Guake?"
 
-#: ../src/guake/guake_app.py:133
+#: ../src/guake/guake_app.py:137
 msgid " and one tab open"
 msgstr " и одна вкладка открыта"
 
-#: ../src/guake/guake_app.py:135
+#: ../src/guake/guake_app.py:139
 #, python-brace-format
 msgid " and {0} tabs open"
 msgstr " и {0} вкладок открыто"
 
-#: ../src/guake/guake_app.py:138
+#: ../src/guake/guake_app.py:142
 msgid "There are no processes running"
 msgstr "Нет запущенных процессов"
 
-#: ../src/guake/guake_app.py:140
+#: ../src/guake/guake_app.py:144
 msgid "There is a process still running"
 msgstr "Имеется выполняемый процесс"
 
-#: ../src/guake/guake_app.py:142
+#: ../src/guake/guake_app.py:146
 #, python-brace-format
 msgid "There are {0} processes still running"
 msgstr "Выполняется процессов: {0}"
 
-#: ../src/guake/guake_app.py:182
+#: ../src/guake/guake_app.py:186
 msgid "guake-indicator"
 msgstr ""
 
-#: ../src/guake/guake_app.py:182
+#: ../src/guake/guake_app.py:186
 msgid "guake-tray"
 msgstr ""
 
-#: ../src/guake/guake_app.py:186
+#: ../src/guake/guake_app.py:190
 msgid "Show"
 msgstr "Показать"
 
-#: ../src/guake/guake_app.py:349
+#: ../src/guake/guake_app.py:359
 #, python-format
 msgid ""
 "Guake is now running,\n"
@@ -641,131 +641,135 @@ msgstr ""
 "Guake запущен,\n"
 "нажмите <b>%s</b> чтобы работать с ним."
 
-#: ../src/guake/guake_app.py:611
+#: ../src/guake/guake_app.py:647
 #, python-format
 msgid "Search on Web: '%s'"
 msgstr "Поиск в Интернете: '%s'"
 
-#: ../src/guake/guake_app.py:616
+#: ../src/guake/guake_app.py:652
 msgid "Search on Web (no selection)"
 msgstr "Поиск в Интернете (без выборки)"
 
-#: ../src/guake/guake_app.py:622
+#: ../src/guake/guake_app.py:660
+msgid "Open Link: '{}...'"
+msgstr "Открыть ссылку: '{}...'"
+
+#: ../src/guake/guake_app.py:662
 msgid "Open Link: {}"
 msgstr "Открыть ссылку: {}"
 
-#: ../src/guake/guake_app.py:625
+#: ../src/guake/guake_app.py:665
 msgid "Open Link..."
 msgstr "Открыть ссылку..."
 
-#: ../src/guake/guake_app.py:1300
+#: ../src/guake/guake_app.py:1360
 msgid "Rename tab"
 msgstr "Переименовать вкладку"
 
-#: ../src/guake/guake_app.py:1591
+#: ../src/guake/guake_app.py:1674
 msgid "Save to..."
 msgstr "Сохранить как..."
 
-#: ../src/guake/guake_app.py:1598 ../src/guake/prefs.py:930
+#: ../src/guake/guake_app.py:1681 ../src/guake/prefs.py:945
 msgid "All files"
 msgstr "Все файлы"
 
-#: ../src/guake/guake_app.py:1603
+#: ../src/guake/guake_app.py:1686
 msgid "Text and Logs"
 msgstr "Текст и Логи"
 
-#: ../src/guake/guake_app.py:1621
+#: ../src/guake/guake_app.py:1704
 msgid "Find"
 msgstr "Найти"
 
-#: ../src/guake/guake_app.py:1623
+#: ../src/guake/guake_app.py:1706
 msgid "Forward"
 msgstr "Вперёд"
 
-#: ../src/guake/guake_app.py:1624
+#: ../src/guake/guake_app.py:1707
 msgid "Backward"
 msgstr "Назад"
 
-#: ../src/guake/main.py:67
+#: ../src/guake/main.py:68
 msgid "Put Guake in fullscreen mode"
 msgstr "Перейти в полноэкранный режим"
 
-#: ../src/guake/main.py:71
+#: ../src/guake/main.py:72
 msgid "Toggles the visibility of the terminal window"
 msgstr "Переключение видимости окна терминала"
 
-#: ../src/guake/main.py:75
+#: ../src/guake/main.py:76
 msgid "Shows Guake main window"
 msgstr "Показать главное окно Guake"
 
-#: ../src/guake/main.py:79
+#: ../src/guake/main.py:80
 msgid "Hides Guake main window"
 msgstr "Скрыть главное окно Guake"
 
-#: ../src/guake/main.py:83
+#: ../src/guake/main.py:84
 msgid "Shows Guake preference window"
 msgstr "Показать окно настроек Guake"
 
-#: ../src/guake/main.py:87
+#: ../src/guake/main.py:88
 msgid "Shows Guake's about info"
 msgstr "Показать информацию о Guake"
 
-#: ../src/guake/main.py:91
+#: ../src/guake/main.py:92
 msgid "Add a new tab (with current directory set to NEW_TAB)"
 msgstr "Добавить вкладку (с текущей директорией установленной в NEW_TAB)"
 
-#: ../src/guake/main.py:95
+#: ../src/guake/main.py:96
 msgid "Select a tab (SELECT_TAB is the index of the tab)"
 msgstr "Выбрать вкладку (SELECT_TAB - это индекс вкладок)"
 
-#: ../src/guake/main.py:99
+#: ../src/guake/main.py:100
 msgid "Return the selected tab index."
 msgstr "Вернуть индекс выбранной вкладки"
 
-#: ../src/guake/main.py:103
+#: ../src/guake/main.py:104
 msgid "Execute an arbitrary command in the selected tab."
 msgstr "Выполнить произвольную команду в выбранной вкладке"
 
-#: ../src/guake/main.py:107
+#: ../src/guake/main.py:108
 msgid "Specify the tab to rename. Default is 0."
 msgstr "Определите вкладку для переименования. По-умолчанию 0."
 
-#: ../src/guake/main.py:111
+#: ../src/guake/main.py:112
 msgid "Set the hexadecimal (#rrggbb) background color of the selected tab."
 msgstr "Укажите цвет фона выбранной вкладки в hex формате (#rrggbb) "
 
-#: ../src/guake/main.py:116
+#: ../src/guake/main.py:117
 msgid "Set the hexadecimal (#rrggbb) foreground color of the selected tab."
 msgstr ""
 "Укажите цвет переднего плана выбранной вкладки в hex формате (#rrggbb) "
 
-#: ../src/guake/main.py:122
+#: ../src/guake/main.py:123
 msgid ""
 "Rename the specified tab. Reset to default if TITLE is a single dash \"-\"."
 msgstr ""
 "Переименование указанной вкладки. Сброс к имени по-умолчанию, если в TITLE "
 "одиночное тире \"-\"."
 
-#: ../src/guake/main.py:128
+#: ../src/guake/main.py:129
 msgid ""
 "Rename the current tab. Reset to default if TITLE is a single dash \"-\"."
 msgstr ""
 "Переименование текущей вкладки. Сброс к имени по-умолчанию, если в TITLE "
 "одиночное тире \"-\"."
 
-#: ../src/guake/main.py:133
+#: ../src/guake/main.py:134
 msgid "Says to Guake go away =("
 msgstr "Скажите Guake'у уйти =("
 
-#: ../src/guake/main.py:137
+#: ../src/guake/main.py:138
 msgid "Do not execute the start up script"
 msgstr "Не запускать скрипт при старте"
 
-#: ../src/guake/main.py:231
+#: ../src/guake/main.py:235
 msgid "Guake can not init!"
 msgstr "Ошибка инициализации!"
 
-#: ../src/guake/main.py:232
+#: ../src/guake/main.py:236
 msgid ""
 "Gconf Error.\n"
 "Have you installed <b>guake.schemas</b> properly?"
@@ -778,32 +782,172 @@ msgstr ""
 msgid "<user shell>"
 msgstr "<шелл пользователя>"
 
-#: ../src/guake/prefs.py:467
+#: ../src/guake/prefs.py:77
+msgid "Toggle Guake visibility"
+msgstr "Переключение видимости Guake"
+
+#: ../src/guake/prefs.py:81
+msgid "Toggle Hide on Lose Focus"
+msgstr "Прятать при потере фокуса"
+
+#: ../src/guake/prefs.py:88
+msgid "Tab management"
+msgstr "Управление вкладками"
+
+#: ../src/guake/prefs.py:90
+msgid "New tab"
+msgstr "Новая вкладка"
+
+#: ../src/guake/prefs.py:92
+msgid "Close tab"
+msgstr "Закрыть вкладку"
+
+#: ../src/guake/prefs.py:94
+msgid "Rename current tab"
+msgstr "Переименовать текущую вкладку"
+
+#: ../src/guake/prefs.py:97
+msgid "Navigation"
+msgstr "Навигация"
+
+#: ../src/guake/prefs.py:99
+msgid "Go to previous tab"
+msgstr "К предыдущей вклаке"
+
+#: ../src/guake/prefs.py:101
+msgid "Go to next tab"
+msgstr "К следующей вкладке"
+
+#: ../src/guake/prefs.py:103
+msgid "Move current tab left"
+msgstr "Переместить текущую вкладку влево"
+
+#: ../src/guake/prefs.py:105
+msgid "Move current tab right"
+msgstr "Переместить текущую вкладку вправо"
+
+#: ../src/guake/prefs.py:107
+msgid "Go to first tab"
+msgstr "Перейти на первую вкладку"
+
+#: ../src/guake/prefs.py:109
+msgid "Go to second tab"
+msgstr "На вторую вкладку"
+
+#: ../src/guake/prefs.py:111
+msgid "Go to third tab"
+msgstr "На третью вкладку"
+
+#: ../src/guake/prefs.py:113
+msgid "Go to fourth tab"
+msgstr "На четвёртую вкладку"
+
+#: ../src/guake/prefs.py:115
+msgid "Go to fifth tab"
+msgstr "На пятую вкладку"
+
+#: ../src/guake/prefs.py:117
+msgid "Go to sixth tab"
+msgstr "На шестую вкладку"
+
+#: ../src/guake/prefs.py:119
+msgid "Go to seventh tab"
+msgstr "На седьмую вкладку"
+
+#: ../src/guake/prefs.py:121
+msgid "Go to eighth tab"
+msgstr "На восьмую вкладку"
+
+#: ../src/guake/prefs.py:123
+msgid "Go to ninth tab"
+msgstr "На девятую вкладку"
+
+#: ../src/guake/prefs.py:125
+msgid "Go to tenth tab"
+msgstr "На десятую вкладку"
+
+#: ../src/guake/prefs.py:127
+msgid "Go to last tab"
+msgstr "Перейти на последнюю вкладку"
+
+#: ../src/guake/prefs.py:132
+msgid "Zoom out"
+msgstr "Уменьшить"
+
+#: ../src/guake/prefs.py:134
+msgid "Zoom in"
+msgstr "Увеличить"
+
+#: ../src/guake/prefs.py:136
+msgid "Zoom in (alternative)"
+msgstr "Учеличить (альтернативная)"
+
+#: ../src/guake/prefs.py:138
+msgid "Increase height"
+msgstr "Увеличить высоту"
+
+#: ../src/guake/prefs.py:140
+msgid "Decrease height"
+msgstr "Уменьшить высоту"
+
+#: ../src/guake/prefs.py:142
+msgid "Increase transparency"
+msgstr "Увеличить прозрачность"
+
+#: ../src/guake/prefs.py:144
+msgid "Decrease transparency"
+msgstr "Уменьшить прозрачность"
+
+#: ../src/guake/prefs.py:146
+msgid "Toggle transparency"
+msgstr "Вкл/выкл прозрачность"
+
+#: ../src/guake/prefs.py:149
+msgid "Clipboard"
+msgstr "Буфер обмена"
+
+#: ../src/guake/prefs.py:151
+msgid "Copy text to clipboard"
+msgstr "Скопировать текст в буфер обмена"
+
+#: ../src/guake/prefs.py:153
+msgid "Paste text from clipboard"
+msgstr "Вставить текст из буфера обмена"
+
+#: ../src/guake/prefs.py:156
+msgid "Extra features"
+msgstr "Допольнительные функции"
+
+#: ../src/guake/prefs.py:159
+msgid "Search select text on web"
+msgstr "Искать выделенный текст в Интернете"
+
+#: ../src/guake/prefs.py:474
 msgid "Action"
 msgstr "Действие"
 
-#: ../src/guake/prefs.py:477
+#: ../src/guake/prefs.py:484
 msgid "Shortcut"
 msgstr "Горячая клавиша"
 
-#: ../src/guake/prefs.py:619 ../src/guake/prefs.py:665
+#: ../src/guake/prefs.py:630 ../src/guake/prefs.py:676
 msgid "Custom"
 msgstr "Дополнительно"
 
-#: ../src/guake/prefs.py:926
+#: ../src/guake/prefs.py:941
 msgid "JSON files"
 msgstr "JSON файлы"
 
-#: ../src/guake/prefs.py:1019
+#: ../src/guake/prefs.py:1035
 #, python-format
 msgid "The shortcut \"%s\" is already in use."
 msgstr "Сокращение \"%s\" уже используется."
 
-#: ../src/guake/prefs.py:1020
+#: ../src/guake/prefs.py:1036
 msgid "Error setting keybinding."
 msgstr "Ошибка назначения клавиш."
 
-#: ../src/guake/prefs.py:1032
+#: ../src/guake/prefs.py:1048
 #, python-format
 msgid ""
 "The shortcut \"%s\" cannot be used because it will become impossible to type "
@@ -815,6 +959,15 @@ msgstr ""
 "набрать, используя эту клавишу.\n"
 "\n"
 "Попробуйте сочетание с клавишами Control, Alt или Shift.\n"
+
+#~ msgid "Custom Commands"
+#~ msgstr "Команды пользователя"
+
+#~ msgid ""
+#~ "line starts by 'Filename:line' pattern (GCC/make). File path should exists"
+#~ msgstr ""
+#~ "строка начинается с шаблона 'Filename:line' (GCC/make). Должен "
+#~ "присутствовать путь к файлу"
 
 #~ msgid "key binding error"
 #~ msgstr "ошибка привязки клавиши"
@@ -842,36 +995,6 @@ msgstr ""
 
 #~ msgid "Rename the selected tab."
 #~ msgstr "Переименовать выбранную вкладку"
-
-#~ msgid "Toggle Guake visibility"
-#~ msgstr "Переключение видимости Guake"
-
-#~ msgid "Tab management"
-#~ msgstr "Управление вкладками"
-
-#~ msgid "Close tab"
-#~ msgstr "Закрыть вкладку"
-
-#~ msgid "Rename current tab"
-#~ msgstr "Переименовать текущую вкладку"
-
-#~ msgid "Navigation"
-#~ msgstr "Навигация"
-
-#~ msgid "Go to previous tab"
-#~ msgstr "К предыдущей вклаке"
-
-#~ msgid "Go to next tab"
-#~ msgstr "К следующей вкладке"
-
-#~ msgid "Clipboard"
-#~ msgstr "Буфер обмена"
-
-#~ msgid "Copy text to clipboard"
-#~ msgstr "Скопировать текст в буфер обмена"
-
-#~ msgid "Paste text from clipboard"
-#~ msgstr "Вставить текст из буфера обмена"
 
 #~ msgid "<b>Background</b>"
 #~ msgstr "<b>Фон</b>"
