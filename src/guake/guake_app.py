@@ -568,7 +568,7 @@ class Guake(SimpleGladeApp):
         x, y, _ = screen.get_root_window().get_pointer()
         screen_no = screen.get_monitor_at_point(x, y)
         valignment = self.client.get_int(KEY('/general/window_valignment'))
-        
+
         max_height = screen.get_monitor_geometry(screen_no).height
         if valignment == ALIGN_BOTTOM:
             percent = 100 * (max_height - y) / max_height
@@ -581,7 +581,7 @@ class Guake(SimpleGladeApp):
         window_rect = self.window.get_size()
         window_pos = self.window.get_position()
         if valignment == ALIGN_BOTTOM:
-            self.window.resize(window_rect[0], max_height-y)
+            self.window.resize(window_rect[0], max_height - y)
             self.window.move(window_pos[0], y)
         else:
             self.window.resize(window_rect[0], y)

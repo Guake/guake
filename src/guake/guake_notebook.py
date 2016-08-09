@@ -3,10 +3,10 @@ from __future__ import division
 from __future__ import print_function
 
 import logging
-import os
 import posix
 
 from gtk import Notebook
+
 
 log = logging.getLogger(__name__)
 
