@@ -155,9 +155,9 @@ HOTKEYS = [
 
     {'label': _('Extra features'),
      'keys': [
-              {'key': LKEY('search_on_web'),
-               'label': _('Search select text on web')},
-     ]},
+        {'key': LKEY('search_on_web'),
+         'label': _('Search select text on web')},
+    ]},
 ]
 
 
