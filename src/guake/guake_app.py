@@ -793,8 +793,7 @@ class Guake(SimpleGladeApp):
         self.hidden = False
 
         # setting window in all desktops
-        if not self.is_fullscreen:
-            window_rect = self.set_final_window_rect()
+        window_rect = self.set_final_window_rect()
         self.get_widget('window-root').stick()
 
         # add tab must be called before window.show to avoid a
@@ -815,9 +814,11 @@ class Guake(SimpleGladeApp):
                 if isinstance(tab, gtk.RadioButton):
                     tab.modify_bg(gtk.STATE_ACTIVE, gtk.gdk.Color(str(self.selected_color)))
 
+        # move the window even when in fullscreen-mode
+        self.window.move(window_rect.x, window_rect.y)
+
         # this work arround an issue in fluxbox
         if not self.is_fullscreen:
-            self.window.move(window_rect.x, window_rect.y)
             self.client.notify(KEY('/general/window_height'))
 
         try:
