@@ -259,6 +259,11 @@ class PrefsCallbacks(object):
         """
         self.client.set_bool(KEY('/general/use_vte_titles'), chk.get_active())
 
+    def on_abbreviate_tab_names_toggled(self, chk):
+        """Save `abbreviate_tab_names` property value in gconf
+        """
+        self.client.set_bool(KEY('/general/abbreviate_tab_names'), chk.get_active())
+
     def on_max_tab_name_length_changed(self, spin):
         """Changes the value of max_tab_name_length in gconf
         """
@@ -579,6 +584,11 @@ class PrefsDialog(SimpleGladeApp):
         self.get_widget('quick_open_command_line').set_sensitive(chk.get_active())
         self.get_widget('quick_open_in_current_terminal').set_sensitive(chk.get_active())
 
+    def toggle_use_vte_titles(self, chk):
+        """When vte titles aren't used, there is nothing to abbreviate
+        """
+        self.get_widget('abbreviate_tab_names').set_sensitive(chk.get_active())
+
     def clear_background_image(self, btn):
         """Unset the gconf variable that holds the name of the
         background image of all terminals.
@@ -756,6 +766,11 @@ class PrefsDialog(SimpleGladeApp):
         # use VTE titles
         value = self.client.get_bool(KEY('/general/use_vte_titles'))
         self.get_widget('use_vte_titles').set_active(value)
+
+        # abbreviate tab names
+        self.get_widget('abbreviate_tab_names').set_sensitive(value)
+        value = self.client.get_bool(KEY('/general/abbreviate_tab_names'))
+        self.get_widget('abbreviate_tab_names').set_active(value)
 
         # max tab name length
         value = self.client.get_int(KEY('/general/max_tab_name_length'))

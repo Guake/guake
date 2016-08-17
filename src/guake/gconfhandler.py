@@ -97,6 +97,7 @@ class GConfHandler(object):
         notify_add(KEY('/general/compat_delete'), self.delete_changed)
         notify_add(KEY('/general/custom_command_file'), self.custom_command_file_changed)
         notify_add(KEY('/general/max_tab_name_length'), self.max_tab_name_length_changed)
+        notify_add(KEY('/general/abbreviate_tab_names'), self.abbreviate_tab_names_changed)
 
     def custom_command_file_changed(self, client, connection_id, entry, data):
         self.guake.load_custom_commands()
@@ -373,6 +374,13 @@ class GConfHandler(object):
                 tab_custom_name = getattr(tab, 'custom_label_text', False)
                 tab.set_label(tab_custom_name[:max_name_length])
 
+    def abbreviate_tab_names_changed(self, client, connection_id, entry, data):
+        """If the gconf var abbreviate_tab_names be changed, this method will
+        be called and will update tab names.
+        """
+        abbreviate_tab_names = client.get_bool(KEY('/general/abbreviate_tab_names'))
+        self.guake.abbreviate = abbreviate_tab_names and self.guake.is_tabs_scrollbar_visible()
+        self.guake.recompute_tabs_titles()
 
 class GConfKeyHandler(object):
 
