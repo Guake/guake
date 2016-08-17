@@ -292,6 +292,13 @@ class Guake(SimpleGladeApp):
 
         evtbox.connect('scroll-event', scroll_manager)
 
+        def tabs_scrollbar_hide(hscrollbar):
+                self.get_widget('event-tabs').set_property('height_request', 10)
+        def tabs_scrollbar_show(hscrollbar):
+                self.get_widget('event-tabs').set_property('height_request', -1)
+        self.get_widget('tabs-scrolledwindow').get_hscrollbar().connect('hide', tabs_scrollbar_hide)
+        self.get_widget('tabs-scrolledwindow').get_hscrollbar().connect('show', tabs_scrollbar_show)
+
         # Flag to prevent guake hide when window_losefocus is true and
         # user tries to use the context menu.
         self.showing_context_menu = False
