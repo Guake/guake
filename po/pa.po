@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Guake 0.4.5\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-12-01 16:49+0100\n"
+"POT-Creation-Date: 2016-08-17 21:41+0000\n"
 "PO-Revision-Date: 2010-07-13 08:13+0530\n"
 "Last-Translator: A S Alam <aalam@users.sf.net>\n"
 "Language-Team: Punjabi/Panjabi <punjabi-users@lists.sf.net>\n"
@@ -80,7 +80,7 @@ msgstr "ਕਾਪੀ ਕਰੋ"
 msgid "Paste"
 msgstr "ਚੇਪੋ"
 
-#: ../data/guake.glade.h:3
+#: ../data/guake.glade.h:3 ../src/guake/prefs.py:79
 msgid "Toggle Fullscreen"
 msgstr "ਪੂਰੀ ਸਕਰੀਨ ਬਦਲੋ"
 
@@ -88,7 +88,7 @@ msgstr "ਪੂਰੀ ਸਕਰੀਨ ਬਦਲੋ"
 msgid "Save to File..."
 msgstr ""
 
-#: ../data/guake.glade.h:5
+#: ../data/guake.glade.h:5 ../src/guake/prefs.py:85
 #, fuzzy
 msgid "Reset terminal"
 msgstr "ਗੁਆਕੀ ਟਰਮੀਨਲ"
@@ -119,7 +119,7 @@ msgstr ""
 msgid "Search on Web"
 msgstr ""
 
-#: ../data/guake.glade.h:12
+#: ../data/guake.glade.h:12 ../src/guake/prefs.py:83
 msgid "Quit"
 msgstr "ਬਾਹਰ"
 
@@ -242,202 +242,206 @@ msgid "Use VTE titles for tab names"
 msgstr ""
 
 #: ../data/prefs.glade.h:33
-msgid "Max tab name length:"
+msgid "Abbreviate directories in tab names"
 msgstr ""
 
 #: ../data/prefs.glade.h:34
+msgid "Max tab name length:"
+msgstr ""
+
+#: ../data/prefs.glade.h:35
 msgid "Hide on lose focus"
 msgstr "ਫੋਕਸ ਖਤਮ ਹੋਣ ਉੱਤੇ ਓਹਲੇ ਕਰੋ"
 
-#: ../data/prefs.glade.h:35
+#: ../data/prefs.glade.h:36
 msgid "Show tab bar"
 msgstr "ਟੈਬ ਪੱਟੀ ਵੇਖੋ"
 
-#: ../data/prefs.glade.h:36
+#: ../data/prefs.glade.h:37
 #, fuzzy
 msgid "Start fullscreen"
 msgstr "ਪੂਰੀ ਸਕਰੀਨ ਬਦਲੋ"
 
-#: ../data/prefs.glade.h:37
+#: ../data/prefs.glade.h:38
 msgid "<b>Main Window</b>"
 msgstr "<b>ਮੇਨ ਵਿੰਡੋ</b>"
 
-#: ../data/prefs.glade.h:38
+#: ../data/prefs.glade.h:39
 msgid "Left"
 msgstr ""
 
-#: ../data/prefs.glade.h:39
+#: ../data/prefs.glade.h:40
 msgid "Center"
 msgstr ""
 
-#: ../data/prefs.glade.h:40
+#: ../data/prefs.glade.h:41
 msgid "Right"
 msgstr ""
 
-#: ../data/prefs.glade.h:41
+#: ../data/prefs.glade.h:42
 #, fuzzy
 msgid "<b>Main Window Horizontal Alignment</b>"
 msgstr "<b>ਮੇਨ ਵਿੰਡੋ ਉਚਾਈ</b>"
 
-#: ../data/prefs.glade.h:42
+#: ../data/prefs.glade.h:43
 #, fuzzy
 msgid "<b>Main Window Height</b>"
 msgstr "<b>ਮੇਨ ਵਿੰਡੋ ਉਚਾਈ</b>"
 
-#: ../data/prefs.glade.h:43
+#: ../data/prefs.glade.h:44
 #, fuzzy
 msgid "<b>Main Window Width</b>"
 msgstr "<b>ਮੇਨ ਵਿੰਡੋ ਉਚਾਈ</b>"
 
-#: ../data/prefs.glade.h:44
+#: ../data/prefs.glade.h:45
 msgid "Custom command file path: "
 msgstr ""
 
-#: ../data/prefs.glade.h:45
+#: ../data/prefs.glade.h:46
 msgid "Please select a json file"
 msgstr ""
 
-#: ../data/prefs.glade.h:46
+#: ../data/prefs.glade.h:47 ../src/guake/prefs.py:75
 msgid "General"
 msgstr "ਆਮ"
 
-#: ../data/prefs.glade.h:47
+#: ../data/prefs.glade.h:48
 msgid "Default interpreter:"
 msgstr "ਡਿਫਾਲਟ ਇੰਟਰਪਰੇਟਰ:"
 
-#: ../data/prefs.glade.h:48
+#: ../data/prefs.glade.h:49
 msgid "_Run command as a login shell"
 msgstr "ਕਮਾਂਡ ਲਾਗਇਨ ਸ਼ੈੱਲ ਵਜੋਂ ਚਲਾਓ(_R)"
 
-#: ../data/prefs.glade.h:49
+#: ../data/prefs.glade.h:50
 msgid "_Open new tab in current directory"
 msgstr "ਮੌਜੂਦਾ ਡਾਇਰੈਕਟਰੀ ਵਿੱਚ ਨਵੀਂ ਟੈਬ ਖੋਲ੍ਹੋ(_O)"
 
-#: ../data/prefs.glade.h:50
+#: ../data/prefs.glade.h:51
 msgid "<b>Shell</b>"
 msgstr "<b>ਸ਼ੈੱਲ</b>"
 
-#: ../data/prefs.glade.h:51
+#: ../data/prefs.glade.h:52
 msgid "Shell"
 msgstr ""
 
-#: ../data/prefs.glade.h:52
+#: ../data/prefs.glade.h:53
 msgid "Show scrollbar"
 msgstr "ਸਕਰੋਲਬਾਰ ਵੇਖੋ"
 
-#: ../data/prefs.glade.h:53
+#: ../data/prefs.glade.h:54
 msgid "Scrollback lines:"
 msgstr "ਸਕਰੋਲਬੈਕ ਲਾਈਨਾਂ:"
 
-#: ../data/prefs.glade.h:54
+#: ../data/prefs.glade.h:55
 msgid "On output"
 msgstr "ਆਉਟਪੁੱਟ ਉੱਤੇ"
 
-#: ../data/prefs.glade.h:55
+#: ../data/prefs.glade.h:56
 msgid "On key stroke"
 msgstr "ਕੁੰਜੀ ਦੱਬਣ ਉੱਤੇ"
 
-#: ../data/prefs.glade.h:56
+#: ../data/prefs.glade.h:57
 msgid "<b>Scroll</b>"
 msgstr "<b>ਸਕਰੋਲ</b>"
 
-#: ../data/prefs.glade.h:57
+#: ../data/prefs.glade.h:58
 msgid "Scrolling"
 msgstr "ਸਕਰੋਲਿੰਗ"
 
-#: ../data/prefs.glade.h:58
+#: ../data/prefs.glade.h:59
 msgid "Use the system fixed width font"
 msgstr "ਸਿਸਟਮ ਸਥਿਰ ਚੌੜਾਈ ਫੋਂਟ ਵਰਤੋਂ"
 
-#: ../data/prefs.glade.h:59
+#: ../data/prefs.glade.h:60
 msgid "Font:"
 msgstr "ਫੋਂਟ:"
 
-#: ../data/prefs.glade.h:60
+#: ../data/prefs.glade.h:61
 msgid "Choose some font"
 msgstr "ਕੁਝ ਫੋਟ ਚੁਣੋ"
 
-#: ../data/prefs.glade.h:61
+#: ../data/prefs.glade.h:62
 msgid "Text color:"
 msgstr "ਟੈਕਸਟ ਰੰਗ:"
 
-#: ../data/prefs.glade.h:62
+#: ../data/prefs.glade.h:63
 msgid "Background color:"
 msgstr "ਬੈਕਗਰਾਊਂਡ ਰੰਗ:"
 
-#: ../data/prefs.glade.h:63
+#: ../data/prefs.glade.h:64
 msgid "Cursor shape:"
 msgstr ""
 
-#: ../data/prefs.glade.h:64
+#: ../data/prefs.glade.h:65
 msgid ""
 "Block\n"
 "I-Beam\n"
 "Underline"
 msgstr ""
 
-#: ../data/prefs.glade.h:67
+#: ../data/prefs.glade.h:68
 msgid ""
 "Follow GTK+ setting\n"
 "Blink on\n"
 "Blink off"
 msgstr ""
 
-#: ../data/prefs.glade.h:70
+#: ../data/prefs.glade.h:71
 msgid "Cursor blink mode:"
 msgstr ""
 
-#: ../data/prefs.glade.h:71
+#: ../data/prefs.glade.h:72
 msgid "Allow bold font"
 msgstr ""
 
-#: ../data/prefs.glade.h:72
+#: ../data/prefs.glade.h:73
 msgid "<b>Palette</b>"
 msgstr "<b>ਰੰਗ-ਪੱਟੀ</b>"
 
-#: ../data/prefs.glade.h:73
+#: ../data/prefs.glade.h:74
 msgid "Built-in schemes:"
 msgstr "ਬਿਲਟ-ਇਨ ਸਕੀਮ:"
 
-#: ../data/prefs.glade.h:74
+#: ../data/prefs.glade.h:75
 msgid "Color palette:"
 msgstr "ਰੰਗ ਪਲੇਅਟ:"
 
-#: ../data/prefs.glade.h:75
+#: ../data/prefs.glade.h:76
 #, fuzzy
 msgid "Font color"
 msgstr "ਟੈਕਸਟ ਰੰਗ:"
 
-#: ../data/prefs.glade.h:76
+#: ../data/prefs.glade.h:77
 #, fuzzy
 msgid "Background color"
 msgstr "ਬੈਕਗਰਾਊਂਡ ਰੰਗ:"
 
-#: ../data/prefs.glade.h:77
+#: ../data/prefs.glade.h:78
 msgid "Use font and background color from the palette"
 msgstr ""
 
-#: ../data/prefs.glade.h:78
+#: ../data/prefs.glade.h:79
 msgid "Demo:"
 msgstr ""
 
-#: ../data/prefs.glade.h:79
+#: ../data/prefs.glade.h:80
 msgid "<b>Effects</b>"
 msgstr "<b>ਪਰਭਾਵ</b>"
 
-#: ../data/prefs.glade.h:80
+#: ../data/prefs.glade.h:81
 msgid "Transparency:"
 msgstr "ਟਰਾਂਸਪਰੇਸੀ:"
 
-#: ../data/prefs.glade.h:81
+#: ../data/prefs.glade.h:82
 msgid "Background image:"
 msgstr "ਬੈਕਗਰਾਊਂਡ ਚਿੱਤਰ:"
 
-#: ../data/prefs.glade.h:82
+#: ../data/prefs.glade.h:83 ../src/guake/prefs.py:130
 msgid "Appearance"
 msgstr "ਦਿੱਖ"
 
-#: ../data/prefs.glade.h:83
+#: ../data/prefs.glade.h:84
 msgid ""
 "<small>Quick open is a feature allowing you to open a file directly into "
 "your favorite text editor by clicking on its filename when it appears in "
@@ -445,15 +449,15 @@ msgid ""
 "extract filename below.</small>"
 msgstr ""
 
-#: ../data/prefs.glade.h:84
+#: ../data/prefs.glade.h:85
 msgid "Enable Quick Open when Ctrl+clicking on a filename in the terminal"
 msgstr ""
 
-#: ../data/prefs.glade.h:85
+#: ../data/prefs.glade.h:86
 msgid "Editor command line:"
 msgstr ""
 
-#: ../data/prefs.glade.h:87
+#: ../data/prefs.glade.h:88
 #, no-c-format
 msgid ""
 "<small><i>Use the following elements in the open editor command line:\n"
@@ -465,36 +469,36 @@ msgid ""
 "</i></small>"
 msgstr ""
 
-#: ../data/prefs.glade.h:93
+#: ../data/prefs.glade.h:94
 msgid "Quick open in current terminal"
 msgstr ""
 
-#: ../data/prefs.glade.h:94
+#: ../data/prefs.glade.h:95
 msgid ""
 "Here is the list of supported patterns: (to add your own, please contact the "
 "Guake's authors)"
 msgstr ""
 
-#: ../data/prefs.glade.h:95
+#: ../data/prefs.glade.h:96
 #, fuzzy
 msgid "<b>Quick Open</b>"
 msgstr "<b>ਰੰਗ-ਪੱਟੀ</b>"
 
-#: ../data/prefs.glade.h:96
+#: ../data/prefs.glade.h:97
 msgid "Quick Open"
 msgstr ""
 
-#: ../data/prefs.glade.h:97
+#: ../data/prefs.glade.h:98
 msgid ""
 "To change a shortcut simply click on its name.\n"
 "To disable a shortcut, press the \"Backspace\" key."
 msgstr ""
 
-#: ../data/prefs.glade.h:99
+#: ../data/prefs.glade.h:100
 msgid "Keyboard shortcuts"
 msgstr "ਕੀਬੋਰਡ ਸ਼ਾਰਟਕੱਟ"
 
-#: ../data/prefs.glade.h:100
+#: ../data/prefs.glade.h:101
 msgid ""
 "<small><i><b>Note:</b> These options may cause some applications to behave "
 "incorrectly.  They are only here to allow you to work around certain "
@@ -502,7 +506,7 @@ msgid ""
 "i></small>"
 msgstr ""
 
-#: ../data/prefs.glade.h:101
+#: ../data/prefs.glade.h:102
 msgid ""
 "ASCII DEL\n"
 "Escape sequence\n"
@@ -512,92 +516,91 @@ msgstr ""
 "Escape sequence\n"
 "Control-H"
 
-#: ../data/prefs.glade.h:104
+#: ../data/prefs.glade.h:105
 msgid "_Backspace key generates:"
 msgstr "ਬੈਕਸਪੇ ਕੁੰਜੀ ਤਿਆਰ ਕਰੇ(_B):"
 
-#: ../data/prefs.glade.h:105
+#: ../data/prefs.glade.h:106
 msgid "_Delete key generates:"
 msgstr ""
 
-#: ../data/prefs.glade.h:106
+#: ../data/prefs.glade.h:107
 msgid "_Reset Compatibility Options to Defaults"
 msgstr "ਅਨੁਕੂਲਤਾ ਚੋਣਾਂ ਡਿਫਾਲਟ ਲਈ ਮੁੜ-ਸੈੱਟ ਕਰੋ(_R)"
 
-#: ../data/prefs.glade.h:107
+#: ../data/prefs.glade.h:108
 msgid "<b>Keyboard compatibility</b>"
 msgstr "<b>ਕੀਬੋਰਡ ਅਨੁਕੂਲਤਾ</b>"
 
-#: ../data/prefs.glade.h:108
+#: ../data/prefs.glade.h:109
 msgid "Compatibility"
 msgstr "ਅਨੁਕੂਲਤਾ"
 
-#: ../src/guake/about.py:47 ../src/guake/gconfhandler.py:427
-#: ../src/guake/guake_app.py:177 ../src/guake/guake_app.py:348
+#: ../src/guake/about.py:47 ../src/guake/gconfhandler.py:435
+#: ../src/guake/guake_app.py:181 ../src/guake/guake_app.py:376
 msgid "Guake Terminal"
 msgstr "ਗੁਆਕੀ ਟਰਮੀਨਲ"
 
-#. Adding a new radio button to the tabbar
-#: ../src/guake/gconfhandler.py:365 ../src/guake/guake_app.py:1548
+#: ../src/guake/gconfhandler.py:368 ../src/guake/guake_app.py:1363
 #, fuzzy
 msgid "Terminal"
 msgstr "%s ਟਰਮੀਨਲ"
 
-#: ../src/guake/gconfhandler.py:428
+#: ../src/guake/gconfhandler.py:436
 #, python-format
 msgid ""
 "A problem happened when binding <b>%s</b> key.\n"
 "Please use Guake Preferences dialog to choose another key"
 msgstr ""
 
-#: ../src/guake/guake_app.py:128
+#: ../src/guake/guake_app.py:132
 #, fuzzy
 msgid "Do you want to close the tab?"
 msgstr "ਕੀ ਤੁਸੀਂ ਗੁਆਕੀ ਬੰਦ ਕਰਨਾ ਚਾਹੁੰਦੇ ਹੋ?"
 
-#: ../src/guake/guake_app.py:131
+#: ../src/guake/guake_app.py:135
 #, fuzzy
 msgid "Do you really want to quit Guake?"
 msgstr "ਕੀ ਤੁਸੀਂ ਗੁਆਕੀ ਬੰਦ ਕਰਨਾ ਚਾਹੁੰਦੇ ਹੋ?"
 
-#: ../src/guake/guake_app.py:133
+#: ../src/guake/guake_app.py:137
 #, fuzzy
 msgid " and one tab open"
 msgstr "ਨਵੀਂ ਟੈਬ ਸ਼ਾਮਲ"
 
-#: ../src/guake/guake_app.py:135
+#: ../src/guake/guake_app.py:139
 #, python-brace-format
 msgid " and {0} tabs open"
 msgstr ""
 
-#: ../src/guake/guake_app.py:138
+#: ../src/guake/guake_app.py:142
 #, fuzzy
 msgid "There are no processes running"
 msgstr "<b>ਹਾਲੇ ਇੱਕ ਕਾਰਵਾਈ ਚੱਲ ਰਹੀ ਹੈ।</b>"
 
-#: ../src/guake/guake_app.py:140
+#: ../src/guake/guake_app.py:144
 #, fuzzy
 msgid "There is a process still running"
 msgstr "<b>ਹਾਲੇ ਇੱਕ ਕਾਰਵਾਈ ਚੱਲ ਰਹੀ ਹੈ।</b>"
 
-#: ../src/guake/guake_app.py:142
+#: ../src/guake/guake_app.py:146
 #, fuzzy, python-brace-format
 msgid "There are {0} processes still running"
 msgstr "<b>%d ਪਰੋਸੈਸ ਚੱਲ ਰਹੇ ਹਨ।</b>"
 
-#: ../src/guake/guake_app.py:182
+#: ../src/guake/guake_app.py:186
 msgid "guake-indicator"
 msgstr ""
 
-#: ../src/guake/guake_app.py:182
+#: ../src/guake/guake_app.py:186
 msgid "guake-tray"
 msgstr ""
 
-#: ../src/guake/guake_app.py:186
+#: ../src/guake/guake_app.py:190
 msgid "Show"
 msgstr ""
 
-#: ../src/guake/guake_app.py:349
+#: ../src/guake/guake_app.py:377
 #, python-format
 msgid ""
 "Guake is now running,\n"
@@ -606,129 +609,133 @@ msgstr ""
 "ਗੁਆਕੀ ਹੁਣ ਚੱਲ ਰਿਹਾ ਹੈ।\n"
 "ਇਸ ਨੂੰ ਵਰਤਣ ਲਈ <b>%s</b> ਦੱਬੋ।"
 
-#: ../src/guake/guake_app.py:611
+#: ../src/guake/guake_app.py:665
 #, python-format
 msgid "Search on Web: '%s'"
 msgstr ""
 
-#: ../src/guake/guake_app.py:616
+#: ../src/guake/guake_app.py:670
 msgid "Search on Web (no selection)"
 msgstr ""
 
-#: ../src/guake/guake_app.py:622
+#: ../src/guake/guake_app.py:678
+msgid "Open Link: '{}...'"
+msgstr ""
+
+#: ../src/guake/guake_app.py:680
 msgid "Open Link: {}"
 msgstr ""
 
-#: ../src/guake/guake_app.py:625
+#: ../src/guake/guake_app.py:683
 msgid "Open Link..."
 msgstr ""
 
-#: ../src/guake/guake_app.py:1300
+#: ../src/guake/guake_app.py:1402
 msgid "Rename tab"
 msgstr "ਟੈਬ ਨਾਂ ਬਦਲੋ"
 
-#: ../src/guake/guake_app.py:1591
+#: ../src/guake/guake_app.py:1716
 msgid "Save to..."
 msgstr ""
 
-#: ../src/guake/guake_app.py:1598 ../src/guake/prefs.py:930
+#: ../src/guake/guake_app.py:1723 ../src/guake/prefs.py:998
 msgid "All files"
 msgstr ""
 
-#: ../src/guake/guake_app.py:1603
+#: ../src/guake/guake_app.py:1728
 msgid "Text and Logs"
 msgstr ""
 
-#: ../src/guake/guake_app.py:1621
+#: ../src/guake/guake_app.py:1746
 msgid "Find"
 msgstr ""
 
-#: ../src/guake/guake_app.py:1623
+#: ../src/guake/guake_app.py:1748
 msgid "Forward"
 msgstr ""
 
-#: ../src/guake/guake_app.py:1624
+#: ../src/guake/guake_app.py:1749
 msgid "Backward"
 msgstr ""
 
-#: ../src/guake/main.py:67
+#: ../src/guake/main.py:68
 msgid "Put Guake in fullscreen mode"
 msgstr ""
 
-#: ../src/guake/main.py:71
+#: ../src/guake/main.py:72
 msgid "Toggles the visibility of the terminal window"
 msgstr "ਟਰਮੀਨਲ ਵਿੰਡੋ ਦੀ ਦਿੱਖ ਬਦਲੋ"
 
-#: ../src/guake/main.py:75
+#: ../src/guake/main.py:76
 #, fuzzy
 msgid "Shows Guake main window"
 msgstr "ਗੁਆਕੀ ਪਸੰਦ ਵਿੰਡੋ ਵੇਖੋ"
 
-#: ../src/guake/main.py:79
+#: ../src/guake/main.py:80
 #, fuzzy
 msgid "Hides Guake main window"
 msgstr "ਗੁਆਕੀ ਪਸੰਦ ਵਿੰਡੋ ਵੇਖੋ"
 
-#: ../src/guake/main.py:83
+#: ../src/guake/main.py:84
 msgid "Shows Guake preference window"
 msgstr "ਗੁਆਕੀ ਪਸੰਦ ਵਿੰਡੋ ਵੇਖੋ"
 
-#: ../src/guake/main.py:87
+#: ../src/guake/main.py:88
 msgid "Shows Guake's about info"
 msgstr "ਗੁਆਕੀ ਬਾਰੇ ਜਾਣਕਾਰੀ ਵੇਖੋ"
 
-#: ../src/guake/main.py:91
+#: ../src/guake/main.py:92
 #, fuzzy
 msgid "Add a new tab (with current directory set to NEW_TAB)"
 msgstr "ਮੌਜੂਦਾ ਡਾਇਰੈਕਟਰੀ ਵਿੱਚ ਨਵੀਂ ਟੈਬ ਖੋਲ੍ਹੋ(_O)"
 
-#: ../src/guake/main.py:95
+#: ../src/guake/main.py:96
 msgid "Select a tab (SELECT_TAB is the index of the tab)"
 msgstr ""
 
-#: ../src/guake/main.py:99
+#: ../src/guake/main.py:100
 msgid "Return the selected tab index."
 msgstr "ਚੁਣੇ ਟੈਬ ਇੰਡੈਕਸ ਉੱਤੇ ਵਾਪਸ ਜਾਉ।"
 
-#: ../src/guake/main.py:103
+#: ../src/guake/main.py:104
 msgid "Execute an arbitrary command in the selected tab."
 msgstr ""
 
-#: ../src/guake/main.py:107
+#: ../src/guake/main.py:108
 msgid "Specify the tab to rename. Default is 0."
 msgstr ""
 
-#: ../src/guake/main.py:111
+#: ../src/guake/main.py:112
 msgid "Set the hexadecimal (#rrggbb) background color of the selected tab."
 msgstr ""
 
-#: ../src/guake/main.py:116
+#: ../src/guake/main.py:117
 msgid "Set the hexadecimal (#rrggbb) foreground color of the selected tab."
 msgstr ""
 
-#: ../src/guake/main.py:122
+#: ../src/guake/main.py:123
 msgid ""
 "Rename the specified tab. Reset to default if TITLE is a single dash \"-\"."
 msgstr ""
 
-#: ../src/guake/main.py:128
+#: ../src/guake/main.py:129
 msgid ""
 "Rename the current tab. Reset to default if TITLE is a single dash \"-\"."
 msgstr ""
 
-#: ../src/guake/main.py:133
+#: ../src/guake/main.py:134
 msgid "Says to Guake go away =("
 msgstr "ਗੁਆਕੀ ਨੂੰ ਦੂਰ ਜਾਣ ਲਈ ਕਰੋ =("
 
-#: ../src/guake/main.py:137
+#: ../src/guake/main.py:138
 msgid "Do not execute the start up script"
 msgstr ""
 
-#: ../src/guake/main.py:231
+#: ../src/guake/main.py:235
 msgid "Guake can not init!"
 msgstr ""
 
-#: ../src/guake/main.py:232
+#: ../src/guake/main.py:236
 msgid ""
 "Gconf Error.\n"
 "Have you installed <b>guake.schemas</b> properly?"
@@ -739,32 +746,190 @@ msgstr ""
 msgid "<user shell>"
 msgstr "<user shell>"
 
-#: ../src/guake/prefs.py:467
+#: ../src/guake/prefs.py:77
+msgid "Toggle Guake visibility"
+msgstr "ਗੁਆਕੀ ਦਿੱਖ ਬਦਲੋ"
+
+#: ../src/guake/prefs.py:81
+#, fuzzy
+msgid "Toggle Hide on Lose Focus"
+msgstr "ਫੋਕਸ ਖਤਮ ਹੋਣ ਉੱਤੇ ਓਹਲੇ ਕਰੋ"
+
+#: ../src/guake/prefs.py:88
+msgid "Tab management"
+msgstr "ਟੈਬ ਪਰਬੰਧ"
+
+#: ../src/guake/prefs.py:90
+#, fuzzy
+msgid "New tab"
+msgstr "ਨਵੀਂ ਟੈਬ"
+
+#: ../src/guake/prefs.py:92
+msgid "Close tab"
+msgstr "ਟੈਬ ਬੰਦ ਕਰੋ"
+
+#: ../src/guake/prefs.py:94
+msgid "Rename current tab"
+msgstr "ਮੌਜੂਦਾ ਟੈਬ ਦਾ ਨਾਂ ਬਦਲੋ"
+
+#: ../src/guake/prefs.py:97
+msgid "Navigation"
+msgstr "ਨੈਵੀਗੇਸ਼ਨ"
+
+#: ../src/guake/prefs.py:99
+msgid "Go to previous tab"
+msgstr "ਪਿਛਲੀ ਟੈਬ ਉੱਤੇ ਜਾਓ"
+
+#: ../src/guake/prefs.py:101
+msgid "Go to next tab"
+msgstr "ਅਗਲੀ ਟੈਬ ਉੱਤੇ ਜਾਓ"
+
+#: ../src/guake/prefs.py:103
+#, fuzzy
+msgid "Move current tab left"
+msgstr "ਮੌਜੂਦਾ ਟੈਬ ਦਾ ਨਾਂ ਬਦਲੋ"
+
+#: ../src/guake/prefs.py:105
+#, fuzzy
+msgid "Move current tab right"
+msgstr "ਮੌਜੂਦਾ ਟੈਬ ਦਾ ਨਾਂ ਬਦਲੋ"
+
+#: ../src/guake/prefs.py:107
+#, fuzzy
+msgid "Go to first tab"
+msgstr "ਅਗਲੀ ਟੈਬ ਉੱਤੇ ਜਾਓ"
+
+#: ../src/guake/prefs.py:109
+#, fuzzy
+msgid "Go to second tab"
+msgstr "ਅਗਲੀ ਟੈਬ ਉੱਤੇ ਜਾਓ"
+
+#: ../src/guake/prefs.py:111
+#, fuzzy
+msgid "Go to third tab"
+msgstr "ਅਗਲੀ ਟੈਬ ਉੱਤੇ ਜਾਓ"
+
+#: ../src/guake/prefs.py:113
+#, fuzzy
+msgid "Go to fourth tab"
+msgstr "ਅਗਲੀ ਟੈਬ ਉੱਤੇ ਜਾਓ"
+
+#: ../src/guake/prefs.py:115
+#, fuzzy
+msgid "Go to fifth tab"
+msgstr "ਅਗਲੀ ਟੈਬ ਉੱਤੇ ਜਾਓ"
+
+#: ../src/guake/prefs.py:117
+#, fuzzy
+msgid "Go to sixth tab"
+msgstr "ਅਗਲੀ ਟੈਬ ਉੱਤੇ ਜਾਓ"
+
+#: ../src/guake/prefs.py:119
+#, fuzzy
+msgid "Go to seventh tab"
+msgstr "ਅਗਲੀ ਟੈਬ ਉੱਤੇ ਜਾਓ"
+
+#: ../src/guake/prefs.py:121
+#, fuzzy
+msgid "Go to eighth tab"
+msgstr "ਅਗਲੀ ਟੈਬ ਉੱਤੇ ਜਾਓ"
+
+#: ../src/guake/prefs.py:123
+#, fuzzy
+msgid "Go to ninth tab"
+msgstr "ਅਗਲੀ ਟੈਬ ਉੱਤੇ ਜਾਓ"
+
+#: ../src/guake/prefs.py:125
+#, fuzzy
+msgid "Go to tenth tab"
+msgstr "ਅਗਲੀ ਟੈਬ ਉੱਤੇ ਜਾਓ"
+
+#: ../src/guake/prefs.py:127
+#, fuzzy
+msgid "Go to last tab"
+msgstr "ਅਗਲੀ ਟੈਬ ਉੱਤੇ ਜਾਓ"
+
+#: ../src/guake/prefs.py:132
+msgid "Zoom out"
+msgstr ""
+
+#: ../src/guake/prefs.py:134
+msgid "Zoom in"
+msgstr ""
+
+#: ../src/guake/prefs.py:136
+msgid "Zoom in (alternative)"
+msgstr ""
+
+#: ../src/guake/prefs.py:138
+msgid "Increase height"
+msgstr ""
+
+#: ../src/guake/prefs.py:140
+msgid "Decrease height"
+msgstr ""
+
+#: ../src/guake/prefs.py:142
+#, fuzzy
+msgid "Increase transparency"
+msgstr "ਟਰਾਂਸਪਰੇਸੀ:"
+
+#: ../src/guake/prefs.py:144
+#, fuzzy
+msgid "Decrease transparency"
+msgstr "ਟਰਾਂਸਪਰੇਸੀ:"
+
+#: ../src/guake/prefs.py:146
+#, fuzzy
+msgid "Toggle transparency"
+msgstr "ਟਰਾਂਸਪਰੇਸੀ:"
+
+#: ../src/guake/prefs.py:149
+msgid "Clipboard"
+msgstr "ਕਲਿੱਪਬੋਰਡ"
+
+#: ../src/guake/prefs.py:151
+msgid "Copy text to clipboard"
+msgstr "ਟੈਕਸਟ ਕਲਿੱਪਬੋਰਡ 'ਚ ਕਾਪੀ ਕਰੋ"
+
+#: ../src/guake/prefs.py:153
+msgid "Paste text from clipboard"
+msgstr "ਕਲਿੱਪਬੋਰਡ 'ਚ ਟੈਕਸਟ ਚੇਪੋ"
+
+#: ../src/guake/prefs.py:156
+msgid "Extra features"
+msgstr ""
+
+#: ../src/guake/prefs.py:159
+msgid "Search select text on web"
+msgstr ""
+
+#: ../src/guake/prefs.py:519
 msgid "Action"
 msgstr "ਐਕਸ਼ਨ"
 
-#: ../src/guake/prefs.py:477
+#: ../src/guake/prefs.py:529
 msgid "Shortcut"
 msgstr "ਸ਼ਾਰਟਕੱਟ"
 
-#: ../src/guake/prefs.py:619 ../src/guake/prefs.py:665
+#: ../src/guake/prefs.py:678 ../src/guake/prefs.py:724
 msgid "Custom"
 msgstr ""
 
-#: ../src/guake/prefs.py:926
+#: ../src/guake/prefs.py:994
 msgid "JSON files"
 msgstr ""
 
-#: ../src/guake/prefs.py:1019
+#: ../src/guake/prefs.py:1088
 #, python-format
 msgid "The shortcut \"%s\" is already in use."
 msgstr "ਸ਼ਾਰਟਕੱਟ \"%s\" ਪਹਿਲਾਂ ਹੀ ਵਰਤੋਂ ਅਧੀਨ ਹੈ।"
 
-#: ../src/guake/prefs.py:1020
+#: ../src/guake/prefs.py:1089
 msgid "Error setting keybinding."
 msgstr "ਸੈਟਿੰਗ ਕੀ-ਬਾਈਡਿੰਗ ਦੌਰਾਨ ਗਲਤੀ।"
 
-#: ../src/guake/prefs.py:1032
+#: ../src/guake/prefs.py:1101
 #, python-format
 msgid ""
 "The shortcut \"%s\" cannot be used because it will become impossible to type "
@@ -800,33 +965,3 @@ msgstr ""
 
 #~ msgid "Rename the selected tab."
 #~ msgstr "ਚੁਣੀ ਟੈਬ ਦਾ ਨਾਂ ਬਦਲੋ।"
-
-#~ msgid "Toggle Guake visibility"
-#~ msgstr "ਗੁਆਕੀ ਦਿੱਖ ਬਦਲੋ"
-
-#~ msgid "Tab management"
-#~ msgstr "ਟੈਬ ਪਰਬੰਧ"
-
-#~ msgid "Close tab"
-#~ msgstr "ਟੈਬ ਬੰਦ ਕਰੋ"
-
-#~ msgid "Rename current tab"
-#~ msgstr "ਮੌਜੂਦਾ ਟੈਬ ਦਾ ਨਾਂ ਬਦਲੋ"
-
-#~ msgid "Navigation"
-#~ msgstr "ਨੈਵੀਗੇਸ਼ਨ"
-
-#~ msgid "Go to previous tab"
-#~ msgstr "ਪਿਛਲੀ ਟੈਬ ਉੱਤੇ ਜਾਓ"
-
-#~ msgid "Go to next tab"
-#~ msgstr "ਅਗਲੀ ਟੈਬ ਉੱਤੇ ਜਾਓ"
-
-#~ msgid "Clipboard"
-#~ msgstr "ਕਲਿੱਪਬੋਰਡ"
-
-#~ msgid "Copy text to clipboard"
-#~ msgstr "ਟੈਕਸਟ ਕਲਿੱਪਬੋਰਡ 'ਚ ਕਾਪੀ ਕਰੋ"
-
-#~ msgid "Paste text from clipboard"
-#~ msgstr "ਕਲਿੱਪਬੋਰਡ 'ਚ ਟੈਕਸਟ ਚੇਪੋ"

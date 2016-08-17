@@ -292,12 +292,23 @@ class Guake(SimpleGladeApp):
 
         evtbox.connect('scroll-event', scroll_manager)
 
+        self.abbreviate = False
+        self.was_deleted_tab = False
         def tabs_scrollbar_hide(hscrollbar):
                 self.get_widget('event-tabs').set_property('height_request', 10)
+                if self.abbreviate and self.was_deleted_tab:
+                    self.was_deleted_tab = False
+                    self.abbreviate = False
+                    self.recompute_tabs_titles()
         def tabs_scrollbar_show(hscrollbar):
                 self.get_widget('event-tabs').set_property('height_request', -1)
-        self.get_widget('tabs-scrolledwindow').get_hscrollbar().connect('hide', tabs_scrollbar_hide)
-        self.get_widget('tabs-scrolledwindow').get_hscrollbar().connect('show', tabs_scrollbar_show)
+                if self.client.get_bool(KEY("/general/abbreviate_tab_names")):
+                    self.abbreviate = True
+                    self.recompute_tabs_titles()
+
+        tabs_scrollbar = self.get_widget('tabs-scrolledwindow').get_hscrollbar()
+        tabs_scrollbar.connect('hide', tabs_scrollbar_hide)
+        tabs_scrollbar.connect('show', tabs_scrollbar_show)
 
         # Flag to prevent guake hide when window_losefocus is true and
         # user tries to use the context menu.
@@ -1076,6 +1087,7 @@ class Guake(SimpleGladeApp):
         self.client.notify(KEY('/general/history_size'))
         self.client.notify(KEY('/general/show_resizer'))
         self.client.notify(KEY('/general/use_vte_titles'))
+        self.client.notify(KEY('/general/abbreviate_tab_names'))
         self.client.notify(KEY('/general/max_tab_name_length'))
         self.client.notify(KEY('/general/quick_open_enable'))
         self.client.notify(KEY('/general/quick_open_command_line'))
@@ -1339,6 +1351,36 @@ class Guake(SimpleGladeApp):
             libutempter.utempter_remove_record(term.get_pty())
         self.delete_tab(self.notebook.page_num(widget), kill=False)
 
+    def recompute_tabs_titles(self):
+        """Updates labels on all tabs. This is required when `self.abbreviate`
+        changes
+        """
+        use_vte_titles = self.client.get_bool(KEY("/general/use_vte_titles"))
+        if not use_vte_titles:
+            return
+
+        for tab, vte in zip(self.tabs.get_children(), self.notebook.term_list):
+            tab.set_label(self.compute_tab_title(vte))
+
+    def compute_tab_title(self, vte):
+        """Abbreviate and cut vte terminal title when necessary
+        """
+        vte_title = vte.get_window_title() or _("Terminal")
+        try:
+            current_directory = vte.get_current_directory()
+            if self.abbreviate and current_directory in vte_title:
+                parts = current_directory.split('/')
+                parts = list(map(lambda s: s[:1], parts[:-1])) + [parts[-1]]
+                vte_title = vte_title.replace(current_directory, '/'.join(parts))
+        except OSError:
+            pass
+
+        max_name_length = self.client.get_int(KEY("/general/max_tab_name_length"))
+        if len(vte_title) > max_name_length and max_name_length is not 0:
+            vte_title = vte_title[:max_name_length]
+
+        return vte_title
+
     def on_terminal_title_changed(self, vte, box):
         use_them = self.client.get_bool(KEY("/general/use_vte_titles"))
         if not use_them:
@@ -1347,11 +1389,7 @@ class Guake(SimpleGladeApp):
         tab = self.tabs.get_children()[page]
         # if tab has been renamed by user, don't override.
         if not getattr(tab, 'custom_label_set', False):
-            vte_title = vte.get_window_title()
-            max_name_length = self.client.get_int(KEY("/general/max_tab_name_length"))
-            if len(vte_title) > max_name_length and max_name_length is not 0:
-                vte_title = vte_title[:max_name_length]
-            tab.set_label(vte_title)
+            tab.set_label(self.compute_tab_title(vte))
 
     def on_rename_current_tab_activate(self, *args):
         """Shows a dialog to rename the current tab.
@@ -1634,7 +1672,7 @@ class Guake(SimpleGladeApp):
         box.terminal.pid = pid
 
         # Adding a new radio button to the tabbar
-        label = box.terminal.get_window_title() or _("Terminal")
+        label = self.compute_tab_title(box.terminal)
         tabs = self.tabs.get_children()
         parent = tabs and tabs[0] or None
         bnt = gtk.RadioButton(group=parent, label=label, use_underline=False)
@@ -1764,6 +1802,9 @@ class Guake(SimpleGladeApp):
         self.tabs.reorder_child(self.tabs.get_children()[old_tab_pos], new_tab_pos)
         self.notebook.set_current_page(new_tab_pos)
 
+    def is_tabs_scrollbar_visible(self):
+        return self.get_widget('tabs-scrolledwindow').get_hscrollbar().get_visible()
+
     def delete_tab(self, pagepos, kill=True):
         """This function will destroy the notebook page, terminal and
         tab widgets and will call the function to kill interpreter
@@ -1785,6 +1826,12 @@ class Guake(SimpleGladeApp):
             self.add_tab()
         else:
             self.set_terminal_focus()
+
+        self.was_deleted_tab = True
+        abbreviate_tab_names = self.client.get_bool(KEY('/general/abbreviate_tab_names'))
+        if abbreviate_tab_names and not self.is_tabs_scrollbar_visible():
+            self.abbreviate = False
+            self.recompute_tabs_titles()
 
     def set_terminal_focus(self):
         """Grabs the focus on the current tab.
