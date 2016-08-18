@@ -11,7 +11,6 @@
         <property name="label" translatable="yes">Copy</property>
         <property name="visible">True</property>
         <property name="can_focus">False</property>
-        <property name="use_action_appearance">False</property>
         <property name="use_stock">False</property>
         <signal name="activate" handler="accel_copy_clipboard" swapped="no"/>
         <child internal-child="image">
@@ -29,7 +28,6 @@
         <property name="label" translatable="yes">Paste</property>
         <property name="visible">True</property>
         <property name="can_focus">False</property>
-        <property name="use_action_appearance">False</property>
         <property name="use_stock">False</property>
         <signal name="activate" handler="accel_paste_clipboard" swapped="no"/>
         <child internal-child="image">
@@ -53,7 +51,6 @@
         <property name="label" translatable="yes">Toggle Fullscreen</property>
         <property name="visible">True</property>
         <property name="can_focus">False</property>
-        <property name="use_action_appearance">False</property>
         <property name="use_stock">False</property>
         <signal name="activate" handler="accel_toggle_fullscreen" swapped="no"/>
         <child internal-child="image">
@@ -77,7 +74,6 @@
         <property name="label" translatable="yes">Save to File...</property>
         <property name="visible">True</property>
         <property name="can_focus">False</property>
-        <property name="use_action_appearance">False</property>
         <property name="use_stock">False</property>
         <signal name="activate" handler="save_tab" swapped="no"/>
         <child internal-child="image">
@@ -95,7 +91,6 @@
         <property name="label" translatable="yes">Reset terminal</property>
         <property name="visible">True</property>
         <property name="can_focus">False</property>
-        <property name="use_action_appearance">False</property>
         <property name="use_stock">False</property>
         <signal name="activate" handler="reset_terminal" swapped="no"/>
       </widget>
@@ -105,7 +100,6 @@
         <property name="label" translatable="yes">Find...</property>
         <property name="visible">True</property>
         <property name="can_focus">False</property>
-        <property name="use_action_appearance">False</property>
         <property name="use_stock">False</property>
         <signal name="activate" handler="find_tab" swapped="no"/>
         <child internal-child="image">
@@ -129,7 +123,6 @@
         <property name="label" translatable="yes">New Tab</property>
         <property name="visible">True</property>
         <property name="can_focus">False</property>
-        <property name="use_action_appearance">False</property>
         <property name="use_stock">False</property>
         <signal name="activate" handler="add_tab" swapped="no"/>
         <child internal-child="image">
@@ -147,7 +140,6 @@
         <property name="label" translatable="yes">Rename Tab</property>
         <property name="visible">True</property>
         <property name="can_focus">False</property>
-        <property name="use_action_appearance">False</property>
         <property name="use_stock">False</property>
         <signal name="activate" handler="accel_rename_current_tab" swapped="no"/>
         <child internal-child="image">
@@ -165,7 +157,6 @@
         <property name="label" translatable="yes">Close Tab</property>
         <property name="visible">True</property>
         <property name="can_focus">False</property>
-        <property name="use_action_appearance">False</property>
         <property name="use_stock">False</property>
         <signal name="activate" handler="close_tab" swapped="no"/>
         <child internal-child="image">
@@ -189,7 +180,6 @@
         <property name="label" translatable="yes">Open link...</property>
         <property name="visible">True</property>
         <property name="can_focus">False</property>
-        <property name="use_action_appearance">False</property>
         <property name="use_stock">False</property>
         <signal name="activate" handler="browse_on_web" swapped="no"/>
         <child internal-child="image">
@@ -207,7 +197,6 @@
         <property name="label" translatable="yes">Search on Web</property>
         <property name="visible">True</property>
         <property name="can_focus">False</property>
-        <property name="use_action_appearance">False</property>
         <property name="use_stock">False</property>
         <signal name="activate" handler="search_on_web" swapped="no"/>
         <child internal-child="image">
@@ -231,7 +220,6 @@
         <property name="label">gtk-preferences</property>
         <property name="visible">True</property>
         <property name="can_focus">False</property>
-        <property name="use_action_appearance">False</property>
         <property name="use_underline">True</property>
         <property name="use_stock">True</property>
         <signal name="activate" handler="show_prefs" swapped="no"/>
@@ -242,7 +230,6 @@
         <property name="label">gtk-about</property>
         <property name="visible">True</property>
         <property name="can_focus">False</property>
-        <property name="use_action_appearance">False</property>
         <property name="use_underline">True</property>
         <property name="use_stock">True</property>
         <signal name="activate" handler="show_about" swapped="no"/>
@@ -259,7 +246,6 @@
         <property name="label" translatable="yes">Quit</property>
         <property name="visible">True</property>
         <property name="can_focus">False</property>
-        <property name="use_action_appearance">False</property>
         <property name="use_stock">False</property>
         <signal name="activate" handler="accel_quit" swapped="no"/>
         <child internal-child="image">
@@ -281,7 +267,6 @@
         <property name="label" translatable="yes">New Tab</property>
         <property name="visible">True</property>
         <property name="can_focus">False</property>
-        <property name="use_action_appearance">False</property>
         <property name="use_stock">False</property>
         <signal name="activate" handler="add_tab" swapped="no"/>
         <child internal-child="image">
@@ -299,7 +284,6 @@
         <property name="label" translatable="yes">Rename</property>
         <property name="visible">True</property>
         <property name="can_focus">False</property>
-        <property name="use_action_appearance">False</property>
         <property name="use_stock">False</property>
         <signal name="activate" handler="on_rename_current_tab_activate" swapped="no"/>
         <child internal-child="image">
@@ -317,7 +301,6 @@
         <property name="label" translatable="yes">Close</property>
         <property name="visible">True</property>
         <property name="can_focus">False</property>
-        <property name="use_action_appearance">False</property>
         <property name="use_stock">False</property>
         <signal name="activate" handler="on_close_activate" swapped="no"/>
         <child internal-child="image">
@@ -339,7 +322,6 @@
         <property name="label">gtk-preferences</property>
         <property name="visible">True</property>
         <property name="can_focus">False</property>
-        <property name="use_action_appearance">False</property>
         <property name="use_underline">True</property>
         <property name="use_stock">True</property>
         <signal name="activate" handler="show_prefs" swapped="no"/>
@@ -350,7 +332,6 @@
         <property name="label">gtk-about</property>
         <property name="visible">True</property>
         <property name="can_focus">False</property>
-        <property name="use_action_appearance">False</property>
         <property name="use_underline">True</property>
         <property name="use_stock">True</property>
         <signal name="activate" handler="show_about" swapped="no"/>
@@ -367,7 +348,6 @@
         <property name="label" translatable="yes">Quit</property>
         <property name="visible">True</property>
         <property name="can_focus">False</property>
-        <property name="use_action_appearance">False</property>
         <property name="use_stock">False</property>
         <signal name="activate" handler="accel_quit" swapped="no"/>
         <child internal-child="image">
@@ -389,7 +369,6 @@
     <property name="skip_pager_hint">True</property>
     <property name="urgency_hint">True</property>
     <property name="decorated">False</property>
-    <property name="gravity">north</property>
     <child>
       <widget class="GtkVBox" id="mainframe">
         <property name="visible">True</property>
@@ -468,7 +447,6 @@
                 <property name="can_focus">True</property>
                 <property name="receives_default">True</property>
                 <property name="tooltip" translatable="yes">Add a new tab</property>
-                <property name="use_action_appearance">False</property>
                 <property name="relief">none</property>
                 <signal name="clicked" handler="add_tab" swapped="no"/>
                 <child>

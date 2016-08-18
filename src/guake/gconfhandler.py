@@ -147,6 +147,7 @@ class GConfHandler(object):
         """
         self.guake.set_final_window_rect()
         self.guake.set_tab_position()
+        self.guake.force_move_if_shown()
 
     def size_changed(self, client, connection_id, entry, data):
         """If the gconf var window_height or window_width are changed,
