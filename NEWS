@@ -1,5 +1,23 @@
-Version 0.8.6 (under development)
+Version 0.8.6
 =============
+
+Lot of bug fixes in this release. Thanks for all contributors !
+
+Please note that it is not tested on dual screen set ups.
+
+Bug fixes:
+* Terminal geometry fixes (#773 @koter84, #775 RedFlames, b36295 myself)
+* Fix on terminal kill (#636, @coderstephen)
+* Typo/Cosmetics (#761, @thuandt)
+* Fix the bottom of tab buttons being cut off in Gnome (#786 @lopsided98)
+* Fix fullscreen follow mouse (#774 @koter84)
+* Option to shorten VTE tab name (#798 @versusvoid)
+* Updated translations:
+  - french (b071b4, myself)
+  - russian (#787 @vantu5z),
+  - corean (#766 @nessunkim),
+  - polish (#799 @piotrdrag)
+
 
 
 Version 0.8.5
