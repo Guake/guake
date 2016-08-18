@@ -166,8 +166,9 @@ class PrefsCallbacks(object):
     """Holds callbacks that will be used in the PrefsDialg class.
     """
 
-    def __init__(self):
+    def __init__(self, prefDlg):
         self.client = gconf.client_get_default()
+        self.prefDlg = prefDlg
 
     # general tab
 
@@ -269,6 +270,7 @@ class PrefsCallbacks(object):
         """
         val = int(spin.get_value())
         self.client.set_int(KEY('/general/max_tab_name_length'), val)
+        self.prefDlg.update_vte_subwidgets_states()
 
     def on_mouse_display_toggled(self, chk):
         """Set the 'appear on mouse display' preference in gconf. This
@@ -444,7 +446,7 @@ class PrefsDialog(SimpleGladeApp):
         """
         super(PrefsDialog, self).__init__(gladefile('prefs.glade'),
                                           root='config-window')
-        self.add_callbacks(PrefsCallbacks())
+        self.add_callbacks(PrefsCallbacks(self))
 
         self.client = gconf.client_get_default()
 
@@ -587,7 +589,16 @@ class PrefsDialog(SimpleGladeApp):
     def toggle_use_vte_titles(self, chk):
         """When vte titles aren't used, there is nothing to abbreviate
         """
-        self.get_widget('abbreviate_tab_names').set_sensitive(chk.get_active())
+        self.update_vte_subwidgets_states()
+
+    def update_vte_subwidgets_states(self):
+        do_use_vte_titles = self.get_widget('use_vte_titles').get_active()
+        max_tab_name_length_wdg = self.get_widget('max_tab_name_length')
+        max_tab_name_length_wdg.set_sensitive(do_use_vte_titles)
+        max_tab_name_length = max_tab_name_length_wdg.get_value()
+        self.get_widget('lbl_max_tab_name_length').set_sensitive(do_use_vte_titles)
+        self.get_widget('abbreviate_tab_names').set_sensitive(do_use_vte_titles and
+                                                              max_tab_name_length != 0)
 
     def clear_background_image(self, btn):
         """Unset the gconf variable that holds the name of the
@@ -775,6 +786,8 @@ class PrefsDialog(SimpleGladeApp):
         # max tab name length
         value = self.client.get_int(KEY('/general/max_tab_name_length'))
         self.get_widget('max_tab_name_length').set_value(value)
+
+        self.update_vte_subwidgets_states()
 
         value = self.client.get_float(KEY('/general/window_height_f'))
         if not value:

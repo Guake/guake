@@ -533,23 +533,6 @@ Always</property>
                                       </packing>
                                     </child>
                                     <child>
-                                      <widget class="GtkCheckButton" id="abbreviate_tab_names">
-                                        <property name="label" translatable="yes">Abbreviate directories in tab names</property>
-                                        <property name="visible">True</property>
-                                        <property name="can_focus">True</property>
-                                        <property name="receives_default">False</property>
-                                        <property name="use_underline">True</property>
-                                        <property name="active">True</property>
-                                        <property name="draw_indicator">True</property>
-                                        <signal name="toggled" handler="on_abbreviate_tab_names_toggled" swapped="no"/>
-                                      </widget>
-                                      <packing>
-                                        <property name="expand">False</property>
-                                        <property name="fill">False</property>
-                                        <property name="position">2</property>
-                                      </packing>
-                                    </child>
-                                    <child>
                                       <widget class="GtkHBox" id="hbox_max_tab_name_length">
                                         <property name="visible">True</property>
                                         <property name="can_focus">False</property>
@@ -560,6 +543,7 @@ Always</property>
                                             <property name="xalign">0</property>
                                             <property name="label" translatable="yes">Max tab name length:</property>
                                             <property name="use_markup">True</property>
+                                        <property name="tooltip" translatable="yes">0 means no size limit</property>
                                           </widget>
                                           <packing>
                                             <property name="expand">False</property>
@@ -592,6 +576,23 @@ Always</property>
                                         <property name="expand">True</property>
                                         <property name="fill">True</property>
                                         <property name="position">3</property>
+                                      </packing>
+                                    </child>
+                                    <child>
+                                      <widget class="GtkCheckButton" id="abbreviate_tab_names">
+                                        <property name="label" translatable="yes">Abbreviate directories in tab names</property>
+                                        <property name="visible">True</property>
+                                        <property name="can_focus">True</property>
+                                        <property name="receives_default">False</property>
+                                        <property name="use_underline">True</property>
+                                        <property name="active">True</property>
+                                        <property name="draw_indicator">True</property>
+                                        <signal name="toggled" handler="on_abbreviate_tab_names_toggled" swapped="no"/>
+                                      </widget>
+                                      <packing>
+                                        <property name="expand">False</property>
+                                        <property name="fill">False</property>
+                                        <property name="position">2</property>
                                       </packing>
                                     </child>
                                     <child>

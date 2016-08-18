@@ -1376,12 +1376,13 @@ class Guake(SimpleGladeApp):
                 vte_title = vte_title.replace(current_directory, '/'.join(parts))
         except OSError:
             pass
+        return self._shorten_tab_title(vte_title)
 
+    def _shorten_tab_title(self, text):
         max_name_length = self.client.get_int(KEY("/general/max_tab_name_length"))
-        if len(vte_title) > max_name_length and max_name_length is not 0:
-            vte_title = vte_title[:max_name_length]
-
-        return vte_title
+        if max_name_length != 0 and len(text) > max_name_length:
+            text = "..." + text[-max_name_length:]
+        return text
 
     def on_terminal_title_changed(self, vte, box):
         use_them = self.client.get_bool(KEY("/general/use_vte_titles"))
@@ -1425,10 +1426,7 @@ class Guake(SimpleGladeApp):
         self.preventHide = False
 
         if response == gtk.RESPONSE_ACCEPT:
-            max_name_length = self.client.get_int(KEY("/general/max_tab_name_length"))
-            new_text = entry.get_text()
-            if len(new_text) > max_name_length and max_name_length is not 0:
-                new_text = new_text[:max_name_length]
+            new_text = self._shorten_tab_title(new_text)
 
             self.selected_tab.set_label(new_text)
             # if user sets empty name, consider he wants default behavior.
