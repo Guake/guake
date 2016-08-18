@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Guake 0.4.5\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-08-17 21:41+0000\n"
+"POT-Creation-Date: 2016-08-18 17:32+0200\n"
 "PO-Revision-Date: 2016-06-06 23:12+0200\n"
 "Last-Translator: Frank Dietrich <bits_n_bytes@gmx.de>\n"
 "Language-Team: guake@lists.guake.org\n"
@@ -268,134 +268,138 @@ msgid "Use VTE titles for tab names"
 msgstr "VTE-Titel als Reiternamen benutzen"
 
 #: ../data/prefs.glade.h:33
-msgid "Abbreviate directories in tab names"
-msgstr ""
-
-#: ../data/prefs.glade.h:34
 msgid "Max tab name length:"
 msgstr "Max. Tab-Namen-Länge:"
 
+#: ../data/prefs.glade.h:34
+msgid "0 means no size limit"
+msgstr ""
+
 #: ../data/prefs.glade.h:35
+msgid "Abbreviate directories in tab names"
+msgstr ""
+
+#: ../data/prefs.glade.h:36
 msgid "Hide on lose focus"
 msgstr "Verstecken, wenn der Fokus verloren geht"
 
-#: ../data/prefs.glade.h:36
+#: ../data/prefs.glade.h:37
 msgid "Show tab bar"
 msgstr "Reiterleiste anzeigen"
 
-#: ../data/prefs.glade.h:37
+#: ../data/prefs.glade.h:38
 msgid "Start fullscreen"
 msgstr "Vollbild starten"
 
-#: ../data/prefs.glade.h:38
+#: ../data/prefs.glade.h:39
 msgid "<b>Main Window</b>"
 msgstr "<b>Hauptfenster</b>"
 
-#: ../data/prefs.glade.h:39
+#: ../data/prefs.glade.h:40
 msgid "Left"
 msgstr "Links"
 
-#: ../data/prefs.glade.h:40
+#: ../data/prefs.glade.h:41
 msgid "Center"
 msgstr "Mittig"
 
-#: ../data/prefs.glade.h:41
+#: ../data/prefs.glade.h:42
 msgid "Right"
 msgstr "Rechts"
 
-#: ../data/prefs.glade.h:42
+#: ../data/prefs.glade.h:43
 msgid "<b>Main Window Horizontal Alignment</b>"
 msgstr "<b>Horizontale Ausrichtung des Hauptfensters</b>"
 
-#: ../data/prefs.glade.h:43
+#: ../data/prefs.glade.h:44
 msgid "<b>Main Window Height</b>"
 msgstr "<b>Höhe des Hauptfensters</b>"
 
-#: ../data/prefs.glade.h:44
+#: ../data/prefs.glade.h:45
 msgid "<b>Main Window Width</b>"
 msgstr "<b>Breite des Hauptfensters</b>"
 
-#: ../data/prefs.glade.h:45
+#: ../data/prefs.glade.h:46
 msgid "Custom command file path: "
 msgstr "Benutzerdefinierter Befehl"
 
-#: ../data/prefs.glade.h:46
+#: ../data/prefs.glade.h:47
 msgid "Please select a json file"
 msgstr "Bitte wählen Sie eine JSON-Datei aus"
 
-#: ../data/prefs.glade.h:47 ../src/guake/prefs.py:75
+#: ../data/prefs.glade.h:48 ../src/guake/prefs.py:75
 msgid "General"
 msgstr "Allgemein"
 
-#: ../data/prefs.glade.h:48
+#: ../data/prefs.glade.h:49
 msgid "Default interpreter:"
 msgstr "Standard-Interpreter:"
 
-#: ../data/prefs.glade.h:49
+#: ../data/prefs.glade.h:50
 msgid "_Run command as a login shell"
 msgstr "Befehl als Loginshell ausführen"
 
-#: ../data/prefs.glade.h:50
+#: ../data/prefs.glade.h:51
 msgid "_Open new tab in current directory"
 msgstr "_Neuen Reiter in aktuellem Verzeichnis öffnen"
 
-#: ../data/prefs.glade.h:51
+#: ../data/prefs.glade.h:52
 msgid "<b>Shell</b>"
 msgstr "<b>Shell</b>"
 
-#: ../data/prefs.glade.h:52
+#: ../data/prefs.glade.h:53
 msgid "Shell"
 msgstr "Shell"
 
-#: ../data/prefs.glade.h:53
+#: ../data/prefs.glade.h:54
 msgid "Show scrollbar"
 msgstr "Scroll-Balken anzeigen"
 
-#: ../data/prefs.glade.h:54
+#: ../data/prefs.glade.h:55
 msgid "Scrollback lines:"
 msgstr "Zurückscrollbare Zeilen:"
 
-#: ../data/prefs.glade.h:55
+#: ../data/prefs.glade.h:56
 msgid "On output"
 msgstr "Bei Ausgabe"
 
-#: ../data/prefs.glade.h:56
+#: ../data/prefs.glade.h:57
 msgid "On key stroke"
 msgstr "Auf Tastendruck"
 
-#: ../data/prefs.glade.h:57
+#: ../data/prefs.glade.h:58
 msgid "<b>Scroll</b>"
 msgstr "<b>Bildlauf</b>"
 
-#: ../data/prefs.glade.h:58
+#: ../data/prefs.glade.h:59
 msgid "Scrolling"
 msgstr "Bildlauf"
 
-#: ../data/prefs.glade.h:59
+#: ../data/prefs.glade.h:60
 msgid "Use the system fixed width font"
 msgstr "Die dicktengleiche Systemschrift benutzen"
 
-#: ../data/prefs.glade.h:60
+#: ../data/prefs.glade.h:61
 msgid "Font:"
 msgstr "Schriftart:"
 
-#: ../data/prefs.glade.h:61
+#: ../data/prefs.glade.h:62
 msgid "Choose some font"
 msgstr "Schrift auswählen"
 
-#: ../data/prefs.glade.h:62
+#: ../data/prefs.glade.h:63
 msgid "Text color:"
 msgstr "Textfarbe:"
 
-#: ../data/prefs.glade.h:63
+#: ../data/prefs.glade.h:64
 msgid "Background color:"
 msgstr "Hintergrundfarbe:"
 
-#: ../data/prefs.glade.h:64
+#: ../data/prefs.glade.h:65
 msgid "Cursor shape:"
 msgstr "Form des Text-Cursors:"
 
-#: ../data/prefs.glade.h:65
+#: ../data/prefs.glade.h:66
 msgid ""
 "Block\n"
 "I-Beam\n"
@@ -405,7 +409,7 @@ msgstr ""
 "I-Strich\n"
 "Unterstreichen"
 
-#: ../data/prefs.glade.h:68
+#: ../data/prefs.glade.h:69
 msgid ""
 "Follow GTK+ setting\n"
 "Blink on\n"
@@ -415,60 +419,60 @@ msgstr ""
 "Blinken an\n"
 "Blinken aus"
 
-#: ../data/prefs.glade.h:71
+#: ../data/prefs.glade.h:72
 msgid "Cursor blink mode:"
 msgstr "Blinkmodus des Zeigers:"
 
-#: ../data/prefs.glade.h:72
+#: ../data/prefs.glade.h:73
 msgid "Allow bold font"
 msgstr "Schriftstärke fett erlauben"
 
-#: ../data/prefs.glade.h:73
+#: ../data/prefs.glade.h:74
 msgid "<b>Palette</b>"
 msgstr "<b>Farbpalette</b>"
 
-#: ../data/prefs.glade.h:74
+#: ../data/prefs.glade.h:75
 msgid "Built-in schemes:"
 msgstr "Eingebaute Schemata:"
 
 # changed according to translation as present in gnome-settings
-#: ../data/prefs.glade.h:75
+#: ../data/prefs.glade.h:76
 msgid "Color palette:"
 msgstr "Farbpalette:"
 
-#: ../data/prefs.glade.h:76
+#: ../data/prefs.glade.h:77
 msgid "Font color"
 msgstr "Schriftfarbe"
 
-#: ../data/prefs.glade.h:77
+#: ../data/prefs.glade.h:78
 msgid "Background color"
 msgstr "<b>Hintergrundfarbe</b>"
 
-#: ../data/prefs.glade.h:78
+#: ../data/prefs.glade.h:79
 msgid "Use font and background color from the palette"
 msgstr "Schriftart und Hintergrundfarbe der Farbpalette benutzen"
 
-#: ../data/prefs.glade.h:79
+#: ../data/prefs.glade.h:80
 msgid "Demo:"
 msgstr "Demo:"
 
-#: ../data/prefs.glade.h:80
+#: ../data/prefs.glade.h:81
 msgid "<b>Effects</b>"
 msgstr "<b>Effekte</b>"
 
-#: ../data/prefs.glade.h:81
+#: ../data/prefs.glade.h:82
 msgid "Transparency:"
 msgstr "Transparenz:"
 
-#: ../data/prefs.glade.h:82
+#: ../data/prefs.glade.h:83
 msgid "Background image:"
 msgstr "Hintergrundbild:"
 
-#: ../data/prefs.glade.h:83 ../src/guake/prefs.py:130
+#: ../data/prefs.glade.h:84 ../src/guake/prefs.py:130
 msgid "Appearance"
 msgstr "Aussehen"
 
-#: ../data/prefs.glade.h:84
+#: ../data/prefs.glade.h:85
 msgid ""
 "<small>Quick open is a feature allowing you to open a file directly into "
 "your favorite text editor by clicking on its filename when it appears in "
@@ -480,16 +484,16 @@ msgstr ""
 "im Terminal erscheint. In der Liste der verfügbaren Text-Muster finden sich "
 "Beispiele, wie der Dateiname aus dem Terminal extrahiert werden kann.</small>"
 
-#: ../data/prefs.glade.h:85
+#: ../data/prefs.glade.h:86
 msgid "Enable Quick Open when Ctrl+clicking on a filename in the terminal"
 msgstr ""
 "Schnell-Öffnen bei Strg+Klick auf einen Dateinamen im Terminal aktivieren"
 
-#: ../data/prefs.glade.h:86
+#: ../data/prefs.glade.h:87
 msgid "Editor command line:"
 msgstr "Kommandozeilen"
 
-#: ../data/prefs.glade.h:88
+#: ../data/prefs.glade.h:89
 #, no-c-format
 msgid ""
 "<small><i>Use the following elements in the open editor command line:\n"
@@ -510,11 +514,11 @@ msgstr ""
 "Zum Beispiel benutze sublime mit: <b>subl %(file_path)s:%(line_number)s</b>\n"
 "</i></small>"
 
-#: ../data/prefs.glade.h:94
+#: ../data/prefs.glade.h:95
 msgid "Quick open in current terminal"
 msgstr "Schnell-Öffnen im Terminal"
 
-#: ../data/prefs.glade.h:95
+#: ../data/prefs.glade.h:96
 msgid ""
 "Here is the list of supported patterns: (to add your own, please contact the "
 "Guake's authors)"
@@ -522,15 +526,15 @@ msgstr ""
 "Hier ist eine Liste der unterstützen Muster: (um Eigene hinzuzufügen, "
 "kontaktiere bitte die Autoren von Guake)"
 
-#: ../data/prefs.glade.h:96
+#: ../data/prefs.glade.h:97
 msgid "<b>Quick Open</b>"
 msgstr "<b>Schnell öffnen</b>"
 
-#: ../data/prefs.glade.h:97
+#: ../data/prefs.glade.h:98
 msgid "Quick Open"
 msgstr "Schnell öffnen"
 
-#: ../data/prefs.glade.h:98
+#: ../data/prefs.glade.h:99
 msgid ""
 "To change a shortcut simply click on its name.\n"
 "To disable a shortcut, press the \"Backspace\" key."
@@ -538,11 +542,11 @@ msgstr ""
 "Um eine Tastenkombination zu ändern, klicke auf dessen Namen.\n"
 "Um eine Tastenkombination abzuschalten, drücke die \"Rücktaste\"."
 
-#: ../data/prefs.glade.h:100
+#: ../data/prefs.glade.h:101
 msgid "Keyboard shortcuts"
 msgstr "Tastenkombination"
 
-#: ../data/prefs.glade.h:101
+#: ../data/prefs.glade.h:102
 msgid ""
 "<small><i><b>Note:</b> These options may cause some applications to behave "
 "incorrectly.  They are only here to allow you to work around certain "
@@ -554,7 +558,7 @@ msgstr ""
 "dazu verschiedene Programme und Systeme zu unterstützen, die ein anderes "
 "Terminalverhalten besitzen\" </i></small>"
 
-#: ../data/prefs.glade.h:102
+#: ../data/prefs.glade.h:103
 msgid ""
 "ASCII DEL\n"
 "Escape sequence\n"
@@ -564,36 +568,36 @@ msgstr ""
 "Escape Sequenz\n"
 "Strg-H"
 
-#: ../data/prefs.glade.h:105
+#: ../data/prefs.glade.h:106
 msgid "_Backspace key generates:"
 msgstr "_Rückschritttaste bewirkt:"
 
-#: ../data/prefs.glade.h:106
+#: ../data/prefs.glade.h:107
 msgid "_Delete key generates:"
 msgstr "_Entfernen-Taste bewirkt:"
 
-#: ../data/prefs.glade.h:107
+#: ../data/prefs.glade.h:108
 msgid "_Reset Compatibility Options to Defaults"
 msgstr "_Zurücksetzen der Kompatibilitätsoptionen "
 
-#: ../data/prefs.glade.h:108
+#: ../data/prefs.glade.h:109
 msgid "<b>Keyboard compatibility</b>"
 msgstr "<b>Tastatur Kompatibilität </b>"
 
-#: ../data/prefs.glade.h:109
+#: ../data/prefs.glade.h:110
 msgid "Compatibility"
 msgstr "Kompatibilität"
 
-#: ../src/guake/about.py:47 ../src/guake/gconfhandler.py:435
-#: ../src/guake/guake_app.py:181 ../src/guake/guake_app.py:376
+#: ../src/guake/about.py:47 ../src/guake/gconfhandler.py:439
+#: ../src/guake/guake_app.py:181 ../src/guake/guake_app.py:378
 msgid "Guake Terminal"
 msgstr "Guake-Terminal"
 
-#: ../src/guake/gconfhandler.py:368 ../src/guake/guake_app.py:1363
+#: ../src/guake/gconfhandler.py:369 ../src/guake/guake_app.py:1386
 msgid "Terminal"
 msgstr "Terminal"
 
-#: ../src/guake/gconfhandler.py:436
+#: ../src/guake/gconfhandler.py:440
 #, python-format
 msgid ""
 "A problem happened when binding <b>%s</b> key.\n"
@@ -645,7 +649,7 @@ msgstr "guake-tray"
 msgid "Show"
 msgstr "Zeigen"
 
-#: ../src/guake/guake_app.py:377
+#: ../src/guake/guake_app.py:379
 #, python-format
 msgid ""
 "Guake is now running,\n"
@@ -654,53 +658,53 @@ msgstr ""
 "Guake läuft bereits,\n"
 "bitte drücken Sie <b>%s</b> um es zu benutzen."
 
-#: ../src/guake/guake_app.py:665
+#: ../src/guake/guake_app.py:670
 #, python-format
 msgid "Search on Web: '%s'"
 msgstr "Im Web suchen: '%s'"
 
-#: ../src/guake/guake_app.py:670
+#: ../src/guake/guake_app.py:675
 msgid "Search on Web (no selection)"
 msgstr "Im Web suchen (keine Auswahl)"
 
-#: ../src/guake/guake_app.py:678
+#: ../src/guake/guake_app.py:683
 #, fuzzy
 msgid "Open Link: '{}...'"
 msgstr "Link öffnen: {}"
 
-#: ../src/guake/guake_app.py:680
+#: ../src/guake/guake_app.py:685
 msgid "Open Link: {}"
 msgstr "Link öffnen: {}"
 
-#: ../src/guake/guake_app.py:683
+#: ../src/guake/guake_app.py:688
 msgid "Open Link..."
 msgstr "Link öffnen..."
 
-#: ../src/guake/guake_app.py:1402
+#: ../src/guake/guake_app.py:1425
 msgid "Rename tab"
 msgstr "Reiter umbenennen"
 
-#: ../src/guake/guake_app.py:1716
+#: ../src/guake/guake_app.py:1736
 msgid "Save to..."
 msgstr "Speichern unter..."
 
-#: ../src/guake/guake_app.py:1723 ../src/guake/prefs.py:998
+#: ../src/guake/guake_app.py:1743 ../src/guake/prefs.py:973
 msgid "All files"
 msgstr "Alle Dateien"
 
-#: ../src/guake/guake_app.py:1728
+#: ../src/guake/guake_app.py:1748
 msgid "Text and Logs"
 msgstr "Text und Protokolle"
 
-#: ../src/guake/guake_app.py:1746
+#: ../src/guake/guake_app.py:1766
 msgid "Find"
 msgstr "Suche"
 
-#: ../src/guake/guake_app.py:1748
+#: ../src/guake/guake_app.py:1768
 msgid "Forward"
 msgstr "Vorwärts"
 
-#: ../src/guake/guake_app.py:1749
+#: ../src/guake/guake_app.py:1769
 msgid "Backward"
 msgstr "Zurück"
 
@@ -956,32 +960,32 @@ msgstr ""
 msgid "Search select text on web"
 msgstr "Im Web suchen"
 
-#: ../src/guake/prefs.py:519
+#: ../src/guake/prefs.py:481
 msgid "Action"
 msgstr "Aktion"
 
-#: ../src/guake/prefs.py:529
+#: ../src/guake/prefs.py:491
 msgid "Shortcut"
 msgstr "Kürzel"
 
-#: ../src/guake/prefs.py:678 ../src/guake/prefs.py:724
+#: ../src/guake/prefs.py:651 ../src/guake/prefs.py:697
 msgid "Custom"
 msgstr "Angepasst"
 
-#: ../src/guake/prefs.py:994
+#: ../src/guake/prefs.py:969
 msgid "JSON files"
 msgstr "JSON-Dateien"
 
-#: ../src/guake/prefs.py:1088
+#: ../src/guake/prefs.py:1063
 #, python-format
 msgid "The shortcut \"%s\" is already in use."
 msgstr "Die Tastenkombination \"%s\" ist bereits belegt."
 
-#: ../src/guake/prefs.py:1089
+#: ../src/guake/prefs.py:1064
 msgid "Error setting keybinding."
 msgstr "Fehler beim Setzen der Tastenkombination"
 
-#: ../src/guake/prefs.py:1101
+#: ../src/guake/prefs.py:1076
 #, python-format
 msgid ""
 "The shortcut \"%s\" cannot be used because it will become impossible to type "
