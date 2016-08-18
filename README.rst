@@ -7,6 +7,7 @@ Guake README file
 .. |travis-badge| image:: https://travis-ci.org/Guake/guake.png?branch=master
 .. _travis-badge: https://travis-ci.org/Guake/guake
 
+
 Introduction
 ~~~~~~~~~~~~
 
@@ -96,6 +97,7 @@ the terminal that launched Guake!
 
  * pip install colorlog
 
+
 Installation
 ~~~~~~~~~~~~
 
@@ -170,7 +172,7 @@ and installed by running::
 For compiling from these sources, please install the following packages (for Python 2)::
 
     gnome-common python2-gconf python2-xdg
-  
+
 To run Guake with Python 2, use the trick described in `Arch Wiki <https://wiki.archlinux.org/index.php/Python#Dealing_with_version_problem_in_build_scripts>`_ and put this as your ``/usr/local/bin/python`` (changing ``/path/to/guake`` into a real path where you cloned the repository)::
 
     #!/bin/bash
@@ -179,12 +181,11 @@ To run Guake with Python 2, use the trick described in `Arch Wiki <https://wiki.
         exec python2 "$@"
         ;;
     esac
-    
+
     exec python3 "$@"
 
 Make it executable with ``chmod +x /usr/local/bin/python``.
-  
-  
+
 
 Compilation
 ~~~~~~~~~~~
@@ -213,6 +214,7 @@ To run Guake as an unprivileged user for testing purposes, after `make` continue
 
    $ ./dev.sh
 
+
 System-wide installation
 ~~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -232,6 +234,7 @@ If it is not enought you can install the gconf schemas file by hand by doing the
     $ GCONF_CONFIG_SOURCE="" gconftool-2 --makefile-install-rule data/guake.schemas
 
 For more install details, please read the ``INSTALL`` file.
+
 
 Development
 ~~~~~~~~~~~
