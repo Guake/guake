@@ -365,9 +365,13 @@ class GConfHandler(object):
             max_name_length = None
 
         vte_titles_on = client.get_bool(KEY("/general/use_vte_titles"))
-        tab_name = self.guake.notebook.get_current_terminal(
-        ).get_window_title() if vte_titles_on else _("Terminal")
-        for tab in self.guake.tabs.get_children():
+        for tab_index, tab in enumerate(self.guake.tabs.get_children()):
+            tab_terminal = self.guake.notebook.get_terminals_for_tab(tab_index)
+            if vte_titles_on and tab_terminal:
+                # take the first terminal to extract the title
+                tab_name = tab_terminal[0].get_window_title()
+            else:
+                tab_name = _("Terminal")
             if not getattr(tab, 'custom_label_set', False):
                 tab.set_label(tab_name[:max_name_length])
             else:
