@@ -382,6 +382,7 @@ class GConfHandler(object):
         self.guake.abbreviate = abbreviate_tab_names and self.guake.is_tabs_scrollbar_visible()
         self.guake.recompute_tabs_titles()
 
+
 class GConfKeyHandler(object):
 
     """Handles changes in keyboard shortcuts.
