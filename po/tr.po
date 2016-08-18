@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Guake 0.4.5\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-12-01 16:49+0100\n"
+"POT-Creation-Date: 2016-08-17 21:41+0000\n"
 "PO-Revision-Date: 2012-07-30 08:02+0000\n"
 "Last-Translator: Berk Demirkır <bdemirkir@gmail.com>\n"
 "Language-Team: Turkish (http://www.transifex.com/projects/p/guake/language/"
@@ -100,7 +100,7 @@ msgstr "Kopyala"
 msgid "Paste"
 msgstr "Yapıştır"
 
-#: ../data/guake.glade.h:3
+#: ../data/guake.glade.h:3 ../src/guake/prefs.py:79
 msgid "Toggle Fullscreen"
 msgstr "Tam ekran moduna gir veya çık"
 
@@ -108,7 +108,7 @@ msgstr "Tam ekran moduna gir veya çık"
 msgid "Save to File..."
 msgstr ""
 
-#: ../data/guake.glade.h:5
+#: ../data/guake.glade.h:5 ../src/guake/prefs.py:85
 #, fuzzy
 msgid "Reset terminal"
 msgstr "Guake Uçbirim"
@@ -139,7 +139,7 @@ msgstr ""
 msgid "Search on Web"
 msgstr ""
 
-#: ../data/guake.glade.h:12
+#: ../data/guake.glade.h:12 ../src/guake/prefs.py:83
 msgid "Quit"
 msgstr "Çıkış"
 
@@ -264,202 +264,206 @@ msgid "Use VTE titles for tab names"
 msgstr ""
 
 #: ../data/prefs.glade.h:33
-msgid "Max tab name length:"
+msgid "Abbreviate directories in tab names"
 msgstr ""
 
 #: ../data/prefs.glade.h:34
+msgid "Max tab name length:"
+msgstr ""
+
+#: ../data/prefs.glade.h:35
 msgid "Hide on lose focus"
 msgstr "Focus kaybedildiğinde gizle"
 
-#: ../data/prefs.glade.h:35
+#: ../data/prefs.glade.h:36
 msgid "Show tab bar"
 msgstr "Sekme çubuğunu görüntüle"
 
-#: ../data/prefs.glade.h:36
+#: ../data/prefs.glade.h:37
 #, fuzzy
 msgid "Start fullscreen"
 msgstr "Tam ekran moduna gir veya çık"
 
-#: ../data/prefs.glade.h:37
+#: ../data/prefs.glade.h:38
 msgid "<b>Main Window</b>"
 msgstr "<b>Uçbirim Penceresi</b>"
 
-#: ../data/prefs.glade.h:38
+#: ../data/prefs.glade.h:39
 msgid "Left"
 msgstr ""
 
-#: ../data/prefs.glade.h:39
+#: ../data/prefs.glade.h:40
 msgid "Center"
 msgstr ""
 
-#: ../data/prefs.glade.h:40
+#: ../data/prefs.glade.h:41
 msgid "Right"
 msgstr ""
 
-#: ../data/prefs.glade.h:41
+#: ../data/prefs.glade.h:42
 #, fuzzy
 msgid "<b>Main Window Horizontal Alignment</b>"
 msgstr "<b>Uçbirim Pencere yüksekliği</b>"
 
-#: ../data/prefs.glade.h:42
+#: ../data/prefs.glade.h:43
 #, fuzzy
 msgid "<b>Main Window Height</b>"
 msgstr "<b>Uçbirim Pencere yüksekliği</b>"
 
-#: ../data/prefs.glade.h:43
+#: ../data/prefs.glade.h:44
 #, fuzzy
 msgid "<b>Main Window Width</b>"
 msgstr "<b>Uçbirim Pencere yüksekliği</b>"
 
-#: ../data/prefs.glade.h:44
+#: ../data/prefs.glade.h:45
 msgid "Custom command file path: "
 msgstr ""
 
-#: ../data/prefs.glade.h:45
+#: ../data/prefs.glade.h:46
 msgid "Please select a json file"
 msgstr ""
 
-#: ../data/prefs.glade.h:46
+#: ../data/prefs.glade.h:47 ../src/guake/prefs.py:75
 msgid "General"
 msgstr "Genel"
 
-#: ../data/prefs.glade.h:47
+#: ../data/prefs.glade.h:48
 msgid "Default interpreter:"
 msgstr "Varsayılan yorumlayıcı:"
 
-#: ../data/prefs.glade.h:48
+#: ../data/prefs.glade.h:49
 msgid "_Run command as a login shell"
 msgstr "Komutu gi_riş kabuğu olarak çalıştır."
 
-#: ../data/prefs.glade.h:49
+#: ../data/prefs.glade.h:50
 msgid "_Open new tab in current directory"
 msgstr "_Yeni sekmeyi klasörde aç"
 
-#: ../data/prefs.glade.h:50
+#: ../data/prefs.glade.h:51
 msgid "<b>Shell</b>"
 msgstr "<b>Kabuk</b>"
 
-#: ../data/prefs.glade.h:51
+#: ../data/prefs.glade.h:52
 msgid "Shell"
 msgstr ""
 
-#: ../data/prefs.glade.h:52
+#: ../data/prefs.glade.h:53
 msgid "Show scrollbar"
 msgstr "Kaydırma çubuğunu görüntüle"
 
-#: ../data/prefs.glade.h:53
+#: ../data/prefs.glade.h:54
 msgid "Scrollback lines:"
 msgstr "Satır hafızası:"
 
-#: ../data/prefs.glade.h:54
+#: ../data/prefs.glade.h:55
 msgid "On output"
 msgstr "Çıktı üretildiğinde"
 
-#: ../data/prefs.glade.h:55
+#: ../data/prefs.glade.h:56
 msgid "On key stroke"
 msgstr "Tuşa basıldığında"
 
-#: ../data/prefs.glade.h:56
+#: ../data/prefs.glade.h:57
 msgid "<b>Scroll</b>"
 msgstr "<b>Ekran Kaydırma</b>"
 
-#: ../data/prefs.glade.h:57
+#: ../data/prefs.glade.h:58
 msgid "Scrolling"
 msgstr "Kaydırma"
 
-#: ../data/prefs.glade.h:58
+#: ../data/prefs.glade.h:59
 msgid "Use the system fixed width font"
 msgstr "Sistemin sabit genişlikli yazıtipini kullan"
 
-#: ../data/prefs.glade.h:59
+#: ../data/prefs.glade.h:60
 msgid "Font:"
 msgstr "Yazıtipi:"
 
-#: ../data/prefs.glade.h:60
+#: ../data/prefs.glade.h:61
 msgid "Choose some font"
 msgstr "Font seçin"
 
-#: ../data/prefs.glade.h:61
+#: ../data/prefs.glade.h:62
 msgid "Text color:"
 msgstr "Metin rengi:"
 
-#: ../data/prefs.glade.h:62
+#: ../data/prefs.glade.h:63
 msgid "Background color:"
 msgstr "Arkaplan rengi:"
 
-#: ../data/prefs.glade.h:63
+#: ../data/prefs.glade.h:64
 msgid "Cursor shape:"
 msgstr ""
 
-#: ../data/prefs.glade.h:64
+#: ../data/prefs.glade.h:65
 msgid ""
 "Block\n"
 "I-Beam\n"
 "Underline"
 msgstr ""
 
-#: ../data/prefs.glade.h:67
+#: ../data/prefs.glade.h:68
 msgid ""
 "Follow GTK+ setting\n"
 "Blink on\n"
 "Blink off"
 msgstr ""
 
-#: ../data/prefs.glade.h:70
+#: ../data/prefs.glade.h:71
 msgid "Cursor blink mode:"
 msgstr ""
 
-#: ../data/prefs.glade.h:71
+#: ../data/prefs.glade.h:72
 msgid "Allow bold font"
 msgstr ""
 
-#: ../data/prefs.glade.h:72
+#: ../data/prefs.glade.h:73
 msgid "<b>Palette</b>"
 msgstr "<b>Palet</b>"
 
-#: ../data/prefs.glade.h:73
+#: ../data/prefs.glade.h:74
 msgid "Built-in schemes:"
 msgstr "Varsayılan düzenler:"
 
-#: ../data/prefs.glade.h:74
+#: ../data/prefs.glade.h:75
 msgid "Color palette:"
 msgstr "Renk Paleti:"
 
-#: ../data/prefs.glade.h:75
+#: ../data/prefs.glade.h:76
 #, fuzzy
 msgid "Font color"
 msgstr "Metin rengi:"
 
-#: ../data/prefs.glade.h:76
+#: ../data/prefs.glade.h:77
 #, fuzzy
 msgid "Background color"
 msgstr "Arkaplan rengi:"
 
-#: ../data/prefs.glade.h:77
+#: ../data/prefs.glade.h:78
 msgid "Use font and background color from the palette"
 msgstr ""
 
-#: ../data/prefs.glade.h:78
+#: ../data/prefs.glade.h:79
 msgid "Demo:"
 msgstr ""
 
-#: ../data/prefs.glade.h:79
+#: ../data/prefs.glade.h:80
 msgid "<b>Effects</b>"
 msgstr "<b>Efektler</b>"
 
-#: ../data/prefs.glade.h:80
+#: ../data/prefs.glade.h:81
 msgid "Transparency:"
 msgstr "Şeffaflık:"
 
-#: ../data/prefs.glade.h:81
+#: ../data/prefs.glade.h:82
 msgid "Background image:"
 msgstr "Arkaplan resmi:"
 
-#: ../data/prefs.glade.h:82
+#: ../data/prefs.glade.h:83 ../src/guake/prefs.py:130
 msgid "Appearance"
 msgstr "Görünüm"
 
-#: ../data/prefs.glade.h:83
+#: ../data/prefs.glade.h:84
 msgid ""
 "<small>Quick open is a feature allowing you to open a file directly into "
 "your favorite text editor by clicking on its filename when it appears in "
@@ -467,15 +471,15 @@ msgid ""
 "extract filename below.</small>"
 msgstr ""
 
-#: ../data/prefs.glade.h:84
+#: ../data/prefs.glade.h:85
 msgid "Enable Quick Open when Ctrl+clicking on a filename in the terminal"
 msgstr ""
 
-#: ../data/prefs.glade.h:85
+#: ../data/prefs.glade.h:86
 msgid "Editor command line:"
 msgstr ""
 
-#: ../data/prefs.glade.h:87
+#: ../data/prefs.glade.h:88
 #, no-c-format
 msgid ""
 "<small><i>Use the following elements in the open editor command line:\n"
@@ -487,36 +491,36 @@ msgid ""
 "</i></small>"
 msgstr ""
 
-#: ../data/prefs.glade.h:93
+#: ../data/prefs.glade.h:94
 msgid "Quick open in current terminal"
 msgstr ""
 
-#: ../data/prefs.glade.h:94
+#: ../data/prefs.glade.h:95
 msgid ""
 "Here is the list of supported patterns: (to add your own, please contact the "
 "Guake's authors)"
 msgstr ""
 
-#: ../data/prefs.glade.h:95
+#: ../data/prefs.glade.h:96
 #, fuzzy
 msgid "<b>Quick Open</b>"
 msgstr "<b>Palet</b>"
 
-#: ../data/prefs.glade.h:96
+#: ../data/prefs.glade.h:97
 msgid "Quick Open"
 msgstr ""
 
-#: ../data/prefs.glade.h:97
+#: ../data/prefs.glade.h:98
 msgid ""
 "To change a shortcut simply click on its name.\n"
 "To disable a shortcut, press the \"Backspace\" key."
 msgstr ""
 
-#: ../data/prefs.glade.h:99
+#: ../data/prefs.glade.h:100
 msgid "Keyboard shortcuts"
 msgstr "Klavye kısayolları"
 
-#: ../data/prefs.glade.h:100
+#: ../data/prefs.glade.h:101
 msgid ""
 "<small><i><b>Note:</b> These options may cause some applications to behave "
 "incorrectly.  They are only here to allow you to work around certain "
@@ -527,7 +531,7 @@ msgstr ""
 "sebep olabilir. Bu ayarlar sadece farklı uçbirim davranışları bekleyen "
 "programlar ve işletim sistemleri için vardır.</i></small>"
 
-#: ../data/prefs.glade.h:101
+#: ../data/prefs.glade.h:102
 msgid ""
 "ASCII DEL\n"
 "Escape sequence\n"
@@ -537,38 +541,37 @@ msgstr ""
 "Esc dizisi\n"
 "Ctrl-H"
 
-#: ../data/prefs.glade.h:104
+#: ../data/prefs.glade.h:105
 msgid "_Backspace key generates:"
 msgstr "_Backspace tuşu yerine:"
 
-#: ../data/prefs.glade.h:105
+#: ../data/prefs.glade.h:106
 msgid "_Delete key generates:"
 msgstr "_Delete tuşu yerine:"
 
-#: ../data/prefs.glade.h:106
+#: ../data/prefs.glade.h:107
 msgid "_Reset Compatibility Options to Defaults"
 msgstr "Uyumluluk aya_rlarını varsayılan hale getir"
 
-#: ../data/prefs.glade.h:107
+#: ../data/prefs.glade.h:108
 msgid "<b>Keyboard compatibility</b>"
 msgstr "<b>Klavye uyumluluğu</b>"
 
-#: ../data/prefs.glade.h:108
+#: ../data/prefs.glade.h:109
 msgid "Compatibility"
 msgstr "Uyumluluk"
 
-#: ../src/guake/about.py:47 ../src/guake/gconfhandler.py:427
-#: ../src/guake/guake_app.py:177 ../src/guake/guake_app.py:348
+#: ../src/guake/about.py:47 ../src/guake/gconfhandler.py:435
+#: ../src/guake/guake_app.py:181 ../src/guake/guake_app.py:376
 msgid "Guake Terminal"
 msgstr "Guake Uçbirim"
 
-#. Adding a new radio button to the tabbar
-#: ../src/guake/gconfhandler.py:365 ../src/guake/guake_app.py:1548
+#: ../src/guake/gconfhandler.py:368 ../src/guake/guake_app.py:1363
 #, fuzzy
 msgid "Terminal"
 msgstr "Uçbirim %s"
 
-#: ../src/guake/gconfhandler.py:428
+#: ../src/guake/gconfhandler.py:436
 #, python-format
 msgid ""
 "A problem happened when binding <b>%s</b> key.\n"
@@ -578,54 +581,54 @@ msgstr ""
 "Lütfen Guake Seçenekler penceresini kullanarak yeni bir kısayol seçin. "
 "(Simge sistem çekmecesindedir)"
 
-#: ../src/guake/guake_app.py:128
+#: ../src/guake/guake_app.py:132
 #, fuzzy
 msgid "Do you want to close the tab?"
 msgstr "Guake'den çıkmak istediğinize emin misiniz?"
 
-#: ../src/guake/guake_app.py:131
+#: ../src/guake/guake_app.py:135
 #, fuzzy
 msgid "Do you really want to quit Guake?"
 msgstr "Guake'den çıkmak istediğinize emin misiniz?"
 
-#: ../src/guake/guake_app.py:133
+#: ../src/guake/guake_app.py:137
 #, fuzzy
 msgid " and one tab open"
 msgstr "Yeni sekme ekle"
 
-#: ../src/guake/guake_app.py:135
+#: ../src/guake/guake_app.py:139
 #, python-brace-format
 msgid " and {0} tabs open"
 msgstr ""
 
-#: ../src/guake/guake_app.py:138
+#: ../src/guake/guake_app.py:142
 #, fuzzy
 msgid "There are no processes running"
 msgstr "<b>Halen çalışan bir işlem var.</b>"
 
-#: ../src/guake/guake_app.py:140
+#: ../src/guake/guake_app.py:144
 #, fuzzy
 msgid "There is a process still running"
 msgstr "<b>Halen çalışan bir işlem var.</b>"
 
-#: ../src/guake/guake_app.py:142
+#: ../src/guake/guake_app.py:146
 #, fuzzy, python-brace-format
 msgid "There are {0} processes still running"
 msgstr "<b>Çalışan %d işlem var.</b>"
 
-#: ../src/guake/guake_app.py:182
+#: ../src/guake/guake_app.py:186
 msgid "guake-indicator"
 msgstr ""
 
-#: ../src/guake/guake_app.py:182
+#: ../src/guake/guake_app.py:186
 msgid "guake-tray"
 msgstr ""
 
-#: ../src/guake/guake_app.py:186
+#: ../src/guake/guake_app.py:190
 msgid "Show"
 msgstr ""
 
-#: ../src/guake/guake_app.py:349
+#: ../src/guake/guake_app.py:377
 #, python-format
 msgid ""
 "Guake is now running,\n"
@@ -634,129 +637,133 @@ msgstr ""
 "Guake çalışıyor.\n"
 "<b>%s</b> tuşu ile kullanmaya başlayın."
 
-#: ../src/guake/guake_app.py:611
+#: ../src/guake/guake_app.py:665
 #, python-format
 msgid "Search on Web: '%s'"
 msgstr ""
 
-#: ../src/guake/guake_app.py:616
+#: ../src/guake/guake_app.py:670
 msgid "Search on Web (no selection)"
 msgstr ""
 
-#: ../src/guake/guake_app.py:622
+#: ../src/guake/guake_app.py:678
+msgid "Open Link: '{}...'"
+msgstr ""
+
+#: ../src/guake/guake_app.py:680
 msgid "Open Link: {}"
 msgstr ""
 
-#: ../src/guake/guake_app.py:625
+#: ../src/guake/guake_app.py:683
 msgid "Open Link..."
 msgstr ""
 
-#: ../src/guake/guake_app.py:1300
+#: ../src/guake/guake_app.py:1402
 msgid "Rename tab"
 msgstr "Sekmeyi yeniden adlandır"
 
-#: ../src/guake/guake_app.py:1591
+#: ../src/guake/guake_app.py:1716
 msgid "Save to..."
 msgstr ""
 
-#: ../src/guake/guake_app.py:1598 ../src/guake/prefs.py:930
+#: ../src/guake/guake_app.py:1723 ../src/guake/prefs.py:998
 msgid "All files"
 msgstr ""
 
-#: ../src/guake/guake_app.py:1603
+#: ../src/guake/guake_app.py:1728
 msgid "Text and Logs"
 msgstr ""
 
-#: ../src/guake/guake_app.py:1621
+#: ../src/guake/guake_app.py:1746
 msgid "Find"
 msgstr ""
 
-#: ../src/guake/guake_app.py:1623
+#: ../src/guake/guake_app.py:1748
 msgid "Forward"
 msgstr ""
 
-#: ../src/guake/guake_app.py:1624
+#: ../src/guake/guake_app.py:1749
 msgid "Backward"
 msgstr ""
 
-#: ../src/guake/main.py:67
+#: ../src/guake/main.py:68
 msgid "Put Guake in fullscreen mode"
 msgstr ""
 
-#: ../src/guake/main.py:71
+#: ../src/guake/main.py:72
 msgid "Toggles the visibility of the terminal window"
 msgstr "Uçbirim penceresinin görüntüler veya gizler"
 
-#: ../src/guake/main.py:75
+#: ../src/guake/main.py:76
 #, fuzzy
 msgid "Shows Guake main window"
 msgstr "Guake seçenekler penceresini gösterir"
 
-#: ../src/guake/main.py:79
+#: ../src/guake/main.py:80
 #, fuzzy
 msgid "Hides Guake main window"
 msgstr "Guake seçenekler penceresini gösterir"
 
-#: ../src/guake/main.py:83
+#: ../src/guake/main.py:84
 msgid "Shows Guake preference window"
 msgstr "Guake seçenekler penceresini gösterir"
 
-#: ../src/guake/main.py:87
+#: ../src/guake/main.py:88
 msgid "Shows Guake's about info"
 msgstr "Guake'nin hakkında bilgisini gösterir"
 
-#: ../src/guake/main.py:91
+#: ../src/guake/main.py:92
 #, fuzzy
 msgid "Add a new tab (with current directory set to NEW_TAB)"
 msgstr "_Yeni sekmeyi klasörde aç"
 
-#: ../src/guake/main.py:95
+#: ../src/guake/main.py:96
 msgid "Select a tab (SELECT_TAB is the index of the tab)"
 msgstr ""
 
-#: ../src/guake/main.py:99
+#: ../src/guake/main.py:100
 msgid "Return the selected tab index."
 msgstr "Seçilmiş sekme sıra numarasını döndürür."
 
-#: ../src/guake/main.py:103
+#: ../src/guake/main.py:104
 msgid "Execute an arbitrary command in the selected tab."
 msgstr "Seçili sekmede sınırsız komut çalıştırır."
 
-#: ../src/guake/main.py:107
+#: ../src/guake/main.py:108
 msgid "Specify the tab to rename. Default is 0."
 msgstr ""
 
-#: ../src/guake/main.py:111
+#: ../src/guake/main.py:112
 msgid "Set the hexadecimal (#rrggbb) background color of the selected tab."
 msgstr ""
 
-#: ../src/guake/main.py:116
+#: ../src/guake/main.py:117
 msgid "Set the hexadecimal (#rrggbb) foreground color of the selected tab."
 msgstr ""
 
-#: ../src/guake/main.py:122
+#: ../src/guake/main.py:123
 msgid ""
 "Rename the specified tab. Reset to default if TITLE is a single dash \"-\"."
 msgstr ""
 
-#: ../src/guake/main.py:128
+#: ../src/guake/main.py:129
 msgid ""
 "Rename the current tab. Reset to default if TITLE is a single dash \"-\"."
 msgstr ""
 
-#: ../src/guake/main.py:133
+#: ../src/guake/main.py:134
 msgid "Says to Guake go away =("
 msgstr "Guake'e güle güle der =("
 
-#: ../src/guake/main.py:137
+#: ../src/guake/main.py:138
 msgid "Do not execute the start up script"
 msgstr ""
 
-#: ../src/guake/main.py:231
+#: ../src/guake/main.py:235
 msgid "Guake can not init!"
 msgstr "Guake başlatılamadı!"
 
-#: ../src/guake/main.py:232
+#: ../src/guake/main.py:236
 #, fuzzy
 msgid ""
 "Gconf Error.\n"
@@ -770,32 +777,190 @@ msgstr ""
 msgid "<user shell>"
 msgstr "<kullanıcı kabuğu>"
 
-#: ../src/guake/prefs.py:467
+#: ../src/guake/prefs.py:77
+msgid "Toggle Guake visibility"
+msgstr "Guake'i görüntüle veya gizle"
+
+#: ../src/guake/prefs.py:81
+#, fuzzy
+msgid "Toggle Hide on Lose Focus"
+msgstr "Focus kaybedildiğinde gizle"
+
+#: ../src/guake/prefs.py:88
+msgid "Tab management"
+msgstr "Sekme yönetimi"
+
+#: ../src/guake/prefs.py:90
+#, fuzzy
+msgid "New tab"
+msgstr "Yeni sekme"
+
+#: ../src/guake/prefs.py:92
+msgid "Close tab"
+msgstr "Sekmeyi kapat"
+
+#: ../src/guake/prefs.py:94
+msgid "Rename current tab"
+msgstr "Geçerli sekmeyi yeniden adlandır"
+
+#: ../src/guake/prefs.py:97
+msgid "Navigation"
+msgstr "Gezinti"
+
+#: ../src/guake/prefs.py:99
+msgid "Go to previous tab"
+msgstr "Önceki sekmeye geç"
+
+#: ../src/guake/prefs.py:101
+msgid "Go to next tab"
+msgstr "Sonraki sekmeye geç"
+
+#: ../src/guake/prefs.py:103
+#, fuzzy
+msgid "Move current tab left"
+msgstr "Geçerli sekmeyi yeniden adlandır"
+
+#: ../src/guake/prefs.py:105
+#, fuzzy
+msgid "Move current tab right"
+msgstr "Geçerli sekmeyi yeniden adlandır"
+
+#: ../src/guake/prefs.py:107
+#, fuzzy
+msgid "Go to first tab"
+msgstr "Sonraki sekmeye geç"
+
+#: ../src/guake/prefs.py:109
+#, fuzzy
+msgid "Go to second tab"
+msgstr "Sonraki sekmeye geç"
+
+#: ../src/guake/prefs.py:111
+#, fuzzy
+msgid "Go to third tab"
+msgstr "Sonraki sekmeye geç"
+
+#: ../src/guake/prefs.py:113
+#, fuzzy
+msgid "Go to fourth tab"
+msgstr "Sonraki sekmeye geç"
+
+#: ../src/guake/prefs.py:115
+#, fuzzy
+msgid "Go to fifth tab"
+msgstr "Sonraki sekmeye geç"
+
+#: ../src/guake/prefs.py:117
+#, fuzzy
+msgid "Go to sixth tab"
+msgstr "Sonraki sekmeye geç"
+
+#: ../src/guake/prefs.py:119
+#, fuzzy
+msgid "Go to seventh tab"
+msgstr "Sonraki sekmeye geç"
+
+#: ../src/guake/prefs.py:121
+#, fuzzy
+msgid "Go to eighth tab"
+msgstr "Sonraki sekmeye geç"
+
+#: ../src/guake/prefs.py:123
+#, fuzzy
+msgid "Go to ninth tab"
+msgstr "Sonraki sekmeye geç"
+
+#: ../src/guake/prefs.py:125
+#, fuzzy
+msgid "Go to tenth tab"
+msgstr "Sonraki sekmeye geç"
+
+#: ../src/guake/prefs.py:127
+#, fuzzy
+msgid "Go to last tab"
+msgstr "Sonraki sekmeye geç"
+
+#: ../src/guake/prefs.py:132
+msgid "Zoom out"
+msgstr ""
+
+#: ../src/guake/prefs.py:134
+msgid "Zoom in"
+msgstr ""
+
+#: ../src/guake/prefs.py:136
+msgid "Zoom in (alternative)"
+msgstr ""
+
+#: ../src/guake/prefs.py:138
+msgid "Increase height"
+msgstr ""
+
+#: ../src/guake/prefs.py:140
+msgid "Decrease height"
+msgstr ""
+
+#: ../src/guake/prefs.py:142
+#, fuzzy
+msgid "Increase transparency"
+msgstr "Şeffaflık:"
+
+#: ../src/guake/prefs.py:144
+#, fuzzy
+msgid "Decrease transparency"
+msgstr "Şeffaflık:"
+
+#: ../src/guake/prefs.py:146
+#, fuzzy
+msgid "Toggle transparency"
+msgstr "Şeffaflık:"
+
+#: ../src/guake/prefs.py:149
+msgid "Clipboard"
+msgstr "Pano"
+
+#: ../src/guake/prefs.py:151
+msgid "Copy text to clipboard"
+msgstr "Metni panoya kopyala"
+
+#: ../src/guake/prefs.py:153
+msgid "Paste text from clipboard"
+msgstr "Panodan metni yapıştır"
+
+#: ../src/guake/prefs.py:156
+msgid "Extra features"
+msgstr ""
+
+#: ../src/guake/prefs.py:159
+msgid "Search select text on web"
+msgstr ""
+
+#: ../src/guake/prefs.py:519
 msgid "Action"
 msgstr "İşlev"
 
-#: ../src/guake/prefs.py:477
+#: ../src/guake/prefs.py:529
 msgid "Shortcut"
 msgstr "Kısayol"
 
-#: ../src/guake/prefs.py:619 ../src/guake/prefs.py:665
+#: ../src/guake/prefs.py:678 ../src/guake/prefs.py:724
 msgid "Custom"
 msgstr ""
 
-#: ../src/guake/prefs.py:926
+#: ../src/guake/prefs.py:994
 msgid "JSON files"
 msgstr ""
 
-#: ../src/guake/prefs.py:1019
+#: ../src/guake/prefs.py:1088
 #, python-format
 msgid "The shortcut \"%s\" is already in use."
 msgstr "\"%s\" kısayolu zaten kullanılıyor."
 
-#: ../src/guake/prefs.py:1020
+#: ../src/guake/prefs.py:1089
 msgid "Error setting keybinding."
 msgstr "Kısayol atamasında hata."
 
-#: ../src/guake/prefs.py:1032
+#: ../src/guake/prefs.py:1101
 #, python-format
 msgid ""
 "The shortcut \"%s\" cannot be used because it will become impossible to type "
@@ -835,33 +1000,3 @@ msgstr ""
 
 #~ msgid "Rename the selected tab."
 #~ msgstr "Seçilen sekmeyi yeniden adlandırır."
-
-#~ msgid "Toggle Guake visibility"
-#~ msgstr "Guake'i görüntüle veya gizle"
-
-#~ msgid "Tab management"
-#~ msgstr "Sekme yönetimi"
-
-#~ msgid "Close tab"
-#~ msgstr "Sekmeyi kapat"
-
-#~ msgid "Rename current tab"
-#~ msgstr "Geçerli sekmeyi yeniden adlandır"
-
-#~ msgid "Navigation"
-#~ msgstr "Gezinti"
-
-#~ msgid "Go to previous tab"
-#~ msgstr "Önceki sekmeye geç"
-
-#~ msgid "Go to next tab"
-#~ msgstr "Sonraki sekmeye geç"
-
-#~ msgid "Clipboard"
-#~ msgstr "Pano"
-
-#~ msgid "Copy text to clipboard"
-#~ msgstr "Metni panoya kopyala"
-
-#~ msgid "Paste text from clipboard"
-#~ msgstr "Panodan metni yapıştır"
