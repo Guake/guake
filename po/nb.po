@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Guake 0.4.5\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-08-17 21:41+0000\n"
+"POT-Creation-Date: 2016-08-18 17:32+0200\n"
 "PO-Revision-Date: 2010-01-18 15:26+CET\n"
 "Last-Translator: Håvard Havdal <haavard@havdal.net>\n"
 "Language-Team: guake@lists.guake.org\n"
@@ -260,206 +260,210 @@ msgid "Use VTE titles for tab names"
 msgstr ""
 
 #: ../data/prefs.glade.h:33
-msgid "Abbreviate directories in tab names"
-msgstr ""
-
-#: ../data/prefs.glade.h:34
 msgid "Max tab name length:"
 msgstr ""
 
+#: ../data/prefs.glade.h:34
+msgid "0 means no size limit"
+msgstr ""
+
 #: ../data/prefs.glade.h:35
+msgid "Abbreviate directories in tab names"
+msgstr ""
+
+#: ../data/prefs.glade.h:36
 msgid "Hide on lose focus"
 msgstr "Skjul ved inaktivt vindu"
 
-#: ../data/prefs.glade.h:36
+#: ../data/prefs.glade.h:37
 msgid "Show tab bar"
 msgstr "Vis fanelinje"
 
-#: ../data/prefs.glade.h:37
+#: ../data/prefs.glade.h:38
 #, fuzzy
 msgid "Start fullscreen"
 msgstr "Endre til fullskjerm"
 
-#: ../data/prefs.glade.h:38
+#: ../data/prefs.glade.h:39
 msgid "<b>Main Window</b>"
 msgstr "<b>Hovedvindu</b>"
 
-#: ../data/prefs.glade.h:39
+#: ../data/prefs.glade.h:40
 msgid "Left"
 msgstr ""
 
-#: ../data/prefs.glade.h:40
+#: ../data/prefs.glade.h:41
 msgid "Center"
 msgstr ""
 
-#: ../data/prefs.glade.h:41
+#: ../data/prefs.glade.h:42
 msgid "Right"
 msgstr ""
 
-#: ../data/prefs.glade.h:42
+#: ../data/prefs.glade.h:43
 #, fuzzy
 msgid "<b>Main Window Horizontal Alignment</b>"
 msgstr "<b>Position horizontale de la fenêtre principale</b>"
 
-#: ../data/prefs.glade.h:43
+#: ../data/prefs.glade.h:44
 #, fuzzy
 msgid "<b>Main Window Height</b>"
 msgstr "<b>Hovedvindu høyde</b>"
 
-#: ../data/prefs.glade.h:44
+#: ../data/prefs.glade.h:45
 #, fuzzy
 msgid "<b>Main Window Width</b>"
 msgstr "<b>Largeur de la fenêtre principale</b>"
 
-#: ../data/prefs.glade.h:45
+#: ../data/prefs.glade.h:46
 msgid "Custom command file path: "
 msgstr ""
 
-#: ../data/prefs.glade.h:46
+#: ../data/prefs.glade.h:47
 msgid "Please select a json file"
 msgstr ""
 
-#: ../data/prefs.glade.h:47 ../src/guake/prefs.py:75
+#: ../data/prefs.glade.h:48 ../src/guake/prefs.py:75
 msgid "General"
 msgstr "Generell"
 
-#: ../data/prefs.glade.h:48
+#: ../data/prefs.glade.h:49
 msgid "Default interpreter:"
 msgstr "Standard tolk:"
 
-#: ../data/prefs.glade.h:49
+#: ../data/prefs.glade.h:50
 msgid "_Run command as a login shell"
 msgstr "_Kjør kommando som loginskall"
 
-#: ../data/prefs.glade.h:50
+#: ../data/prefs.glade.h:51
 msgid "_Open new tab in current directory"
 msgstr "_Åpne ny fane i aktiv sti"
 
-#: ../data/prefs.glade.h:51
+#: ../data/prefs.glade.h:52
 msgid "<b>Shell</b>"
 msgstr "<b>Skall</b>"
 
-#: ../data/prefs.glade.h:52
+#: ../data/prefs.glade.h:53
 msgid "Shell"
 msgstr ""
 
-#: ../data/prefs.glade.h:53
+#: ../data/prefs.glade.h:54
 msgid "Show scrollbar"
 msgstr "Vis skrollbar"
 
-#: ../data/prefs.glade.h:54
+#: ../data/prefs.glade.h:55
 msgid "Scrollback lines:"
 msgstr "Skrollback linjer:"
 
-#: ../data/prefs.glade.h:55
+#: ../data/prefs.glade.h:56
 msgid "On output"
 msgstr "On output"
 
-#: ../data/prefs.glade.h:56
+#: ../data/prefs.glade.h:57
 msgid "On key stroke"
 msgstr "Ved tastetrykk"
 
-#: ../data/prefs.glade.h:57
+#: ../data/prefs.glade.h:58
 msgid "<b>Scroll</b>"
 msgstr "<b>Skroll</b>"
 
-#: ../data/prefs.glade.h:58
+#: ../data/prefs.glade.h:59
 msgid "Scrolling"
 msgstr "Skrolling"
 
-#: ../data/prefs.glade.h:59
+#: ../data/prefs.glade.h:60
 msgid "Use the system fixed width font"
 msgstr "Bruk breddefont"
 
-#: ../data/prefs.glade.h:60
+#: ../data/prefs.glade.h:61
 msgid "Font:"
 msgstr "Skrifttype:"
 
-#: ../data/prefs.glade.h:61
+#: ../data/prefs.glade.h:62
 msgid "Choose some font"
 msgstr "Velg en skrifttype"
 
-#: ../data/prefs.glade.h:62
+#: ../data/prefs.glade.h:63
 msgid "Text color:"
 msgstr "Tekst farge:"
 
-#: ../data/prefs.glade.h:63
+#: ../data/prefs.glade.h:64
 msgid "Background color:"
 msgstr "Bakgrunnsfarge:"
 
-#: ../data/prefs.glade.h:64
+#: ../data/prefs.glade.h:65
 msgid "Cursor shape:"
 msgstr ""
 
-#: ../data/prefs.glade.h:65
+#: ../data/prefs.glade.h:66
 msgid ""
 "Block\n"
 "I-Beam\n"
 "Underline"
 msgstr ""
 
-#: ../data/prefs.glade.h:68
+#: ../data/prefs.glade.h:69
 msgid ""
 "Follow GTK+ setting\n"
 "Blink on\n"
 "Blink off"
 msgstr ""
 
-#: ../data/prefs.glade.h:71
+#: ../data/prefs.glade.h:72
 msgid "Cursor blink mode:"
 msgstr ""
 
-#: ../data/prefs.glade.h:72
+#: ../data/prefs.glade.h:73
 msgid "Allow bold font"
 msgstr ""
 
-#: ../data/prefs.glade.h:73
+#: ../data/prefs.glade.h:74
 msgid "<b>Palette</b>"
 msgstr "<b>Palette</b>"
 
-#: ../data/prefs.glade.h:74
+#: ../data/prefs.glade.h:75
 msgid "Built-in schemes:"
 msgstr "Bygd inn skjemaer"
 
-#: ../data/prefs.glade.h:75
+#: ../data/prefs.glade.h:76
 msgid "Color palette:"
 msgstr "Farge palette:"
 
-#: ../data/prefs.glade.h:76
+#: ../data/prefs.glade.h:77
 #, fuzzy
 msgid "Font color"
 msgstr "Tekst farge:"
 
-#: ../data/prefs.glade.h:77
+#: ../data/prefs.glade.h:78
 #, fuzzy
 msgid "Background color"
 msgstr "Bakgrunnsfarge:"
 
-#: ../data/prefs.glade.h:78
+#: ../data/prefs.glade.h:79
 msgid "Use font and background color from the palette"
 msgstr ""
 
-#: ../data/prefs.glade.h:79
+#: ../data/prefs.glade.h:80
 msgid "Demo:"
 msgstr ""
 
-#: ../data/prefs.glade.h:80
+#: ../data/prefs.glade.h:81
 msgid "<b>Effects</b>"
 msgstr "<b>Effekter</b>"
 
-#: ../data/prefs.glade.h:81
+#: ../data/prefs.glade.h:82
 msgid "Transparency:"
 msgstr "Gjennomsiktighet"
 
-#: ../data/prefs.glade.h:82
+#: ../data/prefs.glade.h:83
 msgid "Background image:"
 msgstr "Bakgrunnsbildet:"
 
-#: ../data/prefs.glade.h:83 ../src/guake/prefs.py:130
+#: ../data/prefs.glade.h:84 ../src/guake/prefs.py:130
 msgid "Appearance"
 msgstr "Utseende"
 
-#: ../data/prefs.glade.h:84
+#: ../data/prefs.glade.h:85
 msgid ""
 "<small>Quick open is a feature allowing you to open a file directly into "
 "your favorite text editor by clicking on its filename when it appears in "
@@ -467,15 +471,15 @@ msgid ""
 "extract filename below.</small>"
 msgstr ""
 
-#: ../data/prefs.glade.h:85
+#: ../data/prefs.glade.h:86
 msgid "Enable Quick Open when Ctrl+clicking on a filename in the terminal"
 msgstr ""
 
-#: ../data/prefs.glade.h:86
+#: ../data/prefs.glade.h:87
 msgid "Editor command line:"
 msgstr ""
 
-#: ../data/prefs.glade.h:88
+#: ../data/prefs.glade.h:89
 #, no-c-format
 msgid ""
 "<small><i>Use the following elements in the open editor command line:\n"
@@ -487,36 +491,36 @@ msgid ""
 "</i></small>"
 msgstr ""
 
-#: ../data/prefs.glade.h:94
+#: ../data/prefs.glade.h:95
 msgid "Quick open in current terminal"
 msgstr ""
 
-#: ../data/prefs.glade.h:95
+#: ../data/prefs.glade.h:96
 msgid ""
 "Here is the list of supported patterns: (to add your own, please contact the "
 "Guake's authors)"
 msgstr ""
 
-#: ../data/prefs.glade.h:96
+#: ../data/prefs.glade.h:97
 #, fuzzy
 msgid "<b>Quick Open</b>"
 msgstr "<b>Palette</b>"
 
-#: ../data/prefs.glade.h:97
+#: ../data/prefs.glade.h:98
 msgid "Quick Open"
 msgstr ""
 
-#: ../data/prefs.glade.h:98
+#: ../data/prefs.glade.h:99
 msgid ""
 "To change a shortcut simply click on its name.\n"
 "To disable a shortcut, press the \"Backspace\" key."
 msgstr ""
 
-#: ../data/prefs.glade.h:100
+#: ../data/prefs.glade.h:101
 msgid "Keyboard shortcuts"
 msgstr "Hurtigtaster"
 
-#: ../data/prefs.glade.h:101
+#: ../data/prefs.glade.h:102
 msgid ""
 "<small><i><b>Note:</b> These options may cause some applications to behave "
 "incorrectly.  They are only here to allow you to work around certain "
@@ -528,7 +532,7 @@ msgstr ""
 "til å arbeide rundt visse applikasjoner og operativ systemer som forventer "
 "forskjellig terminaloppførsel.</i></small>"
 
-#: ../data/prefs.glade.h:102
+#: ../data/prefs.glade.h:103
 msgid ""
 "ASCII DEL\n"
 "Escape sequence\n"
@@ -538,37 +542,37 @@ msgstr ""
 "Escape sequence\n"
 "Control-H"
 
-#: ../data/prefs.glade.h:105
+#: ../data/prefs.glade.h:106
 msgid "_Backspace key generates:"
 msgstr "_Tilbaketast genererer:"
 
-#: ../data/prefs.glade.h:106
+#: ../data/prefs.glade.h:107
 msgid "_Delete key generates:"
 msgstr "_Slettetast genererer:"
 
-#: ../data/prefs.glade.h:107
+#: ../data/prefs.glade.h:108
 msgid "_Reset Compatibility Options to Defaults"
 msgstr "_Tilbakestill kompabilitet alternativer til standard"
 
-#: ../data/prefs.glade.h:108
+#: ../data/prefs.glade.h:109
 msgid "<b>Keyboard compatibility</b>"
 msgstr "<b>Tastatur kompabilitet</b>"
 
-#: ../data/prefs.glade.h:109
+#: ../data/prefs.glade.h:110
 msgid "Compatibility"
 msgstr "Kompabilitet"
 
-#: ../src/guake/about.py:47 ../src/guake/gconfhandler.py:435
-#: ../src/guake/guake_app.py:181 ../src/guake/guake_app.py:376
+#: ../src/guake/about.py:47 ../src/guake/gconfhandler.py:439
+#: ../src/guake/guake_app.py:181 ../src/guake/guake_app.py:378
 msgid "Guake Terminal"
 msgstr "Guake Terminal"
 
-#: ../src/guake/gconfhandler.py:368 ../src/guake/guake_app.py:1363
+#: ../src/guake/gconfhandler.py:369 ../src/guake/guake_app.py:1386
 #, fuzzy
 msgid "Terminal"
 msgstr "Terminal %s"
 
-#: ../src/guake/gconfhandler.py:436
+#: ../src/guake/gconfhandler.py:440
 #, python-format
 msgid ""
 "A problem happened when binding <b>%s</b> key.\n"
@@ -624,7 +628,7 @@ msgstr ""
 msgid "Show"
 msgstr ""
 
-#: ../src/guake/guake_app.py:377
+#: ../src/guake/guake_app.py:379
 #, python-format
 msgid ""
 "Guake is now running,\n"
@@ -633,52 +637,52 @@ msgstr ""
 "Guake er nå startet,\n"
 "trykk <b>%s</b> for å ta den i bruk."
 
-#: ../src/guake/guake_app.py:665
+#: ../src/guake/guake_app.py:670
 #, python-format
 msgid "Search on Web: '%s'"
 msgstr ""
 
-#: ../src/guake/guake_app.py:670
+#: ../src/guake/guake_app.py:675
 msgid "Search on Web (no selection)"
 msgstr ""
 
-#: ../src/guake/guake_app.py:678
+#: ../src/guake/guake_app.py:683
 msgid "Open Link: '{}...'"
 msgstr ""
 
-#: ../src/guake/guake_app.py:680
+#: ../src/guake/guake_app.py:685
 msgid "Open Link: {}"
 msgstr ""
 
-#: ../src/guake/guake_app.py:683
+#: ../src/guake/guake_app.py:688
 msgid "Open Link..."
 msgstr ""
 
-#: ../src/guake/guake_app.py:1402
+#: ../src/guake/guake_app.py:1425
 msgid "Rename tab"
 msgstr "Gi nytt navn til fane"
 
-#: ../src/guake/guake_app.py:1716
+#: ../src/guake/guake_app.py:1736
 msgid "Save to..."
 msgstr ""
 
-#: ../src/guake/guake_app.py:1723 ../src/guake/prefs.py:998
+#: ../src/guake/guake_app.py:1743 ../src/guake/prefs.py:973
 msgid "All files"
 msgstr ""
 
-#: ../src/guake/guake_app.py:1728
+#: ../src/guake/guake_app.py:1748
 msgid "Text and Logs"
 msgstr ""
 
-#: ../src/guake/guake_app.py:1746
+#: ../src/guake/guake_app.py:1766
 msgid "Find"
 msgstr ""
 
-#: ../src/guake/guake_app.py:1748
+#: ../src/guake/guake_app.py:1768
 msgid "Forward"
 msgstr ""
 
-#: ../src/guake/guake_app.py:1749
+#: ../src/guake/guake_app.py:1769
 msgid "Backward"
 msgstr ""
 
@@ -931,32 +935,32 @@ msgstr ""
 msgid "Search select text on web"
 msgstr ""
 
-#: ../src/guake/prefs.py:519
+#: ../src/guake/prefs.py:481
 msgid "Action"
 msgstr "Handling"
 
-#: ../src/guake/prefs.py:529
+#: ../src/guake/prefs.py:491
 msgid "Shortcut"
 msgstr "Snarvei"
 
-#: ../src/guake/prefs.py:678 ../src/guake/prefs.py:724
+#: ../src/guake/prefs.py:651 ../src/guake/prefs.py:697
 msgid "Custom"
 msgstr ""
 
-#: ../src/guake/prefs.py:994
+#: ../src/guake/prefs.py:969
 msgid "JSON files"
 msgstr ""
 
-#: ../src/guake/prefs.py:1088
+#: ../src/guake/prefs.py:1063
 #, python-format
 msgid "The shortcut \"%s\" is already in use."
 msgstr "Hurtigtasten \"%s\" er allerede i bruk"
 
-#: ../src/guake/prefs.py:1089
+#: ../src/guake/prefs.py:1064
 msgid "Error setting keybinding."
 msgstr "Kunne ikke lagre hurtigtasten."
 
-#: ../src/guake/prefs.py:1101
+#: ../src/guake/prefs.py:1076
 #, python-format
 msgid ""
 "The shortcut \"%s\" cannot be used because it will become impossible to type "
