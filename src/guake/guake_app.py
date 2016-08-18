@@ -1386,10 +1386,10 @@ class Guake(SimpleGladeApp):
         vte_title = vte.get_window_title() or _("Terminal")
         try:
             current_directory = vte.get_current_directory()
-            if self.abbreviate and current_directory in vte_title:
+            if self.abbreviate and vte_title.endswith(current_directory):
                 parts = current_directory.split('/')
                 parts = list(map(lambda s: s[:1], parts[:-1])) + [parts[-1]]
-                vte_title = vte_title.replace(current_directory, '/'.join(parts))
+                vte_title = vte_title[:len(vte_title) - len(current_directory)] + '/'.join(parts)
         except OSError:
             pass
         return self._shorten_tab_title(vte_title)
@@ -1823,7 +1823,8 @@ class Guake(SimpleGladeApp):
         self.notebook.set_current_page(new_tab_pos)
 
     def is_tabs_scrollbar_visible(self):
-        return self.get_widget('tabs-scrolledwindow').get_hscrollbar().get_visible()
+        return (self.window.get_visible() and
+                self.get_widget('tabs-scrolledwindow').get_hscrollbar().get_visible())
 
     def delete_tab(self, pagepos, kill=True):
         """This function will destroy the notebook page, terminal and

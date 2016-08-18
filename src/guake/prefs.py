@@ -595,10 +595,8 @@ class PrefsDialog(SimpleGladeApp):
         do_use_vte_titles = self.get_widget('use_vte_titles').get_active()
         max_tab_name_length_wdg = self.get_widget('max_tab_name_length')
         max_tab_name_length_wdg.set_sensitive(do_use_vte_titles)
-        max_tab_name_length = max_tab_name_length_wdg.get_value()
         self.get_widget('lbl_max_tab_name_length').set_sensitive(do_use_vte_titles)
-        self.get_widget('abbreviate_tab_names').set_sensitive(do_use_vte_titles and
-                                                              max_tab_name_length != 0)
+        self.get_widget('abbreviate_tab_names').set_sensitive(do_use_vte_titles)
 
     def clear_background_image(self, btn):
         """Unset the gconf variable that holds the name of the
