@@ -1028,10 +1028,10 @@ class Guake(SimpleGladeApp):
             # launcher_hide_mode = 1 => autohide
             if unity_hide != 1:
                 self.printDebug("correcting window width because of launcher width %s "
-                          "(from %s to %s)",
-                          unity_dock,
-                          window_rect.width,
-                          window_rect.width - unity_dock)
+                                "(from %s to %s)",
+                                unity_dock,
+                                window_rect.width,
+                                window_rect.width - unity_dock)
 
                 window_rect.width = window_rect.width - unity_dock
 
