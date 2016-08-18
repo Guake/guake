@@ -495,11 +495,11 @@ class Guake(SimpleGladeApp):
         log.info("Logging configuration complete")
         log.debug("Debug mode enabled")
 
-    def printDebug(self, text):
-        log.debug(text)
+    def printDebug(self, text, *args):
+        log.debug(text, *args)
 
-    def printInfo(self, text):
-        log.info(text)
+    def printInfo(self, text, *args):
+        log.info(text, *args)
 
     def set_background_transparency(self, transparency):
         for t in self.notebook.iter_terminals():
@@ -602,9 +602,12 @@ class Guake(SimpleGladeApp):
         window_pos = self.window.get_position()
         if valignment == ALIGN_BOTTOM:
             self.window.resize(window_rect[0], max_height - y)
+            self.printDebug("Resizing on resizer drag to : %r, and moving to: %r",
+                            (window_rect[0], max_height - y), window_pos[0], y)
             self.window.move(window_pos[0], y)
         else:
             self.window.resize(window_rect[0], y)
+            self.printDebug("Just moving on resizer drag to : %r", window_rect[0], y)
         self.client.set_int(KEY('/general/window_height'), int(percent))
         self.client.set_float(KEY('/general/window_height_f'), float(percent))
 
@@ -835,6 +838,7 @@ class Guake(SimpleGladeApp):
                     tab.modify_bg(gtk.STATE_ACTIVE, gtk.gdk.Color(str(self.selected_color)))
 
         # move the window even when in fullscreen-mode
+        self.printDebug("Moving window to: %r", window_rect)
         self.window.move(window_rect.x, window_rect.y)
 
         # this work arround an issue in fluxbox
@@ -865,10 +869,8 @@ class Guake(SimpleGladeApp):
         #         self.get_widget('window-root').get_urgency_hint()))
         #     glib.timeout_add_seconds(1, lambda: self.timeout_restore(time))
         #
-        log.debug("Current window geometry: %r",
-                  self.window.window.get_geometry())
 
-        log.debug("order to present and deiconify")
+        self.printDebug("order to present and deiconify")
         self.window.present()
         self.window.deiconify()
         self.window.window.deiconify()
@@ -887,6 +889,8 @@ class Guake(SimpleGladeApp):
         # widget is shown.
         self.client.notify(KEY('/style/font/color'))
         self.client.notify(KEY('/style/background/color'))
+
+        self.printDebug("Current window position: %r", self.window.get_position())
 
     def hide_from_remote(self):
         """
@@ -974,18 +978,22 @@ class Guake(SimpleGladeApp):
         halignment = self.client.get_int(KEY('/general/window_halignment'))
         valignment = self.client.get_int(KEY('/general/window_valignment'))
 
-        log.debug("set_final_window_rect")
-        log.debug("height_percents = %s", height_percents)
-        log.debug("width_percents = %s", width_percents)
-        log.debug("halignment = %s", halignment)
-        log.debug("valignment = %s", valignment)
+        self.printDebug("set_final_window_rect")
+        self.printDebug("  height_percents = %s", height_percents)
+        self.printDebug("  width_percents = %s", width_percents)
+        self.printDebug("  halignment = %s", halignment)
+        self.printDebug("  valignment = %s", valignment)
 
         # get the rectangle just from the destination monitor
         screen = self.window.get_screen()
         monitor = self.get_final_window_monitor()
         window_rect = screen.get_monitor_geometry(monitor)
-        log.debug("Current screen geometry: %r", window_rect)
-        log.debug("is unity: %s", self.is_using_unity())
+        self.printDebug("Current monitor geometry")
+        self.printDebug("  window_rect.x: %s", window_rect.x)
+        self.printDebug("  window_rect.y: %s", window_rect.y)
+        self.printDebug("  window_rect.height: %s", window_rect.height)
+        self.printDebug("  window_rect.width: %s", window_rect.width)
+        self.printDebug("is unity: %s", self.is_using_unity())
 
         if self.is_using_unity():
 
@@ -1019,7 +1027,7 @@ class Guake(SimpleGladeApp):
 
             # launcher_hide_mode = 1 => autohide
             if unity_hide != 1:
-                log.debug("correcting window width because of launcher width %s "
+                self.printDebug("correcting window width because of launcher width %s "
                           "(from %s to %s)",
                           unity_dock,
                           window_rect.width,
@@ -1030,45 +1038,53 @@ class Guake(SimpleGladeApp):
         total_width = window_rect.width
         total_height = window_rect.height
 
-        # log.debug("total_width", total_width)
-        # log.debug("total_height", total_height)
+        self.printDebug("Correcteed monitor size:")
+        self.printDebug("  total_width: %s", total_width)
+        self.printDebug("  total_height: %s", total_height)
 
-        window_rect.height = window_rect.height * height_percents / 100
-        window_rect.width = window_rect.width * width_percents / 100
-
-        log.debug("BEFORE SETTINGS APPLICATION")
-        log.debug("window_rect.x: %s", window_rect.x)
-        log.debug("window_rect.y: %s", window_rect.y)
-        log.debug("window_rect.height: %s", window_rect.height)
-        log.debug("window_rect.width: %s", window_rect.width)
+        window_rect.height = int(float(window_rect.height) * float(height_percents) / 100.0)
+        window_rect.width = int(float(window_rect.width) * float(width_percents) / 100.0)
 
         if window_rect.width < total_width:
             if halignment == ALIGN_CENTER:
-                # log.debug("aligning to center!")
+                # self.printDebug("aligning to center!")
                 window_rect.x += (total_width - window_rect.width) / 2
             elif halignment == ALIGN_LEFT:
-                # log.debug("aligning to left!")
+                # self.printDebug("aligning to left!")
                 window_rect.x += 0
             elif halignment == ALIGN_RIGHT:
-                # log.debug("aligning to right!")
+                # self.printDebug("aligning to right!")
                 window_rect.x += total_width - window_rect.width
         if window_rect.height < total_height:
             if valignment == ALIGN_BOTTOM:
                 window_rect.y += (total_height - window_rect.height)
 
         if width_percents == 100 and height_percents == 100:
-            log.debug("MAXIMIZING MAIN WINDOW")
+            self.printDebug("MAXIMIZING MAIN WINDOW")
             self.window.maximize()
         else:
-            log.debug("RESIZING MAIN WINDOW TO THE FOLLOWING VALUES:")
-            log.debug("window_rect.x: %s", window_rect.x)
-            log.debug("window_rect.y: %s", window_rect.y)
-            log.debug("window_rect.height: %s", window_rect.height)
-            log.debug("window_rect.width: %s", window_rect.width)
+            self.printDebug("RESIZING MAIN WINDOW TO THE FOLLOWING VALUES:")
+            self.window.unmaximize()
+            self.printDebug("  window_rect.x: %s", window_rect.x)
+            self.printDebug("  window_rect.y: %s", window_rect.y)
+            self.printDebug("  window_rect.height: %s", window_rect.height)
+            self.printDebug("  window_rect.width: %s", window_rect.width)
+            # Note: move_resize is only on GTK3
             self.window.resize(window_rect.width, window_rect.height)
             self.window.move(window_rect.x, window_rect.y)
+            self.window.move(window_rect.x, window_rect.y)
+            self.printDebug("Updated window position: %r", self.window.get_position())
 
         return window_rect
+
+    def force_move_if_shown(self):
+        if not self.hidden:
+            # when displayed, GTK might refuse to move the window (X or Y position). Just hide and
+            # redisplay it so the final position is correct
+            self.printDebug("FORCING HIDE")
+            self.hide()
+            self.printDebug("FORCING SHOW")
+            self.show()
 
     # -- configuration --
 
