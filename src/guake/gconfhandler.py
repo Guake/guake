@@ -359,25 +359,7 @@ class GConfHandler(object):
         if self.guake.notebook.get_current_terminal().get_window_title() is None:
             return
 
-        max_name_length = client.get_int(KEY("/general/max_tab_name_length"))
-
-        if max_name_length == 0:
-            max_name_length = None
-
-        vte_titles_on = client.get_bool(KEY("/general/use_vte_titles"))
-        for tab_index, tab in enumerate(self.guake.tabs.get_children()):
-            tab_terminal = self.guake.notebook.get_terminals_for_tab(tab_index)
-            if vte_titles_on and tab_terminal:
-                # take the first terminal to extract the title
-                tab_name = tab_terminal[0].get_window_title()
-            else:
-                tab_name = _("Terminal")
-            if not getattr(tab, 'custom_label_set', False):
-                tab.set_label(tab_name[:max_name_length])
-            else:
-                # retrieve the custom tab name to restore it
-                tab_custom_name = getattr(tab, 'custom_label_text', False)
-                tab.set_label(tab_custom_name[:max_name_length])
+        self.guake.recompute_tabs_titles()
 
     def abbreviate_tab_names_changed(self, client, connection_id, entry, data):
         """If the gconf var abbreviate_tab_names be changed, this method will

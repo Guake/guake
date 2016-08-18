@@ -1395,14 +1395,17 @@ class Guake(SimpleGladeApp):
         return self._shorten_tab_title(vte_title)
 
     def _shorten_tab_title(self, text):
+        use_vte_titles = self.client.get_bool(KEY("/general/use_vte_titles"))
+        if not use_vte_titles:
+            return text
         max_name_length = self.client.get_int(KEY("/general/max_tab_name_length"))
         if max_name_length != 0 and len(text) > max_name_length:
             text = "..." + text[-max_name_length:]
         return text
 
     def on_terminal_title_changed(self, vte, box):
-        use_them = self.client.get_bool(KEY("/general/use_vte_titles"))
-        if not use_them:
+        use_vte_titles = self.client.get_bool(KEY("/general/use_vte_titles"))
+        if not use_vte_titles:
             return
         page = self.notebook.page_num(box)
         tab = self.tabs.get_children()[page]
@@ -1442,6 +1445,7 @@ class Guake(SimpleGladeApp):
         self.preventHide = False
 
         if response == gtk.RESPONSE_ACCEPT:
+            new_text = entry.get_text()
             new_text = self._shorten_tab_title(new_text)
 
             self.selected_tab.set_label(new_text)
