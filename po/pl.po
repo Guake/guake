@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: guake\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-08-18 17:32+0200\n"
-"PO-Revision-Date: 2016-08-18 14:47+0200\n"
+"PO-Revision-Date: 2016-08-18 19:33+0200\n"
 "Last-Translator: Piotr Drąg <piotrdrag@gmail.com>\n"
 "Language-Team: Polish <trans-pl@lists.fedoraproject.org>\n"
 "Language: pl\n"
@@ -281,7 +281,7 @@ msgstr "Maksymalna długość nazwy karty:"
 
 #: ../data/prefs.glade.h:34
 msgid "0 means no size limit"
-msgstr ""
+msgstr "0 oznacza brak ograniczenia rozmiaru"
 
 #: ../data/prefs.glade.h:35
 msgid "Abbreviate directories in tab names"
