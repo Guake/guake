@@ -294,17 +294,19 @@ class Guake(SimpleGladeApp):
 
         self.abbreviate = False
         self.was_deleted_tab = False
+
         def tabs_scrollbar_hide(hscrollbar):
-                self.get_widget('event-tabs').set_property('height_request', 10)
-                if self.abbreviate and self.was_deleted_tab:
-                    self.was_deleted_tab = False
-                    self.abbreviate = False
-                    self.recompute_tabs_titles()
+            self.get_widget('event-tabs').set_property('height_request', 10)
+            if self.abbreviate and self.was_deleted_tab:
+                self.was_deleted_tab = False
+                self.abbreviate = False
+                self.recompute_tabs_titles()
+
         def tabs_scrollbar_show(hscrollbar):
-                self.get_widget('event-tabs').set_property('height_request', -1)
-                if self.client.get_bool(KEY("/general/abbreviate_tab_names")):
-                    self.abbreviate = True
-                    self.recompute_tabs_titles()
+            self.get_widget('event-tabs').set_property('height_request', -1)
+            if self.client.get_bool(KEY("/general/abbreviate_tab_names")):
+                self.abbreviate = True
+                self.recompute_tabs_titles()
 
         tabs_scrollbar = self.get_widget('tabs-scrolledwindow').get_hscrollbar()
         tabs_scrollbar.connect('hide', tabs_scrollbar_hide)
