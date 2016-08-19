@@ -171,6 +171,8 @@ class Guake(SimpleGladeApp):
         self.forceHide = False
         self.preventHide = False
 
+        self.custom_command_menuitem = None
+
         # trayicon! Using SVG handles better different OS trays
         img = pixmapfile('guake-tray.svg')
 
@@ -381,17 +383,17 @@ class Guake(SimpleGladeApp):
 
     # load the custom commands infrastucture
     def load_custom_commands(self):
-        if hasattr(self, 'custom_command_menuitem') and self.custom_command_menuitem:
-            self.get_widget(
-                'context-menu').remove(self.custom_command_menuitem)
-        menu = gtk.MenuItem("Custom Commands")
+        if self.custom_command_menuitem:
+            self.get_widget('context-menu').remove(self.custom_command_menuitem)
         custom_commands_menu = gtk.Menu()
-        self.get_custom_commands(custom_commands_menu)
+        if not self.get_custom_commands(custom_commands_menu):
+            return
+        menu = gtk.MenuItem("Custom Commands")
         menu.set_submenu(custom_commands_menu)
         menu.show()
-        self.get_widget('context-menu').insert(menu,
-                                               self.context_menu_get_insert_pos())
         self.custom_command_menuitem = menu
+        context_menu = self.get_widget('context-menu')
+        context_menu.insert(self.custom_command_menuitem, self.context_menu_get_insert_pos())
 
     # returns position where the custom cmd must be placed on the context-menu
     def context_menu_get_insert_pos(self):
@@ -404,26 +406,28 @@ class Guake(SimpleGladeApp):
     def get_custom_commands(self, menu):
         custom_command_file_path = self.client.get_string(KEY('/general/custom_command_file'))
         if not custom_command_file_path:
-            return
+            return False
         file_name = os.path.expanduser(custom_command_file_path)
         if not file_name:
-            return
+            return False
         try:
             with open(file_name) as f:
                 data_file = f.read()
         except:
             data_file = None
         if not data_file:
-            return
+            return False
 
         try:
             custom_commands = json.loads(data_file)
             for json_object in custom_commands:
                 self.parse_custom_commands(json_object, menu)
+            return True
 
         except Exception:
             log.exception(
                 "Invalid custom command file %s. Exception:", data_file)
+            return False
 
     # function to build the custom commands menu and menuitems
     def parse_custom_commands(self, json_object, menu):
