@@ -818,7 +818,6 @@ class Guake(SimpleGladeApp):
         """Shows the main window and grabs the focus on it.
         """
         self.hidden = False
-
         # setting window in all desktops
         window_rect = self.set_final_window_rect()
         self.get_widget('window-root').stick()
@@ -895,6 +894,7 @@ class Guake(SimpleGladeApp):
         self.client.notify(KEY('/style/background/color'))
 
         self.printDebug("Current window position: %r", self.window.get_position())
+        self.execute_hooks('show')
 
     def hide_from_remote(self):
         """
@@ -1945,3 +1945,13 @@ class Guake(SimpleGladeApp):
         current_term = self.notebook.get_current_terminal()
         current_term.reset(full=True, clear_history=True)
         self.preventHide = False
+
+    def execute_hooks(self, event_name):
+        """Execute shell commands related to current event_name"""
+        hooks = self.find_hooks(event_name)
+
+        print("Hooks has been executed")
+
+    def find_hooks(self, event_name):
+        """return hooks stored in the settings for current event_name"""
+        return []
