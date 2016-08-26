@@ -4,15 +4,29 @@
 # of Guake sources. Nothing say it will work directly on your environment. Use with caution!
 
 NO_INSTALL=true
+RUN_TESTS=false
+CREATE_ENV=true
 EXEC_AUTOGEN=false
 EXEC_UPDATE_PO=false
 
 echo "execute guake for developer."
+echo "use --test to run tests"
 echo "use --install to install guake on your system"
+echo "use --no-create-env to disable virtualenv creation"
 echo "(beware, gconf schema will be altered)"
 echo "use --reinstall to force complete reinstall"
 echo "use --uninstall to force complete reinstall"
 echo "use --update-po to force update translations"
+
+ARGS=$*
+if [[ `echo $ARGS | grep --regexp="--no-create-env"` ]]; then
+    CREATE_ENV=false
+fi
+
+if [[ `echo $ARGS | grep --regexp="--test"` ]]; then
+    RUN_TESTS=true
+fi
+
 
 if [[ $1 == "--install" ]]; then
     NO_INSTALL=false
@@ -64,17 +78,32 @@ if [[ $EXEC_UPDATE_PO == true ]]; then
     cd ..
 fi
 
-if [[ $NO_INSTALL == true ]]; then
+function make_virtualenv {
+    echo "Trying to prepare a virtualenv"
     if [[ ! -d env ]]; then
         virtualenv --system-site-packages env
     fi
-    echo "sourcing env"
-    source env/bin/activate
-    echo "Installing dev requirements"
-    pip install --upgrade -r python-requirements.txt
+    echo "sourcing env" && source env/bin/activate
+    echo "Installing dev requirements" && pip install --upgrade -r python-requirements.txt
     gconftool-2 --install-schema-file=data/guake.schemas
-    echo "Launching guake inside virtualenv"
-    PYTHONPATH=src python2.7 src/guake/main.py --no-startup-script
+}
+
+# RUN TESTS or RUN GUAKE without installing it
+if [[ $NO_INSTALL == true ]]; then
+
+    if [[ $CREATE_ENV == true ]]; then
+        make_virtualenv
+    fi
+    echo "sourcing env" && source env/bin/activate
+
+    if [[ $RUN_TESTS == true ]]; then
+        echo "running tests.."
+        PYTHONPATH=src env/bin/py.test src/guake/tests
+    else
+        echo "Launching guake inside virtualenv"
+        PYTHONPATH=src python2.7 src/guake/main.py --no-startup-script
+    fi
+
 else
   sudo make install && gconftool-2 --install-schema-file=/usr/local/etc/gconf/schemas/guake.schemas || exit 1
 
