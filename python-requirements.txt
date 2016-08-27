@@ -14,6 +14,8 @@ pip-tools==1.6.5
 pyflakes==1.1.0
 pylint==1.4.3
 six==1.10.0               # via astroid, logilab-common, pip-tools, pylint
+mock==2.0.0
+pytest==3.0.1
 
 # The following packages are commented out because they are
 # considered to be unsafe in a requirements file:

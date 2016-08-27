@@ -174,8 +174,9 @@ class Guake(SimpleGladeApp):
         self.custom_command_menuitem = None
 
         # trayicon! Using SVG handles better different OS trays
-        img = pixmapfile('guake-tray.svg')
-
+        # img = pixmapfile('guake-tray.svg')
+        # trayicon!
+        img = pixmapfile('guake-tray.png')
         try:
             import appindicator
         except ImportError:
@@ -1392,7 +1393,7 @@ class Guake(SimpleGladeApp):
             current_directory = vte.get_current_directory()
             if self.abbreviate and vte_title.endswith(current_directory):
                 parts = current_directory.split('/')
-                parts = list(map(lambda s: s[:1], parts[:-1])) + [parts[-1]]
+                parts = [s[:1] for s in parts[:-1]] + [parts[-1]]
                 vte_title = vte_title[:len(vte_title) - len(current_directory)] + '/'.join(parts)
         except OSError:
             pass
