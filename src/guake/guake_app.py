@@ -1947,12 +1947,20 @@ class Guake(SimpleGladeApp):
         current_term.reset(full=True, clear_history=True)
         self.preventHide = False
 
-    def execute_hooks(self, event_name):
+    def execute_hook(self, event_name):
         """Execute shell commands related to current event_name"""
-        hooks = self.find_hooks(event_name)
+        hook = self.find_hook(event_name)
+        if hook is not None:
+            hook = hook.split()
+            try:
+                subprocess.call(hook)
+            except Exception as e:
+                pass
+                log.error("hook execution failed! %s" % e)
+        return
 
-        print("Hooks has been executed")
-
-    def find_hooks(self, event_name):
+    def find_hook(self, event_name):
         """return hooks stored in the settings for current event_name"""
-        return []
+        hook = None
+        hook = self.client.get(KEY("/hooks/{}".format(event_name)))
+        return hook

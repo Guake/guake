@@ -47,3 +47,5 @@ backup-*.tgz
 workdir/
 activate
 env/
+# directory with pytest metadata
+.cache
