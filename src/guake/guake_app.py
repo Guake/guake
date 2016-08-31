@@ -854,25 +854,9 @@ class Guake(SimpleGladeApp):
             time = gtk.gdk.x11_get_server_time(self.window.window)
         except AttributeError:
             time = 0
-
-        # When minized, the window manager seems to refuse to resume
-        # log.debug("self.window: %s. Dir=%s", type(self.window), dir(self.window))
-        # is_iconified = self.is_iconified()
-        # if is_iconified:
-        #     log.debug("Is iconified. Ubuntu Trick => "
-        #               "removing skip_taskbar_hint and skip_pager_hint "
-        #               "so deiconify can work!")
-        #     self.get_widget('window-root').set_skip_taskbar_hint(False)
-        #     self.get_widget('window-root').set_skip_pager_hint(False)
-        #     self.get_widget('window-root').set_urgency_hint(False)
-        #     log.debug("get_skip_taskbar_hint: {}".format(
-        #         self.get_widget('window-root').get_skip_taskbar_hint()))
-        #     log.debug("get_skip_pager_hint: {}".format(
-        #         self.get_widget('window-root').get_skip_pager_hint()))
-        #     log.debug("get_urgency_hint: {}".format(
-        #         self.get_widget('window-root').get_urgency_hint()))
-        #     glib.timeout_add_seconds(1, lambda: self.timeout_restore(time))
-        #
+        # issue-793: this exception required for mocking 
+        except TypeError:
+            time = 0
 
         self.printDebug("order to present and deiconify")
         self.window.present()
@@ -895,7 +879,7 @@ class Guake(SimpleGladeApp):
         self.client.notify(KEY('/style/background/color'))
 
         self.printDebug("Current window position: %r", self.window.get_position())
-        self.execute_hooks('show')
+        self.execute_hook('show')
 
     def hide_from_remote(self):
         """
@@ -1953,14 +1937,18 @@ class Guake(SimpleGladeApp):
         if hook is not None:
             hook = hook.split()
             try:
-                subprocess.call(hook)
+                subprocess.Popen(hook)
             except Exception as e:
                 pass
                 log.error("hook execution failed! %s" % e)
+            else:
+                log.info('hook on event %s has been executed' % event_name)
         return
 
     def find_hook(self, event_name):
         """return hooks stored in the settings for current event_name"""
         hook = None
         hook = self.client.get(KEY("/hooks/{}".format(event_name)))
+        if hook is not None:
+            hook = hook.get_string()
         return hook
