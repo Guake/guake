@@ -1725,6 +1725,10 @@ class Guake(SimpleGladeApp):
         box.terminal.grab_focus()
         self.load_config()
 
+        for tab in self.tabs:
+            if getattr(tab, 'custom_label_set', False):
+                tab.set_label(getattr(tab, 'custom_label_text', tab.get_label()))
+
         if self.is_fullscreen:
             self.fullscreen()
 
