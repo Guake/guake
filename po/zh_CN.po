@@ -4,13 +4,14 @@
 #
 # Translators:
 # 甘露(Gan Lu) <rhythm.gan@gmail.com>, 2010.
+# 吴新宇(Xinyu Ng) <wuxinyumrx@gmail.com>, 2016.
 msgid ""
 msgstr ""
 "Project-Id-Version: Guake 0.4.5\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-08-18 17:32+0200\n"
 "PO-Revision-Date: \n"
-"Last-Translator: 甘露(Gan Lu) <rhythm.gan@gmail.com>\n"
+"Last-Translator: 吴新宇(Xinyu Ng) <wuxinyumrx@gmail.com>\n"
 "Language-Team: guake@lists.guake.org\n"
 "Language: zh_CN\n"
 "MIME-Version: 1.0\n"
@@ -104,9 +105,8 @@ msgid "Save to File..."
 msgstr "保存到文件"
 
 #: ../data/guake.glade.h:5 ../src/guake/prefs.py:85
-#, fuzzy
 msgid "Reset terminal"
-msgstr "Guake 终端"
+msgstr "重置终端"
 
 #: ../data/guake.glade.h:6
 msgid "Find..."
@@ -585,16 +585,16 @@ msgstr "{0}个标签打开"
 
 #: ../src/guake/guake_app.py:142
 msgid "There are no processes running"
-msgstr "<b>有一个进程仍然在运行</b>"
+msgstr "<b>没有进程仍然在运行</b>"
 
 #: ../src/guake/guake_app.py:144
 msgid "There is a process still running"
 msgstr "<b>有一个进程仍然在运行</b>"
 
 #: ../src/guake/guake_app.py:146
-#, fuzzy, python-brace-format
+#,  python-brace-format
 msgid "There are {0} processes still running"
-msgstr "<b>有 %d 进程正在运行</b>"
+msgstr "<b>有 {0} 进程正在运行</b>"
 
 #: ../src/guake/guake_app.py:186
 msgid "guake-indicator"
@@ -627,9 +627,8 @@ msgid "Search on Web (no selection)"
 msgstr "在网络上搜索（没有选择文字）"
 
 #: ../src/guake/guake_app.py:683
-#, fuzzy
 msgid "Open Link: '{}...'"
-msgstr "打开链接：{}"
+msgstr "打开链接：'{}...'"
 
 #: ../src/guake/guake_app.py:685
 msgid "Open Link: {}"
@@ -759,7 +758,6 @@ msgid "Toggle Guake visibility"
 msgstr "切换 Guake 是否可见"
 
 #: ../src/guake/prefs.py:81
-#, fuzzy
 msgid "Toggle Hide on Lose Focus"
 msgstr "失去焦点后隐藏"
 
@@ -768,7 +766,6 @@ msgid "Tab management"
 msgstr "标签页管理"
 
 #: ../src/guake/prefs.py:90
-#, fuzzy
 msgid "New tab"
 msgstr "新标签页"
 
@@ -793,104 +790,88 @@ msgid "Go to next tab"
 msgstr "下一个标签页"
 
 #: ../src/guake/prefs.py:103
-#, fuzzy
 msgid "Move current tab left"
-msgstr "重命名当前标签页"
+msgstr "将当前标签页向左移动"
 
 #: ../src/guake/prefs.py:105
-#, fuzzy
 msgid "Move current tab right"
-msgstr "重命名当前标签页"
+msgstr "将当前标签页向右移动"
 
 #: ../src/guake/prefs.py:107
-#, fuzzy
 msgid "Go to first tab"
-msgstr "下一个标签页"
+msgstr "跳转到第一个标签页"
 
 #: ../src/guake/prefs.py:109
-#, fuzzy
 msgid "Go to second tab"
-msgstr "下一个标签页"
+msgstr "跳转到第二个标签页"
 
 #: ../src/guake/prefs.py:111
-#, fuzzy
 msgid "Go to third tab"
-msgstr "下一个标签页"
+msgstr "跳转到第三个标签页"
 
 #: ../src/guake/prefs.py:113
-#, fuzzy
 msgid "Go to fourth tab"
-msgstr "下一个标签页"
+msgstr "跳转到第四个标签页"
 
 #: ../src/guake/prefs.py:115
-#, fuzzy
 msgid "Go to fifth tab"
-msgstr "下一个标签页"
+msgstr "跳转到第五个标签页"
 
 #: ../src/guake/prefs.py:117
-#, fuzzy
 msgid "Go to sixth tab"
-msgstr "下一个标签页"
+msgstr "跳转到第六个标签页"
 
 #: ../src/guake/prefs.py:119
-#, fuzzy
 msgid "Go to seventh tab"
-msgstr "下一个标签页"
+msgstr "跳转到第七个标签页"
 
 #: ../src/guake/prefs.py:121
-#, fuzzy
 msgid "Go to eighth tab"
-msgstr "下一个标签页"
+msgstr "跳转到第八个标签页"
 
 #: ../src/guake/prefs.py:123
-#, fuzzy
 msgid "Go to ninth tab"
-msgstr "下一个标签页"
+msgstr "跳转到第九个标签页"
 
 #: ../src/guake/prefs.py:125
-#, fuzzy
 msgid "Go to tenth tab"
-msgstr "下一个标签页"
+msgstr "跳转到第十个标签页"
 
 #: ../src/guake/prefs.py:127
-#, fuzzy
 msgid "Go to last tab"
-msgstr "下一个标签页"
+msgstr "跳转到最后一个标签页"
 
 #: ../src/guake/prefs.py:132
 msgid "Zoom out"
-msgstr ""
+msgstr "放大"
 
 #: ../src/guake/prefs.py:134
 msgid "Zoom in"
-msgstr ""
+msgstr "缩小"
 
 #: ../src/guake/prefs.py:136
 msgid "Zoom in (alternative)"
-msgstr ""
+msgstr "缩小（替代）"
 
 #: ../src/guake/prefs.py:138
 msgid "Increase height"
-msgstr ""
+msgstr "增加高度"
 
 #: ../src/guake/prefs.py:140
 msgid "Decrease height"
-msgstr ""
+msgstr "减少高度"
 
 #: ../src/guake/prefs.py:142
-#, fuzzy
 msgid "Increase transparency"
-msgstr "透明："
+msgstr "增加透明度"
 
 #: ../src/guake/prefs.py:144
-#, fuzzy
 msgid "Decrease transparency"
-msgstr "透明："
+msgstr "减少透明度"
 
 #: ../src/guake/prefs.py:146
-#, fuzzy
 msgid "Toggle transparency"
-msgstr "透明："
+msgstr "透明开关"
 
 #: ../src/guake/prefs.py:149
 msgid "Clipboard"
@@ -909,9 +890,8 @@ msgid "Extra features"
 msgstr ""
 
 #: ../src/guake/prefs.py:159
-#, fuzzy
 msgid "Search select text on web"
-msgstr "使用搜索引擎搜索"
+msgstr "使用搜索引擎搜索选择文字"
 
 #: ../src/guake/prefs.py:481
 msgid "Action"
