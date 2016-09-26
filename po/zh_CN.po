@@ -555,7 +555,7 @@ msgstr "Guake 终端"
 
 #: ../src/guake/gconfhandler.py:369 ../src/guake/guake_app.py:1386
 msgid "Terminal"
-msgstr "终端 %s"
+msgstr "终端"
 
 #: ../src/guake/gconfhandler.py:440
 #, python-format
