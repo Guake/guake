@@ -13,8 +13,8 @@ msgstr ""
 "Project-Id-Version: Guake 0.4.5\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-08-18 17:32+0200\n"
-"PO-Revision-Date: 2016-08-18 17:37+0200\n"
-"Last-Translator: Benjamin Danon <benjamin@sphax3d.org>\n"
+"PO-Revision-Date: 2016-10-09 03:08+0200\n"
+"Last-Translator: Gaetan <gaetan@xeberon.net>\n"
 "Language-Team: French (http://www.transifex.com/projects/p/guake/language/"
 "fr/)\n"
 "Language: fr\n"
@@ -22,7 +22,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
-"X-Generator: Poedit 1.8.7.1\n"
+"X-Generator: Poedit 1.8.9\n"
 
 #: ../data/about.glade.h:1
 msgid "About Guake"
@@ -603,7 +603,7 @@ msgstr "Terminal Guake"
 
 #: ../src/guake/gconfhandler.py:369 ../src/guake/guake_app.py:1386
 msgid "Terminal"
-msgstr "Terminal %s"
+msgstr "Terminal"
 
 #: ../src/guake/gconfhandler.py:440
 #, python-format
