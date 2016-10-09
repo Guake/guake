@@ -4,7 +4,7 @@ Guake README file
 
 |travis-badge|_
 
-.. |travis-badge| image:: https://travis-ci.org/Guake/guake.png?branch=master
+.. |travis-badge| image:: https://travis-ci.org/Guake/guake.svg?branch=master
 .. _travis-badge: https://travis-ci.org/Guake/guake
 
 
