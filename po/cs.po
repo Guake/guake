@@ -4,13 +4,14 @@
 #
 # Translators:
 # Martin Lukeš <martin.meridius@gmail.com>, 2011
+# Daniel Milde <daniel@milde.cz>, 2016
 msgid ""
 msgstr ""
 "Project-Id-Version: Guake 0.4.5\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-08-18 17:32+0200\n"
-"PO-Revision-Date: 2016-05-25 22:08+0200\n"
-"Last-Translator: Martin Lukeš <martin.meridius@gmail.com>\n"
+"PO-Revision-Date: 2016-10-11 11:45+0200\n"
+"Last-Translator: Daniel Milde <daniel@milde.cz>\n"
 "Language-Team: Czech (Czech Republic) (http://www.transifex.com/projects/p/"
 "guake/language/cs_CZ/)\n"
 "Language: cs_CZ\n"
@@ -274,11 +275,11 @@ msgstr "Maximální délka názvu karty:"
 
 #: ../data/prefs.glade.h:34
 msgid "0 means no size limit"
-msgstr ""
+msgstr "0 znamená žádný limit velikosti"
 
 #: ../data/prefs.glade.h:35
 msgid "Abbreviate directories in tab names"
-msgstr ""
+msgstr "Zkrátit jména složek v názvech tabů"
 
 #: ../data/prefs.glade.h:36
 msgid "Hide on lose focus"
@@ -667,9 +668,8 @@ msgid "Search on Web (no selection)"
 msgstr "Vyhledat na webu (bez výběru)"
 
 #: ../src/guake/guake_app.py:683
-#, fuzzy
 msgid "Open Link: '{}...'"
-msgstr "Otevřít odkaz: {}"
+msgstr "Otevřít odkaz: '{}...'"
 
 #: ../src/guake/guake_app.py:685
 msgid "Open Link: {}"
@@ -803,7 +803,6 @@ msgid "Toggle Guake visibility"
 msgstr "Přepnout viditelnost Guake"
 
 #: ../src/guake/prefs.py:81
-#, fuzzy
 msgid "Toggle Hide on Lose Focus"
 msgstr "Skrýt při ztrátě aktivity okna"
 
@@ -812,7 +811,6 @@ msgid "Tab management"
 msgstr "Správa karet"
 
 #: ../src/guake/prefs.py:90
-#, fuzzy
 msgid "New tab"
 msgstr "Nová karta"
 
@@ -837,104 +835,88 @@ msgid "Go to next tab"
 msgstr "Přejít na následující kartu"
 
 #: ../src/guake/prefs.py:103
-#, fuzzy
 msgid "Move current tab left"
-msgstr "Přejmenovat současnou kartu"
+msgstr "Přesunout současnou kartu vlevo"
 
 #: ../src/guake/prefs.py:105
-#, fuzzy
 msgid "Move current tab right"
-msgstr "Přejmenovat současnou kartu"
+msgstr "Přesunout současnou kartu vpravo"
 
 #: ../src/guake/prefs.py:107
-#, fuzzy
 msgid "Go to first tab"
-msgstr "Přejít na následující kartu"
+msgstr "Přejít na první kartu"
 
 #: ../src/guake/prefs.py:109
-#, fuzzy
 msgid "Go to second tab"
-msgstr "Přejít na následující kartu"
+msgstr "Přejít na druhou kartu"
 
 #: ../src/guake/prefs.py:111
-#, fuzzy
 msgid "Go to third tab"
-msgstr "Přejít na následující kartu"
+msgstr "Přejít na třetí kartu"
 
 #: ../src/guake/prefs.py:113
-#, fuzzy
 msgid "Go to fourth tab"
-msgstr "Přejít na následující kartu"
+msgstr "Přejít na čtvrtou kartu"
 
 #: ../src/guake/prefs.py:115
-#, fuzzy
 msgid "Go to fifth tab"
-msgstr "Přejít na následující kartu"
+msgstr "Přejít na pátou kartu"
 
 #: ../src/guake/prefs.py:117
-#, fuzzy
 msgid "Go to sixth tab"
-msgstr "Přejít na následující kartu"
+msgstr "Přejít na šestou kartu"
 
 #: ../src/guake/prefs.py:119
-#, fuzzy
 msgid "Go to seventh tab"
-msgstr "Přejít na následující kartu"
+msgstr "Přejít na sedmou kartu"
 
 #: ../src/guake/prefs.py:121
-#, fuzzy
 msgid "Go to eighth tab"
-msgstr "Přejít na následující kartu"
+msgstr "Přejít na osmou kartu"
 
 #: ../src/guake/prefs.py:123
-#, fuzzy
 msgid "Go to ninth tab"
-msgstr "Přejít na následující kartu"
+msgstr "Přejít na devátou kartu"
 
 #: ../src/guake/prefs.py:125
-#, fuzzy
 msgid "Go to tenth tab"
-msgstr "Přejít na následující kartu"
+msgstr "Přejít na desátou kartu"
 
 #: ../src/guake/prefs.py:127
-#, fuzzy
 msgid "Go to last tab"
-msgstr "Přejít na následující kartu"
+msgstr "Přejít na poslední kartu"
 
 #: ../src/guake/prefs.py:132
 msgid "Zoom out"
-msgstr ""
+msgstr "Oddálit"
 
 #: ../src/guake/prefs.py:134
 msgid "Zoom in"
-msgstr ""
+msgstr "Přiblížit"
 
 #: ../src/guake/prefs.py:136
 msgid "Zoom in (alternative)"
-msgstr ""
+msgstr "Přiblížit (alternativa)"
 
 #: ../src/guake/prefs.py:138
 msgid "Increase height"
-msgstr ""
+msgstr "Zvětšit výšku"
 
 #: ../src/guake/prefs.py:140
 msgid "Decrease height"
-msgstr ""
+msgstr "Snížit výšku"
 
 #: ../src/guake/prefs.py:142
-#, fuzzy
 msgid "Increase transparency"
-msgstr "Průhlednost:"
+msgstr "Zvýšit průhlednost"
 
 #: ../src/guake/prefs.py:144
-#, fuzzy
 msgid "Decrease transparency"
-msgstr "Průhlednost:"
+msgstr "Snížit průhlednost"
 
 #: ../src/guake/prefs.py:146
-#, fuzzy
 msgid "Toggle transparency"
-msgstr "Průhlednost:"
+msgstr "Přepnout průhlednost"
 
 #: ../src/guake/prefs.py:149
 msgid "Clipboard"
@@ -950,12 +932,11 @@ msgstr "Vložit text ze schránky"
 
 #: ../src/guake/prefs.py:156
 msgid "Extra features"
-msgstr ""
+msgstr "Další funkce"
 
 #: ../src/guake/prefs.py:159
-#, fuzzy
 msgid "Search select text on web"
-msgstr "Najít na webu"
+msgstr "Najít vybraný text na webu"
 
 #: ../src/guake/prefs.py:481
 msgid "Action"
