@@ -195,6 +195,10 @@ def main():
             remote_object.rename_tab(int(options.tab_index), options.rename_tab)
         only_show_hide = False
 
+    if options.bgimg:
+        remote_object.set_bg_image(options.bgimg)
+        only_show_hide = False
+
     if options.bgcolor:
         remote_object.set_bgcolor(options.bgcolor)
         only_show_hide = False
