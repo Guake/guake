@@ -107,6 +107,11 @@ def main():
                       action='store', default='0',
                       help=_('Specify the tab to rename. Default is 0.'))
 
+    parser.add_option('--bgimg', dest='bgimg',
+                      action='store', default='',
+                      help=_('Set the background image of '
+                             'the selected tab.'))
+
     parser.add_option('--bgcolor', dest='bgcolor',
                       action='store', default='',
                       help=_('Set the hexadecimal (#rrggbb) background color of '
