@@ -1536,6 +1536,8 @@ class Guake(SimpleGladeApp):
         else:
             tab.set_label(new_text)
             setattr(tab, 'custom_label_set', new_text != "-")
+            if new_text != "-":
+                setattr(self.selected_tab, 'custom_label_text', new_text)
             terminals = self.notebook.get_terminals_for_tab(tab_index)
             for current_vte in terminals:
                 current_vte.emit('window-title-changed')
@@ -1550,6 +1552,8 @@ class Guake(SimpleGladeApp):
         else:
             tab.set_label(new_text)
             setattr(tab, 'custom_label_set', new_text != "-")
+            if new_text != "-":
+                setattr(self.selected_tab, 'custom_label_text', new_text)
             terminals = self.notebook.get_terminals_for_tab(tab_index)
             for current_vte in terminals:
                 current_vte.emit('window-title-changed')
@@ -1558,6 +1562,7 @@ class Guake(SimpleGladeApp):
         """Sets the `self.selected_tab' var with the selected radio
         button and change its label to `new_text'.
         """
+
         pagepos = self.notebook.get_current_page()
         self.selected_tab = self.tabs.get_children()[pagepos]
         self.selected_tab.set_label(new_text)
@@ -1565,6 +1570,8 @@ class Guake(SimpleGladeApp):
         # it's hard to pass an empty string as a command line argument,
         # so we'll interpret single dash "-" as a "reset custom title" request
         setattr(self.selected_tab, 'custom_label_set', new_text != "-")
+        if new_text != "-":
+            setattr(self.selected_tab, 'custom_label_text', new_text)
 
         # trigger titling handler in case that custom label has been reset
         current_vte = self.notebook.get_current_terminal()
@@ -1862,6 +1869,10 @@ class Guake(SimpleGladeApp):
         if abbreviate_tab_names and not self.is_tabs_scrollbar_visible():
             self.abbreviate = False
             self.recompute_tabs_titles()
+
+        for tab in self.tabs:
+            if getattr(tab, 'custom_label_set', False):
+                tab.set_label(getattr(tab, 'custom_label_text', tab.get_label()))
 
     def set_terminal_focus(self):
         """Grabs the focus on the current tab.
