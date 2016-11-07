@@ -537,7 +537,7 @@ class Guake(SimpleGladeApp):
         for terminal in self.notebook.get_terminals_for_tab(index):
             if image and os.path.exists(image):
                 terminal.set_background_image_file(image)
-                terminal.set_background_transparent(False) 
+                terminal.set_background_transparent(False)
 
     def set_bgcolor(self, bgcolor, tab=None):
         """Set the background color of `tab' or the current tab to `bgcolor'."""
