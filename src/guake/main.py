@@ -107,6 +107,11 @@ def main():
                       action='store', default='0',
                       help=_('Specify the tab to rename. Default is 0.'))
 
+    parser.add_option('--bgimg', dest='bgimg',
+                      action='store', default='',
+                      help=_('Set the background image of '
+                             'the selected tab.'))
+
     parser.add_option('--bgcolor', dest='bgcolor',
                       action='store', default='',
                       help=_('Set the hexadecimal (#rrggbb) background color of '
@@ -193,6 +198,10 @@ def main():
             remote_object.rename_tab_uuid(str(uuid.UUID(options.tab_index)), options.rename_tab)
         except ValueError:
             remote_object.rename_tab(int(options.tab_index), options.rename_tab)
+        only_show_hide = False
+
+    if options.bgimg:
+        remote_object.set_bg_image(options.bgimg)
         only_show_hide = False
 
     if options.bgcolor:
