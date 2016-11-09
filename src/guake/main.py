@@ -41,6 +41,7 @@ from guake.dbusiface import DBUS_NAME
 from guake.dbusiface import DBUS_PATH
 from guake.dbusiface import DbusManager
 from guake.globals import KEY
+from guake.globals import VERSION
 from guake.guake_app import Guake
 
 
@@ -62,7 +63,7 @@ def main():
     # Force to xterm-256 colors for compatibility with some old command line programs
     os.environ["TERM"] = "xterm-256color"
 
-    parser = OptionParser()
+    parser = OptionParser(version='Guake Terminal %s' % VERSION)
     parser.add_option('-f', '--fullscreen', dest='fullscreen',
                       action='store_true', default=False,
                       help=_('Put Guake in fullscreen mode'))
