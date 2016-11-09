@@ -229,7 +229,7 @@ this::
 
     $ ./configure --sysconfdir=/etc && make
 
-If it is not enought you can install the gconf schemas file by hand by doing the following::
+If it is not enough you can install the gconf schemas file by hand by doing the following::
 
     $ GCONF_CONFIG_SOURCE="" gconftool-2 --makefile-install-rule data/guake.schemas
 
