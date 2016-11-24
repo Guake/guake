@@ -1719,10 +1719,11 @@ class Guake(SimpleGladeApp):
         bnt.set_property('can-focus', False)
         bnt.set_property('draw-indicator', False)
         bnt.connect('button-press-event', self.show_tab_menu)
-        bnt.connect('button-press-event', self.show_rename_current_tab_dialog)
-        bnt.connect('clicked', lambda *x: self.notebook.set_current_page(
+        bnt.activate_tab = lambda *x: self.notebook.set_current_page(
             self.notebook.page_num(box)
-        ))
+        )
+        bnt.connect('button-press-event', self.show_rename_current_tab_dialog)
+        bnt.connect('clicked', bnt.activate_tab)
         if self.selected_color is not None:
             bnt.modify_bg(gtk.STATE_ACTIVE, gtk.gdk.Color(
                 str(self.selected_color)))
@@ -1736,7 +1737,7 @@ class Guake(SimpleGladeApp):
         self.tabs.pack_start(bnt, expand=False, padding=1)
 
         self.notebook.append_page(box, None)
-        self.notebook.set_current_page(self.notebook.page_num(box))
+        bnt.activate_tab()
         box.terminal.grab_focus()
         self.load_config()
 
