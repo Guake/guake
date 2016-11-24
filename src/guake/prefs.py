@@ -689,8 +689,8 @@ class PrefsDialog(SimpleGladeApp):
 
     def fill_palette_names(self):
         combo = self.get_widget('palette_name')
-        for palette_name in sorted(PALETTES.keys()):
-            combo.append_text(palette_name)
+        for palette in sorted(PALETTES):
+            combo.append_text(palette)
         self.custom_palette_index = len(PALETTES)
         combo.append_text(_('Custom'))
 
