@@ -728,6 +728,16 @@ class Guake(SimpleGladeApp):
             menu.popup(None, None, None, 3, event.get_time())
         self.set_terminal_focus()
 
+    def middle_button_click(self, target, event):
+        """Closes a tab with a middle click
+        """
+        if event.button == 2 and event.type == gtk.gdk.BUTTON_PRESS:
+            previously_selected_tab = self.get_selected_tab()
+            target.activate_tab()
+            target_position = self.get_selected_tab()
+            self.select_tab(previously_selected_tab)
+            self.delete_tab(target_position)
+
     def show_about(self, *args):
         """Hides the main window and creates an instance of the About
         Dialog.
@@ -1722,6 +1732,7 @@ class Guake(SimpleGladeApp):
         bnt.activate_tab = lambda *x: self.notebook.set_current_page(
             self.notebook.page_num(box)
         )
+        bnt.connect('button-press-event', self.middle_button_click)
         bnt.connect('button-press-event', self.show_rename_current_tab_dialog)
         bnt.connect('clicked', bnt.activate_tab)
         if self.selected_color is not None:
