@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: Guake 0.4.5\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-08-18 17:32+0200\n"
-"PO-Revision-Date: 2016-08-05 15:34+0300\n"
+"PO-Revision-Date: 2016-11-26 18:47+0300\n"
 "Last-Translator: Ivan Komaritsyn <vantu5z@mail.ru>\n"
 "Language: \n"
 "MIME-Version: 1.0\n"
@@ -264,7 +264,7 @@ msgstr "Макс. ширина вкладки:"
 
 #: ../data/prefs.glade.h:34
 msgid "0 means no size limit"
-msgstr ""
+msgstr "0 - без ограничения размера"
 
 #: ../data/prefs.glade.h:35
 msgid "Abbreviate directories in tab names"
@@ -887,7 +887,7 @@ msgstr "Увеличить"
 
 #: ../src/guake/prefs.py:136
 msgid "Zoom in (alternative)"
-msgstr "Учеличить (альтернативная)"
+msgstr "Увеличить (альтернативная)"
 
 #: ../src/guake/prefs.py:138
 msgid "Increase height"
