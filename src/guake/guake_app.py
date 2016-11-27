@@ -25,6 +25,7 @@ from __future__ import print_function
 import gconf
 import gobject
 import gtk
+import glib
 import json
 import keybinder
 import logging
@@ -42,6 +43,7 @@ from urllib import url2pathname
 from urlparse import urlsplit
 from xdg.DesktopEntry import DesktopEntry
 from xml.sax.saxutils import escape as xml_escape
+import wnck
 
 import guake.notifier
 
@@ -355,6 +357,13 @@ class Guake(SimpleGladeApp):
         # resizer stuff
         self.resizer.connect('motion-notify-event', self.on_resizer_drag)
 
+        # Workspaces tracking
+        self.boxes_by_workspaces = {}
+        self.visible_by_workspaces = {}
+        self.active_by_workspaces = {}
+        self.screen = wnck.screen_get_default()
+        self.screen.connect( "active-workspace-changed", self.workspace_changed )
+
         # adding the first tab on guake
         self.add_tab()
 
@@ -554,6 +563,54 @@ class Guake(SimpleGladeApp):
         index = tab or self.notebook.get_current_page()
         for terminal in self.notebook.get_terminals_for_tab(index):
             terminal.custom_fgcolor = gtk.gdk.color_parse(fgcolor)
+
+    def workspace_changed(self, screen, previous_workspace):
+
+        workspace = self.screen.get_active_workspace()
+
+        w_num = workspace.get_number()
+
+        self.current_workspace = w_num
+
+        if previous_workspace:
+            prev_w_num = previous_workspace.get_number()
+            self.active_by_workspaces[prev_w_num] = self.get_active_box()
+            if prev_w_num != w_num:
+                # Workspace did change
+                for box, bnt in self.boxes_by_workspaces[prev_w_num]:
+                    box.hide()
+                    bnt.hide()
+                if not w_num in self.boxes_by_workspaces:
+                    # New workspace - hence empty
+                    self.add_tab()
+                else:
+                    for box, bnt in self.boxes_by_workspaces[w_num]:
+                        box.show()
+                        bnt.show()
+                if w_num not in self.visible_by_workspaces:
+                    # Never shown in this workspace
+                    self.visible_by_workspaces[w_num] = False
+                if self.visible_by_workspaces[w_num]:
+                    self.set_active_box(self.active_by_workspaces[w_num])
+                    self.show()
+                    self.set_terminal_focus()
+                else:
+                    self.hide()
+        else:
+            # guake just started - so it is invisible
+            self.visible_by_workspaces[w_num] = False
+
+    def get_active_box(self):
+        """Return the currently shown GuakeTerminalBox.
+        """
+        page_num = self.notebook.get_current_page()
+        return self.notebook.get_nth_page(page_num)
+
+    def set_active_box(self, box):
+        """Show the given GuakeTerminalBox.
+        """
+        page_num = self.notebook.page_num(box)
+        self.notebook.set_current_page(page_num)
 
     def execute_command(self, command, tab=None):
         """Execute the `command' in the `tab'. If tab is None, the
@@ -840,7 +897,7 @@ class Guake(SimpleGladeApp):
             self.add_tab()
 
         self.window.set_keep_below(False)
-        self.window.show_all()
+        self.window.show()
 
         if self.selected_color is None:
             self.selected_color = getattr(self.window.get_style(), "light")[int(gtk.STATE_SELECTED)]
@@ -904,6 +961,7 @@ class Guake(SimpleGladeApp):
         # widget is shown.
         self.client.notify(KEY('/style/font/color'))
         self.client.notify(KEY('/style/background/color'))
+        self.visible_by_workspaces[self.current_workspace] = True
 
         self.printDebug("Current window position: %r", self.window.get_position())
 
@@ -933,6 +991,7 @@ class Guake(SimpleGladeApp):
         self.hidden = True
         self.get_widget('window-root').unstick()
         self.window.hide()  # Don't use hide_all here!
+        self.visible_by_workspaces[self.current_workspace] = False
 
     def get_final_window_monitor(self):
         """Gets the final screen number for the main window of guake.
@@ -1592,14 +1651,21 @@ class Guake(SimpleGladeApp):
         """Gets the working directory of the current tab to create a
         new one in the same dir.
         """
-        active_terminal = self.notebook.get_current_terminal()
+
         directory = os.path.expanduser('~')
-        if active_terminal:
-            active_pid = active_terminal.get_pid()
-            if active_pid:
-                cwd = os.readlink("/proc/{0}/cwd".format(active_pid))
-                if os.path.exists(cwd):
-                    directory = cwd
+
+        if (hasattr(self, "current_workspace") and
+            self.current_workspace in self.active_by_workspaces):
+            active_box = self.active_by_workspaces[self.current_workspace]
+            active_terminal = active_box.terminal
+            directory = os.path.expanduser('~')
+            if active_terminal:
+                active_pid = active_terminal.get_pid()
+                if active_pid:
+                    cwd = os.readlink("/proc/{0}/cwd".format(active_pid))
+                    if os.path.exists(cwd):
+                        directory = cwd
+
         return directory
 
     def get_fork_params(self, default_params=None, box=None):
@@ -1749,7 +1815,21 @@ class Guake(SimpleGladeApp):
         if self.is_fullscreen:
             self.fullscreen()
 
+        # If the program is just starting, wnck is still not ready to give us
+        # the workspace - so use idle_add:
+        glib.idle_add(self.assign_workspace, box, bnt)
+
         return str(box.terminal.get_uuid())
+
+    def assign_workspace(self, box, bnt):
+        w = self.screen.get_active_workspace()
+        w_num = w.get_number()
+
+        if not w_num in self.boxes_by_workspaces:
+            self.boxes_by_workspaces[w_num] = []
+
+        self.boxes_by_workspaces[w_num].append((box, bnt))
+        self.active_by_workspaces[w_num] = box
 
     def save_tab(self, directory=None):
         self.preventHide = True
@@ -1866,13 +1946,28 @@ class Guake(SimpleGladeApp):
 
         self.tabs.get_children()[pagepos].destroy()
         self.notebook.delete_tab(pagepos, kill=kill)
+        tab = self.tabs.get_children()[pagepos]
 
-        if not self.notebook.has_term():
+        current_boxes = self.boxes_by_workspaces[self.current_workspace]
+        for rel_pos in range(len(current_boxes)):
+            box, bnt = current_boxes[rel_pos]
+            if bnt is tab:
+                current_boxes.pop(rel_pos)
+                box.destroy()
+                bnt.destroy()
+                break
+
+        # FIXME: rather adapt self.notebook.has_term():
+        if not self.boxes_by_workspaces[self.current_workspace]:
+            # No more boxes in current workspace
             self.hide()
             # avoiding the delay on next Guake show request
             self.add_tab()
         else:
-            self.set_terminal_focus()
+            # FIXME: pretty arbitrary...
+            box, bnt = self.boxes_by_workspaces[self.current_workspace][-1]
+            self.active_by_workspaces[self.current_workspace] = box
+            self.set_active_box(box)
 
         self.was_deleted_tab = True
         abbreviate_tab_names = self.client.get_bool(KEY('/general/abbreviate_tab_names'))
