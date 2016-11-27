@@ -839,8 +839,21 @@ class Guake(SimpleGladeApp):
         if not self.notebook.has_term():
             self.add_tab()
 
+        try:
+            # does it work in other gtk backends
+            time = gtk.gdk.x11_get_server_time(self.window.window)
+        except:
+            time = 0
+
         self.window.set_keep_below(False)
+        self.printDebug("order to present and deiconify")
+        self.window.present()
+        self.window.deiconify()
+        self.window.window.deiconify()
         self.window.show_all()
+        self.window.window.focus(time)
+        self.window.set_type_hint(gtk.gdk.WINDOW_TYPE_HINT_DOCK)
+        self.window.set_type_hint(gtk.gdk.WINDOW_TYPE_HINT_NORMAL)
 
         if self.selected_color is None:
             self.selected_color = getattr(self.window.get_style(), "light")[int(gtk.STATE_SELECTED)]
@@ -860,12 +873,6 @@ class Guake(SimpleGladeApp):
         if not self.is_fullscreen:
             self.client.notify(KEY('/general/window_height'))
 
-        try:
-            # does it work in other gtk backends
-            time = gtk.gdk.x11_get_server_time(self.window.window)
-        except AttributeError:
-            time = 0
-
         # When minized, the window manager seems to refuse to resume
         # log.debug("self.window: %s. Dir=%s", type(self.window), dir(self.window))
         # is_iconified = self.is_iconified()
@@ -884,15 +891,6 @@ class Guake(SimpleGladeApp):
         #         self.get_widget('window-root').get_urgency_hint()))
         #     glib.timeout_add_seconds(1, lambda: self.timeout_restore(time))
         #
-
-        self.printDebug("order to present and deiconify")
-        self.window.present()
-        self.window.deiconify()
-        self.window.window.deiconify()
-        self.window.window.show()
-        self.window.window.focus(time)
-        self.window.set_type_hint(gtk.gdk.WINDOW_TYPE_HINT_DOCK)
-        self.window.set_type_hint(gtk.gdk.WINDOW_TYPE_HINT_NORMAL)
 
         # log.debug("Restoring skip_taskbar_hint and skip_pager_hint")
         # if is_iconified:
