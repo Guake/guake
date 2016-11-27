@@ -1,38 +1,40 @@
 # Japanese translation of the Guake software
-# Copyright (C) 2013 Guake Translators
+# Copyright (C) 2008-2016 Guake Translators
 # This file is distributed under the same license as the Guake package.
 #
 # Translators:
 # Nishio Futoshi <futoshi@momonga-linux.org>, 2008, 2010.
+# IWAI, Masaharu <iwaim.sub@gmail.com>, 2016.
+#
 msgid ""
 msgstr ""
-"Project-Id-Version: Guake 0.4.5\n"
+"Project-Id-Version: Guake 0.8.7\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-08-18 17:32+0200\n"
-"PO-Revision-Date: 2010-07-24 14:58+0900\n"
-"Last-Translator: Nishio Futoshi <futoshi@momonga-linux.org>\n"
-"Language-Team: guake@lists.guake.org\n"
-"Language: \n"
+"PO-Revision-Date: 2016-11-27 23:23+0900\n"
+"Last-Translator: IWAI, Masaharu <iwaim.sub@gmail.com>\n"
+"Language-Team: Japanese <translation-team-ja@lists.sourceforge.net>\n"
+"Language: ja\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
 
 #: ../data/about.glade.h:1
 msgid "About Guake"
 msgstr "Guakeについて"
 
 #: ../data/about.glade.h:2
-#, fuzzy
 msgid ""
 "Copyright 2013-2015 Gaetan Semet\n"
 "Copyright 2007-2010 Lincoln de Sousa\n"
 "Copyright 2007 Gabriel Falc&#xE3;o"
 msgstr ""
-"Copyright 2007-2009 Lincoln de Sousa\n"
+"Copyright 2013-2015 Gaetan Semet\n"
+"Copyright 2007-2010 Lincoln de Sousa\n"
 "Copyright 2007 Gabriel Falc&#xE3;o"
 
 #: ../data/about.glade.h:5
-#, fuzzy
 msgid ""
 "Guake is an easy to access\n"
 "terminal based on FPS games terminal"
@@ -108,7 +110,6 @@ msgid "New Tab"
 msgstr "新規TAB"
 
 #: ../data/guake.glade.h:8
-#, fuzzy
 msgid "Rename Tab"
 msgstr "タブの名前を変更"
 
@@ -141,9 +142,8 @@ msgid "Guake!"
 msgstr "Guake!"
 
 #: ../data/guake.glade.h:16
-#, fuzzy
 msgid "Add a new tab"
-msgstr "新しいタブ"
+msgstr "新しいタブを追加"
 
 #: ../data/prefs.glade.h:1
 msgid "Guake Preferences"
@@ -267,9 +267,8 @@ msgid "Show tab bar"
 msgstr "タブバーを表示する"
 
 #: ../data/prefs.glade.h:38
-#, fuzzy
 msgid "Start fullscreen"
-msgstr "全画面表示"
+msgstr "全画面表示で開始"
 
 #: ../data/prefs.glade.h:39
 msgid "<b>Main Window</b>"
@@ -293,14 +292,12 @@ msgid "<b>Main Window Horizontal Alignment</b>"
 msgstr "<b>ウィンドウサイズ</b>"
 
 #: ../data/prefs.glade.h:44
-#, fuzzy
 msgid "<b>Main Window Height</b>"
 msgstr "<b>メインウィンドウの高さ</b>"
 
 #: ../data/prefs.glade.h:45
-#, fuzzy
 msgid "<b>Main Window Width</b>"
-msgstr "<b>メインウィンドウの高さ</b>"
+msgstr "<b>メインウィンドウの幅</b>"
 
 #: ../data/prefs.glade.h:46
 msgid "Custom command file path: "
@@ -417,12 +414,10 @@ msgid "Color palette:"
 msgstr "色:"
 
 #: ../data/prefs.glade.h:77
-#, fuzzy
 msgid "Font color"
 msgstr "文字の色:"
 
 #: ../data/prefs.glade.h:78
-#, fuzzy
 msgid "Background color"
 msgstr "背景色"
 
@@ -555,9 +550,8 @@ msgid "Guake Terminal"
 msgstr "Guake 端末"
 
 #: ../src/guake/gconfhandler.py:369 ../src/guake/guake_app.py:1386
-#, fuzzy
 msgid "Terminal"
-msgstr "端末 %s"
+msgstr "端末"
 
 #: ../src/guake/gconfhandler.py:440
 #, python-format
@@ -569,12 +563,10 @@ msgstr ""
 "設定画面で別のキーを選択してください。(通知エリアのアイコンが有効でした)"
 
 #: ../src/guake/guake_app.py:132
-#, fuzzy
 msgid "Do you want to close the tab?"
-msgstr "本当に Guake を終了しますか?"
+msgstr "タブを閉じますか?"
 
 #: ../src/guake/guake_app.py:135
-#, fuzzy
 msgid "Do you really want to quit Guake?"
 msgstr "本当に Guake を終了しますか?"
 
@@ -589,19 +581,17 @@ msgid " and {0} tabs open"
 msgstr ""
 
 #: ../src/guake/guake_app.py:142
-#, fuzzy
 msgid "There are no processes running"
-msgstr "<b>1つのプロセスが実行中です</b>"
+msgstr "実行中のプロセスはありません"
 
 #: ../src/guake/guake_app.py:144
-#, fuzzy
 msgid "There is a process still running"
-msgstr "<b>1つのプロセスが実行中です</b>"
+msgstr "まだ、1つのプロセスが実行中です"
 
 #: ../src/guake/guake_app.py:146
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid "There are {0} processes still running"
-msgstr "<b>%dつのプロセスが実行中です</b>"
+msgstr "まだ %dつのプロセスが実行中です"
 
 #: ../src/guake/guake_app.py:186
 msgid "guake-indicator"
@@ -682,14 +672,12 @@ msgid "Toggles the visibility of the terminal window"
 msgstr "端末の表示を変更します"
 
 #: ../src/guake/main.py:76
-#, fuzzy
 msgid "Shows Guake main window"
-msgstr "Guakeの設定画面を表示します"
+msgstr "Guakeのメインウインドウを表示します"
 
 #: ../src/guake/main.py:80
-#, fuzzy
 msgid "Hides Guake main window"
-msgstr "Guakeの設定画面を表示します"
+msgstr "Guakeのメインウインドウを隠します"
 
 #: ../src/guake/main.py:84
 msgid "Shows Guake preference window"
@@ -700,9 +688,8 @@ msgid "Shows Guake's about info"
 msgstr "Guakeの情報を表示します"
 
 #: ../src/guake/main.py:92
-#, fuzzy
 msgid "Add a new tab (with current directory set to NEW_TAB)"
-msgstr "カレントディレクトリを新しいタブに開く(_O)"
+msgstr "カレントディレクトリを新しいタブに開く"
 
 #: ../src/guake/main.py:96
 msgid "Select a tab (SELECT_TAB is the index of the tab)"
@@ -751,7 +738,6 @@ msgid "Guake can not init!"
 msgstr "Guakeを初期化できません"
 
 #: ../src/guake/main.py:236
-#, fuzzy
 msgid ""
 "Gconf Error.\n"
 "Have you installed <b>guake.schemas</b> properly?"
@@ -769,7 +755,6 @@ msgid "Toggle Guake visibility"
 msgstr "端末表示の切り替え"
 
 #: ../src/guake/prefs.py:81
-#, fuzzy
 msgid "Toggle Hide on Lose Focus"
 msgstr "フォーカスを失ったら隠す"
 
@@ -778,9 +763,8 @@ msgid "Tab management"
 msgstr "タブの管理"
 
 #: ../src/guake/prefs.py:90
-#, fuzzy
 msgid "New tab"
-msgstr "新規TAB"
+msgstr "新規タブ"
 
 #: ../src/guake/prefs.py:92
 msgid "Close tab"
@@ -803,77 +787,64 @@ msgid "Go to next tab"
 msgstr "次のタブに移動"
 
 #: ../src/guake/prefs.py:103
-#, fuzzy
 msgid "Move current tab left"
-msgstr "現在のタブの名前を変更"
+msgstr "現在のタブを左に移動"
 
 #: ../src/guake/prefs.py:105
-#, fuzzy
 msgid "Move current tab right"
-msgstr "現在のタブの名前を変更"
+msgstr "現在のタブの名前を右に移動"
 
 #: ../src/guake/prefs.py:107
-#, fuzzy
 msgid "Go to first tab"
-msgstr "次のタブに移動"
+msgstr "最初のタブに移動"
 
 #: ../src/guake/prefs.py:109
-#, fuzzy
 msgid "Go to second tab"
-msgstr "次のタブに移動"
+msgstr "2つめのタブに移動"
 
 #: ../src/guake/prefs.py:111
-#, fuzzy
 msgid "Go to third tab"
-msgstr "次のタブに移動"
+msgstr "3つめタブに移動"
 
 #: ../src/guake/prefs.py:113
-#, fuzzy
 msgid "Go to fourth tab"
-msgstr "次のタブに移動"
+msgstr "4つめタブに移動"
 
 #: ../src/guake/prefs.py:115
-#, fuzzy
 msgid "Go to fifth tab"
-msgstr "次のタブに移動"
+msgstr "5つめのタブに移動"
 
 #: ../src/guake/prefs.py:117
-#, fuzzy
 msgid "Go to sixth tab"
-msgstr "次のタブに移動"
+msgstr "6つめのタブに移動"
 
 #: ../src/guake/prefs.py:119
-#, fuzzy
 msgid "Go to seventh tab"
-msgstr "次のタブに移動"
+msgstr "7つめのタブに移動"
 
 #: ../src/guake/prefs.py:121
-#, fuzzy
 msgid "Go to eighth tab"
-msgstr "次のタブに移動"
+msgstr "8つめのタブに移動"
 
 #: ../src/guake/prefs.py:123
-#, fuzzy
 msgid "Go to ninth tab"
-msgstr "次のタブに移動"
+msgstr "9つめのタブに移動"
 
 #: ../src/guake/prefs.py:125
-#, fuzzy
 msgid "Go to tenth tab"
-msgstr "次のタブに移動"
+msgstr "10個目のタブに移動"
 
 #: ../src/guake/prefs.py:127
-#, fuzzy
 msgid "Go to last tab"
-msgstr "次のタブに移動"
+msgstr "最後のタブに移動"
 
 #: ../src/guake/prefs.py:132
 msgid "Zoom out"
-msgstr ""
+msgstr "縮小"
 
 #: ../src/guake/prefs.py:134
 msgid "Zoom in"
-msgstr ""
+msgstr "拡大"
 
 #: ../src/guake/prefs.py:136
 msgid "Zoom in (alternative)"
