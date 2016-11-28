@@ -2,13 +2,22 @@
 Version 0.8.8
 =============
 
-Minor changes
+Thank to these contribution from Guake users, I am happy to announce a new minor fix release of
+Guake.
 
-Feature:
+Features:
 * Close a tab with the middle button of the mouse
 
 Bug Fixes:
-
+- Fix error when toggle key was disabled
+- Update change news
+- Uppercase pallete name
+- Fix pylint errors
+- Convert README badge to SVG
+- Update Japanese translation
+- update Russian translation
+- updated CS translation
+- Update zh_CN translation
 
 
 Version 0.8.7
