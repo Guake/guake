@@ -728,6 +728,16 @@ class Guake(SimpleGladeApp):
             menu.popup(None, None, None, 3, event.get_time())
         self.set_terminal_focus()
 
+    def middle_button_click(self, target, event):
+        """Closes a tab with a middle click
+        """
+        if event.button == 2 and event.type == gtk.gdk.BUTTON_PRESS:
+            previously_selected_tab = self.get_selected_tab()
+            target.activate_tab()
+            target_position = self.get_selected_tab()
+            self.select_tab(previously_selected_tab)
+            self.delete_tab(target_position)
+
     def show_about(self, *args):
         """Hides the main window and creates an instance of the About
         Dialog.
@@ -1719,10 +1729,12 @@ class Guake(SimpleGladeApp):
         bnt.set_property('can-focus', False)
         bnt.set_property('draw-indicator', False)
         bnt.connect('button-press-event', self.show_tab_menu)
-        bnt.connect('button-press-event', self.show_rename_current_tab_dialog)
-        bnt.connect('clicked', lambda *x: self.notebook.set_current_page(
+        bnt.activate_tab = lambda *x: self.notebook.set_current_page(
             self.notebook.page_num(box)
-        ))
+        )
+        bnt.connect('button-press-event', self.middle_button_click)
+        bnt.connect('button-press-event', self.show_rename_current_tab_dialog)
+        bnt.connect('clicked', bnt.activate_tab)
         if self.selected_color is not None:
             bnt.modify_bg(gtk.STATE_ACTIVE, gtk.gdk.Color(
                 str(self.selected_color)))
@@ -1736,7 +1748,7 @@ class Guake(SimpleGladeApp):
         self.tabs.pack_start(bnt, expand=False, padding=1)
 
         self.notebook.append_page(box, None)
-        self.notebook.set_current_page(self.notebook.page_num(box))
+        bnt.activate_tab()
         box.terminal.grab_focus()
         self.load_config()
 
