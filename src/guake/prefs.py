@@ -201,6 +201,11 @@ class PrefsCallbacks(object):
         """
         self.client.set_bool(KEY('/general/use_trayicon'), chk.get_active())
 
+    def on_paste_on_rclick_toggled(self, chk):
+        """Changes the activity of paste_on_rclick in gconf
+        """
+        self.client.set_bool(KEY('/general/paste_on_rclick'), chk.get_active())
+
     def on_use_popup_toggled(self, chk):
         """Changes the activity of use_popup in gconf
         """
@@ -746,6 +751,10 @@ class PrefsDialog(SimpleGladeApp):
         # tray icon
         value = self.client.get_bool(KEY('/general/use_trayicon'))
         self.get_widget('use_trayicon').set_active(value)
+
+        # paste_on_rclick
+        value = self.client.get_bool(KEY('/general/paste_on_rclick'))
+        self.get_widget('paste_on_rclick').set_active(value)
 
         # popup
         value = self.client.get_bool(KEY('/general/use_popup'))
