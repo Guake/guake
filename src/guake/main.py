@@ -41,6 +41,7 @@ from guake.dbusiface import DBUS_NAME
 from guake.dbusiface import DBUS_PATH
 from guake.dbusiface import DbusManager
 from guake.globals import KEY
+from guake.globals import VERSION
 from guake.guake_app import Guake
 
 
@@ -62,7 +63,7 @@ def main():
     # Force to xterm-256 colors for compatibility with some old command line programs
     os.environ["TERM"] = "xterm-256color"
 
-    parser = OptionParser()
+    parser = OptionParser(version='Guake Terminal %s' % VERSION)
     parser.add_option('-f', '--fullscreen', dest='fullscreen',
                       action='store_true', default=False,
                       help=_('Put Guake in fullscreen mode'))
@@ -106,6 +107,11 @@ def main():
     parser.add_option('-i', '--tab-index', dest='tab_index',
                       action='store', default='0',
                       help=_('Specify the tab to rename. Default is 0.'))
+
+    parser.add_option('--bgimg', dest='bgimg',
+                      action='store', default='',
+                      help=_('Set the background image of '
+                             'the selected tab.'))
 
     parser.add_option('--bgcolor', dest='bgcolor',
                       action='store', default='',
@@ -193,6 +199,10 @@ def main():
             remote_object.rename_tab_uuid(str(uuid.UUID(options.tab_index)), options.rename_tab)
         except ValueError:
             remote_object.rename_tab(int(options.tab_index), options.rename_tab)
+        only_show_hide = False
+
+    if options.bgimg:
+        remote_object.set_bg_image(options.bgimg)
         only_show_hide = False
 
     if options.bgcolor:

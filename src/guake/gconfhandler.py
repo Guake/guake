@@ -412,6 +412,10 @@ class GConfKeyHandler(object):
         """
         gkey = entry.get_key()
         key = entry.get_value().get_string()
+
+        if key == 'disabled':
+            return
+
         try:
             self.guake.hotkeys.unbind(self.globalhotkeys[gkey])
         except KeyError:

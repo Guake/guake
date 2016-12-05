@@ -15,7 +15,7 @@ echo "use --install to install guake on your system"
 echo "use --no-create-env to disable virtualenv creation"
 echo "(beware, gconf schema will be altered)"
 echo "use --reinstall to force complete reinstall"
-echo "use --uninstall to force complete reinstall"
+echo "use --uninstall to force complete uninstall"
 echo "use --update-po to force update translations"
 
 ARGS=$*

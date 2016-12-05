@@ -4,7 +4,7 @@ Guake README file
 
 |travis-badge|_
 
-.. |travis-badge| image:: https://travis-ci.org/Guake/guake.png?branch=master
+.. |travis-badge| image:: https://travis-ci.org/Guake/guake.svg?branch=master
 .. _travis-badge: https://travis-ci.org/Guake/guake
 
 
@@ -151,15 +151,14 @@ For compiling from these sources, please install the following packages (Ubuntu 
 RedHat/Fedora
 -------------
 
-For Fedora 19 and above, Guake is available in the official repositories and can be installed by
-running::
+Guake is available in the official repositories:
 
-    sudo yum install guake		# for Fedora 19 - 21
-    sudo dnf install guake		# for Fedora 23 and above
+    sudo yum install guake    # for Fedora 19 - 21
+    sudo dnf install guake    # for Fedora 23 and above
 
-For compiling from these sources, please install the following packages (Fedora 19)::
+If compiling from source, please install dependencies:
 
-    TBD
+    sudo dnf builddep guake
 
 ArchLinux
 ---------
@@ -229,7 +228,7 @@ this::
 
     $ ./configure --sysconfdir=/etc && make
 
-If it is not enought you can install the gconf schemas file by hand by doing the following::
+If it is not enough you can install the gconf schemas file by hand by doing the following::
 
     $ GCONF_CONFIG_SOURCE="" gconftool-2 --makefile-install-rule data/guake.schemas
 

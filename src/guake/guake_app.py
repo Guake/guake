@@ -529,6 +529,16 @@ class Guake(SimpleGladeApp):
                 else:
                     t.set_background_transparent(True)
 
+    def set_bg_image(self, image, tab=None):
+        """Set the background image of `tab' or the current tab to `bgcolor'."""
+        if not self.notebook.has_term():
+            self.add_tab()
+        index = tab or self.notebook.get_current_page()
+        for terminal in self.notebook.get_terminals_for_tab(index):
+            if image and os.path.exists(image):
+                terminal.set_background_image_file(image)
+                terminal.set_background_transparent(False)
+
     def set_bgcolor(self, bgcolor, tab=None):
         """Set the background color of `tab' or the current tab to `bgcolor'."""
         if not self.notebook.has_term():
@@ -718,6 +728,16 @@ class Guake(SimpleGladeApp):
             menu.popup(None, None, None, 3, event.get_time())
         self.set_terminal_focus()
 
+    def middle_button_click(self, target, event):
+        """Closes a tab with a middle click
+        """
+        if event.button == 2 and event.type == gtk.gdk.BUTTON_PRESS:
+            previously_selected_tab = self.get_selected_tab()
+            target.activate_tab()
+            target_position = self.get_selected_tab()
+            self.select_tab(previously_selected_tab)
+            self.delete_tab(target_position)
+
     def show_about(self, *args):
         """Hides the main window and creates an instance of the About
         Dialog.
@@ -819,6 +839,7 @@ class Guake(SimpleGladeApp):
         """Shows the main window and grabs the focus on it.
         """
         self.hidden = False
+
         # setting window in all desktops
         window_rect = self.set_final_window_rect()
         self.get_widget('window-root').stick()
@@ -828,8 +849,21 @@ class Guake(SimpleGladeApp):
         if not self.notebook.has_term():
             self.add_tab()
 
+        try:
+            # does it work in other gtk backends
+            time = gtk.gdk.x11_get_server_time(self.window.window)
+        except:
+            time = 0
+
         self.window.set_keep_below(False)
+        self.printDebug("order to present and deiconify")
+        self.window.present()
+        self.window.deiconify()
+        self.window.window.deiconify()
         self.window.show_all()
+        self.window.window.focus(time)
+        self.window.set_type_hint(gtk.gdk.WINDOW_TYPE_HINT_DOCK)
+        self.window.set_type_hint(gtk.gdk.WINDOW_TYPE_HINT_NORMAL)
 
         if self.selected_color is None:
             self.selected_color = getattr(self.window.get_style(), "light")[int(gtk.STATE_SELECTED)]
@@ -854,18 +888,25 @@ class Guake(SimpleGladeApp):
             time = gtk.gdk.x11_get_server_time(self.window.window)
         except AttributeError:
             time = 0
-        # issue-793: this exception required for mocking 
-        except TypeError:
-            time = 0
 
-        self.printDebug("order to present and deiconify")
-        self.window.present()
-        self.window.deiconify()
-        self.window.window.deiconify()
-        self.window.window.show()
-        self.window.window.focus(time)
-        self.window.set_type_hint(gtk.gdk.WINDOW_TYPE_HINT_DOCK)
-        self.window.set_type_hint(gtk.gdk.WINDOW_TYPE_HINT_NORMAL)
+        # When minized, the window manager seems to refuse to resume
+        # log.debug("self.window: %s. Dir=%s", type(self.window), dir(self.window))
+        # is_iconified = self.is_iconified()
+        # if is_iconified:
+        #     log.debug("Is iconified. Ubuntu Trick => "
+        #               "removing skip_taskbar_hint and skip_pager_hint "
+        #               "so deiconify can work!")
+        #     self.get_widget('window-root').set_skip_taskbar_hint(False)
+        #     self.get_widget('window-root').set_skip_pager_hint(False)
+        #     self.get_widget('window-root').set_urgency_hint(False)
+        #     log.debug("get_skip_taskbar_hint: {}".format(
+        #         self.get_widget('window-root').get_skip_taskbar_hint()))
+        #     log.debug("get_skip_pager_hint: {}".format(
+        #         self.get_widget('window-root').get_skip_pager_hint()))
+        #     log.debug("get_urgency_hint: {}".format(
+        #         self.get_widget('window-root').get_urgency_hint()))
+        #     glib.timeout_add_seconds(1, lambda: self.timeout_restore(time))
+        #
 
         # log.debug("Restoring skip_taskbar_hint and skip_pager_hint")
         # if is_iconified:
@@ -1520,6 +1561,8 @@ class Guake(SimpleGladeApp):
         else:
             tab.set_label(new_text)
             setattr(tab, 'custom_label_set', new_text != "-")
+            if new_text != "-":
+                setattr(self.selected_tab, 'custom_label_text', new_text)
             terminals = self.notebook.get_terminals_for_tab(tab_index)
             for current_vte in terminals:
                 current_vte.emit('window-title-changed')
@@ -1534,6 +1577,8 @@ class Guake(SimpleGladeApp):
         else:
             tab.set_label(new_text)
             setattr(tab, 'custom_label_set', new_text != "-")
+            if new_text != "-":
+                setattr(self.selected_tab, 'custom_label_text', new_text)
             terminals = self.notebook.get_terminals_for_tab(tab_index)
             for current_vte in terminals:
                 current_vte.emit('window-title-changed')
@@ -1542,6 +1587,7 @@ class Guake(SimpleGladeApp):
         """Sets the `self.selected_tab' var with the selected radio
         button and change its label to `new_text'.
         """
+
         pagepos = self.notebook.get_current_page()
         self.selected_tab = self.tabs.get_children()[pagepos]
         self.selected_tab.set_label(new_text)
@@ -1549,6 +1595,8 @@ class Guake(SimpleGladeApp):
         # it's hard to pass an empty string as a command line argument,
         # so we'll interpret single dash "-" as a "reset custom title" request
         setattr(self.selected_tab, 'custom_label_set', new_text != "-")
+        if new_text != "-":
+            setattr(self.selected_tab, 'custom_label_text', new_text)
 
         # trigger titling handler in case that custom label has been reset
         current_vte = self.notebook.get_current_terminal()
@@ -1688,10 +1736,12 @@ class Guake(SimpleGladeApp):
         bnt.set_property('can-focus', False)
         bnt.set_property('draw-indicator', False)
         bnt.connect('button-press-event', self.show_tab_menu)
-        bnt.connect('button-press-event', self.show_rename_current_tab_dialog)
-        bnt.connect('clicked', lambda *x: self.notebook.set_current_page(
+        bnt.activate_tab = lambda *x: self.notebook.set_current_page(
             self.notebook.page_num(box)
-        ))
+        )
+        bnt.connect('button-press-event', self.middle_button_click)
+        bnt.connect('button-press-event', self.show_rename_current_tab_dialog)
+        bnt.connect('clicked', bnt.activate_tab)
         if self.selected_color is not None:
             bnt.modify_bg(gtk.STATE_ACTIVE, gtk.gdk.Color(
                 str(self.selected_color)))
@@ -1705,9 +1755,13 @@ class Guake(SimpleGladeApp):
         self.tabs.pack_start(bnt, expand=False, padding=1)
 
         self.notebook.append_page(box, None)
-        self.notebook.set_current_page(self.notebook.page_num(box))
+        bnt.activate_tab()
         box.terminal.grab_focus()
         self.load_config()
+
+        for tab in self.tabs:
+            if getattr(tab, 'custom_label_set', False):
+                tab.set_label(getattr(tab, 'custom_label_text', tab.get_label()))
 
         if self.is_fullscreen:
             self.fullscreen()
@@ -1842,6 +1896,10 @@ class Guake(SimpleGladeApp):
         if abbreviate_tab_names and not self.is_tabs_scrollbar_visible():
             self.abbreviate = False
             self.recompute_tabs_titles()
+
+        for tab in self.tabs:
+            if getattr(tab, 'custom_label_set', False):
+                tab.set_label(getattr(tab, 'custom_label_text', tab.get_label()))
 
     def set_terminal_focus(self):
         """Grabs the focus on the current tab.

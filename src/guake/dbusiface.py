@@ -81,6 +81,10 @@ class DbusManager(dbus.service.Object):
         return len(self.guake.notebook.term_list)
 
     @dbus.service.method(DBUS_NAME, in_signature='s')
+    def set_bg_image(self, bgcolor):
+        self.guake.set_bg_image(bgcolor)
+
+    @dbus.service.method(DBUS_NAME, in_signature='s')
     def set_bgcolor(self, bgcolor):
         self.guake.set_bgcolor(bgcolor)
 
