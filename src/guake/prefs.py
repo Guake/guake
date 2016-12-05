@@ -245,6 +245,10 @@ class PrefsCallbacks(object):
     def on_quick_open_command_line_changed(self, edt):
         self.client.set_string(KEY('/general/quick_open_command_line'), edt.get_text())
 
+    def on_hook_show_changed(self, edt):
+        self.client.set_string(KEY('/hooks/show'), edt.get_text())
+
+
     def on_window_tabbar_toggled(self, chk):
         """Changes the activity of window_tabbar in gconf
         """
