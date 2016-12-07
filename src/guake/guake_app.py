@@ -36,6 +36,7 @@ import subprocess
 import sys
 import uuid
 import xdg.Exceptions
+import traceback
 
 from urllib import quote_plus
 from urllib import url2pathname
@@ -1996,11 +1997,16 @@ class Guake(SimpleGladeApp):
             hook = hook.split()
             try:
                 subprocess.Popen(hook)
+            except OSError as oserr:
+                if oserr.errno == 8:
+                    log.error("Script execution failed! maybe, invalid shebang at first line of %s!" % hook)    
+                else:
+                    log.error(str(oserr))
             except Exception as e:
-                pass
                 log.error("hook execution failed! %s" % e)
+                log.debug(traceback.format_exc())
             else:
-                log.info('hook on event %s has been executed' % event_name)
+                log.debug('hook on event %s has been executed' % event_name)
         return
 
     def find_hook(self, event_name):

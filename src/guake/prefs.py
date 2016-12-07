@@ -730,6 +730,17 @@ class PrefsDialog(SimpleGladeApp):
             if ERASE_BINDINGS.get(i[0]) == binding:
                 combo.set_active_iter(i.iter)
 
+    def _load_hooks_settings(self):
+        """load hooks settings"""
+        log.debug("executing _load_hooks_settings")
+        hook_show_widget = self.get_widget("hook_show")
+        hook_show_setting = self.client.get_string(KEY("/hooks/show"))
+        if hook_show_widget is not None:
+            if hook_show_setting is not None:
+                hook_show_widget.set_text(hook_show_setting)
+        return
+
+
     def load_configs(self):
         """Load configurations for all widgets in General, Scrolling
         and Appearance tabs from gconf.
@@ -977,6 +988,11 @@ class PrefsDialog(SimpleGladeApp):
         self.get_widget('custom_command_file_chooser').add_filter(all_files_filter)
         if custom_command_file_name:
             self.get_widget('custom_command_file_chooser').set_filename(custom_command_file_name)
+
+        # hooks
+        self._load_hooks_settings()
+        return
+
 
     # -- populate functions --
 
