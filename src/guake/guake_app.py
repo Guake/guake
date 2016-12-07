@@ -884,12 +884,6 @@ class Guake(SimpleGladeApp):
         if not self.is_fullscreen:
             self.client.notify(KEY('/general/window_height'))
 
-        try:
-            # does it work in other gtk backends
-            time = gtk.gdk.x11_get_server_time(self.window.window)
-        except AttributeError:
-            time = 0
-
         # When minized, the window manager seems to refuse to resume
         # log.debug("self.window: %s. Dir=%s", type(self.window), dir(self.window))
         # is_iconified = self.is_iconified()
