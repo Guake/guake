@@ -1,6 +1,7 @@
 import gconf
 import mock
 import pytest
+
 from guake.guake_app import Guake
 
 
