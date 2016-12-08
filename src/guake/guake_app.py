@@ -34,9 +34,9 @@ import platform
 import pygtk
 import subprocess
 import sys
+import traceback
 import uuid
 import xdg.Exceptions
-import traceback
 
 from urllib import quote_plus
 from urllib import url2pathname
@@ -1996,7 +1996,7 @@ class Guake(SimpleGladeApp):
                     log.error(
                         "Hook execution failed! Check shebang at first line of %s!" % hook
                     )
-                    log.debug(traceback.format_exc())    
+                    log.debug(traceback.format_exc())
                 else:
                     log.error(str(oserr))
             except Exception as e:
@@ -2005,4 +2005,3 @@ class Guake(SimpleGladeApp):
             else:
                 log.debug('hook on event %s has been executed' % event_name)
         return
-

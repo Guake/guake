@@ -1,16 +1,18 @@
-import pytest
-import mock
-import gtk
 import gconf
+import gtk
+import mock
+import pytest
 
-from guake.prefs import PrefsDialog
 from guake.globals import KEY
+from guake.prefs import PrefsDialog
+
 
 @pytest.fixture
 def prefs():
     obj = mock.Mock(PrefsDialog)
     obj.client = mock.Mock(gconf.Client)
     return obj
+
 
 @pytest.fixture
 def widget():
@@ -29,6 +31,7 @@ def test__load_hooks_settings__works(prefs, widget):
     prefs.get_widget.assert_any_call("hook_show")
     widget.set_text.assert_called_once_with(hook_show_command)
 
+
 def test__load_hooks_settings__no_widget(prefs):
     hook_show_command = "on_show.sh"
     prefs.client.get_string.return_value = hook_show_command
@@ -36,6 +39,7 @@ def test__load_hooks_settings__no_widget(prefs):
     PrefsDialog._load_hooks_settings(prefs)
     prefs.client.get_string.assert_any_call(KEY("/hooks/show"))
     prefs.get_widget.assert_any_call("hook_show")
+
 
 def test__load_hooks_settings__no_setting(prefs, widget):
     prefs.client.get_string.return_value = None

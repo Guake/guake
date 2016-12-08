@@ -248,7 +248,6 @@ class PrefsCallbacks(object):
     def on_hook_show_changed(self, edt):
         self.client.set_string(KEY('/hooks/show'), edt.get_text())
 
-
     def on_window_tabbar_toggled(self, chk):
         """Changes the activity of window_tabbar in gconf
         """
@@ -775,7 +774,6 @@ class PrefsDialog(SimpleGladeApp):
                 else:
                     seen_first = True
 
-
     def load_configs(self):
         """Load configurations for all widgets in General, Scrolling
         and Appearance tabs from gconf.
@@ -996,7 +994,6 @@ class PrefsDialog(SimpleGladeApp):
         # hooks
         self._load_hooks_settings()
         return
-
 
     # -- populate functions --
 
