@@ -20,3 +20,4 @@ script:
     - ./validate.sh
     - ./autogen.sh
     - ./configure && make
+    - ./run_tests.sh
