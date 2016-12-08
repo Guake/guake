@@ -49,3 +49,7 @@ activate
 env/
 # directory with pytest metadata
 .cache
+.eggs/*
+*.bak
+src/guake.egg-info/
+__pycache__

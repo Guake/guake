@@ -1986,14 +1986,17 @@ class Guake(SimpleGladeApp):
 
     def execute_hook(self, event_name):
         """Execute shell commands related to current event_name"""
-        hook = self.find_hook(event_name)
+        hook = self.client.get_string(KEY("/hooks/%s" % event_name))
         if hook is not None:
             hook = hook.split()
             try:
                 subprocess.Popen(hook)
             except OSError as oserr:
                 if oserr.errno == 8:
-                    log.error("Script execution failed! maybe, invalid shebang at first line of %s!" % hook)    
+                    log.error(
+                        "Hook execution failed! Check shebang at first line of %s!" % hook
+                    )
+                    log.debug(traceback.format_exc())    
                 else:
                     log.error(str(oserr))
             except Exception as e:
@@ -2003,10 +2006,3 @@ class Guake(SimpleGladeApp):
                 log.debug('hook on event %s has been executed' % event_name)
         return
 
-    def find_hook(self, event_name):
-        """return hooks stored in the settings for current event_name"""
-        hook = None
-        hook = self.client.get(KEY("/hooks/{}".format(event_name)))
-        if hook is not None:
-            hook = hook.get_string()
-        return hook
