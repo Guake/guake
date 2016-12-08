@@ -1994,14 +1994,15 @@ class Guake(SimpleGladeApp):
             except OSError as oserr:
                 if oserr.errno == 8:
                     log.error(
-                        "Hook execution failed! Check shebang at first line of %s!" % hook
+                        "Hook execution failed! Check shebang at first line of %(hook)s!",
+                        hook=hook,
                     )
                     log.debug(traceback.format_exc())
                 else:
                     log.error(str(oserr))
             except Exception as e:
-                log.error("hook execution failed! %s" % e)
+                log.error("hook execution failed! %(err)s", err=e)
                 log.debug(traceback.format_exc())
             else:
-                log.debug('hook on event %s has been executed' % event_name)
+                log.debug('hook on event %(event)s has been executed', event=event_name)
         return
