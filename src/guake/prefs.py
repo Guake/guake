@@ -245,6 +245,9 @@ class PrefsCallbacks(object):
     def on_quick_open_command_line_changed(self, edt):
         self.client.set_string(KEY('/general/quick_open_command_line'), edt.get_text())
 
+    def on_hook_show_changed(self, edt):
+        self.client.set_string(KEY('/hooks/show'), edt.get_text())
+
     def on_window_tabbar_toggled(self, chk):
         """Changes the activity of window_tabbar in gconf
         """
@@ -726,18 +729,56 @@ class PrefsDialog(SimpleGladeApp):
             if ERASE_BINDINGS.get(i[0]) == binding:
                 combo.set_active_iter(i.iter)
 
-    def load_configs(self):
-        """Load configurations for all widgets in General, Scrolling
-        and Appearance tabs from gconf.
-        """
-        # default_shell
+    def _load_hooks_settings(self):
+        """load hooks settings"""
+        log.debug("executing _load_hooks_settings")
+        hook_show_widget = self.get_widget("hook_show")
+        hook_show_setting = self.client.get_string(KEY("/hooks/show"))
+        if hook_show_widget is not None:
+            if hook_show_setting is not None:
+                hook_show_widget.set_text(hook_show_setting)
+        return
 
+    def _load_default_shell_settings(self):
         combo = self.get_widget('default_shell')
         # get the value for defualt shell. If unset, set to USER_SHELL_VALUE.
         value = self.client.get_string(KEY('/general/default_shell')) or USER_SHELL_VALUE
         for i in combo.get_model():
             if i[0] == value:
                 combo.set_active_iter(i.iter)
+
+    def _load_screen_settings(self):
+        """Load screen settings"""
+        # display number / use primary display
+        combo = self.get_widget('display_n')
+        dest_screen = self.client.get_int(KEY('/general/display_n'))
+        # If Guake is configured to use a screen that is not currently attached,
+        # default to 'primary display' option.
+        screen = self.get_widget('config-window').get_screen()
+        n_screens = screen.get_n_monitors()
+        if dest_screen > n_screens - 1:
+            self.client.set_bool(KEY('/general/mouse_display'), False)
+            dest_screen = screen.get_primary_monitor()
+            self.client.set_int(KEY('/general/display_n'), dest_screen)
+
+        if dest_screen == ALWAYS_ON_PRIMARY:
+            first_item = combo.get_model().get_iter_first()
+            combo.set_active_iter(first_item)
+        else:
+            seen_first = False  # first item "always on primary" is special
+            for i in combo.get_model():
+                if seen_first:
+                    i_int = int(i[0].split()[0])  # extracts 1 from '1' or from '1 (primary)'
+                    if i_int == dest_screen:
+                        combo.set_active_iter(i.iter)
+                else:
+                    seen_first = True
+
+    def load_configs(self):
+        """Load configurations for all widgets in General, Scrolling
+        and Appearance tabs from gconf.
+        """
+        self._load_default_shell_settings()
 
         # login shell
         value = self.client.get_bool(KEY('/general/use_login_shell'))
@@ -824,9 +865,7 @@ class PrefsDialog(SimpleGladeApp):
         value = self.client.get_bool(KEY('/general/use_audible_bell'))
         self.get_widget('use_audible_bell').set_active(value)
 
-        # display number / use primary display
-        combo = self.get_widget('display_n')
-        dest_screen = self.client.get_int(KEY('/general/display_n'))
+        self._load_screen_settings()
 
         value = self.client.get_bool(KEY('/general/quick_open_enable'))
         self.get_widget('quick_open_enable').set_active(value)
@@ -848,28 +887,6 @@ class PrefsDialog(SimpleGladeApp):
 
         value = self.client.get_string(KEY('/general/startup_script'))
         self.get_widget('startup_script').set_text(value)
-
-        # If Guake is configured to use a screen that is not currently attached,
-        # default to 'primary display' option.
-        screen = self.get_widget('config-window').get_screen()
-        n_screens = screen.get_n_monitors()
-        if dest_screen > n_screens - 1:
-            self.client.set_bool(KEY('/general/mouse_display'), False)
-            dest_screen = screen.get_primary_monitor()
-            self.client.set_int(KEY('/general/display_n'), dest_screen)
-
-        if dest_screen == ALWAYS_ON_PRIMARY:
-            first_item = combo.get_model().get_iter_first()
-            combo.set_active_iter(first_item)
-        else:
-            seen_first = False  # first item "always on primary" is special
-            for i in combo.get_model():
-                if seen_first:
-                    i_int = int(i[0].split()[0])  # extracts 1 from '1' or from '1 (primary)'
-                    if i_int == dest_screen:
-                        combo.set_active_iter(i.iter)
-                else:
-                    seen_first = True
 
         # use display where the mouse is currently
         value = self.client.get_bool(KEY('/general/mouse_display'))
@@ -973,6 +990,10 @@ class PrefsDialog(SimpleGladeApp):
         self.get_widget('custom_command_file_chooser').add_filter(all_files_filter)
         if custom_command_file_name:
             self.get_widget('custom_command_file_chooser').set_filename(custom_command_file_name)
+
+        # hooks
+        self._load_hooks_settings()
+        return
 
     # -- populate functions --
 

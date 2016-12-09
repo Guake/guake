@@ -34,6 +34,7 @@ import platform
 import pygtk
 import subprocess
 import sys
+import traceback
 import uuid
 import xdg.Exceptions
 
@@ -914,6 +915,7 @@ class Guake(SimpleGladeApp):
         self.client.notify(KEY('/style/background/color'))
 
         self.printDebug("Current window position: %r", self.window.get_position())
+        self.execute_hook('show')
 
     def hide_from_remote(self):
         """
@@ -1981,3 +1983,23 @@ class Guake(SimpleGladeApp):
         current_term = self.notebook.get_current_terminal()
         current_term.reset(full=True, clear_history=True)
         self.preventHide = False
+
+    def execute_hook(self, event_name):
+        """Execute shell commands related to current event_name"""
+        hook = self.client.get_string(KEY("/hooks/%s" % event_name))
+        if hook is not None:
+            hook = hook.split()
+            try:
+                subprocess.Popen(hook)
+            except OSError as oserr:
+                if oserr.errno == 8:
+                    log.error("Hook execution failed! Check shebang at first line of %s!", hook)
+                    log.debug(traceback.format_exc())
+                else:
+                    log.error(str(oserr))
+            except Exception as e:
+                log.error("hook execution failed! %s", e)
+                log.debug(traceback.format_exc())
+            else:
+                log.debug('hook on event %s has been executed', event_name)
+        return

@@ -98,7 +98,7 @@ if [[ $NO_INSTALL == true ]]; then
 
     if [[ $RUN_TESTS == true ]]; then
         echo "running tests.."
-        PYTHONPATH=src env/bin/py.test src/guake/tests
+        ./run_tests.sh
     else
         echo "Launching guake inside virtualenv"
         PYTHONPATH=src python2.7 src/guake/main.py --no-startup-script
