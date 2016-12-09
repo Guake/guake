@@ -31,9 +31,11 @@ install:
     - pip install --upgrade pip
     - pip install --upgrade -r python-requirements.txt
     - find /usr/include
+
+# unittests
+before_script: ./run_tests.sh
+
 script:
     - ./validate.sh
     - ./autogen.sh
     - ./configure && make
-
-after_script: ./run_tests.sh
