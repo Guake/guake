@@ -1,6 +1,5 @@
 language: python
 python:
-    # - "2.6": python 2.6 doesn't work with python-vte package
     "2.7"
     # - "3.2": python 33 fails in travis due to missing Python.h
 virtualenv:
@@ -32,7 +31,7 @@ install:
     - pip install --upgrade -r python-requirements.txt
 
 # unittests
-before_script: ./run_tests.sh
+before_script: PYTHONPATH=./src python -m pytest ./src/tests
 
 script:
     - ./validate.sh
