@@ -35,4 +35,5 @@ script:
     - ./validate.sh
     - ./autogen.sh
     - ./configure && make
-    - ./run_tests.sh
+
+after_script: ./run_tests.sh
