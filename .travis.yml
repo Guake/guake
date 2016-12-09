@@ -30,7 +30,6 @@ before_install:
 install:
     - pip install --upgrade pip
     - pip install --upgrade -r python-requirements.txt
-    - find /usr/include
 
 # unittests
 before_script: ./run_tests.sh

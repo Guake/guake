@@ -1,2 +1,2 @@
 #!/bin/sh
-PYTHONPATH=src python -m pytest -v src/tests
+PYTHONPATH=src python -m pytest src/tests
