@@ -25,6 +25,7 @@ from __future__ import unicode_literals
 from guake.logging import setupBasicLogging
 from guake.logging import setupLogging
 
+
 def main():
     setupBasicLogging()
     setupLogging()
