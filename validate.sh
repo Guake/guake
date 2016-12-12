@@ -81,7 +81,7 @@ function run_tests()
 }
 
 if [ -z $REVRANGE ]; then
-    py_files=$(find . -name "*.py" -o -name "*.py.in" | grep -v -E 'venv/' | grep -v -E '.eggs/' | grep -v -E 'venv/bin')
+    py_files=$(find . -name "*.py" -o -name "*.py.in" | grep -v -E 'venv/' | grep -v -E '.eggs/' | grep -v -E 'build/' | grep -v -E 'venv/bin')
     echo "Validating files: "
     echo $py_files
 else
