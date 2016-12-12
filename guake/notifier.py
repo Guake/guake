@@ -24,8 +24,14 @@ from __future__ import unicode_literals
 
 from testwrap import dedent
 
+# pylint: disable=wrong-import-position
+import gi
+gi.require_version('Notify', '0.7')
+gi.require_version('Vte', '2.91')
+
 from gi.repository import GLib
 from gi.repository import Notify
+# pylint: enable=wrong-import-position
 
 Notify.init("Guake")
 

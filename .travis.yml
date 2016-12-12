@@ -3,8 +3,7 @@ python:
     - "3.4"
     - "3.5"
 install:
-    - ./install.py --dev
-    - ./install.py --uninstall-dev
-    - ./install.py --dev
+    - ./install.py --target=virtualenv
+    - ./install.py --uninstall=virtualenv
 script:
-    - ./install.py --dev --checks --tests
+    - ./install.py --checks --tests
