@@ -1,2 +1,0 @@
-IMAGE_DIR = None
-GLADE_DIR = None

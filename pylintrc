@@ -35,7 +35,8 @@ disable=
   locally-disabled,
   locally-enabled,
   missing-docstring,
-  unused-argument
+  unused-argument,
+  R
 
 [REPORTS]
 
