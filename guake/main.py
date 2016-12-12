@@ -25,7 +25,7 @@ from __future__ import unicode_literals
 import logging
 
 from guake.logging import setupBasicLogging
-from guake.test_terminal import test
+from guake.logging import setupLogging
 
 
 logger = logging.getLogger(__name__)
@@ -33,12 +33,10 @@ logger = logging.getLogger(__name__)
 
 def main():
     setupBasicLogging()
-    logger.info("Guake startup")
-    test()
+    setupLogging()
+    logger.info("Guake starts")
+    logger.info("Guake stops")
 
-
-def _execMain():
-    main()
 
 if __name__ == '__main__':
-    _execMain()
+    main()

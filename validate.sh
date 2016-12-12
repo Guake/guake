@@ -81,7 +81,7 @@ function run_tests()
 }
 
 if [ -z $REVRANGE ]; then
-    py_files=$(find . -name "*.py" -o -name "*.py.in" | grep -v -E 'workdir/' | grep -v -E '.eggs/' | grep -v -E 'workdir/bin')
+    py_files=$(find . -name "*.py" -o -name "*.py.in" | grep -v -E 'venv/' | grep -v -E '.eggs/' | grep -v -E 'venv/bin')
     echo "Validating files: "
     echo $py_files
 else
@@ -191,7 +191,8 @@ elif [[ ! -f pylintrc ]]; then
 else
     pylint_ok=true
     for filename in ${py_files[@]}; do
-        if ! pylint --rcfile=pylintrc --disable=R,line-too-long --enable=W0611 --output-format=text "$filename"; then
+        echo "  $filename"
+        if ! pylint --rcfile=pylintrc --output-format=text "$filename"; then
             pylint_ok=false
         fi
     done

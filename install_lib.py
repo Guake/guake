@@ -316,7 +316,7 @@ def rmrv(f):
         os.unlink(f)
 
 
-def activateThis(sandbox):
+def activateVirtualEnv(sandbox):
     '''
     Activate sandbox
     '''
@@ -347,3 +347,4 @@ def activateThis(sandbox):
             new_sys_path.append(item)
             sys.path.remove(item)
     sys.path[:0] = new_sys_path
+    os.environ["VIRTUAL_ENV"] = sandbox

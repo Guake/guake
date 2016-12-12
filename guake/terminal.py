@@ -22,11 +22,19 @@ from __future__ import division
 from __future__ import print_function
 from __future__ import unicode_literals
 
+# pylint: disable=wrong-import-position
+import gi
+gi.require_version('Gtk', '3.0')
+gi.require_version('Gdk', '3.0')
+gi.require_version('Vte', '2.91')
+gi.require_version('Notify', '0.7')
+
+# from gi.repository import GLib
 from gi.repository import Gdk
 from gi.repository import GdkX11
 from gi.repository import Gtk
-# from gi.repository import Pango
 from gi.repository.Vte import Terminal
+# from gi.repository import Pango
 
 # from guake.common import clamp
 # from guake.globals import KEY
