@@ -147,7 +147,7 @@ msgstr "新しいタブを追加"
 
 #: ../data/prefs.glade.h:1
 msgid "Guake Preferences"
-msgstr "Gaukeの設定"
+msgstr "Guakeの設定"
 
 #: ../data/prefs.glade.h:2
 msgid "<span size=\"18000\" color=\"black\"><b>Guake properties</b></span>"
