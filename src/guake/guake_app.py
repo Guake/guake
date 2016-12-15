@@ -443,19 +443,28 @@ class Guake(SimpleGladeApp):
                 self.parse_custom_commands(item, newmenu)
         else:
             menu_item = gtk.MenuItem(json_object['description'])
-            custom_command = ""
-            space = ""
-            for command in json_object['cmd']:
-                custom_command += (space + command)
-                space = " "
-
-            menu_item.connect("activate", self.execute_context_menu_cmd, custom_command)
+            menu_item.connect("activate", self.execute_context_menu_cmd, json_object['cmd'])
             menu.append(menu_item)
             menu_item.show()
 
     # execute contextual menu call
-    def execute_context_menu_cmd(self, item, cmd):
-        self.execute_command(cmd)
+    def execute_context_menu_cmd(self, item, cmdArray):
+        custom_command = ""
+        space = ""
+        for command in cmdArray:
+            if isinstance( command, ( int, long ) ):
+                if int(command)==1 :
+                    current_term = self.notebook.get_current_terminal()
+                    if current_term.get_has_selection():
+                        current_term.copy_clipboard()
+                        guake_clipboard = gtk.clipboard_get()
+                        custom_command += (space + guake_clipboard.wait_for_text())
+                else:
+                    log.exception("Invalid number %d",int(command))
+            else:
+                custom_command += (space + command)
+            space = " "
+        self.execute_command(custom_command)
 
     def setupLogging(self):
         if self.debug_mode:
