@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<interface>
+  <requires lib="gtk+" version="2.24"/>
+  <!-- interface-naming-policy project-wide -->
+  <object class="GtkAssistant" id="assistant1">
+    <property name="can_focus">False</property>
+    <property name="border_width">12</property>
+    <property name="resizable">False</property>
+    <property name="modal">True</property>
+    <child>
+      <object class="GtkLabel" id="label1">
+        <property name="visible">True</property>
+        <property name="can_focus">False</property>
+        <property name="label" translatable="yes">Guake offers the ability to set predefined commands into a simple json file (previously set in the preferences window) and recall them at any time with a dedicated context menu.
+You can display the custom commands context menu right clicking on the terminal and select "Custom commands".
+In the next page you will find how the json file must be structured and some examples.
+</property>
+      </object>
+      <packing>
+        <property name="page_type">intro</property>
+      </packing>
+    </child>
+    <child>
+      <object class="GtkLabel" id="label2">
+        <property name="visible">True</property>
+        <property name="can_focus">False</property>
+        <property name="label" translatable="yes">Open your favourite text editor and build a json file.
+The json file must contain an array at the top level, each element of the array corresponds to an entry in the custom command context menu.
+An entry must be defined as a simple object with the description and cmd fields.
+The description field must contain the text that will be shown in the context menu entry.
+The command field is an array containing the command that will be sent to Guake terminal.
+For example;
+
+{
+        "description": "List all files",
+        "cmd": [
+                    "ls",
+                    "-la",
+                ]
+ }
+
+It's possible to embed many  entries inside a single submenu.
+In this case the json object must contain the field "type" set to "menu", a description field like above and an items array containing each single entry who is part of the submenu.
+Example:
+
+{
+        "type": "menu",
+        "description": "Byobu",
+        "items": [
+	    {
+	        "description": "File stat",
+	        "cmd": [
+                    "stat",
+                    1]
+	    },
+            {
+                "description": "Horizontal Split",
+                "cmd": [
+                    "xdotool",
+                    "key",
+		    "Shift+F2"
+                ]
+            },
+
+
+		{
+                "description": "Vertical Split",
+                "cmd": [
+                    "xdotool",
+                    "key",
+		    "Ctrl+F2"
+                ]
+            }
+	]
+    }
+
+
+</property>
+      </object>
+    </child>
+    <child>
+      <object class="GtkLabel" id="label3">
+        <property name="visible">True</property>
+        <property name="can_focus">False</property>
+        <property name="label" translatable="yes">Confirmation page</property>
+      </object>
+      <packing>
+        <property name="page_type">confirm</property>
+      </packing>
+    </child>
+  </object>
+</interface>
