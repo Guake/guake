@@ -184,6 +184,7 @@ guake -r "prod" -e "cd ~/projects/myproject/prod"
                                         <property name="can_focus">True</property>
                                         <property name="receives_default">False</property>
                                         <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
+                                        <property name="use_action_appearance">False</property>
                                         <property name="draw_indicator">True</property>
                                         <signal name="toggled" handler="on_use_popup_toggled" swapped="no"/>
                                       </widget>
@@ -199,6 +200,7 @@ guake -r "prod" -e "cd ~/projects/myproject/prod"
                                         <property name="can_focus">True</property>
                                         <property name="receives_default">False</property>
                                         <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
+                                        <property name="use_action_appearance">False</property>
                                         <property name="draw_indicator">True</property>
                                         <signal name="toggled" handler="on_use_trayicon_toggled" swapped="no"/>
                                       </widget>
@@ -210,6 +212,7 @@ guake -r "prod" -e "cd ~/projects/myproject/prod"
                                         <property name="can_focus">True</property>
                                         <property name="receives_default">False</property>
                                         <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
+                                        <property name="use_action_appearance">False</property>
                                         <property name="draw_indicator">True</property>
                                         <signal name="toggled" handler="on_prompt_on_quit_toggled" swapped="no"/>
                                       </widget>
@@ -228,6 +231,7 @@ guake -r "prod" -e "cd ~/projects/myproject/prod"
                                         <property name="can_focus">True</property>
                                         <property name="receives_default">False</property>
                                         <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
+                                        <property name="use_action_appearance">False</property>
                                         <property name="use_underline">True</property>
                                         <property name="draw_indicator">True</property>
                                         <signal name="toggled" handler="on_use_visible_bell_toggled" swapped="no"/>
@@ -244,6 +248,7 @@ guake -r "prod" -e "cd ~/projects/myproject/prod"
                                         <property name="can_focus">True</property>
                                         <property name="receives_default">False</property>
                                         <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
+                                        <property name="use_action_appearance">False</property>
                                         <property name="use_underline">True</property>
                                         <property name="draw_indicator">True</property>
                                         <signal name="toggled" handler="on_use_audible_bell_toggled" swapped="no"/>
@@ -377,6 +382,7 @@ Always</property>
                                         <property name="visible">True</property>
                                         <property name="can_focus">True</property>
                                         <property name="receives_default">False</property>
+                                        <property name="use_action_appearance">False</property>
                                         <property name="draw_indicator">True</property>
                                         <signal name="toggled" handler="on_bottom_align_toggled" swapped="no"/>
                                       </widget>
@@ -392,6 +398,7 @@ Always</property>
                                         <property name="visible">True</property>
                                         <property name="can_focus">True</property>
                                         <property name="receives_default">False</property>
+                                        <property name="use_action_appearance">False</property>
                                         <property name="draw_indicator">True</property>
                                         <signal name="toggled" handler="on_mouse_display_toggled" swapped="no"/>
                                         <signal name="toggled" handler="toggle_display_n_sensitivity" swapped="no"/>
@@ -449,6 +456,7 @@ Always</property>
                                         <property name="visible">True</property>
                                         <property name="can_focus">True</property>
                                         <property name="receives_default">False</property>
+                                        <property name="use_action_appearance">False</property>
                                         <property name="draw_indicator">True</property>
                                         <signal name="toggled" handler="on_tab_ontop_toggled" swapped="no"/>
                                       </widget>
@@ -502,6 +510,7 @@ Always</property>
                                         <property name="visible">True</property>
                                         <property name="can_focus">True</property>
                                         <property name="receives_default">False</property>
+                                        <property name="use_action_appearance">False</property>
                                         <property name="use_underline">True</property>
                                         <property name="focus_on_click">False</property>
                                         <property name="active">True</property>
@@ -515,11 +524,30 @@ Always</property>
                                       </packing>
                                     </child>
                                     <child>
+                                      <widget class="GtkCheckButton" id="window_losefocus">
+                                        <property name="label" translatable="yes">Hide on lose focus</property>
+                                        <property name="visible">True</property>
+                                        <property name="can_focus">True</property>
+                                        <property name="receives_default">False</property>
+                                        <property name="use_action_appearance">False</property>
+                                        <property name="use_underline">True</property>
+                                        <property name="active">True</property>
+                                        <property name="draw_indicator">True</property>
+                                        <signal name="toggled" handler="on_window_losefocus_toggled" swapped="no"/>
+                                      </widget>
+                                      <packing>
+                                        <property name="expand">False</property>
+                                        <property name="fill">False</property>
+                                        <property name="position">1</property>
+                                      </packing>
+                                    </child>
+                                    <child>
                                       <widget class="GtkCheckButton" id="use_vte_titles">
                                         <property name="label" translatable="yes">Use VTE titles for tab names</property>
                                         <property name="visible">True</property>
                                         <property name="can_focus">True</property>
                                         <property name="receives_default">False</property>
+                                        <property name="use_action_appearance">False</property>
                                         <property name="use_underline">True</property>
                                         <property name="active">True</property>
                                         <property name="draw_indicator">True</property>
@@ -533,6 +561,58 @@ Always</property>
                                       </packing>
                                     </child>
                                     <child>
+                                      <widget class="GtkCheckButton" id="window_tabbar">
+                                        <property name="label" translatable="yes">Show tab bar</property>
+                                        <property name="visible">True</property>
+                                        <property name="can_focus">True</property>
+                                        <property name="receives_default">False</property>
+                                        <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
+                                        <property name="use_action_appearance">False</property>
+                                        <property name="draw_indicator">True</property>
+                                        <signal name="toggled" handler="on_window_tabbar_toggled" swapped="no"/>
+                                      </widget>
+                                      <packing>
+                                        <property name="expand">True</property>
+                                        <property name="fill">True</property>
+                                        <property name="position">2</property>
+                                      </packing>
+                                    </child>
+                                    <child>
+                                      <widget class="GtkCheckButton" id="abbreviate_tab_names">
+                                        <property name="label" translatable="yes">Abbreviate directories in tab names</property>
+                                        <property name="visible">True</property>
+                                        <property name="can_focus">True</property>
+                                        <property name="receives_default">False</property>
+                                        <property name="use_action_appearance">False</property>
+                                        <property name="use_underline">True</property>
+                                        <property name="active">True</property>
+                                        <property name="draw_indicator">True</property>
+                                        <signal name="toggled" handler="on_abbreviate_tab_names_toggled" swapped="no"/>
+                                      </widget>
+                                      <packing>
+                                        <property name="expand">False</property>
+                                        <property name="fill">False</property>
+                                        <property name="position">2</property>
+                                      </packing>
+                                    </child>
+                                    <child>
+                                      <widget class="GtkCheckButton" id="start_fullscreen">
+                                        <property name="label" translatable="yes">Start fullscreen</property>
+                                        <property name="visible">True</property>
+                                        <property name="can_focus">True</property>
+                                        <property name="receives_default">False</property>
+                                        <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
+                                        <property name="use_action_appearance">False</property>
+                                        <property name="draw_indicator">True</property>
+                                        <signal name="toggled" handler="on_start_fullscreen_toggled" swapped="no"/>
+                                      </widget>
+                                      <packing>
+                                        <property name="expand">True</property>
+                                        <property name="fill">True</property>
+                                        <property name="position">3</property>
+                                      </packing>
+                                    </child>
+                                    <child>
                                       <widget class="GtkHBox" id="hbox_max_tab_name_length">
                                         <property name="visible">True</property>
                                         <property name="can_focus">False</property>
@@ -540,10 +620,10 @@ Always</property>
                                           <widget class="GtkLabel" id="lbl_max_tab_name_length">
                                             <property name="visible">True</property>
                                             <property name="can_focus">False</property>
+                                            <property name="tooltip" translatable="yes">0 means no size limit</property>
                                             <property name="xalign">0</property>
                                             <property name="label" translatable="yes">Max tab name length:</property>
                                             <property name="use_markup">True</property>
-                                        <property name="tooltip" translatable="yes">0 means no size limit</property>
                                           </widget>
                                           <packing>
                                             <property name="expand">False</property>
@@ -571,72 +651,6 @@ Always</property>
                                             <property name="position">2</property>
                                           </packing>
                                         </child>
-                                      </widget>
-                                      <packing>
-                                        <property name="expand">True</property>
-                                        <property name="fill">True</property>
-                                        <property name="position">3</property>
-                                      </packing>
-                                    </child>
-                                    <child>
-                                      <widget class="GtkCheckButton" id="abbreviate_tab_names">
-                                        <property name="label" translatable="yes">Abbreviate directories in tab names</property>
-                                        <property name="visible">True</property>
-                                        <property name="can_focus">True</property>
-                                        <property name="receives_default">False</property>
-                                        <property name="use_underline">True</property>
-                                        <property name="active">True</property>
-                                        <property name="draw_indicator">True</property>
-                                        <signal name="toggled" handler="on_abbreviate_tab_names_toggled" swapped="no"/>
-                                      </widget>
-                                      <packing>
-                                        <property name="expand">False</property>
-                                        <property name="fill">False</property>
-                                        <property name="position">2</property>
-                                      </packing>
-                                    </child>
-                                    <child>
-                                      <widget class="GtkCheckButton" id="window_losefocus">
-                                        <property name="label" translatable="yes">Hide on lose focus</property>
-                                        <property name="visible">True</property>
-                                        <property name="can_focus">True</property>
-                                        <property name="receives_default">False</property>
-                                        <property name="use_underline">True</property>
-                                        <property name="active">True</property>
-                                        <property name="draw_indicator">True</property>
-                                        <signal name="toggled" handler="on_window_losefocus_toggled" swapped="no"/>
-                                      </widget>
-                                      <packing>
-                                        <property name="expand">False</property>
-                                        <property name="fill">False</property>
-                                        <property name="position">1</property>
-                                      </packing>
-                                    </child>
-                                    <child>
-                                      <widget class="GtkCheckButton" id="window_tabbar">
-                                        <property name="label" translatable="yes">Show tab bar</property>
-                                        <property name="visible">True</property>
-                                        <property name="can_focus">True</property>
-                                        <property name="receives_default">False</property>
-                                        <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
-                                        <property name="draw_indicator">True</property>
-                                        <signal name="toggled" handler="on_window_tabbar_toggled" swapped="no"/>
-                                      </widget>
-                                      <packing>
-                                        <property name="expand">True</property>
-                                        <property name="fill">True</property>
-                                        <property name="position">2</property>
-                                      </packing>
-                                    </child>
-                                    <child>
-                                      <widget class="GtkCheckButton" id="start_fullscreen">
-                                        <property name="label" translatable="yes">Start fullscreen</property>
-                                        <property name="visible">True</property>
-                                        <property name="can_focus">True</property>
-                                        <property name="receives_default">False</property>
-                                        <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
-                                        <property name="draw_indicator">True</property>
-                                        <signal name="toggled" handler="on_start_fullscreen_toggled" swapped="no"/>
                                       </widget>
                                       <packing>
                                         <property name="expand">True</property>
@@ -691,6 +705,7 @@ Always</property>
                                             <property name="visible">True</property>
                                             <property name="can_focus">True</property>
                                             <property name="receives_default">False</property>
+                                            <property name="use_action_appearance">False</property>
                                             <property name="draw_indicator">True</property>
                                             <signal name="toggled" handler="on_window_halign_value_changed" swapped="no"/>
                                           </widget>
@@ -706,6 +721,7 @@ Always</property>
                                             <property name="visible">True</property>
                                             <property name="can_focus">True</property>
                                             <property name="receives_default">False</property>
+                                            <property name="use_action_appearance">False</property>
                                             <property name="active">True</property>
                                             <property name="draw_indicator">True</property>
                                             <property name="group">radiobutton_align_left</property>
@@ -723,6 +739,7 @@ Always</property>
                                             <property name="visible">True</property>
                                             <property name="can_focus">True</property>
                                             <property name="receives_default">False</property>
+                                            <property name="use_action_appearance">False</property>
                                             <property name="draw_indicator">True</property>
                                             <property name="group">radiobutton_align_left</property>
                                             <signal name="toggled" handler="on_window_halign_value_changed" swapped="no"/>
@@ -899,6 +916,20 @@ Always</property>
                             <property name="position">1</property>
                           </packing>
                         </child>
+                        <child>
+                          <widget class="GtkButton" id="custom_command_file_help">
+                            <property name="label" translatable="yes">Help</property>
+                            <property name="visible">True</property>
+                            <property name="can_focus">True</property>
+                            <property name="receives_default">True</property>
+                            <property name="use_action_appearance">False</property>
+                          </widget>
+                          <packing>
+                            <property name="expand">False</property>
+                            <property name="fill">False</property>
+                            <property name="position">2</property>
+                          </packing>
+                        </child>
                       </widget>
                       <packing>
                         <property name="expand">True</property>
@@ -1003,9 +1034,10 @@ Always</property>
                                         <property name="can_focus">True</property>
                                         <property name="receives_default">False</property>
                                         <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
+                                        <property name="use_action_appearance">False</property>
                                         <property name="use_underline">True</property>
                                         <property name="draw_indicator">True</property>
-					<signal name="toggled" handler="on_use_login_shell_toggled" swapped="no"/>
+                                        <signal name="toggled" handler="on_use_login_shell_toggled" swapped="no"/>
                                       </widget>
                                       <packing>
                                         <property name="expand">True</property>
@@ -1020,6 +1052,7 @@ Always</property>
                                         <property name="can_focus">True</property>
                                         <property name="receives_default">False</property>
                                         <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
+                                        <property name="use_action_appearance">False</property>
                                         <property name="use_underline">True</property>
                                         <property name="draw_indicator">True</property>
                                         <signal name="toggled" handler="on_open_tab_cwd_toggled" swapped="no"/>
@@ -1116,6 +1149,7 @@ Always</property>
                                     <property name="can_focus">True</property>
                                     <property name="receives_default">False</property>
                                     <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
+                                    <property name="use_action_appearance">False</property>
                                     <property name="draw_indicator">True</property>
                                     <signal name="toggled" handler="on_use_scrollbar_toggled" swapped="no"/>
                                   </widget>
@@ -1218,6 +1252,7 @@ Always</property>
                                     <property name="can_focus">True</property>
                                     <property name="receives_default">False</property>
                                     <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
+                                    <property name="use_action_appearance">False</property>
                                     <property name="draw_indicator">True</property>
                                     <signal name="toggled" handler="on_scroll_output_toggled" swapped="no"/>
                                   </widget>
@@ -1234,6 +1269,7 @@ Always</property>
                                     <property name="can_focus">True</property>
                                     <property name="receives_default">False</property>
                                     <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
+                                    <property name="use_action_appearance">False</property>
                                     <property name="draw_indicator">True</property>
                                     <signal name="toggled" handler="on_scroll_keystroke_toggled" swapped="no"/>
                                   </widget>
@@ -1322,14 +1358,12 @@ Always</property>
                                 <property name="column_spacing">13</property>
                                 <property name="row_spacing">6</property>
                                 <child>
-                                  <placeholder/>
-                                </child>
-                                <child>
                                   <widget class="GtkCheckButton" id="use_default_font">
                                     <property name="label" translatable="yes">Use the system fixed width font</property>
                                     <property name="visible">True</property>
                                     <property name="can_focus">True</property>
                                     <property name="receives_default">False</property>
+                                    <property name="use_action_appearance">False</property>
                                     <property name="yalign">1</property>
                                     <property name="draw_indicator">True</property>
                                     <signal name="toggled" handler="on_use_default_font_toggled" swapped="no"/>
@@ -1361,6 +1395,7 @@ Always</property>
                                     <property name="visible">True</property>
                                     <property name="can_focus">True</property>
                                     <property name="receives_default">True</property>
+                                    <property name="use_action_appearance">False</property>
                                     <property name="focus_on_click">False</property>
                                     <property name="title" translatable="yes">Choose some font</property>
                                     <signal name="font_set" handler="on_font_style_font_set" swapped="no"/>
@@ -1372,9 +1407,6 @@ Always</property>
                                     <property name="bottom_attach">2</property>
                                     <property name="y_options"/>
                                   </packing>
-                                </child>
-                                <child>
-                                  <placeholder/>
                                 </child>
                                 <child>
                                   <widget class="GtkLabel" id="labelx2">
@@ -1417,6 +1449,7 @@ Always</property>
                                         <property name="visible">True</property>
                                         <property name="can_focus">True</property>
                                         <property name="receives_default">True</property>
+                                        <property name="use_action_appearance">False</property>
                                         <property name="color">#000000000000</property>
                                         <signal name="color_set" handler="on_background_color_color_set" swapped="no"/>
                                       </widget>
@@ -1447,6 +1480,7 @@ Always</property>
                                         <property name="visible">True</property>
                                         <property name="can_focus">True</property>
                                         <property name="receives_default">True</property>
+                                        <property name="use_action_appearance">False</property>
                                         <property name="color">#000000000000</property>
                                         <signal name="color_set" handler="on_font_color_color_set" swapped="no"/>
                                       </widget>
@@ -1538,6 +1572,7 @@ Blink off</property>
                                     <property name="visible">True</property>
                                     <property name="can_focus">True</property>
                                     <property name="receives_default">False</property>
+                                    <property name="use_action_appearance">False</property>
                                     <property name="yalign">1</property>
                                     <property name="draw_indicator">True</property>
                                     <signal name="toggled" handler="on_allow_bold_toggled" swapped="no"/>
@@ -1548,6 +1583,12 @@ Blink off</property>
                                     <property name="x_options">GTK_FILL</property>
                                     <property name="y_options"/>
                                   </packing>
+                                </child>
+                                <child>
+                                  <placeholder/>
+                                </child>
+                                <child>
+                                  <placeholder/>
                                 </child>
                                 <child>
                                   <placeholder/>
@@ -1610,9 +1651,6 @@ Blink off</property>
                                 <property name="column_spacing">12</property>
                                 <property name="row_spacing">6</property>
                                 <child>
-                                  <placeholder/>
-                                </child>
-                                <child>
                                   <widget class="GtkLabel" id="label17">
                                     <property name="visible">True</property>
                                     <property name="can_focus">False</property>
@@ -1668,6 +1706,7 @@ Blink off</property>
                                         <property name="visible">True</property>
                                         <property name="can_focus">True</property>
                                         <property name="receives_default">True</property>
+                                        <property name="use_action_appearance">False</property>
                                         <property name="xalign">0.25</property>
                                         <property name="yalign">0.25</property>
                                         <property name="color">#000000000000</property>
@@ -1680,6 +1719,7 @@ Blink off</property>
                                         <property name="visible">True</property>
                                         <property name="can_focus">True</property>
                                         <property name="receives_default">True</property>
+                                        <property name="use_action_appearance">False</property>
                                         <property name="color">#000000000000</property>
                                         <signal name="color_set" handler="on_palette_color_set" swapped="no"/>
                                       </widget>
@@ -1694,6 +1734,7 @@ Blink off</property>
                                         <property name="visible">True</property>
                                         <property name="can_focus">True</property>
                                         <property name="receives_default">True</property>
+                                        <property name="use_action_appearance">False</property>
                                         <property name="color">#000000000000</property>
                                         <signal name="color_set" handler="on_palette_color_set" swapped="no"/>
                                       </widget>
@@ -1708,6 +1749,7 @@ Blink off</property>
                                         <property name="visible">True</property>
                                         <property name="can_focus">True</property>
                                         <property name="receives_default">True</property>
+                                        <property name="use_action_appearance">False</property>
                                         <property name="color">#000000000000</property>
                                         <signal name="color_set" handler="on_palette_color_set" swapped="no"/>
                                       </widget>
@@ -1724,6 +1766,7 @@ Blink off</property>
                                         <property name="visible">True</property>
                                         <property name="can_focus">True</property>
                                         <property name="receives_default">True</property>
+                                        <property name="use_action_appearance">False</property>
                                         <property name="color">#000000000000</property>
                                         <signal name="color_set" handler="on_palette_color_set" swapped="no"/>
                                       </widget>
@@ -1740,6 +1783,7 @@ Blink off</property>
                                         <property name="visible">True</property>
                                         <property name="can_focus">True</property>
                                         <property name="receives_default">True</property>
+                                        <property name="use_action_appearance">False</property>
                                         <property name="color">#000000000000</property>
                                         <signal name="color_set" handler="on_palette_color_set" swapped="no"/>
                                       </widget>
@@ -1754,6 +1798,7 @@ Blink off</property>
                                         <property name="visible">True</property>
                                         <property name="can_focus">True</property>
                                         <property name="receives_default">True</property>
+                                        <property name="use_action_appearance">False</property>
                                         <property name="color">#000000000000</property>
                                         <signal name="color_set" handler="on_palette_color_set" swapped="no"/>
                                       </widget>
@@ -1770,6 +1815,7 @@ Blink off</property>
                                         <property name="visible">True</property>
                                         <property name="can_focus">True</property>
                                         <property name="receives_default">True</property>
+                                        <property name="use_action_appearance">False</property>
                                         <property name="color">#000000000000</property>
                                         <signal name="color_set" handler="on_palette_color_set" swapped="no"/>
                                       </widget>
@@ -1784,6 +1830,7 @@ Blink off</property>
                                         <property name="visible">True</property>
                                         <property name="can_focus">True</property>
                                         <property name="receives_default">True</property>
+                                        <property name="use_action_appearance">False</property>
                                         <property name="color">#000000000000</property>
                                         <signal name="color_set" handler="on_palette_color_set" swapped="no"/>
                                       </widget>
@@ -1798,6 +1845,7 @@ Blink off</property>
                                         <property name="visible">True</property>
                                         <property name="can_focus">True</property>
                                         <property name="receives_default">True</property>
+                                        <property name="use_action_appearance">False</property>
                                         <property name="color">#000000000000</property>
                                         <signal name="color_set" handler="on_palette_color_set" swapped="no"/>
                                       </widget>
@@ -1814,6 +1862,7 @@ Blink off</property>
                                         <property name="visible">True</property>
                                         <property name="can_focus">True</property>
                                         <property name="receives_default">True</property>
+                                        <property name="use_action_appearance">False</property>
                                         <property name="color">#000000000000</property>
                                         <signal name="color_set" handler="on_palette_color_set" swapped="no"/>
                                       </widget>
@@ -1830,6 +1879,7 @@ Blink off</property>
                                         <property name="visible">True</property>
                                         <property name="can_focus">True</property>
                                         <property name="receives_default">True</property>
+                                        <property name="use_action_appearance">False</property>
                                         <property name="color">#000000000000</property>
                                         <signal name="color_set" handler="on_palette_color_set" swapped="no"/>
                                       </widget>
@@ -1844,6 +1894,7 @@ Blink off</property>
                                         <property name="visible">True</property>
                                         <property name="can_focus">True</property>
                                         <property name="receives_default">True</property>
+                                        <property name="use_action_appearance">False</property>
                                         <property name="color">#000000000000</property>
                                         <signal name="color_set" handler="on_palette_color_set" swapped="no"/>
                                       </widget>
@@ -1858,6 +1909,7 @@ Blink off</property>
                                         <property name="visible">True</property>
                                         <property name="can_focus">True</property>
                                         <property name="receives_default">True</property>
+                                        <property name="use_action_appearance">False</property>
                                         <property name="color">#000000000000</property>
                                         <signal name="color_set" handler="on_palette_color_set" swapped="no"/>
                                       </widget>
@@ -1874,6 +1926,7 @@ Blink off</property>
                                         <property name="visible">True</property>
                                         <property name="can_focus">True</property>
                                         <property name="receives_default">True</property>
+                                        <property name="use_action_appearance">False</property>
                                         <property name="color">#000000000000</property>
                                         <signal name="color_set" handler="on_palette_color_set" swapped="no"/>
                                       </widget>
@@ -1890,6 +1943,7 @@ Blink off</property>
                                         <property name="visible">True</property>
                                         <property name="can_focus">True</property>
                                         <property name="receives_default">True</property>
+                                        <property name="use_action_appearance">False</property>
                                         <property name="color">#000000000000</property>
                                         <signal name="color_set" handler="on_palette_color_set" swapped="no"/>
                                       </widget>
@@ -1905,6 +1959,7 @@ Blink off</property>
                                         <property name="can_focus">True</property>
                                         <property name="receives_default">True</property>
                                         <property name="tooltip" translatable="yes">Font color</property>
+                                        <property name="use_action_appearance">False</property>
                                         <property name="color">#000000000000</property>
                                         <signal name="color_set" handler="on_palette_color_set" swapped="no"/>
                                       </widget>
@@ -1920,6 +1975,7 @@ Blink off</property>
                                         <property name="can_focus">True</property>
                                         <property name="receives_default">True</property>
                                         <property name="tooltip" translatable="yes">Background color</property>
+                                        <property name="use_action_appearance">False</property>
                                         <property name="color">#000000000000</property>
                                         <signal name="color_set" handler="on_palette_color_set" swapped="no"/>
                                       </widget>
@@ -1967,6 +2023,7 @@ Blink off</property>
                                     <property name="visible">True</property>
                                     <property name="can_focus">True</property>
                                     <property name="receives_default">False</property>
+                                    <property name="use_action_appearance">False</property>
                                     <property name="draw_indicator">True</property>
                                     <signal name="toggled" handler="on_use_palette_font_and_background_color_toggled" swapped="no"/>
                                     <signal name="toggled" handler="toggle_use_font_background_sensitivity" swapped="no"/>
@@ -2011,6 +2068,9 @@ Blink off</property>
                                     <property name="top_attach">3</property>
                                     <property name="bottom_attach">4</property>
                                   </packing>
+                                </child>
+                                <child>
+                                  <placeholder/>
                                 </child>
                               </widget>
                             </child>
@@ -2125,6 +2185,7 @@ Blink off</property>
                                         <property name="visible">True</property>
                                         <property name="can_focus">True</property>
                                         <property name="receives_default">True</property>
+                                        <property name="use_action_appearance">False</property>
                                         <signal name="clicked" handler="clear_background_image" swapped="no"/>
                                         <child>
                                           <widget class="GtkImage" id="image1">
@@ -2289,6 +2350,7 @@ Blink off</property>
                                         <property name="visible">True</property>
                                         <property name="can_focus">True</property>
                                         <property name="receives_default">False</property>
+                                        <property name="use_action_appearance">False</property>
                                         <property name="draw_indicator">True</property>
                                         <signal name="toggled" handler="on_quick_open_enable_toggled" swapped="no"/>
                                         <signal name="toggled" handler="toggle_quick_open_command_line_sensitivity" swapped="no"/>
@@ -2383,6 +2445,7 @@ For example, for sublime, use &lt;b&gt;subl %(file_path)s:%(line_number)s&lt;/b&
                                         <property name="visible">True</property>
                                         <property name="can_focus">True</property>
                                         <property name="receives_default">False</property>
+                                        <property name="use_action_appearance">False</property>
                                         <property name="draw_indicator">True</property>
                                         <signal name="toggled" handler="on_quick_open_in_current_terminal_toggled" swapped="no"/>
                                       </widget>
@@ -2663,6 +2726,7 @@ Control-H</property>
                                     <property name="visible">True</property>
                                     <property name="can_focus">True</property>
                                     <property name="receives_default">False</property>
+                                    <property name="use_action_appearance">False</property>
                                     <property name="use_underline">True</property>
                                     <signal name="clicked" handler="on_reset_compat_defaults_clicked" swapped="no"/>
                                     <signal name="clicked" handler="reload_erase_combos" swapped="no"/>
@@ -2726,6 +2790,7 @@ Control-H</property>
                     <property name="visible">True</property>
                     <property name="can_focus">True</property>
                     <property name="receives_default">False</property>
+                    <property name="use_action_appearance">False</property>
                     <property name="use_stock">True</property>
                     <signal name="clicked" handler="gtk_widget_destroy" object="config-window" swapped="yes"/>
                   </widget>
