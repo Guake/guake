@@ -7,7 +7,6 @@ from __future__ import unicode_literals
 from setuptools import setup
 
 setup(
-    setup_requires=['pbr', 'pytest-runner', 'wheel'],
-    tests_require=['pytest', ],
+    setup_requires=['pbr'],
     pbr=True,
 )

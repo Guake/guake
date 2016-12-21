@@ -25,7 +25,9 @@ from __future__ import unicode_literals
 import logging
 import sys
 
-from guake.logging import setupBasicLogging, setupLogging
+from guake.logging import setupBasicLogging
+from guake.logging import setupLogging
+
 from guake.app import GuakeApplication
 
 logger = logging.getLogger(__name__)
