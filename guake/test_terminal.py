@@ -26,14 +26,9 @@ import logging
 import os
 
 # pylint: disable=wrong-import-position
-import gi
-gi.require_version('Gtk', '3.0')
-gi.require_version('Notify', '0.7')
-gi.require_version('Vte', '2.91')
+from guake import gi
 
-from gi.repository import GLib
-from gi.repository import Gtk
-from gi.repository import Vte
+from gi.repository import GLib, Gtk, Vte
 # pylint: enable=wrong-import-position
 
 
@@ -43,7 +38,7 @@ logger = logging.getLogger(__name__)
 def main():
     terminal = Vte.Terminal()
 
-    terminal.spawn_sync(
+    terminal.fork_command_full(
         Vte.PtyFlags.DEFAULT,
         os.environ['HOME'],
         ["/bin/bash"],
@@ -59,3 +54,6 @@ def main():
     win.show_all()
 
     Gtk.main()
+
+if __name__ == '__main__':
+    main()
