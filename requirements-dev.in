@@ -7,3 +7,5 @@ pylint >= 1.6
 pip-tools >= 1.8
 pytest >= 3.0
 ruamel.venvgtk >= 0.4
+pytest-runner
+wheel
