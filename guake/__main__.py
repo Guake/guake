@@ -17,16 +17,11 @@ License along with this program; if not, write to the
 Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor,
 Boston, MA 02110-1301 USA
 """
-from __future__ import absolute_import
-from __future__ import division
-from __future__ import print_function
-from __future__ import unicode_literals
-
 import logging
+import sys
 
-from guake.logging import setupBasicLogging
-from guake.logging import setupLogging
-
+from guake.log import setupBasicLogging, setupLogging
+from guake.app import GuakeApplication
 
 logger = logging.getLogger(__name__)
 
@@ -35,8 +30,8 @@ def main():
     setupBasicLogging()
     setupLogging()
     logger.info("Guake starts")
-    logger.info("Guake stops")
-
+    app = GuakeApplication()
+    app.run(sys.argv)
 
 if __name__ == '__main__':
     main()

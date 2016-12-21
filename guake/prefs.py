@@ -22,8 +22,8 @@ from __future__ import division
 from __future__ import print_function
 from __future__ import unicode_literals
 
-from guake.logging import setupBasicLogging
-from guake.logging import setupLogging
+from guake.log import setupBasicLogging
+from guake.log import setupLogging
 
 
 def main():
