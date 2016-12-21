@@ -3,11 +3,13 @@ from __future__ import division
 from __future__ import print_function
 from __future__ import unicode_literals
 
-from guake import gi
-from gi.repository import GLib, Gio, Gtk
-
 import logging
-from guake.logging import setupBasicLogging, setupLogging
+from guake import gi
+from gi.repository import GLib
+from gi.repository import Gio
+from gi.repository import Gtk
+from guake.logging import setupBasicLogging
+from guake.logging import setupLogging
 
 
 class GuakeApplication(Gtk.Application):

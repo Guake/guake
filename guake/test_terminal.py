@@ -27,8 +27,9 @@ import os
 
 # pylint: disable=wrong-import-position
 from guake import gi
-
-from gi.repository import GLib, Gtk, Vte
+from gi.repository import GLib
+from gi.repository import Gtk
+from gi.repository import Vte
 # pylint: enable=wrong-import-position
 
 
@@ -38,7 +39,7 @@ logger = logging.getLogger(__name__)
 def main():
     terminal = Vte.Terminal()
 
-    terminal.fork_command_full(
+    terminal.spawn_sync(
         Vte.PtyFlags.DEFAULT,
         os.environ['HOME'],
         ["/bin/bash"],
