@@ -1927,7 +1927,23 @@ Always</property>
 				  <property name="y_options"></property>
 				</packing>
 			      </child>
-
+			      <child>
+				<widget class="GtkCheckButton" id="show_resizer">
+				  <property name="label" translatable="yes">Show resizer</property>
+				  <property name="visible">True</property>
+				  <property name="can_focus">True</property>
+				  <property name="receives_default">False</property>
+				  <property name="yalign">1</property>
+				  <property name="draw_indicator">True</property>
+				  <signal name="toggled" handler="on_show_resizer_toggled" swapped="no"/>
+				</widget>
+				<packing>
+				  <property name="top_attach">4</property>
+				  <property name="bottom_attach">5</property>
+				  <property name="x_options">GTK_FILL</property>
+				  <property name="y_options"/>
+				</packing>
+			      </child>
 			      <child>
 				<widget class="GtkFontButton" id="font_style">
 				  <property name="visible">True</property>
