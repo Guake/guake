@@ -1,5 +1,6 @@
 from types import MethodType
 
+
 def attach_methods(Src, dest):
     """Attach methods of class Src to an instance dest"""
     for attr_name in dir(Src):

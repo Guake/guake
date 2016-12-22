@@ -22,9 +22,10 @@ from __future__ import division
 from __future__ import print_function
 from __future__ import unicode_literals
 
-from testwrap import dedent
+from gi.repository import GLib
+from gi.repository import Notify
 from guake import gi
-from gi.repository import GLib, Notify
+from testwrap import dedent
 
 
 Notify.init("Guake")

@@ -22,39 +22,10 @@ from __future__ import division
 from __future__ import print_function
 from __future__ import unicode_literals
 
-import logging
-import os
-
 # pylint: disable=wrong-import-position
-from guake import gi
-from gi.repository import GLib
-from gi.repository import Gtk
-from gi.repository import Vte
+import gi
+gi.require_version('Gtk', '3.0')
+gi.require_version('Gdk', '3.0')
+gi.require_version('Vte', '2.91')
+gi.require_version('Notify', '0.7')
 # pylint: enable=wrong-import-position
-
-
-logger = logging.getLogger(__name__)
-
-
-def main():
-    terminal = Vte.Terminal()
-
-    terminal.spawn_sync(
-        Vte.PtyFlags.DEFAULT,
-        os.environ['HOME'],
-        ["/bin/bash"],
-        [],
-        GLib.SpawnFlags.DO_NOT_REAP_CHILD,
-        None,
-        None,
-    )
-
-    win = Gtk.Window()
-    win.connect('delete-event', Gtk.main_quit)
-    win.add(terminal)
-    win.show_all()
-
-    Gtk.main()
-
-if __name__ == '__main__':
-    main()

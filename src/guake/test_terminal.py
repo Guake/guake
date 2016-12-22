@@ -22,11 +22,38 @@ from __future__ import division
 from __future__ import print_function
 from __future__ import unicode_literals
 
-# pylint: disable=wrong-import-position
-import gi
-gi.require_version('Gtk', '3.0')
-gi.require_version('Gdk', '3.0')
-gi.require_version('Vte', '2.91')
-gi.require_version('Notify', '0.7')
-# pylint: enable=wrong-import-position
+import logging
+import os
 
+# pylint: disable=wrong-import-position
+from gi.repository import GLib
+from gi.repository import Gtk
+from gi.repository import Vte
+from guake import gi
+# pylint: enable=wrong-import-position
+from guake.terminal import GuakeTerminal
+
+logger = logging.getLogger(__name__)
+
+
+def main():
+    terminal = GuakeTerminal()
+    terminal.spawn_sync(
+        Vte.PtyFlags.DEFAULT,
+        os.environ['HOME'],
+        ["/bin/bash"],
+        [],
+        GLib.SpawnFlags.DO_NOT_REAP_CHILD,
+        None,
+        None,
+    )
+
+    win = Gtk.Window()
+    win.connect('delete-event', Gtk.main_quit)
+    win.add(terminal)
+    win.show_all()
+
+    Gtk.main()
+
+if __name__ == '__main__':
+    main()

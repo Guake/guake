@@ -4,12 +4,20 @@ from __future__ import print_function
 from __future__ import unicode_literals
 
 import logging
-from guake import gi
+import os
+
 from gi.repository import GLib
 from gi.repository import Gio
 from gi.repository import Gtk
+from gi.repository import Vte
+from guake import gi
+
 from guake.logging import setupBasicLogging
 from guake.logging import setupLogging
+
+from guake.terminal import GuakeTerminal
+from guake.utils import attach_methods
+from guake.widgets.app_window import ApplicationWindowDonor
 
 
 class GuakeApplication(Gtk.Application):
@@ -32,7 +40,9 @@ class GuakeApplication(Gtk.Application):
 
     def do_activate(self):
         self.builder = Gtk.Builder()
-        self.builder.add_from_file("data/gtkobjects/app.ui")
+        self.builder.add_from_file("data/ui/app.ui")
         self.window = self.builder.get_object("window-root")
+        self.window.set_application(self)
+        attach_methods(ApplicationWindowDonor, self.window)
+        self.window.prepare_to_draw()
         self.window.present()
-        Gtk.main()
