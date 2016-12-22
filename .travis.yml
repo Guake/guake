@@ -1,9 +1,18 @@
 language: python
+
 python:
     - "3.4"
     - "3.5"
+
+virtualenv:
+    system_site_packages: true
+
+before_install:
+    - ./bootstrap-debian.sh
+
 install:
-    - ./install.py --target=virtualenv
+    - ./install.py
     - ./install.py --uninstall=virtualenv
+
 script:
-    - ./install.py --target=system --checks --tests
+    - ./install.py --checks --tests
