@@ -25,13 +25,9 @@ from __future__ import unicode_literals
 import logging
 import os
 
-# pylint: disable=wrong-import-position
-from guake import gi
-from gi.repository import GLib
-from gi.repository import Gtk
-from gi.repository import Vte
-# pylint: enable=wrong-import-position
-
+from guake.gi.repository import GLib
+from guake.gi.repository import Gtk
+from guake.gi.repository import Vte
 
 logger = logging.getLogger(__name__)
 
@@ -55,6 +51,7 @@ def main():
     win.show_all()
 
     Gtk.main()
+
 
 if __name__ == '__main__':
     main()

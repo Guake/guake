@@ -1,0 +1,2 @@
+# do not put GTK dependency here or any system level python module dependencies. Only describe here
+# packages that comes from pypi.python.org

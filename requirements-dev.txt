@@ -7,6 +7,7 @@
 astroid==1.4.8            # via pylint
 autopep8==1.2.4
 click==6.6                # via pip-tools
+colorlog==2.10.0
 first==2.0.1              # via pip-tools
 isort==4.2.5              # via pylint
 lazy-object-proxy==1.2.2  # via astroid
