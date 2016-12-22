@@ -6,4 +6,4 @@ install:
     - ./install.py --target=virtualenv
     - ./install.py --uninstall=virtualenv
 script:
-    - ./install.py --checks --tests
+    - ./install.py --target=system --checks --tests

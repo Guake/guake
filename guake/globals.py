@@ -22,20 +22,5 @@ from __future__ import division
 from __future__ import print_function
 from __future__ import unicode_literals
 
-import logging.config
-import os
-import sys
-
-
-def setupBasicLogging():
-    fmt = '%(asctime)-15s %(levelname)6s %(message)s'
-    logging.basicConfig(format=fmt, level=logging.INFO)
-
-
-def setupLogging():
-    print("sys.prefix", sys.prefix)
-    config_file_fullpath = ""
-    if not os.path.exists(config_file_fullpath):
-        logging.error("Unable to load logging configuration file: %s", config_file_fullpath)
-    else:
-        logging.config.fileConfig(config_file_fullpath)
+IMAGE_DIR = NotImplementedError()
+GLADE_DIR = NotImplementedError()

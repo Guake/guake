@@ -59,6 +59,9 @@ parser.add_option("--checks",
 parser.add_option("--update",
                   action="store_true",
                   help="update requirements.txt and requirements-dev.txt")
+parser.add_option("--upgrade",
+                  action="store_true",
+                  help="See --update")
 parser.add_option("--uninstall",
                   action="store",
                   help="Uninstall from the target. Available: 'virtualenv', 'system'",
@@ -148,7 +151,11 @@ if options.checks:
     lib.execute("./validate.sh")
 
 if options.tests:
-    lib.execute("py.test guake/tests")
+    lib.execute("python setup.py test")
+
+if options.upgrade:
+    lib.printDebug("--upgrade parameter found. You mean --update")
+    options.update = True
 
 if options.update:
     lib.execute("pip-compile requirements-dev.in")

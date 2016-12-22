@@ -18,13 +18,18 @@ Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor,
 Boston, MA 02110-1301 USA
 """
 from __future__ import absolute_import
+from __future__ import division
+from __future__ import print_function
+from __future__ import unicode_literals
 
 import os
 import sys
 
-import gconf
 import gettext
+
+import gconf
 import gtk
+
 import guake.globals
 
 # Internationalization purposes.
@@ -46,6 +51,7 @@ class ShowableError(Exception):
         d.destroy()
         if exit_code != -1:
             sys.exit(exit_code)
+        super().__init__(msg)
 
 
 def test_gconf():
@@ -68,7 +74,8 @@ def gladefile(x):
 
 
 def hexify_color(c):
-    h = lambda x: hex(x).replace('0x', '').zfill(4)
+    def h(x):
+        return hex(x).replace('0x', '').zfill(4)
     return '#%s%s%s' % (h(c.red), h(c.green), h(c.blue))
 
 

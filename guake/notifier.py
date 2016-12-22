@@ -23,8 +23,9 @@ from __future__ import print_function
 from __future__ import unicode_literals
 
 from testwrap import dedent
-from guake import gi
-from gi.repository import GLib, Notify
+
+from guake.gi.repository import GLib
+from guake.gi.repository import Notify
 
 
 Notify.init("Guake")
