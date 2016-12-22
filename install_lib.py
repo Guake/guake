@@ -75,6 +75,7 @@ class AsciiColor(object):
 
     ENDC = '\033[0m'
 
+
 # Do *not* use color when:
 #  - on windows
 #  - not in a terminal except if we are in Travis CI

@@ -133,6 +133,7 @@ elif options.target == "virtualenv":
     lib.printInfo("VIRTUAL_ENV = %s", os.environ.get("VIRTUAL_ENV"))
 else:
     lib.printInfo("Installation in: {}".format(dest_path))
+    raise NotImplementedError("system deployment not supported yet")
 
 # Todo: check installed packages: python3-gi
 dataFolder = "data"
