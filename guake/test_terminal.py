@@ -26,11 +26,7 @@ import logging
 import os
 
 # pylint: disable=wrong-import-position
-import gi
-gi.require_version('Gtk', '3.0')
-gi.require_version('Notify', '0.7')
-gi.require_version('Vte', '2.91')
-
+from guake import gi
 from gi.repository import GLib
 from gi.repository import Gtk
 from gi.repository import Vte
@@ -59,3 +55,6 @@ def main():
     win.show_all()
 
     Gtk.main()
+
+if __name__ == '__main__':
+    main()
