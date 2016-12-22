@@ -148,7 +148,7 @@ if options.checks:
     lib.execute("./validate.sh")
 
 if options.tests:
-    lib.execute("py.test guake/tests")
+    lib.execute("python setup.py test")
 
 if options.update:
     lib.execute("pip-compile requirements-dev.in")
