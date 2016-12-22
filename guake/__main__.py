@@ -25,20 +25,18 @@ from __future__ import unicode_literals
 import logging
 import sys
 
-from guake.logging import setupBasicLogging
-from guake.logging import setupLogging
-
 from guake.app import GuakeApplication
+from guake.app import guakeInit
+
 
 logger = logging.getLogger(__name__)
 
 
 def main():
-    setupBasicLogging()
-    setupLogging()
-    logger.info("Guake starts")
+    guakeInit()
     app = GuakeApplication()
     app.run(sys.argv)
+
 
 if __name__ == '__main__':
     main()

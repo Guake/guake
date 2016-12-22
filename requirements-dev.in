@@ -1,5 +1,6 @@
 # Remember: pip version is frozen in `install.py`
 
+colorlog >= 2.10
 autopep8 >= 1.2
 pep8 >= 1.7
 pyflakes >= 1.3
@@ -7,5 +8,5 @@ pylint >= 1.6
 pip-tools >= 1.8
 pytest >= 3.0
 ruamel.venvgtk >= 0.4
-pytest-runner
-wheel
+pytest-runner >= 2.9
+wheel >= 0.29
