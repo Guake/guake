@@ -22,6 +22,7 @@ from __future__ import division
 from __future__ import print_function
 from __future__ import unicode_literals
 
+import signal
 import logging
 import sys
 
@@ -38,7 +39,9 @@ def main():
     setupLogging()
     logger.info("Guake starts")
     app = GuakeApplication()
-    app.run(sys.argv)
+    # Trick to handle KeyboardInterrupt
+    signal.signal(signal.SIGINT, signal.SIG_DFL)
+    app.run()
 
 if __name__ == '__main__':
     main()
