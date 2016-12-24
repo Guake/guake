@@ -5,7 +5,7 @@ from __future__ import unicode_literals
 
 import logging
 import os
-
+from time import sleep
 from gi.repository import GLib
 from gi.repository import Gio
 from gi.repository import Gtk
@@ -17,7 +17,7 @@ from guake.logging import setupLogging
 
 from guake.terminal import GuakeTerminal
 from guake.utils import attach_methods
-from guake.widgets.app_window import ApplicationWindowDonor
+from guake.widgets.root_window import RootWindowMixin
 
 
 class GuakeApplication(Gtk.Application):
@@ -43,6 +43,6 @@ class GuakeApplication(Gtk.Application):
         self.builder.add_from_file("data/ui/app.ui")
         self.window = self.builder.get_object("window-root")
         self.window.set_application(self)
-        attach_methods(ApplicationWindowDonor, self.window)
+        attach_methods(RootWindowMixin, self.window)
         self.window.prepare_to_draw()
-        self.window.present()
+        self.window.on_show_hide()
