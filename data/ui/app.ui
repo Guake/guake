@@ -2,20 +2,7 @@
 <!-- Generated with glade 3.18.3 -->
 <interface>
   <requires lib="gtk+" version="3.12"/>
-  <object class="GtkMenu" id="context-menu">
-    <property name="visible">True</property>
-    <property name="can_focus">False</property>
-    <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
-  </object>
-  <object class="GtkMenu" id="tab-menu">
-    <property name="visible">True</property>
-    <property name="can_focus">False</property>
-  </object>
-  <object class="GtkMenu" id="tray-menu">
-    <property name="visible">True</property>
-    <property name="can_focus">False</property>
-  </object>
-  <object class="GtkWindow" id="window-root">
+  <object class="GtkWindow" id="GuakeApplicationWindow">
     <property name="width_request">100</property>
     <property name="height_request">100</property>
     <property name="can_focus">False</property>
@@ -159,5 +146,18 @@
         </child>
       </object>
     </child>
+  </object>
+  <object class="GtkMenu" id="context-menu">
+    <property name="visible">True</property>
+    <property name="can_focus">False</property>
+    <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
+  </object>
+  <object class="GtkMenu" id="tab-menu">
+    <property name="visible">True</property>
+    <property name="can_focus">False</property>
+  </object>
+  <object class="GtkMenu" id="tray-menu">
+    <property name="visible">True</property>
+    <property name="can_focus">False</property>
   </object>
 </interface>
