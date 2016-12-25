@@ -29,7 +29,7 @@ import sys
 from guake.logging import setupBasicLogging
 from guake.logging import setupLogging
 
-from guake.app import GuakeApplication
+from guake.application import GuakeApplication
 
 logger = logging.getLogger(__name__)
 
