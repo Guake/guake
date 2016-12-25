@@ -1,9 +1,10 @@
 import os
+import logging
 from guake import gi
 from gi.repository import Gtk
 from gi.repository import Gdk
-from time import sleep
 
+logger = logging.getLogger(__name__)
 
 class GuakeApplicationWindow(Gtk.ApplicationWindow):
 
@@ -19,12 +20,14 @@ class GuakeApplicationWindow(Gtk.ApplicationWindow):
         instance = builder.get_object(cls.__name__)
         assert instance is not None, "Gtk widget %s not found!" % cls.__name__
         instance.__class__ = cls
+        del(builder)
         return instance
 
     def __init__(self, *args, **kwargs):
         app = kwargs.get("application")
         if app is not None:
             self.set_application(app)
+        self._visible = kwargs.get("visible", False)
         self._set_window_position()
         self._set_window_size()
 
@@ -53,9 +56,13 @@ class GuakeApplicationWindow(Gtk.ApplicationWindow):
         self.move(0, 0)
 
     # handlers
-    def show_hide_handler(self):
-        if self.is_active():
+    def show_hide_handler(self, *args):
+        logger.info(args)
+        if self._visible:
             self.hide()
-        else:
-            self.show_all()
+            self._visible = False
+            return
+        self.show_all()
+        self.present()
+        self._visible = True
         return
