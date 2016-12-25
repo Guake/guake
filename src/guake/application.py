@@ -40,7 +40,6 @@ class GuakeApplication(Gtk.Application):
 
     def do_activate(self):
         self.window = GuakeApplicationWindow(application=self)
-        keybinder = Keybinder
         keystr = "F2"
         Keybinder.init()
         Keybinder.bind(keystr, self.window.show_hide_handler, "")
