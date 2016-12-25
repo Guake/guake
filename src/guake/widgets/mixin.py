@@ -1,4 +1,0 @@
-
-
-class WidgetMixin(object):
-    pass
