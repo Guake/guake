@@ -41,7 +41,7 @@ def main():
     app = GuakeApplication()
     # Trick to handle KeyboardInterrupt
     signal.signal(signal.SIGINT, signal.SIG_DFL)
-    app.run()
+    app.run(sys.argv)
 
 if __name__ == '__main__':
     main()
