@@ -6,11 +6,12 @@ from __future__ import unicode_literals
 import logging
 import os
 from time import sleep
+from guake import gi
 from gi.repository import GLib
 from gi.repository import Gio
 from gi.repository import Gtk
 from gi.repository import Vte
-from guake import gi
+from gi.repository import Keybinder
 
 from guake.logging import setupBasicLogging
 from guake.logging import setupLogging
@@ -39,4 +40,7 @@ class GuakeApplication(Gtk.Application):
 
     def do_activate(self):
         self.window = GuakeApplicationWindow(application=self)
-        self.window.show_hide_handler()
+        keybinder = Keybinder
+        keystr = "F2"
+        Keybinder.init()
+        Keybinder.bind(keystr, self.window.show_hide_handler, "")
