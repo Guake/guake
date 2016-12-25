@@ -28,5 +28,5 @@ gi.require_version('Gtk', '3.0')
 gi.require_version('Gdk', '3.0')
 gi.require_version('Vte', '2.91')
 gi.require_version('Notify', '0.7')
-# gi.require_version('Keybinder', '3.0')
+gi.require_version('Keybinder', '3.0')
 # pylint: enable=wrong-import-position

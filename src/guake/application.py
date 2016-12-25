@@ -38,8 +38,5 @@ class GuakeApplication(Gtk.Application):
         return 0
 
     def do_activate(self):
-        self.window = GuakeApplicationWindow()
-        self.window.set_application(self)
-        self.window.prepare_to_draw()
-        self.window.show_hide_handler()
+        self.window = GuakeApplicationWindow(application=self)
         self.window.show_hide_handler()
