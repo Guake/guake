@@ -1,10 +1,22 @@
+import os
 from guake import gi
-from guake.widgets.mixin import WidgetMixin
 from gi.repository import Gtk
 from gi.repository import Gdk
+from time import sleep
 
+class GuakeApplicationWindow(Gtk.ApplicationWindow):
 
-class RootWindowMixin(WidgetMixin):
+    __filename__ = "app.ui"
+
+    def __new__(cls, *args, **kwargs):
+        datapath = kwargs.get("datapath", "./data")
+        filename = os.path.join(datapath, "ui", cls.__filename__)
+        builder = Gtk.Builder()
+        builder.add_from_file(filename)
+        instance = builder.get_object(cls.__name__)
+        assert instance is not None, "Gtk widget %s not found!" % cls.__name__
+        instance.__class__ = cls
+        return instance
 
     def _get_screen(self):
         # TODO: get tagret screen from settings
@@ -34,9 +46,8 @@ class RootWindowMixin(WidgetMixin):
     def _set_window_position(self):
         self.move(0, 0)
 
-
     # handlers
-    def on_show_hide(self):
+    def show_hide_handler(self):
         if self.is_active():
             self.hide()
         else:

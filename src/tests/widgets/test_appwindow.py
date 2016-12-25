@@ -1,6 +1,6 @@
 import pytest
 from unittest import mock
-from guake.widgets.root_window import RootWindowMixin
+from guake.widgets.application_window import GuakeApplicationWindow
 
 @pytest.fixture
 def root_window_mixin():
