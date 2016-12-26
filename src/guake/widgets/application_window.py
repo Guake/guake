@@ -3,7 +3,9 @@ from guake import gi
 from gi.repository import Gtk
 from gi.repository import Gdk
 from guake.widgets import GuakeWidget
+
 logger = logging.getLogger(__name__)
+
 
 class GuakeApplicationWindow(GuakeWidget, Gtk.ApplicationWindow):
 
@@ -20,7 +22,7 @@ class GuakeApplicationWindow(GuakeWidget, Gtk.ApplicationWindow):
     @property
     def visible(self):
         return self._visible
-    
+
     @visible.setter
     def visible(self, value):
         self._visible = value
