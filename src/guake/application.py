@@ -16,9 +16,8 @@ from gi.repository import Keybinder
 from guake.logging import setupBasicLogging
 from guake.logging import setupLogging
 
-from guake.terminal import GuakeTerminal
+from guake.widgets import GuakeApplicationWindow
 
-from guake.widgets.application_window import GuakeApplicationWindow
 
 logger = logging.getLogger(__name__)
 
@@ -54,6 +53,7 @@ class GuakeApplication(Gtk.Application):
 
     def do_activate(self):
         self.window = GuakeApplicationWindow(application=self, visible=self.startup_visibility)
+        # notebook = GuakeNotebook()
         keystr = "F2"
         Keybinder.init()
         Keybinder.bind(keystr, self.window.show_hide_handler, "")
