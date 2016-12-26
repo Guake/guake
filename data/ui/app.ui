@@ -12,6 +12,7 @@
     <property name="skip_pager_hint">True</property>
     <property name="urgency_hint">True</property>
     <property name="decorated">False</property>
+    <property name="has_resize_grip">True</property>
     <child>
       <object class="GtkBox" id="mainframe">
         <property name="visible">True</property>
@@ -19,7 +20,7 @@
         <property name="orientation">vertical</property>
         <property name="baseline_position">top</property>
         <child>
-          <object class="GtkNotebook" id="notebook-terminals">
+          <object class="GtkNotebook" id="GuakeNotebook">
             <property name="visible">True</property>
             <property name="can_focus">True</property>
             <property name="has_focus">True</property>
