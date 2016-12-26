@@ -2,9 +2,12 @@ import logging
 from guake import gi
 from gi.repository import Gtk
 from gi.repository import Gdk
-from guake.widgets import GuakeWidget
 
 logger = logging.getLogger(__name__)
+
+from guake.widgets.widget import GuakeWidget
+from guake.widgets.terminal import GuakeTerminal
+from guake.widgets.notebook import GuakeNotebook
 
 
 class GuakeApplicationWindow(GuakeWidget, Gtk.ApplicationWindow):
@@ -17,6 +20,12 @@ class GuakeApplicationWindow(GuakeWidget, Gtk.ApplicationWindow):
             self.set_application(app)
         self._set_window_position()
         self._set_window_size()
+        note = GuakeNotebook()
+        terminal = GuakeTerminal()
+        terminal.run()
+        note.append_page(terminal, Gtk.Label("hhh"))
+
+        # setting of self.visible should go in the final
         self.visible = kwargs.get("visible", False)
 
     @property
