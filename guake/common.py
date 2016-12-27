@@ -30,8 +30,6 @@ import gettext
 import gconf
 import gtk
 
-import guake.globals
-
 # Internationalization purposes.
 _ = gettext.gettext
 
@@ -59,15 +57,23 @@ def test_gconf():
     return c.dir_exists('/apps/guake')
 
 
+def imageDir():
+    return NotImplementedError()
+
+
+def gladeDir():
+    return NotImplementedError()
+
+
 def pixmapfile(x):
-    f = os.path.join(guake.globals.IMAGE_DIR, x)
+    f = os.path.join(imageDir(), x)
     if not os.path.exists(f):
         raise IOError('No such file or directory: %s' % f)
     return os.path.abspath(f)
 
 
 def gladefile(x):
-    f = os.path.join(guake.globals.GLADE_DIR, x)
+    f = os.path.join(gladeDir(), x)
     if not os.path.exists(f):
         raise IOError('No such file or directory: %s' % f)
     return os.path.abspath(f)

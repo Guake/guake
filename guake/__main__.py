@@ -22,12 +22,12 @@ from __future__ import division
 from __future__ import print_function
 from __future__ import unicode_literals
 
-import signal
 import logging
+import signal
 import sys
 
 from guake.application import GuakeApplication
-from guake.app import guakeInit
+from guake.application import guakeInit
 
 
 logger = logging.getLogger(__name__)
