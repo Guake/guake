@@ -22,9 +22,24 @@ from __future__ import division
 from __future__ import print_function
 from __future__ import unicode_literals
 
-import gi
+import signal
+import logging
+import sys
 
-gi.require_version('Gtk', '3.0')
-gi.require_version('Gdk', '3.0')
-gi.require_version('Vte', '2.91')
-gi.require_version('Notify', '0.7')
+from guake.application import GuakeApplication
+from guake.app import guakeInit
+
+
+logger = logging.getLogger(__name__)
+
+
+def main():
+    guakeInit()
+    app = GuakeApplication()
+    # Trick to handle KeyboardInterrupt
+    signal.signal(signal.SIGINT, signal.SIG_DFL)
+    app.run(sys.argv)
+
+
+if __name__ == '__main__':
+    main()

@@ -25,10 +25,19 @@ from __future__ import unicode_literals
 import logging
 
 # from guake.gi.repository import GLib
-from guake.gi.repository import Gio
-from guake.gi.repository import Gtk
+import os
+from time import sleep
+from guake import gi
+from gi.repository import GLib
+from gi.repository import Gio
+from gi.repository import Gtk
+from gi.repository import Vte
+from gi.repository import Keybinder
+
 from guake.logging import setupBasicLogging
 from guake.logging import setupLogging
+
+from guake.widgets import GuakeApplicationWindow
 
 
 logger = logging.getLogger(__name__)
@@ -51,18 +60,29 @@ class GuakeApplication(Gtk.Application):
         )
         self.builder = None
         self.window = None
+        self.add_main_option(
+            "show",
+            ord("s"),
+            GLib.OptionFlags.NONE,
+            GLib.OptionArg.NONE,
+            "Show terminal on startup",
+            None
+        )
+        # TODO: set this param from settings
+        self.startup_visibility = False
 
     def do_startup(self):
         Gtk.Application.do_startup(self)
 
     def do_command_line(self, command_line):
         # options = command_line.get_options_dict()
+        self.startup_visibility = True if options.contains("show") else False
         self.activate()
         return 0
 
     def do_activate(self):
-        self.builder = Gtk.Builder()
-        self.builder.add_from_file("data/gtkobjects/app.ui")
-        self.window = self.builder.get_object("window-root")
-        self.window.present()
-        Gtk.main()
+        self.window = GuakeApplicationWindow(application=self, visible=self.startup_visibility)
+        # notebook = GuakeNotebook()
+        keystr = "F2"
+        Keybinder.init()
+        Keybinder.bind(keystr, self.window.show_hide_handler, "")
