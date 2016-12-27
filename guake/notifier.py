@@ -22,10 +22,15 @@ from __future__ import division
 from __future__ import print_function
 from __future__ import unicode_literals
 
+from testwrap import dedent
+
+# pylint: disable=wrong-import-position,wrong-import-order,unused-import
+from guake import gi
+assert gi  # hack to "use" the import so pep8/pyflakes are happy
+
 from gi.repository import GLib
 from gi.repository import Notify
-from guake import gi
-from testwrap import dedent
+# pylint: enable=wrong-import-position,wrong-import-order,unused-import
 
 
 Notify.init("Guake")

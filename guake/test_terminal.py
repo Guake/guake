@@ -25,13 +25,16 @@ from __future__ import unicode_literals
 import logging
 import os
 
-# pylint: disable=wrong-import-position
+# pylint: disable=wrong-import-position,wrong-import-order,unused-import
+from guake import gi
+assert gi  # hack to "use" the import so pep8/pyflakes are happy
+
 from gi.repository import GLib
 from gi.repository import Gtk
 from gi.repository import Vte
-from guake import gi
-# pylint: enable=wrong-import-position
-from guake.terminal import GuakeTerminal
+# pylint: enable=wrong-import-position,wrong-import-order,unused-import
+
+from guake.widgets.terminal import GuakeTerminal
 
 logger = logging.getLogger(__name__)
 

@@ -23,8 +23,10 @@ from __future__ import print_function
 from __future__ import unicode_literals
 
 import os
-# pylint: disable=wrong-import-position
+
+# pylint: disable=wrong-import-position,wrong-import-order,unused-import
 from guake import gi
+assert gi  # hack to "use" the import so pep8/pyflakes are happy
 
 # from gi.repository import GLib
 from gi.repository import GLib
@@ -32,6 +34,7 @@ from gi.repository import Gdk
 from gi.repository import GdkX11
 from gi.repository import Gtk
 from gi.repository import Vte
+# pylint: enable=wrong-import-position,wrong-import-order,unused-import
 
 # from gi.repository import Pango
 
@@ -207,7 +210,7 @@ class TerminalBox(Gtk.HBox):
 
     def __init__(self):
         super(TerminalBox, self).__init__()
-        self.terminal = Terminal()
+        self.terminal = None  # Terminal()
         self.add_terminal()
         self.add_scrollbar()
 
