@@ -6,9 +6,11 @@ from gi.repository import Gdk
 logger = logging.getLogger(__name__)
 
 
-class GuakeNotebook(Gtk.Notebook):
+class GuakeBox(Gtk.Box):
 
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
-        self.set_tab_pos(Gtk.PositionType.BOTTOM)
+        self.set_orientation(Gtk.Orientation.VERTICAL)
+        fixed = Gtk.Fixed()
+        self.add(fixed)
