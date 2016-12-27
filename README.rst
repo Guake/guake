@@ -12,7 +12,7 @@ First, you need to install some system libraries, mainly GTK and related.
 
 Now, install Guake inside a new virtualenv with:
 
-    ./install.py
+    ./install.py --checks --tests
 
 Setting up to your system
 -------------------------

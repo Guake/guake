@@ -23,21 +23,25 @@ from __future__ import print_function
 from __future__ import unicode_literals
 
 import logging
+# import os
+
+# from time import sleep
+
+# pylint: disable=wrong-import-position,wrong-import-order,unused-import
+from guake import gi
+assert gi  # hack to "use" the import so pep8/pyflakes are happy
 
 # from guake.gi.repository import GLib
-import os
-from time import sleep
-from guake import gi
 from gi.repository import GLib
 from gi.repository import Gio
 from gi.repository import Gtk
-from gi.repository import Vte
+# from gi.repository import Vte
 from gi.repository import Keybinder
+# pylint: enable=wrong-import-position,wrong-import-order,unused-import
 
 from guake.logging import setupBasicLogging
 from guake.logging import setupLogging
-
-from guake.widgets import GuakeApplicationWindow
+from guake.widgets.application_window import GuakeApplicationWindow
 
 
 logger = logging.getLogger(__name__)
@@ -75,8 +79,8 @@ class GuakeApplication(Gtk.Application):
         Gtk.Application.do_startup(self)
 
     def do_command_line(self, command_line):
-        # options = command_line.get_options_dict()
-        self.startup_visibility = True if options.contains("show") else False
+        options = command_line.get_options_dict()
+        self.startup_visibility = options.contains("show")
         self.activate()
         return 0
 

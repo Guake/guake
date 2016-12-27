@@ -289,12 +289,6 @@ def makedirs(dirPath):
         pass
 
 
-def execfile(filepath, globalVars, localVars=None):
-    with open(filepath) as f:
-        code = compile(f.read(), "somefile.py", 'exec')
-        exec(code, globalVars, localVars)
-
-
 def rmdir(path):
     '''
     Remove a given directory. Do not fail if it does not exist
