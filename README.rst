@@ -4,11 +4,14 @@ Guake 3 README
 Setting up a developer's environment
 ------------------------------------
 
-On Ubuntu and Debian, use
+First, you need to install some system libraries, mainly GTK and related.
 
-    ./bootstrap-debian.sh
+- On Ubuntu and Debian, use:
 
-Install virtualenv with:
+      ./bootstrap-debian.sh
+
+Now, install Guake inside a new virtualenv with:
+
     ./install.py
 
 Setting up to your system
