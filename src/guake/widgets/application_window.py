@@ -8,6 +8,7 @@ logger = logging.getLogger(__name__)
 from guake.widgets.widget import GuakeWidget
 from guake.widgets.terminal import GuakeTerminal
 from guake.widgets.notebook import GuakeNotebook
+from guake.widgets.box import GuakeBox
 
 
 class GuakeApplicationWindow(GuakeWidget, Gtk.ApplicationWindow):
@@ -21,10 +22,12 @@ class GuakeApplicationWindow(GuakeWidget, Gtk.ApplicationWindow):
         self._set_window_position()
         self._set_window_size()
         note = GuakeNotebook()
+        box = GuakeBox()
+        self.add(box)
         terminal = GuakeTerminal()
         terminal.run()
         note.append_page(terminal, Gtk.Label("hhh"))
-
+        box.add(note)
         # setting of self.visible should go in the final
         self.visible = kwargs.get("visible", False)
 
@@ -58,7 +61,7 @@ class GuakeApplicationWindow(GuakeWidget, Gtk.ApplicationWindow):
 
         """
         # TODO: read height_setting from settings
-        height_rate = 0.7
+        height_rate = 0.6
         screen_width, screen_height = self._get_screen_size()
         self.set_default_size(screen_width, screen_height * height_rate)
 
