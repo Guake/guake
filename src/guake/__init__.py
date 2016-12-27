@@ -22,21 +22,10 @@ from __future__ import division
 from __future__ import print_function
 from __future__ import unicode_literals
 
-import logging
-import sys
+import gi
 
-from guake.app import GuakeApplication
-from guake.app import guakeInit
-
-
-logger = logging.getLogger(__name__)
-
-
-def main():
-    guakeInit()
-    app = GuakeApplication()
-    app.run(sys.argv)
-
-
-if __name__ == '__main__':
-    main()
+gi.require_version('Gtk', '3.0')
+gi.require_version('Gdk', '3.0')
+gi.require_version('Vte', '2.91')
+gi.require_version('Notify', '0.7')
+gi.require_version('Keybinder', '3.0')

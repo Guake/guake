@@ -25,16 +25,19 @@ from __future__ import unicode_literals
 import logging
 import os
 
-from guake.gi.repository import GLib
-from guake.gi.repository import Gtk
-from guake.gi.repository import Vte
+# pylint: disable=wrong-import-position
+from gi.repository import GLib
+from gi.repository import Gtk
+from gi.repository import Vte
+from guake import gi
+# pylint: enable=wrong-import-position
+from guake.terminal import GuakeTerminal
 
 logger = logging.getLogger(__name__)
 
 
 def main():
-    terminal = Vte.Terminal()
-
+    terminal = GuakeTerminal()
     terminal.spawn_sync(
         Vte.PtyFlags.DEFAULT,
         os.environ['HOME'],
