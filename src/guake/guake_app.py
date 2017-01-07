@@ -299,23 +299,6 @@ class Guake(SimpleGladeApp):
         self.abbreviate = False
         self.was_deleted_tab = False
 
-        def tabs_scrollbar_hide(hscrollbar):
-            self.get_widget('event-tabs').set_property('height_request', 10)
-            if self.abbreviate and self.was_deleted_tab:
-                self.was_deleted_tab = False
-                self.abbreviate = False
-                self.recompute_tabs_titles()
-
-        def tabs_scrollbar_show(hscrollbar):
-            self.get_widget('event-tabs').set_property('height_request', -1)
-            if self.client.get_bool(KEY("/general/abbreviate_tab_names")):
-                self.abbreviate = True
-                self.recompute_tabs_titles()
-
-        tabs_scrollbar = self.get_widget('tabs-scrolledwindow').get_hscrollbar()
-        tabs_scrollbar.connect('hide', tabs_scrollbar_hide)
-        tabs_scrollbar.connect('show', tabs_scrollbar_show)
-
         # Flag to prevent guake hide when window_losefocus is true and
         # user tries to use the context menu.
         self.showing_context_menu = False
@@ -1437,7 +1420,9 @@ class Guake(SimpleGladeApp):
         tab = self.tabs.get_children()[page]
         # if tab has been renamed by user, don't override.
         if not getattr(tab, 'custom_label_set', False):
-            tab.set_label(self.compute_tab_title(vte))
+            vte_title = self.compute_tab_title(vte)
+            tab.set_label(vte_title)
+            gtk.Tooltips().set_tip(tab, vte_title)
 
     def on_rename_current_tab_activate(self, *args):
         """Shows a dialog to rename the current tab.

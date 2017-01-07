@@ -399,47 +399,28 @@
             <property name="extension_events">all</property>
             <property name="no_show_all">True</property>
             <child>
-              <widget class="GtkScrolledWindow" id="tabs-scrolledwindow">
+              <widget class="GtkEventBox" id="event-tabs">
+                <property name="height_request">10</property>
                 <property name="visible">True</property>
-                <property name="can_focus">True</property>
-                <property name="hscrollbar_policy">automatic</property>
-                <property name="vscrollbar_policy">never</property>
+                <property name="can_focus">False</property>
+                <property name="events">GDK_BUTTON_PRESS_MASK | GDK_STRUCTURE_MASK</property>
                 <child>
-                  <widget class="GtkViewport" id="tabs-viewport">
+                  <widget class="GtkHBox" id="hbox-tabs">
+                    <property name="homogeneous">True</property>
                     <property name="visible">True</property>
                     <property name="can_focus">False</property>
-                    <property name="shadow_type">none</property>
                     <child>
-                      <widget class="GtkEventBox" id="event-tabs">
-                        <property name="height_request">10</property>
-                        <property name="visible">True</property>
-                        <property name="can_focus">False</property>
-                        <property name="events">GDK_BUTTON_PRESS_MASK | GDK_STRUCTURE_MASK</property>
-                        <child>
-                          <widget class="GtkHBox" id="hbox-tabs">
-                            <property name="visible">True</property>
-                            <property name="can_focus">False</property>
-                            <child>
-                              <placeholder/>
-                            </child>
-                            <child>
-                              <placeholder/>
-                            </child>
-                            <child>
-                              <placeholder/>
-                            </child>
-                          </widget>
-                        </child>
-                      </widget>
+                      <placeholder/>
+                    </child>
+                    <child>
+                      <placeholder/>
+                    </child>
+                    <child>
+                      <placeholder/>
                     </child>
                   </widget>
                 </child>
               </widget>
-              <packing>
-                <property name="expand">True</property>
-                <property name="fill">True</property>
-                <property name="position">1</property>
-              </packing>
             </child>
             <child>
               <widget class="GtkButton" id="button1">
