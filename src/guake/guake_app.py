@@ -1420,7 +1420,9 @@ class Guake(SimpleGladeApp):
         tab = self.tabs.get_children()[page]
         # if tab has been renamed by user, don't override.
         if not getattr(tab, 'custom_label_set', False):
-            tab.set_label(self.compute_tab_title(vte))
+            vte_title = self.compute_tab_title(vte)
+            tab.set_label(vte_title)
+            gtk.Tooltips().set_tip(tab, vte_title)
 
     def on_rename_current_tab_activate(self, *args):
         """Shows a dialog to rename the current tab.
