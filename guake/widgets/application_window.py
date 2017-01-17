@@ -52,14 +52,8 @@ class GuakeApplicationWindow(GuakeWidget, Gtk.ApplicationWindow):
         self._set_window_position()
         self._set_window_size()
         note = GuakeNotebook()
-        box = GuakeBox()
-        self.add(box)
-        terminal = GuakeTerminal()
-        terminal.run()
-        note.append_page(terminal, Gtk.Label("hhh"))
-        box.add(note)
-        # setting of self.visible should go in the final
-        self._visible = kwargs.get("visible", False)
+        self.add(note)
+        self.visible = kwargs.get("visible", False)
 
     @property
     def visible(self):
@@ -69,8 +63,8 @@ class GuakeApplicationWindow(GuakeWidget, Gtk.ApplicationWindow):
     def visible(self, value):
         self._visible = value
         if value:
+            self._set_window_position()
             self.show_all()
-            self.present()
             return
         self.hide()
         return
