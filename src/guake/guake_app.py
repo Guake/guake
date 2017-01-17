@@ -1008,10 +1008,12 @@ class Guake(SimpleGladeApp):
         if self.is_using_unity():
 
             # For Ubuntu 12.10 and above, try to use dconf:
-            # see if unity dock is hiden => unity_hide
-            # and the width of unity dock. => unity_dock
+            # see if unity dock is hidden => unity_hide
+            # and the width of unity dock => unity_dock
+            # and the position of the unity dock. => unity_pos
             found = False
             unity_hide = 0
+            unity_pos = "Left"
             # float() conversion might mess things up. Add 0.01 so the comparison will always be
             # valid, even in case of float("10.10") = 10.099999999999999
             if float(platform.linux_distribution()[1]) + 0.01 >= 12.10:
@@ -1022,6 +1024,9 @@ class Guake(SimpleGladeApp):
                     unity_dock = int(subprocess.check_output(
                         ['/usr/bin/dconf', 'read',
                          '/org/compiz/profiles/unity/plugins/unityshell/icon-size']) or "48")
+                    unity_pos = subprocess.check_output(
+                        ['/usr/bin/dconf', 'read',
+                         '/com/canonical/unity/launcher/launcher-position']) or "Left"
                     found = True
                 except:
                     # in case of error, just ignore it, 'found' will not be set to True and so
@@ -1036,9 +1041,11 @@ class Guake(SimpleGladeApp):
                 unity_dock = unity_icon_size + 17
 
             # launcher_hide_mode = 1 => autohide
-            if unity_hide != 1:
-                self.printDebug("correcting window width because of launcher width %s "
-                                "(from %s to %s)",
+            # only adjust guake window width if Unity dock is positioned "Left" or "Right"
+            if unity_hide != 1 and (unity_pos == "Left" or unity_pos == "Right") :
+                self.printDebug("correcting window width because of launcher position %s "
+                                "and width %s (from %s to %s)",
+                                unity_pos,
                                 unity_dock,
                                 window_rect.width,
                                 window_rect.width - unity_dock)
