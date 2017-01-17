@@ -73,19 +73,19 @@ class GuakeApplication(Gtk.Application):
             None
         )
         # TODO: set this param from settings
-        self.startup_visibility = False
+        self.show_on_start = False
 
     def do_startup(self):
         Gtk.Application.do_startup(self)
 
     def do_command_line(self, command_line):
         options = command_line.get_options_dict()
-        self.startup_visibility = options.contains("show")
+        self.show_on_start = options.contains("show")
         self.activate()
         return 0
 
     def do_activate(self):
-        self.window = GuakeApplicationWindow(application=self, visible=self.startup_visibility)
+        self.window = GuakeApplicationWindow(application=self, visible=self.show_on_start)
         # notebook = GuakeNotebook()
         keystr = "F2"
         Keybinder.init()
