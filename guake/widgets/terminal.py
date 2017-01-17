@@ -105,6 +105,7 @@ class GuakeTerminal(Vte.Terminal):
         self.fontScaleIndex = 0
         self.fontScale = 0
         self.font = None
+        self.run()
 
     def configure_terminal(self):
         """Sets all customized properties on the terminal
