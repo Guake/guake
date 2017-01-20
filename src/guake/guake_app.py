@@ -34,6 +34,7 @@ import platform
 import pygtk
 import subprocess
 import sys
+import traceback
 import uuid
 import xdg.Exceptions
 
@@ -297,23 +298,6 @@ class Guake(SimpleGladeApp):
 
         self.abbreviate = False
         self.was_deleted_tab = False
-
-        def tabs_scrollbar_hide(hscrollbar):
-            self.get_widget('event-tabs').set_property('height_request', 10)
-            if self.abbreviate and self.was_deleted_tab:
-                self.was_deleted_tab = False
-                self.abbreviate = False
-                self.recompute_tabs_titles()
-
-        def tabs_scrollbar_show(hscrollbar):
-            self.get_widget('event-tabs').set_property('height_request', -1)
-            if self.client.get_bool(KEY("/general/abbreviate_tab_names")):
-                self.abbreviate = True
-                self.recompute_tabs_titles()
-
-        tabs_scrollbar = self.get_widget('tabs-scrolledwindow').get_hscrollbar()
-        tabs_scrollbar.connect('hide', tabs_scrollbar_hide)
-        tabs_scrollbar.connect('show', tabs_scrollbar_show)
 
         # Flag to prevent guake hide when window_losefocus is true and
         # user tries to use the context menu.
@@ -849,21 +833,8 @@ class Guake(SimpleGladeApp):
         if not self.notebook.has_term():
             self.add_tab()
 
-        try:
-            # does it work in other gtk backends
-            time = gtk.gdk.x11_get_server_time(self.window.window)
-        except:
-            time = 0
-
         self.window.set_keep_below(False)
-        self.printDebug("order to present and deiconify")
-        self.window.present()
-        self.window.deiconify()
-        self.window.window.deiconify()
         self.window.show_all()
-        self.window.window.focus(time)
-        self.window.set_type_hint(gtk.gdk.WINDOW_TYPE_HINT_DOCK)
-        self.window.set_type_hint(gtk.gdk.WINDOW_TYPE_HINT_NORMAL)
 
         if self.selected_color is None:
             self.selected_color = getattr(self.window.get_style(), "light")[int(gtk.STATE_SELECTED)]
@@ -882,6 +853,12 @@ class Guake(SimpleGladeApp):
         # this work arround an issue in fluxbox
         if not self.is_fullscreen:
             self.client.notify(KEY('/general/window_height'))
+
+        try:
+            # does it work in other gtk backends
+            time = gtk.gdk.x11_get_server_time(self.window.window)
+        except AttributeError:
+            time = 0
 
         # When minized, the window manager seems to refuse to resume
         # log.debug("self.window: %s. Dir=%s", type(self.window), dir(self.window))
@@ -902,6 +879,15 @@ class Guake(SimpleGladeApp):
         #     glib.timeout_add_seconds(1, lambda: self.timeout_restore(time))
         #
 
+        self.printDebug("order to present and deiconify")
+        self.window.present()
+        self.window.deiconify()
+        self.window.window.deiconify()
+        self.window.window.show()
+        self.window.window.focus(time)
+        self.window.set_type_hint(gtk.gdk.WINDOW_TYPE_HINT_DOCK)
+        self.window.set_type_hint(gtk.gdk.WINDOW_TYPE_HINT_NORMAL)
+
         # log.debug("Restoring skip_taskbar_hint and skip_pager_hint")
         # if is_iconified:
         #     self.get_widget('window-root').set_skip_taskbar_hint(False)
@@ -914,6 +900,7 @@ class Guake(SimpleGladeApp):
         self.client.notify(KEY('/style/background/color'))
 
         self.printDebug("Current window position: %r", self.window.get_position())
+        self.execute_hook('show')
 
     def hide_from_remote(self):
         """
@@ -1149,6 +1136,7 @@ class Guake(SimpleGladeApp):
         self.client.notify(KEY('/style/background/image'))
         self.client.notify(KEY('/style/background/transparency'))
         self.client.notify(KEY('/general/use_default_font'))
+        self.client.notify(KEY('/general/show_resizer'))
         self.client.notify(KEY('/general/use_palette_font_and_background_color'))
         self.client.notify(KEY('/general/compat_backspace'))
         self.client.notify(KEY('/general/compat_delete'))
@@ -1441,7 +1429,9 @@ class Guake(SimpleGladeApp):
         tab = self.tabs.get_children()[page]
         # if tab has been renamed by user, don't override.
         if not getattr(tab, 'custom_label_set', False):
-            tab.set_label(self.compute_tab_title(vte))
+            vte_title = self.compute_tab_title(vte)
+            tab.set_label(vte_title)
+            gtk.Tooltips().set_tip(tab, vte_title)
 
     def on_rename_current_tab_activate(self, *args):
         """Shows a dialog to rename the current tab.
@@ -1988,3 +1978,23 @@ class Guake(SimpleGladeApp):
         current_term = self.notebook.get_current_terminal()
         current_term.reset(full=True, clear_history=True)
         self.preventHide = False
+
+    def execute_hook(self, event_name):
+        """Execute shell commands related to current event_name"""
+        hook = self.client.get_string(KEY("/hooks/%s" % event_name))
+        if hook is not None:
+            hook = hook.split()
+            try:
+                subprocess.Popen(hook)
+            except OSError as oserr:
+                if oserr.errno == 8:
+                    log.error("Hook execution failed! Check shebang at first line of %s!", hook)
+                    log.debug(traceback.format_exc())
+                else:
+                    log.error(str(oserr))
+            except Exception as e:
+                log.error("hook execution failed! %s", e)
+                log.debug(traceback.format_exc())
+            else:
+                log.debug('hook on event %s has been executed', event_name)
+        return
