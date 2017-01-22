@@ -458,7 +458,7 @@ msgstr "Usar fonte e cor de background da paleta"
 
 #: ../data/prefs.glade.h:80
 msgid "Demo:"
-msgstr "Demosntração:"
+msgstr "Demonstração:"
 
 #: ../data/prefs.glade.h:81
 msgid "<b>Effects</b>"
@@ -483,7 +483,7 @@ msgid ""
 "your terminal. See the list of currently supported text patterns used to "
 "extract filename below.</small>"
 msgstr ""
-"<small>Quick open é um recurso que te permite abir um diretório de arquivo "
+"<small>Quick open é um recurso que te permite abrir um diretório de arquivo "
 "no seu editor de texto favorito clicando no nome do arquivo quando este "
 "aparece no seu terminal. Veja a lista de padrões de texto atualmente usados "
 "para extrair nomes de arquivo abaixo.</small>"
@@ -525,7 +525,7 @@ msgid ""
 "Here is the list of supported patterns: (to add your own, please contact the "
 "Guake's authors)"
 msgstr ""
-"Aqui está uam lista de padrões suportados: (para adicionar o seu, por favor "
+"Aqui está uma lista de padrões suportados: (para adicionar o seu, por favor "
 "faça contato com os autores do Guake)"
 
 #: ../data/prefs.glade.h:97
@@ -1045,7 +1045,7 @@ msgstr ""
 
 #~ msgid "Could not connect to dbus session bus. dbus will be unavailable.\n"
 #~ msgstr ""
-#~ "Não foi possível conectar à sessão do debus. O dbus ficará inativo.\n"
+#~ "Não foi possível conectar à sessão do dbus. O dbus ficará inativo.\n"
 
 #~ msgid "Program not found in path"
 #~ msgstr "Programa não encontrado"
@@ -1062,7 +1062,7 @@ msgstr ""
 #~ msgstr "<b>Comportamento da janela</b>"
 
 #~ msgid "Desaturation:"
-#~ msgstr "Desaturação:"
+#~ msgstr "Dessaturação:"
 
 #~ msgid "Style"
 #~ msgstr "Estilo"
