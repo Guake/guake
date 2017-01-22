@@ -1008,12 +1008,10 @@ class Guake(SimpleGladeApp):
         if self.is_using_unity():
 
             # For Ubuntu 12.10 and above, try to use dconf:
-            # see if unity dock is hidden => unity_hide
-            # and the width of unity dock => unity_dock
-            # and the position of the unity dock. => unity_pos
+            # see if unity dock is hiden => unity_hide
+            # and the width of unity dock. => unity_dock
             found = False
             unity_hide = 0
-            unity_pos = "Left"
             # float() conversion might mess things up. Add 0.01 so the comparison will always be
             # valid, even in case of float("10.10") = 10.099999999999999
             if float(platform.linux_distribution()[1]) + 0.01 >= 12.10:
@@ -1024,9 +1022,6 @@ class Guake(SimpleGladeApp):
                     unity_dock = int(subprocess.check_output(
                         ['/usr/bin/dconf', 'read',
                          '/org/compiz/profiles/unity/plugins/unityshell/icon-size']) or "48")
-                    unity_pos = subprocess.check_output(
-                        ['/usr/bin/dconf', 'read',
-                         '/com/canonical/unity/launcher/launcher-position']) or "Left"
                     found = True
                 except:
                     # in case of error, just ignore it, 'found' will not be set to True and so
@@ -1041,11 +1036,9 @@ class Guake(SimpleGladeApp):
                 unity_dock = unity_icon_size + 17
 
             # launcher_hide_mode = 1 => autohide
-            # only adjust guake window width if Unity dock is positioned left or right
-            if unity_hide != 1 and (unity_pos == "Left" or unity_pos == "Right"):
-                self.printDebug("correcting window width because of launcher position %s "
-                                "and width %s (from %s to %s)",
-                                unity_pos,
+            if unity_hide != 1:
+                self.printDebug("correcting window width because of launcher width %s "
+                                "(from %s to %s)",
                                 unity_dock,
                                 window_rect.width,
                                 window_rect.width - unity_dock)
@@ -1055,7 +1048,7 @@ class Guake(SimpleGladeApp):
         total_width = window_rect.width
         total_height = window_rect.height
 
-        self.printDebug("Corrected monitor size:")
+        self.printDebug("Correcteed monitor size:")
         self.printDebug("  total_width: %s", total_width)
         self.printDebug("  total_height: %s", total_height)
 
@@ -1661,13 +1654,13 @@ class Guake(SimpleGladeApp):
                 auth_pass = self.client.get_string(
                     proxy + 'authentication_password')
                 auth_pass = quote_plus(auth_pass, '')
-                os.environ['http_proxy'] = 'http://{!s}:{!s}@{!s}:{:d}'.format(
+                os.environ['http_proxy'] = "http://{!s}:{!s}@{!s}:{:d}".format(
                     auth_user, auth_pass, host, port)
-                os.environ['https_proxy'] = 'http://{!s}:{!s}@{!s}:{:d}'.format(
+                os.environ['https_proxy'] = "http://{!s}:{!s}@{!s}:{:d}".format(
                     auth_user, auth_pass, ssl_host, ssl_port)
             else:
-                os.environ['http_proxy'] = 'http://{!s}:{:d}'.format(host, port)
-                os.environ['https_proxy'] = 'http://{!s}:{:d}'.format(
+                os.environ['http_proxy'] = "http://{!s}:{:d}".format(host, port)
+                os.environ['https_proxy'] = "http://{!s}:{:d}".format(
                     ssl_host, ssl_port)
         if box:
             os.environ['GUAKE_TAB_UUID'] = str(box.terminal.get_uuid())
@@ -1981,7 +1974,7 @@ class Guake(SimpleGladeApp):
 
     def execute_hook(self, event_name):
         """Execute shell commands related to current event_name"""
-        hook = self.client.get_string(KEY("/hooks/{!s}".format(event_name)))
+        hook = self.client.get_string(KEY('/hooks/{!s}'.format(event_name)))
         if hook is not None:
             hook = hook.split()
             try:
