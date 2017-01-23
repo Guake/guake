@@ -839,9 +839,9 @@ class Guake(SimpleGladeApp):
         if self.selected_color is None:
             self.selected_color = getattr(self.window.get_style(), "light")[int(gtk.STATE_SELECTED)]
 
-            # Reapply the tab color to all button in the tab list, since at least one doesn't have the
-            # select color set. This needs to happen AFTER the first show_all, since before, the gtk
-            # has not loaded the right colors yet.
+            # Reapply the tab color to all button in the tab list, since at least one doesn't have
+            # the select color set. This needs to happen AFTER the first show_all, since before,
+            # gtk has not loaded the right colors yet.
             for tab in self.tabs.get_children():
                 if isinstance(tab, gtk.RadioButton):
                     tab.modify_bg(gtk.STATE_ACTIVE, gtk.gdk.Color(str(self.selected_color)))
@@ -1042,7 +1042,7 @@ class Guake(SimpleGladeApp):
 
             # launcher_hide_mode = 1 => autohide
             # only adjust guake window width if Unity dock is positioned "Left" or "Right"
-            if unity_hide != 1 and (unity_pos == "Left" or unity_pos == "Right") :
+            if unity_hide != 1 and (unity_pos == "Left" or unity_pos == "Right"):
                 self.printDebug("correcting window width because of launcher position %s "
                                 "and width %s (from %s to %s)",
                                 unity_pos,
