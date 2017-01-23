@@ -43,16 +43,16 @@ logger = logging.getLogger(__name__)
 
 class GuakeApplicationWindow(GuakeWidget, Gtk.ApplicationWindow):
 
-    __filename__ = "app.ui"
-
-    def __init__(self, *args, **kwargs):
+    def __init__(self, builder, *args, **kwargs):
         app = kwargs.get("application")
         if app is not None:
             self.set_application(app)
         self._set_window_position()
         self._set_window_size()
-        note = GuakeNotebook()
-        self.add(note)
+        # self.note = self.builder.get_object("GuakeNotebook")
+        self.note = GuakeNotebook(builder)
+        self.resizer = builder.get_object("GuakeResizer")
+        self.resizer.connect("motion-notify-event", self.change_size_handler)
         self.visible = kwargs.get("visible", False)
 
     @property
@@ -97,3 +97,13 @@ class GuakeApplicationWindow(GuakeWidget, Gtk.ApplicationWindow):
     def show_hide_handler(self, *args):
         self.visible = not self.visible
         return
+
+    def change_size_handler(self, widget, event):
+        # got from
+        # http://stackoverflow.com/questions/13638782/resize-borderless-window-with-vpaned-in-pythongtk3
+        if Gdk.ModifierType.BUTTON1_MASK & event.get_state() != 0:
+            mouse_y = event.device.get_position()[2]
+            new_height = mouse_y - self.get_position()[1]
+            if new_height > 0:
+                self.resize(self.get_allocation().width, new_height)
+                self.show_all()
