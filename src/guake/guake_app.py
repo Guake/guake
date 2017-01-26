@@ -1340,6 +1340,7 @@ class Guake(SimpleGladeApp):
         return True
 
     def fullscreen(self):
+        self.printDebug("FULLSCREEN: ON")
         self.window.fullscreen()
         self.is_fullscreen = True
 
@@ -1353,9 +1354,11 @@ class Guake(SimpleGladeApp):
     def unfullscreen(self):
 
         # Fixes "Guake cannot restore from fullscreen" (#628)
+        self.printDebug("UNMAXIMIZING")
         self.window.unmaximize()
 
         self.set_final_window_rect()
+        self.printDebug("FULLSCREEN: OFF")
         self.window.unfullscreen()
         self.is_fullscreen = False
 
