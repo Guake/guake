@@ -1072,7 +1072,7 @@ class Guake(SimpleGladeApp):
         if width_percents == 100 and height_percents == 100:
             self.printDebug("MAXIMIZING MAIN WINDOW")
             self.window.maximize()
-        else:
+        elif not self.is_fullscreen:
             self.printDebug("RESIZING MAIN WINDOW TO THE FOLLOWING VALUES:")
             self.window.unmaximize()
             self.printDebug("  window_rect.x: %s", window_rect.x)
