@@ -42,8 +42,9 @@ class GuakeNotebook(GuakeWidget, Gtk.Notebook):
     _page_counter = 0
 
     def __init__(self, builder, *args, **kwargs):
-        self.new_page_button = builder.get_object("GuakeNewPageButton")
-        self.new_page_button.connect("clicked", self.new_page_handler)
+        button = builder.get_object("GuakeNewPageButton")
+        button.connect("clicked", self.new_page_handler)
+        self.button = button
         self._add_new_page()
         self.show_all()
 
@@ -53,15 +54,10 @@ class GuakeNotebook(GuakeWidget, Gtk.Notebook):
         return self._page_counter
 
     def _add_new_page(self):
-        pages_number = self.get_n_pages()
-        position = 0 if pages_number < 2 else pages_number - 1
-        self.insert_page(
-            GuakeTerminal(),
-            Gtk.Label("{}:".format(self.page_counter)),
-            position
-        )
+        label = Gtk.Label("{}:".format(self.page_counter))
+        new_page_number = self.append_page(GuakeTerminal(), label)
         self.show_all()
-        self.set_current_page(position)
+        self.set_current_page(new_page_number)
         return
 
     def new_page_handler(self,  *args):
