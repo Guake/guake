@@ -22,21 +22,8 @@ from __future__ import division
 from __future__ import print_function
 from __future__ import unicode_literals
 
-import os
-
-# pylint: disable=wrong-import-position,wrong-import-order,unused-import
-from guake import gi
-assert gi  # hack to "use" the import so pep8/pyflakes are happy
-
-# from gi.repository import Gdk
-from gi.repository import Gtk
-# pylint: enable=wrong-import-position,wrong-import-order,unused-import
-
 
 class GuakeWidget(object):
-
-    # __filename__ should be set in a child class
-    __filename__ = None
 
     def __new__(cls, builder, *args, **kwargs):
         """Create application from glade .ui file;
