@@ -32,9 +32,7 @@ from gi.repository import Gdk
 from gi.repository import Gtk
 # pylint: enable=wrong-import-position,wrong-import-order,unused-import
 
-from guake.widgets.box import GuakeBox
 from guake.widgets.notebook import GuakeNotebook
-from guake.widgets.terminal import GuakeTerminal
 from guake.widgets.widget import GuakeWidget
 
 
@@ -43,13 +41,14 @@ logger = logging.getLogger(__name__)
 
 class GuakeApplicationWindow(GuakeWidget, Gtk.ApplicationWindow):
 
+    _visible = False
+
     def __init__(self, builder, *args, **kwargs):
         app = kwargs.get("application")
         if app is not None:
             self.set_application(app)
         self._set_window_position()
         self._set_window_size()
-        # self.note = self.builder.get_object("GuakeNotebook")
         self.note = GuakeNotebook(builder)
         self.resizer = builder.get_object("GuakeResizer")
         self.resizer.connect("motion-notify-event", self.change_size_handler)

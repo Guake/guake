@@ -23,7 +23,6 @@ from __future__ import print_function
 from __future__ import unicode_literals
 
 import logging
-import os
 # pylint: disable=wrong-import-position,wrong-import-order,unused-import
 from guake import gi
 assert gi  # hack to "use" the import so pep8/pyflakes are happy
@@ -60,5 +59,5 @@ class GuakeNotebook(GuakeWidget, Gtk.Notebook):
         self.set_current_page(new_page_number)
         return
 
-    def new_page_handler(self,  *args):
+    def new_page_handler(self, *args):
         self._add_new_page()
