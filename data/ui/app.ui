@@ -8,6 +8,7 @@
     <property name="can_focus">False</property>
     <property name="has_focus">True</property>
     <property name="title" translatable="yes">Guake</property>
+    <property name="type_hint">dropdown-menu</property>
     <property name="skip_taskbar_hint">True</property>
     <property name="skip_pager_hint">True</property>
     <property name="urgency_hint">True</property>
@@ -31,9 +32,10 @@
             </child>
             <child type="action-end">
               <object class="GtkButton" id="GuakeNewPageButton">
+                <property name="label">+</property>
                 <property name="visible">True</property>
                 <property name="can_focus">False</property>
-                <property name="label">+</property>
+                <property name="receives_default">False</property>
               </object>
               <packing>
                 <property name="tab_fill">False</property>
