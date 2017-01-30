@@ -22,8 +22,8 @@ from __future__ import division
 from __future__ import print_function
 from __future__ import unicode_literals
 
-import os
 import logging
+import os
 
 # pylint: disable=wrong-import-position,wrong-import-order,unused-import
 from guake import gi
@@ -230,9 +230,7 @@ class TerminalBox(Gtk.Box):
         self.pack_start(scroll, False, False, 0)
 
 
-
 class GuakeMenu(GuakeWidget, Gtk.Menu):
-
 
     def __init__(self, gtkbuilder, *args, **kwargs):
         self.show_all()

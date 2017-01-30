@@ -32,9 +32,9 @@ from gi.repository import Gdk
 from gi.repository import Gtk
 # pylint: enable=wrong-import-position,wrong-import-order,unused-import
 
-from guake.widgets.widget import GuakeWidget
 from guake.widgets.notebook import GuakeNotebook
-from guake.widgets.settings_window import GuakeSettingsWindow
+# from guake.widgets.settings_window import GuakeSettingsWindow
+from guake.widgets.widget import GuakeWidget
 
 
 logger = logging.getLogger(__name__)
@@ -114,5 +114,5 @@ class GuakeApplicationWindow(GuakeWidget, Gtk.ApplicationWindow):
     def right_button_handler(self, widget, event):
         if not event.button == 3:
             return
-        settings_window = GuakeSettingsWindow(self.gtkbuilder)
+        # settings_window = GuakeSettingsWindow(self.gtkbuilder)
         # import ipdb; ipdb.set_trace()

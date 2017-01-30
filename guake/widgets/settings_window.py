@@ -28,7 +28,7 @@ import logging
 from guake import gi
 assert gi  # hack to "use" the import so pep8/pyflakes are happy
 
-from gi.repository import Gdk
+# from gi.repository import Gdk
 from gi.repository import Gtk
 # pylint: enable=wrong-import-position,wrong-import-order,unused-import
 
@@ -40,13 +40,11 @@ logger = logging.getLogger(__name__)
 
 class GuakeSettingsWindow(GuakeWidget, Gtk.Window):
 
-
     def __init__(self, gtkbuilder, *args, **kwargs):
         self.show_all()
         self.connect("delete_event", self.close_handler)
 
-
     def close_handler(self, *args):
-        import ipdb; ipdb.set_trace()
+        import ipdb
+        ipdb.set_trace()
         return self.hide() or True
-
