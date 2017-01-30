@@ -147,6 +147,7 @@ if options.target == "virtualenv":
     lib.printInfo("Installing development dependencies")
     lib.execute("pip install --upgrade -r requirements-dev.txt")
     lib.execute("pip install --upgrade -e . --no-binary :all:")
+    lib.execute("python setup.py sdist")
 
 if options.checks:
     lib.execute("./validate.sh")
