@@ -5,7 +5,7 @@ language: python
 python:
     # - "3.2"
     - "3.4"
-    - "3.5"
+    # - "3.5" # 3.5 does not seam to work on Travis: get "No such file or directory" on python3.5
 
 virtualenv:
     system_site_packages: true

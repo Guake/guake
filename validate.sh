@@ -12,6 +12,11 @@ if [[ ! -z $1 ]] && [[ $1 == "--help" ]]; then
     exit 1
 fi
 
+if [[ -z $VIRTUAL_ENV ]]; then
+    echo "Error: Should be run from within Guake's VirtualEnv"
+    exit 1
+fi
+
 REVRANGE=
 if [ ! -z $1 ]; then
     REVRANGE="$1..HEAD"

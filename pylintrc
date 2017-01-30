@@ -38,6 +38,8 @@ disable=
   missing-docstring,
   missing-super-argument,
   no-member,
+  no-name-in-module,  # For Travis
+  ungrouped-imports,
   ungrouped-imports,
   unused-argument,
   R

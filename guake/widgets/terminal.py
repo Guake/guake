@@ -36,6 +36,7 @@ from gi.repository import GdkX11
 from gi.repository import Gtk
 from gi.repository import Vte
 # pylint: enable=wrong-import-position,wrong-import-order,unused-import
+
 from guake.widgets.widget import GuakeWidget
 # from guake.common import clamp
 # from guake.globals import KEY

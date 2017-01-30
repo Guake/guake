@@ -70,6 +70,9 @@ parser.add_option("--clean",
                   action="store_true",
                   help=("Ensure environment is clean. Remove virtualenv if any. "
                         "It does NOT uninstall from the system"))
+parser.add_option("--clear",
+                  action="store_true",
+                  help="See --clear")
 
 (options, args) = lib.parse(parser)
 
@@ -89,6 +92,8 @@ else:
 
 if lib.isMacOsX or lib.isLinux:
     activate_link = os.path.abspath(os.path.join(g_src_dir, "activate"))
+if options.clear:
+    options.clean = True
 if options.clean:
     options.uninstall = "virtualenv"
     # TODO: if there are other thing to do, add here
