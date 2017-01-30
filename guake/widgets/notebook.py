@@ -40,10 +40,11 @@ class GuakeNotebook(GuakeWidget, Gtk.Notebook):
 
     _page_counter = 0
 
-    def __init__(self, builder, *args, **kwargs):
-        button = builder.get_object("GuakeNewPageButton")
+    def __init__(self, gtkbuilder, *args, **kwargs):
+        button = gtkbuilder.get_object("GuakeNewPageButton")
         button.connect("clicked", self.new_page_handler)
         self.button = button
+        self.gtkbuilder = gtkbuilder
         self._add_new_page()
         self.show_all()
 
