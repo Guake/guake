@@ -23,22 +23,30 @@ from __future__ import print_function
 from __future__ import unicode_literals
 
 import logging
-import signal
-import sys
 
-from guake.application import GuakeApplication
-from guake.application import guakeInit
+# pylint: disable=wrong-import-position,wrong-import-order,unused-import
+from guake import gi
+assert gi  # hack to "use" the import so pep8/pyflakes are happy
+
+from gi.repository import Gdk
+from gi.repository import Gtk
+# pylint: enable=wrong-import-position,wrong-import-order,unused-import
+
+from guake.widgets.widget import GuakeWidget
 
 
 logger = logging.getLogger(__name__)
 
 
-def main():
-    guakeInit()
-    app = GuakeApplication()
-    signal.signal(signal.SIGINT, signal.SIG_DFL)
-    app.run(sys.argv)
+class GuakeSettingsWindow(GuakeWidget, Gtk.Window):
 
 
-if __name__ == '__main__':
-    main()
+    def __init__(self, gtkbuilder, *args, **kwargs):
+        self.show_all()
+        self.connect("delete_event", self.close_handler)
+
+
+    def close_handler(self, *args):
+        import ipdb; ipdb.set_trace()
+        return self.hide() or True
+

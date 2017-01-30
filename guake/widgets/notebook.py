@@ -23,7 +23,6 @@ from __future__ import print_function
 from __future__ import unicode_literals
 
 import logging
-
 # pylint: disable=wrong-import-position,wrong-import-order,unused-import
 from guake import gi
 assert gi  # hack to "use" the import so pep8/pyflakes are happy
@@ -31,13 +30,35 @@ assert gi  # hack to "use" the import so pep8/pyflakes are happy
 # from gi.repository import Gdk
 from gi.repository import Gtk
 # pylint: enable=wrong-import-position,wrong-import-order,unused-import
-
+from guake.widgets.terminal import GuakeTerminal
+from guake.widgets.widget import GuakeWidget
 
 logger = logging.getLogger(__name__)
 
 
-class GuakeNotebook(Gtk.Notebook):
+class GuakeNotebook(GuakeWidget, Gtk.Notebook):
 
-    def __init__(self, *args, **kwargs):
-        super().__init__(*args, **kwargs)
-        self.set_tab_pos(Gtk.PositionType.BOTTOM)
+    _page_counter = 0
+
+    def __init__(self, gtkbuilder, *args, **kwargs):
+        button = gtkbuilder.get_object("GuakeNewPageButton")
+        button.connect("clicked", self.new_page_handler)
+        self.button = button
+        self.gtkbuilder = gtkbuilder
+        self._add_new_page()
+        self.show_all()
+
+    @property
+    def page_counter(self):
+        self._page_counter += 1
+        return self._page_counter
+
+    def _add_new_page(self):
+        label = Gtk.Label("{}:".format(self.page_counter))
+        new_page_number = self.append_page(GuakeTerminal(), label)
+        self.show_all()
+        self.set_current_page(new_page_number)
+        return
+
+    def new_page_handler(self, *args):
+        self._add_new_page()

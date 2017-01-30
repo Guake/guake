@@ -23,6 +23,7 @@ from __future__ import print_function
 from __future__ import unicode_literals
 
 import os
+import logging
 
 # pylint: disable=wrong-import-position,wrong-import-order,unused-import
 from guake import gi
@@ -35,14 +36,13 @@ from gi.repository import GdkX11
 from gi.repository import Gtk
 from gi.repository import Vte
 # pylint: enable=wrong-import-position,wrong-import-order,unused-import
-
-# from gi.repository import Pango
-
+from guake.widgets.widget import GuakeWidget
 # from guake.common import clamp
 # from guake.globals import KEY
 
 __all__ = ['GuakeTerminal', 'TerminalBox']
 
+logger = logging.getLogger(__name__)
 
 # regular expressions to highlight links in terminal. This code was
 # lovely stolen from the great gnome-terminal project, thank you =)
@@ -100,11 +100,12 @@ class GuakeTerminal(Vte.Terminal):
         super().__init__()
         self.configure_terminal()
         self.add_matches()
-        self.connect('button-press-event', self.button_press)
+        self.connect('button-press-event', self.left_button_handler)
         self.matchedValue = ''
         self.fontScaleIndex = 0
         self.fontScale = 0
         self.font = None
+        self.run()
 
     def configure_terminal(self):
         """Sets all customized properties on the terminal
@@ -134,7 +135,7 @@ class GuakeTerminal(Vte.Terminal):
         #     tag = self.match_add_gregex(GLib.Regex(expr, 0))
         #     self.match_set_cursor_type(tag, Gdk.HAND2)
 
-    def button_press(self, terminal, event):
+    def left_button_handler(self, terminal, event):
         """Handles the button press event in the terminal widget. If
         any match string is caught, another aplication is open to
         handle the matched resource uri.
@@ -203,7 +204,7 @@ class GuakeTerminal(Vte.Terminal):
         )
 
 
-class TerminalBox(Gtk.HBox):
+class TerminalBox(Gtk.Box):
 
     """A box to group the terminal and a scrollbar.
     """
@@ -227,3 +228,11 @@ class TerminalBox(Gtk.HBox):
         scroll = Gtk.VScrollbar.new(adj)
         scroll.set_no_show_all(True)
         self.pack_start(scroll, False, False, 0)
+
+
+
+class GuakeMenu(GuakeWidget, Gtk.Menu):
+
+
+    def __init__(self, gtkbuilder, *args, **kwargs):
+        self.show_all()
