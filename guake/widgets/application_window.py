@@ -32,10 +32,9 @@ from gi.repository import Gdk
 from gi.repository import Gtk
 # pylint: enable=wrong-import-position,wrong-import-order,unused-import
 
-from guake.widgets.box import GuakeBox
-from guake.widgets.notebook import GuakeNotebook
-from guake.widgets.terminal import GuakeTerminal
 from guake.widgets.widget import GuakeWidget
+from guake.widgets.notebook import GuakeNotebook
+from guake.widgets.settings_window import GuakeSettingsWindow
 
 
 logger = logging.getLogger(__name__)
@@ -43,23 +42,20 @@ logger = logging.getLogger(__name__)
 
 class GuakeApplicationWindow(GuakeWidget, Gtk.ApplicationWindow):
 
-    __filename__ = "app.ui"
+    _visible = False
 
-    def __init__(self, *args, **kwargs):
+    def __init__(self, gtkbuilder, *args, **kwargs):
         app = kwargs.get("application")
         if app is not None:
             self.set_application(app)
         self._set_window_position()
         self._set_window_size()
-        note = GuakeNotebook()
-        box = GuakeBox()
-        self.add(box)
-        terminal = GuakeTerminal()
-        terminal.run()
-        note.append_page(terminal, Gtk.Label("hhh"))
-        box.add(note)
-        # setting of self.visible should go in the final
-        self._visible = kwargs.get("visible", False)
+        self.gtkbuilder = gtkbuilder
+        self.note = GuakeNotebook(gtkbuilder)
+        self.resizer = gtkbuilder.get_object("GuakeResizer")
+        self.resizer.connect("motion-notify-event", self.change_size_handler)
+        self.connect("button-press-event", self.right_button_handler)
+        self.visible = kwargs.get("visible", False)
 
     @property
     def visible(self):
@@ -69,8 +65,8 @@ class GuakeApplicationWindow(GuakeWidget, Gtk.ApplicationWindow):
     def visible(self, value):
         self._visible = value
         if value:
+            self._set_window_position()
             self.show_all()
-            self.present()
             return
         self.hide()
         return
@@ -103,3 +99,20 @@ class GuakeApplicationWindow(GuakeWidget, Gtk.ApplicationWindow):
     def show_hide_handler(self, *args):
         self.visible = not self.visible
         return
+
+    def change_size_handler(self, widget, event):
+        # got from
+        # http://stackoverflow.com/questions/13638782/resize-borderless-window-with-vpaned-in-pythongtk3
+        if Gdk.ModifierType.BUTTON1_MASK & event.get_state() != 0:
+            _, _, mouse_y = event.device.get_position()
+            _, root_y = self.get_position()
+            new_height = mouse_y - root_y
+            if new_height > 0:
+                self.resize(self.get_allocation().width, new_height)
+                self.show_all()
+
+    def right_button_handler(self, widget, event):
+        if not event.button == 3:
+            return
+        settings_window = GuakeSettingsWindow(self.gtkbuilder)
+        # import ipdb; ipdb.set_trace()

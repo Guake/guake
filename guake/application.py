@@ -23,7 +23,7 @@ from __future__ import print_function
 from __future__ import unicode_literals
 
 import logging
-# import os
+import os
 
 # from time import sleep
 
@@ -73,20 +73,26 @@ class GuakeApplication(Gtk.Application):
             None
         )
         # TODO: set this param from settings
-        self.startup_visibility = False
+        self.show_on_start = False
 
     def do_startup(self):
         Gtk.Application.do_startup(self)
 
     def do_command_line(self, command_line):
         options = command_line.get_options_dict()
-        self.startup_visibility = options.contains("show")
+        self.show_on_start = options.contains("show")
         self.activate()
         return 0
 
     def do_activate(self):
-        self.window = GuakeApplicationWindow(application=self, visible=self.startup_visibility)
-        # notebook = GuakeNotebook()
+        # TODO: create useful ui-loader
+        datapath = "./data"
+        appui = os.path.join(datapath, "ui", "app.ui")
+        settingsui = os.path.join(datapath, "ui", "settings.ui")
+        builder = Gtk.Builder()
+        builder.add_from_file(appui)
+        builder.add_from_file(settingsui)
+        self.window = GuakeApplicationWindow(builder, application=self, visible=self.show_on_start)
         keystr = "F2"
         Keybinder.init()
         Keybinder.bind(keystr, self.window.show_hide_handler, "")
