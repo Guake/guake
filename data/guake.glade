@@ -400,7 +400,6 @@
             <property name="no_show_all">True</property>
             <child>
               <widget class="GtkEventBox" id="event-tabs">
-                <property name="height_request">10</property>
                 <property name="visible">True</property>
                 <property name="can_focus">False</property>
                 <property name="events">GDK_BUTTON_PRESS_MASK | GDK_STRUCTURE_MASK</property>
