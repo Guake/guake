@@ -36,7 +36,6 @@ logger = logging.getLogger(__name__)
 def main():
     guakeInit()
     app = GuakeApplication()
-    # Trick to handle KeyboardInterrupt
     signal.signal(signal.SIGINT, signal.SIG_DFL)
     app.run(sys.argv)
 
