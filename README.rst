@@ -153,6 +153,8 @@ RedHat/Fedora
 
 Guake is available in the official repositories:
 
+::
+
     sudo yum install guake    # for Fedora 19 - 21
     sudo dnf install guake    # for Fedora 23 and above
 
