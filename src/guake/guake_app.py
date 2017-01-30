@@ -82,13 +82,13 @@ try:
     from ctypes import cdll
     libutempter = cdll.LoadLibrary('libutempter.so.0')
     if libutempter is not None:
-        # We absolutly need to remove the old tty from the utmp !!!!!!!!!!
+        # We absolutely need to remove the old tty from the utmp !!!
         at_exit_call(libutempter.utempter_remove_added_record)
 except Exception as e:
     libutempter = None
-    sys.stderr.write('[WARN] Unable to load the library libutempter !\n')
-    sys.stderr.write('[WARN] The <wall> command will not work in guake !\n')
-    sys.stderr.write('[WARN] ' + str(e) + '\n')
+    sys.stderr.write("[WARN] Unable to load the library libutempter !\n")
+    sys.stderr.write("[WARN] The <wall> command will not work in guake !\n")
+    sys.stderr.write("[WARN] " + str(e) + '\n')
 
 instance = None
 RESPONSE_FORWARD = 0
@@ -130,10 +130,10 @@ class PromptQuitDialog(gtk.MessageDialog):
             gtk.MESSAGE_QUESTION, gtk.BUTTONS_YES_NO)
 
         if tabs == -1:
-            primary_msg = _('Do you want to close the tab?')
+            primary_msg = _("Do you want to close the tab?")
             tab_str = ''
         else:
-            primary_msg = _('Do you really want to quit Guake?')
+            primary_msg = _("Do you really want to quit Guake?")
             if tabs == 1:
                 tab_str = _(" and one tab open")
             else:
@@ -182,7 +182,7 @@ class Guake(SimpleGladeApp):
             import appindicator
         except ImportError:
             self.tray_icon = gtk.status_icon_new_from_file(img)
-            self.tray_icon.set_tooltip(_('Guake Terminal'))
+            self.tray_icon.set_tooltip(_("Guake Terminal"))
             self.tray_icon.connect('popup-menu', self.show_menu)
             self.tray_icon.connect('activate', self.show_hide)
         else:
@@ -362,9 +362,9 @@ class Guake(SimpleGladeApp):
             # Pop-up that shows that guake is working properly (if not
             # unset in the preferences windows)
             guake.notifier.show_message(
-                _('Guake Terminal'),
-                _('Guake is now running,\n'
-                  'press <b>%s</b> to use it.') % xml_escape(label), filename)
+                _("Guake Terminal"),
+                _("Guake is now running,\n"
+                  "press <b>{!s}</b> to use it.").format(xml_escape(label)), filename)
 
     # load the custom commands infrastucture
     def load_custom_commands(self):
@@ -575,8 +575,8 @@ class Guake(SimpleGladeApp):
                 current_vte.feed_child(command)
 
     def on_resizer_drag(self, widget, event):
-        """Method that handles the resize drag. It does not actuall
-        moves the main window. It just set the new window size in
+        """Method that handles the resize drag. It does not actually
+        move the main window. It just sets the new window size in
         gconf.
         """
         (x, y), mod = event.device.get_state(widget.window)
@@ -839,9 +839,9 @@ class Guake(SimpleGladeApp):
         if self.selected_color is None:
             self.selected_color = getattr(self.window.get_style(), "light")[int(gtk.STATE_SELECTED)]
 
-            # Reapply the tab color to all button in the tab list, since at least one don't have the
-            # select color set. This needs to happen AFTER the first show_all, since before the gtk
-            # has not loaded the right colors yet.
+            # Reapply the tab color to all button in the tab list, since at least one doesn't have
+            # the select color set. This needs to happen AFTER the first show_all, since before,
+            # gtk has not loaded the right colors yet.
             for tab in self.tabs.get_children():
                 if isinstance(tab, gtk.RadioButton):
                     tab.modify_bg(gtk.STATE_ACTIVE, gtk.gdk.Color(str(self.selected_color)))
@@ -850,7 +850,7 @@ class Guake(SimpleGladeApp):
         self.printDebug("Moving window to: %r", window_rect)
         self.window.move(window_rect.x, window_rect.y)
 
-        # this work arround an issue in fluxbox
+        # this works around an issue in fluxbox
         if not self.is_fullscreen:
             self.client.notify(KEY('/general/window_height'))
 
@@ -1008,10 +1008,12 @@ class Guake(SimpleGladeApp):
         if self.is_using_unity():
 
             # For Ubuntu 12.10 and above, try to use dconf:
-            # see if unity dock is hiden => unity_hide
-            # and the width of unity dock. => unity_dock
+            # see if unity dock is hidden => unity_hide
+            # and the width of unity dock => unity_dock
+            # and the position of the unity dock. => unity_pos
             found = False
             unity_hide = 0
+            unity_pos = "Left"
             # float() conversion might mess things up. Add 0.01 so the comparison will always be
             # valid, even in case of float("10.10") = 10.099999999999999
             if float(platform.linux_distribution()[1]) + 0.01 >= 12.10:
@@ -1022,6 +1024,9 @@ class Guake(SimpleGladeApp):
                     unity_dock = int(subprocess.check_output(
                         ['/usr/bin/dconf', 'read',
                          '/org/compiz/profiles/unity/plugins/unityshell/icon-size']) or "48")
+                    unity_pos = subprocess.check_output(
+                        ['/usr/bin/dconf', 'read',
+                         '/com/canonical/unity/launcher/launcher-position']) or "Left"
                     found = True
                 except:
                     # in case of error, just ignore it, 'found' will not be set to True and so
@@ -1036,9 +1041,11 @@ class Guake(SimpleGladeApp):
                 unity_dock = unity_icon_size + 17
 
             # launcher_hide_mode = 1 => autohide
-            if unity_hide != 1:
-                self.printDebug("correcting window width because of launcher width %s "
-                                "(from %s to %s)",
+            # only adjust guake window width if Unity dock is positioned "Left" or "Right"
+            if unity_hide != 1 and (unity_pos == "Left" or unity_pos == "Right"):
+                self.printDebug("correcting window width because of launcher position %s "
+                                "and width %s (from %s to %s)",
+                                unity_pos,
                                 unity_dock,
                                 window_rect.width,
                                 window_rect.width - unity_dock)
@@ -1626,13 +1633,13 @@ class Guake(SimpleGladeApp):
             params['directory'] = self.get_current_dir()
         params['loglastlog'] = login_shell
 
-        # Leting caller change/add values to fork params.
+        # Letting caller change/add values to fork params.
         if default_params:
             params.update(default_params)
 
         # Environment variables are not actually parameters but they
         # need to be set before calling terminal.fork_command()
-        # method. So I found this place good to do it.
+        # method. This is a good place to do it.
         self.update_proxy_vars(box)
         return params
 
@@ -1657,13 +1664,13 @@ class Guake(SimpleGladeApp):
                 auth_pass = self.client.get_string(
                     proxy + 'authentication_password')
                 auth_pass = quote_plus(auth_pass, '')
-                os.environ['http_proxy'] = 'http://%s:%s@%s:%d' % (
+                os.environ['http_proxy'] = "http://{!s}:{!s}@{!s}:{:d}".format(
                     auth_user, auth_pass, host, port)
-                os.environ['https_proxy'] = 'http://%s:%s@%s:%d' % (
+                os.environ['https_proxy'] = "http://{!s}:{!s}@{!s}:{:d}".format(
                     auth_user, auth_pass, ssl_host, ssl_port)
             else:
-                os.environ['http_proxy'] = 'http://%s:%d' % (host, port)
-                os.environ['https_proxy'] = 'http://%s:%d' % (
+                os.environ['http_proxy'] = "http://{!s}:{:d}".format(host, port)
+                os.environ['https_proxy'] = "http://{!s}:{:d}".format(
                     ssl_host, ssl_port)
         if box:
             os.environ['GUAKE_TAB_UUID'] = str(box.terminal.get_uuid())
@@ -1892,7 +1899,7 @@ class Guake(SimpleGladeApp):
         """
         self.notebook.get_current_terminal().grab_focus()
         self.notebook.set_current_page(self.get_selected_tab())
-        # Hack to fix "Not focused on openning if tab was moved" (#441)
+        # Hack to fix "Not focused on opening if tab was moved" (#441)
         pos = self.get_selected_tab()
         self.select_tab(0)
         self.select_tab(pos)
@@ -1906,7 +1913,7 @@ class Guake(SimpleGladeApp):
 
     def select_current_tab(self, notebook, user_data, page):
         """When current self.notebook page is changed, the tab bar
-        made with radio buttons must be updated and this method does
+        made with radio buttons must be updated.  This method does
         this work.
         """
         self.tabs.get_children()[page].set_active(True)
@@ -1921,7 +1928,7 @@ class Guake(SimpleGladeApp):
             pass
 
     def get_selected_tab(self):
-        """return the selected tab index, it also set the
+        """Return the selected tab index and set the
         self.selected_tab var.
         """
         pagepos = self.notebook.get_current_page()
@@ -1929,7 +1936,7 @@ class Guake(SimpleGladeApp):
         return pagepos
 
     def search_on_web(self, *args):
-        """search on web the selected text
+        """Search for the selected text on the web
         """
         current_term = self.notebook.get_current_terminal()
 
@@ -1939,7 +1946,7 @@ class Guake(SimpleGladeApp):
             search_query = guake_clipboard.wait_for_text()
             search_query = quote_plus(search_query)
             if search_query:
-                search_url = "https://www.google.com/#q=%s&safe=off" % (search_query,)
+                search_url = "https://www.google.com/#q={!s}&safe=off".format(search_query,)
                 gtk.show_uri(current_term.window.get_screen(), search_url,
                              gtk.gdk.x11_get_server_time(current_term.window))
         return True
@@ -1977,7 +1984,7 @@ class Guake(SimpleGladeApp):
 
     def execute_hook(self, event_name):
         """Execute shell commands related to current event_name"""
-        hook = self.client.get_string(KEY("/hooks/%s" % event_name))
+        hook = self.client.get_string(KEY('/hooks/{!s}'.format(event_name)))
         if hook is not None:
             hook = hook.split()
             try:
@@ -1992,5 +1999,5 @@ class Guake(SimpleGladeApp):
                 log.error("hook execution failed! %s", e)
                 log.debug(traceback.format_exc())
             else:
-                log.debug('hook on event %s has been executed', event_name)
+                log.debug("hook on event %s has been executed", event_name)
         return
