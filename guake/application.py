@@ -85,10 +85,13 @@ class GuakeApplication(Gtk.Application):
         return 0
 
     def do_activate(self):
+        # TODO: create useful ui-loader
         datapath = "./data"
-        filename = os.path.join(datapath, "ui", "app.ui")
+        appui = os.path.join(datapath, "ui", "app.ui")
+        settingsui = os.path.join(datapath, "ui", "settings.ui")
         builder = Gtk.Builder()
-        builder.add_from_file(filename)
+        builder.add_from_file(appui)
+        builder.add_from_file(settingsui)
         self.window = GuakeApplicationWindow(builder, application=self, visible=self.show_on_start)
         keystr = "F2"
         Keybinder.init()
