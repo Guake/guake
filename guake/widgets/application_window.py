@@ -57,6 +57,7 @@ class GuakeApplicationWindow(GuakeWidget, Gtk.ApplicationWindow):
         self.connect("button-press-event", self.right_button_handler)
         self.visible = kwargs.get("visible", False)
 
+
     @property
     def visible(self):
         return self._visible
@@ -67,6 +68,7 @@ class GuakeApplicationWindow(GuakeWidget, Gtk.ApplicationWindow):
         if value:
             self._set_window_position()
             self.show_all()
+            self.set_keep_above(True)
             return
         self.hide()
         return
