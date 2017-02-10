@@ -230,8 +230,9 @@ class TerminalBox(Gtk.Box):
         scroll.set_no_show_all(True)
         self.pack_start(scroll, False, False, 0)
 
+class GuakeTerminalContainer(Gtk.ScrolledWindow):
 
-class GuakeMenu(GuakeWidget, Gtk.Menu):
-
-    def __init__(self, gtkbuilder, *args, **kwargs):
+    def __init__(self, *args, **kwargs):
+        Gtk.ScrolledWindow.__init__(self)
+        self.add(GuakeTerminal())
         self.show_all()
