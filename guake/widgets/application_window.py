@@ -67,6 +67,7 @@ class GuakeApplicationWindow(GuakeWidget, Gtk.ApplicationWindow):
         if value:
             self._set_window_position()
             self.show_all()
+            self.set_keep_above(True)
             return
         self.hide()
         return

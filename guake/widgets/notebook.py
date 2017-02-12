@@ -30,7 +30,7 @@ assert gi  # hack to "use" the import so pep8/pyflakes are happy
 # from gi.repository import Gdk
 from gi.repository import Gtk
 # pylint: enable=wrong-import-position,wrong-import-order,unused-import
-from guake.widgets.terminal import GuakeTerminal
+from guake.widgets.terminal import GuakeTerminalContainer
 from guake.widgets.widget import GuakeWidget
 
 logger = logging.getLogger(__name__)
@@ -55,10 +55,11 @@ class GuakeNotebook(GuakeWidget, Gtk.Notebook):
 
     def _add_new_page(self):
         label = Gtk.Label("{}:".format(self.page_counter))
-        new_page_number = self.append_page(GuakeTerminal(), label)
+        new_page_number = self.append_page(GuakeTerminalContainer(), label)
         self.show_all()
         self.set_current_page(new_page_number)
         return
 
     def new_page_handler(self, *args):
         self._add_new_page()
+        return
