@@ -45,6 +45,4 @@ class GuakeSettingsWindow(GuakeWidget, Gtk.Window):
         self.connect("delete_event", self.close_handler)
 
     def close_handler(self, *args):
-        import ipdb
-        ipdb.set_trace()
         return self.hide() or True
