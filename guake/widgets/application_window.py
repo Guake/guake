@@ -57,7 +57,6 @@ class GuakeApplicationWindow(GuakeWidget, Gtk.ApplicationWindow):
         self.connect("button-press-event", self.right_button_handler)
         self.visible = kwargs.get("visible", False)
 
-
     @property
     def visible(self):
         return self._visible
