@@ -36,11 +36,12 @@ from guake.widgets.widget import GuakeWidget
 logger = logging.getLogger(__name__)
 
 
-class GuakeNotebook(GuakeWidget, Gtk.Notebook):
+class GuakeNotebook(GuakeWidget, GuakeKeyHandler, Gtk.Notebook):
 
     _page_counter = 0
 
     def __init__(self, gtkbuilder, *args, **kwargs):
+        super().__init__(self, *args, **kwargs)
         button = gtkbuilder.get_object("GuakeNewPageButton")
         button.connect("clicked", self.new_page_handler)
         self.button = button
@@ -62,3 +63,11 @@ class GuakeNotebook(GuakeWidget, Gtk.Notebook):
 
     def new_page_handler(self, *args):
         self._add_new_page()
+        return
+
+    def close_page_handler(self, *args):
+        self.detach_tab(self.get_nth_page(self.get_current_page()))
+        if not bool(self.get_n_pages()):
+        # FIXME: page added after closing the last one has no focus; Fix it
+            self._add_new_page()
+        return

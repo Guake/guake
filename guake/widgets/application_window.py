@@ -33,25 +33,25 @@ from gi.repository import Gtk
 # pylint: enable=wrong-import-position,wrong-import-order,unused-import
 
 from guake.widgets.notebook import GuakeNotebook
-# from guake.widgets.settings_window import GuakeSettingsWindow
-from guake.widgets.widget import GuakeWidget
+from guake.widgets.settings.settings_window import GuakeSettingsWindow
+from guake.widgets.widget import GuakeWidget, GuakeKeyHandler
 
 
 logger = logging.getLogger(__name__)
 
 
-class GuakeApplicationWindow(GuakeWidget, Gtk.ApplicationWindow):
+class GuakeApplicationWindow(GuakeWidget, GuakeKeyHandler, Gtk.ApplicationWindow):
 
     _visible = False
 
     def __init__(self, gtkbuilder, *args, **kwargs):
+        super().__init__(self, *args, **kwargs)
         app = kwargs.get("application")
         if app is not None:
             self.set_application(app)
         self._set_window_position()
         self._set_window_size()
         self.gtkbuilder = gtkbuilder
-        self.note = GuakeNotebook(gtkbuilder)
         self.resizer = gtkbuilder.get_object("GuakeResizer")
         self.resizer.connect("motion-notify-event", self.change_size_handler)
         self.connect("button-press-event", self.right_button_handler)
@@ -114,5 +114,4 @@ class GuakeApplicationWindow(GuakeWidget, Gtk.ApplicationWindow):
     def right_button_handler(self, widget, event):
         if not event.button == 3:
             return
-        # settings_window = GuakeSettingsWindow(self.gtkbuilder)
-        # import ipdb; ipdb.set_trace()
+        settings_window = GuakeSettingsWindow(self.gtkbuilder)

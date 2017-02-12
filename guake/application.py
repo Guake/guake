@@ -42,6 +42,7 @@ from gi.repository import Keybinder
 from guake.logging import setupBasicLogging
 from guake.logging import setupLogging
 from guake.widgets.application_window import GuakeApplicationWindow
+from guake.widgets.notebook import GuakeNotebook
 
 
 logger = logging.getLogger(__name__)
@@ -85,6 +86,13 @@ class GuakeApplication(Gtk.Application):
         return 0
 
     def do_activate(self):
+
+        Keybinder.init()
+        keymap = {
+            "show_hide_handler":"F2",
+            "new_page_handler":"<Ctrl>E",
+            "close_page_handler":"<Ctrl>Q"
+        }
         # TODO: create useful ui-loader
         datapath = "./data"
         appui = os.path.join(datapath, "ui", "app.ui")
@@ -92,7 +100,11 @@ class GuakeApplication(Gtk.Application):
         builder = Gtk.Builder()
         builder.add_from_file(appui)
         builder.add_from_file(settingsui)
-        self.window = GuakeApplicationWindow(builder, application=self, visible=self.show_on_start)
-        keystr = "F2"
-        Keybinder.init()
-        Keybinder.bind(keystr, self.window.show_hide_handler, "")
+        self.window = GuakeApplicationWindow(
+            builder,
+            application=self,
+            visible=self.show_on_start,
+            keybinder=Keybinder,
+            keymap=keymap
+        )
+        self.notebook = GuakeNotebook(builder, keybinder=Keybinder, keymap=keymap)
