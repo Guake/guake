@@ -240,7 +240,7 @@ For more install details, please read the ``INSTALL`` file.
 Development
 ~~~~~~~~~~~
 
-Upate translation
+Update translation
 -----------------
 
 First update all translation files::
