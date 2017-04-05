@@ -72,7 +72,10 @@ QUICK_OPEN_MATCHERS = [
      r"^\s\sFile\s\"(.*)\",\sline\s([0-9]+)"),
     ("line starts by 'Filename:line' pattern (GCC/make). File path should exists.",
      r"^[a-zA-Z0-9\/\_\-\.\ ]+\.?[a-zA-Z0-9]+\:[0-9]+",
-     r"^(.*)\:([0-9]+)")
+     r"^(.*)\:([0-9]+)"),
+    ("line containing '/home/' absolute path",
+     r"(/home/[a-zA-Z0-9_\-\./]+)(:[0-9]+)?",
+     r"(/home/[a-zA-Z0-9_\-\./]+):?([0-9]+)?")
 ]
 
 
@@ -162,10 +165,12 @@ class GuakeTerminal(vte.Terminal):
             if use_quick_open:
                 for _useless, _otheruseless, extractor in QUICK_OPEN_MATCHERS:
                     g = re.compile(extractor).match(value)
-                    if g and len(g.groups()) == 2:
+                    if g and len(g.groups()) > 0:
                         filename = g.group(1).strip()
-                        line_number = g.group(2)
                         filepath = filename
+                        line_number = g.group(2)
+                        if line_number is None:
+                            line_number = "1"
                         if not quick_open_in_current_terminal:
                             curdir = self.get_current_directory()
                             filepath = os.path.join(curdir, filename)
