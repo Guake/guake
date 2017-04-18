@@ -76,6 +76,10 @@ class DbusManager(dbus.service.Object):
     def get_selected_tab(self):
         return self.guake.get_selected_tab()
 
+    @dbus.service.method(DBUS_NAME, out_signature='s')
+    def get_selected_tablabel(self):
+        return self.guake.get_selected_tablabel()
+
     @dbus.service.method(DBUS_NAME, out_signature='i')
     def get_tab_count(self):
         return len(self.guake.notebook.term_list)

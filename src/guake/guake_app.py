@@ -1935,6 +1935,14 @@ class Guake(SimpleGladeApp):
         self.selected_tab = self.tabs.get_children()[pagepos]
         return pagepos
 
+    def get_selected_tablabel(self):
+        """Return the selected tab label.
+        """
+        pagepos = self.notebook.get_current_page()
+        tab = self.tabs.get_children()[pagepos]
+        tablabel = tab.get_label()
+        return tablabel
+
     def search_on_web(self, *args):
         """Search for the selected text on the web
         """
