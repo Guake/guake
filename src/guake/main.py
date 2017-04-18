@@ -100,6 +100,10 @@ def main():
                       action='store_true', default=False,
                       help=_('Return the selected tab index.'))
 
+    parser.add_option('-l', '--selected-tablabel', dest='selected_tablabel',
+                      action='store_true', default=False,
+                      help=_('Return the selected tab label.'))
+
     parser.add_option('-e', '--execute-command', dest='command',
                       action='store', default='',
                       help=_('Execute an arbitrary command in the selected tab.'))
@@ -188,6 +192,11 @@ def main():
     if options.selected_tab:
         selected = remote_object.get_selected_tab()
         sys.stdout.write('%d\n' % selected)
+        only_show_hide = False
+
+    if options.selected_tablabel:
+        selectedlabel = remote_object.get_selected_tablabel()
+        sys.stdout.write('%s\n' % selectedlabel)
         only_show_hide = False
 
     if options.command:
