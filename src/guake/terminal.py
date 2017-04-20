@@ -71,7 +71,7 @@ QUICK_OPEN_MATCHERS = [
      r"^\s\sFile\s\".*\",\sline\s[0-9]+",
      r"^\s\sFile\s\"(.*)\",\sline\s([0-9]+)"),
     ("line starts by 'Filename:line' pattern (GCC/make). File path should exists.",
-     r"^[a-zA-Z0-9\/\_\-\.\ ]+\.?[a-zA-Z0-9]+\:[0-9]+",
+     r"^[-a-zA-Z0-9\/\_\.\ ]+\.?[a-zA-Z0-9]+\:[0-9]+",
      r"^(.*)\:([0-9]+)"),
     ("line containing '/home/' absolute path",
      r"(/home/[a-zA-Z0-9_\-\./]+)(:[0-9]+)?",
