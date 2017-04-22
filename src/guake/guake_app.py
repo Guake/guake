@@ -769,10 +769,11 @@ class Guake(SimpleGladeApp):
                     self.losefocus_time = 0
                     return
         elif self.losefocus_time and \
-                self.losefocus_time >= event_time and \
+            self.client.get_bool(KEY('/general/window_losefocus')):
+            if self.losefocus_time >= event_time and \
                 (self.losefocus_time - event_time) < 10:
-            self.losefocus_time = 0
-            return
+                self.losefocus_time = 0
+                return
 
         # limit rate at which the visibility can be toggled.
         if self.prev_showhide_time and event_time and \
