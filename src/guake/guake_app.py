@@ -625,10 +625,11 @@ class Guake(SimpleGladeApp):
 
         value = self.client.get_bool(KEY('/general/window_losefocus'))
         visible = window.get_property('visible')
-        if value and visible:
+        if visible:
             self.losefocus_time = gtk.gdk.x11_get_server_time(
                 self.window.window)
-            self.hide()
+            if value:
+                self.hide()
 
     def show_menu(self, status_icon, button, activate_time):
         """Show the tray icon menu.
@@ -757,12 +758,22 @@ class Guake(SimpleGladeApp):
             return
 
         event_time = self.hotkeys.get_current_event_time()
-
-        if self.losefocus_time and \
-                self.losefocus_time >= event_time and \
+        
+        if self.client.get_bool(KEY('/general/focus_if_open')) and \
+            not self.client.get_bool(KEY('/general/window_losefocus')):
+            if self.losefocus_time and self.losefocus_time < event_time:
+                if self.window.window and self.window.get_property('visible'):
+                    log.debug("DBG: Restoring the focus to the terminal")
+                    self.window.window.focus()       
+                    self.set_terminal_focus()                            
+                    self.losefocus_time = 0
+                    return
+        elif self.losefocus_time and \
+            self.client.get_bool(KEY('/general/window_losefocus')):
+            if self.losefocus_time >= event_time and \
                 (self.losefocus_time - event_time) < 10:
-            self.losefocus_time = 0
-            return
+                self.losefocus_time = 0
+                return
 
         # limit rate at which the visibility can be toggled.
         if self.prev_showhide_time and event_time and \
