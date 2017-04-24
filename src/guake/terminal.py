@@ -74,8 +74,8 @@ QUICK_OPEN_MATCHERS = [
      r"^[-a-zA-Z0-9\/\_\.\ ]+\.?[a-zA-Z0-9]+\:[0-9]+",
      r"^(.*)\:([0-9]+)"),
     ("line containing '/home/' absolute path",
-     r"(/home/[a-zA-Z0-9_\-\./]+)(:[0-9]+)?",
-     r"(/home/[a-zA-Z0-9_\-\./]+):?([0-9]+)?")
+     r"(/home/[-a-zA-Z0-9_\./]+)(:[0-9]+)?",
+     r"(/home/[-a-zA-Z0-9_\./]+):?([0-9]+)?")
 ]
 
 
