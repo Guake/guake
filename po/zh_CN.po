@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Guake 0.4.5\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-05-20 14:21+0800\n"
+"POT-Creation-Date: 2017-05-20 23:56+0800\n"
 "PO-Revision-Date: \n"
 "Last-Translator: 庄秋彬(zqb-all) <zhuangqiubin@gmail.com>\n"
 "Language-Team: guake@lists.guake.org\n"
@@ -230,7 +230,7 @@ msgid ""
 "Always"
 msgstr ""
 "从不\n"
-"有进程正在运行运行时\n"
+"有进程正在运行时\n"
 "总是"
 
 #: ../data/prefs.glade.h:25
@@ -331,11 +331,11 @@ msgstr "默认解释器"
 
 #: ../data/prefs.glade.h:49
 msgid "_Run command as a login shell"
-msgstr "运行命令作为登录外壳(_R)"
+msgstr "运行命令作为登录外壳"
 
 #: ../data/prefs.glade.h:50
 msgid "_Open new tab in current directory"
-msgstr "在当前目录打开新标签页(_O)"
+msgstr "在当前目录打开新标签页"
 
 #: ../data/prefs.glade.h:51
 msgid "<b>Shell</b>"
@@ -466,7 +466,6 @@ msgid "Background image:"
 msgstr "背景图像："
 
 #: ../data/prefs.glade.h:84
-#, fuzzy
 msgid "Select A File"
 msgstr "选择一个文件"
 
@@ -565,15 +564,15 @@ msgstr ""
 
 #: ../data/prefs.glade.h:107
 msgid "_Backspace key generates:"
-msgstr "_Backspace 键产生："
+msgstr "Backspace 键产生："
 
 #: ../data/prefs.glade.h:108
 msgid "_Delete key generates:"
-msgstr "_Delete 键产生："
+msgstr "Delete 键产生："
 
 #: ../data/prefs.glade.h:109
 msgid "_Reset Compatibility Options to Defaults"
-msgstr "重新设定兼容性选项为默认值(_R)"
+msgstr "重新设定兼容性选项为默认值"
 
 #: ../data/prefs.glade.h:110
 msgid "<b>Keyboard compatibility</b>"
@@ -602,7 +601,6 @@ msgid "On show:"
 msgstr "显示时"
 
 #: ../data/prefs.glade.h:116
-#, fuzzy
 msgid "<b>Hooks</b>"
 msgstr "<b>钩子</b>"
 
@@ -667,13 +665,12 @@ msgid "Show"
 msgstr "查看"
 
 #: ../src/guake/guake_app.py:366
-#, fuzzy
 msgid ""
 "Guake is now running,\n"
 "press <b>{!s}</b> to use it."
 msgstr ""
 "Guake 正在运行，\n"
-"按 <b>%s</b> 使用它。"
+"按 <b>{!s}</b> 使用它。"
 
 #: ../src/guake/guake_app.py:670
 #, python-format
@@ -730,7 +727,7 @@ msgstr "后退"
 
 #: ../src/guake/main.py:69
 msgid "Put Guake in fullscreen mode"
-msgstr "设置Guake全屏显示"
+msgstr "设置 Guake 全屏显示"
 
 #: ../src/guake/main.py:73
 msgid "Toggles the visibility of the terminal window"
@@ -754,18 +751,17 @@ msgstr "显示 Guake 的“关于”信息"
 
 #: ../src/guake/main.py:93
 msgid "Add a new tab (with current directory set to NEW_TAB)"
-msgstr "在当前目录打开新标签页(_O)"
+msgstr "在当前目录打开新标签页"
 
 #: ../src/guake/main.py:97
 msgid "Select a tab (SELECT_TAB is the index of the tab)"
-msgstr "按照编号选择一个标签页(_T)"
+msgstr "按照编号选择一个标签页"
 
 #: ../src/guake/main.py:101
 msgid "Return the selected tab index."
 msgstr "返回选中标签页的序号"
 
 #: ../src/guake/main.py:105
-#, fuzzy
 msgid "Return the selected tab label."
 msgstr "返回选中标签页的名字"
 
@@ -778,7 +774,6 @@ msgid "Specify the tab to rename. Default is 0."
 msgstr "指定重命名标签页，默认为0"
 
 #: ../src/guake/main.py:117
-#, fuzzy
 msgid "Set the background image of the selected tab."
 msgstr "设置选中标签页的背景图片"
 
@@ -793,12 +788,12 @@ msgstr "设置选中标签页的前景颜色，格式为(#rrggbb)"
 #: ../src/guake/main.py:133
 msgid ""
 "Rename the specified tab. Reset to default if TITLE is a single dash \"-\"."
-msgstr "重命名指定标签页，如果标题为“-”，设为默认"
+msgstr "重命名指定标签页，如果标题为 \"-\" ，设为默认"
 
 #: ../src/guake/main.py:139
 msgid ""
 "Rename the current tab. Reset to default if TITLE is a single dash \"-\"."
-msgstr "重命名当前标签，如果标题为“-”，设为默认"
+msgstr "重命名当前标签，如果标题为 \"-\" ，设为默认"
 
 #: ../src/guake/main.py:144
 msgid "Says to Guake go away =("
