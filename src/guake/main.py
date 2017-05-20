@@ -131,13 +131,13 @@ def main():
                       metavar='TITLE',
                       action='store', default='',
                       help=_('Rename the specified tab. Reset to default if TITLE is '
-                             'a single dash "-".'))
+                             'a single dash "-" .'))
 
     parser.add_option('-r', '--rename-current-tab', dest='rename_current_tab',
                       metavar='TITLE',
                       action='store', default='',
                       help=_('Rename the current tab. Reset to default if TITLE is a '
-                             'single dash "-".'))
+                             'single dash "-" .'))
 
     parser.add_option('-q', '--quit', dest='quit',
                       action='store_true', default=False,
