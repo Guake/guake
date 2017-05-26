@@ -1,3 +1,20 @@
+Version 0.8.9
+=============
+
+Thanks for guakers for the following contibutions:
+
+New features:
+- #793, #876: Execute a script on display event
+- #864: Add preference dialog checkbox for toggling 'resizer' visibility
+- #885: tabs share the full screen width
+- #942: Quick open also matches `/home` path
+- #933: Add `-l` option to get tab label
+
+Bug Fixes
+- #934: Quick open does not work with dash
+- #893, #896, #888: another Unity screen size fix
+- Translation update: ja (#875), cn (#955), nl (#931), pt (#895),
+
 
 Version 0.8.8
 =============
