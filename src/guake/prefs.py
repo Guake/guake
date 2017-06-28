@@ -891,7 +891,8 @@ class PrefsDialog(SimpleGladeApp):
         self.get_widget('quick_open_in_current_terminal').set_active(value)
 
         value = self.client.get_string(KEY('/general/startup_script'))
-        self.get_widget('startup_script').set_text(value)
+        if value:
+            self.get_widget('startup_script').set_text(value)
 
         # use display where the mouse is currently
         value = self.client.get_bool(KEY('/general/mouse_display'))
