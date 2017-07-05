@@ -37,7 +37,6 @@ from gi.repository import Gtk
 from gi.repository import Vte
 # pylint: enable=wrong-import-position,wrong-import-order,unused-import
 
-from guake.widgets.widget import GuakeWidget
 # from guake.common import clamp
 # from guake.globals import KEY
 
@@ -231,7 +230,9 @@ class TerminalBox(Gtk.Box):
         self.pack_start(scroll, False, False, 0)
 
 
-class GuakeMenu(GuakeWidget, Gtk.Menu):
+class GuakeTerminalContainer(Gtk.ScrolledWindow):
 
-    def __init__(self, gtkbuilder, *args, **kwargs):
+    def __init__(self, *args, **kwargs):
+        Gtk.ScrolledWindow.__init__(self)
+        self.add(GuakeTerminal())
         self.show_all()

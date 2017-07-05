@@ -8,11 +8,13 @@
     <property name="can_focus">False</property>
     <property name="has_focus">True</property>
     <property name="title" translatable="yes">Guake</property>
-    <property name="type_hint">dropdown-menu</property>
+    <property name="destroy_with_parent">True</property>
+    <property name="type_hint">combo</property>
     <property name="skip_taskbar_hint">True</property>
     <property name="skip_pager_hint">True</property>
     <property name="urgency_hint">True</property>
     <property name="decorated">False</property>
+    <property name="deletable">False</property>
     <property name="has_resize_grip">True</property>
     <child>
       <object class="GtkBox" id="GuakeBox">
