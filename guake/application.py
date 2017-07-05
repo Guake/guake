@@ -29,6 +29,7 @@ import os
 
 # pylint: disable=wrong-import-position,wrong-import-order,unused-import
 from guake import gi
+
 assert gi  # hack to "use" the import so pep8/pyflakes are happy
 
 # from guake.gi.repository import GLib
@@ -42,8 +43,9 @@ from gi.repository import Keybinder
 from guake.logging import setupBasicLogging
 from guake.logging import setupLogging
 from guake.widgets.application_window import GuakeApplicationWindow
-from guake.widgets.notebook import GuakeNotebook
+from guake.widgets.settings.settings_window import GuakeSettingsWindow
 
+from guake.widgets.notebook import GuakeNotebook
 
 logger = logging.getLogger(__name__)
 
@@ -55,7 +57,6 @@ def guakeInit():
 
 
 class GuakeApplication(Gtk.Application):
-
     def __init__(self, *args, **kwargs):
         super().__init__(
             *args,
@@ -86,12 +87,11 @@ class GuakeApplication(Gtk.Application):
         return 0
 
     def do_activate(self):
-
         Keybinder.init()
         keymap = {
-            "show_hide_handler":"F2",
-            "new_page_handler":"<Ctrl>E",
-            "close_page_handler":"<Ctrl>Q"
+            "show_hide_handler": "F2",
+            "new_page_handler": "<Ctrl>E",
+            "close_page_handler": "<Ctrl>Q"
         }
         # TODO: create useful ui-loader
         datapath = "./data"
@@ -107,4 +107,8 @@ class GuakeApplication(Gtk.Application):
             keybinder=Keybinder,
             keymap=keymap
         )
-        self.notebook = GuakeNotebook(builder, keybinder=Keybinder, keymap=keymap)
+        self.notebook = GuakeNotebook(builder)
+        self.settings_window = GuakeSettingsWindow(builder)
+        self.window.set_settings_window(self.settings_window)
+        # self.settings_window.show_all()
+

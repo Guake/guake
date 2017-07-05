@@ -37,12 +37,28 @@ from guake.widgets.widget import GuakeWidget
 
 logger = logging.getLogger(__name__)
 
-
 class GuakeSettingsWindow(GuakeWidget, Gtk.Window):
 
     def __init__(self, gtkbuilder, *args, **kwargs):
-        self.show_all()
-        self.connect("delete_event", self.close_handler)
+        self.connect("delete_event", self.delete_handler)
 
-    def close_handler(self, *args):
+        keyboard_shortcuts_store = Gtk.ListStore(str, str)
+        keyboard_shortcuts_store.append(["Show\hide", "F2"])
+        keyboard_shortcuts_store.append(["New tab", "<Ctrl>E"])
+
+        self.treeview = GuakeKeyboardShortcutsTreeView(gtkbuilder)
+        self.treeview.set_model(keyboard_shortcuts_store)
+
+
+
+    def delete_handler(self, *args):
         return self.hide() or True
+
+
+
+class GuakeKeyboardShortcutsTreeView(GuakeWidget, Gtk.TreeView):
+
+    def __init__(self, gtkbuilder, *args, **kwargs):
+        self.append_column(Gtk.TreeViewColumn("Action", Gtk.CellRendererText(), text=0))
+        self.append_column(Gtk.TreeViewColumn("Shortcut", Gtk.CellRendererAccel(), text=1))
+

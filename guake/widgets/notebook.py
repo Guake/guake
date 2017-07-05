@@ -36,7 +36,7 @@ from guake.widgets.widget import GuakeWidget
 logger = logging.getLogger(__name__)
 
 
-class GuakeNotebook(GuakeWidget, GuakeKeyHandler, Gtk.Notebook):
+class GuakeNotebook(GuakeWidget, Gtk.Notebook):
 
     _page_counter = 0
 

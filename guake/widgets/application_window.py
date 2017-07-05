@@ -33,7 +33,6 @@ from gi.repository import Gtk
 # pylint: enable=wrong-import-position,wrong-import-order,unused-import
 
 from guake.widgets.notebook import GuakeNotebook
-from guake.widgets.settings.settings_window import GuakeSettingsWindow
 from guake.widgets.widget import GuakeWidget, GuakeKeyHandler
 
 
@@ -70,6 +69,9 @@ class GuakeApplicationWindow(GuakeWidget, GuakeKeyHandler, Gtk.ApplicationWindow
             return
         self.hide()
         return
+    
+    def set_settings_window(self, window):
+        self.settings_window = window
 
     def _select_screen(self):
         # TODO: get tagret screen from settings
@@ -114,4 +116,4 @@ class GuakeApplicationWindow(GuakeWidget, GuakeKeyHandler, Gtk.ApplicationWindow
     def right_button_handler(self, widget, event):
         if not event.button == 3:
             return
-        settings_window = GuakeSettingsWindow(self.gtkbuilder)
+        self.settings_window.show_all()

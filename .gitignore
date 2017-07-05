@@ -54,3 +54,4 @@ py-compile
 stamp-*
 venv/
 workdir/
+.idea/*

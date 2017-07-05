@@ -14,14 +14,13 @@
     <property name="urgency_hint">True</property>
     <property name="has_resize_grip">True</property>
     <child>
-      <object class="GtkNotebook" id="GuakeSettingsNotebook">
+      <object class="GtkNotebook" id="notebook1">
         <property name="visible">True</property>
         <property name="can_focus">True</property>
         <property name="tab_pos">left</property>
-        <property name="scrollable">True</property>
-        <property name="enable_popup">True</property>
+        <property name="show_border">False</property>
         <child>
-          <object class="GtkBox" id="WindowSettingsBox">
+          <object class="GtkBox" id="box1">
             <property name="visible">True</property>
             <property name="can_focus">False</property>
             <property name="orientation">vertical</property>
@@ -29,33 +28,68 @@
               <placeholder/>
             </child>
             <child>
-              <placeholder/>
+              <object class="GtkTreeView" id="GuakeKeyboardShortcutsTreeView">
+                <property name="visible">True</property>
+                <property name="can_focus">True</property>
+                <property name="enable_search">False</property>
+                <property name="show_expanders">False</property>
+                <property name="enable_grid_lines">both</property>
+                <property name="tooltip_column">0</property>
+                <property name="activate_on_single_click">True</property>
+                <child internal-child="selection">
+                  <object class="GtkTreeSelection" id="treeview-selection2"/>
+                </child>
+              </object>
+              <packing>
+                <property name="expand">True</property>
+                <property name="fill">True</property>
+                <property name="position">1</property>
+              </packing>
             </child>
           </object>
         </child>
         <child type="tab">
-          <object class="GtkLabel" id="WindowSettingsTab">
+          <object class="GtkLabel" id="label1">
             <property name="visible">True</property>
             <property name="can_focus">False</property>
-            <property name="label" translatable="yes">Window
-</property>
+            <property name="label" translatable="yes">Keyboard
+shortcuts</property>
+            <property name="lines">0</property>
           </object>
           <packing>
             <property name="tab_fill">False</property>
           </packing>
         </child>
         <child>
-          <object class="GtkOverlay" id="KeyboardSettingsOverlay">
+          <object class="GtkGrid" id="grid2">
             <property name="visible">True</property>
             <property name="can_focus">False</property>
             <child>
-              <object class="GtkListBox" id="KeyboardSettingsList">
-                <property name="visible">True</property>
-                <property name="can_focus">False</property>
-              </object>
-              <packing>
-                <property name="index">-1</property>
-              </packing>
+              <placeholder/>
+            </child>
+            <child>
+              <placeholder/>
+            </child>
+            <child>
+              <placeholder/>
+            </child>
+            <child>
+              <placeholder/>
+            </child>
+            <child>
+              <placeholder/>
+            </child>
+            <child>
+              <placeholder/>
+            </child>
+            <child>
+              <placeholder/>
+            </child>
+            <child>
+              <placeholder/>
+            </child>
+            <child>
+              <placeholder/>
             </child>
           </object>
           <packing>
@@ -63,17 +97,65 @@
           </packing>
         </child>
         <child type="tab">
-          <object class="GtkLabel" id="KeyboardSettingsTab">
+          <object class="GtkLabel" id="label2">
             <property name="visible">True</property>
             <property name="can_focus">False</property>
-            <property name="label" translatable="yes">Keyboard</property>
+            <property name="label" translatable="yes">Main settings</property>
           </object>
           <packing>
             <property name="position">1</property>
             <property name="tab_fill">False</property>
           </packing>
         </child>
+        <child>
+          <object class="GtkGrid" id="grid1">
+            <property name="visible">True</property>
+            <property name="can_focus">False</property>
+            <child>
+              <placeholder/>
+            </child>
+            <child>
+              <placeholder/>
+            </child>
+            <child>
+              <placeholder/>
+            </child>
+            <child>
+              <placeholder/>
+            </child>
+            <child>
+              <placeholder/>
+            </child>
+            <child>
+              <placeholder/>
+            </child>
+            <child>
+              <placeholder/>
+            </child>
+            <child>
+              <placeholder/>
+            </child>
+            <child>
+              <placeholder/>
+            </child>
+          </object>
+          <packing>
+            <property name="position">2</property>
+          </packing>
+        </child>
+        <child type="tab">
+          <object class="GtkLabel" id="label3">
+            <property name="visible">True</property>
+            <property name="can_focus">False</property>
+            <property name="label" translatable="yes">Styles</property>
+          </object>
+          <packing>
+            <property name="position">2</property>
+            <property name="tab_fill">False</property>
+          </packing>
+        </child>
       </object>
     </child>
   </object>
+  <object class="GtkListStore" id="liststore1"/>
 </interface>
