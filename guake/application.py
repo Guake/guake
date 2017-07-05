@@ -110,5 +110,4 @@ class GuakeApplication(Gtk.Application):
         self.notebook = GuakeNotebook(builder)
         self.settings_window = GuakeSettingsWindow(builder)
         self.window.set_settings_window(self.settings_window)
-        # self.settings_window.show_all()
 
