@@ -30,7 +30,7 @@ assert gi  # hack to "use" the import so pep8/pyflakes are happy
 # from gi.repository import Gdk
 from gi.repository import Gtk
 # pylint: enable=wrong-import-position,wrong-import-order,unused-import
-from guake.widgets.terminal import GuakeTerminalContainer
+from guake.widgets.terminal import GuakeTerminal
 from guake.widgets.widget import GuakeWidget
 
 logger = logging.getLogger(__name__)
@@ -41,6 +41,7 @@ class GuakeNotebook(GuakeWidget, Gtk.Notebook):
     _page_counter = 0
 
     def __init__(self, gtkbuilder, *args, **kwargs):
+        super().__init__(self, *args, **kwargs)
         button = gtkbuilder.get_object("GuakeNewPageButton")
         button.connect("clicked", self.new_page_handler)
         self.button = button
@@ -55,11 +56,18 @@ class GuakeNotebook(GuakeWidget, Gtk.Notebook):
 
     def _add_new_page(self):
         label = Gtk.Label("{}:".format(self.page_counter))
-        new_page_number = self.append_page(GuakeTerminalContainer(), label)
+        new_page_number = self.append_page(GuakeTerminal(), label)
         self.show_all()
         self.set_current_page(new_page_number)
         return
 
     def new_page_handler(self, *args):
         self._add_new_page()
+        return
+
+    def close_page_handler(self, *args):
+        self.detach_tab(self.get_nth_page(self.get_current_page()))
+        if not bool(self.get_n_pages()):
+        # FIXME: page added after closing the last one has no focus; Fix it
+            self._add_new_page()
         return

@@ -32,14 +32,33 @@ assert gi  # hack to "use" the import so pep8/pyflakes are happy
 from gi.repository import Gtk
 # pylint: enable=wrong-import-position,wrong-import-order,unused-import
 
+from guake.widgets.widget import GuakeWidget
+
 
 logger = logging.getLogger(__name__)
 
+class GuakeSettingsWindow(GuakeWidget, Gtk.Window):
 
-class GuakeBox(Gtk.Box):
+    def __init__(self, gtkbuilder, *args, **kwargs):
+        self.connect("delete_event", self.delete_handler)
 
-    def __init__(self, *args, **kwargs):
-        super().__init__(*args, **kwargs)
-        self.set_orientation(Gtk.Orientation.VERTICAL)
-        fixed = Gtk.Fixed()
-        self.add(fixed)
+        keyboard_shortcuts_store = Gtk.ListStore(str, str)
+        keyboard_shortcuts_store.append(["Show\hide", "F2"])
+        keyboard_shortcuts_store.append(["New tab", "<Ctrl>E"])
+
+        self.treeview = GuakeKeyboardShortcutsTreeView(gtkbuilder)
+        self.treeview.set_model(keyboard_shortcuts_store)
+
+
+
+    def delete_handler(self, *args):
+        return self.hide() or True
+
+
+
+class GuakeKeyboardShortcutsTreeView(GuakeWidget, Gtk.TreeView):
+
+    def __init__(self, gtkbuilder, *args, **kwargs):
+        self.append_column(Gtk.TreeViewColumn("Action", Gtk.CellRendererText(), text=0))
+        self.append_column(Gtk.TreeViewColumn("Shortcut", Gtk.CellRendererAccel(), text=1))
+
