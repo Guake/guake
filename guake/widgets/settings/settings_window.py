@@ -43,8 +43,8 @@ class GuakeSettingsWindow(GuakeWidget, Gtk.Window):
         self.connect("delete_event", self.delete_handler)
 
         keyboard_shortcuts_store = Gtk.ListStore(str, str)
-        keyboard_shortcuts_store.append(["Show\hide", "F2"])
-        keyboard_shortcuts_store.append(["New tab", "<Ctrl>E"])
+        keyboard_shortcuts_store.append(["New tab", "<Primary>e"])
+  
 
         self.treeview = GuakeKeyboardShortcutsTreeView(gtkbuilder)
         self.treeview.set_model(keyboard_shortcuts_store)
@@ -60,5 +60,16 @@ class GuakeKeyboardShortcutsTreeView(GuakeWidget, Gtk.TreeView):
 
     def __init__(self, gtkbuilder, *args, **kwargs):
         self.append_column(Gtk.TreeViewColumn("Action", Gtk.CellRendererText(), text=0))
-        self.append_column(Gtk.TreeViewColumn("Shortcut", Gtk.CellRendererAccel(), text=1))
+        self.append_column(Gtk.TreeViewColumn("Shortcut", GuakeCellRendererAccel(self), text=1))
 
+
+class GuakeCellRendererAccel(Gtk.CellRendererAccel):
+
+    def __init__(self, treeview, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.props.editable = True
+        self.connect("accel-edited", self.accel_edited_handler, treeview)
+
+    def accel_edited_handler(self, renderer, cell, keycode, modifier, hardcode, treeview):
+        model = treeview.get_model()
+        model.set_value(model.get_iter(cell), 1, Gtk.accelerator_name(keycode, modifier))
