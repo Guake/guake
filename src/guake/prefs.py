@@ -237,6 +237,11 @@ class PrefsCallbacks(object):
     def on_startup_script_changed(self, edt):
         self.client.set_string(KEY('/general/startup_script'), edt.get_text())
 
+    def on_window_refocus_toggled(self, chk):
+        """Changes the activity of window_refocus in gconf
+        """
+        self.client.set_bool(KEY('/general/window_refocus'), chk.get_active())
+
     def on_window_losefocus_toggled(self, chk):
         """Changes the activity of window_losefocus in gconf
         """
@@ -813,6 +818,10 @@ class PrefsDialog(SimpleGladeApp):
         # tab ontop
         value = self.client.get_bool(KEY('/general/tab_ontop'))
         self.get_widget('tab_ontop').set_active(value)
+
+        # refocus
+        value = self.client.get_bool(KEY('/general/window_refocus'))
+        self.get_widget('window_refocus').set_active(value)
 
         # losefocus
         value = self.client.get_bool(KEY('/general/window_losefocus'))
