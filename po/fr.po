@@ -782,7 +782,7 @@ msgstr "Retourne l'index de l'onglet sélectionné."
 
 #: ../src/guake/main.py:105
 msgid "Return the selected tab label."
-msgstr "Retourne l'index de l'onglet sélectionné."
+msgstr "Retourne le label de l'onglet sélectionné."
 
 #: ../src/guake/main.py:109
 msgid "Execute an arbitrary command in the selected tab."
