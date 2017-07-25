@@ -32,11 +32,9 @@ from guake import gi
 
 assert gi  # hack to "use" the import so pep8/pyflakes are happy
 
-# from guake.gi.repository import GLib
 from gi.repository import GLib
 from gi.repository import Gio
 from gi.repository import Gtk
-# from gi.repository import Vte
 from gi.repository import Keybinder
 # pylint: enable=wrong-import-position,wrong-import-order,unused-import
 

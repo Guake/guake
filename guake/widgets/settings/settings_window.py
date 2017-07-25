@@ -65,11 +65,11 @@ class GuakeKeyboardShortcutsTreeView(GuakeWidget, Gtk.TreeView):
 
 class GuakeCellRendererAccel(Gtk.CellRendererAccel):
 
-    def __init__(self, treeview, *args, **kwargs):
+    def __init__(self, view, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.props.editable = True
-        self.connect("accel-edited", self.accel_edited_handler, treeview)
+        self.connect("accel-edited", self.accel_edited_handler, view)
 
-    def accel_edited_handler(self, renderer, cell, keycode, modifier, hardcode, treeview):
-        model = treeview.get_model()
+    def accel_edited_handler(self, renderer, cell, keycode, modifier, hardcode, view):
+        model = view.get_model()
         model.set_value(model.get_iter(cell), 1, Gtk.accelerator_name(keycode, modifier))
