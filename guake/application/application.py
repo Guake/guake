@@ -25,6 +25,7 @@ from __future__ import unicode_literals
 import logging
 import os
 
+
 # from time import sleep
 
 # pylint: disable=wrong-import-position,wrong-import-order,unused-import
@@ -37,24 +38,16 @@ from gi.repository import Gio
 from gi.repository import Gtk
 from gi.repository import Keybinder
 # pylint: enable=wrong-import-position,wrong-import-order,unused-import
-
-from guake.logging import setupBasicLogging
-from guake.logging import setupLogging
+import guake.application.actions
 from guake.widgets.application_window import GuakeApplicationWindow
 from guake.widgets.settings.settings_window import GuakeSettingsWindow
-
 from guake.widgets.notebook import GuakeNotebook
 
 logger = logging.getLogger(__name__)
 
 
-def guakeInit():
-    setupBasicLogging()
-    setupLogging()
-    logger.info("Guake starts")
-
-
 class GuakeApplication(Gtk.Application):
+
     def __init__(self, *args, **kwargs):
         super().__init__(
             *args,
@@ -77,6 +70,8 @@ class GuakeApplication(Gtk.Application):
 
     def do_startup(self):
         Gtk.Application.do_startup(self)
+        self.add_actions()
+        # self.configure_accelerators()
 
     def do_command_line(self, command_line):
         options = command_line.get_options_dict()
@@ -88,8 +83,6 @@ class GuakeApplication(Gtk.Application):
         Keybinder.init()
         keymap = {
             "show_hide_handler": "F2",
-            "new_page_handler": "<Ctrl>E",
-            "close_page_handler": "<Ctrl>Q"
         }
         # TODO: create useful ui-loader
         datapath = "./data"
@@ -107,5 +100,18 @@ class GuakeApplication(Gtk.Application):
         )
         self.notebook = GuakeNotebook(builder)
         self.settings_window = GuakeSettingsWindow(builder)
-        self.window.set_settings_window(self.settings_window)
 
+    def add_actions(self):
+        for action_name in dir(guake.application.actions):
+            if action_name.endswith('_ACTION'):
+                action = getattr(guake.application.actions, action_name)
+                gio_action = Gio.SimpleAction.new(action[0], None)
+                gio_action.connect("activate", getattr(self, action[1]))
+                self.add_action(gio_action)
+
+
+    def new_page_handler(self, *args):
+        self.notebook.new_page_handler()
+
+    def close_page_handler(self, *args):
+        print("this is just a mock!")

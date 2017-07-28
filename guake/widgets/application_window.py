@@ -70,9 +70,6 @@ class GuakeApplicationWindow(GuakeWidget, GuakeKeyHandler, Gtk.ApplicationWindow
             return
         self.hide()
         return
-    
-    def set_settings_window(self, window):
-        self.settings_window = window
 
     def _select_screen(self):
         # TODO: get tagret screen from settings
@@ -117,4 +114,5 @@ class GuakeApplicationWindow(GuakeWidget, GuakeKeyHandler, Gtk.ApplicationWindow
     def right_button_handler(self, widget, event):
         if not event.button == 3:
             return
-        self.settings_window.show_all()
+        application = self.get_application()
+        application.settings_window.show_all()
