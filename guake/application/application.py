@@ -71,7 +71,7 @@ class GuakeApplication(Gtk.Application):
     def do_startup(self):
         Gtk.Application.do_startup(self)
         self.add_actions()
-        # self.configure_accelerators()
+        self.add_keybindings(self.setup_keybindings())
 
     def do_command_line(self, command_line):
         options = command_line.get_options_dict()
@@ -109,9 +109,24 @@ class GuakeApplication(Gtk.Application):
                 gio_action.connect("activate", getattr(self, action[1]))
                 self.add_action(gio_action)
 
+    def setup_keybindings(self):
+        self.keybindings = Gio.Settings(schema='org.guake.keybindings')
+        self.keybindings.connect('changed', self.change_keybinding_handler)
+        return self.keybindings        
+
+    def add_keybindings(self, giosettings, key=None):
+        keys = [key] if key is not None else giosettings.keys()
+        for key in keys:
+            self.add_accelerator(self.keybindings.get_string(key), 'app.%s' % key, None)
+        return
 
     def new_page_handler(self, *args):
         self.notebook.new_page_handler()
 
     def close_page_handler(self, *args):
-        print("this is just a mock!")
+        self.notebook.close_page_handler()
+
+    def change_keybinding_handler(self, giosettings, key):
+        self.remove_accelerator('app.%s' % key, None)
+        self.add_keybindings(giosettings, key)
+
