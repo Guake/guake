@@ -758,9 +758,10 @@ class Guake(SimpleGladeApp):
             return
 
         event_time = self.hotkeys.get_current_event_time()
-
-        if self.client.get_bool(KEY('/general/focus_if_open')) and \
-                not self.client.get_bool(KEY('/general/window_losefocus')):
+        if not self.client.get_bool(KEY('/general/window_refocus')) and \
+                self.window.window and self.window.get_property('visible'):
+            pass
+        elif not self.client.get_bool(KEY('/general/window_losefocus')):
             if self.losefocus_time and self.losefocus_time < event_time:
                 if self.window.window and self.window.get_property('visible'):
                     log.debug("DBG: Restoring the focus to the terminal")
