@@ -36,15 +36,15 @@ class GuakeWidget(object):
 
 
 
-class GuakeKeyHandler(object):
+# class GuakeKeyHandler(object):
 
-    def __init__(self, *args, **kwargs):
-        keymap = kwargs.get("keymap", {})
-        keybinder = kwargs.get("keybinder")
-        assert bool(keybinder), "Keybinder not found!"
-        self.bind_keys(keybinder, keymap)
+#     def __init__(self, *args, **kwargs):
+#         keymap = kwargs.get("keymap", {})
+#         keybinder = kwargs.get("keybinder")
+#         assert bool(keybinder), "Keybinder not found!"
+#         self.bind_keys(keybinder, keymap)
 
-    def bind_keys(self, binder, keymap):
-        handlers = set(dir(self)) & set(keymap.keys())
-        for handler_name in handlers:
-            binder.bind(keymap[handler_name], self.__getattribute__(handler_name), None)
+#     def bind_keys(self, binder, keymap):
+#         handlers = set(dir(self)) & set(keymap.keys())
+#         for handler_name in handlers:
+#             binder.bind(keymap[handler_name], self.__getattribute__(handler_name), None)

@@ -23,6 +23,7 @@ from __future__ import print_function
 from __future__ import unicode_literals
 
 import logging
+import traceback
 
 # pylint: disable=wrong-import-position,wrong-import-order,unused-import
 from guake import gi
@@ -37,17 +38,17 @@ from guake.widgets.widget import GuakeWidget
 
 logger = logging.getLogger(__name__)
 
-class GuakeSettingsWindow(GuakeWidget, Gtk.Window):
+class GuakeSettingsWindow(GuakeWidget, Gtk.ApplicationWindow):
 
-    def __init__(self, gtkbuilder, *args, **kwargs):
-        self.connect("delete_event", self.delete_handler)
-
+    def __init__(self, gtkbuilder, application, *args, **kwargs):
+        super().__init__(application, *args, **kwargs)
+        self.set_application(application)
         keyboard_shortcuts_store = Gtk.ListStore(str, str)
-        keyboard_shortcuts_store.append(["New tab", "<Primary>e"])
-  
-
-        self.treeview = GuakeKeyboardShortcutsTreeView(gtkbuilder)
+        [keyboard_shortcuts_store.append([key, application.keybindings.get_string(key)]) for key in application.keybindings.keys()]
+        self.treeview = GuakeKeyboardShortcutsTreeView(gtkbuilder, application)
         self.treeview.set_model(keyboard_shortcuts_store)
+        self.connect("delete_event", self.delete_handler)
+        self.show_all()
 
 
 
@@ -58,18 +59,33 @@ class GuakeSettingsWindow(GuakeWidget, Gtk.Window):
 
 class GuakeKeyboardShortcutsTreeView(GuakeWidget, Gtk.TreeView):
 
-    def __init__(self, gtkbuilder, *args, **kwargs):
-        self.append_column(Gtk.TreeViewColumn("Action", Gtk.CellRendererText(), text=0))
-        self.append_column(Gtk.TreeViewColumn("Shortcut", GuakeCellRendererAccel(self), text=1))
-
-
-class GuakeCellRendererAccel(Gtk.CellRendererAccel):
-
-    def __init__(self, view, *args, **kwargs):
+    def __init__(self, gtkbuilder, application, *args, **kwargs):
         super().__init__(*args, **kwargs)
-        self.props.editable = True
-        self.connect("accel-edited", self.accel_edited_handler, view)
+        self.application = application
+        self.append_column(Gtk.TreeViewColumn("Action", Gtk.CellRendererText(), text=0))
+        self.append_column(Gtk.TreeViewColumn("Shortcut", GuakeKeybindingRenderer(self), text=1))
 
-    def accel_edited_handler(self, renderer, cell, keycode, modifier, hardcode, view):
-        model = view.get_model()
-        model.set_value(model.get_iter(cell), 1, Gtk.accelerator_name(keycode, modifier))
+    def get_application(self):
+        return self.application
+
+
+class GuakeKeybindingRenderer(Gtk.CellRendererAccel):
+
+    def __init__(self, treeview, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.treeview = treeview
+        self.props.editable = True
+        self.connect("accel-edited", self.accel_edited_handler)
+
+    def accel_edited_handler(self, renderer, cell, keycode, modifier, hardcode):
+        application = self.treeview.get_application()
+        model = self.treeview.get_model()
+        cell_iterator = model.get_iter(cell)
+        keybinding_name, keybinding_value = model.get_value(cell_iterator, 0), model.get_value(cell_iterator, 1)
+        keybinding_value_new = Gtk.accelerator_name(keycode, modifier)
+        try:
+            application.keybindings.set_string(keybinding_name, keybinding_value_new)
+            model.set_value(model.get_iter(cell), 1, keybinding_value_new)
+        except Exception as e:
+            logger.error(traceback.format_exc())
+

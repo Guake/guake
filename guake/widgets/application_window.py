@@ -33,21 +33,19 @@ from gi.repository import Gtk
 # pylint: enable=wrong-import-position,wrong-import-order,unused-import
 
 from guake.widgets.notebook import GuakeNotebook
-from guake.widgets.widget import GuakeWidget, GuakeKeyHandler
+from guake.widgets.widget import GuakeWidget
 
 
 logger = logging.getLogger(__name__)
 
 
-class GuakeApplicationWindow(GuakeWidget, GuakeKeyHandler, Gtk.ApplicationWindow):
+class GuakeApplicationWindow(GuakeWidget, Gtk.ApplicationWindow):
 
     _visible = False
 
-    def __init__(self, gtkbuilder, *args, **kwargs):
-        super().__init__(self, *args, **kwargs)
-        app = kwargs.get("application")
-        if app is not None:
-            self.set_application(app)
+    def __init__(self, gtkbuilder, application, *args, **kwargs):
+        super().__init__(self, application, *args, **kwargs)
+        self.set_application(application)
         self._set_window_position()
         self._set_window_size()
         self.gtkbuilder = gtkbuilder

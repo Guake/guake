@@ -71,7 +71,7 @@ class GuakeApplication(Gtk.Application):
     def do_startup(self):
         Gtk.Application.do_startup(self)
         self.add_actions()
-        self.add_keybindings(self.setup_keybindings())
+        self.add_keybindings(self.setup_keybindings_settings())
 
     def do_command_line(self, command_line):
         options = command_line.get_options_dict()
@@ -81,9 +81,6 @@ class GuakeApplication(Gtk.Application):
 
     def do_activate(self):
         Keybinder.init()
-        keymap = {
-            "show_hide_handler": "F2",
-        }
         # TODO: create useful ui-loader
         datapath = "./data"
         appui = os.path.join(datapath, "ui", "app.ui")
@@ -95,11 +92,10 @@ class GuakeApplication(Gtk.Application):
             builder,
             application=self,
             visible=self.show_on_start,
-            keybinder=Keybinder,
-            keymap=keymap
         )
         self.notebook = GuakeNotebook(builder)
-        self.settings_window = GuakeSettingsWindow(builder)
+        self.settings_window = GuakeSettingsWindow(builder, application=self)
+
 
     def add_actions(self):
         for action_name in dir(guake.application.actions):
@@ -109,16 +105,24 @@ class GuakeApplication(Gtk.Application):
                 gio_action.connect("activate", getattr(self, action[1]))
                 self.add_action(gio_action)
 
-    def setup_keybindings(self):
+    def setup_keybindings_settings(self):
         self.keybindings = Gio.Settings(schema='org.guake.keybindings')
         self.keybindings.connect('changed', self.change_keybinding_handler)
-        return self.keybindings        
+        return self.keybindings
 
     def add_keybindings(self, giosettings, key=None):
         keys = [key] if key is not None else giosettings.keys()
         for key in keys:
-            self.add_accelerator(self.keybindings.get_string(key), 'app.%s' % key, None)
+            self.add_accelerator(
+                self.keybindings.get_string(key),
+                'app.%s' % key,
+                None
+            )
         return
+
+    def change_keybinding_handler(self, giosettings, key):
+        self.remove_accelerator('app.%s' % key, None)
+        self.add_keybindings(giosettings, key)
 
     def new_page_handler(self, *args):
         self.notebook.new_page_handler()
@@ -126,7 +130,5 @@ class GuakeApplication(Gtk.Application):
     def close_page_handler(self, *args):
         self.notebook.close_page_handler()
 
-    def change_keybinding_handler(self, giosettings, key):
-        self.remove_accelerator('app.%s' % key, None)
-        self.add_keybindings(giosettings, key)
-
+    def show_hide_handler(self, *args, **kwargs):
+        self.window.show_hide_handler(args, kwargs)
