@@ -38,7 +38,7 @@ from gi.repository import Gio
 from gi.repository import Gtk
 from gi.repository import Keybinder
 # pylint: enable=wrong-import-position,wrong-import-order,unused-import
-import guake.application.actions
+from guake.application.keybindings import GuakeKeybindingsRepository
 from guake.widgets.application_window import GuakeApplicationWindow
 from guake.widgets.settings.settings_window import GuakeSettingsWindow
 from guake.widgets.notebook import GuakeNotebook
@@ -70,8 +70,11 @@ class GuakeApplication(Gtk.Application):
 
     def do_startup(self):
         Gtk.Application.do_startup(self)
+        Keybinder.init()
+        self.keybinder = Keybinder
+        self.keybindings = GuakeKeybindingsRepository(self)
         self.add_actions()
-        self.add_keybindings(self.setup_keybindings_settings())
+        self.add_keybindings(self.keybindings)
 
     def do_command_line(self, command_line):
         options = command_line.get_options_dict()
@@ -80,7 +83,6 @@ class GuakeApplication(Gtk.Application):
         return 0
 
     def do_activate(self):
-        Keybinder.init()
         # TODO: create useful ui-loader
         datapath = "./data"
         appui = os.path.join(datapath, "ui", "app.ui")
@@ -96,28 +98,29 @@ class GuakeApplication(Gtk.Application):
         self.notebook = GuakeNotebook(builder)
         self.settings_window = GuakeSettingsWindow(builder, application=self)
 
-
     def add_actions(self):
-        for action_name in dir(guake.application.actions):
-            if action_name.endswith('_ACTION'):
-                action = getattr(guake.application.actions, action_name)
-                gio_action = Gio.SimpleAction.new(action[0], None)
-                gio_action.connect("activate", getattr(self, action[1]))
-                self.add_action(gio_action)
-
-    def setup_keybindings_settings(self):
-        self.keybindings = Gio.Settings(schema='org.guake.keybindings')
-        self.keybindings.connect('changed', self.change_keybinding_handler)
-        return self.keybindings
+        for action_dict in self.keybindings.application_actions:
+            gio_action = Gio.SimpleAction.new(action_dict['key'], None)
+            gio_action.connect("activate", getattr(self, action_dict['handler']))
+            self.add_action(gio_action)
 
     def add_keybindings(self, giosettings, key=None):
         keys = [key] if key is not None else giosettings.keys()
         for key in keys:
-            self.add_accelerator(
-                self.keybindings.get_string(key),
-                'app.%s' % key,
-                None
-            )
+            action_dict = giosettings.get_application_action(key)
+            if action_dict is None:
+                continue
+            if action_dict.get('global', False):
+                self.keybinder.bind(
+                    self.keybindings.get_string(key),
+                    getattr(self, action_dict['handler'])
+                )
+            else:
+                self.add_accelerator(
+                    self.keybindings.get_string(key),
+                    'app.%s' % key,
+                    None
+                )
         return
 
     def change_keybinding_handler(self, giosettings, key):

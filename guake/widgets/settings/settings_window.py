@@ -38,23 +38,35 @@ from guake.widgets.widget import GuakeWidget
 
 logger = logging.getLogger(__name__)
 
+
 class GuakeSettingsWindow(GuakeWidget, Gtk.ApplicationWindow):
 
     def __init__(self, gtkbuilder, application, *args, **kwargs):
         super().__init__(application, *args, **kwargs)
         self.set_application(application)
-        keyboard_shortcuts_store = Gtk.ListStore(str, str)
-        [keyboard_shortcuts_store.append([key, application.keybindings.get_string(key)]) for key in application.keybindings.keys()]
-        self.treeview = GuakeKeyboardShortcutsTreeView(gtkbuilder, application)
-        self.treeview.set_model(keyboard_shortcuts_store)
-        self.connect("delete_event", self.delete_handler)
+        self.prepare_keybindings_page(gtkbuilder)
+        self.connect_events()
         self.show_all()
 
+    def connect_events(self):
+        self.connect("delete_event", self.delete_handler)
+        return
 
+    def prepare_keybindings_page(self, gtkbuilder):
+        application = self.get_application()
+        kbs_model = Gtk.ListStore(str, str, str)
+        for act in application.keybindings.application_actions:
+
+            kbs_model.append([
+                act['key'],
+                application.keybindings.get_string(act['key']),
+                act['description'],
+            ])
+        treeview = GuakeKeyboardShortcutsTreeView(gtkbuilder, application)
+        treeview.set_model(kbs_model)
 
     def delete_handler(self, *args):
         return self.hide() or True
-
 
 
 class GuakeKeyboardShortcutsTreeView(GuakeWidget, Gtk.TreeView):
@@ -62,7 +74,7 @@ class GuakeKeyboardShortcutsTreeView(GuakeWidget, Gtk.TreeView):
     def __init__(self, gtkbuilder, application, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.application = application
-        self.append_column(Gtk.TreeViewColumn("Action", Gtk.CellRendererText(), text=0))
+        self.append_column(Gtk.TreeViewColumn("Action", Gtk.CellRendererText(), text=2))
         self.append_column(Gtk.TreeViewColumn("Shortcut", GuakeKeybindingRenderer(self), text=1))
 
     def get_application(self):
@@ -88,4 +100,3 @@ class GuakeKeybindingRenderer(Gtk.CellRendererAccel):
             model.set_value(model.get_iter(cell), 1, keybinding_value_new)
         except Exception as e:
             logger.error(traceback.format_exc())
-

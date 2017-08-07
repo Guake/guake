@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <schemalist>
   <schema path="/org/guake/keybindings/" id="org.guake.keybindings">
-    <key name="global-showhide" type="s">
+    <key name="showhide" type="s">
       <default><![CDATA['F2']]></default>
       <summary>Show or hide terminal</summary>
     </key>

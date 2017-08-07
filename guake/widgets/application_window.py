@@ -101,6 +101,8 @@ class GuakeApplicationWindow(GuakeWidget, Gtk.ApplicationWindow):
     def change_size_handler(self, widget, event):
         # got from
         # http://stackoverflow.com/questions/13638782/resize-borderless-window-with-vpaned-in-pythongtk3
+        import ipdb
+        ipdb.set_trace()
         if Gdk.ModifierType.BUTTON1_MASK & event.get_state() != 0:
             _, _, mouse_y = event.device.get_position()
             _, root_y = self.get_position()
