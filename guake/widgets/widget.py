@@ -1,6 +1,6 @@
 # -*- coding: utf-8; -*-
 """
-Copyright (C) 2007-2013 Guake authors
+Copyright (C) 2007-2017 Guake authors
 
 This program is free software; you can redistribute it and/or
 modify it under the terms of the GNU General Public License as
@@ -32,19 +32,3 @@ class GuakeWidget(object):
         assert instance is not None, "Gtk widget %s not found!" % cls.__name__
         instance.__class__ = cls
         return instance
-
-
-
-
-# class GuakeKeyHandler(object):
-
-#     def __init__(self, *args, **kwargs):
-#         keymap = kwargs.get("keymap", {})
-#         keybinder = kwargs.get("keybinder")
-#         assert bool(keybinder), "Keybinder not found!"
-#         self.bind_keys(keybinder, keymap)
-
-#     def bind_keys(self, binder, keymap):
-#         handlers = set(dir(self)) & set(keymap.keys())
-#         for handler_name in handlers:
-#             binder.bind(keymap[handler_name], self.__getattribute__(handler_name), None)

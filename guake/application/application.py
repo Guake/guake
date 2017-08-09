@@ -1,6 +1,6 @@
 # -*- coding: utf-8; -*-
 """
-Copyright (C) 2007-2013 Guake authors
+Copyright (C) 2007-2017 Guake authors
 
 This program is free software; you can redistribute it and/or
 modify it under the terms of the GNU General Public License as
@@ -42,6 +42,7 @@ from guake.application.keybindings import GuakeKeybindingsRepository
 from guake.widgets.application_window import GuakeApplicationWindow
 from guake.widgets.settings.settings_window import GuakeSettingsWindow
 from guake.widgets.notebook import GuakeNotebook
+from guake.widgets import GuakePopupMenu
 
 logger = logging.getLogger(__name__)
 
@@ -76,6 +77,20 @@ class GuakeApplication(Gtk.Application):
         self.add_actions()
         self.add_keybindings(self.keybindings)
 
+        datapath = "./data"
+        appui = os.path.join(datapath, "ui", "app.ui")
+        settingsui = os.path.join(datapath, "ui", "settings.ui")
+        menusui = os.path.join(datapath, "ui", "menus.ui")
+        self.builder = Gtk.Builder()
+        self.builder.add_from_file(appui)
+        self.builder.add_from_file(settingsui)
+        self.builder.add_from_file(menusui)
+        self.window = GuakeApplicationWindow(self.builder, application=self)
+        self.settings_window = GuakeSettingsWindow(self.builder, application=self)
+        self.notebook = GuakeNotebook(self.builder)
+        self.main_menu = GuakePopupMenu(self.builder)
+        self.builder.connect_signals(self)
+
     def do_command_line(self, command_line):
         options = command_line.get_options_dict()
         self.show_on_start = options.contains("show")
@@ -83,20 +98,7 @@ class GuakeApplication(Gtk.Application):
         return 0
 
     def do_activate(self):
-        # TODO: create useful ui-loader
-        datapath = "./data"
-        appui = os.path.join(datapath, "ui", "app.ui")
-        settingsui = os.path.join(datapath, "ui", "settings.ui")
-        builder = Gtk.Builder()
-        builder.add_from_file(appui)
-        builder.add_from_file(settingsui)
-        self.window = GuakeApplicationWindow(
-            builder,
-            application=self,
-            visible=self.show_on_start,
-        )
-        self.notebook = GuakeNotebook(builder)
-        self.settings_window = GuakeSettingsWindow(builder, application=self)
+        self.window.visible = self.show_on_start
 
     def add_actions(self):
         for action_dict in self.keybindings.application_actions:
@@ -135,3 +137,6 @@ class GuakeApplication(Gtk.Application):
 
     def show_hide_handler(self, *args, **kwargs):
         self.window.show_hide_handler(args, kwargs)
+
+    def settings_handler(self, *args, **kwargs):
+        self.settings_window.show_all()

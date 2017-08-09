@@ -1,6 +1,6 @@
 # -*- coding: utf-8; -*-
 """
-Copyright (C) 2007-2013 Guake authors
+Copyright (C) 2007-2017 Guake authors
 
 This program is free software; you can redistribute it and/or
 modify it under the terms of the GNU General Public License as
@@ -51,8 +51,7 @@ class GuakeApplicationWindow(GuakeWidget, Gtk.ApplicationWindow):
         self.gtkbuilder = gtkbuilder
         self.resizer = gtkbuilder.get_object("GuakeResizer")
         self.resizer.connect("motion-notify-event", self.change_size_handler)
-        self.connect("button-press-event", self.right_button_handler)
-        self.visible = kwargs.get("visible", False)
+        self.connect("button-press-event", self.button_press_handler)
 
     @property
     def visible(self):
@@ -101,8 +100,6 @@ class GuakeApplicationWindow(GuakeWidget, Gtk.ApplicationWindow):
     def change_size_handler(self, widget, event):
         # got from
         # http://stackoverflow.com/questions/13638782/resize-borderless-window-with-vpaned-in-pythongtk3
-        import ipdb
-        ipdb.set_trace()
         if Gdk.ModifierType.BUTTON1_MASK & event.get_state() != 0:
             _, _, mouse_y = event.device.get_position()
             _, root_y = self.get_position()
@@ -111,8 +108,9 @@ class GuakeApplicationWindow(GuakeWidget, Gtk.ApplicationWindow):
                 self.resize(self.get_allocation().width, new_height)
                 self.show_all()
 
-    def right_button_handler(self, widget, event):
+    def button_press_handler(self, widget, event):
         if not event.button == 3:
             return
         application = self.get_application()
-        application.settings_window.show_all()
+        # application.settings_window.show_all()
+        application.main_menu.popup_at_pointer()

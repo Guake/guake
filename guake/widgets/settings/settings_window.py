@@ -1,6 +1,6 @@
 # -*- coding: utf-8; -*-
 """
-Copyright (C) 2007-2013 Guake authors
+Copyright (C) 2007-2017 Guake authors
 
 This program is free software; you can redistribute it and/or
 modify it under the terms of the GNU General Public License as
@@ -46,7 +46,6 @@ class GuakeSettingsWindow(GuakeWidget, Gtk.ApplicationWindow):
         self.set_application(application)
         self.prepare_keybindings_page(gtkbuilder)
         self.connect_events()
-        self.show_all()
 
     def connect_events(self):
         self.connect("delete_event", self.delete_handler)
