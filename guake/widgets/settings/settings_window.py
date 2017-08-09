@@ -1,6 +1,6 @@
 # -*- coding: utf-8; -*-
 """
-Copyright (C) 2007-2013 Guake authors
+Copyright (C) 2007-2017 Guake authors
 
 This program is free software; you can redistribute it and/or
 modify it under the terms of the GNU General Public License as
@@ -23,6 +23,7 @@ from __future__ import print_function
 from __future__ import unicode_literals
 
 import logging
+import traceback
 
 # pylint: disable=wrong-import-position,wrong-import-order,unused-import
 from guake import gi
@@ -37,28 +38,64 @@ from guake.widgets.widget import GuakeWidget
 
 logger = logging.getLogger(__name__)
 
-class GuakeSettingsWindow(GuakeWidget, Gtk.Window):
 
-    def __init__(self, gtkbuilder, *args, **kwargs):
+class GuakeSettingsWindow(GuakeWidget, Gtk.ApplicationWindow):
+
+    def __init__(self, gtkbuilder, application, *args, **kwargs):
+        super().__init__(application, *args, **kwargs)
+        self.set_application(application)
+        self.prepare_keybindings_page(gtkbuilder)
+        self.connect_events()
+
+    def connect_events(self):
         self.connect("delete_event", self.delete_handler)
+        return
 
-        keyboard_shortcuts_store = Gtk.ListStore(str, str)
-        keyboard_shortcuts_store.append(["Show\hide", "F2"])
-        keyboard_shortcuts_store.append(["New tab", "<Ctrl>E"])
+    def prepare_keybindings_page(self, gtkbuilder):
+        application = self.get_application()
+        kbs_model = Gtk.ListStore(str, str, str)
+        for act in application.keybindings.application_actions:
 
-        self.treeview = GuakeKeyboardShortcutsTreeView(gtkbuilder)
-        self.treeview.set_model(keyboard_shortcuts_store)
-
-
+            kbs_model.append([
+                act['key'],
+                application.keybindings.get_string(act['key']),
+                act['description'],
+            ])
+        treeview = GuakeKeyboardShortcutsTreeView(gtkbuilder, application)
+        treeview.set_model(kbs_model)
 
     def delete_handler(self, *args):
         return self.hide() or True
 
 
-
 class GuakeKeyboardShortcutsTreeView(GuakeWidget, Gtk.TreeView):
 
-    def __init__(self, gtkbuilder, *args, **kwargs):
-        self.append_column(Gtk.TreeViewColumn("Action", Gtk.CellRendererText(), text=0))
-        self.append_column(Gtk.TreeViewColumn("Shortcut", Gtk.CellRendererAccel(), text=1))
+    def __init__(self, gtkbuilder, application, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.application = application
+        self.append_column(Gtk.TreeViewColumn("Action", Gtk.CellRendererText(), text=2))
+        self.append_column(Gtk.TreeViewColumn("Shortcut", GuakeKeybindingRenderer(self), text=1))
 
+    def get_application(self):
+        return self.application
+
+
+class GuakeKeybindingRenderer(Gtk.CellRendererAccel):
+
+    def __init__(self, treeview, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.treeview = treeview
+        self.props.editable = True
+        self.connect("accel-edited", self.accel_edited_handler)
+
+    def accel_edited_handler(self, renderer, cell, keycode, modifier, hardcode):
+        application = self.treeview.get_application()
+        model = self.treeview.get_model()
+        cell_iterator = model.get_iter(cell)
+        keybinding_name, keybinding_value = model.get_value(cell_iterator, 0), model.get_value(cell_iterator, 1)
+        keybinding_value_new = Gtk.accelerator_name(keycode, modifier)
+        try:
+            application.keybindings.set_string(keybinding_name, keybinding_value_new)
+            model.set_value(model.get_iter(cell), 1, keybinding_value_new)
+        except Exception as e:
+            logger.error(traceback.format_exc())

@@ -22,23 +22,24 @@ from __future__ import division
 from __future__ import print_function
 from __future__ import unicode_literals
 
-import logging
-import signal
-import sys
+# pylint: disable=wrong-import-position,wrong-import-order,unused-import
+from guake import gi
 
-from guake.application import GuakeApplication
-from guake.application import guakeInit
-
-
-logger = logging.getLogger(__name__)
+assert gi  # hack to "use" the import so pep8/pyflakes are happy
+from gi.repository import Gio
+# pylint: enable=wrong-import-position,wrong-import-order,unused-import
+from guake.application.actions import actions as application_actions
 
 
-def main():
-    guakeInit()
-    app = GuakeApplication()
-    signal.signal(signal.SIGINT, signal.SIG_DFL)
-    app.run(sys.argv)
+class GuakeKeybindingsRepository(Gio.Settings):
+    application_actions = application_actions
 
+    def __init__(self, application):
+        super().__init__(schema='org.guake.keybindings')
+        self.connect('changed', application.change_keybinding_handler)
 
-if __name__ == '__main__':
-    main()
+    def get_application_action(self, key):
+        for action_dict in self.application_actions:
+            if key == action_dict['key']:
+                return action_dict
+        return None

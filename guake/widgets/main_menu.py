@@ -23,22 +23,16 @@ from __future__ import print_function
 from __future__ import unicode_literals
 
 import logging
-import signal
-import sys
+# pylint: disable=wrong-import-position,wrong-import-order,unused-import
+from guake import gi
+assert gi  # hack to "use" the import so pep8/pyflakes are happy
 
-from guake.application import GuakeApplication
-from guake.application import guakeInit
-
+from gi.repository import Gtk
+# pylint: enable=wrong-import-position,wrong-import-order,unused-import
+from guake.widgets.widget import GuakeWidget
 
 logger = logging.getLogger(__name__)
 
 
-def main():
-    guakeInit()
-    app = GuakeApplication()
-    signal.signal(signal.SIGINT, signal.SIG_DFL)
-    app.run(sys.argv)
-
-
-if __name__ == '__main__':
-    main()
+class GuakePopupMenu(GuakeWidget, Gtk.Menu):
+    pass

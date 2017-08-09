@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schemalist>
+  <schema path="/org/guake/keybindings/" id="org.guake.keybindings">
+    <key name="showhide" type="s">
+      <default><![CDATA['F2']]></default>
+      <summary>Show or hide terminal</summary>
+    </key>
+
+
+    <key name="newpage" type="s">
+      <default><![CDATA['<Primary>e']]></default>
+      <summary>Open new tab</summary>
+    </key>
+
+    <key name="closepage" type="s">
+      <default><![CDATA['<Primary>q']]></default>
+      <summary>Close current tab</summary>
+    </key>
+
+  </schema>
+</schemalist>

@@ -1,6 +1,6 @@
 # -*- coding: utf-8; -*-
 """
-Copyright (C) 2007-2013 Guake authors
+Copyright (C) 2007-2017 Guake authors
 
 This program is free software; you can redistribute it and/or
 modify it under the terms of the GNU General Public License as
@@ -33,28 +33,25 @@ from gi.repository import Gtk
 # pylint: enable=wrong-import-position,wrong-import-order,unused-import
 
 from guake.widgets.notebook import GuakeNotebook
-from guake.widgets.widget import GuakeWidget, GuakeKeyHandler
+from guake.widgets.widget import GuakeWidget
 
 
 logger = logging.getLogger(__name__)
 
 
-class GuakeApplicationWindow(GuakeWidget, GuakeKeyHandler, Gtk.ApplicationWindow):
+class GuakeApplicationWindow(GuakeWidget, Gtk.ApplicationWindow):
 
     _visible = False
 
-    def __init__(self, gtkbuilder, *args, **kwargs):
-        super().__init__(self, *args, **kwargs)
-        app = kwargs.get("application")
-        if app is not None:
-            self.set_application(app)
+    def __init__(self, gtkbuilder, application, *args, **kwargs):
+        super().__init__(self, application, *args, **kwargs)
+        self.set_application(application)
         self._set_window_position()
         self._set_window_size()
         self.gtkbuilder = gtkbuilder
         self.resizer = gtkbuilder.get_object("GuakeResizer")
         self.resizer.connect("motion-notify-event", self.change_size_handler)
-        self.connect("button-press-event", self.right_button_handler)
-        self.visible = kwargs.get("visible", False)
+        self.connect("button-press-event", self.button_press_handler)
 
     @property
     def visible(self):
@@ -70,9 +67,6 @@ class GuakeApplicationWindow(GuakeWidget, GuakeKeyHandler, Gtk.ApplicationWindow
             return
         self.hide()
         return
-    
-    def set_settings_window(self, window):
-        self.settings_window = window
 
     def _select_screen(self):
         # TODO: get tagret screen from settings
@@ -114,7 +108,9 @@ class GuakeApplicationWindow(GuakeWidget, GuakeKeyHandler, Gtk.ApplicationWindow
                 self.resize(self.get_allocation().width, new_height)
                 self.show_all()
 
-    def right_button_handler(self, widget, event):
+    def button_press_handler(self, widget, event):
         if not event.button == 3:
             return
-        self.settings_window.show_all()
+        application = self.get_application()
+        # application.settings_window.show_all()
+        application.main_menu.popup_at_pointer()
