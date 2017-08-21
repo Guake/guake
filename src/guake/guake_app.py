@@ -711,8 +711,8 @@ class Guake(SimpleGladeApp):
             self.selected_tab = target
             menu = self.get_widget('tab-menu')
             menu.popup(None, None, None, 3, event.get_time())
-        
-        """This may looks like it could be refactored by just calling self.set_terminal_focus()
+
+        """This may look like it could be refactored by just calling self.set_terminal_focus()
         but self.set_terminal_focus() calls self.get_selected_tab() which overrides the
         value of self.selected_tab
         """
