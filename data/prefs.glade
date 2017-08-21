@@ -212,38 +212,6 @@
 				  <property name="column_spacing">0</property>
 
 				  <child>
-				    <widget class="GtkEntry" id="startup_script">
-				      <property name="visible">True</property>
-				      <property name="tooltip" translatable="yes">Path to a bash script that would be automatically executed when Guake starts, unless you specify --no-startup-script.
-
-This would typically use the configuration by command line feature of Guake:
-
-#!/bin/bash
-
-sleep 5  # it is advised to wait a bit before Guake has been successfully started
-
-guake -r &quot;main&quot; -e &quot;cd ~/projects/myproject/main&quot;
-guake -r &quot;prod&quot; -e &quot;cd ~/projects/myproject/prod&quot;
-</property>
-				      <property name="can_focus">True</property>
-				      <property name="editable">True</property>
-				      <property name="visibility">True</property>
-				      <property name="max_length">0</property>
-				      <property name="text" translatable="yes"></property>
-				      <property name="has_frame">True</property>
-				      <property name="invisible_char">•</property>
-				      <property name="activates_default">False</property>
-				      <signal name="changed" handler="on_startup_script_changed"/>
-				    </widget>
-				    <packing>
-				      <property name="left_attach">1</property>
-				      <property name="right_attach">2</property>
-				      <property name="top_attach">3</property>
-				      <property name="bottom_attach">4</property>
-				    </packing>
-				  </child>
-
-				  <child>
 				    <widget class="GtkCheckButton" id="use_popup">
 				      <property name="visible">True</property>
 				      <property name="can_focus">True</property>
@@ -349,33 +317,7 @@ guake -r &quot;prod&quot; -e &quot;cd ~/projects/myproject/prod&quot;
 				    </packing>
 				  </child>
 
-				  <child>
-				    <widget class="GtkLabel" id="lbl_startup_script">
-				      <property name="width_request">160</property>
-				      <property name="visible">True</property>
-				      <property name="label" translatable="yes">Path to script executed on Guake start:</property>
-				      <property name="use_underline">False</property>
-				      <property name="use_markup">True</property>
-				      <property name="justify">GTK_JUSTIFY_LEFT</property>
-				      <property name="wrap">False</property>
-				      <property name="selectable">False</property>
-				      <property name="xalign">0</property>
-				      <property name="yalign">0.5</property>
-				      <property name="xpad">0</property>
-				      <property name="ypad">0</property>
-				      <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
-				      <property name="width_chars">-1</property>
-				      <property name="single_line_mode">True</property>
-				      <property name="angle">0</property>
-				    </widget>
-				    <packing>
-				      <property name="left_attach">1</property>
-				      <property name="right_attach">2</property>
-				      <property name="top_attach">2</property>
-				      <property name="bottom_attach">3</property>
-				    </packing>
-				  </child>
-
+				 
 				  <child>
 				    <widget class="GtkHBox" id="hbox1">
 				      <property name="visible">True</property>
@@ -3972,6 +3914,68 @@ For details, see https://github.com/Guake/guake/issues/793</property>
 					      <property name="y_options"></property>
 					    </packing>
 					  </child>
+					   
+					  <child>
+					    <widget class="GtkEntry" id="startup_script">
+					      <property name="visible">True</property>
+					      <property name="tooltip" translatable="yes">Path to a bash script that would be automatically executed when Guake starts, unless you specify --no-startup-script.
+
+This would typically use the configuration by command line feature of Guake:
+
+#!/bin/bash
+
+sleep 5  # it is advised to wait a bit before Guake has been successfully started
+
+guake -r &quot;main&quot; -e &quot;cd ~/projects/myproject/main&quot;
+guake -r &quot;prod&quot; -e &quot;cd ~/projects/myproject/prod&quot;
+</property>
+					      <property name="can_focus">True</property>
+					      <property name="editable">True</property>
+					      <property name="visibility">True</property>
+					      <property name="max_length">0</property>
+					      <property name="text" translatable="yes"></property>
+					      <property name="has_frame">True</property>
+					      <property name="invisible_char">•</property>
+					      <property name="activates_default">False</property>
+					      <signal name="changed" handler="on_startup_script_changed"/>
+					    </widget>
+					    <packing>
+					      <property name="left_attach">1</property>
+					      <property name="right_attach">2</property>
+					      <property name="top_attach">1</property>
+					      <property name="bottom_attach">2</property>
+					    </packing>
+					  </child>
+					    
+					  <child>
+					    <widget class="GtkLabel" id="lbl_startup_script">
+					      <property name="width_request">160</property>
+					      <property name="visible">True</property>
+                          <property name="label" translatable="yes">On start:</property>
+					      <property name="use_underline">False</property>
+					      <property name="use_markup">True</property>
+					      <property name="justify">GTK_JUSTIFY_LEFT</property>
+					      <property name="wrap">False</property>
+					      <property name="selectable">False</property>
+					      <property name="xalign">0</property>
+					      <property name="yalign">0.5</property>
+					      <property name="xpad">10</property>
+					      <property name="ypad">10</property>
+					      <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
+					      <property name="width_chars">-1</property>
+					      <property name="single_line_mode">False</property>
+					      <property name="angle">0</property>
+					    </widget>
+					   <packing>
+					      <property name="left_attach">0</property>
+					      <property name="right_attach">1</property>
+					      <property name="top_attach">1</property>
+					      <property name="bottom_attach">2</property>
+					      <property name="x_options">fill</property>
+					      <property name="y_options"></property>
+					    </packing>
+					  </child>
+					  
 					</widget>
 					<packing>
 					  <property name="padding">0</property>
