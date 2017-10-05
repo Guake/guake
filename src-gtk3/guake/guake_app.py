@@ -583,10 +583,6 @@ class Guake(SimpleGladeApp):
                     t.set_background_transparent(False)
                 else:
                     t.set_background_transparent(True)
-                    
-    
-    
-    
     
     
     #TODO PORT this is DEAD code vte remoted vte.terminal.set_background_image_file without any replacement
@@ -715,8 +711,9 @@ class Guake(SimpleGladeApp):
         """Show the tray icon menu.
         """
         menu = self.get_widget('tray-menu')
-        menu.popup(None, None, gtk.status_icon_position_menu,
-                   button, activate_time, status_icon)
+        
+        menu.popup(None, None, None, Gtk.StatusIcon.position_menu, button, activate_time)
+        
 
     def show_context_menu(self, terminal, event):
         """Show the context menu, only with a right click on a vte
@@ -726,12 +723,13 @@ class Guake(SimpleGladeApp):
             return False
 
         self.showing_context_menu = True
-
-        guake_clipboard = gtk.clipboard_get()
-        if not guake_clipboard.wait_is_text_available():
-            self.get_widget('context_paste').set_sensitive(False)
-        else:
-            self.get_widget('context_paste').set_sensitive(True)
+        
+        #TODO PORT port to gtk3 keyboard
+        #guake_clipboard = gtk.clipboard_get()
+        #if not guake_clipboard.wait_is_text_available():
+        #    self.get_widget('context_paste').set_sensitive(False)
+        #else:
+        #    self.get_widget('context_paste').set_sensitive(True)
 
         current_selection = ''
         current_term = self.notebook.get_current_terminal()
@@ -769,7 +767,7 @@ class Guake(SimpleGladeApp):
             self.get_widget('context_browse_on_web').set_visible(False)
 
         context_menu = self.get_widget('context-menu')
-        context_menu.popup(None, None, None, 3, gtk.get_current_event_time())
+        context_menu.popup(None, None, None, None, 3, event.get_time())
         return True
 
     def show_rename_current_tab_dialog(self, target, event):
@@ -790,7 +788,7 @@ class Guake(SimpleGladeApp):
             self.showing_context_menu = True
             self.selected_tab = target
             menu = self.get_widget('tab-menu')
-            menu.popup(None, None, None, 3, event.get_time())
+            menu.popup(None, None, None, None, 3, event.get_time())
 
         """This may look like it could be refactored by just calling self.set_terminal_focus()
         but self.set_terminal_focus() calls self.get_selected_tab() which overrides the
