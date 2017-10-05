@@ -583,7 +583,13 @@ class Guake(SimpleGladeApp):
                     t.set_background_transparent(False)
                 else:
                     t.set_background_transparent(True)
-
+                    
+    
+    
+    
+    
+    
+    #TODO PORT this is DEAD code vte remoted vte.terminal.set_background_image_file without any replacement
     def set_bg_image(self, image, tab=None):
         """Set the background image of `tab' or the current tab to `bgcolor'."""
         if not self.notebook.has_term():
@@ -600,7 +606,9 @@ class Guake(SimpleGladeApp):
             self.add_tab()
         index = tab or self.notebook.get_current_page()
         for terminal in self.notebook.get_terminals_for_tab(index):
-            terminal.custom_bgcolor = gtk.gdk.color_parse(bgcolor)
+            color = Gdk.RGBA(0,0,0,0)
+            color.parse(bgcolor)
+            terminal.set_color_background(color)
 
     def set_fgcolor(self, fgcolor, tab=None):
         """Set the foreground color of `tab' or the current tab to `fgcolor'."""
@@ -608,7 +616,9 @@ class Guake(SimpleGladeApp):
             self.add_tab()
         index = tab or self.notebook.get_current_page()
         for terminal in self.notebook.get_terminals_for_tab(index):
-            terminal.custom_fgcolor = gtk.gdk.color_parse(fgcolor)
+            color = Gdk.RGBA(0,0,0,0)
+            color.parse(fgcolor)
+            terminal.set_color_foreground(color)
 
     def execute_command(self, command, tab=None):
         """Execute the `command' in the `tab'. If tab is None, the
@@ -625,7 +635,7 @@ class Guake(SimpleGladeApp):
         index = self.notebook.get_current_page()
         index = tab or self.notebook.get_current_page()
         for terminal in self.notebook.get_terminals_for_tab(index):
-            terminal.feed_child(command)
+            terminal.feed_child(command, len(command))
             break
 
     def execute_command_by_uuid(self, tab_uuid, command):
@@ -694,11 +704,10 @@ class Guake(SimpleGladeApp):
         if self.preventHide:
             return
 
-        value = self.client.get_bool(KEY('/general/window_losefocus'))
+        value = self.settings.general.get_boolean('window-losefocus')
         visible = window.get_property('visible')
         if visible:
-            self.losefocus_time = gtk.gdk.x11_get_server_time(
-                self.window.window)
+            self.losefocus_time = GdkX11.x11_get_server_time(self.window.get_window())
             if value:
                 self.hide()
 
@@ -951,7 +960,8 @@ class Guake(SimpleGladeApp):
 
         try:
             # does it work in other gtk backends
-            time = GdkX11.x11_get_server_time(self.window.window)
+            #help(self.window.get_window())
+            time = GdkX11.x11_get_server_time(self.window.get_window())
         except AttributeError:
             time = 0
 
@@ -1707,7 +1717,7 @@ class Guake(SimpleGladeApp):
         if active_terminal:
             active_pid = active_terminal.get_pid()
             if active_pid:
-                cwd = os.readlink("/proc/{0}/cwd".format(active_pid))
+                cwd = os.readlink("/proc/{0}/cwd".format(active_pid.child_pid))
                 if os.path.exists(cwd):
                     directory = cwd
         return directory

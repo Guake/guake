@@ -29,25 +29,25 @@ TODO
 
 - port all cli options
 - - --version
-- - --show
-- - --hide
-- - -f
-- - -t
+- - --show ✓
+- - --hide ✓
+- - -f ✓
+- - -t ✓
 - - -p
 - - -a
-- - -n
-- - -s
-- - -g
-- - -l
-- - -e
-- - -i
-- - --bgimg
-- - --bgcolor
-- - --fgcolor
-- - --rename-tab
-- - -r
-- - --rename-current-tab
-- - -q
+- - -n ✓
+- - -s ✓
+- - -g ✓
+- - -l ✓
+- - -e ✓
+- - -i ✓
+- - --bgimg (this option is removed from vte)
+- - --bgcolor ✓
+- - --fgcolor ✓
+- - --rename-tab ✓
+- - -r ✓
+- - --rename-current-tab ✓
+- - -q ✓
 - - -u
 
 - port dbus

@@ -323,7 +323,7 @@ class SimpleGladeApp(object):
         For example, applications based on gstreamer needs to override
         this method with gst.main_quit()
         """
-        gtk.main_quit()
+        Gtk.main_quit()
 
     def run(self):
         """

@@ -237,6 +237,14 @@ def main():
     if options.show_about:
         remote_object.show_about()
         only_show_hide = False
+    
+    if options.quit:
+        try:
+            remote_object.quit()
+            return True
+        except dbus.DBusException:
+            return True
+
 
     if already_running and only_show_hide:
         # here we know that guake was called without any parameter and
