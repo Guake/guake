@@ -23,7 +23,8 @@ from __future__ import print_function
 from __future__ import unicode_literals
 
 from gi.repository import Gio
-
+print("lölölölöll")
+input()
 
 class DconfHandler(object):
     GSETTINGS_NAMES = {

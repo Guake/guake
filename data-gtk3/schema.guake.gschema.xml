@@ -45,7 +45,7 @@
             <summary>Prompt when quitting.</summary>
             <description>Ask for confirmation when quitting Guake.</description>
         </key>
-        <key name="prompt-on-close-Tab" type="i">
+        <key name="prompt-on-close-tab" type="i">
             <default>0</default>
             <summary>Prompt when closing tabs.</summary>
             <description>0: Never 1: If process is running 2: Always.  Also prompts on quit.</description>
@@ -199,6 +199,16 @@
             <default>'~/.config/guake/custom_command.json'</default>
             <summary>Path to the default custom command json file.</summary>
             <description>Path to the default custom command json file. If is blank or the json file is not in a proper format the terminal context menu will be built without custom commands. If the file is a valid json with recognized structure theterminak context menu will be buit with the commands read inside.</description>
+        </key>
+        <key name="open-tab-cwd" type="b">
+            <default>true</default>
+            <summary>Open new tab in the current working directory</summary>
+            <description>Open new tab in the current working directory</description>
+        </key>
+         <key name="max-tab-name-length" type="i">
+            <default>100</default>
+            <summary>#TODO PORT max-tab-name-length</summary>
+            <description>#TODO PORT max-tab-name-length</description>
         </key>
     </schema>
     <schema id="guake.style" path="/apps/guake/style/">

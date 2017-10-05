@@ -24,6 +24,10 @@ from __future__ import print_function
 from __future__ import unicode_literals
 
 import os
+import gi
+
+gi.require_version('Gtk', '3.0')
+gi.require_version('Vte', '2.91') 
 
 from gi.repository import GLib
 from gi.repository import Gtk
@@ -40,7 +44,9 @@ class MyWindow(Gtk.Window):
         Gtk.Window.__init__(self, title="Hello World")
 
         terminal = Terminal()
-        terminal.fork_command_full(
+        
+        help(terminal) 
+        terminal.spawn_sync(
             Vte.PtyFlags.DEFAULT,
             os.environ['HOME'],
             ["/bin/bash"],

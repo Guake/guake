@@ -1,6 +1,6 @@
-=================
-Guake README file
-=================
+====================
+Guake 3! README file
+====================
 
 |travis-badge|_ |bountysource-badge|_
 
@@ -17,6 +17,60 @@ Guake is a dropdown terminal made for the GNOME desktop environment. Guake's sty
 an FPS game, and one of its goals is to be easy to reach.
 
 Guake is mostly written in Python and has a little piece in C (https://github.com/engla/keybinder). The source code is placed in the ``guake`` directory. Files and images are in the ``data`` directory. Translation files are in the ``po`` directory.
+
+What is this?
+-------------
+
+This is 3!, a port of Guake to use python3, Gtk3 and Vte 2.90!
+
+
+TODO
+----
+
+- port all cli options
+- - --version
+- - --show
+- - --hide
+- - -f
+- - -t
+- - -p
+- - -a
+- - -n
+- - -s
+- - -g
+- - -l
+- - -e
+- - -i
+- - --bgimg
+- - --bgcolor
+- - --fgcolor
+- - --rename-tab
+- - -r
+- - --rename-current-tab
+- - -q
+- - -u
+
+- port dbus
+- port the context menu of the terminal
+- - ...
+- port the context menu of the tab bar
+- - ...
+- port the scrollbar of the terminal
+- port the keyboard shortcuts
+- - ...
+- port the pref screen
+- - ...
+- port about screen
+- port pattern matching
+- add more stuff to this list
+- port install stuff
+- ...
+
+There is stil lots of work to do. The first commit on this branch only gets guake up with one tab open.
+
+This is still to do:
+
+-  
 
 Features
 --------
@@ -243,7 +297,7 @@ Development
 ~~~~~~~~~~~
 
 Update translation
------------------
+------------------
 
 First update all translation files::
 

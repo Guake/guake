@@ -18,9 +18,6 @@ Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor,
 Boston, MA 02110-1301 USA
 """
 from __future__ import absolute_import
-from __future__ import division
-from __future__ import print_function
-from __future__ import unicode_literals
 
 import dbus
 import dbus.glib
@@ -69,7 +66,7 @@ class DbusManager(dbus.service.Object):
 
     @dbus.service.method(DBUS_NAME, in_signature='s')
     def add_tab(self, directory=''):
-        self.guake.add_tab(directory)
+        return self.guake.add_tab(directory)
 
     @dbus.service.method(DBUS_NAME, in_signature='i')
     def select_tab(self, tab_index=0):
@@ -88,6 +85,10 @@ class DbusManager(dbus.service.Object):
         return len(self.guake.notebook.term_list)
 
     @dbus.service.method(DBUS_NAME, in_signature='s')
+    def set_bg_image(self, bgcolor):
+        self.guake.set_bg_image(bgcolor)
+
+    @dbus.service.method(DBUS_NAME, in_signature='s')
     def set_bgcolor(self, bgcolor):
         self.guake.set_bgcolor(bgcolor)
 
@@ -102,6 +103,10 @@ class DbusManager(dbus.service.Object):
     @dbus.service.method(DBUS_NAME, in_signature='i', out_signature='s')
     def get_tab_name(self, tab_index=0):
         return self.guake.notebook.term_list[int(tab_index)].get_window_title() or ''
+
+    @dbus.service.method(DBUS_NAME, in_signature='ss')
+    def rename_tab_uuid(self, tab_uuid, new_text):
+        self.guake.rename_tab_uuid(tab_uuid, new_text)
 
     @dbus.service.method(DBUS_NAME, in_signature='is')
     def rename_tab(self, tab_index, new_text):
@@ -127,19 +132,10 @@ class DbusManager(dbus.service.Object):
     def get_gtktab_name(self, tab_index=0):
         return self.guake.tabs.get_children()[tab_index].get_label()
 
+    @dbus.service.method(DBUS_NAME, out_signature='s')
+    def get_selected_uuidtab(self):
+        return self.guake.get_selected_uuidtab()
 
-def createDbusRemote(instanceCreator):
-    # Trying to get an already running instance of guake. If it is not
-    # possible, lets create a new instance. This function will return
-    # a boolean value depending on this decision.
-    print("heho")
-    try:
-        bus = dbus.SessionBus()
-        remote_object = bus.get_object(DBUS_NAME, DBUS_PATH)
-        remote_object.already_running = True
-    except dbus.DBusException:
-        print("creating instance")
-        instance = instanceCreator()
-        remote_object = DbusManager(instance)
-        remote_object.already_running = False
-    return remote_object
+    @dbus.service.method(DBUS_NAME, in_signature='ss')
+    def execute_command_by_uuid(self, tab_uuid, command):
+        self.guake.execute_command_by_uuid(tab_uuid, command)
