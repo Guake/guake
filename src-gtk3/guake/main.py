@@ -250,7 +250,8 @@ def main():
         # here we know that guake was called without any parameter and
         # it is already running, so, lets toggle its visibility.
         remote_object.show_hide()
-        
+    
+    #TODO PORT remove the next line it only for testing...    
     remote_object.show_hide()
 
     if options.execute_startup_script:

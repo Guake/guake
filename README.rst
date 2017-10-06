@@ -34,7 +34,7 @@ TODO
 - - -f ✓
 - - -t ✓
 - - -p
-- - -a
+- - -a ✓
 - - -n ✓
 - - -s ✓
 - - -g ✓
@@ -63,7 +63,7 @@ TODO
 - - - close tab ✓
 - - - rename terminal ✓
 - - - preferences (sill open need porting of the pref window first)
-- - - about(sill open need porting of the about window first)
+- - - about✓
 - - - quit ✓
 - port the context menu of the tab bar
 - - show ✓
@@ -72,7 +72,7 @@ TODO
 - - show ✓
 - - click actions ✓
 - - - preferences (sill open need porting of the pref window first)
-- - - about(sill open need porting of the about window first)
+- - - about ✓
 - - - quit ✓
 - port the scrollbar of the terminal
 - port the resizer ✓
@@ -88,7 +88,7 @@ TODO
 - port the pref screen
 - - ...
 - update the glade files (remove deprecated objects)
-- port about screen
+- port about screen ✓
 - port pattern matching
 - add more stuff to this list
 - port install stuff
@@ -98,6 +98,16 @@ TODO
 
 There is stil lots of work to do. The first commit on this branch only gets guake up with one tab open.
 
+
+Dev Tools
+---------
+- run guake3 from a terminal "./dev-gtk3.sh; kill %" this is needed since sig handler are not yet setup
+- rebuild the gsettings schema "glib-compile-schemas data-gtk3/"
+
+WONTFIX
+-------
+
+- --bgimg (this option is removed from vte)
 
 Features
 --------

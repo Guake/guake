@@ -107,7 +107,9 @@ class SimpleGladeApp(object):
         #self.builder.connect_signals(self.custom_handler)
 
         if root:
-            self.main_widget = builder.get_object("window-root")
+            #TODO PORT remove the next line is not needed Guake shuold not pass an root parameter this would mess stuff up
+            #self.main_widget = self.builder.get_object("window-root")
+            self.main_widget = self.builder.get_object(root)
             self.main_widget.show_all()
         else:
             self.main_widget = None
