@@ -140,8 +140,8 @@ class PromptQuitDialog(Gtk.MessageDialog):
     def __init__(self, parent, procs, tabs):
         super(PromptQuitDialog, self).__init__(
             parent,
-            gtk.DIALOG_MODAL | gtk.DIALOG_DESTROY_WITH_PARENT,
-            gtk.MESSAGE_QUESTION, gtk.BUTTONS_YES_NO)
+            Gtk.DialogFlags.MODAL | Gtk.DialogFlags.DESTROY_WITH_PARENT,
+            Gtk.MessageType.QUESTION, Gtk.ButtonsType.YES_NO)
 
         if tabs == -1:
             primary_msg = _("Do you want to close the tab?")
@@ -726,17 +726,17 @@ class Guake(SimpleGladeApp):
         self.showing_context_menu = True
         
         #TODO PORT port to gtk3 keyboard
-        #guake_clipboard = gtk.clipboard_get()
-        #if not guake_clipboard.wait_is_text_available():
-        #    self.get_widget('context_paste').set_sensitive(False)
-        #else:
-        #    self.get_widget('context_paste').set_sensitive(True)
+        guake_clipboard = Gtk.Clipboard.get_default(self.window.get_display())
+        if not guake_clipboard.wait_is_text_available():
+            self.get_widget('context_paste').set_sensitive(False)
+        else:
+            self.get_widget('context_paste').set_sensitive(True)
 
         current_selection = ''
         current_term = self.notebook.get_current_terminal()
         if current_term.get_has_selection():
             current_term.copy_clipboard()
-            guake_clipboard = gtk.clipboard_get()
+            guake_clipboard = Gtk.Clipboard.get_default(self.window.get_display())
             current_selection = guake_clipboard.wait_for_text()
             if current_selection:
                 current_selection.rstrip()
@@ -1258,7 +1258,7 @@ class Guake(SimpleGladeApp):
         if self.prompt_dialog is not None:
             self.prompt_dialog.destroy()
         self.prompt_dialog = PromptQuitDialog(self.window, procs, tab)
-        response = self.prompt_dialog.run() == gtk.RESPONSE_YES
+        response = self.prompt_dialog.run() == Gtk.ResponseType.YES
         self.prompt_dialog.destroy()
         self.prompt_dialog = None
         # Keep Guake focussed after dismissing tab-close prompt
@@ -1271,14 +1271,14 @@ class Guake(SimpleGladeApp):
         """
         procs = self.notebook.get_running_fg_processes()
         tabs = self.notebook.get_tab_count()
-        prompt_cfg = self.client.get_bool(KEY('/general/prompt_on_quit'))
-        prompt_tab_cfg = self.client.get_int(KEY('/general/prompt_on_close_tab'))
+        prompt_cfg = self.settings.general.get_boolean('prompt-on-quit')
+        prompt_tab_cfg = self.settings.general.get_int('prompt-on-close-tab')
         # "Prompt on tab close" config overrides "prompt on quit" config
         if prompt_cfg or (prompt_tab_cfg == 1 and procs > 0) or (prompt_tab_cfg == 2):
             if self.run_quit_dialog(procs, tabs):
-                gtk.main_quit()
+                Gtk.main_quit()
         else:
-            gtk.main_quit()
+            Gtk.main_quit()
 
     def accel_reset_terminal(self, *args):
         """Callback to reset and clean the terminal"""
@@ -1561,8 +1561,7 @@ class Guake(SimpleGladeApp):
 
         dialog = Gtk.Dialog(_("Rename tab"),
                             self.window,
-                           # Gtk.DIALOG_MODAL | Gtk.DIALOG_DESTROY_WITH_PARENT,
-                           0,
+                           Gtk.DialogFlags.MODAL | Gtk.DialogFlags.DESTROY_WITH_PARENT,
                             (Gtk.STOCK_CANCEL, Gtk.ResponseType.REJECT,
                              Gtk.STOCK_OK, Gtk.ResponseType.ACCEPT))
 
@@ -1896,32 +1895,32 @@ class Guake(SimpleGladeApp):
         current_term = self.notebook.get_current_terminal()
         current_term.select_all()
         current_term.copy_clipboard()
-        current_term.select_none()
-        guake_clipboard = gtk.clipboard_get()
+        current_term.unselect_all()
+        guake_clipboard = Gtk.Clipboard.get_default(self.window.get_display())
         current_selection = guake_clipboard.wait_for_text()
         if not current_selection:
             return
         current_selection = current_selection.rstrip()
 
-        dialog = gtk.FileChooserDialog(_("Save to..."),
+        dialog = Gtk.FileChooserDialog(_("Save to..."),
                                        self.window,
-                                       gtk.FILE_CHOOSER_ACTION_SAVE,
-                                       (gtk.STOCK_CANCEL, gtk.RESPONSE_CANCEL,
-                                        gtk.STOCK_OPEN, gtk.RESPONSE_OK))
-        dialog.set_default_response(gtk.RESPONSE_OK)
-        filter = gtk.FileFilter()
+                                       Gtk.FileChooserAction.SAVE,
+                                       (Gtk.STOCK_CANCEL, Gtk.ResponseType.CANCEL,
+                                        Gtk.STOCK_SAVE, Gtk.ResponseType.OK))
+        dialog.set_default_response(Gtk.ResponseType.OK)
+        filter = Gtk.FileFilter()
         filter.set_name(_("All files"))
         filter.add_pattern("*")
         dialog.add_filter(filter)
 
-        filter = gtk.FileFilter()
+        filter = Gtk.FileFilter()
         filter.set_name(_("Text and Logs"))
         filter.add_pattern("*.log")
         filter.add_pattern("*.txt")
         dialog.add_filter(filter)
 
         response = dialog.run()
-        if response == gtk.RESPONSE_OK:
+        if response == Gtk.ResponseType.OK:
             filename = dialog.get_filename()
             with open(filename, "w") as f:
                 f.write(current_selection)
@@ -1999,7 +1998,7 @@ class Guake(SimpleGladeApp):
         """
         # Run prompt if necessary
         procs = self.notebook.get_running_fg_processes_tab(pagepos)
-        prompt_cfg = self.client.get_int(KEY('/general/prompt_on_close_tab'))
+        prompt_cfg = self.settings.general.get_int('prompt-on-close-tab')
         if (prompt_cfg == 1 and procs > 0) or (prompt_cfg == 2):
             if not self.run_quit_dialog(procs, -1):
                 return
@@ -2015,7 +2014,7 @@ class Guake(SimpleGladeApp):
             self.set_terminal_focus()
 
         self.was_deleted_tab = True
-        abbreviate_tab_names = self.client.get_bool(KEY('/general/abbreviate_tab_names'))
+        abbreviate_tab_names = self.settings.general.get_boolean('abbreviate-tab-names')
         if abbreviate_tab_names and not self.is_tabs_scrollbar_visible():
             self.abbreviate = False
             self.recompute_tabs_titles()
@@ -2117,7 +2116,7 @@ class Guake(SimpleGladeApp):
     def reset_terminal(self, directory=None):
         self.preventHide = True
         current_term = self.notebook.get_current_terminal()
-        current_term.reset(full=True, clear_history=True)
+        current_term.reset(True, True)
         self.preventHide = False
 
     #TODO PORT this method

@@ -35,6 +35,8 @@ from gi.repository import Vte
 
 from guake.common import clamp
 
+from time import sleep
+
 import uuid
 import os
 import logging
@@ -42,6 +44,10 @@ log = logging.getLogger(__name__)
 import code
 def halt(loc):
     code.interact(local=loc)
+    
+
+import threading
+import signal
 
 #__all__ = ['Terminal', 'TerminalBox']
 
@@ -432,7 +438,8 @@ class GuakeTerminal(Vte.Terminal):
 
     def kill(self):
         pid = self.get_pid()
-        start_new_thread(self.delete_shell, (pid,))
+        threading.Thread(target=self.delete_shell, args=(pid,)).start()
+        #start_new_thread(self.delete_shell, (pid,))
 
     def delete_shell(self, pid):
         """This function will kill the shell on a tab, trying to send
@@ -442,7 +449,7 @@ class GuakeTerminal(Vte.Terminal):
         UI, so you can use python's start_new_thread.
         """
         try:
-            os.kill(pid, signal.SIGHUP)
+            os.kill(pid.child_pid, signal.SIGHUP)
         except OSError:
             pass
         num_tries = 30
@@ -452,7 +459,7 @@ class GuakeTerminal(Vte.Terminal):
                 # Try to wait for the pid to be closed. If it does not
                 # exist anymore, an OSError is raised and we can
                 # safely ignore it.
-                if os.waitpid(pid, os.WNOHANG)[0] != 0:
+                if os.waitpid(pid.child_pid, os.WNOHANG)[0] != 0:
                     break
             except OSError:
                 break
@@ -461,8 +468,8 @@ class GuakeTerminal(Vte.Terminal):
 
         if num_tries == 0:
             try:
-                os.kill(pid, signal.SIGKILL)
-                os.waitpid(pid, 0)
+                os.kill(pid.child_pid, signal.SIGKILL)
+                os.waitpid(pid.child_pid, 0)
             except OSError:
                 # if this part of code was reached, means that SIGTERM
                 # did the work and SIGKILL wasnt needed.

@@ -54,20 +54,34 @@ TODO
 - port the context menu of the terminal
 - - show ✓
 - - click actions
-- - ...
+- - - copy ✓
+- - - paste ✓
+- - - toggle fullscreen ✓
+- - - save to file ✓
+- - - reset terminal ✓
+- - - new tab ✓
+- - - close tab ✓
+- - - rename terminal ✓
+- - - preferences (sill open need porting of the pref window first)
+- - - about(sill open need porting of the about window first)
+- - - quit ✓
 - port the context menu of the tab bar
 - - show ✓
-- - click actions
-- - ...
+- - click actions ✓
 - port the context menu of the tray icon
 - - show ✓
-- - click actions
-- - ...
+- - click actions ✓
+- - - preferences (sill open need porting of the pref window first)
+- - - about(sill open need porting of the about window first)
+- - - quit ✓
 - port the scrollbar of the terminal
 - port the resizer ✓
 - fix ctrl+d on terminal
 - fix double click on the tab bar ✓
 - fix double click on tab to rename ✓
+- fix clipboard from context menu ✓
+- fix tab bar buttons sometimes losing their text
+  (eg after adding 3+ new tabs from the context menu, hovering them restores the text)
 - port the notification module
 - port the keyboard shortcuts
 - - ...

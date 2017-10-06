@@ -210,10 +210,15 @@
             <summary>Open new tab in the current working directory</summary>
             <description>Open new tab in the current working directory</description>
         </key>
-         <key name="max-tab-name-length" type="i">
+        <key name="max-tab-name-length" type="i">
             <default>100</default>
             <summary>#TODO PORT max-tab-name-length</summary>
             <description>#TODO PORT max-tab-name-length</description>
+        </key>
+        <key name="abbreviate-tab-names" type="b">
+            <default>false</default>
+            <summary>#TODO PORT abbreviate-tab-names</summary>
+            <description>#TODO PORT abbreviate-tab-names</description>
         </key>
     </schema>
     <schema id="guake.style" path="/apps/guake/style/">
