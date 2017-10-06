@@ -656,14 +656,15 @@ class Guake(SimpleGladeApp):
         move the main window. It just sets the new window size in
         gconf.
         """
-        (x, y), mod = event.device.get_state(widget.window)
+
+        mod = event.get_state()
         if 'GDK_BUTTON1_MASK' not in mod.value_names:
             return
 
         screen = self.window.get_screen()
-        x, y, _ = screen.get_root_window().get_pointer()
+        win, x, y, _ = screen.get_root_window().get_pointer()
         screen_no = screen.get_monitor_at_point(x, y)
-        valignment = self.client.get_int(KEY('/general/window_valignment'))
+        valignment = self.settings.general.get_int('window-valignment')
 
         max_height = screen.get_monitor_geometry(screen_no).height
         if valignment == ALIGN_BOTTOM:
@@ -684,8 +685,8 @@ class Guake(SimpleGladeApp):
         else:
             self.window.resize(window_rect[0], y)
             self.printDebug("Just moving on resizer drag to : %r", window_rect[0], y)
-        self.client.set_int(KEY('/general/window_height'), int(percent))
-        self.client.set_float(KEY('/general/window_height_f'), float(percent))
+        self.settings.general.set_int('window-height', int(percent))
+        self.settings.general.set_double('window-height-f', float(percent))
 
     def on_window_losefocus(self, window, event):
         """Hides terminal main window when it loses the focus and if

@@ -64,23 +64,24 @@ TODO
 - - click actions
 - - ...
 - port the scrollbar of the terminal
+- port the resizer ✓
+- fix ctrl+d on terminal
 - port the notification module
 - port the keyboard shortcuts
 - - ...
 - port the pref screen
 - - ...
+- update the glade files (remove deprecated objects)
 - port about screen
 - port pattern matching
 - add more stuff to this list
 - port install stuff
 - update readme
 - ...
+- FIX all #TODO PORT sections
 
 There is stil lots of work to do. The first commit on this branch only gets guake up with one tab open.
 
-This is still to do:
-
--  
 
 Features
 --------
