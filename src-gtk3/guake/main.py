@@ -251,6 +251,8 @@ def main():
         # it is already running, so, lets toggle its visibility.
         remote_object.show_hide()
         
+    remote_object.show_hide()
+
     if options.execute_startup_script:
         if not already_running:
             startup_script = instance.settings.general.get_string("startup-script")

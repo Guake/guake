@@ -151,8 +151,8 @@ class SimpleGladeApp(object):
             It means it has methods like on_button1_clicked, on_entry1_activate, etc.
         """
         #TODO PORT connect
-        pass
-        #self.builder.connect_signals(callbacks_proxy)
+        
+        self.builder.connect_signals(callbacks_proxy)
 
     def normalize_names(self):
         """

@@ -66,6 +66,8 @@ TODO
 - port the scrollbar of the terminal
 - port the resizer ✓
 - fix ctrl+d on terminal
+- fix double click on the tab bar ✓
+- fix double click on tab to rename ✓
 - port the notification module
 - port the keyboard shortcuts
 - - ...

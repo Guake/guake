@@ -44,6 +44,7 @@ from gi.repository import Gio
 #import keybinder
 import logging
 import logging.config
+log = logging.getLogger(__name__)
 import os
 import platform
 #import pygtk
@@ -129,7 +130,6 @@ GDK_WINDOW_STATE_ABOVE = 32
 MAX_TRANSPARENCY = 100
 
 
-log = logging.getLogger(__name__)
 
 
 class PromptQuitDialog(Gtk.MessageDialog):
@@ -218,7 +218,7 @@ class Guake(SimpleGladeApp):
         self.custom_command_menuitem = None
 
         # trayicon! Using SVG handles better different OS trays
-        # img = pixmapfile('guake-tray.svg')
+        #img = pixmapfile('guake-tray.svg')
         # trayicon!
         img = pixmapfile('guake-tray.png')
         try:
@@ -321,7 +321,7 @@ class Guake(SimpleGladeApp):
             """Handles double clicks on tabs area and when receive
             one, calls add_tab.
             """
-            if event.button == 1 and event.type == gtk.gdk._2BUTTON_PRESS:
+            if event.button == 1 and event.type == Gdk.EventType._2BUTTON_PRESS:
                 self.add_tab()
         evtbox = self.get_widget('event-tabs')
         evtbox.connect('button-press-event', double_click)
@@ -435,7 +435,7 @@ class Guake(SimpleGladeApp):
             #    _("Guake is now running,\n"
             #      "press <b>{!s}</b> to use it.").format(xml_escape(label)), filename)
             
-            print("end of Guake.__init__ ")
+            print("end of Guake.__init__()")
 
     # load the custom commands infrastucture
     def load_custom_commands(self):
@@ -775,11 +775,11 @@ class Guake(SimpleGladeApp):
         """On double-click over a tab, show the rename dialog.
         """
         if event.button == 1:
-            if event.type == gtk.gdk._2BUTTON_PRESS:
+            if event.type == Gdk.EventType._2BUTTON_PRESS:
                 self.accel_rename_current_tab()
                 self.set_terminal_focus()
                 self.selected_tab.pressed()
-                return
+                return True
 
     def show_tab_menu(self, target, event):
         """Shows the tab menu with a right click. After that, the
@@ -1550,27 +1550,28 @@ class Guake(SimpleGladeApp):
     def on_rename_current_tab_activate(self, *args):
         """Shows a dialog to rename the current tab.
         """
-        entry = gtk.Entry()
+        entry = Gtk.Entry()
         entry.set_text(self.selected_tab.get_label())
         entry.set_property('can-default', True)
         entry.show()
 
-        vbox = gtk.VBox()
+        vbox = Gtk.VBox()
         vbox.set_border_width(6)
         vbox.show()
 
-        dialog = gtk.Dialog(_("Rename tab"),
+        dialog = Gtk.Dialog(_("Rename tab"),
                             self.window,
-                            gtk.DIALOG_MODAL | gtk.DIALOG_DESTROY_WITH_PARENT,
-                            (gtk.STOCK_CANCEL, gtk.RESPONSE_REJECT,
-                             gtk.STOCK_OK, gtk.RESPONSE_ACCEPT))
+                           # Gtk.DIALOG_MODAL | Gtk.DIALOG_DESTROY_WITH_PARENT,
+                           0,
+                            (Gtk.STOCK_CANCEL, Gtk.ResponseType.REJECT,
+                             Gtk.STOCK_OK, Gtk.ResponseType.ACCEPT))
 
         dialog.set_size_request(300, -1)
-        dialog.vbox.pack_start(vbox)
+        dialog.vbox.pack_start(vbox, True, True, 0)
         dialog.set_border_width(4)
-        dialog.set_has_separator(False)
-        dialog.set_default_response(gtk.RESPONSE_ACCEPT)
-        dialog.add_action_widget(entry, gtk.RESPONSE_ACCEPT)
+        #dialog.set_has_separator(False)
+        dialog.set_default_response(Gtk.ResponseType.ACCEPT)
+        dialog.add_action_widget(entry, Gtk.ResponseType.ACCEPT)
         entry.reparent(vbox)
 
         # don't hide on lose focus until the rename is finished
@@ -1578,7 +1579,7 @@ class Guake(SimpleGladeApp):
         response = dialog.run()
         self.preventHide = False
 
-        if response == gtk.RESPONSE_ACCEPT:
+        if response == Gtk.ResponseType.ACCEPT:
             new_text = entry.get_text()
             new_text = self._shorten_tab_title(new_text)
 

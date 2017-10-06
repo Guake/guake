@@ -37,8 +37,13 @@ from guake.common import clamp
 
 import uuid
 import os
+import logging
+log = logging.getLogger(__name__)
+import code
+def halt(loc):
+    code.interact(local=loc)
 
-__all__ = ['Terminal', 'TerminalBox']
+#__all__ = ['Terminal', 'TerminalBox']
 
 
 # regular expressions to highlight links in terminal. This code was
@@ -298,11 +303,13 @@ class GuakeTerminal(Vte.Terminal):
             int(event.y / self.get_char_height()))
 
         self.found_link = None
-        if (event.button == 1 and (event.get_state() & gtk.gdk.CONTROL_MASK) and matched_string):
+        
+        if (event.button == 1 and (event.get_state() & Gdk.ModifierType.CONTROL_MASK) and matched_string):
             log.debug("matched string: %s", matched_string)
             value, tag = matched_string
             # First searching in additional matchers
             found_additional_matcher = False
+            #TODO PORT
             client = gconf.client_get_default()
             use_quick_open = client.get_bool(KEY("/general/quick_open_enable"))
             quick_open_in_current_terminal = client.get_bool(
