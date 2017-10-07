@@ -58,9 +58,9 @@ import platform
 #from urllib import url2pathname
 #from urlparse import urlsplit
 #from xdg.DesktopEntry import DesktopEntry
-#from xml.sax.saxutils import escape as xml_escape
+from xml.sax.saxutils import escape as xml_escape
 
-#import guake.notifier
+from guake import notifier
 
 try:
     from colorlog import ColoredFormatter
@@ -414,7 +414,7 @@ class Guake(SimpleGladeApp):
         #self.hotkeys = keybinder
         #GConfKeyHandler(self)
         self.load_config()
-
+        #TODO PORT wht does this do??? needed?
         key = self.settings.keybindingsGlobal.get_string('show-hide')
         keyval, mask = Gtk.accelerator_parse(key)
         label = Gtk.accelerator_get_label(keyval, mask)
@@ -428,12 +428,10 @@ class Guake(SimpleGladeApp):
         if self.settings.general.get_boolean('use-popup'):
             # Pop-up that shows that guake is working properly (if not
             # unset in the preferences windows)
-            #TODO PORT port notifier
-            pass
-            #guake.notifier.show_message(
-            #    _("Guake Terminal"),
-            #    _("Guake is now running,\n"
-            #      "press <b>{!s}</b> to use it.").format(xml_escape(label)), filename)
+            notifier.showMessage(
+                _("Guake Terminal"),
+                _("Guake is now running,\n"
+                  "press <b>{!s}</b> to use it.").format(xml_escape(label)), filename)
             
             print("end of Guake.__init__()")
 

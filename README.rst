@@ -82,7 +82,7 @@ TODO
 - fix clipboard from context menu ✓
 - fix tab bar buttons sometimes losing their text
   (eg after adding 3+ new tabs from the context menu, hovering them restores the text)
-- port the notification module
+- port the notification module ✓
 - port the keyboard shortcuts
 - - ...
 - port the pref screen
@@ -91,6 +91,7 @@ TODO
 - port about screen ✓
 - port pattern matching
 - add more stuff to this list
+- port make stuff
 - port install stuff
 - update readme
 - ...
