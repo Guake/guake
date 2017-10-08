@@ -26,22 +26,22 @@ from __future__ import print_function
 import gi
 gi.require_version('Gtk', '3.0')
 gi.require_version('Vte', '2.91') 
+#gi.require_version('Keybinder', '3.0')
 
+from gi.repository import Keybinder
 from gi.repository import Vte
-
 from gi.repository import Gtk
 from gi.repository import GdkX11
 from gi.repository import Gdk
 from gi.repository import GLib
-
-
 from gi.repository import GObject
 from gi.repository import Gio
 
 
 #import gconf
 #import json
-#import keybinder
+
+
 import logging
 import logging.config
 log = logging.getLogger(__name__)
@@ -411,7 +411,8 @@ class Guake(SimpleGladeApp):
         # loading and setting up configuration stuff
         #TODO PORT
         #GConfHandler(self)
-        #self.hotkeys = keybinder
+        Keybinder.init()
+        self.hotkeys = Keybinder
         #GConfKeyHandler(self)
         self.load_config()
         #TODO PORT wht does this do??? needed?
@@ -1488,7 +1489,7 @@ class Guake(SimpleGladeApp):
 
     # -- callbacks --
 
-    def on_terminal_exited(self, term, widget):
+    def on_terminal_exited(self, term, status, widget):
         """When a terminal is closed, shell process should be killed,
         this is the method that does that, or, at least calls
         `delete_tab' method to do the work.
@@ -1496,7 +1497,7 @@ class Guake(SimpleGladeApp):
         log.debug("Terminal exited: %s", term)
         if libutempter is not None:
             libutempter.utempter_remove_record(term.get_pty())
-        self.delete_tab(self.notebook.page_num(widget), kill=False)
+            self.delete_tab(self.notebook.page_num(widget), kill=False , prompt=False)
 
     def recompute_tabs_titles(self):
         """Updates labels on all tabs. This is required when `self.abbreviate`
@@ -1809,6 +1810,7 @@ class Guake(SimpleGladeApp):
                              self.on_drag_data_received,
                              box)
 
+        #TODO PORT is this still the case with the newer vte version?
         # -- Ubuntu has a patch to libvte which disables mouse scrolling in apps
         # -- like vim and less by default. If this is the case, enable it back.
         if hasattr(box.terminal, "set_alternate_screen_scroll"):
@@ -1989,17 +1991,18 @@ class Guake(SimpleGladeApp):
         return (self.window.get_visible() and
                 self.get_widget('tabs-scrolledwindow').get_hscrollbar().get_visible())
 
-    def delete_tab(self, pagepos, kill=True):
+    def delete_tab(self, pagepos, kill=True, prompt=True):
         """This function will destroy the notebook page, terminal and
         tab widgets and will call the function to kill interpreter
         forked by vte.
         """
         # Run prompt if necessary
-        procs = self.notebook.get_running_fg_processes_tab(pagepos)
-        prompt_cfg = self.settings.general.get_int('prompt-on-close-tab')
-        if (prompt_cfg == 1 and procs > 0) or (prompt_cfg == 2):
-            if not self.run_quit_dialog(procs, -1):
-                return
+        if prompt :
+            procs = self.notebook.get_running_fg_processes_tab(pagepos)
+            prompt_cfg = self.settings.general.get_int('prompt-on-close-tab')
+            if (prompt_cfg == 1 and procs > 0) or (prompt_cfg == 2):
+                if not self.run_quit_dialog(procs, -1):
+                    return
 
         self.tabs.get_children()[pagepos].destroy()
         self.notebook.delete_tab(pagepos, kill=kill)

@@ -496,9 +496,8 @@ class GuakeTerminalBox(Gtk.HBox):
     def add_scroll_bar(self):
         """Packs the scrollbar.
         """
-        #TODO port dont know how to port
-        #adj = self.terminal.get_adjustment()
-        #scroll = Gtk.VScrollbar(adj)
-        #scroll.set_no_show_all(True)
-        #self.pack_start(scroll, False, False)
+        adj = self.terminal.get_vadjustment()
+        scroll = Gtk.VScrollbar(adj)
+        scroll.show()
+        self.pack_start(scroll, False, False, 0)
 

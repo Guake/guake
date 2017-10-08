@@ -74,9 +74,9 @@ TODO
 - - - preferences (sill open need porting of the pref window first)
 - - - about ✓
 - - - quit ✓
-- port the scrollbar of the terminal
+- port the scrollbar of the terminal ✓
 - port the resizer ✓
-- fix ctrl+d on terminal
+- fix ctrl+d on terminal ✓
 - fix double click on the tab bar ✓
 - fix double click on tab to rename ✓
 - fix clipboard from context menu ✓
@@ -109,6 +109,11 @@ WONTFIX
 -------
 
 - --bgimg (this option is removed from vte)
+
+New Deps
+--------
+
+- libkeybinder3
 
 Features
 --------
