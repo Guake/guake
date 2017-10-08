@@ -26,7 +26,7 @@ from __future__ import print_function
 import gi
 gi.require_version('Gtk', '3.0')
 gi.require_version('Vte', '2.91') 
-#gi.require_version('Keybinder', '3.0')
+gi.require_version('Keybinder', '3.0')
 
 from gi.repository import Keybinder
 from gi.repository import Vte
@@ -88,6 +88,7 @@ from guake.guake_notebook import GuakeNotebook
 from guake.simplegladeapp import SimpleGladeApp
 from guake.simplegladeapp import bindtextdomain
 from guake.terminal import GuakeTerminalBox
+from guake.Keybindings import Keybindings
 
 
 libutempter = None
@@ -165,32 +166,70 @@ class PromptQuitDialog(Gtk.MessageDialog):
         self.format_secondary_markup("<b>{0}{1}.</b>".format(proc_str, tab_str))
 
 
+
+
+
 class Settings():
+    
     def __init__(self, schema_source):
-        self.guake = Gio.Settings.new_full(
-            Gio.SettingsSchemaSource.lookup(schema_source,"guake",False),
-            None, None)
-        self.general = Gio.Settings.new_full(
-            Gio.SettingsSchemaSource.lookup(schema_source,"guake.general",False),
-            None, None)
-        self.keybindings = Gio.Settings.new_full(
-            Gio.SettingsSchemaSource.lookup(schema_source,"guake.keybindings",False),
-            None, None)
-        self.keybindingsGlobal = Gio.Settings.new_full(
-            Gio.SettingsSchemaSource.lookup(schema_source,"guake.keybindings.global",False),
-            None, None)
-        self.keybindingsLocal = Gio.Settings.new_full(
-            Gio.SettingsSchemaSource.lookup(schema_source,"guake.keybindings.local",False),
-            None, None)
-        self.styleBackground = Gio.Settings.new_full(
-            Gio.SettingsSchemaSource.lookup(schema_source,"guake.style.background",False),
-            None, None)
-        self.styleFont = Gio.Settings.new_full(
-            Gio.SettingsSchemaSource.lookup(schema_source,"guake.style.font",False),
-            None, None)
-        self.style = Gio.Settings.new_full(
-            Gio.SettingsSchemaSource.lookup(schema_source,"guake.style",False),
-            None, None)
+        Settings.enhanceSetting()
+        
+        self.guake = Gio.Settings.new_full(Gio.SettingsSchemaSource.lookup(schema_source,"guake",False), None, None)
+        self.guake.initEnhancements()
+        self.guake.connect("changed", self.guake.triggerOnChangedValue)
+        
+        self.general = Gio.Settings.new_full(Gio.SettingsSchemaSource.lookup(schema_source,"guake.general",False), None, None)
+        self.general.initEnhancements()
+        self.general.connect("changed", self.general.triggerOnChangedValue)
+
+        self.keybindings = Gio.Settings.new_full(Gio.SettingsSchemaSource.lookup(schema_source,"guake.keybindings",False), None, None)
+        self.keybindings.initEnhancements()
+        self.keybindings.connect("changed", self.keybindings.triggerOnChangedValue)
+
+
+        self.keybindingsGlobal = Gio.Settings.new_full(Gio.SettingsSchemaSource.lookup(schema_source,"guake.keybindings.global",False), None, None)
+        self.keybindingsGlobal.initEnhancements()
+        self.keybindingsGlobal.connect("changed", self.keybindingsGlobal.triggerOnChangedValue)
+
+
+        self.keybindingsLocal = Gio.Settings.new_full(Gio.SettingsSchemaSource.lookup(schema_source,"guake.keybindings.local",False), None, None)
+        self.keybindingsLocal.initEnhancements()
+        self.keybindingsLocal.connect("changed", self.keybindingsLocal.triggerOnChangedValue)
+
+
+        self.styleBackground = Gio.Settings.new_full(Gio.SettingsSchemaSource.lookup(schema_source,"guake.style.background",False), None, None)
+        self.styleBackground.initEnhancements()
+        self.styleBackground.connect("changed", self.styleBackground.triggerOnChangedValue)
+
+
+        self.styleFont = Gio.Settings.new_full(Gio.SettingsSchemaSource.lookup(schema_source,"guake.style.font",False), None, None)
+        self.styleFont.initEnhancements()
+        self.styleFont.connect("changed", self.styleFont.triggerOnChangedValue)
+
+
+        self.style = Gio.Settings.new_full(Gio.SettingsSchemaSource.lookup(schema_source,"guake.style",False), None, None)
+        self.style.initEnhancements()
+        self.style.connect("changed", self.style.triggerOnChangedValue)
+
+
+    def enhanceSetting():
+        def initEnhancements(self):
+            self.listeners = dict()
+            
+        def onChangedValue(self, key, user_func):
+            if key not in self.listeners:
+                self.listeners[key] = list()
+            self.listeners[key].append(user_func)
+                
+        def triggerOnChangedValue(self, settings, key, user_data):
+            if key in self.listeners:
+                for func in self.listeners[key]:
+                    func(settings,key,user_data)
+                
+        gi.repository.Gio.Settings.initEnhancements = initEnhancements
+        gi.repository.Gio.Settings.onChangedValue = onChangedValue
+        gi.repository.Gio.Settings.triggerOnChangedValue = triggerOnChangedValue
+        
 
 class Guake(SimpleGladeApp):
 
@@ -202,7 +241,7 @@ class Guake(SimpleGladeApp):
         
         
         #TODO fix path        
-        schema_source = Gio.SettingsSchemaSource.new_from_directory(os.getcwd()+"/data-gtk3",            Gio.SettingsSchemaSource.get_default(), False)
+        schema_source = Gio.SettingsSchemaSource.new_from_directory(os.getcwd()+"/data-gtk3", Gio.SettingsSchemaSource.get_default(), False)
         self.settings = Settings(schema_source)
         self.debug_mode = self.settings.general.get_boolean('debug-mode')
         self.setupLogging()
@@ -413,28 +452,28 @@ class Guake(SimpleGladeApp):
         #GConfHandler(self)
         Keybinder.init()
         self.hotkeys = Keybinder
-        #GConfKeyHandler(self)
+        Keybindings(self)
         self.load_config()
-        #TODO PORT wht does this do??? needed?
-        key = self.settings.keybindingsGlobal.get_string('show-hide')
-        keyval, mask = Gtk.accelerator_parse(key)
-        label = Gtk.accelerator_get_label(keyval, mask)
-        filename = pixmapfile('guake-notification.png')
-
+       
+        
         self.get_widget("context_find_tab").set_visible(enable_find)
 
         if self.settings.general.get_boolean('start-fullscreen'):
             self.fullscreen()
-
+            
+        # Pop-up that shows that guake is working properly (if not
+        # unset in the preferences windows)
         if self.settings.general.get_boolean('use-popup'):
-            # Pop-up that shows that guake is working properly (if not
-            # unset in the preferences windows)
+            key = self.settings.keybindingsGlobal.get_string('show-hide')
+            keyval, mask = Gtk.accelerator_parse(key)
+            label = Gtk.accelerator_get_label(keyval, mask)
+            filename = pixmapfile('guake-notification.png')
             notifier.showMessage(
                 _("Guake Terminal"),
                 _("Guake is now running,\n"
                   "press <b>{!s}</b> to use it.").format(xml_escape(label)), filename)
             
-            print("end of Guake.__init__()")
+        print("end of Guake.__init__()")
 
     # load the custom commands infrastucture
     def load_custom_commands(self):
@@ -2076,6 +2115,7 @@ class Guake(SimpleGladeApp):
     def search_on_web(self, *args):
         """Search for the selected text on the web
         """
+        #TODO PORT trigger this via the context menu -> "Search On Web"
         current_term = self.notebook.get_current_terminal()
 
         if current_term.get_has_selection():

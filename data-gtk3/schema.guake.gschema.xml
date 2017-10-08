@@ -436,5 +436,20 @@
             <summary>Toggle hide on lose focus.</summary>
             <description>Toggle whether guake will hide when it loses focus.</description>
         </key>
+        <key name="reset-terminal" type="s">
+            <default>''</default>
+            <summary>Reset</summary>
+            <description>Reset terminal</description>
+        </key>
+        <key name="toggle-transparency" type="s">
+            <default>'&lt;Control&gt;Alt&gt;T'</default>
+            <summary>Toggle transparency.</summary>
+            <description>Toggle the terminal transparency from the actual level to 100% and vice versa.</description>
+        </key>
+        <key name="switch-tab-last" type="s">
+            <default>'&lt;Control&gt;F12'</default>
+            <summary>Last tab.</summary>
+            <description>Switch to the last tab.</description>
+        </key>
     </schema>
 </schemalist>
