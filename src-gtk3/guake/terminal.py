@@ -414,7 +414,7 @@ class GuakeTerminal(Vte.Terminal):
     def set_font_scale_index(self, scale_index):
         self.font_scale_index = clamp(scale_index, -6, 12)
 
-        font = pango.FontDescription(self.font.to_string())
+        font = Pango.FontDescription(self.font.to_string())
         scale_factor = 2 ** (self.font_scale_index / 6)
         new_size = int(scale_factor * font.get_size())
 
@@ -475,7 +475,7 @@ class GuakeTerminal(Vte.Terminal):
                 # did the work and SIGKILL wasnt needed.
                 pass
 
-
+#TODO PORT port this from HBOX to Box with orientation horitzontal
 class GuakeTerminalBox(Gtk.HBox):
 
     """A box to group the terminal and a scrollbar.

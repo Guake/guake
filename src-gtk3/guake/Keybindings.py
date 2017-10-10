@@ -47,28 +47,26 @@ class Keybindings(object):
 
 
     def reload_global(self, settings, key, user_data):
-        print("test")
         value = settings.get_string(key)
         if value == 'disabled':
             return
 
         try:
             self.guake.hotkeys.unbind(self.globalhotkeys[key])
-        except KeyError:
+        except:
             pass
-        
+            
         self.globalhotkeys[key] = value
         if not self.guake.hotkeys.bind(value, self.guake.show_hide):
-            pass 
-        #TODO PORT port this...
-            """keyval, mask = gtk.accelerator_parse(value)
-            label = gtk.accelerator_get_label(keyval, mask)
+            print("shit")
+            keyval, mask = Gtk.accelerator_parse(value)
+            label = Gtk.accelerator_get_label(keyval, mask)
             filename = pixmapfile('guake-notification.png')
-            guake.notifier.show_message(
+            guake.notifier.showMessage(
                 _('Guake Terminal'),
                 _('A problem happened when binding <b>%s</b> key.\n'
                   'Please use Guake Preferences dialog to choose another '
-                  'key') % xml_escape(label), filename)"""
+                  'key') % xml_escape(label), filename)
 
     def reload_accelerators(self, *args):
         """Reassign an accel_group to guake main window and guake

@@ -55,6 +55,11 @@
             <summary>Stay on top.</summary>
             <description>Makes guake window be on top of all other windows in the desktop.</description>
         </key>
+         <key name="window-refocus" type="b">
+            <default>false</default>
+            <summary>Refocus window.</summary>
+            <description>Refocus window instead of closing.</description>
+        </key>
         <key name="tab-ontop" type="b">
             <default>false</default>
             <summary>Tab on top.</summary>
@@ -256,6 +261,11 @@
             <summary>Color scheme name.</summary>
             <description>Color scheme name that will be used in terminal.</description>
         </key>
+         <key name="allow-bold" type="b">
+            <default>true</default>
+            <summary>Allow displaying bold font in Guake terminal.</summary>
+            <description>When allow_bold is disabled, any text in Guake terminal intended to print as bold text will be instead rendered as normal text.</description>
+        </key>
     </schema>
     <schema id="guake.style.background" path="/apps/guake/style/background/">
         <key name="color" type="s">
@@ -450,6 +460,13 @@
             <default>'&lt;Control&gt;F12'</default>
             <summary>Last tab.</summary>
             <description>Switch to the last tab.</description>
+        </key>
+    </schema>
+    <schema id="guake.hooks" path="/apps/guake/hooks/">
+        <key name="show" type="s">
+            <default>''</default>
+            <summary>On show.</summary>
+            <description>Run this script on show.</description>
         </key>
     </schema>
 </schemalist>

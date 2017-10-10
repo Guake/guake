@@ -252,7 +252,8 @@ def main():
         remote_object.show_hide()
     
     #TODO PORT remove the next line it only for testing...    
-    remote_object.show_hide()
+    #remote_object.show_hide()
+    remote_object.show_prefs()
 
     if options.execute_startup_script:
         if not already_running:
@@ -270,6 +271,7 @@ def main():
 
 def exec_main():
     if not main():
+        print("Running main gtk loop")
         Gtk.main()
 
 if __name__ == '__main__':

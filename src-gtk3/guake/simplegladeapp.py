@@ -116,10 +116,7 @@ class SimpleGladeApp(object):
 
         #self.glade = self.create_glade(self.glade_path, root, domain)
 
-
-
         self.normalize_names()
-        self.add_callbacks(self)
         self.new()
 
     def __repr__(self):
@@ -166,20 +163,21 @@ class SimpleGladeApp(object):
         prefixes a widget has for each widget.
         """
         for widget in self.get_widgets():
-            widget_name = Gtk.Buildable.get_name(widget)
-            prefixes_name_l = widget_name.split(":")
-            prefixes = prefixes_name_l[: -1]
-            widget_api_name = prefixes_name_l[-1]
-            widget_api_name = "_".join(re.findall(tokenize.Name, widget_api_name))
-            widget_name = Gtk.Buildable.set_name(widget, widget_api_name)
-            if hasattr(self, widget_api_name):
-                raise AttributeError("instance %s already has an attribute %s" %
+            if isinstance(widget, Gtk.Buildable):
+                widget_name = Gtk.Buildable.get_name(widget)
+                prefixes_name_l = widget_name.split(":")
+                prefixes = prefixes_name_l[: -1]
+                widget_api_name = prefixes_name_l[-1]
+                widget_api_name = "_".join(re.findall(tokenize.Name, widget_api_name))
+                widget_name = Gtk.Buildable.set_name(widget, widget_api_name)
+                if hasattr(self, widget_api_name):
+                    raise AttributeError("instance %s already has an attribute %s" %
                                      (self, widget_api_name))
-            else:
-                setattr(self, widget_api_name, widget)
-                if prefixes:
-                    #TODO is is a guess
-                     Gtk.Buildable.set_data(widget, "prefixes", prefixes)
+                else:
+                    setattr(self, widget_api_name, widget)
+                    if prefixes:
+                        #TODO is is a guess
+                        Gtk.Buildable.set_data(widget, "prefixes", prefixes)
 
     def add_prefix_actions(self, prefix_actions_proxy):
         """

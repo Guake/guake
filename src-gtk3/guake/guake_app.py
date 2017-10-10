@@ -39,7 +39,7 @@ from gi.repository import Gio
 
 
 #import gconf
-#import json
+import json
 
 
 import logging
@@ -84,7 +84,7 @@ from guake.globals import ALWAYS_ON_PRIMARY
 from guake.globals import LOCALE_DIR
 from guake.globals import NAME
 from guake.guake_notebook import GuakeNotebook
-#from guake.prefs import PrefsDialog
+from guake.prefs import PrefsDialog
 from guake.simplegladeapp import SimpleGladeApp
 from guake.simplegladeapp import bindtextdomain
 from guake.terminal import GuakeTerminalBox
@@ -210,6 +210,10 @@ class Settings():
         self.style = Gio.Settings.new_full(Gio.SettingsSchemaSource.lookup(schema_source,"guake.style",False), None, None)
         self.style.initEnhancements()
         self.style.connect("changed", self.style.triggerOnChangedValue)
+        
+        self.hooks = Gio.Settings.new_full(Gio.SettingsSchemaSource.lookup(schema_source,"guake.hooks",False), None, None)
+        self.hooks.initEnhancements()
+        self.hooks.connect("changed", self.hooks.triggerOnChangedValue)
 
 
     def enhanceSetting():
@@ -221,7 +225,7 @@ class Settings():
                 self.listeners[key] = list()
             self.listeners[key].append(user_func)
                 
-        def triggerOnChangedValue(self, settings, key, user_data):
+        def triggerOnChangedValue(self, settings, key, user_data=None):
             if key in self.listeners:
                 for func in self.listeners[key]:
                     func(settings,key,user_data)
@@ -238,6 +242,8 @@ class Guake(SimpleGladeApp):
 
     def __init__(self):
         super(Guake, self).__init__(gladefile('guake.glade'))
+        
+        self.add_callbacks(self)
         
         
         #TODO fix path        
@@ -286,6 +292,7 @@ class Guake(SimpleGladeApp):
 
         # important widgets
         self.window = self.get_widget('window-root')
+        self.window.set_keep_above(True)
         self.mainframe = self.get_widget('mainframe')
         self.mainframe.remove(self.get_widget('notebook-teminals'))
         self.notebook = GuakeNotebook()
@@ -324,9 +331,9 @@ class Guake(SimpleGladeApp):
                 #TODO PORT I have not ported this jet 
                 self.has_argb = screen.is_composited()
                 self.set_background_transparency(
-                    self.client.get_int(KEY('/style/background/transparency')))
+                    self.settings.styleBackground.get_int('transparency'))
                 self.set_background_image(
-                    self.client.get_string(KEY('/style/background/image')))
+                    self.settings.styleBackground.get_string('image'))
 
             self.window.get_screen().connect("composited-changed",
                                              composited_changed)
@@ -396,7 +403,7 @@ class Guake(SimpleGladeApp):
 
         def tabs_scrollbar_show(hscrollbar):
             self.get_widget('event-tabs').set_property('height_request', -1)
-            if self.client.get_bool(KEY("/general/abbreviate_tab_names")):
+            if self.settings.general.get_boolean('abbreviate-tab-names'):
                 self.abbreviate = True
                 self.recompute_tabs_titles()
 
@@ -860,7 +867,7 @@ class Guake(SimpleGladeApp):
         Preferences window.
         """
         self.hide()
-        PrefsDialog().show()
+        PrefsDialog(self.settings).show()
 
     def is_iconified(self):
         if self.window:
@@ -1001,7 +1008,7 @@ class Guake(SimpleGladeApp):
             time = GdkX11.x11_get_server_time(self.window.get_window())
         except AttributeError:
             time = 0
-
+            #TODO PORT this
         # When minized, the window manager seems to refuse to resume
         # log.debug("self.window: %s. Dir=%s", type(self.window), dir(self.window))
         # is_iconified = self.is_iconified()
@@ -1037,9 +1044,9 @@ class Guake(SimpleGladeApp):
 
         # This is here because vte color configuration works only after the
         # widget is shown.
-        #TODO PORT 
-        #self.client.notify(KEY('/style/font/color'))
-        #self.client.notify(KEY('/style/background/color'))
+
+        self.settings.styleFont.triggerOnChangedValue(self.settings.styleFont, 'color')
+        self.settings.styleBackground.triggerOnChangedValue(self.settings.styleBackground, 'color')
 
         self.printDebug("Current window position: %r", self.window.get_position())
         #TODO PORT
@@ -1253,41 +1260,43 @@ class Guake(SimpleGladeApp):
 
     def load_config(self):
         """"Just a proxy for all the configuration stuff.
-        """
-        #TODO PORT port this from gconf to gsettings
-        return
-        self.client.notify(KEY('/general/use_trayicon'))
-        self.client.notify(KEY('/general/prompt_on_quit'))
-        self.client.notify(KEY('/general/prompt_on_close_tab'))
-        self.client.notify(KEY('/general/window_tabbar'))
-        self.client.notify(KEY('/general/mouse_display'))
-        self.client.notify(KEY('/general/display_n'))
-        self.client.notify(KEY('/general/window_ontop'))
+        """        
+        
+        
+        self.settings.general.triggerOnChangedValue(self.settings.general, 'use-trayicon')
+        return 
+        self.settings.general.triggerOnChangedValue(self.settings.general, 'prompt-on-quit')
+        self.settings.general.triggerOnChangedValue(self.settings.general, 'prompt-on-close-tab')
+        self.settings.general.triggerOnChangedValue(self.settings.general, 'window-tabbar')
+        self.settings.general.triggerOnChangedValue(self.settings.general, 'mouse-display')
+        self.settings.general.triggerOnChangedValue(self.settings.general, 'display-n')
+        self.settings.general.triggerOnChangedValue(self.settings.general, 'window-ontop')
         if not self.is_fullscreen:
-            self.client.notify(KEY('/general/window_height'))
-            self.client.notify(KEY('/general/window_width'))
-        self.client.notify(KEY('/general/use_scrollbar'))
-        self.client.notify(KEY('/general/history_size'))
-        self.client.notify(KEY('/general/show_resizer'))
-        self.client.notify(KEY('/general/use_vte_titles'))
-        self.client.notify(KEY('/general/abbreviate_tab_names'))
-        self.client.notify(KEY('/general/max_tab_name_length'))
-        self.client.notify(KEY('/general/quick_open_enable'))
-        self.client.notify(KEY('/general/quick_open_command_line'))
-        self.client.notify(KEY('/style/cursor_shape'))
-        self.client.notify(KEY('/style/font/style'))
-        self.client.notify(KEY('/style/font/color'))
-        self.client.notify(KEY('/style/font/palette'))
-        self.client.notify(KEY('/style/font/palette_name'))
-        self.client.notify(KEY('/style/font/allow_bold'))
-        self.client.notify(KEY('/style/background/color'))
-        self.client.notify(KEY('/style/background/image'))
-        self.client.notify(KEY('/style/background/transparency'))
-        self.client.notify(KEY('/general/use_default_font'))
-        self.client.notify(KEY('/general/show_resizer'))
-        self.client.notify(KEY('/general/use_palette_font_and_background_color'))
-        self.client.notify(KEY('/general/compat_backspace'))
-        self.client.notify(KEY('/general/compat_delete'))
+            self.settings.general.triggerOnChangedValue(self.settings.general, 'window-height')
+            self.settings.general.triggerOnChangedValue(self.settings.general, 'window-width')
+        self.settings.general.triggerOnChangedValue(self.settings.general, 'use-scrollbar')
+        self.settings.general.triggerOnChangedValue(self.settings.general, 'history-size')
+        self.settings.general.triggerOnChangedValue(self.settings.general, 'show-resizer')
+        self.settings.general.triggerOnChangedValue(self.settings.general, 'use-vte-titles')
+        self.settings.general.triggerOnChangedValue(self.settings.general, 'abbreviate-tab-names')
+        self.settings.general.triggerOnChangedValue(self.settings.general, 'max-tab-name-length')
+        self.settings.general.triggerOnChangedValue(self.settings.general, 'quick-open-enable')
+        self.settings.general.triggerOnChangedValue(self.settings.general, 'quick-open-command-line')
+        self.settings.style.triggerOnChangedValue(self.settings.style, 'cursor-shape')
+        self.settings.styleFont.triggerOnChangedValue(self.settings.styleFont, 'style')
+        self.settings.styleFont.triggerOnChangedValue(self.settings.styleFont, 'color')
+        self.settings.styleFont.triggerOnChangedValue(self.settings.styleFont, 'palette')
+        self.settings.styleFont.triggerOnChangedValue(self.settings.styleFont, 'palette-name')
+        self.settings.styleFont.triggerOnChangedValue(self.settings.styleFont, 'allow-bold')
+        self.settings.styleBackground.triggerOnChangedValue(self.settings.styleBackground, 'color')
+        #TODO PORT remove this vte does not support bg image anymore
+        self.settings.styleBackground.triggerOnChangedValue(self.settings.styleBackground, 'image')
+        self.settings.styleBackground.triggerOnChangedValue(self.settings.styleBackground, 'transparency')
+        self.settings.general.triggerOnChangedValue(self.settings.general, 'use-default-font')
+        self.settings.general.triggerOnChangedValue(self.settings.general, 'show-resizer')
+        self.settings.general.triggerOnChangedValue(self.settings.general, 'use-palette-font-and-background-color')
+        self.settings.general.triggerOnChangedValue(self.settings.general, 'compat-backspace')
+        self.settings.general.triggerOnChangedValue(self.settings.general, 'compat-delete')
 
     def run_quit_dialog(self, procs, tab):
         """Run the "are you sure" dialog for closing a tab, or quitting Guake
@@ -1759,40 +1768,52 @@ class Guake(SimpleGladeApp):
                     directory = cwd
         return directory
 
-    def get_fork_params(self, default_params=None, box=None):
-        """Return all parameters to be passed to the fork_command
-        method of a vte terminal. Params returned can be expanded by
-        the `params' parameter that receive a dictionary.
-        """
-        # use dictionary to pass named params to work around command
-        # parameter in fork_command not accepting None as argument.
-        # When we pass None as command, vte starts the default user
-        # shell.
-        params = {}
-
-        shell = self.settings.general.get_string('default-shell')
-        if shell and os.path.exists(shell):
-            params['command'] = shell
+    def spawn_sync_pid(self, directory=None, terminal=None):
+        
+       
+        argv = list()
+        user_shell = self.settings.general.get_string('default-shell')
+        if user_shell and os.path.exists(shell):
+            argv.append(user_shell)
+        else: 
+            argv.append(os.environ['SHELL'])
 
         login_shell = self.settings.general.get_boolean('use-login-shell')
         if login_shell:
-            params['argv'] = ['-']
+            argv = '-'
 
-        if self.settings.general.get_boolean('open-tab-cwd'):
-            params['directory'] = self.get_current_dir()
-        params['loglastlog'] = login_shell
-
-        # Letting caller change/add values to fork params.
-        if default_params:
-            params.update(default_params)
+        # We can choose the directory to vte launch. It is important
+        # to be used by dbus interface. I'm testing if directory is a
+        # string because when binded to a signal, the first param can
+        # be a button not a directory.
+        
+        if isinstance(directory, str):
+            wd = directory
+        else:
+            if self.settings.general.get_boolean('open-tab-cwd'):
+                wd = self.get_current_dir()
+            else:
+                wd = os.environ['HOME']
+        
+        #TODO PORT the next line    
+        #params['loglastlog'] = login_shell
 
         # Environment variables are not actually parameters but they
         # need to be set before calling terminal.fork_command()
         # method. This is a good place to do it.
-        self.update_proxy_vars(box)
-        return params
+        self.update_proxy_vars(terminal)
+        pid = terminal.spawn_sync( 
+            Vte.PtyFlags.DEFAULT,
+            wd,
+            argv,
+            [],
+            GLib.SpawnFlags.DO_NOT_REAP_CHILD,
+            None,
+            None,
+            None)
+        return pid
 
-    def update_proxy_vars(self, box=None):
+    def update_proxy_vars(self, terminal=None):
         """This method updates http{s,}_proxy environment variables
         with values found in gconf.
         """
@@ -1824,7 +1845,7 @@ class Guake(SimpleGladeApp):
                 os.environ['https_proxy'] = "http://{!s}:{:d}".format(
                     ssl_host, ssl_port)
         if box:
-            os.environ['GUAKE_TAB_UUID'] = str(box.terminal.get_uuid())
+            os.environ['GUAKE_TAB_UUID'] = str(terminal.get_uuid())
         else:
             del os.environ['GUAKE_TAB_UUID']
 
@@ -1859,25 +1880,8 @@ class Guake(SimpleGladeApp):
 
         self.notebook.append_tab(box.terminal)
 
-        # We can choose the directory to vte launch. It is important
-        # to be used by dbus interface. I'm testing if directory is a
-        # string because when binded to a signal, the first param can
-        # be a button not a directory.
-        default_params = {}
-        if isinstance(directory, str):
-            default_params['working_directory'] = directory
-
-        final_params = self.get_fork_params(default_params, box)
-        #TODO PORT pass the final_params somehow
-        #pid = box.terminal.spawn_sync(**final_params)
-        pid = box.terminal.spawn_sync( 
-            Vte.PtyFlags.DEFAULT,
-            os.environ['HOME'],
-            ["/bin/bash"],
-            [],
-            GLib.SpawnFlags.DO_NOT_REAP_CHILD,
-            None,
-            None,)
+        pid = self.spawn_sync_pid(directory, box.terminal)
+        
         if libutempter is not None:
             #TODO PORT needs verification box.terminal.get_pty() -> box.terminal.get_pty().get_fd()
             # After the fork_command we add this new tty to utmp !

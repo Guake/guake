@@ -48,17 +48,16 @@ __all__ = [
 ]
 
 
-class ShowableError(Exception):
-
-    def __init__(self, title, msg, exit_code=1):
-        d = Gtk.Dialog(type=Gtk.MESSAGE_ERROR,
-                       buttons=Gtk.BUTTONS_CLOSE)
-        d.set_markup('<b><big>%s</big></b>' % title)
-        d.format_secondary_markup(msg)
-        d.run()
-        d.destroy()
-        if exit_code != -1:
-            sys.exit(exit_code)
+def ShowableError(parent, title, msg, exit_code=1):
+    d = Gtk.MessageDialog(
+        parent,
+        Gtk.DialogFlags.MODAL | Gtk.DialogFlags.DESTROY_WITH_PARENT,
+        Gtk.MessageType.WARNING,
+        Gtk.ButtonsType.CLOSE)
+    d.set_markup('<b><big>%s</big></b>' % title)
+    d.format_secondary_markup(msg)
+    d.run()
+    d.destroy()
 
 
 def pixmapfile(x):

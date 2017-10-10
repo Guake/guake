@@ -33,7 +33,7 @@ TODO
 - - --hide ✓
 - - -f ✓
 - - -t ✓
-- - -p
+- - -p ✓
 - - -a ✓
 - - -n ✓
 - - -s ✓
@@ -62,7 +62,7 @@ TODO
 - - - new tab ✓
 - - - close tab ✓
 - - - rename terminal ✓
-- - - preferences (sill open need porting of the pref window first)
+- - - preferences ✓
 - - - about✓
 - - - quit ✓
 - port the context menu of the tab bar
@@ -71,7 +71,7 @@ TODO
 - port the context menu of the tray icon
 - - show ✓
 - - click actions ✓
-- - - preferences (sill open need porting of the pref window first)
+- - - preferences ✓
 - - - about ✓
 - - - quit ✓
 - port the scrollbar of the terminal ✓
@@ -85,7 +85,8 @@ TODO
 - port the notification module ✓
 - port the keyboard shortcuts ✓
 - - ...
-- port the pref screen
+- port the pref screen ✓
+- port gconfhandler to  gsettingshandler
 - - ...
 - update the glade files (remove deprecated objects)
 - port about screen ✓
@@ -96,6 +97,9 @@ TODO
 - update readme
 - ...
 - FIX all #TODO PORT sections
+- Things to fix after the port
+- - Rename widgets (from _ to -) to match the names used in the settings
+- - Split files in to single class modules
 
 There is stil lots of work to do. The first commit on this branch only gets guake up with one tab open.
 
