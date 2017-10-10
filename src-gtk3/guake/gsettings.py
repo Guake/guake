@@ -1,0 +1,406 @@
+from __future__ import absolute_import
+from __future__ import division
+from __future__ import print_function
+
+
+import gi
+gi.require_version('Gtk', '3.0')
+gi.require_version('Vte', '2.91') 
+
+from gi.repository import Vte
+
+from gi.repository import Gtk
+from gi.repository import Gdk
+from gi.repository import Pango
+
+import logging
+import subprocess
+
+from xml.sax.saxutils import escape as xml_escape
+
+import guake.notifier
+
+from guake.common import _
+from guake.common import pixmapfile
+from guake.globals import GCONF_PATH
+from guake.globals import GKEY
+from guake.globals import KEY
+from guake.globals import LKEY
+
+
+GCONF_MONOSPACE_FONT_PATH = '/desktop/gnome/interface/monospace_font_name'
+DCONF_MONOSPACE_FONT_PATH = 'org.gnome.desktop.interface'
+DCONF_MONOSPACE_FONT_KEY = 'monospace-font-name'
+
+
+log = logging.getLogger(__name__)
+
+
+class GSettingHandler(object):
+
+    """Handles gconf changes, if any gconf variable is changed, a
+    different method is called to handle this change.
+    """
+
+    def __init__(self, guake):
+        """Constructor of GConfHandler, just add the guake dir to the
+        gconf client and bind the keys to its handler methods.
+        """
+        self.guake = guake
+        self.settings = guake.settings
+        settings = self.settings
+        #TODO PORT do we need this to be ported?
+        #client.add_dir(GCONF_PATH, gconf.CLIENT_PRELOAD_RECURSIVE)
+
+
+        # these keys does not need to be watched.
+        # notify_add(KEY('/general/default_shell'), self.shell_changed)
+        # notify_add(KEY('/general/use_login_shell'), self.login_shell_toggled)
+        # notify_add(KEY('/general/use_popup'), self.popup_toggled)
+        # notify_add(KEY('/general/window_losefocus'), self.losefocus_toggled)
+        # notify_add(KEY('/general/use_vte_titles'), self.use_vte_titles_changed)
+        # notify_add(KEY('/general/quick_open_enable'), self.on_quick_open_enable_changed)
+        # notify_add(KEY('/general/quick_open_in_current_terminal'),
+        #   self.on_quick_open_in_current_terminal_changed)
+
+        # Notification is not required for mouse_display/display_n because
+        # set_final_window_rect polls gconf and is called whenever Guake is
+        # shown or resized
+
+        settings.general.onChangedValue('show-resizer', self.show_resizer_toggled)
+
+        settings.general.onChangedValue('use-trayicon', self.trayicon_toggled)
+        settings.general.onChangedValue('window-ontop', self.ontop_toggled)
+        settings.general.onChangedValue('tab-ontop', self.tab_ontop_toggled)
+        settings.general.onChangedValue('window-tabbar', self.tabbar_toggled)
+        settings.general.onChangedValue('window-height', self.size_changed)
+        settings.general.onChangedValue('window-width', self.size_changed)
+        settings.general.onChangedValue('window-height-f', self.size_changed)
+        settings.general.onChangedValue('window-width-f', self.size_changed)
+        settings.general.onChangedValue('window-valignment', self.alignment_changed)
+        settings.general.onChangedValue('window-halignment', self.alignment_changed)
+        settings.style.onChangedValue('cursor-blink-mode', self.cursor_blink_mode_changed)
+        settings.style.onChangedValue('cursor-shape', self.cursor_shape_changed)
+
+        settings.general.onChangedValue('use-scrollbar', self.scrollbar_toggled)
+        settings.general.onChangedValue('history-size', self.history_size_changed)
+        settings.general.onChangedValue('scroll-output', self.keystroke_output)
+        settings.general.onChangedValue('scroll-keystroke', self.keystroke_toggled)
+
+        settings.general.onChangedValue('use-default-font', self.default_font_toggled)
+        settings.general.onChangedValue('use-palette-font-and-background-color',
+                   self.palette_font_and_background_color_toggled)
+        settings.styleFont.onChangedValue('style', self.fstyle_changed)
+        settings.styleFont.onChangedValue('color', self.fcolor_changed)
+        settings.styleFont.onChangedValue('palette', self.fpalette_changed)
+        # notify_add(KEY('/style/font/palette_name'), self.fpalette_changed)
+        settings.styleFont.onChangedValue('allow-bold', self.allow_bold_toggled)
+        settings.styleBackground.onChangedValue('color', self.bgcolor_changed)
+        #TODO PORT remove this vte cant display images as backgrounds anymore
+        settings.styleBackground.onChangedValue('image', self.bgimage_changed)
+        settings.styleBackground.onChangedValue('transparency',
+                   self.bgtransparency_changed)
+
+        settings.general.onChangedValue('compat-backspace', self.backspace_changed)
+        settings.general.onChangedValue('compat-delete', self.delete_changed)
+        settings.general.onChangedValue('custom-command_file', self.custom_command_file_changed)
+        settings.general.onChangedValue('max-tab-name-length', self.max_tab_name_length_changed)
+        settings.general.onChangedValue('abbreviate-tab-names', self.abbreviate_tab_names_changed)
+
+    def custom_command_file_changed(self, settings, key, user_data):
+        self.guake.load_custom_commands()
+
+    def show_resizer_toggled(self, settings, key, user_data):
+        """If the gconf var show_resizer be changed, this method will
+        be called and will show/hide the resizer.
+        """
+        if settings.get_boolean(key):
+            self.guake.resizer.show()
+        else:
+            self.guake.resizer.hide()
+
+    def trayicon_toggled(self, settings, key, user_data):
+        """If the gconf var use_trayicon be changed, this method will
+        be called and will show/hide the trayicon.
+        """
+        if hasattr(self.guake.tray_icon, 'set_status'):
+            self.guake.tray_icon.set_status(settings.get_boolean(key))
+        else:
+            self.guake.tray_icon.set_visible(settings.get_boolean(key))
+
+    def ontop_toggled(self, settings, key, user_data):
+        """If the gconf var window_ontop be changed, this method will
+        be called and will set the keep_above attribute in guake's
+        main window.
+        """
+        self.guake.window.set_keep_above(settings.get_boolean(key))
+
+    def tab_ontop_toggled(self, settings, key, user_data):
+        """ tab_ontop changed
+        """
+        self.guake.set_tab_position()
+
+    def tabbar_toggled(self, settings, key, user_data):
+        """If the gconf var use_tabbar be changed, this method will be
+        called and will show/hide the tabbar.
+        """
+        if settings.get_boolean(key):
+            self.guake.toolbar.show()
+        else:
+            self.guake.toolbar.hide()
+
+    def alignment_changed(self, settings, key, user_data):
+        """If the gconf var window_halignment be changed, this method will
+        be called and will call the move function in guake.
+        """
+        self.guake.set_final_window_rect()
+        self.guake.set_tab_position()
+        self.guake.force_move_if_shown()
+
+    def size_changed(self, settings, key, user_data):
+        """If the gconf var window_height or window_width are changed,
+        this method will be called and will call the resize function
+        in guake.
+        """
+        self.guake.set_final_window_rect()
+
+    def cursor_blink_mode_changed(self, settings, key, user_data):
+        """Called when cursor blink mode settings has been changed
+        """
+        for term in self.guake.notebook.iter_terminals():
+            term.set_property("cursor-blink-mode", settings.get_int(key))
+
+    def cursor_shape_changed(self, settings, key, user_data):
+        """Called when the cursor shape settings has been changed
+        """
+        for term in self.guake.notebook.iter_terminals():
+            term.set_property("cursor-shape", settings.get_int(key))
+
+    def scrollbar_toggled(self, settings, key, user_data):
+        """If the gconf var use_scrollbar be changed, this method will
+        be called and will show/hide scrollbars of all terminals open.
+        """
+        for term in self.guake.notebook.iter_terminals():
+            # There is an hbox in each tab of the main notebook and it
+            # contains a Terminal and a Scrollbar. Since only have the
+            # Terminal here, we're going to use this to get the
+            # scrollbar and hide/show it.
+            hbox = term.get_parent()
+            terminal, scrollbar = hbox.get_children()
+            if settings.get_boolean(key):
+                scrollbar.show()
+            else:
+                scrollbar.hide()
+
+    def history_size_changed(self, settings, key, user_data):
+        """If the gconf var history_size be changed, this method will
+        be called and will set the scrollback_lines property of all
+        terminals open.
+        """
+        for i in self.guake.notebook.iter_terminals():
+            i.set_scrollback_lines(settings.get_int(key))
+
+    def keystroke_output(self, settings, key, user_data):
+        """If the gconf var scroll_output be changed, this method will
+        be called and will set the scroll_on_output in all terminals
+        open.
+        """
+        for i in self.guake.notebook.iter_terminals():
+            i.set_scroll_on_output(settings.get_boolean(key))
+
+    def keystroke_toggled(self, settings, key, user_data):
+        """If the gconf var scroll_keystroke be changed, this method
+        will be called and will set the scroll_on_keystroke in all
+        terminals open.
+        """
+        for i in self.guake.notebook.iter_terminals():
+            i.set_scroll_on_keystroke(settings.get_boolean(key))
+
+    def default_font_toggled(self, settings, key, user_data):
+        """If the gconf var use_default_font be changed, this method
+        will be called and will change the font style to the gnome
+        default or to the chosen font in style/font/style in all
+        terminals open.
+        """
+        #TODO PORT 
+        font_name = None
+        if settings.get_boolean(key):
+            # cannot directly use the Gio API since it requires to rework completely
+            # the library inclusion, remove dependencies on gobject and so on.
+            # Instead, issuing a direct command line request
+            proc = subprocess.Popen(['gsettings', 'get', DCONF_MONOSPACE_FONT_PATH,
+                                     DCONF_MONOSPACE_FONT_KEY], stdout=subprocess.PIPE)
+            font_name = proc.stdout.readline().replace("'", "")
+            if font_name is None:
+                # Back to gconf
+                font_name = client.get_string(GCONF_MONOSPACE_FONT_PATH)
+            proc.kill()
+        else:
+            font_name = self.settings.styleFont.get_string('style')
+
+        if not font_name:
+            log.error("Error: unable to find font name !!!")
+            return
+        font = Pango.FontDescription(font_name)
+        if not font:
+            return
+        for i in self.guake.notebook.iter_terminals():
+            i.set_font(font)
+
+    def allow_bold_toggled(self, settings, key, user_data):
+        """If the gconf var allow_bold is changed, this method will be called
+        and will change the VTE terminal o.
+        displaying characters in bold font.
+        """
+        for term in self.guake.notebook.iter_terminals():
+            term.set_allow_bold(settings.get_boolean(key))
+
+    def palette_font_and_background_color_toggled(self, settings, key, user_data):
+        """If the gconf var use_palette_font_and_background_color be changed, this method
+        will be called and will change the font color and the background color to the color
+        defined in the palette.
+        """
+        self.settings.styleFont.triggerOnChangedValue(self.settings.styleFont, 'palette');
+
+        
+
+    def fstyle_changed(self, settings, key, user_data):
+        """If the gconf var style/font/style be changed, this method
+        will be called and will change the font style in all terminals
+        open.
+        """
+        font = Pango.FontDescription(settings.get_string(key))
+        for i in self.guake.notebook.iter_terminals():
+            i.set_font(font)
+
+    def fcolor_changed(self, settings, key, user_data):
+        """If the gconf var style/font/color be changed, this method
+        will be called and will change the font color in all terminals
+        open.
+        """
+        fgcolor = Gdk.Color.parse(settings.get_string(key))
+        use_palette_font_and_background_color = self.settings.general.get_boolean(
+            'use-palette-font-and-background-color')
+        if use_palette_font_and_background_color:
+            return
+        for i in self.guake.notebook.iter_terminals():
+            #i.set_color_dim(i.custom_fgcolor or fgcolor)
+            i.set_color_foreground(i.custom_fgcolor or fgcolor)
+            i.set_color_bold(i.custom_fgcolor or fgcolor)
+
+    def fpalette_changed(self, settings, key, user_data):
+        """If the gconf var style/font/palette be changed, this method
+        will be called and will change the color scheme in all terminals
+        open.
+        """
+        fgcolor = Gdk.RGBA(0,0,0,0)
+        fgcolor.parse(self.settings.styleFont.get_string('color'))
+
+        bgcolor = Gdk.RGBA(0,0,0,0)
+        bgcolor.parse(self.settings.styleBackground.get_string('color'))
+        
+        colorRGBA = Gdk.RGBA(0,0,0,0)
+        
+        paletteList = list()
+        for color in settings.get_string(key).split(':'):
+            colorRGBA.parse(color)
+            paletteList.append(colorRGBA.copy())
+        
+
+        use_palette_font_and_background_color = self.settings.general.get_boolean(
+            'use-palette-font-and-background-color')
+        if use_palette_font_and_background_color and len(paletteList) > 16:
+            fgcolor = paletteList[16]
+            bgcolor = paletteList[17]
+        bgcolor.alpha = 1/100*self.settings.styleBackground.get_int('transparency')
+        for i in self.guake.notebook.iter_terminals():
+            #i.set_color_dim(fgcolor)
+            i.set_color_foreground(fgcolor)
+            i.set_color_bold(fgcolor)
+            i.set_color_background(bgcolor)
+            #i.set_background_tint_color(bgcolor)
+        for i in self.guake.notebook.iter_terminals():
+            i.set_colors(fgcolor, bgcolor, paletteList[:16])
+
+    def bgcolor_changed(self, settings, key, user_data):
+        """If the gconf var style/background/color be changed, this
+        method will be called and will change the background color in
+        all terminals open.
+        """
+        #TODO PORT this gtk stuff look at the prefs.py file there is this kind of parsing already ported
+        use_palette_font_and_background_color = self.settings.general.get_boolean('use-palette-font-and-background-color')
+        if use_palette_font_and_background_color:
+            log.debug("do not set background from user")
+            return
+        bgcolor = Gdk.RGBA(0,0,0,0)
+        bgcolor.parse(settings.get_string(key))
+        for i in self.guake.notebook.iter_terminals():
+            i.set_color_background(i.custom_bgcolor or bgcolor)
+            i.set_background_tint_color(i.custom_bgcolor or bgcolor)
+
+    def bgimage_changed(self, settings, key, user_data):
+        """If the gconf var style/background/image be changed, this
+        method will be called and will change the background image and
+        will set the transparent flag to false if an image is set in
+        all terminals open.
+        """
+        self.guake.set_background_image(settings.get_string(key))
+
+    def bgtransparency_changed(self, settings, key, user_data):
+        """If the gconf var style/background/transparency be changed, this
+        method will be called and will set the saturation and transparency
+        properties in all terminals open.
+        """
+        self.guake.set_background_transparency(settings.get_int(key))
+
+    def getEraseBinding(self, str):
+        if str == "auto":
+            return Vte.EraseBinding(0)
+        if str == "ascii-backspace":
+            return Vte.EraseBinding(1)
+        if str == "ascii-delete":
+            return Vte.EraseBinding(2)
+        if str == "delete-sequence":
+            return Vte.EraseBinding(3)
+        if str == "tty":
+            return Vte.EraseBinding(4)
+
+    def backspace_changed(self, settings, key, user_data):
+        """If the gconf var compat_backspace be changed, this method
+        will be called and will change the binding configuration in
+        all terminals open.
+        """
+        for i in self.guake.notebook.iter_terminals():
+            i.set_backspace_binding(self.getEraseBinding(settings.get_string(key)))
+
+    def delete_changed(self, settings, key, user_data):
+        """If the gconf var compat_delete be changed, this method
+        will be called and will change the binding configuration in
+        all terminals open.
+        """
+        for i in self.guake.notebook.iter_terminals():
+            i.set_delete_binding(self.getEraseBinding(settings.get_string(key)))
+
+    def max_tab_name_length_changed(self, settings, key, user_data):
+        """If the gconf var max_tab_name_length be changed, this method will
+        be called and will set the tab name length limit.
+        """
+
+        # avoid get window title before terminal is ready
+        if self.guake.notebook.get_current_terminal() is None:
+            return
+        # avoid get window title before terminal is ready
+        if self.guake.notebook.get_current_terminal().get_window_title() is None:
+            return
+
+        self.guake.recompute_tabs_titles()
+
+    def abbreviate_tab_names_changed(self, settings, key, user_data):
+        """If the gconf var abbreviate_tab_names be changed, this method will
+        be called and will update tab names.
+        """
+        abbreviate_tab_names = settings.get_boolean('abbreviate-tab-names')
+        self.guake.abbreviate = abbreviate_tab_names and self.guake.is_tabs_scrollbar_visible()
+        self.guake.recompute_tabs_titles()
+        
+        

@@ -252,8 +252,8 @@ def main():
         remote_object.show_hide()
     
     #TODO PORT remove the next line it only for testing...    
-    #remote_object.show_hide()
-    remote_object.show_prefs()
+    remote_object.show_hide()
+    #remote_object.show_prefs()
 
     if options.execute_startup_script:
         if not already_running:

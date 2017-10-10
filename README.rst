@@ -51,9 +51,9 @@ TODO
 - - -u
 
 - port dbus ✓ (after testing it with QDBusViewer it looks good)
-- port the context menu of the terminal
+- port the context menu of the terminal ✓
 - - show ✓
-- - click actions
+- - click actions ✓
 - - - copy ✓
 - - - paste ✓
 - - - toggle fullscreen ✓
@@ -65,10 +65,10 @@ TODO
 - - - preferences ✓
 - - - about✓
 - - - quit ✓
-- port the context menu of the tab bar
+- port the context menu of the tab bar ✓
 - - show ✓
 - - click actions ✓
-- port the context menu of the tray icon
+- port the context menu of the tray icon v
 - - show ✓
 - - click actions ✓
 - - - preferences ✓
@@ -80,13 +80,12 @@ TODO
 - fix double click on the tab bar ✓
 - fix double click on tab to rename ✓
 - fix clipboard from context menu ✓
-- fix tab bar buttons sometimes losing their text
-  (eg after adding 3+ new tabs from the context menu, hovering them restores the text)
+
 - port the notification module ✓
 - port the keyboard shortcuts ✓
 - - ...
 - port the pref screen ✓
-- port gconfhandler to  gsettingshandler
+- port gconfhandler to  gsettingshandler ✓
 - - ...
 - update the glade files (remove deprecated objects)
 - port about screen ✓
@@ -100,6 +99,8 @@ TODO
 - Things to fix after the port
 - - Rename widgets (from _ to -) to match the names used in the settings
 - - Split files in to single class modules
+- - fix tab bar buttons sometimes losing their text
+    (eg after adding 3+ new tabs from the context menu, hovering them restores the text)
 
 There is stil lots of work to do. The first commit on this branch only gets guake up with one tab open.
 

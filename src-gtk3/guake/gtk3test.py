@@ -31,11 +31,14 @@ gi.require_version('Vte', '2.91')
 
 from gi.repository import GLib
 from gi.repository import Gtk
+from gi.repository import Gdk
 from gi.repository import Vte
 
-from guake.dbus_manager import createDbusRemote
-from guake.dconf_handler import DconfHandler
+#from guake.dbus_manager import createDbusRemote
+#from guake.dconf_handler import DconfHandler
 from guake.terminal import Terminal
+import cairo
+
 
 
 class MyWindow(Gtk.Window):
@@ -45,7 +48,7 @@ class MyWindow(Gtk.Window):
 
         terminal = Terminal()
         
-        help(terminal) 
+        #help(terminal) 
         terminal.spawn_sync(
             Vte.PtyFlags.DEFAULT,
             os.environ['HOME'],
@@ -55,12 +58,57 @@ class MyWindow(Gtk.Window):
             None,
             None,
         )
+        transparency = 50
+        
+        bgcolor = Gdk.RGBA(.2,.5,.8,0.5)
+       # bgcolor.alpha = 1/100*transparency
+        
+        terminal.set_color_background(bgcolor)
+        
+        
+        
+        
+        
+        
+        
         self.add(terminal)
-        self.dconf_handler = DconfHandler()
-        self.dconf_handler.registerSettingCallback("general",
-                                                   "debug-mode",
-                                                   "boolean",
-                                                   self.on_debug_mode_changed)
+        #self.dconf_handler = DconfHandler()
+        #self.dconf_handler.registerSettingCallback("general",
+        #                                           "debug-mode",
+        #                                           "boolean",
+        #                                           self.on_debug_mode_changed)
+        
+        
+        
+        
+        
+        
+        def draw_callback(widget,cr):
+            if widget.transparency:
+                cr.set_source_rgba(0,0,0,0)
+            else:
+                cr.set_source_rgb(0,0,0)   
+            cr.set_operator(cairo.OPERATOR_SOURCE)
+            cr.paint()
+            cr.set_operator(cairo.OPERATOR_OVER)
+        self.set_app_paintable(True)
+        screen = self.get_screen()
+        visual = screen.get_rgba_visual()
+        self.transparency = False
+        if visual and screen.is_composited():
+            self.set_visual(visual)
+            self.transparency = True
+        else:
+            print('System doesn\'t support transparency')
+            self.set_visual(screen.get_system_visual)
+        self.connect('draw', draw_callback)
+        
+        
+        
+        
+        
+        
+        
 
     def on_debug_mode_changed(self, key, value):
         print("debug mode {} changed to {}".format(key, value))
@@ -71,6 +119,6 @@ def createGuake():
     win.connect("delete-event", Gtk.main_quit)
     win.show_all()
     return win
-
-remote_object = createDbusRemote(createGuake)
+createGuake()
+#remote_object = createDbusRemote(createGuake)
 Gtk.main()

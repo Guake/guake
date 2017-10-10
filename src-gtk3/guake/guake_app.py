@@ -61,6 +61,8 @@ import platform
 from xml.sax.saxutils import escape as xml_escape
 
 from guake import notifier
+import cairo
+
 
 try:
     from colorlog import ColoredFormatter
@@ -89,6 +91,7 @@ from guake.simplegladeapp import SimpleGladeApp
 from guake.simplegladeapp import bindtextdomain
 from guake.terminal import GuakeTerminalBox
 from guake.Keybindings import Keybindings
+from guake.gsettings import GSettingHandler
 
 
 libutempter = None
@@ -161,7 +164,7 @@ class PromptQuitDialog(Gtk.MessageDialog):
         else:
             proc_str = _("There are {0} processes still running").format(procs)
 
-        self.set_keep_above(True)
+        #self.set_keep_above(True)
         self.set_markup(primary_msg)
         self.format_secondary_markup("<b>{0}{1}.</b>".format(proc_str, tab_str))
 
@@ -318,25 +321,30 @@ class Guake(SimpleGladeApp):
         self.resizer = self.get_widget('resizer')
 
         # check and set ARGB for real transparency
+        color = self.window.get_style_context().get_background_color(Gtk.StateFlags.NORMAL) 
+        self.window.set_app_paintable(True)
+        def draw_callback(widget,cr):
+            if widget.transparency:
+                pass
+                cr.set_source_rgba(color.red,color.green,color.blue,1)
+            else:
+                cr.set_source_rgb(0,0,0)   
+            cr.set_operator(cairo.OPERATOR_SOURCE)
+            cr.paint()
+            cr.set_operator(cairo.OPERATOR_OVER)        
         screen = self.window.get_screen()
-        colormap = screen.get_rgba_visual()
-        if colormap is None:
-            self.has_argb = False
+        visual = screen.get_rgba_visual()
+        self.window.transparency = False
+        
+        if visual and screen.is_composited():
+            self.window.set_visual(visual)
+            self.window.transparency = True
         else:
-            #TODO PORT do we need this? does no seam so
-            #self.window.set_colormap(colormap)
-            self.has_argb = self.window.get_screen().is_composited()
+            print('System doesn\'t support transparency')
+            self.window.set_visual(screen.get_system_visual)
+        self.window.connect('draw', draw_callback)
 
-            def composited_changed(screen):
-                #TODO PORT I have not ported this jet 
-                self.has_argb = screen.is_composited()
-                self.set_background_transparency(
-                    self.settings.styleBackground.get_int('transparency'))
-                self.set_background_image(
-                    self.settings.styleBackground.get_string('image'))
 
-            self.window.get_screen().connect("composited-changed",
-                                             composited_changed)
 
         # It's intended to know which tab was selected to
         # close/rename. This attribute will be set in
@@ -353,7 +361,8 @@ class Guake(SimpleGladeApp):
         self.prev_showhide_time = 0
 
         # holds transparency level
-        self.transparency = 0
+        #TODO PORT do wie need this??
+        #self.transparency = 0
 
         # Controls the transparency state needed for function accel_toggle_transparency
         self.transparency_toggled = False
@@ -452,16 +461,16 @@ class Guake(SimpleGladeApp):
         # resizer stuff
         self.resizer.connect('motion-notify-event', self.on_resizer_drag)
 
-        # adding the first tab on guake
-        self.add_tab()
+        
         # loading and setting up configuration stuff
-        #TODO PORT
-        #GConfHandler(self)
+        GSettingHandler(self)
         Keybinder.init()
         self.hotkeys = Keybinder
         Keybindings(self)
         self.load_config()
-       
+        
+        # adding the first tab on guake
+        self.add_tab()
         
         self.get_widget("context_find_tab").set_visible(enable_find)
 
@@ -480,7 +489,6 @@ class Guake(SimpleGladeApp):
                 _("Guake is now running,\n"
                   "press <b>{!s}</b> to use it.").format(xml_escape(label)), filename)
             
-        print("end of Guake.__init__()")
 
     # load the custom commands infrastucture
     def load_custom_commands(self):
@@ -606,13 +614,23 @@ class Guake(SimpleGladeApp):
     def printInfo(self, text, *args):
         log.info(text, *args)
 
+    def set_background_transparency_on_term(self, transparency, terminal):
+        bgcolor = Gdk.RGBA(0,0,0,0)
+        bgcolor.parse(self.settings.styleBackground.get_string('color'))
+        bgcolor.alpha = 1/100*transparency
+        terminal.set_color_background(bgcolor)
+        
+
     def set_background_transparency(self, transparency):
+        bgcolor = Gdk.RGBA(0,0,0,0)
+        bgcolor.parse(self.settings.styleBackground.get_string('color'))
+        bgcolor.alpha = 1/100*transparency
         for t in self.notebook.iter_terminals():
-            t.set_background_saturation(transparency / 100.0)
-            if self.has_argb:
-                t.set_opacity(int((100 - transparency) / 100.0 * 65535))
+            t.set_color_background(bgcolor)
 
     def set_background_image(self, image):
+        #TODO remove this vte does nor support images anymore
+        return
         for t in self.notebook.iter_terminals():
             if image and os.path.exists(image):
                 t.set_background_image_file(image)
@@ -630,9 +648,10 @@ class Guake(SimpleGladeApp):
                     t.set_background_transparent(True)
     
     
-    #TODO PORT this is DEAD code vte remoted vte.terminal.set_background_image_file without any replacement
     def set_bg_image(self, image, tab=None):
         """Set the background image of `tab' or the current tab to `bgcolor'."""
+        #TODO PORT this is DEAD code vte remoted vte.terminal.set_background_image_file without any replacement
+        return
         if not self.notebook.has_term():
             self.add_tab()
         index = tab or self.notebook.get_current_page()
@@ -646,10 +665,12 @@ class Guake(SimpleGladeApp):
         if not self.notebook.has_term():
             self.add_tab()
         index = tab or self.notebook.get_current_page()
+        
+        color = Gdk.RGBA(0,0,0,0)
+        color.parse(bgcolor)
+        color.alpha = 1/100*self.settings.styleBackground.get_int('transparency')
         for terminal in self.notebook.get_terminals_for_tab(index):
-            color = Gdk.RGBA(0,0,0,0)
-            color.parse(bgcolor)
-            terminal.set_color_background(color)
+            terminal.set_color_background(color.copy())
 
     def set_fgcolor(self, fgcolor, tab=None):
         """Set the foreground color of `tab' or the current tab to `fgcolor'."""
@@ -770,7 +791,6 @@ class Guake(SimpleGladeApp):
 
         self.showing_context_menu = True
         
-        #TODO PORT port to gtk3 keyboard
         guake_clipboard = Gtk.Clipboard.get_default(self.window.get_display())
         if not guake_clipboard.wait_is_text_available():
             self.get_widget('context_paste').set_sensitive(False)
@@ -889,16 +909,16 @@ class Guake(SimpleGladeApp):
         if self.preventHide:
             return
 
-        #TODO PORT reenable this after keybinder fixes
-        """event_time = self.hotkeys.get_current_event_time()
+        #TODO PORT reenable this after keybinder fixes (this is  mostly done but needs testing)
+        event_time = self.hotkeys.get_current_event_time()
         if not self.settings.general.get_boolean('window-refocus') and \
-                self.window.window and self.window.get_property('visible'):
+            self.window.get_window() and self.window.get_property('visible'):
             pass
         elif not self.settings.general.get_boolean('window-losefocus'):
             if self.losefocus_time and self.losefocus_time < event_time:
-                if self.window.window and self.window.get_property('visible'):
+                if self.window.get_window() and self.window.get_property('visible'):
                     log.debug("DBG: Restoring the focus to the terminal")
-                    self.window.window.focus()
+                    self.window.get_window().focus(event_time)
                     self.set_terminal_focus()
                     self.losefocus_time = 0
                     return
@@ -914,7 +934,7 @@ class Guake(SimpleGladeApp):
                 (event_time - self.prev_showhide_time) < 65:
             return
         self.prev_showhide_time = event_time
-        """
+        
         log.debug("")
         log.debug("=" * 80)
         log.debug("Window display")
@@ -998,9 +1018,7 @@ class Guake(SimpleGladeApp):
 
         # this works around an issue in fluxbox
         if not self.is_fullscreen:
-            pass
-            #TODO PORT
-            #self.client.notify(KEY('/general/window_height'))
+            self.settings.general.triggerOnChangedValue(self.settings.general, 'window-height')
 
         try:
             # does it work in other gtk backends
@@ -1008,7 +1026,7 @@ class Guake(SimpleGladeApp):
             time = GdkX11.x11_get_server_time(self.window.get_window())
         except AttributeError:
             time = 0
-            #TODO PORT this
+            #TODO PORT this 
         # When minized, the window manager seems to refuse to resume
         # log.debug("self.window: %s. Dir=%s", type(self.window), dir(self.window))
         # is_iconified = self.is_iconified()
@@ -1047,6 +1065,7 @@ class Guake(SimpleGladeApp):
 
         self.settings.styleFont.triggerOnChangedValue(self.settings.styleFont, 'color')
         self.settings.styleBackground.triggerOnChangedValue(self.settings.styleBackground, 'color')
+
 
         self.printDebug("Current window position: %r", self.window.get_position())
         #TODO PORT
@@ -1264,7 +1283,6 @@ class Guake(SimpleGladeApp):
         
         
         self.settings.general.triggerOnChangedValue(self.settings.general, 'use-trayicon')
-        return 
         self.settings.general.triggerOnChangedValue(self.settings.general, 'prompt-on-quit')
         self.settings.general.triggerOnChangedValue(self.settings.general, 'prompt-on-close-tab')
         self.settings.general.triggerOnChangedValue(self.settings.general, 'window-tabbar')
@@ -1551,7 +1569,7 @@ class Guake(SimpleGladeApp):
         """Updates labels on all tabs. This is required when `self.abbreviate`
         changes
         """
-        use_vte_titles = self.client.get_bool(KEY("/general/use_vte_titles"))
+        use_vte_titles = self.settings.general.get_boolean("use-vte-titles")
         if not use_vte_titles:
             return
 
@@ -1930,6 +1948,8 @@ class Guake(SimpleGladeApp):
 
         if self.is_fullscreen:
             self.fullscreen()
+            
+        #self.set_background_transparency_on_term(self.settings.styleBackground.get_int('transparency'), box.terminal)
 
         return str(box.terminal.get_uuid())
 

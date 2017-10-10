@@ -755,6 +755,7 @@ class PrefsDialog(SimpleGladeApp):
         """Unset the gconf variable that holds the name of the
         background image of all terminals.
         """
+        #TODO PORT remove this vte does not support this anymore
         self.settings.styleBackground.unset(KEY('/style/background/image'))
         self.bgfilechooser.unselect_all()
 
