@@ -1,6 +1,6 @@
-====================
-Guake 3! README file
-====================
+========================
+Guake 3! README file 85%
+========================
 
 |travis-badge|_ |bountysource-badge|_
 
@@ -87,9 +87,9 @@ TODO
 - port the pref screen ✓
 - port gconfhandler to  gsettingshandler ✓
 - - ...
-- update the glade files (remove deprecated objects)
 - port about screen ✓
 - port pattern matching
+- port Guake.accel* methods
 - add more stuff to this list
 - port make stuff
 - port install stuff
@@ -101,6 +101,8 @@ TODO
 - - Split files in to single class modules
 - - fix tab bar buttons sometimes losing their text
     (eg after adding 3+ new tabs from the context menu, hovering them restores the text)
+- - update the glade files (remove deprecated objects)
+
 
 There is stil lots of work to do. The first commit on this branch only gets guake up with one tab open.
 
