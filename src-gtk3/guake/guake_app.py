@@ -381,6 +381,7 @@ class Guake(SimpleGladeApp):
         evtbox = self.get_widget('event-tabs')
         evtbox.connect('button-press-event', double_click)
 
+        #TODO PORT there is still some gtk stuff in there
         def scroll_manager(hbox, event):
             adj = self.get_widget('tabs-scrolledwindow').get_hadjustment()
             adj.set_page_increment(1)
@@ -1000,6 +1001,8 @@ class Guake(SimpleGladeApp):
 
         self.window.set_keep_below(False)
         self.window.show_all()
+        # this is needed because self.window.show_all() results in showing every thing which includes the scrollbar too
+        self.settings.general.triggerOnChangedValue(self.settings.general,"use-scrollbar")
         
         #TODO PORT do we need this?
         #if self.selected_color is None:
