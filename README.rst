@@ -89,7 +89,7 @@ TODO
 - - ...
 - port about screen ✓
 - port pattern matching
-- port Guake.accel* methods
+- port Guake.accel* methods ✓
 - add more stuff to this list
 - port make stuff
 - port install stuff

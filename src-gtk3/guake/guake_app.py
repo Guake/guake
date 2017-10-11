@@ -48,9 +48,12 @@ log = logging.getLogger(__name__)
 import os
 import platform
 #import pygtk
-#import subprocess
-#import sys
-#import traceback
+# needed for execute_hook
+import subprocess
+# needed for sys.stderr.write(...)
+import sys
+# needed for execute_hook
+import traceback
 #import uuid
 #import xdg.Exceptions
 
@@ -70,7 +73,7 @@ except:
     ColoredFormatter = None
 
 from guake.about import AboutDialog
-#from guake.common import _
+from guake.common import _
 from guake.common import gladefile
 from guake.common import pixmapfile
 #from guake.common import shell_quote
@@ -164,7 +167,6 @@ class PromptQuitDialog(Gtk.MessageDialog):
         else:
             proc_str = _("There are {0} processes still running").format(procs)
 
-        #self.set_keep_above(True)
         self.set_markup(primary_msg)
         self.format_secondary_markup("<b>{0}{1}.</b>".format(proc_str, tab_str))
 
@@ -217,7 +219,6 @@ class Settings():
         self.hooks = Gio.Settings.new_full(Gio.SettingsSchemaSource.lookup(schema_source,"guake.hooks",False), None, None)
         self.hooks.initEnhancements()
         self.hooks.connect("changed", self.hooks.triggerOnChangedValue)
-
 
     def enhanceSetting():
         def initEnhancements(self):
@@ -359,10 +360,6 @@ class Guake(SimpleGladeApp):
 
         # holds the timestamp of the previous show/hide action
         self.prev_showhide_time = 0
-
-        # holds transparency level
-        #TODO PORT do wie need this??
-        #self.transparency = 0
 
         # Controls the transparency state needed for function accel_toggle_transparency
         self.transparency_toggled = False
@@ -1509,10 +1506,10 @@ class Guake(SimpleGladeApp):
         focus. Called by the accel key.
         """
 
-        if self.client.get_bool(KEY('/general/window_losefocus')):
-            self.client.set_bool(KEY('/general/window_losefocus'), False)
+        if self.settings.general.get_boolean('window-losefocus'):
+            self.settings.general.get_boolean('window-losefocus', False)
         else:
-            self.client.set_bool(KEY('/general/window_losefocus'), True)
+            self.settings.general.get_boolean('window-losefocus', True)
         return True
 
     def fullscreen(self):
@@ -1524,7 +1521,7 @@ class Guake(SimpleGladeApp):
         # fullscreen mode, but tabbar will only be shown if a
         # hidden gconf key is false.
         self.resizer.hide()
-        if not self.client.get_bool(KEY('/general/toolbar_visible_in_fullscreen')):
+        if not self.settings.general.get_boolean('toolbar-visible-in-fullscreen'):
             self.toolbar.hide()
 
     def unfullscreen(self):
@@ -1540,12 +1537,12 @@ class Guake(SimpleGladeApp):
 
         # making sure that tabbar and resizer will come back to
         # their default state.
-        self.client.notify(KEY('/general/window_tabbar'))
-        self.client.notify(KEY('/general/show_resizer'))
+        self.settings.general.triggerOnChangedValue('window-tabbar')
+        self.settings.general.triggerOnChangedValue('show-resizer')
 
         # make sure the window size is correct after returning
         # from fullscreen. broken on old compiz/metacity versions :C
-        self.client.notify(KEY('/general/window_height'))
+        self.settings.general.triggerOnChangedValue('window-height')
 
     # -- callbacks --
 
@@ -2178,10 +2175,9 @@ class Guake(SimpleGladeApp):
         current_term.reset(True, True)
         self.preventHide = False
 
-    #TODO PORT this method
     def execute_hook(self, event_name):
         """Execute shell commands related to current event_name"""
-        hook = self.client.get_string(KEY('/hooks/{!s}'.format(event_name)))
+        hook = self.settings.hooks.get_string('{!s}'.format(event_name))
         if hook is not None:
             hook = hook.split()
             try:
