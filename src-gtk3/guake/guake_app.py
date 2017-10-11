@@ -618,14 +618,20 @@ class Guake(SimpleGladeApp):
     def set_background_transparency_on_term(self, transparency, terminal):
         bgcolor = Gdk.RGBA(0,0,0,0)
         bgcolor.parse(self.settings.styleBackground.get_string('color'))
-        bgcolor.alpha = 1/100*transparency
+        if not self.transparency_toggled:
+            bgcolor.alpha = 1/100*transparency
+        else:
+            bgcolor.alpha = 1
         terminal.set_color_background(bgcolor)
-        
+
 
     def set_background_transparency(self, transparency):
         bgcolor = Gdk.RGBA(0,0,0,0)
         bgcolor.parse(self.settings.styleBackground.get_string('color'))
-        bgcolor.alpha = 1/100*transparency
+        if not self.transparency_toggled:
+            bgcolor.alpha = 1/100*transparency
+        else:
+            bgcolor.alpha = 1
         for t in self.notebook.iter_terminals():
             t.set_color_background(bgcolor)
 
@@ -1370,53 +1376,38 @@ class Guake(SimpleGladeApp):
     def accel_increase_height(self, *args):
         """Callback to increase height.
         """
-        try:
-            height = self.client.get_float(KEY('/general/window_height'))
-        except:
-            height = self.client.get_int(KEY('/general/window_height'))
-
-        self.client.set_int(KEY('/general/window_height'), int(height) + 2)
+        height = self.settings.general.get_int('window_height')
+        self.settings.general.set_int('window_height', int(height) + 2)
         return True
 
     def accel_decrease_height(self, *args):
         """Callback to decrease height.
         """
-        try:
-            height = self.client.get_float(KEY('/general/window_height'))
-        except:
-            height = self.client.get_int(KEY('/general/window_height'))
-
-        self.client.set_int(KEY('/general/window_height'), int(height) - 2)
+        height = self.settings.general.get_int('window_height')
+        self.settings.general.set_int('window_height', int(height) - 2)
         return True
 
     def accel_increase_transparency(self, *args):
         """Callback to increase transparency.
         """
-        transparency = self.client.get_int(KEY('/style/background/transparency'))
-        if transparency >= MAX_TRANSPARENCY:
-            return True
-        self.client.set_int(KEY('/style/background/transparency'), int(transparency) + 2)
+        transparency = self.settings.styleBackground.get_int('transparency')
+        if int(transparency) - 2 > 0:
+            self.settings.styleBackground.set_int('transparency', int(transparency) - 2)
         return True
 
     def accel_decrease_transparency(self, *args):
         """Callback to decrease transparency.
         """
-        transparency = self.client.get_int(KEY('/style/background/transparency'))
-        if transparency <= 0:
-            return True
-        self.client.set_int(KEY('/style/background/transparency'), int(transparency) - 2)
+        transparency = self.settings.styleBackground.get_int('transparency')
+        if int(transparency) + 2 < MAX_TRANSPARENCY:
+            self.settings.styleBackground.set_int('transparency', int(transparency) + 2)
         return True
 
     def accel_toggle_transparency(self, *args):
         """Callback to toggle transparency.
         """
-        if self.transparency_toggled:
-            self.client.set_int(KEY('/style/background/transparency'), int(self.transparency))
-            self.transparency_toggled = False
-            return True
-        self.transparency = self.client.get_int(KEY('/style/background/transparency'))
-        self.client.set_int(KEY('/style/background/transparency'), MAX_TRANSPARENCY)
-        self.transparency_toggled = True
+        self.transparency_toggled = not self.transparency_toggled
+        self.settings.styleBackground.triggerOnChangedValue(self.settings.styleBackground, 'transparency')
         return True
 
     def accel_add(self, *args):
