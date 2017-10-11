@@ -966,7 +966,7 @@ msgstr "Вставить текст из буфера обмена"
 
 #: ../src/guake/prefs.py:156
 msgid "Extra features"
-msgstr "Допольнительные функции"
+msgstr "Дополнительные функции"
 
 #: ../src/guake/prefs.py:159
 msgid "Search select text on web"
