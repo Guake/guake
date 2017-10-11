@@ -1,3 +1,17 @@
+Version 0.8.11
+==============
+
+Maintainance release with bug fixes and translation updates.
+
+- #885 revert to the old fixed-width tabs behavior
+- move the startup script setting to the hooks tab
+- #977 Add a configuration toggle to disable windows refocus
+- #970 Right-click tab options don't work properly
+- #995 Russian translation
+- #983 French translation
+- #986 Update German translatio
+
+
 Version 0.8.10
 ==============
 
