@@ -57,7 +57,7 @@ import traceback
 #import uuid
 #import xdg.Exceptions
 
-#from urllib import quote_plus
+from urllib.parse import quote_plus
 #from urllib import url2pathname
 #from urlparse import urlsplit
 #from xdg.DesktopEntry import DesktopEntry
@@ -279,12 +279,13 @@ class Guake(SimpleGladeApp):
             self.tray_icon.connect('popup-menu', self.show_menu)
             self.tray_icon.connect('activate', self.show_hide)
         else:
+            #TODO PORT test this on a system with app indecator
             self.tray_icon = appindicator.Indicator(
                 _("guake-indicator"), _("guake-tray"), appindicator.CATEGORY_OTHER)
             self.tray_icon.set_icon(img)
             self.tray_icon.set_status(appindicator.STATUS_ACTIVE)
             menu = self.get_widget('tray-menu')
-            show = gtk.MenuItem(_('Show'))
+            show = Gtk.MenuItem(_('Show'))
             show.set_sensitive(True)
             show.connect('activate', self.show_hide)
             show.show()
@@ -378,7 +379,7 @@ class Guake(SimpleGladeApp):
         evtbox = self.get_widget('event-tabs')
         evtbox.connect('button-press-event', double_click)
 
-        #TODO PORT there is still some gtk stuff in there
+        #TODO PORT there is still some gtk stuff in there, how to trigger this? cant test...
         def scroll_manager(hbox, event):
             adj = self.get_widget('tabs-scrolledwindow').get_hadjustment()
             adj.set_page_increment(1)
@@ -495,7 +496,7 @@ class Guake(SimpleGladeApp):
         custom_commands_menu = Gtk.Menu()
         if not self.get_custom_commands(custom_commands_menu):
             return
-        menu = gtk.MenuItem("Custom Commands")
+        menu = Gtk.MenuItem("Custom Commands")
         menu.set_submenu(custom_commands_menu)
         menu.show()
         self.custom_command_menuitem = menu
@@ -511,6 +512,8 @@ class Guake(SimpleGladeApp):
     # function to read commands stored at /general/custom_command_file and
     # launch the context menu builder
     def get_custom_commands(self, menu):
+        #TODO PORT test this code, where is the spec for the json file?
+
         custom_command_file_path = self.settings.general.get_string('custom-command-file')
         if not custom_command_file_path:
             return False
@@ -538,16 +541,17 @@ class Guake(SimpleGladeApp):
 
     # function to build the custom commands menu and menuitems
     def parse_custom_commands(self, json_object, menu):
+        #TODO PORT test this code
         if json_object.get('type') == "menu":
-            newmenu = gtk.Menu()
-            newmenuitem = gtk.MenuItem(json_object['description'])
+            newmenu = Gtk.Menu()
+            newmenuitem = Gtk.MenuItem(json_object['description'])
             newmenuitem.set_submenu(newmenu)
             newmenuitem.show()
             menu.append(newmenuitem)
             for item in json_object['items']:
                 self.parse_custom_commands(item, newmenu)
         else:
-            menu_item = gtk.MenuItem(json_object['description'])
+            menu_item = Gtk.MenuItem(json_object['description'])
             custom_command = ""
             space = ""
             for command in json_object['cmd']:
@@ -872,7 +876,7 @@ class Guake(SimpleGladeApp):
     def middle_button_click(self, target, event):
         """Closes a tab with a middle click
         """
-        if event.button == 2 and event.type == gtk.gdk.BUTTON_PRESS:
+        if event.button == 2 and event.type == Gdk.EventType.BUTTON_PRESS:
             previously_selected_tab = self.get_selected_tab()
             target.activate_tab()
             target_position = self.get_selected_tab()
@@ -1056,7 +1060,7 @@ class Guake(SimpleGladeApp):
         self.window.present()
         self.window.deiconify()
         self.window.show()
-        #self.window.window.focus(time)
+        self.window.get_window().focus(time)
         self.window.set_type_hint(Gdk.WindowTypeHint.DOCK)
         self.window.set_type_hint(Gdk.WindowTypeHint.NORMAL)
 
@@ -1074,8 +1078,8 @@ class Guake(SimpleGladeApp):
 
 
         self.printDebug("Current window position: %r", self.window.get_position())
-        #TODO PORT
-        #self.execute_hook('show')
+
+        self.execute_hook('show')
 
     def hide_from_remote(self):
         """
@@ -1478,7 +1482,7 @@ class Guake(SimpleGladeApp):
         if current_term.get_has_selection():
             current_term.copy_clipboard()
         elif current_term.matched_value:
-            guake_clipboard = gtk.clipboard_get()
+            guake_clipboard = Gtk.Clipboard.get_default(self.window.get_display())
             guake_clipboard.set_text(current_term.matched_value)
 
         return True
@@ -1601,7 +1605,7 @@ class Guake(SimpleGladeApp):
             vte_title = self.compute_tab_title(vte)
             tab.set_label(vte_title)
             tab.set_tooltip_text(vte_title)
-            #gtk.Tooltips().set_tip(tab, vte_title)
+            Gtk.Tooltips().set_tip(tab, vte_title)
 
     def on_rename_current_tab_activate(self, *args):
         """Shows a dialog to rename the current tab.
@@ -1782,7 +1786,7 @@ class Guake(SimpleGladeApp):
        
         argv = list()
         user_shell = self.settings.general.get_string('default-shell')
-        if user_shell and os.path.exists(shell):
+        if user_shell and os.path.exists(user_shell):
             argv.append(user_shell)
         else: 
             argv.append(os.environ['SHELL'])
@@ -1864,6 +1868,7 @@ class Guake(SimpleGladeApp):
         box = GuakeTerminalBox(self.settings)
         box.terminal.grab_focus()
         #TODO PORT port this
+        #TODO PORT seems to run just fine without
         #box.terminal.drag_dest_set(gtk.DEST_DEFAULT_MOTION |
         #                           gtk.DEST_DEFAULT_DROP |
         #                           gtk.DEST_DEFAULT_HIGHLIGHT,
@@ -1939,8 +1944,6 @@ class Guake(SimpleGladeApp):
 
         if self.is_fullscreen:
             self.fullscreen()
-            
-        #self.set_background_transparency_on_term(self.settings.styleBackground.get_int('transparency'), box.terminal)
 
         return str(box.terminal.get_uuid())
 
@@ -1983,14 +1986,15 @@ class Guake(SimpleGladeApp):
 
     def find_tab(self, directory=None):
         log.debug("find")
+        #TODO PORT
         self.preventHide = True
-        search_text = gtk.TextView()
+        search_text = Gtk.TextView()
 
-        dialog = gtk.Dialog(_("Find"), self.window,
-                            gtk.DIALOG_DESTROY_WITH_PARENT,
+        dialog = Gtk.Dialog(_("Find"), self.window,
+                            Gtk.DialogFlags.DESTROY_WITH_PARENT,
                             (_("Forward"), RESPONSE_FORWARD,
                              _("Backward"), RESPONSE_BACKWARD,
-                             gtk.STOCK_CANCEL, gtk.RESPONSE_NONE))
+                             Gtk.STOCK_CANCEL, Gtk.ResponseType.NONE))
         dialog.vbox.pack_end(search_text, True, True, 0)
         dialog.buffer = search_text.get_buffer()
         dialog.connect("response", self._dialog_response_callback)
@@ -2130,18 +2134,17 @@ class Guake(SimpleGladeApp):
     def search_on_web(self, *args):
         """Search for the selected text on the web
         """
-        #TODO PORT trigger this via the context menu -> "Search On Web"
         current_term = self.notebook.get_current_terminal()
 
         if current_term.get_has_selection():
             current_term.copy_clipboard()
-            guake_clipboard = gtk.clipboard_get()
+            guake_clipboard = Gtk.Clipboard.get_default(self.window.get_display())
             search_query = guake_clipboard.wait_for_text()
             search_query = quote_plus(search_query)
             if search_query:
                 search_url = "https://www.google.com/#q={!s}&safe=off".format(search_query,)
-                gtk.show_uri(current_term.window.get_screen(), search_url,
-                             gtk.gdk.x11_get_server_time(current_term.window))
+                Gtk.show_uri(self.window.get_screen(), search_url,
+                             GdkX11.x11_get_server_time(self.window.get_window()))
         return True
 
     def getCurrentTerminalLinkUnderCursor(self):
@@ -2178,7 +2181,7 @@ class Guake(SimpleGladeApp):
     def execute_hook(self, event_name):
         """Execute shell commands related to current event_name"""
         hook = self.settings.hooks.get_string('{!s}'.format(event_name))
-        if hook is not None:
+        if hook is not None and hook != "":
             hook = hook.split()
             try:
                 subprocess.Popen(hook)

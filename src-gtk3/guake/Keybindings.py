@@ -59,6 +59,7 @@ class Keybindings(object):
         self.globalhotkeys[key] = value
         if not self.guake.hotkeys.bind(value, self.guake.show_hide):
             print("shit")
+            #TODO port this
             keyval, mask = Gtk.accelerator_parse(value)
             label = Gtk.accelerator_get_label(keyval, mask)
             filename = pixmapfile('guake-notification.png')

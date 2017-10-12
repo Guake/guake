@@ -21,7 +21,7 @@ Guake is mostly written in Python and has a little piece in C (https://github.co
 What is this?
 -------------
 
-This is 3!, a port of Guake to use python3, Gtk3 and Vte 2.90!
+This is 3!, a port of Guake to use python3, Gtk3 and Vte 2.91!
 
 
 TODO
@@ -88,7 +88,7 @@ TODO
 - port gconfhandler to  gsettingshandler ✓
 - - ...
 - port about screen ✓
-- port pattern matching
+- port pattern matching ✓
 - port Guake.accel* methods ✓
 - add more stuff to this list
 - port make stuff
@@ -99,8 +99,8 @@ TODO
 - Things to fix after the port
 - - Rename widgets (from _ to -) to match the names used in the settings
 - - Split files in to single class modules
-- - fix tab bar buttons sometimes losing their text
-    (eg after adding 3+ new tabs from the context menu, hovering them restores the text)
+- - fix tab bar buttons sometimes losing their text (eg after adding 3+ new tabs from the context menu, hovering them
+restores the text) (I think this is a problem with the deprecated widgets which are still in use)
 - - update the glade files (remove deprecated objects)
 
 

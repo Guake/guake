@@ -172,7 +172,6 @@ class PrefsCallbacks(object):
     """
 
     def __init__(self, prefDlg):
-        #self.client = gconf.client_get_default()
         self.prefDlg = prefDlg
         self.settings = prefDlg.settings
     # general tab
@@ -648,7 +647,7 @@ class PrefsDialog(SimpleGladeApp):
     def spawn_sync_pid(self, directory=None, terminal=None):
         argv = list()
         user_shell = self.settings.general.get_string('default-shell')
-        if user_shell and os.path.exists(shell):
+        if user_shell and os.path.exists(user_shell):
             argv.append(user_shell)
         else: 
             argv.append(os.environ['SHELL'])
@@ -690,6 +689,7 @@ class PrefsDialog(SimpleGladeApp):
         self.demo_terminal.destroy()
 
     def update_preview(self, file_chooser, preview):
+        #TODO PORT is this still needed if we remove the bg image stuff?
         """Used by filechooser to preview image files
         """
         filename = file_chooser.get_preview_filename()
@@ -1305,11 +1305,11 @@ class PrefsDialog(SimpleGladeApp):
         """
         giter = model.get_iter(path)
         gconf_path = model.get_value(giter, 0)
-
-        self.client.get_string(gconf_path)
+        print(path)
+        self.settings.keybindingsLocal.get_string(gconf_path)
         model.set_value(giter, 2, KeyEntry(0, 0))
 
-        self.client.set_string(gconf_path, 'disabled')
+        self.settings.keybindingsLocal.set_string(gconf_path, 'disabled')
 
     def cell_data_func(self, column, renderer, model, giter, unknown):
         """Defines the way that each renderer will handle the key
@@ -1374,17 +1374,17 @@ def setup_standalone_signals(instance):
     the application.
     """
     window = instance.get_widget('config-window')
-    window.connect('delete-event', gtk.main_quit)
+    window.connect('delete-event', Gtk.main_quit)
 
     # We need to block the execution of the already associated
     # callback before connecting the new handler.
     button = instance.get_widget('button1')
     button.handler_block_by_func(instance.gtk_widget_destroy)
-    button.connect('clicked', gtk.main_quit)
+    button.connect('clicked', Gtk.main_quit)
 
     return instance
 
 if __name__ == '__main__':
     bindtextdomain(NAME, LOCALE_DIR)
     setup_standalone_signals(PrefsDialog()).show()
-    gtk.main()
+    Gtk.main()

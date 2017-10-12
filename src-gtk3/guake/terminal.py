@@ -37,6 +37,7 @@ from guake.common import clamp
 
 from time import sleep
 
+import re
 import uuid
 import os
 import logging
@@ -46,47 +47,19 @@ def halt(loc):
     code.interact(local=loc)
     
 
+import subprocess
 import threading
 import signal
-
+#TODO PORT
 #__all__ = ['Terminal', 'TerminalBox']
 
-
-# regular expressions to highlight links in terminal. This code was
-# lovely stolen from the great gnome-terminal project, thank you =)
-USERCHARS = r"-[:alnum:]"
-PASSCHARS = r"-[:alnum:],?;.:/!%$^*&~\"#'"
-HOSTCHARS = r"-[:alnum:]"
-HOST = r"[{hostchars}]+(\\.[{hostchars}]+)*".format(hostchars=HOSTCHARS)
-PORT = r"(:[0-9]{1,5})?"
-PATHCHARS = r"-[:alnum:]_$.+!*(),;:@&=?/~#%"
-SCHEME = r"(news:|telnet:|nntp:|file:/|https?:|ftps?:|webcal:)"
-USER = r"[{userchars}]+(:[{passchars}]+)?".format(
-    userchars=USERCHARS,
-    passchars=PASSCHARS)
-URLPATH = r"/[{pathchars}]*[^]'.>) \t\r\n,\\\"]".format(pathchars=PATHCHARS)
+#TODO this is not as fancy as as it could be
 TERMINAL_MATCH_TAGS = 'schema', 'http', 'email'
 TERMINAL_MATCH_EXPRS = [
-    r"\<{scheme}//({user}\@)?{host}{port}({urlpath})?\>/?".format(
-        scheme=SCHEME,
-        user=USER,
-        host=HOST,
-        port=PORT,
-        urlpath=URLPATH,
-    ),
-    r"\<(www|ftp)[{hostchars}]*\.{host}{port}({urlpath})?\>/?".format(
-        hostchars=HOSTCHARS,
-        host=HOST,
-        port=PORT,
-        urlpath=URLPATH,
-    ),
-    r"\<(mailto:)?[{userchars}][{userchars}.]*@[{hostchars}]+\.{host}\>".format(
-        hostchars=HOSTCHARS,
-        userchars=USERCHARS,
-        host=HOST,
-    ),
+    "(news:|telnet:|nntp:|file:\/|https?:|ftps?:|webcal:)\/\/([-[:alnum:]]+(:[-[:alnum:],?;.:\/!%$^*&~\"#']+)?\@)?[-[:alnum:]]+(\.[-[:alnum:]]+)*(:[0-9]{1,5})?(\/[-[:alnum:]_$.+!*(),;:@&=?\/~#%]*[^]'.>) \t\r\n,\\\"])?",
+    "(www|ftp)[-[:alnum:]]*\.[-[:alnum:]]+(\.[-[:alnum:]]+)*(:[0-9]{1,5})?(\/[-[:alnum:]_$.+!*(),;:@&=?\/~#%]*[^]'.>) \t\r\n,\\\"])?",
+    "(mailto:)?[-[:alnum:]][-[:alnum:].]*@[-[:alnum:]]+\.[-[:alnum:]]+(\\.[-[:alnum:]]+)*"
 ]
-#\<(news:|telnet:|nntp:|file:/|https?:|ftps?:|webcal:)//([-[:alnum:]]+(:[-[:alnum:],?;.:/!%$^*&~\"#']+)?@)?[-[:alnum:]]+(\\.[-[:alnum:]]+)*(:[:digit:]{1,5})?(/[-[:alnum:]_$.+!*(),;:@&=?/~#%]*[^]'.>) \t\r\n,\\\"])?\>/?
 # tuple (title/quick matcher/filename and line number extractor)
 QUICK_OPEN_MATCHERS = [
     ("Python traceback",
@@ -279,16 +252,14 @@ class GuakeTerminal(Vte.Terminal):
         highlight text that matches them.
         """
         for expr in TERMINAL_MATCH_EXPRS:
-            pass
-            #TODO PORT runtime check failed
-            #tag = self.match_add_regex(Vte.Regex.new_for_match(expr, len(expr), 0), 0)
-            #self.match_set_cursor_type(tag, Gdk.CursorType.HAND2)
+            #TODO PORT next line throws a Vte-WARNIN but works: runtime check failed
+            tag = self.match_add_regex(Vte.Regex.new_for_match(expr, len(expr), 0), 0)
+            self.match_set_cursor_type(tag, Gdk.CursorType.HAND2)
 
         for _useless, match, _otheruseless in QUICK_OPEN_MATCHERS:
-            pass
-            #TODO PORT runtime check failed
-            #tag = self.match_add_regex(Vte.Regex.new_for_match(match, len(match), 0), 0)
-            #self.match_set_cursor_type(tag, Gdk.CursorType.HAND2)
+            #TODO PORT next line throws a Vte-WARNIN but works: runtime check failed
+            tag = self.match_add_regex(Vte.Regex.new_for_match(match, len(match), 0), 0)
+            self.match_set_cursor_type(tag, Gdk.CursorType.HAND2)
 
     def get_current_directory(self):
         directory = os.path.expanduser('~')
@@ -316,11 +287,9 @@ class GuakeTerminal(Vte.Terminal):
             # First searching in additional matchers
             found_additional_matcher = False
             #TODO PORT
-            client = gconf.client_get_default()
-            use_quick_open = client.get_bool(KEY("/general/quick_open_enable"))
-            quick_open_in_current_terminal = client.get_bool(
-                KEY("/general/quick_open_in_current_terminal"))
-            cmdline = client.get_string(KEY("/general/quick_open_command_line"))
+            use_quick_open = self.settings.general.get_boolean("quick-open-enable")
+            quick_open_in_current_terminal = self.settings.general.get_boolean("quick-open-in-current-terminal")
+            cmdline = self.settings.general.get_string("quick-open-command-line")
             if use_quick_open:
                 for _useless, _otheruseless, extractor in QUICK_OPEN_MATCHERS:
                     g = re.compile(extractor).match(value)

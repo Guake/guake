@@ -251,8 +251,9 @@ def main():
         # it is already running, so, lets toggle its visibility.
         remote_object.show_hide()
     
-    #TODO PORT remove the next line it only for testing...    
+    #TODO PORT remove the next line it only exists for testing...
     remote_object.show_hide()
+    #TODO PORT remove the next line it only exists for testing...
     #remote_object.show_prefs()
 
     if options.execute_startup_script:
