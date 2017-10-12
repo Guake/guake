@@ -5,16 +5,22 @@ from __future__ import print_function
 import logging
 import posix
 
-from gtk import Notebook
+
+import gi
+gi.require_version('Gtk', '3.0')
+gi.require_version('Vte', '2.91') 
+
+from gi.repository import Gtk
+
 
 
 log = logging.getLogger(__name__)
 
 
-class GuakeNotebook(Notebook):
+class GuakeNotebook(Gtk.Notebook):
 
     def __init__(self, *args, **kwargs):
-        Notebook.__init__(self, *args, **kwargs)
+        Gtk.Notebook.__init__(self, *args, **kwargs)
 
         # List of vte.Terminal widgets, it will be useful when needed
         # to get a widget by the current page in self.notebook
@@ -54,7 +60,8 @@ class GuakeNotebook(Notebook):
     def get_running_fg_processes_tab(self, index):
         total_procs = 0
         for terminal in self.get_terminals_for_tab(index):
-            fdpty = terminal.get_pty()
+            
+            fdpty = terminal.get_pty().get_fd()
             term_pid = terminal.get_pid()
             try:
                 fgpid = posix.tcgetpgrp(fdpty)

@@ -4,4 +4,4 @@ echo "execute Guake GTK3 for developer."
 
 #sudo ./install.py
 
-PYTHONPATH=src-gtk3 python3 src-gtk3/guake/main.py --no-startup-script
+PYTHONPATH=src python3 src/guake/main.py --no-startup-script

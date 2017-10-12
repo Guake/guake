@@ -18,39 +18,46 @@ Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor,
 Boston, MA 02110-1301 USA
 """
 from __future__ import absolute_import
+from __future__ import division
+from __future__ import print_function
+from __future__ import unicode_literals
 
+import gettext
 import os
 import sys
 
-import gconf
-import gettext
-import gtk
+import gi
+gi.require_version('Gtk', '3.0')
+gi.require_version('Vte', '2.91') 
+
+from gi.repository import Gtk
+
 import guake.globals
+
 
 # Internationalization purposes.
 _ = gettext.gettext
 
-__all__ = ['_', 'ShowableError', 'test_gconf',
-           'pixmapfile', 'gladefile', 'hexify_color',
-           'get_binaries_from_path']
+__all__ = [
+    '_',
+    'ShowableError',
+    'pixmapfile',
+    'gladefile',
+    'hexify_color',
+    'get_binaries_from_path',
+]
 
 
-class ShowableError(Exception):
-
-    def __init__(self, title, msg, exit_code=1):
-        d = gtk.MessageDialog(type=gtk.MESSAGE_ERROR,
-                              buttons=gtk.BUTTONS_CLOSE)
-        d.set_markup('<b><big>%s</big></b>' % title)
-        d.format_secondary_markup(msg)
-        d.run()
-        d.destroy()
-        if exit_code != -1:
-            sys.exit(exit_code)
-
-
-def test_gconf():
-    c = gconf.client_get_default()
-    return c.dir_exists('/apps/guake')
+def ShowableError(parent, title, msg, exit_code=1):
+    d = Gtk.MessageDialog(
+        parent,
+        Gtk.DialogFlags.MODAL | Gtk.DialogFlags.DESTROY_WITH_PARENT,
+        Gtk.MessageType.WARNING,
+        Gtk.ButtonsType.CLOSE)
+    d.set_markup('<b><big>%s</big></b>' % title)
+    d.format_secondary_markup(msg)
+    d.run()
+    d.destroy()
 
 
 def pixmapfile(x):
