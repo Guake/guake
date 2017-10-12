@@ -45,7 +45,7 @@
             <summary>Prompt when quitting.</summary>
             <description>Ask for confirmation when quitting Guake.</description>
         </key>
-        <key name="prompt-on-close-Tab" type="i">
+        <key name="prompt-on-close-tab" type="i">
             <default>0</default>
             <summary>Prompt when closing tabs.</summary>
             <description>0: Never 1: If process is running 2: Always.  Also prompts on quit.</description>
@@ -54,6 +54,11 @@
             <default>true</default>
             <summary>Stay on top.</summary>
             <description>Makes guake window be on top of all other windows in the desktop.</description>
+        </key>
+         <key name="window-refocus" type="b">
+            <default>false</default>
+            <summary>Refocus window.</summary>
+            <description>Refocus window instead of closing.</description>
         </key>
         <key name="tab-ontop" type="b">
             <default>false</default>
@@ -115,6 +120,11 @@
             <summary>Window width (float).</summary>
             <description>Percent of the screen that will be used by guake terminal horizontally.</description>
         </key>
+        <key name="window-height" type="i">
+            <default>50</default>
+            <summary>Window height.</summary>
+            <description>Percent of the screen that will be used by guake terminal vertically.</description>
+        </key>
         <key name="window-height-f" type="d">
             <default>50</default>
             <summary>Window height (float).</summary>
@@ -154,11 +164,6 @@
             <default>true</default>
             <summary>Use default font</summary>
             <description>If true, Guake will use the GNOME monospace default font.</description>
-        </key>
-        <key name="use-palette-font-and-background-color" type="b">
-            <default>true</default>
-            <summary>Use palette font and backgrount colors</summary>
-            <description>If true, the terminal font and background colors will use the value defined in the palette. If false, it will use the value defined by the user.</description>
         </key>
         <key name="use-vte-titles" type="b">
             <default>true</default>
@@ -200,6 +205,21 @@
             <summary>Path to the default custom command json file.</summary>
             <description>Path to the default custom command json file. If is blank or the json file is not in a proper format the terminal context menu will be built without custom commands. If the file is a valid json with recognized structure theterminak context menu will be buit with the commands read inside.</description>
         </key>
+        <key name="open-tab-cwd" type="b">
+            <default>true</default>
+            <summary>Open new tab in the current working directory</summary>
+            <description>Open new tab in the current working directory</description>
+        </key>
+        <key name="max-tab-name-length" type="i">
+            <default>100</default>
+            <summary>#TODO PORT max-tab-name-length</summary>
+            <description>#TODO PORT max-tab-name-length</description>
+        </key>
+        <key name="abbreviate-tab-names" type="b">
+            <default>false</default>
+            <summary>#TODO PORT abbreviate-tab-names</summary>
+            <description>#TODO PORT abbreviate-tab-names</description>
+        </key>
     </schema>
     <schema id="guake.style" path="/apps/guake/style/">
         <key name="cursor-blink-mode" type="i">
@@ -221,11 +241,6 @@
             <summary>Font style.</summary>
             <description>Font face and size that will be used in terminal.</description>
         </key>
-        <key name="color" type="s">
-            <default>'#ffffffffffff'</default>
-            <summary>Font color.</summary>
-            <description>Font color that will be used in terminal.</description>
-        </key>
         <key name="palette" type="s">
             <default>'#000000000000:#cccc00000000:#4e4e9a9a0606:#c4c4a0a00000:#34346565a4a4:#757550507b7b:#060698209a9a:#d3d3d7d7cfcf:#555557575353:#efef29292929:#8a8ae2e23434:#fcfce9e94f4f:#72729f9fcfcf:#adad7f7fa8a8:#3434e2e2e2e2:#eeeeeeeeecec'</default>
             <summary>Color scheme.</summary>
@@ -236,13 +251,13 @@
             <summary>Color scheme name.</summary>
             <description>Color scheme name that will be used in terminal.</description>
         </key>
+         <key name="allow-bold" type="b">
+            <default>true</default>
+            <summary>Allow displaying bold font in Guake terminal.</summary>
+            <description>When allow_bold is disabled, any text in Guake terminal intended to print as bold text will be instead rendered as normal text.</description>
+        </key>
     </schema>
     <schema id="guake.style.background" path="/apps/guake/style/background/">
-        <key name="color" type="s">
-            <default>'#000000000000'</default>
-            <summary>Background color.</summary>
-            <description>Background color that will be used in terminal.</description>
-        </key>
         <key name="image" type="s">
             <default>''</default>
             <summary>Background image.</summary>
@@ -415,6 +430,28 @@
             <default>'&lt;Control&gt;F1'</default>
             <summary>Toggle hide on lose focus.</summary>
             <description>Toggle whether guake will hide when it loses focus.</description>
+        </key>
+        <key name="reset-terminal" type="s">
+            <default>''</default>
+            <summary>Reset</summary>
+            <description>Reset terminal</description>
+        </key>
+        <key name="toggle-transparency" type="s">
+            <default>'&lt;Control&gt;Alt&gt;T'</default>
+            <summary>Toggle transparency.</summary>
+            <description>Toggle the terminal transparency from the actual level to 100% and vice versa.</description>
+        </key>
+        <key name="switch-tab-last" type="s">
+            <default>'&lt;Control&gt;F12'</default>
+            <summary>Last tab.</summary>
+            <description>Switch to the last tab.</description>
+        </key>
+    </schema>
+    <schema id="guake.hooks" path="/apps/guake/hooks/">
+        <key name="show" type="s">
+            <default>''</default>
+            <summary>On show.</summary>
+            <description>Run this script on show.</description>
         </key>
     </schema>
 </schemalist>

@@ -30,7 +30,7 @@ import dbus.service
 dbus.glib.threads_init()
 
 DBUS_PATH = '/org/guake/RemoteControl'
-DBUS_NAME = 'org.guakegt3.RemoteControl'
+DBUS_NAME = 'org.guake3.RemoteControl'
 
 
 class DbusManager(dbus.service.Object):

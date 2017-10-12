@@ -1,5 +1,6 @@
+# -*- coding: utf-8; -*-
 """
-Copyright (C) 2013 Maxim Ivanov <ulidtko@gmail.com>
+Copyright (C) 2007-2013 Guake authors
 
 This program is free software; you can redistribute it and/or
 modify it under the terms of the GNU General Public License as
@@ -13,55 +14,26 @@ General Public License for more details.
 
 You should have received a copy of the GNU General Public
 License along with this program; if not, write to the
-Free Software Foundation, Inc., 59 Temple Place - Suite 330,
-Boston, MA 02111-1307, USA.
+Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor,
+Boston, MA 02110-1301 USA
 """
 from __future__ import absolute_import
 from __future__ import division
 from __future__ import print_function
+from __future__ import unicode_literals
 
-import glib
-import logging
+import gi
+gi.require_version('Notify', '0.7')
+from gi.repository import GLib
+from gi.repository import Notify
 
-import pynotify
+Notify.init("Guake")
 
-from textwrap import dedent
+__all__ = ['showMessage']
 
-log = logging.getLogger(__name__)
-pynotify.init("Guake")
-
-__all__ = ['show_message']
-
-RETRY_INTERVAL = 3  # seconds
-
-retry_limit = 5  # tries
-
-
-def show_message(brief, body=None, icon=None):
+def showMessage(brief, body=None, icon=None):
     try:
-        notification = pynotify.Notification(brief, body, icon)
+        notification = Notify.Notification.new(brief, body, icon)
         notification.show()
-    except glib.GError:
-        print_warning()
-        glib.timeout_add_seconds(RETRY_INTERVAL, lambda: retry(brief, body, icon))
-
-
-def retry(*args):
-    global retry_limit
-
-    if retry_limit <= 0:
-        return False
-
-    retry_limit -= 1
-    show_message(*args)
-
-
-def print_warning():
-    if not hasattr(print_warning, 'already_printed'):
-        log.info(dedent('''
-            Notification service is not running (yet). Guake can't display notifications!
-              We'll retry a few times more a bit later, but you can use
-              the following command to disable the startup notification:
-            $ gconftool-2 --type bool --set /apps/guake/general/use_popup false
-        ''').strip())
-        print_warning.already_printed = True
+    except GLib.GError:
+        pass

@@ -1,8 +1,6 @@
-#!/usr/bin/env python2
 # -*- coding: utf-8; -*-
 """
-Copyright (C) 2007-2012 Lincoln de Sousa <lincoln@minaslivre.org>
-Copyright (C) 2007 Gabriel Falcão <gabrielteratos@gmail.com>
+Copyright (C) 2007-2013 Guake authors
 
 This program is free software; you can redistribute it and/or
 modify it under the terms of the GNU General Public License as
@@ -19,13 +17,19 @@ License along with this program; if not, write to the
 Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor,
 Boston, MA 02110-1301 USA
 """
-
 from __future__ import absolute_import
 from __future__ import division
 from __future__ import print_function
+from __future__ import unicode_literals
+
+
+import gi
+gi.require_version('Gtk', '3.0')
+
+from gi.repository import Gtk
+
 
 import dbus
-import gtk
 import logging
 import os
 import subprocess
@@ -34,15 +38,18 @@ import uuid
 
 from optparse import OptionParser
 
-from guake.common import ShowableError
 from guake.common import _
-from guake.common import test_gconf
+
+from guake.globals import KEY
+from guake.globals import VERSION
+
 from guake.dbusiface import DBUS_NAME
 from guake.dbusiface import DBUS_PATH
 from guake.dbusiface import DbusManager
-from guake.globals import KEY
-from guake.globals import VERSION
+
+
 from guake.guake_app import Guake
+
 
 
 log = logging.getLogger(__name__)
@@ -150,7 +157,7 @@ def main():
     options = parser.parse_args()[0]
 
     instance = None
-
+    
     # Trying to get an already running instance of guake. If it is not
     # possible, lets create a new instance. This function will return
     # a boolean value depending on this decision.
@@ -162,6 +169,7 @@ def main():
         instance = Guake()
         remote_object = DbusManager(instance)
         already_running = False
+    
 
     only_show_hide = True
 
@@ -229,15 +237,28 @@ def main():
     if options.show_about:
         remote_object.show_about()
         only_show_hide = False
+    
+    if options.quit:
+        try:
+            remote_object.quit()
+            return True
+        except dbus.DBusException:
+            return True
+
 
     if already_running and only_show_hide:
         # here we know that guake was called without any parameter and
         # it is already running, so, lets toggle its visibility.
         remote_object.show_hide()
+    
+    #TODO PORT remove the next line it only exists for testing...
+    remote_object.show_hide()
+    #TODO PORT remove the next line it only exists for testing...
+    #remote_object.show_prefs()
 
     if options.execute_startup_script:
         if not already_running:
-            startup_script = instance.client.get_string(KEY("/general/startup_script"))
+            startup_script = instance.settings.general.get_string("startup-script")
             if startup_script:
                 log.info("Calling startup script: %s", startup_script)
                 pid = subprocess.Popen([startup_script], shell=True, stdin=None, stdout=None,
@@ -250,13 +271,9 @@ def main():
 
 
 def exec_main():
-    if not test_gconf():
-        raise ShowableError(_('Guake can not init!'),
-                            _('Gconf Error.\n'
-                              'Have you installed <b>guake.schemas</b> properly?'))
-
     if not main():
-        gtk.main()
+        print("Running main gtk loop")
+        Gtk.main()
 
 if __name__ == '__main__':
     exec_main()

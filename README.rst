@@ -1,6 +1,6 @@
-=================
-Guake README file
-=================
+========================
+Guake 3! README file 85%
+========================
 
 |travis-badge|_ |bountysource-badge|_
 
@@ -17,6 +17,112 @@ Guake is a dropdown terminal made for the GNOME desktop environment. Guake's sty
 an FPS game, and one of its goals is to be easy to reach.
 
 Guake is mostly written in Python and has a little piece in C (https://github.com/engla/keybinder). The source code is placed in the ``guake`` directory. Files and images are in the ``data`` directory. Translation files are in the ``po`` directory.
+
+What is this?
+-------------
+
+This is 3!, a port of Guake to use python3, Gtk3 and Vte 2.91!
+
+
+TODO
+----
+
+- port all cli options
+- - --version
+- - --show ✓
+- - --hide ✓
+- - -f ✓
+- - -t ✓
+- - -p ✓
+- - -a ✓
+- - -n ✓
+- - -s ✓
+- - -g ✓
+- - -l ✓
+- - -e ✓
+- - -i ✓
+- - --bgimg (this option is removed from vte)
+- - --bgcolor ✓
+- - --fgcolor ✓
+- - --rename-tab ✓
+- - -r ✓
+- - --rename-current-tab ✓
+- - -q ✓
+- - -u
+
+- port dbus ✓ (after testing it with QDBusViewer it looks good)
+- port the context menu of the terminal ✓
+- - show ✓
+- - click actions ✓
+- - - copy ✓
+- - - paste ✓
+- - - toggle fullscreen ✓
+- - - save to file ✓
+- - - reset terminal ✓
+- - - new tab ✓
+- - - close tab ✓
+- - - rename terminal ✓
+- - - preferences ✓
+- - - about✓
+- - - quit ✓
+- port the context menu of the tab bar ✓
+- - show ✓
+- - click actions ✓
+- port the context menu of the tray icon v
+- - show ✓
+- - click actions ✓
+- - - preferences ✓
+- - - about ✓
+- - - quit ✓
+- port the scrollbar of the terminal ✓
+- port the resizer ✓
+- fix ctrl+d on terminal ✓
+- fix double click on the tab bar ✓
+- fix double click on tab to rename ✓
+- fix clipboard from context menu ✓
+
+- port the notification module ✓
+- port the keyboard shortcuts ✓
+- - ...
+- port the pref screen ✓
+- port gconfhandler to  gsettingshandler ✓
+- - ...
+- port about screen ✓
+- port pattern matching ✓
+- port Guake.accel* methods ✓
+- add more stuff to this list
+- port make stuff
+- port install stuff
+- update readme
+- ...
+- FIX all #TODO PORT sections
+- Things to fix after the port
+- - Rename widgets (from _ to -) to match the names used in the settings
+- - Split files in to single class modules
+- - fix tab bar buttons sometimes losing their text (eg after adding 3+ new tabs from the context menu, hovering them
+restores the text) (I think this is a problem with the deprecated widgets which are still in use)
+- - update the glade files (remove deprecated objects)
+- - Simplify the color setting logic by removing the possibility to override the color buttons which are overriding the
+    color palette (too much overrides...) ✓
+
+
+There is stil lots of work to do. The first commit on this branch only gets guake up with one tab open.
+
+
+Dev Tools
+---------
+- run guake3 from a terminal "./dev-gtk3.sh; kill %" this is needed since sig handler are not yet setup
+- rebuild the gsettings schema "glib-compile-schemas data-gtk3/"
+
+WONTFIX
+-------
+
+- --bgimg (this option is removed from vte)
+
+New Deps
+--------
+
+- libkeybinder3
 
 Features
 --------
@@ -243,7 +349,7 @@ Development
 ~~~~~~~~~~~
 
 Update translation
------------------
+------------------
 
 First update all translation files::
 
