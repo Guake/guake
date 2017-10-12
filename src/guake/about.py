@@ -57,3 +57,4 @@ class AboutDialog(SimpleGladeApp):
 
         dialog.set_name(_('Guake Terminal'))
         dialog.set_version(VERSION)
+        dialog.connect("response", lambda x,y:dialog.destroy())
