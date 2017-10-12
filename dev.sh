@@ -49,12 +49,8 @@ if [[ ! -f configure ]]; then
 fi
 
 if [[ $EXEC_AUTOGEN == true ]]; then
-    sudo apt-get install -y build-essential python autoconf
-    sudo apt-get install -y gnome-common gtk-doc-tools libglib2.0-dev libgtk2.0-dev libgconf2-dev
-    sudo apt-get install -y python-gtk2 python-gtk2-dev python-vte glade python-glade2
-    sudo apt-get install -y python-vte python-gconf python-appindicator
-    sudo apt-get install -y notify-osd libutempter0 glade-gtk2
-    sudo apt-get install -y python-notify python-xdg python-keybinder
+    sudo apt-get install -y build-essential python3 autoconf
+    sudo apt-get install -y libgtkmm-3.0-dev python3-keybinder
     sudo pip install colorlog
     if [[ -f Makefile ]]; then
         make clean

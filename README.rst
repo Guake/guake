@@ -4,19 +4,27 @@ Guake 3! README file 85%
 
 |travis-badge|_ |bountysource-badge|_
 
-.. |travis-badge| image:: https://travis-ci.org/Guake/guake.svg?branch=master
+.. |travis-badge| image:: https://travis-ci.org/Guake/guake.svg?branch=3!
 .. _travis-badge: https://travis-ci.org/Guake/guake
 
 .. |bountysource-badge| image:: https://img.shields.io/bountysource/team/guake/activity.svg
 .. _bountysource-badge: https://www.bountysource.com/teams/guake
 
+Guake 0.8.x
+-----------
+
+Guake is under a big rework to port to Gtk3 branch. Stable release are available on the `0.8.x`
+branch on this project
+
 Introduction
 ~~~~~~~~~~~~
 
-Guake is a dropdown terminal made for the GNOME desktop environment. Guake's style of window is based on
-an FPS game, and one of its goals is to be easy to reach.
+Guake is a dropdown terminal made fPor the GNOME desktop environment. Guake's style of window is
+based on an FPS game, and one of its goals is to be easy to reach.
 
-Guake is mostly written in Python and has a little piece in C (https://github.com/engla/keybinder). The source code is placed in the ``guake`` directory. Files and images are in the ``data`` directory. Translation files are in the ``po`` directory.
+Guake is mostly written in Python and has a little piece in C (https://github.com/engla/keybinder).
+The source code is placed in the ``guake`` directory. Files and images are in the ``data``
+directory. Translation files are in the ``po`` directory.
 
 What is this?
 -------------
