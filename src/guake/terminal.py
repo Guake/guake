@@ -25,7 +25,7 @@ from __future__ import unicode_literals
 
 import gi
 gi.require_version('Gtk', '3.0')
-gi.require_version('Vte', '2.91') 
+gi.require_version('Vte', '2.91')
 
 from gi.repository import Gdk
 from gi.repository import GdkX11
@@ -37,23 +37,25 @@ from guake.common import clamp
 
 from time import sleep
 
+import logging
+import os
 import re
 import uuid
-import os
-import logging
 log = logging.getLogger(__name__)
 import code
+
+
 def halt(loc):
     code.interact(local=loc)
-    
 
+
+import signal
 import subprocess
 import threading
-import signal
-#TODO PORT
+# TODO PORT
 #__all__ = ['Terminal', 'TerminalBox']
 
-#TODO this is not as fancy as as it could be
+# TODO this is not as fancy as as it could be
 TERMINAL_MATCH_TAGS = 'schema', 'http', 'email'
 TERMINAL_MATCH_EXPRS = [
     "(news:|telnet:|nntp:|file:\/|https?:|ftps?:|webcal:)\/\/([-[:alnum:]]+(:[-[:alnum:],?;.:\/!%$^*&~\"#']+)?\@)?[-[:alnum:]]+(\.[-[:alnum:]]+)*(:[0-9]{1,5})?(\/[-[:alnum:]_$.+!*(),;:@&=?\/~#%]*[^]'.>) \t\r\n,\\\"])?",
@@ -194,9 +196,7 @@ class TerminalBox(Gtk.HBox):
         scroll = Gtk.VScrollbar.new(adj)
         scroll.set_no_show_all(True)
         self.pack_start(scroll, False, False, 0)
-        
-        
-        
+
 
 class GuakeTerminal(Vte.Terminal):
 
@@ -228,21 +228,21 @@ class GuakeTerminal(Vte.Terminal):
         """
         client = self.settings.general
         word_chars = client.get_string('word-chars')
-        if word_chars: 
-            #TODO PORT this does not work this way any more see: https://lazka.github.io/pgi-docs/Vte-2.91/classes/Terminal.html#Vte.Terminal.set_word_char_exceptions
-            #self.set_word_chars(word_chars)
+        if word_chars:
+            # TODO PORT this does not work this way any more see: https://lazka.github.io/pgi-docs/Vte-2.91/classes/Terminal.html#Vte.Terminal.set_word_char_exceptions
+            # self.set_word_chars(word_chars)
             pass
         self.set_audible_bell(client.get_boolean('use-audible-bell'))
-        #TODO PORT I hve not seen a way to port this
-        #self.set_visible_bell(client.get_boolean('use-visible-bell'))
+        # TODO PORT I hve not seen a way to port this
+        # self.set_visible_bell(client.get_boolean('use-visible-bell'))
         self.set_sensitive(True)
-        #TODO PORT there is no method set_flags anymore
-        #self.set_flags(gtk.CAN_DEFAULT)
-        #self.set_flags(gtk.CAN_FOCUS)
-        #TODO PORT getting it and then setting it???
+        # TODO PORT there is no method set_flags anymore
+        # self.set_flags(gtk.CAN_DEFAULT)
+        # self.set_flags(gtk.CAN_FOCUS)
+        # TODO PORT getting it and then setting it???
         #cursor_blink_mode = client.get_int(KEY('/style/cursor_blink_mode'))
         #client.set_int(KEY('/style/cursor_blink_mode'), cursor_blink_mode)
-        #TODO PORT getting it and then setting it???
+        # TODO PORT getting it and then setting it???
         #cursor_shape = client.get_int(KEY('/style/cursor_shape'))
         #client.set_int(KEY('/style/cursor_shape'), cursor_shape)
 
@@ -252,12 +252,12 @@ class GuakeTerminal(Vte.Terminal):
         highlight text that matches them.
         """
         for expr in TERMINAL_MATCH_EXPRS:
-            #TODO PORT next line throws a Vte-WARNIN but works: runtime check failed
+            # TODO PORT next line throws a Vte-WARNIN but works: runtime check failed
             tag = self.match_add_regex(Vte.Regex.new_for_match(expr, len(expr), 0), 0)
             self.match_set_cursor_type(tag, Gdk.CursorType.HAND2)
 
         for _useless, match, _otheruseless in QUICK_OPEN_MATCHERS:
-            #TODO PORT next line throws a Vte-WARNIN but works: runtime check failed
+            # TODO PORT next line throws a Vte-WARNIN but works: runtime check failed
             tag = self.match_add_regex(Vte.Regex.new_for_match(match, len(match), 0), 0)
             self.match_set_cursor_type(tag, Gdk.CursorType.HAND2)
 
@@ -280,15 +280,16 @@ class GuakeTerminal(Vte.Terminal):
             int(event.y / self.get_char_height()))
 
         self.found_link = None
-        
+
         if (event.button == 1 and (event.get_state() & Gdk.ModifierType.CONTROL_MASK) and matched_string):
             log.debug("matched string: %s", matched_string)
             value, tag = matched_string
             # First searching in additional matchers
             found_additional_matcher = False
-            #TODO PORT
+            # TODO PORT
             use_quick_open = self.settings.general.get_boolean("quick-open-enable")
-            quick_open_in_current_terminal = self.settings.general.get_boolean("quick-open-in-current-terminal")
+            quick_open_in_current_terminal = self.settings.general.get_boolean(
+                "quick-open-in-current-terminal")
             cmdline = self.settings.general.get_string("quick-open-command-line")
             if use_quick_open:
                 for _useless, _otheruseless, extractor in QUICK_OPEN_MATCHERS:
@@ -444,7 +445,9 @@ class GuakeTerminal(Vte.Terminal):
                 # did the work and SIGKILL wasnt needed.
                 pass
 
-#TODO PORT port this from HBOX to Box with orientation horitzontal
+# TODO PORT port this from HBOX to Box with orientation horitzontal
+
+
 class GuakeTerminalBox(Gtk.HBox):
 
     """A box to group the terminal and a scrollbar.
@@ -469,4 +472,3 @@ class GuakeTerminalBox(Gtk.HBox):
         scroll = Gtk.VScrollbar(adj)
         scroll.show()
         self.pack_start(scroll, False, False, 0)
-

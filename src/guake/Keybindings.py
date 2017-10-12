@@ -16,20 +16,19 @@ class Keybindings(object):
         """
         self.guake = guake
         self.accel_group = None  # see reload_accelerators
-        
-        #TODO PORT
+
+        # TODO PORT
         #self.client = gconf.client_get_default()
-        #TODO PORT
+        # TODO PORT
         #notify_add = self.client.notify_add
-        
-        
 
         # Setup global keys
         self.globalhotkeys = {}
         globalkeys = ['show-hide']
         for key in globalkeys:
             guake.settings.keybindingsGlobal.onChangedValue(key, self.reload_global)
-            guake.settings.keybindingsGlobal.triggerOnChangedValue(guake.settings.keybindingsGlobal, key, None)
+            guake.settings.keybindingsGlobal.triggerOnChangedValue(
+                guake.settings.keybindingsGlobal, key, None)
 
         # Setup local keys
         keys = ['toggle-fullscreen', 'new-tab', 'close-tab', 'rename-current-tab',
@@ -42,9 +41,8 @@ class Keybindings(object):
                 'switch-tab-last', 'reset-terminal']
         for key in keys:
             guake.settings.keybindingsLocal.onChangedValue(key, self.reload_accelerators)
-            
-            self.reload_accelerators()
 
+            self.reload_accelerators()
 
     def reload_global(self, settings, key, user_data):
         value = settings.get_string(key)
@@ -55,11 +53,11 @@ class Keybindings(object):
             self.guake.hotkeys.unbind(self.globalhotkeys[key])
         except:
             pass
-            
+
         self.globalhotkeys[key] = value
         if not self.guake.hotkeys.bind(value, self.guake.show_hide):
             print("shit")
-            #TODO port this
+            # TODO port this
             keyval, mask = Gtk.accelerator_parse(value)
             label = Gtk.accelerator_get_label(keyval, mask)
             filename = pixmapfile('guake-notification.png')
@@ -89,17 +87,17 @@ class Keybindings(object):
 
         if key > 0:
             self.accel_group.connect(key, mask, Gtk.AccelFlags.VISIBLE,
-                                           self.guake.accel_reset_terminal)
+                                     self.guake.accel_reset_terminal)
 
         key, mask = Gtk.accelerator_parse(getk('quit'))
         if key > 0:
             self.accel_group.connect(key, mask, Gtk.AccelFlags.VISIBLE,
-                                           self.guake.accel_quit)
+                                     self.guake.accel_quit)
 
         key, mask = Gtk.accelerator_parse(getk('new-tab'))
         if key > 0:
             self.accel_group.connect(key, mask, Gtk.AccelFlags.VISIBLE,
-                                           self.guake.accel_add)
+                                     self.guake.accel_add)
 
         key, mask = Gtk.accelerator_parse(getk('close-tab'))
         if key > 0:
@@ -110,103 +108,103 @@ class Keybindings(object):
         key, mask = Gtk.accelerator_parse(getk('previous-tab'))
         if key > 0:
             self.accel_group.connect(key, mask, Gtk.AccelFlags.VISIBLE,
-                                           self.guake.accel_prev)
+                                     self.guake.accel_prev)
 
         key, mask = Gtk.accelerator_parse(getk('next-tab'))
         if key > 0:
             self.accel_group.connect(key, mask, Gtk.AccelFlags.VISIBLE,
-                                           self.guake.accel_next)
+                                     self.guake.accel_next)
 
         key, mask = Gtk.accelerator_parse(getk('move-tab-left'))
         if key > 0:
             self.accel_group.connect(key, mask, Gtk.AccelFlags.VISIBLE,
-                                           self.guake.accel_move_tab_left)
+                                     self.guake.accel_move_tab_left)
 
         key, mask = Gtk.accelerator_parse(getk('move-tab-right'))
         if key > 0:
             self.accel_group.connect(key, mask, Gtk.AccelFlags.VISIBLE,
-                                           self.guake.accel_move_tab_right)
+                                     self.guake.accel_move_tab_right)
 
         key, mask = Gtk.accelerator_parse(getk('rename-current-tab'))
         if key > 0:
             self.accel_group.connect(key, mask, Gtk.AccelFlags.VISIBLE,
-                                           self.guake.accel_rename_current_tab)
+                                     self.guake.accel_rename_current_tab)
 
         key, mask = Gtk.accelerator_parse(getk('clipboard-copy'))
         if key > 0:
             self.accel_group.connect(key, mask, Gtk.AccelFlags.VISIBLE,
-                                           self.guake.accel_copy_clipboard)
+                                     self.guake.accel_copy_clipboard)
 
         key, mask = Gtk.accelerator_parse(getk('clipboard-paste'))
         if key > 0:
             self.accel_group.connect(key, mask, Gtk.AccelFlags.VISIBLE,
-                                           self.guake.accel_paste_clipboard)
+                                     self.guake.accel_paste_clipboard)
 
         key, mask = Gtk.accelerator_parse(getk('toggle-fullscreen'))
         if key > 0:
             self.accel_group.connect(key, mask, Gtk.AccelFlags.VISIBLE,
-                                           self.guake.accel_toggle_fullscreen)
+                                     self.guake.accel_toggle_fullscreen)
 
         key, mask = Gtk.accelerator_parse(getk('toggle-hide-on-lose-focus'))
         if key > 0:
             self.accel_group.connect(key, mask, Gtk.AccelFlags.VISIBLE,
-                                           self.guake.accel_toggle_hide_on_lose_focus)
+                                     self.guake.accel_toggle_hide_on_lose_focus)
 
         key, mask = Gtk.accelerator_parse(getk('zoom-in'))
         if key > 0:
             self.accel_group.connect(key, mask, Gtk.AccelFlags.VISIBLE,
-                                           self.guake.accel_zoom_in)
+                                     self.guake.accel_zoom_in)
 
         key, mask = Gtk.accelerator_parse(getk('zoom-in-alt'))
         if key > 0:
             self.accel_group.connect(key, mask, Gtk.AccelFlags.VISIBLE,
-                                           self.guake.accel_zoom_in)
+                                     self.guake.accel_zoom_in)
 
         key, mask = Gtk.accelerator_parse(getk('zoom-out'))
         if key > 0:
             self.accel_group.connect(key, mask, Gtk.AccelFlags.VISIBLE,
-                                           self.guake.accel_zoom_out)
+                                     self.guake.accel_zoom_out)
 
         key, mask = Gtk.accelerator_parse(getk('increase-height'))
         if key > 0:
             self.accel_group.connect(key, mask, Gtk.AccelFlags.VISIBLE,
-                                           self.guake.accel_increase_height)
+                                     self.guake.accel_increase_height)
 
         key, mask = Gtk.accelerator_parse(getk('decrease-height'))
         if key > 0:
             self.accel_group.connect(key, mask, Gtk.AccelFlags.VISIBLE,
-                                           self.guake.accel_decrease_height)
+                                     self.guake.accel_decrease_height)
 
         key, mask = Gtk.accelerator_parse(getk('increase-transparency'))
         if key > 0:
             self.accel_group.connect(key, mask, Gtk.AccelFlags.VISIBLE,
-                                           self.guake.accel_increase_transparency)
+                                     self.guake.accel_increase_transparency)
 
         key, mask = Gtk.accelerator_parse(getk('decrease-transparency'))
         if key > 0:
             self.accel_group.connect(key, mask, Gtk.AccelFlags.VISIBLE,
-                                           self.guake.accel_decrease_transparency)
+                                     self.guake.accel_decrease_transparency)
 
         key, mask = Gtk.accelerator_parse(getk('toggle-transparency'))
         if key > 0:
             self.accel_group.connect(key, mask, Gtk.AccelFlags.VISIBLE,
-                                           self.guake.accel_toggle_transparency)
+                                     self.guake.accel_toggle_transparency)
 
         for tab in range(1, 11):
             key, mask = Gtk.accelerator_parse(getk('switch-tab%d' % tab))
             if key > 0:
                 self.accel_group.connect(key, mask, Gtk.AccelFlags.VISIBLE,
-                                               self.guake.gen_accel_switch_tabN(tab - 1))
+                                         self.guake.gen_accel_switch_tabN(tab - 1))
 
         key, mask = Gtk.accelerator_parse(getk('switch-tab-last'))
         if key > 0:
             self.accel_group.connect(key, mask, Gtk.AccelFlags.VISIBLE,
-                                           self.guake.accel_switch_tab_last)
+                                     self.guake.accel_switch_tab_last)
 
         try:
             key, mask = Gtk.accelerator_parse(getk('search-on-web'))
             if key > 0:
                 self.accel_group.connect(key, mask, Gtk.AccelFlags.VISIBLE,
-                                               self.guake.search_on_web)
+                                         self.guake.search_on_web)
         except Exception:
             log.exception("Exception occured")

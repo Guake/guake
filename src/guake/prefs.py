@@ -25,14 +25,14 @@ from __future__ import print_function
 import gi
 gi.require_version('Gtk', '3.0')
 gi.require_version('Keybinder', '3.0')
-gi.require_version('Vte', '2.91') 
-from gi.repository import Vte
-from gi.repository import Keybinder
-from gi.repository import Gtk
-from gi.repository import Gdk
+gi.require_version('Vte', '2.91')
 from gi.repository import GLib
-from gi.repository import Pango
 from gi.repository import GObject
+from gi.repository import Gdk
+from gi.repository import Gtk
+from gi.repository import Keybinder
+from gi.repository import Pango
+from gi.repository import Vte
 
 import logging
 import os
@@ -344,12 +344,12 @@ class PrefsCallbacks(object):
                 'radiobutton_align_center': ALIGN_CENTER
             }
             self.settings.general.set_int('window-halignment',
-                                which_align[halign_button.get_name()])
+                                          which_align[halign_button.get_name()])
 
     def on_use_visible_bell_toggled(self, chk):
         """Changes the value of use_visible_bell in gconf
         """
-        #TODO PORT remove this vte has no visual belll feature any more
+        # TODO PORT remove this vte has no visual belll feature any more
         self.settings.general.set_boolean('use-visible-bell', chk.get_active())
 
     def on_use_audible_bell_toggled(self, chk):
@@ -405,7 +405,7 @@ class PrefsCallbacks(object):
     def on_background_image_changed(self, btn):
         """Changes the value of background_image in gconf
         """
-        #TODO PORT vte has no support for background images anymore
+        # TODO PORT vte has no support for background images anymore
         filename = btn.get_filename()
         if os.path.isfile(filename or ''):
             self.settings.styleBackground.set_string('image', filename)
@@ -433,107 +433,51 @@ class PrefsCallbacks(object):
 
     def on_custom_command_file_chooser_file_changed(self, filechooser):
         self.settings.general.set_string('custom_command_file', filechooser.get_filename())
-        
+
     def toggle_prompt_on_quit_sensitivity(self, combo):
         self.prefDlg.toggle_prompt_on_quit_sensitivity(combo)
 
     def toggle_style_sensitivity(self, chk):
         self.prefDlg.toggle_style_sensitivity(chk)
 
-
     def toggle_use_font_background_sensitivity(self, chk):
         self.prefDlg.toggle_use_font_background_sensitivity(chk)
-
 
     def toggle_display_n_sensitivity(self, chk):
         self.prefDlg.toggle_display_n_sensitivity(chk)
 
-
     def toggle_quick_open_command_line_sensitivity(self, chk):
         self.prefDlg.toggle_quick_open_command_line_sensitivity(chk)
-
 
     def toggle_use_vte_titles(self, chk):
         self.prefDlg.toggle_use_vte_titles(chk)
 
-
     def update_vte_subwidgets_states(self):
         self.prefDlg.update_vte_subwidgets_states()
-
 
     def clear_background_image(self, btn):
         self.prefDlg.clear_background_image(btn)
 
-
     def on_reset_compat_defaults_clicked(self, bnt):
         self.prefDlg.on_reset_compat_defaults_clicked(btn)
-
 
     def on_palette_name_changed(self, combo):
         self.prefDlg.on_palette_name_changed(combo)
 
-
     def on_cursor_shape_changed(self, combo):
         self.prefDlg.on_cursor_shape_changed(combo)
 
-
-    def on_blink_cursor_toggled(self, chk):        
+    def on_blink_cursor_toggled(self, chk):
         self.prefDlg.on_blink_cursor_toggled(chk)
-
 
     def on_palette_color_set(self, btn):
         self.prefDlg.on_palette_color_set(btn)
 
-
     def reload_erase_combos(self, btn=None):
         self.prefDlg.reload_erase_combos(btn)
-        
+
     def gtk_widget_destroy(self, btn):
         self.prefDlg.gtk_widget_destroy(btn)
-
-
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
 
 
 class PrefsDialog(SimpleGladeApp):
@@ -548,17 +492,16 @@ class PrefsDialog(SimpleGladeApp):
         super(PrefsDialog, self).__init__(gladefile('prefs.glade'),
                                           root='config-window')
         self.settings = settings
-        
+
         self.add_callbacks(PrefsCallbacks(self))
-        
+
         # window cleanup handler
         self.window = self.get_widget('config-window')
         self.get_widget('config-window').connect('destroy', self.on_destroy)
 
         # setting evtbox title bg
         eventbox = self.get_widget('eventbox-title')
-        eventbox.override_background_color(Gtk.StateType.NORMAL, Gdk.RGBA(255,255,255,255))
-
+        eventbox.override_background_color(Gtk.StateType.NORMAL, Gdk.RGBA(255, 255, 255, 255))
 
         # images
         ipath = pixmapfile('guake-notification.png')
@@ -572,8 +515,8 @@ class PrefsDialog(SimpleGladeApp):
         treeview = self.get_widget('treeview-keys')
         treeview.set_model(model)
         treeview.set_rules_hint(True)
-        
-        #TODO PORT this is killing the editing of the accl
+
+        # TODO PORT this is killing the editing of the accl
         #treeview.connect('button-press-event', self.start_editing)
 
         renderer = Gtk.CellRendererText()
@@ -603,9 +546,7 @@ class PrefsDialog(SimpleGladeApp):
 
         default_params = {}
         pid = self.spawn_sync_pid(None, self.demo_terminal)
-        
-        
-        
+
         self.demo_terminal.pid = pid
 
         self.populate_shell_combo()
@@ -626,26 +567,25 @@ class PrefsDialog(SimpleGladeApp):
         self.bgfilechooser.set_filter(self.file_filter)
         self.bgfilechooser.connect('update-preview', self.update_preview,
                                    self.selection_preview)
-        
-        
+
     def spawn_sync_pid(self, directory=None, terminal=None):
         argv = list()
         user_shell = self.settings.general.get_string('default-shell')
         if user_shell and os.path.exists(user_shell):
             argv.append(user_shell)
-        else: 
+        else:
             argv.append(os.environ['SHELL'])
 
         login_shell = self.settings.general.get_boolean('use-login-shell')
         if login_shell:
             argv = '-'
-            
+
         if isinstance(directory, str):
             wd = directory
         else:
             wd = os.environ['HOME']
-            
-        pid = terminal.spawn_sync( 
+
+        pid = terminal.spawn_sync(
             Vte.PtyFlags.DEFAULT,
             wd,
             argv,
@@ -655,7 +595,7 @@ class PrefsDialog(SimpleGladeApp):
             None,
             None)
         return pid
-    
+
     def show(self):
         """Calls the main window show_all method and presents the
         window in the desktop.
@@ -673,7 +613,7 @@ class PrefsDialog(SimpleGladeApp):
         self.demo_terminal.destroy()
 
     def update_preview(self, file_chooser, preview):
-        #TODO PORT is this still needed if we remove the bg image stuff?
+        # TODO PORT is this still needed if we remove the bg image stuff?
         """Used by filechooser to preview image files
         """
         filename = file_chooser.get_preview_filename()
@@ -739,7 +679,7 @@ class PrefsDialog(SimpleGladeApp):
         """Unset the gconf variable that holds the name of the
         background image of all terminals.
         """
-        #TODO PORT remove this vte does not support this anymore
+        # TODO PORT remove this vte does not support this anymore
         self.settings.styleBackground.unset(KEY('/style/background/image'))
         self.bgfilechooser.unselect_all()
 
@@ -759,7 +699,7 @@ class PrefsDialog(SimpleGladeApp):
         if palette_name not in PALETTES:
             return
         self.settings.styleFont.set_string('palette',
-                               PALETTES[palette_name])
+                                           PALETTES[palette_name])
         self.settings.styleFont.set_string('palette-name', palette_name)
         self.set_palette_colors(PALETTES[palette_name])
         self.update_demo_palette(PALETTES[palette_name])
@@ -788,7 +728,8 @@ class PrefsDialog(SimpleGladeApp):
         self.settings.styleFont.set_string('palette-name', _('Custom'))
         self.set_palette_name('Custom')
         self.update_demo_palette(palette)
-    #this methods should be moved to the GuakeTerminal class FROM HERE
+    # this methods should be moved to the GuakeTerminal class FROM HERE
+
     def set_palette_name(self, palette_name):
         """If the given palette matches an existing one, shows it in the
         combobox
@@ -1004,7 +945,7 @@ class PrefsDialog(SimpleGladeApp):
         self.get_widget('start_fullscreen').set_active(value)
 
         # use visible bell
-        #TODO PORT remove this. the new vte has now visual bell feature
+        # TODO PORT remove this. the new vte has now visual bell feature
         value = self.settings.general.get_boolean('use-visible-bell')
         self.get_widget('use_visible_bell').set_active(value)
 
@@ -1091,7 +1032,7 @@ class PrefsDialog(SimpleGladeApp):
         self.set_cursor_blink_mode(value)
 
         # background image
-        #TODO PORT vte does not support background images any more
+        # TODO PORT vte does not support background images any more
         value = self.settings.styleBackground.get_string('image')
         if os.path.isfile(value or ''):
             self.get_widget('background_image').set_filename(value)
@@ -1216,11 +1157,9 @@ class PrefsDialog(SimpleGladeApp):
                 msg = _("The shortcut \"%s\" is already in use.") % keylabel
                 ShowableError(self.window, _('Error setting keybinding.'), msg, -1)
                 raise Exception('This is ok, we just use it to break the foreach loop!')
-        
-        
+
         model.foreach(each_key)
- 
-        
+
         # avoiding problems with common keys
         if ((mask == 0 and keycode != 0) and (
             (keycode >= ord('a') and keycode <= ord('z')) or
@@ -1285,8 +1224,8 @@ class PrefsDialog(SimpleGladeApp):
 
         Thanks to gnome-keybinding-properties.c =)
         """
-        #TODO PORT some thing in here is breaking stuff
-        
+        # TODO PORT some thing in here is breaking stuff
+
         if event.window != treeview.get_bin_window():
             return False
 

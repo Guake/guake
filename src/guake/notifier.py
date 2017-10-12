@@ -31,6 +31,7 @@ Notify.init("Guake")
 
 __all__ = ['showMessage']
 
+
 def showMessage(brief, body=None, icon=None):
     try:
         notification = Notify.Notification.new(brief, body, icon)

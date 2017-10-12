@@ -8,10 +8,9 @@ import posix
 
 import gi
 gi.require_version('Gtk', '3.0')
-gi.require_version('Vte', '2.91') 
+gi.require_version('Vte', '2.91')
 
 from gi.repository import Gtk
-
 
 
 log = logging.getLogger(__name__)
@@ -60,7 +59,7 @@ class GuakeNotebook(Gtk.Notebook):
     def get_running_fg_processes_tab(self, index):
         total_procs = 0
         for terminal in self.get_terminals_for_tab(index):
-            
+
             fdpty = terminal.get_pty().get_fd()
             term_pid = terminal.get_pid()
             try:

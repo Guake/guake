@@ -97,17 +97,16 @@ class SimpleGladeApp(object):
                 setattr(self, key, weakref.proxy(value))
             except TypeError:
                 setattr(self, key, value)
-        
-        
+
         self.glade = None
-        
+
         self.builder = Gtk.Builder()
         self.builder.add_from_file(self.glade_path)
-        #TODO PORT connect
-        #self.builder.connect_signals(self.custom_handler)
+        # TODO PORT connect
+        # self.builder.connect_signals(self.custom_handler)
 
         if root:
-            #TODO PORT remove the next line is not needed Guake shuold not pass an root parameter this would mess stuff up
+            # TODO PORT remove the next line is not needed Guake shuold not pass an root parameter this would mess stuff up
             #self.main_widget = self.builder.get_object("window-root")
             self.main_widget = self.builder.get_object(root)
             self.main_widget.show_all()
@@ -149,8 +148,8 @@ class SimpleGladeApp(object):
             an instance with methods as code of callbacks.
             It means it has methods like on_button1_clicked, on_entry1_activate, etc.
         """
-        #TODO PORT connect
-        
+        # TODO PORT connect
+
         self.builder.connect_signals(callbacks_proxy)
 
     def normalize_names(self):
@@ -158,7 +157,7 @@ class SimpleGladeApp(object):
         It is internally used to normalize the name of the widgets.
         It means a widget named foo:vbox-dialog in glade
         is refered self.vbox_dialog in the code.
-    
+
         It also sets a data "prefixes" with the list of
         prefixes a widget has for each widget.
         """
@@ -172,11 +171,11 @@ class SimpleGladeApp(object):
                 widget_name = Gtk.Buildable.set_name(widget, widget_api_name)
                 if hasattr(self, widget_api_name):
                     raise AttributeError("instance %s already has an attribute %s" %
-                                     (self, widget_api_name))
+                                         (self, widget_api_name))
                 else:
                     setattr(self, widget_api_name, widget)
                     if prefixes:
-                        #TODO is is a guess
+                        # TODO is is a guess
                         Gtk.Buildable.set_data(widget, "prefixes", prefixes)
 
     def add_prefix_actions(self, prefix_actions_proxy):
@@ -359,8 +358,6 @@ class SimpleGladeApp(object):
         return self.builder.get_objects()
 
 
-
-
 class SimpleGtk3App(object):
 
     """
@@ -376,8 +373,8 @@ class SimpleGtk3App(object):
         """
         self.builder = Gtk.Builder()
         self.builder.add_from_file(path)
-        #TODO PORT connect
-        #self.builder.connect_signals(self)
+        # TODO PORT connect
+        # self.builder.connect_signals(self)
 
     def quit(self):
         """

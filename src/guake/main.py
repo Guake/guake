@@ -51,7 +51,6 @@ from guake.dbusiface import DbusManager
 from guake.guake_app import Guake
 
 
-
 log = logging.getLogger(__name__)
 
 
@@ -157,7 +156,7 @@ def main():
     options = parser.parse_args()[0]
 
     instance = None
-    
+
     # Trying to get an already running instance of guake. If it is not
     # possible, lets create a new instance. This function will return
     # a boolean value depending on this decision.
@@ -169,7 +168,6 @@ def main():
         instance = Guake()
         remote_object = DbusManager(instance)
         already_running = False
-    
 
     only_show_hide = True
 
@@ -237,7 +235,7 @@ def main():
     if options.show_about:
         remote_object.show_about()
         only_show_hide = False
-    
+
     if options.quit:
         try:
             remote_object.quit()
@@ -245,16 +243,15 @@ def main():
         except dbus.DBusException:
             return True
 
-
     if already_running and only_show_hide:
         # here we know that guake was called without any parameter and
         # it is already running, so, lets toggle its visibility.
         remote_object.show_hide()
-    
-    #TODO PORT remove the next line it only exists for testing...
+
+    # TODO PORT remove the next line it only exists for testing...
     remote_object.show_hide()
-    #TODO PORT remove the next line it only exists for testing...
-    #remote_object.show_prefs()
+    # TODO PORT remove the next line it only exists for testing...
+    # remote_object.show_prefs()
 
     if options.execute_startup_script:
         if not already_running:

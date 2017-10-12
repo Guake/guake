@@ -5,12 +5,12 @@ from __future__ import print_function
 
 import gi
 gi.require_version('Gtk', '3.0')
-gi.require_version('Vte', '2.91') 
+gi.require_version('Vte', '2.91')
 
 from gi.repository import Vte
 
-from gi.repository import Gtk
 from gi.repository import Gdk
+from gi.repository import Gtk
 from gi.repository import Pango
 
 import logging
@@ -49,9 +49,8 @@ class GSettingHandler(object):
         self.guake = guake
         self.settings = guake.settings
         settings = self.settings
-        #TODO PORT do we need this to be ported?
+        # TODO PORT do we need this to be ported?
         #client.add_dir(GCONF_PATH, gconf.CLIENT_PRELOAD_RECURSIVE)
-
 
         # these keys does not need to be watched.
         # notify_add(KEY('/general/default_shell'), self.shell_changed)
@@ -91,7 +90,7 @@ class GSettingHandler(object):
         settings.styleFont.onChangedValue('style', self.fstyle_changed)
         settings.styleFont.onChangedValue('palette', self.fpalette_changed)
         settings.styleFont.onChangedValue('allow-bold', self.allow_bold_toggled)
-        #TODO PORT remove this vte cant display images as backgrounds anymore
+        # TODO PORT remove this vte cant display images as backgrounds anymore
         settings.styleBackground.onChangedValue('image', self.bgimage_changed)
         settings.styleBackground.onChangedValue('transparency', self.bgtransparency_changed)
 
@@ -216,7 +215,7 @@ class GSettingHandler(object):
         default or to the chosen font in style/font/style in all
         terminals open.
         """
-        #TODO PORT 
+        # TODO PORT
         font_name = None
         if settings.get_boolean(key):
             # cannot directly use the Gio API since it requires to rework completely
@@ -254,9 +253,7 @@ class GSettingHandler(object):
         will be called and will change the font color and the background color to the color
         defined in the palette.
         """
-        self.settings.styleFont.triggerOnChangedValue(self.settings.styleFont, 'palette');
-
-        
+        self.settings.styleFont.triggerOnChangedValue(self.settings.styleFont, 'palette')
 
     def fstyle_changed(self, settings, key, user_data):
         """If the gconf var style/font/style be changed, this method
@@ -338,5 +335,3 @@ class GSettingHandler(object):
         abbreviate_tab_names = settings.get_boolean('abbreviate-tab-names')
         self.guake.abbreviate = abbreviate_tab_names and self.guake.is_tabs_scrollbar_visible()
         self.guake.recompute_tabs_titles()
-        
-        
