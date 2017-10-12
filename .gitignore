@@ -1,9 +1,17 @@
-# pycharm
+# Linux, IDE and Editors 
+
+#    pycharm
 .idea
-#
+
+#    kde
+.directory
+
+#    vim
+*~
+
+#Python stuff
 *.[oa]
 *.l[oa]
-*~
 *.py[co]
 *.mo
 *.gmo
