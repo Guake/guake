@@ -165,11 +165,6 @@
             <summary>Use default font</summary>
             <description>If true, Guake will use the GNOME monospace default font.</description>
         </key>
-        <key name="use-palette-font-and-background-color" type="b">
-            <default>true</default>
-            <summary>Use palette font and backgrount colors</summary>
-            <description>If true, the terminal font and background colors will use the value defined in the palette. If false, it will use the value defined by the user.</description>
-        </key>
         <key name="use-vte-titles" type="b">
             <default>true</default>
             <summary>Use terminal titles for tab naming</summary>
@@ -246,11 +241,6 @@
             <summary>Font style.</summary>
             <description>Font face and size that will be used in terminal.</description>
         </key>
-        <key name="color" type="s">
-            <default>'#ffffffffffff'</default>
-            <summary>Font color.</summary>
-            <description>Font color that will be used in terminal.</description>
-        </key>
         <key name="palette" type="s">
             <default>'#000000000000:#cccc00000000:#4e4e9a9a0606:#c4c4a0a00000:#34346565a4a4:#757550507b7b:#060698209a9a:#d3d3d7d7cfcf:#555557575353:#efef29292929:#8a8ae2e23434:#fcfce9e94f4f:#72729f9fcfcf:#adad7f7fa8a8:#3434e2e2e2e2:#eeeeeeeeecec'</default>
             <summary>Color scheme.</summary>
@@ -268,11 +258,6 @@
         </key>
     </schema>
     <schema id="guake.style.background" path="/apps/guake/style/background/">
-        <key name="color" type="s">
-            <default>'#000000000000'</default>
-            <summary>Background color.</summary>
-            <description>Background color that will be used in terminal.</description>
-        </key>
         <key name="image" type="s">
             <default>''</default>
             <summary>Background image.</summary>

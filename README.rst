@@ -102,6 +102,8 @@ TODO
 - - fix tab bar buttons sometimes losing their text (eg after adding 3+ new tabs from the context menu, hovering them
 restores the text) (I think this is a problem with the deprecated widgets which are still in use)
 - - update the glade files (remove deprecated objects)
+- - Simplify the color setting logic by removing the possibility to override the color buttons which are overriding the
+    color palette (too much overrides...) ✓
 
 
 There is stil lots of work to do. The first commit on this branch only gets guake up with one tab open.

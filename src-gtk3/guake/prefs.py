@@ -397,27 +397,10 @@ class PrefsCallbacks(object):
         """
         self.settings.styleFont.set_boolean('allow-bold', chk.get_active())
 
-    def on_use_palette_font_and_background_color_toggled(self, chk):
-        """Changes the activity of use_palette_font_and_background_color in gconf
-        """
-        self.settings.general.set_boolean('use-palette-font-and-background-color', chk.get_active())
-
     def on_font_style_font_set(self, fbtn):
         """Changes the value of font_style in gconf
         """
         self.settings.styleFont.set_string('style', fbtn.get_font_name())
-
-    def on_font_color_color_set(self, btn):
-        """Changes the value of font_color in gconf
-        """
-        color = hexify_color(btn.get_color())
-        self.settings.styleFont.set_string('color', color)
-
-    def on_background_color_color_set(self, btn):
-        """Changes the value of background_color in gconf
-        """
-        color = hexify_color(btn.get_color())
-        self.settings.styleBackground.set_string('color', color)
 
     def on_background_image_changed(self, btn):
         """Changes the value of background_image in gconf
@@ -431,6 +414,7 @@ class PrefsCallbacks(object):
         """Changes the value of background_transparency in gconf
         """
         value = hscale.get_value()
+        self.prefDlg.set_colors_from_settings()
         self.settings.styleBackground.set_int('transparency', int(value))
 
     # compatibility tab
@@ -794,6 +778,7 @@ class PrefsDialog(SimpleGladeApp):
     def on_palette_color_set(self, btn):
         """Changes the value of palette in gconf
         """
+
         palette = []
         for i in range(18):
             palette.append(hexify_color(
@@ -803,7 +788,7 @@ class PrefsDialog(SimpleGladeApp):
         self.settings.styleFont.set_string('palette-name', _('Custom'))
         self.set_palette_name('Custom')
         self.update_demo_palette(palette)
-
+    #this methods should be moved to the GuakeTerminal class FROM HERE
     def set_palette_name(self, palette_name):
         """If the given palette matches an existing one, shows it in the
         combobox
@@ -820,44 +805,33 @@ class PrefsDialog(SimpleGladeApp):
             combo.set_active(self.custom_palette_index)
 
     def update_demo_palette(self, palette):
-        
-        fgcolor = Gdk.RGBA(0,0,0,0)
-        fgcolor.parse(self.settings.styleFont.get_string('color'))
+        self.set_colors_from_settings()
 
-        bgcolor = Gdk.RGBA(0,0,0,0)
-        bgcolor.parse(self.settings.styleBackground.get_string('color'))
-        
-        colorRGBA = Gdk.RGBA(0,0,0,0)
-        
-        paletteList = list()
-        for color in palette.split(':'):
+    def set_colors_from_settings(self):
+        transparency = self.settings.styleBackground.get_int('transparency')
+        colorRGBA = Gdk.RGBA(0, 0, 0, 0)
+        palette_list = list()
+        for color in self.settings.styleFont.get_string("palette").split(':'):
             colorRGBA.parse(color)
-            paletteList.append(colorRGBA.copy())
-        
-        #palette = [Gdk.Color.parse(color) for color in palette.split(':')]
-        
-        font_name = self.settings.styleFont.get_string('style')
-        
-        font = Pango.FontDescription(font_name)
+            palette_list.append(colorRGBA.copy())
 
-        use_palette_font_and_background_color = self.settings.general.get_boolean('use-palette-font-and-background-color')
-            
-        if use_palette_font_and_background_color and len(paletteList) > 16:
-            fgcolor = paletteList[16]
-            bgcolor = paletteList[17]
-            
-            
-            
-        #TODO PORT find out what set_color_dim is   
-        #self.demo_terminal.set_color_dim(fgcolor)
-        self.demo_terminal.set_color_foreground(fgcolor)
-        self.demo_terminal.set_color_bold(fgcolor)
-        self.demo_terminal.set_color_background(bgcolor)
-        #TODO PORT not needed anymore (I think)
-        #self.demo_terminal.set_background_tint_color(bgcolor)
-        self.demo_terminal.set_colors(fgcolor, bgcolor, paletteList[:16])
-        self.demo_terminal.set_font(font)
+        if len(palette_list) > 16:
+            bg_color = palette_list[17]
+        else:
+            bg_color = Gdk.RGBA(255, 255, 255, 0)
 
+            bg_color.alpha = 1 / 100 * transparency
+
+        if len(palette_list) > 16:
+            font_color = palette_list[16]
+        else:
+            font_color = Gdk.RGBA(0, 0, 0, 0)
+
+        self.demo_terminal.set_color_foreground(font_color)
+        self.demo_terminal.set_color_bold(font_color)
+        self.demo_terminal.set_colors(font_color, bg_color, palette_list[:16])
+
+    # TO HERE (see above)
     def fill_palette_names(self):
         combo = self.get_widget('palette_name')
         for palette in sorted(PALETTES):
@@ -1091,32 +1065,10 @@ class PrefsDialog(SimpleGladeApp):
         value = self.settings.general.get_boolean('show-resizer')
         self.get_widget('show_resizer').set_active(value)
 
-        # use font and background color
-        value = self.settings.general.get_boolean('use-palette-font-and-background-color')
-        self.get_widget('use_palette_font_and_background_color').set_active(value)
-        self.get_widget('palette_16').set_sensitive(value)
-        self.get_widget('palette_17').set_sensitive(value)
-
         # font
         value = self.settings.styleFont.get_string('style')
         if value:
             self.get_widget('font_style').set_font_name(value)
-
-        # font color
-        value = self.settings.styleFont.get_string('color')
-        try:
-            x, color = Gdk.Color.parse(value)
-            self.get_widget('font_color').set_color(color)
-        except (ValueError, TypeError):
-            warnings.warn('Unable to parse color %s' % value, Warning)
-
-        # background color
-        value = self.settings.styleBackground.get_string('color')
-        try:
-            x, color = Gdk.Color.parse(value)
-            self.get_widget('background_color').set_color(color)
-        except (ValueError, TypeError):
-            warnings.warn('Unable to parse color %s' % value, Warning)
 
         # allow bold font
         value = self.settings.styleFont.get_boolean('allow-bold')

@@ -88,18 +88,12 @@ class GSettingHandler(object):
         settings.general.onChangedValue('scroll-keystroke', self.keystroke_toggled)
 
         settings.general.onChangedValue('use-default-font', self.default_font_toggled)
-        settings.general.onChangedValue('use-palette-font-and-background-color',
-                   self.palette_font_and_background_color_toggled)
         settings.styleFont.onChangedValue('style', self.fstyle_changed)
-        settings.styleFont.onChangedValue('color', self.fcolor_changed)
         settings.styleFont.onChangedValue('palette', self.fpalette_changed)
-        # notify_add(KEY('/style/font/palette_name'), self.fpalette_changed)
         settings.styleFont.onChangedValue('allow-bold', self.allow_bold_toggled)
-        settings.styleBackground.onChangedValue('color', self.bgcolor_changed)
         #TODO PORT remove this vte cant display images as backgrounds anymore
         settings.styleBackground.onChangedValue('image', self.bgimage_changed)
-        settings.styleBackground.onChangedValue('transparency',
-                   self.bgtransparency_changed)
+        settings.styleBackground.onChangedValue('transparency', self.bgtransparency_changed)
 
         settings.general.onChangedValue('compat-backspace', self.backspace_changed)
         settings.general.onChangedValue('compat-delete', self.delete_changed)
@@ -273,70 +267,12 @@ class GSettingHandler(object):
         for i in self.guake.notebook.iter_terminals():
             i.set_font(font)
 
-    def fcolor_changed(self, settings, key, user_data):
-        """If the gconf var style/font/color be changed, this method
-        will be called and will change the font color in all terminals
-        open.
-        """
-        fgcolor = Gdk.Color.parse(settings.get_string(key))
-        use_palette_font_and_background_color = self.settings.general.get_boolean(
-            'use-palette-font-and-background-color')
-        if use_palette_font_and_background_color:
-            return
-        for i in self.guake.notebook.iter_terminals():
-            #i.set_color_dim(i.custom_fgcolor or fgcolor)
-            i.set_color_foreground(i.custom_fgcolor or fgcolor)
-            i.set_color_bold(i.custom_fgcolor or fgcolor)
-
     def fpalette_changed(self, settings, key, user_data):
         """If the gconf var style/font/palette be changed, this method
         will be called and will change the color scheme in all terminals
         open.
         """
-        fgcolor = Gdk.RGBA(0,0,0,0)
-        fgcolor.parse(self.settings.styleFont.get_string('color'))
-
-        bgcolor = Gdk.RGBA(0,0,0,0)
-        bgcolor.parse(self.settings.styleBackground.get_string('color'))
-        
-        colorRGBA = Gdk.RGBA(0,0,0,0)
-        
-        paletteList = list()
-        for color in settings.get_string(key).split(':'):
-            colorRGBA.parse(color)
-            paletteList.append(colorRGBA.copy())
-        
-
-        use_palette_font_and_background_color = self.settings.general.get_boolean(
-            'use-palette-font-and-background-color')
-        if use_palette_font_and_background_color and len(paletteList) > 16:
-            fgcolor = paletteList[16]
-            bgcolor = paletteList[17]
-        bgcolor.alpha = 1/100*self.settings.styleBackground.get_int('transparency')
-        for i in self.guake.notebook.iter_terminals():
-            #i.set_color_dim(fgcolor)
-            i.set_color_foreground(fgcolor)
-            i.set_color_bold(fgcolor)
-            i.set_color_background(bgcolor)
-            #i.set_background_tint_color(bgcolor)
-        for i in self.guake.notebook.iter_terminals():
-            i.set_colors(fgcolor, bgcolor, paletteList[:16])
-
-    def bgcolor_changed(self, settings, key, user_data):
-        """If the gconf var style/background/color be changed, this
-        method will be called and will change the background color in
-        all terminals open.
-        """
-        #TODO PORT this gtk stuff look at the prefs.py file there is this kind of parsing already ported
-        use_palette_font_and_background_color = self.settings.general.get_boolean('use-palette-font-and-background-color')
-        if use_palette_font_and_background_color:
-            log.debug("do not set background from user")
-            return
-        bgcolor = Gdk.RGBA(0,0,0,0)
-        bgcolor.parse(settings.get_string(key))
-        for i in self.guake.notebook.iter_terminals():
-            i.set_color_background(i.custom_bgcolor or bgcolor)
-            i.set_background_tint_color(i.custom_bgcolor or bgcolor)
+        self.guake.set_colors_from_settings()
 
     def bgimage_changed(self, settings, key, user_data):
         """If the gconf var style/background/image be changed, this
@@ -351,7 +287,7 @@ class GSettingHandler(object):
         method will be called and will set the saturation and transparency
         properties in all terminals open.
         """
-        self.guake.set_background_transparency(settings.get_int(key))
+        self.guake.set_background_color_from_settings()
 
     def getEraseBinding(self, str):
         if str == "auto":

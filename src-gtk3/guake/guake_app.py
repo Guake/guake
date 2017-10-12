@@ -616,25 +616,51 @@ class Guake(SimpleGladeApp):
     def printInfo(self, text, *args):
         log.info(text, *args)
 
-    def set_background_transparency_on_term(self, transparency, terminal):
-        bgcolor = Gdk.RGBA(0,0,0,0)
-        bgcolor.parse(self.settings.styleBackground.get_string('color'))
-        if not self.transparency_toggled:
-            bgcolor.alpha = 1/100*transparency
-        else:
-            bgcolor.alpha = 1
-        terminal.set_color_background(bgcolor)
+
+    # new color methods should be moved to the GuakeTerminal class
 
 
-    def set_background_transparency(self, transparency):
-        bgcolor = Gdk.RGBA(0,0,0,0)
-        bgcolor.parse(self.settings.styleBackground.get_string('color'))
-        if not self.transparency_toggled:
-            bgcolor.alpha = 1/100*transparency
+    def __load_palette(self):
+        colorRGBA = Gdk.RGBA(0, 0, 0, 0)
+        paletteList = list()
+        for color in self.settings.styleFont.get_string("palette").split(':'):
+            colorRGBA.parse(color)
+            paletteList.append(colorRGBA.copy())
+        return paletteList
+
+    def __get_background_color(self, palette_list, transparency):
+        if len(palette_list) > 16:
+            bg_color = palette_list[17]
         else:
-            bgcolor.alpha = 1
+            bg_color = Gdk.RGBA(255, 255, 255, 0)
+
+        if not self.transparency_toggled:
+            bg_color.alpha = 1 / 100 * transparency
+        else:
+            bg_color.alpha = 1
+        return bg_color
+
+    def set_background_color_from_settings(self):
+        transparency = self.settings.styleBackground.get_int('transparency')
+        palette_list = self.__load_palette()
+        bg_color = self.__get_background_color(palette_list, transparency)
         for t in self.notebook.iter_terminals():
-            t.set_color_background(bgcolor)
+            t.set_color_background(bg_color)
+
+    def set_colors_from_settings(self):
+        transparency = self.settings.styleBackground.get_int('transparency')
+        palette_list = self.__load_palette()
+        bg_color = self.__get_background_color(palette_list, transparency)
+
+        if len(palette_list) > 16:
+            font_color = palette_list[16]
+        else :
+            font_color = Gdk.RGBA(0,0,0,0)
+
+        for i in self.notebook.iter_terminals():
+            i.set_color_foreground(font_color)
+            i.set_color_bold(font_color)
+            i.set_colors(font_color, bg_color, palette_list[:16])
 
     def set_background_image(self, image):
         #TODO remove this vte does nor support images anymore
@@ -667,28 +693,6 @@ class Guake(SimpleGladeApp):
             if image and os.path.exists(image):
                 terminal.set_background_image_file(image)
                 terminal.set_background_transparent(False)
-
-    def set_bgcolor(self, bgcolor, tab=None):
-        """Set the background color of `tab' or the current tab to `bgcolor'."""
-        if not self.notebook.has_term():
-            self.add_tab()
-        index = tab or self.notebook.get_current_page()
-        
-        color = Gdk.RGBA(0,0,0,0)
-        color.parse(bgcolor)
-        color.alpha = 1/100*self.settings.styleBackground.get_int('transparency')
-        for terminal in self.notebook.get_terminals_for_tab(index):
-            terminal.set_color_background(color.copy())
-
-    def set_fgcolor(self, fgcolor, tab=None):
-        """Set the foreground color of `tab' or the current tab to `fgcolor'."""
-        if not self.notebook.has_term():
-            self.add_tab()
-        index = tab or self.notebook.get_current_page()
-        for terminal in self.notebook.get_terminals_for_tab(index):
-            color = Gdk.RGBA(0,0,0,0)
-            color.parse(fgcolor)
-            terminal.set_color_foreground(color)
 
     def execute_command(self, command, tab=None):
         """Execute the `command' in the `tab'. If tab is None, the
@@ -1312,17 +1316,14 @@ class Guake(SimpleGladeApp):
         self.settings.general.triggerOnChangedValue(self.settings.general, 'quick-open-command-line')
         self.settings.style.triggerOnChangedValue(self.settings.style, 'cursor-shape')
         self.settings.styleFont.triggerOnChangedValue(self.settings.styleFont, 'style')
-        self.settings.styleFont.triggerOnChangedValue(self.settings.styleFont, 'color')
         self.settings.styleFont.triggerOnChangedValue(self.settings.styleFont, 'palette')
         self.settings.styleFont.triggerOnChangedValue(self.settings.styleFont, 'palette-name')
         self.settings.styleFont.triggerOnChangedValue(self.settings.styleFont, 'allow-bold')
-        self.settings.styleBackground.triggerOnChangedValue(self.settings.styleBackground, 'color')
         #TODO PORT remove this vte does not support bg image anymore
         self.settings.styleBackground.triggerOnChangedValue(self.settings.styleBackground, 'image')
         self.settings.styleBackground.triggerOnChangedValue(self.settings.styleBackground, 'transparency')
         self.settings.general.triggerOnChangedValue(self.settings.general, 'use-default-font')
         self.settings.general.triggerOnChangedValue(self.settings.general, 'show-resizer')
-        self.settings.general.triggerOnChangedValue(self.settings.general, 'use-palette-font-and-background-color')
         self.settings.general.triggerOnChangedValue(self.settings.general, 'compat-backspace')
         self.settings.general.triggerOnChangedValue(self.settings.general, 'compat-delete')
 

@@ -1273,6 +1273,9 @@
                                   <placeholder/>
                                 </child>
                                 <child>
+                                  <placeholder/>
+                                </child>
+                                <child>
                                   <object class="GtkCheckButton" id="use_default_font">
                                     <property name="label" translatable="yes">Use the system fixed width font</property>
                                     <property name="visible">True</property>
@@ -1358,59 +1361,11 @@
                                   <placeholder/>
                                 </child>
                                 <child>
-                                  <object class="GtkLabel" id="labelx2">
-                                    <property name="visible">True</property>
-                                    <property name="can_focus">False</property>
-                                    <property name="xpad">0</property>
-                                    <property name="ypad">0</property>
-                                    <property name="label" translatable="yes">Text color:</property>
-                                    <property name="use_markup">True</property>
-                                    <property name="xalign">0</property>
-                                    <property name="yalign">0.5</property>
-                                  </object>
-                                  <packing>
-                                    <property name="left_attach">3</property>
-                                    <property name="right_attach">4</property>
-                                    <property name="x_options"/>
-                                    <property name="y_options"/>
-                                  </packing>
-                                </child>
-                                <child>
-                                  <object class="GtkLabel" id="labelx3">
-                                    <property name="visible">True</property>
-                                    <property name="can_focus">False</property>
-                                    <property name="xpad">0</property>
-                                    <property name="ypad">0</property>
-                                    <property name="label" translatable="yes">Background color:</property>
-                                    <property name="use_markup">True</property>
-                                    <property name="xalign">0</property>
-                                    <property name="yalign">0.5</property>
-                                  </object>
-                                  <packing>
-                                    <property name="left_attach">3</property>
-                                    <property name="right_attach">4</property>
-                                    <property name="top_attach">1</property>
-                                    <property name="bottom_attach">2</property>
-                                    <property name="x_options"/>
-                                    <property name="y_options"/>
-                                  </packing>
-                                </child>
-                                <child>
                                   <object class="GtkBox" id="hbox3">
                                     <property name="visible">True</property>
                                     <property name="can_focus">False</property>
                                     <child>
-                                      <object class="GtkColorButton" id="background_color">
-                                        <property name="visible">True</property>
-                                        <property name="can_focus">True</property>
-                                        <property name="receives_default">False</property>
-                                        <signal name="color-set" handler="on_background_color_color_set" swapped="no"/>
-                                      </object>
-                                      <packing>
-                                        <property name="expand">False</property>
-                                        <property name="fill">False</property>
-                                        <property name="position">0</property>
-                                      </packing>
+                                      <placeholder/>
                                     </child>
                                     <child>
                                       <placeholder/>
@@ -1429,17 +1384,7 @@
                                     <property name="visible">True</property>
                                     <property name="can_focus">False</property>
                                     <child>
-                                      <object class="GtkColorButton" id="font_color">
-                                        <property name="visible">True</property>
-                                        <property name="can_focus">True</property>
-                                        <property name="receives_default">False</property>
-                                        <signal name="color-set" handler="on_font_color_color_set" swapped="no"/>
-                                      </object>
-                                      <packing>
-                                        <property name="expand">False</property>
-                                        <property name="fill">False</property>
-                                        <property name="position">0</property>
-                                      </packing>
+                                      <placeholder/>
                                     </child>
                                     <child>
                                       <placeholder/>
@@ -1528,6 +1473,9 @@
                                     <property name="x_options"/>
                                     <property name="y_options"/>
                                   </packing>
+                                </child>
+                                <child>
+                                  <placeholder/>
                                 </child>
                                 <child>
                                   <object class="GtkCheckButton" id="allow_bold">
@@ -1902,9 +1850,10 @@
                                       </packing>
                                     </child>
                                     <child>
-                                      <object class="GtkVSeparator" id="vseparator1">
+                                      <object class="GtkLabel">
                                         <property name="visible">True</property>
                                         <property name="can_focus">False</property>
+                                        <property name="label" translatable="yes">Text color:</property>
                                       </object>
                                       <packing>
                                         <property name="left_attach">8</property>
@@ -1912,9 +1861,10 @@
                                       </packing>
                                     </child>
                                     <child>
-                                      <object class="GtkVSeparator" id="vseparator2">
+                                      <object class="GtkLabel">
                                         <property name="visible">True</property>
                                         <property name="can_focus">False</property>
+                                        <property name="label" translatable="yes">Background color:</property>
                                       </object>
                                       <packing>
                                         <property name="left_attach">8</property>
@@ -1929,26 +1879,6 @@
                                     <property name="right_attach">2</property>
                                     <property name="top_attach">1</property>
                                     <property name="bottom_attach">2</property>
-                                    <property name="y_options"/>
-                                  </packing>
-                                </child>
-                                <child>
-                                  <object class="GtkCheckButton" id="use_palette_font_and_background_color">
-                                    <property name="label" translatable="yes">Use font and background color from the palette</property>
-                                    <property name="visible">True</property>
-                                    <property name="can_focus">True</property>
-                                    <property name="receives_default">False</property>
-                                    <property name="use_underline">True</property>
-                                    <property name="draw_indicator">True</property>
-                                    <signal name="toggled" handler="on_use_palette_font_and_background_color_toggled" swapped="no"/>
-                                    <signal name="toggled" handler="toggle_use_font_background_sensitivity" swapped="no"/>
-                                  </object>
-                                  <packing>
-                                    <property name="left_attach">1</property>
-                                    <property name="right_attach">2</property>
-                                    <property name="top_attach">2</property>
-                                    <property name="bottom_attach">3</property>
-                                    <property name="x_options"/>
                                     <property name="y_options"/>
                                   </packing>
                                 </child>
@@ -1986,6 +1916,9 @@
                                     <property name="top_attach">3</property>
                                     <property name="bottom_attach">4</property>
                                   </packing>
+                                </child>
+                                <child>
+                                  <placeholder/>
                                 </child>
                               </object>
                             </child>
@@ -2899,7 +2832,7 @@ To disable a shortcut, press the "Backspace" key.</property>
         </child>
       </object>
     </child>
-    <child>
+    <child type="titlebar">
       <placeholder/>
     </child>
   </object>
