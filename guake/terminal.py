@@ -53,13 +53,16 @@ import signal
 import subprocess
 import threading
 # TODO PORT
-#__all__ = ['Terminal', 'TerminalBox']
+# __all__ = ['Terminal', 'TerminalBox']
 
 # TODO this is not as fancy as as it could be
 TERMINAL_MATCH_TAGS = 'schema', 'http', 'email'
 TERMINAL_MATCH_EXPRS = [
-    "(news:|telnet:|nntp:|file:\/|https?:|ftps?:|webcal:)\/\/([-[:alnum:]]+(:[-[:alnum:],?;.:\/!%$^*&~\"#']+)?\@)?[-[:alnum:]]+(\.[-[:alnum:]]+)*(:[0-9]{1,5})?(\/[-[:alnum:]_$.+!*(),;:@&=?\/~#%]*[^]'.>) \t\r\n,\\\"])?",
-    "(www|ftp)[-[:alnum:]]*\.[-[:alnum:]]+(\.[-[:alnum:]]+)*(:[0-9]{1,5})?(\/[-[:alnum:]_$.+!*(),;:@&=?\/~#%]*[^]'.>) \t\r\n,\\\"])?",
+    "(news:|telnet:|nntp:|file:\/|https?:|ftps?:|webcal:)\/\/"
+    "([-[:alnum:]]+(:[-[:alnum:],?;.:\/!%$^*&~\"#']+)?\@)?[-[:alnum:]]+"
+    "(\.[-[:alnum:]]+)*(:[0-9]{1,5})?(\/[-[:alnum:]_$.+!*(),;:@&=?\/~#%]*[^]'.>) \t\r\n,\\\"])?",
+    "(www|ftp)[-[:alnum:]]*\.[-[:alnum:]]+(\.[-[:alnum:]]+)*(:[0-9]{1,5})?"
+    "(\/[-[:alnum:]_$.+!*(),;:@&=?\/~#%]*[^]'.>) \t\r\n,\\\"])?",
     "(mailto:)?[-[:alnum:]][-[:alnum:].]*@[-[:alnum:]]+\.[-[:alnum:]]+(\\.[-[:alnum:]]+)*"
 ]
 # tuple (title/quick matcher/filename and line number extractor)
@@ -229,7 +232,9 @@ class GuakeTerminal(Vte.Terminal):
         client = self.settings.general
         word_chars = client.get_string('word-chars')
         if word_chars:
-            # TODO PORT this does not work this way any more see: https://lazka.github.io/pgi-docs/Vte-2.91/classes/Terminal.html#Vte.Terminal.set_word_char_exceptions
+            # TODO PORT this does not work this way any more see:
+            #   https://lazka.github.io/
+            #          pgi-docs/Vte-2.91/classes/Terminal.html#Vte.Terminal.set_word_char_exceptions
             # self.set_word_chars(word_chars)
             pass
         self.set_audible_bell(client.get_boolean('use-audible-bell'))
@@ -240,11 +245,11 @@ class GuakeTerminal(Vte.Terminal):
         # self.set_flags(gtk.CAN_DEFAULT)
         # self.set_flags(gtk.CAN_FOCUS)
         # TODO PORT getting it and then setting it???
-        #cursor_blink_mode = client.get_int(KEY('/style/cursor_blink_mode'))
-        #client.set_int(KEY('/style/cursor_blink_mode'), cursor_blink_mode)
+        # cursor_blink_mode = client.get_int(KEY('/style/cursor_blink_mode'))
+        # client.set_int(KEY('/style/cursor_blink_mode'), cursor_blink_mode)
         # TODO PORT getting it and then setting it???
-        #cursor_shape = client.get_int(KEY('/style/cursor_shape'))
-        #client.set_int(KEY('/style/cursor_shape'), cursor_shape)
+        # cursor_shape = client.get_int(KEY('/style/cursor_shape'))
+        # client.set_int(KEY('/style/cursor_shape'), cursor_shape)
 
     def add_matches(self):
         """Adds all regular expressions declared in
@@ -281,7 +286,8 @@ class GuakeTerminal(Vte.Terminal):
 
         self.found_link = None
 
-        if (event.button == 1 and (event.get_state() & Gdk.ModifierType.CONTROL_MASK) and matched_string):
+        if (event.button == 1 and
+                (event.get_state() & Gdk.ModifierType.CONTROL_MASK) and matched_string):
             log.debug("matched string: %s", matched_string)
             value, tag = matched_string
             # First searching in additional matchers
@@ -409,7 +415,7 @@ class GuakeTerminal(Vte.Terminal):
     def kill(self):
         pid = self.get_pid()
         threading.Thread(target=self.delete_shell, args=(pid,)).start()
-        #start_new_thread(self.delete_shell, (pid,))
+        # start_new_thread(self.delete_shell, (pid,))
 
     def delete_shell(self, pid):
         """This function will kill the shell on a tab, trying to send

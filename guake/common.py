@@ -75,7 +75,8 @@ def gladefile(x):
 
 
 def hexify_color(c):
-    h = lambda x: hex(x).replace('0x', '').zfill(4)
+    def h(x):
+        return hex(x).replace('0x', '').zfill(4)
     return '#%s%s%s' % (h(c.red), h(c.green), h(c.blue))
 
 

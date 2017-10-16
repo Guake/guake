@@ -42,15 +42,15 @@ class GSettingHandler(object):
     different method is called to handle this change.
     """
 
-    def __init__(self, guake):
+    def __init__(self, guake_inst):
         """Constructor of GConfHandler, just add the guake dir to the
         gconf client and bind the keys to its handler methods.
         """
-        self.guake = guake
-        self.settings = guake.settings
+        self.guake = guake_inst
+        self.settings = guake_inst.settings
         settings = self.settings
         # TODO PORT do we need this to be ported?
-        #client.add_dir(GCONF_PATH, gconf.CLIENT_PRELOAD_RECURSIVE)
+        # client.add_dir(GCONF_PATH, gconf.CLIENT_PRELOAD_RECURSIVE)
 
         # these keys does not need to be watched.
         # notify_add(KEY('/general/default_shell'), self.shell_changed)

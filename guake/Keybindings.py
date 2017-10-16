@@ -18,9 +18,9 @@ class Keybindings(object):
         self.accel_group = None  # see reload_accelerators
 
         # TODO PORT
-        #self.client = gconf.client_get_default()
+        # self.client = gconf.client_get_default()
         # TODO PORT
-        #notify_add = self.client.notify_add
+        # notify_add = self.client.notify_add
 
         # Setup global keys
         self.globalhotkeys = {}
@@ -82,7 +82,8 @@ class Keybindings(object):
         """Reads all gconf paths under /apps/guake/keybindings/local
         and adds to the main accel_group.
         """
-        getk = lambda x: self.guake.settings.keybindingsLocal.get_string(x)
+        def getk(x):
+            return self.guake.settings.keybindingsLocal.get_string(x)
         key, mask = Gtk.accelerator_parse(getk('reset-terminal'))
 
         if key > 0:

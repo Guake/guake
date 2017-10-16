@@ -38,7 +38,7 @@ from gi.repository import Keybinder
 from gi.repository import Vte
 
 
-#import gconf
+# import gconf
 import json
 
 
@@ -47,20 +47,20 @@ import logging.config
 log = logging.getLogger(__name__)
 import os
 import platform
-#import pygtk
+# import pygtk
 # needed for execute_hook
 import subprocess
 # needed for sys.stderr.write(...)
 import sys
 # needed for execute_hook
 import traceback
-#import uuid
-#import xdg.Exceptions
+# import uuid
+# import xdg.Exceptions
 
 from urllib.parse import quote_plus
-#from urllib import url2pathname
-#from urlparse import urlsplit
-#from xdg.DesktopEntry import DesktopEntry
+# from urllib import url2pathname
+# from urlparse import urlsplit
+# from xdg.DesktopEntry import DesktopEntry
 from xml.sax.saxutils import escape as xml_escape
 
 import cairo
@@ -77,16 +77,16 @@ from guake.about import AboutDialog
 from guake.common import _
 from guake.common import gladefile
 from guake.common import pixmapfile
-#from guake.common import shell_quote
-#from guake.gconfhandler import GConfHandler
-#from guake.gconfhandler import GConfKeyHandler
+# from guake.common import shell_quote
+# from guake.gconfhandler import GConfHandler
+# from guake.gconfhandler import GConfKeyHandler
 from guake.globals import ALIGN_BOTTOM
 from guake.globals import ALIGN_CENTER
 from guake.globals import ALIGN_LEFT
 from guake.globals import ALIGN_RIGHT
 from guake.globals import ALWAYS_ON_PRIMARY
-#from guake.globals import GKEY
-#from guake.globals import KEY
+# from guake.globals import GKEY
+# from guake.globals import KEY
 from guake.Keybindings import Keybindings
 from guake.globals import LOCALE_DIR
 from guake.globals import NAME
@@ -191,17 +191,20 @@ class Settings():
         self.keybindings.connect("changed", self.keybindings.triggerOnChangedValue)
 
         self.keybindingsGlobal = Gio.Settings.new_full(
-            Gio.SettingsSchemaSource.lookup(schema_source, "guake.keybindings.global", False), None, None)
+            Gio.SettingsSchemaSource.lookup(schema_source,
+                                            "guake.keybindings.global", False), None, None)
         self.keybindingsGlobal.initEnhancements()
         self.keybindingsGlobal.connect("changed", self.keybindingsGlobal.triggerOnChangedValue)
 
         self.keybindingsLocal = Gio.Settings.new_full(
-            Gio.SettingsSchemaSource.lookup(schema_source, "guake.keybindings.local", False), None, None)
+            Gio.SettingsSchemaSource.lookup(schema_source,
+                                            "guake.keybindings.local", False), None, None)
         self.keybindingsLocal.initEnhancements()
         self.keybindingsLocal.connect("changed", self.keybindingsLocal.triggerOnChangedValue)
 
         self.styleBackground = Gio.Settings.new_full(
-            Gio.SettingsSchemaSource.lookup(schema_source, "guake.style.background", False), None, None)
+            Gio.SettingsSchemaSource.lookup(schema_source,
+                                            "guake.style.background", False), None, None)
         self.styleBackground.initEnhancements()
         self.styleBackground.connect("changed", self.styleBackground.triggerOnChangedValue)
 
@@ -267,7 +270,7 @@ class Guake(SimpleGladeApp):
         self.custom_command_menuitem = None
 
         # trayicon! Using SVG handles better different OS trays
-        #img = pixmapfile('guake-tray.svg')
+        # img = pixmapfile('guake-tray.svg')
         # trayicon!
         img = pixmapfile('guake-tray.png')
         try:
@@ -305,7 +308,7 @@ class Guake(SimpleGladeApp):
 
         # help(Gtk.PositionType)
         self.notebook.set_tab_pos(Gtk.PositionType.BOTTOM)
-        #self.notebook.set_property("tab_pos", "bottom")
+        # self.notebook.set_property("tab_pos", "bottom")
         self.notebook.set_property("show_tabs", False)
         self.notebook.set_property("show_border", False)
         self.notebook.set_property("visible", True)
@@ -447,7 +450,7 @@ class Guake(SimpleGladeApp):
         # this line is important to resize the main window and make it
         # smaller.
         # TODO PORT do we still need this?
-        #self.window.set_geometry_hints(min_width=1, min_height=1)
+        # self.window.set_geometry_hints(min_width=1, min_height=1)
 
         # special trick to avoid the "lost guake on Ubuntu 'Show Desktop'" problem.
         # DOCK makes the window foundable after having being "lost" after "Show
@@ -1012,7 +1015,8 @@ class Guake(SimpleGladeApp):
 
         # TODO PORT do we need this?
         # if self.selected_color is None:
-        #    self.selected_color = getattr(self.window.get_style(), "light")[int(gtk.STATE_SELECTED)]
+        #    self.selected_color = getattr(self.window.get_style(),
+        #                                  "light")[int(gtk.STATE_SELECTED)]
         #
         #    # Reapply the tab color to all button in the tab list, since at least one doesn't have
         #    # the select color set. This needs to happen AFTER the first show_all, since before,
@@ -1806,7 +1810,7 @@ class Guake(SimpleGladeApp):
                 wd = os.environ['HOME']
 
         # TODO PORT the next line
-        #params['loglastlog'] = login_shell
+        # params['loglastlog'] = login_shell
 
         # Environment variables are not actually parameters but they
         # need to be set before calling terminal.fork_command()
@@ -1919,12 +1923,12 @@ class Guake(SimpleGladeApp):
             bnt.modify_bg(gtk.STATE_ACTIVE, gtk.gdk.Color(
                 str(self.selected_color)))
         # TODO PORT drag and drop
-        #drag_drop_type = ("text/plain", gtk.TARGET_SAME_APP, 80)
+        # drag_drop_type = ("text/plain", gtk.TARGET_SAME_APP, 80)
         # TODO PORT drag and drop
-        #bnt.drag_dest_set(gtk.DEST_DEFAULT_ALL, [drag_drop_type], gtk.gdk.ACTION_MOVE)
+        # bnt.drag_dest_set(gtk.DEST_DEFAULT_ALL, [drag_drop_type], gtk.gdk.ACTION_MOVE)
         bnt.connect("drag_data_received", self.on_drop_tab)
         # TODO PORT drag and drop
-        #bnt.drag_source_set(gtk.gdk.BUTTON1_MASK, [drag_drop_type], gtk.gdk.ACTION_MOVE)
+        # bnt.drag_source_set(gtk.gdk.BUTTON1_MASK, [drag_drop_type], gtk.gdk.ACTION_MOVE)
         bnt.connect("drag_data_get", self.on_drag_tab)
         bnt.show()
 

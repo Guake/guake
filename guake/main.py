@@ -272,5 +272,6 @@ def exec_main():
         print("Running main gtk loop")
         Gtk.main()
 
+
 if __name__ == '__main__':
     exec_main()

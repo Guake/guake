@@ -106,14 +106,15 @@ class SimpleGladeApp(object):
         # self.builder.connect_signals(self.custom_handler)
 
         if root:
-            # TODO PORT remove the next line is not needed Guake shuold not pass an root parameter this would mess stuff up
-            #self.main_widget = self.builder.get_object("window-root")
+            # TODO PORT remove the next line is not needed Guake shuold not pass an root parameter
+            # this would mess stuff up
+            # self.main_widget = self.builder.get_object("window-root")
             self.main_widget = self.builder.get_object(root)
             self.main_widget.show_all()
         else:
             self.main_widget = None
 
-        #self.glade = self.create_glade(self.glade_path, root, domain)
+        # self.glade = self.create_glade(self.glade_path, root, domain)
 
         self.normalize_names()
         self.new()
@@ -196,9 +197,14 @@ class SimpleGladeApp(object):
         prefix_s = "prefix_"
         prefix_pos = len(prefix_s)
 
-        is_method = lambda t: callable(t[1])
-        is_prefix_action = lambda t: t[0].startswith(prefix_s)
-        drop_prefix = lambda k, w: (k[prefix_pos:], w)
+        def is_method(t):
+            return callable(t[1])
+
+        def is_prefix_action(t):
+            return t[0].startswith(prefix_s)
+
+        def drop_prefix(k, w):
+            return (k[prefix_pos:], w)
 
         members_t = inspect.getmembers(prefix_actions_proxy)
         methods_t = filter(is_method, members_t)
