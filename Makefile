@@ -13,10 +13,12 @@ install-local:
 install-system:
 	@pipenv install --system
 
-style: isort autopep8 yapf
+style: fiximports autopep8 yapf
 
-isort:
-	@pipenv run isort -y
+fiximports:
+	@for fil in $$(find . -name "*.py"); do \
+		pipenv run fiximports $$fil; \
+	done
 
 autopep8:
 	@pipenv run autopep8 --in-place --recursive setup.py $(MODULE)
