@@ -87,7 +87,7 @@ from guake.globals import ALIGN_RIGHT
 from guake.globals import ALWAYS_ON_PRIMARY
 # from guake.globals import GKEY
 # from guake.globals import KEY
-from guake.Keybindings import Keybindings
+from guake.keybindings import Keybindings
 from guake.globals import LOCALE_DIR
 from guake.globals import NAME
 from guake.gsettings import GSettingHandler
