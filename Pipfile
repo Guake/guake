@@ -1,0 +1,28 @@
+[[source]]
+url = "https://pypi.python.org/simple"
+verify_ssl = true
+name = "pypi"
+
+[dev-packages]
+
+fiximports = "*"
+"flake8" = "*"
+"autopep8" = "*"
+pylint = "*"
+yapf = "*"
+
+
+[packages]
+
+astroid = "==1.3.8"
+"autopep8" = "==1.2.2"
+click = "==6.6"
+first = "==2.0.1"
+"logilab-common" = "==1.2.1"
+"pep8" = "==1.7.0"
+"pip-tools" = "==1.6.5"
+pyflakes = "==1.1.0"
+pylint = "==1.4.3"
+mock = "==2.0.0"
+pytest = "==3.0.1"
+pbr = "*"

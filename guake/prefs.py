@@ -517,7 +517,7 @@ class PrefsDialog(SimpleGladeApp):
         treeview.set_rules_hint(True)
 
         # TODO PORT this is killing the editing of the accl
-        #treeview.connect('button-press-event', self.start_editing)
+        # treeview.connect('button-press-event', self.start_editing)
 
         renderer = Gtk.CellRendererText()
         column = Gtk.TreeViewColumn('keypath', renderer, text=0)
@@ -544,7 +544,6 @@ class PrefsDialog(SimpleGladeApp):
         demo_terminal_box = self.get_widget('demo_terminal_box')
         demo_terminal_box.add(self.demo_terminal)
 
-        default_params = {}
         pid = self.spawn_sync_pid(None, self.demo_terminal)
 
         self.demo_terminal.pid = pid
