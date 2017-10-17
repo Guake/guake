@@ -530,7 +530,7 @@ class PrefsCallbacks(object):
     def clear_background_image(self, btn):
         self.prefDlg.clear_background_image(btn)
 
-    def on_reset_compat_defaults_clicked(self, bnt):
+    def on_reset_compat_defaults_clicked(self, btn):
         self.prefDlg.on_reset_compat_defaults_clicked(btn)
 
     def on_palette_name_changed(self, combo):
@@ -678,19 +678,19 @@ class PrefsDialog(SimpleGladeApp):
         # TODO PORT is this still needed if we remove the bg image stuff?
         """Used by filechooser to preview image files
         """
-        filename = file_chooser.get_preview_filename()
-        if filename and os.path.isfile(filename or ''):
-            try:
-                mkpb = gtk.gdk.pixbuf_new_from_file_at_size
-                pixbuf = mkpb(filename, 256, 256)
-                preview.set_from_pixbuf(pixbuf)
-                file_chooser.set_preview_widget_active(True)
-            except gobject.GError:
-                # this exception is raised when user chooses a
-                # non-image file or a directory
-                warnings.warn('File %s is not an image' % filename)
-        else:
-            file_chooser.set_preview_widget_active(False)
+        # filename = file_chooser.get_preview_filename()
+        # if filename and os.path.isfile(filename or ''):
+        #     try:
+        #         mkpb = gtk.gdk.pixbuf_new_from_file_at_size
+        #         pixbuf = mkpb(filename, 256, 256)
+        #         preview.set_from_pixbuf(pixbuf)
+        #         file_chooser.set_preview_widget_active(True)
+        #     except gobject.GError:
+        #         # this exception is raised when user chooses a
+        #         # non-image file or a directory
+        #         warnings.warn('File %s is not an image' % filename)
+        # else:
+        #     file_chooser.set_preview_widget_active(False)
 
     def toggle_prompt_on_quit_sensitivity(self, combo):
         """If toggle_on_close_tabs is set to 2 (Always), prompt_on_quit has no
@@ -742,8 +742,8 @@ class PrefsDialog(SimpleGladeApp):
         background image of all terminals.
         """
         # TODO PORT remove this vte does not support this anymore
-        self.settings.styleBackground.unset(KEY('/style/background/image'))
-        self.bgfilechooser.unselect_all()
+        # self.settings.styleBackground.unset(KEY('/style/background/image'))
+        # self.bgfilechooser.unselect_all()
 
     def on_reset_compat_defaults_clicked(self, bnt):
         """Reset default values to compat_{backspace,delete} gconf
@@ -1338,5 +1338,5 @@ def setup_standalone_signals(instance):
 
 if __name__ == '__main__':
     bindtextdomain(NAME, LOCALE_DIR)
-    setup_standalone_signals(PrefsDialog()).show()
+    setup_standalone_signals(PrefsDialog(None)).show()
     Gtk.main()

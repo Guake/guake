@@ -135,7 +135,8 @@ disable=
   superfluous-parens,
   bad-continuation,
   locally-enabled,
-  ungrouped-imports
+  ungrouped-imports,
+  too-many-boolean-expressions,
 
 [REPORTS]
 
