@@ -226,7 +226,7 @@ class GSettingHandler(object):
             font_name = proc.stdout.readline().replace("'", "")
             if font_name is None:
                 # Back to gconf
-                font_name = client.get_string(GCONF_MONOSPACE_FONT_PATH)
+                font_name = settings.get_string(GCONF_MONOSPACE_FONT_PATH)
             proc.kill()
         else:
             font_name = self.settings.styleFont.get_string('style')
