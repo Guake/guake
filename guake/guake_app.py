@@ -37,14 +37,10 @@ from gi.repository import Gtk
 from gi.repository import Keybinder
 from gi.repository import Vte
 
-
 # import gconf
 import json
-
-
 import logging
 import logging.config
-log = logging.getLogger(__name__)
 import os
 import platform
 # import pygtk
@@ -57,22 +53,15 @@ import traceback
 # import uuid
 # import xdg.Exceptions
 
+import cairo
+
 from urllib.parse import quote_plus
 # from urllib import url2pathname
 # from urlparse import urlsplit
 # from xdg.DesktopEntry import DesktopEntry
 from xml.sax.saxutils import escape as xml_escape
 
-import cairo
-
 from guake import notifier
-
-
-try:
-    from colorlog import ColoredFormatter
-except:
-    ColoredFormatter = None
-
 from guake.about import AboutDialog
 from guake.common import _
 from guake.common import gladefile
@@ -87,16 +76,23 @@ from guake.globals import ALIGN_RIGHT
 from guake.globals import ALWAYS_ON_PRIMARY
 # from guake.globals import GKEY
 # from guake.globals import KEY
-from guake.keybindings import Keybindings
 from guake.globals import LOCALE_DIR
 from guake.globals import NAME
 from guake.gsettings import GSettingHandler
 from guake.guake_notebook import GuakeNotebook
+from guake.keybindings import Keybindings
 from guake.prefs import PrefsDialog
 from guake.simplegladeapp import SimpleGladeApp
 from guake.simplegladeapp import bindtextdomain
 from guake.terminal import GuakeTerminalBox
 
+try:
+    from colorlog import ColoredFormatter
+except:
+    ColoredFormatter = None
+
+
+log = logging.getLogger(__name__)
 
 libutempter = None
 try:

@@ -17,6 +17,7 @@ style: fiximports autopep8 yapf
 
 fiximports:
 	@for fil in $$(find . -name "*.py"); do \
+		echo "Sorting imports from: $$fil"; \
 		pipenv run fiximports $$fil; \
 	done
 
