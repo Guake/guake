@@ -2,7 +2,6 @@ from __future__ import absolute_import
 from __future__ import division
 from __future__ import print_function
 
-
 import gi
 gi.require_version('Gtk', '3.0')
 gi.require_version('Vte', '2.91')
@@ -27,11 +26,9 @@ from guake.globals import GKEY
 from guake.globals import KEY
 from guake.globals import LKEY
 
-
 GCONF_MONOSPACE_FONT_PATH = '/desktop/gnome/interface/monospace_font_name'
 DCONF_MONOSPACE_FONT_PATH = 'org.gnome.desktop.interface'
 DCONF_MONOSPACE_FONT_KEY = 'monospace-font-name'
-
 
 log = logging.getLogger(__name__)
 
@@ -221,8 +218,8 @@ class GSettingHandler(object):
             # cannot directly use the Gio API since it requires to rework completely
             # the library inclusion, remove dependencies on gobject and so on.
             # Instead, issuing a direct command line request
-            proc = subprocess.Popen(['gsettings', 'get', DCONF_MONOSPACE_FONT_PATH,
-                                     DCONF_MONOSPACE_FONT_KEY], stdout=subprocess.PIPE)
+            c = ['gsettings', 'get', DCONF_MONOSPACE_FONT_PATH, DCONF_MONOSPACE_FONT_KEY]
+            proc = subprocess.Popen(c, stdout=subprocess.PIPE)
             font_name = proc.stdout.readline().replace("'", "")
             if font_name is None:
                 # Back to gconf

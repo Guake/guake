@@ -23,7 +23,6 @@ import dbus
 import dbus.glib
 import dbus.service
 
-
 dbus.glib.threads_init()
 
 DBUS_PATH = '/org/guake/RemoteControl'

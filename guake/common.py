@@ -34,7 +34,6 @@ from gi.repository import Gtk
 
 import guake.globals
 
-
 # Internationalization purposes.
 _ = gettext.gettext
 
@@ -50,10 +49,9 @@ __all__ = [
 
 def ShowableError(parent, title, msg, exit_code=1):
     d = Gtk.MessageDialog(
-        parent,
-        Gtk.DialogFlags.MODAL | Gtk.DialogFlags.DESTROY_WITH_PARENT,
-        Gtk.MessageType.WARNING,
-        Gtk.ButtonsType.CLOSE)
+        parent, Gtk.DialogFlags.MODAL | Gtk.DialogFlags.DESTROY_WITH_PARENT,
+        Gtk.MessageType.WARNING, Gtk.ButtonsType.CLOSE
+    )
     d.set_markup('<b><big>%s</big></b>' % title)
     d.format_secondary_markup(msg)
     d.run()
@@ -75,8 +73,10 @@ def gladefile(x):
 
 
 def hexify_color(c):
+
     def h(x):
         return hex(x).replace('0x', '').zfill(4)
+
     return '#%s%s%s' % (h(c.red), h(c.green), h(c.blue))
 
 

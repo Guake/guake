@@ -22,7 +22,6 @@ from __future__ import division
 from __future__ import print_function
 from __future__ import unicode_literals
 
-
 import gi
 gi.require_version('Gtk', '3.0')
 gi.require_version('Vte', '2.91')
@@ -66,14 +65,12 @@ TERMINAL_MATCH_EXPRS = [
     "(mailto:)?[-[:alnum:]][-[:alnum:].]*@[-[:alnum:]]+\.[-[:alnum:]]+(\\.[-[:alnum:]]+)*"
 ]
 # tuple (title/quick matcher/filename and line number extractor)
-QUICK_OPEN_MATCHERS = [
-    ("Python traceback",
-     r"^\s\sFile\s\".*\",\sline\s[0-9]+",
-     r"^\s\sFile\s\"(.*)\",\sline\s([0-9]+)"),
-    ("line starts by 'Filename:line' pattern (GCC/make). File path should exists.",
-     r"^[a-zA-Z0-9\/\_\-\.\ ]+\.?[a-zA-Z0-9]+\:[0-9]+",
-     r"^(.*)\:([0-9]+)")
-]
+QUICK_OPEN_MATCHERS = [(
+    "Python traceback", r"^\s\sFile\s\".*\",\sline\s[0-9]+", r"^\s\sFile\s\"(.*)\",\sline\s([0-9]+)"
+), (
+    "line starts by 'Filename:line' pattern (GCC/make). File path should exists.",
+    r"^[a-zA-Z0-9\/\_\-\.\ ]+\.?[a-zA-Z0-9]+\:[0-9]+", r"^(.*)\:([0-9]+)"
+)]
 
 
 class Terminal(Vte.Terminal):
@@ -124,8 +121,8 @@ class Terminal(Vte.Terminal):
         """
         self.matched_value = ''
         matched_string = self.match_check(
-            int(event.x / self.get_char_width()),
-            int(event.y / self.get_char_height()))
+            int(event.x / self.get_char_width()), int(event.y / self.get_char_height())
+        )
         value, tag = matched_string
 
         if event.button == 1 \
@@ -140,8 +137,7 @@ class Terminal(Vte.Terminal):
             elif TERMINAL_MATCH_TAGS[tag] == 'email':
                 value = 'mailto:%s' % value
 
-            Gtk.show_uri(self.get_screen(), value,
-                         GdkX11.x11_get_server_time(self.get_window()))
+            Gtk.show_uri(self.get_screen(), value, GdkX11.x11_get_server_time(self.get_window()))
         elif event.button == 3 and matched_string:
             self.matched_value = matched_string[0]
 
@@ -163,10 +159,7 @@ class Terminal(Vte.Terminal):
 
         super(Terminal, self).set_font(font)
 
-    font_scale = property(
-        fset=set_font_scale_index,
-        fget=lambda self: self.font_scale_index
-    )
+    font_scale = property(fset=set_font_scale_index, fget=lambda self: self.font_scale_index)
 
     def increase_font_size(self):
         self.font_scale += 1
@@ -281,8 +274,8 @@ class GuakeTerminal(Vte.Terminal):
         """
         self.matched_value = ''
         matched_string = self.match_check(
-            int(event.x / self.get_char_width()),
-            int(event.y / self.get_char_height()))
+            int(event.x / self.get_char_width()), int(event.y / self.get_char_height())
+        )
 
         self.found_link = None
 
@@ -295,7 +288,8 @@ class GuakeTerminal(Vte.Terminal):
             # TODO PORT
             use_quick_open = self.settings.general.get_boolean("quick-open-enable")
             quick_open_in_current_terminal = self.settings.general.get_boolean(
-                "quick-open-in-current-terminal")
+                "quick-open-in-current-terminal"
+            )
             cmdline = self.settings.general.get_string("quick-open-command-line")
             if use_quick_open:
                 for _useless, _otheruseless, extractor in QUICK_OPEN_MATCHERS:
@@ -322,9 +316,10 @@ class GuakeTerminal(Vte.Terminal):
                                 if os.path.exists(filepath):
                                     break
                             else:
-                                logging.info("Cannot open file %s, it doesn't exists locally"
-                                             "(current dir: %s)", filepath,
-                                             os.path.curdir)
+                                logging.info(
+                                    "Cannot open file %s, it doesn't exists locally"
+                                    "(current dir: %s)", filepath, os.path.curdir
+                                )
                                 log.debug("No file exist")
                                 continue
                         # for quick_open_in_current_terminal, we run the command line directly in
@@ -333,8 +328,10 @@ class GuakeTerminal(Vte.Terminal):
                         # We do not test for file existence, because it doesn't work in ssh
                         # sessions.
                         logging.debug("Opening file %s at line %s", filepath, line_number)
-                        resolved_cmdline = cmdline % {"file_path": filepath,
-                                                      "line_number": line_number}
+                        resolved_cmdline = cmdline % {
+                            "file_path": filepath,
+                            "line_number": line_number
+                        }
                         logging.debug("Command line: %s", resolved_cmdline)
                         if quick_open_in_current_terminal:
                             logging.debug("Executing it in current tab")
@@ -401,10 +398,7 @@ class GuakeTerminal(Vte.Terminal):
 
         super(GuakeTerminal, self).set_font(font)
 
-    font_scale = property(
-        fset=set_font_scale_index,
-        fget=lambda self: self.font_scale_index
-    )
+    font_scale = property(fset=set_font_scale_index, fget=lambda self: self.font_scale_index)
 
     def increase_font_size(self):
         self.font_scale += 1
@@ -414,7 +408,7 @@ class GuakeTerminal(Vte.Terminal):
 
     def kill(self):
         pid = self.get_pid()
-        threading.Thread(target=self.delete_shell, args=(pid,)).start()
+        threading.Thread(target=self.delete_shell, args=(pid, )).start()
         # start_new_thread(self.delete_shell, (pid,))
 
     def delete_shell(self, pid):
@@ -450,6 +444,7 @@ class GuakeTerminal(Vte.Terminal):
                 # if this part of code was reached, means that SIGTERM
                 # did the work and SIGKILL wasnt needed.
                 pass
+
 
 # TODO PORT port this from HBOX to Box with orientation horitzontal
 

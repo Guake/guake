@@ -21,7 +21,6 @@ from __future__ import absolute_import
 from __future__ import division
 from __future__ import print_function
 
-
 import gi
 gi.require_version('Gtk', '3.0')
 gi.require_version('Keybinder', '3.0')
@@ -72,97 +71,168 @@ SHELLS_FILE = '/etc/shells'
 USER_SHELL_VALUE = _('<user shell>')
 
 # translating our types to vte types
-ERASE_BINDINGS = {'ASCII DEL': 'ascii-delete',
-                  'Escape sequence': 'delete-sequence',
-                  'Control-H': 'ascii-backspace'}
+ERASE_BINDINGS = {
+    'ASCII DEL': 'ascii-delete',
+    'Escape sequence': 'delete-sequence',
+    'Control-H': 'ascii-backspace'
+}
 
 HOTKEYS = [
-    {'label': _('General'),
-     'keys': [{'key': 'show-hide',
-               'label': _('Toggle Guake visibility')},
-              {'key': 'toggle-fullscreen',
-               'label': _('Toggle Fullscreen')},
-              {'key': 'toggle-hide-on-lose-focus',
-               'label': _('Toggle Hide on Lose Focus')},
-              {'key': 'quit',
-               'label': _('Quit')},
-              {'key': 'reset-terminal',
-               'label': _('Reset terminal')},
-              ]},
-
-    {'label': _('Tab management'),
-     'keys': [{'key': 'new-tab',
-               'label': _('New tab')},
-              {'key': 'close-tab',
-               'label': _('Close tab')},
-              {'key': 'rename-current-tab',
-               'label': _('Rename current tab')},
-              ]},
-
-    {'label': _('Navigation'),
-     'keys': [{'key': 'previous-tab',
-               'label': _('Go to previous tab')},
-              {'key': 'next-tab',
-               'label': _('Go to next tab')},
-              {'key': 'move-tab-left',
-               'label': _('Move current tab left')},
-              {'key': 'move-tab-right',
-               'label': _('Move current tab right')},
-              {'key': 'switch-tab1',
-               'label': _('Go to first tab')},
-              {'key': 'switch-tab2',
-               'label': _('Go to second tab')},
-              {'key': 'switch-tab3',
-               'label': _('Go to third tab')},
-              {'key': 'switch-tab4',
-               'label': _('Go to fourth tab')},
-              {'key': 'switch-tab5',
-               'label': _('Go to fifth tab')},
-              {'key': 'switch-tab6',
-               'label': _('Go to sixth tab')},
-              {'key': 'switch-tab7',
-               'label': _('Go to seventh tab')},
-              {'key': 'switch-tab8',
-               'label': _('Go to eighth tab')},
-              {'key': 'switch-tab9',
-               'label': _('Go to ninth tab')},
-              {'key': 'switch-tab10',
-               'label': _('Go to tenth tab')},
-              {'key': 'switch-tab-last',
-               'label': _('Go to last tab')},
-              ]},
-
-    {'label': _('Appearance'),
-     'keys': [{'key': 'zoom-out',
-               'label': _('Zoom out')},
-              {'key': 'zoom-in',
-               'label': _('Zoom in')},
-              {'key': 'zoom-in-alt',
-               'label': _('Zoom in (alternative)')},
-              {'key': 'increase-height',
-               'label': _('Increase height')},
-              {'key': 'decrease-height',
-               'label': _('Decrease height')},
-              {'key': 'increase-transparency',
-               'label': _('Increase transparency')},
-              {'key': 'decrease-transparency',
-               'label': _('Decrease transparency')},
-              {'key': 'toggle-transparency',
-               'label': _('Toggle transparency')}
-              ]},
-
-    {'label': _('Clipboard'),
-     'keys': [{'key': 'clipboard-copy',
-               'label': _('Copy text to clipboard')},
-              {'key': 'clipboard-paste',
-               'label': _('Paste text from clipboard')},
-              ]},
-
-    {'label': _('Extra features'),
-     'keys': [
-        {'key': 'search-on-web',
-         'label': _('Search select text on web')},
-    ]},
+    {
+        'label': _('General'),
+        'keys': [
+            {
+                'key': 'show-hide',
+                'label': _('Toggle Guake visibility')
+            },
+            {
+                'key': 'toggle-fullscreen',
+                'label': _('Toggle Fullscreen')
+            },
+            {
+                'key': 'toggle-hide-on-lose-focus',
+                'label': _('Toggle Hide on Lose Focus')
+            },
+            {
+                'key': 'quit',
+                'label': _('Quit')
+            },
+            {
+                'key': 'reset-terminal',
+                'label': _('Reset terminal')
+            },
+        ]
+    },
+    {
+        'label': _('Tab management'),
+        'keys': [
+            {
+                'key': 'new-tab',
+                'label': _('New tab')
+            },
+            {
+                'key': 'close-tab',
+                'label': _('Close tab')
+            },
+            {
+                'key': 'rename-current-tab',
+                'label': _('Rename current tab')
+            },
+        ]
+    },
+    {
+        'label': _('Navigation'),
+        'keys': [
+            {
+                'key': 'previous-tab',
+                'label': _('Go to previous tab')
+            },
+            {
+                'key': 'next-tab',
+                'label': _('Go to next tab')
+            },
+            {
+                'key': 'move-tab-left',
+                'label': _('Move current tab left')
+            },
+            {
+                'key': 'move-tab-right',
+                'label': _('Move current tab right')
+            },
+            {
+                'key': 'switch-tab1',
+                'label': _('Go to first tab')
+            },
+            {
+                'key': 'switch-tab2',
+                'label': _('Go to second tab')
+            },
+            {
+                'key': 'switch-tab3',
+                'label': _('Go to third tab')
+            },
+            {
+                'key': 'switch-tab4',
+                'label': _('Go to fourth tab')
+            },
+            {
+                'key': 'switch-tab5',
+                'label': _('Go to fifth tab')
+            },
+            {
+                'key': 'switch-tab6',
+                'label': _('Go to sixth tab')
+            },
+            {
+                'key': 'switch-tab7',
+                'label': _('Go to seventh tab')
+            },
+            {
+                'key': 'switch-tab8',
+                'label': _('Go to eighth tab')
+            },
+            {
+                'key': 'switch-tab9',
+                'label': _('Go to ninth tab')
+            },
+            {
+                'key': 'switch-tab10',
+                'label': _('Go to tenth tab')
+            },
+            {
+                'key': 'switch-tab-last',
+                'label': _('Go to last tab')
+            },
+        ]
+    },
+    {
+        'label': _('Appearance'),
+        'keys': [{
+            'key': 'zoom-out',
+            'label': _('Zoom out')
+        }, {
+            'key': 'zoom-in',
+            'label': _('Zoom in')
+        }, {
+            'key': 'zoom-in-alt',
+            'label': _('Zoom in (alternative)')
+        }, {
+            'key': 'increase-height',
+            'label': _('Increase height')
+        }, {
+            'key': 'decrease-height',
+            'label': _('Decrease height')
+        }, {
+            'key': 'increase-transparency',
+            'label': _('Increase transparency')
+        }, {
+            'key': 'decrease-transparency',
+            'label': _('Decrease transparency')
+        }, {
+            'key': 'toggle-transparency',
+            'label': _('Toggle transparency')
+        }]
+    },
+    {
+        'label': _('Clipboard'),
+        'keys': [
+            {
+                'key': 'clipboard-copy',
+                'label': _('Copy text to clipboard')
+            },
+            {
+                'key': 'clipboard-paste',
+                'label': _('Paste text from clipboard')
+            },
+        ]
+    },
+    {
+        'label': _('Extra features'),
+        'keys': [{
+            'key': 'search-on-web',
+            'label': _('Search select text on web')
+        }, ]
+    },
 ]
 
 
@@ -174,6 +244,7 @@ class PrefsCallbacks(object):
     def __init__(self, prefDlg):
         self.prefDlg = prefDlg
         self.settings = prefDlg.settings
+
     # general tab
 
     def on_default_shell_changed(self, combo):
@@ -343,8 +414,9 @@ class PrefsCallbacks(object):
                 'radiobutton_align_right': ALIGN_RIGHT,
                 'radiobutton_align_center': ALIGN_CENTER
             }
-            self.settings.general.set_int('window-halignment',
-                                          which_align[halign_button.get_name()])
+            self.settings.general.set_int(
+                'window-halignment', which_align[halign_button.get_name()]
+            )
 
     def on_use_visible_bell_toggled(self, chk):
         """Changes the value of use_visible_bell in gconf
@@ -489,8 +561,7 @@ class PrefsDialog(SimpleGladeApp):
         """Setup the preferences dialog interface, loading images,
         adding filters to file choosers and connecting some signals.
         """
-        super(PrefsDialog, self).__init__(gladefile('prefs.glade'),
-                                          root='config-window')
+        super(PrefsDialog, self).__init__(gladefile('prefs.glade'), root='config-window')
         self.settings = settings
 
         self.add_callbacks(PrefsCallbacks(self))
@@ -563,8 +634,7 @@ class PrefsDialog(SimpleGladeApp):
         self.bgfilechooser = self.get_widget('background_image')
         self.bgfilechooser.set_preview_widget(self.selection_preview)
         self.bgfilechooser.set_filter(self.file_filter)
-        self.bgfilechooser.connect('update-preview', self.update_preview,
-                                   self.selection_preview)
+        self.bgfilechooser.connect('update-preview', self.update_preview, self.selection_preview)
 
     def spawn_sync_pid(self, directory=None, terminal=None):
         argv = list()
@@ -584,14 +654,8 @@ class PrefsDialog(SimpleGladeApp):
             wd = os.environ['HOME']
 
         pid = terminal.spawn_sync(
-            Vte.PtyFlags.DEFAULT,
-            wd,
-            argv,
-            [],
-            GLib.SpawnFlags.DO_NOT_REAP_CHILD,
-            None,
-            None,
-            None)
+            Vte.PtyFlags.DEFAULT, wd, argv, [], GLib.SpawnFlags.DO_NOT_REAP_CHILD, None, None, None
+        )
         return pid
 
     def show(self):
@@ -696,8 +760,7 @@ class PrefsDialog(SimpleGladeApp):
         palette_name = combo.get_active_text()
         if palette_name not in PALETTES:
             return
-        self.settings.styleFont.set_string('palette',
-                                           PALETTES[palette_name])
+        self.settings.styleFont.set_string('palette', PALETTES[palette_name])
         self.settings.styleFont.set_string('palette-name', palette_name)
         self.set_palette_colors(PALETTES[palette_name])
         self.update_demo_palette(PALETTES[palette_name])
@@ -719,13 +782,13 @@ class PrefsDialog(SimpleGladeApp):
 
         palette = []
         for i in range(18):
-            palette.append(hexify_color(
-                self.get_widget('palette_%d' % i).get_color()))
+            palette.append(hexify_color(self.get_widget('palette_%d' % i).get_color()))
         palette = ':'.join(palette)
         self.settings.styleFont.set_string('palette', palette)
         self.settings.styleFont.set_string('palette-name', _('Custom'))
         self.set_palette_name('Custom')
         self.update_demo_palette(palette)
+
     # this methods should be moved to the GuakeTerminal class FROM HERE
 
     def set_palette_name(self, palette_name):
@@ -1103,11 +1166,7 @@ class PrefsDialog(SimpleGladeApp):
                     hotkey = KeyEntry(*params)
                 else:
                     hotkey = KeyEntry(0, 0)
-                model.set(child,
-                          0, item['key'],
-                          1, _(item['label']),
-                          2, hotkey,
-                          3, True)
+                model.set(child, 0, item['key'], 1, _(item['label']), 2, hotkey, 3, True)
         self.get_widget('treeview-keys').expand_all()
 
     def populate_display_n(self):
@@ -1159,20 +1218,22 @@ class PrefsDialog(SimpleGladeApp):
         model.foreach(each_key)
 
         # avoiding problems with common keys
-        if ((mask == 0 and keycode != 0) and (
-            (keycode >= ord('a') and keycode <= ord('z')) or
-            (keycode >= ord('A') and keycode <= ord('Z')) or
-                (keycode >= ord('0') and keycode <= ord('9')))):
+        if ((mask == 0 and keycode != 0) and ((keycode >= ord('a') and keycode <= ord('z')) or
+                                              (keycode >= ord('A') and keycode <= ord('Z')) or
+                                              (keycode >= ord('0') and keycode <= ord('9')))):
             dialog = Gtk.MessageDialog(
                 self.get_widget('config-window'),
                 Gtk.DialogFlags.MODAL | Gtk.DialogFlags.DESTROY_WITH_PARENT,
                 Gtk.MessageType.WARNING, Gtk.ButtonsType.OK,
-                _("The shortcut \"%s\" cannot be used "
-                  "because it will become impossible to "
-                  "type using this key.\n\n"
-                  "Please try with a key such as "
-                  "Control, Alt or Shift at the same "
-                  "time.\n") % key)
+                _(
+                    "The shortcut \"%s\" cannot be used "
+                    "because it will become impossible to "
+                    "type using this key.\n\n"
+                    "Please try with a key such as "
+                    "Control, Alt or Shift at the same "
+                    "time.\n"
+                ) % key
+            )
             dialog.run()
             dialog.destroy()
             return False
@@ -1234,9 +1295,11 @@ class PrefsDialog(SimpleGladeApp):
 
         path, column, cellx, celly = ret
         if path and len(path) > 1:
+
             def real_cb():
                 treeview.grab_focus()
                 treeview.set_cursor(path, column, True)
+
             treeview.stop_emission('button-press-event')
             GObject.idle_add(real_cb)
 
@@ -1250,8 +1313,7 @@ class KeyEntry(object):
         self.mask = mask
 
     def __repr__(self):
-        return u'KeyEntry(%d, %d)' % (
-            self.keycode, self.mask)
+        return u'KeyEntry(%d, %d)' % (self.keycode, self.mask)
 
     def __eq__(self, rval):
         return self.keycode == rval.keycode and self.mask == rval.mask

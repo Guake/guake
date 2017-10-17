@@ -5,13 +5,11 @@ from __future__ import print_function
 import logging
 import posix
 
-
 import gi
 gi.require_version('Gtk', '3.0')
 gi.require_version('Vte', '2.91')
 
 from gi.repository import Gtk
-
 
 log = logging.getLogger(__name__)
 
@@ -67,8 +65,9 @@ class GuakeNotebook(Gtk.Notebook):
                 if not (fgpid == -1 or fgpid == term_pid):
                     total_procs += 1
             except OSError:
-                log.debug("Cannot retrieve any pid from terminal %s, looks like it is already dead",
-                          index)
+                log.debug(
+                    "Cannot retrieve any pid from terminal %s, looks like it is already dead", index
+                )
                 return 0
         return total_procs
 
