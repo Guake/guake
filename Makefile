@@ -66,6 +66,7 @@ pypi-publish: build
 
 update:
 	@pipenv update
+	@pipenv install --dev
 
 freeze:
 	@pipenv run pip freeze
