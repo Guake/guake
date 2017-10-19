@@ -78,6 +78,10 @@ githook:style
 push: githook
 	@git push origin --tags
 
+clean:
+	pipenv --rm ; true
+	find . -name "*.pyc" -exec rm -f {} \;
+
 # aliases to gracefully handle typos on poor dev's terminal
 check: checks
 devel: dev
