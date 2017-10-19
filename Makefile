@@ -2,7 +2,7 @@
 
 MODULE:=guake
 
-all: dev style checks build dists test-unit docs
+all: dev version style checks build dists test-unit docs
 
 dev:
 	@pipenv install --dev
@@ -13,10 +13,15 @@ install-local:
 install-system:
 	@pipenv install --system
 
+version:
+	@pipenv run python -c \
+		"import pbr.version ; print('__version__ = \"' + \
+		pbr.version.VersionInfo('guake').release_string() + '\"')" > guake/version.py
+
 style: fiximports autopep8 yapf
 
 fiximports:
-	@for fil in $$(find . -name "*.py"); do \
+	@for fil in $$(find setup.py install.py install-lib.py guake -name "*.py"); do \
 		echo "Sorting imports from: $$fil"; \
 		pipenv run fiximports $$fil; \
 	done
@@ -35,7 +40,7 @@ flake8:
 pylint:
 	@pipenv run pylint --rcfile=.pylintrc --output-format=colorized $(MODULE)
 
-build: dists
+build: version dists
 
 run-local:
 	@pipenv run $(MODULE)
@@ -49,7 +54,7 @@ test-unit:
 test-coverage:
 	pipenv run py.test -v --cov $(MODULE) --cov-report term-missing
 
-dists: sdist bdist wheels
+dists: version sdist bdist wheels
 
 sdist:
 	@pipenv run python setup.py sdist

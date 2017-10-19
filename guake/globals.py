@@ -22,12 +22,11 @@ from __future__ import absolute_import
 import inspect
 import os
 
+import guake.version
 
 __all__ = [
-    'NAME', 'VERSION', 'IMAGE_DIR', 'GLADE_DIR', 'LOCALE_DIR',
-    'GCONF_PATH', 'KEY',
-    'ALIGN_CENTER', 'ALIGN_RIGHT', 'ALIGN_LEFT', 'ALIGN_TOP', 'ALIGN_BOTTOM',
-    'ALWAYS_ON_PRIMARY'
+    'NAME', 'VERSION', 'IMAGE_DIR', 'GLADE_DIR', 'LOCALE_DIR', 'GCONF_PATH', 'KEY', 'ALIGN_CENTER',
+    'ALIGN_RIGHT', 'ALIGN_LEFT', 'ALIGN_TOP', 'ALIGN_BOTTOM', 'ALWAYS_ON_PRIMARY'
 ]
 
 
@@ -35,17 +34,19 @@ def is_run_from_git_workdir():
     self_path = os.path.abspath(inspect.getfile(inspect.currentframe()))
     return os.path.exists('%s.in' % self_path)
 
+
 NAME = 'guake'
-VERSION = '@VERSION@'
+VERSION = guake.version.__version__
+DATADIR = "/path/to/datadir"
 
 if is_run_from_git_workdir():
     IMAGE_DIR = 'data/pixmaps'
     GLADE_DIR = 'data'
     LOCALE_DIR = 'locale'
 else:
-    IMAGE_DIR = '@DATADIR@/pixmaps/' + NAME
-    GLADE_DIR = '@DATADIR@/' + NAME
-    LOCALE_DIR = '@DATADIR@/locale'
+    IMAGE_DIR = DATADIR + '/pixmaps/' + NAME
+    GLADE_DIR = DATADIR + '/' + NAME
+    LOCALE_DIR = DATADIR + '/locale'
 
 # Gconf stuff. Yep, it is hardcoded =)
 GCONF_PATH = '/apps/guake'
@@ -54,7 +55,6 @@ KEY = lambda x: (GCONF_PATH + x)
 # keybindings in the preferences window.
 LKEY = lambda x: GCONF_PATH + '/keybindings/local/' + x
 GKEY = lambda x: GCONF_PATH + '/keybindings/global/' + x
-
 
 ALIGN_CENTER, ALIGN_LEFT, ALIGN_RIGHT = range(3)
 ALIGN_TOP, ALIGN_BOTTOM = range(2)
