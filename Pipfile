@@ -5,6 +5,7 @@ name = "pypi"
 
 
 [dev-packages]
+
 "autopep8" = "*"
 "flake8" = "*"
 "pep8" = "*"
@@ -14,6 +15,7 @@ pyflakes = "<1.6.0,>=1.5.0"
 pylint = "*"
 pytest = "*"
 yapf = "*"
+"e1839a8" = {path = ".", editable = true}
 
 [packages]
 pbr = "*"
