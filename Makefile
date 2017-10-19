@@ -35,10 +35,9 @@ flake8:
 pylint:
 	@pipenv run pylint --rcfile=.pylintrc --output-format=colorized $(MODULE)
 
-build: readme dists
+build: dists
 
 run-local:
-	@echo "Starting Dopplerr on http://localhost:$(TEST_PORT) ..."
 	@pipenv run $(MODULE)
 
 shell:
@@ -71,7 +70,7 @@ update:
 freeze:
 	@pipenv run pip freeze
 
-githook:style readme
+githook:style
 
 push: githook
 	@git push origin --tags
@@ -86,5 +85,10 @@ pypi: pypi-publish
 run: run-local
 styles: style
 test: test-unit
+unit_test: test-unit
+unit-test: test-unit
+unit: test-unit
+unittest: test-unit
+unittests: test-unit
 upgrade: update
 wheel: wheels

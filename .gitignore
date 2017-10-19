@@ -64,6 +64,7 @@ src/guake.egg-info/
 __pycache__
 dist/
 *.egg-info/
+build/
 
 AUTHORS
 ChangeLog
