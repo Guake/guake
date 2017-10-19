@@ -2,7 +2,7 @@
 
 MODULE:=guake
 
-all: dev style checks build dists test-unit
+all: dev style checks build dists test-unit docs
 
 dev:
 	@pipenv install --dev
@@ -60,6 +60,9 @@ bdist:
 wheels:
 	@pipenv run python setup.py bdist_wheel
 
+docs:
+	cd doc && make html
+
 pypi-publish: build
 	@pipenv run python setup.py upload -r pypi
 
@@ -92,3 +95,4 @@ unittest: test-unit
 unittests: test-unit
 upgrade: update
 wheel: wheels
+doc: docs
