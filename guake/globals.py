@@ -22,7 +22,7 @@ from __future__ import absolute_import
 import inspect
 import os
 
-import guake.version
+import guake
 
 __all__ = [
     'NAME', 'VERSION', 'IMAGE_DIR', 'GLADE_DIR', 'LOCALE_DIR', 'GCONF_PATH', 'KEY', 'ALIGN_CENTER',
@@ -36,7 +36,7 @@ def is_run_from_git_workdir():
 
 
 NAME = 'guake'
-VERSION = guake.version.__version__
+VERSION = guake.__version__
 DATADIR = "/path/to/datadir"
 
 if is_run_from_git_workdir():
@@ -50,11 +50,22 @@ else:
 
 # Gconf stuff. Yep, it is hardcoded =)
 GCONF_PATH = '/apps/guake'
-KEY = lambda x: (GCONF_PATH + x)
+
+
+def KEY(x):
+    return (GCONF_PATH + x)
+
 # Stuff used to build the treeview that will allow the user to change
 # keybindings in the preferences window.
-LKEY = lambda x: GCONF_PATH + '/keybindings/local/' + x
-GKEY = lambda x: GCONF_PATH + '/keybindings/global/' + x
+
+
+def LKEY(x):
+    return GCONF_PATH + '/keybindings/local/' + x
+
+
+def GKEY(x):
+    return GCONF_PATH + '/keybindings/global/' + x
+
 
 ALIGN_CENTER, ALIGN_LEFT, ALIGN_RIGHT = range(3)
 ALIGN_TOP, ALIGN_BOTTOM = range(2)

@@ -2,7 +2,7 @@
 
 MODULE:=guake
 
-all: dev version style checks build dists test-unit docs
+all: dev style checks build dists test-unit docs
 
 dev:
 	@pipenv install --dev
@@ -12,11 +12,6 @@ install-local:
 
 install-system:
 	@pipenv install --system
-
-version:
-	@pipenv run python -c \
-		"import pbr.version ; print('__version__ = \"' + \
-		pbr.version.VersionInfo('guake').release_string() + '\"')" > guake/version.py
 
 style: fiximports autopep8 yapf
 
@@ -40,7 +35,7 @@ flake8:
 pylint:
 	@pipenv run pylint --rcfile=.pylintrc --output-format=colorized $(MODULE)
 
-build: version dists
+build: dists
 
 run-local:
 	@pipenv run $(MODULE)
@@ -54,7 +49,7 @@ test-unit:
 test-coverage:
 	pipenv run py.test -v --cov $(MODULE) --cov-report term-missing
 
-dists: version sdist bdist wheels
+dists: sdist bdist wheels
 
 sdist:
 	@pipenv run python setup.py sdist
