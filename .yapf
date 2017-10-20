@@ -1,0 +1,19 @@
+
+[style]
+based_on_style = pep8
+column_limit = 100
+indent_dictionary_value = true
+split_before_first_argument = false
+split_penalty_after_opening_bracket = 15000
+align_closing_bracket_with_visual_indent = true
+blank_line_before_class_docstring = true
+coalesce_brackets = true
+continuation_indent_width = 4
+dedent_closing_brackets = true
+; each_dict_entry_on_separate_line = true
+blank_line_before_nested_class_or_def = true
+spaces_around_power_operator = true
+spaces_before_comment = 2
+split_before_logical_operator = false
+split_arguments_when_comma_terminated = true
+allow_split_before_dict_value = false

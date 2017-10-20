@@ -220,103 +220,27 @@ Installation
 Ubuntu
 ------
 
-Execute the following command to install guake with all default options::
+Execute the following command to bootstrap all needed system dependencies:
 
-    $ ./dev.sh --install
+    $ ./bootstrap-ubuntu.sh
 
-It will install all dependencies, compiles and install all files to ``/usr/local``.
 
 **Note**:
 
-    Use the following command to start guake without installing it (you need to have installed it at
-    least once)::
+    Use the following commands to start guake without installing it:
 
-        $ ./dev.sh
-
-PPA
-***
-
-An external, unofficial PPA for latest version of Ubuntu seems to integrate Guake regularly. Check
-it at the following URL:
-
-    https://launchpad.net/~webupd8team/+archive/ubuntu/unstable
-
-Details:
-********
-
-Under Debian/Ubuntu, make sure you have source code repositories enabled, then the following command
-should install all the build dependencies::
-
-    sudo apt-get build-dep guake
-
-For compiling from these sources, please install the following packages (Ubuntu 13.10)::
-
-    sudo apt-get install build-essential python autoconf
-    sudo apt-get install gnome-common gtk-doc-tools libglib2.0-dev libgtk2.0-dev
-    sudo apt-get install python-gtk2 python-gtk2-dev python-vte glade python-glade2
-    sudo apt-get install libgconf2-dev python-appindicator
-    sudo apt-get install python-vte python-gconf python-keybinder
-    sudo apt-get install notify-osd
-    sudo apt-get install libutempter0
-    sudo apt-get install python-notify
-    # uncomment for Python 3
-    # sudo apt-get install python3-dev
-    # uncomment for glade Gtk-2 editor
-    # sudo apt-get install glade-gtk2
-
-RedHat/Fedora
--------------
-
-Guake is available in the official repositories:
-
-::
-
-    sudo yum install guake    # for Fedora 19 - 21
-    sudo dnf install guake    # for Fedora 23 and above
-
-If compiling from source, please install dependencies:
-
-    sudo dnf builddep guake
-
-ArchLinux
----------
-
-Guake can be found in the `official repositories <https://www.archlinux.org/packages/?name=guake>`_
-and installed by running::
-
-    sudo pacman -S guake
-
-For compiling from these sources, please install the following packages (for Python 2)::
-
-    gnome-common python2-gconf python2-xdg
-
-To run Guake with Python 2, use the trick described in `Arch Wiki <https://wiki.archlinux.org/index.php/Python#Dealing_with_version_problem_in_build_scripts>`_ and put this as your ``/usr/local/bin/python`` (changing ``/path/to/guake`` into a real path where you cloned the repository)::
-
-    #!/bin/bash
-    script=$(readlink -f -- "$1")
-    case "$script" in (/path/to/guake*)
-        exec python2 "$@"
-        ;;
-    esac
-
-    exec python3 "$@"
-
-Make it executable with ``chmod +x /usr/local/bin/python``.
+        $ make dev
+        $ make run
 
 
 Compilation
 ~~~~~~~~~~~
 
-We are using an autotools based installation, so if you got the source of guake from a release
-tarball, please do the following::
+::
 
     $ git clone https://github.com/Guake/guake.git
     $ cd guake
-    $ ./autogen.sh && ./configure && make
-
-For Ubuntu user, we have a script that does all these steps for you. Use::
-
-    $ ./dev.sh
+    $ make dev
 
 
 Testing as an unprivileged user
@@ -324,37 +248,13 @@ Testing as an unprivileged user
 
 To run Guake as an unprivileged user for testing purposes, after `make` continue with::
 
-    $ gconftool-2 --install-schema-file=data/guake.schemas
-    $ PYTHONPATH=src python src/guake/main.py
-
-**Note**: Ubuntu users, you can use the following command::
-
-   $ ./dev.sh
+    $ make run
 
 
 System-wide installation
 ~~~~~~~~~~~~~~~~~~~~~~~~
 
-To install Guake to all users, after `make` continue with::
-
-    $ sudo make install
-
-If you receive a message asking you if you have installed ``guake.schemas`` properly when launching
-guake, it means that your default sysconfdir is different from the one chosen by autotools. To fix
-that, you probably have to append the param ``--sysconfdir=/etc`` to your ``./configure`` call, like
-this::
-
-    $ ./configure --sysconfdir=/etc && make
-
-If it is not enough you can install the gconf schemas file by hand by doing the following::
-
-    $ GCONF_CONFIG_SOURCE="" gconftool-2 --makefile-install-rule data/guake.schemas
-
-For more install details, please read the ``INSTALL`` file.
-
-
-Development
-~~~~~~~~~~~
+TBD
 
 Update translation
 ------------------
@@ -386,25 +286,19 @@ We are strict on code styling, with pep8 and pylint running automatically in tra
 order to reject badly shaped patches. Please use the following command to validate all
 python files::
 
-    $ ./validate.sh
+    $ make style
+    $ make check
 
 Update NEWS
 -----------
 
-Add your change in the ``NEWS`` file. The ``ChangeLog`` files is not more used.
+Add your change in the ``NEWS`` file. The ``ChangeLog`` files is not used (PBR automatically
+populates it for Pypi packages)
 
-New version
+Versionning
 -----------
 
-To start development on a new version:
-
-- update ``configure.ac``::
-
-    AC_INIT([guake], [0.x.y], [http://guake-project.org/])
-
-- add a new section in the ``NEWS`` file
-
-When read, create a new release on the github site.
+Versioning is automatically done using git tags (thanks PBR).
 
 Travis build
 ------------

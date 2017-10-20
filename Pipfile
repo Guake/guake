@@ -1,0 +1,20 @@
+[[source]]
+url = "https://pypi.python.org/simple"
+verify_ssl = true
+name = "pypi"
+
+
+[dev-packages]
+"autopep8" = "*"
+"flake8" = "*"
+"pep8" = "*"
+fiximports = ">=0.1.18"
+mock = ">=2.0.0"
+pyflakes = "<1.6.0,>=1.5.0"
+pylint = "*"
+pytest = "*"
+yapf = "*"
+"e1839a8" = {path = ".", editable = true}
+
+[packages]
+pbr = "*"
