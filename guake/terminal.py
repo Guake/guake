@@ -55,6 +55,7 @@ import threading
 # __all__ = ['Terminal', 'TerminalBox']
 
 # TODO this is not as fancy as as it could be
+# pylint: disable=anomalous-backslash-in-string
 TERMINAL_MATCH_TAGS = 'schema', 'http', 'email'
 TERMINAL_MATCH_EXPRS = [
     "(news:|telnet:|nntp:|file:\/|https?:|ftps?:|webcal:)\/\/"
@@ -71,6 +72,8 @@ QUICK_OPEN_MATCHERS = [(
     "line starts by 'Filename:line' pattern (GCC/make). File path should exists.",
     r"^[a-zA-Z0-9\/\_\-\.\ ]+\.?[a-zA-Z0-9]+\:[0-9]+", r"^(.*)\:([0-9]+)"
 )]
+
+# pylint: enable=anomalous-backslash-in-string
 
 
 class Terminal(Vte.Terminal):
@@ -262,7 +265,7 @@ class GuakeTerminal(Vte.Terminal):
     def get_current_directory(self):
         directory = os.path.expanduser('~')
         if self.pid is not None:
-            cwd = os.readlink("/proc/%d/cwd".format(self.pid))
+            cwd = os.readlink("/proc/{}/cwd".format(self.pid))
             if os.path.exists(cwd):
                 directory = cwd
         return directory

@@ -55,6 +55,7 @@ GCONF_PATH = '/apps/guake'
 def KEY(x):
     return (GCONF_PATH + x)
 
+
 # Stuff used to build the treeview that will allow the user to change
 # keybindings in the preferences window.
 

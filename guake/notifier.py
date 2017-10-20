@@ -36,5 +36,7 @@ def showMessage(brief, body=None, icon=None):
     try:
         notification = Notify.Notification.new(brief, body, icon)
         notification.show()
+    # pylint: disable=catching-non-exception
     except GLib.GError:
         pass
+    # pylint: enable=catching-non-exception
