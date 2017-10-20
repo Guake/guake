@@ -97,6 +97,7 @@ styles: style
 test: test-unit
 unit_test: test-unit
 unit-test: test-unit
+unit-tests: test-unit
 unit: test-unit
 unittest: test-unit
 unittests: test-unit

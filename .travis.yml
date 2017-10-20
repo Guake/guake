@@ -4,10 +4,10 @@ python:
     - "3.5"
 
 install:
-    - pip install --upgrade pip
+    - sudo ./bootstrap-pip.sh
     - make dev
 
 script:
     - make check
     - make build
-    # - make test-unit
+    # - make unittest
