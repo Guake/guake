@@ -37,16 +37,11 @@ def is_run_from_git_workdir():
 
 NAME = 'guake'
 VERSION = guake.__version__
-DATADIR = "/path/to/datadir"
+DATADIR = os.environ.get("GUAKE_DATA_DIR")
 
-if is_run_from_git_workdir():
-    IMAGE_DIR = 'data/pixmaps'
-    GLADE_DIR = 'data'
-    LOCALE_DIR = 'locale'
-else:
-    IMAGE_DIR = DATADIR + '/pixmaps/' + NAME
-    GLADE_DIR = DATADIR + '/' + NAME
-    LOCALE_DIR = DATADIR + '/locale'
+IMAGE_DIR = 'data/pixmaps'
+GLADE_DIR = 'data'
+LOCALE_DIR = 'locale'
 
 # Gconf stuff. Yep, it is hardcoded =)
 GCONF_PATH = '/apps/guake'

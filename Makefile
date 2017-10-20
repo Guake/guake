@@ -38,7 +38,7 @@ pylint:
 build: dists
 
 run-local:
-	pipenv run ./run-local.sh
+	export GUAKE_DATA_DIR=$(shell pwd)/data ; pipenv run ./run-local.sh
 
 shell:
 	pipenv shell
