@@ -2,19 +2,10 @@ language: python
 python:
     # - "2.7"
     - "3.5"
-virtualenv:
-    system_site_packages: true
-
-before_install:
-    - sudo apt-get update -qq
-    - sudo apt-get install -qq --fix-missing
-        build-essential
-        python3
 
 install:
     - pip install --upgrade pip
     - make dev
-
 
 script:
     - make check
