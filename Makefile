@@ -5,13 +5,13 @@ MODULE:=guake
 all: dev style checks build dists test-unit docs
 
 dev:
-	@pipenv install --dev
+	pipenv install --dev
 
 install-local:
-	@pipenv install
+	pipenv install
 
 install-system:
-	@pipenv install --system
+	pipenv install --system
 
 style: fiximports autopep8 yapf
 
@@ -22,29 +22,29 @@ fiximports:
 	done
 
 autopep8:
-	@pipenv run autopep8 --in-place --recursive setup.py $(MODULE)
+	pipenv run autopep8 --in-place --recursive setup.py $(MODULE)
 
 yapf:
-	@pipenv run yapf --style .yapf --recursive -i $(MODULE)
+	pipenv run yapf --style .yapf --recursive -i $(MODULE)
 
 checks: sdist flake8 pylint
 
 flake8:
-	@pipenv run python setup.py flake8
+	pipenv run python setup.py flake8
 
 pylint:
-	@pipenv run pylint --rcfile=.pylintrc --output-format=colorized $(MODULE)
+	pipenv run pylint --rcfile=.pylintrc --output-format=colorized $(MODULE)
 
 build: dists
 
 run-local:
-	@pipenv run $(MODULE)
+	pipenv run ./run-local.sh
 
 shell:
-	@pipenv shell
+	pipenv shell
 
 test-unit:
-	@pipenv run pytest $(MODULE)
+	pipenv run pytest $(MODULE)
 
 test-coverage:
 	pipenv run py.test -v --cov $(MODULE) --cov-report term-missing
@@ -52,31 +52,34 @@ test-coverage:
 dists: sdist bdist wheels
 
 sdist:
-	@pipenv run python setup.py sdist
+	pipenv run python setup.py sdist
 
 bdist:
-	@pipenv run python setup.py bdist
+	pipenv run python setup.py bdist
 
 wheels:
-	@pipenv run python setup.py bdist_wheel
+	pipenv run python setup.py bdist_wheel
 
 docs:
 	cd doc && make html
 
 pypi-publish: build
-	@pipenv run python setup.py upload -r pypi
+	pipenv run python setup.py upload -r pypi
 
 update:
-	@pipenv update
-	@pipenv install --dev
+	pipenv update
+	pipenv install --dev
+
+lock:
+	pipenv lock
 
 freeze:
-	@pipenv run pip freeze
+	pipenv run pip freeze
 
 githook:style
 
 push: githook
-	@git push origin --tags
+	git push origin --tags
 
 clean:
 	pipenv --rm ; true
