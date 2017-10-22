@@ -2,13 +2,16 @@
 Guake README file
 =================
 
-|travis-badge|_ |bountysource-badge|_
+|travis-badge|_ |bountysource-badge|_ |feathub-badge|_ 
 
 .. |travis-badge| image:: https://travis-ci.org/Guake/guake.svg?branch=master
 .. _travis-badge: https://travis-ci.org/Guake/guake
 
 .. |bountysource-badge| image:: https://img.shields.io/bountysource/team/guake/activity.svg
 .. _bountysource-badge: https://www.bountysource.com/teams/guake
+
+.. |feathub-badge| image:: http://feathub.com/Guake/guake?format=svg
+.. _feathub-badge: http://feathub.com/Guake/guake
 
 Introduction
 ~~~~~~~~~~~~
