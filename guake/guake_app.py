@@ -87,7 +87,7 @@ from guake.terminal import GuakeTerminalBox
 
 try:
     from colorlog import ColoredFormatter
-except:
+except ImportError as ie:
     ColoredFormatter = None
 
 log = logging.getLogger(__name__)
@@ -532,7 +532,7 @@ class Guake(SimpleGladeApp):
         try:
             with open(file_name) as f:
                 data_file = f.read()
-        except:
+        except Exception as e:
             data_file = None
         if not data_file:
             return False
@@ -1198,7 +1198,7 @@ class Guake(SimpleGladeApp):
                         '/usr/bin/dconf', 'read', '/com/canonical/unity/launcher/launcher-position'
                     ]) or "Left"
                     found = True
-                except:
+                except Exception as e:
                     # in case of error, just ignore it, 'found' will not be set to True and so
                     # we execute the fallback
                     pass
@@ -2125,10 +2125,10 @@ class Guake(SimpleGladeApp):
 
     def getCurrentTerminalLinkUnderCursor(self):
         current_term = self.notebook.get_current_terminal()
-        l = current_term.found_link
-        log.debug("Current link under cursor: %s", l)
-        if l:
-            return l
+        link = current_term.found_link
+        log.debug("Current link under cursor: %s", link)
+        if link:
+            return link
 
     def browse_on_web(self, *args):
         log.debug("browsing %s...", self.getCurrentTerminalLinkUnderCursor())
