@@ -87,8 +87,6 @@ class GSettingHandler(object):
         settings.styleFont.onChangedValue('style', self.fstyle_changed)
         settings.styleFont.onChangedValue('palette', self.fpalette_changed)
         settings.styleFont.onChangedValue('allow-bold', self.allow_bold_toggled)
-        # TODO PORT remove this vte cant display images as backgrounds anymore
-        settings.styleBackground.onChangedValue('image', self.bgimage_changed)
         settings.styleBackground.onChangedValue('transparency', self.bgtransparency_changed)
 
         settings.general.onChangedValue('compat-backspace', self.backspace_changed)
@@ -267,14 +265,6 @@ class GSettingHandler(object):
         open.
         """
         self.guake.set_colors_from_settings()
-
-    def bgimage_changed(self, settings, key, user_data):
-        """If the gconf var style/background/image be changed, this
-        method will be called and will change the background image and
-        will set the transparent flag to false if an image is set in
-        all terminals open.
-        """
-        self.guake.set_background_image(settings.get_string(key))
 
     def bgtransparency_changed(self, settings, key, user_data):
         """If the gconf var style/background/transparency be changed, this
