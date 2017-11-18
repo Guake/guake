@@ -474,14 +474,6 @@ class PrefsCallbacks(object):
         """
         self.settings.styleFont.set_string('style', fbtn.get_font_name())
 
-    def on_background_image_changed(self, btn):
-        """Changes the value of background_image in gconf
-        """
-        # TODO PORT vte has no support for background images anymore
-        filename = btn.get_filename()
-        if os.path.isfile(filename or ''):
-            self.settings.styleBackground.set_string('image', filename)
-
     def on_transparency_value_changed(self, hscale):
         """Changes the value of background_transparency in gconf
         """
@@ -526,9 +518,6 @@ class PrefsCallbacks(object):
 
     def update_vte_subwidgets_states(self):
         self.prefDlg.update_vte_subwidgets_states()
-
-    def clear_background_image(self, btn):
-        self.prefDlg.clear_background_image(btn)
 
     def on_reset_compat_defaults_clicked(self, btn):
         self.prefDlg.on_reset_compat_defaults_clicked(btn)
@@ -625,18 +614,6 @@ class PrefsDialog(SimpleGladeApp):
         self.load_configs()
         self.get_widget('config-window').hide()
 
-        # Preview when selecting a bgimage
-        self.selection_preview = Gtk.Image()
-        self.file_filter = Gtk.FileFilter()
-        self.file_filter.add_pattern("*.jpg")
-        self.file_filter.add_pattern("*.png")
-        self.file_filter.add_pattern("*.svg")
-        self.file_filter.add_pattern("*.jpeg")
-        self.bgfilechooser = self.get_widget('background_image')
-        self.bgfilechooser.set_preview_widget(self.selection_preview)
-        self.bgfilechooser.set_filter(self.file_filter)
-        self.bgfilechooser.connect('update-preview', self.update_preview, self.selection_preview)
-
     def spawn_sync_pid(self, directory=None, terminal=None):
         argv = list()
         user_shell = self.settings.general.get_string('default-shell')
@@ -674,24 +651,6 @@ class PrefsDialog(SimpleGladeApp):
     def on_destroy(self, window):
         self.demo_terminal.kill()
         self.demo_terminal.destroy()
-
-    def update_preview(self, file_chooser, preview):
-        # TODO PORT is this still needed if we remove the bg image stuff?
-        """Used by filechooser to preview image files
-        """
-        # filename = file_chooser.get_preview_filename()
-        # if filename and os.path.isfile(filename or ''):
-        #     try:
-        #         mkpb = gtk.gdk.pixbuf_new_from_file_at_size
-        #         pixbuf = mkpb(filename, 256, 256)
-        #         preview.set_from_pixbuf(pixbuf)
-        #         file_chooser.set_preview_widget_active(True)
-        #     except gobject.GError:
-        #         # this exception is raised when user chooses a
-        #         # non-image file or a directory
-        #         warnings.warn('File %s is not an image' % filename)
-        # else:
-        #     file_chooser.set_preview_widget_active(False)
 
     def toggle_prompt_on_quit_sensitivity(self, combo):
         """If toggle_on_close_tabs is set to 2 (Always), prompt_on_quit has no
@@ -737,14 +696,6 @@ class PrefsDialog(SimpleGladeApp):
         max_tab_name_length_wdg.set_sensitive(do_use_vte_titles)
         self.get_widget('lbl_max_tab_name_length').set_sensitive(do_use_vte_titles)
         self.get_widget('abbreviate_tab_names').set_sensitive(do_use_vte_titles)
-
-    def clear_background_image(self, btn):
-        """Unset the gconf variable that holds the name of the
-        background image of all terminals.
-        """
-        # TODO PORT remove this vte does not support this anymore
-        # self.settings.styleBackground.unset(KEY('/style/background/image'))
-        # self.bgfilechooser.unselect_all()
 
     def on_reset_compat_defaults_clicked(self, bnt):
         """Reset default values to compat_{backspace,delete} gconf
@@ -1092,12 +1043,6 @@ class PrefsDialog(SimpleGladeApp):
         # cursor blink
         value = self.settings.style.get_int('cursor-blink-mode')
         self.set_cursor_blink_mode(value)
-
-        # background image
-        # TODO PORT vte does not support background images any more
-        value = self.settings.styleBackground.get_string('image')
-        if os.path.isfile(value or ''):
-            self.get_widget('background_image').set_filename(value)
 
         value = self.settings.styleBackground.get_int('transparency')
         self.get_widget('background_transparency').set_value(value)

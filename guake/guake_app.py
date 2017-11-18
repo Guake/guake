@@ -668,38 +668,6 @@ class Guake(SimpleGladeApp):
             i.set_color_bold(font_color)
             i.set_colors(font_color, bg_color, palette_list[:16])
 
-    def set_background_image(self, image):
-        # TODO remove this vte does nor support images anymore
-        return
-        for t in self.notebook.iter_terminals():
-            if image and os.path.exists(image):
-                t.set_background_image_file(image)
-                t.set_background_transparent(False)
-            else:
-                """We need to clear the image if it's not set but there is
-                a bug in vte python bindings which doesn't allow None to be
-                passed to set_background_image (C GTK function expects NULL).
-                The user will need to restart Guake after clearing the image.
-                r.set_background_image(None)
-                """
-                if self.has_argb:
-                    t.set_background_transparent(False)
-                else:
-                    t.set_background_transparent(True)
-
-    def set_bg_image(self, image, tab=None):
-        """Set the background image of `tab' or the current tab to `bgcolor'."""
-        # TODO PORT this is DEAD code vte remoted
-        # vte.terminal.set_background_image_file without any replacement
-        return
-        if not self.notebook.has_term():
-            self.add_tab()
-        index = tab or self.notebook.get_current_page()
-        for terminal in self.notebook.get_terminals_for_tab(index):
-            if image and os.path.exists(image):
-                terminal.set_background_image_file(image)
-                terminal.set_background_transparent(False)
-
     def execute_command(self, command, tab=None):
         """Execute the `command' in the `tab'. If tab is None, the
         command will be executed in the currently selected
@@ -1337,8 +1305,6 @@ class Guake(SimpleGladeApp):
         self.settings.styleFont.triggerOnChangedValue(self.settings.styleFont, 'palette')
         self.settings.styleFont.triggerOnChangedValue(self.settings.styleFont, 'palette-name')
         self.settings.styleFont.triggerOnChangedValue(self.settings.styleFont, 'allow-bold')
-        # TODO PORT remove this vte does not support bg image anymore
-        self.settings.styleBackground.triggerOnChangedValue(self.settings.styleBackground, 'image')
         self.settings.styleBackground.triggerOnChangedValue(
             self.settings.styleBackground, 'transparency'
         )

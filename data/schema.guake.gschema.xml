@@ -258,11 +258,6 @@
         </key>
     </schema>
     <schema id="guake.style.background" path="/apps/guake/style/background/">
-        <key name="image" type="s">
-            <default>''</default>
-            <summary>Background image.</summary>
-            <description>Background image that will be used in terminal.</description>
-        </key>
         <key name="transparency" type="i">
             <default>10</default>
             <summary>Background transparency.</summary>
