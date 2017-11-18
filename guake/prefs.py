@@ -606,6 +606,7 @@ class PrefsDialog(SimpleGladeApp):
         renderer.connect('accel-edited', self.on_key_edited, model)
         renderer.connect('accel-cleared', self.on_key_cleared, model)
 
+        column = Gtk.TreeViewColumn(_('Shortcut'), renderer)
         column.set_cell_data_func(renderer, self.cell_data_func)
         column.set_property('expand', False)
         treeview.append_column(column)
