@@ -7,3 +7,4 @@ sudo apt install \
     python3-gi \
     libkeybinder-3.0-0 \
     gir1.2-keybinder-3.0 \
+    make \
