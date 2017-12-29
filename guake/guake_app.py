@@ -73,6 +73,7 @@ from guake.globals import ALIGN_CENTER
 from guake.globals import ALIGN_LEFT
 from guake.globals import ALIGN_RIGHT
 from guake.globals import ALWAYS_ON_PRIMARY
+from guake.globals import SCHEMA_DIR
 # from guake.globals import GKEY
 # from guake.globals import KEY
 from guake.globals import LOCALE_DIR
@@ -256,9 +257,8 @@ class Guake(SimpleGladeApp):
 
         self.add_callbacks(self)
 
-        # TODO fix path
         schema_source = Gio.SettingsSchemaSource.new_from_directory(
-            os.getcwd() + "/data", Gio.SettingsSchemaSource.get_default(), False
+            SCHEMA_DIR, Gio.SettingsSchemaSource.get_default(), False
         )
         self.settings = Settings(schema_source)
         self.debug_mode = self.settings.general.get_boolean('debug-mode')
