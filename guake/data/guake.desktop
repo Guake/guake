@@ -1,0 +1,19 @@
+[Desktop Entry]
+Encoding=UTF-8
+Name=Guake Terminal
+Name[fr]=Guake Terminal
+Name[pl]=Terminal Guake
+Name[pt]=Guake Terminal
+Name[pt_BR]=Guake Terminal
+Comment=Use the command line in a Quake-like terminal
+Comment[fr]=Utilisez la ligne de commande comme dans un terminal quake
+Comment[pl]=Wiersz poleceń w terminalu w stylu gry Quake
+Comment[pt]=Utilizar a linha de comando em um terminal estilo Quake
+Comment[pt_BR]=Utilizar a linha de comando em um terminal estilo Quake
+TryExec=guake
+Exec=guake
+Icon=guake
+Type=Application
+Categories=GNOME;GTK;System;Utility;TerminalEmulator;
+StartupNotify=true
+X-Desktop-File-Install-Version=0.22
