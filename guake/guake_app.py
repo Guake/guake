@@ -24,7 +24,7 @@ from __future__ import print_function
 
 import gi
 gi.require_version('Gtk', '3.0')
-gi.require_version('Vte', '2.91')
+gi.require_version('Vte', '2.91')  # vte-0.38
 gi.require_version('Keybinder', '3.0')
 
 from gi.repository import GLib
@@ -497,6 +497,7 @@ class Guake(SimpleGladeApp):
                 _("Guake is now running,\n"
                   "press <b>{!s}</b> to use it.").format(xml_escape(label)), filename
             )
+        log.info("Guake initialized")
 
     # load the custom commands infrastucture
     def load_custom_commands(self):

@@ -24,7 +24,7 @@ from __future__ import print_function
 import gi
 gi.require_version('Gtk', '3.0')
 gi.require_version('Keybinder', '3.0')
-gi.require_version('Vte', '2.91')
+gi.require_version('Vte', '2.91')  # vte-0.38
 from gi.repository import GLib
 from gi.repository import GObject
 from gi.repository import Gdk

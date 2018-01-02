@@ -23,7 +23,7 @@ from __future__ import print_function
 
 import gi
 gi.require_version('Gtk', '3.0')
-gi.require_version('Vte', '2.91')
+gi.require_version('Vte', '2.91')  # vte-0.38
 
 from gi.repository import Vte
 
@@ -237,7 +237,7 @@ class GSettingHandler(object):
             # Instead, issuing a direct command line request
             c = ['gsettings', 'get', DCONF_MONOSPACE_FONT_PATH, DCONF_MONOSPACE_FONT_KEY]
             proc = subprocess.Popen(c, stdout=subprocess.PIPE)
-            font_name = proc.stdout.readline().replace("'", "")
+            font_name = proc.stdout.readline().decode().replace("'", "")
             if font_name is None:
                 # Back to gconf
                 font_name = settings.get_string(GCONF_MONOSPACE_FONT_PATH)

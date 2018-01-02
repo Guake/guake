@@ -19,13 +19,16 @@ Boston, MA 02110-1301 USA
 """
 from __future__ import absolute_import
 
+import logging
 import dbus
 import dbus.glib
 import dbus.service
 
+log = logging.getLogger(__name__)
+
 dbus.glib.threads_init()
 
-DBUS_PATH = '/org/guake/RemoteControl'
+DBUS_PATH = '/org/guake3/RemoteControl'
 DBUS_NAME = 'org.guake3.RemoteControl'
 
 

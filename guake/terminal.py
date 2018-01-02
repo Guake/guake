@@ -24,13 +24,15 @@ from __future__ import unicode_literals
 
 import gi
 gi.require_version('Gtk', '3.0')
-gi.require_version('Vte', '2.91')
+gi.require_version('Vte', '2.91')  # vte-0.38
 
 from gi.repository import Gdk
 from gi.repository import GdkX11
 from gi.repository import Gtk
 from gi.repository import Pango
 from gi.repository import Vte
+
+from gi.repository import GLib
 
 from guake.common import clamp
 
@@ -252,15 +254,18 @@ class GuakeTerminal(Vte.Terminal):
         guake.globals.TERMINAL_MATCH_EXPRS to the terminal to make vte
         highlight text that matches them.
         """
-        for expr in TERMINAL_MATCH_EXPRS:
-            # TODO PORT next line throws a Vte-WARNIN but works: runtime check failed
-            tag = self.match_add_regex(Vte.Regex.new_for_match(expr, len(expr), 0), 0)
-            self.match_set_cursor_type(tag, Gdk.CursorType.HAND2)
+        log.debug("Skipped 'match' feature")
+        # for expr in TERMINAL_MATCH_EXPRS:
+        #     # TODO PORT next line throws a Vte-WARNIN but works: runtime check failed
+        #     tag = self.match_add_gregex(
+        #         GLib.Regex.new_for_match(expr, len(expr), 0), 0)
+        #     self.match_set_cursor_type(tag, Gdk.CursorType.HAND2)
 
-        for _useless, match, _otheruseless in QUICK_OPEN_MATCHERS:
-            # TODO PORT next line throws a Vte-WARNIN but works: runtime check failed
-            tag = self.match_add_regex(Vte.Regex.new_for_match(match, len(match), 0), 0)
-            self.match_set_cursor_type(tag, Gdk.CursorType.HAND2)
+        # for _useless, match, _otheruseless in QUICK_OPEN_MATCHERS:
+        #     # TODO PORT next line throws a Vte-WARNIN but works: runtime check failed
+        #     tag = self.match_add_gregex(
+        #         GLib.Regex.new_for_match(match, len(match), 0), 0)
+        #     self.match_set_cursor_type(tag, Gdk.CursorType.HAND2)
 
     def get_current_directory(self):
         directory = os.path.expanduser('~')

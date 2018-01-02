@@ -241,6 +241,7 @@ def main():
         remote_object = bus.get_object(DBUS_NAME, DBUS_PATH)
         already_running = True
     except dbus.DBusException:
+        log.debug("DBus not running, starting it")
         instance = Guake()
         remote_object = DbusManager(instance)
         already_running = False
