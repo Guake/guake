@@ -2,7 +2,7 @@
 Guake 3! README file 85%
 ========================
 
-|travis-badge|_ |bountysource-badge|_ |feathub-badge|_ 
+|travis-badge|_ |bountysource-badge|_ |feathub-badge|_
 
 .. |travis-badge| image:: https://travis-ci.org/Guake/guake.svg?branch=master
 .. _travis-badge: https://travis-ci.org/Guake/guake
@@ -125,15 +125,15 @@ Dev Tools
 - run guake3 from a terminal "./dev-gtk3.sh; kill %" this is needed since sig handler are not yet setup
 - rebuild the gsettings schema "glib-compile-schemas data-gtk3/"
 
-WONTFIX
--------
+Dropped Features from Guake 0.8.x
+---------------------------------
 
 - --bgimg (this option is removed from vte)
 
 New Deps
 --------
 
-- libkeybinder3
+- `libkeybinder3`
 
 Features
 --------
@@ -234,17 +234,6 @@ Execute the following command to bootstrap all needed system dependencies:
 
         $ make dev
         $ make run
-
-
-Compilation
-~~~~~~~~~~~
-
-::
-
-    $ git clone https://github.com/Guake/guake.git
-    $ cd guake
-    $ make dev
-
 
 Testing as an unprivileged user
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
