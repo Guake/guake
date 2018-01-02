@@ -2,6 +2,7 @@ import gi
 gi.require_version('Gtk', '3.0')
 
 from gi.repository import Gtk
+from guake.common import pixmapfile
 
 
 class Keybindings(object):
@@ -59,6 +60,7 @@ class Keybindings(object):
         if not self.guake.hotkeys.bind(value, self.guake.show_hide):
             print("shit")
             # TODO port this
+            return
             keyval, mask = Gtk.accelerator_parse(value)
             label = Gtk.accelerator_get_label(keyval, mask)
             filename = pixmapfile('guake-notification.png')
