@@ -144,6 +144,7 @@ disable=
   W1001,
   W1402,
   W1501,
+  inconsistent-return-statements,
 
 [REPORTS]
 

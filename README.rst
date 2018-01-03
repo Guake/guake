@@ -1,6 +1,6 @@
-========================
-Guake 3! README file 85%
-========================
+==============
+Guake 3 README
+==============
 
 |travis-badge|_ |bountysource-badge|_ |feathub-badge|_
 
@@ -13,30 +13,21 @@ Guake 3! README file 85%
 .. |feathub-badge| image:: http://feathub.com/Guake/guake?format=svg
 .. _feathub-badge: http://feathub.com/Guake/guake
 
-Guake 0.8.x
------------
-
-Guake is under a big rework to port to Gtk3 branch. Stable release are available on the `0.8.x`
-branch on this project
-
 Introduction
-~~~~~~~~~~~~
+============
 
-Guake is a dropdown terminal made fPor the GNOME desktop environment. Guake's style of window is
+Guake is a dropdown terminal made for the GNOME desktop environment. Guake's style of window is
 based on an FPS game, and one of its goals is to be easy to reach.
 
-Guake is mostly written in Python and has a little piece in C (https://github.com/engla/keybinder).
-The source code is placed in the ``guake`` directory. Files and images are in the ``data``
-directory. Translation files are in the ``po`` directory.
+Guake 3 Port
+============
 
-What is this?
--------------
-
-This is 3!, a port of Guake to use python3, Gtk3 and Vte 2.91!
+Guake has been ported Gtk3, thanks to the huge work of @aichingm.
+Old releases and code depending on GTK2 have been put on the `0.8.x` branch and will no more be
+actively maintained.
 
 
-TODO
-----
+Here is the status of the port of Guake to Python3, Gtk3 and Vte 2.91:
 
 - port all cli options
 - - --version
@@ -108,35 +99,28 @@ TODO
 - ...
 - FIX all #TODO PORT sections
 - Things to fix after the port
-- - Rename widgets (from _ to -) to match the names used in the settings
-- - Split files in to single class modules
-- - fix tab bar buttons sometimes losing their text (eg after adding 3+ new tabs from the context menu, hovering them
-restores the text) (I think this is a problem with the deprecated widgets which are still in use)
-- - update the glade files (remove deprecated objects)
-- - Simplify the color setting logic by removing the possibility to override the color buttons which are overriding the
-    color palette (too much overrides...) ✓
+- Rename widgets (from _ to -) to match the names used in the settings
+- Split files in to single class modules
+- fix tab bar buttons sometimes losing their text (eg after adding 3+ new tabs from the context
+  menu, hovering them restores the text) (I think this is a problem with the deprecated widgets
+  which are still in use)
+- update the glade files (remove deprecated objects)
+- Simplify the color setting logic by removing the possibility to override the color buttons which
+  are overriding the color palette (too much overrides...) ✓
 
-
-There is stil lots of work to do. The first commit on this branch only gets guake up with one tab open.
-
-
-Dev Tools
----------
-- run guake3 from a terminal "./dev-gtk3.sh; kill %" this is needed since sig handler are not yet setup
-- rebuild the gsettings schema "glib-compile-schemas data-gtk3/"
 
 Dropped Features from Guake 0.8.x
 ---------------------------------
 
-- --bgimg (this option is removed from vte)
+- `--bgimg` (this option is removed from vte)
 
-New Deps
---------
+New Dependencies
+----------------
 
 - `libkeybinder3`
 
-Features
---------
+Guake 3 Features
+----------------
 
 - Lightweight
 - Simple Easy and Elegant
@@ -166,7 +150,7 @@ the team. We cannot be held responsible for the content on that web site.
 
 
 License
-~~~~~~~
+=======
 
 This program is free software; you can redistribute it and/or modify it under the terms of the GNU
 General Public License as published by the Free Software Foundation; either version 2 of the
@@ -180,91 +164,47 @@ You should have received a copy of the GNU General Public License along with thi
 write to the Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301,
 USA.
 
+System-wide installation
+========================
 
-Dependencies
-~~~~~~~~~~~~
+Use your package manager to install guake.
 
- * Python2.7+
- * pygtk2.10 (gtk.StatusIcon)
- * notify-osd (ubuntu)
- * python-appindicator (ubuntu)
- * python-dbus
- * python-gconf
- * python-keybinder
- * python-notify
- * python-vte
- * python-xdg
- * libutempter
+Note for maintainers
+--------------------
 
-To build guake, you will need the following packages too:
+Guake has drastically changed its build system with Guake 3. You may need to adapt all the
+integration script accordingly.
 
- * python-dev
- * gtk+-2.0-dev
- * pygtk-dev
- * gconf2-dev (to use some autoconf stuff)
-
-For Python 3, you need this package too:
-
- * python3-dev
-
-To edit the glade file, you can use the glade editor. Ensure to use the gtk-2 version:
-
- * glade-gtk2
-
-To have beautiful color logs when you debug Guake, install colorlog, so you'll have great logs in
-the terminal that launched Guake!
-
- * pip install colorlog
+Do not hesitate to contact me at `gaetan [at] xeberon.net`.
 
 
-Installation
-~~~~~~~~~~~~
+Development environment
+=======================
+
+Install System dependencies
+---------------------------
 
 Ubuntu
-------
+~~~~~~
 
-Execute the following command to bootstrap all needed system dependencies:
+Execute the following command to bootstrap all needed system dependencies::
 
-    $ ./bootstrap-ubuntu.sh
+    $ ./bootstrap-debian.sh
 
+Setup development env
+---------------------
 
-**Note**:
+Install the dependencies of your system and use the following commands::
 
-    Use the following commands to start guake without installing it:
+    $ make dev
+    $ make install-schemas  # still required even for local execution
 
-        $ make dev
-        $ make run
-
-Testing as an unprivileged user
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-To run Guake as an unprivileged user for testing purposes, after `make` continue with::
+Local execution of guake (without system-wide install)::
 
     $ make run
 
-
-System-wide installation
-~~~~~~~~~~~~~~~~~~~~~~~~
-
-TBD
-
-Update translation
-------------------
-
-First update all translation files::
-
-    $ cd po
-    $ make update-po
-
-Then use your favorite po editor, such as ``poedit``.
-
-Once finished, compile your result with::
-
-    $ cd po
-    $ make
-
 Git hook
---------
+~~~~~~~~
 
 Please install this git hook if you want to beautify your patch before submission::
 
@@ -272,7 +212,7 @@ Please install this git hook if you want to beautify your patch before submissio
     $ ln -s git-hooks/post-commit .git/hooks/
 
 Validate your code
-------------------
+~~~~~~~~~~~~~~~~~~
 
 We are strict on code styling, with pep8 and pylint running automatically in travis in
 order to reject badly shaped patches. Please use the following command to validate all
@@ -280,6 +220,18 @@ python files::
 
     $ make style
     $ make check
+    $ make test
+    $ make build
+
+Update translation
+------------------
+
+Update all translation files::
+
+    $ make update-po
+
+Then use your favorite po editor, such as ``poedit``.
+
 
 Update NEWS
 -----------
@@ -290,7 +242,8 @@ populates it for Pypi packages)
 Versionning
 -----------
 
-Versioning is automatically done using git tags (thanks PBR).
+Versioning is automatically done using git tags. When a tag is pushed, a new version
+is automatically created by PBR.
 
 Travis build
 ------------

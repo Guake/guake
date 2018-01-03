@@ -1,18 +1,18 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "dd5aafaa34c98a5cc7d37ed2894208877c2ae015aa1d3a1e917aa4e1a23b1400"
+            "sha256": "1ee685b96e075652f439b2660bde3888c05484a8e28b24d94b09f125e1c936b9"
         },
         "host-environment-markers": {
             "implementation_name": "cpython",
-            "implementation_version": "3.5.3",
+            "implementation_version": "3.5.2",
             "os_name": "posix",
             "platform_machine": "x86_64",
             "platform_python_implementation": "CPython",
-            "platform_release": "4.10.0-19-generic",
+            "platform_release": "4.4.0-104-generic",
             "platform_system": "Linux",
-            "platform_version": "#21-Ubuntu SMP Thu Apr 6 17:04:57 UTC 2017",
-            "python_full_version": "3.5.3",
+            "platform_version": "#127-Ubuntu SMP Mon Dec 11 12:16:42 UTC 2017",
+            "python_full_version": "3.5.2",
             "python_version": "3.5",
             "sys_platform": "linux"
         },
@@ -58,35 +58,6 @@
             ],
             "version": "==1.3.3"
         },
-        "backports.functools-lru-cache": {
-            "hashes": [
-                "sha256:4ba998e881f285c1d1b73f5b6e3766539b4e162320f9589334400c5ddc35198c",
-                "sha256:31f235852f88edc1558d428d890663c49eb4514ffec9f3650e7f3c9e4a12e36f"
-            ],
-            "markers": "python_version == '2.7'",
-            "version": "==1.4"
-        },
-        "configparser": {
-            "hashes": [
-                "sha256:5308b47021bc2340965c371f0f058cc6971a04502638d4244225c49d80db273a"
-            ],
-            "markers": "python_version == '2.7'",
-            "version": "==3.5.0"
-        },
-        "e1839a8": {
-            "editable": true,
-            "path": "."
-        },
-        "enum34": {
-            "hashes": [
-                "sha256:6bd0f6ad48ec2aa117d3d141940d484deccda84d4fcd884f5c3d93c23ecd8c79",
-                "sha256:644837f692e5f550741432dd3f223bbb9852018674981b1664e5dc339387588a",
-                "sha256:8ad8c4783bf61ded74527bffb48ed9b54166685e4230386a9ed9b1279e2df5b1",
-                "sha256:2d81cbbe0e73112bdfe6ef8576f2238f2ba27dd0d55752a776c41d38b7da2850"
-            ],
-            "markers": "python_version < '3.4'",
-            "version": "==1.1.6"
-        },
         "fiximports": {
             "hashes": [
                 "sha256:dafb83f981b430530bef61baf516e1e84d8cb1e202ecadb7d7988a3d0fddb875",
@@ -100,14 +71,6 @@
                 "sha256:7253265f7abd8b313e3892944044a365e3f4ac3fcdcfb4298f55ee9ddf188ba0"
             ],
             "version": "==3.5.0"
-        },
-        "funcsigs": {
-            "hashes": [
-                "sha256:330cc27ccbf7f1e992e69fef78261dc7c6569012cf397db8d3de0234e6c937ca",
-                "sha256:a7bb0f2cf3a3fd1ab2732cb49eba4252c2af4240442415b4abce3b87022a8f50"
-            ],
-            "markers": "python_version < '3.3'",
-            "version": "==1.0.2"
         },
         "isort": {
             "hashes": [
@@ -225,14 +188,6 @@
                 "sha256:920d1167af5c2c2ad3fa0717d0c6c52e97e97810160c15721ac895cac53abb1c"
             ],
             "version": "==1.6.3"
-        },
-        "singledispatch": {
-            "hashes": [
-                "sha256:833b46966687b3de7f438c761ac475213e53b306740f1abfaa86e1d1aae56aa8",
-                "sha256:5b06af87df13818d14f08a028e42f566640aef80805c3b50c5056b086e3c2b9c"
-            ],
-            "markers": "python_version < '3.4'",
-            "version": "==3.4.0.3"
         },
         "six": {
             "hashes": [
