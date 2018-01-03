@@ -46,6 +46,7 @@ from guake.dbusiface import DBUS_PATH
 from guake.dbusiface import DbusManager
 
 from guake.guake_app import Guake
+from guake.guake_logging import setupLogging
 
 log = logging.getLogger(__name__)
 
@@ -56,6 +57,8 @@ def main():
     running it will be used and a True value will be returned,
     otherwise, false will be returned.
     """
+
+    setupLogging(True)
 
     # COLORTERM is an environment variable set by some terminal emulators such as gnome-terminal.
     # To avoid confusing applications running inside Guake, clean up COLORTERM at startup.
@@ -72,8 +75,7 @@ def main():
         dest='fullscreen',
         action='store_true',
         default=False,
-        help=_('Put Guake in fullscreen mode')
-    )
+        help=_('Put Guake in fullscreen mode'))
 
     parser.add_option(
         '-t',
@@ -81,24 +83,21 @@ def main():
         dest='show_hide',
         action='store_true',
         default=False,
-        help=_('Toggles the visibility of the terminal window')
-    )
+        help=_('Toggles the visibility of the terminal window'))
 
     parser.add_option(
         '--show',
         dest="show",
         action='store_true',
         default=False,
-        help=_('Shows Guake main window')
-    )
+        help=_('Shows Guake main window'))
 
     parser.add_option(
         '--hide',
         dest='hide',
         action='store_true',
         default=False,
-        help=_('Hides Guake main window')
-    )
+        help=_('Hides Guake main window'))
 
     parser.add_option(
         '-p',
@@ -341,12 +340,14 @@ def main():
                 # Please ensure this is the last line !!!!
     else:
         log.info("--no-startup-script argument defined, so don't execute the startup script")
+    if already_running:
+        log.info("Guake is already running")
     return already_running
 
 
 def exec_main():
     if not main():
-        print("Running main gtk loop")
+        log.info("Running main gtk loop")
         Gtk.main()
 
 

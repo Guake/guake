@@ -2,7 +2,13 @@
 
 echo "Freeze version of pip to ensure reproductibility"
 
-pip install --user --upgrade \
+if [[ $1 == "system" ]]; then
+    op=""
+else
+    op="--user "
+fi
+
+python3 -m pip install $op --upgrade \
     'pip==9.0.1' \
     'pipenv==9.0.1' \
     'setuptools==36.6.0' \

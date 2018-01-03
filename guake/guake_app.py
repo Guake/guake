@@ -39,7 +39,6 @@ from gi.repository import Vte
 # import gconf
 import json
 import logging
-import logging.config
 import os
 import platform
 # import pygtk
@@ -83,13 +82,9 @@ from guake.guake_notebook import GuakeNotebook
 from guake.keybindings import Keybindings
 from guake.prefs import PrefsDialog
 from guake.simplegladeapp import SimpleGladeApp
+from guake.guake_logging import setupLogging
 from guake.simplegladeapp import bindtextdomain
 from guake.terminal import GuakeTerminalBox
-
-try:
-    from colorlog import ColoredFormatter
-except ImportError as ie:
-    ColoredFormatter = None
 
 log = logging.getLogger(__name__)
 
@@ -258,11 +253,10 @@ class Guake(SimpleGladeApp):
         self.add_callbacks(self)
 
         schema_source = Gio.SettingsSchemaSource.new_from_directory(
-            SCHEMA_DIR, Gio.SettingsSchemaSource.get_default(), False
-        )
+            SCHEMA_DIR, Gio.SettingsSchemaSource.get_default(), False)
         self.settings = Settings(schema_source)
         self.debug_mode = self.settings.general.get_boolean('debug-mode')
-        self.setupLogging()
+        setupLogging(self.debug_mode)
         # Cannot use "getattr(gtk.Window().get_style(), "base")[int(gtk.STATE_SELECTED)]"
         # since theme has not been applied before first show_all
         self.selected_color = None
@@ -574,50 +568,6 @@ class Guake(SimpleGladeApp):
     # execute contextual menu call
     def execute_context_menu_cmd(self, item, cmd):
         self.execute_command(cmd)
-
-    def setupLogging(self):
-        if self.debug_mode:
-            base_logging_level = logging.DEBUG
-        else:
-            base_logging_level = logging.INFO
-
-        if ColoredFormatter:
-            logging.config.dictConfig({
-                'version': 1,
-                'disable_existing_loggers': False,
-                'loggers': {
-                    '': {
-                        'handlers': ['default'],
-                        'level': 'DEBUG',
-                        'propagate': True
-                    },
-                },
-                'handlers': {
-                    'default': {
-                        'level': 'DEBUG',
-                        'class': 'logging.StreamHandler',
-                        'formatter': "default",
-                    },
-                },
-                'formatters': {
-                    'default': {
-                        '()': 'colorlog.ColoredFormatter',
-                        'format': "%(log_color)s%(levelname)-8s%(reset)s %(message)s",
-                        'log_colors': {
-                            'DEBUG': 'cyan',
-                            'INFO': 'green',
-                            'WARNING': 'yellow',
-                            'ERROR': 'red',
-                            'CRITICAL': 'red,bg_white',
-                        },
-                    }
-                },
-            })
-        else:
-            logging.basicConfig(level=base_logging_level)
-        log.setLevel(base_logging_level)
-        log.info("Logging configuration complete")
-        log.debug("Debug mode enabled")
 
     def printDebug(self, text, *args):
         log.debug(text, *args)
@@ -1176,8 +1126,9 @@ class Guake(SimpleGladeApp):
             # see if unity dock is hidden => unity_hide
             # and the width of unity dock => unity_dock
             # and the position of the unity dock. => unity_pos
-            found = False
+            # found = False
             unity_hide = 0
+            unity_dock = 0
             unity_pos = "Left"
             # float() conversion might mess things up. Add 0.01 so the comparison will always be
             # valid, even in case of float("10.10") = 10.099999999999999
@@ -1198,29 +1149,29 @@ class Guake(SimpleGladeApp):
                     unity_pos = subprocess.check_output([
                         '/usr/bin/dconf', 'read', '/com/canonical/unity/launcher/launcher-position'
                     ]) or "Left"
-                    found = True
+                    # found = True
                 except Exception as e:
                     # in case of error, just ignore it, 'found' will not be set to True and so
                     # we execute the fallback
                     pass
-            if not found:
-                # Fallback: try to bet from gconf
-                unity_hide = self.client.get_int(
-                    KEY('/apps/compiz-1/plugins/unityshell/screen0/options/launcher_hide_mode')
-                )
-                unity_icon_size = self.client.get_int(
-                    KEY('/apps/compiz-1/plugins/unityshell/screen0/options/icon_size')
-                )
-                unity_dock = unity_icon_size + 17
+            # FIXME: remove self.client dependency
+            # if not found:
+            #     # Fallback: try to bet from gconf
+            #     unity_hide = self.client.get_int(
+            #         KEY('/apps/compiz-1/plugins/unityshell/screen0/options/launcher_hide_mode')
+            #     )
+            #     unity_icon_size = self.client.get_int(
+            #         KEY('/apps/compiz-1/plugins/unityshell/screen0/options/icon_size')
+            #     )
+            #     unity_dock = unity_icon_size + 17
 
             # launcher_hide_mode = 1 => autohide
             # only adjust guake window width if Unity dock is positioned "Left" or "Right"
             if unity_hide != 1 and (unity_pos == "Left" or unity_pos == "Right"):
                 self.printDebug(
                     "correcting window width because of launcher position %s "
-                    "and width %s (from %s to %s)", unity_pos, unity_dock, window_rect.width,
-                    window_rect.width - unity_dock
-                )
+                    "and width %s (from %s to %s)", unity_pos, unity_dock,
+                    window_rect.width, window_rect.width - unity_dock)
 
                 window_rect.width = window_rect.width - unity_dock
 
@@ -1596,7 +1547,6 @@ class Guake(SimpleGladeApp):
             vte_title = self.compute_tab_title(vte)
             tab.set_label(vte_title)
             tab.set_tooltip_text(vte_title)
-            Gtk.Tooltips().set_tip(tab, vte_title)
 
     def on_rename_current_tab_activate(self, *args):
         """Shows a dialog to rename the current tab.

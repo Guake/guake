@@ -1,7 +1,8 @@
 .PHONY: build
 
 MODULE:=guake
-PREFIX:=/
+INSTALL_ROOT:=/
+PREFIX:=$(INSTALL_ROOT)usr
 
 
 all: dev style checks build dists test-unit docs
@@ -16,12 +17,12 @@ install-local:
 
 
 install-system: install-schemas
-	python setup.py install --root "${PREFIX}" --optimize=1
+	python3 setup.py install --root "$(INSTALL_ROOT)" --optimize=1
 
 
 install-schemas:
-	install -Dm755 "guake/data/guake.desktop" "${PREFIX}/usr/share/applications/guake.desktop"
-	install -Dm755 "guake/data/pixmaps/guake.png" "${PREFIX}/usr/share/pixmaps/guake.png"
+	install -Dm755 "guake/data/guake.desktop" "$(PREFIX)/share/applications/guake.desktop"
+	install -Dm755 "guake/data/pixmaps/guake.png" "$(PREFIX)/share/pixmaps/guake.png"
 
 
 style: fiximports autopep8 yapf
@@ -42,7 +43,7 @@ yapf:
 	pipenv run yapf --style .yapf --recursive -i $(MODULE)
 
 
-checks: sdist flake8 pylint
+checks: update-po sdist flake8 pylint
 
 
 flake8:
@@ -72,7 +73,7 @@ test-coverage:
 	pipenv run py.test -v --cov $(MODULE) --cov-report term-missing
 
 
-dists: sdist bdist wheels
+dists: update-po sdist bdist wheels
 
 
 sdist:
@@ -120,6 +121,13 @@ clean:
 	find . -name "*.pyc" -exec rm -f {} \;
 
 
+update-po:
+	find guake -iname "*.py" | xargs xgettext --from-code=UTF-8 --output=guake-python.pot
+	find guake/data -iname "*.glade" | xargs xgettext --from-code=UTF-8  -L Glade --output=guake-glade.pot
+	msgcat --use-first guake-python.pot guake-glade.pot > guake.pot
+	rm guake-python.pot guake-glade.pot
+
+
 # aliases to gracefully handle typos on poor dev's terminal
 check: checks
 devel: dev
@@ -129,13 +137,6 @@ install: install-system
 pypi: pypi-publish
 run: run-local
 styles: style
-test: test-unit
-unit_test: test-unit
-unit-test: test-unit
-unit-tests: test-unit
-unit: test-unit
-unittest: test-unit
-unittests: test-unit
 upgrade: update
 wheel: wheels
 doc: docs

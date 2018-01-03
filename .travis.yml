@@ -3,11 +3,14 @@ python:
     - "3.5"
     - "3.6"
 
+
 install:
-    - sudo ./bootstrap-pip.sh
+    - sudo ./bootstrap-debian.sh
+    - ./bootstrap-pip.sh system
     - make dev
+
 
 script:
     - make check
     - make build
-    # - make unittest
+    - make test

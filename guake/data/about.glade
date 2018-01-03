@@ -12,7 +12,7 @@
     <property name="modal">True</property>
     <property name="window_position">center-always</property>
     <property name="type_hint">normal</property>
-    <property name="copyright" translatable="yes">Copyright 2013-2015 Gaetan Semet
+    <property name="copyright" translatable="yes">Copyright 2013-2018 Gaetan Semet
 Copyright 2007-2010 Lincoln de Sousa
 Copyright 2007 Gabriel Falcão</property>
     <property name="comments" translatable="yes">Guake is an easy to access
@@ -31,6 +31,7 @@ Pierre-Yves Chibon (Pingou) &lt;pingou@guake.org&gt;
 Aleksandar Krsteski (SnapShot) &lt;aleksandar@guake.org&gt;
 
 Contributors:
+Mario Aichinger (aichingm) &lt;aichingm@gmail.com&gt;
 Maxim Ivanov (ulidtko) &lt;ulidtko@gmail.com&gt;
 Adonis K. (adonisk) &lt;aklp08@gmail.com&gt;
 

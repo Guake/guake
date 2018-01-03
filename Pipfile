@@ -17,7 +17,6 @@ pyflakes = "*"
 pylint = "*"
 pytest = "*"
 yapf = "*"
-"e1839a8" = {path = ".", editable = true}
 
 [packages]
 pbr = "*"
