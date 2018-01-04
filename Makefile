@@ -131,7 +131,7 @@ clean:
 update-po:
 	find guake -iname "*.py" | xargs xgettext --from-code=UTF-8 --output=guake-python.pot
 	find guake/data -iname "*.glade" | xargs xgettext --from-code=UTF-8  -L Glade --output=guake-glade.pot
-	find guake/data -iname "*.desktop" | xargs xgettext --from-code=UTF-8  -L Desktop --output=guake-desktop.pot
+	(find guake/data -iname "*.desktop" | xargs xgettext --from-code=UTF-8  -L Desktop --output=guake-desktop.pot) || (echo "Skipping .desktop files, is your gettext version < 0.19.1?" && touch guake-desktop.pot)
 	msgcat --use-first guake-python.pot guake-glade.pot guake-desktop.pot > po/guake.pot
 	rm guake-python.pot guake-glade.pot guake-desktop.pot
 	for f in $$(find po -iname "*.po"); do \
@@ -148,8 +148,8 @@ generate-mo:
 
 
 generate-desktop:
-	msgfmt --desktop --template=guake/data/guake.template.desktop -d po -o guake/data/guake.desktop
-	msgfmt --desktop --template=guake/data/guake-prefs.template.desktop -d po -o guake/data/guake-prefs.desktop
+	msgfmt --desktop --template=guake/data/guake.template.desktop -d po -o guake/data/guake.desktop || (echo "Skipping .desktop files, is your gettext version < 0.19.1?" && cp guake/data/guake.template.desktop guake/data/guake.desktop)
+	msgfmt --desktop --template=guake/data/guake-prefs.template.desktop -d po -o guake/data/guake-prefs.desktop || (echo "Skipping .desktop files, is your gettext version < 0.19.1?" && cp guake/data/guake-prefs.template.desktop guake/data/guake-prefs.desktop)
 
 
 # aliases to gracefully handle typos on poor dev's terminal
