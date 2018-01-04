@@ -921,6 +921,22 @@ msgstr "Au démarrage:"
 msgid "Hooks"
 msgstr "Scripts"
 
+#: guake/data/guake-prefs.desktop:8
+msgid "Configure your Guake sessions"
+msgstr ""
+
+#: guake/data/guake-prefs.desktop:15 guake/data/guake.desktop:18
+msgid "guake"
+msgstr ""
+
+#: guake/data/guake-prefs.desktop:20
+msgid "Terminal;Utility;"
+msgstr ""
+
+#: guake/data/guake.desktop:10
+msgid "Use the command line in a Quake-like terminal"
+msgstr ""
+
 #~ msgid ""
 #~ "Copyright 2013-2015 Gaetan Semet\n"
 #~ "Copyright 2007-2010 Lincoln de Sousa\n"

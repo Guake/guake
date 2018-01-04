@@ -16,12 +16,19 @@ install-local:
 	pipenv install
 
 
-install-system: install-schemas
+install-system: install-schemas install-locale
 	python3 setup.py install --root "$(INSTALL_ROOT)" --optimize=1
 
+install-locale: generate-mo
+	for f in $$(find po -iname "*.mo"); do \
+		l="$${f%%.*}"; \
+		lb=$$(basename $$l); \
+		install -Dm755 "$$f" "$(PREFIX)/share/locale/$$lb/LC_MESSAGES/guake.mo"; \
+	done;
 
-install-schemas:
+install-schemas: generate-desktop
 	install -Dm755 "guake/data/guake.desktop" "$(PREFIX)/share/applications/guake.desktop"
+	install -Dm755 "guake/data/guake-prefs.desktop" "$(PREFIX)/share/applications/guake-prefs.desktop"
 	install -Dm755 "guake/data/pixmaps/guake.png" "$(PREFIX)/share/pixmaps/guake.png"
 
 
@@ -124,8 +131,25 @@ clean:
 update-po:
 	find guake -iname "*.py" | xargs xgettext --from-code=UTF-8 --output=guake-python.pot
 	find guake/data -iname "*.glade" | xargs xgettext --from-code=UTF-8  -L Glade --output=guake-glade.pot
-	msgcat --use-first guake-python.pot guake-glade.pot > guake.pot
-	rm guake-python.pot guake-glade.pot
+	(find guake/data -iname "*.desktop" | xargs xgettext --from-code=UTF-8  -L Desktop --output=guake-desktop.pot) || (echo "Skipping .desktop files, is your gettext version < 0.19.1?" && touch guake-desktop.pot)
+	msgcat --use-first guake-python.pot guake-glade.pot guake-desktop.pot > po/guake.pot
+	rm guake-python.pot guake-glade.pot guake-desktop.pot
+	for f in $$(find po -iname "*.po"); do \
+		msgcat --use-first "$$f" po/guake.pot > "$$f.new"; \
+		mv "$$f.new" $$f; \
+	done;
+
+
+generate-mo:
+	for f in $$(find po -iname "*.po"); do \
+		l="$${f%%.*}"; \
+		msgfmt "$$f" -o "$$l.mo"; \
+	done;
+
+
+generate-desktop:
+	msgfmt --desktop --template=guake/data/guake.template.desktop -d po -o guake/data/guake.desktop || (echo "Skipping .desktop files, is your gettext version < 0.19.1?" && cp guake/data/guake.template.desktop guake/data/guake.desktop)
+	msgfmt --desktop --template=guake/data/guake-prefs.template.desktop -d po -o guake/data/guake-prefs.desktop || (echo "Skipping .desktop files, is your gettext version < 0.19.1?" && cp guake/data/guake-prefs.template.desktop guake/data/guake-prefs.desktop)
 
 
 # aliases to gracefully handle typos on poor dev's terminal

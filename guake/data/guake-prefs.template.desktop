@@ -1,0 +1,12 @@
+[Desktop Entry]
+Encoding=UTF-8
+Name=Guake Preferences
+Comment=Configure your Guake sessions
+TryExec=guake -p
+Exec=guake -p
+Icon=guake
+Type=Application
+StartupNotify=true
+Categories=GTK;GNOME;Settings;X-GNOME-PersonalSettings;
+X-Desktop-File-Install-Version=0.15
+Keywords=Terminal;Utility;

@@ -13,6 +13,6 @@ EOC
 if [ \$? -eq 1 ]; then
     pew toggleglobalsitepackages
 fi
-guake --no-startup-script
+PYTHONPATH=. python3 guake/main.py --no-startup-script
 echo "Done"
 EOF
