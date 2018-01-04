@@ -1,14 +1,7 @@
 [Desktop Entry]
 Encoding=UTF-8
 Name=Guake Preferences
-Name[de]=Guake Einstellungen
-Name[pl]=Preferencje programu Guake
-Name[pt_BR]=Preferências do Guake
 Comment=Configure your Guake sessions
-Comment[de]=Konfiguriere deine Guake-Sitzungen
-Comment[fr]=Configurer votre session Guake
-Comment[pl]=Konfiguruje sesje programu Guake
-Comment[pt_BR]=Configurações do terminal Guake
 TryExec=guake -p
 Exec=guake -p
 Icon=guake

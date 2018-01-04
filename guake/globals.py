@@ -43,7 +43,7 @@ SRC_DIR = os.path.dirname(os.path.realpath(__file__))
 IMAGE_DIR = os.path.join(SRC_DIR, 'data/pixmaps')
 GLADE_DIR = os.path.join(SRC_DIR, 'data')
 SCHEMA_DIR = os.path.join(SRC_DIR, 'data')
-LOCALE_DIR = os.path.join("/usr/share", 'locale')
+LOCALE_DIR = "/usr/share/locale"
 
 # TODO port dead!?
 # Gconf stuff. Yep, it is hardcoded =)

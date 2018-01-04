@@ -32,6 +32,8 @@ aclocal.m4
 depcomp
 install-sh
 mkinstalldirs
+guake.desktop
+guake-prefs.desktop
 org.gnome.Guake.service
 data/org.guake.Guake.service
 Makefile.in.in

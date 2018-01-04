@@ -26,7 +26,7 @@ install-locale: generate-mo
 		install -Dm755 "$$f" "$(PREFIX)/share/locale/$$lb/LC_MESSAGES/guake.mo"; \
 	done;
 
-install-schemas:
+install-schemas: generate-desktop
 	install -Dm755 "guake/data/guake.desktop" "$(PREFIX)/share/applications/guake.desktop"
 	install -Dm755 "guake/data/guake-prefs.desktop" "$(PREFIX)/share/applications/guake-prefs.desktop"
 	install -Dm755 "guake/data/pixmaps/guake.png" "$(PREFIX)/share/pixmaps/guake.png"
@@ -146,6 +146,10 @@ generate-mo:
 		msgfmt "$$f" -o "$$l.mo"; \
 	done;
 
+
+generate-desktop:
+	msgfmt --desktop --template=guake/data/guake.template.desktop -d po -o guake/data/guake.desktop
+	msgfmt --desktop --template=guake/data/guake-prefs.template.desktop -d po -o guake/data/guake-prefs.desktop
 
 
 # aliases to gracefully handle typos on poor dev's terminal
