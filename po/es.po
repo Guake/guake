@@ -1008,6 +1008,128 @@ msgstr ""
 "\n"
 "Por favor intente con una tecla como Control, Alt o Shift al mismo tiempo.\n"
 
+#: guake/guake_app.py:491
+msgid ""
+"Guake is now running,\n"
+"press <b>{!s}</b> to use it."
+msgstr ""
+
+#: guake/main.py:153
+msgid "Return the selected tab label."
+msgstr ""
+
+#: guake/data/about.glade:15
+msgid ""
+"Copyright 2013-2018 Gaetan Semet\n"
+"Copyright 2007-2010 Lincoln de Sousa\n"
+"Copyright 2007 Gabriel Falcão"
+msgstr ""
+
+#: guake/data/prefs.glade:264
+msgid "Never"
+msgstr ""
+
+#: guake/data/prefs.glade:265
+msgid "With process running"
+msgstr ""
+
+#: guake/data/prefs.glade:266
+msgid "Always"
+msgstr ""
+
+#: guake/data/prefs.glade:499
+msgid "Refocus if open"
+msgstr ""
+
+#: guake/data/prefs.glade:865
+msgid "Custom command file path:"
+msgstr ""
+
+#: guake/data/prefs.glade:1315
+msgid "Show resizer"
+msgstr ""
+
+#: guake/data/prefs.glade:1423
+msgid "Block"
+msgstr ""
+
+#: guake/data/prefs.glade:1424
+msgid "I-Beam"
+msgstr ""
+
+#: guake/data/prefs.glade:1425
+msgid "Underline"
+msgstr ""
+
+#: guake/data/prefs.glade:1443
+msgid "Follow GTK+ setting"
+msgstr ""
+
+#: guake/data/prefs.glade:1444
+msgid "Blink on"
+msgstr ""
+
+#: guake/data/prefs.glade:1445
+msgid "Blink off"
+msgstr ""
+
+#: guake/data/prefs.glade:2236
+msgid ""
+"<small><i>Use the following elements in the open editor command line:\n"
+"- <b>%(file_path)s</b>: path to the file that has been clicked\n"
+"- <b>%(line_number)s</b>: if your editor supports it, you can directly open "
+"the file to a given line number when found on the screen.\n"
+"\n"
+"For example, for sublime, use <b>subl %(file_path)s:%(line_number)s</b>\n"
+"</i></small>"
+msgstr ""
+
+#: guake/data/prefs.glade:2442 guake/data/prefs.glade:2462
+msgid "ASCII DEL"
+msgstr ""
+
+#: guake/data/prefs.glade:2443 guake/data/prefs.glade:2463
+msgid "Escape sequence"
+msgstr ""
+
+#: guake/data/prefs.glade:2444 guake/data/prefs.glade:2464
+msgid "Control-H"
+msgstr ""
+
+#: guake/data/prefs.glade:2600
+msgid ""
+"<small>In this dialog you can attach your own command or script to various "
+"guake events</small>"
+msgstr ""
+
+#: guake/data/prefs.glade:2635
+msgid "On show:"
+msgstr ""
+
+#: guake/data/prefs.glade:2665
+msgid "On start:"
+msgstr ""
+
+#: guake/data/prefs.glade:2714
+msgid "Hooks"
+msgstr ""
+
+#: guake/data/guake-prefs.desktop:8
+msgid "Configure your Guake sessions"
+msgstr ""
+
+#: guake/data/guake-prefs.desktop:15 guake/data/guake.desktop:18
+msgid "guake"
+msgstr ""
+
+#: guake/data/guake-prefs.desktop:20
+msgid "Terminal;Utility;"
+msgstr ""
+
+#: guake/data/guake.desktop:10
+msgid "Use the command line in a Quake-like terminal"
+msgstr ""
+
 #~ msgid "key binding error"
 #~ msgstr "Error al asignar tecla"
 
