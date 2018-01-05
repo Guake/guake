@@ -19,11 +19,11 @@ ln-venv:
 	rm -rf .venv
 	ln -s $$(pipenv --venv) .venv
 
-install-local:
-	pipenv install
-
 install-system: install-schemas install-locale
-	python3 setup.py install --root "$(INSTALL_ROOT)" --optimize=1
+	@echo "Installing from on your system is not recommended."
+	@echo "Please prefer you application package manager (apt, yum, ...)"
+	@pip3 install -r requirements.txt
+	@python3 setup.py install --root "$(INSTALL_ROOT)" --optimize=1
 
 install-locale: generate-mo
 	for f in $$(find po -iname "*.mo"); do \

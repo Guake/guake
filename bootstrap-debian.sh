@@ -2,7 +2,7 @@
 
 echo "Install needed packages on a Debian/Ubuntu systems"
 
-sudo apt install \
+sudo apt install -y \
     python3 \
     python3-pip \
     python3-gi \

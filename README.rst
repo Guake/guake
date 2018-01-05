@@ -164,10 +164,18 @@ You should have received a copy of the GNU General Public License along with thi
 write to the Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301,
 USA.
 
+
 System-wide installation
 ========================
 
-Use your package manager to install guake.
+Always use your package manager to install guake.
+
+Ubuntu users will use `sudo apt install guake`.
+
+If you really want to install Guake from source, use::
+
+    $ make dev
+    $ sudo make install-system
 
 Note for maintainers
 --------------------
