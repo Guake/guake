@@ -19,7 +19,7 @@
 *.pot
 .eggs/
 *.deb
-config.*
+./config.*
 configure
 .libs
 .deps

@@ -1,0 +1,4 @@
+---
+features:
+  - |
+    `reno` will be used to generate release note for Guake starting version 3.0.0

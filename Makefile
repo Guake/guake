@@ -3,6 +3,7 @@
 MODULE:=guake
 INSTALL_ROOT:=/
 PREFIX:=$(INSTALL_ROOT)usr
+SLUG:=fragment_name
 
 
 all: dev style checks build dists test-unit docs
@@ -150,6 +151,37 @@ generate-mo:
 generate-desktop:
 	msgfmt --desktop --template=guake/data/guake.template.desktop -d po -o guake/data/guake.desktop || (echo "Skipping .desktop files, is your gettext version < 0.19.1?" && cp guake/data/guake.template.desktop guake/data/guake.desktop)
 	msgfmt --desktop --template=guake/data/guake-prefs.template.desktop -d po -o guake/data/guake-prefs.desktop || (echo "Skipping .desktop files, is your gettext version < 0.19.1?" && cp guake/data/guake-prefs.template.desktop guake/data/guake-prefs.desktop)
+
+reno:
+	pipenv run reno new $(SLUG)
+
+release-note: release-note-news release-note-github
+
+release-note-news:
+	@echo "Generating release note for NEWS file"
+	@pipenv run reno report 2>/dev/null | \
+		pandoc -f rst -t asciidoc --normalize --wrap=none --columns=100 --atx-headers | \
+		grep -v '\[\[' | \
+		grep -v -E '^\.\.' > NEWS.tmp
+	@echo >> NEWS.tmp
+	@echo >> NEWS.tmp
+	@cat NEWS >> NEWS.tmp
+	@rm -f NEWS
+	@mv NEWS.tmp NEWS
+
+release-note-github:
+	@echo
+	@echo
+	@echo "!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"
+	@echo "!! Generating release note for GitHub !!"
+	@echo "!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"
+	@echo "-------- copy / paste from here --------"
+	@# markdown_github to be avoided => gfm output comes in pandoc 2.0.4 release dec 2017
+	@pipenv run reno report 2>/dev/null | \
+		pandoc -f rst -t markdown --atx-headers --columns=100 --wrap=auto --tab-stop 2 | \
+		tr '\n' '\r' | \
+			sed 's/\r<!-- -->\r\r//g' | \
+		tr '\r' '\n'
 
 
 # aliases to gracefully handle typos on poor dev's terminal
