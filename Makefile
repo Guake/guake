@@ -9,7 +9,7 @@ SLUG:=fragment_name
 all: dev style checks dists test docs
 
 
-dev: pipenv-install-dev requirements ln-venv
+dev: pipenv-install-dev requirements ln-venv setup-githook
 
 pipenv-install-dev:
 	pipenv install --dev
@@ -40,8 +40,9 @@ install-schemas: generate-desktop
 
 style: fiximports autopep8 yapf
 
+
 fiximports:
-	@for fil in $$(find setup.py install.py install-lib.py guake -name "*.py"); do \
+	@for fil in $$(find setup.py guake -name "*.py"); do \
 		echo "Sorting imports from: $$fil"; \
 		pipenv run fiximports $$fil; \
 	done
@@ -119,7 +120,11 @@ freeze:
 	pipenv run pip freeze
 
 
-githook:style
+githook:
+	bash git-hooks/post-commit
+
+setup-githook:
+	cp -fv git-hooks/* .git/hooks/
 
 
 push: githook
