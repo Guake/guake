@@ -75,7 +75,8 @@ def main():
         dest='fullscreen',
         action='store_true',
         default=False,
-        help=_('Put Guake in fullscreen mode'))
+        help=_('Put Guake in fullscreen mode')
+    )
 
     parser.add_option(
         '-t',
@@ -83,21 +84,24 @@ def main():
         dest='show_hide',
         action='store_true',
         default=False,
-        help=_('Toggles the visibility of the terminal window'))
+        help=_('Toggles the visibility of the terminal window')
+    )
 
     parser.add_option(
         '--show',
         dest="show",
         action='store_true',
         default=False,
-        help=_('Shows Guake main window'))
+        help=_('Shows Guake main window')
+    )
 
     parser.add_option(
         '--hide',
         dest='hide',
         action='store_true',
         default=False,
-        help=_('Hides Guake main window'))
+        help=_('Hides Guake main window')
+    )
 
     parser.add_option(
         '-p',

@@ -19,10 +19,10 @@ Boston, MA 02110-1301 USA
 """
 from __future__ import absolute_import
 
-import logging
 import dbus
 import dbus.glib
 import dbus.service
+import logging
 
 log = logging.getLogger(__name__)
 

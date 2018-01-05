@@ -60,8 +60,7 @@ def setupLogging(debug_mode):
             'formatters': {
                 'default': {
                     '()': 'colorlog.ColoredFormatter',
-                    'format':
-                    "%(log_color)s%(levelname)-8s%(reset)s %(message)s",
+                    'format': "%(log_color)s%(levelname)-8s%(reset)s %(message)s",
                     'log_colors': {
                         'DEBUG': 'cyan',
                         'INFO': 'green',

@@ -78,11 +78,11 @@ from guake.globals import SCHEMA_DIR
 from guake.globals import LOCALE_DIR
 from guake.globals import NAME
 from guake.gsettings import GSettingHandler
+from guake.guake_logging import setupLogging
 from guake.guake_notebook import GuakeNotebook
 from guake.keybindings import Keybindings
 from guake.prefs import PrefsDialog
 from guake.simplegladeapp import SimpleGladeApp
-from guake.guake_logging import setupLogging
 from guake.simplegladeapp import bindtextdomain
 from guake.terminal import GuakeTerminalBox
 
@@ -253,7 +253,8 @@ class Guake(SimpleGladeApp):
         self.add_callbacks(self)
 
         schema_source = Gio.SettingsSchemaSource.new_from_directory(
-            SCHEMA_DIR, Gio.SettingsSchemaSource.get_default(), False)
+            SCHEMA_DIR, Gio.SettingsSchemaSource.get_default(), False
+        )
         self.settings = Settings(schema_source)
         self.debug_mode = self.settings.general.get_boolean('debug-mode')
         setupLogging(self.debug_mode)
@@ -1170,8 +1171,9 @@ class Guake(SimpleGladeApp):
             if unity_hide != 1 and (unity_pos == "Left" or unity_pos == "Right"):
                 self.printDebug(
                     "correcting window width because of launcher position %s "
-                    "and width %s (from %s to %s)", unity_pos, unity_dock,
-                    window_rect.width, window_rect.width - unity_dock)
+                    "and width %s (from %s to %s)", unity_pos, unity_dock, window_rect.width,
+                    window_rect.width - unity_dock
+                )
 
                 window_rect.width = window_rect.width - unity_dock
 
