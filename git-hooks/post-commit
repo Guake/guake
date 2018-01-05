@@ -2,7 +2,6 @@
 
 [ -z "$REVRANGE" ] && REVRANGE="master..HEAD^1"
 
-
 # get a list of changed files, used below; this uses a tempfile to work around
 # shell behavior when piping to 'while'
 tempfile=$(mktemp -t tmp.XXXXXX)

@@ -134,7 +134,7 @@ push: githook
 clean: rm-dists
 	@pipenv --rm ; true
 	@find . -name "*.pyc" -exec rm -f {} \;
-	@rm -rf .venv .eggs *.egg-info *.pot
+	@rm -rf .venv .eggs *.egg-info po/*.pot
 	@echo "clean successful"
 
 
@@ -148,6 +148,8 @@ update-po:
 		msgcat --use-first "$$f" po/guake.pot > "$$f.new"; \
 		mv "$$f.new" $$f; \
 	done;
+
+pot: update-po
 
 generate-mo:
 	for f in $$(find po -iname "*.po"); do \
