@@ -30,6 +30,7 @@ import sys
 # ones.
 extensions = [
     'sphinx.ext.doctest',
+    'reno.sphinxext',
 ]
 
 # Add any paths that contain templates here, relative to this directory.
@@ -45,8 +46,8 @@ source_suffix = '.rst'
 master_doc = 'index'
 
 # General information about the project.
-project = u'Python Fix Imports'
-copyright = u'2016, Gaetan Semet'
+project = u'Guake 3'
+copyright = u'2018, Gaetan Semet'
 
 # The version info for the project you're documenting, acts as replacement for
 # |version| and |release|, also used in various other places throughout the

@@ -1,4 +1,4 @@
-.PHONY: build
+.PHONY: build dev
 
 MODULE:=guake
 INSTALL_ROOT:=/
@@ -6,16 +6,21 @@ PREFIX:=$(INSTALL_ROOT)usr
 SLUG:=fragment_name
 
 
-all: dev style checks build dists test-unit docs
+all: dev style checks dists test docs
 
 
-dev:
+dev: pipenv-install-dev requirements ln-venv
+
+pipenv-install-dev:
 	pipenv install --dev
 
+ln-venv:
+	# use that to configure a symbolic link to the virtualenv in .venv
+	rm -rf .venv
+	ln -s $$(pipenv --venv) .venv
 
 install-local:
 	pipenv install
-
 
 install-system: install-schemas install-locale
 	python3 setup.py install --root "$(INSTALL_ROOT)" --optimize=1
@@ -35,34 +40,42 @@ install-schemas: generate-desktop
 
 style: fiximports autopep8 yapf
 
-
 fiximports:
 	@for fil in $$(find setup.py install.py install-lib.py guake -name "*.py"); do \
 		echo "Sorting imports from: $$fil"; \
 		pipenv run fiximports $$fil; \
 	done
 
-
 autopep8:
 	pipenv run autopep8 --in-place --recursive setup.py $(MODULE)
-
 
 yapf:
 	pipenv run yapf --style .yapf --recursive -i $(MODULE)
 
 
-checks: update-po sdist flake8 pylint
-
+checks: update-po requirements sdist flake8 pylint
 
 flake8:
 	pipenv run python setup.py flake8
-
 
 pylint:
 	pipenv run pylint --rcfile=.pylintrc --output-format=colorized $(MODULE)
 
 
+dists: update-po requirements rm-dists sdist bdist wheels
 build: dists
+
+sdist:
+	pipenv run python setup.py sdist
+
+rm-dists:
+	rm -rf build dist
+
+bdist:
+	pipenv run python setup.py bdist
+
+wheels:
+	pipenv run python setup.py bdist_wheel
 
 
 run-local:
@@ -76,28 +89,12 @@ shell:
 test:
 	pipenv run pytest $(MODULE)
 
-
 test-coverage:
 	pipenv run py.test -v --cov $(MODULE) --cov-report term-missing
 
 
-dists: update-po sdist bdist wheels
-
-
-sdist:
-	pipenv run python setup.py sdist
-
-
-bdist:
-	pipenv run python setup.py bdist
-
-
-wheels:
-	pipenv run python setup.py bdist_wheel
-
-
 docs:
-	cd doc && make html
+	cd doc && pipenv run make html
 
 
 pypi-publish: build
@@ -109,7 +106,12 @@ update:
 	pipenv install --dev
 
 
-lock:
+lock: pipenv-lock requirements
+
+requirements:
+	pipenv run pipenv_to_requirements -f
+
+pipenv-lock:
 	pipenv lock
 
 
@@ -124,9 +126,11 @@ push: githook
 	git push origin --tags
 
 
-clean:
-	pipenv --rm ; true
-	find . -name "*.pyc" -exec rm -f {} \;
+clean: rm-dists
+	@pipenv --rm ; true
+	@find . -name "*.pyc" -exec rm -f {} \;
+	@rm -rf .venv .eggs *.egg-info *.pot
+	@echo "clean successful"
 
 
 update-po:
@@ -140,7 +144,6 @@ update-po:
 		mv "$$f.new" $$f; \
 	done;
 
-
 generate-mo:
 	for f in $$(find po -iname "*.po"); do \
 		l="$${f%%.*}"; \
@@ -151,6 +154,7 @@ generate-mo:
 generate-desktop:
 	msgfmt --desktop --template=guake/data/guake.template.desktop -d po -o guake/data/guake.desktop || (echo "Skipping .desktop files, is your gettext version < 0.19.1?" && cp guake/data/guake.template.desktop guake/data/guake.desktop)
 	msgfmt --desktop --template=guake/data/guake-prefs.template.desktop -d po -o guake/data/guake-prefs.desktop || (echo "Skipping .desktop files, is your gettext version < 0.19.1?" && cp guake/data/guake-prefs.template.desktop guake/data/guake-prefs.desktop)
+
 
 reno:
 	pipenv run reno new $(SLUG)

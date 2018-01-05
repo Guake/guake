@@ -23,6 +23,7 @@ pylint = "*"
 pytest = "*"
 yapf = "*"
 reno = {extras = ["sphinx"]}
+pipenv-to-requirements = "*"
 
 
 [packages]
