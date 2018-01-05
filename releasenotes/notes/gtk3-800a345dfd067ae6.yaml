@@ -1,12 +1,14 @@
 release_summary: >
-    Guake has been ported to GTK-3 thanks to the huge work of @aichingm.
+  Guake has been ported to GTK-3 thanks to the huge work of @aichingm.
 issues:
-- |
-    transition can be messy (ex: background can be all transparent at first
-    launch)
-- hyperlinks cannot be clicked in terminal
-- translation might be broken in some language, waiting for the translation
-  file to be updated by volunteers
+  - |
+      transition can be messy (ex: background can be all transparent at first
+      launch)
+  - hyperlinks cannot be clicked in terminal
+  - translation might be broken in some language, waiting for the translation
+    file to be updated by volunteers
 deprecations:
-- |
+  - |
     background picture is no more customizable on each terminal
+translations:
+  - fr-FR

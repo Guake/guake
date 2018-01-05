@@ -1,6 +1,6 @@
 #!/bin/bash
 
-echo "Freeze version of pip to ensure reproductibility"
+echo "Freeze version of pip to ensure build reproductibility"
 
 if [[ $1 == "system" ]]; then
     op=""

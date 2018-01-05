@@ -54,7 +54,7 @@ yapf:
 	pipenv run yapf --style .yapf --recursive -i $(MODULE)
 
 
-checks: update-po requirements sdist flake8 pylint
+checks: update-po requirements sdist flake8 pylint reno-lint
 
 flake8:
 	pipenv run python setup.py flake8
@@ -166,7 +166,10 @@ generate-desktop:
 reno:
 	pipenv run reno new $(SLUG)
 
-release-note: release-note-news release-note-github
+reno-lint:
+	pipenv run reno lint
+
+release-note: reno-lint release-note-news release-note-github
 
 release-note-news:
 	@echo "Generating release note for NEWS file"
@@ -181,7 +184,6 @@ release-note-news:
 	@mv NEWS.tmp NEWS
 
 release-note-github:
-	@echo
 	@echo
 	@echo "!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"
 	@echo "!! Generating release note for GitHub !!"

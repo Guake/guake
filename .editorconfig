@@ -19,6 +19,9 @@ tab_width = 4
 [*.yml]
 tab_width = 2
 
+[*.yaml]
+tab_width = 2
+
 [*.xml]
 tab_width = 2
 

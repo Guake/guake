@@ -1,6 +1,6 @@
 #!/bin/bash
 
-echo "Install needed packages on a Debian/Ubuntu systems"
+echo "Install needed development packages on a Debian/Ubuntu system"
 
 sudo apt install -y \
     python3 \
@@ -10,3 +10,5 @@ sudo apt install -y \
     gir1.2-keybinder-3.0 \
     make \
     gettext \
+    pandoc \
+    aspell-fr\
