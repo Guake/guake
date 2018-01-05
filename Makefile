@@ -54,7 +54,7 @@ yapf:
 	pipenv run yapf --style .yapf --recursive -i $(MODULE)
 
 
-checks: update-po requirements sdist flake8 pylint reno-lint
+checks: update-po requirements flake8 pylint
 
 flake8:
 	pipenv run python setup.py flake8
