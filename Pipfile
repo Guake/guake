@@ -22,7 +22,7 @@ pyflakes = "*"
 pylint = "*"
 pytest = "*"
 yapf = "*"
-reno = "*"
+reno = {extras = ["sphinx"]}
 
 
 [packages]
