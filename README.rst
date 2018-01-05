@@ -216,8 +216,7 @@ Git hook
 
 Please install this git hook if you want to beautify your patch before submission::
 
-    $ cd guake
-    $ ln -s git-hooks/post-commit .git/hooks/
+    $ make setup-githook
 
 Validate your code
 ~~~~~~~~~~~~~~~~~~
@@ -237,6 +236,9 @@ Update translation
 Update all translation files::
 
     $ make update-po
+
+Install the translations files:
+    $ sudo make install-locale
 
 Then use your favorite po editor, such as ``poedit``.
 
