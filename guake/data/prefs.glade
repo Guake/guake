@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Generated with glade 3.18 -->
+<!-- Generated with glade 3.18.3 -->
 <interface>
   <requires lib="gtk+" version="3.18"/>
   <object class="GtkAdjustment" id="transparency">
@@ -109,20 +109,9 @@
                 <property name="position">0</property>
               </packing>
             </child>
-            <child>
-              <object class="GtkSeparator">
-                <property name="visible">True</property>
-                <property name="can_focus">False</property>
               </object>
               <packing>
                 <property name="expand">False</property>
-                <property name="fill">True</property>
-                <property name="position">1</property>
-              </packing>
-            </child>
-          </object>
-          <packing>
-            <property name="expand">False</property>
             <property name="fill">False</property>
             <property name="position">0</property>
           </packing>
@@ -357,6 +346,7 @@
                                         <property name="can_focus">True</property>
                                         <property name="receives_default">False</property>
                                         <property name="use_underline">True</property>
+                                        <property name="xalign">0.5</property>
                                         <property name="draw_indicator">True</property>
                                         <signal name="toggled" handler="on_bottom_align_toggled" swapped="no"/>
                                       </object>
@@ -373,6 +363,7 @@
                                         <property name="can_focus">True</property>
                                         <property name="receives_default">False</property>
                                         <property name="use_underline">True</property>
+                                        <property name="xalign">0.5</property>
                                         <property name="draw_indicator">True</property>
                                         <signal name="toggled" handler="on_mouse_display_toggled" swapped="no"/>
                                         <signal name="toggled" handler="toggle_display_n_sensitivity" swapped="no"/>
@@ -393,13 +384,10 @@
                                             <property name="width_request">160</property>
                                             <property name="visible">True</property>
                                             <property name="can_focus">False</property>
-                                            <property name="xpad">0</property>
-                                            <property name="ypad">0</property>
                                             <property name="label" translatable="yes">Appear on display:</property>
                                             <property name="use_markup">True</property>
                                             <property name="single_line_mode">True</property>
                                             <property name="xalign">0</property>
-                                            <property name="yalign">0.5</property>
                                           </object>
                                           <packing>
                                             <property name="expand">False</property>
@@ -433,6 +421,7 @@
                                         <property name="can_focus">True</property>
                                         <property name="receives_default">False</property>
                                         <property name="use_underline">True</property>
+                                        <property name="xalign">0.5</property>
                                         <property name="draw_indicator">True</property>
                                         <signal name="toggled" handler="on_tab_ontop_toggled" swapped="no"/>
                                       </object>
@@ -481,9 +470,10 @@
                                         <property name="label" translatable="yes">Stay on top</property>
                                         <property name="visible">True</property>
                                         <property name="can_focus">True</property>
-                                        <property name="focus_on_click">False</property>
                                         <property name="receives_default">False</property>
                                         <property name="use_underline">True</property>
+                                        <property name="focus_on_click">False</property>
+                                        <property name="xalign">0.5</property>
                                         <property name="active">True</property>
                                         <property name="draw_indicator">True</property>
                                         <signal name="toggled" handler="on_window_ontop_toggled" swapped="no"/>
@@ -501,6 +491,7 @@
                                         <property name="can_focus">True</property>
                                         <property name="receives_default">False</property>
                                         <property name="use_underline">True</property>
+                                        <property name="xalign">0.5</property>
                                         <property name="active">True</property>
                                         <property name="draw_indicator">True</property>
                                         <signal name="toggled" handler="on_window_refocus_toggled" swapped="no"/>
@@ -518,6 +509,7 @@
                                         <property name="can_focus">True</property>
                                         <property name="receives_default">False</property>
                                         <property name="use_underline">True</property>
+                                        <property name="xalign">0.5</property>
                                         <property name="active">True</property>
                                         <property name="draw_indicator">True</property>
                                         <signal name="toggled" handler="on_window_losefocus_toggled" swapped="no"/>
@@ -535,6 +527,7 @@
                                         <property name="can_focus">True</property>
                                         <property name="receives_default">False</property>
                                         <property name="use_underline">True</property>
+                                        <property name="xalign">0.5</property>
                                         <property name="draw_indicator">True</property>
                                         <signal name="toggled" handler="on_window_tabbar_toggled" swapped="no"/>
                                       </object>
@@ -551,6 +544,7 @@
                                         <property name="can_focus">True</property>
                                         <property name="receives_default">False</property>
                                         <property name="use_underline">True</property>
+                                        <property name="xalign">0.5</property>
                                         <property name="draw_indicator">True</property>
                                         <signal name="toggled" handler="on_start_fullscreen_toggled" swapped="no"/>
                                       </object>
@@ -567,6 +561,7 @@
                                         <property name="can_focus">True</property>
                                         <property name="receives_default">False</property>
                                         <property name="use_underline">True</property>
+                                        <property name="xalign">0.5</property>
                                         <property name="active">True</property>
                                         <property name="draw_indicator">True</property>
                                         <signal name="toggled" handler="on_use_vte_titles_toggled" swapped="no"/>
@@ -585,6 +580,7 @@
                                         <property name="can_focus">True</property>
                                         <property name="receives_default">False</property>
                                         <property name="use_underline">True</property>
+                                        <property name="xalign">0.5</property>
                                         <property name="active">True</property>
                                         <property name="draw_indicator">True</property>
                                         <signal name="toggled" handler="on_abbreviate_tab_names_toggled" swapped="no"/>
@@ -603,12 +599,9 @@
                                           <object class="GtkLabel" id="lbl_max_tab_name_length">
                                             <property name="visible">True</property>
                                             <property name="can_focus">False</property>
-                                            <property name="xpad">0</property>
-                                            <property name="ypad">0</property>
                                             <property name="label" translatable="yes">Max tab name length:</property>
                                             <property name="use_markup">True</property>
                                             <property name="xalign">0</property>
-                                            <property name="yalign">0.5</property>
                                           </object>
                                           <packing>
                                             <property name="expand">False</property>
@@ -684,6 +677,7 @@
                                             <property name="can_focus">True</property>
                                             <property name="receives_default">False</property>
                                             <property name="use_underline">True</property>
+                                            <property name="xalign">0.5</property>
                                             <property name="draw_indicator">True</property>
                                             <signal name="toggled" handler="on_window_halign_value_changed" swapped="no"/>
                                           </object>
@@ -701,6 +695,7 @@
                                             <property name="can_focus">True</property>
                                             <property name="receives_default">False</property>
                                             <property name="use_underline">True</property>
+                                            <property name="xalign">0.5</property>
                                             <property name="active">True</property>
                                             <property name="draw_indicator">True</property>
                                             <property name="group">radiobutton_align_left</property>
@@ -720,6 +715,7 @@
                                             <property name="can_focus">True</property>
                                             <property name="receives_default">False</property>
                                             <property name="use_underline">True</property>
+                                            <property name="xalign">0.5</property>
                                             <property name="draw_indicator">True</property>
                                             <property name="group">radiobutton_align_left</property>
                                             <signal name="toggled" handler="on_window_halign_value_changed" swapped="no"/>
@@ -860,11 +856,7 @@
                           <object class="GtkLabel" id="label12">
                             <property name="visible">True</property>
                             <property name="can_focus">False</property>
-                            <property name="xpad">0</property>
-                            <property name="ypad">0</property>
                             <property name="label" translatable="yes">Custom command file path:</property>
-                            <property name="xalign">0.5</property>
-                            <property name="yalign">0.5</property>
                           </object>
                           <packing>
                             <property name="expand">False</property>
@@ -978,6 +970,7 @@
                                         <property name="can_focus">True</property>
                                         <property name="receives_default">False</property>
                                         <property name="use_underline">True</property>
+                                        <property name="xalign">0.5</property>
                                         <property name="draw_indicator">True</property>
                                         <signal name="toggled" handler="on_use_login_shell_toggled" swapped="no"/>
                                       </object>
@@ -994,6 +987,7 @@
                                         <property name="can_focus">True</property>
                                         <property name="receives_default">False</property>
                                         <property name="use_underline">True</property>
+                                        <property name="xalign">0.5</property>
                                         <property name="draw_indicator">True</property>
                                         <signal name="toggled" handler="on_open_tab_cwd_toggled" swapped="no"/>
                                       </object>
@@ -1067,6 +1061,7 @@
                                     <property name="receives_default">False</property>
                                     <property name="halign">start</property>
                                     <property name="use_underline">True</property>
+                                    <property name="xalign">0.5</property>
                                     <property name="draw_indicator">True</property>
                                     <signal name="toggled" handler="on_use_scrollbar_toggled" swapped="no"/>
                                   </object>
@@ -1161,6 +1156,7 @@
                                     <property name="receives_default">False</property>
                                     <property name="halign">start</property>
                                     <property name="use_underline">True</property>
+                                    <property name="xalign">0.5</property>
                                     <property name="draw_indicator">True</property>
                                     <signal name="toggled" handler="on_scroll_output_toggled" swapped="no"/>
                                   </object>
@@ -1178,6 +1174,7 @@
                                     <property name="receives_default">False</property>
                                     <property name="halign">start</property>
                                     <property name="use_underline">True</property>
+                                    <property name="xalign">0.5</property>
                                     <property name="draw_indicator">True</property>
                                     <signal name="toggled" handler="on_scroll_keystroke_toggled" swapped="no"/>
                                   </object>
@@ -1231,12 +1228,9 @@
                           <object class="GtkLabel" id="label4">
                             <property name="visible">True</property>
                             <property name="can_focus">False</property>
-                            <property name="xpad">0</property>
-                            <property name="ypad">0</property>
                             <property name="label" translatable="yes">&lt;b&gt;General&lt;/b&gt;</property>
                             <property name="use_markup">True</property>
                             <property name="xalign">0</property>
-                            <property name="yalign">0.5</property>
                           </object>
                           <packing>
                             <property name="expand">False</property>
@@ -1282,6 +1276,7 @@
                                     <property name="can_focus">True</property>
                                     <property name="receives_default">False</property>
                                     <property name="use_underline">True</property>
+                                    <property name="xalign">0.5</property>
                                     <property name="draw_indicator">True</property>
                                     <signal name="toggled" handler="on_use_default_font_toggled" swapped="no"/>
                                     <signal name="toggled" handler="toggle_style_sensitivity" swapped="no"/>
@@ -1296,12 +1291,9 @@
                                   <object class="GtkLabel" id="label14">
                                     <property name="visible">True</property>
                                     <property name="can_focus">False</property>
-                                    <property name="xpad">0</property>
-                                    <property name="ypad">0</property>
                                     <property name="label" translatable="yes">Font:</property>
                                     <property name="use_markup">True</property>
                                     <property name="xalign">0</property>
-                                    <property name="yalign">0.5</property>
                                   </object>
                                   <packing>
                                     <property name="top_attach">1</property>
@@ -1316,6 +1308,7 @@
                                     <property name="visible">True</property>
                                     <property name="can_focus">True</property>
                                     <property name="receives_default">False</property>
+                                    <property name="xalign">0.5</property>
                                     <property name="yalign">1</property>
                                     <property name="draw_indicator">True</property>
                                     <signal name="toggled" handler="on_show_resizer_toggled" swapped="no"/>
@@ -1343,8 +1336,8 @@
                                   <object class="GtkFontButton" id="font_style">
                                     <property name="visible">True</property>
                                     <property name="can_focus">True</property>
-                                    <property name="focus_on_click">False</property>
                                     <property name="receives_default">False</property>
+                                    <property name="focus_on_click">False</property>
                                     <property name="font">Sans 12</property>
                                     <property name="title" translatable="yes">Choose some font</property>
                                     <signal name="font-set" handler="on_font_style_font_set" swapped="no"/>
@@ -1400,12 +1393,9 @@
                                   <object class="GtkLabel" id="label54">
                                     <property name="visible">True</property>
                                     <property name="can_focus">False</property>
-                                    <property name="xpad">0</property>
-                                    <property name="ypad">0</property>
                                     <property name="label" translatable="yes">Cursor shape:</property>
                                     <property name="use_markup">True</property>
                                     <property name="xalign">0</property>
-                                    <property name="yalign">0.5</property>
                                   </object>
                                   <packing>
                                     <property name="top_attach">2</property>
@@ -1458,12 +1448,9 @@
                                   <object class="GtkLabel" id="label35">
                                     <property name="visible">True</property>
                                     <property name="can_focus">False</property>
-                                    <property name="xpad">0</property>
-                                    <property name="ypad">0</property>
                                     <property name="label" translatable="yes">Cursor blink mode:</property>
                                     <property name="use_markup">True</property>
                                     <property name="xalign">0</property>
-                                    <property name="yalign">0.5</property>
                                   </object>
                                   <packing>
                                     <property name="left_attach">3</property>
@@ -1484,6 +1471,7 @@
                                     <property name="can_focus">True</property>
                                     <property name="receives_default">False</property>
                                     <property name="use_underline">True</property>
+                                    <property name="xalign">0.5</property>
                                     <property name="draw_indicator">True</property>
                                     <signal name="toggled" handler="on_allow_bold_toggled" swapped="no"/>
                                   </object>
@@ -1520,12 +1508,9 @@
                           <object class="GtkLabel" id="label16">
                             <property name="visible">True</property>
                             <property name="can_focus">False</property>
-                            <property name="xpad">0</property>
-                            <property name="ypad">0</property>
                             <property name="label" translatable="yes">&lt;b&gt;Palette&lt;/b&gt;</property>
                             <property name="use_markup">True</property>
                             <property name="xalign">0</property>
-                            <property name="yalign">0.5</property>
                           </object>
                           <packing>
                             <property name="expand">False</property>
@@ -1556,12 +1541,9 @@
                                   <object class="GtkLabel" id="label17">
                                     <property name="visible">True</property>
                                     <property name="can_focus">False</property>
-                                    <property name="xpad">0</property>
-                                    <property name="ypad">0</property>
                                     <property name="label" translatable="yes">Built-in schemes:</property>
                                     <property name="use_markup">True</property>
                                     <property name="xalign">0</property>
-                                    <property name="yalign">0.5</property>
                                   </object>
                                   <packing>
                                     <property name="x_options"/>
@@ -1572,8 +1554,6 @@
                                   <object class="GtkLabel" id="label18">
                                     <property name="visible">True</property>
                                     <property name="can_focus">False</property>
-                                    <property name="xpad">0</property>
-                                    <property name="ypad">0</property>
                                     <property name="label" translatable="yes">Color palette:</property>
                                     <property name="use_markup">True</property>
                                     <property name="xalign">0</property>
@@ -1606,6 +1586,12 @@
                                     <property name="n_columns">10</property>
                                     <property name="column_spacing">6</property>
                                     <property name="row_spacing">6</property>
+                                    <child>
+                                      <placeholder/>
+                                    </child>
+                                    <child>
+                                      <placeholder/>
+                                    </child>
                                     <child>
                                       <object class="GtkColorButton" id="palette_0">
                                         <property name="height_request">28</property>
@@ -1852,30 +1838,6 @@
                                         <property name="bottom_attach">2</property>
                                       </packing>
                                     </child>
-                                    <child>
-                                      <object class="GtkLabel">
-                                        <property name="visible">True</property>
-                                        <property name="can_focus">False</property>
-                                        <property name="label" translatable="yes">Text color:</property>
-                                      </object>
-                                      <packing>
-                                        <property name="left_attach">8</property>
-                                        <property name="right_attach">9</property>
-                                      </packing>
-                                    </child>
-                                    <child>
-                                      <object class="GtkLabel">
-                                        <property name="visible">True</property>
-                                        <property name="can_focus">False</property>
-                                        <property name="label" translatable="yes">Background color:</property>
-                                      </object>
-                                      <packing>
-                                        <property name="left_attach">8</property>
-                                        <property name="right_attach">9</property>
-                                        <property name="top_attach">1</property>
-                                        <property name="bottom_attach">2</property>
-                                      </packing>
-                                    </child>
                                   </object>
                                   <packing>
                                     <property name="left_attach">1</property>
@@ -1889,8 +1851,6 @@
                                   <object class="GtkLabel" id="label36">
                                     <property name="visible">True</property>
                                     <property name="can_focus">False</property>
-                                    <property name="xpad">0</property>
-                                    <property name="ypad">0</property>
                                     <property name="label" translatable="yes">Demo:</property>
                                     <property name="use_markup">True</property>
                                     <property name="xalign">0</property>
@@ -1946,12 +1906,9 @@
                           <object class="GtkLabel" id="label9">
                             <property name="visible">True</property>
                             <property name="can_focus">False</property>
-                            <property name="xpad">0</property>
-                            <property name="ypad">0</property>
                             <property name="label" translatable="yes">&lt;b&gt;Effects&lt;/b&gt;</property>
                             <property name="use_markup">True</property>
                             <property name="xalign">0</property>
-                            <property name="yalign">0.5</property>
                           </object>
                           <packing>
                             <property name="expand">False</property>
@@ -1975,12 +1932,9 @@
                                   <object class="GtkLabel" id="label19">
                                     <property name="visible">True</property>
                                     <property name="can_focus">False</property>
-                                    <property name="xpad">0</property>
-                                    <property name="ypad">0</property>
                                     <property name="label" translatable="yes">Transparency:</property>
                                     <property name="use_markup">True</property>
                                     <property name="xalign">0</property>
-                                    <property name="yalign">0.5</property>
                                   </object>
                                   <packing>
                                     <property name="x_options"/>
@@ -2021,10 +1975,6 @@
                       <object class="GtkLabel" id="label32">
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
-                        <property name="xpad">0</property>
-                        <property name="ypad">0</property>
-                        <property name="xalign">0.5</property>
-                        <property name="yalign">0.5</property>
                       </object>
                       <packing>
                         <property name="expand">True</property>
@@ -2091,13 +2041,9 @@
                                                 <property name="width_request">300</property>
                                                 <property name="visible">True</property>
                                                 <property name="can_focus">False</property>
-                                                <property name="xpad">0</property>
-                                                <property name="ypad">0</property>
                                                 <property name="label" translatable="yes">&lt;small&gt;Quick open is a feature allowing you to open a file directly into your favorite text editor by clicking on its filename when it appears in your terminal. See the list of currently supported text patterns used to extract filename below.&lt;/small&gt;</property>
                                                 <property name="use_markup">True</property>
                                                 <property name="wrap">True</property>
-                                                <property name="xalign">0.5</property>
-                                                <property name="yalign">0.5</property>
                                               </object>
                                               <packing>
                                                 <property name="expand">False</property>
@@ -2109,10 +2055,6 @@
                                               <object class="GtkLabel" id="label22">
                                                 <property name="visible">True</property>
                                                 <property name="can_focus">False</property>
-                                                <property name="xpad">0</property>
-                                                <property name="ypad">0</property>
-                                                <property name="xalign">0.5</property>
-                                                <property name="yalign">0.5</property>
                                               </object>
                                               <packing>
                                                 <property name="expand">False</property>
@@ -2132,10 +2074,6 @@
                                             <property name="width_request">250</property>
                                             <property name="visible">True</property>
                                             <property name="can_focus">False</property>
-                                            <property name="xalign">0.5</property>
-                                            <property name="yalign">0.5</property>
-                                            <property name="xpad">0</property>
-                                            <property name="ypad">0</property>
                                             <property name="stock">gtk-missing-image</property>
                                           </object>
                                           <packing>
@@ -2158,6 +2096,7 @@
                                         <property name="can_focus">True</property>
                                         <property name="receives_default">False</property>
                                         <property name="use_underline">True</property>
+                                        <property name="xalign">0.5</property>
                                         <property name="draw_indicator">True</property>
                                         <signal name="toggled" handler="on_quick_open_enable_toggled" swapped="no"/>
                                         <signal name="toggled" handler="toggle_quick_open_command_line_sensitivity" swapped="no"/>
@@ -2176,12 +2115,10 @@
                                           <object class="GtkLabel" id="label25">
                                             <property name="visible">True</property>
                                             <property name="can_focus">False</property>
-                                            <property name="xpad">0</property>
                                             <property name="ypad">6</property>
                                             <property name="label" translatable="yes">Editor command line:</property>
                                             <property name="use_markup">True</property>
                                             <property name="xalign">0</property>
-                                            <property name="yalign">0.5</property>
                                           </object>
                                           <packing>
                                             <property name="expand">False</property>
@@ -2194,10 +2131,6 @@
                                             <property name="width_request">10</property>
                                             <property name="visible">True</property>
                                             <property name="can_focus">False</property>
-                                            <property name="xpad">0</property>
-                                            <property name="ypad">0</property>
-                                            <property name="xalign">0.5</property>
-                                            <property name="yalign">0.5</property>
                                           </object>
                                           <packing>
                                             <property name="expand">False</property>
@@ -2231,8 +2164,6 @@
                                       <object class="GtkLabel" id="label26">
                                         <property name="visible">True</property>
                                         <property name="can_focus">False</property>
-                                        <property name="xpad">0</property>
-                                        <property name="ypad">0</property>
                                         <property name="label" translatable="yes">&lt;small&gt;&lt;i&gt;Use the following elements in the open editor command line:
 - &lt;b&gt;%(file_path)s&lt;/b&gt;: path to the file that has been clicked
 - &lt;b&gt;%(line_number)s&lt;/b&gt;: if your editor supports it, you can directly open the file to a given line number when found on the screen.
@@ -2257,6 +2188,7 @@ For example, for sublime, use &lt;b&gt;subl %(file_path)s:%(line_number)s&lt;/b&
                                         <property name="can_focus">True</property>
                                         <property name="receives_default">False</property>
                                         <property name="use_underline">True</property>
+                                        <property name="xalign">0.5</property>
                                         <property name="draw_indicator">True</property>
                                         <signal name="toggled" handler="on_quick_open_in_current_terminal_toggled" swapped="no"/>
                                       </object>
@@ -2344,8 +2276,6 @@ For example, for sublime, use &lt;b&gt;subl %(file_path)s:%(line_number)s&lt;/b&
                         <property name="ypad">10</property>
                         <property name="label" translatable="yes">To change a shortcut simply click on its name.
 To disable a shortcut, press the "Backspace" key.</property>
-                        <property name="xalign">0.5</property>
-                        <property name="yalign">0.5</property>
                       </object>
                       <packing>
                         <property name="expand">False</property>
@@ -2363,7 +2293,7 @@ To disable a shortcut, press the "Backspace" key.</property>
                             <property name="can_focus">True</property>
                             <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
                             <child internal-child="selection">
-                              <object class="GtkTreeSelection"/>
+                              <object class="GtkTreeSelection" id="treeview-selection1"/>
                             </child>
                           </object>
                         </child>
@@ -2411,8 +2341,6 @@ To disable a shortcut, press the "Backspace" key.</property>
                               <object class="GtkLabel" id="label51">
                                 <property name="visible">True</property>
                                 <property name="can_focus">False</property>
-                                <property name="xpad">0</property>
-                                <property name="ypad">0</property>
                                 <property name="label" translatable="yes">&lt;small&gt;&lt;i&gt;&lt;b&gt;Note:&lt;/b&gt; These options may cause some applications to behave incorrectly.  They are only here to allow you to work around certain applications and operating systems that expect different terminal behavior.&lt;/i&gt;&lt;/small&gt;</property>
                                 <property name="use_markup">True</property>
                                 <property name="wrap">True</property>
@@ -2475,13 +2403,10 @@ To disable a shortcut, press the "Backspace" key.</property>
                                   <object class="GtkLabel" id="backspace-binding-combobox-label">
                                     <property name="visible">True</property>
                                     <property name="can_focus">False</property>
-                                    <property name="xpad">0</property>
-                                    <property name="ypad">0</property>
                                     <property name="label" translatable="yes">_Backspace key generates:</property>
                                     <property name="use_underline">True</property>
                                     <property name="mnemonic_widget">backspace-binding-combobox</property>
                                     <property name="xalign">0</property>
-                                    <property name="yalign">0.5</property>
                                   </object>
                                   <packing>
                                     <property name="x_options"/>
@@ -2492,13 +2417,10 @@ To disable a shortcut, press the "Backspace" key.</property>
                                   <object class="GtkLabel" id="delete-binding-combobox-label">
                                     <property name="visible">True</property>
                                     <property name="can_focus">False</property>
-                                    <property name="xpad">0</property>
-                                    <property name="ypad">0</property>
                                     <property name="label" translatable="yes">_Delete key generates:</property>
                                     <property name="use_underline">True</property>
                                     <property name="mnemonic_widget">delete-binding-combobox</property>
                                     <property name="xalign">0</property>
-                                    <property name="yalign">0.5</property>
                                   </object>
                                   <packing>
                                     <property name="top_attach">1</property>
@@ -2595,12 +2517,9 @@ To disable a shortcut, press the "Backspace" key.</property>
                                           <object class="GtkLabel" id="label4831">
                                             <property name="visible">True</property>
                                             <property name="can_focus">False</property>
-                                            <property name="xpad">0</property>
-                                            <property name="ypad">0</property>
                                             <property name="label" translatable="yes">&lt;small&gt;In this dialog you can attach your own command or script to various guake events&lt;/small&gt;</property>
                                             <property name="use_markup">True</property>
                                             <property name="xalign">0</property>
-                                            <property name="yalign">0.5</property>
                                           </object>
                                           <packing>
                                             <property name="expand">False</property>
@@ -2634,7 +2553,6 @@ To disable a shortcut, press the "Backspace" key.</property>
                                                 <property name="ypad">10</property>
                                                 <property name="label" translatable="yes">On show:</property>
                                                 <property name="xalign">0</property>
-                                                <property name="yalign">0.5</property>
                                               </object>
                                               <packing>
                                                 <property name="x_options">GTK_FILL</property>
@@ -2665,7 +2583,6 @@ To disable a shortcut, press the "Backspace" key.</property>
                                                 <property name="label" translatable="yes">On start:</property>
                                                 <property name="use_markup">True</property>
                                                 <property name="xalign">0</property>
-                                                <property name="yalign">0.5</property>
                                               </object>
                                               <packing>
                                                 <property name="top_attach">1</property>
@@ -2761,9 +2678,6 @@ To disable a shortcut, press the "Backspace" key.</property>
           </packing>
         </child>
       </object>
-    </child>
-    <child type="titlebar">
-      <placeholder/>
     </child>
   </object>
 </interface>

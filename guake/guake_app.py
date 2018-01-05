@@ -317,6 +317,7 @@ class Guake(SimpleGladeApp):
         self.notebook.set_property("can_focus", True)
         self.notebook.set_property("is_focus", True)
         self.notebook.set_property("enable_popup", True)
+        self.notebook.set_property("expand", True)
         self.notebook.connect("switch_page", self.select_current_tab)
         self.mainframe.add(self.notebook)
         self.set_tab_position()
