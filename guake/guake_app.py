@@ -658,9 +658,9 @@ class Guake(SimpleGladeApp):
                 current_vte.feed_child(command)
 
     def on_resizer_drag(self, widget, event):
-        """Method that handles the resize drag. It does not actually
-        move the main window. It just sets the new window size in
-        gconf.
+        """Method that handles the resize drag.
+
+        It does not actually move the main window. It just sets the new window size in gconf.
         """
 
         mod = event.get_state()

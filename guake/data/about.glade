@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Generated with glade 3.20.1 -->
+<!-- Generated with glade 3.18.3 -->
 <interface>
-  <requires lib="gtk+" version="3.0"/>
+  <requires lib="gtk+" version="3.18"/>
   <object class="GtkAboutDialog" id="aboutdialog">
     <property name="visible">True</property>
     <property name="can_focus">False</property>
@@ -19,12 +19,6 @@ Copyright 2007 Gabriel Falcão</property>
 terminal based on FPS games terminal</property>
     <property name="website">http://guake-project.org</property>
     <property name="website_label">http://guake-project.org</property>
-    <property name="license" translatable="yes">Guake is free software; you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation; either version 2 of the License, or (at your option) any later version.
-
-Guake is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more details.
-
-You should have received a copy of the GNU General Public License along with Guake; if not, write to the Free Software Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301 USA
-</property>
     <property name="authors">Gaetan Semet &lt;gaetan@xeberon.net&gt;
 Lincoln de Sousa &lt;lincoln@guake.org&gt;
 Pierre-Yves Chibon (Pingou) &lt;pingou@guake.org&gt;
@@ -48,13 +42,14 @@ Sangwoo Joo &lt;sangwoojoo@naver.com&gt; Korean
     </property>
     <property name="artists">Gabriel Falcao &lt;gabriel@guake-terminal.org&gt;</property>
     <property name="logo_icon_name">image-missing</property>
-    <property name="wrap_license">True</property>
+    <property name="license_type">gpl-2-0</property>
     <signal name="response" handler="gtk_widget_destroy" object="aboutdialog" swapped="yes"/>
     <child internal-child="vbox">
       <object class="GtkBox" id="dialog-vbox1">
         <property name="visible">True</property>
         <property name="can_focus">False</property>
         <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
+        <property name="orientation">vertical</property>
         <property name="spacing">2</property>
         <child internal-child="action_area">
           <object class="GtkButtonBox" id="dialog-action_area1">
@@ -74,9 +69,6 @@ Sangwoo Joo &lt;sangwoojoo@naver.com&gt; Korean
           <placeholder/>
         </child>
       </object>
-    </child>
-    <child>
-      <placeholder/>
     </child>
   </object>
 </interface>
