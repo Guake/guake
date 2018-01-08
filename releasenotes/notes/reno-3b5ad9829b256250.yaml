@@ -1,4 +1,5 @@
 ---
 features:
   - |
-    `reno` will be used to generate release note for Guake starting version 3.0.0
+    `reno <https://docs.openstack.org/reno/latest/>`_ will be used to generate
+    release notes for Guake starting version 3.0.0.

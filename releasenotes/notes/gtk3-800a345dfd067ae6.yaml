@@ -1,14 +1,42 @@
 release_summary: >
   Guake has been ported to GTK-3 thanks to the huge work of @aichingm.
+
+features:
+  - |
+    Ported to GTK3:
+      - cli arguments
+      - dbus
+      - context menu of the terminal, the tab bar and the tray icon
+      - scrollbar of the terminal
+      - ctrl+d on terminal
+      - fix double click on the tab bar
+      - fix double click on tab to rename
+      - fix clipboard from context menu
+      - notification module
+      - keyboard shortcuts
+      - pref screen
+      - port gconfhandler to gsettingshandler
+      - about dialog
+      - pattern matching
+      - ``Guake.accel*`` methods
+  - |
+    Guake now use a brand new build system:
+      - ``pipenv`` to manage dependencies in `Pipfile`
+      - Enforced code styling and checks using pylint, flake8, yapf and so on.
+      - simpler release management thanks to PBR
+
 issues:
   - |
-      transition can be messy (ex: background can be all transparent at first
-      launch)
+    transition can be messy (ex: background can be all transparent at first launch)
   - hyperlinks cannot be clicked in terminal
   - translation might be broken in some language, waiting for the translation
     file to be updated by volunteers
+  - resizer does not work anymore
+  - package maintainers have to rework their integration script completely
+
 deprecations:
   - |
     background picture is no more customizable on each terminal
+
 translations:
   - fr-FR

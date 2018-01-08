@@ -178,14 +178,10 @@ release-note: reno-lint release-note-news release-note-github
 release-note-news:
 	@echo "Generating release note for NEWS file"
 	@pipenv run reno report 2>/dev/null | \
-		pandoc -f rst -t asciidoc --normalize --wrap=none --columns=100 --atx-headers | \
+		pandoc -f rst -t markdown --normalize --wrap=auto --columns=100 --atx-headers --tab-stop 2 | \
 		grep -v '\[\[' | \
-		grep -v -E '^\.\.' > NEWS.tmp
-	@echo >> NEWS.tmp
-	@echo >> NEWS.tmp
-	@cat NEWS >> NEWS.tmp
-	@rm -f NEWS
-	@mv NEWS.tmp NEWS
+		grep -v -E '^\.\.' > NEWS.md
+	@cat releasenotes/archive/NEWS.pre-3.0 >> NEWS.md
 
 release-note-github:
 	@echo

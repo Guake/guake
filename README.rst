@@ -172,7 +172,9 @@ Always use your package manager to install guake.
 
 Ubuntu users will use `sudo apt install guake`.
 
-If you really want to install Guake from source, use::
+If you really want to install Guake from source, use:
+
+.. code-block:: bash
 
     $ make dev
     $ sudo make install-system
@@ -207,26 +209,34 @@ Install System dependencies
 Ubuntu
 ~~~~~~
 
-Execute the following command to bootstrap all needed system dependencies::
+Execute the following command to bootstrap all needed system dependencies:
+
+.. code-block:: bash
 
     $ ./bootstrap-debian.sh
 
 Setup development env
 ---------------------
 
-Install the dependencies of your system and use the following commands::
+Install the dependencies of your system and use the following commands:
+
+.. code-block:: bash
 
     $ make dev
     $ make install-schemas  # still required even for local execution
 
-Local execution of guake (without system-wide install)::
+Local execution of guake (without system-wide install):
+
+.. code-block:: bash
 
     $ make run
 
 Git hook
 ~~~~~~~~
 
-Please install this git hook if you want to beautify your patch before submission::
+Please install this git hook if you want to beautify your patch before submission:
+
+.. code-block:: bash
 
     $ make setup-githook
 
@@ -235,7 +245,9 @@ Validate your code
 
 We are strict on code styling, with pep8 and pylint running automatically in travis in
 order to reject badly shaped patches. Please use the following command to validate all
-python files::
+python files:
+
+.. code-block:: bash
 
     $ make style
     $ make check
@@ -245,12 +257,17 @@ python files::
 Update translation
 ------------------
 
-Update all translation files::
+Update all translation files:
+
+.. code-block:: bash
 
     $ make update-po
 
 Install the translations files:
-    $ sudo make install-locale
+
+.. code-block:: bash
+
+    $ make install-locale
 
 Then use your favorite po editor, such as ``poedit``.
 
@@ -258,8 +275,17 @@ Then use your favorite po editor, such as ``poedit``.
 Update NEWS
 -----------
 
-Add your change in the ``NEWS`` file. The ``ChangeLog`` files is not used (PBR automatically
-populates it for Pypi packages)
+Add your change in the ``NEWS`` file. You can use the following command to generate the
+release note excerp:
+
+.. code-block:: bash
+
+    make install-locale
+
+
+The ``ChangeLog`` files is not maintained but instead
+automatically populated by PBR when generating the distribution packages.
+Same goes for the `ChangeLog` file.
 
 Versionning
 -----------
