@@ -181,7 +181,19 @@ Note for maintainers
 --------------------
 
 Guake has drastically changed its build system with Guake 3. You may need to adapt all the
-integration script accordingly.
+integration scripts accordingly.
+
+Guake now uses `Pipfile` to store it Python dependencies (except the system dependencies such as
+PyGTK3). It is maintained and used by `pipenv` CLI tool. It is a system more advanced than using
+`requirements.txt`, but this file is still generated for backward compatibility (for example:
+ReadTheDocs only support `requirements.txt` for the moment), by a tool I've developed, named
+`pipenv_to_requirements` (makefile target `make requirements`).
+It does generate `requirements.txt` (running dependencies), and `requirements-dev.txt` (build,
+checks and test only). From then, Guake is now a classic, canon Python package (with setup.py,
+building distrubution packages, ...).
+
+If for any reason `pipenv` does not work on your platform, you can still install guake from these
+requirements file, but the ultimate source of truth for dependency declaration is the `Pipfile`.
 
 Do not hesitate to contact me at `gaetan [at] xeberon.net`.
 
