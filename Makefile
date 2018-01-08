@@ -26,20 +26,20 @@ ln-venv:
 install-system: install-schemas install-locale
 	@echo "Installing from on your system is not recommended."
 	@echo "Please prefer you application package manager (apt, yum, ...)"
-	@pip3 install -r requirements.txt
-	@python3 setup.py install --root "$(INSTALL_ROOT)" --optimize=1
+	@sudo pip3 install -r requirements.txt
+	@sudo python3 setup.py install --root "$(INSTALL_ROOT)" --optimize=1
 
 install-locale: generate-mo
 	for f in $$(find po -iname "*.mo"); do \
 		l="$${f%%.*}"; \
 		lb=$$(basename $$l); \
-		install -Dm755 "$$f" "$(PREFIX)/share/locale/$$lb/LC_MESSAGES/guake.mo"; \
+		sudo install -Dm755 "$$f" "$(PREFIX)/share/locale/$$lb/LC_MESSAGES/guake.mo"; \
 	done;
 
 install-schemas: generate-desktop
-	install -Dm755 "guake/data/guake.desktop" "$(PREFIX)/share/applications/guake.desktop"
-	install -Dm755 "guake/data/guake-prefs.desktop" "$(PREFIX)/share/applications/guake-prefs.desktop"
-	install -Dm755 "guake/data/pixmaps/guake.png" "$(PREFIX)/share/pixmaps/guake.png"
+	sudo install -Dm755 "guake/data/guake.desktop" "$(PREFIX)/share/applications/guake.desktop"
+	sudo install -Dm755 "guake/data/guake-prefs.desktop" "$(PREFIX)/share/applications/guake-prefs.desktop"
+	sudo install -Dm755 "guake/data/pixmaps/guake.png" "$(PREFIX)/share/pixmaps/guake.png"
 
 
 style: fiximports autopep8 yapf
