@@ -11,6 +11,10 @@ all: dev style checks dists test docs
 
 dev: pipenv-install-dev requirements ln-venv setup-githook
 
+dev-no-pipenv: clean
+	virtualenv --python python3 .venv
+	. .venv/bin/activate && pip3 install -r requirements.txt -r requirements-dev.txt -e .
+
 pipenv-install-dev:
 	pipenv install --dev
 
