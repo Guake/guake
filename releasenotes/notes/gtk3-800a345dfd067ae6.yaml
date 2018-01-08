@@ -37,6 +37,6 @@ issues:
 deprecations:
   - |
     background picture is no more customizable on each terminal
-
+  - translation is broken, some do not display all translated strings
 translations:
   - fr-FR
