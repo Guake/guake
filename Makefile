@@ -17,6 +17,9 @@ dev-no-pipenv: clean
 
 pipenv-install-dev:
 	pipenv install --dev
+	# vext.gi does not install on my system if using from binary (PTH error)
+	pipenv run pip uninstall -y vext.gi
+	pipenv run pip install -i https://pypi.python.org/pypi/ vext.gi --no-binary ':all:'
 
 ln-venv:
 	# use that to configure a symbolic link to the virtualenv in .venv
@@ -84,7 +87,7 @@ wheels:
 
 
 run-local:
-	export GUAKE_DATA_DIR=$(shell pwd)/data ; pipenv run ./run-local.sh
+	GUAKE_DATA_DIR=$(shell pwd)/data PYTHONPATH=$(shell pwd) pipenv run python3 guake/main.py --no-startup-script
 
 
 shell:

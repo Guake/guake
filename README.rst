@@ -195,6 +195,16 @@ building distrubution packages, ...).
 If for any reason `pipenv` does not work on your platform, you can still install guake from these
 requirements file, but the ultimate source of truth for dependency declaration is the `Pipfile`.
 
+.. note::
+
+    If you look at the Guake dependencies, you will see several vext dependencies. It is a very
+    useful trick to access from system dependencies from within a virtualenv without having to
+    enable `--site-package`.
+
+    When packaging Guake, you need to remove the dependencies to `vext*` packages, since Guake will
+    be installed within the system and not a virtualenv.
+
+
 Do not hesitate to contact me at `gaetan [at] xeberon.net`.
 
 

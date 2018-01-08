@@ -29,3 +29,6 @@ pipenv-to-requirements = "*"
 [packages]
 
 pbr = "*"
+vext = "*"
+"vext.gi" = "*"
+"vext.dbus" = "*"
