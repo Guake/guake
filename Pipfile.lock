@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "13b51b50a0376931c509232453d237b27e4f33516008e540b16f91f7ca76e1f8"
+            "sha256": "9735f95cf4a111feab32eeb02f88d8da047a2f24e48aa3057919e386fb9e82e3"
         },
         "host-environment-markers": {
             "implementation_name": "cpython",
@@ -18,7 +18,7 @@
         },
         "pipfile-spec": 6,
         "requires": {
-            "python_version": "3"
+            "python_version": "3.5"
         },
         "sources": [
             {
@@ -225,10 +225,10 @@
         },
         "pipenv-to-requirements": {
             "hashes": [
-                "sha256:dbf10898cd1e5ba197529ba5d6a9a2e54ec15b6eb41fc0046f2c0deead78acfa",
-                "sha256:f7b64388f5616b7870999ff2121a599acfc888b0e5810a09278df2373fa02ca7"
+                "sha256:e3cc448d30f0b382f17ce82c65d09d4ebe9ea068979019ac5e631947cfac39a5",
+                "sha256:cdee7f04e4749b87228e767784f30b7d87dd455740738501724616a35ae58dd2"
             ],
-            "version": "==0.1.9"
+            "version": "==0.2.2"
         },
         "pluggy": {
             "hashes": [
@@ -348,10 +348,10 @@
         },
         "sphinx": {
             "hashes": [
-                "sha256:fdf77f4f30d84a314c797d67fe7d1b46665e6c48a25699d7bf0610e05a2221d4",
-                "sha256:c6de5dbdbb7a0d7d2757f4389cc00e8f6eb3c49e1772378967a12cfcf2cfe098"
+                "sha256:b8baed19394af85b21755c68c7ec4eac57e8a482ed89cd01cd5d5ff72200fe0f",
+                "sha256:c39a6fa41bd3ec6fc10064329a664ed3a3ca2e27640a823dc520c682e4433cdb"
             ],
-            "version": "==1.6.5"
+            "version": "==1.6.6"
         },
         "sphinxcontrib-websupport": {
             "hashes": [

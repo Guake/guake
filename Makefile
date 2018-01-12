@@ -60,7 +60,6 @@ uninstall-schemas:
 
 style: fiximports autopep8 yapf
 
-
 fiximports:
 	@for fil in $$(find setup.py guake -name "*.py"); do \
 		echo "Sorting imports from: $$fil"; \
@@ -82,6 +81,8 @@ flake8:
 pylint:
 	pipenv run pylint --rcfile=.pylintrc --output-format=colorized $(MODULE)
 
+
+sc: style check
 
 dists: update-po requirements generate-desktop rm-dists sdist bdist wheels
 build: dists
@@ -112,6 +113,8 @@ test:
 
 test-coverage:
 	pipenv run py.test -v --cov $(MODULE) --cov-report term-missing
+
+sct: style check test
 
 
 docs: clean-docs

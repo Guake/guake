@@ -2,10 +2,12 @@
 # This requirements files has been automatically generated from `Pipfile` with
 # `pipenv-to-requirements`
 #
-## This has been done to maintain backward compatibility with tools and services
-# that does not support `Pipfile` yet.
-## Do NOT edit it directly, use `pipenv install [-d]` to modify `Pipfile` and
-# `Pipfile.lock`
+#
+# This has been done to maintain backward compatibility with tools and services
+# that do not support `Pipfile` yet.
+#
+# Do NOT edit it directly, use `pipenv install [-d]` to modify `Pipfile` and
+# `Pipfile.lock` and then regenerate `requirements*.txt`.
 ################################################################################
 
 alabaster==0.7.10
@@ -30,7 +32,7 @@ mock==2.0.0
 pbr==3.1.1
 pep8==1.7.1
 pew==1.1.2
-pipenv-to-requirements==0.1.9
+pipenv-to-requirements==0.2.2
 pipenv==9.0.1
 pluggy==0.6.0
 py==1.5.2
@@ -46,7 +48,7 @@ reno==2.6.0
 requests==2.18.4
 six==1.11.0
 snowballstemmer==1.2.1
-sphinx==1.6.5
+sphinx==1.6.6
 sphinxcontrib-websupport==1.0.1
 urllib3==1.22
 virtualenv-clone==0.2.6
