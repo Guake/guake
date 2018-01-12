@@ -5,9 +5,13 @@ INSTALL_ROOT:=/
 PREFIX:=$(INSTALL_ROOT)usr
 SLUG:=fragment_name
 
+prepare-install: generate-desktop generate-mo
+
+reset: clean
+	dconf reset -f /apps/guake/
+
 
 all: dev style checks dists test docs
-
 
 dev: pipenv-install-dev requirements ln-venv setup-githook
 
@@ -26,20 +30,22 @@ ln-venv:
 install-system: install-schemas install-locale
 	@echo "Installing from on your system is not recommended."
 	@echo "Please prefer you application package manager (apt, yum, ...)"
-	@sudo pip3 install -r requirements.txt
-	@sudo python3 setup.py install --root "$(INSTALL_ROOT)" --optimize=1
+	@pip3 install -r requirements.txt
+	@python3 setup.py install --root "$(INSTALL_ROOT)" --optimize=1
+	@rm -rfv build *.egg-info
 
-install-locale: generate-mo
+install-locale:
 	for f in $$(find po -iname "*.mo"); do \
 		l="$${f%%.*}"; \
 		lb=$$(basename $$l); \
-		sudo install -Dm755 "$$f" "$(PREFIX)/share/locale/$$lb/LC_MESSAGES/guake.mo"; \
+		install -Dm755 "$$f" "$(PREFIX)/share/locale/$$lb/LC_MESSAGES/guake.mo"; \
 	done;
 
-install-schemas: generate-desktop
-	sudo install -Dm755 "guake/data/guake.desktop" "$(PREFIX)/share/applications/guake.desktop"
-	sudo install -Dm755 "guake/data/guake-prefs.desktop" "$(PREFIX)/share/applications/guake-prefs.desktop"
-	sudo install -Dm755 "guake/data/pixmaps/guake.png" "$(PREFIX)/share/pixmaps/guake.png"
+install-schemas:
+	install -Dm755 "guake/data/guake.desktop" "$(PREFIX)/share/applications/guake.desktop"
+	install -Dm755 "guake/data/guake-prefs.desktop" "$(PREFIX)/share/applications/guake-prefs.desktop"
+	install -Dm755 "guake/data/pixmaps/guake.png" "$(PREFIX)/share/pixmaps/guake.png"
+	install -Dm755 "guake/data/org.guake.gschema.xml" "$(PREFIX)/share/glib-2.0/schemas/org.guake.gschema.xml"
 
 
 style: fiximports autopep8 yapf
@@ -67,7 +73,7 @@ pylint:
 	pipenv run pylint --rcfile=.pylintrc --output-format=colorized $(MODULE)
 
 
-dists: update-po requirements rm-dists sdist bdist wheels
+dists: update-po requirements generate-desktop rm-dists sdist bdist wheels
 build: dists
 
 sdist:
@@ -173,21 +179,23 @@ update-po:
 pot: update-po
 
 generate-mo:
-	for f in $$(find po -iname "*.po"); do \
+	@for f in $$(find po -iname "*.po"); do \
+	    echo "generating $$f;" \
 		l="$${f%%.*}"; \
 		msgfmt "$$f" -o "$$l.mo"; \
 	done;
 
 
 generate-desktop:
-	msgfmt --desktop --template=guake/data/guake.template.desktop \
+	@echo "generating desktop files"
+	@msgfmt --desktop --template=guake/data/guake.template.desktop \
 		   -d po \
-		   -o guake/data/guake.desktop || (
+		   -o guake/data/guake.desktop || ( \
 			   	echo "Skipping .desktop files, is your gettext version < 0.19.1?" && \
 				cp guake/data/guake.template.desktop guake/data/guake.desktop)
-	msgfmt --desktop --template=guake/data/guake-prefs.template.desktop \
+	@msgfmt --desktop --template=guake/data/guake-prefs.template.desktop \
 		   -d po \
-		   -o guake/data/guake-prefs.desktop || (
+		   -o guake/data/guake-prefs.desktop || ( \
 			   	echo "Skipping .desktop files, is your gettext version < 0.19.1?" && \
 				cp guake/data/guake-prefs.template.desktop guake/data/guake-prefs.desktop)
 
