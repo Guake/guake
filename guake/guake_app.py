@@ -513,7 +513,7 @@ class Guake(SimpleGladeApp):
         if len(palette_list) > 16:
             bg_color = palette_list[17]
         else:
-            bg_color = Gdk.RGBA(255, 255, 255, 0)
+            bg_color = Gdk.RGBA(0, 0, 0, 0.9)
 
         if not self.transparency_toggled:
             bg_color.alpha = 1 / 100 * transparency
