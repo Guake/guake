@@ -606,6 +606,7 @@ class Guake(SimpleGladeApp):
         transparency = self.settings.styleBackground.get_int('transparency')
         palette_list = self.__load_palette()
         bg_color = self.__get_background_color(palette_list, transparency)
+        log.info("Setting background color bg_color=%r, transparency=%r", bg_color, transparency)
         for t in self.notebook.iter_terminals():
             t.set_color_background(bg_color)
 
