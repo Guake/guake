@@ -170,6 +170,11 @@
             <summary>Use terminal titles for tab naming</summary>
             <description>Any terminal program can set the terminal's title via special escape sequences. Some shells (e.g. bash) display user's prompt there (though you can adjust that to any arbitrary text in bashrc or similar) and update it automatically as the prompt changes. So you can have easy automatically updating meaningful tab titles with this option turned on.</description>
         </key>
+        <key name="set-window-title" type="b">
+            <default>false</default>
+            <summary>Set window title to current tab name</summary>
+            <description>If true, Guake will update its window title from the current tab name. It is useful when you work with applications that use windows title, (keepass, automatic time tracker apps)</description>
+        </key>
         <key name="compat-backspace" type="s">
             <default>'ascii-delete'</default>
             <summary>Backspace Compatibility</summary>

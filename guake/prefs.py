@@ -343,6 +343,11 @@ class PrefsCallbacks(object):
         """
         self.settings.general.set_boolean('use-vte-titles', chk.get_active())
 
+    def on_set_window_title_toggled(self, chk):
+        """Save `set_window_title` property value in gconf
+        """
+        self.settings.general.set_boolean('set-window-title', chk.get_active())
+
     def on_abbreviate_tab_names_toggled(self, chk):
         """Save `abbreviate_tab_names` property value in gconf
         """
@@ -515,6 +520,9 @@ class PrefsCallbacks(object):
 
     def toggle_use_vte_titles(self, chk):
         self.prefDlg.toggle_use_vte_titles(chk)
+
+    def toggle_set_window_title(self, chk):
+        self.prefDlg.toggle_set_window_title(chk)
 
     def update_vte_subwidgets_states(self):
         self.prefDlg.update_vte_subwidgets_states()
@@ -916,6 +924,10 @@ class PrefsDialog(SimpleGladeApp):
         # use VTE titles
         value = self.settings.general.get_boolean('use-vte-titles')
         self.get_widget('use_vte_titles').set_active(value)
+
+        # set window title
+        value = self.settings.general.get_boolean('set-window-title')
+        self.get_widget('set_window_title').set_active(value)
 
         # abbreviate tab names
         self.get_widget('abbreviate_tab_names').set_sensitive(value)
