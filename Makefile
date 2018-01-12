@@ -47,6 +47,16 @@ install-schemas:
 	install -Dm755 "guake/data/pixmaps/guake.png" "$(PREFIX)/share/pixmaps/guake.png"
 	install -Dm755 "guake/data/org.guake.gschema.xml" "$(PREFIX)/share/glib-2.0/schemas/org.guake.gschema.xml"
 
+uninstall-system: uninstall-schemas reset
+	@pip uninstall -y guake
+
+uninstall-schemas:
+	rm -f "$(PREFIX)/share/applications/guake.desktop"
+	rm -f "$(PREFIX)/share/applications/guake-prefs.desktop"
+	rm -f "$(PREFIX)/share/pixmaps/guake.png"
+	rm -f "$(PREFIX)/share/glib-2.0/schemas/org.guake.gschema.xml"
+
+
 
 style: fiximports autopep8 yapf
 
@@ -235,10 +245,11 @@ check: checks
 devel: dev
 develop: dev
 dist: dists
+doc: docs
 install: install-system
 pypi: pypi-publish
 run: run-local
 styles: style
+uninstall: uninstall-system
 upgrade: update
 wheel: wheels
-doc: docs
