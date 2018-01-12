@@ -57,7 +57,6 @@ uninstall-schemas:
 	rm -f "$(PREFIX)/share/glib-2.0/schemas/org.guake.gschema.xml"
 
 
-
 style: fiximports autopep8 yapf
 
 fiximports:
@@ -133,7 +132,7 @@ update:
 lock: pipenv-lock requirements
 
 requirements:
-	pipenv run pipenv_to_requirements -f
+	pipenv run pipenv_to_requirements
 
 pipenv-lock:
 	pipenv lock
