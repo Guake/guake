@@ -82,6 +82,7 @@ from guake.guake_logging import setupLogging
 from guake.guake_notebook import GuakeNotebook
 from guake.keybindings import Keybindings
 from guake.prefs import PrefsDialog
+from guake.settings import Settings
 from guake.simplegladeapp import SimpleGladeApp
 from guake.simplegladeapp import bindtextdomain
 from guake.terminal import GuakeTerminalBox
@@ -158,88 +159,6 @@ class PromptQuitDialog(Gtk.MessageDialog):
 
         self.set_markup(primary_msg)
         self.format_secondary_markup("<b>{0}{1}.</b>".format(proc_str, tab_str))
-
-
-class Settings():
-
-    def __init__(self, schema_source):
-        Settings.enhanceSetting()
-
-        self.guake = Gio.Settings.new_full(
-            Gio.SettingsSchemaSource.lookup(schema_source, "guake", False), None, None
-        )
-        self.guake.initEnhancements()
-        self.guake.connect("changed", self.guake.triggerOnChangedValue)
-
-        self.general = Gio.Settings.new_full(
-            Gio.SettingsSchemaSource.lookup(schema_source, "guake.general", False), None, None
-        )
-        self.general.initEnhancements()
-        self.general.connect("changed", self.general.triggerOnChangedValue)
-
-        self.keybindings = Gio.Settings.new_full(
-            Gio.SettingsSchemaSource.lookup(schema_source, "guake.keybindings", False), None, None
-        )
-        self.keybindings.initEnhancements()
-        self.keybindings.connect("changed", self.keybindings.triggerOnChangedValue)
-
-        self.keybindingsGlobal = Gio.Settings.new_full(
-            Gio.SettingsSchemaSource.lookup(schema_source, "guake.keybindings.global", False), None,
-            None
-        )
-        self.keybindingsGlobal.initEnhancements()
-        self.keybindingsGlobal.connect("changed", self.keybindingsGlobal.triggerOnChangedValue)
-
-        self.keybindingsLocal = Gio.Settings.new_full(
-            Gio.SettingsSchemaSource.lookup(schema_source, "guake.keybindings.local", False), None,
-            None
-        )
-        self.keybindingsLocal.initEnhancements()
-        self.keybindingsLocal.connect("changed", self.keybindingsLocal.triggerOnChangedValue)
-
-        self.styleBackground = Gio.Settings.new_full(
-            Gio.SettingsSchemaSource.lookup(schema_source, "guake.style.background", False), None,
-            None
-        )
-        self.styleBackground.initEnhancements()
-        self.styleBackground.connect("changed", self.styleBackground.triggerOnChangedValue)
-
-        self.styleFont = Gio.Settings.new_full(
-            Gio.SettingsSchemaSource.lookup(schema_source, "guake.style.font", False), None, None
-        )
-        self.styleFont.initEnhancements()
-        self.styleFont.connect("changed", self.styleFont.triggerOnChangedValue)
-
-        self.style = Gio.Settings.new_full(
-            Gio.SettingsSchemaSource.lookup(schema_source, "guake.style", False), None, None
-        )
-        self.style.initEnhancements()
-        self.style.connect("changed", self.style.triggerOnChangedValue)
-
-        self.hooks = Gio.Settings.new_full(
-            Gio.SettingsSchemaSource.lookup(schema_source, "guake.hooks", False), None, None
-        )
-        self.hooks.initEnhancements()
-        self.hooks.connect("changed", self.hooks.triggerOnChangedValue)
-
-    def enhanceSetting():
-
-        def initEnhancements(self):
-            self.listeners = dict()
-
-        def onChangedValue(self, key, user_func):
-            if key not in self.listeners:
-                self.listeners[key] = list()
-            self.listeners[key].append(user_func)
-
-        def triggerOnChangedValue(self, settings, key, user_data=None):
-            if key in self.listeners:
-                for func in self.listeners[key]:
-                    func(settings, key, user_data)
-
-        gi.repository.Gio.Settings.initEnhancements = initEnhancements
-        gi.repository.Gio.Settings.onChangedValue = onChangedValue
-        gi.repository.Gio.Settings.triggerOnChangedValue = triggerOnChangedValue
 
 
 class Guake(SimpleGladeApp):
