@@ -58,7 +58,7 @@ import threading
 
 # TODO this is not as fancy as as it could be
 # pylint: disable=anomalous-backslash-in-string
-TERMINAL_MATCH_TAGS = 'schema', 'http', 'email'
+TERMINAL_MATCH_TAGS = ('schema', 'http', 'https', 'email', 'ftp')
 TERMINAL_MATCH_EXPRS = [
     "(news:|telnet:|nntp:|file:\/|https?:|ftps?:|webcal:)\/\/"
     "([-[:alnum:]]+(:[-[:alnum:],?;.:\/!%$^*&~\"#']+)?\@)?[-[:alnum:]]+"
@@ -139,6 +139,10 @@ class Terminal(Vte.Terminal):
                 pass
             elif TERMINAL_MATCH_TAGS[tag] == 'http':
                 value = 'http://%s' % value
+            elif TERMINAL_MATCH_TAGS[tag] == 'https':
+                value = 'https://%s' % value
+            elif TERMINAL_MATCH_TAGS[tag] == 'ftp':
+                value = 'ftp://%s' % value
             elif TERMINAL_MATCH_TAGS[tag] == 'email':
                 value = 'mailto:%s' % value
 
@@ -361,9 +365,7 @@ class GuakeTerminal(Vte.Terminal):
 
     def handleTerminalMatch(self, matched_string):
         value, tag = matched_string
-        log.debug("found tag: %r", tag)
-        log.debug("found item: %r", value)
-        log.debug("TERMINAL_MATCH_TAGS: %r", TERMINAL_MATCH_TAGS)
+        log.debug("found tag: %r, item: %r", tag, value)
         if tag in TERMINAL_MATCH_TAGS:
             if TERMINAL_MATCH_TAGS[tag] == 'schema':
                 # value here should not be changed, it is right and
