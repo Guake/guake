@@ -7,15 +7,27 @@ python:
 install:
     - sudo ./bootstrap-debian.sh
     - ./bootstrap-pip.sh system
-    - make dev
 
 
 script:
+    # for users
+    - make
+    # for dev
+    - make dev
     # check
     - make check
     - make build
     - make test
-    # clean
-    - make clean
-    # for users
-    - make
+
+
+deploy:
+  provider: pypi
+  user: Stibbons
+  distributions: sdist bdist_wheel
+  password:
+    secure: XNXxMzRr3b44DpjbH/yyVYfonS/PkDsE7VMm4Mv4WSQf2SDuwxa/KZTtoforSr6AbYef16d4ZU5EELlOIQ31n3I
+            eVCE+yrFoCh96yOW4x2wMEdJfV5D9bKa5CNxyzYiHF2FvLh69yuIyOwpv89WGp0m8aowuYxwiOEdkrdm/ZVg=
+  on:
+    tags: true
+    repo: Guake/guake
+    branch: master
