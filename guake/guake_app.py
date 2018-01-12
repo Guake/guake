@@ -1559,8 +1559,6 @@ class Guake(SimpleGladeApp):
     def update_window_title(self, title):
         if self.settings.general.get_boolean('set-window-title') is True:
             self.window.set_property('title', title)
-            print(title)
-            traceback.print_stack(file=sys.stdout)
 
     def on_rename_current_tab_activate(self, *args):
         """Shows a dialog to rename the current tab.
