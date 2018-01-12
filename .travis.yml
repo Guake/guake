@@ -11,6 +11,11 @@ install:
 
 
 script:
+    # check
     - make check
     - make build
     - make test
+    # clean
+    - make clean
+    # for users
+    - make

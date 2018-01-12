@@ -105,8 +105,8 @@ If you really want to install Guake from these sources, use:
 
 .. code-block:: bash
 
-    $ make dev
-    $ make install-system
+    $ make
+    $ sudo make install
 
 Note for maintainers
 --------------------
@@ -156,7 +156,7 @@ Install the dependencies of your system and use the following commands:
 .. code-block:: bash
 
     $ make dev
-    $ make install-schemas  # still required even for local execution
+    $ sudo make install-schemas  # still required even for local execution
 
 Local execution of guake (without system-wide install):
 
@@ -200,7 +200,7 @@ Install the translations files:
 
 .. code-block:: bash
 
-    $ make install-locale
+    $ sudo make install-locale
 
 Then use your favorite po editor, such as ``poedit``.
 
