@@ -48,7 +48,7 @@ install-schemas:
 	install -Dm755 "guake/data/org.guake.gschema.xml" "$(PREFIX)/share/glib-2.0/schemas/org.guake.gschema.xml"
 
 uninstall-system: uninstall-schemas reset
-	@pip uninstall -y guake
+	@pip uninstall -y guake || true
 
 uninstall-schemas:
 	rm -f "$(PREFIX)/share/applications/guake.desktop"
@@ -160,6 +160,7 @@ clean: rm-dists clean-docs clean-po clean-py
 clean-py:
 	@pipenv --rm ; true
 	@find . -name "*.pyc" -exec rm -f {} \;
+	@rm -f guake/data/guake-prefs.desktop guake/data/guake.desktop
 	@rm -rf .venv .eggs *.egg-info po/*.pot
 
 clean-po:
