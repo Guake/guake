@@ -2,7 +2,7 @@
 Guake 3 README
 ==============
 
-|travis-badge|_ |bountysource-badge|_ |feathub-badge|_
+|travis-badge|_ |bountysource-badge|_
 
 .. |travis-badge| image:: https://travis-ci.org/Guake/guake.svg?branch=master
 .. _travis-badge: https://travis-ci.org/Guake/guake
@@ -10,8 +10,6 @@ Guake 3 README
 .. |bountysource-badge| image:: https://img.shields.io/bountysource/team/guake/activity.svg
 .. _bountysource-badge: https://www.bountysource.com/teams/guake
 
-.. |feathub-badge| image:: http://feathub.com/Guake/guake?format=svg
-.. _feathub-badge: http://feathub.com/Guake/guake
 
 Introduction
 ============
@@ -19,105 +17,36 @@ Introduction
 Guake is a dropdown terminal made for the GNOME desktop environment. Guake's style of window is
 based on an FPS game, and one of its goals is to be easy to reach.
 
+Request Features
+----------------
+
+Please vote for feature on `FeatHub <http://feathub.com/Guake/guake>`.
+Open Issues on GitHub only for bug reports.
+
+Most requested features list for Guake:
+
+|feathub-badge|_
+
+.. |feathub-badge| image:: http://feathub.com/Guake/guake?format=svg
+.. _feathub-badge: http://feathub.com/Guake/guake
+
+
 Guake 3 Port
 ============
 
-Guake has been ported Gtk3, thanks to the huge work of @aichingm.
-Old releases and code depending on GTK2 have been put on the `0.8.x` branch and will no more be
-actively maintained.
-
-
-Here is the status of the port of Guake to Python3, Gtk3 and Vte 2.91:
-
-- port all cli options
-- - --version
-- - --show ✓
-- - --hide ✓
-- - -f ✓
-- - -t ✓
-- - -p ✓
-- - -a ✓
-- - -n ✓
-- - -s ✓
-- - -g ✓
-- - -l ✓
-- - -e ✓
-- - -i ✓
-- - --bgimg (this option is removed from vte)
-- - --bgcolor ✓
-- - --fgcolor ✓
-- - --rename-tab ✓
-- - -r ✓
-- - --rename-current-tab ✓
-- - -q ✓
-- - -u
-
-- port dbus ✓ (after testing it with QDBusViewer it looks good)
-- port the context menu of the terminal ✓
-- - show ✓
-- - click actions ✓
-- - - copy ✓
-- - - paste ✓
-- - - toggle fullscreen ✓
-- - - save to file ✓
-- - - reset terminal ✓
-- - - new tab ✓
-- - - close tab ✓
-- - - rename terminal ✓
-- - - preferences ✓
-- - - about✓
-- - - quit ✓
-- port the context menu of the tab bar ✓
-- - show ✓
-- - click actions ✓
-- port the context menu of the tray icon v
-- - show ✓
-- - click actions ✓
-- - - preferences ✓
-- - - about ✓
-- - - quit ✓
-- port the scrollbar of the terminal ✓
-- port the resizer ✓
-- fix ctrl+d on terminal ✓
-- fix double click on the tab bar ✓
-- fix double click on tab to rename ✓
-- fix clipboard from context menu ✓
-
-- port the notification module ✓
-- port the keyboard shortcuts ✓
-- - ...
-- port the pref screen ✓
-- port gconfhandler to  gsettingshandler ✓
-- - ...
-- port about screen ✓
-- port pattern matching ✓
-- port Guake.accel* methods ✓
-- add more stuff to this list
-- port make stuff
-- port install stuff
-- update readme
-- ...
-- FIX all #TODO PORT sections
-- Things to fix after the port
-- Rename widgets (from _ to -) to match the names used in the settings
-- Split files in to single class modules
-- fix tab bar buttons sometimes losing their text (eg after adding 3+ new tabs from the context
-  menu, hovering them restores the text) (I think this is a problem with the deprecated widgets
-  which are still in use)
-- update the glade files (remove deprecated objects)
-- Simplify the color setting logic by removing the possibility to override the color buttons which
-  are overriding the color palette (too much overrides...) ✓
-
+Guake has recently been ported Gtk3, thanks to the huge work of @aichingm.
+Old releases and code depending on GTK2 have been put on the 
+`0.8.x <https://github.com/Guake/guake/tree/0.8.x>`_ branch and will no more be actively maintained.
 
 Dropped Features from Guake 0.8.x
 ---------------------------------
 
-- `--bgimg` (this option is removed from vte)
+- ``--bgimg`` (this option has been removed from vte)
 
 New Dependencies
 ----------------
 
-- `libkeybinder3`
+- ``libkeybinder3``
 
 Guake 3 Features
 ----------------
@@ -168,16 +97,16 @@ USA.
 System-wide installation
 ========================
 
-Always use your package manager to install guake.
+Always prefere using your package manager to install guake.
 
 Ubuntu users will use `sudo apt install guake`.
 
-If you really want to install Guake from source, use:
+If you really want to install Guake from these sources, use:
 
 .. code-block:: bash
 
     $ make dev
-    $ sudo make install-system
+    $ make install-system
 
 Note for maintainers
 --------------------
@@ -194,14 +123,18 @@ It does generate `requirements.txt` (running dependencies), and `requirements-de
 checks and test only). From then, Guake is now a classic, canon Python package (with setup.py,
 building distrubution packages, ...).
 
+It however requires system libraries, so cannot work isolated inside a virtualenv. If you look
+closer to the virtualenv used with `make dev ; make run`, you will see it is configured to use
+the system libraries using `pew toggleglobalsitepackages`.
+
 If for any reason `pipenv` does not work on your platform, you can still install guake from these
 requirements file, but the ultimate source of truth for dependency declaration is the `Pipfile`.
 
 Do not hesitate to contact me at `gaetan [at] xeberon.net`.
 
 
-Development environment
-=======================
+Contributing
+============
 
 Install System dependencies
 ---------------------------
@@ -249,10 +182,10 @@ python files:
 
 .. code-block:: bash
 
-    $ make style
-    $ make check
-    $ make test
-    $ make build
+    $ make style  # fix the style of python files
+    $ make check  # static code analysis
+    $ make test   # unit test campaign
+    $ make dists  # make distribution packages
 
 Update translation
 ------------------
@@ -271,26 +204,25 @@ Install the translations files:
 
 Then use your favorite po editor, such as ``poedit``.
 
-
 Update NEWS
 -----------
 
-Add your change in the ``NEWS`` file. You can use the following command to generate the
-release note excerp:
+Update the `NEWS` file using the followng command:
 
 .. code-block:: bash
 
-    make install-locale
+    make release-note-news
 
 
-The ``ChangeLog`` files is not maintained but instead
-automatically populated by PBR when generating the distribution packages.
+The ``ChangeLog`` files is not maintained but instead automatically generated by PBR when 
+building the distribution packages. 
+
 Same goes for the `ChangeLog` file.
 
 Versionning
 -----------
 
-Versioning is automatically done using git tags. When a tag is pushed, a new version
+Versioning is automatically done using git tags. When a semver tag is pushed, a new version
 is automatically created by PBR.
 
 Travis build

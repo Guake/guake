@@ -4,53 +4,57 @@
 
 ### Release Summary
 
-Guake has been ported to GTK-3 thanks to the huge work of @aichingm.
+Guake has been ported to GTK-3 thanks to the huge work of @aichingm. This also implies Guake uses
+the latest the underlying terminal emulator component, VTE 2.91. This enables new features in
+upcoming releases, such as "find in terminal", or "split screen". Guake is now only working on
+Python 3 (version 3.5 or 3.6). Official support for Python 2 has been dropped.
 
 ### New Features
 
 - Ported to GTK3:
-
   - cli arguments
-  - dbus
+  - D-Bus
   - context menu of the terminal, the tab bar and the tray icon
   - scrollbar of the terminal
-  - ctrl+d on terminal
+  - `ctrl+d` on terminal
   - fix double click on the tab bar
   - fix double click on tab to rename
   - fix clipboard from context menu
   - notification module
   - keyboard shortcuts
-  - pref screen
-  - port gconfhandler to gsettingshandler
+  - preference screen
+  - port `gconfhandler` to `gsettingshandler`
   - about dialog
   - pattern matching
   - `Guake.accel*` methods
 
 - Guake now use a brand new build system:
-
   - `pipenv` to manage dependencies in Pipfile
-  - Enforced code styling and checks using pylint, flake8, yapf and so on.
+  - enforced code styling and checks using Pylint, Flake8, Yapf, ISort.
   - simpler release management thanks to PBR
 
 - [reno](https://docs.openstack.org/reno/latest/) will be used to generate release notes for Guake
-  starting version 3.0.0.
+  starting version 3.0.0. It allows developers to write the right chunk that will appear in the
+  release note directly from their Pull Request.
 
 ### Known Issues
 
-- transition can be messy (ex: background can be all transparent at first launch)
-- hyperlinks cannot be clicked in terminal
-- translation might be broken in some language, waiting for the translation file to be updated by
+- Transition from Guake 0.8 to Guake 3 can be messy (ex: background can be all transparent at
+  first launch)
+- Hyperlinks cannot be clicked in terminal
+- Translation might be broken in some language, waiting for the translation file to be updated by
   volunteers
-- resizer does not work anymore
-- package maintainers have to rework their integration script completely
+- Resizer does not work anymore
+- Package maintainers have to rework their integration script completely
 
 ### Deprecations
 
-- background picture is no more customizable on each terminal
+- Background picture is no more customizable on each terminal
 
 ### Translation Updates
 
 - fr-FR
+
 
 
 Version 0.8.11
