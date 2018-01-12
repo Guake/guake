@@ -10,4 +10,4 @@
 # `Pipfile.lock` and then regenerate `requirements*.txt`.
 ################################################################################
 
-pbr==3.1.1
+pbr

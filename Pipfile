@@ -24,6 +24,7 @@ pytest = "*"
 yapf = "*"
 reno = {extras = ["sphinx"]}
 pipenv-to-requirements = "*"
+colorlog = "*"
 
 
 [packages]
