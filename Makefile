@@ -98,7 +98,7 @@ test-coverage:
 	pipenv run py.test -v --cov $(MODULE) --cov-report term-missing
 
 
-docs:
+docs: clean-docs
 	cd doc && pipenv run make html
 
 
@@ -135,22 +135,39 @@ push: githook
 	git push origin --tags
 
 
-clean: rm-dists
+clean: rm-dists clean-docs clean-po clean-py
+	@echo "clean successful"
+
+clean-py:
 	@pipenv --rm ; true
 	@find . -name "*.pyc" -exec rm -f {} \;
 	@rm -rf .venv .eggs *.egg-info po/*.pot
-	@echo "clean successful"
 
+clean-po:
+	@rm -f po/guake.pot
+	@find po -name "*.mo" -exec rm -f {} \;
+
+clean-docs:
+	rm -rf doc/build
 
 update-po:
-	find guake -iname "*.py" | xargs xgettext --from-code=UTF-8 --output=guake-python.pot
-	find guake/data -iname "*.glade" | xargs xgettext --from-code=UTF-8  -L Glade --output=guake-glade.pot
-	(find guake/data -iname "*.desktop" | xargs xgettext --from-code=UTF-8  -L Desktop --output=guake-desktop.pot) || (echo "Skipping .desktop files, is your gettext version < 0.19.1?" && touch guake-desktop.pot)
-	msgcat --use-first guake-python.pot guake-glade.pot guake-desktop.pot > po/guake.pot
-	rm guake-python.pot guake-glade.pot guake-desktop.pot
+	@find guake -iname "*.py" | xargs xgettext --from-code=UTF-8 --output=guake-python.pot
+	@find guake/data -iname "*.glade" | xargs xgettext --from-code=UTF-8 \
+	                                                  -L Glade \
+	                                                  --output=guake-glade.pot
+	@(\
+	    find guake/data -iname "*.desktop" | xargs xgettext --from-code=UTF-8 \
+		                                                  -L Desktop \
+	                                                      --output=guake-desktop.pot \
+	) || ( \
+	    echo "Skipping .desktop files, is your gettext version < 0.19.1?" && \
+	    touch guake-desktop.pot)
+	@msgcat --use-first guake-python.pot guake-glade.pot guake-desktop.pot > po/guake.pot
+	@rm guake-python.pot guake-glade.pot guake-desktop.pot
 	for f in $$(find po -iname "*.po"); do \
-		msgcat --use-first "$$f" po/guake.pot > "$$f.new"; \
-		mv "$$f.new" $$f; \
+	    echo "updating $$f"; \
+	    msgcat --use-first "$$f" po/guake.pot > "$$f.new"; \
+	    mv "$$f.new" $$f; \
 	done;
 
 pot: update-po
@@ -163,8 +180,16 @@ generate-mo:
 
 
 generate-desktop:
-	msgfmt --desktop --template=guake/data/guake.template.desktop -d po -o guake/data/guake.desktop || (echo "Skipping .desktop files, is your gettext version < 0.19.1?" && cp guake/data/guake.template.desktop guake/data/guake.desktop)
-	msgfmt --desktop --template=guake/data/guake-prefs.template.desktop -d po -o guake/data/guake-prefs.desktop || (echo "Skipping .desktop files, is your gettext version < 0.19.1?" && cp guake/data/guake-prefs.template.desktop guake/data/guake-prefs.desktop)
+	msgfmt --desktop --template=guake/data/guake.template.desktop \
+		   -d po \
+		   -o guake/data/guake.desktop || (
+			   	echo "Skipping .desktop files, is your gettext version < 0.19.1?" && \
+				cp guake/data/guake.template.desktop guake/data/guake.desktop)
+	msgfmt --desktop --template=guake/data/guake-prefs.template.desktop \
+		   -d po \
+		   -o guake/data/guake-prefs.desktop || (
+			   	echo "Skipping .desktop files, is your gettext version < 0.19.1?" && \
+				cp guake/data/guake-prefs.template.desktop guake/data/guake-prefs.desktop)
 
 
 reno:
