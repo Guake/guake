@@ -30,7 +30,7 @@ mock==2.0.0
 pbr==3.1.1
 pep8==1.7.1
 pew==1.1.2
-pipenv-to-requirements==0.1.9
+pipenv-to-requirements==0.2.0
 pipenv==9.0.1
 pluggy==0.6.0
 py==1.5.2
