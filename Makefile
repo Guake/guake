@@ -238,10 +238,15 @@ release-note: reno-lint release-note-news release-note-github
 release-note-news:
 	@echo "Generating release note for NEWS file"
 	@pipenv run reno report 2>/dev/null | \
-		pandoc -f rst -t markdown --normalize --wrap=auto --columns=100 --atx-headers --tab-stop 2 | \
-		grep -v '\[\[' | \
-		grep -v -E '^\.\.' > NEWS.md
-	@cat releasenotes/archive/NEWS.pre-3.0 >> NEWS.md
+		pandoc -f rst -t rst --atx-headers --columns=100 --wrap=auto --tab-stop 2 | \
+		tr '\n' '\r' | \
+			sed 's/\r\.\.\ .*\r\r//g' | \
+			sed 's/\r\-\ \ \r\r\ \ /\r-/g' | \
+			sed 's/\r\ \ \ \ \ \-\ \ /\r  - /g' | \
+			sed 's/\r\-\ \ /\r- /g' | \
+		tr '\r' '\n' \
+		> NEWS.rst
+	@cat releasenotes/archive/NEWS.pre-3.0 >> NEWS.rst
 
 release-note-github:
 	@echo
@@ -254,8 +259,13 @@ release-note-github:
 		pandoc -f rst -t markdown --atx-headers --columns=100 --wrap=auto --tab-stop 2 | \
 		tr '\n' '\r' | \
 			sed 's/\r<!-- -->\r\r//g' | \
+			sed 's/\r\-\ \r\r\ /\r-/g' | \
+			sed 's/\r\ \ \:\ \ \ /\r    /g' | \
+			sed 's/\r\r\ \ \ \ \-\ /\r    - /g' | \
+			sed 's/\r\ \ \ \ \-\ /\r  - /g' | \
 		tr '\r' '\n'
 
+release: dists release-note
 
 # aliases to gracefully handle typos on poor dev's terminal
 check: checks

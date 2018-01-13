@@ -30,7 +30,7 @@ features:
       - enforced code styling and checks using Pylint, Flake8, Yapf, ISort.
       - simpler release management thanks to PBR
 
-issues:
+known_issues:
   - |
     Transition from Guake 0.8 to Guake 3 can be messy (ex: background can be all
     transparent at first launch)

@@ -1,7 +1,7 @@
 
 
 Version 0.8.11
-==============
+--------------
 
 Maintainance release with bug fixes and translation updates.
 
@@ -15,13 +15,13 @@ Maintainance release with bug fixes and translation updates.
 
 
 Version 0.8.10
-==============
+--------------
 
 Minors Bug fixes and new Ocean and Oceanic Next color schemes.
 
 
 Version 0.8.9
-=============
+-------------
 
 Thanks for guakers for the following contibutions:
 
@@ -39,7 +39,7 @@ Bug Fixes
 
 
 Version 0.8.8
-=============
+-------------
 
 Thank to these contribution from Guake users, I am happy to announce a new minor fix release of
 Guake.
@@ -60,12 +60,12 @@ Bug Fixes:
 
 
 Version 0.8.7
-=============
+-------------
 
 Do not forget to update the software version
 
 Version 0.8.6
-=============
+-------------
 
 Lot of bug fixes in this release. Thanks for all contributors !
 
@@ -88,7 +88,7 @@ Bug fixes:
 
 
 Version 0.8.5
-=============
+-------------
 
 Minor version today, mostly minor bug fixes and translation update.
 
@@ -105,7 +105,7 @@ Travis kind of abandonned the compatibility of PyGtk2.
 
 
 Version 0.8.4
-=============
+-------------
 
 Bug fixes:
  - Very big icon tray (#598, @thardev)
@@ -120,12 +120,12 @@ Bug fixes:
 
 
 Version 0.8.3
-=============
+-------------
 Quick fix about missing svg file
 
 
 Version 0.8.2
-=============
+-------------
 
 Bug fix version. Thanks for external contributions!
 
@@ -142,7 +142,7 @@ Bug fixes:
 
 
 Version 0.8.1
-=============
+-------------
 
   I started working on Guake 1.0.0, and not in a dedicated branch. It is now in its own source
   folder. We clearly need to move to gtk3 soon, since GTK2 is being discontinued, the VTE is no more
@@ -173,7 +173,7 @@ Version 0.8.1
 
 
 Version 0.8.0
-=============
+-------------
 
   I have been extremely busy the previous 3 months, so I have almost not worked on Guake. I wanted
   to introduce in the next version some major features heavily asked, like session save and split
@@ -214,7 +214,7 @@ Version 0.8.0
 
 
 Version 0.7.2 (2015.05.20)
-==========================
+--------------------------
 
   Bug fixes:
   - Fix Ctrl+D regresion (#550)
@@ -222,7 +222,7 @@ Version 0.7.2 (2015.05.20)
 
 
 Version 0.7.1 (2015.05.18):
-===========================
+---------------------------
 
   Some bug fixes, and cleared issues with new palette colors.
 
@@ -248,7 +248,7 @@ Version 0.7.1 (2015.05.18):
 
 
 Version 0.7.0 (2015.05.02):
-===========================
+---------------------------
 
   I had more time working on Guake recently, so I fixed some long term issues, and exposed some
   internal settings into the preference window.
@@ -273,17 +273,17 @@ Version 0.7.0 (2015.05.02):
 
 
 Version 0.6.2 (2015.04.20):
-===========================
+---------------------------
   - Packaging issue fixes
 
 
 Version 0.6.1 (2015.04.19):
-===========================
+---------------------------
   - bug fixes
 
 
 Version 0.6.0 (2015.04.18):
-===========================
+---------------------------
   This version is poor in new feature, I just don't have time to work on Guake. I got a lot of
   incompatibility reports on new systems, such as Wayland. Port to gtk3 is still a must have, but
   all features of the VTE component does not seem to have been ported.
@@ -296,7 +296,7 @@ Version 0.6.0 (2015.04.18):
 
 
 Version 0.5.2 (2014.11.23):
-===========================
+---------------------------
  - bug fixes
  - Disable the 'focus_if_open' feature (hidden trigger, true per default). Restaure focus does not
    work in all systems.
@@ -304,12 +304,12 @@ Version 0.5.2 (2014.11.23):
 
 
 Version 0.5.1 (2014.11.06):
-===========================
+---------------------------
   - minor bug fixes release
 
 
 Version 0.5.0 (2014.02.22):
-===========================
+---------------------------
   - Tab can be moved
   - Add change tab hotkey (F1-F10 by default) and is display on tab
   - Add "New tab" menu item
@@ -326,7 +326,7 @@ Version 0.5.0 (2014.02.22):
 
 
 Versions < 0.5.0
-================
+----------------
 
 changes since 0.4.4:
   - Custom tab titles are no longer overriden by VTE ones (rgaudin)
