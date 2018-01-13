@@ -71,3 +71,5 @@ ChangeLog
 
 .venv
 .vscode/
+
+guake/data/gschemas.compiled

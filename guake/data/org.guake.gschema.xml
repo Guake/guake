@@ -265,8 +265,8 @@
     </schema>
     <schema id="guake.style.background" path="/apps/guake/style/background/">
         <key name="transparency" type="i">
-            <default>90</default>
-             <range min="0" max="100"/>
+            <default>95</default>
+            <range min="0" max="100"/>
             <summary>Background transparency.</summary>
             <description>Alpha that will be applied to the terminal background.</description>
         </key>
