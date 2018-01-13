@@ -639,10 +639,9 @@
                                         <property name="can_focus">True</property>
                                         <property name="receives_default">False</property>
                                         <property name="use_underline">True</property>
-                                        <property name="active">True</property>
+                                        <property name="active">False</property>
                                         <property name="draw_indicator">True</property>
                                         <signal name="toggled" handler="on_set_window_title_toggled" swapped="no"/>
-                                        <signal name="toggled" handler="toggle_set_window_title" swapped="no"/>
                                       </object>
                                       <packing>
                                         <property name="expand">False</property>

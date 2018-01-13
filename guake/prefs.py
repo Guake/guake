@@ -521,9 +521,6 @@ class PrefsCallbacks(object):
     def toggle_use_vte_titles(self, chk):
         self.prefDlg.toggle_use_vte_titles(chk)
 
-    def toggle_set_window_title(self, chk):
-        self.prefDlg.toggle_set_window_title(chk)
-
     def update_vte_subwidgets_states(self):
         self.prefDlg.update_vte_subwidgets_states()
 
