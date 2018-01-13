@@ -1,70 +1,90 @@
-# Release Notes
+Release Notes
+=============
 
-## 3.0.0.b2
+3.0.0.b2
+--------
 
-### New Features
+New Features
+~~~~~~~~~~~~
 
 - Update Guake window title when:
-
   - the active tab changes
   - the active tab is renamed
   - the vte title changes
 
-### Bug Fixes
+Bug Fixes
+~~~~~~~~~
 
 - glib settings files installation
 
-## 3.0.0.b1
+3.0.0.b1
+--------
 
-### Release Summary
+Release Summary
+~~~~~~~~~~~~~~~
 
 Guake has been ported to GTK-3 thanks to the huge work of @aichingm. This also implies Guake uses
 the latest the underlying terminal emulator component, VTE 2.91. This enables new features in
 upcoming releases, such as "find in terminal", or "split screen". Guake is now only working on
 Python 3 (version 3.5 or 3.6). Official support for Python 2 has been dropped.
 
-### New Features
+New Features
+~~~~~~~~~~~~
 
 - Ported to GTK3:
-
   - cli arguments
   - D-Bus
   - context menu of the terminal, the tab bar and the tray icon
   - scrollbar of the terminal
-  - `ctrl+d` on terminal
+  - ``ctrl+d`` on terminal
   - fix double click on the tab bar
   - fix double click on tab to rename
   - fix clipboard from context menu
   - notification module
   - keyboard shortcuts
   - preference screen
-  - port `gconfhandler` to `gsettingshandler`
+  - port ``gconfhandler`` to ``gsettingshandler``
   - about dialog
   - pattern matching
-  - `Guake.accel*` methods
+  - ``Guake.accel*`` methods
 
 - Guake now use a brand new build system:
-
-  - `pipenv` to manage dependencies in Pipfile
+  - ``pipenv`` to manage dependencies in Pipfile
   - enforced code styling and checks using Pylint, Flake8, Yapf, ISort.
   - simpler release management thanks to PBR
 
-- [reno](https://docs.openstack.org/reno/latest/) will be used to generate release notes for Guake
-  starting version 3.0.0. It allows developers to write the right chunk that will appear in the
-  release note directly from their Pull Request.
+- `reno <https://docs.openstack.org/reno/latest/>`__ will be used to generate release notes for
+   Guake starting version 3.0.0. It allows developers to write the right chunk that will appear in
+   the release note directly from their Pull Request.
 
-### Deprecations
+Known Issues
+~~~~~~~~~~~~
+
+- Transition from Guake 0.8 to Guake 3 can be messy (ex: background can be all transparent at first
+   launch)
+
+- Hyperlinks cannot be clicked in terminal
+
+- Translation might be broken in some language, waiting for the translation file to be updated by
+   volunteers
+
+- Resizer does not work anymore
+
+- Package maintainers have to rework their integration script completely
+
+Deprecations
+~~~~~~~~~~~~
 
 - Background picture is no more customizable on each terminal
 
-### Translation Updates
+Translation Updates
+~~~~~~~~~~~~~~~~~~~
 
 - fr-FR
 
 
-
 Version 0.8.11
-==============
+--------------
 
 Maintainance release with bug fixes and translation updates.
 
@@ -78,13 +98,13 @@ Maintainance release with bug fixes and translation updates.
 
 
 Version 0.8.10
-==============
+--------------
 
 Minors Bug fixes and new Ocean and Oceanic Next color schemes.
 
 
 Version 0.8.9
-=============
+-------------
 
 Thanks for guakers for the following contibutions:
 
@@ -102,7 +122,7 @@ Bug Fixes
 
 
 Version 0.8.8
-=============
+-------------
 
 Thank to these contribution from Guake users, I am happy to announce a new minor fix release of
 Guake.
@@ -123,12 +143,12 @@ Bug Fixes:
 
 
 Version 0.8.7
-=============
+-------------
 
 Do not forget to update the software version
 
 Version 0.8.6
-=============
+-------------
 
 Lot of bug fixes in this release. Thanks for all contributors !
 
@@ -151,7 +171,7 @@ Bug fixes:
 
 
 Version 0.8.5
-=============
+-------------
 
 Minor version today, mostly minor bug fixes and translation update.
 
@@ -168,7 +188,7 @@ Travis kind of abandonned the compatibility of PyGtk2.
 
 
 Version 0.8.4
-=============
+-------------
 
 Bug fixes:
  - Very big icon tray (#598, @thardev)
@@ -183,12 +203,12 @@ Bug fixes:
 
 
 Version 0.8.3
-=============
+-------------
 Quick fix about missing svg file
 
 
 Version 0.8.2
-=============
+-------------
 
 Bug fix version. Thanks for external contributions!
 
@@ -205,7 +225,7 @@ Bug fixes:
 
 
 Version 0.8.1
-=============
+-------------
 
   I started working on Guake 1.0.0, and not in a dedicated branch. It is now in its own source
   folder. We clearly need to move to gtk3 soon, since GTK2 is being discontinued, the VTE is no more
@@ -236,7 +256,7 @@ Version 0.8.1
 
 
 Version 0.8.0
-=============
+-------------
 
   I have been extremely busy the previous 3 months, so I have almost not worked on Guake. I wanted
   to introduce in the next version some major features heavily asked, like session save and split
@@ -277,7 +297,7 @@ Version 0.8.0
 
 
 Version 0.7.2 (2015.05.20)
-==========================
+--------------------------
 
   Bug fixes:
   - Fix Ctrl+D regresion (#550)
@@ -285,7 +305,7 @@ Version 0.7.2 (2015.05.20)
 
 
 Version 0.7.1 (2015.05.18):
-===========================
+---------------------------
 
   Some bug fixes, and cleared issues with new palette colors.
 
@@ -311,7 +331,7 @@ Version 0.7.1 (2015.05.18):
 
 
 Version 0.7.0 (2015.05.02):
-===========================
+---------------------------
 
   I had more time working on Guake recently, so I fixed some long term issues, and exposed some
   internal settings into the preference window.
@@ -336,17 +356,17 @@ Version 0.7.0 (2015.05.02):
 
 
 Version 0.6.2 (2015.04.20):
-===========================
+---------------------------
   - Packaging issue fixes
 
 
 Version 0.6.1 (2015.04.19):
-===========================
+---------------------------
   - bug fixes
 
 
 Version 0.6.0 (2015.04.18):
-===========================
+---------------------------
   This version is poor in new feature, I just don't have time to work on Guake. I got a lot of
   incompatibility reports on new systems, such as Wayland. Port to gtk3 is still a must have, but
   all features of the VTE component does not seem to have been ported.
@@ -359,7 +379,7 @@ Version 0.6.0 (2015.04.18):
 
 
 Version 0.5.2 (2014.11.23):
-===========================
+---------------------------
  - bug fixes
  - Disable the 'focus_if_open' feature (hidden trigger, true per default). Restaure focus does not
    work in all systems.
@@ -367,12 +387,12 @@ Version 0.5.2 (2014.11.23):
 
 
 Version 0.5.1 (2014.11.06):
-===========================
+---------------------------
   - minor bug fixes release
 
 
 Version 0.5.0 (2014.02.22):
-===========================
+---------------------------
   - Tab can be moved
   - Add change tab hotkey (F1-F10 by default) and is display on tab
   - Add "New tab" menu item
@@ -389,7 +409,7 @@ Version 0.5.0 (2014.02.22):
 
 
 Versions < 0.5.0
-================
+----------------
 
 changes since 0.4.4:
   - Custom tab titles are no longer overriden by VTE ones (rgaudin)

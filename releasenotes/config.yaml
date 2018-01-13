@@ -1,6 +1,6 @@
 ---
 branch: master
-earliest_version: 3.0.0.a4
+earliest_version: 3.0.0.b1
 collapse_pre_releases: true
 stop_at_branch_base: true
 sections:
