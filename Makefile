@@ -37,6 +37,7 @@ install-system: install-schemas install-locale
 	@echo "Please prefer you application package manager (apt, yum, ...)"
 	@pip3 install -r requirements.txt
 	@python3 setup.py install --root "$(INSTALL_ROOT)" --optimize=1
+	@glib-compile-schemas $(PREFIX)/local/lib/python3.5/dist-packages/guake/data/
 	@rm -rfv build *.egg-info
 
 install-locale:
@@ -65,7 +66,7 @@ uninstall-schemas:
 	glib-compile-schemas $(PREFIX)/share/glib-2.0/schemas/
 
 compile-glib-schemas: clean-schemas
-	glib-compile-schemas guake/data/
+	glib-compile-schemas --strict guake/data/
 
 clean-schemas:
 	rm -f guake/data/gschemas.compiled
