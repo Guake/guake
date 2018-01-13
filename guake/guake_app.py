@@ -415,6 +415,7 @@ class Guake(SimpleGladeApp):
                 _("Guake is now running,\n"
                   "press <b>{!s}</b> to use it.").format(xml_escape(label)), filename
             )
+
         log.info("Guake initialized")
 
     # load the custom commands infrastucture
@@ -522,12 +523,7 @@ class Guake(SimpleGladeApp):
         return bg_color
 
     def set_background_color_from_settings(self):
-        transparency = self.settings.styleBackground.get_int('transparency')
-        palette_list = self.__load_palette()
-        bg_color = self.__get_background_color(palette_list, transparency)
-        log.info("Setting background color bg_color=%r, transparency=%r", bg_color, transparency)
-        for t in self.notebook.iter_terminals():
-            t.set_color_background(bg_color)
+        self.set_colors_from_settings()
 
     def set_colors_from_settings(self):
         transparency = self.settings.styleBackground.get_int('transparency')
@@ -1172,6 +1168,7 @@ class Guake(SimpleGladeApp):
         self.settings.general.triggerOnChangedValue(self.settings.general, 'history-size')
         self.settings.general.triggerOnChangedValue(self.settings.general, 'show-resizer')
         self.settings.general.triggerOnChangedValue(self.settings.general, 'use-vte-titles')
+        self.settings.general.triggerOnChangedValue(self.settings.general, 'set-window-title')
         self.settings.general.triggerOnChangedValue(self.settings.general, 'abbreviate-tab-names')
         self.settings.general.triggerOnChangedValue(self.settings.general, 'max-tab-name-length')
         self.settings.general.triggerOnChangedValue(self.settings.general, 'quick-open-enable')

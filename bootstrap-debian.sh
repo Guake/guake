@@ -7,6 +7,7 @@ sudo apt install -y \
     dconf-editor \
     gettext \
     gir1.2-keybinder-3.0 \
+    gsettings-desktop-schemas \
     libkeybinder-3.0-0 \
     make \
     pandoc \

@@ -5,15 +5,18 @@ INSTALL_ROOT:=/
 PREFIX:=$(INSTALL_ROOT)usr
 SLUG:=fragment_name
 
-prepare-install: generate-desktop generate-mo
+default: prepare-install
+	# 'make' target
 
-reset: clean
+prepare-install: generate-desktop generate-mo compile-glib-schemas
+
+reset:
 	dconf reset -f /apps/guake/
 
 
 all: dev style checks dists test docs
 
-dev: pipenv-install-dev requirements ln-venv setup-githook
+dev: pipenv-install-dev requirements ln-venv setup-githook prepare-install
 
 dev-no-pipenv: clean
 	virtualenv --python python3 .venv
@@ -28,6 +31,8 @@ ln-venv:
 	ln -s $$(pipenv --venv) .venv
 
 install-system: install-schemas install-locale
+	# you probably want to execute this target with sudo:
+	# sudo make install
 	@echo "Installing from on your system is not recommended."
 	@echo "Please prefer you application package manager (apt, yum, ...)"
 	@pip3 install -r requirements.txt
@@ -46,6 +51,8 @@ install-schemas:
 	install -Dm755 "guake/data/guake-prefs.desktop" "$(PREFIX)/share/applications/guake-prefs.desktop"
 	install -Dm755 "guake/data/pixmaps/guake.png" "$(PREFIX)/share/pixmaps/guake.png"
 	install -Dm755 "guake/data/org.guake.gschema.xml" "$(PREFIX)/share/glib-2.0/schemas/org.guake.gschema.xml"
+	glib-compile-schemas $(PREFIX)/share/glib-2.0/schemas/
+
 
 uninstall-system: uninstall-schemas reset
 	@pip uninstall -y guake || true
@@ -55,7 +62,13 @@ uninstall-schemas:
 	rm -f "$(PREFIX)/share/applications/guake-prefs.desktop"
 	rm -f "$(PREFIX)/share/pixmaps/guake.png"
 	rm -f "$(PREFIX)/share/glib-2.0/schemas/org.guake.gschema.xml"
+	glib-compile-schemas $(PREFIX)/share/glib-2.0/schemas/
 
+compile-glib-schemas: clean-schemas
+	glib-compile-schemas guake/data/
+
+clean-schemas:
+	rm -f guake/data/gschemas.compiled
 
 style: fiximports autopep8 yapf
 
@@ -83,7 +96,7 @@ pylint:
 
 sc: style check
 
-dists: update-po requirements generate-desktop rm-dists sdist bdist wheels
+dists: update-po requirements prepare-install rm-dists sdist bdist wheels
 build: dists
 
 sdist:
@@ -153,7 +166,7 @@ push: githook
 	git push origin --tags
 
 
-clean: rm-dists clean-docs clean-po clean-py
+clean: rm-dists clean-docs clean-po clean-schemas clean-py
 	@echo "clean successful"
 
 clean-py:
