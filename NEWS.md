@@ -1,5 +1,19 @@
 # Release Notes
 
+## 3.0.0.b2
+
+### New Features
+
+-  Update Guake window title when:
+
+  - the active tab changes
+  - the active tab is renamed
+  - the vte title changes
+
+### Known Issues
+
+- Set Window title to name of active tab
+
 ## 3.0.0.b1
 
 ### Release Summary
@@ -12,6 +26,7 @@ Python 3 (version 3.5 or 3.6). Official support for Python 2 has been dropped.
 ### New Features
 
 - Ported to GTK3:
+
   - cli arguments
   - D-Bus
   - context menu of the terminal, the tab bar and the tray icon
@@ -29,6 +44,7 @@ Python 3 (version 3.5 or 3.6). Official support for Python 2 has been dropped.
   - `Guake.accel*` methods
 
 - Guake now use a brand new build system:
+
   - `pipenv` to manage dependencies in Pipfile
   - enforced code styling and checks using Pylint, Flake8, Yapf, ISort.
   - simpler release management thanks to PBR
@@ -54,7 +70,6 @@ Python 3 (version 3.5 or 3.6). Official support for Python 2 has been dropped.
 ### Translation Updates
 
 - fr-FR
-
 
 
 Version 0.8.11
