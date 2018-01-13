@@ -20,7 +20,7 @@ based on an FPS game, and one of its goals is to be easy to reach.
 Request Features
 ----------------
 
-Please vote for feature on `FeatHub <http://feathub.com/Guake/guake>`.
+Please vote for feature on `FeatHub <http://feathub.com/Guake/guake>`_.
 Open Issues on GitHub only for bug reports.
 
 Most requested features list for Guake:
