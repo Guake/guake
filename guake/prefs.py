@@ -707,8 +707,8 @@ class PrefsDialog(SimpleGladeApp):
         keys. The default values are retrivied from the guake.schemas
         file.
         """
-        self.settings.gernal.reset('compat-backspace')
-        self.settings.gernal.reset('compat-delete')
+        self.settings.general.reset('compat-backspace')
+        self.settings.general.reset('compat-delete')
         self.reload_erase_combos()
 
     def on_palette_name_changed(self, combo):
@@ -939,7 +939,7 @@ class PrefsDialog(SimpleGladeApp):
 
         value = self.settings.general.get_double('window-height-f')
         if not value:
-            value = self.settings.gernal.get_int('window-height')
+            value = self.settings.general.get_int('window-height')
         self.get_widget('window_height').set_value(value)
 
         value = self.settings.general.get_double('window-width-f')
