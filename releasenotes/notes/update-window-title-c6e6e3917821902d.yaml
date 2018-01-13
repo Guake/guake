@@ -4,6 +4,6 @@ features:
       - the active tab changes
       - the active tab is renamed
       - the vte title changes
-issues:
+fixes:
   - |
-    Set Window title to name of active tab
+    glib settings files installation

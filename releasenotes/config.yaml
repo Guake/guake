@@ -6,7 +6,7 @@ stop_at_branch_base: true
 sections:
   # The prelude section is implicitly included.
   - [features, New Features]
-  - [issues, Known Issues]
+  - [known_issues, Known Issues]
   - [upgrade, Upgrade Notes]
   - [deprecations, Deprecations]
   - [security, Security Issues]
@@ -32,7 +32,7 @@ template: |
       needs to be worded so that it does not depend on any information only
       available in another section, such as the prelude. This may mean repeating
       some details.
-  issues:
+  known_issues:
     - |
       List known issues here, or remove this section.  All of the list items in
       this section are combined when the release notes are rendered, so the text

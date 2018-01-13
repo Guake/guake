@@ -4,15 +4,15 @@
 
 ### New Features
 
--  Update Guake window title when:
+- Update Guake window title when:
 
   - the active tab changes
   - the active tab is renamed
   - the vte title changes
 
-### Known Issues
+### Bug Fixes
 
-- Set Window title to name of active tab
+- glib settings files installation
 
 ## 3.0.0.b1
 
@@ -53,16 +53,6 @@ Python 3 (version 3.5 or 3.6). Official support for Python 2 has been dropped.
   starting version 3.0.0. It allows developers to write the right chunk that will appear in the
   release note directly from their Pull Request.
 
-### Known Issues
-
-- Transition from Guake 0.8 to Guake 3 can be messy (ex: background can be all transparent at
-  first launch)
-- Hyperlinks cannot be clicked in terminal
-- Translation might be broken in some language, waiting for the translation file to be updated by
-  volunteers
-- Resizer does not work anymore
-- Package maintainers have to rework their integration script completely
-
 ### Deprecations
 
 - Background picture is no more customizable on each terminal
@@ -70,6 +60,7 @@ Python 3 (version 3.5 or 3.6). Official support for Python 2 has been dropped.
 ### Translation Updates
 
 - fr-FR
+
 
 
 Version 0.8.11
