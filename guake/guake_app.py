@@ -374,6 +374,9 @@ class Guake(SimpleGladeApp):
         self.custom_command_menuitem = None
         self.load_custom_commands()
 
+        # store the default window title to reset it when update is not wanted
+        self.default_window_title = self.window.get_title()
+
         # double click stuff
         def double_click(hbox, event):
             """Handles double clicks on tabs area and when receive
@@ -1550,6 +1553,17 @@ class Guake(SimpleGladeApp):
             vte_title = self.compute_tab_title(vte)
             tab.set_label(vte_title)
             tab.set_tooltip_text(vte_title)
+            self.update_window_title(vte_title)
+        else:
+            text = getattr(tab, 'custom_label_text')
+            if text:
+                self.update_window_title(text)
+
+    def update_window_title(self, title):
+        if self.settings.general.get_boolean('set-window-title') is True:
+            self.window.set_title(title)
+        else:
+            self.window.set_title(self.default_window_title)
 
     def on_rename_current_tab_activate(self, *args):
         """Shows a dialog to rename the current tab.
@@ -1840,10 +1854,19 @@ class Guake(SimpleGladeApp):
         bnt.set_property('can-focus', False)
         bnt.set_property('draw-indicator', False)
         bnt.connect('button-press-event', self.show_tab_menu)
-        bnt.activate_tab = lambda *x: self.notebook.set_current_page(self.notebook.page_num(box))
         bnt.connect('button-press-event', self.middle_button_click)
         bnt.connect('button-press-event', self.show_rename_current_tab_dialog)
+
+        def _update_window_title_on_active_tab(*args):
+            current_pagepos = self.notebook.get_current_page()
+            wanted_pagepos = self.notebook.page_num(box)
+            if current_pagepos != wanted_pagepos:
+                self.notebook.set_current_page(wanted_pagepos)
+                box.terminal.emit('window-title-changed')
+
+        bnt.activate_tab = _update_window_title_on_active_tab
         bnt.connect('clicked', bnt.activate_tab)
+
         if self.selected_color is not None:
             # TODO PORT
             bnt.modify_bg(gtk.STATE_ACTIVE, gtk.gdk.Color(str(self.selected_color)))
