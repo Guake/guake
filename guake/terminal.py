@@ -17,10 +17,6 @@ License along with this program; if not, write to the
 Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor,
 Boston, MA 02110-1301 USA
 """
-from __future__ import absolute_import
-from __future__ import division
-from __future__ import print_function
-from __future__ import unicode_literals
 
 import gi
 gi.require_version('Gtk', '3.0')
@@ -38,21 +34,23 @@ from guake.common import clamp
 
 from time import sleep
 
+import code
 import logging
 import os
 import re
 import uuid
+
+import signal
+import subprocess
+import threading
+
 log = logging.getLogger(__name__)
-import code
 
 
 def halt(loc):
     code.interact(local=loc)
 
 
-import signal
-import subprocess
-import threading
 # TODO PORT
 # __all__ = ['Terminal', 'TerminalBox']
 

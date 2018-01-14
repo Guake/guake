@@ -17,7 +17,6 @@ License along with this program; if not, write to the
 Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor,
 Boston, MA 02110-1301 USA
 """
-from __future__ import absolute_import
 
 import inspect
 import os
@@ -25,8 +24,8 @@ import os
 import guake
 
 __all__ = [
-    'NAME', 'VERSION', 'IMAGE_DIR', 'GLADE_DIR', 'SCHEMA_DIR', 'LOCALE_DIR', 'GCONF_PATH', 'KEY',
-    'ALIGN_CENTER', 'ALIGN_RIGHT', 'ALIGN_LEFT', 'ALIGN_TOP', 'ALIGN_BOTTOM', 'ALWAYS_ON_PRIMARY'
+    'NAME', 'VERSION', 'IMAGE_DIR', 'GLADE_DIR', 'SCHEMA_DIR', 'LOCALE_DIR', 'ALIGN_CENTER',
+    'ALIGN_RIGHT', 'ALIGN_LEFT', 'ALIGN_TOP', 'ALIGN_BOTTOM', 'ALWAYS_ON_PRIMARY'
 ]
 
 
@@ -44,27 +43,6 @@ IMAGE_DIR = os.path.join(SRC_DIR, 'data/pixmaps')
 GLADE_DIR = os.path.join(SRC_DIR, 'data')
 SCHEMA_DIR = os.path.join(SRC_DIR, 'data')
 LOCALE_DIR = "/usr/share/locale"
-
-# TODO port dead!?
-# Gconf stuff. Yep, it is hardcoded =)
-GCONF_PATH = '/apps/guake'
-
-
-def KEY(x):
-    return (GCONF_PATH + x)
-
-
-# Stuff used to build the treeview that will allow the user to change
-# keybindings in the preferences window.
-
-
-def LKEY(x):
-    return GCONF_PATH + '/keybindings/local/' + x
-
-
-def GKEY(x):
-    return GCONF_PATH + '/keybindings/global/' + x
-
 
 ALIGN_CENTER, ALIGN_LEFT, ALIGN_RIGHT = range(3)
 ALIGN_TOP, ALIGN_BOTTOM = range(2)

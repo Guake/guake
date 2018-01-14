@@ -18,9 +18,6 @@ License along with this program; if not, write to the
 Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor,
 Boston, MA 02110-1301 USA
 """
-from __future__ import absolute_import
-from __future__ import division
-from __future__ import print_function
 
 import gi
 gi.require_version('Gtk', '3.0')
@@ -36,27 +33,17 @@ from gi.repository import Gtk
 from gi.repository import Keybinder
 from gi.repository import Vte
 
-# import gconf
 import json
 import logging
 import os
 import platform
-# import pygtk
-# needed for execute_hook
 import subprocess
-# needed for sys.stderr.write(...)
 import sys
-# needed for execute_hook
 import traceback
-# import uuid
-# import xdg.Exceptions
 
 import cairo
 
 from urllib.parse import quote_plus
-# from urllib import url2pathname
-# from urlparse import urlsplit
-# from xdg.DesktopEntry import DesktopEntry
 from xml.sax.saxutils import escape as xml_escape
 
 from guake import notifier
@@ -64,19 +51,14 @@ from guake.about import AboutDialog
 from guake.common import _
 from guake.common import gladefile
 from guake.common import pixmapfile
-# from guake.common import shell_quote
-# from guake.gconfhandler import GConfHandler
-# from guake.gconfhandler import GConfKeyHandler
 from guake.globals import ALIGN_BOTTOM
 from guake.globals import ALIGN_CENTER
 from guake.globals import ALIGN_LEFT
 from guake.globals import ALIGN_RIGHT
 from guake.globals import ALWAYS_ON_PRIMARY
-from guake.globals import SCHEMA_DIR
-# from guake.globals import GKEY
-# from guake.globals import KEY
 from guake.globals import LOCALE_DIR
 from guake.globals import NAME
+from guake.globals import SCHEMA_DIR
 from guake.gsettings import GSettingHandler
 from guake.guake_logging import setupLogging
 from guake.guake_notebook import GuakeNotebook
@@ -86,8 +68,6 @@ from guake.settings import Settings
 from guake.simplegladeapp import SimpleGladeApp
 from guake.simplegladeapp import bindtextdomain
 from guake.terminal import GuakeTerminalBox
-
-log = logging.getLogger(__name__)
 
 libutempter = None
 try:
@@ -104,6 +84,8 @@ except Exception as e:
     sys.stderr.write("[WARN] Unable to load the library libutempter !\n")
     sys.stderr.write("[WARN] The <wall> command will not work in guake !\n")
     sys.stderr.write("[WARN] " + str(e) + '\n')
+
+log = logging.getLogger(__name__)
 
 instance = None
 RESPONSE_FORWARD = 0

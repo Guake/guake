@@ -17,10 +17,6 @@ License along with this program; if not, write to the
 Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor,
 Boston, MA 02110-1301 USA
 """
-from __future__ import absolute_import
-from __future__ import division
-from __future__ import print_function
-from __future__ import unicode_literals
 
 import gettext
 import os
@@ -39,11 +35,11 @@ _ = gettext.gettext
 
 __all__ = [
     '_',
-    'ShowableError',
-    'pixmapfile',
+    'get_binaries_from_path',
     'gladefile',
     'hexify_color',
-    'get_binaries_from_path',
+    'pixmapfile',
+    'ShowableError',
 ]
 
 

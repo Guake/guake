@@ -17,19 +17,15 @@ License along with this program; if not, write to the
 Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor,
 Boston, MA 02110-1301 USA
 """
-from __future__ import absolute_import
-from __future__ import division
-from __future__ import print_function
 
 import gi
 gi.require_version('Gtk', '3.0')
 gi.require_version('Vte', '2.91')  # vte-0.38
 
-from gi.repository import Vte
-
 from gi.repository import Gdk
 from gi.repository import Gtk
 from gi.repository import Pango
+from gi.repository import Vte
 
 import logging
 import subprocess
@@ -40,10 +36,6 @@ import guake.notifier
 
 from guake.common import _
 from guake.common import pixmapfile
-from guake.globals import GCONF_PATH
-from guake.globals import GKEY
-from guake.globals import KEY
-from guake.globals import LKEY
 
 GCONF_MONOSPACE_FONT_PATH = '/desktop/gnome/interface/monospace_font_name'
 DCONF_MONOSPACE_FONT_PATH = 'org.gnome.desktop.interface'
@@ -65,18 +57,6 @@ class GSettingHandler(object):
         self.guake = guake_inst
         self.settings = guake_inst.settings
         settings = self.settings
-        # TODO PORT do we need this to be ported?
-        # client.add_dir(GCONF_PATH, gconf.CLIENT_PRELOAD_RECURSIVE)
-
-        # these keys does not need to be watched.
-        # notify_add(KEY('/general/default_shell'), self.shell_changed)
-        # notify_add(KEY('/general/use_login_shell'), self.login_shell_toggled)
-        # notify_add(KEY('/general/use_popup'), self.popup_toggled)
-        # notify_add(KEY('/general/window_losefocus'), self.losefocus_toggled)
-        # notify_add(KEY('/general/use_vte_titles'), self.use_vte_titles_changed)
-        # notify_add(KEY('/general/quick_open_enable'), self.on_quick_open_enable_changed)
-        # notify_add(KEY('/general/quick_open_in_current_terminal'),
-        #   self.on_quick_open_in_current_terminal_changed)
 
         # Notification is not required for mouse_display/display_n because
         # set_final_window_rect polls gconf and is called whenever Guake is
