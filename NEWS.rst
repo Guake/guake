@@ -1,24 +1,8 @@
 Release Notes
 =============
 
-3.0.0.b2
---------
-
-New Features
-~~~~~~~~~~~~
-
-- Update Guake window title when:
-  - the active tab changes
-  - the active tab is renamed
-  - the vte title changes
-
-Bug Fixes
-~~~~~~~~~
-
-- glib settings files installation
-
-3.0.0.b1
---------
+3.0.0
+-----
 
 Release Summary
 ~~~~~~~~~~~~~~~
@@ -53,17 +37,17 @@ New Features
   - enforced code styling and checks using Pylint, Flake8, Yapf, ISort.
   - simpler release management thanks to PBR
 
-- `reno <https://docs.openstack.org/reno/latest/>`__ will be used to generate release notes for
+- `reno <https://docs.openstack.org/reno/latest/>`_ will be used to generate release notes for
    Guake starting version 3.0.0. It allows developers to write the right chunk that will appear in
    the release note directly from their Pull Request.
 
+- Update Guake window title when:
+  - the active tab changes
+  - the active tab is renamed
+  - the vte title changes
+
 Known Issues
 ~~~~~~~~~~~~
-
-- Transition from Guake 0.8 to Guake 3 can be messy (ex: background can be all transparent at first
-   launch)
-
-- Hyperlinks cannot be clicked in terminal
 
 - Translation might be broken in some language, waiting for the translation file to be updated by
    volunteers
@@ -72,10 +56,22 @@ Known Issues
 
 - Package maintainers have to rework their integration script completely
 
+- **Note for package maintainers**: Guake 3 has a minor limitation regarding Glib/GTK Schemas
+  files. Guake looks for the gsettings schema inside its data directory. So you will probably
+  need install the schema twice, once in ``/usr/local/lib/python3.5/dist-packages/guake/data/``
+  and once in ``/usr/share/glib-2.0/schemas`` (see
+  `#1064 <https://github.com/Guake/guake/issues/1064>`_).
+  This is planned to be fixed in Guake 3.1
+
 Deprecations
 ~~~~~~~~~~~~
 
 - Background picture is no more customizable on each terminal
+
+Upgrade Notes
+~~~~~~~~~~~~~
+
+- Minor rework of the preference window.
 
 Translation Updates
 ~~~~~~~~~~~~~~~~~~~

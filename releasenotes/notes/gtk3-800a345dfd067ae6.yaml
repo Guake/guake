@@ -31,10 +31,6 @@ features:
       - simpler release management thanks to PBR
 
 known_issues:
-  - |
-    Transition from Guake 0.8 to Guake 3 can be messy (ex: background can be all
-    transparent at first launch)
-  - Hyperlinks cannot be clicked in terminal
   - Translation might be broken in some language, waiting for the translation
     file to be updated by volunteers
   - Resizer does not work anymore

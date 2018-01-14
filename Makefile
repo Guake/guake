@@ -265,7 +265,7 @@ release-note-github:
 			sed 's/\r\ \ \ \ \-\ /\r  - /g' | \
 		tr '\r' '\n'
 
-release: dists release-note
+release: dists update-po release-note
 
 # aliases to gracefully handle typos on poor dev's terminal
 check: checks
