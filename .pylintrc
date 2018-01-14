@@ -36,6 +36,7 @@ disable=
   deprecated-method,
   duplicate-code,
   fixme,
+  import-error,  # needed for travis build
   inconsistent-return-statements,
   invalid-name,
   locally-enabled,
