@@ -37,7 +37,7 @@ New Features
   - enforced code styling and checks using Pylint, Flake8, Yapf, ISort.
   - simpler release management thanks to PBR
 
-- `reno <https://docs.openstack.org/reno/latest/>`_ will be used to generate release notes for
+- `reno <https://docs.openstack.org/reno/latest/>`__ will be used to generate release notes for
    Guake starting version 3.0.0. It allows developers to write the right chunk that will appear in
    the release note directly from their Pull Request.
 
@@ -57,21 +57,22 @@ Known Issues
 - Package maintainers have to rework their integration script completely
 
 - **Note for package maintainers**: Guake 3 has a minor limitation regarding Glib/GTK Schemas
-  files. Guake looks for the gsettings schema inside its data directory. So you will probably
-  need install the schema twice, once in ``/usr/local/lib/python3.5/dist-packages/guake/data/``
-  and once in ``/usr/share/glib-2.0/schemas`` (see
-  `#1064 <https://github.com/Guake/guake/issues/1064>`_).
-  This is planned to be fixed in Guake 3.1
+   files. Guake looks for the gsettings schema inside its data directory. So you will probably need
+   install the schema twice, once in ``/usr/local/lib/python3.5/dist-packages/guake/data/`` and once
+   in ``/usr/share/glib-2.0/schemas`` (see `#1064 <https://github.com/Guake/guake/issues/1064>`__).
+   This is planned to be fixed in Guake 3.1
+
+Upgrade Notes
+~~~~~~~~~~~~~
+
+- Minor rework of the preference window.
 
 Deprecations
 ~~~~~~~~~~~~
 
 - Background picture is no more customizable on each terminal
 
-Upgrade Notes
-~~~~~~~~~~~~~
-
-- Minor rework of the preference window.
+- Visual Bell has been deprecated
 
 Translation Updates
 ~~~~~~~~~~~~~~~~~~~
