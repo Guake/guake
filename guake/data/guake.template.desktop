@@ -1,5 +1,4 @@
 [Desktop Entry]
-Encoding=UTF-8
 Name=Guake Terminal
 Comment=Use the command line in a Quake-like terminal
 TryExec=guake

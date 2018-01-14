@@ -1,5 +1,4 @@
 [Desktop Entry]
-Encoding=UTF-8
 Name=Guake Preferences
 Comment=Configure your Guake sessions
 TryExec=guake -p
