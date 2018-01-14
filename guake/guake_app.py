@@ -551,7 +551,7 @@ class Guake(SimpleGladeApp):
                 index for index, t in enumerate(self.notebook.iter_terminals())
                 if t.get_uuid() == tab_uuid
             )
-            self.tabs.get_children()[tab_index]
+            self.tabs.get_children()[tab_index]  # pylint: disable=expression-not-assigned
         except ValueError:
             pass
         else:

@@ -39,5 +39,7 @@ known_issues:
 deprecations:
   - |
     Background picture is no more customizable on each terminal
+  - |
+    Visual Bell has been deprecated
 translations:
   - fr-FR

@@ -304,7 +304,7 @@ class GuakeTerminal(Vte.Terminal):
             if use_quick_open:
                 for _useless, _otheruseless, extractor in QUICK_OPEN_MATCHERS:
                     g = re.compile(extractor).match(value)
-                    if g and len(g.groups()) > 0:
+                    if g and g.groups():
                         filename = g.group(1).strip()
                         filepath = filename
                         line_number = g.group(2)
