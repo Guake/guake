@@ -244,6 +244,8 @@ release-note-news:
 			sed 's/\r\-\ \ \r\r\ \ /\r-/g' | \
 			sed 's/\r\ \ \ \ \ \-\ \ /\r  - /g' | \
 			sed 's/\r\-\ \ /\r- /g' | \
+			sed -E 's/\r\s{3}([^\s\-])/\r  \1/g' | \
+			sed 's/`\_\_/`_/g' | \
 		tr '\r' '\n' \
 		> NEWS.rst
 	@cat releasenotes/archive/NEWS.pre-3.0 >> NEWS.rst

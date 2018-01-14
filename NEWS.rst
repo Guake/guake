@@ -7,15 +7,16 @@ Release Notes
 Release Summary
 ~~~~~~~~~~~~~~~
 
-Guake has been ported to GTK-3 thanks to the huge work of @aichingm. This also implies Guake uses
-the latest the underlying terminal emulator component, VTE 2.91. This enables new features in
-upcoming releases, such as "find in terminal", or "split screen". Guake is now only working on
-Python 3 (version 3.5 or 3.6). Official support for Python 2 has been dropped.
+Guake has been ported to GTK-3 thanks to the huge work of @aichingm. This also implies Guake now
+uses the latest version of the terminal emulator component, VTE 2.91. Guake is now only working on
+Python 3 (version 3.5 or 3.6). Official support for Python 2 has been dropped. This enables new
+features in upcoming releases, such as "find in terminal", or "split screen".
 
 New Features
 ~~~~~~~~~~~~
 
 - Ported to GTK3:
+
   - cli arguments
   - D-Bus
   - context menu of the terminal, the tab bar and the tray icon
@@ -33,13 +34,14 @@ New Features
   - ``Guake.accel*`` methods
 
 - Guake now use a brand new build system:
+
   - ``pipenv`` to manage dependencies in Pipfile
   - enforced code styling and checks using Pylint, Flake8, Yapf, ISort.
   - simpler release management thanks to PBR
 
-- `reno <https://docs.openstack.org/reno/latest/>`__ will be used to generate release notes for
-   Guake starting version 3.0.0. It allows developers to write the right chunk that will appear in
-   the release note directly from their Pull Request.
+- `reno <https://docs.openstack.org/reno/latest/>`_ will be used to generate release notes for
+  Guake starting version 3.0.0. It allows developers to write the right chunk that will appear in
+  the release note directly from their Pull Request.
 
 - Update Guake window title when:
   - the active tab changes
@@ -50,17 +52,17 @@ Known Issues
 ~~~~~~~~~~~~
 
 - Translation might be broken in some language, waiting for the translation file to be updated by
-   volunteers
+  volunteers
 
 - Resizer does not work anymore
 
 - Package maintainers have to rework their integration script completely
 
 - **Note for package maintainers**: Guake 3 has a minor limitation regarding Glib/GTK Schemas
-   files. Guake looks for the gsettings schema inside its data directory. So you will probably need
-   install the schema twice, once in ``/usr/local/lib/python3.5/dist-packages/guake/data/`` and once
-   in ``/usr/share/glib-2.0/schemas`` (see `#1064 <https://github.com/Guake/guake/issues/1064>`__).
-   This is planned to be fixed in Guake 3.1
+  files. Guake looks for the gsettings schema inside its data directory. So you will probably need
+  install the schema twice, once in ``/usr/local/lib/python3.5/dist-packages/guake/data/`` and once
+  in ``/usr/share/glib-2.0/schemas`` (see `#1064 <https://github.com/Guake/guake/issues/1064>`_).
+  This is planned to be fixed in Guake 3.1
 
 Upgrade Notes
 ~~~~~~~~~~~~~

@@ -1,14 +1,16 @@
 release_summary: >
   Guake has been ported to GTK-3 thanks to the huge work of @aichingm.
-  This also implies Guake uses the latest the underlying terminal emulator component, VTE 2.91.
-  This enables new features in upcoming releases, such as "find in terminal", or "split screen".
+  This also implies Guake now uses the latest version of the terminal emulator component, VTE 2.91.
 
   Guake is now only working on Python 3 (version 3.5 or 3.6). Official support for Python 2
   has been dropped.
 
+  This enables new features in upcoming releases, such as "find in terminal", or "split screen".
+
 features:
   - |
     Ported to GTK3:
+
       - cli arguments
       - D-Bus
       - context menu of the terminal, the tab bar and the tray icon
@@ -26,6 +28,7 @@ features:
       - ``Guake.accel*`` methods
   - |
     Guake now use a brand new build system:
+
       - ``pipenv`` to manage dependencies in `Pipfile`
       - enforced code styling and checks using Pylint, Flake8, Yapf, ISort.
       - simpler release management thanks to PBR
