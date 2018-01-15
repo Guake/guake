@@ -131,7 +131,7 @@ wheels:
 	pipenv run python setup.py bdist_wheel
 
 
-run-local:
+run-local: compile-glib-schemas
 	export GUAKE_DATA_DIR=$(shell pwd)/data ; pipenv run ./run-local.sh
 
 
