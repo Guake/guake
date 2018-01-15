@@ -870,7 +870,10 @@ class Guake(SimpleGladeApp):
             # does it work in other gtk backends
             # help(self.window.get_window())
             time = GdkX11.x11_get_server_time(self.window.get_window())
-        except AttributeError:
+        except (TypeError, AttributeError):
+            # Issue: https://github.com/Guake/guake/issues/1071
+            # Wayland does not seem to like `x11_get_server_time`.
+            # Quick and dirty fix like https://launchpadlibrarian.net/309178299/wayland_fix.diff
             time = 0
             # TODO PORT this
         # When minized, the window manager seems to refuse to resume
