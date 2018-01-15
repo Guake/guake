@@ -62,8 +62,6 @@ class GSettingHandler(object):
         # set_final_window_rect polls gconf and is called whenever Guake is
         # shown or resized
 
-        settings.general.onChangedValue('show-resizer', self.show_resizer_toggled)
-
         settings.general.onChangedValue('use-trayicon', self.trayicon_toggled)
         settings.general.onChangedValue('window-ontop', self.ontop_toggled)
         settings.general.onChangedValue('tab-ontop', self.tab_ontop_toggled)
@@ -96,15 +94,6 @@ class GSettingHandler(object):
 
     def custom_command_file_changed(self, settings, key, user_data):
         self.guake.load_custom_commands()
-
-    def show_resizer_toggled(self, settings, key, user_data):
-        """If the gconf var show_resizer be changed, this method will
-        be called and will show/hide the resizer.
-        """
-        if settings.get_boolean(key):
-            self.guake.resizer.show()
-        else:
-            self.guake.resizer.hide()
 
     def trayicon_toggled(self, settings, key, user_data):
         """If the gconf var use_trayicon be changed, this method will

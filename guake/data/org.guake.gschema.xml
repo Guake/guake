@@ -191,11 +191,6 @@
             <summary>Characters that are considered &quot;part of a word&quot;</summary>
             <description>When selecting text by word, sequences of these characters are considered single words. Ranges can be given as &quot;A-Z&quot;. Literal hyphen (not expressing a range) should be the first character given.</description>
         </key>
-        <key name="show-resizer" type="b">
-            <default>true</default>
-            <summary>If guake must show a control to make resizing more handful</summary>
-            <description>When true, guake shows a resizer on its bottom to allow user resize guake.</description>
-        </key>
         <key name="toolbar-visible-in-fullscreen" type="b">
             <default>true</default>
             <summary>If the tabs bar must be visible in fullscreen</summary>
