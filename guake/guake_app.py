@@ -37,6 +37,7 @@ import json
 import logging
 import os
 import platform
+from pathlib import Path
 import subprocess
 import sys
 import traceback
@@ -113,7 +114,6 @@ MAX_TRANSPARENCY = 100
 
 
 class PromptQuitDialog(Gtk.MessageDialog):
-
     """Prompts the user whether to quit/close a tab.
     """
 
@@ -155,11 +155,14 @@ class Guake(SimpleGladeApp):
         self.add_callbacks(self)
 
         schema_source = Gio.SettingsSchemaSource.new_from_directory(
-            SCHEMA_DIR, Gio.SettingsSchemaSource.get_default(), False
-        )
+            SCHEMA_DIR, Gio.SettingsSchemaSource.get_default(), False)
+
         self.settings = Settings(schema_source)
         self.debug_mode = self.settings.general.get_boolean('debug-mode')
         setupLogging(self.debug_mode)
+
+        self._select_gtk_theme()
+
         # Cannot use "getattr(gtk.Window().get_style(), "base")[int(gtk.STATE_SELECTED)]"
         # since theme has not been applied before first show_all
         self.selected_color = None
@@ -396,6 +399,14 @@ class Guake(SimpleGladeApp):
             )
 
         log.info("Guake initialized")
+
+    def _select_gtk_theme(self):
+        settings = Gtk.Settings.get_default()
+        if (Path("/usr/share/themes") / "Numix").exists():
+            settings.set_property("gtk-theme-name", "Adwaita")
+        if (Path("/usr/share/themes") / "Adwaita").exists():
+            settings.set_property("gtk-theme-name", "Adwaita")
+            settings.set_property("gtk-application-prefer-dark-theme", True)
 
     # load the custom commands infrastucture
     def load_custom_commands(self):
