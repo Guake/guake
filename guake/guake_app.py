@@ -68,6 +68,7 @@ from guake.settings import Settings
 from guake.simplegladeapp import SimpleGladeApp
 from guake.simplegladeapp import bindtextdomain
 from guake.terminal import GuakeTerminalBox
+from guake.utils import get_server_time
 
 libutempter = None
 try:
@@ -610,7 +611,7 @@ class Guake(SimpleGladeApp):
         value = self.settings.general.get_boolean('window-losefocus')
         visible = window.get_property('visible')
         if visible:
-            self.losefocus_time = GdkX11.x11_get_server_time(self.window.get_window())
+            self.losefocus_time = get_server_time(self.window)
             if value:
                 self.hide()
 
@@ -862,16 +863,9 @@ class Guake(SimpleGladeApp):
         if not self.is_fullscreen:
             self.settings.general.triggerOnChangedValue(self.settings.general, 'window-height')
 
-        try:
-            # does it work in other gtk backends
-            # help(self.window.get_window())
-            time = GdkX11.x11_get_server_time(self.window.get_window())
-        except (TypeError, AttributeError):
-            # Issue: https://github.com/Guake/guake/issues/1071
-            # Wayland does not seem to like `x11_get_server_time`.
-            # Quick and dirty fix like https://launchpadlibrarian.net/309178299/wayland_fix.diff
-            time = 0
-            # TODO PORT this
+        time = get_server_time(self.window)
+
+        # TODO PORT this
         # When minized, the window manager seems to refuse to resume
         # log.debug("self.window: %s. Dir=%s", type(self.window), dir(self.window))
         # is_iconified = self.is_iconified()
@@ -1984,10 +1978,7 @@ class Guake(SimpleGladeApp):
             search_query = quote_plus(search_query)
             if search_query:
                 search_url = "https://www.google.com/#q={!s}&safe=off".format(search_query, )
-                Gtk.show_uri(
-                    self.window.get_screen(), search_url,
-                    GdkX11.x11_get_server_time(self.window.get_window())
-                )
+                Gtk.show_uri(self.window.get_screen(), search_url, get_server_time(self.window))
         return True
 
     def getCurrentTerminalLinkUnderCursor(self):
