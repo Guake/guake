@@ -2,7 +2,8 @@
 
 MODULE:=guake
 INSTALL_ROOT:=/
-PREFIX:=$(INSTALL_ROOT)usr
+PREFIX:=$(INSTALL_ROOT)usr/local
+OLD_PREFIX:=$(INSTALL_ROOT)usr
 SLUG:=fragment_name
 
 default: prepare-install
@@ -37,33 +38,50 @@ install-system: install-schemas install-locale
 	@echo "Please prefer you application package manager (apt, yum, ...)"
 	@pip3 install -r requirements.txt
 	@python3 setup.py install --root "$(INSTALL_ROOT)" --optimize=1
-	@glib-compile-schemas $(PREFIX)/local/lib/python3.5/dist-packages/guake/data/
+	@glib-compile-schemas $(PREFIX)/lib/python3.5/dist-packages/guake/data/
 	@rm -rfv build *.egg-info
 
 install-locale:
 	for f in $$(find po -iname "*.mo"); do \
 		l="$${f%%.*}"; \
 		lb=$$(basename $$l); \
-		install -Dm755 "$$f" "$(PREFIX)/share/locale/$$lb/LC_MESSAGES/guake.mo"; \
+		install -Dm644 "$$f" "$(PREFIX)/share/locale/$$lb/LC_MESSAGES/guake.mo"; \
 	done;
 
+uninstall-locale: install-old-locale
+	find $(PREFIX)/share/locale/ -name "guake.mo" -exec rm -f {} \;
+
+install-old-locale:
+	@find $(OLD_PREFIX)/share/locale/ -name "guake.mo" -exec rm -f {} \;
+
 install-schemas:
-	install -Dm755 "guake/data/guake.desktop" "$(PREFIX)/share/applications/guake.desktop"
-	install -Dm755 "guake/data/guake-prefs.desktop" "$(PREFIX)/share/applications/guake-prefs.desktop"
-	install -Dm755 "guake/data/pixmaps/guake.png" "$(PREFIX)/share/pixmaps/guake.png"
-	install -Dm755 "guake/data/org.guake.gschema.xml" "$(PREFIX)/share/glib-2.0/schemas/org.guake.gschema.xml"
+	install -Dm644 "guake/data/guake.desktop" "$(PREFIX)/share/applications/guake.desktop"
+	install -Dm644 "guake/data/guake-prefs.desktop" "$(PREFIX)/share/applications/guake-prefs.desktop"
+	install -Dm644 "guake/data/pixmaps/guake.png" "$(PREFIX)/share/pixmaps/guake.png"
+	install -Dm644 "guake/data/org.guake.gschema.xml" "$(PREFIX)/share/glib-2.0/schemas/org.guake.gschema.xml"
 	glib-compile-schemas $(PREFIX)/share/glib-2.0/schemas/
 
 
-uninstall-system: uninstall-schemas reset
+uninstall-system: uninstall-schemas
 	@pip uninstall -y guake || true
+	@rm -f $(PREFIX)/bin/guake
+	@rm -f $(PREFIX)/bin/guake-prefs
 
-uninstall-schemas:
+purge-system: uninstall-system reset
+
+uninstall-schemas: uninstall-old-schemas
 	rm -f "$(PREFIX)/share/applications/guake.desktop"
 	rm -f "$(PREFIX)/share/applications/guake-prefs.desktop"
 	rm -f "$(PREFIX)/share/pixmaps/guake.png"
 	rm -f "$(PREFIX)/share/glib-2.0/schemas/org.guake.gschema.xml"
-	glib-compile-schemas $(PREFIX)/share/glib-2.0/schemas/
+	[ -d $(PREFIX)/share/glib-2.0/schemas/ ] && glib-compile-schemas $(PREFIX)/share/glib-2.0/schemas/ || true
+
+uninstall-old-schemas:
+	@rm -f "$(OLD_PREFIX)/share/applications/guake.desktop"
+	@rm -f "$(OLD_PREFIX)/share/applications/guake-prefs.desktop"
+	@rm -f "$(OLD_PREFIX)/share/pixmaps/guake.png"
+	@rm -f "$(OLD_PREFIX)/share/glib-2.0/schemas/org.guake.gschema.xml"
+	@glib-compile-schemas $(OLD_PREFIX)/share/glib-2.0/schemas/
 
 compile-glib-schemas: clean-schemas
 	glib-compile-schemas --strict guake/data/
@@ -277,6 +295,7 @@ develop: dev
 dist: dists
 doc: docs
 install: install-system
+purge: purge-system
 pypi: pypi-publish
 run: run-local
 styles: style
