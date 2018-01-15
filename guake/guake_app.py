@@ -251,7 +251,7 @@ class Guake(SimpleGladeApp):
             self.window.transparency = True
         else:
             print('System doesn\'t support transparency')
-            self.window.set_visual(screen.get_system_visual)
+            self.window.set_visual(screen.get_system_visual())
         self.window.connect('draw', draw_callback)
 
         # It's intended to know which tab was selected to

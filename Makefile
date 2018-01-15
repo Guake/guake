@@ -207,7 +207,7 @@ pot: update-po
 
 generate-mo:
 	@for f in $$(find po -iname "*.po"); do \
-	    echo "generating $$f;" \
+	    echo "generating $$f"; \
 		l="$${f%%.*}"; \
 		msgfmt "$$f" -o "$$l.mo"; \
 	done;
