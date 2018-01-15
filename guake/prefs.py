@@ -461,11 +461,6 @@ class PrefsCallbacks(object):
         """
         self.settings.general.set_boolean('use-default-font', chk.get_active())
 
-    def on_show_resizer_toggled(self, chk):
-        """Changes the activity of show_resizer in gconf
-        """
-        self.settings.general.set_boolean('show-resizer', chk.get_active())
-
     def on_allow_bold_toggled(self, chk):
         """Changes the value of allow_bold in gconf
         """
@@ -1020,10 +1015,6 @@ class PrefsDialog(SimpleGladeApp):
         value = self.settings.general.get_boolean('use-default-font')
         self.get_widget('use_default_font').set_active(value)
         self.get_widget('font_style').set_sensitive(not value)
-
-        # resizer visibility
-        value = self.settings.general.get_boolean('show-resizer')
-        self.get_widget('show_resizer').set_active(value)
 
         # font
         value = self.settings.styleFont.get_string('style')

@@ -226,7 +226,6 @@ class Guake(SimpleGladeApp):
         self.tabs = self.get_widget('hbox-tabs')
         self.toolbar = self.get_widget('toolbar')
         self.mainframe = self.get_widget('mainframe')
-        self.resizer = self.get_widget('resizer')
 
         # check and set ARGB for real transparency
         color = self.window.get_style_context().get_background_color(Gtk.StateFlags.NORMAL)
@@ -366,9 +365,6 @@ class Guake(SimpleGladeApp):
         self.window.set_type_hint(Gdk.WindowTypeHint.DOCK)
         # Restore back to normal behavior
         self.window.set_type_hint(Gdk.WindowTypeHint.NORMAL)
-
-        # resizer stuff
-        self.resizer.connect('motion-notify-event', self.on_resizer_drag)
 
         # loading and setting up configuration stuff
         GSettingHandler(self)
@@ -1151,7 +1147,6 @@ class Guake(SimpleGladeApp):
             self.settings.general.triggerOnChangedValue(self.settings.general, 'window-width')
         self.settings.general.triggerOnChangedValue(self.settings.general, 'use-scrollbar')
         self.settings.general.triggerOnChangedValue(self.settings.general, 'history-size')
-        self.settings.general.triggerOnChangedValue(self.settings.general, 'show-resizer')
         self.settings.general.triggerOnChangedValue(self.settings.general, 'use-vte-titles')
         self.settings.general.triggerOnChangedValue(self.settings.general, 'set-window-title')
         self.settings.general.triggerOnChangedValue(self.settings.general, 'abbreviate-tab-names')
@@ -1169,7 +1164,6 @@ class Guake(SimpleGladeApp):
             self.settings.styleBackground, 'transparency'
         )
         self.settings.general.triggerOnChangedValue(self.settings.general, 'use-default-font')
-        self.settings.general.triggerOnChangedValue(self.settings.general, 'show-resizer')
         self.settings.general.triggerOnChangedValue(self.settings.general, 'compat-backspace')
         self.settings.general.triggerOnChangedValue(self.settings.general, 'compat-delete')
 
@@ -1371,10 +1365,6 @@ class Guake(SimpleGladeApp):
         self.window.fullscreen()
         self.is_fullscreen = True
 
-        # The resizer widget really don't need to be shown in
-        # fullscreen mode, but tabbar will only be shown if a
-        # hidden gconf key is false.
-        self.resizer.hide()
         if not self.settings.general.get_boolean('toolbar-visible-in-fullscreen'):
             self.toolbar.hide()
 
@@ -1389,10 +1379,8 @@ class Guake(SimpleGladeApp):
         self.window.unfullscreen()
         self.is_fullscreen = False
 
-        # making sure that tabbar and resizer will come back to
-        # their default state.
+        # making sure that tabbar will come back to default state.
         self.settings.general.triggerOnChangedValue('window-tabbar')
-        self.settings.general.triggerOnChangedValue('show-resizer')
 
         # make sure the window size is correct after returning
         # from fullscreen. broken on old compiz/metacity versions :C
@@ -2018,12 +2006,6 @@ class Guake(SimpleGladeApp):
             self.mainframe.reorder_child(self.notebook, 2)
         else:
             self.mainframe.reorder_child(self.notebook, 0)
-
-        # make sure resizer is at right position depending on window alignment
-        if self.settings.general.get_int('window-valignment') == ALIGN_BOTTOM:
-            self.mainframe.reorder_child(self.resizer, 0)
-        else:
-            self.mainframe.reorder_child(self.resizer, -1)
 
         # self.mainframe.pack_start(self.notebook, expand=True, fill=True, padding=0)
 
