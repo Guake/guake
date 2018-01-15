@@ -144,7 +144,7 @@ class Terminal(Vte.Terminal):
             elif TERMINAL_MATCH_TAGS[tag] == 'email':
                 value = 'mailto:%s' % value
 
-            Gtk.show_uri(self.get_screen(), value, GdkX11.x11_get_server_time(self.get_window()))
+            Gtk.show_uri(self.get_screen(), value, get_server_time(self))
         elif event.button == 3 and matched_string:
             self.matched_value = matched_string[0]
 
