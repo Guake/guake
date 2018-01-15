@@ -38,6 +38,7 @@ known_issues:
     file to be updated by volunteers
   - Resizer does not work anymore
   - Package maintainers have to rework their integration script completely
+  - quick open and open link in terminal is broken
 
 deprecations:
   - |

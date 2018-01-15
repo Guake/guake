@@ -37,10 +37,11 @@ import json
 import logging
 import os
 import platform
-from pathlib import Path
 import subprocess
 import sys
 import traceback
+
+from pathlib import Path
 
 import cairo
 
@@ -114,6 +115,7 @@ MAX_TRANSPARENCY = 100
 
 
 class PromptQuitDialog(Gtk.MessageDialog):
+
     """Prompts the user whether to quit/close a tab.
     """
 
@@ -155,7 +157,8 @@ class Guake(SimpleGladeApp):
         self.add_callbacks(self)
 
         schema_source = Gio.SettingsSchemaSource.new_from_directory(
-            SCHEMA_DIR, Gio.SettingsSchemaSource.get_default(), False)
+            SCHEMA_DIR, Gio.SettingsSchemaSource.get_default(), False
+        )
 
         self.settings = Settings(schema_source)
         self.debug_mode = self.settings.general.get_boolean('debug-mode')
