@@ -25,6 +25,8 @@
     <property name="icon">pixmaps/guake.png</property>
     <property name="urgency_hint">True</property>
     <property name="startup_id">Guake Preferences</property>
+    <property name="window_position">center</property>
+    <property name="gravity">center</property>
     <child>
       <object class="GtkBox" id="vbox4">
         <property name="visible">True</property>
