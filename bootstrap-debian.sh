@@ -15,3 +15,11 @@ sudo apt install -y \
     python3 \
     python3-gi \
     python3-pip \
+    gnome-tweak-tool \
+
+if [[ $1 == "--with-optional" ]]; then
+
+    sudo apt install -y \
+        numix-gtk-theme \
+
+fi
