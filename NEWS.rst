@@ -1,6 +1,19 @@
 Release Notes
 =============
 
+3.0.1
+-----
+
+Release Summary
+~~~~~~~~~~~~~~~
+
+Minor maintenance release.
+
+Bug Fixes
+~~~~~~~~~
+
+- Code cleaning and GNOME desktop file conformance
+
 3.0.0
 -----
 
