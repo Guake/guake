@@ -422,7 +422,7 @@ class PrefsCallbacks(object):
     def on_use_visible_bell_toggled(self, chk):
         """Changes the value of use_visible_bell in gconf
         """
-        # TODO PORT remove this vte has no visual belll feature any more
+        # TODO PORT remove this vte has no visual bell feature any more
         self.settings.general.set_boolean('use-visible-bell', chk.get_active())
 
     def on_use_audible_bell_toggled(self, chk):
@@ -587,7 +587,6 @@ class PrefsDialog(SimpleGladeApp):
 
         renderer = Gtk.CellRendererAccel()
         renderer.set_property('editable', True)
-
         renderer.connect('accel-edited', self.on_key_edited, model)
         renderer.connect('accel-cleared', self.on_key_cleared, model)
 
