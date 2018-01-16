@@ -5,8 +5,8 @@ python:
 
 
 install:
-    - sudo ./bootstrap-debian.sh
-    - ./bootstrap-pip.sh system
+    - sudo ./bootstrap-dev-debian.sh
+    - ./bootstrap-dev-pip.sh system
 
 
 script:

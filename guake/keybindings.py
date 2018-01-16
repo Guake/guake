@@ -20,8 +20,9 @@ Boston, MA 02110-1301 USA
 
 import gi
 gi.require_version('Gtk', '3.0')
-
 from gi.repository import Gtk
+
+from guake import notifier
 from guake.common import pixmapfile
 
 
@@ -84,7 +85,7 @@ class Keybindings(object):
             keyval, mask = Gtk.accelerator_parse(value)
             label = Gtk.accelerator_get_label(keyval, mask)
             filename = pixmapfile('guake-notification.png')
-            guake.notifier.showMessage(
+            notifier.showMessage(
                 _('Guake Terminal'),
                 _(
                     'A problem happened when binding <b>%s</b> key.\n'

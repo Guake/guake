@@ -15,6 +15,8 @@ sudo apt install -y \
     python3 \
     python3-gi \
     python3-pip \
+    python3-cairo \
+    libutempter0 \
     gnome-tweak-tool \
 
 if [[ $1 == "--with-optional" ]]; then

@@ -17,32 +17,29 @@ License along with this program; if not, write to the
 Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor,
 Boston, MA 02110-1301 USA
 """
+import code
+import logging
+import os
+import re
+import signal
+import subprocess
+import threading
+import uuid
+
+from time import sleep
 
 import gi
 gi.require_version('Gtk', '3.0')
 gi.require_version('Vte', '2.91')  # vte-0.38
 
+from gi.repository import GLib
 from gi.repository import Gdk
 from gi.repository import GdkX11
 from gi.repository import Gtk
 from gi.repository import Pango
 from gi.repository import Vte
 
-from gi.repository import GLib
-
 from guake.common import clamp
-
-from time import sleep
-
-import code
-import logging
-import os
-import re
-import uuid
-
-import signal
-import subprocess
-import threading
 
 log = logging.getLogger(__name__)
 

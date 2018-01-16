@@ -18,10 +18,11 @@ Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor,
 Boston, MA 02110-1301 USA
 """
 
+import logging
+
 import dbus
 import dbus.glib
 import dbus.service
-import logging
 
 log = logging.getLogger(__name__)
 
