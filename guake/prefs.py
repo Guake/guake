@@ -17,6 +17,10 @@ License along with this program; if not, write to the
 Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor,
 Boston, MA 02110-1301 USA
 """
+import logging
+import os
+import re
+import warnings
 
 import gi
 gi.require_version('Gtk', '3.0')
@@ -29,11 +33,6 @@ from gi.repository import Gtk
 from gi.repository import Keybinder
 from gi.repository import Pango
 from gi.repository import Vte
-
-import logging
-import os
-import re
-import warnings
 
 from guake.common import ShowableError
 from guake.common import _

@@ -18,21 +18,6 @@ License along with this program; if not, write to the
 Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor,
 Boston, MA 02110-1301 USA
 """
-
-import gi
-gi.require_version('Gtk', '3.0')
-gi.require_version('Vte', '2.91')  # vte-0.38
-gi.require_version('Keybinder', '3.0')
-
-from gi.repository import GLib
-from gi.repository import GObject
-from gi.repository import Gdk
-from gi.repository import GdkX11
-from gi.repository import Gio
-from gi.repository import Gtk
-from gi.repository import Keybinder
-from gi.repository import Vte
-
 import json
 import logging
 import os
@@ -42,11 +27,23 @@ import sys
 import traceback
 
 from pathlib import Path
-
-import cairo
-
 from urllib.parse import quote_plus
 from xml.sax.saxutils import escape as xml_escape
+
+import gi
+gi.require_version('Gtk', '3.0')
+gi.require_version('Vte', '2.91')  # vte-0.38
+gi.require_version('Keybinder', '3.0')
+from gi.repository import GLib
+from gi.repository import GObject
+from gi.repository import Gdk
+from gi.repository import GdkX11
+from gi.repository import Gio
+from gi.repository import Gtk
+from gi.repository import Keybinder
+from gi.repository import Vte
+
+import cairo
 
 from guake import notifier
 from guake.about import AboutDialog

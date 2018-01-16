@@ -17,13 +17,6 @@ License along with this program; if not, write to the
 Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor,
 Boston, MA 02110-1301 USA
 """
-
-import gi
-gi.require_version('Gtk', '3.0')
-
-from gi.repository import Gtk
-
-import dbus
 import logging
 import os
 import subprocess
@@ -32,14 +25,17 @@ import uuid
 
 from optparse import OptionParser
 
+import gi
+gi.require_version('Gtk', '3.0')
+from gi.repository import Gtk
+
+import dbus
+
 from guake.common import _
-
-from guake.globals import VERSION
-
 from guake.dbusiface import DBUS_NAME
 from guake.dbusiface import DBUS_PATH
 from guake.dbusiface import DbusManager
-
+from guake.globals import VERSION
 from guake.guake_app import Guake
 from guake.guake_logging import setupLogging
 

@@ -47,10 +47,17 @@ Dropped Features from Guake 0.8.x
 
 - ``--bgimg`` (this option has been removed from vte)
 
-New Dependencies
-----------------
+Dependencies
+------------
 
+Here are the dependencies of Guake for its execution:
+- ``python3.5``
+- ``python3-gi``
+- ``python3-pbr``
+- ``python3-dbus``
+- ``python3-cairo``
 - ``libkeybinder3``
+- ``libutempter0`` (optional)
 
 Guake 3 Features
 ----------------
@@ -163,7 +170,7 @@ Execute the following command to bootstrap all needed system dependencies:
 
 .. code-block:: bash
 
-    $ ./bootstrap-debian.sh
+    $ ./bootstrap-dev-debian.sh
 
 Setup development env
 ---------------------

@@ -15,7 +15,7 @@ reset:
 	dconf reset -f /apps/guake/
 
 
-all: dev style checks dists test docs
+all: clean dev style checks dists test docs
 
 dev: pipenv-install-dev requirements ln-venv setup-githook prepare-install
 
