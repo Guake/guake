@@ -1067,7 +1067,6 @@ class PrefsDialog(SimpleGladeApp):
 
         # hooks
         self._load_hooks_settings()
-        return
 
     # -- populate functions --
 
