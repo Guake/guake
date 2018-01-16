@@ -51,6 +51,7 @@ Dependencies
 ------------
 
 Here are the dependencies of Guake for its execution:
+
 - ``python3.5``
 - ``python3-gi``
 - ``python3-pbr``
@@ -159,6 +160,9 @@ Do not hesitate to contact me at `gaetan [at] xeberon.net`.
 
 Contributing
 ============
+
+First, be sure to use Python 3.5. For instance under Ubuntu 17.04, PyGtk and ``python3-gi`` does not
+work well if the default python 3 interpreter is forced to Python 3.6.
 
 Install System dependencies
 ---------------------------
