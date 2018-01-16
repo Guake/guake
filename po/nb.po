@@ -82,12 +82,12 @@ msgid ""
 "Sangwoo Joo <sangwoojoo@naver.com> Korean\n"
 "    "
 msgstr ""
-"Adolfo González Blázquez <code@infinicode.org> Spanish\r\n"
-"Lincoln de Sousa <lincoln@guake.org> Brazilian Portuguese\r\n"
-"Markus Majer <mm@mpathy.de> German\r\n"
-"Mieszko Ślusarczyk <mieszkoslusarczyk@gmail.com> Polish\r\n"
-"Nishio Futoshi <futoshi@momonga-linux.org> Japanese\r\n"
-"Pavel Alexeev <Pahan@Hubbitus.spb.su> Russian\r\n"
+"Adolfo González Blázquez <code@infinicode.org> Spanish\n"
+"Lincoln de Sousa <lincoln@guake.org> Brazilian Portuguese\n"
+"Markus Majer <mm@mpathy.de> German\n"
+"Mieszko Ślusarczyk <mieszkoslusarczyk@gmail.com> Polish\n"
+"Nishio Futoshi <futoshi@momonga-linux.org> Japanese\n"
+"Pavel Alexeev <Pahan@Hubbitus.spb.su> Russian\n"
 "Piotr Drąg <piotrdrag@gmail.com> Polish"
 
 #: ../data/guake.glade.h:1
@@ -1093,6 +1093,34 @@ msgstr ""
 
 #: guake/data/guake.desktop:10
 msgid "Use the command line in a Quake-like terminal"
+msgstr ""
+
+#: guake/data/prefs.glade:770
+msgid "Main Window Horizontal Alignment"
+msgstr ""
+
+#: guake/data/about.glade:17
+msgid "http://guake-project.org"
+msgstr ""
+
+#: guake/data/about.glade:18
+msgid ""
+"Guake is free software; you can redistribute it and/or\n"
+"modify it under the terms of the GNU General Public\n"
+"License as published by the Free Software Foundation;\n"
+"either version 2 of the License, or (at your option) any\n"
+"later version.\n"
+"\n"
+"Guake is distributed in the hope that it will be useful, but\n"
+"WITHOUT ANY WARRANTY; without even the implied\n"
+"warranty of MERCHANTABILITY or FITNESS FOR A\n"
+"PARTICULAR PURPOSE.  See the GNU General Public\n"
+"License for more details.\n"
+"\n"
+"You should have received a copy of the GNU General\n"
+"Public License along with Guake; if not, write to the Free\n"
+"Software Foundation, Inc., 51 Franklin St, Fifth Floor,\n"
+"Boston, MA  02110-1301 USA"
 msgstr ""
 
 #~ msgid "key binding error"
