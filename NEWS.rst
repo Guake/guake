@@ -1,6 +1,43 @@
 Release Notes
 =============
 
+3.0.2
+-----
+
+Release Summary
+~~~~~~~~~~~~~~~
+
+This releases add preliminary support of Dark Theme.
+
+New Features
+~~~~~~~~~~~~
+
+- Dark theme support. To use it, install the 'numix' theme in your system. For example,
+  Ubuntu/Debian users would use ``sudo apt install numix-gtk-theme``.
+
+Known Issues
+~~~~~~~~~~~~
+
+- Cannot enable or disable the GTK theme by a preference setting
+
+Deprecations
+~~~~~~~~~~~~
+
+- Resizer discontinued
+
+Bug Fixes
+~~~~~~~~~
+
+- Fix ``sudo make uninstall/install`` to work only with ``/usr/local``
+
+- Fix translation ``mo`` file generation
+
+- Fix crash on Wayland
+
+- Fix quick open and open link in terminal
+
+- Fixed Guake initialization on desktop environment that does not support compositing.
+
 3.0.1
 -----
 
@@ -70,6 +107,8 @@ Known Issues
 - Resizer does not work anymore
 
 - Package maintainers have to rework their integration script completely
+
+- quick open and open link in terminal is broken
 
 - **Note for package maintainers**: Guake 3 has a minor limitation regarding Glib/GTK Schemas
   files. Guake looks for the gsettings schema inside its data directory. So you will probably need
