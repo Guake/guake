@@ -1,0 +1,7 @@
+release_summary: >
+  This minor release only focussed on fixing problems raisen by Guake enthousiasts
+  that tested Guake 3.0.0.
+
+fixes:
+  - |
+    Preference panel was buggy and unesthetic.
