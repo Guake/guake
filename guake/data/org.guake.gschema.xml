@@ -299,12 +299,12 @@
             <description>Accelerator to active function that search on the web the current selected text on the terminal.</description>
         </key>
         <key name="move-tab-left" type="s">
-            <default>'&lt;Control&gt;Shift&gt;Page_Up'</default>
+            <default>'&lt;Control&gt;&lt;Shift&gt;Page_Up'</default>
             <summary>Move left current tab</summary>
             <description>Move the current tab to the left</description>
         </key>
         <key name="move-tab-right" type="s">
-            <default>'&lt;Control&gt;Shift&gt;Page_Down'</default>
+            <default>'&lt;Control&gt;&lt;Shift&gt;Page_Down'</default>
             <summary>Move right current tab</summary>
             <description>Move the current tab to the right</description>
         </key>
@@ -399,12 +399,12 @@
             <description>Decrease the screen height.</description>
         </key>
         <key name="increase-transparency" type="s">
-            <default>'&lt;Control&gt;Shift&gt;Up'</default>
+            <default>'&lt;Control&gt;&lt;Shift&gt;Up'</default>
             <summary>Increase transparency.</summary>
             <description>Increase the terminal transparency.</description>
         </key>
         <key name="decrease-transparency" type="s">
-            <default>'&lt;Control&gt;Shift&gt;Down'</default>
+            <default>'&lt;Control&gt;&lt;Shift&gt;Down'</default>
             <summary>Decrease transparency.</summary>
             <description>Decrease the terminal transparency.</description>
         </key>
@@ -434,7 +434,7 @@
             <description>Reset terminal</description>
         </key>
         <key name="toggle-transparency" type="s">
-            <default>'&lt;Control&gt;Alt&gt;T'</default>
+            <default>'&lt;Control&gt;&lt;Alt&gt;T'</default>
             <summary>Toggle transparency.</summary>
             <description>Toggle the terminal transparency from the actual level to 100% and vice versa.</description>
         </key>
