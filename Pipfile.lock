@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "4744068f1d915ed7afab5bf781526c5bbd6805c2463ce46e67c20250e8d97eda"
+            "sha256": "d057411278817a5c444d075dcbaaa52aaac982711f71b08a32af65e07850c173"
         },
         "host-environment-markers": {
             "implementation_name": "cpython",
@@ -9,16 +9,16 @@
             "os_name": "posix",
             "platform_machine": "x86_64",
             "platform_python_implementation": "CPython",
-            "platform_release": "4.10.0-19-generic",
+            "platform_release": "4.10.0-42-generic",
             "platform_system": "Linux",
-            "platform_version": "#21-Ubuntu SMP Thu Apr 6 17:04:57 UTC 2017",
+            "platform_version": "#46-Ubuntu SMP Mon Dec 4 14:38:01 UTC 2017",
             "python_full_version": "3.5.3",
             "python_version": "3.5",
             "sys_platform": "linux"
         },
         "pipfile-spec": 6,
         "requires": {
-            "python_version": "3.5"
+            "python_version": "3"
         },
         "sources": [
             {
@@ -67,17 +67,17 @@
         },
         "babel": {
             "hashes": [
-                "sha256:f20b2acd44f587988ff185d8949c3e208b4b3d5d20fcab7d91fe481ffa435528",
-                "sha256:6007daf714d0cd5524bbe436e2d42b3c20e68da66289559341e48d2cd6d25811"
+                "sha256:ad209a68d7162c4cff4b29cdebe3dec4cef75492df501b0049a9433c96ce6f80",
+                "sha256:8ce4cb6fdd4393edd323227cba3a077bceb2a6ce5201c902c65e730046f41f14"
             ],
-            "version": "==2.5.1"
+            "version": "==2.5.3"
         },
         "backports.functools-lru-cache": {
             "hashes": [
                 "sha256:4ba998e881f285c1d1b73f5b6e3766539b4e162320f9589334400c5ddc35198c",
                 "sha256:31f235852f88edc1558d428d890663c49eb4514ffec9f3650e7f3c9e4a12e36f"
             ],
-            "markers": "python_version == '2.7'",
+            "markers": "python_version < '3.4'",
             "version": "==1.4"
         },
         "backports.shutil-get-terminal-size": {
@@ -90,10 +90,10 @@
         },
         "certifi": {
             "hashes": [
-                "sha256:244be0d93b71e93fc0a0a479862051414d0e00e16435707e5bf5000f92e04694",
-                "sha256:5ec74291ca1136b40f0379e1128ff80e866597e4e2c1e755739a913bbc3613c0"
+                "sha256:14131608ad2fd56836d33a71ee60fa1c82bc9d2c8d98b7bdbc631fe1b3cd1296",
+                "sha256:edbc3f203427eef571f79a7692bb160a2b0f7ccaa31953e99bd17e307cf63f7d"
             ],
-            "version": "==2017.11.5"
+            "version": "==2018.1.18"
         },
         "chardet": {
             "hashes": [
@@ -274,9 +274,9 @@
         },
         "pipenv": {
             "hashes": [
-                "sha256:e1fb0aa2571c9c5a1b403ac782e7da09719625ac51a1238b0e6c5d157c3c679a"
+                "sha256:6c9b9d8e551a3086fc8300e18f93336fabbe3d8b9743dd1145e50a766f60e8f1"
             ],
-            "version": "==9.0.1"
+            "version": "==9.0.3"
         },
         "pipenv-to-requirements": {
             "hashes": [
@@ -467,10 +467,10 @@
         },
         "yapf": {
             "hashes": [
-                "sha256:545028348c0d09ce408a4a8cd6e3d9de495f8c370ec9ba8a00aab179c16e8142",
-                "sha256:ff28f8839a9a105854a099026a33f4cbec8bd933554bfed658aec359bfc88ae8"
+                "sha256:a0bbc8ed274609f9c7575a5d69056fa393e26a778b3e070a72f4998b8e90c3cd",
+                "sha256:bd19f246be7193ad2acdc04702b92315f1ae28d49c82f6671afdeefe9d32f468"
             ],
-            "version": "==0.20.0"
+            "version": "==0.20.1"
         }
     }
 }

@@ -1,5 +1,6 @@
 .PHONY: build dev
 
+PYTHON_INTERPRETER=python3
 MODULE:=guake
 INSTALL_ROOT:=/
 PREFIX:=$(INSTALL_ROOT)usr/local
@@ -20,11 +21,11 @@ all: clean dev style checks dists test docs
 dev: pipenv-install-dev requirements ln-venv setup-githook prepare-install
 
 dev-no-pipenv: clean
-	virtualenv --python python3 .venv
+	virtualenv --python $(PYTHON_INTERPRETER) .venv
 	. .venv/bin/activate && pip3 install -r requirements.txt -r requirements-dev.txt -e .
 
 pipenv-install-dev:
-	pipenv install --dev
+	pipenv install --dev --python $(PYTHON_INTERPRETER); \
 
 ln-venv:
 	# use that to configure a symbolic link to the virtualenv in .venv
@@ -37,8 +38,8 @@ install-system: install-schemas install-locale
 	@echo "Installing from on your system is not recommended."
 	@echo "Please prefer you application package manager (apt, yum, ...)"
 	@pip3 install -r requirements.txt
-	@python3 setup.py install --root "$(INSTALL_ROOT)" --optimize=1
-	@glib-compile-schemas $(PREFIX)/lib/python3.5/dist-packages/guake/data/
+	@$(PYTHON_INTERPRETER) setup.py install --root "$(INSTALL_ROOT)" --optimize=1
+	@glib-compile-schemas $(PREFIX)/lib/python$(shell $(PYTHON_INTERPRETER) -c "import sys; v = sys.version_info; print('{}.{}'.format(v.major, v.minor))")/dist-packages/guake/data/
 	@rm -rfv build *.egg-info
 
 install-locale:
@@ -74,6 +75,7 @@ uninstall-schemas: uninstall-old-schemas
 	rm -f "$(PREFIX)/share/applications/guake-prefs.desktop"
 	rm -f "$(PREFIX)/share/pixmaps/guake.png"
 	rm -f "$(PREFIX)/share/glib-2.0/schemas/org.guake.gschema.xml"
+	rm -f  $(PREFIX)/lib/python$(shell $(PYTHON_INTERPRETER) -c "import sys; v = sys.version_info; print('{}.{}'.format(v.major, v.minor))")/dist-packages/guake/data/schema.guake.gschema.xml
 	[ -d $(PREFIX)/share/glib-2.0/schemas/ ] && glib-compile-schemas $(PREFIX)/share/glib-2.0/schemas/ || true
 
 uninstall-old-schemas:
@@ -81,6 +83,8 @@ uninstall-old-schemas:
 	@rm -f "$(OLD_PREFIX)/share/applications/guake-prefs.desktop"
 	@rm -f "$(OLD_PREFIX)/share/pixmaps/guake.png"
 	@rm -f "$(OLD_PREFIX)/share/glib-2.0/schemas/org.guake.gschema.xml"
+	@rm -f "$(OLD_PREFIX)/share/glib-2.0/schemas/schema.guake.gschema.xml"
+	@rm -f $(OLD_PREFIX)/lib/python$(shell $(PYTHON_INTERPRETER) -c "import sys; v = sys.version_info; print('{}.{}'.format(v.major, v.minor))")/dist-packages/guake/data/schema.guake.gschema.xml
 	@glib-compile-schemas $(OLD_PREFIX)/share/glib-2.0/schemas/
 
 compile-glib-schemas: clean-schemas

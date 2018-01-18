@@ -161,8 +161,17 @@ Do not hesitate to contact me at `gaetan [at] xeberon.net`.
 Contributing
 ============
 
-First, be sure to use Python 3.5. For instance under Ubuntu 17.04, PyGtk and ``python3-gi`` does not
-work well if the default python 3 interpreter is forced to Python 3.6.
+First, be sure to use a verion of Python 3 where GTK and GObjects works in your system.
+For instance, under Ubuntu 17.04, PyGtk and ``python3-gi`` does not work well if the default
+python 3 interpreter is forced to Python 3.6.
+
+
+| Operating System  | Recommended Python version |
+| ----------------- | -------------------------- |
+| Ubuntu 14.04 LTS  | Python 3.4 (UNTESTED)      |
+| Ubuntu 16.04 LTS  | Python 3.5 (TESTED)        |
+| Ubuntu 17.04      | Python 3.5 (TESTED)        |
+| Ubuntu 17.10      | Python 3.6                 |
 
 Install System dependencies
 ---------------------------
@@ -185,6 +194,12 @@ Install the dependencies of your system and use the following commands:
 
     $ make dev
     $ sudo make install-schemas  # still required even for local execution
+
+You can force the interpreter version using the PYTHON_INTERPRETER variable:
+
+.. code-block:: bash
+
+    $ make dev PYTHON_INTERPRETER=python3.6
 
 Local execution of guake (without system-wide install):
 
