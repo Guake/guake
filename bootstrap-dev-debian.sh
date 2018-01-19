@@ -7,6 +7,8 @@ sudo apt install -y \
     dconf-editor \
     gettext \
     gir1.2-keybinder-3.0 \
+    gir1.2-vte-2.91 \
+    gir1.2-notify-0.7 \
     glade \
     gsettings-desktop-schemas \
     libkeybinder-3.0-0 \
