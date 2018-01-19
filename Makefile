@@ -182,6 +182,7 @@ githook:
 	bash git-hooks/post-commit
 
 setup-githook:
+	rm -f .git/hooks/post-commit
 	cp -fv git-hooks/* .git/hooks/
 
 
