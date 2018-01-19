@@ -7,7 +7,7 @@
     <property name="resizable">False</property>
     <property name="window_position">center-always</property>
     <property name="type_hint">normal</property>
-    <property name="program_name">Glade</property>
+    <property name="program_name">Guake</property>
     <property name="copyright" translatable="yes">Copyright 2013-2018 Gaetan Semet
 Copyright 2007-2010 Lincoln de Sousa
 Copyright 2007 Gabriel Falcão</property>
