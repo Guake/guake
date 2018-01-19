@@ -38,9 +38,7 @@ Guake has recently been ported Gtk3, thanks to the huge work of @aichingm.
 Old releases and code depending on GTK2 have been put on the
 `0.8.x <https://github.com/Guake/guake/tree/0.8.x>`_ branch and will no more be actively maintained.
 
-Guake has also been ported to Python 3. It works well with Python 3.5 and it is recommended to use
-it with this version, since system dependencies might not work well on all systems with 3.6
-(especially GTK3).
+Guake has also been ported to Python 3.5+.
 
 Dropped Features from Guake 0.8.x
 ---------------------------------
@@ -52,13 +50,19 @@ Dependencies
 
 Here are the dependencies of Guake for its execution:
 
-- ``python3.5``
+- ``gir1.2-keybinder-3.0``
+- ``gir1.2-notify-0.7``
+- ``gir1.2-vte-2.91``
+- ``libkeybinder3``
+- ``python3-cairo``
+- ``python3-dbus``
 - ``python3-gi``
 - ``python3-pbr``
-- ``python3-dbus``
-- ``python3-cairo``
-- ``libkeybinder3``
-- ``libutempter0`` (optional)
+
+Optional themes:
+
+- ``libutempter0``
+- ``numix-gtk-theme``
 
 Guake 3 Features
 ----------------
