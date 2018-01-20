@@ -879,12 +879,12 @@
                   </object>
                 </child>
                 <child type="tab">
-                  <object class="GtkLabel" id="label_hooks_tab">
+                  <object class="GtkLabel" id="general_tab">
                     <property name="visible">True</property>
                     <property name="can_focus">False</property>
                     <property name="margin_top">5</property>
                     <property name="margin_bottom">5</property>
-                    <property name="label" translatable="yes">Hooks</property>
+                    <property name="label" translatable="yes">General</property>
                   </object>
                   <packing>
                     <property name="position">1</property>
@@ -1034,12 +1034,12 @@
                   </packing>
                 </child>
                 <child type="tab">
-                  <object class="GtkLabel" id="label6">
+                  <object class="GtkLabel" id="label_shell_tab">
                     <property name="visible">True</property>
                     <property name="can_focus">False</property>
                     <property name="margin_top">5</property>
                     <property name="margin_bottom">5</property>
-                    <property name="label" translatable="yes">General</property>
+                    <property name="label" translatable="yes">Shell</property>
                     <property name="use_markup">True</property>
                   </object>
                   <packing>
@@ -1120,6 +1120,7 @@
                                             </child>
                                             <child>
                                               <object class="GtkSpinButton" id="history_size">
+                                                <property name="width_request">200</property>
                                                 <property name="visible">True</property>
                                                 <property name="can_focus">True</property>
                                                 <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
@@ -1976,8 +1977,8 @@
                                         <property name="visible">True</property>
                                         <property name="can_focus">True</property>
                                         <property name="receives_default">False</property>
+                                        <property name="halign">start</property>
                                         <property name="use_underline">True</property>
-                                        <property name="xalign">0</property>
                                         <property name="draw_indicator">True</property>
                                         <signal name="toggled" handler="on_quick_open_enable_toggled" swapped="no"/>
                                         <signal name="toggled" handler="toggle_quick_open_command_line_sensitivity" swapped="no"/>
@@ -2070,8 +2071,8 @@ For example, for sublime, use &lt;b&gt;subl %(file_path)s:%(line_number)s&lt;/b&
                                         <property name="visible">True</property>
                                         <property name="can_focus">True</property>
                                         <property name="receives_default">False</property>
+                                        <property name="halign">start</property>
                                         <property name="use_underline">True</property>
-                                        <property name="xalign">0.5</property>
                                         <property name="draw_indicator">True</property>
                                         <signal name="toggled" handler="on_quick_open_in_current_terminal_toggled" swapped="no"/>
                                       </object>
@@ -2094,14 +2095,21 @@ For example, for sublime, use &lt;b&gt;subl %(file_path)s:%(line_number)s&lt;/b&
                                             <property name="top_padding">6</property>
                                             <property name="left_padding">24</property>
                                             <child>
-                                              <object class="GtkTextView" id="quick_open_supported_patterns">
-                                                <property name="height_request">50</property>
+                                              <object class="GtkScrolledWindow">
                                                 <property name="visible">True</property>
                                                 <property name="can_focus">True</property>
-                                                <property name="editable">False</property>
-                                                <property name="indent">15</property>
-                                                <property name="cursor_visible">False</property>
-                                                <property name="accepts_tab">False</property>
+                                                <property name="shadow_type">in</property>
+                                                <child>
+                                                  <object class="GtkTextView" id="quick_open_supported_patterns">
+                                                    <property name="height_request">50</property>
+                                                    <property name="visible">True</property>
+                                                    <property name="can_focus">True</property>
+                                                    <property name="editable">False</property>
+                                                    <property name="indent">15</property>
+                                                    <property name="cursor_visible">False</property>
+                                                    <property name="accepts_tab">False</property>
+                                                  </object>
+                                                </child>
                                               </object>
                                             </child>
                                           </object>
@@ -2521,12 +2529,12 @@ To disable a shortcut, press the "Backspace" key.</property>
                   </packing>
                 </child>
                 <child type="tab">
-                  <object class="GtkLabel" id="shell_page">
+                  <object class="GtkLabel" id="tab_hook">
                     <property name="visible">True</property>
                     <property name="can_focus">False</property>
                     <property name="margin_top">5</property>
                     <property name="margin_bottom">5</property>
-                    <property name="label" translatable="yes">Shell</property>
+                    <property name="label" translatable="yes">Hooks</property>
                   </object>
                   <packing>
                     <property name="position">1</property>
