@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: Guake 0.4.5\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-08-28 10:43+0300\n"
-"PO-Revision-Date: 2017-08-28 10:45+0300\n"
+"PO-Revision-Date: 2018-01-20 16:55+0900\n"
 "Last-Translator: Ivan Komaritsyn <vantu5z@mail.ru>\n"
 "Language: \n"
 "MIME-Version: 1.0\n"
@@ -1016,46 +1016,49 @@ msgid ""
 "Copyright 2007-2010 Lincoln de Sousa\n"
 "Copyright 2007 Gabriel Falcão"
 msgstr ""
+"Copyright 2013-2018 Gaetan Semet\n"
+"Copyright 2007-2010 Lincoln de Sousa\n"
+"Copyright 2007 Gabriel Falcão"
 
 #: guake/data/prefs.glade:264
 msgid "Never"
-msgstr ""
+msgstr "Никогда"
 
 #: guake/data/prefs.glade:265
 msgid "With process running"
-msgstr ""
+msgstr "С запущенным процессом"
 
 #: guake/data/prefs.glade:266
 msgid "Always"
-msgstr ""
+msgstr "Всегда"
 
 #: guake/data/prefs.glade:865
 msgid "Custom command file path:"
-msgstr ""
+msgstr "Путь к файлу команд:"
 
 #: guake/data/prefs.glade:1423
 msgid "Block"
-msgstr ""
+msgstr "Блок"
 
 #: guake/data/prefs.glade:1424
 msgid "I-Beam"
-msgstr ""
+msgstr "I-вида"
 
 #: guake/data/prefs.glade:1425
 msgid "Underline"
-msgstr ""
+msgstr "Подчёркивание"
 
 #: guake/data/prefs.glade:1443
 msgid "Follow GTK+ setting"
-msgstr ""
+msgstr "Использовать настройки GTK+"
 
 #: guake/data/prefs.glade:1444
 msgid "Blink on"
-msgstr ""
+msgstr "Моргать"
 
 #: guake/data/prefs.glade:1445
 msgid "Blink off"
-msgstr ""
+msgstr "Не моргать"
 
 #: guake/data/prefs.glade:2236
 msgid ""
@@ -1067,42 +1070,51 @@ msgid ""
 "For example, for sublime, use <b>subl %(file_path)s:%(line_number)s</b>\n"
 "</i></small>"
 msgstr ""
+"<small><i>Использовать следующие параметры командной строки при открытии "
+"редактора:\n"
+"- <b>%(file_path)s</b>: путь к файлу, который был выбран\n"
+"- <b>%(line_number)s</b>: если Ваш редактор поддерживает, файл может быть "
+"открыт и прокручен до указанной строки.\n"
+"\n"
+"Например, для sublime, используйте <b>subl %(file_path)s:%(line_number)s</"
+"b>\n"
+"</i></small>"
 
 #: guake/data/prefs.glade:2442 guake/data/prefs.glade:2462
 msgid "ASCII DEL"
-msgstr ""
+msgstr "ASCII DEL"
 
 #: guake/data/prefs.glade:2443 guake/data/prefs.glade:2463
 msgid "Escape sequence"
-msgstr ""
+msgstr "Последовательность Escape"
 
 #: guake/data/prefs.glade:2444 guake/data/prefs.glade:2464
 msgid "Control-H"
-msgstr ""
+msgstr "Control-H"
 
 #: guake/data/guake-prefs.desktop:8
 msgid "Configure your Guake sessions"
-msgstr ""
+msgstr "Настройка сессии Guake"
 
 #: guake/data/guake-prefs.desktop:15 guake/data/guake.desktop:18
 msgid "guake"
-msgstr ""
+msgstr "guake"
 
 #: guake/data/guake-prefs.desktop:20
 msgid "Terminal;Utility;"
-msgstr ""
+msgstr "Терминал;Инструменты;"
 
 #: guake/data/guake.desktop:10
 msgid "Use the command line in a Quake-like terminal"
-msgstr ""
+msgstr "Использовать командную строку в Quake терминале"
 
 #: guake/data/prefs.glade:770
 msgid "Main Window Horizontal Alignment"
-msgstr ""
+msgstr "Выравнивание главного окна по-горизонтали"
 
 #: guake/data/about.glade:17
 msgid "http://guake-project.org"
-msgstr ""
+msgstr "http://guake-project.org"
 
 #: guake/data/about.glade:18
 msgid ""
