@@ -1,0 +1,4 @@
+fixes:
+  - |
+    2 issues - command options don't work, crash when disabling keybinding #1111 (only the first issue)
+    [gtk3] Guake window is open upon startup #1113
