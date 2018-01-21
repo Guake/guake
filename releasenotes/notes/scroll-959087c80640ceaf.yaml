@@ -1,0 +1,7 @@
+features:
+  - |
+    Add "Infinite scrolling" option in "Scrolling" panel
+
+fixes:
+  - |
+    fix history size spin

@@ -1157,6 +1157,7 @@ class Guake(SimpleGladeApp):
             self.settings.general.triggerOnChangedValue(self.settings.general, 'window-width')
         self.settings.general.triggerOnChangedValue(self.settings.general, 'use-scrollbar')
         self.settings.general.triggerOnChangedValue(self.settings.general, 'history-size')
+        self.settings.general.triggerOnChangedValue(self.settings.general, 'infinite-history')
         self.settings.general.triggerOnChangedValue(self.settings.general, 'use-vte-titles')
         self.settings.general.triggerOnChangedValue(self.settings.general, 'set-window-title')
         self.settings.general.triggerOnChangedValue(self.settings.general, 'abbreviate-tab-names')

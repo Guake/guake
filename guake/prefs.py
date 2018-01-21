@@ -438,6 +438,15 @@ class PrefsCallbacks(object):
         """
         val = int(spin.get_value())
         self.settings.general.set_int('history-size', val)
+        self._update_history_widgets()
+
+    def on_infinite_history_toggled(self, chk):
+        self.settings.general.set_boolean('infinite-history', chk.get_active())
+        self._update_history_widgets()
+
+    def _update_history_widgets(self):
+        infinite = self.prefDlg.get_widget('infinite_history').get_active()
+        self.prefDlg.get_widget('history_size').set_sensitive(not infinite)
 
     def on_scroll_output_toggled(self, chk):
         """Changes the activity of scroll_output in gconf
@@ -987,6 +996,11 @@ class PrefsDialog(SimpleGladeApp):
         # history size
         value = self.settings.general.get_int('history-size')
         self.get_widget('history_size').set_value(value)
+
+        # infinite history
+        value = self.settings.general.get_boolean('infinite-history')
+        self.get_widget('infinite_history').set_active(value)
+        print("infinite history: ", value)
 
         # scroll output
         value = self.settings.general.get_boolean('scroll-output')
