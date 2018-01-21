@@ -93,7 +93,6 @@ class Terminal(Vte.Terminal):
         # word_chars = client.get_string(KEY('/general/word_chars'))
         # self.set_word_chars(word_chars)
         # self.set_audible_bell(client.get_bool(KEY('/general/use_audible_bell')))
-        # self.set_visible_bell(client.get_bool(KEY('/general/use_visible_bell')))
         self.set_sensitive(True)
         self.set_can_default(True)
         self.set_can_focus(True)
@@ -235,8 +234,6 @@ class GuakeTerminal(Vte.Terminal):
             # self.set_word_chars(word_chars)
             pass
         self.set_audible_bell(client.get_boolean('use-audible-bell'))
-        # TODO PORT I hve not seen a way to port this
-        # self.set_visible_bell(client.get_boolean('use-visible-bell'))
         self.set_sensitive(True)
         # TODO PORT there is no method set_flags anymore
         # self.set_flags(gtk.CAN_DEFAULT)
