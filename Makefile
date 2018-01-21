@@ -260,7 +260,7 @@ reno-lint:
 
 release-note: reno-lint release-note-news release-note-github
 
-release-note-news:
+release-note-news: reno-lint
 	@echo "Generating release note for NEWS file"
 	@pipenv run reno report 2>/dev/null | \
 		pandoc -f rst -t rst --atx-headers --columns=100 --wrap=auto --tab-stop 2 | \
@@ -275,7 +275,7 @@ release-note-news:
 		> NEWS.rst
 	@cat releasenotes/archive/NEWS.pre-3.0 >> NEWS.rst
 
-release-note-github:
+release-note-github: reno-lint
 	@echo
 	@echo "!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"
 	@echo "!! Generating release note for GitHub !!"

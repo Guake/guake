@@ -1,24 +1,73 @@
 Release Notes
 =============
 
-3.0.2
------
+3.0.2-36
+--------
 
 Release Summary
 ~~~~~~~~~~~~~~~
 
-This releases add preliminary support of Dark Theme.
+This minor release only focussed on fixing problems raisen by Guake enthousiasts that tested Guake
+3.0.0.
+
+The Preference window has been deeply reworked and the hotkey management page has been fixed.
 
 New Features
 ~~~~~~~~~~~~
 
-- Dark theme support. To use it, install the 'numix' theme in your system. For example,
+- Automatically open reno files for editing
+
+- Add "Infinite scrolling" option in "Scrolling" panel
+
+- Added hotkey for showing and focusing Guake window when it is opened or closed. It is convenient
+  when Guake window are overlapped with another windows and user needs to just showing it without
+  closing and opening it again.
+
+Bug Fixes
+~~~~~~~~~
+
+- Guake does not work #1119
+
+- 2 issues - command options don't work, crash when disabling keybinding #1111 (only the first
+  issue) [gtk3] Guake window is open upon startup #1113
+
+- [gtk3] Crash on increase/decrease height shortcut #1099
+
+- [gtk3] Conflicting default shortcut of Ctrl+F2 #1101
+
+- Preference panel was buggy and unesthetic.
+
+- The hotkey management has been rewriten and is now fully functional
+
+- Rework the Preference window and reorganize the settings. Lot of small issues has been fixed. The
+  Preference window now fits in a 1024x768 screen.
+
+- [gtk3] Remove or manually implement visible bell #1081
+
+- fix history size spin
+
+Translation Updates
+~~~~~~~~~~~~~~~~~~~
+
+- de
+
+- fr
+
+- ru
+
+3.0.2
+-----
+
+New Features
+~~~~~~~~~~~~
+
+- Preliminary Dark theme support. To use it, install the 'numix' theme in your system. For example,
   Ubuntu/Debian users would use ``sudo apt install numix-gtk-theme``.
 
 Known Issues
 ~~~~~~~~~~~~
 
-- Cannot enable or disable the GTK theme by a preference setting
+- Cannot enable or disable the GTK or Dark theme by a preference setting.
 
 Deprecations
 ~~~~~~~~~~~~
