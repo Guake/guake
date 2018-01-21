@@ -419,12 +419,6 @@ class PrefsCallbacks(object):
                 'window-halignment', which_align[halign_button.get_name()]
             )
 
-    def on_use_visible_bell_toggled(self, chk):
-        """Changes the value of use_visible_bell in gconf
-        """
-        # TODO PORT remove this vte has no visual bell feature any more
-        self.settings.general.set_boolean('use-visible-bell', chk.get_active())
-
     def on_use_audible_bell_toggled(self, chk):
         """Changes the value of use_audible_bell in gconf
         """
@@ -955,11 +949,6 @@ class PrefsDialog(SimpleGladeApp):
         # start fullscreen
         value = self.settings.general.get_boolean('start-fullscreen')
         self.get_widget('start_fullscreen').set_active(value)
-
-        # use visible bell
-        # TODO PORT remove this. the new vte has now visual bell feature
-        value = self.settings.general.get_boolean('use-visible-bell')
-        self.get_widget('use_visible_bell').set_active(value)
 
         # use audible bell
         value = self.settings.general.get_boolean('use-audible-bell')
