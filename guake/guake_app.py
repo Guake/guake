@@ -567,7 +567,8 @@ class Guake(SimpleGladeApp):
             for current_vte in terminals:
                 current_vte.feed_child(command)
 
-    #TODO this is dead: 2eae380b1a91a24f6c1eb68c13dac33db98a6ea2 and 3f8c344519c9228deb9ca5f181cbdd5ef1d6acc0
+    # TODO this is dead: 2eae380b1a91a24f6c1eb68c13dac33db98a6ea2 and
+    # 3f8c344519c9228deb9ca5f181cbdd5ef1d6acc0
     def on_resizer_drag(self, widget, event):
         """Method that handles the resize drag.
 
