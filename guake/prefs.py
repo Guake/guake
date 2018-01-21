@@ -613,7 +613,7 @@ class PrefsDialog(SimpleGladeApp):
 
         login_shell = self.settings.general.get_boolean('use-login-shell')
         if login_shell:
-            argv = '-'
+            argv.append('--login')
 
         if isinstance(directory, str):
             wd = directory
