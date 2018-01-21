@@ -397,14 +397,12 @@ class PrefsCallbacks(object):
         """
         val = hscale.get_value()
         self.settings.general.set_int('window-height', int(val))
-        self.settings.general.set_double('window-height-f', float(val))
 
     def on_window_width_value_changed(self, wscale):
         """Changes the value of window_width in gconf
         """
         val = wscale.get_value()
         self.settings.general.set_int('window-width', int(val))
-        self.settings.general.set_double('window-width-f', float(val))
 
     def on_window_halign_value_changed(self, halign_button):
         """Changes the value of window_halignment in gconf
@@ -927,14 +925,10 @@ class PrefsDialog(SimpleGladeApp):
 
         self.update_vte_subwidgets_states()
 
-        value = self.settings.general.get_double('window-height-f')
-        if not value:
-            value = self.settings.general.get_int('window-height')
+        value = self.settings.general.get_int('window-height')
         self.get_widget('window_height').set_value(value)
 
-        value = self.settings.general.get_double('window-width-f')
-        if not value:
-            value = self.settings.general.get_int('window-width')
+        value = self.settings.general.get_int('window-width')
         self.get_widget('window_width').set_value(value)
 
         value = self.settings.general.get_int('window-halignment')

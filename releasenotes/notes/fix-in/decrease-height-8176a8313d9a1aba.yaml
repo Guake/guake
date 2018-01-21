@@ -1,0 +1,3 @@
+fixes:
+  - |
+    [gtk3] Crash on increase/decrease height shortcut #1099
