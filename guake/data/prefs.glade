@@ -285,6 +285,21 @@
                                             <property name="top_attach">1</property>
                                           </packing>
                                         </child>
+                                        <child>
+                                          <object class="GtkCheckButton" id="use_visible_bell">
+                                            <property name="label" translatable="yes">_Flash terminal on bell</property>
+                                            <property name="can_focus">True</property>
+                                            <property name="receives_default">False</property>
+                                            <property name="no_show_all">True</property>
+                                            <property name="halign">start</property>
+                                            <property name="use_underline">True</property>
+                                            <property name="draw_indicator">True</property>
+                                          </object>
+                                          <packing>
+                                            <property name="left_attach">1</property>
+                                            <property name="top_attach">2</property>
+                                          </packing>
+                                        </child>
                                       </object>
                                     </child>
                                   </object>
