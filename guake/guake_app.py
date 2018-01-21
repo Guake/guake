@@ -567,6 +567,7 @@ class Guake(SimpleGladeApp):
             for current_vte in terminals:
                 current_vte.feed_child(command)
 
+    #TODO this is dead: 2eae380b1a91a24f6c1eb68c13dac33db98a6ea2 and 3f8c344519c9228deb9ca5f181cbdd5ef1d6acc0
     def on_resizer_drag(self, widget, event):
         """Method that handles the resize drag.
 
@@ -604,7 +605,6 @@ class Guake(SimpleGladeApp):
             self.window.resize(window_rect[0], y)
             self.printDebug("Just moving on resizer drag to : %r", window_rect[0], y)
         self.settings.general.set_int('window-height', int(percent))
-        self.settings.general.set_double('window-height-f', float(percent))
 
     def on_window_losefocus(self, window, event):
         """Hides terminal main window when it loses the focus and if
@@ -999,13 +999,9 @@ class Guake(SimpleGladeApp):
         """
 
         # fetch settings
-        height_percents = self.settings.general.get_double('window-height-f')
-        if not height_percents:
-            height_percents = self.settings.general.get_int('window-height')
+        height_percents = self.settings.general.get_int('window-height')
 
-        width_percents = self.settings.general.get_double('window-width-f')
-        if not width_percents:
-            width_percents = self.settings.general.get_int('window-width')
+        width_percents = self.settings.general.get_int('window-width')
         halignment = self.settings.general.get_int('window-halignment')
         valignment = self.settings.general.get_int('window-valignment')
 
@@ -1223,15 +1219,15 @@ class Guake(SimpleGladeApp):
     def accel_increase_height(self, *args):
         """Callback to increase height.
         """
-        height = self.settings.general.get_int('window_height')
-        self.settings.general.set_int('window_height', int(height) + 2)
+        height = self.settings.general.get_int('window-height')
+        self.settings.general.set_int('window-height', min(height + 2, 100))
         return True
 
     def accel_decrease_height(self, *args):
         """Callback to decrease height.
         """
-        height = self.settings.general.get_int('window_height')
-        self.settings.general.set_int('window_height', int(height) - 2)
+        height = self.settings.general.get_int('window-height')
+        self.settings.general.set_int('window-height', max(height - 2, 0))
         return True
 
     def accel_increase_transparency(self, *args):

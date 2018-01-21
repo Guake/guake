@@ -111,19 +111,9 @@
             <summary>Window width.</summary>
             <description>Percent of the screen that will be used by guake terminal horizontally.</description>
         </key>
-        <key name="window-width-f" type="d">
-            <default>100</default>
-            <summary>Window width (float).</summary>
-            <description>Percent of the screen that will be used by guake terminal horizontally.</description>
-        </key>
         <key name="window-height" type="i">
             <default>50</default>
             <summary>Window height.</summary>
-            <description>Percent of the screen that will be used by guake terminal vertically.</description>
-        </key>
-        <key name="window-height-f" type="d">
-            <default>50</default>
-            <summary>Window height (float).</summary>
             <description>Percent of the screen that will be used by guake terminal vertically.</description>
         </key>
         <key name="window-halignment" type="i">

@@ -64,8 +64,6 @@ class GSettingHandler(object):
         settings.general.onChangedValue('window-tabbar', self.tabbar_toggled)
         settings.general.onChangedValue('window-height', self.size_changed)
         settings.general.onChangedValue('window-width', self.size_changed)
-        settings.general.onChangedValue('window-height-f', self.size_changed)
-        settings.general.onChangedValue('window-width-f', self.size_changed)
         settings.general.onChangedValue('window-valignment', self.alignment_changed)
         settings.general.onChangedValue('window-halignment', self.alignment_changed)
         settings.style.onChangedValue('cursor-blink-mode', self.cursor_blink_mode_changed)
