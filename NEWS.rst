@@ -1,7 +1,7 @@
 Release Notes
 =============
 
-3.0.2-36
+3.0.2-38
 --------
 
 Release Summary
@@ -15,7 +15,7 @@ The Preference window has been deeply reworked and the hotkey management page ha
 New Features
 ~~~~~~~~~~~~
 
-- Automatically open reno files for editing
+- Development environment: automatically open reno slug after creation for editing
 
 - Add "Infinite scrolling" option in "Scrolling" panel
 
