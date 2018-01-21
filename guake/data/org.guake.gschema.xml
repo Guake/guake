@@ -136,6 +136,11 @@
             <summary>History Size.</summary>
             <description>The number of scrollback lines to save in history.</description>
         </key>
+        <key name="infinite-history" type="b">
+            <default>false</default>
+            <summary>Infinite scrolling</summary>
+            <description>Scrollback lines in history is infinite</description>
+        </key>
         <key name="scroll-output" type="b">
             <default>false</default>
             <summary>Scroll on output</summary>

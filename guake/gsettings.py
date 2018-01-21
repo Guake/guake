@@ -71,6 +71,7 @@ class GSettingHandler(object):
 
         settings.general.onChangedValue('use-scrollbar', self.scrollbar_toggled)
         settings.general.onChangedValue('history-size', self.history_size_changed)
+        settings.general.onChangedValue('infinite-history', self.infinite_history_changed)
         settings.general.onChangedValue('scroll-output', self.keystroke_output)
         settings.general.onChangedValue('scroll-keystroke', self.keystroke_toggled)
 
@@ -167,8 +168,17 @@ class GSettingHandler(object):
         be called and will set the scrollback_lines property of all
         terminals open.
         """
+        lines = settings.get_int(key)
         for i in self.guake.notebook.iter_terminals():
-            i.set_scrollback_lines(settings.get_int(key))
+            i.set_scrollback_lines(lines)
+
+    def infinite_history_changed(self, settings, key, user_data):
+        if settings.get_boolean(key):
+            lines = -1
+        else:
+            lines = self.settings.general.get_int("history-size")
+        for i in self.guake.notebook.iter_terminals():
+            i.set_scrollback_lines(lines)
 
     def keystroke_output(self, settings, key, user_data):
         """If the gconf var scroll_output be changed, this method will

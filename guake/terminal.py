@@ -281,8 +281,10 @@ class GuakeTerminal(Vte.Terminal):
 
         self.found_link = None
 
-        if (event.button == 1 and
-                (event.get_state() & Gdk.ModifierType.CONTROL_MASK) and matched_string):
+        if (
+            event.button == 1 and (event.get_state() & Gdk.ModifierType.CONTROL_MASK) and
+            matched_string
+        ):
             log.debug("matched string: %s", matched_string)
             value, tag = matched_string
             # First searching in additional matchers
