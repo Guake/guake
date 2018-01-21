@@ -19,6 +19,7 @@ Boston, MA 02110-1301 USA
 """
 import logging
 import os
+import signal
 import subprocess
 import sys
 import uuid
@@ -338,6 +339,7 @@ def main():
 def exec_main():
     if not main():
         log.info("Running main gtk loop")
+        signal.signal(signal.SIGINT, signal.SIG_DFL)
         Gtk.main()
 
 
