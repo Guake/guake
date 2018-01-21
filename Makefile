@@ -4,6 +4,7 @@ PYTHON_INTERPRETER=python3
 MODULE:=guake
 INSTALL_ROOT:=/
 PREFIX:=$(INSTALL_ROOT)usr/local
+DIST_PACKAGE:=$$($(PYTHON_INTERPRETER) -c "import site; import os; print(os.path.basename(site.getsitepackages()[0]))")
 OLD_PREFIX:=$(INSTALL_ROOT)usr
 SLUG:=fragment_name
 
@@ -39,7 +40,7 @@ install-system: install-schemas install-locale
 	@echo "Please prefer you application package manager (apt, yum, ...)"
 	@pip3 install -r requirements.txt
 	@$(PYTHON_INTERPRETER) setup.py install --root "$(INSTALL_ROOT)" --optimize=1
-	@glib-compile-schemas $(PREFIX)/lib/python$(shell $(PYTHON_INTERPRETER) -c "import sys; v = sys.version_info; print('{}.{}'.format(v.major, v.minor))")/site-packages/guake/data/
+	@glib-compile-schemas $(PREFIX)/lib/python$(shell $(PYTHON_INTERPRETER) -c "import sys; v = sys.version_info; print('{}.{}'.format(v.major, v.minor))")/$(DIST_PACKAGE)/guake/data/
 	@rm -rfv build *.egg-info
 
 install-locale:
@@ -75,7 +76,7 @@ uninstall-schemas: uninstall-old-schemas
 	rm -f "$(PREFIX)/share/applications/guake-prefs.desktop"
 	rm -f "$(PREFIX)/share/pixmaps/guake.png"
 	rm -f "$(PREFIX)/share/glib-2.0/schemas/org.guake.gschema.xml"
-	rm -f  $(PREFIX)/lib/python$(shell $(PYTHON_INTERPRETER) -c "import sys; v = sys.version_info; print('{}.{}'.format(v.major, v.minor))")/site-packages/guake/data/schema.guake.gschema.xml
+	rm -f  $(PREFIX)/lib/python$(shell $(PYTHON_INTERPRETER) -c "import sys; v = sys.version_info; print('{}.{}'.format(v.major, v.minor))")/$(DIST_PACKAGE)/guake/data/schema.guake.gschema.xml
 	[ -d $(PREFIX)/share/glib-2.0/schemas/ ] && glib-compile-schemas $(PREFIX)/share/glib-2.0/schemas/ || true
 
 uninstall-old-schemas:
@@ -84,7 +85,7 @@ uninstall-old-schemas:
 	@rm -f "$(OLD_PREFIX)/share/pixmaps/guake.png"
 	@rm -f "$(OLD_PREFIX)/share/glib-2.0/schemas/org.guake.gschema.xml"
 	@rm -f "$(OLD_PREFIX)/share/glib-2.0/schemas/schema.guake.gschema.xml"
-	@rm -f $(OLD_PREFIX)/lib/python$(shell $(PYTHON_INTERPRETER) -c "import sys; v = sys.version_info; print('{}.{}'.format(v.major, v.minor))")/site-packages/guake/data/schema.guake.gschema.xml
+	@rm -f $(OLD_PREFIX)/lib/python$(shell $(PYTHON_INTERPRETER) -c "import sys; v = sys.version_info; print('{}.{}'.format(v.major, v.minor))")/$(DIST_PACKAGE)/guake/data/schema.guake.gschema.xml
 	@glib-compile-schemas $(OLD_PREFIX)/share/glib-2.0/schemas/
 
 compile-glib-schemas: clean-schemas
