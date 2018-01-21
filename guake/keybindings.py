@@ -45,7 +45,7 @@ class Keybindings(object):
 
         # Setup global keys
         self.globalhotkeys = {}
-        globalkeys = ['show-hide']
+        globalkeys = ['show-hide', 'show-focus']
         for key in globalkeys:
             guake.settings.keybindingsGlobal.onChangedValue(key, self.reload_global)
             guake.settings.keybindingsGlobal.triggerOnChangedValue(
@@ -78,21 +78,26 @@ class Keybindings(object):
             pass
 
         self.globalhotkeys[key] = value
-        if not self.guake.hotkeys.bind(value, self.guake.show_hide):
-            print("shit")
-            # TODO port this
-            return
-            keyval, mask = Gtk.accelerator_parse(value)
-            label = Gtk.accelerator_get_label(keyval, mask)
-            filename = pixmapfile('guake-notification.png')
-            notifier.showMessage(
-                _('Guake Terminal'),
-                _(
-                    'A problem happened when binding <b>%s</b> key.\n'
-                    'Please use Guake Preferences dialog to choose another '
-                    'key'
-                ) % xml_escape(label), filename
-            )
+        if key == "show-hide":
+            if not self.guake.hotkeys.bind(value, self.guake.show_hide):
+                print("shit")
+                # TODO port this
+                return
+                keyval, mask = Gtk.accelerator_parse(value)
+                label = Gtk.accelerator_get_label(keyval, mask)
+                filename = pixmapfile('guake-notification.png')
+                guake.notifier.showMessage(
+                    _('Guake Terminal'),
+                    _(
+                        'A problem happened when binding <b>%s</b> key.\n'
+                        'Please use Guake Preferences dialog to choose another '
+                        'key'
+                    ) % xml_escape(label), filename
+                )
+        elif key == "show-focus":
+            if not self.guake.hotkeys.bind(value, self.guake.show_focus):
+                print("can't bind show-focus key")
+                return
 
     def reload_accelerators(self, *args):
         """Reassign an accel_group to guake main window and guake

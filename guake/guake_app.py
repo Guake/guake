@@ -759,6 +759,48 @@ class Guake(SimpleGladeApp):
         if self.preventHide:
             return
 
+        self.win_prepare()
+
+        if not self.window.get_property('visible'):
+            log.debug("Showing the terminal")
+            self.show()
+            self.set_terminal_focus()
+            return
+
+        # Disable the focus_if_open feature
+        #  - if doesn't work seamlessly on all system
+        #  - self.window.window.get_state doesn't provides us the right information on all
+        #    systems, especially on MATE/XFCE
+        #
+        # if self.client.get_bool(KEY('/general/focus_if_open')):
+        #     restore_focus = False
+        #     if self.window.window:
+        #         state = int(self.window.window.get_state())
+        #         if ((state & GDK_WINDOW_STATE_STICKY or
+        #                 state & GDK_WINDOW_STATE_WITHDRAWN
+        #              )):
+        #             restore_focus = True
+        #     else:
+        #         restore_focus = True
+        # if not self.hidden:
+        # restore_focus = True
+        #     if restore_focus:
+        #         log.debug("DBG: Restoring the focus to the terminal")
+        #         self.hide()
+        #         self.show()
+        #         self.window.window.focus()
+        #         self.set_terminal_focus()
+        #         return
+
+        log.debug("hiding the terminal")
+        self.hide()
+
+    def show_focus(self, *args):
+        self.win_prepare()
+        self.show()
+        self.set_terminal_focus()
+
+    def win_prepare(self, *args):
         # TODO PORT reenable this after keybinder fixes (this is  mostly done but needs testing)
         event_time = self.hotkeys.get_current_event_time()
         if not self.settings.general.get_boolean('window-refocus') and \
@@ -799,40 +841,6 @@ class Guake(SimpleGladeApp):
             log.debug("GDK_WINDOW_STATE_WITHDRAWN? %s", is_withdrawn)
             log.debug("GDK_WINDOW_STATE_ABOVE? %s", is_above)
             log.debug("GDK_WINDOW_STATE_ICONIFIED? %s", is_iconified)
-
-        if not self.window.get_property('visible'):
-            log.debug("Showing the terminal")
-            self.show()
-            self.set_terminal_focus()
-            return
-
-        # Disable the focus_if_open feature
-        #  - if doesn't work seamlessly on all system
-        #  - self.window.window.get_state doesn't provides us the right information on all
-        #    systems, especially on MATE/XFCE
-        #
-        # if self.client.get_bool(KEY('/general/focus_if_open')):
-        #     restore_focus = False
-        #     if self.window.window:
-        #         state = int(self.window.window.get_state())
-        #         if ((state & GDK_WINDOW_STATE_STICKY or
-        #                 state & GDK_WINDOW_STATE_WITHDRAWN
-        #              )):
-        #             restore_focus = True
-        #     else:
-        #         restore_focus = True
-        # if not self.hidden:
-        # restore_focus = True
-        #     if restore_focus:
-        #         log.debug("DBG: Restoring the focus to the terminal")
-        #         self.hide()
-        #         self.show()
-        #         self.window.window.focus()
-        #         self.set_terminal_focus()
-        #         return
-
-        log.debug("hiding the terminal")
-        self.hide()
 
     def show(self):
         """Shows the main window and grabs the focus on it.
