@@ -1642,7 +1642,7 @@ class Guake(SimpleGladeApp):
 
         login_shell = self.settings.general.get_boolean('use-login-shell')
         if login_shell:
-            argv = '-'
+            argv.append('--login')
 
         # We can choose the directory to vte launch. It is important
         # to be used by dbus interface. I'm testing if directory is a
