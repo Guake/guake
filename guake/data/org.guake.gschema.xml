@@ -132,7 +132,7 @@
             <description>When true, scrollbar is visible.</description>
         </key>
         <key name="history-size" type="i">
-            <default>1024</default>
+            <default>1000</default>
             <summary>History Size.</summary>
             <description>The number of scrollback lines to save in history.</description>
         </key>
