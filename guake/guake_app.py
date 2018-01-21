@@ -296,13 +296,13 @@ class Guake(SimpleGladeApp):
         def scroll_manager(hbox, event):
             adj = self.get_widget('tabs-scrolledwindow').get_hadjustment()
             adj.set_page_increment(1)
-            if event.direction == gtk.gdk.SCROLL_DOWN:
+            if event.direction == Gdk.ScrollDirection.Down:
                 if self.notebook.get_current_page() + 1 < self.notebook.get_tab_count():
                     self.notebook.next_page()
                 else:
                     return
 
-            if event.direction == gtk.gdk.SCROLL_UP:
+            if event.direction == Gdk.ScrollDirection.UP:
                 self.notebook.prev_page()
 
             current_page = self.notebook.get_current_page()

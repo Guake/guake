@@ -52,6 +52,8 @@ from guake.simplegladeapp import bindtextdomain
 from guake.terminal import GuakeTerminal
 from guake.terminal import QUICK_OPEN_MATCHERS
 
+# pylint: disable=unsubscriptable-object
+
 log = logging.getLogger(__name__)
 
 # A regular expression to match possible python interpreters when
@@ -76,6 +78,7 @@ ERASE_BINDINGS = {
 HOTKEYS = [
     {
         'label': _('General'),
+        'key': 'general',
         'keys': [
             {
                 'key': 'show-hide',
@@ -105,6 +108,7 @@ HOTKEYS = [
     },
     {
         'label': _('Tab management'),
+        'key': 'tab',
         'keys': [
             {
                 'key': 'new-tab',
@@ -122,6 +126,7 @@ HOTKEYS = [
     },
     {
         'label': _('Navigation'),
+        'key': 'nav',
         'keys': [
             {
                 'key': 'previous-tab',
@@ -187,6 +192,7 @@ HOTKEYS = [
     },
     {
         'label': _('Appearance'),
+        'key': 'appearance',
         'keys': [{
             'key': 'zoom-out',
             'label': _('Zoom out')
@@ -215,6 +221,7 @@ HOTKEYS = [
     },
     {
         'label': _('Clipboard'),
+        'key': 'clipboard',
         'keys': [
             {
                 'key': 'clipboard-copy',
@@ -228,12 +235,26 @@ HOTKEYS = [
     },
     {
         'label': _('Extra features'),
+        'key': 'extra',
         'keys': [{
             'key': 'search-on-web',
             'label': _('Search select text on web')
         }, ]
     },
 ]
+
+html_escape_table = {
+    "&": "&amp;",
+    '"': "&quot;",
+    "'": "&apos;",
+    ">": "&gt;",
+    "<": "&lt;",
+}
+
+
+def html_escape(text):
+    """Produce entities within text."""
+    return "".join(html_escape_table.get(c, c) for c in text)
 
 
 class PrefsCallbacks(object):
@@ -551,6 +572,9 @@ class PrefsDialog(SimpleGladeApp):
         """Setup the preferences dialog interface, loading images,
         adding filters to file choosers and connecting some signals.
         """
+        self.hotkey_alread_used = False
+        self.store = None
+
         super(PrefsDialog, self).__init__(gladefile('prefs.glade'), root='config-window')
         self.settings = settings
 
@@ -570,11 +594,14 @@ class PrefsDialog(SimpleGladeApp):
         ipath = pixmapfile('quick-open.png')
         self.get_widget('image_quick_open').set_from_file(ipath)
 
-        # the first position in tree will store the keybinding path in gconf,
-        # and the user doesn't worry with this, let's hide that =D
-        model = Gtk.TreeStore(str, str, object, bool)
+        # Model format:
+        # 0: the keybinding path in gsettings,
+        # 1: label
+        # 2: current accelerator (str)
+        # 3: previous value for accelerator
+        self.store = Gtk.TreeStore(str, str, str, str)
         treeview = self.get_widget('treeview-keys')
-        treeview.set_model(model)
+        treeview.set_model(self.store)
         treeview.set_rules_hint(True)
 
         # TODO PORT this is killing the editing of the accl
@@ -592,17 +619,23 @@ class PrefsDialog(SimpleGladeApp):
 
         renderer = Gtk.CellRendererAccel()
         renderer.set_property('editable', True)
-        renderer.connect('accel-edited', self.on_key_edited, model)
-        renderer.connect('accel-cleared', self.on_key_cleared, model)
-
-        column = Gtk.TreeViewColumn(_('Shortcut'), renderer)
-        column.set_cell_data_func(renderer, self.cell_data_func)
+        renderer.connect('accel-edited', self.on_accel_edited)
+        renderer.connect('accel-cleared', self.on_accel_cleared)
+        column = Gtk.TreeViewColumn(_('Shortcut'), renderer, text=2)
+        column.pack_start(renderer, True)
         column.set_property('expand', False)
+        column.add_attribute(renderer, "accel-mods", 0)
+        column.add_attribute(renderer, "accel-key", 1)
+        treeview.append_column(column)
+
+        renderer = Gtk.CellRendererText()
+        column = Gtk.TreeViewColumn('old_accel', renderer, text=3)
+        column.set_visible(False)
         treeview.append_column(column)
 
         self.demo_terminal = GuakeTerminal(self.settings)
-        demo_terminal_box = self.get_widget('demo_terminal_box')
-        demo_terminal_box.add(self.demo_terminal)
+        self.demo_terminal_box = self.get_widget('demo_terminal_box')
+        self.demo_terminal_box.add(self.demo_terminal)
 
         pid = self.spawn_sync_pid(None, self.demo_terminal)
 
@@ -1092,22 +1125,15 @@ class PrefsDialog(SimpleGladeApp):
         """Reads the HOTKEYS global variable and insert all data in
         the TreeStore used by the preferences window treeview.
         """
-        model = self.get_widget('treeview-keys').get_model()
         for group in HOTKEYS:
-            giter = model.append(None)
-            model.set(giter, 0, '', 1, _(group['label']))
+            parent = self.store.append(None, [None, group['label'], None, None])
             for item in group['keys']:
-                child = model.append(giter)
                 if item['key'] == "show-hide" or item['key'] == "show-focus":
                     accel = self.settings.keybindingsGlobal.get_string(item['key'])
                 else:
                     accel = self.settings.keybindingsLocal.get_string(item['key'])
-                if accel:
-                    params = Gtk.accelerator_parse(accel)
-                    hotkey = KeyEntry(*params)
-                else:
-                    hotkey = KeyEntry(0, 0)
-                model.set(child, 0, item['key'], 1, _(item['label']), 2, hotkey, 3, True)
+                gsettings_path = item['key']
+                self.store.append(parent, [gsettings_path, item['label'], accel, accel])
         self.get_widget('treeview-keys').expand_all()
 
     def populate_display_n(self):
@@ -1128,40 +1154,44 @@ class PrefsDialog(SimpleGladeApp):
 
     # -- key handling --
 
-    def on_key_edited(self, renderer, path, keycode, mask, keyval, model):
+    def on_accel_edited(self, cellrendereraccel, path, key, mods, hwcode):
         """Callback that handles key edition in cellrenderer. It makes
         some tests to validate the key, like looking for already in
         use keys and look for [A-Z][a-z][0-9] to avoid problems with
         these common keys. If all tests are ok, the value will be
         stored in gconf.
         """
-        giter = model.get_iter(path)
-        gconf_path = model.get_value(giter, 0)
+        accelerator = Gtk.accelerator_name(key, mods)
 
-        oldkey = model.get_value(giter, 2)
-        hotkey = KeyEntry(keycode, mask)
-        key = Gtk.accelerator_name(keycode, mask)
-        keylabel = Gtk.accelerator_get_label(keycode, mask)
+        dconf_path = self.store[path][0]
+        old_accel = self.store[path][3]
 
         # we needn't to change anything, the user is trying to set the
         # same key that is already set.
-        if oldkey == hotkey:
+        if old_accel == accelerator:
             return False
 
+        self.hotkey_alread_used = False
+
         # looking for already used keybindings
+
         def each_key(model, path, subiter):
             keyentry = model.get_value(subiter, 2)
-            if keyentry and keyentry == hotkey:
-                msg = _("The shortcut \"%s\" is already in use.") % keylabel
+            if keyentry and keyentry == accelerator:
+                self.hotkey_alread_used = True
+                self.store[path][2] = self.store[path][3]
+                msg = _("The shortcut \"%s\" is already in use.") % html_escape(accelerator)
                 ShowableError(self.window, _('Error setting keybinding.'), msg, -1)
                 raise Exception('This is ok, we just use it to break the foreach loop!')
 
-        model.foreach(each_key)
+        self.store.foreach(each_key)
+        if self.hotkey_alread_used:
+            return False
 
         # avoiding problems with common keys
-        if ((mask == 0 and keycode != 0) and ((keycode >= ord('a') and keycode <= ord('z')) or
-                                              (keycode >= ord('A') and keycode <= ord('Z')) or
-                                              (keycode >= ord('0') and keycode <= ord('9')))):
+        if ((mods == 0 and key != 0) and
+            ((key >= ord('a') and key <= ord('z')) or (key >= ord('A') and key <= ord('Z')) or
+             (key >= ord('0') and key <= ord('9')))):
             dialog = Gtk.MessageDialog(
                 self.get_widget('config-window'),
                 Gtk.DialogFlags.MODAL | Gtk.DialogFlags.DESTROY_WITH_PARENT,
@@ -1173,49 +1203,38 @@ class PrefsDialog(SimpleGladeApp):
                     "Please try with a key such as "
                     "Control, Alt or Shift at the same "
                     "time.\n"
-                ) % key
+                ) % html_escape(key)
             )
             dialog.run()
             dialog.destroy()
             return False
 
-        # setting new value in ui
-        giter = model.get_iter(path)
-        model.set_value(giter, 2, hotkey)
+        self.store[path][2] = accelerator
 
-        # setting the new value in gconf
-        if gconf_path == "show-hide" or gconf_path == "show-focus":
-            self.settings.keybindingsGlobal.set_string(gconf_path, key)
+        if dconf_path == "show-hide" or dconf_path == "show-focus":
+            self.settings.keybindingsGlobal.set_string(dconf_path, accelerator)
         else:
-            self.settings.keybindingsLocal.set_string(gconf_path, key)
+            self.settings.keybindingsLocal.set_string(dconf_path, accelerator)
+        self.store[path][3] = self.store[path][2]
 
-    def on_key_cleared(self, renderer, path, model):
+    def on_accel_cleared(self, cellrendereraccel, path):
         """If the user tries to clear a keybinding with the backspace
         key this callback will be called and it just fill the model
         with an empty key and set the 'disabled' string in gconf path.
         """
-        giter = model.get_iter(path)
-        gconf_path = model.get_value(giter, 0)
-        print(path)
-        self.settings.keybindingsLocal.get_string(gconf_path)
-        model.set_value(giter, 2, KeyEntry(0, 0))
+        self.store[path][2] = "None"
+        dconf_path = self.store[path][0]
+        old_accel = self.store[path][3]
 
-        self.settings.keybindingsLocal.set_string(gconf_path, 'disabled')
-
-    def cell_data_func(self, column, renderer, model, giter, unknown):
-        """Defines the way that each renderer will handle the key
-        object and the mask it sets the properties for a cellrenderer
-        key.
-        """
-        obj = model.get_value(giter, 2)
-        if obj:
-            renderer.set_property('visible', True)
-            renderer.set_property('accel-key', obj.keycode)
-            renderer.set_property('accel-mods', obj.mask)
+        if dconf_path == "show-hide":
+            # cannot disable 'show-hide' hotkey
+            log.warn("Cannot disable 'show-hide' hotkey")
+            self.settings.keybindingsGlobal.set_string(dconf_path, old_accel)
+        elif dconf_path == "show-focus":
+            self.settings.keybindingsGlobal.set_string(dconf_path, 'disabled')
         else:
-            renderer.set_property('visible', False)
-            renderer.set_property('accel-key', 0)
-            renderer.set_property('accel-mods', 0)
+            self.settings.keybindingsLocal.set_string(dconf_path, 'disabled')
+        self.store[path][3] = self.store[path][2]
 
     def start_editing(self, treeview, event):
         """Make the treeview grab the focus and start editing the cell
