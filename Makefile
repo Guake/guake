@@ -252,8 +252,7 @@ generate-desktop:
 
 
 reno:
-	pipenv run reno new $(SLUG)
-	@hash $$EDITOR 2> /dev/null; if [[ $$? -eq 0 ]]; then $$EDITOR releasenotes/notes/$$(ls releasenotes/notes -rt | tail -n 1); fi
+	pipenv run reno new $(SLUG) --edit
 
 reno-lint:
 	pipenv run reno lint
