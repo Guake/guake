@@ -1,0 +1,6 @@
+features:
+  - |
+    The additional feature to manipulate guake window from global environment.
+    You can use show-hide hotkey to hide window, but for convenient purposes
+    there are hide-win hotkey. It is useful when you don't want to check what
+    state of guake window have and just to use direct action.

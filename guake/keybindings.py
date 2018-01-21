@@ -45,7 +45,7 @@ class Keybindings(object):
 
         # Setup global keys
         self.globalhotkeys = {}
-        globalkeys = ['show-hide', 'show-focus']
+        globalkeys = ['show-hide', 'show-focus', 'hide']
         for key in globalkeys:
             guake.settings.keybindingsGlobal.onChangedValue(key, self.reload_global)
             guake.settings.keybindingsGlobal.triggerOnChangedValue(
@@ -97,6 +97,10 @@ class Keybindings(object):
         elif key == "show-focus":
             if not self.guake.hotkeys.bind(value, self.guake.show_focus):
                 print("can't bind show-focus key")
+                return
+        elif key == "hide":
+            if not self.guake.hotkeys.bind(value, self.guake.hide_win):
+                print("can't bind hide key")
                 return
 
     def reload_accelerators(self, *args):
