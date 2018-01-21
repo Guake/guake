@@ -359,7 +359,7 @@
             <description>Switch to the tenth tab.</description>
         </key>
         <key name="rename-current-tab" type="s">
-            <default>'&lt;Control&gt;F2'</default>
+            <default>'&lt;Control&gt;&lt;Shift&gt;R'</default>
             <summary>Rename current tab.</summary>
             <description>Shows a dialog to rename the current tab.</description>
         </key>
