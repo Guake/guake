@@ -1123,6 +1123,58 @@ msgid ""
 "Boston, MA  02110-1301 USA"
 msgstr ""
 
+#: guake/prefs.py:89
+msgid "Show and focus Guake window"
+msgstr ""
+
+#: guake/data/prefs.glade:566
+msgid "0"
+msgstr ""
+
+#: guake/data/prefs.glade:610
+msgid "<b>Main Window Options</b>"
+msgstr ""
+
+#: guake/data/prefs.glade:770
+msgid "Horizontal Alignment:"
+msgstr ""
+
+#: guake/data/prefs.glade:855
+msgid "Height:"
+msgstr ""
+
+#: guake/data/prefs.glade:868
+msgid "Width:"
+msgstr ""
+
+#: guake/data/prefs.glade:913
+msgid "<b>Geometry</b>"
+msgstr ""
+
+#: guake/data/prefs.glade:944
+msgid "Main Window"
+msgstr ""
+
+#: guake/data/prefs.glade:1197
+msgid "Infinite scrolling"
+msgstr ""
+
+#: guake/data/prefs.glade:1219
+msgid "<b>Scrollbar</b>"
+msgstr ""
+
+#: guake/data/prefs.glade:1304
+msgid "<b>Scroll to Bottom</b>"
+msgstr ""
+
+#: guake/data/prefs.glade:2117
+msgid ""
+"Quick open is a feature allowing you to open a file directly into your "
+"favorite text editor by clicking on its filename when it appears in your "
+"terminal. See the list of currently supported text patterns used to extract "
+"filename below."
+msgstr ""
+
 #~ msgid "key binding error"
 #~ msgstr "Hurtigtast error"
 
