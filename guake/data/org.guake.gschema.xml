@@ -261,6 +261,11 @@
             <summary>Keybinding to show/hide guake.</summary>
             <description>Global keybinding to allow user call guake from each place after it's opened without clicks.</description>
         </key>
+        <key name="show-focus" type="s">
+            <default>''</default>
+            <summary>Keybinding to show and focus guake.</summary>
+            <description>Global keybinding to allow user call guake from each place after it's opened without clicks.</description>
+        </key>
     </schema>
     <schema id="guake.keybindings.local" path="/apps/guake/keybindings/local/">
         <key name="quit" type="s">
