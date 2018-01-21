@@ -801,6 +801,17 @@ class Guake(SimpleGladeApp):
         self.show()
         self.set_terminal_focus()
 
+    def hide_win(self, *args):
+
+        if self.forceHide:
+            self.forceHide = False
+            return
+
+        if self.preventHide:
+            return
+
+        self.hide()
+
     def win_prepare(self, *args):
         # TODO PORT reenable this after keybinder fixes (this is  mostly done but needs testing)
         event_time = self.hotkeys.get_current_event_time()

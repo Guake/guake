@@ -86,6 +86,10 @@ HOTKEYS = [
                 'label': _('Show and focus Guake window')
             },
             {
+                'key': 'hide',
+                'label': _('Hide Guake window')
+            },
+            {
                 'key': 'toggle-fullscreen',
                 'label': _('Toggle Fullscreen')
             },
@@ -1098,7 +1102,8 @@ class PrefsDialog(SimpleGladeApp):
             model.set(giter, 0, '', 1, _(group['label']))
             for item in group['keys']:
                 child = model.append(giter)
-                if item['key'] == "show-hide" or item['key'] == "show-focus":
+                if item['key'] == "show-hide" or item['key'] == "show-focus"
+                		or item['key'] == "hide":
                     accel = self.settings.keybindingsGlobal.get_string(item['key'])
                 else:
                     accel = self.settings.keybindingsLocal.get_string(item['key'])
@@ -1184,7 +1189,7 @@ class PrefsDialog(SimpleGladeApp):
         model.set_value(giter, 2, hotkey)
 
         # setting the new value in gconf
-        if gconf_path == "show-hide" or gconf_path == "show-focus":
+        if gconf_path == "show-hide" or gconf_path == "show-focus" or gconf_path == "hide":
             self.settings.keybindingsGlobal.set_string(gconf_path, key)
         else:
             self.settings.keybindingsLocal.set_string(gconf_path, key)
