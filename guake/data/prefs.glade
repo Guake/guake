@@ -44,27 +44,44 @@
         <property name="can_focus">False</property>
         <property name="orientation">vertical</property>
         <child>
-          <object class="GtkBox" id="vbox5">
+          <object class="GtkBox" id="eventbox-title">
+            <property name="height_request">70</property>
             <property name="visible">True</property>
             <property name="can_focus">False</property>
             <property name="orientation">vertical</property>
             <child>
-              <object class="GtkEventBox" id="eventbox-title">
-                <property name="height_request">70</property>
+              <object class="GtkBox" id="hbox29">
                 <property name="visible">True</property>
                 <property name="can_focus">False</property>
+                <property name="border_width">12</property>
                 <child>
-                  <object class="GtkBox" id="hbox29">
+                  <object class="GtkImage" id="image_logo">
+                    <property name="width_request">60</property>
+                    <property name="height_request">60</property>
                     <property name="visible">True</property>
                     <property name="can_focus">False</property>
-                    <property name="border_width">12</property>
+                    <property name="stock">pixmaps/guake.png</property>
+                  </object>
+                  <packing>
+                    <property name="expand">False</property>
+                    <property name="fill">False</property>
+                    <property name="position">0</property>
+                  </packing>
+                </child>
+                <child>
+                  <object class="GtkBox" id="vbox22">
+                    <property name="visible">True</property>
+                    <property name="can_focus">False</property>
+                    <property name="margin_left">9</property>
+                    <property name="orientation">vertical</property>
                     <child>
-                      <object class="GtkImage" id="image_logo">
-                        <property name="width_request">60</property>
-                        <property name="height_request">60</property>
+                      <object class="GtkLabel" id="titleLabel">
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
-                        <property name="stock">pixmaps/guake.png</property>
+                        <property name="halign">start</property>
+                        <property name="margin_top">6</property>
+                        <property name="label" translatable="yes">&lt;span size="18000" color="black"&gt;&lt;b&gt;Guake properties&lt;/b&gt;&lt;/span&gt;</property>
+                        <property name="use_markup">True</property>
                       </object>
                       <packing>
                         <property name="expand">False</property>
@@ -73,47 +90,25 @@
                       </packing>
                     </child>
                     <child>
-                      <object class="GtkBox" id="vbox22">
+                      <object class="GtkLabel" id="label4825">
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
-                        <property name="orientation">vertical</property>
-                        <child>
-                          <object class="GtkLabel" id="titleLabel">
-                            <property name="visible">True</property>
-                            <property name="can_focus">False</property>
-                            <property name="halign">start</property>
-                            <property name="vexpand">True</property>
-                            <property name="label" translatable="yes">&lt;span size="18000" color="black"&gt;&lt;b&gt;Guake properties&lt;/b&gt;&lt;/span&gt;</property>
-                            <property name="use_markup">True</property>
-                          </object>
-                          <packing>
-                            <property name="expand">False</property>
-                            <property name="fill">False</property>
-                            <property name="position">0</property>
-                          </packing>
-                        </child>
-                        <child>
-                          <object class="GtkLabel" id="label4825">
-                            <property name="visible">True</property>
-                            <property name="can_focus">False</property>
-                            <property name="halign">start</property>
-                            <property name="label" translatable="yes">&lt;span color="black"&gt;Customize behavior and appearance of Guake!&lt;/span&gt;</property>
-                            <property name="use_markup">True</property>
-                          </object>
-                          <packing>
-                            <property name="expand">True</property>
-                            <property name="fill">True</property>
-                            <property name="position">1</property>
-                          </packing>
-                        </child>
+                        <property name="halign">start</property>
+                        <property name="label" translatable="yes">&lt;span color="black"&gt;Customize behavior and appearance of Guake!&lt;/span&gt;</property>
+                        <property name="use_markup">True</property>
                       </object>
                       <packing>
-                        <property name="expand">True</property>
-                        <property name="fill">True</property>
+                        <property name="expand">False</property>
+                        <property name="fill">False</property>
                         <property name="position">1</property>
                       </packing>
                     </child>
                   </object>
+                  <packing>
+                    <property name="expand">False</property>
+                    <property name="fill">False</property>
+                    <property name="position">1</property>
+                  </packing>
                 </child>
               </object>
               <packing>
@@ -2650,14 +2645,14 @@ For example, for sublime, use &lt;b&gt;subl %(file_path)s:%(line_number)s&lt;/b&
                 </child>
               </object>
               <packing>
-                <property name="expand">False</property>
-                <property name="fill">False</property>
+                <property name="expand">True</property>
+                <property name="fill">True</property>
                 <property name="position">0</property>
               </packing>
             </child>
           </object>
           <packing>
-            <property name="expand">False</property>
+            <property name="expand">True</property>
             <property name="fill">True</property>
             <property name="position">1</property>
           </packing>
