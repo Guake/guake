@@ -47,7 +47,6 @@ import cairo
 
 from guake import notifier
 from guake.about import AboutDialog
-from guake.common import _
 from guake.common import gladefile
 from guake.common import pixmapfile
 from guake.globals import ALIGN_BOTTOM
@@ -58,6 +57,7 @@ from guake.globals import ALWAYS_ON_PRIMARY
 from guake.globals import LOCALE_DIR
 from guake.globals import NAME
 from guake.globals import SCHEMA_DIR
+from guake.globals import _
 from guake.gsettings import GSettingHandler
 from guake.guake_logging import setupLogging
 from guake.guake_notebook import GuakeNotebook

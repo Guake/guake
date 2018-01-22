@@ -21,11 +21,24 @@ Boston, MA 02110-1301 USA
 import inspect
 import os
 
-import guake
+import gettext
+
+# Internationalization purposes.
+_ = gettext.gettext
 
 __all__ = [
-    'NAME', 'VERSION', 'IMAGE_DIR', 'GLADE_DIR', 'SCHEMA_DIR', 'LOCALE_DIR', 'ALIGN_CENTER',
-    'ALIGN_RIGHT', 'ALIGN_LEFT', 'ALIGN_TOP', 'ALIGN_BOTTOM', 'ALWAYS_ON_PRIMARY'
+    '_',
+    'ALIGN_BOTTOM',
+    'ALIGN_CENTER',
+    'ALIGN_LEFT',
+    'ALIGN_RIGHT',
+    'ALIGN_TOP',
+    'ALWAYS_ON_PRIMARY',
+    'GLADE_DIR',
+    'IMAGE_DIR',
+    'LOCALE_DIR',
+    'NAME',
+    'SCHEMA_DIR',
 ]
 
 
@@ -35,7 +48,6 @@ def is_run_from_git_workdir():
 
 
 NAME = 'guake'
-VERSION = guake.__version__
 DATADIR = os.environ.get("GUAKE_DATA_DIR")
 
 SRC_DIR = os.path.dirname(os.path.realpath(__file__))

@@ -28,11 +28,7 @@ from gi.repository import Gtk
 
 import guake.globals
 
-# Internationalization purposes.
-_ = gettext.gettext
-
 __all__ = [
-    '_',
     'get_binaries_from_path',
     'gladefile',
     'hexify_color',
