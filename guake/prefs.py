@@ -251,6 +251,11 @@ html_escape_table = {
     "<": "&lt;",
 }
 
+HOTKET_MODEL_INDEX_DCONF = 0
+HOTKET_MODEL_INDEX_LABEL = 1
+HOTKET_MODEL_INDEX_HUMAN_ACCEL = 2
+HOTKET_MODEL_INDEX_ACCEL = 3
+
 
 def html_escape(text):
     """Produce entities within text."""
@@ -595,10 +600,10 @@ class PrefsDialog(SimpleGladeApp):
         self.get_widget('image_quick_open').set_from_file(ipath)
 
         # Model format:
-        # 0: the keybinding path in gsettings,
-        # 1: label
-        # 2: current accelerator (str)
-        # 3: previous value for accelerator
+        # 0: the keybinding path in gsettings (str, hidden),
+        # 1: label (str)
+        # 2: human readable accelerator (str)
+        # 3: gtk accelerator (str, hidden)
         self.store = Gtk.TreeStore(str, str, str, str)
         treeview = self.get_widget('treeview-keys')
         treeview.set_model(self.store)
@@ -606,11 +611,6 @@ class PrefsDialog(SimpleGladeApp):
 
         # TODO PORT this is killing the editing of the accl
         # treeview.connect('button-press-event', self.start_editing)
-
-        renderer = Gtk.CellRendererText()
-        column = Gtk.TreeViewColumn('keypath', renderer, text=0)
-        column.set_visible(False)
-        treeview.append_column(column)
 
         renderer = Gtk.CellRendererText()
         column = Gtk.TreeViewColumn(_('Action'), renderer, text=1)
@@ -626,11 +626,6 @@ class PrefsDialog(SimpleGladeApp):
         column.set_property('expand', False)
         column.add_attribute(renderer, "accel-mods", 0)
         column.add_attribute(renderer, "accel-key", 1)
-        treeview.append_column(column)
-
-        renderer = Gtk.CellRendererText()
-        column = Gtk.TreeViewColumn('old_accel', renderer, text=3)
-        column.set_visible(False)
         treeview.append_column(column)
 
         self.demo_terminal = GuakeTerminal(self.settings)
@@ -1133,7 +1128,9 @@ class PrefsDialog(SimpleGladeApp):
                 else:
                     accel = self.settings.keybindingsLocal.get_string(item['key'])
                 gsettings_path = item['key']
-                self.store.append(parent, [gsettings_path, item['label'], accel, accel])
+                keycode, mask = Gtk.accelerator_parse(accel)
+                keylabel = Gtk.accelerator_get_label(keycode, mask)
+                self.store.append(parent, [gsettings_path, item['label'], keylabel, accel])
         self.get_widget('treeview-keys').expand_all()
 
     def populate_display_n(self):
@@ -1163,8 +1160,9 @@ class PrefsDialog(SimpleGladeApp):
         """
         accelerator = Gtk.accelerator_name(key, mods)
 
-        dconf_path = self.store[path][0]
-        old_accel = self.store[path][3]
+        dconf_path = self.store[path][HOTKET_MODEL_INDEX_DCONF]
+        old_accel = self.store[path][HOTKET_MODEL_INDEX_HUMAN_ACCEL]
+        keylabel = Gtk.accelerator_get_label(key, mods)
 
         # we needn't to change anything, the user is trying to set the
         # same key that is already set.
@@ -1176,10 +1174,9 @@ class PrefsDialog(SimpleGladeApp):
         # looking for already used keybindings
 
         def each_key(model, path, subiter):
-            keyentry = model.get_value(subiter, 2)
+            keyentry = model.get_value(subiter, HOTKET_MODEL_INDEX_ACCEL)
             if keyentry and keyentry == accelerator:
                 self.hotkey_alread_used = True
-                self.store[path][2] = self.store[path][3]
                 msg = _("The shortcut \"%s\" is already in use.") % html_escape(accelerator)
                 ShowableError(self.window, _('Error setting keybinding.'), msg, -1)
                 raise Exception('This is ok, we just use it to break the foreach loop!')
@@ -1209,32 +1206,32 @@ class PrefsDialog(SimpleGladeApp):
             dialog.destroy()
             return False
 
-        self.store[path][2] = accelerator
+        self.store[path][HOTKET_MODEL_INDEX_HUMAN_ACCEL] = keylabel
 
         if dconf_path == "show-hide" or dconf_path == "show-focus":
             self.settings.keybindingsGlobal.set_string(dconf_path, accelerator)
         else:
             self.settings.keybindingsLocal.set_string(dconf_path, accelerator)
-        self.store[path][3] = self.store[path][2]
+        self.store[path][HOTKET_MODEL_INDEX_ACCEL] = accelerator
 
     def on_accel_cleared(self, cellrendereraccel, path):
         """If the user tries to clear a keybinding with the backspace
         key this callback will be called and it just fill the model
         with an empty key and set the 'disabled' string in gconf path.
         """
-        self.store[path][2] = "None"
-        dconf_path = self.store[path][0]
-        old_accel = self.store[path][3]
+        dconf_path = self.store[path][HOTKET_MODEL_INDEX_DCONF]
 
         if dconf_path == "show-hide":
             # cannot disable 'show-hide' hotkey
             log.warn("Cannot disable 'show-hide' hotkey")
             self.settings.keybindingsGlobal.set_string(dconf_path, old_accel)
-        elif dconf_path == "show-focus":
-            self.settings.keybindingsGlobal.set_string(dconf_path, 'disabled')
         else:
-            self.settings.keybindingsLocal.set_string(dconf_path, 'disabled')
-        self.store[path][3] = self.store[path][2]
+            self.store[path][HOTKET_MODEL_INDEX_HUMAN_ACCEL] = ""
+            self.store[path][HOTKET_MODEL_INDEX_ACCEL] = "None"
+            if dconf_path == "show-focus":
+                self.settings.keybindingsGlobal.set_string(dconf_path, 'disabled')
+            else:
+                self.settings.keybindingsLocal.set_string(dconf_path, 'disabled')
 
     def start_editing(self, treeview, event):
         """Make the treeview grab the focus and start editing the cell
