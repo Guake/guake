@@ -64,7 +64,7 @@ Here are the dependencies of Guake for its execution:
 - ``python3-gi``
 - ``python3-pbr``
 
-Optional themes:
+Optional dependencies:
 
 - ``libutempter0``
 - ``numix-gtk-theme``
@@ -165,6 +165,25 @@ If for any reason `pipenv` does not work on your platform, you can still install
 requirements file, but the ultimate source of truth for dependency declaration is the `Pipfile`.
 
 Do not hesitate to contact me at `gaetan [at] xeberon.net`.
+
+Manual keybinding
+-----------------
+
+If you want to trigger guake manually, for instance on system where ``libkeybinder3`` does not work,
+you can register the following snippet in your window manager
+
+.. code-block:: bash
+
+    dbus-send --type=method_call --dest=org.guake3.RemoteControl \
+        /org/guake3/RemoteControl org.guake3.RemoteControl.show_hide
+
+You can use the simpler
+
+.. code-block:: bash
+
+    guake -t
+
+But it will be slower since ultimately it sends the very same D-Bus message.
 
 
 Contributing
