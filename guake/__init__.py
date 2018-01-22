@@ -18,6 +18,8 @@ Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor,
 Boston, MA 02110-1301 USA
 """
 
-import pbr.version
 
-__version__ = pbr.version.VersionInfo('guake').version_string()
+def guake_version():
+    # Do not import in the module root to speed up the dbus communication as much as possible
+    import pbr.version
+    return pbr.version.VersionInfo('guake').version_string()

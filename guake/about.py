@@ -24,10 +24,10 @@ gi.require_version('Gtk', '3.0')
 from gi.repository import GObject
 from gi.repository import Gtk
 
-from guake.common import _
+from guake import guake_version
 from guake.common import gladefile
 from guake.common import pixmapfile
-from guake.globals import VERSION
+from guake.globals import _
 from guake.simplegladeapp import SimpleGladeApp
 
 
@@ -52,5 +52,5 @@ class AboutDialog(SimpleGladeApp):
         dialog.set_property('logo', pixbuf)
 
         dialog.set_name(_('Guake Terminal'))
-        dialog.set_version(VERSION)
+        dialog.set_version(guake_version())
         dialog.connect("response", lambda x, y: dialog.destroy())
