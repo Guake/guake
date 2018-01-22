@@ -1,3 +1,4 @@
 fixes:
   - |
-    [gtk3] Conflicting default shortcut of Ctrl+F2 #1101
+    Resolved conflicting default shortcut for ``Ctrl+F2`` (now, rename current tab is set to
+    ``Ctrl+Shift+R``) #1101, #1098

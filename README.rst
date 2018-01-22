@@ -38,6 +38,9 @@ Guake has recently been ported Gtk3, thanks to the huge work of @aichingm.
 Old releases and code depending on GTK2 have been put on the
 `0.8.x <https://github.com/Guake/guake/tree/0.8.x>`_ branch and will no more be actively maintained.
 
+Please note that we target to support mainly the GTK and VTE versions found by default on most
+popular distribution such as Ubuntu LTS (currently: Ubuntu 16.04 LTS and 17.10).
+
 Guake has also been ported to Python 3.5+.
 
 Dropped Features from Guake 0.8.x
@@ -50,6 +53,8 @@ Dependencies
 
 Here are the dependencies of Guake for its execution:
 
+- GTK: 3.18
+- VTE: 2.91 (`vte-0.42 <https://packages.ubuntu.com/xenial/gir1.2-vte-2.91>`_)
 - ``gir1.2-keybinder-3.0``
 - ``gir1.2-notify-0.7``
 - ``gir1.2-vte-2.91``

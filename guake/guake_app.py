@@ -32,7 +32,7 @@ from xml.sax.saxutils import escape as xml_escape
 
 import gi
 gi.require_version('Gtk', '3.0')
-gi.require_version('Vte', '2.91')  # vte-0.38
+gi.require_version('Vte', '2.91')  # vte-0.42
 gi.require_version('Keybinder', '3.0')
 from gi.repository import GLib
 from gi.repository import GObject

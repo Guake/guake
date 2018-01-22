@@ -1,50 +1,64 @@
 Release Notes
 =============
 
-3.0.2-38
---------
+3.0.3
+-----
 
 Release Summary
 ~~~~~~~~~~~~~~~
 
-This minor release only focussed on fixing problems raisen by Guake enthousiasts that tested Guake
-3.0.0.
+This minor release mainly focus on fixing big problems that was remaining after the migration to
+GTK3. I would like to akwonledge the work of some contributors that helped testing and reporting
+issues on Guake 3.0.0. Thanks a lot to @egmontkob and @aichingm.
 
-The Preference window has been deeply reworked and the hotkey management page has been fixed.
+The Preference window has been deeply reworked and the hotkey management has been rewriten. This was
+one the the major regression in Guake 3.0.
 
 New Features
 ~~~~~~~~~~~~
 
-- Development environment: automatically open reno slug after creation for editing
+- [dev env] automatically open reno slug after creation for editing
 
-- Add "Infinite scrolling" option in "Scrolling" panel
+- [dev env]: Add the possibility to terminate guake with ``Ctrl+c`` on terminal where Guake has
+  been launched
+
+- Add "Infinite scrolling" option in "Scrolling" panel #274
 
 - Added hotkey for showing and focusing Guake window when it is opened or closed. It is convenient
   when Guake window are overlapped with another windows and user needs to just showing it without
-  closing and opening it again.
+  closing and opening it again. #1133
+
+Known Issues
+~~~~~~~~~~~~
+
+- Quick Edit feature is not working (#1121)
+
+Deprecations
+~~~~~~~~~~~~
+
+- Remove visible bell feature #1081
 
 Bug Fixes
 ~~~~~~~~~
 
-- Guake does not work #1119
+- Command options do not work, crash when disabling keybinding #1111
 
-- 2 issues - command options don't work, crash when disabling keybinding #1111 (only the first
-  issue) [gtk3] Guake window is open upon startup #1113
+- Do not open Guake window upon startup #1113
 
-- [gtk3] Crash on increase/decrease height shortcut #1099
+- Fix crash on increase/decrease main window height shortcut #1099
 
-- [gtk3] Conflicting default shortcut of Ctrl+F2 #1101
-
-- Preference panel was buggy and unesthetic.
+- Resolved conflicting default shortcut for ``Ctrl+F2`` (now, rename current tab is set to
+  ``Ctrl+Shift+R``) #1101, #1098
 
 - The hotkey management has been rewriten and is now fully functional
 
 - Rework the Preference window and reorganize the settings. Lot of small issues has been fixed. The
   Preference window now fits in a 1024x768 screen.
 
-- [gtk3] Remove or manually implement visible bell #1081
+- Fix 'Failed to execute child process "-"' - #1119
 
-- fix history size spin
+- History size spin is fixed and now increment by 1000 steps. Default history value is now set to
+  1000, because "1024" has no real meaning for end user. #1082
 
 Translation Updates
 ~~~~~~~~~~~~~~~~~~~
@@ -54,6 +68,17 @@ Translation Updates
 - fr
 
 - ru
+
+Other
+~~~~~
+
+- The dependencies of the Guake executable has been slightly better described in README. There is
+  an example for Debian/Ubuntu in the file ``bootstrap-dev-debian.sh`` which is the main
+  environment where Guake is developed and tested.
+
+- Package maintainers are encouraged to submit their ``bootstrap-dev-[distribution].sh``,
+  applicable for other distributions, to help users install Guake from source, and other package
+  maintainers.
 
 3.0.2
 -----
@@ -138,9 +163,9 @@ New Features
   - enforced code styling and checks using Pylint, Flake8, Yapf, ISort.
   - simpler release management thanks to PBR
 
-- `reno <https://docs.openstack.org/reno/latest/>`_ will be used to generate release notes for
-  Guake starting version 3.0.0. It allows developers to write the right chunk that will appear in
-  the release note directly from their Pull Request.
+- [dev env] `reno <https://docs.openstack.org/reno/latest/>`_ will be used to generate release
+  notes for Guake starting version 3.0.0. It allows developers to write the right chunk that will
+  appear in the release note directly from their Pull Request.
 
 - Update Guake window title when:
   - the active tab changes
