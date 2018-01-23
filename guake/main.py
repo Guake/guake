@@ -250,7 +250,7 @@ def main():
         if "COLORTERM" in os.environ:
             del os.environ['COLORTERM']
 
-        log.debug("DBus not running, starting it")
+        log.info("DBus not running, starting it")
         # late loading of the Guake object, to speed up dbus comm
         from guake.guake_app import Guake
         instance = Guake()
@@ -354,7 +354,7 @@ def main():
 
 def exec_main():
     if not main():
-        log.info("Running main gtk loop")
+        log.debug("Running main gtk loop")
         signal.signal(signal.SIGINT, signal.SIG_DFL)
         # Load gi pretty late, to speed up as much as possible the parsing of the option for DBus
         # comm through command line

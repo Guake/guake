@@ -70,5 +70,4 @@ def setupLogging(debug_mode):
     else:
         logging.basicConfig(level=base_logging_level, format="%(message)s")
     log.setLevel(base_logging_level)
-    log.info("Logging configuration complete")
-    log.debug("Debug mode enabled")
+    log.debug("Logging configuration complete")
