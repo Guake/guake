@@ -761,7 +761,8 @@ class Guake(SimpleGladeApp):
         if self.preventHide:
             return
 
-        self.win_prepare()
+        if not self.win_prepare():
+            return
 
         if not self.window.get_property('visible'):
             log.debug("Showing the terminal")
@@ -815,18 +816,18 @@ class Guake(SimpleGladeApp):
                     self.window.get_window().focus(event_time)
                     self.set_terminal_focus()
                     self.losefocus_time = 0
-                    return
+                    return False
         elif self.losefocus_time and \
                 self.settings.general.get_boolean('window-losefocus'):
             if self.losefocus_time >= event_time and \
                     (self.losefocus_time - event_time) < 10:
                 self.losefocus_time = 0
-                return
+                return False
 
         # limit rate at which the visibility can be toggled.
         if self.prev_showhide_time and event_time and \
                 (event_time - self.prev_showhide_time) < 65:
-            return
+            return False
         self.prev_showhide_time = event_time
 
         log.debug("")
