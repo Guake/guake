@@ -188,7 +188,7 @@ class Guake(SimpleGladeApp):
             self.tray_icon.connect('popup-menu', self.show_menu)
             self.tray_icon.connect('activate', self.show_hide)
         else:
-            # TODO PORT test this on a system with app indecator
+            # TODO PORT test this on a system with app indicator
             self.tray_icon = appindicator.Indicator(
                 _("guake-indicator"), _("guake-tray"), appindicator.CATEGORY_OTHER
             )
@@ -254,7 +254,7 @@ class Guake(SimpleGladeApp):
             self.window.set_visual(visual)
             self.window.transparency = True
         else:
-            print('System doesn\'t support transparency')
+            log.warn('System doesn\'t support transparency')
             self.window.set_visual(screen.get_system_visual())
         self.window.connect('draw', draw_callback)
 
@@ -485,12 +485,6 @@ class Guake(SimpleGladeApp):
     def execute_context_menu_cmd(self, item, cmd):
         self.execute_command(cmd)
 
-    def printDebug(self, text, *args):
-        log.debug(text, *args)
-
-    def printInfo(self, text, *args):
-        log.info(text, *args)
-
     # new color methods should be moved to the GuakeTerminal class
 
     def __load_palette(self):
@@ -598,14 +592,14 @@ class Guake(SimpleGladeApp):
         window_pos = self.window.get_position()
         if valignment == ALIGN_BOTTOM:
             self.window.resize(window_rect[0], max_height - y)
-            self.printDebug(
-                "Resizing on resizer drag to : %r, and moving to: %r",
+            log.debug(
+                "Resizing on resizer drag to : %r, and moving to: %r, y: %r",
                 (window_rect[0], max_height - y), window_pos[0], y
             )
             self.window.move(window_pos[0], y)
         else:
             self.window.resize(window_rect[0], y)
-            self.printDebug("Just moving on resizer drag to : %r", window_rect[0], y)
+            log.debug("Just moving on resizer drag to: %r, y=%r", window_rect[0], y)
         self.settings.general.set_int('window-height', int(percent))
 
     def on_window_losefocus(self, window, event):
@@ -623,10 +617,10 @@ class Guake(SimpleGladeApp):
 
         value = self.settings.general.get_boolean('window-losefocus')
         visible = window.get_property('visible')
-        if visible:
+        if visible and value:
             self.losefocus_time = get_server_time(self.window)
-            if value:
-                self.hide()
+            log.info("Hiding on focus lose")
+            self.hide()
 
     def show_menu(self, status_icon, button, activate_time):
         """Show the tray icon menu.
@@ -765,7 +759,7 @@ class Guake(SimpleGladeApp):
             return
 
         if not self.window.get_property('visible'):
-            log.debug("Showing the terminal")
+            log.info("Showing the terminal")
             self.show()
             self.set_terminal_focus()
             return
@@ -795,7 +789,7 @@ class Guake(SimpleGladeApp):
         #         self.set_terminal_focus()
         #         return
 
-        log.debug("hiding the terminal")
+        log.info("hiding the terminal")
         self.hide()
 
     def show_focus(self, *args):
@@ -804,7 +798,7 @@ class Guake(SimpleGladeApp):
         self.set_terminal_focus()
 
     def win_prepare(self, *args):
-        # TODO PORT reenable this after keybinder fixes (this is  mostly done but needs testing)
+        # TODO PORT reenable this after keybinder fixes (this is mostly done but needs testing)
         event_time = self.hotkeys.get_current_event_time()
         if not self.settings.general.get_boolean('window-refocus') and \
                 self.window.get_window() and self.window.get_property('visible'):
@@ -817,8 +811,7 @@ class Guake(SimpleGladeApp):
                     self.set_terminal_focus()
                     self.losefocus_time = 0
                     return False
-        elif self.losefocus_time and \
-                self.settings.general.get_boolean('window-losefocus'):
+        elif self.losefocus_time and self.settings.general.get_boolean('window-losefocus'):
             if self.losefocus_time >= event_time and \
                     (self.losefocus_time - event_time) < 10:
                 self.losefocus_time = 0
@@ -844,6 +837,8 @@ class Guake(SimpleGladeApp):
             log.debug("GDK_WINDOW_STATE_WITHDRAWN? %s", is_withdrawn)
             log.debug("GDK_WINDOW_STATE_ABOVE? %s", is_above)
             log.debug("GDK_WINDOW_STATE_ICONIFIED? %s", is_iconified)
+            return True
+        return False
 
     def show(self):
         """Shows the main window and grabs the focus on it.
@@ -878,7 +873,7 @@ class Guake(SimpleGladeApp):
         #            tab.modify_bg(gtk.STATE_ACTIVE, gtk.gdk.Color(str(self.selected_color)))
 
         # move the window even when in fullscreen-mode
-        self.printDebug("Moving window to: %r", window_rect)
+        log.debug("Moving window to: %r", window_rect)
         self.window.move(window_rect.x, window_rect.y)
 
         # this works around an issue in fluxbox
@@ -907,7 +902,7 @@ class Guake(SimpleGladeApp):
         #     glib.timeout_add_seconds(1, lambda: self.timeout_restore(time))
         #
 
-        self.printDebug("order to present and deiconify")
+        log.debug("order to present and deiconify")
         self.window.present()
         self.window.deiconify()
         self.window.show()
@@ -927,7 +922,7 @@ class Guake(SimpleGladeApp):
         self.settings.styleFont.triggerOnChangedValue(self.settings.styleFont, 'color')
         self.settings.styleBackground.triggerOnChangedValue(self.settings.styleBackground, 'color')
 
-        self.printDebug("Current window position: %r", self.window.get_position())
+        log.debug("Current window position: %r", self.window.get_position())
 
         self.execute_hook('show')
 
@@ -1016,22 +1011,22 @@ class Guake(SimpleGladeApp):
         halignment = self.settings.general.get_int('window-halignment')
         valignment = self.settings.general.get_int('window-valignment')
 
-        self.printDebug("set_final_window_rect")
-        self.printDebug("  height_percents = %s", height_percents)
-        self.printDebug("  width_percents = %s", width_percents)
-        self.printDebug("  halignment = %s", halignment)
-        self.printDebug("  valignment = %s", valignment)
+        log.debug("set_final_window_rect")
+        log.debug("  height_percents = %s", height_percents)
+        log.debug("  width_percents = %s", width_percents)
+        log.debug("  halignment = %s", halignment)
+        log.debug("  valignment = %s", valignment)
 
         # get the rectangle just from the destination monitor
         screen = self.window.get_screen()
         monitor = self.get_final_window_monitor()
         window_rect = screen.get_monitor_geometry(monitor)
-        self.printDebug("Current monitor geometry")
-        self.printDebug("  window_rect.x: %s", window_rect.x)
-        self.printDebug("  window_rect.y: %s", window_rect.y)
-        self.printDebug("  window_rect.height: %s", window_rect.height)
-        self.printDebug("  window_rect.width: %s", window_rect.width)
-        self.printDebug("is unity: %s", self.is_using_unity())
+        log.debug("Current monitor geometry")
+        log.debug("  window_rect.x: %s", window_rect.x)
+        log.debug("  window_rect.y: %s", window_rect.y)
+        log.debug("  window_rect.height: %s", window_rect.height)
+        log.debug("  window_rect.width: %s", window_rect.width)
+        log.debug("is unity: %s", self.is_using_unity())
 
         # TODO PORT remove this UNITY is DEAD
         if self.is_using_unity():
@@ -1082,7 +1077,7 @@ class Guake(SimpleGladeApp):
             # launcher_hide_mode = 1 => autohide
             # only adjust guake window width if Unity dock is positioned "Left" or "Right"
             if unity_hide != 1 and (unity_pos == "Left" or unity_pos == "Right"):
-                self.printDebug(
+                log.debug(
                     "correcting window width because of launcher position %s "
                     "and width %s (from %s to %s)", unity_pos, unity_dock, window_rect.width,
                     window_rect.width - unity_dock
@@ -1093,42 +1088,42 @@ class Guake(SimpleGladeApp):
         total_width = window_rect.width
         total_height = window_rect.height
 
-        self.printDebug("Correcteed monitor size:")
-        self.printDebug("  total_width: %s", total_width)
-        self.printDebug("  total_height: %s", total_height)
+        log.debug("Correcteed monitor size:")
+        log.debug("  total_width: %s", total_width)
+        log.debug("  total_height: %s", total_height)
 
         window_rect.height = int(float(window_rect.height) * float(height_percents) / 100.0)
         window_rect.width = int(float(window_rect.width) * float(width_percents) / 100.0)
 
         if window_rect.width < total_width:
             if halignment == ALIGN_CENTER:
-                # self.printDebug("aligning to center!")
+                # log.debug("aligning to center!")
                 window_rect.x += (total_width - window_rect.width) / 2
             elif halignment == ALIGN_LEFT:
-                # self.printDebug("aligning to left!")
+                # log.debug("aligning to left!")
                 window_rect.x += 0
             elif halignment == ALIGN_RIGHT:
-                # self.printDebug("aligning to right!")
+                # log.debug("aligning to right!")
                 window_rect.x += total_width - window_rect.width
         if window_rect.height < total_height:
             if valignment == ALIGN_BOTTOM:
                 window_rect.y += (total_height - window_rect.height)
 
         if width_percents == 100 and height_percents == 100:
-            self.printDebug("MAXIMIZING MAIN WINDOW")
+            log.debug("MAXIMIZING MAIN WINDOW")
             self.window.maximize()
         elif not self.is_fullscreen:
-            self.printDebug("RESIZING MAIN WINDOW TO THE FOLLOWING VALUES:")
+            log.debug("RESIZING MAIN WINDOW TO THE FOLLOWING VALUES:")
             self.window.unmaximize()
-            self.printDebug("  window_rect.x: %s", window_rect.x)
-            self.printDebug("  window_rect.y: %s", window_rect.y)
-            self.printDebug("  window_rect.height: %s", window_rect.height)
-            self.printDebug("  window_rect.width: %s", window_rect.width)
+            log.debug("  window_rect.x: %s", window_rect.x)
+            log.debug("  window_rect.y: %s", window_rect.y)
+            log.debug("  window_rect.height: %s", window_rect.height)
+            log.debug("  window_rect.width: %s", window_rect.width)
             # Note: move_resize is only on GTK3
             self.window.resize(window_rect.width, window_rect.height)
             self.window.move(window_rect.x, window_rect.y)
             self.window.move(window_rect.x, window_rect.y)
-            self.printDebug("Updated window position: %r", self.window.get_position())
+            log.debug("Updated window position: %r", self.window.get_position())
 
         return window_rect
 
@@ -1136,9 +1131,9 @@ class Guake(SimpleGladeApp):
         if not self.hidden:
             # when displayed, GTK might refuse to move the window (X or Y position). Just hide and
             # redisplay it so the final position is correct
-            self.printDebug("FORCING HIDE")
+            log.debug("FORCING HIDE")
             self.hide()
-            self.printDebug("FORCING SHOW")
+            log.debug("FORCING SHOW")
             self.show()
 
     # -- configuration --
@@ -1204,9 +1199,12 @@ class Guake(SimpleGladeApp):
         prompt_tab_cfg = self.settings.general.get_int('prompt-on-close-tab')
         # "Prompt on tab close" config overrides "prompt on quit" config
         if prompt_cfg or (prompt_tab_cfg == 1 and procs > 0) or (prompt_tab_cfg == 2):
+            log.debug("Remaining procs=%r", procs)
             if self.run_quit_dialog(procs, tabs):
+                log.info("Quitting Guake")
                 Gtk.main_quit()
         else:
+            log.info("Quitting Guake")
             Gtk.main_quit()
 
     def accel_reset_terminal(self, *args):
@@ -1374,7 +1372,7 @@ class Guake(SimpleGladeApp):
         return True
 
     def fullscreen(self):
-        self.printDebug("FULLSCREEN: ON")
+        log.debug("FULLSCREEN: ON")
         self.window.fullscreen()
         self.is_fullscreen = True
 
@@ -1384,11 +1382,11 @@ class Guake(SimpleGladeApp):
     def unfullscreen(self):
 
         # Fixes "Guake cannot restore from fullscreen" (#628)
-        self.printDebug("UNMAXIMIZING")
+        log.debug("UNMAXIMIZING")
         self.window.unmaximize()
 
         self.set_final_window_rect()
-        self.printDebug("FULLSCREEN: OFF")
+        log.debug("FULLSCREEN: OFF")
         self.window.unfullscreen()
         self.is_fullscreen = False
 

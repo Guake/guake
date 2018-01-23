@@ -18,6 +18,8 @@ License along with this program; if not, write to the
 Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor,
 Boston, MA 02110-1301 USA
 """
+import datetime
+import time
 
 import gi
 gi.require_version('Gtk', '3.0')
@@ -30,5 +32,5 @@ def get_server_time(widget):
     except (TypeError, AttributeError):
         # Issue: https://github.com/Guake/guake/issues/1071
         # Wayland does not seem to like `x11_get_server_time`.
-        # Quick and dirty fix like https://launchpadlibrarian.net/309178299/wayland_fix.diff
-        return 0
+        # Use local timestamp instead
+        return get_local_timestamp()

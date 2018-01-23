@@ -17,6 +17,7 @@ License along with this program; if not, write to the
 Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor,
 Boston, MA 02110-1301 USA
 """
+import logging
 
 import gi
 gi.require_version('Gtk', '3.0')
@@ -24,6 +25,8 @@ from gi.repository import Gtk
 
 from guake import notifier
 from guake.common import pixmapfile
+
+log = logging.getLogger(__name__)
 
 
 class Keybindings(object):
@@ -79,8 +82,9 @@ class Keybindings(object):
 
         self.globalhotkeys[key] = value
         if key == "show-hide":
+            log.debug("reload_global: %r", value)
             if not self.guake.hotkeys.bind(value, self.guake.show_hide):
-                print("shit")
+                print("port this")
                 # TODO port this
                 return
                 keyval, mask = Gtk.accelerator_parse(value)
