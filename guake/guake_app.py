@@ -1391,11 +1391,11 @@ class Guake(SimpleGladeApp):
         self.is_fullscreen = False
 
         # making sure that tabbar will come back to default state.
-        self.settings.general.triggerOnChangedValue('window-tabbar')
+        self.settings.general.triggerOnChangedValue(self.settings.general, 'window-tabbar')
 
         # make sure the window size is correct after returning
         # from fullscreen. broken on old compiz/metacity versions :C
-        self.settings.general.triggerOnChangedValue('window-height')
+        self.settings.general.triggerOnChangedValue(self.settings.general, 'window-height')
 
     # -- callbacks --
 
