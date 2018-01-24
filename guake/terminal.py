@@ -26,6 +26,10 @@ import subprocess
 import threading
 import uuid
 
+from pathlib import Path
+from typing import Optional
+from typing import Tuple
+
 from time import sleep
 
 import gi
@@ -64,111 +68,13 @@ TERMINAL_MATCH_EXPRS = [
 ]
 # tuple (title/quick matcher/filename and line number extractor)
 QUICK_OPEN_MATCHERS = [(
-    "Python traceback", r"^\s\sFile\s\".*\",\sline\s[0-9]+", r"^\s\sFile\s\"(.*)\",\sline\s([0-9]+)"
+    "Python traceback", r"^\s*File\s\".*\",\sline\s[0-9]+", r"^\s*File\s\"(.*)\",\sline\s([0-9]+)"
 ), (
     "line starts by 'Filename:line' pattern (GCC/make). File path should exists.",
-    r"^[a-zA-Z0-9\/\_\-\.\ ]+\.?[a-zA-Z0-9]+\:[0-9]+", r"^(.*)\:([0-9]+)"
+    r"^\s*[a-zA-Z0-9\/\_\-\.\ ]+\.?[a-zA-Z0-9]+\:[0-9]+", r"^\s*.(.*)\:([0-9]+)"
 )]
 
 # pylint: enable=anomalous-backslash-in-string
-
-
-class Terminal(Vte.Terminal):
-
-    """Just a Vte.Terminal with some properties already set.
-    """
-
-    def __init__(self):
-        super(Terminal, self).__init__()
-        self.configure_terminal()
-        self.add_matches()
-        self.connect('button-press-event', self.button_press)
-        self.matched_value = ''
-        self.font_scale_index = 0
-
-    def configure_terminal(self):
-        """Sets all customized properties on the terminal
-        """
-        # client = GConf.Client.get_default()
-        # word_chars = client.get_string(KEY('/general/word_chars'))
-        # self.set_word_chars(word_chars)
-        # self.set_audible_bell(client.get_bool(KEY('/general/use_audible_bell')))
-        self.set_sensitive(True)
-        self.set_can_default(True)
-        self.set_can_focus(True)
-
-    def add_matches(self):
-        """Adds all regular expressions declared in TERMINAL_MATCH_EXPRS
-        to the terminal to make vte highlight text that matches them.
-        """
-        # FIXME: match_add is deprecated we should use match_add_regex
-        # witch takes GRegex as parameter but first we need to find
-        # a way to construct GRegex objects (GLib.Regex)
-        #
-        # This is the error happening when trying to create a new
-        # GRegex: https://bugzilla.gnome.org/show_bug.cgi?id=647249
-        pass
-
-        # for expr in TERMINAL_MATCH_EXPRS:
-        #     tag = self.match_add_gregex(GLib.Regex(expr, 0))
-        #     self.match_set_cursor_type(tag, Gdk.HAND2)
-
-    def button_press(self, terminal, event):
-        """Handles the button press event in the terminal widget. If
-        any match string is caught, another aplication is open to
-        handle the matched resource uri.
-        """
-        self.matched_value = ''
-        matched_string = self.match_check(
-            int(event.x / self.get_char_width()), int(event.y / self.get_char_height())
-        )
-        value, tag = matched_string
-
-        if event.button == 1 \
-                and event.get_state() & Gdk.ModifierType.CONTROL_MASK \
-                and value:
-            if TERMINAL_MATCH_TAGS[tag] == 'schema':
-                # value here should not be changed, it is right and
-                # ready to be used.
-                pass
-            elif TERMINAL_MATCH_TAGS[tag] == 'http':
-                value = 'http://%s' % value
-            elif TERMINAL_MATCH_TAGS[tag] == 'https':
-                value = 'https://%s' % value
-            elif TERMINAL_MATCH_TAGS[tag] == 'ftp':
-                value = 'ftp://%s' % value
-            elif TERMINAL_MATCH_TAGS[tag] == 'email':
-                value = 'mailto:%s' % value
-
-            Gtk.show_uri(self.get_screen(), value, get_server_time(self))
-        elif event.button == 3 and matched_string:
-            self.matched_value = matched_string[0]
-
-    def set_font(self, font):
-        self.font = font
-        self.set_font_scale_index(0)
-
-    def set_font_scale_index(self, scale_index):
-        self.font_scale_index = clamp(scale_index, -6, 12)
-
-        font = Pango.FontDescription(self.font.to_string())
-        scale_factor = 2 ** (self.font_scale_index / 6)
-        new_size = int(scale_factor * font.get_size())
-
-        if font.get_size_is_absolute():
-            font.set_absolute_size(new_size)
-        else:
-            font.set_size(new_size)
-
-        super(Terminal, self).set_font(font)
-
-    font_scale = property(fset=set_font_scale_index, fget=lambda self: self.font_scale_index)
-
-    def increase_font_size(self):
-        self.font_scale += 1
-
-    def decrease_font_size(self):
-        self.font_scale -= 1
 
 
 class TerminalBox(Gtk.HBox):
@@ -227,6 +133,13 @@ class GuakeTerminal(Vte.Terminal):
     def pid(self, pid):
         self._pid = pid
 
+    def copy_clipboard(self):
+        if self.get_has_selection():
+            super(GuakeTerminal, self).copy_clipboard()
+        elif self.matched_value:
+            guake_clipboard = Gtk.Clipboard.get_default(self.window.get_display())
+            guake_clipboard.set_text(self.matched_value)
+
     def configure_terminal(self):
         """Sets all customized properties on the terminal
         """
@@ -274,6 +187,50 @@ class GuakeTerminal(Vte.Terminal):
                 directory = cwd
         return directory
 
+    def _is_file_on_local_server(self, text) -> Tuple[Optional[Path], Optional[int], Optional[int]]:
+        """Test if the provided text matches a file on local server
+
+        Supports:
+         - absolute path
+         - relative path (using current working directory)
+         - file:line syntax
+         - file:line:colum syntax
+
+        Args:
+            text (str): candidate for file search
+
+        Returns
+            - Tuple(None, None, None) is the provided text does not match anything
+            - Tuple(file path, None, None) if only a file path is found
+            - Tuple(file path, linenumber, None) if line number is found
+            - Tuple(file path, linenumber, columnnumber) if line and column numbers are found
+        """
+        lineno = None
+        colno = None
+        m = re.compile(r"(.*)\:(\d+)\:(\d+)$").match(text)
+        if m:
+            text = m.group(1)
+            lineno = m.group(2)
+            colno = m.group(3)
+        else:
+            m = re.compile(r"(.*)\:(\d+)$").match(text)
+            if m:
+                text = m.group(1)
+                lineno = m.group(2)
+        pt = Path(text)
+        log.debug("checking file existance: %r", pt)
+        if pt.exists():
+            log.debug("File exists: %r", pt.absolute().as_posix())
+            return (pt, lineno, colno)
+        log.debug("No file found matching: %r", text)
+        cwd = self.get_current_directory()
+        pt = Path(cwd) / pt
+        log.debug("checking file existance: %r", pt)
+        if pt.exists():
+            log.debug("File exists: %r", pt.absolute().as_posix())
+            return (pt, lineno, colno)
+        return (None, None, None)
+
     def button_press(self, terminal, event):
         """Handles the button press event in the terminal widget. If
         any match string is caught, another application is open to
@@ -286,79 +243,92 @@ class GuakeTerminal(Vte.Terminal):
 
         self.found_link = None
 
-        if (
-            event.button == 1 and (event.get_state() & Gdk.ModifierType.CONTROL_MASK) and
-            matched_string
-        ):
-            log.debug("matched string: %s", matched_string)
-            value, tag = matched_string
-            # First searching in additional matchers
-            found_additional_matcher = False
-            # TODO PORT
-            use_quick_open = self.settings.general.get_boolean("quick-open-enable")
-            quick_open_in_current_terminal = self.settings.general.get_boolean(
-                "quick-open-in-current-terminal"
-            )
-            cmdline = self.settings.general.get_string("quick-open-command-line")
-            if use_quick_open:
-                for _useless, _otheruseless, extractor in QUICK_OPEN_MATCHERS:
-                    g = re.compile(extractor).match(value)
-                    if g and g.groups():
-                        filename = g.group(1).strip()
-                        filepath = filename
-                        line_number = g.group(2)
-                        if line_number is None:
-                            line_number = "1"
-                        if not quick_open_in_current_terminal:
-                            curdir = self.get_current_directory()
-                            filepath = os.path.join(curdir, filename)
-                            filepaths = [filepath]
-                            tmp_filepath = filepath
-                            # Also check files patterns that ends with one or 2 ':'
-                            for _ in range(2):
-                                if ':' not in tmp_filepath:
-                                    break
-                                tmp_filepath = tmp_filepath.rpartition(':')[0]
-                                filepaths.append(tmp_filepath)
-                            log.debug("Testing existance of the following files: %r", filepaths)
-                            for filepath in filepaths:
-                                if os.path.exists(filepath):
-                                    break
-                            else:
-                                logging.info(
-                                    "Cannot open file %s, it doesn't exists locally"
-                                    "(current dir: %s)", filepath, os.path.curdir
-                                )
-                                log.debug("No file exist")
-                                continue
-                        # for quick_open_in_current_terminal, we run the command line directly in
-                        # the tab so relative path is enough.
-                        #
-                        # We do not test for file existence, because it doesn't work in ssh
-                        # sessions.
-                        logging.debug("Opening file %s at line %s", filepath, line_number)
-                        resolved_cmdline = cmdline % {
-                            "file_path": filepath,
-                            "line_number": line_number
-                        }
-                        logging.debug("Command line: %s", resolved_cmdline)
-                        if quick_open_in_current_terminal:
-                            logging.debug("Executing it in current tab")
-                            if resolved_cmdline[-1] != '\n':
-                                resolved_cmdline += '\n'
-                            self.feed_child(resolved_cmdline, len(resolved_cmdline))
-                        else:
-                            logging.debug("Executing it independently")
-                            subprocess.call(resolved_cmdline, shell=True)
-                        found_additional_matcher = True
-                        break
-            if not found_additional_matcher:
-                self.found_link = self.handleTerminalMatch(matched_string)
-                if self.found_link:
-                    self.browse_link_under_cursor()
+        if event.button == 1 and (event.get_state() & Gdk.ModifierType.CONTROL_MASK):
+            if self.get_has_selection():
+                self.copy_clipboard()
+                clipboard = Gtk.Clipboard.get(Gdk.SELECTION_CLIPBOARD)
+                text = clipboard.wait_for_text()
+                (fp, lo, co) = self._is_file_on_local_server(text)
+                self._execute_quick_open(fp, lo)
+            elif matched_string and matched_string[0]:
+                self.__on_ctrl_click_matcher(matched_string)
         elif event.button == 3 and matched_string:
             self.found_link = self.handleTerminalMatch(matched_string)
             self.matched_value = matched_string[0]
+
+    def __on_ctrl_click_matcher(self, matched_string):
+        value, tag = matched_string
+        log.debug("matched string: %s", matched_string)
+        # First searching in additional matchers
+        found_additional_matcher = False
+        # TODO PORT
+        use_quick_open = self.settings.general.get_boolean("quick-open-enable")
+        quick_open_in_current_terminal = self.settings.general.get_boolean(
+            "quick-open-in-current-terminal"
+        )
+        if use_quick_open:
+            for _useless, _otheruseless, extractor in QUICK_OPEN_MATCHERS:
+                print("value", value)
+                g = re.compile(extractor).match(value)
+                if g and g.groups():
+                    filename = g.group(1).strip()
+                    filepath = filename
+                    line_number = g.group(2)
+                    if line_number is None:
+                        line_number = "1"
+                    if not quick_open_in_current_terminal:
+                        curdir = self.get_current_directory()
+                        filepath = os.path.join(curdir, filename)
+                        filepaths = [filepath]
+                        tmp_filepath = filepath
+                        # Also check files patterns that ends with one or 2 ':'
+                        for _ in range(2):
+                            if ':' not in tmp_filepath:
+                                break
+                            tmp_filepath = tmp_filepath.rpartition(':')[0]
+                            filepaths.append(tmp_filepath)
+                        log.debug("Testing existance of the following files: %r", filepaths)
+                        for filepath in filepaths:
+                            if os.path.exists(filepath):
+                                break
+                        else:
+                            logging.info(
+                                "Cannot open file %s, it doesn't exists locally"
+                                "(current dir: %s)", filepath, os.path.curdir
+                            )
+                            log.debug("No file exist")
+                            continue
+                    # for quick_open_in_current_terminal, we run the command line directly in
+                    # the tab so relative path is enough.
+                    #
+                    # We do not test for file existence, because it doesn't work in ssh
+                    # sessions.
+                    self._execute_quick_open(filepath, line_number)
+                    found_additional_matcher = True
+                    break
+        if not found_additional_matcher:
+            self.found_link = self.handleTerminalMatch(matched_string)
+            if self.found_link:
+                self.browse_link_under_cursor()
+
+    def _execute_quick_open(self, filepath, line_number):
+        cmdline = self.settings.general.get_string("quick-open-command-line")
+        quick_open_in_current_terminal = self.settings.general.get_boolean(
+            "quick-open-in-current-terminal"
+        )
+        if not line_number:
+            line_number = ""
+        logging.debug("Opening file %s at line %s", filepath, line_number)
+        resolved_cmdline = cmdline % {"file_path": filepath, "line_number": line_number}
+        logging.debug("Command line: %s", resolved_cmdline)
+        if quick_open_in_current_terminal:
+            logging.debug("Executing it in current tab")
+            if resolved_cmdline[-1] != '\n':
+                resolved_cmdline += '\n'
+            self.feed_child(resolved_cmdline, len(resolved_cmdline))
+        else:
+            logging.debug("Executing it independently")
+            subprocess.call(resolved_cmdline, shell=True)
 
     def handleTerminalMatch(self, matched_string):
         value, tag = matched_string

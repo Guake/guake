@@ -10,7 +10,7 @@ install:
 
 
 script:
-    # for users
+    # users should be able to build without python dev dependencies
     - make
     # for dev
     - make dev

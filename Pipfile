@@ -30,3 +30,4 @@ colorlog = "*"
 [packages]
 
 pbr = "*"
+typing = {markers="python_version < '3.5'"}
