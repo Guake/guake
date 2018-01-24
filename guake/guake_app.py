@@ -560,7 +560,7 @@ class Guake(SimpleGladeApp):
         else:
             terminals = self.notebook.get_terminals_for_tab(tab_index)
             for current_vte in terminals:
-                current_vte.feed_child(command)
+                current_vte.feed_child(command, len(command))
 
     # TODO this is dead: 2eae380b1a91a24f6c1eb68c13dac33db98a6ea2 and
     # 3f8c344519c9228deb9ca5f181cbdd5ef1d6acc0
@@ -1555,7 +1555,7 @@ class Guake(SimpleGladeApp):
         else:
             text = str.join("", (shell_quote(path) + " " for path in pathlist))
 
-        box.terminal.feed_child(text)
+        box.terminal.feed_child(text, len(command))
         return True
 
     # -- tab related functions --
@@ -1630,7 +1630,7 @@ class Guake(SimpleGladeApp):
         active_terminal = self.notebook.get_current_terminal()
         directory = os.path.expanduser('~')
         if active_terminal:
-            active_pid = active_terminal.get_pid()
+            active_pid = active_terminal.pid
             if active_pid:
                 cwd = os.readlink("/proc/{0}/cwd".format(active_pid.child_pid))
                 if os.path.exists(cwd):
@@ -1673,6 +1673,11 @@ class Guake(SimpleGladeApp):
         pid = terminal.spawn_sync(
             Vte.PtyFlags.DEFAULT, wd, argv, [], GLib.SpawnFlags.DO_NOT_REAP_CHILD, None, None, None
         )
+        if isinstance(pid, tuple):
+            # Return a tuple in 2.91
+            # https://lazka.github.io/pgi-docs/Vte-2.91/classes/Terminal.html#Vte.Terminal.spawn_sync
+            pid = pid[1]
+        assert isinstance(pid, int)
         return pid
 
     def update_proxy_vars(self, terminal=None):

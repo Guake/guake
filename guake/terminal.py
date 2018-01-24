@@ -210,7 +210,7 @@ class GuakeTerminal(Vte.Terminal):
         self.connect('button-press-event', self.button_press)
         self.matched_value = ''
         self.font_scale_index = 0
-        self.pid = None
+        self._pid = None
         self.custom_bgcolor = None
         self.custom_fgcolor = None
         self.found_link = None
@@ -219,8 +219,13 @@ class GuakeTerminal(Vte.Terminal):
     def get_uuid(self):
         return self.uuid
 
-    def get_pid(self):
-        return self.pid
+    @property
+    def pid(self):
+        return self._pid
+
+    @pid.setter
+    def pid(self, pid):
+        self._pid = pid
 
     def configure_terminal(self):
         """Sets all customized properties on the terminal
@@ -341,7 +346,7 @@ class GuakeTerminal(Vte.Terminal):
                             logging.debug("Executing it in current tab")
                             if resolved_cmdline[-1] != '\n':
                                 resolved_cmdline += '\n'
-                            self.feed_child(resolved_cmdline)
+                            self.feed_child(resolved_cmdline, len(resolved_cmdline))
                         else:
                             logging.debug("Executing it independently")
                             subprocess.call(resolved_cmdline, shell=True)
@@ -409,7 +414,7 @@ class GuakeTerminal(Vte.Terminal):
         self.font_scale -= 1
 
     def kill(self):
-        pid = self.get_pid()
+        pid = self.pid
         threading.Thread(target=self.delete_shell, args=(pid, )).start()
         # start_new_thread(self.delete_shell, (pid,))
 
