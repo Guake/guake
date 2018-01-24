@@ -402,12 +402,16 @@ class Guake(SimpleGladeApp):
         log.info("Guake initialized")
 
     def _select_gtk_theme(self):
+        gtk_theme_name = self.settings.general.get_string('gtk-theme-name')
+        log.debug("Wanted GTK theme: %r", gtk_theme_name)
         settings = Gtk.Settings.get_default()
-        if (Path("/usr/share/themes") / "Numix").exists():
-            settings.set_property("gtk-theme-name", "Adwaita")
-        if (Path("/usr/share/themes") / "Adwaita").exists():
-            settings.set_property("gtk-theme-name", "Adwaita")
-            settings.set_property("gtk-application-prefer-dark-theme", True)
+        if (Path("/usr/share/themes") / gtk_theme_name).exists():
+            settings.set_property("gtk-theme-name", gtk_theme_name)
+
+        prefer_dark_theme = self.settings.general.get_boolean('gtk-prefer-dark-theme')
+        log.debug("Prefer dark theme: %r", prefer_dark_theme)
+        if prefer_dark_theme:
+            settings.set_property("gtk-application-prefer-dark-theme", prefer_dark_theme)
 
     # load the custom commands infrastucture
     def load_custom_commands(self):
