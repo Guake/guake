@@ -1336,13 +1336,7 @@ class Guake(SimpleGladeApp):
         """Callback to copy text in the shown terminal. Called by the
         accel key.
         """
-        current_term = self.notebook.get_current_terminal()
-
-        if current_term.get_has_selection():
-            current_term.copy_clipboard()
-        elif current_term.matched_value:
-            guake_clipboard = Gtk.Clipboard.get_default(self.window.get_display())
-            guake_clipboard.set_text(current_term.matched_value)
+        self.notebook.get_current_terminal().copy_clipboard()
 
         return True
 

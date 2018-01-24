@@ -9,7 +9,7 @@ OLD_PREFIX:=$(INSTALL_ROOT)usr
 SLUG:=fragment_name
 
 default: prepare-install
-	# 'make' target
+	# 'make' target, so users can install guake without need to install the 'dev' dependencies
 
 prepare-install: generate-desktop generate-mo compile-glib-schemas
 
