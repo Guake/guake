@@ -12,9 +12,11 @@ New Features
   virtually open any file path in your terminal (if they are on your local machine), but requires
   the user to select the file path first, compared to the Quick Open feature that finds file names
   using regular expression.
-   Also notes that is it able to look in the current folder if the selected file name exists,
+  
+  Also notes that is it able to look in the current folder if the selected file name exists,
   allowing Ctrl+click on relative paths as well.
-   Line number syntax is also supported: ``filename.txt:5`` will directly on the 5th line if your
+  
+  Line number syntax is also supported: ``filename.txt:5`` will directly on the 5th line if your
   Quick Open is set for.
 
 Bug Fixes
