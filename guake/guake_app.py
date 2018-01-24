@@ -1626,14 +1626,9 @@ class Guake(SimpleGladeApp):
         new one in the same dir.
         """
         active_terminal = self.notebook.get_current_terminal()
-        directory = os.path.expanduser('~')
-        if active_terminal:
-            active_pid = active_terminal.pid
-            if active_pid:
-                cwd = os.readlink("/proc/{0}/cwd".format(active_pid.child_pid))
-                if os.path.exists(cwd):
-                    directory = cwd
-        return directory
+        if not active_terminal:
+            return os.path.expanduser('~')
+        return active_terminal.get_current_directory()
 
     def spawn_sync_pid(self, directory=None, terminal=None):
 
