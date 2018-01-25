@@ -41,7 +41,7 @@ install-system: install-schemas install-locale
 	@pip3 install -r requirements.txt
 	@$(PYTHON_INTERPRETER) setup.py install --root "$(INSTALL_ROOT)" --optimize=1
 	@glib-compile-schemas $(PREFIX)/lib/python$(shell $(PYTHON_INTERPRETER) -c "import sys; v = sys.version_info; print('{}.{}'.format(v.major, v.minor))")/$(DIST_PACKAGE)/guake/data/
-	@update-desktop-database
+	@update-desktop-database || echo "Could not run update-desktop-database, are you root?"
 	@rm -rfv build *.egg-info
 
 install-locale:
