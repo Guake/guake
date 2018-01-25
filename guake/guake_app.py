@@ -54,6 +54,7 @@ from guake.globals import ALIGN_BOTTOM
 from guake.globals import ALIGN_CENTER
 from guake.globals import ALIGN_LEFT
 from guake.globals import ALIGN_RIGHT
+from guake.globals import ALIGN_TOP
 from guake.globals import ALWAYS_ON_PRIMARY
 from guake.globals import LOCALE_DIR
 from guake.globals import NAME
@@ -1015,11 +1016,16 @@ class Guake(SimpleGladeApp):
         halignment = self.settings.general.get_int('window-halignment')
         valignment = self.settings.general.get_int('window-valignment')
 
+        vdisplacement = self.settings.general.get_int('window-vertical-displacement')
+        hdisplacement = self.settings.general.get_int('window-horizontal-displacement')
+
         log.debug("set_final_window_rect")
         log.debug("  height_percents = %s", height_percents)
         log.debug("  width_percents = %s", width_percents)
         log.debug("  halignment = %s", halignment)
         log.debug("  valignment = %s", valignment)
+        log.debug("  vdisplacement = %s", vdisplacement)
+        log.debug("  hdisplacement = %s", hdisplacement)
 
         # get the rectangle just from the destination monitor
         screen = self.window.get_screen()
@@ -1105,13 +1111,18 @@ class Guake(SimpleGladeApp):
                 window_rect.x += (total_width - window_rect.width) / 2
             elif halignment == ALIGN_LEFT:
                 # log.debug("aligning to left!")
-                window_rect.x += 0
+                window_rect.x += 0 + hdisplacement
             elif halignment == ALIGN_RIGHT:
                 # log.debug("aligning to right!")
-                window_rect.x += total_width - window_rect.width
+                window_rect.x += total_width - window_rect.width - hdisplacement
         if window_rect.height < total_height:
             if valignment == ALIGN_BOTTOM:
                 window_rect.y += (total_height - window_rect.height)
+
+        if valignment == ALIGN_TOP:
+            window_rect.y += vdisplacement
+        elif valignment == ALIGN_BOTTOM:
+            window_rect.y -= vdisplacement
 
         if width_percents == 100 and height_percents == 100:
             log.debug("MAXIMIZING MAIN WINDOW")
