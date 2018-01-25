@@ -1,0 +1,3 @@
+features:
+  - |
+    Allow make install-system to be run as non root user and print a message if so.
