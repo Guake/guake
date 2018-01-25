@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: Guake 0.4.5\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-08-18 17:32+0200\n"
-"PO-Revision-Date: 2012-11-12 20:06+0000\n"
+"PO-Revision-Date: 2018-01-25 21:04+0100\n"
 "Last-Translator: Antón Méixome <meixome@certima.net>\n"
 "Language-Team: Galician (http://www.transifex.com/projects/p/guake/language/"
 "gl/)\n"
@@ -19,6 +19,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Poedit 2.0.6\n"
 
 #: ../data/about.glade.h:1
 msgid "About Guake"
@@ -1180,6 +1181,22 @@ msgid ""
 "favorite text editor by clicking on its filename when it appears in your "
 "terminal. See the list of currently supported text patterns used to extract "
 "filename below."
+msgstr ""
+
+#: guake/main.py:64
+msgid "Show Guake version number and exit"
+msgstr ""
+
+#: guake/data/prefs.glade:93
+msgid "<span size=\"18000\"><b>Guake properties</b></span>"
+msgstr "<span size=\"18000\"><b>Propiedades de Guake</b></span>"
+
+#: guake/data/prefs.glade:107
+msgid "Customize behavior and appearance of Guake!"
+msgstr "Personalizar comportamento e aparencia do Guake!"
+
+#: guake/data/prefs.glade:929
+msgid "Displacement in pixels"
 msgstr ""
 
 #~ msgid "key binding error"

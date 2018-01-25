@@ -13,7 +13,7 @@ msgstr ""
 "Project-Id-Version: Guake 0.4.5\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-01-22 00:20+0100\n"
-"PO-Revision-Date: 2018-01-22 00:22+0100\n"
+"PO-Revision-Date: 2018-01-25 20:49+0100\n"
 "Last-Translator: Gaetan <gaetan@xeberon.net>\n"
 "Language-Team: French (http://www.transifex.com/projects/p/guake/language/"
 "fr/)\n"
@@ -22,7 +22,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
-"X-Generator: Poedit 2.0.4\n"
+"X-Generator: Poedit 2.0.6\n"
 
 #: guake/main.py:69
 msgid "Put Guake in fullscreen mode"
@@ -969,6 +969,22 @@ msgstr "Configure vos sessions Guake"
 #: guake/data/guake-prefs.desktop:45 guake/data/guake-prefs.template.desktop:14
 msgid "Terminal;Utility;"
 msgstr "Terminal;Utilitaires;"
+
+#: guake/main.py:64
+msgid "Show Guake version number and exit"
+msgstr ""
+
+#: guake/data/prefs.glade:93
+msgid "<span size=\"18000\"><b>Guake properties</b></span>"
+msgstr "<span size=\"18000\"><b>Propriétés de Guake</b></span>"
+
+#: guake/data/prefs.glade:107
+msgid "Customize behavior and appearance of Guake!"
+msgstr "Personnaliser Guake !"
+
+#: guake/data/prefs.glade:929
+msgid "Displacement in pixels"
+msgstr ""
 
 #~ msgid "<b>Main Window</b>"
 #~ msgstr "<b>Fenêtre principale</b>"

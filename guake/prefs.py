@@ -604,10 +604,6 @@ class PrefsDialog(SimpleGladeApp):
         self.window = self.get_widget('config-window')
         self.get_widget('config-window').connect('destroy', self.on_destroy)
 
-        # setting evtbox title bg
-        eventbox = self.get_widget('eventbox-title')
-        eventbox.override_background_color(Gtk.StateType.NORMAL, Gdk.RGBA(255, 255, 255, 255))
-
         # images
         ipath = pixmapfile('guake-notification.png')
         self.get_widget('image_logo').set_from_file(ipath)

@@ -90,7 +90,7 @@
                         <property name="can_focus">False</property>
                         <property name="halign">start</property>
                         <property name="margin_top">6</property>
-                        <property name="label" translatable="yes">&lt;span size="18000" color="black"&gt;&lt;b&gt;Guake properties&lt;/b&gt;&lt;/span&gt;</property>
+                        <property name="label" translatable="yes">&lt;span size="18000"&gt;&lt;b&gt;Guake properties&lt;/b&gt;&lt;/span&gt;</property>
                         <property name="use_markup">True</property>
                       </object>
                       <packing>
@@ -104,7 +104,7 @@
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
                         <property name="halign">start</property>
-                        <property name="label" translatable="yes">&lt;span color="black"&gt;Customize behavior and appearance of Guake!&lt;/span&gt;</property>
+                        <property name="label" translatable="yes">Customize behavior and appearance of Guake!</property>
                         <property name="use_markup">True</property>
                       </object>
                       <packing>
@@ -138,7 +138,9 @@
           <object class="GtkBox" id="vbox1">
             <property name="visible">True</property>
             <property name="can_focus">False</property>
-            <property name="border_width">12</property>
+            <property name="margin_left">12</property>
+            <property name="margin_right">12</property>
+            <property name="margin_bottom">12</property>
             <property name="orientation">vertical</property>
             <property name="spacing">10</property>
             <child>
@@ -2733,8 +2735,7 @@ For example, for sublime, use &lt;b&gt;subl %(file_path)s:%(line_number)s&lt;/b&
                     <property name="can_focus">True</property>
                     <property name="receives_default">False</property>
                     <property name="margin_left">12</property>
-                    <property name="margin_right">12</property>
-                    <property name="margin_bottom">8</property>
+                    <property name="margin_bottom">12</property>
                     <property name="use_stock">True</property>
                     <signal name="clicked" handler="gtk_widget_destroy" object="config-window" swapped="yes"/>
                   </object>

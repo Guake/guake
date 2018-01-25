@@ -1,0 +1,29 @@
+fixes:
+  - |
+    fix preferences window header color, align the close button more nicely and change borders to margins
+
+translations:
+    - pt_BR
+    - sv
+    - de
+    -fr
+    - tr
+    - fa
+    - ru
+    - uk
+    - ko
+    - ca
+    - ja
+    - es
+    - el
+    - it
+    - zh_CN
+    - pl
+    - hr
+    - gl
+    - id
+    - nb
+    - hu
+    - nl
+    - pa
+    - cs
