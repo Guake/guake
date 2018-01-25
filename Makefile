@@ -283,7 +283,7 @@ release-note-github: reno-lint
 	@echo "-------- copy / paste from here --------"
 	@# markdown_github to be avoided => gfm output comes in pandoc 2.0.4 release dec 2017
 	@pipenv run reno report 2>/dev/null | \
-		pandoc -f rst -t markdown --atx-headers --columns=100 --wrap=auto --tab-stop 2 | \
+		pandoc -f rst -t markdown --atx-headers --wrap=none --tab-stop 2 | \
 		tr '\n' '\r' | \
 			sed 's/\r<!-- -->\r//g' | \
 			sed 's/\r\-\ \r\r\ /\r-/g' | \
@@ -291,6 +291,7 @@ release-note-github: reno-lint
 			sed 's/\r\r\ \ \ \ \-\ /\r    - /g' | \
 			sed 's/\r\ \ \ \ \-\ /\r  - /g' | \
 			sed 's/\r\ \ >\ \-\ /\r  - /g' | \
+			sed 's/\\\#/\#/g' | \
 		tr '\r' '\n'
 
 release: dists update-po release-note
