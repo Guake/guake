@@ -11,14 +11,14 @@ msgstr ""
 "Project-Id-Version: Guake 0.4.5\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-08-20 18:56+0200\n"
-"PO-Revision-Date: 2018-01-21 11:31+0100\n"
+"PO-Revision-Date: 2018-01-25 20:48+0100\n"
 "Last-Translator: Mario Aichinger <aichingm@gmail.com>\n"
 "Language-Team: guake@lists.guake.org\n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 2.0.5\n"
+"X-Generator: Poedit 2.0.6\n"
 
 #: ../data/about.glade.h:1
 msgid "About Guake"
@@ -1150,7 +1150,7 @@ msgstr ""
 
 #: guake/prefs.py:89
 msgid "Show and focus Guake window"
-msgstr ""
+msgstr "Öffne und fokussiere Guake"
 
 #: guake/data/prefs.glade:566
 msgid "0"
@@ -1158,39 +1158,39 @@ msgstr ""
 
 #: guake/data/prefs.glade:610
 msgid "<b>Main Window Options</b>"
-msgstr ""
+msgstr "<b>Hauptfenster-Optionen</b>"
 
 #: guake/data/prefs.glade:770
 msgid "Horizontal Alignment:"
-msgstr ""
+msgstr "Horizontale Ausrichtung:"
 
 #: guake/data/prefs.glade:855
 msgid "Height:"
-msgstr ""
+msgstr "Höhe:"
 
 #: guake/data/prefs.glade:868
 msgid "Width:"
-msgstr ""
+msgstr "Breite:"
 
 #: guake/data/prefs.glade:913
 msgid "<b>Geometry</b>"
-msgstr ""
+msgstr "<b>Geometrie</b>"
 
 #: guake/data/prefs.glade:944
 msgid "Main Window"
-msgstr ""
+msgstr "Hauptfenster"
 
 #: guake/data/prefs.glade:1197
 msgid "Infinite scrolling"
-msgstr ""
+msgstr "Unendliches Blättern"
 
 #: guake/data/prefs.glade:1219
 msgid "<b>Scrollbar</b>"
-msgstr ""
+msgstr "<b>Bildlaufleiste<b>"
 
 #: guake/data/prefs.glade:1304
 msgid "<b>Scroll to Bottom</b>"
-msgstr ""
+msgstr "<b>Ans Ende blättern</b>"
 
 #: guake/data/prefs.glade:2117
 msgid ""
@@ -1199,6 +1199,26 @@ msgid ""
 "terminal. See the list of currently supported text patterns used to extract "
 "filename below."
 msgstr ""
+"Quick open ist eine Funktion die es Ihnen erlaubt Dateien, durch klicken auf "
+"den Dateinamen, direkt in Ihrem favorisierten Textbearbeitungsprogramm zu "
+"öffnen. Für momentan zu Verführung stehende Dateinamensmuster siehe Liste "
+"unten."
+
+#: guake/main.py:64
+msgid "Show Guake version number and exit"
+msgstr "Zeige die Versionsnummer von Guake und beenden"
+
+#: guake/data/prefs.glade:93
+msgid "<span size=\"18000\"><b>Guake properties</b></span>"
+msgstr "<span size=\"18000\"><b>Guake-Einstellungen</b></span>"
+
+#: guake/data/prefs.glade:107
+msgid "Customize behavior and appearance of Guake!"
+msgstr "Aussehen und Verhalten von Guake verändern!"
+
+#: guake/data/prefs.glade:929
+msgid "Displacement in pixels"
+msgstr "Verschiebung in Pixeln"
 
 #~ msgid "Path to script executed on Guake start:"
 #~ msgstr "Pfad zu einem Skript das beim Start ausgeführt wird:"
