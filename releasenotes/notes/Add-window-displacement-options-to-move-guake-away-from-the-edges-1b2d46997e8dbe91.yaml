@@ -3,4 +3,4 @@ features:
     Add window displacement options to move guake away from the screen edges
 fixes:
   - |
-    fixes #1162
+    fixes issue with vertically stacked dual monitors #1162
