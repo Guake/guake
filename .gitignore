@@ -5,6 +5,8 @@
 
 #    kde
 .directory
+.kdev4/
+guake.kdev4
 
 #    vim
 *~

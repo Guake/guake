@@ -66,6 +66,8 @@ class GSettingHandler(object):
         settings.general.onChangedValue('window-width', self.size_changed)
         settings.general.onChangedValue('window-valignment', self.alignment_changed)
         settings.general.onChangedValue('window-halignment', self.alignment_changed)
+        settings.general.onChangedValue('window-vertical-displacement', self.alignment_changed)
+        settings.general.onChangedValue('window-horizontal-displacement', self.alignment_changed)
         settings.style.onChangedValue('cursor-blink-mode', self.cursor_blink_mode_changed)
         settings.style.onChangedValue('cursor-shape', self.cursor_shape_changed)
 

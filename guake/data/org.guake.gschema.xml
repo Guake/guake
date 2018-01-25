@@ -116,6 +116,16 @@
             <summary>Window height.</summary>
             <description>Percent of the screen that will be used by guake terminal vertically.</description>
         </key>
+        <key name="window-horizontal-displacement" type="i">
+            <default>0</default>
+            <summary>Horizontal window displacement.</summary>
+            <description>Displace the window horizontally by a given amount of pixels.</description>
+        </key>
+        <key name="window-vertical-displacement" type="i">
+            <default>0</default>
+            <summary>Vertical window displacement.</summary>
+            <description>Displace the window vertically by a given amount of pixels.</description>
+        </key>
         <key name="window-halignment" type="i">
             <default>0</default>
             <summary>Window horizontal alignment.</summary>

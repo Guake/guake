@@ -39,9 +39,11 @@ from guake.common import get_binaries_from_path
 from guake.common import gladefile
 from guake.common import hexify_color
 from guake.common import pixmapfile
+from guake.globals import ALIGN_BOTTOM
 from guake.globals import ALIGN_CENTER
 from guake.globals import ALIGN_LEFT
 from guake.globals import ALIGN_RIGHT
+from guake.globals import ALIGN_TOP
 from guake.globals import ALWAYS_ON_PRIMARY
 from guake.globals import LOCALE_DIR
 from guake.globals import NAME
@@ -402,7 +404,7 @@ class PrefsCallbacks(object):
         """set the vertical alignment setting.
         """
         v = chk.get_active()
-        self.settings.general.set_int('window-valignment', 1 if v else 0)
+        self.settings.general.set_int('window-valignment', ALIGN_BOTTOM if v else ALIGN_TOP)
 
     def on_display_n_changed(self, combo):
         """Set the destination display in gconf.
@@ -446,6 +448,9 @@ class PrefsCallbacks(object):
             self.settings.general.set_int(
                 'window-halignment', which_align[halign_button.get_name()]
             )
+        self.prefDlg.get_widget("window_horizontal_displacement").set_sensitive(
+            which_align[halign_button.get_name()] != ALIGN_CENTER
+        )
 
     def on_use_audible_bell_toggled(self, chk):
         """Changes the value of use_audible_bell in gconf
@@ -560,6 +565,16 @@ class PrefsCallbacks(object):
 
     def on_palette_color_set(self, btn):
         self.prefDlg.on_palette_color_set(btn)
+
+    def on_window_vertical_displacement_value_changed(self, spin):
+        """Changes the value of window-vertical-displacement
+        """
+        self.settings.general.set_int('window-vertical-displacement', int(spin.get_value()))
+
+    def on_window_horizontal_displacement_value_changed(self, spin):
+        """Changes the value of window-horizontal-displacement
+        """
+        self.settings.general.set_int('window-horizontal-displacement', int(spin.get_value()))
 
     def reload_erase_combos(self, btn=None):
         self.prefDlg.reload_erase_combos(btn)
@@ -966,6 +981,13 @@ class PrefsDialog(SimpleGladeApp):
         value = self.settings.general.get_int('window-width')
         self.get_widget('window_width').set_value(value)
 
+        # window displacements
+        value = self.settings.general.get_int('window-vertical-displacement')
+        self.get_widget('window_vertical_displacement').set_value(value)
+
+        value = self.settings.general.get_int('window-horizontal-displacement')
+        self.get_widget('window_horizontal_displacement').set_value(value)
+
         value = self.settings.general.get_int('window-halignment')
         which_button = {
             ALIGN_RIGHT: 'radiobutton_align_right',
@@ -973,6 +995,7 @@ class PrefsDialog(SimpleGladeApp):
             ALIGN_CENTER: 'radiobutton_align_center'
         }
         self.get_widget(which_button[value]).set_active(True)
+        self.get_widget("window_horizontal_displacement").set_sensitive(value != ALIGN_CENTER)
 
         value = self.settings.general.get_boolean('open-tab-cwd')
         self.get_widget('open_tab_cwd').set_active(value)
