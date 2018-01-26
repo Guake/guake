@@ -48,12 +48,12 @@ def is_run_from_git_workdir():
 
 
 NAME = 'guake'
-DATADIR = os.environ.get("GUAKE_DATA_DIR")
-
 SRC_DIR = os.path.dirname(os.path.realpath(__file__))
-IMAGE_DIR = os.path.join(SRC_DIR, 'data/pixmaps')
-GLADE_DIR = os.path.join(SRC_DIR, 'data')
-SCHEMA_DIR = os.path.join(SRC_DIR, 'data')
+DATADIR = os.environ.get("GUAKE_DATA_DIR", os.path.join(SRC_DIR, 'data'))
+
+IMAGE_DIR = os.path.join(DATADIR, 'pixmaps')
+GLADE_DIR = DATADIR
+SCHEMA_DIR = DATADIR
 LOCALE_DIR = "/usr/share/locale"
 
 ALIGN_CENTER, ALIGN_LEFT, ALIGN_RIGHT = range(3)
