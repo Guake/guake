@@ -277,27 +277,7 @@ class GuakeTerminal(Vte.Terminal):
                     if line_number is None:
                         line_number = "1"
                     if not quick_open_in_current_terminal:
-                        curdir = self.get_current_directory()
-                        filepath = os.path.join(curdir, filename)
-                        filepaths = [filepath]
-                        tmp_filepath = filepath
-                        # Also check files patterns that ends with one or 2 ':'
-                        for _ in range(2):
-                            if ':' not in tmp_filepath:
-                                break
-                            tmp_filepath = tmp_filepath.rpartition(':')[0]
-                            filepaths.append(tmp_filepath)
-                        log.debug("Testing existance of the following files: %r", filepaths)
-                        for filepath in filepaths:
-                            if os.path.exists(filepath):
-                                break
-                        else:
-                            logging.info(
-                                "Cannot open file %s, it doesn't exists locally"
-                                "(current dir: %s)", filepath, os.path.curdir
-                            )
-                            log.debug("No file exist")
-                            continue
+                        (filepath, _lo, _co) = self._is_file_on_local_server(filename)
                     # for quick_open_in_current_terminal, we run the command line directly in
                     # the tab so relative path is enough.
                     #
@@ -313,14 +293,14 @@ class GuakeTerminal(Vte.Terminal):
 
     def _execute_quick_open(self, filepath, line_number):
         cmdline = self.settings.general.get_string("quick-open-command-line")
-        quick_open_in_current_terminal = self.settings.general.get_boolean(
-            "quick-open-in-current-terminal"
-        )
         if not line_number:
             line_number = ""
         logging.debug("Opening file %s at line %s", filepath, line_number)
         resolved_cmdline = cmdline % {"file_path": filepath, "line_number": line_number}
         logging.debug("Command line: %s", resolved_cmdline)
+        quick_open_in_current_terminal = self.settings.general.get_boolean(
+            "quick-open-in-current-terminal"
+        )
         if quick_open_in_current_terminal:
             logging.debug("Executing it in current tab")
             if resolved_cmdline[-1] != '\n':
