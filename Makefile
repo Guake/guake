@@ -138,7 +138,7 @@ wheels:
 
 
 run-local: compile-glib-schemas
-	export GUAKE_DATA_DIR=$(shell pwd)/data ; pipenv run ./run-local.sh
+	export GUAKE_DATA_DIR=$(shell pwd)/guake/data ; pipenv run ./run-local.sh
 
 
 shell:
