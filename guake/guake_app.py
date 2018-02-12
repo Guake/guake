@@ -406,7 +406,7 @@ class Guake(SimpleGladeApp):
         gtk_theme_name = self.settings.general.get_string('gtk-theme-name')
         log.debug("Wanted GTK theme: %r", gtk_theme_name)
         settings = Gtk.Settings.get_default()
-        if (Path("/usr/share/themes") / gtk_theme_name).exists():
+        if gtk_theme_name and (Path("/usr/share/themes") / gtk_theme_name).exists():
             settings.set_property("gtk-theme-name", gtk_theme_name)
 
         prefer_dark_theme = self.settings.general.get_boolean('gtk-prefer-dark-theme')
