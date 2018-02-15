@@ -157,6 +157,24 @@ sct: style check test
 docs: clean-docs
 	cd doc && pipenv run make html
 
+tag-pbr:
+	@{ \
+		set -e ;\
+		export VERSION=$$(pipenv run python setup.py --version | cut -d. -f1,2,3); \
+		echo "I: Computed new version: $$VERSION"; \
+		echo "I: presse ENTER to accept or type new version number:"; \
+		read VERSION_OVERRIDE; \
+		VERSION=$${VERSION_OVERRIDE:-$$VERSION}; \
+		PROJECTNAME=$$(pipenv run python setup.py --name); \
+		echo "I: Tagging $$PROJECTNAME in version $$VERSION with tag: $$VERSION" ; \
+		echo "$$ git tag -s $$VERSION -m \"$$PROJECTNAME $$VERSION\""; \
+		echo "I: Pushing tag $$VERSION, press ENTER to continue, C-c to interrupt"; \
+		read _; \
+		echo "$$ git push origin $$VERSION"; \
+	}
+	@# Note:
+	@# To sign, need gpg configured and the following command:
+	@#  git tag -s $$VERSION -m \"$$PROJECTNAME $$VERSION\""
 
 pypi-publish: build
 	pipenv run python setup.py upload -r pypi
