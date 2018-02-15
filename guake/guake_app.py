@@ -1375,9 +1375,9 @@ class Guake(SimpleGladeApp):
         """
 
         if self.settings.general.get_boolean('window-losefocus'):
-            self.settings.general.get_boolean('window-losefocus', False)
+            self.settings.general.set_boolean('window-losefocus', False)
         else:
-            self.settings.general.get_boolean('window-losefocus', True)
+            self.settings.general.set_boolean('window-losefocus', True)
         return True
 
     def fullscreen(self):
