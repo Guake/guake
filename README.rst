@@ -141,7 +141,7 @@ Tips for a complete Guake reinstallation:
 .. code-block:: bash
 
     $ sudo make uninstall && make && sudo make install
-
+    
 Note for maintainers
 --------------------
 
@@ -185,6 +185,15 @@ You can use the simpler
 
 But it will be slower since ultimately it sends the very same D-Bus message.
 
+Note on Wayland
+---------------
+
+There are some reports of Guake not opening when a Wayland app or empty desktop is focused.
+The issue has been reported on Ubuntu 17.10 LTS, Fedora 26 and Fedora 27.
+For more context, see issue #1041.
+
+The workaround is setting a manual keybinding as described above. On Fedora 26, for example, this can be accomplished by
+going to *Settings > Keyboard* and adding a new custom shortcut to execute :code:`guake -t`.
 
 Contributing
 ============
