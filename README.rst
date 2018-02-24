@@ -141,7 +141,7 @@ Tips for a complete Guake reinstallation:
 .. code-block:: bash
 
     $ sudo make uninstall && make && sudo make install
-    
+
 Note for maintainers
 --------------------
 
