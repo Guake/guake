@@ -5,13 +5,14 @@
 # Translators:
 # Martin Lukeš <martin.meridius@gmail.com>, 2011
 # Daniel Milde <daniel@milde.cz>, 2016
+# Martin Lukeš <martin.meridius@gmail.com>, 2018
 msgid ""
 msgstr ""
 "Project-Id-Version: Guake 0.4.5\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-08-18 17:32+0200\n"
-"PO-Revision-Date: 2018-01-25 21:07+0100\n"
-"Last-Translator: Daniel Milde <daniel@milde.cz>\n"
+"PO-Revision-Date: 2018-02-24 17:29+0100\n"
+"Last-Translator: Martin Lukeš <martin.meridius@gmail.com>\n"
 "Language-Team: Czech (Czech Republic) (http://www.transifex.com/projects/p/"
 "guake/language/cs_CZ/)\n"
 "Language: cs_CZ\n"
@@ -91,6 +92,7 @@ msgstr ""
 "Pavel Alexeev <Pahan@Hubbitus.spb.su> Russian\n"
 "Piotr Drąg <piotrdrag@gmail.com> Polish\n"
 "Sangwoo Joo <sangwoojoo@naver.com> Korean\n"
+"Martin Lukeš <martin.meridius@gmail.com> Czech\n"
 "    "
 
 #: ../data/guake.glade.h:1
@@ -279,11 +281,11 @@ msgstr "0 znamená žádný limit velikosti"
 
 #: ../data/prefs.glade.h:35
 msgid "Abbreviate directories in tab names"
-msgstr "Zkrátit jména složek v názvech tabů"
+msgstr "Zkrátit jména složek v názvech karet"
 
 #: ../data/prefs.glade.h:36
 msgid "Hide on lose focus"
-msgstr "Skrýt při ztrátě aktivity okna"
+msgstr "Skrýt při ztrátě zaměření okna"
 
 #: ../data/prefs.glade.h:37
 msgid "Show tab bar"
@@ -407,9 +409,9 @@ msgid ""
 "I-Beam\n"
 "Underline"
 msgstr ""
-"blokový\n"
-"svislá čára\n"
-"podtrhávací čára"
+"Blokový\n"
+"Svislá čára\n"
+"Podtrhávací čára"
 
 #: ../data/prefs.glade.h:69
 msgid ""
@@ -417,9 +419,9 @@ msgid ""
 "Blink on\n"
 "Blink off"
 msgstr ""
-"dle nastavení GTK+\n"
-"blikat\n"
-"neblikat"
+"Dle nastavení GTK+\n"
+"Blikat\n"
+"Neblikat"
 
 #: ../data/prefs.glade.h:72
 msgid "Cursor blink mode:"
@@ -492,7 +494,7 @@ msgstr ""
 
 #: ../data/prefs.glade.h:87
 msgid "Editor command line:"
-msgstr "Příkaz ke spuštění editoru"
+msgstr "Příkaz ke spuštění editoru:"
 
 #: ../data/prefs.glade.h:89
 #, no-c-format
@@ -804,7 +806,7 @@ msgstr "Přepnout viditelnost Guake"
 
 #: ../src/guake/prefs.py:81
 msgid "Toggle Hide on Lose Focus"
-msgstr "Skrýt při ztrátě aktivity okna"
+msgstr "Skrývat při ztrátě zaměření okna"
 
 #: ../src/guake/prefs.py:88
 msgid "Tab management"
@@ -981,10 +983,12 @@ msgid ""
 "Guake is now running,\n"
 "press <b>{!s}</b> to use it."
 msgstr ""
+"Guake je nyní spuštěno,\n"
+"pro použití stiskněte <b>{!s}</b>."
 
 #: guake/main.py:153
 msgid "Return the selected tab label."
-msgstr ""
+msgstr "Vrátit vybraný popisek karty."
 
 #: guake/data/about.glade:15
 msgid ""
@@ -992,54 +996,57 @@ msgid ""
 "Copyright 2007-2010 Lincoln de Sousa\n"
 "Copyright 2007 Gabriel Falcão"
 msgstr ""
+"Copyright 2013-2018 Gaetan Semet\n"
+"Copyright 2007-2010 Lincoln de Sousa\n"
+"Copyright 2007 Gabriel Falcão"
 
 #: guake/data/prefs.glade:264
 msgid "Never"
-msgstr ""
+msgstr "Nikdy"
 
 #: guake/data/prefs.glade:265
 msgid "With process running"
-msgstr ""
+msgstr "S běžícím procesem"
 
 #: guake/data/prefs.glade:266
 msgid "Always"
-msgstr ""
+msgstr "Vždy"
 
 #: guake/data/prefs.glade:499
 msgid "Refocus if open"
-msgstr ""
+msgstr "Při otevření zaměřit"
 
 #: guake/data/prefs.glade:865
 msgid "Custom command file path:"
-msgstr ""
+msgstr "Vlastní cesta ke skriptu:"
 
 #: guake/data/prefs.glade:1315
 msgid "Show resizer"
-msgstr ""
+msgstr "Zobrazit nástroj pro změnu velikosti"
 
 #: guake/data/prefs.glade:1423
 msgid "Block"
-msgstr ""
+msgstr "Blokový"
 
 #: guake/data/prefs.glade:1424
 msgid "I-Beam"
-msgstr ""
+msgstr "Svislá čára"
 
 #: guake/data/prefs.glade:1425
 msgid "Underline"
-msgstr ""
+msgstr "Podtrhávací čára"
 
 #: guake/data/prefs.glade:1443
 msgid "Follow GTK+ setting"
-msgstr ""
+msgstr "Dle nastavení GTK+"
 
 #: guake/data/prefs.glade:1444
 msgid "Blink on"
-msgstr ""
+msgstr "Blikat"
 
 #: guake/data/prefs.glade:1445
 msgid "Blink off"
-msgstr ""
+msgstr "Neblikat"
 
 #: guake/data/prefs.glade:2236
 msgid ""
@@ -1051,60 +1058,70 @@ msgid ""
 "For example, for sublime, use <b>subl %(file_path)s:%(line_number)s</b>\n"
 "</i></small>"
 msgstr ""
+"<small><i>Použijte následující elementy při spouštění editoru:\n"
+" - <b>%(file_path)s</b>: cesta k souboru, na který bylo kliknuto\n"
+" - <b>%(line_number)s</b>: číslo řádku souboru, na kterém editor otevřít, "
+"pokud to nastavený editor podporuje a číslo bylo v odkazu.\n"
+"\n"
+"Například pro Sublime Text použijte <b>subl %(file_path)s:%(line_number)s</"
+"b>\n"
+"</i></small>"
 
 #: guake/data/prefs.glade:2442 guake/data/prefs.glade:2462
 msgid "ASCII DEL"
-msgstr ""
+msgstr "ASCII DEL"
 
 #: guake/data/prefs.glade:2443 guake/data/prefs.glade:2463
 msgid "Escape sequence"
-msgstr ""
+msgstr "Escape sekvence"
 
 #: guake/data/prefs.glade:2444 guake/data/prefs.glade:2464
 msgid "Control-H"
-msgstr ""
+msgstr "Control-H"
 
 #: guake/data/prefs.glade:2600
 msgid ""
 "<small>In this dialog you can attach your own command or script to various "
 "guake events</small>"
 msgstr ""
+"<small>V tomto dialogu můžete různým událostem v Guake přiřadit vlastní "
+"příkaz nebo skript</small>"
 
 #: guake/data/prefs.glade:2635
 msgid "On show:"
-msgstr ""
+msgstr "Při zobrazení:"
 
 #: guake/data/prefs.glade:2665
 msgid "On start:"
-msgstr ""
+msgstr "Při spuštění:"
 
 #: guake/data/prefs.glade:2714
 msgid "Hooks"
-msgstr ""
+msgstr "Hooky"
 
 #: guake/data/guake-prefs.desktop:8
 msgid "Configure your Guake sessions"
-msgstr ""
+msgstr "Nastavit Guake sezení"
 
 #: guake/data/guake-prefs.desktop:15 guake/data/guake.desktop:18
 msgid "guake"
-msgstr ""
+msgstr "guake"
 
 #: guake/data/guake-prefs.desktop:20
 msgid "Terminal;Utility;"
-msgstr ""
+msgstr "Terminál;Nástroje;"
 
 #: guake/data/guake.desktop:10
 msgid "Use the command line in a Quake-like terminal"
-msgstr ""
+msgstr "Používejte terminál jako ve hře Quake"
 
 #: guake/data/prefs.glade:770
 msgid "Main Window Horizontal Alignment"
-msgstr ""
+msgstr "Horizontální umístění hlavního okna"
 
 #: guake/data/about.glade:17
 msgid "http://guake-project.org"
-msgstr ""
+msgstr "http://guake-project.org"
 
 #: guake/data/about.glade:18
 msgid ""
@@ -1125,50 +1142,66 @@ msgid ""
 "Software Foundation, Inc., 51 Franklin St, Fifth Floor,\n"
 "Boston, MA  02110-1301 USA"
 msgstr ""
+"Guake is free software; you can redistribute it and/or\n"
+"modify it under the terms of the GNU General Public\n"
+"License as published by the Free Software Foundation;\n"
+"either version 2 of the License, or (at your option) any\n"
+"later version.\n"
+"\n"
+"Guake is distributed in the hope that it will be useful, but\n"
+"WITHOUT ANY WARRANTY; without even the implied\n"
+"warranty of MERCHANTABILITY or FITNESS FOR A\n"
+"PARTICULAR PURPOSE.  See the GNU General Public\n"
+"License for more details.\n"
+"\n"
+"You should have received a copy of the GNU General\n"
+"Public License along with Guake; if not, write to the Free\n"
+"Software Foundation, Inc., 51 Franklin St, Fifth Floor,\n"
+"Boston, MA  02110-1301 USA"
 
 #: guake/prefs.py:89
 msgid "Show and focus Guake window"
-msgstr ""
+msgstr "Zobrazit a zaměřit okno Guake"
 
 #: guake/data/prefs.glade:566
 msgid "0"
-msgstr ""
+msgstr "0"
 
 #: guake/data/prefs.glade:610
 msgid "<b>Main Window Options</b>"
-msgstr ""
+msgstr "<b>Možnosti hlavního okna</b>"
 
 #: guake/data/prefs.glade:770
 msgid "Horizontal Alignment:"
-msgstr ""
+msgstr "Horizontální umístění:"
 
 #: guake/data/prefs.glade:855
 msgid "Height:"
-msgstr ""
+msgstr "Výška:"
 
 #: guake/data/prefs.glade:868
 msgid "Width:"
-msgstr ""
+msgstr "Šířka:"
 
 #: guake/data/prefs.glade:913
 msgid "<b>Geometry</b>"
-msgstr ""
+msgstr "<b>Geometrie</b>"
 
 #: guake/data/prefs.glade:944
 msgid "Main Window"
-msgstr ""
+msgstr "Hlavní okno"
 
 #: guake/data/prefs.glade:1197
 msgid "Infinite scrolling"
-msgstr ""
+msgstr "Nekonečné posouvání"
 
 #: guake/data/prefs.glade:1219
 msgid "<b>Scrollbar</b>"
-msgstr ""
+msgstr "<b>Posuvník</b>"
 
 #: guake/data/prefs.glade:1304
 msgid "<b>Scroll to Bottom</b>"
-msgstr ""
+msgstr "<b>Posunout se na konec</b>"
 
 #: guake/data/prefs.glade:2117
 msgid ""
@@ -1177,10 +1210,13 @@ msgid ""
 "terminal. See the list of currently supported text patterns used to extract "
 "filename below."
 msgstr ""
+"Snadné otevření je funkce umožňující otevření souboru oblíbeným textovým "
+"editorem pouhým kliknutím na název souboru v terminálu. Seznam podporovaných "
+"textových vzorů použitých pro zjištění názvu souboru naleznete níže."
 
 #: guake/main.py:64
 msgid "Show Guake version number and exit"
-msgstr ""
+msgstr "Zobrazit verzi Guake a ukončit"
 
 #: guake/data/prefs.glade:93
 msgid "<span size=\"18000\"><b>Guake properties</b></span>"
@@ -1192,7 +1228,7 @@ msgstr "Upravit chování a vzhled Guake!"
 
 #: guake/data/prefs.glade:929
 msgid "Displacement in pixels"
-msgstr ""
+msgstr "Posun v pixelech"
 
 #~ msgid "key binding error"
 #~ msgstr "chyba klávesových zkratek"
