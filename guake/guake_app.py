@@ -25,6 +25,7 @@ import platform
 import subprocess
 import sys
 import traceback
+import uuid
 
 from pathlib import Path
 from urllib.parse import quote_plus
