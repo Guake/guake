@@ -623,8 +623,8 @@ class Guake(SimpleGladeApp):
 
         value = self.settings.general.get_boolean('window-losefocus')
         visible = window.get_property('visible')
+        self.losefocus_time = get_server_time(self.window)
         if visible and value:
-            self.losefocus_time = get_server_time(self.window)
             log.info("Hiding on focus lose")
             self.hide()
 
