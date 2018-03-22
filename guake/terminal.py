@@ -153,12 +153,13 @@ class GuakeTerminal(Vte.Terminal):
             pass
         self.set_audible_bell(client.get_boolean('use-audible-bell'))
         self.set_sensitive(True)
+
+        cursor_blink_mode = self.settings.style.get_int('cursor-blink-mode')
+        self.set_property('cursor-blink-mode', cursor_blink_mode)
+
         # TODO PORT there is no method set_flags anymore
         # self.set_flags(gtk.CAN_DEFAULT)
         # self.set_flags(gtk.CAN_FOCUS)
-        # TODO PORT getting it and then setting it???
-        # cursor_blink_mode = client.get_int(KEY('/style/cursor_blink_mode'))
-        # client.set_int(KEY('/style/cursor_blink_mode'), cursor_blink_mode)
         # TODO PORT getting it and then setting it???
         # cursor_shape = client.get_int(KEY('/style/cursor_shape'))
         # client.set_int(KEY('/style/cursor_shape'), cursor_shape)
