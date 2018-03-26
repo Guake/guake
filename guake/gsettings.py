@@ -159,6 +159,8 @@ class GSettingHandler(object):
             # Terminal here, we're going to use this to get the
             # scrollbar and hide/show it.
             hbox = term.get_parent()
+            if hbox is None:
+                continue
             terminal, scrollbar = hbox.get_children()
             if settings.get_boolean(key):
                 scrollbar.show()
