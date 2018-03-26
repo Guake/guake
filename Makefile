@@ -167,10 +167,12 @@ tag-pbr:
 		VERSION=$${VERSION_OVERRIDE:-$$VERSION}; \
 		PROJECTNAME=$$(pipenv run python setup.py --name); \
 		echo "I: Tagging $$PROJECTNAME in version $$VERSION with tag: $$VERSION" ; \
-		echo "$$ git tag -s $$VERSION -m \"$$PROJECTNAME $$VERSION\""; \
+		echo "$$ git tag $$VERSION -m \"$$PROJECTNAME $$VERSION\""; \
+		git tag $$VERSION -m "$$PROJECTNAME $$VERSION"; \
 		echo "I: Pushing tag $$VERSION, press ENTER to continue, C-c to interrupt"; \
 		read _; \
 		echo "$$ git push origin $$VERSION"; \
+		git push origin $$VERSION; \
 	}
 	@# Note:
 	@# To sign, need gpg configured and the following command:
