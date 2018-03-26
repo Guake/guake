@@ -33,4 +33,5 @@ def get_server_time(widget):
         # Issue: https://github.com/Guake/guake/issues/1071
         # Wayland does not seem to like `x11_get_server_time`.
         # Use local timestamp instead
-        return get_local_timestamp()
+        ts = time.time()
+        return ts
