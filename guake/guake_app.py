@@ -1689,6 +1689,10 @@ class Guake(SimpleGladeApp):
         """This method updates http{s,}_proxy environment variables
         with values found in gconf.
         """
+        if terminal:
+            os.environ['GUAKE_TAB_UUID'] = str(terminal.get_uuid())
+        else:
+            del os.environ['GUAKE_TAB_UUID']
         return
         # TODO PORT port this code
         proxy = '/system/http_proxy/'
@@ -1715,10 +1719,6 @@ class Guake(SimpleGladeApp):
             else:
                 os.environ['http_proxy'] = "http://{!s}:{:d}".format(host, port)
                 os.environ['https_proxy'] = "http://{!s}:{:d}".format(ssl_host, ssl_port)
-        if box:
-            os.environ['GUAKE_TAB_UUID'] = str(terminal.get_uuid())
-        else:
-            del os.environ['GUAKE_TAB_UUID']
 
     def add_tab(self, directory=None):
         """Adds a new tab to the terminal notebook.
