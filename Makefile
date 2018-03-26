@@ -171,8 +171,8 @@ tag-pbr:
 		git tag $$VERSION -m "$$PROJECTNAME $$VERSION"; \
 		echo "I: Pushing tag $$VERSION, press ENTER to continue, C-c to interrupt"; \
 		read _; \
-		echo "$$ git push origin $$VERSION"; \
-		git push origin $$VERSION; \
+		echo "$$ git push upstream $$VERSION"; \
+		git push upstream $$VERSION; \
 	}
 	@# Note:
 	@# To sign, need gpg configured and the following command:
