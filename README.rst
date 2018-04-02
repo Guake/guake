@@ -54,7 +54,8 @@ Dependencies
 Here are the dependencies of Guake for its execution:
 
 - GTK: 3.18
-- VTE: 2.91 (`vte-0.42 <https://packages.ubuntu.com/xenial/gir1.2-vte-2.91>`_)
+- VTE: 2.91 (`0.42 <https://packages.ubuntu.com/xenial/gir1.2-vte-2.91>`_).
+  See `doc here <https://lazka.github.io/pgi-docs/#Vte-2.91>`_
 - ``gir1.2-keybinder-3.0``
 - ``gir1.2-notify-0.7``
 - ``gir1.2-vte-2.91``

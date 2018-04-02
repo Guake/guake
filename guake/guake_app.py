@@ -546,7 +546,7 @@ class Guake(SimpleGladeApp):
         index = self.notebook.get_current_page()
         index = tab or self.notebook.get_current_page()
         for terminal in self.notebook.get_terminals_for_tab(index):
-            terminal.feed_child(command, len(command))
+            terminal.feed_child(command)
             break
 
     def execute_command_by_uuid(self, tab_uuid, command):
@@ -566,7 +566,7 @@ class Guake(SimpleGladeApp):
         else:
             terminals = self.notebook.get_terminals_for_tab(tab_index)
             for current_vte in terminals:
-                current_vte.feed_child(command, len(command))
+                current_vte.feed_child(command)
 
     # TODO this is dead: 2eae380b1a91a24f6c1eb68c13dac33db98a6ea2 and
     # 3f8c344519c9228deb9ca5f181cbdd5ef1d6acc0
@@ -1565,7 +1565,7 @@ class Guake(SimpleGladeApp):
         else:
             text = str.join("", (shell_quote(path) + " " for path in pathlist))
 
-        box.terminal.feed_child(text, len(command))
+        box.terminal.feed_child(text)
         return True
 
     # -- tab related functions --
