@@ -133,6 +133,13 @@ class GuakeTerminal(Vte.Terminal):
     def pid(self, pid):
         self._pid = pid
 
+    def feed_child(self, resolved_cmdline):
+        try:
+            super().feed_child(resolved_cmdline, len(resolved_cmdline))
+        except TypeError:
+            # vte > 0.42 only takes 1 parameter
+            super().feed_child(resolved_cmdline)
+
     def copy_clipboard(self):
         if self.get_has_selection():
             super(GuakeTerminal, self).copy_clipboard()
@@ -306,7 +313,7 @@ class GuakeTerminal(Vte.Terminal):
             logging.debug("Executing it in current tab")
             if resolved_cmdline[-1] != '\n':
                 resolved_cmdline += '\n'
-            self.feed_child(resolved_cmdline, len(resolved_cmdline))
+            self.feed_child(resolved_cmdline)
         else:
             logging.debug("Executing it independently")
             subprocess.call(resolved_cmdline, shell=True)
