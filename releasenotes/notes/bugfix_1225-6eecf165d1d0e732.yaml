@@ -1,0 +1,3 @@
+fixes:
+  - |
+    change scope of 'which_align' variable in pref.pyZ (#1225)

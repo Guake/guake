@@ -439,12 +439,12 @@ class PrefsCallbacks(object):
     def on_window_halign_value_changed(self, halign_button):
         """Changes the value of window_halignment in gconf
         """
+        which_align = {
+            'radiobutton_align_left': ALIGN_LEFT,
+            'radiobutton_align_right': ALIGN_RIGHT,
+            'radiobutton_align_center': ALIGN_CENTER
+        }
         if halign_button.get_active():
-            which_align = {
-                'radiobutton_align_left': ALIGN_LEFT,
-                'radiobutton_align_right': ALIGN_RIGHT,
-                'radiobutton_align_center': ALIGN_CENTER
-            }
             self.settings.general.set_int(
                 'window-halignment', which_align[halign_button.get_name()]
             )
