@@ -7,9 +7,13 @@ python:
 
 
 install:
-    # https://docs.openstack.org/reno/latest/user/usage.html#within-travis-ci
-    - git fetch --unshallow --tags
-    - git fetch origin master
+    - |
+        # Force unshallow and checkout the current branch
+        # https://docs.openstack.org/reno/latest/user/usage.html#within-travis-ci
+        git config remote.origin.fetch +refs/heads/*:refs/remotes/origin/*
+        git fetch --unshallow --tags
+        git symbolic-ref --short HEAD || git checkout -b ${TRAVIS_BRANCH}-test $TRAVIS_BRANCH
+
     - sudo ./bootstrap-dev-debian.sh
     - ./bootstrap-dev-pip.sh system
 
