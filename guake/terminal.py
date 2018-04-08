@@ -258,9 +258,12 @@ class GuakeTerminal(Vte.Terminal):
         handle the matched resource uri.
         """
         self.matched_value = ''
-        matched_string = self.match_check(
-            int(event.x / self.get_char_width()), int(event.y / self.get_char_height())
-        )
+        if (Vte.MAJOR_VERSION, Vte.MINOR_VERSION) >= (0, 46):
+            matched_string = self.check_event(event)
+        else:
+            matched_string = self.match_check(
+                int(event.x / self.get_char_width()), int(event.y / self.get_char_height())
+            )
 
         self.found_link = None
 

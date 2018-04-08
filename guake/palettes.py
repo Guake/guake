@@ -37,7 +37,6 @@ Boston, MA 02110-1301 USA
 # index 16: Background Color
 # index 17: Foreground Color
 
-
 PALETTES = {
     '3024 Day': (
         '#090903030000:#DBDB2D2D2020:#0101A2A25252:#FDFDEDED0202:#0101A0A0E4E4:'
