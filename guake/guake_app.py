@@ -672,14 +672,33 @@ class Guake(SimpleGladeApp):
             self.get_widget('context_search_on_web').set_label(_("Search on Web (no selection)"))
             self.get_widget('context_search_on_web').set_visible(False)
 
-        link = self.getCurrentTerminalLinkUnderCursor()
+        filename = None
+        if current_selection:
+            filename = self.get_current_terminal_filename_under_cursor(current_selection)
+
+        if filename:
+            self.get_widget('context_quick_open').set_visible(True)
+            filename_str = str(filename)
+            if len(filename_str) >= 28:
+                self.get_widget('context_quick_open'
+                                ).set_label(_("Quick Open: {!s}...").format(filename_str[:25]))
+            else:
+                self.get_widget('context_quick_open'
+                                ).set_label(_("Quick Open: {!s}").format(filename_str))
+            self.get_widget('separator_search').set_visible(True)
+        else:
+            self.get_widget('context_quick_open').set_label(_("Quick Open..."))
+            self.get_widget('context_quick_open').set_visible(False)
+
+        link = self.get_current_terminal_link_under_cursor()
         if link:
             self.get_widget('context_browse_on_web').set_visible(True)
             if len(link) >= 28:
                 self.get_widget('context_browse_on_web'
-                                ).set_label(_("Open Link: '{}...'".format(link[:25])))
+                                ).set_label(_("Open Link: {!s}...").format(link[:25]))
             else:
-                self.get_widget('context_browse_on_web').set_label(_("Open Link: {}".format(link)))
+                self.get_widget('context_browse_on_web'
+                                ).set_label(_("Open Link: {!s}").format(link))
             self.get_widget('separator_search').set_visible(True)
         else:
             self.get_widget('context_browse_on_web').set_label(_("Open Link..."))
@@ -2008,15 +2027,33 @@ class Guake(SimpleGladeApp):
                 Gtk.show_uri(self.window.get_screen(), search_url, get_server_time(self.window))
         return True
 
-    def getCurrentTerminalLinkUnderCursor(self):
+    def quick_open(self, *args):
+        """Open open selection
+        """
+        current_term = self.notebook.get_current_terminal()
+
+        if current_term.get_has_selection():
+            self.notebook.get_current_terminal().quick_open()
+        return True
+
+    def get_current_terminal_link_under_cursor(self):
         current_term = self.notebook.get_current_terminal()
         link = current_term.found_link
         log.debug("Current link under cursor: %s", link)
         if link:
             return link
+        return None
+
+    def get_current_terminal_filename_under_cursor(self, selected_text):
+        current_term = self.notebook.get_current_terminal()
+        filename, _1, _2 = current_term.is_file_on_local_server(selected_text)
+        log.info("Current filename under cursor: %s", filename)
+        if filename:
+            return filename
+        return None
 
     def browse_on_web(self, *args):
-        log.debug("browsing %s...", self.getCurrentTerminalLinkUnderCursor())
+        log.debug("browsing %s...", self.get_current_terminal_link_under_cursor())
         self.notebook.get_current_terminal().browse_link_under_cursor()
 
     def set_tab_position(self, *args):

@@ -22,4 +22,5 @@ pylint
 pytest
 pytest-mock
 reno[sphinx]
+rope
 yapf

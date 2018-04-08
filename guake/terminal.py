@@ -44,6 +44,9 @@ from gi.repository import Pango
 from gi.repository import Vte
 
 from guake.common import clamp
+from guake.globals import QUICK_OPEN_MATCHERS
+from guake.globals import TERMINAL_MATCH_EXPRS
+from guake.globals import TERMINAL_MATCH_TAGS
 
 log = logging.getLogger(__name__)
 
@@ -55,26 +58,11 @@ def halt(loc):
 # TODO PORT
 # __all__ = ['Terminal', 'TerminalBox']
 
-# TODO this is not as fancy as as it could be
-# pylint: disable=anomalous-backslash-in-string
-TERMINAL_MATCH_TAGS = ('schema', 'http', 'https', 'email', 'ftp')
-TERMINAL_MATCH_EXPRS = [
-    "(news:|telnet:|nntp:|file:\/|https?:|ftps?:|webcal:)\/\/"
-    "([-[:alnum:]]+(:[-[:alnum:],?;.:\/!%$^*&~\"#']+)?\@)?[-[:alnum:]]+"
-    "(\.[-[:alnum:]]+)*(:[0-9]{1,5})?(\/[-[:alnum:]_$.+!*(),;:@&=?\/~#%]*[^]'.>) \t\r\n,\\\"])?",
-    "(www|ftp)[-[:alnum:]]*\.[-[:alnum:]]+(\.[-[:alnum:]]+)*(:[0-9]{1,5})?"
-    "(\/[-[:alnum:]_$.+!*(),;:@&=?\/~#%]*[^]'.>) \t\r\n,\\\"])?",
-    "(mailto:)?[-[:alnum:]][-[:alnum:].]*@[-[:alnum:]]+\.[-[:alnum:]]+(\\.[-[:alnum:]]+)*"
-]
-# tuple (title/quick matcher/filename and line number extractor)
-QUICK_OPEN_MATCHERS = [(
-    "Python traceback", r"^\s*File\s\".*\",\sline\s[0-9]+", r"^\s*File\s\"(.*)\",\sline\s([0-9]+)"
-), (
-    "line starts by 'Filename:line' pattern (GCC/make). File path should exists.",
-    r"^\s*[a-zA-Z0-9\/\_\-\.\ ]+\.?[a-zA-Z0-9]+\:[0-9]+", r"^\s*.(.*)\:([0-9]+)"
-)]
-
 # pylint: enable=anomalous-backslash-in-string
+
+g_pcre2_enabled = True
+"""If VTE has been compiled withou PCRE2 support, Guake cannot register matcher using regex.
+"""
 
 
 class TerminalBox(Gtk.HBox):
@@ -176,16 +164,25 @@ class GuakeTerminal(Vte.Terminal):
         guake.globals.TERMINAL_MATCH_EXPRS to the terminal to make vte
         highlight text that matches them.
         """
-        # log.debug("Skipped 'match' feature")
-        for expr in TERMINAL_MATCH_EXPRS:
-            # TODO PORT next line throws a Vte-WARNIN but works: runtime check failed
-            tag = self.match_add_gregex(GLib.Regex.new(expr, 0, 0), 0)
-            self.match_set_cursor_type(tag, Gdk.CursorType.HAND2)
+        global g_pcre2_enabled  # pylint: disable=global-statement
+        if not g_pcre2_enabled:
+            return
+        try:
+            for expr in TERMINAL_MATCH_EXPRS:
+                tag = self.match_add_regex(Vte.Regex.new_for_match(expr, 0, 0), 0)
+                self.match_set_cursor_type(tag, Gdk.CursorType.HAND2)
 
-        for _useless, match, _otheruseless in QUICK_OPEN_MATCHERS:
-            # TODO PORT next line throws a Vte-WARNIN but works: runtime check failed
-            tag = self.match_add_gregex(GLib.Regex.new(match, 0, 0), 0)
-            self.match_set_cursor_type(tag, Gdk.CursorType.HAND2)
+            for _useless, match, _otheruseless in QUICK_OPEN_MATCHERS:
+                tag = self.match_add_regex(Vte.Regex.new_for_match(match, 0, 0), 0)
+                self.match_set_cursor_type(tag, Gdk.CursorType.HAND2)
+        except GLib.Error as e:
+            g_pcre2_enabled = False
+            log.error(
+                "ERROR: PCRE2 does not seems to be enabled on your system. "
+                "Quick Edit and other Ctrl+click features are disabled. "
+                "Please update your VTE package or contact your distribution to ask "
+                "to enable regular expression support in VTE. Exception: '%s'", str(e)
+            )
 
     def get_current_directory(self):
         directory = os.path.expanduser('~')
@@ -195,7 +192,7 @@ class GuakeTerminal(Vte.Terminal):
                 directory = cwd
         return directory
 
-    def _is_file_on_local_server(self, text) -> Tuple[Optional[Path], Optional[int], Optional[int]]:
+    def is_file_on_local_server(self, text) -> Tuple[Optional[Path], Optional[int], Optional[int]]:
         """Test if the provided text matches a file on local server
 
         Supports:
@@ -208,7 +205,7 @@ class GuakeTerminal(Vte.Terminal):
             text (str): candidate for file search
 
         Returns
-            - Tuple(None, None, None) is the provided text does not match anything
+            - Tuple(None, None, None) if the provided text does not match anything
             - Tuple(file path, None, None) if only a file path is found
             - Tuple(file path, linenumber, None) if line number is found
             - Tuple(file path, linenumber, columnnumber) if line and column numbers are found
@@ -228,15 +225,16 @@ class GuakeTerminal(Vte.Terminal):
         pt = Path(text)
         log.debug("checking file existance: %r", pt)
         if pt.exists():
-            log.debug("File exists: %r", pt.absolute().as_posix())
+            log.info("File exists: %r", pt.absolute().as_posix())
             return (pt, lineno, colno)
         log.debug("No file found matching: %r", text)
         cwd = self.get_current_directory()
         pt = Path(cwd) / pt
         log.debug("checking file existance: %r", pt)
         if pt.exists():
-            log.debug("File exists: %r", pt.absolute().as_posix())
+            log.info("File exists: %r", pt.absolute().as_posix())
             return (pt, lineno, colno)
+        log.info("file does not exist: %r", pt)
         return (None, None, None)
 
     def button_press(self, terminal, event):
@@ -253,56 +251,53 @@ class GuakeTerminal(Vte.Terminal):
 
         if event.button == 1 and (event.get_state() & Gdk.ModifierType.CONTROL_MASK):
             if self.get_has_selection():
-                self.copy_clipboard()
-                clipboard = Gtk.Clipboard.get(Gdk.SELECTION_CLIPBOARD)
-                text = clipboard.wait_for_text()
-                (fp, lo, co) = self._is_file_on_local_server(text)
-                self._execute_quick_open(fp, lo)
+                self.quick_open()
             elif matched_string and matched_string[0]:
-                self.__on_ctrl_click_matcher(matched_string)
+                self._on_ctrl_click_matcher(matched_string)
         elif event.button == 3 and matched_string:
             self.found_link = self.handleTerminalMatch(matched_string)
             self.matched_value = matched_string[0]
 
-    def __on_ctrl_click_matcher(self, matched_string):
+    def quick_open(self):
+        self.copy_clipboard()
+        clipboard = Gtk.Clipboard.get(Gdk.SELECTION_CLIPBOARD)
+        text = clipboard.wait_for_text()
+        if not text:
+            return
+        (fp, lo, co) = self.is_file_on_local_server(text)
+        self._execute_quick_open(fp, lo)
+
+    def _on_ctrl_click_matcher(self, matched_string):
         value, tag = matched_string
         log.debug("matched string: %s", matched_string)
         # First searching in additional matchers
-        found_additional_matcher = False
-        # TODO PORT
         use_quick_open = self.settings.general.get_boolean("quick-open-enable")
-        quick_open_in_current_terminal = self.settings.general.get_boolean(
-            "quick-open-in-current-terminal"
-        )
         if use_quick_open:
-            for _useless, _otheruseless, extractor in QUICK_OPEN_MATCHERS:
-                print("value", value)
-                g = re.compile(extractor).match(value)
-                if g and g.groups():
-                    filename = g.group(1).strip()
-                    filepath = filename
-                    line_number = g.group(2)
-                    if line_number is None:
-                        line_number = "1"
-                    if not quick_open_in_current_terminal:
-                        (filepath, _lo, _co) = self._is_file_on_local_server(filename)
-                    # for quick_open_in_current_terminal, we run the command line directly in
-                    # the tab so relative path is enough.
-                    #
-                    # We do not test for file existence, because it doesn't work in ssh
-                    # sessions.
-                    self._execute_quick_open(filepath, line_number)
-                    found_additional_matcher = True
-                    break
-        if not found_additional_matcher:
+            found_matcher = self._find_quick_matcher(value)
+        if not found_matcher:
             self.found_link = self.handleTerminalMatch(matched_string)
             if self.found_link:
                 self.browse_link_under_cursor()
+
+    def _find_quick_matcher(self, value):
+        for _useless, _otheruseless, extractor in QUICK_OPEN_MATCHERS:
+            g = re.compile(extractor).match(value)
+            if g and g.groups():
+                filename = g.group(1).strip()
+                (fp, _, _) = self.is_file_on_local_server(filename)
+                line_number = g.group(2)
+                if line_number is None:
+                    line_number = "1"
+                self._execute_quick_open(filepath, line_number)
+                return True
+        return False
 
     def _execute_quick_open(self, filepath, line_number):
         cmdline = self.settings.general.get_string("quick-open-command-line")
         if not line_number:
             line_number = ""
+        else:
+            line_number = str(line_number)
         logging.debug("Opening file %s at line %s", filepath, line_number)
         resolved_cmdline = cmdline % {"file_path": filepath, "line_number": line_number}
         logging.debug("Command line: %s", resolved_cmdline)
@@ -315,6 +310,7 @@ class GuakeTerminal(Vte.Terminal):
                 resolved_cmdline += '\n'
             self.feed_child(resolved_cmdline)
         else:
+            resolved_cmdline += " &"
             logging.debug("Executing it independently")
             subprocess.call(resolved_cmdline, shell=True)
 

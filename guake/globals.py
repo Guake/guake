@@ -59,3 +59,22 @@ LOCALE_DIR = "/usr/share/locale"
 ALIGN_CENTER, ALIGN_LEFT, ALIGN_RIGHT = range(3)
 ALIGN_TOP, ALIGN_BOTTOM = range(2)
 ALWAYS_ON_PRIMARY = -1
+
+# TODO this is not as fancy as as it could be
+# pylint: disable=anomalous-backslash-in-string
+TERMINAL_MATCH_TAGS = ('schema', 'http', 'https', 'email', 'ftp')
+TERMINAL_MATCH_EXPRS = [
+    "(news:|telnet:|nntp:|file:\/|https?:|ftps?:|webcal:)\/\/"
+    "([-[:alnum:]]+(:[-[:alnum:],?;.:\/!%$^*&~\"#']+)?\@)?[-[:alnum:]]+"
+    "(\.[-[:alnum:]]+)*(:[0-9]{1,5})?(\/[-[:alnum:]_$.+!*(),;:@&=?\/~#%]*[^]'.>) \t\r\n,\\\"])?",
+    "(www|ftp)[-[:alnum:]]*\.[-[:alnum:]]+(\.[-[:alnum:]]+)*(:[0-9]{1,5})?"
+    "(\/[-[:alnum:]_$.+!*(),;:@&=?\/~#%]*[^]'.>) \t\r\n,\\\"])?",
+    "(mailto:)?[-[:alnum:]][-[:alnum:].]*@[-[:alnum:]]+\.[-[:alnum:]]+(\\.[-[:alnum:]]+)*"
+]
+# tuple (title/quick matcher/filename and line number extractor)
+QUICK_OPEN_MATCHERS = [(
+    "Python traceback", r"^\s*File\s\".*\",\sline\s[0-9]+", r"^\s*File\s\"(.*)\",\sline\s([0-9]+)"
+), (
+    "line starts by 'Filename:line' pattern (GCC/make). File path should exists.",
+    r"^\s*[a-zA-Z0-9\/\_\-\.\ ]+\.?[a-zA-Z0-9]+\:[0-9]+", r"^\s*.(.*)\:([0-9]+)"
+)]

@@ -213,13 +213,14 @@ First, be sure to use a verion of Python 3 where GTK and GObjects works in your 
 For instance, under Ubuntu 17.04, PyGtk and ``python3-gi`` does not work well if the default
 python 3 interpreter is forced to Python 3.6.
 
-
-| Operating System  | Recommended Python version |
-| ----------------- | -------------------------- |
-| Ubuntu 14.04 LTS  | Python 3.4 (UNTESTED)      |
-| Ubuntu 16.04 LTS  | Python 3.5 (TESTED)        |
-| Ubuntu 17.04      | Python 3.5 (TESTED)        |
-| Ubuntu 17.10      | Python 3.6                 |
++-------------------+----------------------------+-----------------------------+
+| Operating System  | Recommended Python version | Notes                       |
++===================+============================+=============================+
+| Ubuntu 14.04 LTS  | Python 3.4 (UNTESTED)      |                             |
+| Ubuntu 16.04 LTS  | Python 3.5 (TESTED)        |                             |
+| Ubuntu 17.04      | Python 3.5 (TESTED)        |                             |
+| Ubuntu 17.10      | Python 3.6 (TESTED)        | Quick Open disabled (#1230) |
++-------------------+----------------------------+-----------------------------+
 
 Install System dependencies
 ---------------------------
