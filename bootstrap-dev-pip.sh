@@ -9,9 +9,9 @@ else
 fi
 
 python3 -m pip install $op --upgrade \
-    'pip==9.0.1' \
-    'pipenv==9.0.1' \
-    'setuptools==36.6.0' \
+    'pip==9.0.3' \
+    'pipenv==11.9.0' \
+    'setuptools!=36.6.0' \
     || echo "you may need to sudo me !"
 
 echo "Please ensure your local bin directory is in your path"
