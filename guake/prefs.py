@@ -528,7 +528,7 @@ class PrefsCallbacks(object):
         self.settings.general.set_string('compat-delete', ERASE_BINDINGS[val])
 
     def on_custom_command_file_chooser_file_changed(self, filechooser):
-        self.settings.general.set_string('custom_command_file', filechooser.get_filename())
+        self.settings.general.set_string('custom-command-file', filechooser.get_filename())
 
     def toggle_prompt_on_quit_sensitivity(self, combo):
         self.prefDlg.toggle_prompt_on_quit_sensitivity(combo)
