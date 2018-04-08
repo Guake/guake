@@ -45,19 +45,24 @@ Bug Fixes
 
 - Fix crash when changing command file #1229
 
-- fix import sys in simplegladeapp.py
+- fix ``import sys`` in ``simplegladeapp.py``
 
-- change scope of 'which\_align' variable in pref.pyZ (#1225)
+- change scope of ``which_align`` variable in ``pref.py`` (#1225)
 
 - Fix several issues on Quick Edit:
-   -  quick open freezes guake
-   -  support system with PCRE2 (regular expression in terminal) disabled, like Ubuntu 17.10. This
+
+   - quick open freezes guake
+
+   - support system with PCRE2 (regular expression in terminal) disabled, like Ubuntu 17.10. This
      disables quick open and open url on direct Ctrl+click. User can still select the wanted url or
      text and Cltr+click or use contextual menu.
-      See this `discussion on Tilix <https://github.com/gnunn1/tilix/issues/916>`_, another
+
+     See this `discussion on Tilix <https://github.com/gnunn1/tilix/issues/916>`_, another
      Terminal emulator that suffurs the same issue.
-   -  quick open now appears in contextual menu (#1157)
-   -  bad translation update on the contextual menu. This causes new strings that was hidden to
+
+   - quick open now appears in contextual menu (#1157)
+
+   - bad translation update on the contextual menu. This causes new strings that was hidden to
      appear for translators.
 
 - Support for vte 2.91 (0.52) #1222

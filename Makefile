@@ -291,6 +291,7 @@ release-note-news: reno-lint
 			sed 's/\r\.\.\ .*\r\r//g' | \
 			sed 's/\r\-\ \ \r\r\ \ /\r-/g' | \
 			sed 's/\r\ \ \ \ \ \-\ \ /\r  - /g' | \
+			sed 's/\r\ \ \ \-\ \ /\r   - /g' | \
 			sed 's/\r\-\ \ /\r- /g' | \
 			sed -E 's/\r\s{3}([^\s\-])/\r  \1/g' | \
 			sed 's/`\_\_/`_/g' | \
