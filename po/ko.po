@@ -647,10 +647,10 @@ msgstr "보이기"
 #, python-format
 msgid ""
 "Guake is now running,\n"
-"press <b>%s</b> to use it."
+"press <b>{!s}</b> to use it."
 msgstr ""
 "Guake 가 실행중입니다.,\n"
-"<b>%s</b> 키를 눌러서 실행합니다."
+"<b>{!s}</b> 키를 눌러서 실행합니다."
 
 #: ../src/guake/guake_app.py:670
 #, python-format
@@ -973,12 +973,6 @@ msgstr ""
 "지정된 \"%s\" 키는 입력시 사용되기 때문에 단출키로 사용할 수 없습니다.\n"
 "\n"
 "Ctrl, Alt, Shift 등의 조합으로 사용해주세요.\n"
-
-#: guake/guake_app.py:491
-msgid ""
-"Guake is now running,\n"
-"press <b>{!s}</b> to use it."
-msgstr ""
 
 #: guake/main.py:153
 msgid "Return the selected tab label."

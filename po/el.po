@@ -641,10 +641,10 @@ msgstr ""
 #, fuzzy, python-format
 msgid ""
 "Guake is now running,\n"
-"press <b>%s</b> to use it."
+"press <b>{!s}</b> to use it."
 msgstr ""
 "Το Guake εκτελείται ήδη,\n"
-"πατήστε <b>%s</b> για να το χρησιμοποιήσετε."
+"πατήστε <b>{!s}</b> για να το χρησιμοποιήσετε."
 
 #: ../src/guake/guake_app.py:670
 #, python-format
@@ -981,12 +981,6 @@ msgstr ""
 "\n"
 "Παρακαλώ δοκιμάστε πατώντας ταυτόχρονα ένα πλήκτρο όπως Control, Alt ή "
 "Shift.\n"
-
-#: guake/guake_app.py:491
-msgid ""
-"Guake is now running,\n"
-"press <b>{!s}</b> to use it."
-msgstr ""
 
 #: guake/main.py:153
 msgid "Return the selected tab label."

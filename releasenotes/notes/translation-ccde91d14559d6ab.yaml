@@ -1,0 +1,7 @@
+translations:
+  - Some changes in translation system made the welcome message not working properly in some
+    languages (#1209). There might be other broken translations, and more generaly, a global
+    refresh of all existing translation would be welcomed. Most has not been updated since the
+    transition to Guake 3, so these languages support might probably be unfunctional.
+
+    Help is welcomed for updating translations !

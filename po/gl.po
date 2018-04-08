@@ -641,10 +641,10 @@ msgstr ""
 #, python-format
 msgid ""
 "Guake is now running,\n"
-"press <b>%s</b> to use it."
+"press <b>{!s}</b> to use it."
 msgstr ""
 "Guake está agora en execución,\n"
-"prema <b>%s</b> para usalo."
+"prema <b>{!s}</b> para usalo."
 
 #: ../src/guake/guake_app.py:670
 #, python-format
@@ -980,12 +980,6 @@ msgstr ""
 "O atallo «%s» non se pode utilizar porque faría imposíbel escribir usando "
 "esta tecla.\n"
 "Probe con algunha outra tecla como Control, Alt ou Maiús ao mesmo tempo.\n"
-
-#: guake/guake_app.py:491
-msgid ""
-"Guake is now running,\n"
-"press <b>{!s}</b> to use it."
-msgstr ""
 
 #: guake/main.py:153
 msgid "Return the selected tab label."

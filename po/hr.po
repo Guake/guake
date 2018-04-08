@@ -639,10 +639,10 @@ msgstr ""
 #, python-format
 msgid ""
 "Guake is now running,\n"
-"press <b>%s</b> to use it."
+"press <b>{!s}</b> to use it."
 msgstr ""
 "Guake je pokrenut,\n"
-"pritisnite <b>%s</b> za korištenje."
+"pritisnite <b>{!s}</b> za korištenje."
 
 #: ../src/guake/guake_app.py:670
 #, python-format
@@ -979,12 +979,6 @@ msgstr ""
 "koristeći ovu tipku.\n"
 "\n"
 "Pokušajte sa tipkom poput 'Control', 'Alt' ili 'Shift'.\n"
-
-#: guake/guake_app.py:491
-msgid ""
-"Guake is now running,\n"
-"press <b>{!s}</b> to use it."
-msgstr ""
 
 #: guake/main.py:153
 msgid "Return the selected tab label."

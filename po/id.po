@@ -613,13 +613,6 @@ msgstr ""
 msgid "Show"
 msgstr ""
 
-#: ../src/guake/guake_app.py:379
-#, python-format
-msgid ""
-"Guake is now running,\n"
-"press <b>%s</b> to use it."
-msgstr ""
-
 #: ../src/guake/guake_app.py:670
 #, python-format
 msgid "Search on Web: '%s'"

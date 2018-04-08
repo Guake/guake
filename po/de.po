@@ -691,7 +691,7 @@ msgid ""
 "press <b>{!s}</b> to use it."
 msgstr ""
 "Guake wurde gestartet,\n"
-"bitte drücken Sie <b>%s</b> um es zu verwenden."
+"bitte drücken Sie <b>{!s}</b> um es zu verwenden."
 
 #: ../src/guake/guake_app.py:670
 #, python-format

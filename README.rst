@@ -48,6 +48,15 @@ Dropped Features from Guake 0.8.x
 
 - ``--bgimg`` (this option has been removed from vte)
 
+Broken translations
+-------------------
+
+Some changes in translation system made during the Guake 3 port may have broken the welcome message
+in some languages (#1209).
+
+Help is welcomed for updating translations in your language ! See the "Update translation" section
+bellow.
+
 Dependencies
 ------------
 
