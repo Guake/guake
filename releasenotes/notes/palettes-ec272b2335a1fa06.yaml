@@ -1,6 +1,31 @@
 features:
   - |
-    Add color palettes from `Guake Color Scheme <https://github.com/ziyenano/Guake-Color-Schemes>`_,
-    thanks for @ziyenano : `Aci`, `aco`, `Azu`, `Bim`, `Cai`, `Elementary`, `Elic`, `Elio`,
-    `Freya`, `Gruvbox Dark`, `Hemisu Dark`, `Hemisu Light`, `Jup`, `Mar`, `Material`, `Miu`,
-    `Monokai dark`, `Nep`, `One Light`, `Pali`, `Peppermint`, `Sat`, `Shel`, `Tin`, `Ura`, `Vag`.
+    Add great color palettes from
+    `Guake Color Scheme <https://github.com/ziyenano/Guake-Color-Schemes>`_, thanks for @ziyenano :
+
+      - `Aci`,
+      - `aco`,
+      - `Azu`,
+      - `Bim`,
+      - `Cai`,
+      - `Elementary`,
+      - `Elic`,
+      - `Elio`,
+      - `Freya`,
+      - `Gruvbox Dark`,
+      - `Hemisu Dark`,
+      - `Hemisu Light`,
+      - `Jup`,
+      - `Mar`,
+      - `Material`,
+      - `Miu`,
+      - `Monokai dark`,
+      - `Nep`,
+      - `One Light`,
+      - `Pali`,
+      - `Peppermint`,
+      - `Sat`,
+      - `Shel`,
+      - `Tin`,
+      - `Ura`,
+      - `Vag`.
