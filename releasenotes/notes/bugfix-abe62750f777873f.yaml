@@ -1,0 +1,3 @@
+fixes:
+  - |
+    Fix crash when changing command file #1229
