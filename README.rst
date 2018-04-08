@@ -152,6 +152,7 @@ Tips for a complete Guake reinstallation:
 
     $ sudo make uninstall && make && sudo make install
 
+
 Note for maintainers
 --------------------
 
@@ -253,6 +254,12 @@ Local execution of guake (without system-wide install):
 .. code-block:: bash
 
     $ make run
+
+You can reinstall easily in your environment (only validated for Debian/Ubuntu) with:
+
+.. code-block:: bash
+
+    $ make reinstall
 
 Git hook
 ~~~~~~~~

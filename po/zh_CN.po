@@ -1187,6 +1187,10 @@ msgstr "自定义 Guake 的行为和外观！"
 msgid "Displacement in pixels"
 msgstr ""
 
+#: guake/main.py:73
+msgid "Enable verbose logging"
+msgstr ""
+
 #~ msgid "0 means no size limit"
 #~ msgstr "0表示没有大小限制"
 

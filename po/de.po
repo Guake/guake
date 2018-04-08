@@ -1220,6 +1220,10 @@ msgstr "Aussehen und Verhalten von Guake verändern!"
 msgid "Displacement in pixels"
 msgstr "Verschiebung in Pixeln"
 
+#: guake/main.py:73
+msgid "Enable verbose logging"
+msgstr ""
+
 #~ msgid "Path to script executed on Guake start:"
 #~ msgstr "Pfad zu einem Skript das beim Start ausgeführt wird:"
 

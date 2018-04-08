@@ -1213,3 +1213,7 @@ msgstr "Dostosowanie zachowania i wyglądu programu Guake!"
 #: guake/data/prefs.glade:929
 msgid "Displacement in pixels"
 msgstr ""
+
+#: guake/main.py:73
+msgid "Enable verbose logging"
+msgstr ""

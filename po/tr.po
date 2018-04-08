@@ -1190,6 +1190,10 @@ msgstr "Guake'in davranışlarını ve görünümünü özelleştirin!"
 msgid "Displacement in pixels"
 msgstr ""
 
+#: guake/main.py:73
+msgid "Enable verbose logging"
+msgstr ""
+
 #~ msgid "key binding error"
 #~ msgstr "kısayol atama hatası"
 

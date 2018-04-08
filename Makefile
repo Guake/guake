@@ -89,6 +89,9 @@ uninstall-old-schemas:
 	@rm -f $(OLD_PREFIX)/lib/python$(shell $(PYTHON_INTERPRETER) -c "import sys; v = sys.version_info; print('{}.{}'.format(v.major, v.minor))")/$(DIST_PACKAGE)/guake/data/schema.guake.gschema.xml
 	@glib-compile-schemas $(OLD_PREFIX)/share/glib-2.0/schemas/
 
+reinstall:
+	sudo make uninstall && make && sudo make install && /usr/local/bin/guake
+
 compile-glib-schemas: clean-schemas
 	glib-compile-schemas --strict guake/data/
 
