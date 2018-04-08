@@ -1,6 +1,76 @@
 Release Notes
 =============
 
+(under development)
+-------------------
+
+New Features
+~~~~~~~~~~~~
+
+- Add ``--verbose``/``-v`` parameter to enable debug logging. Please note the existing ``-v`` (for
+  version number) has been renamed ``-V``.
+
+- Add great color palettes from `Guake Color
+  Scheme <https://github.com/ziyenano/Guake-Color-Schemes>`_, thanks for @ziyenano :
+
+  - Aci,
+  - aco,
+  - Azu,
+  - Bim,
+  - Cai,
+  - Elementary,
+  - Elic,
+  - Elio,
+  - Freya,
+  - Gruvbox Dark,
+  - Hemisu Dark,
+  - Hemisu Light,
+  - Jup,
+  - Mar,
+  - Material,
+  - Miu,
+  - Monokai dark,
+  - Nep,
+  - One Light,
+  - Pali,
+  - Peppermint,
+  - Sat,
+  - Shel,
+  - Tin,
+  - Ura,
+  - Vag.
+
+Bug Fixes
+~~~~~~~~~
+
+- Fix crash when changing command file #1229
+
+- fix import sys in simplegladeapp.py
+
+- change scope of 'which\_align' variable in pref.pyZ (#1225)
+
+- Fix several issues on Quick Edit:
+   -  quick open freezes guake
+   -  support system with PCRE2 (regular expression in terminal) disabled, like Ubuntu 17.10. This
+     disables quick open and open url on direct Ctrl+click. User can still select the wanted url or
+     text and Cltr+click or use contextual menu.
+      See this `discussion on Tilix <https://github.com/gnunn1/tilix/issues/916>`_, another
+     Terminal emulator that suffurs the same issue.
+   -  quick open now appears in contextual menu (#1157)
+   -  bad translation update on the contextual menu. This causes new strings that was hidden to
+     appear for translators.
+
+- Support for vte 2.91 (0.52) #1222
+
+Translation Updates
+~~~~~~~~~~~~~~~~~~~
+
+- Some changes in translation system made the welcome message not working properly in some
+  languages (#1209). There might be other broken translations, and more generaly, a global refresh
+  of all existing translation would be welcomed. Most has not been updated since the transition to
+  Guake 3, so these languages support might probably be unfunctional. Help is welcomed for updating
+  translations !
+
 3.0.5
 -----
 
