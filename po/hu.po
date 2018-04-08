@@ -638,10 +638,10 @@ msgstr ""
 #, python-format
 msgid ""
 "Guake is now running,\n"
-"press <b>%s</b> to use it."
+"press <b>{!s}</b> to use it."
 msgstr ""
 "A Guake fut,\n"
-"a használathoz nyomja meg a(z) <b>%s</b> gombot."
+"a használathoz nyomja meg a(z) <b>{!s}</b> gombot."
 
 #: ../src/guake/guake_app.py:670
 #, python-format
@@ -978,12 +978,6 @@ msgstr ""
 "\n"
 "Kérlek használj általános billentyűket mint a Control, Alt vagy Shift "
 "egyszerre.\n"
-
-#: guake/guake_app.py:491
-msgid ""
-"Guake is now running,\n"
-"press <b>{!s}</b> to use it."
-msgstr ""
 
 #: guake/main.py:153
 msgid "Return the selected tab label."

@@ -608,10 +608,10 @@ msgstr ""
 #, python-format
 msgid ""
 "Guake is now running,\n"
-"press <b>%s</b> to use it."
+"press <b>{!s}</b> to use it."
 msgstr ""
 "ਗੁਆਕੀ ਹੁਣ ਚੱਲ ਰਿਹਾ ਹੈ।\n"
-"ਇਸ ਨੂੰ ਵਰਤਣ ਲਈ <b>%s</b> ਦੱਬੋ।"
+"ਇਸ ਨੂੰ ਵਰਤਣ ਲਈ <b>{!s}</b> ਦੱਬੋ।"
 
 #: ../src/guake/guake_app.py:670
 #, python-format
@@ -940,12 +940,6 @@ msgid ""
 "using this key.\n"
 "\n"
 "Please try with a key such as Control, Alt or Shift at the same time.\n"
-msgstr ""
-
-#: guake/guake_app.py:491
-msgid ""
-"Guake is now running,\n"
-"press <b>{!s}</b> to use it."
 msgstr ""
 
 #: guake/main.py:153

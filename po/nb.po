@@ -633,10 +633,10 @@ msgstr ""
 #, python-format
 msgid ""
 "Guake is now running,\n"
-"press <b>%s</b> to use it."
+"press <b>{!s}</b> to use it."
 msgstr ""
 "Guake er nå startet,\n"
-"trykk <b>%s</b> for å ta den i bruk."
+"trykk <b>{!s}</b> for å ta den i bruk."
 
 #: ../src/guake/guake_app.py:670
 #, python-format
@@ -973,12 +973,6 @@ msgstr ""
 "bruk av denne tasten.\n"
 "\n"
 "Vennligst prøv med en tast som for eksempel Control, Alt eller Shift.\n"
-
-#: guake/guake_app.py:491
-msgid ""
-"Guake is now running,\n"
-"press <b>{!s}</b> to use it."
-msgstr ""
 
 #: guake/main.py:153
 msgid "Return the selected tab label."

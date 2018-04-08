@@ -610,10 +610,10 @@ msgstr ""
 #, python-format
 msgid ""
 "Guake is now running,\n"
-"press <b>%s</b> to use it."
+"press <b>{!s}</b> to use it."
 msgstr ""
 "Guakeを起動しました。\n"
-"<b>%s</b>を押すと表示されます。"
+"<b>{!s}</b>を押すと表示されます。"
 
 #: ../src/guake/guake_app.py:670
 #, python-format
@@ -932,12 +932,6 @@ msgstr ""
 "\n"
 "[Control] や [Alt] や [Shift] といった修飾キーを一緒に使うようにしてみて下さ"
 "い。\n"
-
-#: guake/guake_app.py:491
-msgid ""
-"Guake is now running,\n"
-"press <b>{!s}</b> to use it."
-msgstr ""
 
 #: guake/main.py:153
 msgid "Return the selected tab label."

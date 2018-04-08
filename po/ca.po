@@ -636,15 +636,6 @@ msgstr ""
 msgid "Show"
 msgstr ""
 
-#: ../src/guake/guake_app.py:379
-#, python-format
-msgid ""
-"Guake is now running,\n"
-"press <b>%s</b> to use it."
-msgstr ""
-"El Guake està en execució,\n"
-"premeu <b>%s</b> per fer-lo servir."
-
 #: ../src/guake/guake_app.py:670
 #, python-format
 msgid "Search on Web: '%s'"
@@ -981,12 +972,6 @@ msgstr ""
 "Proveu de combinar-la amb tecles com la de Control, Majúscula o "
 "Alternativa.\n"
 
-#: guake/guake_app.py:491
-msgid ""
-"Guake is now running,\n"
-"press <b>{!s}</b> to use it."
-msgstr ""
-
 #: guake/main.py:153
 msgid "Return the selected tab label."
 msgstr ""
@@ -1198,6 +1183,14 @@ msgstr "Personalitzeu el comportament i l'aparença del Guake!"
 #: guake/data/prefs.glade:929
 msgid "Displacement in pixels"
 msgstr ""
+
+#: guake/guake_app.py:400
+msgid ""
+"Guake is now running,\n"
+"press <b>{!s}</b> to use it."
+msgstr ""
+"El Guake està en execució,\n"
+"premeu<b>{!s}</b> per fer-lo servir."
 
 #~ msgid "key binding error"
 #~ msgstr "S'ha produït un error en definir la drecera de teclat"
