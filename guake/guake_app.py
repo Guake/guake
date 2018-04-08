@@ -493,7 +493,7 @@ class Guake(SimpleGladeApp):
 
     # new color methods should be moved to the GuakeTerminal class
 
-    def __load_palette(self):
+    def _load_palette(self):
         colorRGBA = Gdk.RGBA(0, 0, 0, 0)
         paletteList = list()
         for color in self.settings.styleFont.get_string("palette").split(':'):
@@ -501,7 +501,7 @@ class Guake(SimpleGladeApp):
             paletteList.append(colorRGBA.copy())
         return paletteList
 
-    def __get_background_color(self, palette_list, transparency):
+    def _get_background_color(self, palette_list, transparency):
         if len(palette_list) > 16:
             bg_color = palette_list[17]
         else:
@@ -518,8 +518,8 @@ class Guake(SimpleGladeApp):
 
     def set_colors_from_settings(self):
         transparency = self.settings.styleBackground.get_int('transparency')
-        palette_list = self.__load_palette()
-        bg_color = self.__get_background_color(palette_list, transparency)
+        palette_list = self._load_palette()
+        bg_color = self._get_background_color(palette_list, transparency)
 
         if len(palette_list) > 16:
             font_color = palette_list[16]
