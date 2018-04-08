@@ -1195,6 +1195,43 @@ msgstr ""
 msgid "Enable verbose logging"
 msgstr ""
 
+#: guake/guake_app.py:680
+msgid "Quick Open: '{!s}...'"
+msgstr ""
+
+#: guake/guake_app.py:683
+msgid "Quick Open: {!s}"
+msgstr ""
+
+#: guake/guake_app.py:691
+msgid "Open Link: '{!s}...'"
+msgstr ""
+
+#: guake/guake_app.py:694
+msgid "Open Link: {!s}"
+msgstr ""
+
+#: guake/data/prefs.glade:2175
+msgid ""
+"<i><b>WARNING</b>: your system seems to have PCRE2 disabled for VTE, "
+"preventing application such as Guake to register \"matchers\" using regular "
+"expressions. Please contact your distribution to request a new version of "
+"VTE with PCRE2 enabled ! To use Quick Open, you <b>must select the text</b> "
+"before using Ctrl+click</i>."
+msgstr ""
+
+#: guake/guake_app.py:680
+msgid "Quick Open: {!s}..."
+msgstr ""
+
+#: guake/guake_app.py:691
+msgid "Open Link: {!s}..."
+msgstr ""
+
+#: guake/guake_app.py:688
+msgid "Quick Open..."
+msgstr ""
+
 #~ msgid "key binding error"
 #~ msgstr "tangentbindningsfel"
 

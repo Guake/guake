@@ -1,0 +1,15 @@
+fixes:
+  - |
+    Fix several issues on Quick Edit:
+
+    - quick open freezes guake
+    - support system with PCRE2 (regular expression in terminal) disabled, like Ubuntu 17.10.
+      This disables quick open and open url on direct Ctrl+click. User can still select the wanted
+      url or text and Cltr+click or use contextual menu.
+
+      See this `discussion on Tilix <https://github.com/gnunn1/tilix/issues/916>`_, another
+      Terminal emulator that suffurs the same issue.
+
+    - quick open now appears in contextual menu (#1157)
+    - bad translation update on the contextual menu. This causes new strings that was hidden to
+      appear for translators.

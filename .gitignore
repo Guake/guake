@@ -75,3 +75,4 @@ ChangeLog
 .vscode/
 
 guake/data/gschemas.compiled
+.pytest_cache/

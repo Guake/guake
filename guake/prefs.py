@@ -47,12 +47,13 @@ from guake.globals import ALIGN_TOP
 from guake.globals import ALWAYS_ON_PRIMARY
 from guake.globals import LOCALE_DIR
 from guake.globals import NAME
+from guake.globals import QUICK_OPEN_MATCHERS
 from guake.globals import _
 from guake.palettes import PALETTES
 from guake.simplegladeapp import SimpleGladeApp
 from guake.simplegladeapp import bindtextdomain
 from guake.terminal import GuakeTerminal
-from guake.terminal import QUICK_OPEN_MATCHERS
+from guake.terminal import g_pcre2_enabled
 
 # pylint: disable=unsubscriptable-object
 
@@ -646,6 +647,11 @@ class PrefsDialog(SimpleGladeApp):
         pid = self.spawn_sync_pid(None, self.demo_terminal)
 
         self.demo_terminal.pid = pid
+
+        if g_pcre2_enabled:
+            self.get_widget('lbl_pcre2_disabled').hide()
+        else:
+            self.get_widget('lbl_pcre2_disabled').show()
 
         self.populate_shell_combo()
         self.populate_keys_tree()

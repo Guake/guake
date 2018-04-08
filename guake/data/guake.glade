@@ -130,6 +130,15 @@
       </object>
     </child>
     <child>
+      <object class="GtkImageMenuItem" id="context_quick_open">
+        <property name="label" translatable="yes">Quick Open</property>
+        <property name="visible">True</property>
+        <property name="can_focus">False</property>
+        <property name="use_stock">False</property>
+        <signal name="activate" handler="quick_open" swapped="no"/>
+      </object>
+    </child>
+    <child>
       <object class="GtkSeparatorMenuItem" id="separador1">
         <property name="visible">True</property>
         <property name="can_focus">False</property>
