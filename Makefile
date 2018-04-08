@@ -113,7 +113,7 @@ yapf:
 	pipenv run yapf --style .yapf --recursive -i $(MODULE)
 
 
-checks: flake8 pylint
+checks: flake8 pylint reno-lint
 
 flake8:
 	pipenv run python setup.py flake8
@@ -279,7 +279,7 @@ reno:
 	pipenv run reno new $(SLUG) --edit
 
 reno-lint:
-	pipenv run reno lint
+	pipenv run reno -q lint
 
 release-note: reno-lint release-note-news release-note-github
 
