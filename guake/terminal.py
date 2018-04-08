@@ -176,13 +176,28 @@ class GuakeTerminal(Vte.Terminal):
                 tag = self.match_add_regex(Vte.Regex.new_for_match(match, 0, 0), 0)
                 self.match_set_cursor_type(tag, Gdk.CursorType.HAND2)
         except GLib.Error as e:
-            g_pcre2_enabled = False
-            log.error(
-                "ERROR: PCRE2 does not seems to be enabled on your system. "
-                "Quick Edit and other Ctrl+click features are disabled. "
-                "Please update your VTE package or contact your distribution to ask "
-                "to enable regular expression support in VTE. Exception: '%s'", str(e)
-            )
+            log.info("PCRE2 disabled on your current VTE, fallback with glib regex")
+            try:
+                compile_flag = 0
+                if (Vte.MAJOR_VERSION, Vte.MINOR_VERSION) >= (0, 44):
+                    compile_flag = GLib.RegexCompileFlags.MULTILINE
+                for expr in TERMINAL_MATCH_EXPRS:
+                    # TODO PORT next line throws a Vte-WARNIN but works: runtime check failed
+                    tag = self.match_add_gregex(GLib.Regex.new(expr, compile_flag, 0), 0)
+                    self.match_set_cursor_type(tag, Gdk.CursorType.HAND2)
+
+                for _useless, match, _otheruseless in QUICK_OPEN_MATCHERS:
+                    # TODO PORT next line throws a Vte-WARNIN but works: runtime check failed
+                    tag = self.match_add_gregex(GLib.Regex.new(match, compile_flag, 0), 0)
+                    self.match_set_cursor_type(tag, Gdk.CursorType.HAND2)
+            except GLib.Error as e:
+                g_pcre2_enabled = False
+                log.error(
+                    "ERROR: PCRE2 does not seems to be enabled on your system. "
+                    "Quick Edit and other Ctrl+click features are disabled. "
+                    "Please update your VTE package or contact your distribution to ask "
+                    "to enable regular expression support in VTE. Exception: '%s'", str(e)
+                )
 
     def get_current_directory(self):
         directory = os.path.expanduser('~')
@@ -284,7 +299,7 @@ class GuakeTerminal(Vte.Terminal):
             g = re.compile(extractor).match(value)
             if g and g.groups():
                 filename = g.group(1).strip()
-                (fp, _, _) = self.is_file_on_local_server(filename)
+                (filepath, _, _) = self.is_file_on_local_server(filename)
                 line_number = g.group(2)
                 if line_number is None:
                     line_number = "1"

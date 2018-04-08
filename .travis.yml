@@ -5,6 +5,8 @@ python:
 
 
 install:
+    # https://docs.openstack.org/reno/latest/user/usage.html#within-travis-ci
+    - git fetch --unshallow --tags
     - sudo ./bootstrap-dev-debian.sh
     - ./bootstrap-dev-pip.sh system
 

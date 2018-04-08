@@ -3,9 +3,11 @@ fixes:
     Fix several issues on Quick Edit:
 
     - quick open freezes guake
-    - support system with PCRE2 (regular expression in terminal) disabled, like Ubuntu 17.10.
-      This disables quick open and open url on direct Ctrl+click. User can still select the wanted
-      url or text and Cltr+click or use contextual menu.
+    - support for systems with PCRE2 (regular expression in terminal) disabled for VTE, like
+      Ubuntu 17.10 and +.
+
+      This might disable quick open and open url on direct Ctrl+click.
+      User can still select the wanted url or text and Cltr+click or use contextual menu.
 
       See this `discussion on Tilix <https://github.com/gnunn1/tilix/issues/916>`_, another
       Terminal emulator that suffurs the same issue.

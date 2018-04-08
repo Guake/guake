@@ -10,7 +10,7 @@ Please follow these steps before submitting a new Pull Request to Guake:
 - execute the code styling, checks and unit tests using:
 
   ```bash
-  $ make style check test
+  $ make style check reno-lint test
   ```
 
 - add a slug in release note using:
@@ -18,8 +18,9 @@ Please follow these steps before submitting a new Pull Request to Guake:
   ```bash
   $ make reno SLUG=<short_name_of_my_feature>
   ```
+
   and edit the created file in `releasenotes/notes/`.
 
   You can see how `reno` works using `pipenv run reno --help`.
 
-  Please use a generic slug (for translation update, use `translation`)
+  Please use a generic slug (eg, for translation update, use `translation`)
