@@ -1145,6 +1145,10 @@ msgstr "Guake の動作や外観をカスタマイズします"
 msgid "Displacement in pixels"
 msgstr ""
 
+#: guake/main.py:73
+msgid "Enable verbose logging"
+msgstr ""
+
 #~ msgid "key binding error"
 #~ msgstr "キーの割り当てエラー"
 

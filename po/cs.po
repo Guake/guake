@@ -1221,6 +1221,10 @@ msgstr "Upravit chování a vzhled Guake!"
 msgid "Displacement in pixels"
 msgstr "Posun v pixelech"
 
+#: guake/main.py:73
+msgid "Enable verbose logging"
+msgstr ""
+
 #~ msgid "key binding error"
 #~ msgstr "chyba klávesových zkratek"
 

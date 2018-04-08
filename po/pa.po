@@ -1154,6 +1154,10 @@ msgstr "ਗੁਆਕੀ ਦੀ ਰਵੱਈਆ ਤੇ ਦਿੱਖ ਬਦਲੋ"
 msgid "Displacement in pixels"
 msgstr ""
 
+#: guake/main.py:73
+msgid "Enable verbose logging"
+msgstr ""
+
 #~ msgid "key binding error"
 #~ msgstr "ਕੁੰਜੀ ਬਾਈਡਿੰਗ ਗਲਤੀ"
 

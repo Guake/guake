@@ -1194,6 +1194,10 @@ msgstr "Προσαρμόστε τη συμπεριφορά και την εμφ�
 msgid "Displacement in pixels"
 msgstr ""
 
+#: guake/main.py:73
+msgid "Enable verbose logging"
+msgstr ""
+
 #~ msgid "key binding error"
 #~ msgstr "σφάλμα συντόμευσης πληκτρολογίου"
 

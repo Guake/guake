@@ -1,0 +1,4 @@
+features:
+  - |
+    Add ``--verbose``/``-v`` parameter to enable debug logging. Please note the existing ``-v``
+    (for version number) has been renamed ``-V``.

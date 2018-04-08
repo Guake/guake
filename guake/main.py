@@ -56,13 +56,23 @@ def main():
     # do not use version keywords here, pbr might be slow to find the version of Guake module
     parser = OptionParser()
     parser.add_option(
-        '-v',
+        '-V',
         '--version',
         dest='version',
         action='store_true',
         default=False,
         help=_('Show Guake version number and exit')
     )
+
+    parser.add_option(
+        '-v',
+        '--verbose',
+        dest='verbose',
+        action='store_true',
+        default=False,
+        help=_('Enable verbose logging')
+    )
+
     parser.add_option(
         '-f',
         '--fullscreen',
@@ -242,7 +252,7 @@ def main():
         already_running = True
     except dbus.DBusException:
         # can now configure the logging
-        setupLogging(True)
+        setupLogging(options.verbose)
 
         # COLORTERM is an environment variable set by some terminal emulators such as
         # gnome-terminal.

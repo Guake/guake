@@ -1192,6 +1192,10 @@ msgstr "Prilagodite ponašanje i izgled Guakea!"
 msgid "Displacement in pixels"
 msgstr ""
 
+#: guake/main.py:73
+msgid "Enable verbose logging"
+msgstr ""
+
 #~ msgid "key binding error"
 #~ msgstr "Greška dodjeljivanja tipke"
 

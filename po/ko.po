@@ -1186,6 +1186,10 @@ msgstr "Налаштування поведінки та вигляду Guake!"
 msgid "Displacement in pixels"
 msgstr ""
 
+#: guake/main.py:73
+msgid "Enable verbose logging"
+msgstr ""
+
 #~ msgid "key binding error"
 #~ msgstr "키 바인딩 에러"
 

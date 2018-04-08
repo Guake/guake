@@ -12,8 +12,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Guake 0.4.5\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-04-08 12:25+0200\n"
-"PO-Revision-Date: 2018-04-08 12:33+0200\n"
+"POT-Creation-Date: 2018-04-08 12:42+0200\n"
+"PO-Revision-Date: 2018-04-08 12:43+0200\n"
 "Last-Translator: Gaetan <gaetan@xeberon.net>\n"
 "Language-Team: French (http://www.transifex.com/projects/p/guake/language/"
 "fr/)\n"
@@ -28,84 +28,88 @@ msgstr ""
 msgid "Show Guake version number and exit"
 msgstr "Affiche la version de Guake et termine"
 
-#: guake/main.py:72
+#: guake/main.py:73
+msgid "Enable verbose logging"
+msgstr "Active la sortie verbeuse"
+
+#: guake/main.py:82
 msgid "Put Guake in fullscreen mode"
 msgstr "Placer Guake en mode plein écran"
 
-#: guake/main.py:81
+#: guake/main.py:91
 msgid "Toggles the visibility of the terminal window"
 msgstr "Active/Désactive la visibilité de la fenêtre principale"
 
-#: guake/main.py:89
+#: guake/main.py:99
 msgid "Shows Guake main window"
 msgstr "Afficher la fenêtre principale de Guake"
 
-#: guake/main.py:97
+#: guake/main.py:107
 msgid "Hides Guake main window"
 msgstr "Afficher la fenêtre principale de Guake"
 
-#: guake/main.py:106
+#: guake/main.py:116
 msgid "Shows Guake preference window"
 msgstr "Afficher la fenêtre de préférences de Guake"
 
-#: guake/main.py:115
+#: guake/main.py:125
 msgid "Shows Guake's about info"
 msgstr "Afficher les informations à propos de Guake"
 
-#: guake/main.py:124
+#: guake/main.py:134
 msgid "Add a new tab (with current directory set to NEW_TAB)"
 msgstr "_Ouvrir un nouvel onglet (le dossier courant est spécifié par NEW_TAB)"
 
-#: guake/main.py:133
+#: guake/main.py:143
 msgid "Select a tab (SELECT_TAB is the index of the tab)"
 msgstr "Selectionner un onglet (SELECT_TAB est l'index du tab)"
 
-#: guake/main.py:142
+#: guake/main.py:152
 msgid "Return the selected tab index."
 msgstr "Retourne l'index de l'onglet sélectionné."
 
-#: guake/main.py:151
+#: guake/main.py:161
 msgid "Return the selected tab label."
 msgstr "Retourne le label de l'onglet sélectionné."
 
-#: guake/main.py:160
+#: guake/main.py:170
 msgid "Execute an arbitrary command in the selected tab."
 msgstr "Exécute une commande dans un onglet sélectionné."
 
-#: guake/main.py:169
+#: guake/main.py:179
 msgid "Specify the tab to rename. Default is 0."
 msgstr "Spécifier un onglet à renommer. Defaut: 0."
 
-#: guake/main.py:177
+#: guake/main.py:187
 msgid "Set the hexadecimal (#rrggbb) background color of the selected tab."
 msgstr ""
 "Choisir la couleur hexadécimale (#rrggbb) du fond pour l'onglet sectionné."
 
-#: guake/main.py:186
+#: guake/main.py:196
 msgid "Set the hexadecimal (#rrggbb) foreground color of the selected tab."
 msgstr ""
 "Choisir la couleur hexadécimale (#rrggbb) de la police pour l'onglet "
 "sectionné."
 
-#: guake/main.py:196
+#: guake/main.py:206
 msgid ""
 "Rename the specified tab. Reset to default if TITLE is a single dash \"-\"."
 msgstr ""
 "Renommer l'onglet spécifié. Pour remettre à la valeur par defaut, mettre "
 "TITRE à \"-\"."
 
-#: guake/main.py:207
+#: guake/main.py:217
 msgid ""
 "Rename the current tab. Reset to default if TITLE is a single dash \"-\"."
 msgstr ""
 "Renommer  the tab actuel. Pour remettre à la valeur par défaut, utiliser \"-"
 "\"."
 
-#: guake/main.py:217
+#: guake/main.py:227
 msgid "Says to Guake go away =("
 msgstr "Dis au-revoir à Guake =("
 
-#: guake/main.py:226
+#: guake/main.py:236
 msgid "Do not execute the start up script"
 msgstr "Ne pas executer le script de démarrage"
 

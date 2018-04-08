@@ -1213,6 +1213,10 @@ msgstr "Customize o comportamento e a aparência do Guake!"
 msgid "Displacement in pixels"
 msgstr ""
 
+#: guake/main.py:73
+msgid "Enable verbose logging"
+msgstr ""
+
 #~ msgid "key binding error"
 #~ msgstr "erro na associação de atalhos"
 
