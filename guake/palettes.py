@@ -17,6 +17,27 @@ License along with this program; if not, write to the
 Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor,
 Boston, MA 02110-1301 USA
 """
+
+# index 00: Host
+# index 01: Syntax string
+# index 02: Command
+# index 03: Command color 2
+# index 04: Path
+# index 05: Syntax var
+# index 06: Promp
+# index 07:
+# index 08:
+# index 09: Command error
+# index 10: Exec
+# index 11:
+# index 12: Folder
+# index 13:
+# index 14:
+# index 15:
+# index 16: Background Color
+# index 17: Foreground Color
+
+
 PALETTES = {
     '3024 Day': (
         '#090903030000:#DBDB2D2D2020:#0101A2A25252:#FDFDEDED0202:#0101A0A0E4E4:'
