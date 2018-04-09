@@ -175,7 +175,7 @@ class GuakeTerminal(Vte.Terminal):
             for _useless, match, _otheruseless in QUICK_OPEN_MATCHERS:
                 tag = self.match_add_regex(Vte.Regex.new_for_match(match, 0, 0), 0)
                 self.match_set_cursor_type(tag, Gdk.CursorType.HAND2)
-        except (GLib.Error, AttributeError) as e:
+        except (GLib.Error, AttributeError) as e:  # pylint: disable=catching-non-exception
             log.info(
                 "PCRE2 disabled on your current VTE or old version of VTE, "
                 "fallback with glib regex"
@@ -185,15 +185,13 @@ class GuakeTerminal(Vte.Terminal):
                 if (Vte.MAJOR_VERSION, Vte.MINOR_VERSION) >= (0, 44):
                     compile_flag = GLib.RegexCompileFlags.MULTILINE
                 for expr in TERMINAL_MATCH_EXPRS:
-                    # TODO PORT next line throws a Vte-WARNIN but works: runtime check failed
                     tag = self.match_add_gregex(GLib.Regex.new(expr, compile_flag, 0), 0)
                     self.match_set_cursor_type(tag, Gdk.CursorType.HAND2)
 
                 for _useless, match, _otheruseless in QUICK_OPEN_MATCHERS:
-                    # TODO PORT next line throws a Vte-WARNIN but works: runtime check failed
                     tag = self.match_add_gregex(GLib.Regex.new(match, compile_flag, 0), 0)
                     self.match_set_cursor_type(tag, Gdk.CursorType.HAND2)
-            except GLib.Error as e:
+            except GLib.Error as e:  # pylint: disable=catching-non-exception
                 g_pcre2_enabled = False
                 log.error(
                     "ERROR: PCRE2 does not seems to be enabled on your system. "
@@ -230,27 +228,52 @@ class GuakeTerminal(Vte.Terminal):
         """
         lineno = None
         colno = None
+        py_func = None
+        # "<File>:<line>:<col>"
         m = re.compile(r"(.*)\:(\d+)\:(\d+)$").match(text)
         if m:
             text = m.group(1)
             lineno = m.group(2)
             colno = m.group(3)
         else:
+            # "<File>:<line>"
             m = re.compile(r"(.*)\:(\d+)$").match(text)
             if m:
                 text = m.group(1)
                 lineno = m.group(2)
+            else:
+                # "<File>::<python_function>"
+                m = re.compile(r"^(.*)\:\:([a-zA-Z0-9\_]+)$").match(text)
+                if m:
+                    text = m.group(1)
+                    py_func = m.group(2).strip()
+
+        def find_lineno(text, pt, lineno, py_func):
+            # print("text={!r}, pt={!r}, lineno={!r}, py_func={!r}".format(text,
+            #                                                              pt, lineno, py_func))
+            if lineno:
+                return lineno
+            if not py_func:
+                return
+            with pt.open() as f:
+                for i, line in enumerate(f.readlines()):
+                    if line.startswith("def {}".format(py_func)):
+                        return i + 1
+                        break
+
         pt = Path(text)
         log.debug("checking file existance: %r", pt)
         if pt.exists():
-            log.info("File exists: %r", pt.absolute().as_posix())
+            lineno = find_lineno(text, pt, lineno, py_func)
+            log.info("File exists: %r, line=%r", pt.absolute().as_posix(), lineno)
             return (pt, lineno, colno)
         log.debug("No file found matching: %r", text)
         cwd = self.get_current_directory()
         pt = Path(cwd) / pt
         log.debug("checking file existance: %r", pt)
         if pt.exists():
-            log.info("File exists: %r", pt.absolute().as_posix())
+            lineno = find_lineno(text, pt, lineno, py_func)
+            log.info("File exists: %r, line=%r", pt.absolute().as_posix(), lineno)
             return (pt, lineno, colno)
         log.info("file does not exist: %s", str(pt))
         return (None, None, None)
@@ -305,9 +328,14 @@ class GuakeTerminal(Vte.Terminal):
             g = re.compile(extractor).match(value)
             if g and g.groups():
                 filename = g.group(1).strip()
-                line_number = g.group(2)
+                if len(g.groups()) >= 2:
+                    line_number = g.group(2)
+                else:
+                    line_number = None
                 log.info("Quick action executed filename=%s, line=%s", filename, line_number)
-                (filepath, _, _) = self.is_file_on_local_server(filename)
+                (filepath, ln, _) = self.is_file_on_local_server(filename)
+                if ln:
+                    line_number = ln
                 if not filepath:
                     continue
                 if line_number is None:
@@ -317,6 +345,8 @@ class GuakeTerminal(Vte.Terminal):
         return False
 
     def _execute_quick_open(self, filepath, line_number):
+        if not filepath:
+            return
         cmdline = self.settings.general.get_string("quick-open-command-line")
         if not line_number:
             line_number = ""
