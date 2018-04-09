@@ -30,6 +30,7 @@ template: |
     when read independently.
 
     Do not use "list" syntax here
+
   features:
     - |
       List new features here followed by the ticket number, for example::
@@ -46,18 +47,22 @@ template: |
   upgrade:
     - |
       List upgrade note for end users here
+
   deprecations:
     - |
       List deprecations notes heres, ie, feature that are being removed by the
       change.
+
   security:
     - |
       Add security notes here.
+
   fixes:
     - |
       Add normal bug fixes here, followed by the ticket number, for example::
 
         - broken feature has been fixed #1234
+
   translations:
     - Only put list of updated language <lang>, for example::
 
@@ -66,6 +71,7 @@ template: |
   notes_for_package_maintainers:
     - |
       Add notes for package maintainers here.
+
   other:
     - |
       Add other notes here.
