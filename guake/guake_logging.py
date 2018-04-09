@@ -36,19 +36,20 @@ def setupLogging(debug_mode):
         base_logging_level = logging.INFO
 
     if ColoredFormatter:
+        level_str = logging.getLevelName(base_logging_level)
         logging.config.dictConfig({
             'version': 1,
             'disable_existing_loggers': False,
             'loggers': {
                 '': {
                     'handlers': ['default'],
-                    'level': 'DEBUG',
+                    'level': level_str,
                     'propagate': True
                 },
             },
             'handlers': {
                 'default': {
-                    'level': 'DEBUG',
+                    'level': level_str,
                     'class': 'logging.StreamHandler',
                     'formatter': "default",
                 },
