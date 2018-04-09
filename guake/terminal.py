@@ -175,8 +175,11 @@ class GuakeTerminal(Vte.Terminal):
             for _useless, match, _otheruseless in QUICK_OPEN_MATCHERS:
                 tag = self.match_add_regex(Vte.Regex.new_for_match(match, 0, 0), 0)
                 self.match_set_cursor_type(tag, Gdk.CursorType.HAND2)
-        except GLib.Error as e:
-            log.info("PCRE2 disabled on your current VTE, fallback with glib regex")
+        except (GLib.Error, AttributeError) as e:
+            log.info(
+                "PCRE2 disabled on your current VTE or old version of VTE, "
+                "fallback with glib regex"
+            )
             try:
                 compile_flag = 0
                 if (Vte.MAJOR_VERSION, Vte.MINOR_VERSION) >= (0, 44):
@@ -398,7 +401,7 @@ class GuakeTerminal(Vte.Terminal):
         UI, so you can use python's start_new_thread.
         """
         try:
-            os.kill(pid.child_pid, signal.SIGHUP)
+            os.kill(pid, signal.SIGHUP)
         except OSError:
             pass
         num_tries = 30
@@ -408,7 +411,7 @@ class GuakeTerminal(Vte.Terminal):
                 # Try to wait for the pid to be closed. If it does not
                 # exist anymore, an OSError is raised and we can
                 # safely ignore it.
-                if os.waitpid(pid.child_pid, os.WNOHANG)[0] != 0:
+                if os.waitpid(pid, os.WNOHANG)[0] != 0:
                     break
             except OSError:
                 break
@@ -417,8 +420,8 @@ class GuakeTerminal(Vte.Terminal):
 
         if num_tries == 0:
             try:
-                os.kill(pid.child_pid, signal.SIGKILL)
-                os.waitpid(pid.child_pid, 0)
+                os.kill(pid, signal.SIGKILL)
+                os.waitpid(pid, 0)
             except OSError:
                 # if this part of code was reached, means that SIGTERM
                 # did the work and SIGKILL wasnt needed.

@@ -246,11 +246,11 @@
         },
         "pipenv-to-requirements": {
             "hashes": [
-                "sha256:175144c7367e906c46a126037d320498879cd8a1a1be40807131d6084db0c351",
-                "sha256:4e881b0cc01bdae49c7780a5a4273f7023744e4bdb838b3a677ab9d22decd893"
+                "sha256:b6720139487ba3a724ee5aa690440f624d15120b3124f92a85b33be53062cc53",
+                "sha256:d08e64cf97beeb69462a9bab27c0a33623251d9fae00434a6ce3432102b0335b"
             ],
             "index": "pypi",
-            "version": "==0.4.0"
+            "version": "==0.4.1"
         },
         "pluggy": {
             "hashes": [
