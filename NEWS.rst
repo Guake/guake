@@ -1,8 +1,8 @@
 Release Notes
 =============
 
-(under development)
--------------------
+(unreleased)
+------------
 
 New Features
 ~~~~~~~~~~~~

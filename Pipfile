@@ -17,7 +17,7 @@ pyflakes = "*"
 pylint = "*"
 pytest = "*"
 yapf = "*"
-reno = {extras = ["sphinx"]}
+reno = {version = ">=2.8.0", extras = ["sphinx"]}
 pipenv-to-requirements = "*"
 colorlog = "*"
 rope = "*"
