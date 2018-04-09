@@ -35,13 +35,18 @@ import uuid
 from optparse import OptionParser
 
 from guake import guake_version
+from guake.common import bindtextdomain
 from guake.dbusiface import DBUS_NAME
 from guake.dbusiface import DBUS_PATH
 from guake.dbusiface import DbusManager
-from guake.globals import _
+from guake.globals import LOCALE_DIR
+from guake.globals import NAME
 from guake.guake_logging import setupLogging
+from locale import gettext as _
 
 log = logging.getLogger(__name__)
+
+bindtextdomain(NAME, LOCALE_DIR)
 
 
 def main():
