@@ -1678,10 +1678,12 @@ class Guake(SimpleGladeApp):
         if isinstance(directory, str):
             wd = directory
         else:
-            if self.settings.general.get_boolean('open-tab-cwd'):
-                wd = self.get_current_dir()
-            else:
-                wd = os.environ['HOME']
+            wd = os.environ['HOME']
+            try:
+                if self.settings.general.get_boolean('open-tab-cwd'):
+                    wd = self.get_current_dir()
+            except:  # pylint: disable=bare-except
+                pass
 
         # TODO PORT the next line
         # params['loglastlog'] = login_shell
