@@ -1693,7 +1693,11 @@ class Guake(SimpleGladeApp):
         pid = terminal.spawn_sync(
             Vte.PtyFlags.DEFAULT, wd, argv, [], GLib.SpawnFlags.DO_NOT_REAP_CHILD, None, None, None
         )
-        if isinstance(pid, tuple):
+        try:
+            tuple_type = gi._gi.ResultTuple  # pylint: disable=c-extension-no-member
+        except:  # pylint: disable=bare-except
+            tuple_type = tuple
+        if isinstance(pid, (tuple, tuple_type)):
             # Return a tuple in 2.91
             # https://lazka.github.io/pgi-docs/Vte-2.91/classes/Terminal.html#Vte.Terminal.spawn_sync
             pid = pid[1]

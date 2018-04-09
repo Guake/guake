@@ -679,6 +679,16 @@ class PrefsDialog(SimpleGladeApp):
         pid = terminal.spawn_sync(
             Vte.PtyFlags.DEFAULT, wd, argv, [], GLib.SpawnFlags.DO_NOT_REAP_CHILD, None, None, None
         )
+
+        try:
+            tuple_type = gi._gi.ResultTuple  # pylint: disable=c-extension-no-member
+        except:  # pylint: disable=bare-except
+            tuple_type = tuple
+        if isinstance(pid, (tuple, tuple_type)):
+            # Return a tuple in 2.91
+            # https://lazka.github.io/pgi-docs/Vte-2.91/classes/Terminal.html#Vte.Terminal.spawn_sync
+            pid = pid[1]
+        assert isinstance(pid, int)
         return pid
 
     def show(self):
@@ -1053,7 +1063,6 @@ class PrefsDialog(SimpleGladeApp):
         # infinite history
         value = self.settings.general.get_boolean('infinite-history')
         self.get_widget('infinite_history').set_active(value)
-        print("infinite history: ", value)
 
         # scroll output
         value = self.settings.general.get_boolean('scroll-output')

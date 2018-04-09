@@ -43,6 +43,7 @@ disable=
   missing-docstring,
   no-member,
   no-method-argument,
+  no-name-in-module,
   no-self-use,
   no-value-for-parameter,
   pointless-string-statement,
