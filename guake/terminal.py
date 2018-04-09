@@ -252,7 +252,7 @@ class GuakeTerminal(Vte.Terminal):
         if pt.exists():
             log.info("File exists: %r", pt.absolute().as_posix())
             return (pt, lineno, colno)
-        log.info("file does not exist: %r", pt)
+        log.info("file does not exist: %s", str(pt))
         return (None, None, None)
 
     def button_press(self, terminal, event):
@@ -305,8 +305,11 @@ class GuakeTerminal(Vte.Terminal):
             g = re.compile(extractor).match(value)
             if g and g.groups():
                 filename = g.group(1).strip()
-                (filepath, _, _) = self.is_file_on_local_server(filename)
                 line_number = g.group(2)
+                log.info("Quick action executed filename=%s, line=%s", filename, line_number)
+                (filepath, _, _) = self.is_file_on_local_server(filename)
+                if not filepath:
+                    continue
                 if line_number is None:
                     line_number = "1"
                 self._execute_quick_open(filepath, line_number)

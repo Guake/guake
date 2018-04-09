@@ -15,3 +15,4 @@ fixes:
     - quick open now appears in contextual menu (#1157)
     - bad translation update on the contextual menu. This causes new strings that was hidden to
       appear for translators.
+    - Fix quick open on pattern "File:line" line that was not opening the wanted file.
