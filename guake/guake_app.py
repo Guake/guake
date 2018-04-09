@@ -60,7 +60,6 @@ from guake.globals import ALWAYS_ON_PRIMARY
 from guake.globals import LOCALE_DIR
 from guake.globals import NAME
 from guake.globals import SCHEMA_DIR
-from guake.globals import _
 from guake.gsettings import GSettingHandler
 from guake.guake_logging import setupLogging
 from guake.guake_notebook import GuakeNotebook
@@ -68,9 +67,9 @@ from guake.keybindings import Keybindings
 from guake.prefs import PrefsDialog
 from guake.settings import Settings
 from guake.simplegladeapp import SimpleGladeApp
-from guake.simplegladeapp import bindtextdomain
 from guake.terminal import GuakeTerminalBox
 from guake.utils import get_server_time
+from locale import gettext as _
 
 libutempter = None
 try:
@@ -98,9 +97,6 @@ RESPONSE_BACKWARD = 1
 enable_find = False
 
 GObject.threads_init()
-
-# Loading translation
-bindtextdomain(NAME, LOCALE_DIR)
 
 # Setting gobject program name
 GObject.set_prgname(NAME)

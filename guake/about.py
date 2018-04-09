@@ -27,8 +27,8 @@ from gi.repository import Gtk
 from guake import guake_version
 from guake.common import gladefile
 from guake.common import pixmapfile
-from guake.globals import _
 from guake.simplegladeapp import SimpleGladeApp
+from locale import gettext as _
 
 
 class AboutDialog(SimpleGladeApp):

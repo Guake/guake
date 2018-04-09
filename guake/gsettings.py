@@ -31,7 +31,7 @@ from gi.repository import Pango
 from gi.repository import Vte
 
 from guake.common import pixmapfile
-from guake.globals import _
+from locale import gettext as _
 
 GCONF_MONOSPACE_FONT_PATH = '/desktop/gnome/interface/monospace_font_name'
 DCONF_MONOSPACE_FONT_PATH = 'org.gnome.desktop.interface'

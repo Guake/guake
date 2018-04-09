@@ -21,13 +21,7 @@ Boston, MA 02110-1301 USA
 import inspect
 import os
 
-import gettext
-
-# Internationalization purposes.
-_ = gettext.gettext
-
 __all__ = [
-    '_',
     'ALIGN_BOTTOM',
     'ALIGN_CENTER',
     'ALIGN_LEFT',

@@ -28,32 +28,6 @@ from gi.repository import Gtk
 import tokenize
 
 
-def bindtextdomain(app_name, locale_dir=None):
-    """
-    Bind the domain represented by app_name to the locale directory locale_dir.
-    It has the effect of loading translations, enabling applications for different
-    languages.
-
-    app_name:
-        a domain to look for translations, typically the name of an application.
-
-    locale_dir:
-        a directory with locales like locale_dir/lang_isocode/LC_MESSAGES/app_name.mo
-        If omitted or None, then the current binding for app_name is used.
-    """
-    try:
-        import locale
-        import gettext
-        # FIXME: Commented to avoid problems with a .utf8 LANG variable...
-        # locale.setlocale(locale.LC_ALL, "")
-        gettext.bindtextdomain(app_name, locale_dir)
-        gettext.textdomain(app_name)
-        gettext.install(app_name, locale_dir)
-    except (IOError, locale.Error) as e:
-        print("Warning", app_name, e)
-        __builtins__.__dict__["_"] = lambda x: x
-
-
 class SimpleGladeApp(object):
 
     def __init__(self, path, root=None, domain=None, **kwargs):
