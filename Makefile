@@ -4,14 +4,25 @@ PYTHON_INTERPRETER=python3
 MODULE:=guake
 INSTALL_ROOT:=/
 PREFIX:=$(INSTALL_ROOT)usr/local
-DIST_PACKAGE:=$$($(PYTHON_INTERPRETER) -c "import site; import os; print(os.path.basename(site.getsitepackages()[0]))")
+# findout the dist-package directory name. Under most system, users can install on dist-package.
+# On debian, site-package is reserved for the official python packages and has precedence over
+# dist-package
+DIST_PACKAGE_NAME:=$(shell $(PYTHON_INTERPRETER) -c "import site; import os; print(os.path.basename(site.getsitepackages()[0]))")
+DIST_PACKAGE=$(PREFIX)/lib/python$(shell $(PYTHON_INTERPRETER) -c "import sys; v = sys.version_info; print('{}.{}'.format(v.major, v.minor))")/$(DIST_PACKAGE_NAME)
 OLD_PREFIX:=$(INSTALL_ROOT)usr
+ROOT_DIR=$(shell pwd)
+DEV_DATADIR:=$(ROOT_DIR)/guake/data
+DEV_IMAGE_DIR:=$(DEV_DATADIR)/pixmaps
+DEV_LOCALE_DIR:=$(PREFIX)/share/locale
+DATADIR:=$(DIST_PACKAGE)/guake/data/
+IMAGE_DIR:=$(DATADIR)/pixmaps
+LOCALE_DIR:=$(PREFIX)/share/locale
 SLUG:=fragment_name
 
 default: prepare-install
 	# 'make' target, so users can install guake without need to install the 'dev' dependencies
 
-prepare-install: generate-desktop generate-mo compile-glib-schemas
+prepare-install: generate-desktop generate-paths generate-mo compile-glib-schemas
 
 reset:
 	dconf reset -f /apps/guake/
@@ -39,8 +50,21 @@ install-system: install-schemas install-locale
 	@echo "Installing from on your system is not recommended."
 	@echo "Please prefer you application package manager (apt, yum, ...)"
 	@pip3 install -r requirements.txt
-	@$(PYTHON_INTERPRETER) setup.py install --root "$(INSTALL_ROOT)" --optimize=1
-	@glib-compile-schemas $(PREFIX)/lib/python$(shell $(PYTHON_INTERPRETER) -c "import sys; v = sys.version_info; print('{}.{}'.format(v.major, v.minor))")/$(DIST_PACKAGE)/guake/data/
+
+	if [ -f guake/paths.py.dev ]; then rm -f guake/paths.py.dev; fi
+	if [ -f guake/paths.py ]; then mv guake/paths.py guake/paths.py.dev; fi
+	cp -f guake/paths.py.in guake/paths.py
+	sed -i -e 's|{{ DATADIR }}|$(DATADIR)|g' guake/paths.py
+	sed -i -e 's|{{ LOCALE_DIR }}|$(LOCALE_DIR)|g' guake/paths.py
+	sed -i -e 's|{{ IMAGE_DIR }}|$(IMAGE_DIR)|g' guake/paths.py
+
+	@$(PYTHON_INTERPRETER) setup.py install --root "$(INSTALL_ROOT)" --prefix="$(PREFIX)" --optimize=1
+
+	rm -f guake/paths.py
+	if [ -f guake/paths.py.dev ]; then mv guake/paths.py.dev guake/paths.py; fi
+
+	@echo "compiling schemas: $(DATADIR)"
+	@glib-compile-schemas $(DATADIR)
 	@update-desktop-database || echo "Could not run update-desktop-database, are you root?"
 	@rm -rfv build *.egg-info
 
@@ -48,11 +72,11 @@ install-locale:
 	for f in $$(find po -iname "*.mo"); do \
 		l="$${f%%.*}"; \
 		lb=$$(basename $$l); \
-		install -Dm644 "$$f" "$(PREFIX)/share/locale/$$lb/LC_MESSAGES/guake.mo"; \
+		install -Dm644 "$$f" "$(LOCALE_DIR)/$$lb/LC_MESSAGES/guake.mo"; \
 	done;
 
 uninstall-locale: install-old-locale
-	find $(PREFIX)/share/locale/ -name "guake.mo" -exec rm -f {} \;
+	find $(LOCALE_DIR)/ -name "guake.mo" -exec rm -f {} \;
 
 install-old-locale:
 	@find $(OLD_PREFIX)/share/locale/ -name "guake.mo" -exec rm -f {} \;
@@ -77,7 +101,7 @@ uninstall-schemas: uninstall-old-schemas
 	rm -f "$(PREFIX)/share/applications/guake-prefs.desktop"
 	rm -f "$(PREFIX)/share/pixmaps/guake.png"
 	rm -f "$(PREFIX)/share/glib-2.0/schemas/org.guake.gschema.xml"
-	rm -f  $(PREFIX)/lib/python$(shell $(PYTHON_INTERPRETER) -c "import sys; v = sys.version_info; print('{}.{}'.format(v.major, v.minor))")/$(DIST_PACKAGE)/guake/data/schema.guake.gschema.xml
+	rm -f  $(DATADIR)/schema.guake.gschema.xml
 	[ -d $(PREFIX)/share/glib-2.0/schemas/ ] && glib-compile-schemas $(PREFIX)/share/glib-2.0/schemas/ || true
 
 uninstall-old-schemas:
@@ -141,7 +165,7 @@ wheels:
 
 
 run-local: compile-glib-schemas
-	export GUAKE_DATA_DIR=$(shell pwd)/guake/data ; pipenv run ./run-local.sh
+	pipenv run ./run-local.sh
 
 
 shell:
@@ -215,7 +239,7 @@ push: githook
 	git push origin --tags
 
 
-clean: rm-dists clean-docs clean-po clean-schemas clean-py
+clean: rm-dists clean-docs clean-po clean-schemas clean-py clean-paths
 	@echo "clean successful"
 
 clean-py:
@@ -224,6 +248,8 @@ clean-py:
 	@rm -f guake/data/guake-prefs.desktop guake/data/guake.desktop
 	@rm -rf .venv .eggs *.egg-info po/*.pot
 
+clean-paths:
+	rm -f guake/paths.py guake/paths.py.dev
 clean-po:
 	@rm -f po/guake.pot
 	@find po -name "*.mo" -exec rm -f {} \;
@@ -274,6 +300,11 @@ generate-desktop:
 			   	echo "Skipping .desktop files, is your gettext version < 0.19.1?" && \
 				cp guake/data/guake-prefs.template.desktop guake/data/guake-prefs.desktop)
 
+generate-paths:
+	cp -f guake/paths.py.in guake/paths.py
+	sed -i -e 's|{{ DATADIR }}|$(DEV_DATADIR)|g' guake/paths.py
+	sed -i -e 's|{{ LOCALE_DIR }}|$(DEV_LOCALE_DIR)|g' guake/paths.py
+	sed -i -e 's|{{ IMAGE_DIR }}|$(DEV_IMAGE_DIR)|g' guake/paths.py
 
 reno:
 	pipenv run reno new $(SLUG) --edit

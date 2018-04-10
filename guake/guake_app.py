@@ -57,13 +57,13 @@ from guake.globals import ALIGN_LEFT
 from guake.globals import ALIGN_RIGHT
 from guake.globals import ALIGN_TOP
 from guake.globals import ALWAYS_ON_PRIMARY
-from guake.globals import LOCALE_DIR
 from guake.globals import NAME
-from guake.globals import SCHEMA_DIR
 from guake.gsettings import GSettingHandler
 from guake.guake_logging import setupLogging
 from guake.guake_notebook import GuakeNotebook
 from guake.keybindings import Keybindings
+from guake.paths import LOCALE_DIR
+from guake.paths import SCHEMA_DIR
 from guake.prefs import PrefsDialog
 from guake.settings import Settings
 from guake.simplegladeapp import SimpleGladeApp

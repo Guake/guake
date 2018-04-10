@@ -77,3 +77,5 @@ ChangeLog
 guake/data/gschemas.compiled
 .pytest_cache/
 releasenotes/notes/reno.cache
+guake/paths.py
+guake/paths.py.dev

@@ -17,6 +17,8 @@ License along with this program; if not, write to the
 Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor,
 Boston, MA 02110-1301 USA
 """
+
+import logging
 import os
 import sys
 
@@ -25,7 +27,10 @@ gi.require_version('Gtk', '3.0')
 gi.require_version('Vte', '2.91')  # vte-0.38
 from gi.repository import Gtk
 
-import guake.globals
+from guake.paths import GLADE_DIR
+from guake.paths import IMAGE_DIR
+
+log = logging.getLogger(__name__)
 
 __all__ = [
     'get_binaries_from_path',
@@ -54,6 +59,8 @@ def bindtextdomain(app_name, locale_dir=None):
     import locale
     from locale import gettext as _
 
+    log.info("Local binding for app '%s', local dir: %s", app_name, locale_dir)
+
     locale.bindtextdomain(app_name, locale_dir)
     locale.textdomain(app_name)
 
@@ -70,14 +77,14 @@ def ShowableError(parent, title, msg, exit_code=1):
 
 
 def pixmapfile(x):
-    f = os.path.join(guake.globals.IMAGE_DIR, x)
+    f = os.path.join(IMAGE_DIR, x)
     if not os.path.exists(f):
         raise IOError('No such file or directory: %s' % f)
     return os.path.abspath(f)
 
 
 def gladefile(x):
-    f = os.path.join(guake.globals.GLADE_DIR, x)
+    f = os.path.join(GLADE_DIR, x)
     if not os.path.exists(f):
         raise IOError('No such file or directory: %s' % f)
     return os.path.abspath(f)

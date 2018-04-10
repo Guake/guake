@@ -1,0 +1,25 @@
+release_summary: >
+  Package maintainers should read the "Notes for Package Maintainers" of this release
+  note carefully.
+
+notes_for_package_maintainers:
+  - |
+    The setup mecanism has changed a little bit. Some maintainers used to patch the source code
+    of Guake to change the pixmap, Gtk schema or locale paths directly in the ``guake/globals.py``
+    file. This was due to a lack of flexibility of the installation target of the ``Makefile``.
+
+    The ``make install`` target looks now a little bit more familiar, allowing distribution
+    packager to set the various paths directly with make flags.
+
+    For example:
+
+    .. code-block:: bash
+
+        sudo make install \
+            PREFIX=/usr \
+            DIST_PACKAGE_NAME=site-package \
+            DATADIR=/usr/share/ \
+            LOCALE_DIR=/usr/share/locale
+
+    I invite package maintainers to open tickets on Github about any other difficulties
+    encountered when packaging Guake.

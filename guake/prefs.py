@@ -46,10 +46,10 @@ from guake.globals import ALIGN_LEFT
 from guake.globals import ALIGN_RIGHT
 from guake.globals import ALIGN_TOP
 from guake.globals import ALWAYS_ON_PRIMARY
-from guake.globals import LOCALE_DIR
 from guake.globals import NAME
 from guake.globals import QUICK_OPEN_MATCHERS
 from guake.palettes import PALETTES
+from guake.paths import LOCALE_DIR
 from guake.simplegladeapp import SimpleGladeApp
 from guake.terminal import GuakeTerminal
 from guake.terminal import g_pcre2_enabled
