@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Generated with glade 3.18.3 -->
-<interface>
+<interface domain="guake">
   <requires lib="gtk+" version="3.10"/>
   <object class="GtkMenu" id="context-menu">
     <property name="visible">True</property>
