@@ -73,11 +73,16 @@ Bug Fixes
 Translation Updates
 ~~~~~~~~~~~~~~~~~~~
 
--  Some changes in translation system made the welcome message not working properly in some
-   languages (#1209). There might be other broken translations, and more generaly, a global refresh
-   of all existing translation would be welcomed. Most has not been updated since the transition to
-   Guake 3, so these languages support might probably be unfunctional. Help is welcomed for updating
-   translations !
+-  Some systems such as Ubuntu did displayed Guake with a translated interface (#1209). The locale
+   system has been reworked to fix that.
+-  There might be broken translations, or not up-to-date language support by Guake. A global refresh
+   of all existing translations would be welcomed. Most has not been updated since the transition to
+   Guake 3, so these languages support might probably be unfunctional or at least partialy
+   localized.
+-  A big thank you for all the volunteers and Guake enthousiats would often update their own
+   translation to help guake being used world-wide.
+
+   -  Help is always welcomed for updating translations !
 
 Notes for Package Maintainers
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
