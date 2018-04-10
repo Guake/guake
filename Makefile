@@ -316,16 +316,13 @@ release-note: reno-lint release-note-news release-note-github
 
 release-note-news: reno-lint
 	@echo "Generating release note for NEWS file"
-	@pipenv run reno report 2>/dev/null | \
-		pandoc -f rst -t rst --atx-headers --columns=100 --wrap=auto --tab-stop 2 | \
+	@rm -f guake/releasenotes/notes/reno.cache
+	@pipenv run reno report --title "NEWS" 2>/dev/null | \
+		pandoc -f rst -t rst  --atx-headers --columns=100 --wrap=auto --tab-stop 2 | \
 		tr '\n' '\r' | \
-			sed 's/\r\.\.\ .*\r\r//g' | \
-			sed 's/\r\-\ \ \r\r\ \ /\r-/g' | \
-			sed 's/\r\ \ \ \ \ \-\ \ /\r  - /g' | \
-			sed 's/\r\ \ \ \-\ \ /\r   - /g' | \
-			sed 's/\r\-\ \ /\r- /g' | \
-			sed -E 's/\r\s{3}([^\s\-])/\r  \1/g' | \
-			sed 's/`\_\_/`_/g' | \
+			sed 's/\r-\ \ \r\r\ \ \ /\r-  /g' | \
+			sed 's/\r\r-\ \ /\r-  /g' | \
+			sed 's/~~\r-\ \ /~~\r\r-  /g' | \
 		tr '\r' '\n' \
 		> NEWS.rst
 	@cat releasenotes/archive/NEWS.pre-3.0 >> NEWS.rst
