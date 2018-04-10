@@ -39,9 +39,9 @@ from guake.common import bindtextdomain
 from guake.dbusiface import DBUS_NAME
 from guake.dbusiface import DBUS_PATH
 from guake.dbusiface import DbusManager
-from guake.globals import LOCALE_DIR
 from guake.globals import NAME
 from guake.guake_logging import setupLogging
+from guake.paths import LOCALE_DIR
 from locale import gettext as _
 
 log = logging.getLogger(__name__)

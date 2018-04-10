@@ -76,8 +76,8 @@ Here are the dependencies of Guake for its execution:
 
 Optional dependencies:
 
-- ``libutempter0``
-- ``numix-gtk-theme``
+- ``libutempter0``: compatibility with ``wall`` or ``screen`` commands
+- Any GTK theme: ``numix-gtk-theme``, ...
 
 Guake 3 Features
 ----------------
@@ -156,14 +156,32 @@ Note for Archlinux users
 ------------------------
 
 This applies to users of Archlinux based distributions too and may be of help to non
-Debian/Ubuntu users as well. Currently ``make install`` is optimized for Ubuntu which does not mean that it can not be used on other systems but depending on your system you have to tell ``make install`` where to install guake (the default for Ubuntu is ``/usr/local/lib/python<python version>/dist_packages/guake``). On Archlinux this can be done by passing ``/usr`` as ``PREFIX``:
+Debian/Ubuntu users as well. Currently ``make install`` is optimized for Ubuntu, which
+does not mean that it can not be used on other systems, but depending on your system
+you may have to tell ``make install`` where to install guake
+(the default for Ubuntu is ``/usr/local/lib/python<python version>/dist_packages/guake``).
+
+So on Ubuntu the following commands are equivalent:
+
+.. code-block:: bash
+
+    $ sudo make install
+    $ sudo make install PREFIX=/usr/lobal
+
+On Archlinux this can be done by passing ``/usr`` as ``PREFIX``:
 
 .. code-block:: bash
 
     $ sudo make install PREFIX=/usr
 
 which will changes the installation destination to ``/usr/lib/python3.6/site-packages/guake``.
-Note that the install script automatically determines to use  whether to use ``dist-packages`` or ``site-packaes``. For more details checkout the official PKGBUILD at `archlinux.org <https://www.archlinux.org/packages/community/any/guake/>`_, the PKGBUILD on the `aur <http://aur.archlinux.org/packages/guake-git>`_ or this `gist <https://gist.github.com/aichingm/ed35ba3b136be4424b1ac947207dbca3>`_.
+
+Note that the install script automatically determines to use  whether to use
+``dist-packages`` or ``site-packaes``.
+For more details checkout the official PKGBUILD at
+`archlinux.org <https://www.archlinux.org/packages/community/any/guake/>`_, the PKGBUILD on
+the `aur <http://aur.archlinux.org/packages/guake-git>`_ or this
+`gist <https://gist.github.com/aichingm/ed35ba3b136be4424b1ac947207dbca3>`_.
 
 Note for maintainers
 --------------------
@@ -275,7 +293,7 @@ You can reinstall easily in your environment (only validated for Debian/Ubuntu) 
 
 .. code-block:: bash
 
-    $ make reinstall
+    $ make reinstall  # will execute `sudo`
 
 Git hook
 ~~~~~~~~
@@ -316,6 +334,13 @@ Install the translations files:
     $ sudo make install-locale
 
 Then use your favorite po editor, such as ``poedit``.
+
+Start Guake with a different locale (locales should be installed):
+
+.. code-block:: bash
+
+    $ LC_ALL=fr_FR.UTF8 make run
+
 
 Update NEWS
 -----------

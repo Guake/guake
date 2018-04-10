@@ -28,11 +28,7 @@ __all__ = [
     'ALIGN_RIGHT',
     'ALIGN_TOP',
     'ALWAYS_ON_PRIMARY',
-    'GLADE_DIR',
-    'IMAGE_DIR',
-    'LOCALE_DIR',
     'NAME',
-    'SCHEMA_DIR',
 ]
 
 
@@ -42,13 +38,6 @@ def is_run_from_git_workdir():
 
 
 NAME = 'guake'
-SRC_DIR = os.path.dirname(os.path.realpath(__file__))
-DATADIR = os.environ.get("GUAKE_DATA_DIR", os.path.join(SRC_DIR, 'data'))
-
-IMAGE_DIR = os.path.join(DATADIR, 'pixmaps')
-GLADE_DIR = DATADIR
-SCHEMA_DIR = DATADIR
-LOCALE_DIR = "/usr/share/locale"
 
 ALIGN_CENTER, ALIGN_LEFT, ALIGN_RIGHT = range(3)
 ALIGN_TOP, ALIGN_BOTTOM = range(2)

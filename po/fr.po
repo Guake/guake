@@ -12,8 +12,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Guake 0.4.5\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-04-08 16:11+0200\n"
-"PO-Revision-Date: 2018-04-08 16:12+0200\n"
+"POT-Creation-Date: 2018-04-10 23:04+0200\n"
+"PO-Revision-Date: 2018-04-11 00:11+0200\n"
 "Last-Translator: Gaetan <gaetan@xeberon.net>\n"
 "Language-Team: French (http://www.transifex.com/projects/p/guake/language/"
 "fr/)\n"
@@ -24,143 +24,143 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 "X-Generator: Poedit 2.0.4\n"
 
-#: guake/main.py:64
+#: guake/main.py:69
 msgid "Show Guake version number and exit"
 msgstr "Affiche la version de Guake et termine"
 
-#: guake/main.py:73
+#: guake/main.py:78
 msgid "Enable verbose logging"
 msgstr "Active la sortie verbeuse"
 
-#: guake/main.py:82
+#: guake/main.py:87
 msgid "Put Guake in fullscreen mode"
 msgstr "Placer Guake en mode plein écran"
 
-#: guake/main.py:91
+#: guake/main.py:96
 msgid "Toggles the visibility of the terminal window"
 msgstr "Active/Désactive la visibilité de la fenêtre principale"
 
-#: guake/main.py:99
+#: guake/main.py:104
 msgid "Shows Guake main window"
 msgstr "Afficher la fenêtre principale de Guake"
 
-#: guake/main.py:107
+#: guake/main.py:112
 msgid "Hides Guake main window"
 msgstr "Afficher la fenêtre principale de Guake"
 
-#: guake/main.py:116
+#: guake/main.py:121
 msgid "Shows Guake preference window"
 msgstr "Afficher la fenêtre de préférences de Guake"
 
-#: guake/main.py:125
+#: guake/main.py:130
 msgid "Shows Guake's about info"
 msgstr "Afficher les informations à propos de Guake"
 
-#: guake/main.py:134
+#: guake/main.py:139
 msgid "Add a new tab (with current directory set to NEW_TAB)"
 msgstr "_Ouvrir un nouvel onglet (le dossier courant est spécifié par NEW_TAB)"
 
-#: guake/main.py:143
+#: guake/main.py:148
 msgid "Select a tab (SELECT_TAB is the index of the tab)"
 msgstr "Selectionner un onglet (SELECT_TAB est l'index du tab)"
 
-#: guake/main.py:152
+#: guake/main.py:157
 msgid "Return the selected tab index."
 msgstr "Retourne l'index de l'onglet sélectionné."
 
-#: guake/main.py:161
+#: guake/main.py:166
 msgid "Return the selected tab label."
 msgstr "Retourne le label de l'onglet sélectionné."
 
-#: guake/main.py:170
+#: guake/main.py:175
 msgid "Execute an arbitrary command in the selected tab."
 msgstr "Exécute une commande dans un onglet sélectionné."
 
-#: guake/main.py:179
+#: guake/main.py:184
 msgid "Specify the tab to rename. Default is 0."
 msgstr "Spécifier un onglet à renommer. Defaut: 0."
 
-#: guake/main.py:187
+#: guake/main.py:192
 msgid "Set the hexadecimal (#rrggbb) background color of the selected tab."
 msgstr ""
 "Choisir la couleur hexadécimale (#rrggbb) du fond pour l'onglet sectionné."
 
-#: guake/main.py:196
+#: guake/main.py:201
 msgid "Set the hexadecimal (#rrggbb) foreground color of the selected tab."
 msgstr ""
 "Choisir la couleur hexadécimale (#rrggbb) de la police pour l'onglet "
 "sectionné."
 
-#: guake/main.py:206
+#: guake/main.py:211
 msgid ""
 "Rename the specified tab. Reset to default if TITLE is a single dash \"-\"."
 msgstr ""
 "Renommer l'onglet spécifié. Pour remettre à la valeur par defaut, mettre "
 "TITRE à \"-\"."
 
-#: guake/main.py:217
+#: guake/main.py:222
 msgid ""
 "Rename the current tab. Reset to default if TITLE is a single dash \"-\"."
 msgstr ""
 "Renommer  the tab actuel. Pour remettre à la valeur par défaut, utiliser \"-"
 "\"."
 
-#: guake/main.py:227
+#: guake/main.py:232
 msgid "Says to Guake go away =("
 msgstr "Dis au-revoir à Guake =("
 
-#: guake/main.py:236
+#: guake/main.py:241
 msgid "Do not execute the start up script"
 msgstr "Ne pas executer le script de démarrage"
 
-#: guake/guake_app.py:129
+#: guake/guake_app.py:125
 msgid "Do you want to close the tab?"
 msgstr "Voulez-vous vraiment fermer l'onglet?"
 
-#: guake/guake_app.py:132
+#: guake/guake_app.py:128
 msgid "Do you really want to quit Guake?"
 msgstr "Voulez-vous vraiment quitter Guake ?"
 
-#: guake/guake_app.py:134
+#: guake/guake_app.py:130
 msgid " and one tab open"
 msgstr " et un tab ouvert"
 
-#: guake/guake_app.py:136
+#: guake/guake_app.py:132
 #, python-brace-format
 msgid " and {0} tabs open"
 msgstr " et {0} onglets ouverts"
 
-#: guake/guake_app.py:139
+#: guake/guake_app.py:135
 msgid "There are no processes running"
 msgstr "Il y n'a pas de processus actif"
 
-#: guake/guake_app.py:141
+#: guake/guake_app.py:137
 msgid "There is a process still running"
 msgstr "Il y a encore un processus en cours"
 
-#: guake/guake_app.py:143
+#: guake/guake_app.py:139
 #, python-brace-format
 msgid "There are {0} processes still running"
 msgstr "Il y a {0} processus encore actifs"
 
-#: guake/guake_app.py:189 guake/guake_app.py:399 guake/keybindings.py:94
+#: guake/guake_app.py:185 guake/guake_app.py:395 guake/keybindings.py:94
 #: guake/about.py:54
 msgid "Guake Terminal"
 msgstr "Terminal Guake"
 
-#: guake/guake_app.py:195
+#: guake/guake_app.py:191
 msgid "guake-indicator"
 msgstr "guake-indicator"
 
-#: guake/guake_app.py:195
+#: guake/guake_app.py:191
 msgid "guake-tray"
 msgstr "guake-tray"
 
-#: guake/guake_app.py:200
+#: guake/guake_app.py:196
 msgid "Show"
 msgstr "Afficher"
 
-#: guake/guake_app.py:400
+#: guake/guake_app.py:396
 msgid ""
 "Guake is now running,\n"
 "press <b>{!s}</b> to use it."
@@ -168,68 +168,68 @@ msgstr ""
 "Guake est démarré, \n"
 "appuyer sur <b>{!s}</b> pour ouvrir Guake."
 
-#: guake/guake_app.py:668
+#: guake/guake_app.py:664
 #, python-format
 msgid "Search on Web: '%s'"
 msgstr "Rechercher sur le Web: '%s'"
 
-#: guake/guake_app.py:672
+#: guake/guake_app.py:668
 msgid "Search on Web (no selection)"
 msgstr "Rechercher sur le Web (pas de sélection)"
 
-#: guake/guake_app.py:682
+#: guake/guake_app.py:680
 msgid "Quick Open: {!s}..."
 msgstr "Ouverture Rapide: {!s}..."
 
-#: guake/guake_app.py:685
+#: guake/guake_app.py:683
 msgid "Quick Open: {!s}"
 msgstr "Ouverture Rapide: {!s}"
 
-#: guake/guake_app.py:688
+#: guake/guake_app.py:686
 msgid "Quick Open..."
 msgstr "Ouverture Rapide..."
 
-#: guake/guake_app.py:696
+#: guake/guake_app.py:694
 msgid "Open Link: {!s}..."
 msgstr "Ouvrir le lien: {!s}..."
 
-#: guake/guake_app.py:699
+#: guake/guake_app.py:697
 msgid "Open Link: {!s}"
 msgstr "Ouvrir le lien: {!s}..."
 
-#: guake/guake_app.py:702
+#: guake/guake_app.py:700
 msgid "Open Link..."
 msgstr "Ouvrir le lien..."
 
-#: guake/guake_app.py:1453
+#: guake/guake_app.py:1451
 msgid "Terminal"
 msgstr "Terminal"
 
-#: guake/guake_app.py:1509
+#: guake/guake_app.py:1507
 msgid "Rename tab"
 msgstr "Renomme l'onglet"
 
-#: guake/guake_app.py:1840
+#: guake/guake_app.py:1844
 msgid "Save to..."
 msgstr "Enregistrer sous..."
 
-#: guake/guake_app.py:1845 guake/prefs.py:1116
+#: guake/guake_app.py:1849 guake/prefs.py:1125
 msgid "All files"
 msgstr "Tous les fichiers"
 
-#: guake/guake_app.py:1850
+#: guake/guake_app.py:1854
 msgid "Text and Logs"
 msgstr "Textes et logs"
 
-#: guake/guake_app.py:1870
+#: guake/guake_app.py:1874
 msgid "Find"
 msgstr "Rechercher"
 
-#: guake/guake_app.py:1872
+#: guake/guake_app.py:1876
 msgid "Forward"
 msgstr "Suivant"
 
-#: guake/guake_app.py:1872
+#: guake/guake_app.py:1876
 msgid "Backward"
 msgstr "Précédent"
 
@@ -419,24 +419,24 @@ msgstr "Action"
 msgid "Shortcut"
 msgstr "Raccourcis"
 
-#: guake/prefs.py:785 guake/prefs.py:839
+#: guake/prefs.py:795 guake/prefs.py:849
 msgid "Custom"
 msgstr "Personnalisé"
 
-#: guake/prefs.py:1112
+#: guake/prefs.py:1121
 msgid "JSON files"
 msgstr "Fichiers JSON"
 
-#: guake/prefs.py:1205
+#: guake/prefs.py:1214
 #, python-format
 msgid "The shortcut \"%s\" is already in use."
 msgstr "Le raccourcis « %s » est déjà utilisé."
 
-#: guake/prefs.py:1206
+#: guake/prefs.py:1215
 msgid "Error setting keybinding."
 msgstr "Erreur d'attribution des raccourcis."
 
-#: guake/prefs.py:1222
+#: guake/prefs.py:1231
 #, python-format
 msgid ""
 "The shortcut \"%s\" cannot be used because it will become impossible to type "
@@ -918,16 +918,16 @@ msgid ""
 "For example, for sublime, use <b>subl %(file_path)s:%(line_number)s</b>\n"
 "</i></small>"
 msgstr ""
-"<small> <i> Utilisez les éléments suivants dans la ligne de commande de "
+"<small><i>Utilisez les éléments suivants dans la ligne de commande de "
 "l'éditeur:\n"
-"- <b>%(file_path)s </ b>: chemin d'accès au fichier sur lequel vous avez "
+"- <b>%(file_path)s</b>: chemin d'accès au fichier sur lequel vous avez "
 "cliqué\n"
-"- <b>%(line_number)s </ b>: si votre éditeur le prend en charge, vous pouvez "
+"- <b>%(line_number)s</b>: si votre éditeur le prend en charge, vous pouvez "
 "directement ouvrir le fichier à un numéro de ligne donné.\n"
 "\n"
-"Par exemple, pour sublime, utilisez <b> subl%(file_path)s:%(line_number)s </ "
+"Par exemple, pour sublime, utilisez <b> subl%(file_path)s:%(line_number)s </"
 "b>\n"
-"</ i> </ small>"
+"</i></small>"
 
 #: guake/data/prefs.glade:2346
 msgid "Quick open in current terminal"
@@ -991,20 +991,20 @@ msgstr "_Rétablir la configuration par défaut"
 msgid "Compatibility"
 msgstr "Compatibilité"
 
-#: guake/data/guake.desktop:30 guake/data/guake.template.desktop:4
+#: guake/data/guake.desktop:31 guake/data/guake.template.desktop:4
 msgid "Use the command line in a Quake-like terminal"
 msgstr "Exploitez la ligne command dans un terminal tel Quake"
 
-#: guake/data/guake.desktop:37 guake/data/guake.template.desktop:7
-#: guake/data/guake-prefs.desktop:38 guake/data/guake-prefs.template.desktop:7
+#: guake/data/guake.desktop:39 guake/data/guake.template.desktop:7
+#: guake/data/guake-prefs.desktop:40 guake/data/guake-prefs.template.desktop:7
 msgid "guake"
 msgstr "guake"
 
-#: guake/data/guake-prefs.desktop:31 guake/data/guake-prefs.template.desktop:4
+#: guake/data/guake-prefs.desktop:32 guake/data/guake-prefs.template.desktop:4
 msgid "Configure your Guake sessions"
 msgstr "Configure vos sessions Guake"
 
-#: guake/data/guake-prefs.desktop:47 guake/data/guake-prefs.template.desktop:13
+#: guake/data/guake-prefs.desktop:50 guake/data/guake-prefs.template.desktop:13
 msgid "Terminal;Utility;"
 msgstr "Terminal;Utilitaires;"
 
