@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Generated with glade 3.18.3 -->
-<interface>
+<interface domain="guake">
   <requires lib="gtk+" version="3.18"/>
   <object class="GtkAboutDialog" id="aboutdialog">
     <property name="can_focus">False</property>
