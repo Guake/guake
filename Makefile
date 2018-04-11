@@ -3,7 +3,7 @@
 PYTHON_INTERPRETER=python3
 MODULE:=guake
 INSTALL_ROOT:=/
-PREFIX:=$(INSTALL_ROOT)usr/local
+PREFIX:=/usr/local
 # findout the dist-package directory name. Under most system, users can install on dist-package.
 # On debian, site-package is reserved for the official python packages and has precedence over
 # dist-package
@@ -77,7 +77,7 @@ install-locale:
 	for f in $$(find po -iname "*.mo"); do \
 		l="$${f%%.*}"; \
 		lb=$$(basename $$l); \
-		install -Dm644 "$$f" "$(LOCALE_DIR)/$$lb/LC_MESSAGES/guake.mo"; \
+		install -Dm644 "$$f" "$(INSTALL_ROOT)$(LOCALE_DIR)/$$lb/LC_MESSAGES/guake.mo"; \
 	done;
 
 uninstall-locale: install-old-locale
@@ -87,33 +87,35 @@ install-old-locale:
 	@find $(OLD_PREFIX)/share/locale/ -name "guake.mo" -exec rm -f {} \;
 
 install-schemas:
-	install -Dm644 "guake/data/guake.desktop" "$(PREFIX)/share/applications/guake.desktop"
-	install -Dm644 "guake/data/guake-prefs.desktop" "$(PREFIX)/share/applications/guake-prefs.desktop"
-	mkdir -p $(IMAGE_DIR)
-	mkdir -p $(DATA_DIR)
-	install -Dm644 guake/data/pixmaps/*.png "$(IMAGE_DIR)/"
-	install -Dm644 guake/data/pixmaps/*.svg "$(IMAGE_DIR)/"
-	mkdir -p $(SHARE_DIR)
-	install -Dm644  guake/data/*.glade "$(GLADE_DIR)"
-	install -Dm644 "guake/data/org.guake.gschema.xml" "$(SCHEMA_DIR)/"
+	install -Dm644 "guake/data/guake.desktop" "$(INSTALL_ROOT)$(PREFIX)/share/applications/guake.desktop"
+	install -Dm644 "guake/data/guake-prefs.desktop" "$(INSTALL_ROOT)$(PREFIX)/share/applications/guake-prefs.desktop"
+	mkdir -p $(INSTALL_ROOT)$(IMAGE_DIR)
+	install -Dm644 guake/data/pixmaps/*.png "$(INSTALL_ROOT)$(IMAGE_DIR)/"
+	install -Dm644 guake/data/pixmaps/*.svg "$(INSTALL_ROOT)$(IMAGE_DIR)/"
+	install -Dm644 guake/data/pixmaps/guake.png "$(INSTALL_ROOT)$(PREFIX)/share/pixmaps/guake.png"
+	mkdir -p $(INSTALL_ROOT)$(SHARE_DIR)
+	mkdir -p $(INSTALL_ROOT)$(GLADE_DIR)
+	install -Dm644  guake/data/*.glade "$(INSTALL_ROOT)$(GLADE_DIR)"
+	mkdir -p $(INSTALL_ROOT)$(SCHEMA_DIR)
+	install -Dm644 "guake/data/org.guake.gschema.xml" "$(INSTALL_ROOT)$(SCHEMA_DIR)/"
 
 compile-shemas:
-	glib-compile-schemas $(PREFIX)/share/glib-2.0/schemas/
+	glib-compile-schemas $(INSTALL_ROOT)$(PREFIX)/share/glib-2.0/schemas/
 
 
 uninstall-system: uninstall-schemas
 	@pip3 uninstall -y guake || true
-	@rm -f $(PREFIX)/bin/guake
-	@rm -f $(PREFIX)/bin/guake-prefs
+	@rm -f $(INSTALL_ROOT)$(PREFIX)/bin/guake
+	@rm -f $(INSTALL_ROOT)$(PREFIX)/bin/guake-prefs
 
 purge-system: uninstall-system reset
 
 uninstall-schemas: uninstall-old-schemas
-	rm -f "$(PREFIX)/share/applications/guake.desktop"
-	rm -f "$(PREFIX)/share/applications/guake-prefs.desktop"
-	rm -fr "$(IMAGE_DIR)"
-	rm -fr "$(SHARE_DIR)"
-	rm -f "$(SCHEMA_DIR)/org.guake.gschema.xml"
+	rm -f "$(INSTALL_ROOT)$(PREFIX)/share/applications/guake.desktop"
+	rm -f "$(INSTALL_ROOT)$(PREFIX)/share/applications/guake-prefs.desktop"
+	rm -fr "$(INSTALL_ROOT)$(IMAGE_DIR)"
+	rm -fr "$(INSTALL_ROOT)$(SHARE_DIR)"
+	rm -f "$(INSTALL_ROOT)$(SCHEMA_DIR)/org.guake.gschema.xml"
 
 uninstall-old-schemas:
 	@rm -f "$(OLD_PREFIX)/share/applications/guake.desktop"
