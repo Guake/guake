@@ -1,8 +1,8 @@
 NEWS
 ====
 
-(unreleased)
-------------
+3.1.0
+-----
 
 Release Summary
 ~~~~~~~~~~~~~~~

@@ -231,9 +231,7 @@ tag-pbr:
 		echo "$$ git tag $$VERSION -m \"$$PROJECTNAME $$VERSION\""; \
 		git tag $$VERSION -m "$$PROJECTNAME $$VERSION"; \
 		echo "I: Pushing tag $$VERSION, press ENTER to continue, C-c to interrupt"; \
-		read _; \
 		echo "$$ git push upstream $$VERSION"; \
-		git push upstream $$VERSION; \
 	}
 	@# Note:
 	@# To sign, need gpg configured and the following command:
@@ -385,7 +383,13 @@ release-note-github: reno-lint
 			sed 's/\\\#/\#/g' | \
 		tr '\r' '\n'
 
-release: dists update-po release-note
+release: tag-pbr release-note rm-dists update-po dists
+	@{ \
+		export VERSION=$$(pipenv run python setup.py --version | cut -d. -f1,2,3); \
+		git commit --all -m "Release $(VERSION)"; \
+		PROJECTNAME=$$(pipenv run python setup.py --name); \
+		echo "$$ git tag --force $$VERSION -m \"$$PROJECTNAME $$VERSION\""; \
+	}
 
 # aliases to gracefully handle typos on poor dev's terminal
 check: checks
