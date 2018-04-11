@@ -7,11 +7,18 @@ NEWS
 Release Summary
 ~~~~~~~~~~~~~~~
 
-Package maintainers should read the "Notes for Package Maintainers" of this release note carefully.
+This version of Guake brings mostly bug fixes, and some new features like "Quick Open on selection".
+I have also reworked internally the Quick Open so that it can automatically open files from logs
+from pytest and other python development tools output. However, there might still some false
+positive on the hovering of the mouse in the terminal, the most famous being the output of ``ls -l``
+which may have the mouse looks like it sees hyperlinks on the terminal everywhere. Click does
+nothing but its an annoying limitation. Package maintainers should read the "Notes for Package
+Maintainers" of this release note carefully.
 
 New Features
 ~~~~~~~~~~~~
 
+-  New "start at login" option in the settings (only for GNOME) #251
 -  Add ``--verbose``/``-v`` parameter to enable debug logging. Please note the existing ``-v`` (for
    version number) has been renamed ``-V``.
 -  Add great color palettes from `Guake Color
@@ -99,17 +106,18 @@ Notes for Package Maintainers
    .. code:: bash
 
      sudo make install \
-         PREFIX=/usr \
-         DIST_PACKAGE_NAME=site-package \
-         LOCALE_DIR=/usr/share/locale
+         prefix=/usr \
+         DESTDIR=/path/for/packager \
+         PYTHON_SITE_PACKAGE_NAME=site-package \
+         localedir=/usr/share/locale
 
    The main overrides are:
 
    -  ``IMAGE_DIR``: where the pixmap should be installed. Default:
       ``/usr/local/share/guake/pixmaps``
-   -  ``LOCALE_DIR``: where locales should be installed. Default: ``/usr/local/share/locale``
+   -  ``localedir``: where locales should be installed. Default: ``/usr/local/share/locale``
    -  ``GLADE_DIR``: where the Glade files should be installed. Default: ``/usr/local/share/guake``
-   -  ``SCHEMA_DIR``: where gsettings/dconf schema should be installed. Default:
+   -  ``gsettingsschemadir``: where gsettings/dconf schema should be installed. Default:
       ``/usr/local/share/glib-2.0/schemas/``
 
    I invite package maintainers to open tickets on Github about any other difficulties encountered

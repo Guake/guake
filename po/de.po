@@ -1261,6 +1261,10 @@ msgstr ""
 msgid "Quick Open..."
 msgstr ""
 
+#: guake/data/prefs.glade:223
+msgid "Start Guake at login"
+msgstr ""
+
 #~ msgid "Path to script executed on Guake start:"
 #~ msgstr "Pfad zu einem Skript das beim Start ausgeführt wird:"
 

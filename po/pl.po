@@ -1000,3 +1000,7 @@ msgstr "Terminal;Utility;"
 #: guake/data/guake.template.desktop:4
 msgid "Use the command line in a Quake-like terminal"
 msgstr "Używanie wiersza poleceń w terminalu w stylu gry Quake"
+
+#: guake/data/prefs.glade:223
+msgid "Start Guake at login"
+msgstr ""
