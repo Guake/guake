@@ -60,10 +60,6 @@ def halt(loc):
 
 # pylint: enable=anomalous-backslash-in-string
 
-g_pcre2_enabled = True
-"""If VTE has been compiled withou PCRE2 support, Guake cannot register matcher using regex.
-"""
-
 
 class TerminalBox(Gtk.HBox):
 
@@ -167,9 +163,6 @@ class GuakeTerminal(Vte.Terminal):
         guake.globals.TERMINAL_MATCH_EXPRS to the terminal to make vte
         highlight text that matches them.
         """
-        global g_pcre2_enabled  # pylint: disable=global-statement
-        if not g_pcre2_enabled:
-            return
         try:
             for expr in TERMINAL_MATCH_EXPRS:
                 tag = self.match_add_regex(Vte.Regex.new_for_match(expr, 0, 0), 0)
@@ -179,10 +172,6 @@ class GuakeTerminal(Vte.Terminal):
                 tag = self.match_add_regex(Vte.Regex.new_for_match(match, 0, 0), 0)
                 self.match_set_cursor_type(tag, Gdk.CursorType.HAND2)
         except (GLib.Error, AttributeError) as e:  # pylint: disable=catching-non-exception
-            log.info(
-                "PCRE2 disabled on your current VTE or old version of VTE, "
-                "fallback with glib regex"
-            )
             try:
                 compile_flag = 0
                 if (Vte.MAJOR_VERSION, Vte.MINOR_VERSION) >= (0, 44):
@@ -195,7 +184,6 @@ class GuakeTerminal(Vte.Terminal):
                     tag = self.match_add_gregex(GLib.Regex.new(match, compile_flag, 0), 0)
                     self.match_set_cursor_type(tag, Gdk.CursorType.HAND2)
             except GLib.Error as e:  # pylint: disable=catching-non-exception
-                g_pcre2_enabled = False
                 log.error(
                     "ERROR: PCRE2 does not seems to be enabled on your system. "
                     "Quick Edit and other Ctrl+click features are disabled. "
