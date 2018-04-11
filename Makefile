@@ -13,12 +13,15 @@ OLD_PREFIX:=$(INSTALL_ROOT)usr
 ROOT_DIR=$(shell pwd)
 DATA_DIR=$(ROOT_DIR)/guake/data
 
+AUTOSTART_FOLDER:=~/.config/autostart
+
 DEV_IMAGE_DIR:=$(DATA_DIR)/pixmaps
 DEV_LOCALE_DIR:=$(PREFIX)/share/locale
 DEV_GLADE_DIR:=$(DATA_DIR)
 DEV_SCHEMA_DIR:=$(DATA_DIR)
 
 SHARE_DIR:=$(PREFIX)/share/guake
+LOGIN_DESTOP_PATH = $(SHARE_DIR)
 IMAGE_DIR:=$(SHARE_DIR)/pixmaps
 LOCALE_DIR:=$(PREFIX)/share/locale
 GLADE_DIR:=$(SHARE_DIR)
@@ -64,6 +67,8 @@ install-system: install-schemas compile-shemas install-locale
 	@sed -i -e 's|{{ IMAGE_DIR }}|$(IMAGE_DIR)|g' guake/paths.py
 	@sed -i -e 's|{{ GLADE_DIR }}|$(GLADE_DIR)|g' guake/paths.py
 	@sed -i -e 's|{{ SCHEMA_DIR }}|$(SCHEMA_DIR)|g' guake/paths.py
+	@sed -i -e 's|{{ LOGIN_DESTOP_PATH }}|$(LOGIN_DESTOP_PATH)|g' guake/paths.py
+	@sed -i -e 's|{{ AUTOSTART_FOLDER }}|$(AUTOSTART_FOLDER)|g' guake/paths.py
 
 	@$(PYTHON_INTERPRETER) setup.py install --root "$(INSTALL_ROOT)" --prefix="$(PREFIX)" --optimize=1
 
@@ -96,7 +101,9 @@ install-schemas:
 	mkdir -p $(INSTALL_ROOT)$(SHARE_DIR)
 	mkdir -p $(INSTALL_ROOT)$(GLADE_DIR)
 	install -Dm644  guake/data/*.glade "$(INSTALL_ROOT)$(GLADE_DIR)"
-	mkdir -p $(INSTALL_ROOT)$(SCHEMA_DIR)
+	mkdir -p $(SHARE_DIR)
+	install -Dm644 "guake/data/autostart-guake.desktop" "$(INSTALL_ROOT)$(SHARE_DIR)"
+	mkdir -p $(SCHEMA_DIR)
 	install -Dm644 "guake/data/org.guake.gschema.xml" "$(INSTALL_ROOT)$(SCHEMA_DIR)/"
 
 compile-shemas:
@@ -318,6 +325,10 @@ generate-desktop:
 
 generate-paths:
 	cp -f guake/paths.py.in guake/paths.py
+	# Generic
+	@sed -i -e 's|{{ LOGIN_DESTOP_PATH }}||g' guake/paths.py
+	@sed -i -e 's|{{ AUTOSTART_FOLDER }}||g' guake/paths.py
+	# Dev environment:
 	sed -i -e 's|{{ LOCALE_DIR }}|$(DEV_LOCALE_DIR)|g' guake/paths.py
 	sed -i -e 's|{{ IMAGE_DIR }}|$(DEV_IMAGE_DIR)|g' guake/paths.py
 	sed -i -e 's|{{ GLADE_DIR }}|$(DEV_GLADE_DIR)|g' guake/paths.py
