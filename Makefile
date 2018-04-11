@@ -112,9 +112,9 @@ install-schemas:
 	mkdir -p $(DESTDIR)$(SHARE_DIR)
 	mkdir -p $(DESTDIR)$(GLADE_DIR)
 	install -Dm644  guake/data/*.glade "$(DESTDIR)$(GLADE_DIR)"
-	mkdir -p $(SHARE_DIR)
+	mkdir -p $(DESTDIR)$(SHARE_DIR)
 	install -Dm644 "guake/data/autostart-guake.desktop" "$(DESTDIR)$(SHARE_DIR)"
-	mkdir -p $(SCHEMA_DIR)
+	mkdir -p $(DESTDIR)$(SCHEMA_DIR)
 	install -Dm644 "guake/data/org.guake.gschema.xml" "$(DESTDIR)$(SCHEMA_DIR)/"
 
 compile-shemas:
