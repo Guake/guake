@@ -35,12 +35,12 @@ from gi.repository import Keybinder
 from gi.repository import Pango
 from gi.repository import Vte
 
+from guake.common import ShowableError
 from guake.common import bindtextdomain
 from guake.common import get_binaries_from_path
 from guake.common import gladefile
 from guake.common import hexify_color
 from guake.common import pixmapfile
-from guake.common import ShowableError
 from guake.globals import ALIGN_BOTTOM
 from guake.globals import ALIGN_CENTER
 from guake.globals import ALIGN_LEFT
@@ -54,8 +54,8 @@ from guake.paths import AUTOSTART_FOLDER
 from guake.paths import LOCALE_DIR
 from guake.paths import LOGIN_DESTOP_PATH
 from guake.simplegladeapp import SimpleGladeApp
-from guake.terminal import g_pcre2_enabled
 from guake.terminal import GuakeTerminal
+from guake.terminal import g_pcre2_enabled
 from locale import gettext as _
 
 # pylint: disable=unsubscriptable-object

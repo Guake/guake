@@ -1008,6 +1008,10 @@ msgstr "Configure vos sessions Guake"
 msgid "Terminal;Utility;"
 msgstr "Terminal;Utilitaires;"
 
+#: guake/data/prefs.glade:223
+msgid "Start Guake at login"
+msgstr ""
+
 #~ msgid "Quick Open: '{!s}...'"
 #~ msgstr "Ouverture Rapide: {!s}..."
 

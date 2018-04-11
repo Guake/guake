@@ -1232,6 +1232,10 @@ msgstr ""
 msgid "Quick Open..."
 msgstr ""
 
+#: guake/data/prefs.glade:223
+msgid "Start Guake at login"
+msgstr ""
+
 #~ msgid "key binding error"
 #~ msgstr "tangentbindningsfel"
 

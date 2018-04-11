@@ -1228,6 +1228,10 @@ msgstr ""
 msgid "Quick Open..."
 msgstr ""
 
+#: guake/data/prefs.glade:223
+msgid "Start Guake at login"
+msgstr ""
+
 #~ msgid "0 means no size limit"
 #~ msgstr "0表示没有大小限制"
 
