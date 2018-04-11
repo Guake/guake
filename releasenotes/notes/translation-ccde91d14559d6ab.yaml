@@ -1,4 +1,4 @@
-translations:
+fixes:
   - Some systems such as Ubuntu did displayed Guake with a translated interface (#1209). The locale
     system has been reworked to fix that.
 

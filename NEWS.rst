@@ -21,6 +21,9 @@ New Features
 -  New "start at login" option in the settings (only for GNOME) #251
 -  Add ``--verbose``/``-v`` parameter to enable debug logging. Please note the existing ``-v`` (for
    version number) has been renamed ``-V``.
+-  Support for hyperlink VTE extension (`described
+   here <https://gist.github.com/egmontkob/eb114294efbcd5adb1944c9f3cb5feda>`__ ) #945 (Untested, as
+   it requires VTE 0.50)
 -  Add great color palettes from `Guake Color
    Scheme <https://github.com/ziyenano/Guake-Color-Schemes>`__, thanks for @ziyenano :
 
@@ -50,6 +53,8 @@ New Features
      -  Tin,
      -  Ura,
      -  Vag.
+-  Allow application to capture right click (ex: Midnight commander). #1096. It is still possible to
+   show the contextual menu with Shift+right click.
 
 Bug Fixes
 ~~~~~~~~~
@@ -75,11 +80,6 @@ Bug Fixes
    -  bad translation update on the contextual menu. This causes new strings that was hidden to
       appear for translators.
    -  Fix quick open on pattern "File:line" line that was not opening the wanted file.
--  Support for vte 2.91 (0.52) #1222
-
-Translation Updates
-~~~~~~~~~~~~~~~~~~~
-
 -  Some systems such as Ubuntu did displayed Guake with a translated interface (#1209). The locale
    system has been reworked to fix that.
 -  There might be broken translations, or not up-to-date language support by Guake. A global refresh
@@ -90,6 +90,14 @@ Translation Updates
    translation to help guake being used world-wide.
 
    -  Help is always welcomed for updating translations !
+-  Support for vte 2.91 (0.52) #1222
+
+Translation Updates
+~~~~~~~~~~~~~~~~~~~
+
+-  fr\_FR
+-  pl
+-  de
 
 Notes for Package Maintainers
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~

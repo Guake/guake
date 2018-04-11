@@ -272,6 +272,8 @@ def refresh_user_start(settings):
     if not AUTOSTART_FOLDER or not LOGIN_DESTOP_PATH:
         return
     if settings.general.get_boolean('start-at-login'):
+        autostart_path = os.path.expanduser(AUTOSTART_FOLDER)
+        os.makedirs(autostart_path, exist_ok=True)
         shutil.copyfile(
             os.path.join(LOGIN_DESTOP_PATH, "autostart-guake.desktop"),
             os.path.join(os.path.expanduser(AUTOSTART_FOLDER), "guake.desktop")
