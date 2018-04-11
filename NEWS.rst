@@ -101,8 +101,16 @@ Notes for Package Maintainers
      sudo make install \
          PREFIX=/usr \
          DIST_PACKAGE_NAME=site-package \
-         DATADIR=/usr/share/ \
          LOCALE_DIR=/usr/share/locale
+
+   The main overrides are:
+
+   -  ``IMAGE_DIR``: where the pixmap should be installed. Default:
+      ``/usr/local/share/guake/pixmaps``
+   -  ``LOCALE_DIR``: where locales should be installed. Default: ``/usr/local/share/locale``
+   -  ``GLADE_DIR``: where the Glade files should be installed. Default: ``/usr/local/share/guake``
+   -  ``SCHEMA_DIR``: where gsettings/dconf schema should be installed. Default:
+      ``/usr/local/share/glib-2.0/schemas/``
 
    I invite package maintainers to open tickets on Github about any other difficulties encountered
    when packaging Guake.
