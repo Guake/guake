@@ -152,6 +152,9 @@ class GuakeTerminal(Vte.Terminal):
         cursor_blink_mode = self.settings.style.get_int('cursor-blink-mode')
         self.set_property('cursor-blink-mode', cursor_blink_mode)
 
+        if (Vte.MAJOR_VERSION, Vte.MINOR_VERSION) >= (0, 50):
+            self.set_allow_hyperlink()
+
         # TODO PORT there is no method set_flags anymore
         # self.set_flags(gtk.CAN_DEFAULT)
         # self.set_flags(gtk.CAN_FOCUS)
@@ -294,7 +297,10 @@ class GuakeTerminal(Vte.Terminal):
         self.found_link = None
 
         if event.button == 1 and (event.get_state() & Gdk.ModifierType.CONTROL_MASK):
-            if self.get_has_selection():
+            if (Vte.MAJOR_VERSION, Vte.MINOR_VERSION) > (0, 50):
+                s = self.hyperlink_check_event()
+                self._on_ctrl_click_matcher((s, None))
+            elif self.get_has_selection():
                 self.quick_open()
             elif matched_string and matched_string[0]:
                 self._on_ctrl_click_matcher(matched_string)
