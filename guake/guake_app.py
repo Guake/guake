@@ -65,6 +65,7 @@ from guake.keybindings import Keybindings
 from guake.paths import LOCALE_DIR
 from guake.paths import SCHEMA_DIR
 from guake.prefs import PrefsDialog
+from guake.prefs import refresh_user_start
 from guake.settings import Settings
 from guake.simplegladeapp import SimpleGladeApp
 from guake.terminal import GuakeTerminalBox
@@ -383,6 +384,8 @@ class Guake(SimpleGladeApp):
 
         if self.settings.general.get_boolean('start-fullscreen'):
             self.fullscreen()
+
+        refresh_user_start(self.settings)
 
         # Pop-up that shows that guake is working properly (if not
         # unset in the preferences windows)

@@ -101,6 +101,11 @@
             <summary>Start fullscreen.</summary>
             <description>When true, the program will start in fullscreen mode.</description>
         </key>
+        <key name="start-at-login" type="b">
+            <default>false</default>
+            <summary>Start when GNOME starts</summary>
+            <description>When true, the program will start upon GNOME login.</description>
+        </key>
         <key name="use-audible-bell" type="b">
             <default>false</default>
             <summary>Audible bell</summary>

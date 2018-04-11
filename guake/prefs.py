@@ -20,6 +20,7 @@ Boston, MA 02110-1301 USA
 import logging
 import os
 import re
+import shutil
 import warnings
 
 import gi
@@ -34,12 +35,12 @@ from gi.repository import Keybinder
 from gi.repository import Pango
 from gi.repository import Vte
 
-from guake.common import ShowableError
 from guake.common import bindtextdomain
 from guake.common import get_binaries_from_path
 from guake.common import gladefile
 from guake.common import hexify_color
 from guake.common import pixmapfile
+from guake.common import ShowableError
 from guake.globals import ALIGN_BOTTOM
 from guake.globals import ALIGN_CENTER
 from guake.globals import ALIGN_LEFT
@@ -49,10 +50,12 @@ from guake.globals import ALWAYS_ON_PRIMARY
 from guake.globals import NAME
 from guake.globals import QUICK_OPEN_MATCHERS
 from guake.palettes import PALETTES
+from guake.paths import AUTOSTART_FOLDER
 from guake.paths import LOCALE_DIR
+from guake.paths import LOGIN_DESTOP_PATH
 from guake.simplegladeapp import SimpleGladeApp
-from guake.terminal import GuakeTerminal
 from guake.terminal import g_pcre2_enabled
+from guake.terminal import GuakeTerminal
 from locale import gettext as _
 
 # pylint: disable=unsubscriptable-object
@@ -265,6 +268,20 @@ def html_escape(text):
     return "".join(html_escape_table.get(c, c) for c in text)
 
 
+def refresh_user_start(settings):
+    if not AUTOSTART_FOLDER or not LOGIN_DESTOP_PATH:
+        return
+    if settings.general.get_boolean('start-at-login'):
+        shutil.copyfile(
+            os.path.join(LOGIN_DESTOP_PATH, "autostart-guake.desktop"),
+            os.path.join(os.path.expanduser(AUTOSTART_FOLDER), "guake.desktop")
+        )
+    else:
+        desktop_file = os.path.join(os.path.expanduser(AUTOSTART_FOLDER), "guake.desktop")
+        if os.path.exists(desktop_file):
+            os.remove(desktop_file)
+
+
 class PrefsCallbacks(object):
 
     """Holds callbacks that will be used in the PrefsDialg class.
@@ -277,7 +294,7 @@ class PrefsCallbacks(object):
     # general tab
 
     def on_default_shell_changed(self, combo):
-        """Changes the activity of default_shell in gconf
+        """Changes the activity of default_shell in dconf
         """
         citer = combo.get_active_iter()
         if not citer:
@@ -291,47 +308,47 @@ class PrefsCallbacks(object):
             self.settings.general.set_string('default-shell', shell)
 
     def on_use_login_shell_toggled(self, chk):
-        """Changes the activity of use_login_shell in gconf
+        """Changes the activity of use_login_shell in dconf
         """
         self.settings.general.set_boolean('use-login-shell', chk.get_active())
 
     def on_open_tab_cwd_toggled(self, chk):
-        """Changes the activity of open_tab_cwd in gconf
+        """Changes the activity of open_tab_cwd in dconf
         """
         self.settings.general.set_boolean('open-tab-cwd', chk.get_active())
 
     def on_use_trayicon_toggled(self, chk):
-        """Changes the activity of use_trayicon in gconf
+        """Changes the activity of use_trayicon in dconf
         """
         self.settings.general.set_boolean('use-trayicon', chk.get_active())
 
     def on_use_popup_toggled(self, chk):
-        """Changes the activity of use_popup in gconf
+        """Changes the activity of use_popup in dconf
         """
         self.settings.general.set_boolean('use-popup', chk.get_active())
 
     def on_prompt_on_quit_toggled(self, chk):
-        """Set the `prompt on quit' property in gconf
+        """Set the `prompt on quit' property in dconf
         """
         self.settings.general.set_boolean('prompt-on-quit', chk.get_active())
 
     def on_prompt_on_close_tab_changed(self, combo):
-        """Set the `prompt_on_close_tab' property in gconf
+        """Set the `prompt_on_close_tab' property in dconf
         """
         self.settings.general.set_int('prompt-on-close-tab', combo.get_active())
 
     def on_window_ontop_toggled(self, chk):
-        """Changes the activity of window_ontop in gconf
+        """Changes the activity of window_ontop in dconf
         """
         self.settings.general.set_boolean('window-ontop', chk.get_active())
 
     def on_tab_ontop_toggled(self, chk):
-        """Changes the activity of tab_ontop in gconf
+        """Changes the activity of tab_ontop in dconf
         """
         self.settings.general.set_boolean('tab-ontop', chk.get_active())
 
     def on_quick_open_enable_toggled(self, chk):
-        """Changes the activity of quick_open_enable in gconf
+        """Changes the activity of quick_open_enable in dconf
         """
         self.settings.general.set_boolean('quick-open-enable', chk.get_active())
 
@@ -342,12 +359,12 @@ class PrefsCallbacks(object):
         self.settings.general.set_string('startup-script', edt.get_text())
 
     def on_window_refocus_toggled(self, chk):
-        """Changes the activity of window_refocus in gconf
+        """Changes the activity of window_refocus in dconf
         """
         self.settings.general.set_boolean('window-refocus', chk.get_active())
 
     def on_window_losefocus_toggled(self, chk):
-        """Changes the activity of window_losefocus in gconf
+        """Changes the activity of window_losefocus in dconf
         """
         self.settings.general.set_boolean('window-losefocus', chk.get_active())
 
@@ -358,39 +375,45 @@ class PrefsCallbacks(object):
         self.settings.hooks.set_string('show', edt.get_text())
 
     def on_window_tabbar_toggled(self, chk):
-        """Changes the activity of window_tabbar in gconf
+        """Changes the activity of window_tabbar in dconf
         """
         self.settings.general.set_boolean('window-tabbar', chk.get_active())
 
     def on_start_fullscreen_toggled(self, chk):
-        """Changes the activity of start_fullscreen in gconf
+        """Changes the activity of start_fullscreen in dconf
         """
         self.settings.general.set_boolean('start-fullscreen', chk.get_active())
 
+    def on_start_at_login_toggled(self, chk):
+        """Changes the activity of start_at_login in dconf
+        """
+        self.settings.general.set_boolean('start-at-login', chk.get_active())
+        refresh_user_start(self.settings)
+
     def on_use_vte_titles_toggled(self, chk):
-        """Save `use_vte_titles` property value in gconf
+        """Save `use_vte_titles` property value in dconf
         """
         self.settings.general.set_boolean('use-vte-titles', chk.get_active())
 
     def on_set_window_title_toggled(self, chk):
-        """Save `set_window_title` property value in gconf
+        """Save `set_window_title` property value in dconf
         """
         self.settings.general.set_boolean('set-window-title', chk.get_active())
 
     def on_abbreviate_tab_names_toggled(self, chk):
-        """Save `abbreviate_tab_names` property value in gconf
+        """Save `abbreviate_tab_names` property value in dconf
         """
         self.settings.general.set_boolean('abbreviate-tab-names', chk.get_active())
 
     def on_max_tab_name_length_changed(self, spin):
-        """Changes the value of max_tab_name_length in gconf
+        """Changes the value of max_tab_name_length in dconf
         """
         val = int(spin.get_value())
         self.settings.general.set_int('max-tab-name-length', val)
         self.prefDlg.update_vte_subwidgets_states()
 
     def on_mouse_display_toggled(self, chk):
-        """Set the 'appear on mouse display' preference in gconf. This
+        """Set the 'appear on mouse display' preference in dconf. This
         property supercedes any value stored in display_n.
         """
         self.settings.general.set_boolean('mouse-display', chk.get_active())
@@ -408,7 +431,7 @@ class PrefsCallbacks(object):
         self.settings.general.set_int('window-valignment', ALIGN_BOTTOM if v else ALIGN_TOP)
 
     def on_display_n_changed(self, combo):
-        """Set the destination display in gconf.
+        """Set the destination display in dconf.
         """
 
         i = combo.get_active_iter()
@@ -426,19 +449,19 @@ class PrefsCallbacks(object):
         self.settings.general.set_int('display-n', val_int)
 
     def on_window_height_value_changed(self, hscale):
-        """Changes the value of window_height in gconf
+        """Changes the value of window_height in dconf
         """
         val = hscale.get_value()
         self.settings.general.set_int('window-height', int(val))
 
     def on_window_width_value_changed(self, wscale):
-        """Changes the value of window_width in gconf
+        """Changes the value of window_width in dconf
         """
         val = wscale.get_value()
         self.settings.general.set_int('window-width', int(val))
 
     def on_window_halign_value_changed(self, halign_button):
-        """Changes the value of window_halignment in gconf
+        """Changes the value of window_halignment in dconf
         """
         which_align = {
             'radiobutton_align_left': ALIGN_LEFT,
@@ -454,19 +477,19 @@ class PrefsCallbacks(object):
         )
 
     def on_use_audible_bell_toggled(self, chk):
-        """Changes the value of use_audible_bell in gconf
+        """Changes the value of use_audible_bell in dconf
         """
         self.settings.general.set_boolean('use-audible-bell', chk.get_active())
 
     # scrolling tab
 
     def on_use_scrollbar_toggled(self, chk):
-        """Changes the activity of use_scrollbar in gconf
+        """Changes the activity of use_scrollbar in dconf
         """
         self.settings.general.set_boolean('use-scrollbar', chk.get_active())
 
     def on_history_size_value_changed(self, spin):
-        """Changes the value of history_size in gconf
+        """Changes the value of history_size in dconf
         """
         val = int(spin.get_value())
         self.settings.general.set_int('history-size', val)
@@ -481,34 +504,34 @@ class PrefsCallbacks(object):
         self.prefDlg.get_widget('history_size').set_sensitive(not infinite)
 
     def on_scroll_output_toggled(self, chk):
-        """Changes the activity of scroll_output in gconf
+        """Changes the activity of scroll_output in dconf
         """
         self.settings.general.set_boolean('scroll-output', chk.get_active())
 
     def on_scroll_keystroke_toggled(self, chk):
-        """Changes the activity of scroll_keystroke in gconf
+        """Changes the activity of scroll_keystroke in dconf
         """
         self.settings.general.set_boolean('scroll-keystroke', chk.get_active())
 
     # appearance tab
 
     def on_use_default_font_toggled(self, chk):
-        """Changes the activity of use_default_font in gconf
+        """Changes the activity of use_default_font in dconf
         """
         self.settings.general.set_boolean('use-default-font', chk.get_active())
 
     def on_allow_bold_toggled(self, chk):
-        """Changes the value of allow_bold in gconf
+        """Changes the value of allow_bold in dconf
         """
         self.settings.styleFont.set_boolean('allow-bold', chk.get_active())
 
     def on_font_style_font_set(self, fbtn):
-        """Changes the value of font_style in gconf
+        """Changes the value of font_style in dconf
         """
         self.settings.styleFont.set_string('style', fbtn.get_font_name())
 
     def on_transparency_value_changed(self, hscale):
-        """Changes the value of background_transparency in gconf
+        """Changes the value of background_transparency in dconf
         """
         value = hscale.get_value()
         self.prefDlg.set_colors_from_settings()
@@ -517,13 +540,13 @@ class PrefsCallbacks(object):
     # compatibility tab
 
     def on_backspace_binding_changed(self, combo):
-        """Changes the value of compat_backspace in gconf
+        """Changes the value of compat_backspace in dconf
         """
         val = combo.get_active_text()
         self.settings.general.set_string('compat-backspace', ERASE_BINDINGS[val])
 
     def on_delete_binding_changed(self, combo):
-        """Changes the value of compat_delete in gconf
+        """Changes the value of compat_delete in dconf
         """
         val = combo.get_active_text()
         self.settings.general.set_string('compat-delete', ERASE_BINDINGS[val])
@@ -753,7 +776,7 @@ class PrefsDialog(SimpleGladeApp):
         self.get_widget('abbreviate_tab_names').set_sensitive(do_use_vte_titles)
 
     def on_reset_compat_defaults_clicked(self, bnt):
-        """Reset default values to compat_{backspace,delete} gconf
+        """Reset default values to compat_{backspace,delete} dconf
         keys. The default values are retrivied from the guake.schemas
         file.
         """
@@ -762,7 +785,7 @@ class PrefsDialog(SimpleGladeApp):
         self.reload_erase_combos()
 
     def on_palette_name_changed(self, combo):
-        """Changes the value of palette in gconf
+        """Changes the value of palette in dconf
         """
         palette_name = combo.get_active_text()
         if palette_name not in PALETTES:
@@ -773,18 +796,18 @@ class PrefsDialog(SimpleGladeApp):
         self.update_demo_palette(PALETTES[palette_name])
 
     def on_cursor_shape_changed(self, combo):
-        """Changes the value of cursor_shape in gconf
+        """Changes the value of cursor_shape in dconf
         """
         index = combo.get_active()
         self.settings.style.set_int('cursor-shape', index)
 
     def on_blink_cursor_toggled(self, chk):
-        """Changes the value of blink_cursor in gconf
+        """Changes the value of blink_cursor in dconf
         """
         self.settings.style.set_int('cursor-blink-mode', chk.get_active())
 
     def on_palette_color_set(self, btn):
-        """Changes the value of palette in gconf
+        """Changes the value of palette in dconf
         """
 
         palette = []
@@ -863,7 +886,7 @@ class PrefsDialog(SimpleGladeApp):
             self.get_widget('palette_%d' % i).set_color(color)
 
     def reload_erase_combos(self, btn=None):
-        """Read from gconf the value of compat_{backspace,delete} vars
+        """Read from dconf the value of compat_{backspace,delete} vars
         and select the right option in combos.
         """
         # backspace erase binding
@@ -927,7 +950,7 @@ class PrefsDialog(SimpleGladeApp):
 
     def load_configs(self):
         """Load configurations for all widgets in General, Scrolling
-        and Appearance tabs from gconf.
+        and Appearance tabs from dconf.
         """
         self._load_default_shell_settings()
 
@@ -1019,6 +1042,10 @@ class PrefsDialog(SimpleGladeApp):
         # start fullscreen
         value = self.settings.general.get_boolean('start-fullscreen')
         self.get_widget('start_fullscreen').set_active(value)
+
+        # start at GNOME login
+        value = self.settings.general.get_boolean('start-at-login')
+        self.get_widget('start_at_login').set_active(value)
 
         # use audible bell
         value = self.settings.general.get_boolean('use-audible-bell')
@@ -1190,7 +1217,7 @@ class PrefsDialog(SimpleGladeApp):
         some tests to validate the key, like looking for already in
         use keys and look for [A-Z][a-z][0-9] to avoid problems with
         these common keys. If all tests are ok, the value will be
-        stored in gconf.
+        stored in dconf.
         """
         accelerator = Gtk.accelerator_name(key, mods)
 
@@ -1251,7 +1278,7 @@ class PrefsDialog(SimpleGladeApp):
     def on_accel_cleared(self, cellrendereraccel, path):
         """If the user tries to clear a keybinding with the backspace
         key this callback will be called and it just fill the model
-        with an empty key and set the 'disabled' string in gconf path.
+        with an empty key and set the 'disabled' string in dconf path.
         """
         dconf_path = self.store[path][HOTKET_MODEL_INDEX_DCONF]
 
