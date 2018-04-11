@@ -323,6 +323,9 @@
                                             <property name="top_attach">2</property>
                                           </packing>
                                         </child>
+                                        <child>
+                                          <placeholder/>
+                                        </child>
                                       </object>
                                     </child>
                                   </object>
@@ -2184,20 +2187,6 @@ To disable a shortcut, press the "Backspace" key.</property>
                                                 <property name="position">0</property>
                                               </packing>
                                             </child>
-                                            <child>
-                                              <object class="GtkLabel" id="lbl_pcre2_disabled">
-                                                <property name="can_focus">False</property>
-                                                <property name="margin_left">10</property>
-                                                <property name="label" translatable="yes">&lt;i&gt;&lt;b&gt;WARNING&lt;/b&gt;: your system seems to have PCRE2 disabled for VTE, preventing application such as Guake to register "matchers" using regular expressions. Please contact your distribution to request a new version of VTE with PCRE2 enabled ! To use Quick Open, you &lt;b&gt;must select the text&lt;/b&gt; before using Ctrl+click&lt;/i&gt;.</property>
-                                                <property name="use_markup">True</property>
-                                                <property name="wrap">True</property>
-                                              </object>
-                                              <packing>
-                                                <property name="expand">False</property>
-                                                <property name="fill">False</property>
-                                                <property name="position">1</property>
-                                              </packing>
-                                            </child>
                                           </object>
                                           <packing>
                                             <property name="expand">False</property>
@@ -2252,10 +2241,8 @@ To disable a shortcut, press the "Backspace" key.</property>
                                           <object class="GtkLabel" id="label25">
                                             <property name="visible">True</property>
                                             <property name="can_focus">False</property>
-                                            <property name="ypad">6</property>
                                             <property name="label" translatable="yes">Editor command line:</property>
                                             <property name="use_markup">True</property>
-                                            <property name="xalign">0</property>
                                           </object>
                                           <packing>
                                             <property name="expand">False</property>

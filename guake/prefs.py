@@ -55,7 +55,6 @@ from guake.paths import LOCALE_DIR
 from guake.paths import LOGIN_DESTOP_PATH
 from guake.simplegladeapp import SimpleGladeApp
 from guake.terminal import GuakeTerminal
-from guake.terminal import g_pcre2_enabled
 from locale import gettext as _
 
 # pylint: disable=unsubscriptable-object
@@ -672,11 +671,6 @@ class PrefsDialog(SimpleGladeApp):
         pid = self.spawn_sync_pid(None, self.demo_terminal)
 
         self.demo_terminal.pid = pid
-
-        if g_pcre2_enabled:
-            self.get_widget('lbl_pcre2_disabled').hide()
-        else:
-            self.get_widget('lbl_pcre2_disabled').show()
 
         self.populate_shell_combo()
         self.populate_keys_tree()
