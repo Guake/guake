@@ -153,7 +153,7 @@ class GuakeTerminal(Vte.Terminal):
         self.set_property('cursor-blink-mode', cursor_blink_mode)
 
         if (Vte.MAJOR_VERSION, Vte.MINOR_VERSION) >= (0, 50):
-            self.set_allow_hyperlink()
+            self.set_allow_hyperlink(True)
 
         # TODO PORT there is no method set_flags anymore
         # self.set_flags(gtk.CAN_DEFAULT)
