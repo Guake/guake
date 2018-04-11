@@ -118,7 +118,7 @@ install-schemas:
 	install -Dm644 "guake/data/org.guake.gschema.xml" "$(DESTDIR)$(SCHEMA_DIR)/"
 
 compile-shemas:
-	if [ $(COMPILE_SCHEMA) = 1 ]; then glib-compile-schemas $(DESTDIR)$(prefix)/share/glib-2.0/schemas/; fi
+	if [ $(COMPILE_SCHEMA) = 1 ]; then glib-compile-schemas $(DESTDIR)$(gsettingsschemadir); fi
 
 
 uninstall-system: uninstall-schemas
