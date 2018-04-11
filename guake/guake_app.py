@@ -641,7 +641,19 @@ class Guake(SimpleGladeApp):
         if event.button != 3:
             return False
 
+        if event.button == 1 and (event.get_state() & Gdk.ModifierType.SHIFT_MASK):
+            # Force showing contextual menu on Ctrl+right click
+            self.showing_context_menu = True
+        else:
+            # First send to background process if handled, do nothing else
+            if terminal.do_button_press_event(event):
+                return False
+
         self.showing_context_menu = True
+
+        if not self.showing_context_menu:
+            return False
+
 
         guake_clipboard = Gtk.Clipboard.get_default(self.window.get_display())
         if not guake_clipboard.wait_is_text_available():
