@@ -12,6 +12,8 @@ DIST_PACKAGE=$(PREFIX)/lib/python$(shell $(PYTHON_INTERPRETER) -c "import sys; v
 OLD_PREFIX:=$(INSTALL_ROOT)usr
 ROOT_DIR=$(shell pwd)
 DATA_DIR=$(ROOT_DIR)/guake/data
+COMPILE_SCHEMA:=1
+
 
 AUTOSTART_FOLDER:=~/.config/autostart
 
@@ -53,7 +55,9 @@ ln-venv:
 	rm -rf .venv
 	ln -s $$(pipenv --venv) .venv
 
-install-system: install-schemas compile-shemas install-locale
+install-system: install-schemas compile-shemas install-locale install-guake
+
+install-guake:
 	# you probably want to execute this target with sudo:
 	# sudo make install
 	@echo "Installing from on your system is not recommended."
@@ -107,7 +111,7 @@ install-schemas:
 	install -Dm644 "guake/data/org.guake.gschema.xml" "$(INSTALL_ROOT)$(SCHEMA_DIR)/"
 
 compile-shemas:
-	glib-compile-schemas $(INSTALL_ROOT)$(PREFIX)/share/glib-2.0/schemas/
+	if [ $(COMPILE_SCHEMA) = 1 ]; then glib-compile-schemas $(INSTALL_ROOT)$(PREFIX)/share/glib-2.0/schemas/ fi
 
 
 uninstall-system: uninstall-schemas
