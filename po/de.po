@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: Guake 0.4.5\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-08-20 18:56+0200\n"
-"PO-Revision-Date: 2018-01-25 20:48+0100\n"
+"PO-Revision-Date: 2018-04-11 16:01+0200\n"
 "Last-Translator: Mario Aichinger <aichingm@gmail.com>\n"
 "Language-Team: guake@lists.guake.org\n"
 "Language: de\n"
@@ -1222,23 +1222,23 @@ msgstr "Verschiebung in Pixeln"
 
 #: guake/main.py:73
 msgid "Enable verbose logging"
-msgstr ""
+msgstr "Ausführliches Protokollieren aktivieren"
 
 #: guake/guake_app.py:680
 msgid "Quick Open: '{!s}...'"
-msgstr ""
+msgstr "Schnell öffnen: '{!s}...'"
 
 #: guake/guake_app.py:683
 msgid "Quick Open: {!s}"
-msgstr ""
+msgstr "Schnell öffnen: '{!s}'"
 
 #: guake/guake_app.py:691
 msgid "Open Link: '{!s}...'"
-msgstr ""
+msgstr "Link öffnen: '{!s}...'"
 
 #: guake/guake_app.py:694
 msgid "Open Link: {!s}"
-msgstr ""
+msgstr "Link öffnen: '{!s}'"
 
 #: guake/data/prefs.glade:2175
 msgid ""
@@ -1248,22 +1248,28 @@ msgid ""
 "VTE with PCRE2 enabled ! To use Quick Open, you <b>must select the text</b> "
 "before using Ctrl+click</i>."
 msgstr ""
+"<i><b>Warnung</b>: Ihr System scheint PCRE2 für VTE deaktiviert zu haben, "
+"was Programmen wie Guake nicht ermöglicht \"matchers\" mit regulären "
+"Ausdrücken zu registrieren. Kontaktieren Sie den Support Ihrer Linux-"
+"Distrubution mit der Bitte eine neuere Version von VTE (mit PCRE2) "
+"bereitzustellen. Um 'Schnell Öffnen' dennoch verwenden zu können markieren "
+"Sie den entsprechenden Text und wenden Sie Strg+Klick darauf an.</i>."
 
 #: guake/guake_app.py:680
 msgid "Quick Open: {!s}..."
-msgstr ""
+msgstr "Schnell öffnen: {!s}..."
 
 #: guake/guake_app.py:691
 msgid "Open Link: {!s}..."
-msgstr ""
+msgstr "Link öffnen: {!s}..."
 
 #: guake/guake_app.py:688
 msgid "Quick Open..."
-msgstr ""
+msgstr "Schnell öffnen..."
 
 #: guake/data/prefs.glade:223
 msgid "Start Guake at login"
-msgstr ""
+msgstr "Guake beim Anmelden starten"
 
 #~ msgid "Path to script executed on Guake start:"
 #~ msgstr "Pfad zu einem Skript das beim Start ausgeführt wird:"
