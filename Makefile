@@ -386,9 +386,9 @@ release-note-github: reno-lint
 release: tag-pbr release-note rm-dists update-po dists
 	@{ \
 		export VERSION=$$(pipenv run python setup.py --version | cut -d. -f1,2,3); \
-		git commit --all -m "Release $(VERSION)"; \
+		git commit --all -m "Release $$VERSION"; \
 		PROJECTNAME=$$(pipenv run python setup.py --name); \
-		echo "$$ git tag --force $$VERSION -m \"$$PROJECTNAME $$VERSION\""; \
+		git tag -d $$VERSION; \
 	}
 
 # aliases to gracefully handle typos on poor dev's terminal

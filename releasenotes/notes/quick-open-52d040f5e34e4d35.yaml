@@ -1,0 +1,4 @@
+features:
+  - |
+    Quick open displays a combobox with predefined settings for Visual Studio Code, Atom and
+    Sublime Text.

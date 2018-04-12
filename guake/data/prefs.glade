@@ -2236,7 +2236,7 @@ To disable a shortcut, press the "Backspace" key.</property>
                                       <object class="GtkBox" id="hbox7">
                                         <property name="visible">True</property>
                                         <property name="can_focus">False</property>
-                                        <property name="spacing">1</property>
+                                        <property name="spacing">8</property>
                                         <child>
                                           <object class="GtkLabel" id="label25">
                                             <property name="visible">True</property>
@@ -2251,30 +2251,26 @@ To disable a shortcut, press the "Backspace" key.</property>
                                           </packing>
                                         </child>
                                         <child>
-                                          <object class="GtkLabel" id="label23">
-                                            <property name="width_request">10</property>
+                                          <object class="GtkComboBoxText">
                                             <property name="visible">True</property>
                                             <property name="can_focus">False</property>
-                                          </object>
-                                          <packing>
-                                            <property name="expand">False</property>
-                                            <property name="fill">False</property>
-                                            <property name="position">1</property>
-                                          </packing>
-                                        </child>
-                                        <child>
-                                          <object class="GtkEntry" id="quick_open_command_line">
-                                            <property name="visible">True</property>
-                                            <property name="sensitive">False</property>
-                                            <property name="can_focus">True</property>
-                                            <property name="max_length">214</property>
-                                            <property name="invisible_char">•</property>
-                                            <signal name="changed" handler="on_quick_open_command_line_changed" swapped="no"/>
+                                            <property name="has_entry">True</property>
+                                            <items>
+                                              <item>subl %(filepath)s:%(line_number)s</item>
+                                              <item>code -g %(filepath)s:%(line_number)s</item>
+                                              <item>atom %(filepath)s:%(line_number)s</item>
+                                            </items>
+                                            <child internal-child="entry">
+                                              <object class="GtkEntry" id="quick_open_command_line">
+                                                <property name="can_focus">True</property>
+                                                <signal name="changed" handler="on_quick_open_command_line_changed" swapped="no"/>
+                                              </object>
+                                            </child>
                                           </object>
                                           <packing>
                                             <property name="expand">True</property>
                                             <property name="fill">True</property>
-                                            <property name="position">2</property>
+                                            <property name="position">1</property>
                                           </packing>
                                         </child>
                                       </object>

@@ -23,6 +23,8 @@ import re
 import shutil
 import warnings
 
+from textwrap import dedent
+
 import gi
 gi.require_version('Gtk', '3.0')
 gi.require_version('Keybinder', '3.0')
@@ -621,6 +623,20 @@ class PrefsDialog(SimpleGladeApp):
         self.store = None
 
         super(PrefsDialog, self).__init__(gladefile('prefs.glade'), root='config-window')
+        style_provider = Gtk.CssProvider()
+        css_data = dedent(
+            """
+            .monospace{
+              font-family: monospace;
+            }
+            """
+        ).encode()
+        style_provider.load_from_data(css_data)
+        Gtk.StyleContext.add_provider_for_screen(
+            Gdk.Screen.get_default(), style_provider, Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION
+        )
+        self.get_widget("quick_open_command_line").get_style_context().add_class("monospace")
+        self.get_widget("quick_open_supported_patterns").get_style_context().add_class("monospace")
         self.settings = settings
 
         self.add_callbacks(PrefsCallbacks(self))
