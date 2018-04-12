@@ -28,6 +28,7 @@ import traceback
 import uuid
 
 from pathlib import Path
+from textwrap import dedent
 from urllib.parse import quote_plus
 from xml.sax.saxutils import escape as xml_escape
 
@@ -162,10 +163,7 @@ class Guake(SimpleGladeApp):
         setupLogging(self.debug_mode)
 
         self._select_gtk_theme()
-
-        # Cannot use "getattr(gtk.Window().get_style(), "base")[int(gtk.STATE_SELECTED)]"
-        # since theme has not been applied before first show_all
-        self.selected_color = None
+        self._patch_theme()
 
         self.prompt_dialog = None
         self.hidden = True
@@ -401,6 +399,30 @@ class Guake(SimpleGladeApp):
             )
 
         log.info("Guake initialized")
+
+    def _patch_theme(self):
+        style_provider = Gtk.CssProvider()
+        win = Gtk.Window()
+        style_context = win.get_style_context()
+
+        def rgba_to_hex(color):
+            return "#{0:02x}{1:02x}{2:02x}".format(
+                int(color.red * 255), int(color.green * 255), int(color.blue * 255)
+            )
+
+        selected_bg_color = rgba_to_hex(style_context.lookup_color('theme_selected_bg_color')[1])
+        css_data = dedent(
+            """
+            .tab:checked {{
+              color: white;
+              background-color: {};
+            }}
+            """.format(selected_bg_color)
+        ).encode()
+        style_provider.load_from_data(css_data)
+        Gtk.StyleContext.add_provider_for_screen(
+            Gdk.Screen.get_default(), style_provider, Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION
+        )
 
     def _select_gtk_theme(self):
         gtk_theme_name = self.settings.general.get_string('gtk-theme-name')
@@ -893,18 +915,6 @@ class Guake(SimpleGladeApp):
         # this is needed because self.window.show_all() results in showing every
         # thing which includes the scrollbar too
         self.settings.general.triggerOnChangedValue(self.settings.general, "use-scrollbar")
-
-        # TODO PORT do we need this?
-        # if self.selected_color is None:
-        #    self.selected_color = getattr(self.window.get_style(),
-        #                                  "light")[int(gtk.STATE_SELECTED)]
-        #
-        #    # Reapply the tab color to all button in the tab list, since at least one doesn't have
-        #    # the select color set. This needs to happen AFTER the first show_all, since before,
-        #    # gtk has not loaded the right colors yet.
-        #    for tab in self.tabs.get_children():
-        #        if isinstance(tab, gtk.RadioButton):
-        #            tab.modify_bg(gtk.STATE_ACTIVE, gtk.gdk.Color(str(self.selected_color)))
 
         # move the window even when in fullscreen-mode
         log.debug("Moving window to: %r", window_rect)
@@ -1798,6 +1808,7 @@ class Guake(SimpleGladeApp):
         bnt = Gtk.RadioButton(group=parent, label=label, use_underline=False)
         bnt.set_property('can-focus', False)
         bnt.set_property('draw-indicator', False)
+        bnt.get_style_context().add_class("tab")
         bnt.connect('button-press-event', self.show_tab_menu)
         bnt.connect('button-press-event', self.middle_button_click)
         bnt.connect('button-press-event', self.show_rename_current_tab_dialog)
@@ -1812,9 +1823,6 @@ class Guake(SimpleGladeApp):
         bnt.activate_tab = _update_window_title_on_active_tab
         bnt.connect('clicked', bnt.activate_tab)
 
-        if self.selected_color is not None:
-            # TODO PORT
-            bnt.modify_bg(gtk.STATE_ACTIVE, gtk.gdk.Color(str(self.selected_color)))
         # TODO PORT drag and drop
         # drag_drop_type = ("text/plain", gtk.TARGET_SAME_APP, 80)
         # TODO PORT drag and drop
