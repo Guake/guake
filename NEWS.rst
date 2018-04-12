@@ -1,6 +1,20 @@
 NEWS
 ====
 
+3.1.1
+-----
+
+New Features
+~~~~~~~~~~~~
+
+-  Quick open displays a combobox with predefined settings for Visual Studio Code, Atom and Sublime
+   Text.
+
+Bug Fixes
+~~~~~~~~~
+
+-  Fix hyperlink VTE
+
 3.1.0
 -----
 
