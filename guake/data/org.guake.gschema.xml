@@ -233,8 +233,8 @@
         </key>
         <key name="gtk-prefer-dark-theme" type="b">
             <default>false</default>
-            <summary>Prefere Dark Theme for GTK</summary>
-            <description>Prefere the dark theme version of the theme if available</description>
+            <summary>Prefer Dark Theme for GTK</summary>
+            <description>Prefer the dark theme version of the theme if available</description>
         </key>
     </schema>
     <schema id="guake.style" path="/apps/guake/style/">

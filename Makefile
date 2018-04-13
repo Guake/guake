@@ -24,6 +24,7 @@ DEV_IMAGE_DIR:=$(DATA_DIR)/pixmaps
 DEV_LOCALE_DIR:=$(localedir)
 DEV_GLADE_DIR:=$(DATA_DIR)
 DEV_SCHEMA_DIR:=$(DATA_DIR)
+DEV_GUAKE_THEME_DIR:=$(DATA_DIR)/themes
 
 datarootdir:=$(prefix)/share
 datadir:=$(datarootdir)
@@ -31,6 +32,7 @@ localedir:=$(datarootdir)/locale
 gsettingsschemadir:=$(datarootdir)/glib-2.0/schemas
 
 SHARE_DIR:=$(datadir)/guake
+GUAKE_THEME_DIR:=$(SHARE_DIR)/guake
 LOGIN_DESTOP_PATH = $(SHARE_DIR)
 IMAGE_DIR:=$(SHARE_DIR)/pixmaps
 GLADE_DIR:=$(SHARE_DIR)
@@ -77,6 +79,7 @@ install-guake:
 	@sed -i -e 's|{{ LOCALE_DIR }}|$(localedir)|g' guake/paths.py
 	@sed -i -e 's|{{ IMAGE_DIR }}|$(IMAGE_DIR)|g' guake/paths.py
 	@sed -i -e 's|{{ GLADE_DIR }}|$(GLADE_DIR)|g' guake/paths.py
+	@sed -i -e 's|{{ GUAKE_THEME_DIR }}|$(GUAKE_THEME_DIR)|g' guake/paths.py
 	@sed -i -e 's|{{ SCHEMA_DIR }}|$(SCHEMA_DIR)|g' guake/paths.py
 	@sed -i -e 's|{{ LOGIN_DESTOP_PATH }}|$(LOGIN_DESTOP_PATH)|g' guake/paths.py
 	@sed -i -e 's|{{ AUTOSTART_FOLDER }}|$(AUTOSTART_FOLDER)|g' guake/paths.py
@@ -340,6 +343,7 @@ generate-paths:
 	# Dev environment:
 	sed -i -e 's|{{ LOCALE_DIR }}|$(DEV_LOCALE_DIR)|g' guake/paths.py
 	sed -i -e 's|{{ IMAGE_DIR }}|$(DEV_IMAGE_DIR)|g' guake/paths.py
+	sed -i -e 's|{{ GUAKE_THEME_DIR }}|$(DEV_GUAKE_THEME_DIR)|g' guake/paths.py
 	sed -i -e 's|{{ GLADE_DIR }}|$(DEV_GLADE_DIR)|g' guake/paths.py
 	sed -i -e 's|{{ SCHEMA_DIR }}|$(DEV_SCHEMA_DIR)|g' guake/paths.py
 

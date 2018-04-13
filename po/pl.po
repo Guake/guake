@@ -1004,3 +1004,11 @@ msgstr "Używanie wiersza poleceń w terminalu w stylu gry Quake"
 #: guake/data/prefs.glade:223
 msgid "Start Guake at login"
 msgstr ""
+
+#: guake/data/prefs.glade:363
+msgid "Gtk Theme:"
+msgstr ""
+
+#: guake/data/prefs.glade:387
+msgid "Prefer dark theme"
+msgstr ""

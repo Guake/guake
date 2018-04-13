@@ -4,7 +4,7 @@ earliest_version: 3.0.0.a4
 collapse_pre_releases: true
 pre_release_tag_re: (?P<pre_release>\.(?:\d*[ab]|rc)+\d*)$
 stop_at_branch_base: true
-unreleased_version_title: "(unreleased)"
+unreleased_version_title: "(unreleased yet)"
 sections:
   # The prelude section is implicitly included.
   - [features, New Features]
@@ -64,9 +64,11 @@ template: |
         - broken feature has been fixed #1234
 
   translations:
-    - Only put list of updated language <lang>, for example::
+    - Only put a list of updated 2 letters language code, for example::
 
-        - fr_FR
+          translations:
+            - fr
+            - de
 
   notes_for_package_maintainers:
     - |

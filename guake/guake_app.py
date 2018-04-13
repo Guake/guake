@@ -70,6 +70,7 @@ from guake.prefs import refresh_user_start
 from guake.settings import Settings
 from guake.simplegladeapp import SimpleGladeApp
 from guake.terminal import GuakeTerminalBox
+from guake.theme import select_gtk_theme
 from guake.utils import get_server_time
 from locale import gettext as _
 
@@ -162,7 +163,7 @@ class Guake(SimpleGladeApp):
         self.debug_mode = self.settings.general.get_boolean('debug-mode')
         setupLogging(self.debug_mode)
 
-        self._select_gtk_theme()
+        select_gtk_theme(self.settings)
         self._patch_theme()
 
         self.prompt_dialog = None
@@ -423,18 +424,6 @@ class Guake(SimpleGladeApp):
         Gtk.StyleContext.add_provider_for_screen(
             Gdk.Screen.get_default(), style_provider, Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION
         )
-
-    def _select_gtk_theme(self):
-        gtk_theme_name = self.settings.general.get_string('gtk-theme-name')
-        log.debug("Wanted GTK theme: %r", gtk_theme_name)
-        settings = Gtk.Settings.get_default()
-        if gtk_theme_name and (Path("/usr/share/themes") / gtk_theme_name).exists():
-            settings.set_property("gtk-theme-name", gtk_theme_name)
-
-        prefer_dark_theme = self.settings.general.get_boolean('gtk-prefer-dark-theme')
-        log.debug("Prefer dark theme: %r", prefer_dark_theme)
-        if prefer_dark_theme:
-            settings.set_property("gtk-application-prefer-dark-theme", prefer_dark_theme)
 
     # load the custom commands infrastucture
     def load_custom_commands(self):

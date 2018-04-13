@@ -1271,6 +1271,14 @@ msgstr "Schnell öffnen..."
 msgid "Start Guake at login"
 msgstr "Guake beim Anmelden starten"
 
+#: guake/data/prefs.glade:363
+msgid "Gtk Theme:"
+msgstr ""
+
+#: guake/data/prefs.glade:387
+msgid "Prefer dark theme"
+msgstr ""
+
 #~ msgid "Path to script executed on Guake start:"
 #~ msgstr "Pfad zu einem Skript das beim Start ausgeführt wird:"
 

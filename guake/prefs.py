@@ -57,6 +57,8 @@ from guake.paths import LOCALE_DIR
 from guake.paths import LOGIN_DESTOP_PATH
 from guake.simplegladeapp import SimpleGladeApp
 from guake.terminal import GuakeTerminal
+from guake.theme import list_all_themes
+from guake.theme import select_gtk_theme
 from locale import gettext as _
 
 # pylint: disable=unsubscriptable-object
@@ -339,6 +341,22 @@ class PrefsCallbacks(object):
         """Set the `prompt_on_close_tab' property in dconf
         """
         self.settings.general.set_int('prompt-on-close-tab', combo.get_active())
+
+    def on_gtk_theme_name_changed(self, combo):
+        """Set the `gtk_theme_name' property in dconf
+        """
+        citer = combo.get_active_iter()
+        if not citer:
+            return
+        theme_name = combo.get_model().get_value(citer, 0)
+        self.settings.general.set_string('gtk-theme-name', theme_name)
+        select_gtk_theme(self.settings)
+
+    def on_gtk_prefer_dark_theme_toggled(self, chk):
+        """Set the `gtk_prefer_dark_theme' property in dconf
+        """
+        self.settings.general.set_boolean('gtk-prefer-dark-theme', chk.get_active())
+        select_gtk_theme(self.settings)
 
     def on_window_ontop_toggled(self, chk):
         """Changes the activity of window_ontop in dconf
@@ -691,6 +709,7 @@ class PrefsDialog(SimpleGladeApp):
         self.populate_shell_combo()
         self.populate_keys_tree()
         self.populate_display_n()
+        self.populate_gtk_theme_names()
         self.load_configs()
         self.get_widget('config-window').hide()
 
@@ -907,6 +926,7 @@ class PrefsDialog(SimpleGladeApp):
         for i in combo.get_model():
             if ERASE_BINDINGS.get(i[0]) == binding:
                 combo.set_active_iter(i.iter)
+                break
 
         # delete erase binding
         combo = self.get_widget('delete-binding-combobox')
@@ -914,6 +934,7 @@ class PrefsDialog(SimpleGladeApp):
         for i in combo.get_model():
             if ERASE_BINDINGS.get(i[0]) == binding:
                 combo.set_active_iter(i.iter)
+                break
 
     def _load_hooks_settings(self):
         """load hooks settings"""
@@ -932,6 +953,7 @@ class PrefsDialog(SimpleGladeApp):
         for i in combo.get_model():
             if i[0] == value:
                 combo.set_active_iter(i.iter)
+                break
 
     def _load_screen_settings(self):
         """Load screen settings"""
@@ -986,6 +1008,18 @@ class PrefsDialog(SimpleGladeApp):
         value = self.settings.general.get_int('prompt-on-close-tab')
         self.get_widget('prompt_on_close_tab').set_active(value)
         self.get_widget('prompt_on_quit').set_sensitive(value != 2)
+
+        # gtk theme theme
+        value = self.settings.general.get_string('gtk-theme-name')
+        combo = self.get_widget('gtk_theme_name')
+        for i in combo.get_model():
+            if i[0] == value:
+                combo.set_active_iter(i.iter)
+                break
+
+        # prefer gtk theme theme
+        value = self.settings.general.get_boolean('gtk-prefer-dark-theme')
+        self.get_widget('gtk_prefer_dark_theme').set_active(value)
 
         # ontop
         value = self.settings.general.get_boolean('window-ontop')
@@ -1188,6 +1222,12 @@ class PrefsDialog(SimpleGladeApp):
 
         for i in get_binaries_from_path(PYTHONS):
             cb.append_text(i)
+
+    def populate_gtk_theme_names(self):
+        cb = self.get_widget('gtk_theme_name')
+        for name in list_all_themes():
+            name = name.strip()
+            cb.append_text(name)
 
     def populate_keys_tree(self):
         """Reads the HOTKEYS global variable and insert all data in
