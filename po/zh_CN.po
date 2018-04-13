@@ -1232,6 +1232,14 @@ msgstr ""
 msgid "Start Guake at login"
 msgstr ""
 
+#: guake/data/prefs.glade:363
+msgid "Gtk Theme:"
+msgstr ""
+
+#: guake/data/prefs.glade:387
+msgid "Prefer dark theme"
+msgstr ""
+
 #~ msgid "0 means no size limit"
 #~ msgstr "0表示没有大小限制"
 

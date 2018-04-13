@@ -1266,6 +1266,14 @@ msgstr ""
 msgid "Start Guake at login"
 msgstr ""
 
+#: guake/data/prefs.glade:363
+msgid "Gtk Theme:"
+msgstr ""
+
+#: guake/data/prefs.glade:387
+msgid "Prefer dark theme"
+msgstr ""
+
 #~ msgid "key binding error"
 #~ msgstr "chyba klávesových zkratek"
 

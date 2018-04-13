@@ -265,7 +265,7 @@ def main():
         if "COLORTERM" in os.environ:
             del os.environ['COLORTERM']
 
-        log.info("DBus not running, starting it")
+        log.info("Guake not running, starting it")
         # late loading of the Guake object, to speed up dbus comm
         from guake.guake_app import Guake
         instance = Guake()
