@@ -38,7 +38,7 @@ This applies to users of Archlinux based distributions too and may be of help to
 Debian/Ubuntu users as well. Currently ``make install`` is optimized for Ubuntu, which
 does not mean that it can not be used on other systems, but depending on your system
 you may have to tell ``make install`` where to install guake
-(the default for Ubuntu is ``/usr/local/lib/python<python version>/dist_packages/guake``).
+(the default for Ubuntu is ``/usr/local/lib/python3.x/dist-packages/guake``).
 
 So on Ubuntu the following commands are equivalent:
 
@@ -53,10 +53,11 @@ On Archlinux this can be done by passing ``/usr`` as ``PREFIX``:
 
     $ sudo make install PREFIX=/usr
 
-which will changes the installation destination to ``/usr/lib/python3.6/site-packages/guake``.
+which will changes the installation destination to ``/usr/lib/python3.x/site-packages/guake``.
 
-Note that the install script automatically determines to use  whether to use
+Note that the install script automatically determines to use whether to use
 ``dist-packages`` or ``site-packaes``.
+
 For more details checkout the official PKGBUILD at
 `archlinux.org <https://www.archlinux.org/packages/community/any/guake/>`_, the PKGBUILD on
 the `aur <http://aur.archlinux.org/packages/guake-git>`_ or this

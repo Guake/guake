@@ -181,7 +181,7 @@ def main():
         dest='tab_index',
         action='store',
         default='0',
-        help=_('Specify the tab to rename. Default is 0.')
+        help=_('Specify the tab to rename. Default is 0. Can be used to select tab by UUID')
     )
 
     parser.add_option(
@@ -208,8 +208,10 @@ def main():
         metavar='TITLE',
         action='store',
         default='',
-        help=_('Rename the specified tab. Reset to default if TITLE is '
-               'a single dash "-".')
+        help=_(
+            'Rename the specified tab by --tab-index. Reset to default if TITLE is '
+            'a single dash "-".'
+        )
     )
 
     parser.add_option(

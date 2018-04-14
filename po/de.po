@@ -1283,6 +1283,17 @@ msgstr ""
 msgid "Custom Commands"
 msgstr ""
 
+#: guake/main.py:184
+msgid ""
+"Specify the tab to rename. Default is 0. Can be used to select tab by UUID"
+msgstr ""
+
+#: guake/main.py:212
+msgid ""
+"Rename the specified tab by --tab-index. Reset to default if TITLE is a "
+"single dash \"-\"."
+msgstr ""
+
 #~ msgid "Path to script executed on Guake start:"
 #~ msgstr "Pfad zu einem Skript das beim Start ausgeführt wird:"
 

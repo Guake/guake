@@ -10,9 +10,14 @@ install:
     - |
         # Force unshallow and checkout the current branch
         # https://docs.openstack.org/reno/latest/user/usage.html#within-travis-ci
+        # git log --pretty=format:"%h %s" --graph
         git config remote.origin.fetch +refs/heads/*:refs/remotes/origin/*
         git fetch --unshallow --tags
-        git symbolic-ref --short HEAD || git checkout -b ${TRAVIS_BRANCH}-test $TRAVIS_BRANCH
+        if [[ $(git rev-parse --abbrev-ref HEAD) == "master" ]]; then
+            echo "reattaching HEAD on master"
+            git symbolic-ref --short HEAD || git checkout -b ${TRAVIS_BRANCH}-test $TRAVIS_BRANCH
+        fi
+        git log --pretty=format:"%h %s" --graph
 
     - sudo ./scripts/bootstrap-dev-debian.sh
     - ./scripts/bootstrap-dev-pip.sh system
