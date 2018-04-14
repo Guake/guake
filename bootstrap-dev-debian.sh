@@ -17,9 +17,11 @@ sudo apt install -y \
 echo "Install needed development packages on a Debian/Ubuntu system"
 sudo apt install -y \
     aspell-fr \
+    colortest \
     dconf-editor \
     gettext \
     glade \
+    poedit \
     gnome-tweak-tool \
     gsettings-desktop-schemas \
     make \
