@@ -17,6 +17,10 @@ ROOT_DIR=$(shell pwd)
 DATA_DIR=$(ROOT_DIR)/guake/data
 COMPILE_SCHEMA:=1
 
+datarootdir:=$(prefix)/share
+datadir:=$(datarootdir)
+localedir:=$(datarootdir)/locale
+gsettingsschemadir:=$(datarootdir)/glib-2.0/schemas
 
 AUTOSTART_FOLDER:=~/.config/autostart
 
@@ -25,11 +29,6 @@ DEV_LOCALE_DIR:=$(localedir)
 DEV_GLADE_DIR:=$(DATA_DIR)
 DEV_SCHEMA_DIR:=$(DATA_DIR)
 DEV_GUAKE_THEME_DIR:=$(DATA_DIR)/themes
-
-datarootdir:=$(prefix)/share
-datadir:=$(datarootdir)
-localedir:=$(datarootdir)/locale
-gsettingsschemadir:=$(datarootdir)/glib-2.0/schemas
 
 SHARE_DIR:=$(datadir)/guake
 GUAKE_THEME_DIR:=$(SHARE_DIR)/guake
@@ -218,8 +217,11 @@ test-coverage:
 sct: style check update-po requirements test
 
 
-docs: clean-docs
-	cd doc && pipenv run make html
+docs: clean-docs sdist
+	cd docs && pipenv run make html
+
+docs-open:
+	xdg-open docs/_build/html/index.html
 
 tag-pbr:
 	@{ \
@@ -290,7 +292,7 @@ clean-po:
 	@find po -name "*.mo" -exec rm -f {} \;
 
 clean-docs:
-	rm -rf doc/build
+	rm -rf doc/_build
 
 update-po:
 	@find guake -iname "*.py" | xargs xgettext --from-code=UTF-8 --output=guake-python.pot

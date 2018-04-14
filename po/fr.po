@@ -13,7 +13,7 @@ msgstr ""
 "Project-Id-Version: Guake 0.4.5\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-04-14 12:12+0200\n"
-"PO-Revision-Date: 2018-04-14 12:14+0200\n"
+"PO-Revision-Date: 2018-04-14 14:00+0200\n"
 "Last-Translator: Gaetan <gaetan@xeberon.net>\n"
 "Language-Team: French (http://www.transifex.com/projects/p/guake/language/"
 "fr/)\n"
@@ -1006,6 +1006,10 @@ msgstr "Configure vos sessions Guake"
 #: guake/data/guake-prefs.desktop:50 guake/data/guake-prefs.template.desktop:13
 msgid "Terminal;Utility;"
 msgstr "Terminal;Utilitaires;"
+
+#: guake/guake_app.py:435
+msgid "Custom Commands"
+msgstr "Commandes personnalisées:"
 
 #~ msgid ""
 #~ "<i><b>WARNING</b>: your system seems to have PCRE2 disabled for VTE, "

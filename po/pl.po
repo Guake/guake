@@ -1012,3 +1012,7 @@ msgstr ""
 #: guake/data/prefs.glade:387
 msgid "Prefer dark theme"
 msgstr ""
+
+#: guake/guake_app.py:435
+msgid "Custom Commands"
+msgstr ""

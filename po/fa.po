@@ -1239,6 +1239,10 @@ msgstr ""
 msgid "Prefer dark theme"
 msgstr ""
 
+#: guake/guake_app.py:435
+msgid "Custom Commands"
+msgstr ""
+
 #~ msgid "key binding error"
 #~ msgstr "خطا در باگزاری کلید"
 

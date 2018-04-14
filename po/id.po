@@ -1195,5 +1195,9 @@ msgstr ""
 msgid "Prefer dark theme"
 msgstr ""
 
+#: guake/guake_app.py:435
+msgid "Custom Commands"
+msgstr ""
+
 #~ msgid "http://guake.org"
 #~ msgstr "http://guake.org"

@@ -1240,6 +1240,10 @@ msgstr ""
 msgid "Prefer dark theme"
 msgstr ""
 
+#: guake/guake_app.py:435
+msgid "Custom Commands"
+msgstr ""
+
 #~ msgid "0 means no size limit"
 #~ msgstr "0表示没有大小限制"
 
