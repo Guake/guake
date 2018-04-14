@@ -1,6 +1,20 @@
 NEWS
 ====
 
+3.2.0
+-----
+
+New Features
+~~~~~~~~~~~~
+
+-  Allow user to select the theme within the preference UI
+-  Selected tab use "selected highlight" color from theme (#1036)
+
+Translation Updates
+~~~~~~~~~~~~~~~~~~~
+
+-  fr
+
 3.1.1
 -----
 
