@@ -2,8 +2,9 @@ Project information
 ===================
 
 .. toctree::
-   :caption: Guake Documentation
-   :maxdepth: 2
+    :caption: Guake Documentation
+    :maxdepth: 2
 
-   release_notes
-   license
+    history
+    release_notes
+    license

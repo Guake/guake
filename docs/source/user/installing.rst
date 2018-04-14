@@ -21,8 +21,8 @@ Please use the following command to install on your environment:
     $ pip install --user guake
 
 
-Do NOT use ``pip install guake`` without the ``--user``, you may break
-your system
+Avoid using ``pip install guake`` without the ``--user``, you may break
+your system.
 
 Install from source
 ===================
