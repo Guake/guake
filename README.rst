@@ -2,13 +2,16 @@
 Guake 3 README
 ==============
 
-|travis-badge|_ |bountysource-badge|_
+|travis-badge|_ |bountysource-badge|_ |docs-badge|_
 
 .. |travis-badge| image:: https://travis-ci.org/Guake/guake.svg?branch=master
 .. _travis-badge: https://travis-ci.org/Guake/guake
 
 .. |bountysource-badge| image:: https://img.shields.io/bountysource/team/guake/activity.svg
 .. _bountysource-badge: https://www.bountysource.com/teams/guake
+
+.. |docs-badge| image:: https://readthedocs.org/projects/guake/badge/?version=latest
+.. _docs-badge: https://guake.readthedocs.io/en/latest/?badge=latest
 
 
 Introduction
@@ -17,7 +20,7 @@ Introduction
 Guake is a dropdown terminal made for the GNOME desktop environment. Guake's style of window is
 based on an FPS game, and one of its goals is to be easy to reach.
 
-Request Features
+Features Request
 ----------------
 
 Please vote for feature on `FeatHub <http://feathub.com/Guake/guake>`_.
@@ -30,73 +33,9 @@ Most requested features list for Guake:
 .. |feathub-badge| image:: http://feathub.com/Guake/guake?format=svg
 .. _feathub-badge: http://feathub.com/Guake/guake
 
-
-Guake 3 Port
-============
-
-Guake has recently been ported Gtk3, thanks to the huge work of @aichingm.
-Old releases and code depending on GTK2 have been put on the
-`0.8.x <https://github.com/Guake/guake/tree/0.8.x>`_ branch and will no more be actively maintained.
-
-Please note that we target to support mainly the GTK and VTE versions found by default on most
-popular distribution such as Ubuntu LTS (currently: Ubuntu 16.04 LTS and 17.10).
-
-Guake has also been ported to Python 3.5+.
-
-Dropped Features from Guake 0.8.x
----------------------------------
-
-- ``--bgimg`` (this option has been removed from vte)
-
-Broken translations
--------------------
-
-Some changes in translation system made during the Guake 3 port may have broken the welcome message
-in some languages (#1209).
-
-Help is welcomed for updating translations in your language ! See the "Update translation" section
-bellow.
-
-Dependencies
-------------
-
-Here are the dependencies of Guake for its execution:
-
-- GTK: 3.18
-- VTE: 2.91 (`0.42 <https://packages.ubuntu.com/xenial/gir1.2-vte-2.91>`_).
-  See `doc here <https://lazka.github.io/pgi-docs/#Vte-2.91>`_
-- ``gir1.2-keybinder-3.0``
-- ``gir1.2-notify-0.7``
-- ``gir1.2-vte-2.91``
-- ``libkeybinder3``
-- ``python3-cairo``
-- ``python3-dbus``
-- ``python3-gi``
-- ``python3-pbr``
-
-Optional dependencies:
-
-- ``libutempter0``: compatibility with ``wall`` or ``screen`` commands
-- Any GTK theme: ``numix-gtk-theme``, ...
-
-Guake 3 Features
-----------------
-
-- Lightweight
-- Simple Easy and Elegant
-- Smooth integration of terminal into GUI
-- Appears when you call and disappears once you are done by pressing a predefined hotkey (F12 by
-  default)
-- Compiz transparency support
-- Multi tab
-- Plenty of color palettes
-- Quick Open in your favorite text editor with a click on a file name (with line number support)
-- Customizable hotkeys for tab access, reorganization, background transparency, font size,...
-- Extremely configurable
-- Configure Guake startup by running a bash script when Guake starts
-- Multi-monitor support (open on a specified monitor, open on mouse monitor)
-- Save terminal content to file
-- Open URL to your browser
+There is also a Bountysource opened here for those willing to pay a certain among of money for a
+really needed feature.
+`See our Bountysource page here <https://www.bountysource.com/teams/guake>`_.
 
 Bugs? Information?
 ------------------
@@ -105,267 +44,7 @@ Source Code available at: https://github.com/Guake/guake/
 
 Official Homepage: http://guake-project.org
 
+Online Documentation: http://guake.readthedocs.io/
+
 **Important note**: Do **NOT** use the domain guake.org, it has been registered by someone outside
 the team. We cannot be held responsible for the content on that web site.
-
-
-License
-=======
-
-This program is free software; you can redistribute it and/or modify it under the terms of the GNU
-General Public License as published by the Free Software Foundation; either version 2 of the
-License, or (at your option) any later version.
-
-This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without
-even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
-General Public License for more details.
-
-You should have received a copy of the GNU General Public License along with this program; if not,
-write to the Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301,
-USA.
-
-
-System-wide installation
-========================
-
-Always prefere using your package manager to install guake.
-
-Ubuntu users will use `sudo apt install guake`.
-
-If you really want to install Guake from these sources, use:
-
-.. code-block:: bash
-
-    $ make
-    $ sudo make install
-
-To uninstall, still in the source directory:
-
-.. code-block:: bash
-
-    $ make
-    $ sudo make uninstall
-
-Tips for a complete Guake reinstallation:
-
-.. code-block:: bash
-
-    $ sudo make uninstall && make && sudo make install
-
-Note for Archlinux users
-------------------------
-
-This applies to users of Archlinux based distributions too and may be of help to non
-Debian/Ubuntu users as well. Currently ``make install`` is optimized for Ubuntu, which
-does not mean that it can not be used on other systems, but depending on your system
-you may have to tell ``make install`` where to install guake
-(the default for Ubuntu is ``/usr/local/lib/python<python version>/dist_packages/guake``).
-
-So on Ubuntu the following commands are equivalent:
-
-.. code-block:: bash
-
-    $ sudo make install
-    $ sudo make install PREFIX=/usr/lobal
-
-On Archlinux this can be done by passing ``/usr`` as ``PREFIX``:
-
-.. code-block:: bash
-
-    $ sudo make install PREFIX=/usr
-
-which will changes the installation destination to ``/usr/lib/python3.6/site-packages/guake``.
-
-Note that the install script automatically determines to use  whether to use
-``dist-packages`` or ``site-packaes``.
-For more details checkout the official PKGBUILD at
-`archlinux.org <https://www.archlinux.org/packages/community/any/guake/>`_, the PKGBUILD on
-the `aur <http://aur.archlinux.org/packages/guake-git>`_ or this
-`gist <https://gist.github.com/aichingm/ed35ba3b136be4424b1ac947207dbca3>`_.
-
-Note for maintainers
---------------------
-
-Guake has drastically changed its build system with Guake 3. You may need to adapt all the
-integration scripts accordingly.
-
-Guake now uses `Pipfile` to store it Python dependencies (except the system dependencies such as
-PyGTK3). It is maintained and used by `pipenv` CLI tool. It is a system more advanced than using
-`requirements.txt`, but this file is still generated for backward compatibility (for example:
-ReadTheDocs only support `requirements.txt` for the moment), by a tool I've developed, named
-`pipenv_to_requirements` (makefile target `make requirements`).
-It does generate `requirements.txt` (running dependencies), and `requirements-dev.txt` (build,
-checks and test only). From then, Guake is now a classic, canon Python package (with setup.py,
-building distrubution packages, ...).
-
-It however requires system libraries, so cannot work isolated inside a virtualenv. If you look
-closer to the virtualenv used with `make dev ; make run`, you will see it is configured to use
-the system libraries using `pew toggleglobalsitepackages`.
-
-If for any reason `pipenv` does not work on your platform, you can still install guake from these
-requirements file, but the ultimate source of truth for dependency declaration is the `Pipfile`.
-
-Do not hesitate to contact me at `gaetan [at] xeberon.net`.
-
-Manual keybinding
------------------
-
-If you want to trigger guake manually, for instance on system where ``libkeybinder3`` does not work,
-you can register the following snippet in your window manager
-
-.. code-block:: bash
-
-    dbus-send --type=method_call --dest=org.guake3.RemoteControl \
-        /org/guake3/RemoteControl org.guake3.RemoteControl.show_hide
-
-You can use the simpler
-
-.. code-block:: bash
-
-    guake -t
-
-But it will be slower since ultimately it sends the very same D-Bus message.
-
-Note on Wayland
----------------
-
-There are some reports of Guake not opening when a Wayland app or empty desktop is focused.
-The issue has been reported on Ubuntu 17.10 LTS, Fedora 26 and Fedora 27.
-For more context, see issue #1041.
-
-The workaround is setting a manual keybinding as described above. On Fedora 26, for example, this can be accomplished by
-going to *Settings > Keyboard* and adding a new custom shortcut to execute :code:`guake -t`.
-
-Contributing
-============
-
-First, be sure to use a verion of Python 3 where GTK and GObjects works in your system.
-For instance, under Ubuntu 17.04, PyGtk and ``python3-gi`` does not work well if the default
-python 3 interpreter is forced to Python 3.6.
-
-+-------------------+----------------------------+-----------------------------+
-| Operating System  | Recommended Python version | Notes                       |
-+===================+============================+=============================+
-| Ubuntu 14.04 LTS  | Python 3.4 (UNTESTED)      |                             |
-+-------------------+----------------------------+-----------------------------+
-| Ubuntu 16.04 LTS  | Python 3.5 (TESTED)        |                             |
-+-------------------+----------------------------+-----------------------------+
-| Ubuntu 17.04      | Python 3.5 (TESTED)        |                             |
-+-------------------+----------------------------+-----------------------------+
-| Ubuntu 17.10      | Python 3.6 (TESTED)        | Quick Open disabled (#1230) |
-+-------------------+----------------------------+-----------------------------+
-
-Install System dependencies
----------------------------
-
-Ubuntu
-~~~~~~
-
-Execute the following command to bootstrap all needed system dependencies:
-
-.. code-block:: bash
-
-    $ ./bootstrap-dev-debian.sh
-
-Setup development env
----------------------
-
-Install the dependencies of your system and use the following commands:
-
-.. code-block:: bash
-
-    $ make dev
-    $ sudo make install-schemas  # still required even for local execution
-
-You can force the interpreter version using the PYTHON_INTERPRETER variable:
-
-.. code-block:: bash
-
-    $ make dev PYTHON_INTERPRETER=python3.6
-
-Local execution of guake (without system-wide install):
-
-.. code-block:: bash
-
-    $ make run
-
-You can reinstall easily in your environment (only validated for Debian/Ubuntu) with:
-
-.. code-block:: bash
-
-    $ make reinstall  # will execute `sudo`
-
-Git hook
-~~~~~~~~
-
-Please install this git hook if you want to beautify your patch before submission:
-
-.. code-block:: bash
-
-    $ make setup-githook
-
-Validate your code
-~~~~~~~~~~~~~~~~~~
-
-We are strict on code styling, with pep8 and pylint running automatically in travis in
-order to reject badly shaped patches. Please use the following command to validate all
-python files:
-
-.. code-block:: bash
-
-    $ make style  # fix the style of python files
-    $ make check  # static code analysis
-    $ make test   # unit test campaign
-    $ make dists  # make distribution packages
-
-Update translation
-------------------
-
-Update all translation files:
-
-.. code-block:: bash
-
-    $ make update-po
-
-Install the translations files:
-
-.. code-block:: bash
-
-    $ sudo make install-locale
-
-Then use your favorite po editor, such as ``poedit``.
-
-Start Guake with a different locale (locales should be installed):
-
-.. code-block:: bash
-
-    $ LC_ALL=fr_FR.UTF8 make run
-
-
-Update NEWS
------------
-
-Update the `NEWS` file using the followng command:
-
-.. code-block:: bash
-
-    make release-note-news
-
-
-The ``ChangeLog`` files is not maintained but instead automatically generated by PBR when
-building the distribution packages.
-
-Same goes for the `ChangeLog` file.
-
-Versionning
------------
-
-Versioning is automatically done using git tags. When a semver tag is pushed, a new version
-is automatically created by PBR.
-
-Travis build
-------------
-
-Travis automatically check pull requests are compiling and check for code style.
-
-Status of the master branch: https://travis-ci.org/Guake/guake.png?branch=master

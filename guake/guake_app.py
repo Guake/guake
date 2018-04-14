@@ -432,7 +432,7 @@ class Guake(SimpleGladeApp):
         custom_commands_menu = Gtk.Menu()
         if not self.get_custom_commands(custom_commands_menu):
             return
-        menu = Gtk.MenuItem("Custom Commands")
+        menu = Gtk.MenuItem(_("Custom Commands"))
         menu.set_submenu(custom_commands_menu)
         menu.show()
         self.custom_command_menuitem = menu

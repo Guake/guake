@@ -1,0 +1,75 @@
+======================================
+Setting up the development environment
+======================================
+
+Install from source
+-------------------
+
+If you want to install Guake from these sources, use:
+
+.. code-block:: bash
+
+    $ make
+    $ sudo make install
+
+To uninstall, still in the source directory:
+
+.. code-block:: bash
+
+    $ make
+    $ sudo make uninstall
+
+Tips for a complete Guake reinstallation:
+
+.. code-block:: bash
+
+    $ sudo make uninstall && make && sudo make install
+
+Install System dependencies
+---------------------------
+
+Ubuntu
+~~~~~~
+
+Execute the following command to bootstrap all needed system dependencies:
+
+.. code-block:: bash
+
+    $ ./bootstrap-dev-debian.sh
+
+Setup development env
+---------------------
+
+Install the dependencies of your system and use the following commands:
+
+.. code-block:: bash
+
+    $ make dev
+    $ sudo make install-schemas  # still required even for local execution
+
+You can force the interpreter version using the PYTHON_INTERPRETER variable:
+
+.. code-block:: bash
+
+    $ make dev PYTHON_INTERPRETER=python3.6
+
+Local execution of guake (without system-wide install):
+
+.. code-block:: bash
+
+    $ make run
+
+You can reinstall easily in your environment (only validated for Debian/Ubuntu) with:
+
+.. code-block:: bash
+
+    $ make reinstall  # will execute `sudo`
+
+Git hook
+~~~~~~~~
+
+Please install this git hook if you want to beautify your patch before submission:
+
+.. code-block:: bash
+
+    $ make setup-githook

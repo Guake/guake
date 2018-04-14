@@ -1279,6 +1279,10 @@ msgstr ""
 msgid "Prefer dark theme"
 msgstr ""
 
+#: guake/guake_app.py:435
+msgid "Custom Commands"
+msgstr ""
+
 #~ msgid "Path to script executed on Guake start:"
 #~ msgstr "Pfad zu einem Skript das beim Start ausgeführt wird:"
 
