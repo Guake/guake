@@ -75,7 +75,7 @@ ChangeLog
 .venv
 .vscode/
 
-guake/data/gschemas.compiled
+data/gschemas.compiled
 .pytest_cache/
 releasenotes/notes/reno.cache
 guake/paths.py
