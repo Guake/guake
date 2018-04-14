@@ -14,8 +14,8 @@ install:
         git fetch --unshallow --tags
         git symbolic-ref --short HEAD || git checkout -b ${TRAVIS_BRANCH}-test $TRAVIS_BRANCH
 
-    - sudo ./bootstrap-dev-debian.sh
-    - ./bootstrap-dev-pip.sh system
+    - sudo ./scripts/bootstrap-dev-debian.sh
+    - ./scripts/bootstrap-dev-pip.sh system
 
 
 script:

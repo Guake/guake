@@ -35,7 +35,7 @@ Execute the following command to bootstrap all needed system dependencies:
 
 .. code-block:: bash
 
-    $ ./bootstrap-dev-debian.sh
+    $ ./scripts/bootstrap-dev-debian.sh
 
 Setup development env
 ---------------------

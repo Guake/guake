@@ -198,10 +198,10 @@ wheels:
 
 
 run-local: compile-glib-schemas-dev
-	pipenv run ./run-local.sh
+	pipenv run ./scripts/run-local.sh
 
 run-fr: compile-glib-schemas-dev
-	LC_ALL=fr_FR.UTF8 pipenv run ./run-local.sh
+	LC_ALL=fr_FR.UTF8 pipenv run ./scripts/run-local.sh
 
 
 shell:
