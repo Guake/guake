@@ -14,7 +14,7 @@ PYTHON_SITE_PACKAGE_NAME:=$(shell $(PYTHON_INTERPRETER) -c "import site; import 
 PYTHON_SITE_PACKAGE_DIR=$(prefix)/lib/python$(shell $(PYTHON_INTERPRETER) -c "import sys; v = sys.version_info; print('{}.{}'.format(v.major, v.minor))")/$(PYTHON_SITE_PACKAGE_NAME)
 OLD_PREFIX:=$(DESTDIR)usr
 ROOT_DIR=$(shell pwd)
-DATA_DIR=$(ROOT_DIR)/guake/data
+DATA_DIR=$(ROOT_DIR)/data
 COMPILE_SCHEMA:=1
 
 datarootdir:=$(prefix)/share
@@ -24,6 +24,7 @@ gsettingsschemadir:=$(datarootdir)/glib-2.0/schemas
 
 AUTOSTART_FOLDER:=~/.config/autostart
 
+DEV_DATA_DIR:=$(DATA_DIR)
 DEV_IMAGE_DIR:=$(DATA_DIR)/pixmaps
 DEV_LOCALE_DIR:=$(localedir)
 DEV_GLADE_DIR:=$(DATA_DIR)
@@ -105,19 +106,19 @@ install-old-locale:
 	@find $(OLD_PREFIX)/share/locale/ -name "guake.mo" -exec rm -f {} \;
 
 install-schemas:
-	install -Dm644 "guake/data/guake.desktop" "$(DESTDIR)$(prefix)/share/applications/guake.desktop"
-	install -Dm644 "guake/data/guake-prefs.desktop" "$(DESTDIR)$(prefix)/share/applications/guake-prefs.desktop"
+	install -Dm644 "$(DEV_DATA_DIR)/guake.desktop" "$(DESTDIR)$(prefix)/share/applications/guake.desktop"
+	install -Dm644 "$(DEV_DATA_DIR)/guake-prefs.desktop" "$(DESTDIR)$(prefix)/share/applications/guake-prefs.desktop"
 	mkdir -p $(DESTDIR)$(IMAGE_DIR)
-	install -Dm644 guake/data/pixmaps/*.png "$(DESTDIR)$(IMAGE_DIR)/"
-	install -Dm644 guake/data/pixmaps/*.svg "$(DESTDIR)$(IMAGE_DIR)/"
-	install -Dm644 guake/data/pixmaps/guake.png "$(DESTDIR)$(prefix)/share/pixmaps/guake.png"
+	install -Dm644 $(DEV_DATA_DIR)/pixmaps/*.png "$(DESTDIR)$(IMAGE_DIR)/"
+	install -Dm644 $(DEV_DATA_DIR)/pixmaps/*.svg "$(DESTDIR)$(IMAGE_DIR)/"
+	install -Dm644 $(DEV_DATA_DIR)/pixmaps/guake.png "$(DESTDIR)$(prefix)/share/pixmaps/guake.png"
 	mkdir -p $(DESTDIR)$(SHARE_DIR)
 	mkdir -p $(DESTDIR)$(GLADE_DIR)
-	install -Dm644  guake/data/*.glade "$(DESTDIR)$(GLADE_DIR)"
+	install -Dm644  $(DEV_DATA_DIR)/*.glade "$(DESTDIR)$(GLADE_DIR)"
 	mkdir -p $(DESTDIR)$(SHARE_DIR)
-	install -Dm644 "guake/data/autostart-guake.desktop" "$(DESTDIR)$(SHARE_DIR)"
+	install -Dm644 "$(DEV_DATA_DIR)/autostart-guake.desktop" "$(DESTDIR)$(SHARE_DIR)"
 	mkdir -p $(DESTDIR)$(SCHEMA_DIR)
-	install -Dm644 "guake/data/org.guake.gschema.xml" "$(DESTDIR)$(SCHEMA_DIR)/"
+	install -Dm644 "$(DEV_DATA_DIR)/org.guake.gschema.xml" "$(DESTDIR)$(SCHEMA_DIR)/"
 
 compile-shemas:
 	if [ $(COMPILE_SCHEMA) = 1 ]; then glib-compile-schemas $(DESTDIR)$(gsettingsschemadir); fi
@@ -150,10 +151,10 @@ reinstall:
 	sudo make uninstall && make && sudo make install && $(DESTDIR)$(bindir)/guake
 
 compile-glib-schemas-dev: clean-schemas
-	glib-compile-schemas --strict guake/data/
+	glib-compile-schemas --strict $(DEV_DATA_DIR)
 
 clean-schemas:
-	rm -f guake/data/gschemas.compiled
+	rm -f $(DEV_DATA_DIR)/gschemas.compiled
 
 style: fiximports autopep8 yapf
 
@@ -282,7 +283,7 @@ clean: rm-dists clean-docs clean-po clean-schemas clean-py clean-paths
 clean-py:
 	@pipenv --rm ; true
 	@find . -name "*.pyc" -exec rm -f {} \;
-	@rm -f guake/data/guake-prefs.desktop guake/data/guake.desktop
+	@rm -f $(DEV_DATA_DIR)/guake-prefs.desktop $(DEV_DATA_DIR)/guake.desktop
 	@rm -rf .venv .eggs *.egg-info po/*.pot
 
 clean-paths:
@@ -295,12 +296,13 @@ clean-docs:
 	rm -rf doc/_build
 
 update-po:
+	echo "generating pot file"
 	@find guake -iname "*.py" | xargs xgettext --from-code=UTF-8 --output=guake-python.pot
-	@find guake/data -iname "*.glade" | xargs xgettext --from-code=UTF-8 \
+	@find $(DEV_DATA_DIR) -iname "*.glade" | xargs xgettext --from-code=UTF-8 \
 	                                                  -L Glade \
 	                                                  --output=guake-glade.pot
 	@(\
-	    find guake/data -iname "*.desktop" | xargs xgettext --from-code=UTF-8 \
+	    find $(DEV_DATA_DIR) -iname "*.desktop" | xargs xgettext --from-code=UTF-8 \
 		                                                  -L Desktop \
 	                                                      --output=guake-desktop.pot \
 	) || ( \
@@ -308,7 +310,7 @@ update-po:
 	    touch guake-desktop.pot)
 	@msgcat --use-first guake-python.pot guake-glade.pot guake-desktop.pot > po/guake.pot
 	@rm guake-python.pot guake-glade.pot guake-desktop.pot
-	for f in $$(find po -iname "*.po"); do \
+	@for f in $$(find po -iname "*.po"); do \
 	    echo "updating $$f"; \
 	    msgcat --use-first "$$f" po/guake.pot > "$$f.new"; \
 	    mv "$$f.new" $$f; \
@@ -326,16 +328,16 @@ generate-mo:
 
 generate-desktop:
 	@echo "generating desktop files"
-	@msgfmt --desktop --template=guake/data/guake.template.desktop \
+	@msgfmt --desktop --template=$(DEV_DATA_DIR)/guake.template.desktop \
 		   -d po \
-		   -o guake/data/guake.desktop || ( \
+		   -o $(DEV_DATA_DIR)/guake.desktop || ( \
 			   	echo "Skipping .desktop files, is your gettext version < 0.19.1?" && \
-				cp guake/data/guake.template.desktop guake/data/guake.desktop)
-	@msgfmt --desktop --template=guake/data/guake-prefs.template.desktop \
+				cp $(DEV_DATA_DIR)/guake.template.desktop $(DEV_DATA_DIR)/guake.desktop)
+	@msgfmt --desktop --template=$(DEV_DATA_DIR)/guake-prefs.template.desktop \
 		   -d po \
-		   -o guake/data/guake-prefs.desktop || ( \
+		   -o $(DEV_DATA_DIR)/guake-prefs.desktop || ( \
 			   	echo "Skipping .desktop files, is your gettext version < 0.19.1?" && \
-				cp guake/data/guake-prefs.template.desktop guake/data/guake-prefs.desktop)
+				cp $(DEV_DATA_DIR)/guake-prefs.template.desktop $(DEV_DATA_DIR)/guake-prefs.desktop)
 
 generate-paths:
 	cp -f guake/paths.py.in guake/paths.py
