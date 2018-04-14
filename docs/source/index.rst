@@ -3,10 +3,13 @@
 Guake User Documentation
 ========================
 
+.. image:: ../../data/pixmaps/intro-small.jpg
+
 Welcome to the official Guake User Documentation.
 
 Guake is a dropdown terminal made for the GNOME desktop environment. Guake's style of window is
 based on a famous FPS game, and one of its goals is to be easy to reach and developer friendly.
+
 
 Main Features
 =============

@@ -7,8 +7,22 @@ System-wide installation
 
 Always prefere using your package manager to install guake.
 
-Ubuntu users will use `sudo apt install guake`.
+Debian / Ubuntu
+---------------
 
+Ubuntu and Debian users will use ``sudo apt install guake``.
+
+Fedora
+------
+
+TBD: Want to help fill this section? Please submit your suggestion on
+`GitHub <https://github.com/Guake/guake>`_.
+
+Arch Linux
+----------
+
+TBD: Want to help fill this section? Please submit your suggestion on
+`GitHub <https://github.com/Guake/guake>`_.
 
 Install from Pypi
 =================

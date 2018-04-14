@@ -32,8 +32,7 @@ Thanks to the Guake community, a huge number of Terminal palettes are provided o
 Gtk Theme
 =========
 
-Guake allows to override the default GNOME/Gtk theme, allowing you to choose a specific theme only
-for Guake.
+Guake allows you to choose a different Gtk theme than your environment.
 
 Quick Open, hyperlink and Search on web
 =======================================
@@ -43,6 +42,10 @@ Guake automatically finds URL printed in your terminal and allow you to click on
 
 Quick-Open
 ----------
+
+.. image:: ../../../data/pixmaps/quick-open.png
+    :align: right
+
 Guake is also able to find out file names and open it in your favorite code editor, such as
 Visual Studio Code, Atom or SublimText.
 
@@ -51,9 +54,15 @@ as ``gcc``, Python's traceback or ``pytest`` report, and allowing you to automat
 file at the correct line number. Guake is even able to find the Python function name automatically
 when used with ``pytest``.
 
+.. image:: ../../../data/pixmaps/quick-open-python-exception.png
+    :align: center
+
 Even if Guake cannot parse the output, you can still ask him to open a wanted file path displayed
 in your terminal, provided the file exists at this path. Simply select the full path and click
 using the ``[Ctrl]+click``, or with the contextual menu on right click.
+
+.. image:: ../../../data/pixmaps/quick-open-selection.png
+    :align: center
 
 Contextual menu
 ---------------
@@ -96,3 +105,10 @@ DBus commands
 =============
 
 The major features of guake are available on DBus.
+
+Tab UUID
+========
+
+Tabs are uniquely identified with a UUID. Each terminal receives this UUID in the following
+environment varialbe: ``GUAKE_TAB_UUID``. It can be used to rename the tab from the command line
+using ``--tab-index 3c542bc1-7c99-4e73-8d37-e08281bd592c``.

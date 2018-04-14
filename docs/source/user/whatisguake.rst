@@ -11,8 +11,10 @@ Alternatives
 Here are some of the best terminals avaiable on the Linux environments that bring similar features
 of Guake:
 
-- `Tilda <https://github.com/lanoxx/tilda/>`-
-- `Tilix <https://github.com/gnunn1/tilix>`-
-- `Yakuake <https://www.kde.org/applications/system/yakuake/>`- (For the KDE)
-- `GNOME Terminal <https://wiki.gnome.org/Apps/Terminal>`-
-- `Terminator <http://gnometerminator.blogspot.com/>`-
+`Title <http://link>`_
+
+- `Tilda <https://github.com/lanoxx/tilda/>`_
+- `Tilix <https://github.com/gnunn1/tilix>`_
+- `Yakuake <https://www.kde.org/applications/system/yakuake/>`_ (For the KDE)
+- `GNOME Terminal <https://wiki.gnome.org/Apps/Terminal>`_
+- `Terminator <http://gnometerminator.blogspot.com/>`_

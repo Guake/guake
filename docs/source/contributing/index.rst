@@ -9,3 +9,4 @@ Contributing to Guake
     basic
     dev_env
     hacking
+    packaging
