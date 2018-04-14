@@ -3,9 +3,9 @@ Contributing to Guake
 =====================
 
 .. toctree::
-   :caption: Contributing Guide
-   :maxdepth: 2
+    :caption: Contributing Guide
+    :maxdepth: 2
 
-   basic
-   dev_env
-   hacking
+    basic
+    dev_env
+    hacking
