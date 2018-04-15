@@ -34,7 +34,7 @@ script:
             pip install -r requirements-dev.txt
             make generate-paths
             guake -h
-            rm -rfv test-rtd
+            rm -rf test-rtd
         )
     # for dev
     - make dev
