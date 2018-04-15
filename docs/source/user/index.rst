@@ -8,5 +8,6 @@ User Manual
     whatisguake
     features
     installing
-    guake3
+    cli
+    gtk3
     faq

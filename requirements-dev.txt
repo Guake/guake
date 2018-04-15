@@ -10,6 +10,7 @@
 # `Pipfile.lock` and then regenerate `requirements*.txt`.
 ################################################################################
 
+-e .
 autopep8
 colorlog
 fiximports>=0.1.18
@@ -24,4 +25,5 @@ pytest-mock
 reno>=2.8.0
 rope
 sphinx-rtd-theme
+sphinxcontrib-programoutput
 yapf

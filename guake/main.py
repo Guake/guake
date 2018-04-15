@@ -24,7 +24,6 @@ import time
 # g_start = time.time()
 # def p():
 #     print(time.time() - g_start, __file__, inspect.currentframe().f_back.f_lineno)
-import dbus
 import logging
 import os
 import signal
@@ -32,17 +31,12 @@ import subprocess
 import sys
 import uuid
 
+from locale import gettext as _
 from optparse import OptionParser
 
-from guake import guake_version
-from guake.common import bindtextdomain
-from guake.dbusiface import DBUS_NAME
-from guake.dbusiface import DBUS_PATH
-from guake.dbusiface import DbusManager
 from guake.globals import NAME
-from guake.guake_logging import setupLogging
+from guake.globals import bindtextdomain
 from guake.paths import LOCALE_DIR
-from locale import gettext as _
 
 log = logging.getLogger(__name__)
 
@@ -245,8 +239,16 @@ def main():
 
     options = parser.parse_args()[0]
     if options.version:
+        from guake import guake_version
         print('Guake Terminal %s' % guake_version())
         sys.exit(0)
+
+    import dbus
+
+    from guake.dbusiface import DBUS_NAME
+    from guake.dbusiface import DBUS_PATH
+    from guake.dbusiface import DbusManager
+    from guake.guake_logging import setupLogging
 
     instance = None
 
