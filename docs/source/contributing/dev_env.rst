@@ -2,29 +2,6 @@
 Setting up the development environment
 ======================================
 
-Install from source
--------------------
-
-If you want to install Guake from these sources, use:
-
-.. code-block:: bash
-
-    $ make
-    $ sudo make install
-
-To uninstall, still in the source directory:
-
-.. code-block:: bash
-
-    $ make
-    $ sudo make uninstall
-
-Tips for a complete Guake reinstallation:
-
-.. code-block:: bash
-
-    $ sudo make uninstall && make && sudo make install
-
 Install System dependencies
 ---------------------------
 

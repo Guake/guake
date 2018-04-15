@@ -9,5 +9,6 @@ User Manual
     features
     installing
     cli
-    gtk3
+    dbus
     faq
+    gtk3
