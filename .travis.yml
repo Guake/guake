@@ -32,7 +32,6 @@ script:
             virtualenv test-rtd
             . ./test-rtd/bin/activate
             pip install -r requirements-dev.txt
-            make generate-paths
             guake -h
             rm -rf test-rtd
         )
