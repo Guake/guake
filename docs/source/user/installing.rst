@@ -41,4 +41,24 @@ your system.
 Install from source
 ===================
 
-See the contributing section.
+If you want to install Guake from its sources, use:
+
+.. code-block:: bash
+
+    $ make
+    $ sudo make install
+
+To uninstall, still in the source directory:
+
+.. code-block:: bash
+
+    $ make
+    $ sudo make uninstall
+
+Tips for a complete Guake reinstallation:
+
+.. code-block:: bash
+
+    $ sudo make uninstall && make && sudo make install
+    $ # Or use this shortcut:
+    $ make reinstall  # (do not sudo it!)
