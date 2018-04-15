@@ -34,13 +34,17 @@ import uuid
 from locale import gettext as _
 from optparse import OptionParser
 
-from guake.globals import NAME
-from guake.globals import bindtextdomain
-from guake.paths import LOCALE_DIR
-
 log = logging.getLogger(__name__)
 
-bindtextdomain(NAME, LOCALE_DIR)
+from guake.globals import NAME
+from guake.globals import bindtextdomain
+
+# When we are in the document generation on readthedocs, we do not have paths.py generated
+try:
+    from guake.paths import LOCALE_DIR
+    bindtextdomain(NAME, LOCALE_DIR)
+except:  # pylint: disable=bare-except
+    pass
 
 
 def main():
