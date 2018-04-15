@@ -22,6 +22,8 @@ pipenv-to-requirements = "*"
 colorlog = "*"
 rope = "*"
 sphinx-rtd-theme = "*"
+sphinxcontrib-programoutput = "*"
+"e1839a8" = {path = ".", editable = true}
 
 [packages]
 pbr = "*"

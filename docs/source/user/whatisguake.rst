@@ -5,13 +5,11 @@ What is Guake?
 Guake is a powerful drop-down terminal, accessible by a simple hotkey. It has been designed to be
 the swiss knife of any developer willing to increase its productivity.
 
-Alternatives
-============
+Alternatives to Guake
+=====================
 
 Here are some of the best terminals avaiable on the Linux environments that bring similar features
 of Guake:
-
-`Title <http://link>`_
 
 - `Tilda <https://github.com/lanoxx/tilda/>`_
 - `Tilix <https://github.com/gnunn1/tilix>`_

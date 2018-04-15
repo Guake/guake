@@ -24,8 +24,18 @@ install:
 
 
 script:
-    # users should be able to build without python dev dependencies
-    - make
+    # Test no system dependencies prevent readthedocs build
+    - |
+        (
+            set -e
+            mkdir test-rtd
+            virtualenv test-rtd
+            . ./test-rtd/bin/activate
+            pip install -r requirements-dev.txt
+            make generate-paths
+            guake -h
+            rm -rfv test-rtd
+        )
     # for dev
     - make dev
     # check

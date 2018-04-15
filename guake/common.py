@@ -38,31 +38,7 @@ __all__ = [
     'hexify_color',
     'pixmapfile',
     'ShowableError',
-    'bindtextdomain',
 ]
-
-
-def bindtextdomain(app_name, locale_dir=None):
-    """
-    Bind the domain represented by app_name to the locale directory locale_dir.
-    It has the effect of loading translations, enabling applications for different
-    languages.
-
-    app_name:
-        a domain to look for translations, typically the name of an application.
-
-    locale_dir:
-        a directory with locales like locale_dir/lang_isocode/LC_MESSAGES/app_name.mo
-        If omitted or None, then the current binding for app_name is used.
-    """
-
-    import locale
-    from locale import gettext as _
-
-    log.info("Local binding for app '%s', local dir: %s", app_name, locale_dir)
-
-    locale.bindtextdomain(app_name, locale_dir)
-    locale.textdomain(app_name)
 
 
 def ShowableError(parent, title, msg, exit_code=1):

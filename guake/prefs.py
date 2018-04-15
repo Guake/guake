@@ -38,7 +38,6 @@ from gi.repository import Pango
 from gi.repository import Vte
 
 from guake.common import ShowableError
-from guake.common import bindtextdomain
 from guake.common import get_binaries_from_path
 from guake.common import gladefile
 from guake.common import hexify_color
@@ -51,6 +50,7 @@ from guake.globals import ALIGN_TOP
 from guake.globals import ALWAYS_ON_PRIMARY
 from guake.globals import NAME
 from guake.globals import QUICK_OPEN_MATCHERS
+from guake.globals import bindtextdomain
 from guake.palettes import PALETTES
 from guake.paths import AUTOSTART_FOLDER
 from guake.paths import LOCALE_DIR
