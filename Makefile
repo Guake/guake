@@ -54,7 +54,7 @@ dev: pipenv-install-dev requirements ln-venv setup-githook prepare-install
 
 dev-no-pipenv: clean
 	virtualenv --python $(PYTHON_INTERPRETER) .venv
-	. .venv/bin/activate && pip3 install -r requirements.txt -r requirements-dev.txt -e .
+	. .venv/bin/activate && /usr/bin/env python3 -m pip install -r requirements.txt -r requirements-dev.txt -e .
 
 pipenv-install-dev:
 	pipenv install --dev --python $(PYTHON_INTERPRETER); \
@@ -71,7 +71,7 @@ install-guake:
 	# sudo make install
 	@echo "Installing from on your system is not recommended."
 	@echo "Please prefer you application package manager (apt, yum, ...)"
-	@pip3 install -r requirements.txt
+	@/usr/bin/env python3 -m pip install -r requirements.txt
 
 	@if [ -f guake/paths.py.dev ]; then rm -f guake/paths.py.dev; fi
 	@if [ -f guake/paths.py ]; then mv guake/paths.py guake/paths.py.dev; fi
