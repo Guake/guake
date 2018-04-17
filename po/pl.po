@@ -1006,14 +1006,14 @@ msgstr "Konfiguracja sesji programu Guake"
 msgid "Terminal;Utility;"
 msgstr "Terminal;Utility;"
 
-#: /home/renault/Projects/dev-tools/guake-3.0/data/search.glade:138
+#: data/search.glade:138
 msgid "Search forward"
 msgstr ""
 
-#: /home/renault/Projects/dev-tools/guake-3.0/data/search.glade:153
+#: data/search.glade:153
 msgid "Match case"
 msgstr ""
 
-#: /home/renault/Projects/dev-tools/guake-3.0/data/search.glade:186
+#: data/search.glade:186
 msgid "Current search direction: Backward"
 msgstr ""

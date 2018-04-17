@@ -298,11 +298,11 @@ clean-docs:
 update-po:
 	echo "generating pot file"
 	@find guake -iname "*.py" | xargs xgettext --from-code=UTF-8 --output=guake-python.pot
-	@find $(DEV_DATA_DIR) -iname "*.glade" | xargs xgettext --from-code=UTF-8 \
+	@find $(DEV_DATA_DIR) -iname "*.glade" | sed -E "s#$(ROOT_DIR)/##g" | xargs xgettext --from-code=UTF-8 \
 	                                                  -L Glade \
 	                                                  --output=guake-glade.pot
 	@(\
-	    find $(DEV_DATA_DIR) -iname "*.desktop" | xargs xgettext --from-code=UTF-8 \
+	    find $(DEV_DATA_DIR) -iname "*.desktop" | sed -E "s#$(ROOT_DIR)/##g" | xargs xgettext --from-code=UTF-8 \
 		                                                  -L Desktop \
 	                                                      --output=guake-desktop.pot \
 	) || ( \
