@@ -307,6 +307,7 @@ class GuakeTerminal(Vte.Terminal):
 
     def _on_ctrl_click_matcher(self, matched_string):
         value, tag = matched_string
+        found_matcher = False
         log.debug("matched string: %s", matched_string)
         # First searching in additional matchers
         use_quick_open = self.settings.general.get_boolean("quick-open-enable")
