@@ -10,8 +10,8 @@ Guake 3 README
 .. |bountysource-badge| image:: https://img.shields.io/bountysource/team/guake/activity.svg
 .. _bountysource-badge: https://www.bountysource.com/teams/guake
 
-.. |docs-badge| image:: https://readthedocs.org/projects/guake/badge/?version=latest
-.. _docs-badge: https://guake.readthedocs.io/en/latest/?badge=latest
+.. |docs-badge| image:: https://readthedocs.org/projects/guake/badge/?version=stable
+.. _docs-badge: https://guake.readthedocs.io/en/stable/?badge=stable
 
 
 Introduction
