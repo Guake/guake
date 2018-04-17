@@ -11,8 +11,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Guake 0.4.5\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-08-28 10:43+0300\n"
-"PO-Revision-Date: 2018-01-25 20:55+0100\n"
+"POT-Creation-Date: 2018-04-17 13:26+0300\n"
+"PO-Revision-Date: 2018-04-17 16:36+0300\n"
 "Last-Translator: Ivan Komaritsyn <vantu5z@mail.ru>\n"
 "Language: ru\n"
 "MIME-Version: 1.0\n"
@@ -1107,7 +1107,7 @@ msgstr "Терминал;Инструменты;"
 
 #: guake/data/guake.desktop:10
 msgid "Use the command line in a Quake-like terminal"
-msgstr "Использовать командную строку в Quake терминале"
+msgstr "Использовать командную строку как в Quake терминале"
 
 #: guake/data/prefs.glade:770
 msgid "Main Window Horizontal Alignment"
@@ -1139,47 +1139,47 @@ msgstr ""
 
 #: guake/prefs.py:89
 msgid "Show and focus Guake window"
-msgstr ""
+msgstr "Показать и перевести фокус на окно Guake"
 
 #: guake/data/prefs.glade:566
 msgid "0"
-msgstr ""
+msgstr "0"
 
 #: guake/data/prefs.glade:610
 msgid "<b>Main Window Options</b>"
-msgstr ""
+msgstr "<b>Параметры главного окна</b>"
 
 #: guake/data/prefs.glade:770
 msgid "Horizontal Alignment:"
-msgstr ""
+msgstr "Горизонтальное выравнивание"
 
 #: guake/data/prefs.glade:855
 msgid "Height:"
-msgstr ""
+msgstr "Высота:"
 
 #: guake/data/prefs.glade:868
 msgid "Width:"
-msgstr ""
+msgstr "Ширина:"
 
 #: guake/data/prefs.glade:913
 msgid "<b>Geometry</b>"
-msgstr ""
+msgstr "<b>Геометрия</b>"
 
 #: guake/data/prefs.glade:944
 msgid "Main Window"
-msgstr ""
+msgstr "Главное окно"
 
 #: guake/data/prefs.glade:1197
 msgid "Infinite scrolling"
-msgstr ""
+msgstr "Неограниченная прокрутка "
 
 #: guake/data/prefs.glade:1219
 msgid "<b>Scrollbar</b>"
-msgstr ""
+msgstr "<b>Полоса прокрутки</b>"
 
 #: guake/data/prefs.glade:1304
 msgid "<b>Scroll to Bottom</b>"
-msgstr ""
+msgstr "<b>Прокручивать до конца</b>"
 
 #: guake/data/prefs.glade:2117
 msgid ""
@@ -1188,14 +1188,17 @@ msgid ""
 "terminal. See the list of currently supported text patterns used to extract "
 "filename below."
 msgstr ""
+"Быстрое открытие позволяет открыть файл в текстовом редакторе при нажатии на "
+"имя файла отображаемое в терминале. Ниже указан список, поддерживаемых в "
+"настоящий момент шаблонов, используемых для определения имени файла."
 
 #: guake/main.py:64
 msgid "Show Guake version number and exit"
-msgstr ""
+msgstr "Показать версию Guake и выйти"
 
 #: guake/data/prefs.glade:93
 msgid "<span size=\"18000\"><b>Guake properties</b></span>"
-msgstr "<span size=\"18000\"><b>Свойства Guake</b></span>"
+msgstr "<span size=\"18000\"><b>Параметры Guake</b></span>"
 
 #: guake/data/prefs.glade:107
 msgid "Customize behavior and appearance of Guake!"
@@ -1203,27 +1206,27 @@ msgstr "Настройки поведения и отображения Guake!"
 
 #: guake/data/prefs.glade:929
 msgid "Displacement in pixels"
-msgstr ""
+msgstr "Смещение в пикселях"
 
 #: guake/main.py:73
 msgid "Enable verbose logging"
-msgstr ""
+msgstr "Включать подробности в журнал"
 
 #: guake/guake_app.py:680
 msgid "Quick Open: '{!s}...'"
-msgstr ""
+msgstr "Быстрое открытие: '{!s}...'"
 
 #: guake/guake_app.py:683
 msgid "Quick Open: {!s}"
-msgstr ""
+msgstr "Быстрое открытие: {!s}"
 
 #: guake/guake_app.py:691
 msgid "Open Link: '{!s}...'"
-msgstr ""
+msgstr "Окрыть ссылку: '{!s}...'"
 
 #: guake/guake_app.py:694
 msgid "Open Link: {!s}"
-msgstr ""
+msgstr "Окрыть ссылку: {!s}"
 
 #: guake/data/prefs.glade:2175
 msgid ""
@@ -1233,52 +1236,65 @@ msgid ""
 "VTE with PCRE2 enabled ! To use Quick Open, you <b>must select the text</b> "
 "before using Ctrl+click</i>."
 msgstr ""
+"<i><b>ВНИМАНИЕ</b>: похоже в системе отключен PCRE2 для VTE, "
+"что не даёт возможности Guake использовать регулярные выражения. "
+"Обратитесь к разработчикам Вашего дистрибутива за новой версией "
+"VTE с включенным PCRE2! Для использования Быстрого открытия, "
+"<b>необходимо выбрать текст</b> перед нажатием Ctrl+click</i>."
 
 #: guake/guake_app.py:680
 msgid "Quick Open: {!s}..."
-msgstr ""
+msgstr "Быстрое открытие: {!s}..."
 
 #: guake/guake_app.py:691
 msgid "Open Link: {!s}..."
-msgstr ""
+msgstr "Открыть ссылку: {!s}..."
 
 #: guake/guake_app.py:688
 msgid "Quick Open..."
-msgstr ""
+msgstr "Быстрое открытие..."
 
 #: guake/data/prefs.glade:223
 msgid "Start Guake at login"
-msgstr ""
+msgstr "Запускать Guake при входе в систему"
 
 #: guake/data/prefs.glade:363
 msgid "Gtk Theme:"
-msgstr ""
+msgstr "Gtk тема:"
 
 #: guake/data/prefs.glade:387
 msgid "Prefer dark theme"
-msgstr ""
+msgstr "Предпочитать тёмную тему"
 
 #: guake/main.py:184
 msgid ""
 "Specify the tab to rename. Default is 0. Can be used to select tab by UUID"
 msgstr ""
+"Укажите вкладку для переименования. По умолчанию - 0. Можно использовать "
+"UUID для выбора"
 
 #: guake/main.py:212
 msgid ""
 "Rename the specified tab by --tab-index. Reset to default if TITLE is a "
 "single dash \"-\"."
 msgstr ""
+"Переименовать указанную вкладку по --tab-index. Сбросить к умолчанию, если "
+"TITLE состоит из одиночного слеша \"-\"."
 
-#: /home/renault/Projects/dev-tools/guake-3.0/data/search.glade:138
+#: /home/vantu5z/git/guake/data/search.glade:138
 msgid "Search forward"
-msgstr ""
+msgstr "Искать вперёд"
 
-#: /home/renault/Projects/dev-tools/guake-3.0/data/search.glade:153
+#: /home/vantu5z/git/guake/data/search.glade:153
 msgid "Match case"
-msgstr ""
+msgstr "Учитывать регистр"
 
-#: /home/renault/Projects/dev-tools/guake-3.0/data/search.glade:186
+#: /home/vantu5z/git/guake/data/search.glade:186
 msgid "Current search direction: Backward"
+msgstr "Текущее направление поиска: Назад"
+
+#: /home/vantu5z/git/guake/data/guake-prefs.desktop:13
+msgid "guake-prefs"
 msgstr ""
 
 #~ msgid "Path to script executed on Guake start:"
