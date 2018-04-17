@@ -72,10 +72,12 @@ ALWAYS_ON_PRIMARY = -1
 # TODO this is not as fancy as as it could be
 # pylint: disable=anomalous-backslash-in-string
 TERMINAL_MATCH_TAGS = ('schema', 'http', 'https', 'email', 'ftp')
+# Beware this is a PRCE (Perl) regular expression, not a Python one!
+# Edit: use regex101.com with PCRE syntax
 TERMINAL_MATCH_EXPRS = [
-    "(news:|telnet:|nntp:|file:\/|https?:|ftps?:|webcal:)\/\/"
-    "([-[:alnum:]]+(:[-[:alnum:],?;.:\/!%$^*&~\"#']+)?\@)?[-[:alnum:]]+"
-    "(\.[-[:alnum:]]+)*(:[0-9]{1,5})?(\/[-[:alnum:]_$.+!*(),;:@&=?\/~#%]*[^]'.>) \t\r\n,\\\"])?",
+    "(news:|telnet:|nntp:|file:\/|https?:|ftps?:|webcal:)\/\/([-[:alnum:]]+"
+    "(:[-[:alnum:],?;.:\/!%$^\*&~\"#']+)?\@)?[-[:alnum:]]+(\.[-[:alnum:]]+)*"
+    "(:[0-9]{1,5})?(\/[-[:alnum:]_$.+!*(),;:@&=?\/~#'%]*[^].> \t\r\n,\\\"])?",
     "(www|ftp)[-[:alnum:]]*\.[-[:alnum:]]+(\.[-[:alnum:]]+)*(:[0-9]{1,5})?"
     "(\/[-[:alnum:]_$.+!*(),;:@&=?\/~#%]*[^]'.>) \t\r\n,\\\"])?",
     "(mailto:)?[-[:alnum:]][-[:alnum:].]*@[-[:alnum:]]+\.[-[:alnum:]]+(\\.[-[:alnum:]]+)*"
