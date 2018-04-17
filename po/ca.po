@@ -1260,6 +1260,18 @@ msgid ""
 "single dash \"-\"."
 msgstr ""
 
+#: /home/renault/Projects/dev-tools/guake-3.0/data/search.glade:138
+msgid "Search forward"
+msgstr ""
+
+#: /home/renault/Projects/dev-tools/guake-3.0/data/search.glade:153
+msgid "Match case"
+msgstr ""
+
+#: /home/renault/Projects/dev-tools/guake-3.0/data/search.glade:186
+msgid "Current search direction: Backward"
+msgstr ""
+
 #~ msgid "key binding error"
 #~ msgstr "S'ha produït un error en definir la drecera de teclat"
 
