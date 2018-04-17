@@ -659,7 +659,7 @@ class Guake(SimpleGladeApp):
             # First send to background process if handled, do nothing else
             if Vte.Terminal.do_button_press_event(terminal, event):
                 log.info("Background app captured the right click event")
-                return False
+                return True
 
         log.debug("showing context menu")
         self.showing_context_menu = True
