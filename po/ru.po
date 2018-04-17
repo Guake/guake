@@ -1236,11 +1236,11 @@ msgid ""
 "VTE with PCRE2 enabled ! To use Quick Open, you <b>must select the text</b> "
 "before using Ctrl+click</i>."
 msgstr ""
-"<i><b>ВНИМАНИЕ</b>: похоже в системе отключен PCRE2 для VTE, "
-"что не даёт возможности Guake использовать регулярные выражения. "
-"Обратитесь к разработчикам Вашего дистрибутива за новой версией "
-"VTE с включенным PCRE2! Для использования Быстрого открытия, "
-"<b>необходимо выбрать текст</b> перед нажатием Ctrl+click</i>."
+"<i><b>ВНИМАНИЕ</b>: похоже в системе отключен PCRE2 для VTE, что не даёт "
+"возможности Guake использовать регулярные выражения. Обратитесь к "
+"разработчикам Вашего дистрибутива за новой версией VTE с включенным PCRE2! "
+"Для использования Быстрого открытия, <b>необходимо выбрать текст</b> перед "
+"нажатием Ctrl+click</i>."
 
 #: guake/guake_app.py:680
 msgid "Quick Open: {!s}..."
@@ -1281,15 +1281,15 @@ msgstr ""
 "Переименовать указанную вкладку по --tab-index. Сбросить к умолчанию, если "
 "TITLE состоит из одиночного слеша \"-\"."
 
-#: /home/vantu5z/git/guake/data/search.glade:138
+#: data/search.glade:138
 msgid "Search forward"
 msgstr "Искать вперёд"
 
-#: /home/vantu5z/git/guake/data/search.glade:153
+#: data/search.glade:153
 msgid "Match case"
 msgstr "Учитывать регистр"
 
-#: /home/vantu5z/git/guake/data/search.glade:186
+#: data/search.glade:186
 msgid "Current search direction: Backward"
 msgstr "Текущее направление поиска: Назад"
 
