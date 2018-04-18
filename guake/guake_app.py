@@ -48,7 +48,10 @@ from gi.repository import Vte
 
 import cairo
 
+from guake import gtk_version
+from guake import guake_version
 from guake import notifier
+from guake import vte_version
 from guake.about import AboutDialog
 from guake.common import gladefile
 from guake.common import pixmapfile
@@ -162,6 +165,9 @@ class Guake(SimpleGladeApp):
         self.settings = Settings(schema_source)
         self.debug_mode = self.settings.general.get_boolean('debug-mode')
         setupLogging(self.debug_mode)
+        log.info('Guake Terminal %s', guake_version())
+        log.info('VTE %s', vte_version())
+        log.info('Gtk %s', gtk_version())
 
         select_gtk_theme(self.settings)
         self._patch_theme()

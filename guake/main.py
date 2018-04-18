@@ -243,8 +243,12 @@ def main():
 
     options = parser.parse_args()[0]
     if options.version:
+        from guake import gtk_version
         from guake import guake_version
-        print('Guake Terminal %s' % guake_version())
+        from guake import vte_version
+        print('Guake Terminal {}'.format(guake_version()))
+        print('VTE {}'.format(vte_version()))
+        print('Gtk {}'.format(gtk_version()))
         sys.exit(0)
 
     import dbus

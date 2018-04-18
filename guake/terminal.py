@@ -118,11 +118,16 @@ class GuakeTerminal(Vte.Terminal):
         self._pid = pid
 
     def feed_child(self, resolved_cmdline):
-        try:
+        if (Vte.MAJOR_VERSION, Vte.MINOR_VERSION) >= (0, 42):
+            encoded = resolved_cmdline.encode("utf-8")
+            try:
+                super().feed_child_binary(encoded)
+            except TypeError:
+                # The doc doest not say clearly at which version the feed_child* function has lost
+                # the "len" parameter :(
+                super().feed_child(resolved_cmdline, len(resolved_cmdline))
+        else:
             super().feed_child(resolved_cmdline, len(resolved_cmdline))
-        except TypeError:
-            # vte > 0.42 only takes 1 parameter
-            super().feed_child(resolved_cmdline)
 
     def copy_clipboard(self):
         if self.get_has_selection():
