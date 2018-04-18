@@ -18,7 +18,8 @@ You can use the simpler
 
     guake -t
 
-But it will be slower since ultimately it sends the very same D-Bus message.
+But it will be slower since ultimately it sends the very same D-Bus message but will execute all
+the Guake initialization procedure.
 
 Note on Wayland
 ---------------
@@ -62,3 +63,10 @@ For more details checkout the official PKGBUILD at
 `archlinux.org <https://www.archlinux.org/packages/community/any/guake/>`_, the PKGBUILD on
 the `aur <http://aur.archlinux.org/packages/guake-git>`_ or this
 `gist <https://gist.github.com/aichingm/ed35ba3b136be4424b1ac947207dbca3>`_.
+
+Why Guake crashes with Tmux and Byubu?
+--------------------------------------
+
+Tmux and Byobu can be used as shell instead of bash or zsh, but you should be sure to disable the
+"use login shell" option. If set, Guake will not be able to start. Use ``dconf-editor`` to reset
+this option if Guake cannot start again.
