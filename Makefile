@@ -109,8 +109,8 @@ install-schemas:
 	install -Dm644 "$(DEV_DATA_DIR)/guake.desktop" "$(DESTDIR)$(prefix)/share/applications/guake.desktop"
 	install -Dm644 "$(DEV_DATA_DIR)/guake-prefs.desktop" "$(DESTDIR)$(prefix)/share/applications/guake-prefs.desktop"
 	mkdir -p $(DESTDIR)$(IMAGE_DIR)
-	install -Dm644 $(DEV_DATA_DIR)/pixmaps/*.png "$(DESTDIR)$(prefix)$(IMAGE_DIR)/"
-	install -Dm644 $(DEV_DATA_DIR)/pixmaps/*.svg "$(DESTDIR)$(prefix)$(IMAGE_DIR)/"
+	install -Dm644 $(DEV_DATA_DIR)/pixmaps/*.png "$(DESTDIR)$(IMAGE_DIR)/"
+	install -Dm644 $(DEV_DATA_DIR)/pixmaps/*.svg "$(DESTDIR)$(IMAGE_DIR)/"
 	install -Dm644 $(DEV_DATA_DIR)/pixmaps/guake.png "$(DESTDIR)$(prefix)/share/pixmaps/guake.png"
 	mkdir -p $(DESTDIR)$(SHARE_DIR)
 	mkdir -p $(DESTDIR)$(GLADE_DIR)
