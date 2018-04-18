@@ -2,3 +2,9 @@ translations:
   - fr
   - pl
   - ru
+
+known_issues:
+  - |
+    Users of Byobu or Tmux as default shell should disable the "login shell" option
+    (in the "Shell" panel). This uses an option, ``--login``, that does not exist on these
+    two tools.
