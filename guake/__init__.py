@@ -23,3 +23,27 @@ def guake_version():
     # Do not import in the module root to speed up the dbus communication as much as possible
     import pbr.version
     return pbr.version.VersionInfo('guake').version_string()
+
+
+def vte_version():
+    import gi
+    gi.require_version('Vte', '2.91')
+
+    from gi.repository import Vte
+    s = "{}.{}.{}".format(
+        Vte.MAJOR_VERSION,
+        Vte.MINOR_VERSION,
+        Vte.MICRO_VERSION,
+    )
+    if (Vte.MAJOR_VERSION, Vte.MINOR_VERSION) >= (0, 40):
+        s += " (runtime: {}.{}.{})".format(
+            Vte.get_major_version(), Vte.get_minor_version(), Vte.get_micro_version()
+        )
+    return s
+
+
+def gtk_version():
+    import gi
+    gi.require_version('Gtk', '3.0')
+    from gi.repository import Gtk
+    return "{}.{}.{}".format(Gtk.MAJOR_VERSION, Gtk.MINOR_VERSION, Gtk.MICRO_VERSION)
