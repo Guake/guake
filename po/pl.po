@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: guake\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-04-15 12:00+0200\n"
-"PO-Revision-Date: 2018-04-15 15:05+0200\n"
+"POT-Creation-Date: 2018-04-22 19:49+0200\n"
+"PO-Revision-Date: 2018-04-22 19:52+0200\n"
 "Last-Translator: Piotr Drąg <piotrdrag@gmail.com>\n"
 "Language-Team: Polish <trans-pl@lists.fedoraproject.org>\n"
 "Language: pl\n"
@@ -20,7 +20,7 @@ msgstr ""
 "Plural-Forms: nplurals=3; plural=(n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 "
 "|| n%100>=20) ? 1 : 2);\n"
 
-#: guake/keybindings.py:94 guake/guake_app.py:185 guake/guake_app.py:397
+#: guake/keybindings.py:94 guake/guake_app.py:191 guake/guake_app.py:403
 #: guake/about.py:54
 msgid "Guake Terminal"
 msgstr "Terminal Guake"
@@ -34,49 +34,49 @@ msgstr ""
 "Wystąpił problem podczas dowiązywania klawisza <b>%s</b>.\n"
 "Proszę użyć okna preferencji programu Guake, aby wybrać inny klawisz"
 
-#: guake/guake_app.py:128
+#: guake/guake_app.py:131
 msgid "Do you want to close the tab?"
 msgstr "Zamknąć kartę?"
 
-#: guake/guake_app.py:131
+#: guake/guake_app.py:134
 msgid "Do you really want to quit Guake?"
 msgstr "Na pewno zakończyć program Guake?"
 
-#: guake/guake_app.py:133
+#: guake/guake_app.py:136
 msgid " and one tab open"
 msgstr " i jest jedna otwarta karta"
 
-#: guake/guake_app.py:135
+#: guake/guake_app.py:138
 #, python-brace-format
 msgid " and {0} tabs open"
 msgstr " i więcej kart jest otwartych: {0}"
 
-#: guake/guake_app.py:138
+#: guake/guake_app.py:141
 msgid "There are no processes running"
 msgstr "Żaden proces nie jest uruchomiony"
 
-#: guake/guake_app.py:140
+#: guake/guake_app.py:143
 msgid "There is a process still running"
 msgstr "Jeden proces jest nadal uruchomiony"
 
-#: guake/guake_app.py:142
+#: guake/guake_app.py:145
 #, python-brace-format
 msgid "There are {0} processes still running"
 msgstr "Nadal uruchomione procesy: {0}"
 
-#: guake/guake_app.py:191
+#: guake/guake_app.py:197
 msgid "guake-indicator"
 msgstr "guake-indicator"
 
-#: guake/guake_app.py:191
+#: guake/guake_app.py:197
 msgid "guake-tray"
 msgstr "guake-tray"
 
-#: guake/guake_app.py:196
+#: guake/guake_app.py:202
 msgid "Show"
 msgstr "Wyświetl"
 
-#: guake/guake_app.py:398
+#: guake/guake_app.py:404
 msgid ""
 "Guake is now running,\n"
 "press <b>{!s}</b> to use it."
@@ -84,143 +84,143 @@ msgstr ""
 "Program Guake jest teraz uruchomiony,\n"
 "naciśnięcie <b>{!s}</b> go aktywuje."
 
-#: guake/guake_app.py:435
+#: guake/guake_app.py:441
 msgid "Custom Commands"
 msgstr "Inne polecenia"
 
-#: guake/guake_app.py:688
+#: guake/guake_app.py:694
 #, python-format
 msgid "Search on Web: '%s'"
 msgstr "Wyszukiwanie w Internecie: „%s”"
 
-#: guake/guake_app.py:692
+#: guake/guake_app.py:698
 msgid "Search on Web (no selection)"
 msgstr "Wyszukiwanie w Internecie (bez zaznaczenia)"
 
-#: guake/guake_app.py:704
+#: guake/guake_app.py:710
 msgid "Quick Open: {!s}..."
 msgstr "Szybkie otwieranie: {!s}…"
 
-#: guake/guake_app.py:707
+#: guake/guake_app.py:713
 msgid "Quick Open: {!s}"
 msgstr "Szybkie otwieranie: {!s}"
 
-#: guake/guake_app.py:710
+#: guake/guake_app.py:716
 msgid "Quick Open..."
 msgstr "Szybko otwórz…"
 
-#: guake/guake_app.py:718
+#: guake/guake_app.py:724
 msgid "Open Link: {!s}..."
 msgstr "Otwieranie odnośnika: {!s}…"
 
-#: guake/guake_app.py:721
+#: guake/guake_app.py:727
 msgid "Open Link: {!s}"
 msgstr "Otwieranie odnośnika: {!s}"
 
-#: guake/guake_app.py:724
+#: guake/guake_app.py:730
 msgid "Open Link..."
 msgstr "Otwórz odnośnik…"
 
-#: guake/guake_app.py:1463
+#: guake/guake_app.py:1469
 msgid "Terminal"
 msgstr "Terminal"
 
-#: guake/guake_app.py:1519
+#: guake/guake_app.py:1525
 msgid "Rename tab"
 msgstr "Zmiana nazwy karty"
 
-#: guake/guake_app.py:1854
+#: guake/guake_app.py:1860
 msgid "Save to..."
 msgstr "Zapisanie do…"
 
-#: guake/guake_app.py:1859 guake/prefs.py:1198
+#: guake/guake_app.py:1865 guake/prefs.py:1198
 msgid "All files"
 msgstr "Wszystkie pliki"
 
-#: guake/guake_app.py:1864
+#: guake/guake_app.py:1870
 msgid "Text and Logs"
 msgstr "Pliki tekstowe i dzienniki"
 
-#: guake/guake_app.py:1884
+#: guake/guake_app.py:1890
 msgid "Find"
 msgstr "Znajdź"
 
-#: guake/guake_app.py:1886
+#: guake/guake_app.py:1892
 msgid "Forward"
 msgstr "Dalej"
 
-#: guake/guake_app.py:1886
+#: guake/guake_app.py:1892
 msgid "Backward"
 msgstr "Wstecz"
 
-#: guake/main.py:69
+#: guake/main.py:67
 msgid "Show Guake version number and exit"
 msgstr "Wyświetla wersję programu Guake i kończy działanie"
 
-#: guake/main.py:78
+#: guake/main.py:76
 msgid "Enable verbose logging"
 msgstr "Włącza więcej komunikatów dziennika"
 
-#: guake/main.py:87
+#: guake/main.py:85
 msgid "Put Guake in fullscreen mode"
 msgstr "Umieszcza program Guake w trybie pełnoekranowym"
 
-#: guake/main.py:96
+#: guake/main.py:94
 msgid "Toggles the visibility of the terminal window"
 msgstr "Przełącza widoczność okna terminala"
 
-#: guake/main.py:104
+#: guake/main.py:102
 msgid "Shows Guake main window"
 msgstr "Wyświetla główne okno programu Guake"
 
-#: guake/main.py:112
+#: guake/main.py:110
 msgid "Hides Guake main window"
 msgstr "Ukrywa główne okno programu Guake"
 
-#: guake/main.py:121
+#: guake/main.py:119
 msgid "Shows Guake preference window"
 msgstr "Wyświetla okno preferencji programu Guake"
 
-#: guake/main.py:130
+#: guake/main.py:128
 msgid "Shows Guake's about info"
 msgstr "Wyświetla informacje o programie Guake"
 
-#: guake/main.py:139
+#: guake/main.py:137
 msgid "Add a new tab (with current directory set to NEW_TAB)"
 msgstr "Dodaje nową kartę (z bieżącym katalogiem ustawionym na NEW_TAB)"
 
-#: guake/main.py:148
+#: guake/main.py:146
 msgid "Select a tab (SELECT_TAB is the index of the tab)"
 msgstr "Wybiera kartę (SELECT_TAB jest indeksem kart)"
 
-#: guake/main.py:157
+#: guake/main.py:155
 msgid "Return the selected tab index."
 msgstr "Wyświetla indeks wybranej karty."
 
-#: guake/main.py:166
+#: guake/main.py:164
 msgid "Return the selected tab label."
 msgstr "Wyświetla etykietę wybranej karty."
 
-#: guake/main.py:175
+#: guake/main.py:173
 msgid "Execute an arbitrary command in the selected tab."
 msgstr "Wykonuje podane polecenie w wybranej karcie."
 
-#: guake/main.py:184
+#: guake/main.py:182
 msgid ""
 "Specify the tab to rename. Default is 0. Can be used to select tab by UUID"
 msgstr ""
 "Podaje kartę do zmiany nazwy. Domyślnie 0. Można używać do wybrania karty "
 "według UUID"
 
-#: guake/main.py:192
+#: guake/main.py:190
 msgid "Set the hexadecimal (#rrggbb) background color of the selected tab."
 msgstr "Ustawia szesnastkowy (#rrggbb) kolor tła wybranej karty."
 
-#: guake/main.py:201
+#: guake/main.py:199
 msgid "Set the hexadecimal (#rrggbb) foreground color of the selected tab."
 msgstr "Ustawia szesnastkowy (#rrggbb) kolor tekstu wybranej karty."
 
-#: guake/main.py:212
+#: guake/main.py:210
 msgid ""
 "Rename the specified tab by --tab-index. Reset to default if TITLE is a "
 "single dash \"-\"."
@@ -228,18 +228,18 @@ msgstr ""
 "Zmienia nazwę karty podanej przez parametr --tab-index. Przywraca domyślą, "
 "jeśli TITLE jest pojedynczym myślnikiem „-”."
 
-#: guake/main.py:224
+#: guake/main.py:222
 msgid ""
 "Rename the current tab. Reset to default if TITLE is a single dash \"-\"."
 msgstr ""
 "Zmienia nazwę bieżącej karty. Przywraca domyślą, jeśli TITLE jest "
 "pojedynczym myślnikiem „-”."
 
-#: guake/main.py:234
+#: guake/main.py:232
 msgid "Says to Guake go away =("
 msgstr "Mówi programowi Guake, aby sobie poszedł =("
 
-#: guake/main.py:243
+#: guake/main.py:241
 msgid "Do not execute the start up script"
 msgstr "Bez wykonywania skryptu startowego"
 
@@ -900,7 +900,7 @@ msgstr "Znajdź w Internecie"
 msgid "Rename"
 msgstr "Zmień nazwę"
 
-#: data/guake.glade:206
+#: data/guake.glade:206 data/search.glade:22
 msgid "Close"
 msgstr "Zamknij"
 
@@ -989,6 +989,18 @@ msgstr ""
 "Sangwoo Joo <sangwoojoo@naver.com> koreański\n"
 "    "
 
+#: data/search.glade:138
+msgid "Search forward"
+msgstr "Wyszukiwanie naprzód"
+
+#: data/search.glade:153
+msgid "Match case"
+msgstr "Rozróżnianie małych i wielkich liter"
+
+#: data/search.glade:186
+msgid "Current search direction: Backward"
+msgstr "Obecny kierunek wyszukiwania: wstecz"
+
 #: data/autostart-guake.desktop:31 data/guake.template.desktop:4
 msgid "Use the command line in a Quake-like terminal"
 msgstr "Używanie wiersza poleceń w terminalu w stylu gry Quake"
@@ -1005,15 +1017,3 @@ msgstr "Konfiguracja sesji programu Guake"
 #: data/guake-prefs.template.desktop:13
 msgid "Terminal;Utility;"
 msgstr "Terminal;Utility;"
-
-#: data/search.glade:138
-msgid "Search forward"
-msgstr ""
-
-#: data/search.glade:153
-msgid "Match case"
-msgstr ""
-
-#: data/search.glade:186
-msgid "Current search direction: Backward"
-msgstr ""
