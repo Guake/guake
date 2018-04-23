@@ -1,6 +1,53 @@
 NEWS
 ====
 
+(unreleased yet)
+----------------
+
+New Features
+~~~~~~~~~~~~
+
+-  Thanks to @arcticicestudio, a new nice, clean new palette theme is available for Guake users:
+   Nord (#1275)
+
+Known Issues
+~~~~~~~~~~~~
+
+-  Multiline url are sometimes not handled correctly.
+-  Users of Byobu or Tmux as default shell should disable the "login shell" option (in the "Shell"
+   panel). This uses an option, ``--login``, that does not exist on these two tools.
+
+Bug Fixes
+~~~~~~~~~
+
+-  Fix right click selection in Midnight Commander
+-  URL with ``'`` (simple quote) and ``()`` (parenthesis) are now captured by hyperlink matcher.
+   This may causes some issues with log and so that use parenthesis *around* hyperlinks, but since
+   parenthesis and quotes are valid characters inside a URL, like for instance URL created by
+   Kibana, they deserve the right to be shown as proper url in Guake.
+
+   User can still select the URL in the terminal if he wishes to capture the exact url, before doing
+   a Ctrl+click or a right click.
+
+   For developers, it is advised to end the URL with a character that cannot be used in URL, such as
+   space, tab, new line. Ending with a dot (``.``) or a comma (``,``) will not be seen as part of
+   the URL by Guake, so most logs and traces that adds a dot or a comma at the end of the URL might
+   still work.
+-  Fix "Grubbox Dark" theme
+
+Translation Updates
+~~~~~~~~~~~~~~~~~~~
+
+-  fr
+-  pl
+-  ru
+
+Other
+~~~~~
+
+-  Rework the documentation. The README grew up a lot and was hard to use. It has been cut into
+   several user manual pages in the official online documentation.
+
 3.2.0
 -----
 
@@ -91,7 +138,6 @@ Bug Fixes
 -  Fix crash when changing command file #1229
 -  fix ``import sys`` in ``simplegladeapp.py``
 -  change scope of ``which_align`` variable in ``pref.py`` (#1225)
--  Fix user interface translations #1228
 -  Fix several issues on Quick Edit:
 
    -  quick open freezes guake
@@ -108,6 +154,7 @@ Bug Fixes
    -  bad translation update on the contextual menu. This causes new strings that was hidden to
       appear for translators.
    -  Fix quick open on pattern "File:line" line that was not opening the wanted file.
+-  Fix user interface translations #1228
 -  Some systems such as Ubuntu did displayed Guake with a translated interface (#1209). The locale
    system has been reworked to fix that.
 -  There might be broken translations, or not up-to-date language support by Guake. A global refresh
@@ -266,7 +313,7 @@ Other
 ~~~~~
 
 -  The dependencies of the Guake executable has been slightly better described in README. There is
-   an example for Debian/Ubuntu in the file ``./bootstrap-dev-debian.sh`` which is the main
+   an example for Debian/Ubuntu in the file ``scripts/bootstrap-dev-debian.sh`` which is the main
    environment where Guake is developed and tested.
 -  Package maintainers are encouraged to submit their ``bootstrap-dev-[distribution].sh``,
    applicable for other distributions, to help users install Guake from source, and other package
