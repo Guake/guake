@@ -35,11 +35,17 @@ def vte_version():
         Vte.MINOR_VERSION,
         Vte.MICRO_VERSION,
     )
-    if (Vte.MAJOR_VERSION, Vte.MINOR_VERSION) >= (0, 40):
-        s += " (runtime: {}.{}.{})".format(
-            Vte.get_major_version(), Vte.get_minor_version(), Vte.get_micro_version()
-        )
     return s
+
+
+def vte_runtime_version():
+    import gi
+    gi.require_version('Vte', '2.91')
+
+    from gi.repository import Vte
+    return "{}.{}.{}".format(
+        Vte.get_major_version(), Vte.get_minor_version(), Vte.get_micro_version()
+    )
 
 
 def gtk_version():
