@@ -1,0 +1,3 @@
+fixes:
+  - |
+      - corrected usage of Vte.Regex.new_for_match to fix hyperlink matching #1295
