@@ -1,8 +1,8 @@
 NEWS
 ====
 
-(unreleased yet)
-----------------
+3.2.1
+-----
 
 New Features
 ~~~~~~~~~~~~
