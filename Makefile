@@ -50,7 +50,7 @@ reset:
 
 all: clean dev style checks dists test docs
 
-dev: pipenv-install-dev requirements ln-venv setup-githook prepare-install
+dev: clean-ln-venv pipenv-install-dev requirements ln-venv setup-githook prepare-install
 
 dev-no-pipenv: clean
 	virtualenv --python $(PYTHON_INTERPRETER) .venv
@@ -63,6 +63,9 @@ ln-venv:
 	# use that to configure a symbolic link to the virtualenv in .venv
 	rm -rf .venv
 	ln -s $$(pipenv --venv) .venv
+
+clean-ln-venv:
+	@rm -f .venv
 
 install-system: install-schemas compile-shemas install-locale install-guake
 
@@ -277,14 +280,14 @@ push: githook
 	git push origin --tags
 
 
-clean: rm-dists clean-docs clean-po clean-schemas clean-py clean-paths
+clean: clean-ln-venv rm-dists clean-docs clean-po clean-schemas clean-py clean-paths
 	@echo "clean successful"
 
 clean-py:
 	@pipenv --rm ; true
 	@find . -name "*.pyc" -exec rm -f {} \;
 	@rm -f $(DEV_DATA_DIR)/guake-prefs.desktop $(DEV_DATA_DIR)/guake.desktop
-	@rm -rf .venv .eggs *.egg-info po/*.pot
+	@rm -rf .eggs *.egg-info po/*.pot
 
 clean-paths:
 	rm -f guake/paths.py guake/paths.py.dev

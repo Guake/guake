@@ -7,6 +7,8 @@ a Linux Distribution, such as Debian, Arch, Fedora, and so on.
 
 It gives some information about how Guake is built.
 
+.. _Dependencies:
+
 Dependencies
 ============
 

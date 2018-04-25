@@ -21,6 +21,8 @@ Bug Fixes
 ~~~~~~~~~
 
 -  Fix right click selection in Midnight Commander
+-  Corrected usage of ``Vte.Regex.new_for_match`` to fix regular expression matching (hyperlinks,
+   quick open) on VTE >0.50 (#1295)
 -  URL with ``'`` (simple quote) and ``()`` (parenthesis) are now captured by hyperlink matcher.
    This may causes some issues with log and so that use parenthesis *around* hyperlinks, but since
    parenthesis and quotes are valid characters inside a URL, like for instance URL created by

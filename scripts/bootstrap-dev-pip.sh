@@ -9,8 +9,8 @@ else
 fi
 
 python3 -m pip install $op --upgrade \
-    'pip==9.0.3' \
-    'pipenv==11.9.0' \
+    'pip==10.0.1' \
+    'pipenv==11.10.0' \
     'setuptools!=36.6.0' \
     || echo "you may need to sudo me !"
 
