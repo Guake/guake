@@ -36,8 +36,10 @@ def get_resource_dirs(resource):
 
 def list_all_themes():
     return sorted(
-        x.name for theme_dir in get_resource_dirs("themes") for x in theme_dir.iterdir()
-        if x.is_dir()
+        set(
+            x.name for theme_dir in get_resource_dirs("themes") for x in theme_dir.iterdir()
+            if x.is_dir()
+        )
     )
 
 
