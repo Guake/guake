@@ -1,0 +1,3 @@
+fixes:
+  - |
+    Fix duplication in theme list (#1304)

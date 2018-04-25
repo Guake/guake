@@ -20,6 +20,7 @@ Known Issues
 Bug Fixes
 ~~~~~~~~~
 
+-  Fix duplication in theme list (#1304)
 -  Fix right click selection in Midnight Commander
 -  Corrected usage of ``Vte.Regex.new_for_match`` to fix regular expression matching (hyperlinks,
    quick open) on VTE >0.50 (#1295)
