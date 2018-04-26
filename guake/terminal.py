@@ -292,6 +292,9 @@ class GuakeTerminal(Vte.Terminal):
         if event.button == 1 and (event.get_state() & Gdk.ModifierType.CONTROL_MASK):
             if (Vte.MAJOR_VERSION, Vte.MINOR_VERSION) > (0, 50):
                 s = self.hyperlink_check_event(event)
+            else:
+                s = None
+            if s is not None:
                 self._on_ctrl_click_matcher((s, None))
             elif self.get_has_selection():
                 self.quick_open()
