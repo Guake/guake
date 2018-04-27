@@ -41,7 +41,16 @@ your system.
 Install from source
 ===================
 
-If you want to install Guake from its sources, use:
+If you want to install Guake from its sources make sure that you have the 
+needed dependencies installed. If you are unsure about the dependencies you 
+can run to install them:
+
+.. code-block:: bash
+    $bash script/bootstrap-[debian, arch, fedora].sh run make
+
+Note: inster your distribution in the square brackets.
+
+To install Guake itself, use:
 
 .. code-block:: bash
 
