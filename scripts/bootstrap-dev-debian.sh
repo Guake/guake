@@ -72,5 +72,5 @@ if [[ $OPT == "1" ]]; then
     echo "Install packages optional for execution"
     sudo apt install -y \
         libutempter0 \
-        numix-gtk-theme \
+        numix-gtk-theme
 fi

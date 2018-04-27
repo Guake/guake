@@ -40,7 +40,7 @@ if [[ $RUN == "1" ]]; then
         python3-cairo \
         python3-dbus \
         python3-pip \
-        keybinder3 \
+        keybinder3
 fi
 
 if [[ $MAKE == "1" ]]; then
@@ -65,5 +65,5 @@ if [[ $OPT == "1" ]]; then
     echo "Install packages optional for execution"
     sudo yum install \
         libutempter \
-        numix-gtk-theme \
+        numix-gtk-theme
 fi
