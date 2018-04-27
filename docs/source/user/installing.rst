@@ -46,7 +46,7 @@ needed dependencies installed. If you are unsure about the dependencies you
 can run to install them:
 
 .. code-block:: bash
-    $bash script/bootstrap-[debian, arch, fedora].sh run make
+    $bash scripts/bootstrap-dev-[debian, arch, fedora].sh run make
 
 Note: inster your distribution in the square brackets.
 
