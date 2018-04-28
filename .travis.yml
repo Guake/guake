@@ -19,7 +19,7 @@ install:
         fi
         git log --pretty=format:"%h %s" --graph
 
-    - sudo ./scripts/bootstrap-dev-debian.sh
+    - yes | sudo ./scripts/bootstrap-dev-debian.sh
     - ./scripts/bootstrap-dev-pip.sh system
 
 
