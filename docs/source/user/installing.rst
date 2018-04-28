@@ -48,7 +48,7 @@ can run to install them:
 .. code-block:: bash
     $bash scripts/bootstrap-dev-[debian, arch, fedora].sh run make
 
-Note: inster your distribution in the square brackets.
+Note: Insert your distribution in the square brackets.
 
 To install Guake itself, use:
 
