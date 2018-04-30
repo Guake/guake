@@ -1,3 +1,12 @@
+Guake with modified Makefile for Void Linux, only makefile is modified! 
+I have comment out the lines with "PBR" so now Guake will compile for Void Linux! 
+Even with the PBR python packages the PBR errors still come up, but commenting out the PBR lines solves this!
+
+
+
+
+
+
 ==============
 Guake 3 README
 ==============
