@@ -1,0 +1,3 @@
+fixes:
+  - |
+    Fix Guake application icon not displayed with German locale
