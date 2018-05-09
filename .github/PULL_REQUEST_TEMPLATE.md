@@ -24,31 +24,31 @@ Please follow these steps before submitting a new Pull Request to Guake:
   and edit the created file in `releasenotes/notes/`.
   You can see how `reno` works using `pipenv run reno --help`.
 
-  Please use a generic slug (eg, for translation update,
+  Please use a generic slug (eg, for translation update,
   use `translation`, for bugfix use `bugfix`,...)
 
 - create new commit message
 
   ```bash
   $ <hack the code>
-  $ git commit --all
-  ```
+  $ git commit --all
+  ```
 
 - If your change is related to a GitHub issue, you can add a reference
-  using `#123` where 123 is the ID of the issue. You can use `closes #123`
-  to have GitHub automatically closes the issue when your contribution get
-  merged
+  using `#123` where 123 is the ID of the issue.
+  You can use `closes #123` to have GitHub automatically close the issue
+  when your contribution get merged
 
 - Semantic commit is supported (and recommended). Add one of the following
   line in your commit messages:
   
-  ```
+  ```
   # For a bug fix, uses:
   sem-ver: bugfix
   
   # For a new feature, uses:
   sem-ver: feature
   
-  # Please do not use the 'breaking change' syntax (`sem-ver: api-break`), 
+  # Please do not use the 'breaking change' syntax (`sem-ver: api-break`), 
   # it is reserved for really big reworks
-  ```
+  ```
