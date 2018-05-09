@@ -3,7 +3,7 @@
 PYTHON_INTERPRETER=python3
 MODULE:=guake
 DESTDIR:=/
-prefix:=/usr/local
+prefix:=/usr
 exec_prefix:=$(prefix)
 bindir = $(exec_prefix)/bin
 
@@ -227,20 +227,20 @@ docs: clean-docs sdist
 docs-open:
 	xdg-open docs/_build/html/index.html
 
-tag-pbr:
-	@{ \
-		set -e ;\
-		export VERSION=$$(pipenv run python setup.py --version | cut -d. -f1,2,3); \
-		echo "I: Computed new version: $$VERSION"; \
-		echo "I: presse ENTER to accept or type new version number:"; \
-		read VERSION_OVERRIDE; \
-		VERSION=$${VERSION_OVERRIDE:-$$VERSION}; \
-		PROJECTNAME=$$(pipenv run python setup.py --name); \
-		echo "I: Tagging $$PROJECTNAME in version $$VERSION with tag: $$VERSION" ; \
-		echo "$$ git tag $$VERSION -m \"$$PROJECTNAME $$VERSION\""; \
-		git tag $$VERSION -m "$$PROJECTNAME $$VERSION"; \
-		echo "I: Pushing tag $$VERSION, press ENTER to continue, C-c to interrupt"; \
-		echo "$$ git push upstream $$VERSION"; \
+#tag-pbr:
+#	@{ \
+#		set -e ;\
+#		export VERSION=$$(pipenv run python setup.py --version | cut -d. -f1,2,3); \
+#		echo "I: Computed new version: $$VERSION"; \
+#		echo "I: presse ENTER to accept or type new version number:"; \
+#		read VERSION_OVERRIDE; \
+#		VERSION=$${VERSION_OVERRIDE:-$$VERSION}; \
+#		PROJECTNAME=$$(pipenv run python setup.py --name); \
+#		echo "I: Tagging $$PROJECTNAME in version $$VERSION with tag: $$VERSION" ; \
+#		echo "$$ git tag $$VERSION -m \"$$PROJECTNAME $$VERSION\""; \
+#		git tag $$VERSION -m "$$PROJECTNAME $$VERSION"; \
+#		echo "I: Pushing tag $$VERSION, press ENTER to continue, C-c to interrupt"; \
+#		echo "$$ git push upstream $$VERSION"; \
 	}
 	@# Note:
 	@# To sign, need gpg configured and the following command:
@@ -394,20 +394,23 @@ release-note-github: reno-lint
 			sed 's/\\\#/\#/g' | \
 		tr '\r' '\n'
 
-release: git-pull-rebase tag-pbr release-note-news rm-dists update-po dists release-git-tag release-note-github
+#release: git-pull-rebase tag-pbr release-note-news rm-dists update-po dists release-git-tag release-note-#github
 
-git-pull-rebase:
-	@git pull --rebase
+#release: tag-pbr
 
-release-git-tag:
-	@{ \
-		set -x \
-		export VERSION=$$(pipenv run python setup.py --version | cut -d. -f1,2,3); \
-		git commit --all -m "Release $$VERSION"; \
-		PROJECTNAME=$$(pipenv run python setup.py --name); \
-		git tag -d $$VERSION; \
-		echo "Note: tag has been removed. Use 'make tag-pbr' to tag and push to origin"; \
-	}
+#git-pull-rebase:
+#	@git pull --rebase
+
+#release-git-tag:
+#	@{ \
+#		set -x \
+#		export VERSION=$$(pipenv run python setup.py --version | cut -d. -f1,2,3); \
+#		git commit --all -m "Release $$VERSION"; \
+#		PROJECTNAME=$$(pipenv run python setup.py --name); \
+#		git tag -d $$VERSION; \
+#		echo "Note: tag has been removed. Use 'make tag-pbr' to tag and push to origin"; \
+#	}
+
 
 # aliases to gracefully handle typos on poor dev's terminal
 check: checks
