@@ -46,7 +46,7 @@ history to be available when building from source. Note this does not impact sou
 packages you can download from Pypi.
 
 Build from sources instructions are described on
-[this page of the Online Documentation](http://guake.readthedocs.io/en/latest/user/installing.html#install-from-source).
+`this page of the Online Documentation <http://guake.readthedocs.io/en/latest/user/installing.html#install-from-source>`_.
 Please read this carefully before opening an issue !
 
 Bugs? Information?
