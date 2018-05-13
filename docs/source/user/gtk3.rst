@@ -14,7 +14,7 @@ by default on most popular distribution such as Ubuntu or Arch Linux
 Guake is now only compatible with Python 3.5+.
 
 Port to Gtk 3 and Python 3 lead naturally to skip all 1.x and 2.x version in the
-versio version of Guake: Guake 3.
+version of Guake: Guake 3.
 
 Dropped Features from Guake 0.8.x
 ---------------------------------
