@@ -92,8 +92,9 @@ class GuakeTerminal(Vte.Terminal):
     """Just a vte.Terminal with some properties already set.
     """
 
-    def __init__(self, settings):
+    def __init__(self, window, settings):
         super(GuakeTerminal, self).__init__()
+        self.window = window
         self.settings = settings
         self.configure_terminal()
         self.add_matches()
@@ -472,9 +473,9 @@ class GuakeTerminalBox(Gtk.HBox):
     """A box to group the terminal and a scrollbar.
     """
 
-    def __init__(self, settings):
+    def __init__(self, window, settings):
         super(GuakeTerminalBox, self).__init__()
-        self.terminal = GuakeTerminal(settings)
+        self.terminal = GuakeTerminal(window, settings)
         self.add_terminal()
         self.add_scroll_bar()
 

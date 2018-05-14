@@ -1762,7 +1762,7 @@ class Guake(SimpleGladeApp):
     def add_tab(self, directory=None):
         """Adds a new tab to the terminal notebook.
         """
-        box = GuakeTerminalBox(self.settings)
+        box = GuakeTerminalBox(self.window, self.settings)
         box.terminal.grab_focus()
         # TODO PORT port this
         # TODO PORT seems to run just fine without
