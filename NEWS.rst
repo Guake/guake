@@ -1,6 +1,24 @@
 NEWS
 ====
 
+(unreleased yet)
+----------------
+
+Bug Fixes
+~~~~~~~~~
+
+-  Fix transparency issue
+-  Fix right-click on link
+-  Fix Guake application icon not displayed with German locale
+-  fix ctrl+click on hyperlinks on VTE 0.50 (#1295)
+-  Fixed "Gruvbox Dark" color palette (swapped foreground and background)
+-  Swapped foreground and background colors for palettes added in commit #58842e9.
+
+Other
+~~~~~
+
+-  Add option groupes to the bootstrap scripts
+
 3.2.1
 -----
 

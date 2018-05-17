@@ -698,7 +698,7 @@ class PrefsDialog(SimpleGladeApp):
         column.add_attribute(renderer, "accel-key", 1)
         treeview.append_column(column)
 
-        self.demo_terminal = GuakeTerminal(self.settings)
+        self.demo_terminal = GuakeTerminal(self.window, self.settings)
         self.demo_terminal_box = self.get_widget('demo_terminal_box')
         self.demo_terminal_box.add(self.demo_terminal)
 

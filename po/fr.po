@@ -12,8 +12,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Guake 0.4.5\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-04-25 14:49+0200\n"
-"PO-Revision-Date: 2018-04-25 14:51+0200\n"
+"POT-Creation-Date: 2018-05-17 13:41+0200\n"
+"PO-Revision-Date: 2018-05-17 13:42+0200\n"
 "Last-Translator: Gaetan <gaetan@xeberon.net>\n"
 "Language-Team: French (http://www.transifex.com/projects/p/guake/language/"
 "fr/)\n"
@@ -208,7 +208,7 @@ msgstr "Personnalisé"
 msgid "JSON files"
 msgstr "Fichiers JSON"
 
-#: guake/prefs.py:1198 guake/guake_app.py:1865
+#: guake/prefs.py:1198 guake/guake_app.py:1864
 msgid "All files"
 msgstr "Tous les fichiers"
 
@@ -358,7 +358,7 @@ msgstr "Il y a encore un processus en cours"
 msgid "There are {0} processes still running"
 msgstr "Il y a {0} processus encore actifs"
 
-#: guake/guake_app.py:191 guake/guake_app.py:403 guake/keybindings.py:94
+#: guake/guake_app.py:191 guake/guake_app.py:402 guake/keybindings.py:94
 #: guake/about.py:54
 msgid "Guake Terminal"
 msgstr "Terminal Guake"
@@ -375,7 +375,7 @@ msgstr "guake-tray"
 msgid "Show"
 msgstr "Afficher"
 
-#: guake/guake_app.py:404
+#: guake/guake_app.py:403
 msgid ""
 "Guake is now running,\n"
 "press <b>{!s}</b> to use it."
@@ -383,68 +383,68 @@ msgstr ""
 "Guake est démarré, \n"
 "appuyer sur <b>{!s}</b> pour ouvrir Guake."
 
-#: guake/guake_app.py:441
+#: guake/guake_app.py:440
 msgid "Custom Commands"
 msgstr "Commandes personnalisées:"
 
-#: guake/guake_app.py:694
+#: guake/guake_app.py:693
 #, python-format
 msgid "Search on Web: '%s'"
 msgstr "Rechercher sur le Web: '%s'"
 
-#: guake/guake_app.py:698
+#: guake/guake_app.py:697
 msgid "Search on Web (no selection)"
 msgstr "Rechercher sur le Web (pas de sélection)"
 
-#: guake/guake_app.py:710
+#: guake/guake_app.py:709
 msgid "Quick Open: {!s}..."
 msgstr "Ouverture Rapide: {!s}..."
 
-#: guake/guake_app.py:713
+#: guake/guake_app.py:712
 msgid "Quick Open: {!s}"
 msgstr "Ouverture Rapide: {!s}"
 
-#: guake/guake_app.py:716
+#: guake/guake_app.py:715
 msgid "Quick Open..."
 msgstr "Ouverture Rapide..."
 
-#: guake/guake_app.py:724
+#: guake/guake_app.py:723
 msgid "Open Link: {!s}..."
 msgstr "Ouvrir le lien: {!s}..."
 
-#: guake/guake_app.py:727
+#: guake/guake_app.py:726
 msgid "Open Link: {!s}"
 msgstr "Ouvrir le lien: {!s}..."
 
-#: guake/guake_app.py:730
+#: guake/guake_app.py:729
 msgid "Open Link..."
 msgstr "Ouvrir le lien..."
 
-#: guake/guake_app.py:1469
+#: guake/guake_app.py:1468
 msgid "Terminal"
 msgstr "Terminal"
 
-#: guake/guake_app.py:1525
+#: guake/guake_app.py:1524
 msgid "Rename tab"
 msgstr "Renomme l'onglet"
 
-#: guake/guake_app.py:1860
+#: guake/guake_app.py:1859
 msgid "Save to..."
 msgstr "Enregistrer sous..."
 
-#: guake/guake_app.py:1870
+#: guake/guake_app.py:1869
 msgid "Text and Logs"
 msgstr "Textes et logs"
 
-#: guake/guake_app.py:1890
+#: guake/guake_app.py:1889
 msgid "Find"
 msgstr "Rechercher"
 
-#: guake/guake_app.py:1892
+#: guake/guake_app.py:1891
 msgid "Forward"
 msgstr "Suivant"
 
-#: guake/guake_app.py:1892
+#: guake/guake_app.py:1891
 msgid "Backward"
 msgstr "Précédent"
 
