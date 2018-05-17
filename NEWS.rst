@@ -9,6 +9,7 @@ Bug Fixes
 
 -  Fix transparency issue
 -  Fix right-click on link
+-  Fix bad css override on check tab background (#1326)
 -  Fix Guake application icon not displayed with German locale
 -  fix ctrl+click on hyperlinks on VTE 0.50 (#1295)
 -  Fixed "Gruvbox Dark" color palette (swapped foreground and background)

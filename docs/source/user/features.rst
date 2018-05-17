@@ -34,6 +34,8 @@ Gtk Theme
 
 Guake allows you to choose a different Gtk theme than your environment.
 
+.. note:: You need to restart Guake after changing the GTK theme.
+
 Quick Open, hyperlink and Search on web
 =======================================
 

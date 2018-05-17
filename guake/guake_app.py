@@ -73,6 +73,7 @@ from guake.prefs import refresh_user_start
 from guake.settings import Settings
 from guake.simplegladeapp import SimpleGladeApp
 from guake.terminal import GuakeTerminalBox
+from guake.theme import get_gtk_theme
 from guake.theme import select_gtk_theme
 from guake.utils import get_server_time
 from locale import gettext as _
@@ -154,23 +155,22 @@ class Guake(SimpleGladeApp):
     """
 
     def __init__(self):
-        super(Guake, self).__init__(gladefile('guake.glade'))
-
-        self.add_callbacks(self)
-
         schema_source = Gio.SettingsSchemaSource.new_from_directory(
             SCHEMA_DIR, Gio.SettingsSchemaSource.get_default(), False
         )
-
         self.settings = Settings(schema_source)
+        select_gtk_theme(self.settings)
+
+        super(Guake, self).__init__(gladefile('guake.glade'))
+
+        self._patch_theme()
+        self.add_callbacks(self)
+
         self.debug_mode = self.settings.general.get_boolean('debug-mode')
         setupLogging(self.debug_mode)
         log.info('Guake Terminal %s', guake_version())
         log.info('VTE %s', vte_version())
         log.info('Gtk %s', gtk_version())
-
-        select_gtk_theme(self.settings)
-        self._patch_theme()
 
         self.prompt_dialog = None
         self.hidden = True
@@ -407,24 +407,42 @@ class Guake(SimpleGladeApp):
         log.info("Guake initialized")
 
     def _patch_theme(self):
-        style_provider = Gtk.CssProvider()
-        win = Gtk.Window()
-        style_context = win.get_style_context()
+        theme_name, variant = get_gtk_theme(self.settings)
 
         def rgba_to_hex(color):
             return "#{0:02x}{1:02x}{2:02x}".format(
                 int(color.red * 255), int(color.green * 255), int(color.blue * 255)
             )
 
-        selected_bg_color = rgba_to_hex(style_context.lookup_color('theme_selected_bg_color')[1])
+        style_context = self.get_widget("window-root").get_style_context()
+        # for n in [
+        #     "inverted_bg_color",
+        #     "inverted_fg_color",
+        #     "selected_bg_color",
+        #     "selected_fg_color",
+        #     "theme_inverted_bg_color",
+        #     "theme_inverted_fg_color",
+        #     "theme_selected_bg_color",
+        #     "theme_selected_fg_color",
+        #     ]:
+        #     s = style_context.lookup_color(n)
+        #     print(n, s, rgba_to_hex(s[1]))
+        selected_fg_color = rgba_to_hex(style_context.lookup_color("theme_selected_fg_color")[1])
+        selected_bg_color = rgba_to_hex(style_context.lookup_color("theme_selected_bg_color")[1])
+        log.debug(
+            "Patching theme '%s' (prefer dark = '%r'), overriding tab 'checked' state': "
+            "foreground: %r, background: %r", theme_name, "yes"
+            if variant == "dark" else "no", selected_fg_color, selected_bg_color
+        )
         css_data = dedent(
             """
-            .tab:checked {{
-              color: white;
-              background-color: {};
+            .custom_tab:checked {{
+              color: {selected_fg_color};
+              background: {selected_bg_color};
             }}
-            """.format(selected_bg_color)
+            """.format(selected_bg_color=selected_bg_color, selected_fg_color=selected_fg_color)
         ).encode()
+        style_provider = Gtk.CssProvider()
         style_provider.load_from_data(css_data)
         Gtk.StyleContext.add_provider_for_screen(
             Gdk.Screen.get_default(), style_provider, Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION
@@ -1802,7 +1820,7 @@ class Guake(SimpleGladeApp):
         bnt = Gtk.RadioButton(group=parent, label=label, use_underline=False)
         bnt.set_property('can-focus', False)
         bnt.set_property('draw-indicator', False)
-        bnt.get_style_context().add_class("tab")
+        bnt.get_style_context().add_class("custom_tab")
         bnt.connect('button-press-event', self.show_tab_menu)
         bnt.connect('button-press-event', self.middle_button_click)
         bnt.connect('button-press-event', self.show_rename_current_tab_dialog)
