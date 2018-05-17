@@ -52,3 +52,9 @@ def select_gtk_theme(settings):
     prefer_dark_theme = settings.general.get_boolean('gtk-prefer-dark-theme')
     log.debug("Prefer dark theme: %r", prefer_dark_theme)
     gtk_settings.set_property("gtk-application-prefer-dark-theme", prefer_dark_theme)
+
+
+def get_gtk_theme(settings):
+    gtk_theme_name = settings.general.get_string('gtk-theme-name')
+    prefer_dark_theme = settings.general.get_boolean('gtk-prefer-dark-theme')
+    return (gtk_theme_name, "dark" if prefer_dark_theme else None)
