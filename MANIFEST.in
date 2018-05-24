@@ -1,0 +1,4 @@
+prune .github
+prune git-hooks
+prune releasenotes
+prune guake/tests
