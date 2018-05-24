@@ -1,0 +1,3 @@
+features:
+  - |
+    ``pip install guake`` now compiles the gsettings schema and finds its languages automatically.

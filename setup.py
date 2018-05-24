@@ -14,4 +14,4 @@ try:
 except ImportError:
     pass
 
-setuptools.setup(setup_requires=['pbr'], pbr=True, include_package_data=True)
+setuptools.setup(setup_requires=['pbr'], pbr=True)

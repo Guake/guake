@@ -68,6 +68,7 @@ from guake.guake_notebook import GuakeNotebook
 from guake.keybindings import Keybindings
 from guake.paths import LOCALE_DIR
 from guake.paths import SCHEMA_DIR
+from guake.paths import try_to_compile_glib_schemas
 from guake.prefs import PrefsDialog
 from guake.prefs import refresh_user_start
 from guake.settings import Settings
@@ -155,9 +156,18 @@ class Guake(SimpleGladeApp):
     """
 
     def __init__(self):
-        schema_source = Gio.SettingsSchemaSource.new_from_directory(
-            SCHEMA_DIR, Gio.SettingsSchemaSource.get_default(), False
-        )
+
+        def load_schema():
+            return Gio.SettingsSchemaSource.new_from_directory(
+                SCHEMA_DIR, Gio.SettingsSchemaSource.get_default(), False
+            )
+
+        try:
+            schema_source = load_schema()
+        except GLib.Error:
+            log.exception("Unable to load the GLib schema, try to compile it")
+            try_to_compile_glib_schemas()
+            schema_source = load_schema()
         self.settings = Settings(schema_source)
         select_gtk_theme(self.settings)
 

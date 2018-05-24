@@ -2,7 +2,7 @@
 Guake 3 README
 ==============
 
-|travis-badge|_ |bountysource-badge|_ |docs-badge|_
+|travis-badge|_ |bountysource-badge|_ |docs-badge|_ |translation-badge|_
 
 .. |travis-badge| image:: https://travis-ci.org/Guake/guake.svg?branch=master
 .. _travis-badge: https://travis-ci.org/Guake/guake
@@ -13,6 +13,8 @@ Guake 3 README
 .. |docs-badge| image:: https://readthedocs.org/projects/guake/badge/?version=stable
 .. _docs-badge: https://guake.readthedocs.io/en/stable/?badge=stable
 
+.. |translation-badge| image:: https://hosted.weblate.org/widgets/guake/-/guake/svg-badge.svg
+.. _translation-badge: https://hosted.weblate.org/engage/guake/?utm_source=widget
 
 Introduction
 ============
@@ -52,11 +54,13 @@ Please read this carefully before opening an issue !
 Bugs? Information?
 ------------------
 
-Source Code available at: https://github.com/Guake/guake/
-
-Official Homepage: http://guake-project.org
-
-Online Documentation: http://guake.readthedocs.io/
+- Source Code available on `GitHub <https://github.com/Guake/guake/>`_.
+- Official Homepage: http://guake-project.org
+- Online Documentation is hosted on `ReadTheDocs <http://guake.readthedocs.io/>`_.
+- If you are not a developer, you can still contribute to Guake by
+  `improving its translations in your language <https://hosted.weblate.org/projects/guake/guake/`_.
+  Guake users are welcome `to support Weblate <https://weblate.org/donate/>`_ in providing this
+  service for free for OpenSource Projects.
 
 **Important note**: Do **NOT** use the domain guake.org, it has been registered by someone outside
 the team. We cannot be held responsible for the content on that web site.

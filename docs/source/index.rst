@@ -41,12 +41,13 @@ Main Features
 Useful links
 ============
 
-Source Code available at: https://github.com/Guake/guake/
+- Source Code available on `GitHub <https://github.com/Guake/guake/>`_.
+- Official Homepage: http://guake-project.org
+- Online Documentation is hosted on `ReadTheDocs <http://guake.readthedocs.io/>`_.
+- If you are not a developer, you can still contribute to Guake by
+  `improving its translations in your language <https://hosted.weblate.org/projects/guake/guake/`_.
+  Guake users are welcome `to support Weblate <https://weblate.org/donate/>`_ in providing this
+  service for free for OpenSource Projects.
 
-Official Homepage: http://guake-project.org
-
-Online Documentation: http://guake.readthedocs.io/
-
-**Important note**: Do **NOT** use the domain ``guake.org``, it has been registered by someone
-outside the team.
-We cannot be held responsible for the content on that web site.
+**Important note**: Do **NOT** use the domain guake.org, it has been registered by someone outside
+the team. We cannot be held responsible for the content on that web site.
