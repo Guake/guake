@@ -251,14 +251,16 @@ class Guake(SimpleGladeApp):
             cr.set_operator(cairo.OPERATOR_OVER)
 
         screen = self.window.get_screen()
-        visual = screen.get_system_visual()
+        visual = screen.get_rgba_visual()
 
-        self.window.set_visual(visual)
         if visual and screen.is_composited():
+            self.window.set_visual(visual)
             self.window.transparency = True
         else:
             log.warn('System doesn\'t support transparency')
             self.window.transparency = False
+            self.window.set_visual(screen.get_system_visual())
+
         self.window.connect('draw', draw_callback)
 
         # It's intended to know which tab was selected to
