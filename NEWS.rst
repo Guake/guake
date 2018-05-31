@@ -1,461 +1,516 @@
-NEWS
-====
+=====
+Guake
+=====
 
-(unreleased yet)
-----------------
+3.2.2
+=====
 
 Bug Fixes
-~~~~~~~~~
+---------
 
--  Fix transparency issue
--  Fix right-click on link
--  Fix bad css override on check tab background (#1326)
--  Fix Guake application icon not displayed with German locale
--  fix ctrl+click on hyperlinks on VTE 0.50 (#1295)
--  Fixed "Gruvbox Dark" color palette (swapped foreground and background)
--  Swapped foreground and background colors for palettes added in commit #58842e9.
+- Fix transparency regression on ubuntu composite (#1333)
+
+- Fix transparency issue
+
+- Fix right-click on link
+
+- Fix bad css override on check tab background (#1326)
+
+- Fix Guake application icon not displayed with German locale
+
+- fix ctrl+click on hyperlinks on VTE 0.50 (#1295)
+
+- Fixed "Gruvbox Dark" color palette (swapped foreground and background)
+
+- Swapped foreground and background colors for palettes added in commit #58842e9.
 
 Other
-~~~~~
+-----
 
--  Add option groupes to the bootstrap scripts
+- Add option groupes to the bootstrap scripts
 
 3.2.1
------
+=====
 
 New Features
-~~~~~~~~~~~~
+------------
 
--  Thanks to @arcticicestudio, a new nice, clean new palette theme is available for Guake users:
-   Nord (#1275)
+- Thanks to @arcticicestudio, a new nice, clean new palette theme is available for Guake users:
+  Nord (#1275)
 
 Known Issues
-~~~~~~~~~~~~
+------------
 
--  Multiline url are sometimes not handled correctly.
--  Users of Byobu or Tmux as default shell should disable the "login shell" option (in the "Shell"
-   panel). This uses an option, ``--login``, that does not exist on these two tools.
+- Multiline url are sometimes not handled correctly.
+
+- Users of Byobu or Tmux as default shell should disable the "login shell" option
+  (in the "Shell" panel). This uses an option, ``--login``, that does not exist on these
+  two tools.
 
 Bug Fixes
-~~~~~~~~~
+---------
 
--  Fix duplication in theme list (#1304)
--  Fix right click selection in Midnight Commander
--  Corrected usage of ``Vte.Regex.new_for_match`` to fix regular expression matching (hyperlinks,
-   quick open) on VTE >0.50 (#1295)
--  URL with ``'`` (simple quote) and ``()`` (parenthesis) are now captured by hyperlink matcher.
-   This may causes some issues with log and so that use parenthesis *around* hyperlinks, but since
-   parenthesis and quotes are valid characters inside a URL, like for instance URL created by
-   Kibana, they deserve the right to be shown as proper url in Guake.
+- Fix duplication in theme list (#1304)
 
-   User can still select the URL in the terminal if he wishes to capture the exact url, before doing
-   a Ctrl+click or a right click.
+- Fix right click selection in Midnight Commander
 
-   For developers, it is advised to end the URL with a character that cannot be used in URL, such as
-   space, tab, new line. Ending with a dot (``.``) or a comma (``,``) will not be seen as part of
-   the URL by Guake, so most logs and traces that adds a dot or a comma at the end of the URL might
-   still work.
--  Fix "Grubbox Dark" theme
+- Corrected usage of ``Vte.Regex.new_for_match`` to fix regular expression matching
+  (hyperlinks, quick open) on VTE >0.50 (#1295)
+
+- URL with ``'`` (simple quote) and ``()`` (parenthesis) are now captured by hyperlink matcher.
+  This may causes some issues with log and so that use parenthesis *around* hyperlinks,
+  but since parenthesis and quotes are valid characters inside a URL, like for instance
+  URL created by Kibana, they deserve the right to be shown as proper url in Guake.
+  
+  User can still select the URL in the terminal if he wishes to capture the exact url, before
+  doing a Ctrl+click or a right click.
+  
+  For developers, it is advised to end the URL with a character that cannot be used in URL, such
+  as space, tab, new line. Ending with a dot (``.``) or a comma (``,``) will not be seen as part
+  of the URL by Guake, so most logs and traces that adds a dot or a comma at the end of the URL
+  might still work.
+
+- Fix "Grubbox Dark" theme
 
 Translation Updates
-~~~~~~~~~~~~~~~~~~~
+-------------------
 
--  fr
--  pl
--  ru
+- fr
+
+- pl
+
+- ru
 
 Other
-~~~~~
+-----
 
--  Rework the documentation. The README grew up a lot and was hard to use. It has been cut into
-   several user manual pages in the official online documentation.
+- Rework the documentation. The README grew up a lot and was hard to use. It has been cut into
+  several user manual pages in the official online documentation.
 
 3.2.0
------
+=====
 
 New Features
-~~~~~~~~~~~~
+------------
 
--  Allow user to select the theme within the preference UI
--  Selected tab use "selected highlight" color from theme (#1036)
+- Allow user to select the theme within the preference UI
+
+- Selected tab use "selected highlight" color from theme (#1036)
 
 Translation Updates
-~~~~~~~~~~~~~~~~~~~
+-------------------
 
--  fr
+- fr
 
 3.1.1
------
+=====
 
 New Features
-~~~~~~~~~~~~
+------------
 
--  Quick open displays a combobox with predefined settings for Visual Studio Code, Atom and Sublime
-   Text.
+- Quick open displays a combobox with predefined settings for Visual Studio Code, Atom and
+  Sublime Text.
 
 Bug Fixes
-~~~~~~~~~
+---------
 
--  Fix hyperlink VTE
+- Fix  hyperlink VTE
 
 3.1.0
------
+=====
 
 Release Summary
-~~~~~~~~~~~~~~~
+---------------
 
-This version of Guake brings mostly bug fixes, and some new features like "Quick Open on selection".
-I have also reworked internally the Quick Open so that it can automatically open files from logs
-from pytest and other python development tools output. However, there might still some false
-positive on the hovering of the mouse in the terminal, the most famous being the output of ``ls -l``
-which may have the mouse looks like it sees hyperlinks on the terminal everywhere. Click does
-nothing but its an annoying limitation. Package maintainers should read the "Notes for Package
-Maintainers" of this release note carefully.
+This version of Guake brings mostly bug fixes, and some new features like "Quick Open on selection". I have also reworked internally the Quick Open so that it can automatically open files from logs from pytest and other python development tools output.
+However, there might still some false positive on the hovering of the mouse in the terminal, the most famous being the output of ``ls -l`` which may have the mouse looks like it sees hyperlinks on the terminal everywhere. Click does nothing but its an annoying limitation.
+Package maintainers should read the "Notes for Package Maintainers" of this release note carefully.
 
 New Features
-~~~~~~~~~~~~
+------------
 
--  New "start at login" option in the settings (only for GNOME) #251
--  Add ``--verbose``/``-v`` parameter to enable debug logging. Please note the existing ``-v`` (for
-   version number) has been renamed ``-V``.
--  Support for hyperlink VTE extension (`described
-   here <https://gist.github.com/egmontkob/eb114294efbcd5adb1944c9f3cb5feda>`__ ) #945 (Untested, as
-   it requires VTE 0.50)
--  Add great color palettes from `Guake Color
-   Scheme <https://github.com/ziyenano/Guake-Color-Schemes>`__, thanks for @ziyenano :
+- New "start at login" option in the settings (only for GNOME) #251
 
-     -  Aci,
-     -  aco,
-     -  Azu,
-     -  Bim,
-     -  Cai,
-     -  Elementary,
-     -  Elic,
-     -  Elio,
-     -  Freya,
-     -  Gruvbox Dark,
-     -  Hemisu Dark,
-     -  Hemisu Light,
-     -  Jup,
-     -  Mar,
-     -  Material,
-     -  Miu,
-     -  Monokai dark,
-     -  Nep,
-     -  One Light,
-     -  Pali,
-     -  Peppermint,
-     -  Sat,
-     -  Shel,
-     -  Tin,
-     -  Ura,
-     -  Vag.
--  Allow application to capture right click (ex: Midnight commander). #1096. It is still possible to
-   show the contextual menu with Shift+right click.
+- Add ``--verbose``/``-v`` parameter to enable debug logging. Please note the existing ``-v``
+  (for version number) has been renamed ``-V``.
+
+- Support for hyperlink VTE extension
+  (`described here <https://gist.github.com/egmontkob/eb114294efbcd5adb1944c9f3cb5feda>`_ )
+  #945 (Untested, as it requires VTE 0.50)
+
+- Add great color palettes from
+  `Guake Color Scheme <https://github.com/ziyenano/Guake-Color-Schemes>`_, thanks for @ziyenano :
+  
+    - `Aci`,
+    - `aco`,
+    - `Azu`,
+    - `Bim`,
+    - `Cai`,
+    - `Elementary`,
+    - `Elic`,
+    - `Elio`,
+    - `Freya`,
+    - `Gruvbox Dark`,
+    - `Hemisu Dark`,
+    - `Hemisu Light`,
+    - `Jup`,
+    - `Mar`,
+    - `Material`,
+    - `Miu`,
+    - `Monokai dark`,
+    - `Nep`,
+    - `One Light`,
+    - `Pali`,
+    - `Peppermint`,
+    - `Sat`,
+    - `Shel`,
+    - `Tin`,
+    - `Ura`,
+    - `Vag`.
+
+- Allow application to capture right click (ex: Midnight commander). #1096.
+  It is still possible to show the contextual menu with Shift+right click.
 
 Bug Fixes
-~~~~~~~~~
+---------
 
--  delete tab even without libutempter (#1198)
--  Fix crash when changing command file #1229
--  fix ``import sys`` in ``simplegladeapp.py``
--  change scope of ``which_align`` variable in ``pref.py`` (#1225)
--  Fix several issues on Quick Edit:
+- delete tab even without libutempter (#1198)
 
-   -  quick open freezes guake
-   -  support for systems with PCRE2 (regular expression in terminal) disabled for VTE, like Ubuntu
-      17.10 and +.
+- Fix crash when changing command file #1229
 
-      This might disable quick open and open url on direct Ctrl+click. User can still select the
-      wanted url or text and Cltr+click or use contextual menu.
+- fix ``import sys`` in ``simplegladeapp.py``
 
-      See this `discussion on Tilix <https://github.com/gnunn1/tilix/issues/916>`__, another
-      Terminal emulator that suffurs the same issue.
+- change scope of ``which_align`` variable in ``pref.py`` (#1225)
 
-   -  quick open now appears in contextual menu (#1157)
-   -  bad translation update on the contextual menu. This causes new strings that was hidden to
-      appear for translators.
-   -  Fix quick open on pattern "File:line" line that was not opening the wanted file.
--  Fix user interface translations #1228
--  Some systems such as Ubuntu did displayed Guake with a translated interface (#1209). The locale
-   system has been reworked to fix that.
--  There might be broken translations, or not up-to-date language support by Guake. A global refresh
-   of all existing translations would be welcomed. Most has not been updated since the transition to
-   Guake 3, so these languages support might probably be unfunctional or at least partialy
-   localized.
--  A big thank you for all the volunteers and Guake enthousiats would often update their own
-   translation to help guake being used world-wide.
+- Fix several issues on Quick Edit:
+  
+  - quick open freezes guake
+  - support for systems with PCRE2 (regular expression in terminal) disabled for VTE, like
+    Ubuntu 17.10 and +.
+  
+    This might disable quick open and open url on direct Ctrl+click.
+    User can still select the wanted url or text and Cltr+click or use contextual menu.
+  
+    See this `discussion on Tilix <https://github.com/gnunn1/tilix/issues/916>`_, another
+    Terminal emulator that suffurs the same issue.
+  
+  - quick open now appears in contextual menu (#1157)
+  - bad translation update on the contextual menu. This causes new strings that was hidden to
+    appear for translators.
+  - Fix quick open on pattern "File:line" line that was not opening the wanted file.
 
-   -  Help is always welcomed for updating translations !
--  Support for vte 2.91 (0.52) #1222
+- Fix user interface translations #1228
+
+- Some systems such as Ubuntu did displayed Guake with a translated interface (#1209). The locale system has been reworked to fix that.
+
+- There might be broken translations, or not up-to-date language support by Guake. A global refresh of all existing translations would be welcomed. Most has not been updated since the transition to Guake 3, so these languages support might probably be unfunctional or at least partialy localized.
+
+- A big thank you for all the volunteers and Guake enthousiats would often update their own translation to help guake being used world-wide.
+  - Help is always welcomed for updating translations !
+
+- Support for vte 2.91 (0.52) #1222
 
 Translation Updates
-~~~~~~~~~~~~~~~~~~~
+-------------------
 
--  fr\_FR
--  pl
--  de
+- fr_FR
+
+- pl
+
+- de
 
 Notes for Package Maintainers
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+-----------------------------
 
--  The setup mecanism has changed a little bit. Some maintainers used to patch the source code of
-   Guake to change the pixmap, Gtk schema or locale paths directly in the ``guake/globals.py`` file.
-   This was due to a lack of flexibility of the installation target of the ``Makefile``.
-
-   The ``make install`` target looks now a little bit more familiar, allowing distribution packager
-   to set the various paths directly with make flags.
-
-   For example:
-
-   .. code:: bash
-
-     sudo make install \
-         prefix=/usr \
-         DESTDIR=/path/for/packager \
-         PYTHON_SITE_PACKAGE_NAME=site-package \
-         localedir=/usr/share/locale
-
-   The main overrides are:
-
-   -  ``IMAGE_DIR``: where the pixmap should be installed. Default:
-      ``/usr/local/share/guake/pixmaps``
-   -  ``localedir``: where locales should be installed. Default: ``/usr/local/share/locale``
-   -  ``GLADE_DIR``: where the Glade files should be installed. Default: ``/usr/local/share/guake``
-   -  ``gsettingsschemadir``: where gsettings/dconf schema should be installed. Default:
-      ``/usr/local/share/glib-2.0/schemas/``
-
-   I invite package maintainers to open tickets on Github about any other difficulties encountered
-   when packaging Guake.
+- The setup mecanism has changed a little bit. Some maintainers used to patch the source code
+  of Guake to change the pixmap, Gtk schema or locale paths directly in the ``guake/globals.py``
+  file. This was due to a lack of flexibility of the installation target of the ``Makefile``.
+  
+  The ``make install`` target looks now a little bit more familiar, allowing distribution
+  packager to set the various paths directly with make flags.
+  
+  For example:
+  
+  .. code-block:: bash
+  
+      sudo make install \
+          prefix=/usr \
+          DESTDIR=/path/for/packager \
+          PYTHON_SITE_PACKAGE_NAME=site-package \
+          localedir=/usr/share/locale
+  
+  The main overrides are:
+  
+  - ``IMAGE_DIR``: where the pixmap should be installed. Default: ``/usr/local/share/guake/pixmaps``
+  - ``localedir``: where locales should be installed. Default: ``/usr/local/share/locale``
+  - ``GLADE_DIR``: where the Glade files should be installed. Default: ``/usr/local/share/guake``
+  - ``gsettingsschemadir``: where gsettings/dconf schema should be installed.
+    Default: ``/usr/local/share/glib-2.0/schemas/``
+  
+  I invite package maintainers to open tickets on Github about any other difficulties
+  encountered when packaging Guake.
 
 3.0.5
------
+=====
 
 Bug Fixes
-~~~~~~~~~
+---------
 
--  Apply cursor blinking to new tabs as well, not only on settings change.
--  Fix window losefocus hotkey #1080
--  Fix refocus if open #1188
--  fix preferences window header color, align the close button more nicely and change borders to
-   margins
--  Implements a timestamp for wayland (#1215)
+- Apply cursor blinking to new tabs as well, not only on settings change.
+
+- Fix window losefocus hotkey #1080
+
+- Fix refocus if open #1188
+
+- fix preferences window header color, align the close button more nicely and change borders to margins
+
+- Implements a timestamp for wayland (#1215)
 
 3.0.4
------
+=====
 
 New Features
-~~~~~~~~~~~~
+------------
 
--  Add window displacement options to move guake away from the screen edges
--  User can manually enter the name of the GTK theme it wants Guake to use. Note there is no
-   Preference settings yet, one needs to manually enter the name using ``dconf-editor``, in the key
-   ``/apps/guake/general/gtk-theme-name``. Use a name matching one the folders in
-   ``/usr/share/themes``. Please also considere this is a early adopter features and has only been
-   tested on Ubuntu systems. Dark theme preference can be se with the key
-   ``/apps/guake/general/gtk-prefer-dark-theme``.
--  Allow make install-system to be run as non root user and print a message if so.
--  Quick open can now open file under selection. Simply select a filename in the current terminal
-   and do a Ctrl+click, if the file path can be found, it will be open in your editor. It allows to
-   virtually open any file path in your terminal (if they are on your local machine), but requires
-   the user to select the file path first, compared to the Quick Open feature that finds file names
-   using regular expression.
+- Add window displacement options to move guake away from the screen edges
 
-   Also notes that is it able to look in the current folder if the selected file name exists,
-   allowing Ctrl+click on relative paths as well.
+- User can manually enter the name of the GTK theme it wants Guake to use. Note there is no
+  Preference settings yet, one needs to manually enter the name using ``dconf-editor``, in the
+  key ``/apps/guake/general/gtk-theme-name``. Use a name matching one the folders in
+  ``/usr/share/themes``. Please also considere this is a early adopter features and has only
+  been tested on Ubuntu systems.
+  Dark theme preference can be se with the key ``/apps/guake/general/gtk-prefer-dark-theme``.
 
-   Line number syntax is also supported: ``filename.txt:5`` will directly on the 5th line if your
-   Quick Open is set for.
+- Allow make install-system to be run as non root user and print a message if so.
+
+- Quick open can now open file under selection. Simply select a filename in the current terminal
+  and do a Ctrl+click, if the file path can be found, it will be open in your editor. It allows
+  to virtually open any file path in your terminal (if they are on your local machine), but
+  requires the user to select the file path first, compared to the Quick Open feature that
+  finds file names using regular expression.
+  
+  Also notes that is it able to look in the current folder if the selected file name exists,
+  allowing Ctrl+click on relative paths as well.
+  
+  Line number syntax is also supported: ``filename.txt:5`` will directly on the 5th line if
+  your Quick Open is set for.
 
 Bug Fixes
-~~~~~~~~~
+---------
 
--  fixes issue with vertically stacked dual monitors #1162
--  Quick Open functionnality is restored #1121
--  Unusable Guake with "hide on focus lose" option #1152
--  Speed up guake D-Bus communication (command line such as ``guake -t``).
+- fixes issue with vertically stacked dual monitors #1162
+
+- Quick Open functionnality is restored #1121
+
+- Unusable Guake with "hide on focus lose" option #1152
+
+- Speed up guake D-Bus communication (command line such as ``guake -t``).
 
 3.0.3
------
+=====
 
 Release Summary
-~~~~~~~~~~~~~~~
+---------------
 
-This minor release mainly focus on fixing big problems that was remaining after the migration to
-GTK3. I would like to akwonledge the work of some contributors that helped testing and reporting
-issues on Guake 3.0.0. Thanks a lot to @egmontkob and @aichingm.
+This minor release mainly focus on fixing big problems that was remaining after the migration to GTK3. I would like to akwonledge the work of some contributors that helped testing and reporting issues on Guake 3.0.0. Thanks a lot to @egmontkob and @aichingm.
 
-The Preference window has been deeply reworked and the hotkey management has been rewriten. This was
-one the the major regression in Guake 3.0.
+The Preference window has been deeply reworked and the hotkey management has been rewriten. This was one the the major regression in Guake 3.0.
 
 New Features
-~~~~~~~~~~~~
+------------
 
--  [dev env] automatically open reno slug after creation for editing
--  [dev env]: Add the possibility to terminate guake with ``Ctrl+c`` on terminal where Guake has
-   been launched
--  Add "Infinite scrolling" option in "Scrolling" panel #274
--  Added hotkey for showing and focusing Guake window when it is opened or closed. It is convenient
-   when Guake window are overlapped with another windows and user needs to just showing it without
-   closing and opening it again. #1133
+- [dev env] automatically open reno slug after creation for editing
+
+- [dev env]: Add the possibility to terminate guake with ``Ctrl+c`` on terminal
+  where Guake has been launched
+
+- Add "Infinite scrolling" option in "Scrolling" panel #274
+
+- Added hotkey for showing and focusing Guake window when it is opened or closed.
+  It is convenient when Guake window are overlapped with another windows and user
+  needs to just showing it without closing and opening it again. #1133
 
 Known Issues
-~~~~~~~~~~~~
+------------
 
--  Quick Edit feature is not working (#1121)
+- Quick Edit feature is not working (#1121)
 
 Deprecations
-~~~~~~~~~~~~
+------------
 
--  Remove visible bell feature #1081
+- Remove visible bell feature #1081
 
 Bug Fixes
-~~~~~~~~~
+---------
 
--  Command options do not work, crash when disabling keybinding #1111
--  Do not open Guake window upon startup #1113
--  Fix crash on increase/decrease main window height shortcut #1099
--  Resolved conflicting default shortcut for ``Ctrl+F2`` (now, rename current tab is set to
-   ``Ctrl+Shift+R``) #1101, #1098
--  The hotkey management has been rewriten and is now fully functional
--  Rework the Preference window and reorganize the settings. Lot of small issues has been fixed. The
-   Preference window now fits in a 1024x768 screen.
--  Fix 'Failed to execute child process "-"' - #1119
--  History size spin is fixed and now increment by 1000 steps. Default history value is now set to
-   1000, because "1024" has no real meaning for end user. #1082
+- Command options do not work, crash when disabling keybinding #1111
+
+- Do not open Guake window upon startup #1113
+
+- Fix crash on increase/decrease main window height shortcut #1099
+
+- Resolved conflicting default shortcut for ``Ctrl+F2`` (now, rename current tab is set to
+  ``Ctrl+Shift+R``) #1101, #1098
+
+- The hotkey management has been rewriten and is now fully functional
+
+- Rework the Preference window and reorganize the settings. Lot of small issues
+  has been fixed.
+  The Preference window now fits in a 1024x768 screen.
+
+- Fix 'Failed to execute child process "-"' - #1119
+
+- History size spin is fixed and now increment by 1000 steps. Default history value is now set to
+  1000, because "1024" has no real meaning for end user. #1082
 
 Translation Updates
-~~~~~~~~~~~~~~~~~~~
+-------------------
 
--  de
--  fr
--  ru
+- de
+
+- fr
+
+- ru
 
 Other
-~~~~~
+-----
 
--  The dependencies of the Guake executable has been slightly better described in README. There is
-   an example for Debian/Ubuntu in the file ``scripts/bootstrap-dev-debian.sh`` which is the main
-   environment where Guake is developed and tested.
--  Package maintainers are encouraged to submit their ``bootstrap-dev-[distribution].sh``,
-   applicable for other distributions, to help users install Guake from source, and other package
-   maintainers.
+- The dependencies of the Guake executable has been slightly better described in README.
+  There is an example for Debian/Ubuntu in the file ``scripts/bootstrap-dev-debian.sh`` which is
+  the main environment where Guake is developed and tested.
+
+- Package maintainers are encouraged to submit their ``bootstrap-dev-[distribution].sh``,
+  applicable for other distributions, to help users install Guake from source, and other package
+  maintainers.
 
 3.0.2
------
+=====
 
 New Features
-~~~~~~~~~~~~
+------------
 
--  Preliminary Dark theme support. To use it, install the 'numix' theme in your system. For example,
-   Ubuntu/Debian users would use ``sudo apt install numix-gtk-theme``.
+- Preliminary Dark theme support. To use it, install the 'numix' theme in your system.
+  For example, Ubuntu/Debian users would use ``sudo apt install numix-gtk-theme``.
 
 Known Issues
-~~~~~~~~~~~~
+------------
 
--  Cannot enable or disable the GTK or Dark theme by a preference setting.
+- Cannot enable or disable the GTK or Dark theme by a preference setting.
 
 Deprecations
-~~~~~~~~~~~~
+------------
 
--  Resizer discontinued
+- Resizer discontinued
 
 Bug Fixes
-~~~~~~~~~
+---------
 
--  Fix ``sudo make uninstall/install`` to work only with ``/usr/local``
--  Fix translation ``mo`` file generation
--  Fix crash on Wayland
--  Fix quick open and open link in terminal
--  Fixed Guake initialization on desktop environment that does not support compositing.
+- Fix ``sudo make uninstall/install`` to work only with ``/usr/local``
+
+- Fix translation ``mo`` file generation
+
+- Fix crash on Wayland
+
+- Fix quick open and open link in terminal
+
+- Fixed Guake initialization on desktop environment that does not support compositing.
 
 3.0.1
------
+=====
 
 Release Summary
-~~~~~~~~~~~~~~~
+---------------
 
 Minor maintenance release.
 
 Bug Fixes
-~~~~~~~~~
+---------
 
--  Code cleaning and GNOME desktop file conformance
+- Code cleaning and GNOME desktop file conformance
 
 3.0.0
------
+=====
 
 Release Summary
-~~~~~~~~~~~~~~~
+---------------
 
-Guake has been ported to GTK-3 thanks to the huge work of @aichingm. This also implies Guake now
-uses the latest version of the terminal emulator component, VTE 2.91. Guake is now only working on
-Python 3 (version 3.5 or 3.6). Official support for Python 2 has been dropped. This enables new
-features in upcoming releases, such as "find in terminal", or "split screen".
+Guake has been ported to GTK-3 thanks to the huge work of @aichingm. This also implies Guake now uses the latest version of the terminal emulator component, VTE 2.91.
+Guake is now only working on Python 3 (version 3.5 or 3.6). Official support for Python 2 has been dropped.
+This enables new features in upcoming releases, such as "find in terminal", or "split screen".
 
 New Features
-~~~~~~~~~~~~
+------------
 
--  Ported to GTK3:
+- Ported to GTK3:
+  
+    - cli arguments
+    - D-Bus
+    - context menu of the terminal, the tab bar and the tray icon
+    - scrollbar of the terminal
+    - ``ctrl+d`` on terminal
+    - fix double click on the tab bar
+    - fix double click on tab to rename
+    - fix clipboard from context menu
+    - notification module
+    - keyboard shortcuts
+    - preference screen
+    - port ``gconfhandler`` to ``gsettingshandler``
+    - about dialog
+    - pattern matching
+    - ``Guake.accel*`` methods
 
-     -  cli arguments
-     -  D-Bus
-     -  context menu of the terminal, the tab bar and the tray icon
-     -  scrollbar of the terminal
-     -  ``ctrl+d`` on terminal
-     -  fix double click on the tab bar
-     -  fix double click on tab to rename
-     -  fix clipboard from context menu
-     -  notification module
-     -  keyboard shortcuts
-     -  preference screen
-     -  port ``gconfhandler`` to ``gsettingshandler``
-     -  about dialog
-     -  pattern matching
-     -  ``Guake.accel*`` methods
--  Guake now use a brand new build system:
+- Guake now use a brand new build system:
+  
+    - ``pipenv`` to manage dependencies in `Pipfile`
+    - enforced code styling and checks using Pylint, Flake8, Yapf, ISort.
+    - simpler release management thanks to PBR
 
-     -  ``pipenv`` to manage dependencies in Pipfile
-     -  enforced code styling and checks using Pylint, Flake8, Yapf, ISort.
-     -  simpler release management thanks to PBR
--  [dev env] `reno <https://docs.openstack.org/reno/latest/>`__ will be used to generate release
-   notes for Guake starting version 3.0.0. It allows developers to write the right chunk that will
-   appear in the release note directly from their Pull Request.
--  Update Guake window title when:
+- [dev env] `reno <https://docs.openstack.org/reno/latest/>`_ will be used to generate
+  release notes for Guake starting version 3.0.0.
+  It allows developers to write the right chunk that will appear in the release
+  note directly from their Pull Request.
 
-     -  the active tab changes
-     -  the active tab is renamed
-     -  the vte title changes
+- Update Guake window title when:
+  
+    - the active tab changes
+    - the active tab is renamed
+    - the vte title changes
 
 Known Issues
-~~~~~~~~~~~~
+------------
 
--  Translation might be broken in some language, waiting for the translation file to be updated by
-   volunteers
--  Resizer does not work anymore
--  Package maintainers have to rework their integration script completely
--  quick open and open link in terminal is broken
--  **Note for package maintainers**: Guake 3 has a minor limitation regarding Glib/GTK Schemas
-   files. Guake looks for the gsettings schema inside its data directory. So you will probably need
-   install the schema twice, once in ``/usr/local/lib/python3.5/dist-packages/guake/data/`` and once
-   in ``/usr/share/glib-2.0/schemas`` (see `#1064 <https://github.com/Guake/guake/issues/1064>`__).
-   This is planned to be fixed in Guake 3.1
+- Translation might be broken in some language, waiting for the translation file to be updated by volunteers
+
+- Resizer does not work anymore
+
+- Package maintainers have to rework their integration script completely
+
+- quick open and open link in terminal is broken
+
+- **Note for package maintainers**: Guake 3 has a minor limitation regarding Glib/GTK Schemas
+  files. Guake looks for the gsettings schema inside its data directory. So you will probably
+  need install the schema twice, once in ``/usr/local/lib/python3.5/dist-packages/guake/data/``
+  and once in ``/usr/share/glib-2.0/schemas`` (see
+  `#1064 <https://github.com/Guake/guake/issues/1064>`_).
+  This is planned to be fixed in Guake 3.1
 
 Upgrade Notes
-~~~~~~~~~~~~~
+-------------
 
--  Minor rework of the preference window.
+- Minor rework of the preference window.
 
 Deprecations
-~~~~~~~~~~~~
+------------
 
--  Background picture is no more customizable on each terminal
--  Visual Bell has been deprecated
+- Background picture is no more customizable on each terminal
+
+- Visual Bell has been deprecated
 
 Translation Updates
-~~~~~~~~~~~~~~~~~~~
+-------------------
 
--  fr-FR
+- fr-FR
+
 
 
 Version 0.8.11

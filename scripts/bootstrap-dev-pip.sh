@@ -10,7 +10,7 @@ fi
 
 python3 -m pip install $op --upgrade \
     'pip>=10' \
-    'pipenv<=11.10.1' \
+    'pipenv>=11.10' \
     'setuptools!=36.6.0' \
     || echo "you may need to sudo me !"
 
