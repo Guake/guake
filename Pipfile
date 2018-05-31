@@ -13,7 +13,7 @@ python_version = "3"
 fiximports = ">=0.1.18"
 mock = ">=2.0.0"
 pytest-mock = "*"
-pyflakes = "*"
+pyflakes = "<2.0.0"
 pylint = "*"
 pytest = "*"
 yapf = "*"
@@ -23,7 +23,7 @@ colorlog = "*"
 rope = "*"
 sphinx-rtd-theme = "*"
 sphinxcontrib-programoutput = "*"
-"e1839a8" = {path = ".", editable = true}
+"e1839a8" = {editable = true, path = "."}
 
 [packages]
 pbr = "*"

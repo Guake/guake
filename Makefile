@@ -60,7 +60,7 @@ dev-no-pipenv: clean
 	. .venv/bin/activate && pip install -r requirements.txt -r requirements-dev.txt -e .
 
 pipenv-install-dev:
-	pipenv install --dev --python $(PYTHON_INTERPRETER); \
+	pipenv install --dev --python $(PYTHON_INTERPRETER)
 
 ln-venv:
 	# use that to configure a symbolic link to the virtualenv in .venv
@@ -368,15 +368,11 @@ release-note: reno-lint release-note-news release-note-github
 release-note-news: reno-lint
 	@echo "Generating release note for NEWS file"
 	@rm -f guake/releasenotes/notes/reno.cache
-	@pipenv run reno report --title "NEWS" 2>/dev/null | \
-		pandoc -f rst -t rst  --atx-headers --columns=100 --wrap=auto --tab-stop 2 | \
-		tr '\n' '\r' | \
-			sed 's/\r-\ \ \r\r\ \ \ /\r-  /g' | \
-			sed 's/\r\r-\ \ /\r-  /g' | \
-			sed 's/~~\r-\ \ /~~\r\r-  /g' | \
-		tr '\r' '\n' \
-		> NEWS.rst
+	@pipenv run python setup.py build_reno --output-file NEWS.rst.in
+	@grep -v -R "^\.\.\ " NEWS.rst.in | cat -s > NEWS.rst
 	@cat releasenotes/archive/NEWS.pre-3.0 >> NEWS.rst
+	@rm -f NEWS.rst.in
+
 
 release-note-github: reno-lint
 	@echo
@@ -400,7 +396,8 @@ release-note-github: reno-lint
 release: git-pull-rebase tag-pbr release-note-news rm-dists update-po dists release-git-tag release-note-github
 
 git-pull-rebase:
-	@git pull --rebase
+	git pull --rebase
+	git branch master --force
 
 release-git-tag:
 	@{ \
