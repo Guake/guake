@@ -77,7 +77,7 @@ install-guake:
 	# sudo make install
 	@echo "Installing from on your system is not recommended."
 	@echo "Please prefer you application package manager (apt, yum, ...)"
-	@/usr/bin/env python3 -m pip install -r requirements.txt
+	@$(PYTHON_INTERPRETER) -m pip install -r requirements.txt
 
 	@if [ -f guake/paths.py.dev ]; then rm -f guake/paths.py.dev; fi
 	@if [ -f guake/paths.py ]; then mv guake/paths.py guake/paths.py.dev; fi
