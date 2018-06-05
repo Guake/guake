@@ -12,14 +12,14 @@ you can register the following snippet in your window manager
     dbus-send --type=method_call --dest=org.guake3.RemoteControl \
         /org/guake3/RemoteControl org.guake3.RemoteControl.show_hide
 
-You can use the simpler
+You can use the simpler:
 
 .. code-block:: bash
 
-    guake -t
+    guake-toggle
 
-But it will be slower since ultimately it sends the very same D-Bus message but will execute all
-the Guake initialization procedure.
+Please note the command `guake -t` will also toggle Guake but since it initialize a bit more than just
+necessary, it can be slower that the two previous commands.
 
 Note on Wayland
 ---------------
@@ -30,7 +30,7 @@ For more context, see issue #1041.
 
 The workaround is setting a manual keybinding as described above.
 On Fedora 26, for example, this can be accomplished by going to *Settings > Keyboard* and
-adding a new custom shortcut to execute :code:`guake -t`.
+adding a new custom shortcut to execute :code:`guake-toggle`.
 
 Note for Archlinux users
 ------------------------
