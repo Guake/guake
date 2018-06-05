@@ -818,6 +818,7 @@ class Guake(SimpleGladeApp):
     def show_hide(self, *args):
         """Toggles the main window visibility
         """
+        log.debug("Show_hide called")
         if self.forceHide:
             self.forceHide = False
             return
