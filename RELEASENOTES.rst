@@ -2,17 +2,27 @@
 Guake
 =====
 
-.. _Guake_(unreleased yet):
+.. _Guake_3.3.0:
 
-(unreleased yet)
-================
+3.3.0
+=====
 
-.. _Guake_(unreleased yet)_Bug Fixes:
+.. _Guake_3.3.0_New Features:
+
+New Features
+------------
+
+.. releasenotes/notes/pip-a8c7f5e91190b7ba.yaml @ b'86995359b2ed76d582bf7db3e37a19be4d411314'
+
+- ``pip install guake`` now compiles the gsettings schema and finds its languages automatically.
+
+
+.. _Guake_3.3.0_Bug Fixes:
 
 Bug Fixes
 ---------
 
-.. releasenotes/notes/wayland-3fcce3b30835e66d.yaml @ b'5fb9d70e7122f63b9a5243afa4f1b314b019c197'
+.. releasenotes/notes/wayland-3fcce3b30835e66d.yaml @ b'150a3a77f9355cb49e3c45a9be850b2f1ac684ec'
 
 - Wayland is a bit more well supported. The X11 backend is now used by default for
   GDK and it seems to make the shortcut works under most situation.
@@ -20,7 +30,7 @@ Bug Fixes
   A more cleaner solution would be to develop a GAction
   (`vote for this feature here <https://feathub.com/Guake/guake/+29>`_])
 
-.. releasenotes/notes/wayland-3fcce3b30835e66d.yaml @ b'5fb9d70e7122f63b9a5243afa4f1b314b019c197'
+.. releasenotes/notes/wayland-3fcce3b30835e66d.yaml @ b'150a3a77f9355cb49e3c45a9be850b2f1ac684ec'
 
 - A new command has been added: ``guake-toggle``, should be faster than
   ``guake -t``. You can use it when you register the global shortcut manually
