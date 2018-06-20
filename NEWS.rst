@@ -5,6 +5,11 @@ Guake
 (unreleased yet)
 ================
 
+New Features
+------------
+
+- ``pip install guake`` now compiles the gsettings schema and finds its languages automatically.
+
 Bug Fixes
 ---------
 
