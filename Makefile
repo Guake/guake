@@ -408,8 +408,8 @@ release-note-github: reno-lint
 release: git-pull-rebase tag-pbr release-note-news rm-dists update-po dists release-git-tag release-note-github
 
 git-pull-rebase:
-	git pull --rebase
-	git branch master --force
+	git checkout master
+	git pull --rebase upstream master
 
 release-git-tag:
 	@{ \
