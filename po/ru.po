@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: Guake 0.4.5\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-04-17 13:26+0300\n"
-"PO-Revision-Date: 2018-06-21 12:46+0000\n"
+"PO-Revision-Date: 2018-06-22 13:43+0000\n"
 "Last-Translator: Igor <f2404@yandex.ru>\n"
 "Language-Team: Russian <https://hosted.weblate.org/projects/guake/guake/ru/>"
 "\n"
@@ -294,7 +294,7 @@ msgstr "<b>Ширина основного окна</b>"
 
 #: ../data/prefs.glade.h:34
 msgid "Custom command file path: "
-msgstr "Путь к пользовательской команде"
+msgstr "Путь к пользовательской команде: "
 
 #: ../data/prefs.glade.h:35
 msgid "Please select a json file"
@@ -470,7 +470,7 @@ msgstr ""
 
 #: ../data/prefs.glade.h:77
 msgid "Editor command line:"
-msgstr "Команда для Редактора"
+msgstr "Команда для Редактора:"
 
 #: ../data/prefs.glade.h:79
 #, no-c-format
@@ -586,7 +586,7 @@ msgstr ""
 
 #: ../data/prefs.glade.h:104
 msgid "On show:"
-msgstr "При открытии"
+msgstr "При открытии:"
 
 #: ../data/prefs.glade.h:105
 msgid ""
@@ -780,7 +780,7 @@ msgstr "Выбрать вкладку (SELECT_TAB - это индекс вкла
 
 #: ../src/guake/main.py:101
 msgid "Return the selected tab index."
-msgstr "Вернуть индекс выбранной вкладки"
+msgstr "Вернуть индекс выбранной вкладки."
 
 #: ../src/guake/main.py:105
 msgid "Return the selected tab label."
@@ -788,7 +788,7 @@ msgstr "Вернуть название выбранной вкладки."
 
 #: ../src/guake/main.py:109
 msgid "Execute an arbitrary command in the selected tab."
-msgstr "Выполнить произвольную команду в выбранной вкладке"
+msgstr "Выполнить произвольную команду в выбранной вкладке."
 
 #: ../src/guake/main.py:113
 msgid "Specify the tab to rename. Default is 0."
@@ -800,12 +800,11 @@ msgstr "Укажите фоновое изображение для выбран
 
 #: ../src/guake/main.py:122
 msgid "Set the hexadecimal (#rrggbb) background color of the selected tab."
-msgstr "Укажите цвет фона выбранной вкладки в hex формате (#rrggbb) "
+msgstr "Укажите цвет фона выбранной вкладки в hex формате (#rrggbb)."
 
 #: ../src/guake/main.py:127
 msgid "Set the hexadecimal (#rrggbb) foreground color of the selected tab."
-msgstr ""
-"Укажите цвет переднего плана выбранной вкладки в hex формате (#rrggbb) "
+msgstr "Укажите цвет переднего плана выбранной вкладки в hex формате (#rrggbb)."
 
 #: ../src/guake/main.py:133
 msgid ""
@@ -1180,7 +1179,7 @@ msgstr "<b>Параметры главного окна</b>"
 
 #: guake/data/prefs.glade:770
 msgid "Horizontal Alignment:"
-msgstr "Горизонтальное выравнивание"
+msgstr "Горизонтальное выравнивание:"
 
 #: guake/data/prefs.glade:855
 msgid "Height:"
@@ -1200,7 +1199,7 @@ msgstr "Главное окно"
 
 #: guake/data/prefs.glade:1197
 msgid "Infinite scrolling"
-msgstr "Неограниченная прокрутка "
+msgstr "Неограниченная прокрутка"
 
 #: guake/data/prefs.glade:1219
 msgid "<b>Scrollbar</b>"
