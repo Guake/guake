@@ -4,15 +4,15 @@
 #
 # Translators:
 # Daniel Nylander <po@danielnylander.se>, 2011
+# Morgan Antonsson <morgan.antonsson@gmail.com>, 2018
 msgid ""
 msgstr ""
 "Project-Id-Version: Guake 0.4.5\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-08-18 17:32+0200\n"
-"PO-Revision-Date: 2018-01-25 20:37+0100\n"
-"Last-Translator: Daniel Nylander <po@danielnylander.se>\n"
-"Language-Team: Swedish (http://www.transifex.com/projects/p/guake/language/"
-"sv/)\n"
+"POT-Creation-Date: 2018-06-22 14:32+0200\n"
+"PO-Revision-Date: 2018-06-22 23:41+0200\n"
+"Last-Translator: Morgan Antonsson <morgan.antonsson@gmail.com>\n"
+"Language-Team: \n"
 "Language: sv\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -20,953 +20,204 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Poedit 2.0.6\n"
 
-#: ../data/about.glade.h:1
-msgid "About Guake"
-msgstr "Om Guake"
-
-#: ../data/about.glade.h:2
-#, fuzzy
-msgid ""
-"Copyright 2013-2015 Gaetan Semet\n"
-"Copyright 2007-2010 Lincoln de Sousa\n"
-"Copyright 2007 Gabriel Falc&#xE3;o"
-msgstr ""
-"Copyright 2007-2009 Lincoln de Sousa\n"
-"Copyright 2007 Gabriel Falc&#xE3;o"
-
-#: ../data/about.glade.h:5
-#, fuzzy
-msgid ""
-"Guake is an easy to access\n"
-"terminal based on FPS games terminal"
-msgstr ""
-"Guake är en lättåtkomlig terminal\n"
-"baserad på fps games terminal"
-
-#: ../data/about.glade.h:7
-msgid ""
-"Guake is free software; you can redistribute it and/or modify it under the "
-"terms of the GNU General Public License as published by the Free Software "
-"Foundation; either version 2 of the License, or (at your option) any later "
-"version.\n"
-"\n"
-"Guake is distributed in the hope that it will be useful, but WITHOUT ANY "
-"WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS "
-"FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more "
-"details.\n"
-"\n"
-"You should have received a copy of the GNU General Public License along with "
-"Guake; if not, write to the Free Software Foundation, Inc., 51 Franklin St, "
-"Fifth Floor, Boston, MA  02110-1301 USA\n"
-msgstr ""
-"Guake är fri programvara. Du kan distribuera det och/eller modifiera det "
-"under villkoren i GNU General Public License, publicerad av Free Software "
-"Foundation, antingen version 2 eller (om du så vill) någon senare version.\n"
-"\n"
-"Guake distribueras i hopp om att det ska vara användbart, men UTAN NÅGON SOM "
-"HELST GARANTI, även utan underförstådd garanti om SÄLJBARHET eller "
-"LÄMPLIGHET FÖR NÅGOT SPECIELLT ÄNDAMÅL. Se GNU General Public License för "
-"ytterligare information.\n"
-"\n"
-"Du bör ha fått en kopia av GNU General Public License tillsammans med "
-"Brasero. Om inte, skriv till Free Software Foundation, Inc., 51 Franklin St, "
-"Fifth Floor, Boston, MA  02110-1301 USA\n"
-
-#: ../data/about.glade.h:13
-#, fuzzy
-msgid ""
-"Adolfo González Blázquez <code@infinicode.org> Spanish\n"
-"Lincoln de Sousa <lincoln@guake.org> Brazilian Portuguese\n"
-"Markus Majer <mm@mpathy.de> German\n"
-"Mieszko Ślusarczyk <mieszkoslusarczyk@gmail.com> Polish\n"
-"Nishio Futoshi <futoshi@momonga-linux.org> Japanese\n"
-"Pavel Alexeev <Pahan@Hubbitus.spb.su> Russian\n"
-"Piotr Drąg <piotrdrag@gmail.com> Polish\n"
-"Sangwoo Joo <sangwoojoo@naver.com> Korean\n"
-"    "
-msgstr ""
-"Adolfo González Blázquez <code@infinicode.org> Spanska\n"
-"Lincoln de Sousa <lincoln@guake.org> Brasiliansk portugisiska\n"
-"Markus Majer <mm@mpathy.de> Tyska\n"
-"Mieszko Ślusarczyk <mieszkoslusarczyk@gmail.com> Polska\n"
-"Nishio Futoshi <futoshi@momonga-linux.org> Japanska\n"
-"Pavel Alexeev <Pahan@Hubbitus.spb.su> Ryska\n"
-"Piotr Drąg <piotrdrag@gmail.com> Polska"
-
-#: ../data/guake.glade.h:1
-msgid "Copy"
-msgstr "Kopiera"
-
-#: ../data/guake.glade.h:2
-msgid "Paste"
-msgstr "Klistra in"
-
-#: ../data/guake.glade.h:3 ../src/guake/prefs.py:79
-msgid "Toggle Fullscreen"
-msgstr "Växla helskärm"
-
-#: ../data/guake.glade.h:4
-msgid "Save to File..."
-msgstr ""
-
-#: ../data/guake.glade.h:5 ../src/guake/prefs.py:85
-#, fuzzy
-msgid "Reset terminal"
-msgstr "Guake Terminal"
-
-#: ../data/guake.glade.h:6
-msgid "Find..."
-msgstr ""
-
-#: ../data/guake.glade.h:7
-#, fuzzy
-msgid "New Tab"
-msgstr "Ny flik"
-
-#: ../data/guake.glade.h:8
-#, fuzzy
-msgid "Rename Tab"
-msgstr "Byt namn på flik"
-
-#: ../data/guake.glade.h:9
-msgid "Close Tab"
-msgstr "Stäng flik"
-
-#: ../data/guake.glade.h:10
-msgid "Open link..."
-msgstr ""
-
-#: ../data/guake.glade.h:11
-msgid "Search on Web"
-msgstr ""
-
-#: ../data/guake.glade.h:12 ../src/guake/prefs.py:83
-msgid "Quit"
-msgstr "Avsluta"
-
-#: ../data/guake.glade.h:13
-msgid "Rename"
-msgstr "Byt namn"
-
-#: ../data/guake.glade.h:14
-msgid "Close"
-msgstr "Stäng"
-
-#: ../data/guake.glade.h:15
-msgid "Guake!"
-msgstr "Guake!"
-
-#: ../data/guake.glade.h:16
-#, fuzzy
-msgid "Add a new tab"
-msgstr "Lägg till ny flik"
-
-#: ../data/prefs.glade.h:1
-msgid "Guake Preferences"
-msgstr "Inställningar för Guake"
-
-#: ../data/prefs.glade.h:2
-msgid "<span size=\"18000\" color=\"black\"><b>Guake properties</b></span>"
-msgstr ""
-"<span size=\"18000\" color=\"black\"><b>Egenskaper för Guake</b></span>"
-
-#: ../data/prefs.glade.h:3
-msgid ""
-"<span color=\"black\">Customize behavior and appearance of Guake!</span>"
-msgstr ""
-"<span color=\"black\">Anpassa beteendet och utseendet för Guake!</span>"
-
-#: ../data/prefs.glade.h:4
-msgid ""
-"Path to a bash script that would be automatically executed when Guake "
-"starts, unless you specify --no-startup-script.\n"
-"\n"
-"This would typically use the configuration by command line feature of "
-"Guake:\n"
-"\n"
-"#!/bin/bash\n"
-"\n"
-"sleep 5  # it is advised to wait a bit before Guake has been successfully "
-"started\n"
-"\n"
-"guake -r \"main\" -e \"cd ~/projects/myproject/main\"\n"
-"guake -r \"prod\" -e \"cd ~/projects/myproject/prod\"\n"
-msgstr ""
-
-#: ../data/prefs.glade.h:15
-msgid "Enable popup notifications on startup"
-msgstr "Aktivera popupnotifieringar vid uppstart"
-
-#: ../data/prefs.glade.h:16
-msgid "Show tray icon"
-msgstr "Visa aktivitetsikon"
-
-#: ../data/prefs.glade.h:17
-#, fuzzy
-msgid "Always prompt on quit"
-msgstr "Fråga vid avslut"
-
-#: ../data/prefs.glade.h:18
-msgid "_Flash terminal on bell"
-msgstr ""
-
-#: ../data/prefs.glade.h:19
-msgid "_Play system alert sound on bell"
-msgstr ""
-
-#: ../data/prefs.glade.h:20
-msgid "Path to script executed on Guake start:"
-msgstr ""
-
-#: ../data/prefs.glade.h:21
-#, fuzzy
-msgid "Prompt on close tab:"
-msgstr "Fråga vid avslut"
-
-#: ../data/prefs.glade.h:22
-msgid ""
-"Never\n"
-"With process running\n"
-"Always"
-msgstr ""
-
-#: ../data/prefs.glade.h:25
-msgid "<b>General</b>"
-msgstr "<b>Allmänt</b>"
-
-#: ../data/prefs.glade.h:26
-msgid "Bottom align window instead of top align"
-msgstr ""
-
-#: ../data/prefs.glade.h:27
-msgid "Appear on mouse display"
-msgstr ""
-
-#: ../data/prefs.glade.h:28
-msgid "Appear on display:"
-msgstr ""
-
-#: ../data/prefs.glade.h:29
-#, fuzzy
-msgid "Place tabs on top"
-msgstr "Lägg överst"
-
-#: ../data/prefs.glade.h:30
-#, fuzzy
-msgid "<b>Placement</b>"
-msgstr "<b>Palett</b>"
-
-#: ../data/prefs.glade.h:31
-msgid "Stay on top"
-msgstr "Lägg överst"
-
-#: ../data/prefs.glade.h:32
-msgid "Use VTE titles for tab names"
-msgstr ""
-
-#: ../data/prefs.glade.h:33
-msgid "Max tab name length:"
-msgstr ""
-
-#: ../data/prefs.glade.h:34
-msgid "0 means no size limit"
-msgstr ""
-
-#: ../data/prefs.glade.h:35
-msgid "Abbreviate directories in tab names"
-msgstr ""
-
-#: ../data/prefs.glade.h:36
-msgid "Hide on lose focus"
-msgstr "Dölj när fokus tappas"
-
-#: ../data/prefs.glade.h:37
-msgid "Show tab bar"
-msgstr "Visa flikrad"
-
-#: ../data/prefs.glade.h:38
-#, fuzzy
-msgid "Start fullscreen"
-msgstr "Växla helskärm"
-
-#: ../data/prefs.glade.h:39
-msgid "<b>Main Window</b>"
-msgstr "<b>Huvudfönster</b>"
-
-#: ../data/prefs.glade.h:40
-msgid "Left"
-msgstr ""
-
-#: ../data/prefs.glade.h:41
-msgid "Center"
-msgstr ""
-
-#: ../data/prefs.glade.h:42
-msgid "Right"
-msgstr ""
-
-#: ../data/prefs.glade.h:43
-#, fuzzy
-msgid "<b>Main Window Horizontal Alignment</b>"
-msgstr "<b>Höjd för huvudfönster</b>"
-
-#: ../data/prefs.glade.h:44
-#, fuzzy
-msgid "<b>Main Window Height</b>"
-msgstr "<b>Höjd för huvudfönster</b>"
-
-#: ../data/prefs.glade.h:45
-#, fuzzy
-msgid "<b>Main Window Width</b>"
-msgstr "<b>Höjd för huvudfönster</b>"
-
-#: ../data/prefs.glade.h:46
-msgid "Custom command file path: "
-msgstr ""
-
-#: ../data/prefs.glade.h:47
-msgid "Please select a json file"
-msgstr ""
-
-#: ../data/prefs.glade.h:48 ../src/guake/prefs.py:75
-msgid "General"
-msgstr "Allmänt"
-
-#: ../data/prefs.glade.h:49
-msgid "Default interpreter:"
-msgstr "Standardtolk:"
-
-#: ../data/prefs.glade.h:50
-msgid "_Run command as a login shell"
-msgstr "_Kör kommando som ett inloggningsskal"
-
-#: ../data/prefs.glade.h:51
-msgid "_Open new tab in current directory"
-msgstr "_Öppna ny flik i aktuell katalog"
-
-#: ../data/prefs.glade.h:52
-msgid "<b>Shell</b>"
-msgstr "<b>Skal</b>"
-
-#: ../data/prefs.glade.h:53
-msgid "Shell"
-msgstr ""
-
-#: ../data/prefs.glade.h:54
-msgid "Show scrollbar"
-msgstr "Visa rullningslist"
-
-#: ../data/prefs.glade.h:55
-msgid "Scrollback lines:"
-msgstr "Rader i rullningshistorik:"
-
-#: ../data/prefs.glade.h:56
-msgid "On output"
-msgstr "Vid utdata"
-
-#: ../data/prefs.glade.h:57
-msgid "On key stroke"
-msgstr "Vid tangenttryckning"
-
-#: ../data/prefs.glade.h:58
-msgid "<b>Scroll</b>"
-msgstr "<b>Rullning</b>"
-
-#: ../data/prefs.glade.h:59
-msgid "Scrolling"
-msgstr "Rullning"
-
-#: ../data/prefs.glade.h:60
-msgid "Use the system fixed width font"
-msgstr "Använd systemets typsnitt med fast bredd"
-
-#: ../data/prefs.glade.h:61
-msgid "Font:"
-msgstr "Typsnitt:"
-
-#: ../data/prefs.glade.h:62
-msgid "Choose some font"
-msgstr "Välj ett typsnitt"
-
-#: ../data/prefs.glade.h:63
-msgid "Text color:"
-msgstr "Textfärg:"
-
-#: ../data/prefs.glade.h:64
-msgid "Background color:"
-msgstr "Bakgrundsfärg:"
-
-#: ../data/prefs.glade.h:65
-msgid "Cursor shape:"
-msgstr ""
-
-#: ../data/prefs.glade.h:66
-msgid ""
-"Block\n"
-"I-Beam\n"
-"Underline"
-msgstr ""
-
-#: ../data/prefs.glade.h:69
-msgid ""
-"Follow GTK+ setting\n"
-"Blink on\n"
-"Blink off"
-msgstr ""
-
-#: ../data/prefs.glade.h:72
-msgid "Cursor blink mode:"
-msgstr ""
-
-#: ../data/prefs.glade.h:73
-msgid "Allow bold font"
-msgstr ""
-
-#: ../data/prefs.glade.h:74
-msgid "<b>Palette</b>"
-msgstr "<b>Palett</b>"
-
-#: ../data/prefs.glade.h:75
-msgid "Built-in schemes:"
-msgstr "Inbyggda scheman:"
-
-#: ../data/prefs.glade.h:76
-msgid "Color palette:"
-msgstr "Färgpalett:"
-
-#: ../data/prefs.glade.h:77
-#, fuzzy
-msgid "Font color"
-msgstr "Textfärg:"
-
-#: ../data/prefs.glade.h:78
-#, fuzzy
-msgid "Background color"
-msgstr "Bakgrundsfärg:"
-
-#: ../data/prefs.glade.h:79
-msgid "Use font and background color from the palette"
-msgstr ""
-
-#: ../data/prefs.glade.h:80
-msgid "Demo:"
-msgstr ""
-
-#: ../data/prefs.glade.h:81
-msgid "<b>Effects</b>"
-msgstr "<b>Effekter</b>"
-
-#: ../data/prefs.glade.h:82
-msgid "Transparency:"
-msgstr "Genomskinlighet:"
-
-#: ../data/prefs.glade.h:83
-msgid "Background image:"
-msgstr "Bakgrundsbild:"
-
-#: ../data/prefs.glade.h:84 ../src/guake/prefs.py:130
-msgid "Appearance"
-msgstr "Utseende"
-
-#: ../data/prefs.glade.h:85
-msgid ""
-"<small>Quick open is a feature allowing you to open a file directly into "
-"your favorite text editor by clicking on its filename when it appears in "
-"your terminal. See the list of currently supported text patterns used to "
-"extract filename below.</small>"
-msgstr ""
-
-#: ../data/prefs.glade.h:86
-msgid "Enable Quick Open when Ctrl+clicking on a filename in the terminal"
-msgstr ""
-
-#: ../data/prefs.glade.h:87
-msgid "Editor command line:"
-msgstr ""
-
-#: ../data/prefs.glade.h:89
-#, no-c-format
-msgid ""
-"<small><i>Use the following elements in the open editor command line:\n"
-" - <b>%(file_path)s</b>: path to the file that has been clicked\n"
-" - <b>%(line_number)s</b>: if your editor supports it, you can directly open "
-"the file to a given line number when found on the screen.\n"
-"\n"
-"For example, for sublime, use <b>subl %(file_path)s:%(line_number)s</b>\n"
-"</i></small>"
-msgstr ""
-
-#: ../data/prefs.glade.h:95
-msgid "Quick open in current terminal"
-msgstr ""
-
-#: ../data/prefs.glade.h:96
-msgid ""
-"Here is the list of supported patterns: (to add your own, please contact the "
-"Guake's authors)"
-msgstr ""
-
-#: ../data/prefs.glade.h:97
-#, fuzzy
-msgid "<b>Quick Open</b>"
-msgstr "<b>Palett</b>"
-
-#: ../data/prefs.glade.h:98
-msgid "Quick Open"
-msgstr ""
-
-#: ../data/prefs.glade.h:99
-msgid ""
-"To change a shortcut simply click on its name.\n"
-"To disable a shortcut, press the \"Backspace\" key."
-msgstr ""
-
-#: ../data/prefs.glade.h:101
-msgid "Keyboard shortcuts"
-msgstr "Tangentbordsgenvägar"
-
-#: ../data/prefs.glade.h:102
-msgid ""
-"<small><i><b>Note:</b> These options may cause some applications to behave "
-"incorrectly.  They are only here to allow you to work around certain "
-"applications and operating systems that expect different terminal behavior.</"
-"i></small>"
-msgstr ""
-"<small><i><b>Observera:</b> Dessa alternativ kan orsaka att vissa program "
-"uppträder på ett felaktigt sätt.  De finns endast här för att låta dig göra "
-"temporära lösningar för vissa program och operativsystem som förväntar ett "
-"annat terminalbeteende.</i></small>"
-
-#: ../data/prefs.glade.h:103
-msgid ""
-"ASCII DEL\n"
-"Escape sequence\n"
-"Control-H"
-msgstr ""
-"ASCII DEL\n"
-"Escape-sekvens\n"
-"Control-H"
-
-#: ../data/prefs.glade.h:106
-msgid "_Backspace key generates:"
-msgstr "_Backspace-tangenten genererar:"
-
-#: ../data/prefs.glade.h:107
-msgid "_Delete key generates:"
-msgstr "_Delete-tangenten genererar:"
-
-#: ../data/prefs.glade.h:108
-msgid "_Reset Compatibility Options to Defaults"
-msgstr "Åt_erställ kompatibilitetsalternativ till standardvärden"
-
-#: ../data/prefs.glade.h:109
-msgid "<b>Keyboard compatibility</b>"
-msgstr "<b>Tangentbordskompatibilitet</b>"
-
-#: ../data/prefs.glade.h:110
-msgid "Compatibility"
-msgstr "Kompatibilitet"
-
-#: ../src/guake/about.py:47 ../src/guake/gconfhandler.py:439
-#: ../src/guake/guake_app.py:181 ../src/guake/guake_app.py:378
-msgid "Guake Terminal"
-msgstr "Guake Terminal"
-
-#: ../src/guake/gconfhandler.py:369 ../src/guake/guake_app.py:1386
-#, fuzzy
-msgid "Terminal"
-msgstr "Terminal %s"
-
-#: ../src/guake/gconfhandler.py:440
-#, python-format
-msgid ""
-"A problem happened when binding <b>%s</b> key.\n"
-"Please use Guake Preferences dialog to choose another key"
-msgstr ""
-"Ett problem inträffade vid bindning av <b>%s</b>-tangenten.\n"
-"Använd inställningsdialogen i Guake för att välja en annan tangent "
-"(Aktivitetsikonen var aktiverad)"
-
-#: ../src/guake/guake_app.py:132
-#, fuzzy
-msgid "Do you want to close the tab?"
-msgstr "Vill du verkligen avsluta Guake!?"
-
-#: ../src/guake/guake_app.py:135
-#, fuzzy
-msgid "Do you really want to quit Guake?"
-msgstr "Vill du verkligen avsluta Guake!?"
-
-#: ../src/guake/guake_app.py:137
-#, fuzzy
-msgid " and one tab open"
-msgstr "Lägg till ny flik"
-
-#: ../src/guake/guake_app.py:139
-#, python-brace-format
-msgid " and {0} tabs open"
-msgstr ""
-
-#: ../src/guake/guake_app.py:142
-#, fuzzy
-msgid "There are no processes running"
-msgstr "<b>Det finns fortfarande en process igång.</b>"
-
-#: ../src/guake/guake_app.py:144
-#, fuzzy
-msgid "There is a process still running"
-msgstr "<b>Det finns fortfarande en process igång.</b>"
-
-#: ../src/guake/guake_app.py:146
-#, fuzzy, python-brace-format
-msgid "There are {0} processes still running"
-msgstr "<b>Det finns %d processer igång.</b>"
-
-#: ../src/guake/guake_app.py:186
-msgid "guake-indicator"
-msgstr ""
-
-#: ../src/guake/guake_app.py:186
-msgid "guake-tray"
-msgstr ""
-
-#: ../src/guake/guake_app.py:190
-msgid "Show"
-msgstr ""
-
-#: ../src/guake/guake_app.py:379
-#, python-format
-msgid ""
-"Guake is now running,\n"
-"press <b>{!s}</b> to use it."
-msgstr ""
-"Guake är nu igång, tryck\n"
-"<b>{!s}</b> för att använda den."
-
-#: ../src/guake/guake_app.py:670
-#, python-format
-msgid "Search on Web: '%s'"
-msgstr ""
-
-#: ../src/guake/guake_app.py:675
-msgid "Search on Web (no selection)"
-msgstr ""
-
-#: ../src/guake/guake_app.py:683
-msgid "Open Link: '{}...'"
-msgstr ""
-
-#: ../src/guake/guake_app.py:685
-msgid "Open Link: {}"
-msgstr ""
-
-#: ../src/guake/guake_app.py:688
-msgid "Open Link..."
-msgstr ""
-
-#: ../src/guake/guake_app.py:1425
-msgid "Rename tab"
-msgstr "Byt namn på flik"
-
-#: ../src/guake/guake_app.py:1736
-msgid "Save to..."
-msgstr ""
-
-#: ../src/guake/guake_app.py:1743 ../src/guake/prefs.py:973
-msgid "All files"
-msgstr ""
-
-#: ../src/guake/guake_app.py:1748
-msgid "Text and Logs"
-msgstr ""
-
-#: ../src/guake/guake_app.py:1766
-msgid "Find"
-msgstr ""
-
-#: ../src/guake/guake_app.py:1768
-msgid "Forward"
-msgstr ""
-
-#: ../src/guake/guake_app.py:1769
-msgid "Backward"
-msgstr ""
-
-#: ../src/guake/main.py:68
-msgid "Put Guake in fullscreen mode"
-msgstr ""
-
-#: ../src/guake/main.py:72
-msgid "Toggles the visibility of the terminal window"
-msgstr "Växlar synligheten för terminalfönstret"
-
-#: ../src/guake/main.py:76
-#, fuzzy
-msgid "Shows Guake main window"
-msgstr "Visar Guakes inställningsfönster"
-
-#: ../src/guake/main.py:80
-#, fuzzy
-msgid "Hides Guake main window"
-msgstr "Visar Guakes inställningsfönster"
-
-#: ../src/guake/main.py:84
-msgid "Shows Guake preference window"
-msgstr "Visar Guakes inställningsfönster"
-
-#: ../src/guake/main.py:88
-msgid "Shows Guake's about info"
-msgstr "Visar information om Guake"
-
-#: ../src/guake/main.py:92
-#, fuzzy
-msgid "Add a new tab (with current directory set to NEW_TAB)"
-msgstr "_Öppna ny flik i aktuell katalog"
-
-#: ../src/guake/main.py:96
-msgid "Select a tab (SELECT_TAB is the index of the tab)"
-msgstr ""
-
-#: ../src/guake/main.py:100
-msgid "Return the selected tab index."
-msgstr "Returnerar valt flikindex"
-
-#: ../src/guake/main.py:104
-msgid "Execute an arbitrary command in the selected tab."
-msgstr "Kör ett godtyckligt kommando i markerad flik."
-
-#: ../src/guake/main.py:108
-msgid "Specify the tab to rename. Default is 0."
-msgstr ""
-
-#: ../src/guake/main.py:112
-msgid "Set the hexadecimal (#rrggbb) background color of the selected tab."
-msgstr ""
-
-#: ../src/guake/main.py:117
-msgid "Set the hexadecimal (#rrggbb) foreground color of the selected tab."
-msgstr ""
-
-#: ../src/guake/main.py:123
-msgid ""
-"Rename the specified tab. Reset to default if TITLE is a single dash \"-\"."
-msgstr ""
-
-#: ../src/guake/main.py:129
-msgid ""
-"Rename the current tab. Reset to default if TITLE is a single dash \"-\"."
-msgstr ""
-
-#: ../src/guake/main.py:134
-msgid "Says to Guake go away =("
-msgstr "Säger till Guake att försvinna =("
-
-#: ../src/guake/main.py:138
-msgid "Do not execute the start up script"
-msgstr ""
-
-#: ../src/guake/main.py:235
-msgid "Guake can not init!"
-msgstr "Guake kan inte initiera!"
-
-#: ../src/guake/main.py:236
-#, fuzzy
-msgid ""
-"Gconf Error.\n"
-"Have you installed <b>guake.schemas</b> properly?"
-msgstr ""
-"Fel i Gconf.\n"
-"Har du installerat <b>guake.schemas</b> korrekt?"
-
-#. string to show in prefereces dialog for user shell option
-#: ../src/guake/prefs.py:67
+#: guake/prefs.py:78
 msgid "<user shell>"
 msgstr "<användarskal>"
 
-#: ../src/guake/prefs.py:77
+#: guake/prefs.py:89
+msgid "General"
+msgstr "Allmänt"
+
+#: guake/prefs.py:94
 msgid "Toggle Guake visibility"
 msgstr "Växla synlighet för Guake"
 
-#: ../src/guake/prefs.py:81
-#, fuzzy
-msgid "Toggle Hide on Lose Focus"
-msgstr "Dölj när fokus tappas"
+#: guake/prefs.py:98
+msgid "Show and focus Guake window"
+msgstr "Visa och fokusera Guake-fönster"
 
-#: ../src/guake/prefs.py:88
+#: guake/prefs.py:102
+msgid "Toggle Fullscreen"
+msgstr "Växla helskärm"
+
+#: guake/prefs.py:106
+msgid "Toggle Hide on Lose Focus"
+msgstr "Växla Dölj när fokus tappas"
+
+#: guake/prefs.py:110
+msgid "Quit"
+msgstr "Avsluta"
+
+#: guake/prefs.py:114
+msgid "Reset terminal"
+msgstr "Återställ terminal"
+
+#: guake/prefs.py:119
 msgid "Tab management"
 msgstr "Flikhantering"
 
-#: ../src/guake/prefs.py:90
-#, fuzzy
+#: guake/prefs.py:124
 msgid "New tab"
 msgstr "Ny flik"
 
-#: ../src/guake/prefs.py:92
+#: guake/prefs.py:128
 msgid "Close tab"
 msgstr "Stäng flik"
 
-#: ../src/guake/prefs.py:94
+#: guake/prefs.py:132
 msgid "Rename current tab"
 msgstr "Byt namn på aktuell flik"
 
-#: ../src/guake/prefs.py:97
+#: guake/prefs.py:137
 msgid "Navigation"
 msgstr "Navigering"
 
-#: ../src/guake/prefs.py:99
+#: guake/prefs.py:142
 msgid "Go to previous tab"
 msgstr "Gå till föregående flik"
 
-#: ../src/guake/prefs.py:101
+#: guake/prefs.py:146
 msgid "Go to next tab"
 msgstr "Gå till nästa flik"
 
-#: ../src/guake/prefs.py:103
-#, fuzzy
+#: guake/prefs.py:150
 msgid "Move current tab left"
-msgstr "Byt namn på aktuell flik"
+msgstr "Flytta aktuell flik åt vänster"
 
-#: ../src/guake/prefs.py:105
-#, fuzzy
+#: guake/prefs.py:154
 msgid "Move current tab right"
-msgstr "Byt namn på aktuell flik"
+msgstr "Flytta aktuell flik åt höger"
 
-#: ../src/guake/prefs.py:107
-#, fuzzy
+#: guake/prefs.py:158
 msgid "Go to first tab"
-msgstr "Gå till nästa flik"
+msgstr "Gå till första fliken"
 
-#: ../src/guake/prefs.py:109
-#, fuzzy
+#: guake/prefs.py:162
 msgid "Go to second tab"
-msgstr "Gå till nästa flik"
+msgstr "Gå till andra fliken"
 
-#: ../src/guake/prefs.py:111
-#, fuzzy
+#: guake/prefs.py:166
 msgid "Go to third tab"
-msgstr "Gå till nästa flik"
+msgstr "Gå till tredje fliken"
 
-#: ../src/guake/prefs.py:113
-#, fuzzy
+#: guake/prefs.py:170
 msgid "Go to fourth tab"
-msgstr "Gå till nästa flik"
+msgstr "Gå till fjärde fliken"
 
-#: ../src/guake/prefs.py:115
-#, fuzzy
+#: guake/prefs.py:174
 msgid "Go to fifth tab"
-msgstr "Gå till nästa flik"
+msgstr "Gå till femte fliken"
 
-#: ../src/guake/prefs.py:117
-#, fuzzy
+#: guake/prefs.py:178
 msgid "Go to sixth tab"
-msgstr "Gå till nästa flik"
+msgstr "Gå till sjätte fliken"
 
-#: ../src/guake/prefs.py:119
-#, fuzzy
+#: guake/prefs.py:182
 msgid "Go to seventh tab"
-msgstr "Gå till nästa flik"
+msgstr "Gå till sjunde fliken"
 
-#: ../src/guake/prefs.py:121
-#, fuzzy
+#: guake/prefs.py:186
 msgid "Go to eighth tab"
-msgstr "Gå till nästa flik"
+msgstr "Gå till åttonde fliken"
 
-#: ../src/guake/prefs.py:123
-#, fuzzy
+#: guake/prefs.py:190
 msgid "Go to ninth tab"
-msgstr "Gå till nästa flik"
+msgstr "Gå till nionde fliken"
 
-#: ../src/guake/prefs.py:125
-#, fuzzy
+#: guake/prefs.py:194
 msgid "Go to tenth tab"
-msgstr "Gå till nästa flik"
+msgstr "Gå till tionde fliken"
 
-#: ../src/guake/prefs.py:127
-#, fuzzy
+#: guake/prefs.py:198
 msgid "Go to last tab"
-msgstr "Gå till nästa flik"
+msgstr "Gå till sista fliken"
 
-#: ../src/guake/prefs.py:132
+#: guake/prefs.py:203
+msgid "Appearance"
+msgstr "Utseende"
+
+#: guake/prefs.py:207
 msgid "Zoom out"
-msgstr ""
+msgstr "Zooma ut"
 
-#: ../src/guake/prefs.py:134
+#: guake/prefs.py:210
 msgid "Zoom in"
-msgstr ""
+msgstr "Zooma in"
 
-#: ../src/guake/prefs.py:136
+#: guake/prefs.py:213
 msgid "Zoom in (alternative)"
-msgstr ""
+msgstr "Zooma in (alternativ)"
 
-#: ../src/guake/prefs.py:138
+#: guake/prefs.py:216
 msgid "Increase height"
-msgstr ""
+msgstr "Öka höjd"
 
-#: ../src/guake/prefs.py:140
+#: guake/prefs.py:219
 msgid "Decrease height"
-msgstr ""
+msgstr "Minska höjd"
 
-#: ../src/guake/prefs.py:142
-#, fuzzy
+#: guake/prefs.py:222
 msgid "Increase transparency"
-msgstr "Genomskinlighet:"
+msgstr "Öka genomskinlighet"
 
-#: ../src/guake/prefs.py:144
-#, fuzzy
+#: guake/prefs.py:225
 msgid "Decrease transparency"
-msgstr "Genomskinlighet:"
+msgstr "Minska genomskinlighet"
 
-#: ../src/guake/prefs.py:146
-#, fuzzy
+#: guake/prefs.py:228
 msgid "Toggle transparency"
-msgstr "Genomskinlighet:"
+msgstr "Växla genomskinlighet"
 
-#: ../src/guake/prefs.py:149
+#: guake/prefs.py:232
 msgid "Clipboard"
 msgstr "Urklipp"
 
-#: ../src/guake/prefs.py:151
+#: guake/prefs.py:237
 msgid "Copy text to clipboard"
 msgstr "Kopiera text till urklipp"
 
-#: ../src/guake/prefs.py:153
+#: guake/prefs.py:241
 msgid "Paste text from clipboard"
 msgstr "Klistra in text från urklipp"
 
-#: ../src/guake/prefs.py:156
+#: guake/prefs.py:246
 msgid "Extra features"
-msgstr ""
+msgstr "Extrafunktioner"
 
-#: ../src/guake/prefs.py:159
+#: guake/prefs.py:250
 msgid "Search select text on web"
-msgstr ""
+msgstr "Sök markerad text på webben"
 
-#: ../src/guake/prefs.py:481
+#: guake/prefs.py:686
 msgid "Action"
 msgstr "Åtgärd"
 
-#: ../src/guake/prefs.py:491
+#: guake/prefs.py:694
 msgid "Shortcut"
 msgstr "Genväg"
 
-#: ../src/guake/prefs.py:651 ../src/guake/prefs.py:697
+#: guake/prefs.py:849 guake/prefs.py:903
 msgid "Custom"
-msgstr ""
+msgstr "Anpassad"
 
-#: ../src/guake/prefs.py:969
+#: guake/prefs.py:1194
 msgid "JSON files"
-msgstr ""
+msgstr "JSON-filer"
 
-#: ../src/guake/prefs.py:1063
+#: guake/prefs.py:1198 guake/guake_app.py:1895
+msgid "All files"
+msgstr "Alla filer"
+
+#: guake/prefs.py:1293
 #, python-format
 msgid "The shortcut \"%s\" is already in use."
 msgstr "Genvägen \"%s\" används redan."
 
-#: ../src/guake/prefs.py:1064
+#: guake/prefs.py:1294
 msgid "Error setting keybinding."
 msgstr "Fel vid inställning av tangentbindning."
 
-#: ../src/guake/prefs.py:1076
+#: guake/prefs.py:1310
 #, python-format
 msgid ""
 "The shortcut \"%s\" cannot be used because it will become impossible to type "
@@ -979,131 +230,249 @@ msgstr ""
 "\n"
 "Prova med en tangent såsom Control, Alt eller Skift på samma gång.\n"
 
-#: guake/main.py:153
-msgid "Return the selected tab label."
-msgstr ""
+#: guake/guake_app.py:133
+msgid "Do you want to close the tab?"
+msgstr "Vill du stänga fliken?"
 
-#: guake/data/about.glade:15
+#: guake/guake_app.py:136
+msgid "Do you really want to quit Guake?"
+msgstr "Vill du verkligen avsluta Guake?"
+
+#: guake/guake_app.py:138
+msgid " and one tab open"
+msgstr " och en öppen flik"
+
+#: guake/guake_app.py:140
+#, python-brace-format
+msgid " and {0} tabs open"
+msgstr " och {0} flikar öppna"
+
+#: guake/guake_app.py:143
+msgid "There are no processes running"
+msgstr "Det finns inga körande processer"
+
+#: guake/guake_app.py:145
+msgid "There is a process still running"
+msgstr "Det finns fortfarande en körande process"
+
+#: guake/guake_app.py:147
+#, python-brace-format
+msgid "There are {0} processes still running"
+msgstr "Det finns {0} körande processer"
+
+#: guake/guake_app.py:201 guake/guake_app.py:414 guake/keybindings.py:94
+#: guake/about.py:54
+msgid "Guake Terminal"
+msgstr "Guake Terminal"
+
+#: guake/guake_app.py:207
+msgid "guake-indicator"
+msgstr "guake-indicator"
+
+#: guake/guake_app.py:207
+msgid "guake-tray"
+msgstr "guake-tray"
+
+#: guake/guake_app.py:212
+msgid "Show"
+msgstr "Visa"
+
+#: guake/guake_app.py:415
+msgid ""
+"Guake is now running,\n"
+"press <b>{!s}</b> to use it."
+msgstr ""
+"Guake är nu igång, tryck\n"
+"<b>{!s}</b> för att använda den."
+
+#: guake/guake_app.py:470
+msgid "Custom Commands"
+msgstr "Anpassade kommandon"
+
+#: guake/guake_app.py:723
+#, python-format
+msgid "Search on Web: '%s'"
+msgstr "Sök på webben: '%s'"
+
+#: guake/guake_app.py:727
+msgid "Search on Web (no selection)"
+msgstr "Sök på webben (ingen markering)"
+
+#: guake/guake_app.py:739
+msgid "Quick Open: {!s}..."
+msgstr "Snabböppna: {!s}..."
+
+#: guake/guake_app.py:742
+msgid "Quick Open: {!s}"
+msgstr "Snabböppna: {!s}"
+
+#: guake/guake_app.py:745
+msgid "Quick Open..."
+msgstr "Snabböppna..."
+
+#: guake/guake_app.py:753
+msgid "Open Link: {!s}..."
+msgstr "Öppna länk: {!s}..."
+
+#: guake/guake_app.py:756
+msgid "Open Link: {!s}"
+msgstr "Öppna länk: {!s}"
+
+#: guake/guake_app.py:759
+msgid "Open Link..."
+msgstr "Öppna länk..."
+
+#: guake/guake_app.py:1499
+msgid "Terminal"
+msgstr "Terminal"
+
+#: guake/guake_app.py:1555
+msgid "Rename tab"
+msgstr "Byt namn på flik"
+
+#: guake/guake_app.py:1890
+msgid "Save to..."
+msgstr "Spara som..."
+
+#: guake/guake_app.py:1900
+msgid "Text and Logs"
+msgstr "Text och loggar"
+
+#: guake/guake_app.py:1920
+msgid "Find"
+msgstr "Sök"
+
+#: guake/guake_app.py:1922
+msgid "Forward"
+msgstr "Framåt"
+
+#: guake/guake_app.py:1922
+msgid "Backward"
+msgstr "Bakåt"
+
+#: guake/keybindings.py:96
+#, python-format
+msgid ""
+"A problem happened when binding <b>%s</b> key.\n"
+"Please use Guake Preferences dialog to choose another key"
+msgstr ""
+"Ett problem inträffade vid bindning av <b>%s</b>-tangenten.\n"
+"Använd inställningsdialogen i Guake för att välja en annan tangent "
+"(Aktivitetsikonen var aktiverad)"
+
+#: guake/main.py:70
+msgid "Show Guake version number and exit"
+msgstr "Visa Guakes versionsnummer och avsluta"
+
+#: guake/main.py:79
+msgid "Enable verbose logging"
+msgstr "Aktivera riklig loggning"
+
+#: guake/main.py:88
+msgid "Put Guake in fullscreen mode"
+msgstr "Sätt Guake i helskärmsläge"
+
+#: guake/main.py:97
+msgid "Toggles the visibility of the terminal window"
+msgstr "Växlar synligheten för terminalfönstret"
+
+#: guake/main.py:105
+msgid "Shows Guake main window"
+msgstr "Visar Guakes huvudfönster"
+
+#: guake/main.py:113
+msgid "Hides Guake main window"
+msgstr "Döljer Guakes huvudfönster"
+
+#: guake/main.py:122
+msgid "Shows Guake preference window"
+msgstr "Visar Guakes inställningsfönster"
+
+#: guake/main.py:131
+msgid "Shows Guake's about info"
+msgstr "Visar information om Guake"
+
+#: guake/main.py:140
+msgid "Add a new tab (with current directory set to NEW_TAB)"
+msgstr "Lägg till en ny flik (med aktuell katalog satt till NEW_TAB)"
+
+#: guake/main.py:149
+msgid "Select a tab (SELECT_TAB is the index of the tab)"
+msgstr "Välj flik (SELECT_TAB är flikens index)"
+
+#: guake/main.py:158
+msgid "Return the selected tab index."
+msgstr "Returnerar valt flikindex"
+
+#: guake/main.py:167
+msgid "Return the selected tab label."
+msgstr "Returnera vald fliks märke."
+
+#: guake/main.py:176
+msgid "Execute an arbitrary command in the selected tab."
+msgstr "Kör ett godtyckligt kommando i markerad flik."
+
+#: guake/main.py:185
+msgid ""
+"Specify the tab to rename. Default is 0. Can be used to select tab by UUID"
+msgstr ""
+"Ange flik att byta namn på (standard är 0). Kan användas för att välja flik "
+"med UUID"
+
+#: guake/main.py:193
+msgid "Set the hexadecimal (#rrggbb) background color of the selected tab."
+msgstr "Ställ in bakgrundsfärg (hexadecimalt: #rrggbb) för vald flik. "
+
+#: guake/main.py:202
+msgid "Set the hexadecimal (#rrggbb) foreground color of the selected tab."
+msgstr "Ställ in förgrundsfärg (hexadecimalt: #rrggbb) för vald flik. "
+
+#: guake/main.py:213
+msgid ""
+"Rename the specified tab by --tab-index. Reset to default if TITLE is a "
+"single dash \"-\"."
+msgstr ""
+"Byt namn på flik angiven med --tab-index. Använd standard om TITLE är ett "
+"ensamt tankstreck \"-\"."
+
+#: guake/main.py:225
+msgid ""
+"Rename the current tab. Reset to default if TITLE is a single dash \"-\"."
+msgstr ""
+"Byt namn på aktuell flik. Använd standard om TITLE är ett ensamt tankstreck "
+"\"-\"."
+
+#: guake/main.py:235
+msgid "Says to Guake go away =("
+msgstr "Säger till Guake att försvinna =("
+
+#: guake/main.py:244
+msgid "Do not execute the start up script"
+msgstr "Kör inte uppstartsskriptet"
+
+#: data/about.glade:11
 msgid ""
 "Copyright 2013-2018 Gaetan Semet\n"
 "Copyright 2007-2010 Lincoln de Sousa\n"
 "Copyright 2007 Gabriel Falcão"
 msgstr ""
+"Copyright 2013-2018 Gaetan Semet\n"
+"Copyright 2007-2010 Lincoln de Sousa\n"
+"Copyright 2007 Gabriel Falcão"
 
-#: guake/data/prefs.glade:264
-msgid "Never"
-msgstr ""
-
-#: guake/data/prefs.glade:265
-msgid "With process running"
-msgstr ""
-
-#: guake/data/prefs.glade:266
-msgid "Always"
-msgstr ""
-
-#: guake/data/prefs.glade:499
-msgid "Refocus if open"
-msgstr ""
-
-#: guake/data/prefs.glade:865
-msgid "Custom command file path:"
-msgstr ""
-
-#: guake/data/prefs.glade:1315
-msgid "Show resizer"
-msgstr ""
-
-#: guake/data/prefs.glade:1423
-msgid "Block"
-msgstr ""
-
-#: guake/data/prefs.glade:1424
-msgid "I-Beam"
-msgstr ""
-
-#: guake/data/prefs.glade:1425
-msgid "Underline"
-msgstr ""
-
-#: guake/data/prefs.glade:1443
-msgid "Follow GTK+ setting"
-msgstr ""
-
-#: guake/data/prefs.glade:1444
-msgid "Blink on"
-msgstr ""
-
-#: guake/data/prefs.glade:1445
-msgid "Blink off"
-msgstr ""
-
-#: guake/data/prefs.glade:2236
+#: data/about.glade:14
 msgid ""
-"<small><i>Use the following elements in the open editor command line:\n"
-"- <b>%(file_path)s</b>: path to the file that has been clicked\n"
-"- <b>%(line_number)s</b>: if your editor supports it, you can directly open "
-"the file to a given line number when found on the screen.\n"
-"\n"
-"For example, for sublime, use <b>subl %(file_path)s:%(line_number)s</b>\n"
-"</i></small>"
+"Guake is an easy to access\n"
+"terminal based on FPS games terminal"
 msgstr ""
+"Guake är en lättillgänglig terminal\n"
+"baserad på terminalen i FPS-spel"
 
-#: guake/data/prefs.glade:2442 guake/data/prefs.glade:2462
-msgid "ASCII DEL"
-msgstr ""
-
-#: guake/data/prefs.glade:2443 guake/data/prefs.glade:2463
-msgid "Escape sequence"
-msgstr ""
-
-#: guake/data/prefs.glade:2444 guake/data/prefs.glade:2464
-msgid "Control-H"
-msgstr ""
-
-#: guake/data/prefs.glade:2600
-msgid ""
-"<small>In this dialog you can attach your own command or script to various "
-"guake events</small>"
-msgstr ""
-
-#: guake/data/prefs.glade:2635
-msgid "On show:"
-msgstr ""
-
-#: guake/data/prefs.glade:2665
-msgid "On start:"
-msgstr ""
-
-#: guake/data/prefs.glade:2714
-msgid "Hooks"
-msgstr ""
-
-#: guake/data/guake-prefs.desktop:8
-msgid "Configure your Guake sessions"
-msgstr ""
-
-#: guake/data/guake-prefs.desktop:15 guake/data/guake.desktop:18
-msgid "guake"
-msgstr ""
-
-#: guake/data/guake-prefs.desktop:20
-msgid "Terminal;Utility;"
-msgstr ""
-
-#: guake/data/guake.desktop:10
-msgid "Use the command line in a Quake-like terminal"
-msgstr ""
-
-#: guake/data/prefs.glade:770
-msgid "Main Window Horizontal Alignment"
-msgstr ""
-
-#: guake/data/about.glade:17
+#: data/about.glade:17
 msgid "http://guake-project.org"
-msgstr ""
+msgstr "http://guake-project.org"
 
-#: guake/data/about.glade:18
+#: data/about.glade:18
 msgid ""
 "Guake is free software; you can redistribute it and/or\n"
 "modify it under the terms of the GNU General Public\n"
@@ -1122,179 +491,522 @@ msgid ""
 "Software Foundation, Inc., 51 Franklin St, Fifth Floor,\n"
 "Boston, MA  02110-1301 USA"
 msgstr ""
+"Guake är fri programvara. Du kan distribuera det och/eller modifiera det\n"
+"under villkoren i GNU General Public License, publicerad av Free Software\n"
+"Foundation, antingen version 2 eller (om du så vill) någon senare version.\n"
+"\n"
+"Guake distribueras i hopp om att det ska vara användbart, men UTAN NÅGON "
+"SOM\n"
+"HELST GARANTI, även utan underförstådd garanti om SÄLJBARHET eller\n"
+"LÄMPLIGHET FÖR NÅGOT SPECIELLT ÄNDAMÅL. Se GNU General Public License för\n"
+"ytterligare information.\n"
+"\n"
+"Du bör ha fått en kopia av GNU General Public License tillsammans med\n"
+"Guake. Om inte, skriv till Free Software Foundation, Inc., 51 Franklin St,\n"
+"Fifth Floor, Boston, MA  02110-1301 USA"
 
-#: guake/prefs.py:89
-msgid "Show and focus Guake window"
+#: data/about.glade:46
+msgid ""
+"Adolfo González Blázquez <code@infinicode.org> Spanish\n"
+"Lincoln de Sousa <lincoln@guake.org> Brazilian Portuguese\n"
+"Markus Majer <mm@mpathy.de> German\n"
+"Mieszko Ślusarczyk <mieszkoslusarczyk@gmail.com> Polish\n"
+"Nishio Futoshi <futoshi@momonga-linux.org> Japanese\n"
+"Pavel Alexeev <Pahan@Hubbitus.spb.su> Russian\n"
+"Piotr Drąg <piotrdrag@gmail.com> Polish\n"
+"Sangwoo Joo <sangwoojoo@naver.com> Korean\n"
+"    "
 msgstr ""
+"Adolfo González Blázquez <code@infinicode.org> spanska\n"
+"Lincoln de Sousa <lincoln@guake.org> brasiliansk portugisiska\n"
+"Markus Majer <mm@mpathy.de> tyska\n"
+"Mieszko Ślusarczyk <mieszkoslusarczyk@gmail.com> polska\n"
+"Nishio Futoshi <futoshi@momonga-linux.org> japanska\n"
+"Pavel Alexeev <Pahan@Hubbitus.spb.su> ryska\n"
+"Piotr Drąg <piotrdrag@gmail.com> polska\n"
+"Sangwoo Joo <sangwoojoo@naver.com> koreanska\n"
+"    "
 
-#: guake/data/prefs.glade:566
+#: data/guake.glade:11
+msgid "Copy"
+msgstr "Kopiera"
+
+#: data/guake.glade:20
+msgid "Paste"
+msgstr "Klistra in"
+
+#: data/guake.glade:50
+msgid "Save to File..."
+msgstr "Spara som..."
+
+#: data/guake.glade:68
+msgid "Find..."
+msgstr "Sök..."
+
+#: data/guake.glade:83 data/guake.glade:188
+msgid "New Tab"
+msgstr "Ny flik"
+
+#: data/guake.glade:92
+msgid "Rename Tab"
+msgstr "Byt namn på flik"
+
+#: data/guake.glade:101
+msgid "Close Tab"
+msgstr "Stäng flik"
+
+#: data/guake.glade:116
+msgid "Open link..."
+msgstr "Öppna länk..."
+
+#: data/guake.glade:125
+msgid "Search on Web"
+msgstr "Sök på webben"
+
+#: data/guake.glade:134 data/prefs.glade:2455
+msgid "Quick Open"
+msgstr "Snabböppning"
+
+#: data/guake.glade:197
+msgid "Rename"
+msgstr "Byt namn"
+
+#: data/guake.glade:206 data/search.glade:22
+msgid "Close"
+msgstr "Stäng"
+
+#: data/guake.glade:256
+msgid "Guake!"
+msgstr "Guake!"
+
+#: data/search.glade:138
+msgid "Search forward"
+msgstr "Sök framåt"
+
+#: data/search.glade:153
+msgid "Match case"
+msgstr "Gör skillnad på gemener/VERSALER"
+
+#: data/search.glade:186
+msgid "Current search direction: Backward"
+msgstr "Aktuell sökriktning: Bakåt"
+
+#: data/prefs.glade:43
+msgid "Guake Preferences"
+msgstr "Inställningar för Guake"
+
+#: data/prefs.glade:93
+msgid "<span size=\"18000\"><b>Guake properties</b></span>"
+msgstr "<span size=\"18000\"><b>Egenskaper för Guake</b></span>"
+
+#: data/prefs.glade:107
+msgid "Customize behavior and appearance of Guake!"
+msgstr "Anpassa beteendet och utseendet för Guake!"
+
+#: data/prefs.glade:190
+msgid "Enable popup notifications on startup"
+msgstr "Aktivera popupnotifieringar vid uppstart"
+
+#: data/prefs.glade:207
+msgid "_Play system alert sound on bell"
+msgstr "_Spela systemets varningsljud vid pip"
+
+#: data/prefs.glade:223
+msgid "Start Guake at login"
+msgstr "Starta Guake vid inloggning"
+
+#: data/prefs.glade:246
+msgid "Prompt on close tab:"
+msgstr "Fråga när flik stängs:"
+
+#: data/prefs.glade:260
+msgid "Never"
+msgstr "Aldrig"
+
+#: data/prefs.glade:261
+msgid "With process running"
+msgstr "När process kör"
+
+#: data/prefs.glade:262
+msgid "Always"
+msgstr "Alltid"
+
+#: data/prefs.glade:281
+msgid "Always prompt on quit"
+msgstr "Fråga alltid vid avslut"
+
+#: data/prefs.glade:297
+msgid "Show tray icon"
+msgstr "Visa aktivitetsikon"
+
+#: data/prefs.glade:313
+msgid "_Flash terminal on bell"
+msgstr "_Blinka terminalen vid pip"
+
+#: data/prefs.glade:337 data/prefs.glade:1635
+msgid "<b>General</b>"
+msgstr "<b>Allmänt</b>"
+
+#: data/prefs.glade:363
+msgid "Gtk Theme:"
+msgstr "GTK-tema:"
+
+#: data/prefs.glade:387
+msgid "Prefer dark theme"
+msgstr "Föredra mörkt tema"
+
+#: data/prefs.glade:416
+msgid "Custom command file path:"
+msgstr "Sökväg till anpassat kommando:"
+
+#: data/prefs.glade:428
+msgid "Please select a json file"
+msgstr "Välj en JSON-fil"
+
+#: data/prefs.glade:516
+msgid "Refocus if open"
+msgstr "Fokusera om redan öppet"
+
+#: data/prefs.glade:533
+msgid "Hide on lose focus"
+msgstr "Dölj när fokus tappas"
+
+#: data/prefs.glade:550
+msgid "Start fullscreen"
+msgstr "Starta i helskärmsläge"
+
+#: data/prefs.glade:566
+msgid "Stay on top"
+msgstr "Alltid överst"
+
+#: data/prefs.glade:584
+msgid "Show tab bar"
+msgstr "Visa flikrad"
+
+#: data/prefs.glade:600
+msgid "Use VTE titles for tab names"
+msgstr "Visa VTE-titel som fliknamn"
+
+#: data/prefs.glade:618
+msgid "Abbreviate directories in tab names"
+msgstr "Förkorta katalognamn i flikar"
+
+#: data/prefs.glade:643
+msgid "Max tab name length:"
+msgstr "Maxlängd för fliknamn:"
+
+#: data/prefs.glade:658
 msgid "0"
-msgstr ""
+msgstr "0"
 
-#: guake/data/prefs.glade:610
+#: data/prefs.glade:702
 msgid "<b>Main Window Options</b>"
-msgstr ""
+msgstr "<b>Alternativ för huvudfönstret</b>"
 
-#: guake/data/prefs.glade:770
+#: data/prefs.glade:733
+msgid "Bottom align window instead of top align"
+msgstr "Justera undersidan av fönstret istället för ovansidan"
+
+#: data/prefs.glade:749
+msgid "Appear on mouse display"
+msgstr "Visa på samma skärm som muspekaren"
+
+#: data/prefs.glade:774
+msgid "Appear on display:"
+msgstr "Visa på skärm:"
+
+#: data/prefs.glade:804
+msgid "Place tabs on top"
+msgstr "Visa flikraden överst"
+
+#: data/prefs.glade:826
+msgid "<b>Placement</b>"
+msgstr "<b>Placering</b>"
+
+#: data/prefs.glade:862
 msgid "Horizontal Alignment:"
-msgstr ""
+msgstr "Horisontell justering:"
 
-#: guake/data/prefs.glade:855
+#: data/prefs.glade:878
+msgid "Left"
+msgstr "Vänster"
+
+#: data/prefs.glade:898
+msgid "Center"
+msgstr "Mitten"
+
+#: data/prefs.glade:918
+msgid "Right"
+msgstr "Höger"
+
+#: data/prefs.glade:947
 msgid "Height:"
-msgstr ""
+msgstr "Höjd:"
 
-#: guake/data/prefs.glade:868
+#: data/prefs.glade:960
 msgid "Width:"
-msgstr ""
+msgstr "Bredd:"
 
-#: guake/data/prefs.glade:913
+#: data/prefs.glade:1014
+msgid "Displacement in pixels"
+msgstr "Förskjutning i antal pixlar"
+
+#: data/prefs.glade:1042
 msgid "<b>Geometry</b>"
-msgstr ""
+msgstr "<b>Geometri</b>"
 
-#: guake/data/prefs.glade:944
+#: data/prefs.glade:1073
 msgid "Main Window"
-msgstr ""
+msgstr "Huvudfönster"
 
-#: guake/data/prefs.glade:1197
+#: data/prefs.glade:1118
+msgid "Default interpreter:"
+msgstr "Standardtolk:"
+
+#: data/prefs.glade:1157
+msgid "_Run command as a login shell"
+msgstr "_Kör kommando som ett inloggningsskal"
+
+#: data/prefs.glade:1175
+msgid "_Open new tab in current directory"
+msgstr "_Öppna ny flik i aktuell katalog"
+
+#: data/prefs.glade:1220
+msgid "Shell"
+msgstr "Skal"
+
+#: data/prefs.glade:1266
+msgid "Show scrollbar"
+msgstr "Visa rullningslist"
+
+#: data/prefs.glade:1290
+msgid "Scrollback lines:"
+msgstr "Rader i rullningshistorik:"
+
+#: data/prefs.glade:1326
 msgid "Infinite scrolling"
-msgstr ""
+msgstr "Obegränsad rullning"
 
-#: guake/data/prefs.glade:1219
+#: data/prefs.glade:1348
 msgid "<b>Scrollbar</b>"
-msgstr ""
+msgstr "<b>Rullningslist</b>"
 
-#: guake/data/prefs.glade:1304
+#: data/prefs.glade:1393
+msgid "On output"
+msgstr "Vid utdata"
+
+#: data/prefs.glade:1410
+msgid "On key stroke"
+msgstr "Vid tangenttryckning"
+
+#: data/prefs.glade:1433
 msgid "<b>Scroll to Bottom</b>"
-msgstr ""
+msgstr "<b>Rulla till slutet</b>"
 
-#: guake/data/prefs.glade:2117
+#: data/prefs.glade:1457
+msgid "Scrolling"
+msgstr "Rullning"
+
+#: data/prefs.glade:1492
+msgid "Use the system fixed width font"
+msgstr "Använd systemets typsnitt med fast bredd"
+
+#: data/prefs.glade:1520
+msgid "Font:"
+msgstr "Typsnitt:"
+
+#: data/prefs.glade:1535
+msgid "Choose some font"
+msgstr "Välj ett typsnitt"
+
+#: data/prefs.glade:1549
+msgid "Cursor shape:"
+msgstr "Markörens utseende:"
+
+#: data/prefs.glade:1564
+msgid "Block"
+msgstr "Block"
+
+#: data/prefs.glade:1565
+msgid "I-Beam"
+msgstr "I-balk"
+
+#: data/prefs.glade:1566
+msgid "Underline"
+msgstr "Understreck"
+
+#: data/prefs.glade:1580
+msgid "Cursor blink mode:"
+msgstr "Markörens blinkläge:"
+
+#: data/prefs.glade:1594
+msgid "Follow GTK+ setting"
+msgstr "Använd inställning för GTK+"
+
+#: data/prefs.glade:1595
+msgid "Blink on"
+msgstr "Blinkande"
+
+#: data/prefs.glade:1596
+msgid "Blink off"
+msgstr "Fast"
+
+#: data/prefs.glade:1613
+msgid "Allow bold font"
+msgstr "Tillåt fetstil"
+
+#: data/prefs.glade:1670
+msgid "Built-in schemes:"
+msgstr "Inbyggda scheman:"
+
+#: data/prefs.glade:1696
+msgid "Color palette:"
+msgstr "Färgpalett:"
+
+#: data/prefs.glade:1711
+msgid "Demo:"
+msgstr "Förhandsvisning:"
+
+#: data/prefs.glade:2014
+msgid "<b>Palette</b>"
+msgstr "<b>Palett</b>"
+
+#: data/prefs.glade:2036
+msgid "<b>Effects</b>"
+msgstr "<b>Effekter</b>"
+
+#: data/prefs.glade:2061
+msgid "Transparency:"
+msgstr "Genomskinlighet:"
+
+#: data/prefs.glade:2145
+msgid ""
+"To change a shortcut simply click on its name.\n"
+"To disable a shortcut, press the \"Backspace\" key."
+msgstr ""
+"Klicka på en genväg för att ändra den.\n"
+"Tryck på backstegstangenten för att ta bort en genväg."
+
+#: data/prefs.glade:2195
+msgid "Keyboard shortcuts"
+msgstr "Tangentbordsgenvägar"
+
+#: data/prefs.glade:2247
 msgid ""
 "Quick open is a feature allowing you to open a file directly into your "
 "favorite text editor by clicking on its filename when it appears in your "
 "terminal. See the list of currently supported text patterns used to extract "
 "filename below."
 msgstr ""
+"Snabböppning är en funktion som gör det möjligt att öppna en fil i valfri "
+"textredigerare genom att klicka på dess filnamn i terminalen. Se "
+"nedanstående lista med textmönster som används för att extrahera filnamn."
 
-#: guake/main.py:64
-msgid "Show Guake version number and exit"
-msgstr ""
+#: data/prefs.glade:2285
+msgid "Enable Quick Open when Ctrl+clicking on a filename in the terminal"
+msgstr "Aktivera snabböppning när ett filnamn i terminalen Ctrl-klickas"
 
-#: guake/data/prefs.glade:93
-msgid "<span size=\"18000\"><b>Guake properties</b></span>"
-msgstr "<span size=\"18000\"><b>Egenskaper för Guake</b></span>"
+#: data/prefs.glade:2310
+msgid "Editor command line:"
+msgstr "Kommando för att öppna redigerare:"
 
-#: guake/data/prefs.glade:107
-msgid "Customize behavior and appearance of Guake!"
-msgstr "Anpassa beteendet och utseendet för Guake!"
-
-#: guake/data/prefs.glade:929
-msgid "Displacement in pixels"
-msgstr ""
-
-#: guake/main.py:73
-msgid "Enable verbose logging"
-msgstr ""
-
-#: guake/guake_app.py:680
-msgid "Quick Open: '{!s}...'"
-msgstr ""
-
-#: guake/guake_app.py:683
-msgid "Quick Open: {!s}"
-msgstr ""
-
-#: guake/guake_app.py:691
-msgid "Open Link: '{!s}...'"
-msgstr ""
-
-#: guake/guake_app.py:694
-msgid "Open Link: {!s}"
-msgstr ""
-
-#: guake/data/prefs.glade:2175
+#: data/prefs.glade:2356
 msgid ""
-"<i><b>WARNING</b>: your system seems to have PCRE2 disabled for VTE, "
-"preventing application such as Guake to register \"matchers\" using regular "
-"expressions. Please contact your distribution to request a new version of "
-"VTE with PCRE2 enabled ! To use Quick Open, you <b>must select the text</b> "
-"before using Ctrl+click</i>."
+"<small><i>Use the following elements in the open editor command line:\n"
+"- <b>%(file_path)s</b>: path to the file that has been clicked\n"
+"- <b>%(line_number)s</b>: if your editor supports it, you can directly open "
+"the file to a given line number when found on the screen.\n"
+"\n"
+"For example, for sublime, use <b>subl %(file_path)s:%(line_number)s</b>\n"
+"</i></small>"
 msgstr ""
+"<small><i>Använd följande element i kommando för att öppna textredigerare:\n"
+"- <b>%(file_path)s</b>: sökväg till klickad fil\n"
+"- <b>%(line_number)s</b>: radnummer som kan användas om textredigeraren har "
+"stöd för att hoppa till en viss rad.\n"
+"\n"
+"Exempel för sublime: <b>subl %(file_path)s:%(line_number)s</b>\n"
+"</i></small>"
 
-#: guake/guake_app.py:680
-msgid "Quick Open: {!s}..."
-msgstr ""
+#: data/prefs.glade:2411
+msgid "Quick open in current terminal"
+msgstr "Snabböppna i aktuell terminal"
 
-#: guake/guake_app.py:691
-msgid "Open Link: {!s}..."
-msgstr ""
-
-#: guake/guake_app.py:688
-msgid "Quick Open..."
-msgstr ""
-
-#: guake/data/prefs.glade:223
-msgid "Start Guake at login"
-msgstr ""
-
-#: guake/data/prefs.glade:363
-msgid "Gtk Theme:"
-msgstr ""
-
-#: guake/data/prefs.glade:387
-msgid "Prefer dark theme"
-msgstr ""
-
-#: guake/guake_app.py:435
-msgid "Custom Commands"
-msgstr ""
-
-#: guake/main.py:184
+#: data/prefs.glade:2505
 msgid ""
-"Specify the tab to rename. Default is 0. Can be used to select tab by UUID"
+"<small>In this dialog you can attach your own command or script to various "
+"guake events</small>"
 msgstr ""
+"<small>I denna dialogruta kan du ange kommandon eller skript som körs "
+"vid olika händelser i Guake</small>"
 
-#: guake/main.py:212
+#: data/prefs.glade:2527
+msgid "On show:"
+msgstr "Vid visning:"
+
+#: data/prefs.glade:2539
+msgid "On start:"
+msgstr "Vid start:"
+
+#: data/prefs.glade:2605
+msgid "Hooks"
+msgstr "Hookar"
+
+#: data/prefs.glade:2634
 msgid ""
-"Rename the specified tab by --tab-index. Reset to default if TITLE is a "
-"single dash \"-\"."
+"<small><i><b>Note:</b> These options may cause some applications to behave "
+"incorrectly.  They are only here to allow you to work around certain "
+"applications and operating systems that expect different terminal behavior.</"
+"i></small>"
 msgstr ""
+"<small><i><b>Observera:</b> Dessa alternativ kan orsaka att vissa program "
+"uppträder på ett felaktigt sätt.  De finns endast här för att låta dig göra "
+"temporära lösningar för vissa program och operativsystem som förväntar ett "
+"annat terminalbeteende.</i></small>"
 
-#: data/search.glade:138
-msgid "Search forward"
-msgstr ""
+#: data/prefs.glade:2654
+msgid "_Backspace key generates:"
+msgstr "_Backstegstangenten genererar:"
 
-#: data/search.glade:153
-msgid "Match case"
-msgstr ""
+#: data/prefs.glade:2667
+msgid "_Delete key generates:"
+msgstr "_Delete-tangenten genererar:"
 
-#: data/search.glade:186
-msgid "Current search direction: Backward"
-msgstr ""
+#: data/prefs.glade:2682 data/prefs.glade:2699
+msgid "ASCII DEL"
+msgstr "ASCII DEL"
 
-#~ msgid "key binding error"
-#~ msgstr "tangentbindningsfel"
+#: data/prefs.glade:2683 data/prefs.glade:2700
+msgid "Escape sequence"
+msgstr "Kontrollsekvens"
 
-#~ msgid "Unable to bind global <b>%s</b> key"
-#~ msgstr "Kunde inte binda allmän <b>%s</b>-tangent"
+#: data/prefs.glade:2684 data/prefs.glade:2701
+msgid "Control-H"
+msgstr "Control-H"
 
-#~ msgid "http://guake.org"
-#~ msgstr "http://guake.org"
+#: data/prefs.glade:2726
+msgid "_Reset Compatibility Options to Defaults"
+msgstr "Åt_erställ kompatibilitetsalternativ till standardvärden"
 
-#~ msgid ""
-#~ "Tango\n"
-#~ "Linux console\n"
-#~ "XTerm\n"
-#~ "Rxvt\n"
-#~ "Custom\n"
-#~ msgstr ""
-#~ "Tango\n"
-#~ "Linux-konsol\n"
-#~ "XTerm\n"
-#~ "Rxvt\n"
-#~ "Anpassad\n"
+#: data/prefs.glade:2757
+msgid "Compatibility"
+msgstr "Kompatibilitet"
 
-#~ msgid "Select a tab"
-#~ msgstr "Välj en flik"
+#: data/guake-prefs.desktop:4 data/guake-prefs.template.desktop:4
+msgid "Configure your Guake sessions"
+msgstr "Anpassa Guake-sessioner"
 
-#~ msgid "Rename the selected tab."
-#~ msgstr "Byt namn på markerad flik."
+#: data/guake-prefs.desktop:7 data/guake-prefs.template.desktop:7
+#: data/guake.template.desktop:7 data/guake.desktop:7
+#: data/autostart-guake.desktop:39
+msgid "guake"
+msgstr "guake"
+
+#: data/guake-prefs.desktop:13 data/guake-prefs.template.desktop:13
+msgid "Terminal;Utility;"
+msgstr "Terminal;Utility;"
+
+#: data/guake.template.desktop:4 data/guake.desktop:4
+#: data/autostart-guake.desktop:31
+msgid "Use the command line in a Quake-like terminal"
+msgstr "Använd kommandoraden i en Quake-liknande terminal"
