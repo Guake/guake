@@ -414,7 +414,7 @@ msgstr "Kör ett godtyckligt kommando i markerad flik."
 
 #: guake/main.py:185
 msgid ""
-"Specify the tab to rename. Default is 0. Can be used to select tab by UUID"
+"Specify the tab to rename. Default is 0. Can be used to select tab by UUID."
 msgstr ""
 "Ange flik att byta namn på (standard är 0). Kan användas för att välja flik "
 "med UUID"
@@ -937,8 +937,8 @@ msgid ""
 "<small>In this dialog you can attach your own command or script to various "
 "guake events</small>"
 msgstr ""
-"<small>I denna dialogruta kan du ange kommandon eller skript som körs "
-"vid olika händelser i Guake</small>"
+"<small>I denna dialogruta kan du ange kommandon eller skript som körs vid "
+"olika händelser i Guake</small>"
 
 #: data/prefs.glade:2527
 msgid "On show:"

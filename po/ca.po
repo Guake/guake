@@ -1251,7 +1251,7 @@ msgstr ""
 
 #: guake/main.py:184
 msgid ""
-"Specify the tab to rename. Default is 0. Can be used to select tab by UUID"
+"Specify the tab to rename. Default is 0. Can be used to select tab by UUID."
 msgstr ""
 
 #: guake/main.py:212

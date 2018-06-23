@@ -207,7 +207,7 @@ msgstr "Wykonuje podane polecenie w wybranej karcie."
 
 #: guake/main.py:182
 msgid ""
-"Specify the tab to rename. Default is 0. Can be used to select tab by UUID"
+"Specify the tab to rename. Default is 0. Can be used to select tab by UUID."
 msgstr ""
 "Podaje kartę do zmiany nazwy. Domyślnie 0. Można używać do wybrania karty "
 "według UUID"

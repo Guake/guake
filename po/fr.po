@@ -288,7 +288,7 @@ msgstr "Exécute une commande dans un onglet sélectionné."
 
 #: guake/main.py:182
 msgid ""
-"Specify the tab to rename. Default is 0. Can be used to select tab by UUID"
+"Specify the tab to rename. Default is 0. Can be used to select tab by UUID."
 msgstr ""
 "Index de l'onglet à renommer. Par défaut 0. Peut aussi être utilisé pour "
 "spécifier l'UUID de l'onglet."
@@ -309,8 +309,8 @@ msgid ""
 "Rename the specified tab by --tab-index. Reset to default if TITLE is a "
 "single dash \"-\"."
 msgstr ""
-"Renomme l'onglet spécifié par --tab-dex. Remet à zéro si le TITRE est \"-\" ("
-"simple tiret)."
+"Renomme l'onglet spécifié par --tab-dex. Remet à zéro si le TITRE est \"-"
+"\" (simple tiret)."
 
 #: guake/main.py:222
 msgid ""
