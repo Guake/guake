@@ -2,6 +2,20 @@
 Guake
 =====
 
+(unreleased yet)
+================
+
+Translation Updates
+-------------------
+
+- sv
+
+- fr
+
+- ru
+
+- cz
+
 3.3.0
 =====
 
