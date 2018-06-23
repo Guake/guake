@@ -182,7 +182,7 @@ def main():
         dest='tab_index',
         action='store',
         default='0',
-        help=_('Specify the tab to rename. Default is 0. Can be used to select tab by UUID')
+        help=_('Specify the tab to rename. Default is 0. Can be used to select tab by UUID.')
     )
 
     parser.add_option(

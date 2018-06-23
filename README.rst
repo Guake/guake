@@ -14,7 +14,7 @@ Guake 3 README
 .. _docs-badge: https://guake.readthedocs.io/en/stable/?badge=stable
 
 .. |translation-badge| image:: https://hosted.weblate.org/widgets/guake/-/guake/svg-badge.svg
-.. _translation-badge: https://hosted.weblate.org/engage/guake/?utm_source=widget
+.. _translation-badge: https://hosted.weblate.org/projects/guake/guake/
 
 Introduction
 ============
