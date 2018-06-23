@@ -1300,6 +1300,11 @@ msgstr ""
 msgid "Current search direction: Backward"
 msgstr ""
 
+#: guake/main.py:185
+msgid ""
+"Specify the tab to rename. Default is 0. Can be used to select tab by UUID."
+msgstr ""
+
 #~ msgid "key binding error"
 #~ msgstr "Error al asignar tecla"
 

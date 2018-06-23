@@ -1017,3 +1017,8 @@ msgstr "Konfiguracja sesji programu Guake"
 #: data/guake-prefs.template.desktop:13
 msgid "Terminal;Utility;"
 msgstr "Terminal;Utility;"
+
+#: guake/main.py:185
+msgid ""
+"Specify the tab to rename. Default is 0. Can be used to select tab by UUID."
+msgstr ""
