@@ -677,7 +677,7 @@
                                         </child>
                                         <child>
                                           <object class="GtkCheckButton" id="set_window_title">
-                                            <property name="label">Set window title to current tab name</property>
+                                            <property name="label" translatable="yes">Set window title to current tab name</property>
                                             <property name="visible">True</property>
                                             <property name="can_focus">True</property>
                                             <property name="receives_default">False</property>

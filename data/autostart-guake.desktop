@@ -1,7 +1,7 @@
 [Desktop Entry]
 Name[ca]=Terminal Guake
 Name[cs]=Guake Terminal
-Name[de]=Guake-Terminal
+Name[de]=Guake Terminal
 Name[es]=Guake Terminal
 Name[fa]=Guake Terminal
 Name[fr]=Terminal Guake
@@ -23,7 +23,7 @@ Name[uk]=Термінал Guake
 Name[zh_CN]=Guake 终端
 Name=Guake Terminal
 Comment[cs]=Používejte terminál jako ve hře Quake
-Comment[de]=Verwende Guake in einem Quake-Terminal änlichen Terminal
+Comment[de]=Verwenden Sie die Befehlszeile in einem Quake-ähnlichen Terminal
 Comment[fr]=Exploitez la ligne command dans un terminal tel Quake
 Comment[pl]=Używanie wiersza poleceń w terminalu w stylu gry Quake
 Comment[ru]=Использовать командную строку в Quake терминале
