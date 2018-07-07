@@ -1095,7 +1095,7 @@ msgstr "Nastavit Guake sezení"
 
 #: guake/data/guake-prefs.desktop:15 guake/data/guake.desktop:18
 msgid "guake"
-msgstr "guake"
+msgstr ""
 
 #: guake/data/guake-prefs.desktop:20
 msgid "Terminal;Utility;"

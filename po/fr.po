@@ -1016,7 +1016,7 @@ msgstr "Exploitez la ligne command dans un terminal tel Quake"
 #: data/guake-prefs.template.desktop:7 data/guake-prefs.desktop:40
 #: data/guake.desktop:39
 msgid "guake"
-msgstr "guake"
+msgstr ""
 
 #: data/guake-prefs.template.desktop:4 data/guake-prefs.desktop:32
 msgid "Configure your Guake sessions"
