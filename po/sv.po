@@ -1000,7 +1000,7 @@ msgstr "Anpassa Guake-sessioner"
 #: data/guake.template.desktop:7 data/guake.desktop:7
 #: data/autostart-guake.desktop:39
 msgid "guake"
-msgstr "guake"
+msgstr ""
 
 #: data/guake-prefs.desktop:13 data/guake-prefs.template.desktop:13
 msgid "Terminal;Utility;"

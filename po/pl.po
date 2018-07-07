@@ -1008,7 +1008,7 @@ msgstr "Używanie wiersza poleceń w terminalu w stylu gry Quake"
 #: data/autostart-guake.desktop:39 data/guake-prefs.template.desktop:7
 #: data/guake.template.desktop:7
 msgid "guake"
-msgstr "guake"
+msgstr ""
 
 #: data/guake-prefs.template.desktop:4
 msgid "Configure your Guake sessions"
