@@ -24,16 +24,6 @@ msgstr ""
 msgid "About Guake"
 msgstr "Tentang Guake"
 
-#: ../data/about.glade.h:2
-#, fuzzy
-msgid ""
-"Copyright 2013-2015 Gaetan Semet\n"
-"Copyright 2007-2010 Lincoln de Sousa\n"
-"Copyright 2007 Gabriel Falc&#xE3;o"
-msgstr ""
-"Hak Cipta 2007-2009 Lincoln de Sousa\n"
-"Hak Cipta 2007 Gabriel Falc&#xE3;o"
-
 #: ../data/about.glade.h:5
 #, fuzzy
 msgid ""
@@ -42,59 +32,6 @@ msgid ""
 msgstr ""
 "Guake adalah sebuah terminal yang mudah untuk di akses\n"
 "terminal ini didasari dari terminal pada game FPS"
-
-#: ../data/about.glade.h:7
-msgid ""
-"Guake is free software; you can redistribute it and/or modify it under the "
-"terms of the GNU General Public License as published by the Free Software "
-"Foundation; either version 2 of the License, or (at your option) any later "
-"version.\n"
-"\n"
-"Guake is distributed in the hope that it will be useful, but WITHOUT ANY "
-"WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS "
-"FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more "
-"details.\n"
-"\n"
-"You should have received a copy of the GNU General Public License along with "
-"Guake; if not, write to the Free Software Foundation, Inc., 51 Franklin St, "
-"Fifth Floor, Boston, MA  02110-1301 USA\n"
-msgstr ""
-"Guake adalah perangkat lunak bebas; anda bisa mendistribusikannya lagi dan/"
-"atau memodifikasinya dibawah persyaratan Lisensi Publik Umum GNU (GNU "
-"General Public License) sebagaimana yang diterbitkan oleh fondasi perangkat "
-"lunak gratis (Free Software Fondation); baik versi dua dari lisensi, atau "
-"(dalam pilihan anda) versi terbaru manapun. \n"
-"\n"
-"Guake telah didistribusikan dalam harapan dapat bermanfaat, tapi TANPA "
-"JAMINAN; bahkan tanpa jaminan yang termasuk dari DAGANGAN atau KECOCOKAN "
-"UNTUK TUJUAN TERTENTU. Lihat Lisensi Publik Umum GNU untuk penjelasan lebih "
-"lanjut.\n"
-"\n"
-"Anda seharusnya mempunyai sebuah kopi Lisensi Publik Umum GNU yang "
-"disertakan dengan Guake; jika tidak, tulis sebuah surat ke fondasi perangkat "
-"lunak gratis, inkorporasi., jalan Franklin no 51, lantai lima, Boston, MA "
-"02110-1301 USA\n"
-
-#: ../data/about.glade.h:13
-#, fuzzy
-msgid ""
-"Adolfo González Blázquez <code@infinicode.org> Spanish\n"
-"Lincoln de Sousa <lincoln@guake.org> Brazilian Portuguese\n"
-"Markus Majer <mm@mpathy.de> German\n"
-"Mieszko Ślusarczyk <mieszkoslusarczyk@gmail.com> Polish\n"
-"Nishio Futoshi <futoshi@momonga-linux.org> Japanese\n"
-"Pavel Alexeev <Pahan@Hubbitus.spb.su> Russian\n"
-"Piotr Drąg <piotrdrag@gmail.com> Polish\n"
-"Sangwoo Joo <sangwoojoo@naver.com> Korean\n"
-"    "
-msgstr ""
-"Adolfo González Blázquez <code@infinicode.org> Spanish\n"
-"Lincoln de Sousa <lincoln@guake.org> Brazilian Portuguese\n"
-"Markus Majer <mm@mpathy.de> German\n"
-"Mieszko Ślusarczyk <mieszkoslusarczyk@gmail.com> Polish\n"
-"Nishio Futoshi <futoshi@momonga-linux.org> Japanese\n"
-"Pavel Alexeev <Pahan@Hubbitus.spb.su> Russian\n"
-"Piotr Drąg <piotrdrag@gmail.com> Polish"
 
 #: ../data/guake.glade.h:1
 msgid "Copy"
@@ -934,13 +871,6 @@ msgstr ""
 msgid "Return the selected tab label."
 msgstr ""
 
-#: guake/data/about.glade:15
-msgid ""
-"Copyright 2013-2018 Gaetan Semet\n"
-"Copyright 2007-2010 Lincoln de Sousa\n"
-"Copyright 2007 Gabriel Falcão"
-msgstr ""
-
 #: guake/data/prefs.glade:264
 msgid "Never"
 msgstr ""
@@ -1048,30 +978,6 @@ msgstr ""
 
 #: guake/data/prefs.glade:770
 msgid "Main Window Horizontal Alignment"
-msgstr ""
-
-#: guake/data/about.glade:17
-msgid "http://guake-project.org"
-msgstr ""
-
-#: guake/data/about.glade:18
-msgid ""
-"Guake is free software; you can redistribute it and/or\n"
-"modify it under the terms of the GNU General Public\n"
-"License as published by the Free Software Foundation;\n"
-"either version 2 of the License, or (at your option) any\n"
-"later version.\n"
-"\n"
-"Guake is distributed in the hope that it will be useful, but\n"
-"WITHOUT ANY WARRANTY; without even the implied\n"
-"warranty of MERCHANTABILITY or FITNESS FOR A\n"
-"PARTICULAR PURPOSE.  See the GNU General Public\n"
-"License for more details.\n"
-"\n"
-"You should have received a copy of the GNU General\n"
-"Public License along with Guake; if not, write to the Free\n"
-"Software Foundation, Inc., 51 Franklin St, Fifth Floor,\n"
-"Boston, MA  02110-1301 USA"
 msgstr ""
 
 #: guake/prefs.py:89
