@@ -27,16 +27,6 @@ msgstr ""
 msgid "About Guake"
 msgstr "О Guake"
 
-#: ../data/about.glade.h:2
-#, fuzzy
-msgid ""
-"Copyright 2013-2015 Gaetan Semet\n"
-"Copyright 2007-2010 Lincoln de Sousa\n"
-"Copyright 2007 Gabriel Falc&#xE3;o"
-msgstr ""
-"Autorsko pavo 2007-2009 Lincoln de Sousa\n"
-"Autorsko pavo 2007 Gabriel Falc&#xE3;o"
-
 #: ../data/about.glade.h:5
 #, fuzzy
 msgid ""
@@ -45,56 +35,6 @@ msgid ""
 msgstr ""
 "Guake je lako dostupan terminal,\n"
 "temeljen na terminalu iz FPS igre Quake"
-
-#: ../data/about.glade.h:7
-msgid ""
-"Guake is free software; you can redistribute it and/or modify it under the "
-"terms of the GNU General Public License as published by the Free Software "
-"Foundation; either version 2 of the License, or (at your option) any later "
-"version.\n"
-"\n"
-"Guake is distributed in the hope that it will be useful, but WITHOUT ANY "
-"WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS "
-"FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more "
-"details.\n"
-"\n"
-"You should have received a copy of the GNU General Public License along with "
-"Guake; if not, write to the Free Software Foundation, Inc., 51 Franklin St, "
-"Fifth Floor, Boston, MA  02110-1301 USA\n"
-msgstr ""
-"Guake je slobodan software; možete ga redistribuirati i/ili modificirati pod "
-"uvjetima GNU Opće javne licence objavljene od Fundacije slobodnog softvera; "
-"ili inačice 2 Licence ili (po vašemu mišljenju) svaka kasnija inačica.\n"
-"\n"
-"Guake je distribuiran u nadi da će biti koristan ali BEZ IKAKVOG JAMSTVA; "
-"čak i bez podrazumjevanog jamstva ili POGODNOSTI ZA ODREĐENU NAMJENU. "
-"Pogledajte GNU Opću javnu licencu za više informacija.\n"
-"\n"
-"Trebali ste dobiti primjerak GNU Opće javne licence uz Guake, ako niste "
-"obratite se Fundaciji slobodnog softvera, Inc., 51 Franklin St, Fifth Floor, "
-"Boston, MA  02110-1301 USA\n"
-
-#: ../data/about.glade.h:13
-#, fuzzy
-msgid ""
-"Adolfo González Blázquez <code@infinicode.org> Spanish\n"
-"Lincoln de Sousa <lincoln@guake.org> Brazilian Portuguese\n"
-"Markus Majer <mm@mpathy.de> German\n"
-"Mieszko Ślusarczyk <mieszkoslusarczyk@gmail.com> Polish\n"
-"Nishio Futoshi <futoshi@momonga-linux.org> Japanese\n"
-"Pavel Alexeev <Pahan@Hubbitus.spb.su> Russian\n"
-"Piotr Drąg <piotrdrag@gmail.com> Polish\n"
-"Sangwoo Joo <sangwoojoo@naver.com> Korean\n"
-"    "
-msgstr ""
-"Adolfo González Blázquez <code@infinicode.org> Španjolski\n"
-"Lincoln de Sousa <lincoln@guake.org> Brazil Portugalski\n"
-"Goran Vidovic <trebelnik2@gmail.com> Hrvatski\n"
-"Markus Majer <mm@mpathy.de> Njemački\n"
-"Mieszko Ślusarczyk <mieszkoslusarczyk@gmail.com> Poljski\n"
-"Nishio Futoshi <futoshi@momonga-linux.org> Japanski\n"
-"Pavel Alexeev <Pahan@Hubbitus.spb.su> Ruski\n"
-"Piotr Drąg <piotrdrag@gmail.com> Poljski"
 
 #: ../data/guake.glade.h:1
 msgid "Copy"
@@ -984,13 +924,6 @@ msgstr ""
 msgid "Return the selected tab label."
 msgstr ""
 
-#: guake/data/about.glade:15
-msgid ""
-"Copyright 2013-2018 Gaetan Semet\n"
-"Copyright 2007-2010 Lincoln de Sousa\n"
-"Copyright 2007 Gabriel Falcão"
-msgstr ""
-
 #: guake/data/prefs.glade:264
 msgid "Never"
 msgstr ""
@@ -1098,30 +1031,6 @@ msgstr ""
 
 #: guake/data/prefs.glade:770
 msgid "Main Window Horizontal Alignment"
-msgstr ""
-
-#: guake/data/about.glade:17
-msgid "http://guake-project.org"
-msgstr ""
-
-#: guake/data/about.glade:18
-msgid ""
-"Guake is free software; you can redistribute it and/or\n"
-"modify it under the terms of the GNU General Public\n"
-"License as published by the Free Software Foundation;\n"
-"either version 2 of the License, or (at your option) any\n"
-"later version.\n"
-"\n"
-"Guake is distributed in the hope that it will be useful, but\n"
-"WITHOUT ANY WARRANTY; without even the implied\n"
-"warranty of MERCHANTABILITY or FITNESS FOR A\n"
-"PARTICULAR PURPOSE.  See the GNU General Public\n"
-"License for more details.\n"
-"\n"
-"You should have received a copy of the GNU General\n"
-"Public License along with Guake; if not, write to the Free\n"
-"Software Foundation, Inc., 51 Franklin St, Fifth Floor,\n"
-"Boston, MA  02110-1301 USA"
 msgstr ""
 
 #: guake/prefs.py:89

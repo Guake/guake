@@ -8,14 +8,14 @@
     <property name="window_position">center-always</property>
     <property name="type_hint">normal</property>
     <property name="program_name">Guake</property>
-    <property name="copyright" translatable="yes">Copyright 2013-2018 Gaetan Semet
+    <property name="copyright">Copyright 2013-2018 Gaetan Semet
 Copyright 2007-2010 Lincoln de Sousa
 Copyright 2007 Gabriel Falcão</property>
     <property name="comments" translatable="yes">Guake is an easy to access
 terminal based on FPS games terminal</property>
     <property name="website">http://guake-project.org</property>
-    <property name="website_label" translatable="yes">http://guake-project.org</property>
-    <property name="license" translatable="yes">Guake is free software; you can redistribute it and/or
+    <property name="website_label">http://guake-project.org</property>
+    <property name="license">Guake is free software; you can redistribute it and/or
 modify it under the terms of the GNU General Public
 License as published by the Free Software Foundation;
 either version 2 of the License, or (at your option) any
@@ -42,17 +42,88 @@ Maxim Ivanov (ulidtko) &lt;ulidtko@gmail.com&gt;
 Adonis K. (adonisk) &lt;aklp08@gmail.com&gt;
 
 Past Contributors:
-Gabriel Falcão &lt;gabriel@guake-terminal.org&gt;</property>
-    <property name="translator_credits" translatable="yes">Adolfo González Blázquez &lt;code@infinicode.org&gt; Spanish
-Lincoln de Sousa &lt;lincoln@guake.org&gt; Brazilian Portuguese
-Markus Majer &lt;mm@mpathy.de&gt; German
-Mieszko Ślusarczyk &lt;mieszkoslusarczyk@gmail.com&gt; Polish
-Nishio Futoshi &lt;futoshi@momonga-linux.org&gt; Japanese
-Pavel Alexeev &lt;Pahan@Hubbitus.spb.su&gt; Russian
-Piotr Drąg &lt;piotrdrag@gmail.com&gt; Polish
-Sangwoo Joo &lt;sangwoojoo@naver.com&gt; Korean
+Gabriel Falcão &lt;gabriel@guake-terminal.org&gt;
     </property>
-    <property name="artists">Gabriel Falcao &lt;gabriel@guake-terminal.org&gt;</property>
+    <property name="translator_credits">Catalan:
+Raül Cambeiro &lt;xrulet@gmail.com&gt;
+Croatian:
+gogo &lt;trebelnik2@gmail.com&gt;
+Chinese (Simplified):
+甘露(Gan Lu) &lt;rhythm.gan@gmail.com&gt;
+吴新宇(Xinyu Ng) &lt;wuxinyumrx@gmail.com&gt;
+庄秋彬(zqb-all) &lt;zhuangqiubin@gmail.com&gt;
+Czech:
+Daniel Milde &lt;daniel@milde.cz&gt;
+Martin Lukeš &lt;martin.meridius@gmail.com&gt;
+Pavel Borecki &lt;pavel.borecki@gmail.com&gt;
+Dutch:
+Robert van Drunen &lt;r.j.m.vandrunen@gmail.com&gt;
+Heimen Stoffels &lt;vistausss@outlook.com&gt;
+Farsi:
+Kasra Keshavarz &lt;kasra545@gmail.com&gt;
+French:
+Benjamin Danon &lt;benjamin@sphax3d.org&gt;
+Gaetan Semet &lt;gaetan@xeberon.net&gt;
+Pablo Martin-Gomez &lt;pablo.martin-gomez@laposte.net&gt;
+Pierre-Yves Chibon &lt;pingou@pingoured.fr&gt;
+Sylvestre Ledru &lt;sylvestre@debian.org&gt;
+Thomas Canniot &lt;mrtom@fedoraproject.org&gt;
+Galician:
+Antón Meixome &lt;meixome@certima.net&gt;
+osl &lt;tecnicosl@uvigo.es&gt;
+German:
+Frank Dietrich &lt;bits_n_bytes@gmx.de&gt;
+Mario Aichinger &lt;aichingm@gmail.com&gt;
+Markus Majer &lt;mm@mpathy.de&gt;
+Roman Zimmer &lt;hello@roman-zimmer.app&gt;
+Greek:
+Μαριμπής Αβραάμ &lt;makism@venus.cs.teicrete.gr&gt;
+Hungarian:
+Dávid Horváth &lt;chronos.hun@gmail.com&gt;
+Péter Trombitás &lt;trombipeti@gmail.com&gt;
+Indonesian
+operamaniac &lt;rizkiaulia.r@gmail.com&gt;
+Italian:
+Giulio De Pasquale &lt;depasquale.giulio@gmail.com&gt;
+Marco Leogrande &lt;dark.knight.ita@gmail.com&gt;
+Japanese:
+Nishio Futoshi &lt;futoshi@momonga-linux.org&gt;
+IWAI, Masaharu &lt;iwaim.sub@gmail.com&gt;
+Korean:
+Nessun Kim &lt;nessunkim@gmail.com&gt;
+Sangwoo Joo &lt;sangwoojoo@naver.com&gt;
+Norwegian:
+Håvard Havdal &lt;haavard@havdal.net&gt;
+Punjabi:
+A S Alam &lt;aalam@users.sf.net&gt;
+Polish:
+Mieszko Ślusarczyk &lt;mieszkoslusarczyk@gmail.com&gt;
+Piotr Drąg &lt;piotrdrag@gmail.com&gt;
+Portuguese (Brazil):
+Djavan Fagundes &lt;djavan@comum.org&gt;
+Gabriel Falcão &lt;gabriel@guake-terminal.org&gt;
+Lincoln de Sousa &lt;lincoln@guake.org&gt;
+Matheus Manoel &lt;matheus.manoel@usp.br&gt;
+Russian:
+Igor &lt;f2404@yandex.ru&gt;
+igorsub &lt;igor6130@gmail.com&gt;
+Ivan Komaritsyn &lt;vantu5z@mail.ru&gt;
+Pavel Alexeev &lt;Pahan@Hubbitus.spb.su&gt;
+Spanish:
+Adolfo González Blázquez &lt;code@infinicode.org&gt;
+Dante Bravo &lt;dbravo.iessabadell@gmail.com&gt;
+Diego Martinez &lt;dmartinezc@gmail.com&gt;
+Ricardo Hermosilla &lt;ra.hermosillac@gmail.com&gt;
+Swedish:
+Daniel Nylander &lt;po@danielnylander.se&gt;
+Morgan Antonsson &lt;morgan.antonsson@gmail.com&gt;
+Turkish:
+Berk Demirkır &lt;perq87@gmail.com&gt;
+Ukrainian:
+Сергій Дубик &lt;dubyk@ukr.net&gt;
+Максим Іванов &lt;ulidtko@gmail.com&gt;
+    </property>
+    <property name="artists">Gabriel Falcão &lt;gabriel@guake-terminal.org&gt;</property>
     <property name="logo_icon_name">image-missing</property>
     <child internal-child="vbox">
       <object class="GtkBox" id="dialog-vbox1">
