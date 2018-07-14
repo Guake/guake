@@ -941,3 +941,7 @@ msgstr "Terminal;Utility;"
 #: data/autostart-guake.desktop:31
 msgid "Use the command line in a Quake-like terminal"
 msgstr "Använd kommandoraden i en Quake-liknande terminal"
+
+#: data/prefs.glade:680
+msgid "Set window title to current tab name"
+msgstr ""

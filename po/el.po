@@ -1177,6 +1177,10 @@ msgstr ""
 msgid "Current search direction: Backward"
 msgstr ""
 
+#: data/prefs.glade:680
+msgid "Set window title to current tab name"
+msgstr ""
+
 #~ msgid "key binding error"
 #~ msgstr "σφάλμα συντόμευσης πληκτρολογίου"
 

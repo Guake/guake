@@ -1128,5 +1128,9 @@ msgstr ""
 msgid "Current search direction: Backward"
 msgstr ""
 
+#: data/prefs.glade:680
+msgid "Set window title to current tab name"
+msgstr ""
+
 #~ msgid "http://guake.org"
 #~ msgstr "http://guake.org"

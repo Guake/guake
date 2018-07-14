@@ -473,7 +473,8 @@ msgstr "<span size=\"18000\"><b>Guake-Einstellungen</b></span>"
 
 #: data/prefs.glade:107
 msgid "Customize behavior and appearance of Guake!"
-msgstr "Passen Sie das Aussehen und Verhalten von Guake an Ihre Bedürfnisse an."
+msgstr ""
+"Passen Sie das Aussehen und Verhalten von Guake an Ihre Bedürfnisse an."
 
 #: data/prefs.glade:190
 msgid "Enable popup notifications on startup"

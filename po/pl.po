@@ -945,3 +945,7 @@ msgstr "Konfiguracja sesji programu Guake"
 #: data/guake-prefs.template.desktop:13
 msgid "Terminal;Utility;"
 msgstr "Terminal;Utility;"
+
+#: data/prefs.glade:680
+msgid "Set window title to current tab name"
+msgstr ""

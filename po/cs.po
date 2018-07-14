@@ -1193,6 +1193,10 @@ msgstr "Rozlišovat malá/VELKÁ písmena"
 msgid "Current search direction: Backward"
 msgstr "Stávající směr vyhledávání: pozpátku"
 
+#: data/prefs.glade:680
+msgid "Set window title to current tab name"
+msgstr ""
+
 #~ msgid "key binding error"
 #~ msgstr "chyba klávesových zkratek"
 
