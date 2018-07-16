@@ -5,16 +5,40 @@ Guake
 (unreleased yet)
 ================
 
+Release Summary
+---------------
+
+This minor release mainly fix some issues when installing Guake though ``pip install --user --upgrade guake``.
+A big thanks also to everyone who contributed to the translations on `Weblate <https://hosted.weblate.org/projects/guake/guake/>`_.
+
+Bug Fixes
+---------
+
+- Don't translate application icon (this finally fixes Guake application icon not being displayed with German locale, which was only partially resolved with #1320)
+
+- Install of Guake through pip install was broken (missing ``paths.py``). Now fixed. Discarded generation of bdist. (fix
+
 Translation Updates
 -------------------
 
-- sv
+- sv (thanks to @MorganAntonsson)
+
+- de (thanks to @rzimmer)
 
 - fr
 
-- ru
+- ru (thanks Igor "f2404" on Weblate)
 
-- cz
+- cz (thanks Pavel Borecki on Weblate)
+
+- pl (thanks Piotr Drąg on Weblate)
+
+- it (thanks Maurizio De Santis on Weblate)
+
+Other
+-----
+
+- Update about screen's credits
 
 3.3.0
 =====

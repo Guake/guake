@@ -2,6 +2,57 @@
 Guake
 =====
 
+.. _Guake_(unreleased yet):
+
+(unreleased yet)
+================
+
+.. _Guake_(unreleased yet)_Bug Fixes:
+
+Bug Fixes
+---------
+
+.. releasenotes/notes/bugfix-desktop-icons-d138f5862005ec4c.yaml @ b'e0047fe787f063042b40b2e14578fe9d29eb8be7'
+
+- Don't translate application icon (this finally fixes Guake application icon not being displayed with German locale, which was only partially resolved with #1320)
+
+
+.. _Guake_(unreleased yet)_Translation Updates:
+
+Translation Updates
+-------------------
+
+.. releasenotes/notes/translation-a33ff067822bbfb9.yaml @ b'f94bf912c86708a4cc9eb36cca13f8b3b7810f41'
+
+- sv (thanks to @MorganAntonsson)
+
+.. releasenotes/notes/translation-de-c6495c0ae7523117.yaml @ b'f94bf912c86708a4cc9eb36cca13f8b3b7810f41'
+
+- de (thanks to @rzimmer)
+
+.. releasenotes/notes/translations-4106dec297b04a63.yaml @ b'd75d29022a890c26ce806107f9789faee83ef469'
+
+- fr
+
+.. releasenotes/notes/translations-4106dec297b04a63.yaml @ b'd75d29022a890c26ce806107f9789faee83ef469'
+
+- ru
+
+.. releasenotes/notes/translations-4106dec297b04a63.yaml @ b'd75d29022a890c26ce806107f9789faee83ef469'
+
+- cz
+
+
+.. _Guake_(unreleased yet)_Other:
+
+Other
+-----
+
+.. releasenotes/notes/credits-17a8ac0624e7a46b.yaml @ b'f94bf912c86708a4cc9eb36cca13f8b3b7810f41'
+
+- Update about screen's credits
+
+
 .. _Guake_3.3.0:
 
 3.3.0
