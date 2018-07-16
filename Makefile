@@ -223,20 +223,20 @@ test:
 test-coverage:
 	pipenv run py.test -v --cov $(MODULE) --cov-report term-missing
 
-test-pip-install-sdist: generate-paths sdist
+test-pip-install-sdist: clean-pip-install-local generate-paths sdist
 	@echo "Testing installation by pip (will install on ~/.local)"
-	@rm -rfv ~/.local/guake
-	@rm -rfv ~/.local/lib/python3.*/site-packages/guake
-	@rm -rfv ~/.local/share/guake
 	pip install --upgrade -vvv --user $(shell ls -1 dist/*.tar.gz | sort | head -n 1)
 	ls -la ~/.local/share/guake
 	~/.local/bin/guake
 
-test-pip-install-wheel: generate-paths wheel
-	@echo "Testing installation by pip (will install on ~/.local)"
+clean-pip-install-local:
 	@rm -rfv ~/.local/guake
+	@rm -rfv ~/.local/bin/guake
 	@rm -rfv ~/.local/lib/python3.*/site-packages/guake
 	@rm -rfv ~/.local/share/guake
+
+test-pip-install-wheel: clean-pip-install-local generate-paths wheel
+	@echo "Testing installation by pip (will install on ~/.local)"
 	pip install --upgrade -vvv --user $(shell ls -1 dist/*.whl | sort | head -n 1)
 	ls -la ~/.local/share/guake
 	~/.local/bin/guake

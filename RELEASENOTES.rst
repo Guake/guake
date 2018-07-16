@@ -2,12 +2,22 @@
 Guake
 =====
 
-.. _Guake_(unreleased yet):
+.. _Guake_3.3.1:
 
-(unreleased yet)
-================
+3.3.1
+=====
 
-.. _Guake_(unreleased yet)_Bug Fixes:
+.. _Guake_3.3.1_Release Summary:
+
+Release Summary
+---------------
+
+.. releasenotes/notes/translations-4106dec297b04a63.yaml @ b'45d6fad258e74f28fa294e73f18587d2b2028327'
+
+This minor release mainly fix some issues when installing Guake though ``pip install --user --upgrade guake``.
+A big thanks also to everyone who contributed to the translations on `Weblate <https://hosted.weblate.org/projects/guake/guake/>`_.
+
+.. _Guake_3.3.1_Bug Fixes:
 
 Bug Fixes
 ---------
@@ -16,8 +26,12 @@ Bug Fixes
 
 - Don't translate application icon (this finally fixes Guake application icon not being displayed with German locale, which was only partially resolved with #1320)
 
+.. releasenotes/notes/pip-b3c70a8c17ca5533.yaml @ b'45d6fad258e74f28fa294e73f18587d2b2028327'
 
-.. _Guake_(unreleased yet)_Translation Updates:
+- Install of Guake through pip install was broken (missing ``paths.py``). Now fixed. Discarded generation of bdist. (fix
+
+
+.. _Guake_3.3.1_Translation Updates:
 
 Translation Updates
 -------------------
@@ -30,20 +44,28 @@ Translation Updates
 
 - de (thanks to @rzimmer)
 
-.. releasenotes/notes/translations-4106dec297b04a63.yaml @ b'd75d29022a890c26ce806107f9789faee83ef469'
+.. releasenotes/notes/translations-4106dec297b04a63.yaml @ b'45d6fad258e74f28fa294e73f18587d2b2028327'
 
 - fr
 
-.. releasenotes/notes/translations-4106dec297b04a63.yaml @ b'd75d29022a890c26ce806107f9789faee83ef469'
+.. releasenotes/notes/translations-4106dec297b04a63.yaml @ b'45d6fad258e74f28fa294e73f18587d2b2028327'
 
-- ru
+- ru (thanks Igor "f2404" on Weblate)
 
-.. releasenotes/notes/translations-4106dec297b04a63.yaml @ b'd75d29022a890c26ce806107f9789faee83ef469'
+.. releasenotes/notes/translations-4106dec297b04a63.yaml @ b'45d6fad258e74f28fa294e73f18587d2b2028327'
 
-- cz
+- cz (thanks Pavel Borecki on Weblate)
+
+.. releasenotes/notes/translations-4106dec297b04a63.yaml @ b'45d6fad258e74f28fa294e73f18587d2b2028327'
+
+- pl (thanks Piotr Drąg on Weblate)
+
+.. releasenotes/notes/translations-4106dec297b04a63.yaml @ b'45d6fad258e74f28fa294e73f18587d2b2028327'
+
+- it (thanks Maurizio De Santis on Weblate)
 
 
-.. _Guake_(unreleased yet)_Other:
+.. _Guake_3.3.1_Other:
 
 Other
 -----

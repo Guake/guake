@@ -41,11 +41,14 @@ script:
     - make check
     - make build
     - make test
+    # prepare for deployment
+    - make generate-paths
 
 
 deploy:
   provider: pypi
   user: Stibbons
+  skip_cleanup: true  # keep build artifacts for paths.py !
   distributions: sdist bdist_wheel
   password:
     secure: XNXxMzRr3b44DpjbH/yyVYfonS/PkDsE7VMm4Mv4WSQf2SDuwxa/KZTtoforSr6AbYef16d4ZU5EELlOIQ31n3I
