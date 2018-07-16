@@ -191,16 +191,17 @@ sc: style check
 dists: update-po requirements prepare-install rm-dists sdist bdist wheels
 build: dists
 
-sdist:
-	pipenv run python setup.py sdist
+sdist: generate-paths
+	export SKIP_GIT_SDIST=1 && pipenv run python setup.py sdist
 
 rm-dists:
 	rm -rf build dist
 
-bdist:
-	pipenv run python setup.py bdist
+bdist: generate-paths
+	# pipenv run python setup.py bdist
+	@echo "Ignoring build of bdist package"
 
-wheels:
+wheels: generate-paths
 	pipenv run python setup.py bdist_wheel
 
 wheel: wheels
@@ -222,7 +223,16 @@ test:
 test-coverage:
 	pipenv run py.test -v --cov $(MODULE) --cov-report term-missing
 
-test-pip-install: wheel generate-paths
+test-pip-install-sdist: generate-paths sdist
+	@echo "Testing installation by pip (will install on ~/.local)"
+	@rm -rfv ~/.local/guake
+	@rm -rfv ~/.local/lib/python3.*/site-packages/guake
+	@rm -rfv ~/.local/share/guake
+	pip install --upgrade -vvv --user $(shell ls -1 dist/*.tar.gz | sort | head -n 1)
+	ls -la ~/.local/share/guake
+	~/.local/bin/guake
+
+test-pip-install-wheel: generate-paths wheel
 	@echo "Testing installation by pip (will install on ~/.local)"
 	@rm -rfv ~/.local/guake
 	@rm -rfv ~/.local/lib/python3.*/site-packages/guake
