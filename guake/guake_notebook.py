@@ -77,7 +77,7 @@ class GuakeNotebook(Gtk.Notebook):
             try:
                 fgpid = posix.tcgetpgrp(fdpty)
                 log.debug("found running pid: %s", fgpid)
-                if not (fgpid == -1 or fgpid == term_pid):
+                if fgpid not in (-1, term_pid):
                     total_procs += 1
             except OSError:
                 log.debug(

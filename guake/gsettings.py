@@ -40,7 +40,7 @@ DCONF_MONOSPACE_FONT_KEY = 'monospace-font-name'
 log = logging.getLogger(__name__)
 
 
-class GSettingHandler(object):
+class GSettingHandler():
 
     """Handles gconf changes, if any gconf variable is changed, a
     different method is called to handle this change.

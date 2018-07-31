@@ -23,7 +23,6 @@ pylint
 pytest
 pytest-mock
 reno>=2.8.0
-rope
 sphinx-rtd-theme
 sphinxcontrib-programoutput
 yapf

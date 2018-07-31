@@ -28,7 +28,7 @@ from gi.repository import Gtk
 import tokenize
 
 
-class SimpleGladeApp(object):
+class SimpleGladeApp():
 
     def __init__(self, path, root=None, domain=None, **kwargs):
         """
@@ -334,7 +334,7 @@ class SimpleGladeApp(object):
         return self.builder.get_objects()
 
 
-class SimpleGtk3App(object):
+class SimpleGtk3App():
 
     """
     Basic GtkBuilder wrapper that implements the functions from
