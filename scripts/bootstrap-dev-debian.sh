@@ -40,6 +40,7 @@ if [[ $RUN == "1" ]]; then
         gir1.2-notify-0.7 \
         gir1.2-vte-2.91 \
         libkeybinder-3.0-0 \
+        libutempter0 \
         python3 \
         python3-cairo \
         python3-dbus \
@@ -71,6 +72,5 @@ fi
 if [[ $OPT == "1" ]]; then
     echo "Install packages optional for execution"
     sudo apt install \
-        libutempter0 \
         numix-gtk-theme
 fi

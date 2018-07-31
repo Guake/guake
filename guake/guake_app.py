@@ -91,9 +91,17 @@ try:
         at_exit_call(libutempter.utempter_remove_added_record)
 except Exception as e:
     libutempter = None
+    sys.stderr.write("[WARN] ===================================================================\n")
     sys.stderr.write("[WARN] Unable to load the library libutempter !\n")
-    sys.stderr.write("[WARN] The <wall> command will not work in guake !\n")
-    sys.stderr.write("[WARN] " + str(e) + '\n')
+    sys.stderr.write(
+        "[WARN] Some feature might not work:\n"
+        "[WARN]  - 'exit' command might freeze the terminal instead of closing the tab\n"
+        "[WARN]  - the 'wall' command is know to work badly\n"
+    )
+    sys.stderr.write("[WARN] Error: " + str(e) + '\n')
+    sys.stderr.write(
+        "[WARN] ===================================================================²\n"
+    )
 
 log = logging.getLogger(__name__)
 
