@@ -287,7 +287,7 @@ def refresh_user_start(settings):
             os.remove(desktop_file)
 
 
-class PrefsCallbacks(object):
+class PrefsCallbacks():
 
     """Holds callbacks that will be used in the PrefsDialg class.
     """
@@ -944,7 +944,6 @@ class PrefsDialog(SimpleGladeApp):
         if hook_show_widget is not None:
             if hook_show_setting is not None:
                 hook_show_widget.set_text(hook_show_setting)
-        return
 
     def _load_default_shell_settings(self):
         combo = self.get_widget('default_shell')
@@ -1300,8 +1299,8 @@ class PrefsDialog(SimpleGladeApp):
 
         # avoiding problems with common keys
         if ((mods == 0 and key != 0) and
-            ((key >= ord('a') and key <= ord('z')) or (key >= ord('A') and key <= ord('Z')) or
-             (key >= ord('0') and key <= ord('9')))):
+            ((ord('a') <= key <= ord('z')) or (ord('A') <= key <= ord('Z')) or
+             (ord('0') <= key <= ord('9')))):
             dialog = Gtk.MessageDialog(
                 self.get_widget('config-window'),
                 Gtk.DialogFlags.MODAL | Gtk.DialogFlags.DESTROY_WITH_PARENT,
@@ -1321,7 +1320,7 @@ class PrefsDialog(SimpleGladeApp):
 
         self.store[path][HOTKET_MODEL_INDEX_HUMAN_ACCEL] = keylabel
 
-        if dconf_path == "show-hide" or dconf_path == "show-focus":
+        if dconf_path in ("show-hide", "show-focus"):
             self.settings.keybindingsGlobal.set_string(dconf_path, accelerator)
         else:
             self.settings.keybindingsLocal.set_string(dconf_path, accelerator)
@@ -1376,7 +1375,7 @@ class PrefsDialog(SimpleGladeApp):
         return True
 
 
-class KeyEntry(object):
+class KeyEntry():
 
     def __init__(self, keycode, mask):
         self.keycode = keycode

@@ -91,9 +91,17 @@ try:
         at_exit_call(libutempter.utempter_remove_added_record)
 except Exception as e:
     libutempter = None
+    sys.stderr.write("[WARN] ===================================================================\n")
     sys.stderr.write("[WARN] Unable to load the library libutempter !\n")
-    sys.stderr.write("[WARN] The <wall> command will not work in guake !\n")
-    sys.stderr.write("[WARN] " + str(e) + '\n')
+    sys.stderr.write(
+        "[WARN] Some feature might not work:\n"
+        "[WARN]  - 'exit' command might freeze the terminal instead of closing the tab\n"
+        "[WARN]  - the 'wall' command is know to work badly\n"
+    )
+    sys.stderr.write("[WARN] Error: " + str(e) + '\n')
+    sys.stderr.write(
+        "[WARN] ===================================================================²\n"
+    )
 
 log = logging.getLogger(__name__)
 
@@ -1150,7 +1158,7 @@ class Guake(SimpleGladeApp):
 
             # launcher_hide_mode = 1 => autohide
             # only adjust guake window width if Unity dock is positioned "Left" or "Right"
-            if unity_hide != 1 and (unity_pos == "Left" or unity_pos == "Right"):
+            if unity_hide != 1 and unity_pos not in ("Left", "Right"):
                 log.debug(
                     "correcting window width because of launcher position %s "
                     "and width %s (from %s to %s)", unity_pos, unity_dock, window_rect.width,
@@ -1387,7 +1395,7 @@ class Guake(SimpleGladeApp):
         """
 
         def callback(*args):
-            if N >= 0 and N < self.notebook.get_n_pages():
+            if 0 <= N < self.notebook.get_n_pages():
                 self.notebook.set_current_page(N)
             return True
 
@@ -1933,7 +1941,7 @@ class Guake(SimpleGladeApp):
         # Note: beware to reset preventHide when closing the find dialog
 
     def _dialog_response_callback(self, dialog, response_id):
-        if (response_id != RESPONSE_FORWARD and response_id != RESPONSE_BACKWARD):
+        if response_id not in (RESPONSE_FORWARD, RESPONSE_BACKWARD):
             dialog.destroy()
             self.preventHide = False
             return
@@ -2136,4 +2144,3 @@ class Guake(SimpleGladeApp):
                 log.debug(traceback.format_exc())
             else:
                 log.debug("hook on event %s has been executed", event_name)
-        return

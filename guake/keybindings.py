@@ -29,7 +29,7 @@ from guake.common import pixmapfile
 log = logging.getLogger(__name__)
 
 
-class Keybindings(object):
+class Keybindings():
 
     """Handles changes in keyboard shortcuts.
     """

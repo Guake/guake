@@ -20,7 +20,6 @@ yapf = "*"
 reno = {version = ">=2.8.0", extras = ["sphinx"]}
 pipenv-to-requirements = "*"
 colorlog = "*"
-rope = "*"
 sphinx-rtd-theme = "*"
 sphinxcontrib-programoutput = "*"
 "e1839a8" = {editable = true, path = "."}

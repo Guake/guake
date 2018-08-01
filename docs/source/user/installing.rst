@@ -38,6 +38,23 @@ Please use the following command to install on your environment:
 Avoid using ``pip install guake`` without the ``--user``, you may break
 your system.
 
+You need to ensure the following points are met in your configuration:
+
+- ``$HOME/.local/bin`` should be in your ``$PATH``
+- You need to have some dependencies installed on your system:
+
+  - ``gir1.2-keybinder-3.0``
+  - ``gir1.2-notify-0.7``
+  - ``gir1.2-vte-2.91``
+  - ``libkeybinder-3.0-0``
+  - ``libutempter0``
+  - ``python3-cairo``
+  - ``python3-dbus``
+  - ``python3-gi``
+  - ``python3-pbr``
+  - ``python3-pip``
+  - ``python3``
+
 Install from source
 ===================
 
