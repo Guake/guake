@@ -13,8 +13,8 @@ msgstr ""
 "Project-Id-Version: Guake 0.4.5\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-05-17 13:41+0200\n"
-"PO-Revision-Date: 2018-06-20 23:51+0000\n"
-"Last-Translator: Gaetan Semet <gaetan@xeberon.net>\n"
+"PO-Revision-Date: 2018-07-27 09:38+0000\n"
+"Last-Translator: samuelorsi125t <samuelorsi125t@gmail.com>\n"
 "Language-Team: French <https://hosted.weblate.org/projects/guake/guake/fr/>\n"
 "Language: fr\n"
 "MIME-Version: 1.0\n"
@@ -33,7 +33,7 @@ msgstr "Général"
 
 #: guake/prefs.py:94
 msgid "Toggle Guake visibility"
-msgstr "Affiche/Cache Guake"
+msgstr "Afficher/Cacher Guake"
 
 #: guake/prefs.py:98
 msgid "Show and focus Guake window"
@@ -41,7 +41,7 @@ msgstr "Afficher et sélectionner la fenêtre Guake"
 
 #: guake/prefs.py:102
 msgid "Toggle Fullscreen"
-msgstr "Active/Désactive le plein écran"
+msgstr "Activer/Désactiver le plein écran"
 
 #: guake/prefs.py:106
 msgid "Toggle Hide on Lose Focus"
@@ -65,7 +65,7 @@ msgstr "Nouvel onglet"
 
 #: guake/prefs.py:128
 msgid "Close tab"
-msgstr "Fermer un onglet"
+msgstr "Fermer l'onglet"
 
 #: guake/prefs.py:132
 msgid "Rename current tab"
@@ -141,15 +141,15 @@ msgstr "Apparence"
 
 #: guake/prefs.py:207
 msgid "Zoom out"
-msgstr "Zoom"
+msgstr "Dézoomer"
 
 #: guake/prefs.py:210
 msgid "Zoom in"
-msgstr "Dézoom"
+msgstr "Zoomer"
 
 #: guake/prefs.py:213
 msgid "Zoom in (alternative)"
-msgstr "Dézoom (alternatif)"
+msgstr "Zoomer (alternatif)"
 
 #: guake/prefs.py:216
 msgid "Increase height"
@@ -169,7 +169,7 @@ msgstr "Réduire la transparence"
 
 #: guake/prefs.py:228
 msgid "Toggle transparency"
-msgstr "Inverser la transparence"
+msgstr "Activer/Désactiver la transparence"
 
 #: guake/prefs.py:232
 msgid "Clipboard"
@@ -177,11 +177,11 @@ msgstr "Presse-papiers"
 
 #: guake/prefs.py:237
 msgid "Copy text to clipboard"
-msgstr "Copie dans le presse-papiers"
+msgstr "Copier dans le presse-papiers"
 
 #: guake/prefs.py:241
 msgid "Paste text from clipboard"
-msgstr "Colle à partir du presse-papiers"
+msgstr "Coller à partir du presse-papiers"
 
 #: guake/prefs.py:246
 msgid "Extra features"
@@ -236,11 +236,11 @@ msgstr ""
 
 #: guake/main.py:67
 msgid "Show Guake version number and exit"
-msgstr "Affiche la version de Guake et termine"
+msgstr "Afficher la version de Guake et quitter"
 
 #: guake/main.py:76
 msgid "Enable verbose logging"
-msgstr "Active la sortie verbeuse"
+msgstr "Activer la sortie verbeuse"
 
 #: guake/main.py:85
 msgid "Put Guake in fullscreen mode"
@@ -248,7 +248,7 @@ msgstr "Placer Guake en mode plein écran"
 
 #: guake/main.py:94
 msgid "Toggles the visibility of the terminal window"
-msgstr "Active/Désactive la visibilité de la fenêtre principale"
+msgstr "Activer/Désactiver la visibilité de la fenêtre principale"
 
 #: guake/main.py:102
 msgid "Shows Guake main window"
@@ -268,11 +268,11 @@ msgstr "Afficher les informations à propos de Guake"
 
 #: guake/main.py:137
 msgid "Add a new tab (with current directory set to NEW_TAB)"
-msgstr "_Ouvrir un nouvel onglet (le dossier courant est spécifié par NEW_TAB)"
+msgstr "Ajouter un nouvel onglet (le dossier courant est spécifié par NEW_TAB)"
 
 #: guake/main.py:146
 msgid "Select a tab (SELECT_TAB is the index of the tab)"
-msgstr "Selectionner un onglet (SELECT_TAB est l'index du tab)"
+msgstr "Sélectionner un onglet (SELECT_TAB est l'index du tab)"
 
 #: guake/main.py:155
 msgid "Return the selected tab index."
@@ -284,7 +284,7 @@ msgstr "Retourne le label de l'onglet sélectionné."
 
 #: guake/main.py:173
 msgid "Execute an arbitrary command in the selected tab."
-msgstr "Exécute une commande dans un onglet sélectionné."
+msgstr "Exécuter une commande dans un onglet sélectionné."
 
 #: guake/main.py:182
 msgid ""
@@ -929,7 +929,7 @@ msgstr "Rechercher en avant"
 
 #: data/search.glade:153
 msgid "Match case"
-msgstr "Respecte la casse"
+msgstr "Respecter la casse"
 
 #: data/search.glade:186
 msgid "Current search direction: Backward"
@@ -943,12 +943,13 @@ msgstr "Exploitez la ligne command dans un terminal tel Quake"
 #: data/guake.template.desktop:7 data/autostart-guake.desktop:39
 #: data/guake-prefs.template.desktop:7 data/guake-prefs.desktop:40
 #: data/guake.desktop:39
+#, fuzzy
 msgid "guake"
-msgstr ""
+msgstr "guake"
 
 #: data/guake-prefs.template.desktop:4 data/guake-prefs.desktop:32
 msgid "Configure your Guake sessions"
-msgstr "Configure vos sessions Guake"
+msgstr "Configurer vos sessions Guake"
 
 #: data/guake-prefs.template.desktop:13 data/guake-prefs.desktop:50
 msgid "Terminal;Utility;"

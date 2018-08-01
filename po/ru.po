@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: Guake 0.4.5\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-04-17 13:26+0300\n"
-"PO-Revision-Date: 2018-07-10 12:57+0000\n"
+"PO-Revision-Date: 2018-07-18 10:41+0000\n"
 "Last-Translator: Igor <f2404@yandex.ru>\n"
 "Language-Team: Russian <https://hosted.weblate.org/projects/guake/guake/ru/"
 ">\n"
@@ -1189,7 +1189,7 @@ msgid ""
 "Specify the tab to rename. Default is 0. Can be used to select tab by UUID."
 msgstr ""
 "Укажите вкладку для переименования. По умолчанию - 0. Можно использовать "
-"UUID для выбора"
+"UUID для выбора."
 
 #: guake/main.py:212
 msgid ""
@@ -1217,7 +1217,7 @@ msgstr "guake-prefs"
 
 #: data/prefs.glade:680
 msgid "Set window title to current tab name"
-msgstr ""
+msgstr "Сделать название текущей вкладки заголовком окна"
 
 #~ msgid "Path to script executed on Guake start:"
 #~ msgstr "Путь к скрипту, запускаемому при старте Guake:"
