@@ -569,20 +569,43 @@ class Guake(SimpleGladeApp):
     def set_background_color_from_settings(self):
         self.set_colors_from_settings()
 
-    def set_colors_from_settings(self):
+    def get_bgcolor(self):
         transparency = self.settings.styleBackground.get_int('transparency')
         palette_list = self._load_palette()
         bg_color = self._get_background_color(palette_list, transparency)
+        return bg_color
 
+    def get_fgcolor(self):
+        palette_list = self._load_palette()
         if len(palette_list) > 16:
             font_color = palette_list[16]
         else:
             font_color = Gdk.RGBA(0, 0, 0, 0)
+        return font_color
+
+    def set_colors_from_settings(self):
+        bg_color = self.get_bgcolor()
+        font_color = self.get_fgcolor()
+        palette_list = self._load_palette()
 
         for i in self.notebook.iter_terminals():
             i.set_color_foreground(font_color)
             i.set_color_bold(font_color)
             i.set_colors(font_color, bg_color, palette_list[:16])
+
+    def set_bgcolor(self, bgcolor):
+        if isinstance(bgcolor, str):
+            c = Gdk.RGBA(0, 0, 0, 0)
+            c.parse(bgcolor)
+            bgcolor = c
+        self.notebook.get_current_terminal().set_color_background(bgcolor)
+
+    def set_fgcolor(self, fgcolor):
+        if isinstance(fgcolor, str):
+            c = Gdk.RGBA(0, 0, 0, 0)
+            c.parse(fgcolor)
+            fgcolor = c
+        self.notebook.get_current_terminal().set_color_foreground(fgcolor)
 
     def execute_command(self, command, tab=None):
         """Execute the `command' in the `tab'. If tab is None, the
