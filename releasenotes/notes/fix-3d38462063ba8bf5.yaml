@@ -1,0 +1,2 @@
+fixes:
+  - fixes guake --fgcolor error #1376

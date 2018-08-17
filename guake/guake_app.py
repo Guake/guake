@@ -172,7 +172,7 @@ class Guake(SimpleGladeApp):
 
         try:
             schema_source = load_schema()
-        except GLib.Error:
+        except GLib.Error:  # pylint: disable=catching-non-exception
             log.exception("Unable to load the GLib schema, try to compile it")
             try_to_compile_glib_schemas()
             schema_source = load_schema()
