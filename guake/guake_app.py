@@ -255,7 +255,6 @@ class Guake(SimpleGladeApp):
 
         def draw_callback(widget, cr):
             if widget.transparency:
-                pass
                 cr.set_source_rgba(color.red, color.green, color.blue, 1)
             else:
                 cr.set_source_rgb(0, 0, 0)
@@ -1455,7 +1454,6 @@ class Guake(SimpleGladeApp):
         except OSError:
             pass
         return self._shorten_tab_title(vte_title)
-        pass
 
     def _shorten_tab_title(self, text):
         use_vte_titles = self.settings.general.get_boolean('use-vte-titles')
@@ -1751,7 +1749,7 @@ class Guake(SimpleGladeApp):
 
         text = self.compute_tab_title(box.terminal)
         page_num = self.notebook.append_page(box, None)
-        # TODO REORDERABLE add: self.notebook.set_tab_reorderable(box, True)
+        self.notebook.set_tab_reorderable(box, True)
 
         self.notebook.append_tab(box.terminal)
         self.notebook.set_current_page(page_num)
@@ -1875,7 +1873,6 @@ class Guake(SimpleGladeApp):
         if abbreviate_tab_names and not self.is_tabs_scrollbar_visible():
             self.abbreviate = False
             self.recompute_tabs_titles()
-        pass
 
     def set_terminal_focus(self):
         """Grabs the focus on the current tab.
