@@ -117,12 +117,10 @@ class GSettingHandler():
         """If the gconf var use_tabbar be changed, this method will be
         called and will show/hide the tabbar.
         """
-        # if settings.get_boolean(key):
-        #     self.guake.toolbar.show()
-        # else:
-        #     self.guake.toolbar.hide()
-        # TODO TABS the toolbar is removed show/hide the notebooks tabs
-        pass
+        if settings.get_boolean(key):
+            self.guake.notebook.set_property("show-tabs", True)
+        else:
+            self.guake.notebook.set_property("show-tabs", False)
 
     def alignment_changed(self, settings, key, user_data):
         """If the gconf var window_halignment be changed, this method will

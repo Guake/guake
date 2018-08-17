@@ -102,3 +102,20 @@ class GuakeNotebook(Gtk.Notebook):
 
     def append_tab(self, terminal):
         self.term_list.append(terminal)
+
+    def iter_tabs(self):
+        for page_num in range(self.get_n_pages()):
+            yield self.get_tab_label(self.get_nth_page(page_num))
+
+    def get_tab_eventbox_index(self, eventbox):
+        for index, tab_eventbox in enumerate(self.iter_tabs()):
+            if eventbox is tab_eventbox:
+                return index
+        return -1
+
+    def get_tab_label_index(self, label):
+        return self.get_tab_eventbox_index(label.get_parent())
+
+    def iter_pages(self):
+        for page_num in range(self.get_n_pages()):
+            yield self.get_nth_page(page_num)
