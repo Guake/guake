@@ -274,7 +274,6 @@
             <property name="show_tabs">False</property>
             <property name="show_border">False</property>
             <property name="enable_popup">True</property>
-            <signal name="switch-page" handler="select_current_tab" swapped="no"/>
           </object>
           <packing>
             <property name="expand">True</property>

@@ -234,16 +234,15 @@ class Guake(SimpleGladeApp):
 
         # help(Gtk.PositionType)
         self.notebook.set_tab_pos(Gtk.PositionType.BOTTOM)
-        # self.notebook.set_property("tab_pos", "bottom")
-        self.notebook.set_property("show_tabs", True)
-        self.notebook.set_property("show_border", False)
+        self.notebook.set_property("show-tabs", True)
+        self.notebook.set_property("enable-popup", False)
+        self.notebook.set_property("scrollable", True)
+        self.notebook.set_property("show-border", False)
         self.notebook.set_property("visible", True)
-        self.notebook.set_property("has_focus", True)
-        self.notebook.set_property("can_focus", True)
-        self.notebook.set_property("is_focus", True)
-        self.notebook.set_property("enable_popup", True)
+        self.notebook.set_property("has-focus", True)
+        self.notebook.set_property("can-focus", True)
+        self.notebook.set_property("is-focus", True)
         self.notebook.set_property("expand", True)
-        self.notebook.connect("switch_page", self.select_current_tab)
         self.mainframe.add(self.notebook)
         self.set_tab_position()
 
@@ -314,7 +313,10 @@ class Guake(SimpleGladeApp):
             self.showing_context_menu = False
 
         self.get_widget('context-menu').connect('hide', hide_context_menu)
-        self.get_widget('tab-menu').connect('hide', hide_context_menu)
+
+        # setting up the TabContextMenuHelper
+        self.tab_context_menu_helper = TabContextMenuHelper(self.get_widget('tab-menu'))
+
         self.window.connect('focus-out-event', self.on_window_losefocus)
 
         # Handling the delete-event of the main window to avoid
@@ -770,33 +772,24 @@ class Guake(SimpleGladeApp):
                 self.selected_tab.pressed()
                 return True
 
-    def show_tab_menu(self, target, event):
+    def show_tab_menu(self, target, event, user_data):
         """Shows the tab menu with a right click. After that, the
         focus come back to the terminal.
+        user_data is a Gtk.Label which is displayed in an eventbox in the clicked tab
         """
         if event.button == 3:
-            self.showing_context_menu = True
-            self.selected_tab = target
-            menu = self.get_widget('tab-menu')
-            menu.popup(None, None, None, None, 3, event.get_time())
-        """This may look like it could be refactored by just calling self.set_terminal_focus()
-        but self.set_terminal_focus() calls self.get_selected_tab() which overrides the
-        value of self.selected_tab
-        """
+            self.tab_context_menu_helper.show(event, self.notebook.get_tab_label_index(user_data))
+            self.notebook.get_current_terminal().grab_focus()
+            return True
         self.notebook.get_current_terminal().grab_focus()
-        pos = self.notebook.get_current_page()
-        self.select_tab(0)
-        self.select_tab(pos)
+        return False
 
-    def middle_button_click(self, target, event):
+    def middle_button_click(self, target, event, user_data):
         """Closes a tab with a middle click
+        user_data is a Gtk.Label which is displayed in an eventbox in the clicked tab
         """
         if event.button == 2 and event.type == Gdk.EventType.BUTTON_PRESS:
-            previously_selected_tab = self.get_selected_tab()
-            target.activate_tab()
-            target_position = self.get_selected_tab()
-            self.select_tab(previously_selected_tab)
-            self.delete_tab(target_position)
+            self.delete_tab(self.notebook.get_tab_label_index(user_data))
 
     def show_about(self, *args):
         """Hides the main window and creates an instance of the About
@@ -1399,12 +1392,8 @@ class Guake(SimpleGladeApp):
         """Callback to show the rename tab dialog. Called by the accel
         key.
         """
-        # pagepos = self.notebook.get_current_page()
-        # self.selected_tab = self.tabs.get_children()[pagepos]
-        # self.on_rename_current_tab_activate()
-        # return True
-        # TODO TABS reimplement
-        pass
+        self.on_rename_current_tab_activate(args)
+        return True
 
     def accel_copy_clipboard(self, *args):
         """Callback to copy text in the shown terminal. Called by the
@@ -1485,29 +1474,29 @@ class Guake(SimpleGladeApp):
         """Updates labels on all tabs. This is required when `self.abbreviate`
         changes
         """
-        # use_vte_titles = self.settings.general.get_boolean("use-vte-titles")
-        # if not use_vte_titles:
-        #     return
+        use_vte_titles = self.settings.general.get_boolean("use-vte-titles")
+        if not use_vte_titles:
+            return
 
-        # for tab, vte in zip(self.tabs.get_children(), self.notebook.term_list):
-        #     tab.set_label(self.compute_tab_title(vte))
-        # TODO TABS reimplement
-        pass
+        # TODO NOTEBOOK this code only works if there is only one terminal in a
+        # page, this need to be rewritten
+        for terminal in self.notebook.term_list:
+            page_num = self.notebook.page_num(terminal.get_parent())
+            self.rename_tab(page_num, self.compute_tab_title(terminal), False)
 
     def compute_tab_title(self, vte):
         """Abbreviate and cut vte terminal title when necessary
         """
-        # vte_title = vte.get_window_title() or _("Terminal")
-        # try:
-        #     current_directory = vte.get_current_directory()
-        #     if self.abbreviate and vte_title.endswith(current_directory):
-        #         parts = current_directory.split('/')
-        #         parts = [s[:1] for s in parts[:-1]] + [parts[-1]]
-        #         vte_title = vte_title[:len(vte_title) - len(current_directory)] + '/'.join(parts)
-        # except OSError:
-        #     pass
-        # return self._shorten_tab_title(vte_title)
-        # TODO TABS reimplement
+        vte_title = vte.get_window_title() or _("Terminal")
+        try:
+            current_directory = vte.get_current_directory()
+            if self.abbreviate and vte_title.endswith(current_directory):
+                parts = current_directory.split('/')
+                parts = [s[:1] for s in parts[:-1]] + [parts[-1]]
+                vte_title = vte_title[:len(vte_title) - len(current_directory)] + '/'.join(parts)
+        except OSError:
+            pass
+        return self._shorten_tab_title(vte_title)
         pass
 
     def _shorten_tab_title(self, text):
@@ -1520,37 +1509,34 @@ class Guake(SimpleGladeApp):
         return text
 
     def on_terminal_title_changed(self, vte, box):
-        # use_vte_titles = self.settings.general.get_boolean('use-vte-titles')
-        # if not use_vte_titles:
-        #     return
-        # page = self.notebook.page_num(box)
-        # tab = self.tabs.get_children()[page]
-        # # if tab has been renamed by user, don't override.
-        # if not getattr(tab, 'custom_label_set', False):
-        #     vte_title = self.compute_tab_title(vte)
-        #     tab.set_label(vte_title)
-        #     tab.set_tooltip_text(vte_title)
-        #     self.update_window_title(vte_title)
-        # else:
-        #     text = getattr(tab, 'custom_label_text')
-        #     if text:
-        #         self.update_window_title(text)
-        # TODO TABS reimplement
-        pass
+        use_vte_titles = self.settings.general.get_boolean('use-vte-titles')
+        if not use_vte_titles:
+            return
+        page_num = self.notebook.page_num(box)
+        # if tab has been renamed by user, don't override.
+        if not getattr(box, 'custom_label_set', False):
+            title = self.compute_tab_title(vte)
+            self.rename_tab(page_num, title, False)
+            self.update_window_title(title)
+        else:
+            text = self.notebook.get_tab_label(page).get_children()[0].get_text()
+            if text:
+                self.update_window_title(text)
 
     def update_window_title(self, title):
-        # if self.settings.general.get_boolean('set-window-title') is True:
-        #     self.window.set_title(title)
-        # else:
-        #     self.window.set_title(self.default_window_title)
-        # TODO TABS reimplement
-        pass
+        if self.settings.general.get_boolean('set-window-title') is True:
+            self.window.set_title(title)
+        else:
+            self.window.set_title(self.default_window_title)
 
     def on_rename_current_tab_activate(self, *args):
         """Shows a dialog to rename the current tab.
         """
-        """entry = Gtk.Entry()
-        entry.set_text(self.selected_tab.get_label())
+        print(args)
+        entry = Gtk.Entry()
+        page_num = self.tab_context_menu_helper.last_invoked_on_tab_index
+        page = self.notebook.get_nth_page(page_num)
+        entry.set_text(self.notebook.get_tab_label(page).get_children()[0].get_text())
         entry.set_property('can-default', True)
         entry.show()
 
@@ -1567,7 +1553,6 @@ class Guake(SimpleGladeApp):
         dialog.set_size_request(300, -1)
         dialog.vbox.pack_start(vbox, True, True, 0)
         dialog.set_border_width(4)
-        # dialog.set_has_separator(False)
         dialog.set_default_response(Gtk.ResponseType.ACCEPT)
         dialog.add_action_widget(entry, Gtk.ResponseType.ACCEPT)
         entry.reparent(vbox)
@@ -1581,31 +1566,16 @@ class Guake(SimpleGladeApp):
             new_text = entry.get_text()
             new_text = self._shorten_tab_title(new_text)
 
-            self.selected_tab.set_label(new_text)
-            # if user sets empty name, consider he wants default behavior.
-            setattr(self.selected_tab, 'custom_label_set', bool(new_text))
-
-            # holds custom label name of the tab,
-            # we need this to restore the name if the max length is changed
-            setattr(self.selected_tab, 'custom_label_text', new_text)
-
-            # trigger titling handler in case that custom label has been reset
-            current_vte = self.notebook.get_current_terminal()
-            current_vte.emit('window-title-changed')
+            self.rename_tab(page_num, new_text, True)
 
         dialog.destroy()
-        self.set_terminal_focus()"""
-        # TODO TABS reimplement
-        pass
+        self.set_terminal_focus()
 
     def on_close_activate(self, *args):
         """Tab context menu close handler
         """
-        # tabs = self.tabs.get_children()
-        # pagepos = tabs.index(self.selected_tab)
-        # self.delete_tab(pagepos)
-        # TODO TABS reimplement
-        pass
+        page_num = self.tab_context_menu_helper.last_invoked_on_tab_index
+        self.delete_tab(page_num)
 
     def on_drag_data_received(self, widget, context, x, y, selection, target, timestamp, box):
         droppeduris = selection.get_uris()
@@ -1647,73 +1617,47 @@ class Guake(SimpleGladeApp):
     def close_tab(self, *args):
         """Closes the current tab.
         """
-        # pagepos = self.notebook.get_current_page()
-        # self.delete_tab(pagepos)
-        # TODO TABS reimplement
-        pass
+        pagepos = self.notebook.get_current_page()
+        self.delete_tab(pagepos)
 
-    def rename_tab_uuid(self, tab_uuid, new_text):
+    def rename_tab_uuid(self, term_uuid, new_text, user_set=True):
         """Rename an already added tab by its UUID
         """
-        """try:
-            tab_uuid = uuid.UUID(tab_uuid)
-            tab_index, = (
-                index for index, t in enumerate(self.notebook.iter_terminals())
-                if t.get_uuid() == tab_uuid
-            )
-            tab = self.tabs.get_children()[tab_index]
-        except ValueError:
-            pass
-        else:
-            tab.set_label(new_text)
-            setattr(tab, 'custom_label_set', new_text != "-")
-            if new_text != "-":
-                setattr(self.selected_tab, 'custom_label_text', new_text)
-            terminals = self.notebook.get_terminals_for_tab(tab_index)
-            for current_vte in terminals:
-                current_vte.emit('window-title-changed')"""
-        # TODO TABS reimplement
-        pass
+        term_uuid = uuid.UUID(term_uuid)
+        # TODO NOTEBOOK this is not optimal (page reordering messes the lookup up)
+        # and should be fixed in the notebook rewrite
+        page_index, = (
+            index for index, t in enumerate(self.notebook.iter_terminals())
+            if t.get_uuid() == term_uuid
+        )
+        self.rename_tab(tab_index, new_text, user_set)
 
-    def rename_tab(self, tab_index, new_text):
-        """Rename an already added tab by its index.
+    def rename_tab(self, page_index, new_text, user_set=False):
+        """Rename an already added tab by its index. Use user_set to define
+        if the rename was triggered by the user (eg. rename dialog) or by
+        an update from the vte (eg. vte:window-title-changed)
         """
-        """try:
-            tab = self.tabs.get_children()[tab_index]
-        except IndexError:
-            pass
-        else:
-            tab.set_label(new_text)
-            setattr(tab, 'custom_label_set', new_text != "-")
-            if new_text != "-":
-                setattr(self.selected_tab, 'custom_label_text', new_text)
-            terminals = self.notebook.get_terminals_for_tab(tab_index)
-            for current_vte in terminals:
-                current_vte.emit('window-title-changed')"""
-        # TODO TABS reimplement
-        pass
+        page_box = self.notebook.get_nth_page(page_index)
+        if not getattr(page_box, "custom_label_set", False) or user_set:
+            eventbox = Gtk.EventBox()
+            label = Gtk.Label(new_text)
+            eventbox.add(label)
+            eventbox.connect("button-press-event", self.show_tab_menu, label)
+            eventbox.connect("button-press-event", self.middle_button_click, label)
+            self.notebook.set_tab_label(page_box, eventbox)
+            label.show()
 
-    def rename_current_tab(self, new_text):
-        """Sets the `self.selected_tab' var with the selected radio
-        button and change its label to `new_text'.
-        """
+            if user_set:
+                setattr(page_box, "custom_label_set", new_text != "-")
 
-        """pagepos = self.notebook.get_current_page()
-        self.selected_tab = self.tabs.get_children()[pagepos]
-        self.selected_tab.set_label(new_text)
+        # TODO TABS do we still need this, testing
+        # terminals = self.notebook.get_terminals_for_tab(tab_index)
+        # for current_vte in terminals:
+        #     current_vte.emit('window-title-changed')
 
-        # it's hard to pass an empty string as a command line argument,
-        # so we'll interpret single dash "-" as a "reset custom title" request
-        setattr(self.selected_tab, 'custom_label_set', new_text != "-")
-        if new_text != "-":
-            setattr(self.selected_tab, 'custom_label_text', new_text)
-
-        # trigger titling handler in case that custom label has been reset
-        current_vte = self.notebook.get_current_terminal()
-        current_vte.emit('window-title-changed')
-        self.notebook.get_current_terminal().grab_focus()"""
-        # TODO TABS reimplement
-        pass
+    def rename_current_tab(self, new_text, user_set=False):
+        page_num = self.notebook.get_current_page()
+        self.rename_tab(page_num, new_text, user_set)
 
     def get_current_dir(self):
         """Gets the working directory of the current tab to create a
@@ -1847,53 +1791,15 @@ class Guake(SimpleGladeApp):
         """
         box = self.setup_new_terminal(directory)
 
-        # TODO TABS remove all tabs related things (commented out)
-        # Adding a new radio button to the tabbar
-        # label = self.compute_tab_title(box.terminal)
-        # tabs = self.tabs.get_children()
-        # parent = tabs and tabs[0] or None
-        # bnt = Gtk.RadioButton(group=parent, label=label, use_underline=False)
-        # bnt.set_property('can-focus', False)
-        # bnt.set_property('draw-indicator', False)
-        # bnt.get_style_context().add_class("custom_tab")
-        # bnt.connect('button-press-event', self.show_tab_menu)
-        # bnt.connect('button-press-event', self.middle_button_click)
-        # bnt.connect('button-press-event', self.show_rename_current_tab_dialog)
-
-        # def _update_window_title_on_active_tab(*args):
-        #     current_pagepos = self.notebook.get_current_page()
-        #     wanted_pagepos = self.notebook.page_num(box)
-        #     if current_pagepos != wanted_pagepos:
-        #         self.notebook.set_current_page(wanted_pagepos)
-        #         box.terminal.emit('window-title-changed')
-
-        # bnt.activate_tab = _update_window_title_on_active_tab
-        # bnt.connect('clicked', bnt.activate_tab)
-
-        # TODO PORT drag and drop
-        # drag_drop_type = ("text/plain", gtk.TARGET_SAME_APP, 80)
-        # TODO PORT drag and drop
-        # bnt.drag_dest_set(gtk.DEST_DEFAULT_ALL, [drag_drop_type], gtk.gdk.ACTION_MOVE)
-        # bnt.connect("drag_data_received", self.on_drop_tab)
-        # TODO PORT drag and drop
-        # bnt.drag_source_set(gtk.gdk.BUTTON1_MASK, [drag_drop_type], gtk.gdk.ACTION_MOVE)
-        # bnt.connect("drag_data_get", self.on_drag_tab)
-        # bnt.show()
-
-        # self.tabs.pack_start(bnt, False, True, 1)
-
-        self.notebook.append_page(box, None)
-        # TODO NOTEBOOK maybe add: self.notebook.set_tab_reorderable(box, True)
+        text = self.compute_tab_title(box.terminal)
+        page_num = self.notebook.append_page(box, None)
+        # TODO REORDERABLE add: self.notebook.set_tab_reorderable(box, True)
 
         self.notebook.append_tab(box.terminal)
-
-        # bnt.activate_tab()
+        self.notebook.set_current_page(page_num)
+        self.rename_tab(page_num, text, False)
         box.terminal.grab_focus()
         self.load_config()
-
-        # for tab in self.tabs:
-        #     if getattr(tab, 'custom_label_set', False):
-        #         tab.set_label(getattr(tab, 'custom_label_text', tab.get_label()))
 
         if self.is_fullscreen:
             self.fullscreen()
@@ -1984,48 +1890,19 @@ class Guake(SimpleGladeApp):
         # elif response_id == RESPONSE_BACKWARD:
         #     buffer.search_backward(search_string, self)
 
-    def on_drag_tab(self, widget, context, selection, targetType, eventTime):
-        # tab_pos = self.tabs.get_children().index(widget)
-        # selection.set(selection.target, 32, str(tab_pos))
-        # TODO TABS remove this should be handled by the notebook's implementation
-        pass
-
-    def on_drop_tab(self, widget, context, x, y, selection, targetType, data):
-        # old_tab_pos = int(selection.get_text())
-        # new_tab_pos = self.tabs.get_children().index(widget)
-        # self.move_tab(old_tab_pos, new_tab_pos)
-        # TODO TABS remove this should be handled by the notebook's implementation
-        pass
-
-    def move_tab(self, old_tab_pos, new_tab_pos):
-        # self.notebook.reorder_child(self.notebook.get_nth_page(old_tab_pos), new_tab_pos)
-        # self.tabs.reorder_child(self.tabs.get_children()[old_tab_pos], new_tab_pos)
-        # self.notebook.set_current_page(new_tab_pos)
-        # TODO TABS remove this should be handled by the notebook's implementation
-        pass
-
-    def is_tabs_scrollbar_visible(self):
-        # return (
-        #     self.window.get_visible() and
-        #     self.get_widget('tabs-scrolledwindow').get_hscrollbar().get_visible()
-        # )
-        # TODO TABS remove this should be handled by the notebook's implementation
-        pass
-
     def delete_tab(self, pagepos, kill=True, prompt=True):
         """This function will destroy the notebook page, terminal and
         tab widgets and will call the function to kill interpreter
         forked by vte.
         """
         # Run prompt if necessary
-        """if prompt:
+        if prompt:
             procs = self.notebook.get_running_fg_processes_tab(pagepos)
             prompt_cfg = self.settings.general.get_int('prompt-on-close-tab')
             if (prompt_cfg == 1 and procs > 0) or (prompt_cfg == 2):
                 if not self.run_quit_dialog(procs, -1):
                     return
 
-        self.tabs.get_children()[pagepos].destroy()
         self.notebook.delete_tab(pagepos, kill=kill)
 
         if not self.notebook.has_term():
@@ -2040,22 +1917,13 @@ class Guake(SimpleGladeApp):
         if abbreviate_tab_names and not self.is_tabs_scrollbar_visible():
             self.abbreviate = False
             self.recompute_tabs_titles()
-
-        for tab in self.tabs:
-            if getattr(tab, 'custom_label_set', False):
-                tab.set_label(getattr(tab, 'custom_label_text', tab.get_label()))"""
-        # TODO TABS reimplement
         pass
 
     def set_terminal_focus(self):
         """Grabs the focus on the current tab.
         """
+        self.notebook.set_current_page(self.notebook.get_current_page())
         self.notebook.get_current_terminal().grab_focus()
-        self.notebook.set_current_page(self.get_selected_tab())
-        # Hack to fix "Not focused on opening if tab was moved" (#441)
-        pos = self.get_selected_tab()
-        self.select_tab(0)
-        self.select_tab(pos)
 
     def get_selected_uuidtab(self):
         """Returns the uuid of the current selected terminal
@@ -2063,46 +1931,6 @@ class Guake(SimpleGladeApp):
         pagepos = self.notebook.get_current_page()
         terminals = self.notebook.get_terminals_for_tab(pagepos)
         return str(terminals[0].get_uuid())
-
-    def select_current_tab(self, notebook, user_data, page):
-        """When current self.notebook page is changed, the tab bar
-        made with radio buttons must be updated.  This method does
-        this work.
-        """
-        # self.tabs.get_children()[page].set_active(True)
-        # TODO TABS remove there is not tab bar anymore
-        pass
-
-    def select_tab(self, tab_index):
-        """Select an already added tab by its index.
-        """
-        # try:
-        #     self.tabs.get_children()[tab_index].set_active(True)
-        #     return tab_index
-        # except IndexError:
-        #    pass
-        # TODO TABS remove now handled by the notebook's implementation
-        pass
-
-    def get_selected_tab(self):
-        """Return the selected tab index and set the
-        self.selected_tab var.
-        """
-        pagepos = self.notebook.get_current_page()
-        # self.selected_tab = self.tabs.get_children()[pagepos]
-        return pagepos
-        # TODO TABS reimplement
-        pass
-
-    def get_selected_tablabel(self):
-        """Return the selected tab label.
-        """
-        # pagepos = self.notebook.get_current_page()
-        # tab = self.tabs.get_children()[pagepos]
-        # tablabel = tab.get_label()
-        # return tablabel
-        # TODO TABS reimplement
-        pass
 
     def search_on_web(self, *args):
         """Search for the selected text on the web
@@ -2180,3 +2008,23 @@ class Guake(SimpleGladeApp):
                 log.debug(traceback.format_exc())
             else:
                 log.debug("hook on event %s has been executed", event_name)
+
+
+class TabContextMenuHelper():
+
+    def __init__(self, menu):
+        self.menu = menu
+        self.menu.connect('hide', self._hide)
+        self.reset()
+
+    def reset(self):
+        self.is_showing = False
+        self.last_invoked_on_tab_index = -1
+
+    def show(self, event, invoked_on_tab_index):
+        self.is_showing = True
+        self.last_invoked_on_tab_index = invoked_on_tab_index
+        self.menu.popup_at_pointer(event)
+
+    def _hide(self, *args):
+        self.is_showing = False
