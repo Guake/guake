@@ -37,13 +37,11 @@ def get_default_package_root():
 def get_data_files_dir():
     d = os.path.dirname(sys.modules["guake"].__file__)
     p = os.path.basename(os.path.abspath(os.path.join(d, "..")))
-    # print("p", p)
     if p in ["site-packages", "dist-packages"]:
         # current "guake" package has been installed in a prefix structure (/usr, /usr/local or
         # ~/.local/)
         loc_dir = os.path.abspath(os.path.join(d, "..", "..", "..", ".."))
         loc_dir = os.path.join(loc_dir, "share", "guake")
-        # print("loc_dir", loc_dir)
         if os.path.exists(loc_dir):
             return loc_dir
     return d
@@ -51,37 +49,37 @@ def get_data_files_dir():
 
 def get_default_data_dir():
     d = os.path.join(get_data_files_dir(), "data")
-    print("Using guake data directory: {}".format(d))
+    log.debug("Using guake data directory: %s", d)
     return d
 
 
 def get_default_locale_dir():
     d = os.path.join(get_data_files_dir(), "po")
-    print("Using guake image directory: {}".format(d))
+    log.debug("Using guake image directory: %s", d)
     return d
 
 
 def get_default_image_dir():
     d = os.path.join(get_default_data_dir(), 'pixmaps')
-    print("Using guake image directory: {}".format(d))
+    log.debug("Using guake image directory: %s", d)
     return d
 
 
 def get_default_glade_dir():
     d = get_default_data_dir()
-    print("Using guake glade directory: {}".format(d))
+    log.debug("Using guake glade directory: %s", d)
     return d
 
 
 def get_default_schema_dir():
     d = get_default_data_dir()
-    print("Using guake scheme directory: {}".format(d))
+    log.debug("Using guake scheme directory: %s", d)
     return d
 
 
 def get_default_theme_dir():
     d = os.path.join(get_default_data_dir(), 'theme')
-    print("Using guake theme directory: {}".format(d))
+    log.debug("Using guake theme directory: %s", d)
     return d
 
 

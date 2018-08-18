@@ -1,5 +1,4 @@
 ---
-branch: master
 earliest_version: 3.0.0.a4
 collapse_pre_releases: true
 pre_release_tag_re: (?P<pre_release>\.(?:\d*[ab]|rc)+\d*)$

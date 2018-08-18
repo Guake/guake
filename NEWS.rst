@@ -8,7 +8,7 @@ Guake
 Bug Fixes
 ---------
 
-- fixes guake --fgcolor error
+- fixes ``guake --fgcolor/--bgcolor`` error (#1376).
 
 Translation Updates
 -------------------
