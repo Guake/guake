@@ -51,9 +51,13 @@ reset:
 all: clean dev style checks dists test docs
 
 dev: clean-ln-venv ensure-pip pipenv-install-dev requirements ln-venv setup-githook prepare-install
+dev-travis: ensure-pip-system pipenv-install-dev requirements ln-venv setup-githook prepare-install
 
 ensure-pip:
 	./scripts/bootstrap-dev-pip.sh
+
+ensure-pip-system:
+	./scripts/bootstrap-dev-pip.sh system
 
 dev-no-pipenv: clean
 	virtualenv --python $(PYTHON_INTERPRETER) .venv

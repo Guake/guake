@@ -244,6 +244,28 @@ def main():
         help=_('Do not execute the start up script')
     )
 
+    # checking mandatory dependencies
+    import gi
+
+    try:
+        gi.require_version('Gtk', '3.0')
+        gi.require_version('Gdk', '3.0')
+    except ValueError:
+        print("[ERROR] Unable to start Guake, missing mandatory dependency: GtK 3.0")
+        sys.exit(1)
+
+    try:
+        gi.require_version('Vte', '2.91')  # vte-0.42
+    except ValueError:
+        print("[ERROR] Unable to start Guake, missing mandatory dependency: Vte >= 0.42")
+        sys.exit(1)
+
+    try:
+        gi.require_version('Keybinder', '3.0')
+    except ValueError:
+        print("[ERROR] Unable to start Guake, missing mandatory dependency: Keybinder 3")
+        sys.exit(1)
+
     options = parser.parse_args()[0]
     if options.version:
         from guake import gtk_version

@@ -32,11 +32,10 @@ script:
             virtualenv test-rtd
             . ./test-rtd/bin/activate
             pip install -r requirements-dev.txt
-            guake -h
             rm -rf test-rtd
         )
     # for dev
-    - make dev
+    - make dev-travis
     # check
     - make check
     - make build
