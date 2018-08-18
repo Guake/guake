@@ -554,12 +554,16 @@ class Guake(SimpleGladeApp):
             paletteList.append(colorRGBA.copy())
         return paletteList
 
-    def _get_background_color(self, palette_list, transparency):
+    def _get_background_color(self, palette_list):
         if len(palette_list) > 16:
             bg_color = palette_list[17]
         else:
             bg_color = Gdk.RGBA(0, 0, 0, 0.9)
 
+        return self._apply_transparency_to_color(bg_color)
+
+    def _apply_transparency_to_color(self, bg_color):
+        transparency = self.settings.styleBackground.get_int('transparency')
         if not self.transparency_toggled:
             bg_color.alpha = 1 / 100 * transparency
         else:
@@ -570,10 +574,8 @@ class Guake(SimpleGladeApp):
         self.set_colors_from_settings()
 
     def get_bgcolor(self):
-        transparency = self.settings.styleBackground.get_int('transparency')
         palette_list = self._load_palette()
-        bg_color = self._get_background_color(palette_list, transparency)
-        return bg_color
+        return self._get_background_color(palette_list)
 
     def get_fgcolor(self):
         palette_list = self._load_palette()
@@ -596,16 +598,33 @@ class Guake(SimpleGladeApp):
     def set_bgcolor(self, bgcolor):
         if isinstance(bgcolor, str):
             c = Gdk.RGBA(0, 0, 0, 0)
-            c.parse(bgcolor)
+            log.debug("Building Gdk Color from: %r", bgcolor)
+            c.parse("#" + bgcolor)
             bgcolor = c
-        self.notebook.get_current_terminal().set_color_background(bgcolor)
+        if not isinstance(bgcolor, Gdk.RGBA):
+            raise TypeError("color should be Gdk.RGBA, is: {!r}".format(bgcolor))
+        bgcolor = self._apply_transparency_to_color(bgcolor)
+        log.debug("setting background color to: %r", bgcolor)
+        page_num = self.notebook.get_current_page()
+        terminal = self.notebook.get_nth_page(page_num).terminal
+        terminal.set_color_background(bgcolor)
+
+
+#        self.notebook.get_current_terminal().set_color_background(bgcolor)
 
     def set_fgcolor(self, fgcolor):
         if isinstance(fgcolor, str):
             c = Gdk.RGBA(0, 0, 0, 0)
-            c.parse(fgcolor)
+            log.debug("Building Gdk Color from: %r", fgcolor)
+            c.parse("#" + fgcolor)
             fgcolor = c
-        self.notebook.get_current_terminal().set_color_foreground(fgcolor)
+        if not isinstance(fgcolor, Gdk.RGBA):
+            raise TypeError("color should be Gdk.RGBA, is: {!r}".format(fgcolor))
+        log.debug("setting background color to: %r", fgcolor)
+        page_num = self.notebook.get_current_page()
+        terminal = self.notebook.get_nth_page(page_num).terminal
+        terminal.set_color_foreground(bgcolor)
+        # self.notebook.get_current_terminal().set_color_foreground(fgcolor)
 
     def execute_command(self, command, tab=None):
         """Execute the `command' in the `tab'. If tab is None, the

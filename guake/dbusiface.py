@@ -88,25 +88,11 @@ class DbusManager(dbus.service.Object):
 
     @dbus.service.method(DBUS_NAME, in_signature='s')
     def set_bgcolor(self, bgcolor):
-        import gi
-        gi.require_version('Gtk', '3.0')
-        from gi.repository import Gdk
-        colorRGBA = Gdk.RGBA(0, 0, 0, 0)
-        colorRGBA.parse(bgcolor)
-        page_num = self.guake.notebook.get_current_page()
-        terminal = self.guake.notebook.get_nth_page(page_num).terminal
-        terminal.set_color_background(colorRGBA)
+        return self.guake.set_bgcolor(bgcolor)
 
     @dbus.service.method(DBUS_NAME, in_signature='s')
     def set_fgcolor(self, fgcolor):
-        import gi
-        gi.require_version('Gtk', '3.0')
-        from gi.repository import Gdk
-        colorRGBA = Gdk.RGBA(0, 0, 0, 0)
-        colorRGBA.parse(fgcolor)
-        page_num = self.guake.notebook.get_current_page()
-        terminal = self.guake.notebook.get_nth_page(page_num).terminal
-        terminal.set_color_foreground(colorRGBA)
+        return self.guake.set_fgcolor(fgcolor)
 
     @dbus.service.method(DBUS_NAME, in_signature='s')
     def execute_command(self, command):

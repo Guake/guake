@@ -1,0 +1,2 @@
+fixes:
+  - fixes ``guake --fgcolor/--bgcolor`` error (#1376).

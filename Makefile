@@ -239,7 +239,7 @@ test-pip-install-wheel: clean-pip-install-local generate-paths wheel
 	@echo "Testing installation by pip (will install on ~/.local)"
 	pip install --upgrade -vvv --user $(shell ls -1 dist/*.whl | sort | head -n 1)
 	ls -la ~/.local/share/guake
-	~/.local/bin/guake
+	~/.local/bin/guake -v
 
 sct: style check update-po requirements test
 
