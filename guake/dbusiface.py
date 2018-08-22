@@ -104,15 +104,15 @@ class DbusManager(dbus.service.Object):
 
     @dbus.service.method(DBUS_NAME, in_signature='ss')
     def rename_tab_uuid(self, tab_uuid, new_text):
-        self.guake.rename_tab_uuid(tab_uuid, new_text)
+        self.guake.rename_tab_uuid(tab_uuid, new_text, True)
 
     @dbus.service.method(DBUS_NAME, in_signature='is')
     def rename_tab(self, tab_index, new_text):
-        self.guake.rename_tab(tab_index, new_text)
+        self.guake.rename_tab(tab_index, new_text, True)
 
     @dbus.service.method(DBUS_NAME, in_signature='s')
     def rename_current_tab(self, new_text):
-        self.guake.rename_current_tab(new_text)
+        self.guake.rename_current_tab(new_text, True)
 
     @dbus.service.method(DBUS_NAME)
     def show_about(self):
