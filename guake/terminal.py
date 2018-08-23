@@ -55,14 +55,12 @@ def halt(loc):
     code.interact(local=loc)
 
 
-# TODO PORT
-# __all__ = ['Terminal', 'TerminalBox']
+__all__ = ['TerminalBox', 'GuakeTerminal', 'GuakeTerminalBox']
 
 # pylint: enable=anomalous-backslash-in-string
 
 
 class TerminalBox(Gtk.HBox):
-
     """A box to group the terminal and a scrollbar.
     """
 
@@ -143,11 +141,7 @@ class GuakeTerminal(Vte.Terminal):
         client = self.settings.general
         word_chars = client.get_string('word-chars')
         if word_chars:
-            # TODO PORT this does not work this way any more see:
-            #   https://lazka.github.io/
-            #          pgi-docs/Vte-2.91/classes/Terminal.html#Vte.Terminal.set_word_char_exceptions
-            # self.set_word_chars(word_chars)
-            pass
+            self.set_word_char_exceptions(word_chars)
         self.set_audible_bell(client.get_boolean('use-audible-bell'))
         self.set_sensitive(True)
 
@@ -157,12 +151,8 @@ class GuakeTerminal(Vte.Terminal):
         if (Vte.MAJOR_VERSION, Vte.MINOR_VERSION) >= (0, 50):
             self.set_allow_hyperlink(True)
 
-        # TODO PORT there is no method set_flags anymore
-        # self.set_flags(gtk.CAN_DEFAULT)
-        # self.set_flags(gtk.CAN_FOCUS)
-        # TODO PORT getting it and then setting it???
-        # cursor_shape = client.get_int(KEY('/style/cursor_shape'))
-        # client.set_int(KEY('/style/cursor_shape'), cursor_shape)
+        self.set_can_default(True)
+        self.set_can_focus(True)
 
     def add_matches(self):
         """Adds all regular expressions declared in
@@ -465,16 +455,13 @@ class GuakeTerminal(Vte.Terminal):
                 pass
 
 
-# TODO PORT port this from HBOX to Box with orientation horitzontal
-
-
-class GuakeTerminalBox(Gtk.HBox):
+class GuakeTerminalBox(Gtk.Box):
 
     """A box to group the terminal and a scrollbar.
     """
 
     def __init__(self, window, settings):
-        super(GuakeTerminalBox, self).__init__()
+        super(GuakeTerminalBox, self).__init__(orientation=Gtk.Orientation.HORIZONTAL)
         self.terminal = GuakeTerminal(window, settings)
         self.add_terminal()
         self.add_scroll_bar()

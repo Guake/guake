@@ -439,8 +439,29 @@ class Guake(SimpleGladeApp):
     # function to read commands stored at /general/custom_command_file and
     # launch the context menu builder
     def get_custom_commands(self, menu):
-        # TODO PORT test this code, where is the spec for the json file?
-
+        """
+        Example for a custom commands file
+        [
+            {
+                "type": "menu",
+                "description": "dir listing",
+                "items": [
+                    {
+                        "description": "la",
+                        "cmd":["ls", "-la"]
+                    },
+                    {
+                        "description": "tree",
+                        "cmd":["tree", ""]
+                    }
+                ]
+            },
+            {
+                "description": "less ls",
+                "cmd": ["ls | less", ""]
+            }
+        ]
+        """
         custom_command_file_path = self.settings.general.get_string('custom-command-file')
         if not custom_command_file_path:
             return False
@@ -467,7 +488,6 @@ class Guake(SimpleGladeApp):
 
     # function to build the custom commands menu and menuitems
     def parse_custom_commands(self, json_object, menu):
-        # TODO PORT test this code
         if json_object.get('type') == "menu":
             newmenu = Gtk.Menu()
             newmenuitem = Gtk.MenuItem(json_object['description'])
@@ -868,7 +888,6 @@ class Guake(SimpleGladeApp):
         self.set_terminal_focus()
 
     def win_prepare(self, *args):
-        # TODO PORT reenable this after keybinder fixes (this is mostly done but needs testing)
         event_time = self.hotkeys.get_current_event_time()
         if not self.settings.general.get_boolean('window-refocus') and \
                 self.window.get_window() and self.window.get_property('visible'):
@@ -1022,10 +1041,19 @@ class Guake(SimpleGladeApp):
         dest_screen = self.settings.general.get_int('display-n')
 
         if use_mouse:
-            # TODO PORT get_pointer is deprecated
-            # https://developer.gnome.org/gtk3/stable/GtkWidget.html#gtk-widget-get-pointer
-            win, x, y, _ = screen.get_root_window().get_pointer()
-            dest_screen = screen.get_monitor_at_point(x, y)
+            """
+            TODO this is ported from widget.get_pointer() to
+            GdkSeat.get_pointer(), but this whole method could be
+            ported to Gdk (eg. gdk_display_get_default_screen(...)
+            and gdk-screen-get-n-monitors(...))
+            """
+            gdk_window = self.window.get_window()
+            if gdk_window is not None:
+                display = Gdk.Display.get_default()
+                seat = display.get_default_seat()
+                device = seat.get_pointer()
+                win, x, y, _ = gdk_window.get_device_position(device)
+                dest_screen = screen.get_monitor_at_point(x, y)
 
         # If Guake is configured to use a screen that is not currently attached,
         # default to 'primary display' option.
@@ -1694,9 +1722,6 @@ class Guake(SimpleGladeApp):
             except:  # pylint: disable=bare-except
                 pass
 
-        # TODO PORT the next line
-        # params['loglastlog'] = login_shell
-
         # Environment variables are not actually parameters but they
         # need to be set before calling terminal.fork_command()
         # method. This is a good place to do it.
@@ -1753,14 +1778,6 @@ class Guake(SimpleGladeApp):
     def setup_new_terminal(self, directory=None):
         box = GuakeTerminalBox(self.window, self.settings)
         box.terminal.grab_focus()
-        # TODO PORT port this
-        # TODO PORT seems to run just fine without
-        # box.terminal.drag_dest_set(gtk.DEST_DEFAULT_MOTION |
-        #                           gtk.DEST_DEFAULT_DROP |
-        #                           gtk.DEST_DEFAULT_HIGHLIGHT,
-        #                           [('text/uri-list', gtk.TARGET_OTHER_APP, 0)],
-        #                           gtk.gdk.ACTION_COPY
-        #                           )
 
         box.terminal.connect('button-press-event', self.show_context_menu)
         box.terminal.connect('child-exited', self.on_terminal_exited, box)
@@ -1778,8 +1795,6 @@ class Guake(SimpleGladeApp):
         pid = self.spawn_sync_pid(directory, box.terminal)
 
         if libutempter is not None:
-            # TODO PORT needs verification box.terminal.get_pty() -> box.terminal.get_pty().get_fd()
-            # After the fork_command we add this new tty to utmp !
             libutempter.utempter_add_record(box.terminal.get_pty().get_fd(), os.uname()[1])
         box.terminal.pid = pid
         return box
@@ -1842,7 +1857,7 @@ class Guake(SimpleGladeApp):
 
     def find_tab(self, directory=None):
         log.debug("find")
-        # TODO PORT
+        # TODO SEARCH
         self.preventHide = True
         search_text = Gtk.TextView()
 

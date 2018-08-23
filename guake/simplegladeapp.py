@@ -73,13 +73,8 @@ class SimpleGladeApp():
 
         self.builder = Gtk.Builder()
         self.builder.add_from_file(self.glade_path)
-        # TODO PORT connect
-        # self.builder.connect_signals(self.custom_handler)
 
         if root:
-            # TODO PORT remove the next line is not needed Guake shuold not pass an root parameter
-            # this would mess stuff up
-            # self.main_widget = self.builder.get_object("window-root")
             self.main_widget = self.builder.get_object(root)
             self.main_widget.show_all()
         else:
@@ -120,8 +115,6 @@ class SimpleGladeApp():
             an instance with methods as code of callbacks.
             It means it has methods like on_button1_clicked, on_entry1_activate, etc.
         """
-        # TODO PORT connect
-
         self.builder.connect_signals(callbacks_proxy)
 
     def normalize_names(self):
@@ -332,59 +325,3 @@ class SimpleGladeApp():
 
     def get_widgets(self):
         return self.builder.get_objects()
-
-
-class SimpleGtk3App():
-
-    """
-    Basic GtkBuilder wrapper that implements the functions from
-    simplegladeapp.py used by Guake with the purpose to minimize
-    the changes required in Guake while porting it to GtkBuilder.
-    """
-
-    def __init__(self, path):
-        """
-        Load a GtkBuilder ui definition file specified by path.
-        Self will be used as object to to connect the signals.
-        """
-        self.builder = Gtk.Builder()
-        self.builder.add_from_file(path)
-        # TODO PORT connect
-        # self.builder.connect_signals(self)
-
-    def quit(self):
-        """
-        Quit processing of gtk events.
-        """
-        Gtk.main_quit()
-
-    def run(self):
-        """
-        Starts the main gtk loop.
-        """
-        Gtk.main()
-
-    def get_widget(self, name):
-        """
-        Returns the interface widget specified by the name.
-        """
-        return self.builder.get_object(name)
-
-    def get_widgets(self):
-        """
-        Returns all the interface widgets.
-        """
-        return self.builder.get_objects()
-
-    # -- predefined callbacks --
-    def gtk_main_quit(self, *args):
-        """
-        Calls self.quit()
-        """
-        self.quit()
-
-    def gtk_widget_destroy(self, widget, *args):
-        """
-        Destroyes the widget.
-        """
-        widget.destroy()

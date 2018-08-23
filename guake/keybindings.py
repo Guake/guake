@@ -25,6 +25,8 @@ from gi.repository import Gtk
 
 from guake import notifier
 from guake.common import pixmapfile
+from locale import gettext as _
+
 
 log = logging.getLogger(__name__)
 
@@ -40,11 +42,6 @@ class Keybindings():
         """
         self.guake = guake
         self.accel_group = None  # see reload_accelerators
-
-        # TODO PORT
-        # self.client = gconf.client_get_default()
-        # TODO PORT
-        # notify_add = self.client.notify_add
 
         # Setup global keys
         self.globalhotkeys = {}
@@ -84,23 +81,20 @@ class Keybindings():
         if key == "show-hide":
             log.debug("reload_global: %r", value)
             if not self.guake.hotkeys.bind(value, self.guake.show_hide):
-                print("port this")
-                # TODO port this
-                return
                 keyval, mask = Gtk.accelerator_parse(value)
                 label = Gtk.accelerator_get_label(keyval, mask)
                 filename = pixmapfile('guake-notification.png')
-                guake.notifier.showMessage(
+                notifier.showMessage(
                     _('Guake Terminal'),
                     _(
                         'A problem happened when binding <b>%s</b> key.\n'
                         'Please use Guake Preferences dialog to choose another '
                         'key'
-                    ) % xml_escape(label), filename
+                    ) % label, filename
                 )
         elif key == "show-focus":
             if not self.guake.hotkeys.bind(value, self.guake.show_focus):
-                print("can't bind show-focus key")
+                log.warn("can't bind show-focus key")
                 return
 
     def reload_accelerators(self, *args):
