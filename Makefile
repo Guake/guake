@@ -213,6 +213,9 @@ wheel: wheels
 run-local: compile-glib-schemas-dev
 	pipenv run ./scripts/run-local.sh
 
+run-local-prefs: compile-glib-schemas-dev
+	pipenv run ./scripts/run-local-prefs.sh
+
 run-fr: compile-glib-schemas-dev
 	LC_ALL=fr_FR.UTF8 pipenv run ./scripts/run-local.sh
 
@@ -445,6 +448,7 @@ install: install-system
 purge: purge-system
 pypi: pypi-publish
 run: run-local
+run-prefs: run-local-prefs
 styles: style
 uninstall: uninstall-system
 upgrade: update
