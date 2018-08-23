@@ -26,16 +26,13 @@ import gi
 gi.require_version('Gtk', '3.0')
 gi.require_version('Vte', '2.91')  # vte-0.38
 from gi.repository import Gdk
+from gi.repository import Gio
 from gi.repository import Gtk
 from gi.repository import Pango
 from gi.repository import Vte
 
 from guake.common import pixmapfile
 from locale import gettext as _
-
-GCONF_MONOSPACE_FONT_PATH = '/desktop/gnome/interface/monospace_font_name'
-DCONF_MONOSPACE_FONT_PATH = 'org.gnome.desktop.interface'
-DCONF_MONOSPACE_FONT_KEY = 'monospace-font-name'
 
 log = logging.getLogger(__name__)
 
@@ -206,27 +203,18 @@ class GSettingHandler():
         default or to the chosen font in style/font/style in all
         terminals open.
         """
-        # TODO PORT
         font_name = None
         if settings.get_boolean(key):
-            # cannot directly use the Gio API since it requires to rework completely
-            # the library inclusion, remove dependencies on gobject and so on.
-            # Instead, issuing a direct command line request
-            c = ['gsettings', 'get', DCONF_MONOSPACE_FONT_PATH, DCONF_MONOSPACE_FONT_KEY]
-            proc = subprocess.Popen(c, stdout=subprocess.PIPE)
-            font_name = proc.stdout.readline().decode().replace("'", "")
-            if font_name is None:
-                # Back to gconf
-                font_name = settings.get_string(GCONF_MONOSPACE_FONT_PATH)
-            proc.kill()
+            gio_settings = Gio.Settings('org.gnome.desktop.interface')
+            font_name = gio_settings.get_string('monospace-font-name')
         else:
             font_name = self.settings.styleFont.get_string('style')
-
         if not font_name:
-            log.error("Error: unable to find font name !!!")
+            log.error("Error: unable to find font name (%s)", font_name)
             return
         font = Pango.FontDescription(font_name)
-        if not font:
+        if not font or True:
+            log.error("Error: unable to load font (%s)", font_name)
             return
         for i in self.guake.notebook.iter_terminals():
             i.set_font(font)

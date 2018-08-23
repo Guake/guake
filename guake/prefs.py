@@ -679,8 +679,9 @@ class PrefsDialog(SimpleGladeApp):
         treeview.set_model(self.store)
         treeview.set_rules_hint(True)
 
-        # TODO PORT this is killing the editing of the accl
-        # treeview.connect('button-press-event', self.start_editing)
+        treeview.connect('button-press-event', self.start_editing)
+
+        treeview.set_activate_on_single_click(True)
 
         renderer = Gtk.CellRendererText()
         column = Gtk.TreeViewColumn(_('Action'), renderer, text=1)
@@ -1352,27 +1353,17 @@ class PrefsDialog(SimpleGladeApp):
 
         Thanks to gnome-keybinding-properties.c =)
         """
-        # TODO PORT some thing in here is breaking stuff
-
-        if event.window != treeview.get_bin_window():
-            return False
-
         x, y = int(event.x), int(event.y)
         ret = treeview.get_path_at_pos(x, y)
         if not ret:
             return False
 
         path, column, cellx, celly = ret
-        if path and len(path) > 1:
 
-            def real_cb():
-                treeview.grab_focus()
-                treeview.set_cursor(path, column, True)
+        treeview.row_activated(path, Gtk.TreeViewColumn(None))
+        treeview.set_cursor(path)
 
-            treeview.stop_emission('button-press-event')
-            GObject.idle_add(real_cb)
-
-        return True
+        return False
 
 
 class KeyEntry():
