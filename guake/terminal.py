@@ -55,34 +55,9 @@ def halt(loc):
     code.interact(local=loc)
 
 
-__all__ = ['TerminalBox', 'GuakeTerminal', 'GuakeTerminalBox']
+__all__ = ['GuakeTerminal']
 
 # pylint: enable=anomalous-backslash-in-string
-
-
-class TerminalBox(Gtk.HBox):
-    """A box to group the terminal and a scrollbar.
-    """
-
-    def __init__(self):
-        super(TerminalBox, self).__init__()
-        self.terminal = Terminal()
-        self.add_terminal()
-        self.add_scrollbar()
-
-    def add_terminal(self):
-        """Packs the terminal widget.
-        """
-        self.pack_start(self.terminal, True, True, 0)
-        self.terminal.show()
-
-    def add_scrollbar(self):
-        """Packs the scrollbar.
-        """
-        adj = self.terminal.get_vadjustment()
-        scroll = Gtk.VScrollbar.new(adj)
-        scroll.set_no_show_all(True)
-        self.pack_start(scroll, False, False, 0)
 
 
 class GuakeTerminal(Vte.Terminal):
@@ -90,10 +65,9 @@ class GuakeTerminal(Vte.Terminal):
     """Just a vte.Terminal with some properties already set.
     """
 
-    def __init__(self, window, settings):
+    def __init__(self, guake):
         super(GuakeTerminal, self).__init__()
-        self.window = window
-        self.settings = settings
+        self.guake = guake
         self.configure_terminal()
         self.add_matches()
         self.connect('button-press-event', self.button_press)
@@ -132,20 +106,20 @@ class GuakeTerminal(Vte.Terminal):
         if self.get_has_selection():
             super(GuakeTerminal, self).copy_clipboard()
         elif self.matched_value:
-            guake_clipboard = Gtk.Clipboard.get_default(self.window.get_display())
+            guake_clipboard = Gtk.Clipboard.get_default(self.guake.window.get_display())
             guake_clipboard.set_text(self.matched_value)
 
     def configure_terminal(self):
         """Sets all customized properties on the terminal
         """
-        client = self.settings.general
+        client = self.guake.settings.general
         word_chars = client.get_string('word-chars')
         if word_chars:
             self.set_word_char_exceptions(word_chars)
         self.set_audible_bell(client.get_boolean('use-audible-bell'))
         self.set_sensitive(True)
 
-        cursor_blink_mode = self.settings.style.get_int('cursor-blink-mode')
+        cursor_blink_mode = self.guake.settings.style.get_int('cursor-blink-mode')
         self.set_property('cursor-blink-mode', cursor_blink_mode)
 
         if (Vte.MAJOR_VERSION, Vte.MINOR_VERSION) >= (0, 50):
@@ -309,7 +283,7 @@ class GuakeTerminal(Vte.Terminal):
         found_matcher = False
         log.debug("matched string: %s", matched_string)
         # First searching in additional matchers
-        use_quick_open = self.settings.general.get_boolean("quick-open-enable")
+        use_quick_open = self.guake.settings.general.get_boolean("quick-open-enable")
         if use_quick_open:
             found_matcher = self._find_quick_matcher(value)
         if not found_matcher:
@@ -341,7 +315,7 @@ class GuakeTerminal(Vte.Terminal):
     def _execute_quick_open(self, filepath, line_number):
         if not filepath:
             return
-        cmdline = self.settings.general.get_string("quick-open-command-line")
+        cmdline = self.guake.settings.general.get_string("quick-open-command-line")
         if not line_number:
             line_number = ""
         else:
@@ -349,7 +323,7 @@ class GuakeTerminal(Vte.Terminal):
         logging.debug("Opening file %s at line %s", filepath, line_number)
         resolved_cmdline = cmdline % {"file_path": filepath, "line_number": line_number}
         logging.debug("Command line: %s", resolved_cmdline)
-        quick_open_in_current_terminal = self.settings.general.get_boolean(
+        quick_open_in_current_terminal = self.guake.settings.general.get_boolean(
             "quick-open-in-current-terminal"
         )
         if quick_open_in_current_terminal:
@@ -453,29 +427,3 @@ class GuakeTerminal(Vte.Terminal):
                 # if this part of code was reached, means that SIGTERM
                 # did the work and SIGKILL wasnt needed.
                 pass
-
-
-class GuakeTerminalBox(Gtk.Box):
-
-    """A box to group the terminal and a scrollbar.
-    """
-
-    def __init__(self, window, settings):
-        super(GuakeTerminalBox, self).__init__(orientation=Gtk.Orientation.HORIZONTAL)
-        self.terminal = GuakeTerminal(window, settings)
-        self.add_terminal()
-        self.add_scroll_bar()
-
-    def add_terminal(self):
-        """Packs the terminal widget.
-        """
-        self.pack_start(self.terminal, True, True, 0)
-        self.terminal.show()
-
-    def add_scroll_bar(self):
-        """Packs the scrollbar.
-        """
-        adj = self.terminal.get_vadjustment()
-        scroll = Gtk.VScrollbar(adj)
-        scroll.show()
-        self.pack_start(scroll, False, False, 0)
