@@ -18,10 +18,9 @@ Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor,
 Boston, MA 02110-1301 USA
 """
 
-
-from boxes import RootTerminalBox
-from boxes import TerminalBox
-from boxes import DualTerminalBox
+from guake.boxes import DualTerminalBox
+from guake.boxes import RootTerminalBox
+from guake.boxes import TerminalBox
 
 import gi
 gi.require_version('Gtk', '3.0')
@@ -32,6 +31,7 @@ import logging
 import posix
 
 log = logging.getLogger(__name__)
+
 
 class TerminalNotebook(Gtk.Notebook):
 
