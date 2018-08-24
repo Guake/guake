@@ -213,7 +213,7 @@ class GSettingHandler():
             log.error("Error: unable to find font name (%s)", font_name)
             return
         font = Pango.FontDescription(font_name)
-        if not font or True:
+        if not font:
             log.error("Error: unable to load font (%s)", font_name)
             return
         for i in self.guake.notebook.iter_terminals():

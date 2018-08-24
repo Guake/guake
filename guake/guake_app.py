@@ -64,8 +64,8 @@ from guake.globals import ALWAYS_ON_PRIMARY
 from guake.globals import NAME
 from guake.gsettings import GSettingHandler
 from guake.guake_logging import setupLogging
-from guake.guake_notebook import GuakeNotebook
 from guake.keybindings import Keybindings
+from guake.notebook import TerminalNotebook
 from guake.paths import LOCALE_DIR
 from guake.paths import SCHEMA_DIR
 from guake.paths import try_to_compile_glib_schemas
@@ -73,7 +73,7 @@ from guake.prefs import PrefsDialog
 from guake.prefs import refresh_user_start
 from guake.settings import Settings
 from guake.simplegladeapp import SimpleGladeApp
-from guake.terminal import GuakeTerminalBox
+from guake.terminal import GuakeTerminal
 from guake.theme import get_gtk_theme
 from guake.theme import select_gtk_theme
 from guake.utils import get_server_time
@@ -229,7 +229,7 @@ class Guake(SimpleGladeApp):
         self.window.set_keep_above(True)
         self.mainframe = self.get_widget('mainframe')
         self.mainframe.remove(self.get_widget('notebook-teminals'))
-        self.notebook = GuakeNotebook()
+        self.notebook = TerminalNotebook(self)
         self.notebook.set_name("notebook-teminals")
 
         # help(Gtk.PositionType)
@@ -591,6 +591,7 @@ class Guake(SimpleGladeApp):
         log.debug("setting background color to: %r", fgcolor)
         page_num = self.notebook.get_current_page()
         terminal = self.notebook.get_nth_page(page_num).terminal
+        # TODO this should be fgcolor right?
         terminal.set_color_foreground(bgcolor)
         # self.notebook.get_current_terminal().set_color_foreground(fgcolor)
 
@@ -600,7 +601,7 @@ class Guake(SimpleGladeApp):
         tab. Command should end with '\n', otherwise it will be
         appended to the string.
         """
-        if not self.notebook.has_term():
+        if not self.notebook.has_page():
             self.add_tab()
 
         if command[-1] != '\n':
@@ -608,7 +609,7 @@ class Guake(SimpleGladeApp):
 
         index = self.notebook.get_current_page()
         index = tab or self.notebook.get_current_page()
-        for terminal in self.notebook.get_terminals_for_tab(index):
+        for terminal in self.notebook.get_terminals_for_page(index):
             terminal.feed_child(command)
             break
 
@@ -619,15 +620,14 @@ class Guake(SimpleGladeApp):
             command += '\n'
         try:
             tab_uuid = uuid.UUID(tab_uuid)
-            tab_index, = (
+            page_index, = (
                 index for index, t in enumerate(self.notebook.iter_terminals())
                 if t.get_uuid() == tab_uuid
             )
-            self.tabs.get_children()[tab_index]  # pylint: disable=expression-not-assigned
         except ValueError:
             pass
         else:
-            terminals = self.notebook.get_terminals_for_tab(tab_index)
+            terminals = self.notebook.get_terminals_for_page(page_index)
             for current_vte in terminals:
                 current_vte.feed_child(command)
 
@@ -797,7 +797,7 @@ class Guake(SimpleGladeApp):
         user_data is a Gtk.Label which is displayed in an eventbox in the clicked tab
         """
         if event.button == 3:
-            self.tab_context_menu_helper.show(event, self.notebook.get_tab_label_index(user_data))
+            self.tab_context_menu_helper.show(event, self.notebook.find_tab_index_label(user_data))
             self.notebook.get_current_terminal().grab_focus()
             return True
         self.notebook.get_current_terminal().grab_focus()
@@ -808,7 +808,7 @@ class Guake(SimpleGladeApp):
         user_data is a Gtk.Label which is displayed in an eventbox in the clicked tab
         """
         if event.button == 2 and event.type == Gdk.EventType.BUTTON_PRESS:
-            self.delete_tab(self.notebook.get_tab_label_index(user_data))
+            self.notebook.delete_page_by_label(user_data)
 
     def show_about(self, *args):
         """Hides the main window and creates an instance of the About
@@ -940,7 +940,7 @@ class Guake(SimpleGladeApp):
 
         # add tab must be called before window.show to avoid a
         # blank screen before adding the tab.
-        if not self.notebook.has_term():
+        if not self.notebook.has_page():
             self.add_tab()
 
         self.window.set_keep_below(False)
@@ -1289,8 +1289,8 @@ class Guake(SimpleGladeApp):
     def accel_quit(self, *args):
         """Callback to prompt the user whether to quit Guake or not.
         """
-        procs = self.notebook.get_running_fg_processes()
-        tabs = self.notebook.get_tab_count()
+        procs = self.notebook.get_running_fg_processes_count()
+        tabs = self.notebook.get_n_pages()
         prompt_cfg = self.settings.general.get_boolean('prompt-on-quit')
         prompt_tab_cfg = self.settings.general.get_int('prompt-on-close-tab')
         # "Prompt on tab close" config overrides "prompt on quit" config
@@ -1487,7 +1487,7 @@ class Guake(SimpleGladeApp):
 
     # -- callbacks --
 
-    def on_terminal_exited(self, term, status, widget):
+    def on_terminal_exited(self, term, status, term1):
         """When a terminal is closed, shell process should be killed,
         this is the method that does that, or, at least calls
         `delete_tab' method to do the work.
@@ -1495,7 +1495,7 @@ class Guake(SimpleGladeApp):
         log.debug("Terminal exited: %s", term)
         if libutempter is not None:
             libutempter.utempter_remove_record(term.get_pty())
-        self.delete_tab(self.notebook.page_num(widget), kill=False, prompt=False)
+        self.delete_tab(self.notebook.find_page_index_for_terminal(term), kill=False, prompt=False)
 
     def recompute_tabs_titles(self):
         """Updates labels on all tabs. This is required when `self.abbreviate`
@@ -1507,7 +1507,7 @@ class Guake(SimpleGladeApp):
 
         # TODO NOTEBOOK this code only works if there is only one terminal in a
         # page, this need to be rewritten
-        for terminal in self.notebook.term_list:
+        for terminal in self.notebook.iter_terminals():
             page_num = self.notebook.page_num(terminal.get_parent())
             self.rename_tab(page_num, self.compute_tab_title(terminal), False)
 
@@ -1534,7 +1534,8 @@ class Guake(SimpleGladeApp):
             text = "..." + text[-max_name_length:]
         return text
 
-    def on_terminal_title_changed(self, vte, box):
+    def on_terminal_title_changed(self, vte, term):
+        box = term.get_parent()
         use_vte_titles = self.settings.general.get_boolean('use-vte-titles')
         if not use_vte_titles:
             return
@@ -1545,7 +1546,7 @@ class Guake(SimpleGladeApp):
             self.rename_tab(page_num, title, False)
             self.update_window_title(title)
         else:
-            text = self.notebook.get_tab_label(page).get_children()[0].get_text()
+            text = self.notebook.get_tab_text_page(page)
             if text:
                 self.update_window_title(text)
 
@@ -1601,9 +1602,10 @@ class Guake(SimpleGladeApp):
         """Tab context menu close handler
         """
         page_num = self.tab_context_menu_helper.last_invoked_on_tab_index
-        self.delete_tab(page_num)
+        self.notebook.delete_page(page_num)
 
-    def on_drag_data_received(self, widget, context, x, y, selection, target, timestamp, box):
+    def on_drag_data_received(self, widget, context, x, y, selection, target, timestamp, term):
+        box = term.get_parent()
         droppeduris = selection.get_uris()
 
         # url-unquote the list, strip file:// schemes, handle .desktop-s
@@ -1643,8 +1645,8 @@ class Guake(SimpleGladeApp):
     def close_tab(self, *args):
         """Closes the current tab.
         """
-        pagepos = self.notebook.get_current_page()
-        self.delete_tab(pagepos)
+        page_num = self.notebook.get_current_page()
+        self.delete_page(page_num)
 
     def rename_tab_uuid(self, term_uuid, new_text, user_set=True):
         """Rename an already added tab by its UUID
@@ -1675,11 +1677,6 @@ class Guake(SimpleGladeApp):
 
             if user_set:
                 setattr(page_box, "custom_label_set", new_text != "-")
-
-        # TODO TABS do we still need this, testing
-        # terminals = self.notebook.get_terminals_for_tab(tab_index)
-        # for current_vte in terminals:
-        #     current_vte.emit('window-title-changed')
 
     def rename_current_tab(self, new_text, user_set=False):
         page_num = self.notebook.get_current_page()
@@ -1776,48 +1773,42 @@ class Guake(SimpleGladeApp):
                 os.environ['https_proxy'] = "http://{!s}:{:d}".format(ssl_host, ssl_port)
 
     def setup_new_terminal(self, directory=None):
-        box = GuakeTerminalBox(self.window, self.settings)
-        box.terminal.grab_focus()
+        terminal = GuakeTerminal(self)
+        terminal.grab_focus()
 
-        box.terminal.connect('button-press-event', self.show_context_menu)
-        box.terminal.connect('child-exited', self.on_terminal_exited, box)
-        box.terminal.connect('window-title-changed', self.on_terminal_title_changed, box)
-        box.terminal.connect('drag-data-received', self.on_drag_data_received, box)
+        terminal.connect('button-press-event', self.show_context_menu)
+        terminal.connect('child-exited', self.on_terminal_exited, terminal)
+        terminal.connect('window-title-changed', self.on_terminal_title_changed, terminal)
+        terminal.connect('drag-data-received', self.on_drag_data_received, terminal)
 
         # TODO PORT is this still the case with the newer vte version?
         # -- Ubuntu has a patch to libvte which disables mouse scrolling in apps
         # -- like vim and less by default. If this is the case, enable it back.
-        if hasattr(box.terminal, "set_alternate_screen_scroll"):
-            box.terminal.set_alternate_screen_scroll(True)
+        if hasattr(terminal, "set_alternate_screen_scroll"):
+            terminal.set_alternate_screen_scroll(True)
 
-        box.show()
-
-        pid = self.spawn_sync_pid(directory, box.terminal)
+        pid = self.spawn_sync_pid(directory, terminal)
 
         if libutempter is not None:
-            libutempter.utempter_add_record(box.terminal.get_pty().get_fd(), os.uname()[1])
-        box.terminal.pid = pid
-        return box
+            libutempter.utempter_add_record(terminal.get_pty().get_fd(), os.uname()[1])
+        terminal.pid = pid
+        return terminal
 
     def add_tab(self, directory=None):
         """Adds a new tab to the terminal notebook.
         """
-        box = self.setup_new_terminal(directory)
+        # TODO NOTEBOOK
 
-        text = self.compute_tab_title(box.terminal)
-        page_num = self.notebook.append_page(box, None)
-        self.notebook.set_tab_reorderable(box, True)
-
-        self.notebook.append_tab(box.terminal)
+        box, page_num = self.notebook.new_page()
+        text = self.compute_tab_title(box.get_terminals()[0])
         self.notebook.set_current_page(page_num)
         self.rename_tab(page_num, text, False)
-        box.terminal.grab_focus()
         self.load_config()
 
         if self.is_fullscreen:
             self.fullscreen()
 
-        return str(box.terminal.get_uuid())
+        return str(box.get_terminals()[0].get_uuid())
 
     def save_tab(self, directory=None):
         self.preventHide = True
@@ -1903,22 +1894,22 @@ class Guake(SimpleGladeApp):
         # elif response_id == RESPONSE_BACKWARD:
         #     buffer.search_backward(search_string, self)
 
-    def delete_tab(self, pagepos, kill=True, prompt=True):
+    def delete_tab(self, page_num, kill=True, prompt=True):
         """This function will destroy the notebook page, terminal and
         tab widgets and will call the function to kill interpreter
         forked by vte.
         """
         # Run prompt if necessary
         if prompt:
-            procs = self.notebook.get_running_fg_processes_tab(pagepos)
+            procs = self.notebook.get_running_fg_processes_count_page(page_num)
             prompt_cfg = self.settings.general.get_int('prompt-on-close-tab')
             if (prompt_cfg == 1 and procs > 0) or (prompt_cfg == 2):
                 if not self.run_quit_dialog(procs, -1):
                     return
 
-        self.notebook.delete_tab(pagepos, kill=kill)
+        self.notebook.delete_page(page_num, kill=kill)
 
-        if not self.notebook.has_term():
+        if not self.notebook.has_page():
             self.hide()
             # avoiding the delay on next Guake show request
             self.add_tab()
@@ -1927,7 +1918,7 @@ class Guake(SimpleGladeApp):
 
         self.was_deleted_tab = True
         abbreviate_tab_names = self.settings.general.get_boolean('abbreviate-tab-names')
-        if abbreviate_tab_names and not self.is_tabs_scrollbar_visible():
+        if abbreviate_tab_names:
             self.abbreviate = False
             self.recompute_tabs_titles()
 
@@ -1935,13 +1926,12 @@ class Guake(SimpleGladeApp):
         """Grabs the focus on the current tab.
         """
         self.notebook.set_current_page(self.notebook.get_current_page())
-        self.notebook.get_current_terminal().grab_focus()
 
     def get_selected_uuidtab(self):
         """Returns the uuid of the current selected terminal
         """
-        pagepos = self.notebook.get_current_page()
-        terminals = self.notebook.get_terminals_for_tab(pagepos)
+        page_num = self.notebook.get_current_page()
+        terminals = self.notebook.get_terminals_for_page(page_num)
         return str(terminals[0].get_uuid())
 
     def search_on_web(self, *args):

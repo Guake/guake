@@ -27,7 +27,6 @@ from guake import notifier
 from guake.common import pixmapfile
 from locale import gettext as _
 
-
 log = logging.getLogger(__name__)
 
 
