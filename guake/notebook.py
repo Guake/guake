@@ -38,6 +38,10 @@ class TerminalNotebook(Gtk.Notebook):
     def __init__(self, guake, *args, **kwargs):
         Gtk.Notebook.__init__(self, *args, **kwargs)
         self.guake = guake
+        self.last_terminal_focused = None
+
+    def set_last_terminal_focused(self, terminal):
+        self.last_terminal_focused = terminal
 
     def get_focused_terminal(self):
         for terminal in self.iter_terminals():
@@ -45,7 +49,9 @@ class TerminalNotebook(Gtk.Notebook):
                 return terminal
 
     def get_current_terminal(self):
-        return self.get_focused_terminal()
+        # TODO NOTEBOOK the name of this method should
+        # be changed, for now it returns the last focused terminal
+        return self.last_terminal_focused
 
     def get_terminals_for_page(self, index):
         page = self.get_nth_page(index)
@@ -111,13 +117,17 @@ class TerminalNotebook(Gtk.Notebook):
         self.delete_page(self.find_tab_index_label(label), True)
 
     def new_page(self):
+        terminal = self.guake.setup_new_terminal()
         terminal_box = TerminalBox()
-        terminal_box.set_terminal(self.guake.setup_new_terminal())
+        terminal_box.set_terminal(terminal)
         root_terminal_box = RootTerminalBox(self.guake)
         root_terminal_box.set_child(terminal_box)
         page_num = self.append_page(root_terminal_box, None)
         self.set_tab_reorderable(root_terminal_box, True)
         self.show_all()  # needed to show newly added tabs and pages
+        # this is needed to initially set the last_terminal_focused,
+        # one could also call terminal.get_parent().on_terminal_focus()
+        terminal.emit("focus", Gtk.DirectionType.TAB_FORWARD)
         return root_terminal_box, page_num
 
     def find_tab_index_eventbox(self, eventbox):
