@@ -574,11 +574,8 @@ class Guake(SimpleGladeApp):
         bgcolor = self._apply_transparency_to_color(bgcolor)
         log.debug("setting background color to: %r", bgcolor)
         page_num = self.notebook.get_current_page()
-        terminal = self.notebook.get_nth_page(page_num).terminal
-        terminal.set_color_background(bgcolor)
-
-
-#        self.notebook.get_current_terminal().set_color_background(bgcolor)
+        for terminal in self.notebook.get_nth_page(page_num).iter_terminals():
+            terminal.set_color_background(bgcolor)
 
     def set_fgcolor(self, fgcolor):
         if isinstance(fgcolor, str):
@@ -590,10 +587,8 @@ class Guake(SimpleGladeApp):
             raise TypeError("color should be Gdk.RGBA, is: {!r}".format(fgcolor))
         log.debug("setting background color to: %r", fgcolor)
         page_num = self.notebook.get_current_page()
-        terminal = self.notebook.get_nth_page(page_num).terminal
-        # TODO this should be fgcolor right?
-        terminal.set_color_foreground(bgcolor)
-        # self.notebook.get_current_terminal().set_color_foreground(fgcolor)
+        for terminal in self.notebook.get_nth_page(page_num).iter_terminals():
+            terminal.set_color_foreground(fgcolor)
 
     def execute_command(self, command, tab=None):
         """Execute the `command' in the `tab'. If tab is None, the
