@@ -4,6 +4,7 @@ from gi.repository import Gtk
 
 
 class TerminalHolder():
+
     def get_terminals(self):
         pass
 
@@ -15,6 +16,7 @@ class TerminalHolder():
 
     def get_guake(self):
         pass
+
 
 class RootTerminalBox(Gtk.Box, TerminalHolder):
 
@@ -40,14 +42,17 @@ class RootTerminalBox(Gtk.Box, TerminalHolder):
             self.child = terminal_holder
             self.pack_start(terminal_holder, True, True, 0)
         else:
-            print("wtf, what have you added to me???"
-                  "(RootTerminalBox.add(%s))" % type(terminal_holder))
+            print(
+                "wtf, what have you added to me???"
+                "(RootTerminalBox.add(%s))" % type(terminal_holder)
+            )
 
     def get_child(self):
         return self.child
 
     def get_guake(self):
         return self.guake
+
 
 class TerminalBox(Gtk.Box, TerminalHolder):
 
