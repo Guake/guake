@@ -1,0 +1,9 @@
+features:
+  - load default font via python Gio and not via cli call
+  - add json example for custom commands in the code
+  - port screen selectino (use_mouse) to Gdk
+  - add notification for failed show-hide key rebindings
+  - add one-click key binding editing
+  - port word character exceptions for newer vte versions
+  - use Gtk.Box instead of Gtk.HBox
+
