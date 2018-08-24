@@ -17,6 +17,9 @@ class TerminalHolder():
     def get_guake(self):
         pass
 
+    def get_root_box(self):
+        pass
+
 
 class RootTerminalBox(Gtk.Box, TerminalHolder):
 
@@ -24,6 +27,7 @@ class RootTerminalBox(Gtk.Box, TerminalHolder):
         super().__init__(orientation=Gtk.Orientation.HORIZONTAL)
         self.guake = guake
         self.child = None
+        self.last_terminal_focused = None
 
     def get_terminals(self):
         return self.get_child().get_terminals()
@@ -53,6 +57,13 @@ class RootTerminalBox(Gtk.Box, TerminalHolder):
     def get_guake(self):
         return self.guake
 
+    def get_root_box(self):
+        return self
+
+    def set_last_terminal_focused(self, terminal):
+        self.last_terminal_focused = terminal
+        self.guake.notebook.set_last_terminal_focused(terminal)
+
 
 class TerminalBox(Gtk.Box, TerminalHolder):
 
@@ -61,11 +72,15 @@ class TerminalBox(Gtk.Box, TerminalHolder):
 
     def __init__(self):
         super().__init__(orientation=Gtk.Orientation.HORIZONTAL)
+        self.terminal = None
 
     def set_terminal(self, terminal):
         """Packs the terminal widget.
         """
+        if self.terminal is not None:
+            raise RuntimeError("TerminalBox: terminal already set")
         self.terminal = terminal
+        self.terminal.connect("focus", self.on_terminal_focus)
         self.pack_start(self.terminal, True, True, 0)
         self.terminal.show()
         self.add_scroll_bar()
@@ -106,6 +121,12 @@ class TerminalBox(Gtk.Box, TerminalHolder):
 
     def get_guake(self):
         return self.get_parent().get_guake()
+
+    def get_root_box(self):
+        return self.get_parent()
+
+    def on_terminal_focus(self, direction, user_data):
+        self.get_root_box().set_last_terminal_focused(self.terminal)
 
 
 class DualTerminalBox(Gtk.Paned, TerminalHolder):
@@ -150,3 +171,6 @@ class DualTerminalBox(Gtk.Paned, TerminalHolder):
 
     def get_guake(self):
         return self.get_parent().get_guake()
+
+    def get_root_box(self):
+        return self.get_parent()

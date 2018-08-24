@@ -1807,7 +1807,6 @@ class Guake(SimpleGladeApp):
 
         if self.is_fullscreen:
             self.fullscreen()
-
         return str(box.get_terminals()[0].get_uuid())
 
     def save_tab(self, directory=None):
@@ -1980,11 +1979,9 @@ class Guake(SimpleGladeApp):
 
     def set_tab_position(self, *args):
         if self.settings.general.get_boolean('tab-ontop'):
-            self.mainframe.reorder_child(self.notebook, 2)
+            self.notebook.set_tab_pos(Gtk.PositionType.TOP)
         else:
-            self.mainframe.reorder_child(self.notebook, 0)
-
-        # self.mainframe.pack_start(self.notebook, expand=True, fill=True, padding=0)
+            self.notebook.set_tab_pos(Gtk.PositionType.BOTTOM)
 
     def reset_terminal(self, directory=None):
         self.preventHide = True
