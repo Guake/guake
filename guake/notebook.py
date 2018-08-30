@@ -20,12 +20,17 @@ Boston, MA 02110-1301 USA
 
 from guake.boxes import DualTerminalBox
 from guake.boxes import RootTerminalBox
+from guake.boxes import TabLabelEventBox
 from guake.boxes import TerminalBox
+from guake.dialogs import PromptQuitDialog
 
 import gi
+import os
 gi.require_version('Gtk', '3.0')
+from gi.repository import GObject
 from gi.repository import Gtk
 from guake.terminal import GuakeTerminal
+from locale import gettext as _
 
 import logging
 import posix
@@ -39,6 +44,24 @@ class TerminalNotebook(Gtk.Notebook):
         Gtk.Notebook.__init__(self, *args, **kwargs)
         self.guake = guake
         self.last_terminal_focused = None
+
+        self.set_name("notebook-teminals")
+        self.set_tab_pos(Gtk.PositionType.BOTTOM)
+        self.set_property("show-tabs", True)
+        self.set_property("enable-popup", False)
+        self.set_property("scrollable", True)
+        self.set_property("show-border", False)
+        self.set_property("visible", True)
+        self.set_property("has-focus", True)
+        self.set_property("can-focus", True)
+        self.set_property("is-focus", True)
+        self.set_property("expand", True)
+
+        GObject.signal_new(
+            'terminal-spawned', self, GObject.SIGNAL_RUN_LAST, GObject.TYPE_NONE,
+            (GObject.TYPE_PYOBJECT, GObject.TYPE_INT)
+        )
+        GObject.signal_new('page-deleted', self, GObject.SIGNAL_RUN_LAST, GObject.TYPE_NONE, ())
 
     def set_last_terminal_focused(self, terminal):
         self.last_terminal_focused = terminal
@@ -103,21 +126,48 @@ class TerminalNotebook(Gtk.Notebook):
         for page_num in range(self.get_n_pages()):
             yield self.get_nth_page(page_num)
 
-    def delete_page(self, page_num, kill=True):
+    def delete_page(self, page_num, kill=True, prompt=False):
         if page_num >= self.get_n_pages():
             log.debug("Can not delete page %s no such index", page_num)
             return
+        # TODO NOTEBOOK it would be nice if none of the "ui" stuff
+        # (PromptQuitDialog) would be in here
+        if prompt:
+            procs = self.get_running_fg_processes_count_page(page_num)
+            # TODO NOTEBOOK remove call to guake
+            prompt_cfg = self.guake.settings.general.get_int('prompt-on-close-tab')
+            if (prompt_cfg == 1 and procs > 0) or (prompt_cfg == 2):
+                if not PromptQuitDialog(self.guake.window, procs, -1).close_tab():
+                    return
+
         for terminal in self.get_terminals_for_page(page_num):
             if kill:
                 terminal.kill()
             terminal.destroy()
         self.remove_page(page_num)
+        self.emit('page-deleted')
 
     def delete_page_by_label(self, label, kill=True):
-        self.delete_page(self.find_tab_index_label(label), True)
+        self.delete_page(self.find_tab_index_by_label(label), kill)
 
-    def new_page(self):
-        terminal = self.guake.setup_new_terminal()
+    def delete_page_current(self, kill=True):
+        self.delete_page(self.get_current_page(), kill)
+
+    def new_page(self, directory=None):
+        terminal = GuakeTerminal(self.guake)
+        terminal.grab_focus()
+        if not isinstance(directory, str):
+            directory = os.environ['HOME']
+            try:
+                if self.guake.settings.general.get_boolean('open-tab-cwd'):
+                    active_terminal = self.get_current_terminal()
+                    if not active_terminal:
+                        directory = os.path.expanduser('~')
+                    directory = active_terminal.get_current_directory()
+            except:  # pylint: disable=bare-except
+                pass
+        terminal.spawn_sync_pid(directory)
+
         terminal_box = TerminalBox()
         terminal_box.set_terminal(terminal)
         root_terminal_box = RootTerminalBox(self.guake)
@@ -128,18 +178,37 @@ class TerminalNotebook(Gtk.Notebook):
         # this is needed to initially set the last_terminal_focused,
         # one could also call terminal.get_parent().on_terminal_focus()
         terminal.emit("focus", Gtk.DirectionType.TAB_FORWARD)
-        return root_terminal_box, page_num
+        self.emit('terminal-spawned', terminal, terminal.pid)
+        return root_terminal_box, page_num, terminal
 
-    def find_tab_index_eventbox(self, eventbox):
+    def new_page_with_focus(self, directory=None):
+        box, page_num, terminal = self.new_page()
+        self.set_current_page(page_num)
+        self.rename_page(page_num, _("Terminal"), False)
+        terminal.grab_focus()
+
+    def rename_page(self, page_index, new_text, user_set=False):
+        """Rename an already added page by its index. Use user_set to define
+        if the rename was triggered by the user (eg. rename dialog) or by
+        an update from the vte (eg. vte:window-title-changed)
+        """
+        page = self.get_nth_page(page_index)
+        if not getattr(page, "custom_label_set", False) or user_set:
+            old_label = self.get_tab_label(page)
+            if isinstance(old_label, TabLabelEventBox):
+                old_label.set_text(new_text)
+            else:
+                self.set_tab_label(page, TabLabelEventBox(self, new_text))
+            if user_set:
+                setattr(page, "custom_label_set", new_text != "-")
+
+    def find_tab_index_by_label(self, eventbox):
         for index, tab_eventbox in enumerate(self.iter_tabs()):
             if eventbox is tab_eventbox:
                 return index
         return -1
 
-    def find_tab_index_label(self, label):
-        return self.find_tab_index_eventbox(label.get_parent())
-
-    def find_page_index_for_terminal(self, terminal):
+    def find_page_index_by_terminal(self, terminal):
         for index, page in enumerate(self.iter_pages()):
             for t in page.iter_terminals():
                 if t is terminal:
@@ -147,7 +216,7 @@ class TerminalNotebook(Gtk.Notebook):
         return -1
 
     def get_tab_text_index(self, index):
-        return self.get_tab_label(self.get_nth_page(index)).get_children()[0].get_text()
+        return self.get_tab_label(self.get_nth_page(index)).get_text()
 
     def get_tab_text_page(self, page):
-        return self.get_tab_label(page).get_children()[0].get_text()
+        return self.get_tab_label(page).get_text()

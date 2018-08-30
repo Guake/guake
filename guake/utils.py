@@ -35,3 +35,40 @@ def get_server_time(widget):
         # Use local timestamp instead
         ts = time.time()
         return ts
+
+class TabNameUtils():
+    @classmethod
+    def shorten(cls, text, settings):
+        use_vte_titles = settings.general.get_boolean('use-vte-titles')
+        if not use_vte_titles:
+            return text
+        max_name_length = settings.general.get_int("max-tab-name-length")
+        if max_name_length != 0 and len(text) > max_name_length:
+            text = "..." + text[-max_name_length:]
+        return text
+
+class FullscreenManager():
+
+    def __init__(self, window):
+        self.window = window
+        self.is_in_fullscreen = False
+
+    def is_fullscreen(self):
+        return getattr(self.window, 'is_fullscreen', False)
+
+    def fullscreen(self):
+        self.window.fullscreen()
+        setattr(self.window, 'is_fullscreen', True)
+
+    def unfullscreen(self):
+        # TODO do we still need this fix with gtk3?
+        # Fixes "Guake cannot restore from fullscreen" (#628)
+        self.window.unmaximize()
+        self.window.unfullscreen()
+        setattr(self.window, 'is_fullscreen', False)
+
+    def toggle(self):
+        if self.is_fullscreen():
+            self.unfullscreen()
+        else:
+            self.fullscreen()

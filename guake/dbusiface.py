@@ -76,11 +76,11 @@ class DbusManager(dbus.service.Object):
 
     @dbus.service.method(DBUS_NAME, out_signature='i')
     def get_selected_tab(self):
-        return self.guake.get_selected_tab()
+        return self.guake.notebook.get_current_page()
 
     @dbus.service.method(DBUS_NAME, out_signature='s')
     def get_selected_tablabel(self):
-        return self.guake.get_selected_tablabel()
+        return self.guake.notebook.get_tab_text_index(self.guake.notebook.get_current_page())
 
     @dbus.service.method(DBUS_NAME, out_signature='i')
     def get_tab_count(self):
@@ -108,7 +108,7 @@ class DbusManager(dbus.service.Object):
 
     @dbus.service.method(DBUS_NAME, in_signature='is')
     def rename_tab(self, tab_index, new_text):
-        self.guake.rename_tab(tab_index, new_text, True)
+        self.guake.notebook.rename_page(tab_index, new_text, True)
 
     @dbus.service.method(DBUS_NAME, in_signature='s')
     def rename_current_tab(self, new_text):

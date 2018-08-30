@@ -104,7 +104,6 @@ class Keybindings():
             self.guake.window.remove_accel_group(self.accel_group)
         self.accel_group = Gtk.AccelGroup()
         self.guake.window.add_accel_group(self.accel_group)
-        self.guake.context_menu.set_accel_group(self.accel_group)
         self.load_accelerators()
 
     def load_accelerators(self):
@@ -132,7 +131,9 @@ class Keybindings():
 
         key, mask = Gtk.accelerator_parse(getk('close-tab'))
         if key > 0:
-            self.accel_group.connect(key, mask, Gtk.AccelFlags.VISIBLE, self.guake.close_tab)
+            self.accel_group.connect(
+                key, mask, Gtk.AccelFlags.VISIBLE, self.guake.notebook.delete_page_current
+            )
 
         key, mask = Gtk.accelerator_parse(getk('previous-tab'))
         if key > 0:

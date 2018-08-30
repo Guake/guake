@@ -1,6 +1,17 @@
 import gi
 gi.require_version('Gtk', '3.0')
+from gi.repository import Gdk
 from gi.repository import Gtk
+from guake.callbacks import TerminalContextMenuCallbacks
+from guake.dialogs import RenameDialog
+from guake.menus import TabContextMenu
+from guake.menus import TerminalContextMenu
+from guake.utils import TabNameUtils
+from locale import gettext as _
+gi.require_version('Vte', '2.91')  # vte-0.42
+from gi.repository import Vte
+
+# TODO remove calls to guake
 
 
 class TerminalHolder():
@@ -15,6 +26,12 @@ class TerminalHolder():
         pass
 
     def get_guake(self):
+        pass
+
+    def get_window(self):
+        pass
+
+    def get_settings(self):
         pass
 
     def get_root_box(self):
@@ -57,6 +74,12 @@ class RootTerminalBox(Gtk.Box, TerminalHolder):
     def get_guake(self):
         return self.guake
 
+    def get_window(self):
+        return self.guake.window
+
+    def get_settings(self):
+        return self.guake.settings
+
     def get_root_box(self):
         return self
 
@@ -81,6 +104,7 @@ class TerminalBox(Gtk.Box, TerminalHolder):
             raise RuntimeError("TerminalBox: terminal already set")
         self.terminal = terminal
         self.terminal.connect("focus", self.on_terminal_focus)
+        self.terminal.connect("button-press-event", self.on_button_press, None)
         self.pack_start(self.terminal, True, True, 0)
         self.terminal.show()
         self.add_scroll_bar()
@@ -122,11 +146,37 @@ class TerminalBox(Gtk.Box, TerminalHolder):
     def get_guake(self):
         return self.get_parent().get_guake()
 
+    def get_window(self):
+        return self.get_parent().get_window()
+
+    def get_settings(self):
+        return self.get_parent().get_settings()
+
     def get_root_box(self):
         return self.get_parent()
 
     def on_terminal_focus(self, direction, user_data):
         self.get_root_box().set_last_terminal_focused(self.terminal)
+
+    def on_button_press(self, target, event, user_data):
+        if event.button == 3:
+            # First send to background process if handled, do nothing else
+            if not event.get_state() & Gdk.ModifierType.SHIFT_MASK:
+                if Vte.Terminal.do_button_press_event(self.terminal, event):
+                    return True
+
+            menu = TerminalContextMenu(
+                self.terminal, self.get_window(), self.get_settings(),
+                TerminalContextMenuCallbacks(
+                    self.terminal, self.get_window(), self.get_settings(),
+                    self.get_guake().notebook
+                )
+            )
+            menu.popup_at_pointer(event)
+            self.terminal.grab_focus()
+            return True
+        self.terminal.grab_focus()
+        return False
 
 
 class DualTerminalBox(Gtk.Paned, TerminalHolder):
@@ -172,5 +222,60 @@ class DualTerminalBox(Gtk.Paned, TerminalHolder):
     def get_guake(self):
         return self.get_parent().get_guake()
 
+    def get_window(self):
+        return self.get_parent().get_window()
+
+    def get_settings(self):
+        return self.get_parent().get_settings()
+
     def get_root_box(self):
         return self.get_parent()
+
+
+class TabLabelEventBox(Gtk.EventBox):
+
+    def __init__(self, notebook, text):
+        super().__init__()
+        self.notebook = notebook
+        self.label = Gtk.Label(text)
+        self.add(self.label)
+        self.connect("button-press-event", self.on_button_press, self.label)
+        self.label.show()
+
+    def set_text(self, text):
+        self.label.set_text(text)
+
+    def get_text(self):
+        return self.label.get_text()
+
+    def on_button_press(self, target, event, user_data):
+        if event.button == 3:
+            menu = TabContextMenu(self)
+            menu.popup_at_pointer(event)
+            self.notebook.get_current_terminal().grab_focus()
+            return True
+        if event.button == 2:
+            self.notebook.delete_page_by_label(self)
+            return True
+
+        self.notebook.get_current_terminal().grab_focus()
+        return False
+
+    def on_new_tab(self, user_data):
+        self.notebook.new_page_with_focus()
+
+    def on_rename(self, user_data):
+        self.notebook.guake.preventHide = True
+        dialog = RenameDialog(self.notebook.guake.window, self.label.get_text())
+        r = dialog.run()
+        if r == Gtk.ResponseType.ACCEPT:
+            new_text = TabNameUtils.shorten(dialog.get_text(), self.notebook.guake.settings)
+            page_num = self.notebook.find_tab_index_by_label(self)
+            self.notebook.rename_page(page_num, new_text, True)
+        dialog.destroy()
+        self.notebook.guake.preventHide = False
+        # TODO
+        #        self.set_terminal_focus()
+
+    def on_close(self, user_data):
+        self.notebook.delete_page_by_label(self)
