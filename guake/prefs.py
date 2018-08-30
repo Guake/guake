@@ -973,7 +973,7 @@ class PrefsDialog(SimpleGladeApp):
         if dest_screen > n_screens - 1:
             self.settings.general.set_boolean('mouse-display', False)
             dest_screen = screen.get_primary_monitor()
-            self.settings.general.set_int('display_n', dest_screen)
+            self.settings.general.set_int('display-n', dest_screen)
 
         if dest_screen == ALWAYS_ON_PRIMARY:
             first_item = combo.get_model().get_iter_first()

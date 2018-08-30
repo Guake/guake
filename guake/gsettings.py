@@ -51,7 +51,7 @@ class GSettingHandler():
         self.settings = guake_inst.settings
         settings = self.settings
 
-        # Notification is not required for mouse_display/display_n because
+        # Notification is not required for mouse_display/display-n because
         # set_final_window_rect polls gconf and is called whenever Guake is
         # shown or resized
 

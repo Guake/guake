@@ -1,0 +1,2 @@
+fixes:
+  - fixes Settings schema 'guake.general' does not contain a key named 'display_n' #1370
