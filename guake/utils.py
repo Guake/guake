@@ -36,7 +36,9 @@ def get_server_time(widget):
         ts = time.time()
         return ts
 
+
 class TabNameUtils():
+
     @classmethod
     def shorten(cls, text, settings):
         use_vte_titles = settings.general.get_boolean('use-vte-titles')
@@ -46,6 +48,7 @@ class TabNameUtils():
         if max_name_length != 0 and len(text) > max_name_length:
             text = "..." + text[-max_name_length:]
         return text
+
 
 class FullscreenManager():
 

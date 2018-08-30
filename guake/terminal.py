@@ -138,10 +138,7 @@ class GuakeTerminal(Vte.Terminal):
             super(GuakeTerminal, self).copy_clipboard()
         elif self.matched_value:
             guake_clipboard = Gtk.Clipboard.get_default(self.guake.window.get_display())
-            guake_clipboard.set_text(
-                self.matched_value,
-                len(self.matched_value)
-            )
+            guake_clipboard.set_text(self.matched_value, len(self.matched_value))
 
     def configure_terminal(self):
         """Sets all customized properties on the terminal

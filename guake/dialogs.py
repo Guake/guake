@@ -8,8 +8,7 @@ class RenameDialog(Gtk.Dialog):
 
     def __init__(self, window, current_name):
         super().__init__(
-            _("Rename tab"), window,
-            Gtk.DialogFlags.MODAL | Gtk.DialogFlags.DESTROY_WITH_PARENT,
+            _("Rename tab"), window, Gtk.DialogFlags.MODAL | Gtk.DialogFlags.DESTROY_WITH_PARENT,
             (Gtk.STOCK_CANCEL, Gtk.ResponseType.REJECT, Gtk.STOCK_OK, Gtk.ResponseType.ACCEPT)
         )
         self.entry = Gtk.Entry()
@@ -30,6 +29,7 @@ class RenameDialog(Gtk.Dialog):
 
     def get_text(self):
         return self.entry.get_text()
+
 
 class PromptQuitDialog(Gtk.MessageDialog):
 
@@ -81,19 +81,13 @@ class PromptQuitDialog(Gtk.MessageDialog):
         #     self.window.present()
         return response
 
+
 class SaveTerminalDialog(Gtk.FileChooserDialog):
 
     def __init__(self, terminal, window):
         super().__init__(
-            _("Save to..."),
-            window,
-            Gtk.FileChooserAction.SAVE,
-            (
-                Gtk.STOCK_CANCEL,
-                Gtk.ResponseType.CANCEL,
-                Gtk.STOCK_SAVE,
-                Gtk.ResponseType.OK
-            )
+            _("Save to..."), window, Gtk.FileChooserAction.SAVE,
+            (Gtk.STOCK_CANCEL, Gtk.ResponseType.CANCEL, Gtk.STOCK_SAVE, Gtk.ResponseType.OK)
         )
         self.set_default_response(Gtk.ResponseType.OK)
         self.terminal = terminal

@@ -1,12 +1,15 @@
-import os
 import json
+import os
+
+import gi
 
 from locale import gettext as _
-import gi
 gi.require_version('Gtk', '3.0')
 from gi.repository import Gtk
 
+
 class CustomCommands():
+
     """
     Example for a custom commands file
         [
