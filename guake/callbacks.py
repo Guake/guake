@@ -1,14 +1,14 @@
 import gi
 gi.require_version('Gtk', '3.0')
 from gi.repository import Gtk
-from guake.utils import FullscreenManager
-from guake.utils import TabNameUtils
+from guake.about import AboutDialog
 from guake.dialogs import RenameDialog
 from guake.dialogs import SaveTerminalDialog
-from guake.about import AboutDialog
 from guake.prefs import PrefsDialog
-from urllib.parse import quote_plus
+from guake.utils import FullscreenManager
+from guake.utils import TabNameUtils
 from guake.utils import get_server_time
+from urllib.parse import quote_plus
 
 
 class TerminalContextMenuCallbacks():
@@ -45,9 +45,7 @@ class TerminalContextMenuCallbacks():
         pass
 
     def on_new_tab(self, *args):
-        self.notebook.new_page_with_focus(
-            directory=self.terminal.get_current_directory()
-        )
+        self.notebook.new_page_with_focus(directory=self.terminal.get_current_directory())
 
     def on_rename_tab(self, *args):
         page_num = self.notebook.find_page_index_by_terminal(self.terminal)

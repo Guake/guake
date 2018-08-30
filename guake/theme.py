@@ -7,10 +7,9 @@ from pathlib import Path
 import gi
 gi.require_version('Gtk', '3.0')
 from gi.repository import GLib
-from gi.repository import Gtk
 from gi.repository import Gdk
+from gi.repository import Gtk
 from textwrap import dedent
-
 
 from guake.paths import GUAKE_THEME_DIR
 
@@ -61,6 +60,7 @@ def get_gtk_theme(settings):
     gtk_theme_name = settings.general.get_string('gtk-theme-name')
     prefer_dark_theme = settings.general.get_boolean('gtk-prefer-dark-theme')
     return (gtk_theme_name, "dark" if prefer_dark_theme else None)
+
 
 def patch_gtk_theme(style_context, settings):
     theme_name, variant = get_gtk_theme(settings)
