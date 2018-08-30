@@ -8,6 +8,9 @@ import gi
 gi.require_version('Gtk', '3.0')
 from gi.repository import GLib
 from gi.repository import Gtk
+from gi.repository import Gdk
+from textwrap import dedent
+
 
 from guake.paths import GUAKE_THEME_DIR
 
@@ -58,3 +61,44 @@ def get_gtk_theme(settings):
     gtk_theme_name = settings.general.get_string('gtk-theme-name')
     prefer_dark_theme = settings.general.get_boolean('gtk-prefer-dark-theme')
     return (gtk_theme_name, "dark" if prefer_dark_theme else None)
+
+def patch_gtk_theme(style_context, settings):
+    theme_name, variant = get_gtk_theme(settings)
+
+    def rgba_to_hex(color):
+        return "#{0:02x}{1:02x}{2:02x}".format(
+            int(color.red * 255), int(color.green * 255), int(color.blue * 255)
+        )
+
+    # for n in [
+    #     "inverted_bg_color",
+    #     "inverted_fg_color",
+    #     "selected_bg_color",
+    #     "selected_fg_color",
+    #     "theme_inverted_bg_color",
+    #     "theme_inverted_fg_color",
+    #     "theme_selected_bg_color",
+    #     "theme_selected_fg_color",
+    #     ]:
+    #     s = style_context.lookup_color(n)
+    #     print(n, s, rgba_to_hex(s[1]))
+    selected_fg_color = rgba_to_hex(style_context.lookup_color("theme_selected_fg_color")[1])
+    selected_bg_color = rgba_to_hex(style_context.lookup_color("theme_selected_bg_color")[1])
+    log.debug(
+        "Patching theme '%s' (prefer dark = '%r'), overriding tab 'checked' state': "
+        "foreground: %r, background: %r", theme_name, "yes"
+        if variant == "dark" else "no", selected_fg_color, selected_bg_color
+    )
+    css_data = dedent(
+        """
+        .custom_tab:checked {{
+            color: {selected_fg_color};
+            background: {selected_bg_color};
+        }}
+        """.format(selected_bg_color=selected_bg_color, selected_fg_color=selected_fg_color)
+    ).encode()
+    style_provider = Gtk.CssProvider()
+    style_provider.load_from_data(css_data)
+    Gtk.StyleContext.add_provider_for_screen(
+        Gdk.Screen.get_default(), style_provider, Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION
+    )

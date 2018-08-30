@@ -50,6 +50,30 @@ from guake.globals import TERMINAL_MATCH_TAGS
 
 log = logging.getLogger(__name__)
 
+libutempter = None
+try:
+    # this allow to run some commands that requires libuterm to
+    # be injected in current process, as: wall
+    from atexit import register as at_exit_call
+    from ctypes import cdll
+    libutempter = cdll.LoadLibrary('libutempter.so.0')
+    if libutempter is not None:
+        # We absolutely need to remove the old tty from the utmp !!!
+        at_exit_call(libutempter.utempter_remove_added_record)
+except Exception as e:
+    libutempter = None
+    sys.stderr.write("[WARN] ===================================================================\n")
+    sys.stderr.write("[WARN] Unable to load the library libutempter !\n")
+    sys.stderr.write(
+        "[WARN] Some feature might not work:\n"
+        "[WARN]  - 'exit' command might freeze the terminal instead of closing the tab\n"
+        "[WARN]  - the 'wall' command is know to work badly\n"
+    )
+    sys.stderr.write("[WARN] Error: " + str(e) + '\n')
+    sys.stderr.write(
+        "[WARN] ===================================================================²\n"
+    )
+
 
 def halt(loc):
     code.interact(local=loc)
@@ -71,6 +95,8 @@ class GuakeTerminal(Vte.Terminal):
         self.configure_terminal()
         self.add_matches()
         self.connect('button-press-event', self.button_press)
+        self.connect('button-press-event', self.button_press)
+        self.connect('child-exited', self.on_child_exited)
         self.matched_value = ''
         self.font_scale_index = 0
         self._pid = None
@@ -102,6 +128,11 @@ class GuakeTerminal(Vte.Terminal):
         else:
             super().feed_child(resolved_cmdline, len(resolved_cmdline))
 
+    def execute_command(self, command):
+        if command[-1] != '\n':
+            command += "\n"
+        self.feed_child(command)
+
     def copy_clipboard(self):
         if self.get_has_selection():
             super(GuakeTerminal, self).copy_clipboard()
@@ -124,6 +155,12 @@ class GuakeTerminal(Vte.Terminal):
 
         if (Vte.MAJOR_VERSION, Vte.MINOR_VERSION) >= (0, 50):
             self.set_allow_hyperlink(True)
+
+        # TODO PORT is this still the case with the newer vte version?
+        # -- Ubuntu has a patch to libvte which disables mouse scrolling in apps
+        # -- like vim and less by default. If this is the case, enable it back.
+        if hasattr(self, "set_alternate_screen_scroll"):
+            self.set_alternate_screen_scroll(True)
 
         self.set_can_default(True)
         self.set_can_focus(True)
@@ -268,6 +305,10 @@ class GuakeTerminal(Vte.Terminal):
         elif event.button == 3 and matched_string:
             self.found_link = self.handleTerminalMatch(matched_string)
             self.matched_value = matched_string[0]
+
+    def on_child_exited(self, target, status, *user_data):
+        if libutempter is not None:
+            libutempter.utempter_remove_record(self.get_pty())
 
     def quick_open(self):
         self.copy_clipboard()
@@ -427,3 +468,35 @@ class GuakeTerminal(Vte.Terminal):
                 # if this part of code was reached, means that SIGTERM
                 # did the work and SIGKILL wasnt needed.
                 pass
+
+    def spawn_sync_pid(self, directory):
+
+        argv = list()
+        user_shell = self.guake.settings.general.get_string('default-shell')
+        if user_shell and os.path.exists(user_shell):
+            argv.append(user_shell)
+        else:
+            argv.append(os.environ['SHELL'])
+
+        login_shell = self.guake.settings.general.get_boolean('use-login-shell')
+        if login_shell:
+            argv.append('--login')
+
+        pid = self.spawn_sync(
+            Vte.PtyFlags.DEFAULT, directory, argv, [], GLib.SpawnFlags.DO_NOT_REAP_CHILD, None,
+            None, None
+        )
+        try:
+            tuple_type = gi._gi.ResultTuple  # pylint: disable=c-extension-no-member
+        except:  # pylint: disable=bare-except
+            tuple_type = tuple
+        if isinstance(pid, (tuple, tuple_type)):
+            # Return a tuple in 2.91
+            # https://lazka.github.io/pgi-docs/Vte-2.91/classes/Terminal.html#Vte.Terminal.spawn_sync
+            pid = pid[1]
+        assert isinstance(pid, int)
+
+        if libutempter is not None:
+            libutempter.utempter_add_record(self.get_pty().get_fd(), os.uname()[1])
+        self.pid = pid
+        return pid
