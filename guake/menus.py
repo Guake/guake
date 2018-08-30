@@ -37,6 +37,10 @@ def TerminalContextMenu(terminal, window, settings, callback_object):
     mi = Gtk.MenuItem(_("Copy"))
     mi.connect("activate", callback_object.on_copy_clipboard)
     menu.add(mi)
+    if get_link_under_cursor(terminal) is not None:
+        mi = Gtk.MenuItem(_("Copy Url"))
+        mi.connect("activate", callback_object.on_copy_url_clipboard)
+        menu.add(mi)
     mi = Gtk.MenuItem(_("Paste"))
     mi.connect("activate", callback_object.on_paste_clipboard)
     # check if clipboard has text, if not disable the paste menuitem

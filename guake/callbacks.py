@@ -22,6 +22,12 @@ class TerminalContextMenuCallbacks():
     def on_copy_clipboard(self, *args):
         self.terminal.copy_clipboard()
 
+    def on_copy_url_clipboard(self, *args):
+        url = self.terminal.get_link_under_cursor()
+        if url is not None:
+            clipboard = Gtk.Clipboard.get_default(self.window.get_display())
+            clipboard.set_text(url, len(url))
+
     def on_paste_clipboard(self, *args):
         self.terminal.paste_clipboard()
 
