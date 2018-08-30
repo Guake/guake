@@ -138,7 +138,10 @@ class GuakeTerminal(Vte.Terminal):
             super(GuakeTerminal, self).copy_clipboard()
         elif self.matched_value:
             guake_clipboard = Gtk.Clipboard.get_default(self.guake.window.get_display())
-            guake_clipboard.set_text(self.matched_value)
+            guake_clipboard.set_text(
+                self.matched_value,
+                len(self.matched_value)
+            )
 
     def configure_terminal(self):
         """Sets all customized properties on the terminal
@@ -397,7 +400,11 @@ class GuakeTerminal(Vte.Terminal):
         if value:
             return value
 
+    def get_link_under_cursor(self):
+        return self.found_link
+
     def browse_link_under_cursor(self):
+        # TODO move the call to xdg-open to guake.utils
         if not self.found_link:
             return
         log.debug("Opening link: %s", self.found_link)
