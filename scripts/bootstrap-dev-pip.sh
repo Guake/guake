@@ -14,4 +14,4 @@ python3 -m pip install $op --upgrade \
     || echo "you may need to sudo me !"
 
 echo "Please ensure your local bin directory is in your path"
-echo "Linux: export PATH=$HOME/.local/bin$PATH"
+echo "Linux: export PATH=$HOME/.local/bin:$PATH"
