@@ -32,7 +32,7 @@ class TerminalContextMenuCallbacks():
         self.terminal.paste_clipboard()
 
     def on_toggle_fullscreen(self, *args):
-        FullscreenManager(self.window).toggle()
+        FullscreenManager(self.settings, self.window).toggle()
 
     def on_save_to_file(self, *args):
         SaveTerminalDialog(self.terminal, self.window).run()
