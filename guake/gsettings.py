@@ -30,6 +30,7 @@ from gi.repository import Gio
 from gi.repository import Gtk
 from gi.repository import Pango
 from gi.repository import Vte
+from guake.utils import RectCalculator
 
 from guake.common import pixmapfile
 from locale import gettext as _
@@ -123,7 +124,7 @@ class GSettingHandler():
         """If the gconf var window_halignment be changed, this method will
         be called and will call the move function in guake.
         """
-        self.guake.set_final_window_rect()
+        RectCalculator.set_final_window_rect(self.settings, self.guake.window)
         self.guake.set_tab_position()
         self.guake.force_move_if_shown()
 
@@ -132,7 +133,7 @@ class GSettingHandler():
         this method will be called and will call the resize function
         in guake.
         """
-        self.guake.set_final_window_rect()
+        RectCalculator.set_final_window_rect(self.settings, self.guake.window)
 
     def cursor_blink_mode_changed(self, settings, key, user_data):
         """Called when cursor blink mode settings has been changed

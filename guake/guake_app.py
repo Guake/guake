@@ -77,8 +77,10 @@ from guake.terminal import GuakeTerminal
 from guake.theme import patch_gtk_theme
 from guake.theme import select_gtk_theme
 from guake.utils import FullscreenManager
+from guake.utils import RectCalculator
 from guake.utils import TabNameUtils
 from guake.utils import get_server_time
+
 from locale import gettext as _
 
 log = logging.getLogger(__name__)
@@ -545,7 +547,8 @@ class Guake(SimpleGladeApp):
         self.hidden = False
 
         # setting window in all desktops
-        window_rect = self.set_final_window_rect()
+
+        window_rect = RectCalculator.set_final_window_rect(self.settings, self.window)
         self.get_widget('window-root').stick()
 
         # add tab must be called before window.show to avoid a
@@ -564,7 +567,7 @@ class Guake(SimpleGladeApp):
         self.window.move(window_rect.x, window_rect.y)
 
         # this works around an issue in fluxbox
-        if not FullscreenManager(self.window).is_fullscreen():
+        if not FullscreenManager(self.settings, self.window).is_fullscreen():
             self.settings.general.triggerOnChangedValue(self.settings.general, 'window-height')
 
         time = get_server_time(self.window)
@@ -640,199 +643,6 @@ class Guake(SimpleGladeApp):
         self.get_widget('window-root').unstick()
         self.window.hide()  # Don't use hide_all here!
 
-    def get_final_window_monitor(self):
-        """Gets the final screen number for the main window of guake.
-        """
-
-        screen = self.window.get_screen()
-
-        # fetch settings
-        use_mouse = self.settings.general.get_boolean('mouse-display')
-        dest_screen = self.settings.general.get_int('display-n')
-
-        if use_mouse:
-            """
-            TODO this is ported from widget.get_pointer() to
-            GdkSeat.get_pointer(), but this whole method could be
-            ported to Gdk (eg. gdk_display_get_default_screen(...)
-            and gdk-screen-get-n-monitors(...))
-            """
-            gdk_window = self.window.get_window()
-            if gdk_window is not None:
-                display = Gdk.Display.get_default()
-                seat = display.get_default_seat()
-                device = seat.get_pointer()
-                win, x, y, _ = gdk_window.get_device_position(device)
-                dest_screen = screen.get_monitor_at_point(x, y)
-
-        # If Guake is configured to use a screen that is not currently attached,
-        # default to 'primary display' option.
-        n_screens = screen.get_n_monitors()
-        if dest_screen > n_screens - 1:
-            self.settings.general.set_boolean('mouse-display', False)
-            self.settings.general.set_int('display-n', dest_screen)
-            dest_screen = screen.get_primary_monitor()
-
-        # Use primary display if configured
-        if dest_screen == ALWAYS_ON_PRIMARY:
-            dest_screen = screen.get_primary_monitor()
-
-        return dest_screen
-
-    # TODO PORT remove this UNITY is DEAD
-    def is_using_unity(self):
-        linux_distrib = platform.linux_distribution()
-        if linux_distrib[0].lower() != "ubuntu":
-            return False
-
-        # http://askubuntu.com/questions/70296/is-there-an-environment-variable-that-is-set-for-unity
-        if float(linux_distrib[1]) - 0.01 < 11.10:
-            if os.environ.get('DESKTOP_SESSION', '').lower() == "gnome".lower():
-                return True
-        else:
-            if os.environ.get('XDG_CURRENT_DESKTOP', '').lower() == "unity".lower():
-                return True
-        return False
-
-    def set_final_window_rect(self):
-        """Sets the final size and location of the main window of guake. The height
-        is the window_height property, width is window_width and the
-        horizontal alignment is given by window_alignment.
-        """
-
-        # fetch settings
-        height_percents = self.settings.general.get_int('window-height')
-
-        width_percents = self.settings.general.get_int('window-width')
-        halignment = self.settings.general.get_int('window-halignment')
-        valignment = self.settings.general.get_int('window-valignment')
-
-        vdisplacement = self.settings.general.get_int('window-vertical-displacement')
-        hdisplacement = self.settings.general.get_int('window-horizontal-displacement')
-
-        log.debug("set_final_window_rect")
-        log.debug("  height_percents = %s", height_percents)
-        log.debug("  width_percents = %s", width_percents)
-        log.debug("  halignment = %s", halignment)
-        log.debug("  valignment = %s", valignment)
-        log.debug("  vdisplacement = %s", vdisplacement)
-        log.debug("  hdisplacement = %s", hdisplacement)
-
-        # get the rectangle just from the destination monitor
-        screen = self.window.get_screen()
-        monitor = self.get_final_window_monitor()
-        window_rect = screen.get_monitor_geometry(monitor)
-        log.debug("Current monitor geometry")
-        log.debug("  window_rect.x: %s", window_rect.x)
-        log.debug("  window_rect.y: %s", window_rect.y)
-        log.debug("  window_rect.height: %s", window_rect.height)
-        log.debug("  window_rect.width: %s", window_rect.width)
-        log.debug("is unity: %s", self.is_using_unity())
-
-        # TODO PORT remove this UNITY is DEAD
-        if self.is_using_unity():
-
-            # For Ubuntu 12.10 and above, try to use dconf:
-            # see if unity dock is hidden => unity_hide
-            # and the width of unity dock => unity_dock
-            # and the position of the unity dock. => unity_pos
-            # found = False
-            unity_hide = 0
-            unity_dock = 0
-            unity_pos = "Left"
-            # float() conversion might mess things up. Add 0.01 so the comparison will always be
-            # valid, even in case of float("10.10") = 10.099999999999999
-            if float(platform.linux_distribution()[1]) + 0.01 >= 12.10:
-                try:
-                    unity_hide = int(
-                        subprocess.check_output([
-                            '/usr/bin/dconf', 'read',
-                            '/org/compiz/profiles/unity/plugins/unityshell/launcher-hide-mode'
-                        ])
-                    )
-                    unity_dock = int(
-                        subprocess.check_output([
-                            '/usr/bin/dconf', 'read',
-                            '/org/compiz/profiles/unity/plugins/unityshell/icon-size'
-                        ]) or "48"
-                    )
-                    unity_pos = subprocess.check_output([
-                        '/usr/bin/dconf', 'read', '/com/canonical/unity/launcher/launcher-position'
-                    ]) or "Left"
-                    # found = True
-                except Exception as e:
-                    # in case of error, just ignore it, 'found' will not be set to True and so
-                    # we execute the fallback
-                    pass
-            # FIXME: remove self.client dependency
-            # if not found:
-            #     # Fallback: try to bet from gconf
-            #     unity_hide = self.client.get_int(
-            #         KEY('/apps/compiz-1/plugins/unityshell/screen0/options/launcher_hide_mode')
-            #     )
-            #     unity_icon_size = self.client.get_int(
-            #         KEY('/apps/compiz-1/plugins/unityshell/screen0/options/icon_size')
-            #     )
-            #     unity_dock = unity_icon_size + 17
-
-            # launcher_hide_mode = 1 => autohide
-            # only adjust guake window width if Unity dock is positioned "Left" or "Right"
-            if unity_hide != 1 and unity_pos not in ("Left", "Right"):
-                log.debug(
-                    "correcting window width because of launcher position %s "
-                    "and width %s (from %s to %s)", unity_pos, unity_dock, window_rect.width,
-                    window_rect.width - unity_dock
-                )
-
-                window_rect.width = window_rect.width - unity_dock
-
-        total_width = window_rect.width
-        total_height = window_rect.height
-
-        log.debug("Correcteed monitor size:")
-        log.debug("  total_width: %s", total_width)
-        log.debug("  total_height: %s", total_height)
-
-        window_rect.height = int(float(window_rect.height) * float(height_percents) / 100.0)
-        window_rect.width = int(float(window_rect.width) * float(width_percents) / 100.0)
-
-        if window_rect.width < total_width:
-            if halignment == ALIGN_CENTER:
-                # log.debug("aligning to center!")
-                window_rect.x += (total_width - window_rect.width) / 2
-            elif halignment == ALIGN_LEFT:
-                # log.debug("aligning to left!")
-                window_rect.x += 0 + hdisplacement
-            elif halignment == ALIGN_RIGHT:
-                # log.debug("aligning to right!")
-                window_rect.x += total_width - window_rect.width - hdisplacement
-        if window_rect.height < total_height:
-            if valignment == ALIGN_BOTTOM:
-                window_rect.y += (total_height - window_rect.height)
-
-        if valignment == ALIGN_TOP:
-            window_rect.y += vdisplacement
-        elif valignment == ALIGN_BOTTOM:
-            window_rect.y -= vdisplacement
-
-        if width_percents == 100 and height_percents == 100:
-            log.debug("MAXIMIZING MAIN WINDOW")
-            self.window.maximize()
-        elif not FullscreenManager(self.window).is_fullscreen():
-            log.debug("RESIZING MAIN WINDOW TO THE FOLLOWING VALUES:")
-            self.window.unmaximize()
-            log.debug("  window_rect.x: %s", window_rect.x)
-            log.debug("  window_rect.y: %s", window_rect.y)
-            log.debug("  window_rect.height: %s", window_rect.height)
-            log.debug("  window_rect.width: %s", window_rect.width)
-            # Note: move_resize is only on GTK3
-            self.window.resize(window_rect.width, window_rect.height)
-            self.window.move(window_rect.x, window_rect.y)
-            self.window.move(window_rect.x, window_rect.y)
-            log.debug("Updated window position: %r", self.window.get_position())
-
-        return window_rect
-
     def force_move_if_shown(self):
         if not self.hidden:
             # when displayed, GTK might refuse to move the window (X or Y position). Just hide and
@@ -855,7 +665,7 @@ class Guake(SimpleGladeApp):
         self.settings.general.triggerOnChangedValue(self.settings.general, 'mouse-display')
         self.settings.general.triggerOnChangedValue(self.settings.general, 'display-n')
         self.settings.general.triggerOnChangedValue(self.settings.general, 'window-ontop')
-        if not FullscreenManager(self.window).is_fullscreen():
+        if not FullscreenManager(self.settings, self.window).is_fullscreen():
             self.settings.general.triggerOnChangedValue(self.settings.general, 'window-height')
             self.settings.general.triggerOnChangedValue(self.settings.general, 'window-width')
         self.settings.general.triggerOnChangedValue(self.settings.general, 'use-scrollbar')
@@ -1057,13 +867,14 @@ class Guake(SimpleGladeApp):
         return True
 
     def accel_toggle_fullscreen(self, *args):
-        FullscreenManager(self.window).toggle()
+        FullscreenManager(self.settings, self.window).toggle()
+        return True
 
     def fullscreen(self):
-        FullscreenManager(self.window).fullscreen()
+        FullscreenManager(self.settings, self.window).fullscreen()
 
     def unfullscreen(self):
-        FullscreenManager(self.window).unfullscreen()
+        FullscreenManager(self.settings, self.window).unfullscreen()
 
     # -- callbacks --
 
