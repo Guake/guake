@@ -12,14 +12,14 @@ msgstr ""
 "Project-Id-Version: Guake 0.4.5\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-07-07 19:07+0200\n"
-"PO-Revision-Date: 2018-07-08 01:38+0200\n"
-"Last-Translator: Roman Zimmer <hello@roman-zimmer.app>\n"
+"PO-Revision-Date: 2018-09-01 01:16+0200\n"
+"Last-Translator: Mario Aichinger <aichingm@gmail.com>\n"
 "Language-Team: guake@lists.guake.org\n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 2.0.8\n"
+"X-Generator: Poedit 2.1.1\n"
 
 #: guake/about.py:54 guake/keybindings.py:94 guake/guake_app.py:201
 #: guake/guake_app.py:414
@@ -957,3 +957,7 @@ msgstr "Konfigurieren Sie Ihre Guake-Sitzungen"
 #: data/guake-prefs.desktop:52 data/guake-prefs.template.desktop:13
 msgid "Terminal;Utility;"
 msgstr ""
+
+#: guake/menus.py:42
+msgid "Copy Url"
+msgstr "Verweis kopieren"
