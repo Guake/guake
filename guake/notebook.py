@@ -145,6 +145,11 @@ class TerminalNotebook(Gtk.Notebook):
                 terminal.kill()
             terminal.destroy()
         self.remove_page(page_num)
+        # focusing the first terminal on the previous page
+        if self.get_current_page() > -1:
+            page = self.get_nth_page(self.get_current_page())
+            if page.get_terminals():
+                page.get_terminals()[0].grab_focus()
         self.emit('page-deleted')
 
     def delete_page_by_label(self, label, kill=True):
