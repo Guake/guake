@@ -1,5 +1,6 @@
 import gi
 gi.require_version('Gtk', '3.0')
+from gi.repository import Gdk
 from gi.repository import Gtk
 from guake.about import AboutDialog
 from guake.dialogs import RenameDialog
@@ -91,3 +92,20 @@ class TerminalContextMenuCallbacks():
 
     def on_quit(self, *args):
         self.notebook.guake.accel_quit()
+
+
+class NotebookScrollCallback():
+
+    def __init__(self, notebook):
+        self.notebook = notebook
+
+    def on_scroll(self, widget, event):
+        direction = event.get_scroll_direction().direction
+        if direction is Gdk.ScrollDirection.DOWN or \
+                direction is Gdk.ScrollDirection.RIGHT:
+            self.notebook.next_page()
+        else:
+            self.notebook.prev_page()
+        # important to return True to stop propagation of the event
+        # from the label up to the notebook
+        return True
