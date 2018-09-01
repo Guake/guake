@@ -22,12 +22,14 @@ from guake.boxes import DualTerminalBox
 from guake.boxes import RootTerminalBox
 from guake.boxes import TabLabelEventBox
 from guake.boxes import TerminalBox
+from guake.callbacks import NotebookScrollCallback
 from guake.dialogs import PromptQuitDialog
 
 import gi
 import os
 gi.require_version('Gtk', '3.0')
 from gi.repository import GObject
+from gi.repository import Gdk
 from gi.repository import Gtk
 from guake.terminal import GuakeTerminal
 from locale import gettext as _
@@ -62,6 +64,10 @@ class TerminalNotebook(Gtk.Notebook):
             (GObject.TYPE_PYOBJECT, GObject.TYPE_INT)
         )
         GObject.signal_new('page-deleted', self, GObject.SIGNAL_RUN_LAST, GObject.TYPE_NONE, ())
+
+        self.scroll_callback = NotebookScrollCallback(self)
+        self.add_events(Gdk.EventMask.SCROLL_MASK)
+        self.connect('scroll-event', self.scroll_callback.on_scroll)
 
     def set_last_terminal_focused(self, terminal):
         self.last_terminal_focused = terminal
@@ -203,7 +209,11 @@ class TerminalNotebook(Gtk.Notebook):
             if isinstance(old_label, TabLabelEventBox):
                 old_label.set_text(new_text)
             else:
-                self.set_tab_label(page, TabLabelEventBox(self, new_text))
+                label = TabLabelEventBox(self, new_text)
+                label.add_events(Gdk.EventMask.SCROLL_MASK)
+                label.connect('scroll-event', self.scroll_callback.on_scroll)
+
+                self.set_tab_label(page, label)
             if user_set:
                 setattr(page, "custom_label_set", new_text != "-")
 
