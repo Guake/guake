@@ -269,8 +269,8 @@ class TabLabelEventBox(Gtk.EventBox):
     def on_button_press(self, target, event, user_data):
         if event.button == 3:
             menu = mk_tab_context_menu(self)
-            menu.connect("hide", MenuHideCallback(self.get_window()).on_hide)
-            HidePrevention(self.get_window()).prevent()
+            menu.connect("hide", MenuHideCallback(self.get_toplevel()).on_hide)
+            HidePrevention(self.get_toplevel()).prevent()
             try:
                 menu.popup_at_pointer(event)
             except AttributeError:
@@ -289,7 +289,7 @@ class TabLabelEventBox(Gtk.EventBox):
         self.notebook.new_page_with_focus()
 
     def on_rename(self, user_data):
-        self.notebook.guake.preventHide = True
+        HidePrevention(self.get_toplevel()).prevent()
         dialog = RenameDialog(self.notebook.guake.window, self.label.get_text())
         r = dialog.run()
         if r == Gtk.ResponseType.ACCEPT:
@@ -297,7 +297,7 @@ class TabLabelEventBox(Gtk.EventBox):
             page_num = self.notebook.find_tab_index_by_label(self)
             self.notebook.rename_page(page_num, new_text, True)
         dialog.destroy()
-        self.notebook.guake.preventHide = False
+        HidePrevention(self.get_toplevel()).allow()
         # TODO
         #        self.set_terminal_focus()
 
