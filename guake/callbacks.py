@@ -7,6 +7,7 @@ from guake.dialogs import RenameDialog
 from guake.dialogs import SaveTerminalDialog
 from guake.prefs import PrefsDialog
 from guake.utils import FullscreenManager
+from guake.utils import HidePrevention
 from guake.utils import TabNameUtils
 from guake.utils import get_server_time
 from urllib.parse import quote_plus
@@ -109,3 +110,12 @@ class NotebookScrollCallback():
         # important to return True to stop propagation of the event
         # from the label up to the notebook
         return True
+
+
+class MenuHideCallback():
+
+    def __init__(self, window):
+        self.window = window
+
+    def on_hide(self, *args):
+        HidePrevention(self.window).allow()

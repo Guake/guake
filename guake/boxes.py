@@ -9,10 +9,12 @@ from gi.repository import Gdk
 from gi.repository import Gtk
 from gi.repository import Vte
 
+from guake.callbacks import MenuHideCallback
 from guake.callbacks import TerminalContextMenuCallbacks
 from guake.dialogs import RenameDialog
 from guake.menus import mk_tab_context_menu
 from guake.menus import mk_terminal_context_menu
+from guake.utils import HidePrevention
 from guake.utils import TabNameUtils
 
 log = logging.getLogger(__name__)
@@ -182,6 +184,8 @@ class TerminalBox(Gtk.Box, TerminalHolder):
                     self.get_guake().notebook
                 )
             )
+            menu.connect("hide", MenuHideCallback(self.get_window()).on_hide)
+            HidePrevention(self.get_window()).prevent()
             try:
                 menu.popup_at_pointer(event)
             except AttributeError:
@@ -265,6 +269,8 @@ class TabLabelEventBox(Gtk.EventBox):
     def on_button_press(self, target, event, user_data):
         if event.button == 3:
             menu = mk_tab_context_menu(self)
+            menu.connect("hide", MenuHideCallback(self.get_window()).on_hide)
+            HidePrevention(self.get_window()).prevent()
             try:
                 menu.popup_at_pointer(event)
             except AttributeError:

@@ -65,6 +65,21 @@ class TabNameUtils():
         return text
 
 
+class HidePrevention():
+
+    def __init__(self, window):
+        self.window = window
+
+    def may_hide(self):
+        return getattr(self.window, 'can_hide', True)
+
+    def prevent(self):
+        setattr(self.window, 'can_hide', False)
+
+    def allow(self):
+        setattr(self.window, 'can_hide', True)
+
+
 class FullscreenManager():
 
     def __init__(self, settings, window):
