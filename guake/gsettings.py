@@ -305,5 +305,5 @@ class GSettingHandler():
         be called and will update tab names.
         """
         abbreviate_tab_names = settings.get_boolean('abbreviate-tab-names')
-        self.guake.abbreviate = abbreviate_tab_names and self.guake.is_tabs_scrollbar_visible()
+        self.guake.abbreviate = abbreviate_tab_names
         self.guake.recompute_tabs_titles()
