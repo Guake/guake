@@ -281,7 +281,7 @@ pypi-publish: build
 
 
 update:
-	pipenv update
+	pipenv update --clear
 	pipenv install --dev
 
 
