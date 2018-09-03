@@ -176,7 +176,10 @@ class TerminalBox(Gtk.Box, TerminalHolder):
                     self.get_guake().notebook
                 )
             )
-            menu.popup_at_pointer(event)
+            try:
+                menu.popup_at_pointer(event)
+            except:
+                menu.popup(None, None, None, None, 3, event.get_time())
             self.terminal.grab_focus()
             return True
         self.terminal.grab_focus()
@@ -255,7 +258,10 @@ class TabLabelEventBox(Gtk.EventBox):
     def on_button_press(self, target, event, user_data):
         if event.button == 3:
             menu = TabContextMenu(self)
-            menu.popup_at_pointer(event)
+            try:
+                menu.popup_at_pointer(event)
+            except:
+                menu.popup(None, None, None, Gtk.StatusIcon.position_menu, 3, event.get_time())
             self.notebook.get_current_terminal().grab_focus()
             return True
         if event.button == 2:
