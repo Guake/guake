@@ -2,10 +2,14 @@ import json
 import os
 
 import gi
+import logging
 
 from locale import gettext as _
 gi.require_version('Gtk', '3.0')
 from gi.repository import Gtk
+
+
+log = logging.getLogger(__name__)
 
 
 class CustomCommands():
@@ -51,13 +55,16 @@ class CustomCommands():
                 data_file = f.read()
                 return json.loads(data_file)
         except Exception as e:
-            log.exception("Invalid custom command file %s. Exception: %s", data_file, str(e))
+            log.exception("Invalid custom command file %s. Exception: %s", file_name, str(e))
 
     def build_menu(self):
         if not self.should_load():
             return None
         menu = Gtk.Menu()
-        for obj in self._load_json(self.get_file_path()):
+        cust_comms = self._load_json(self.get_file_path())
+        if not cust_comms:
+            return None
+        for obj in cust_comms:
             self._parse_custom_commands(obj, menu)
         return menu
 

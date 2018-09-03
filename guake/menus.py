@@ -123,8 +123,10 @@ def TerminalContextMenu(terminal, window, settings, callback_object):
     if customcommands.should_load():
         menu.add(Gtk.SeparatorMenuItem())
         mi = Gtk.MenuItem(_("Custom Commands"))
-        mi.set_submenu(customcommands.build_menu())
-        menu.add(mi)
+        submen = customcommands.build_menu()
+        if submen:
+            mi.set_submenu(submen)
+            menu.add(mi)
     menu.add(Gtk.SeparatorMenuItem())
     mi = Gtk.ImageMenuItem("gtk-preferences")
     mi.set_use_stock(True)
