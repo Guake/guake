@@ -1197,6 +1197,10 @@ msgstr "Stávající směr vyhledávání: pozpátku"
 msgid "Set window title to current tab name"
 msgstr "Nastavit titulek okna na název stávající karty"
 
+#: guake/menus.py:48
+msgid "Copy Url"
+msgstr ""
+
 #~ msgid "key binding error"
 #~ msgstr "chyba klávesových zkratek"
 

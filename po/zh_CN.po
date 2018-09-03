@@ -1182,6 +1182,10 @@ msgstr ""
 msgid "Set window title to current tab name"
 msgstr ""
 
+#: guake/menus.py:48
+msgid "Copy Url"
+msgstr ""
+
 #~ msgid "0 means no size limit"
 #~ msgstr "0表示没有大小限制"
 

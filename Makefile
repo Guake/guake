@@ -160,6 +160,9 @@ uninstall-old-schemas:
 reinstall:
 	sudo make uninstall && make && sudo make install && $(DESTDIR)$(bindir)/guake
 
+reinstall-v:
+	sudo make uninstall && make && sudo make install && $(DESTDIR)$(bindir)/guake -v
+
 compile-glib-schemas-dev: clean-schemas
 	glib-compile-schemas --strict $(DEV_DATA_DIR)
 
