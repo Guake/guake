@@ -281,6 +281,8 @@ class TabLabelEventBox(Gtk.EventBox):
         if event.button == 2:
             self.notebook.delete_page_by_label(self)
             return True
+        if event.button == 1 and event.type == Gdk.EventType._2BUTTON_PRESS:
+            self.on_rename(None)
 
         self.notebook.get_current_terminal().grab_focus()
         return False
