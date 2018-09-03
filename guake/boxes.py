@@ -1,15 +1,21 @@
+import logging
+
+from locale import gettext as _
+
 import gi
+gi.require_version('Vte', '2.91')  # vte-0.42
 gi.require_version('Gtk', '3.0')
 from gi.repository import Gdk
 from gi.repository import Gtk
+from gi.repository import Vte
+
 from guake.callbacks import TerminalContextMenuCallbacks
 from guake.dialogs import RenameDialog
-from guake.menus import TabContextMenu
-from guake.menus import TerminalContextMenu
+from guake.menus import mk_tab_context_menu
+from guake.menus import mk_terminal_context_menu
 from guake.utils import TabNameUtils
-from locale import gettext as _
-gi.require_version('Vte', '2.91')  # vte-0.42
-from gi.repository import Vte
+
+log = logging.getLogger(__name__)
 
 # TODO remove calls to guake
 
@@ -169,7 +175,7 @@ class TerminalBox(Gtk.Box, TerminalHolder):
                 if Vte.Terminal.do_button_press_event(self.terminal, event):
                     return True
 
-            menu = TerminalContextMenu(
+            menu = mk_terminal_context_menu(
                 self.terminal, self.get_window(), self.get_settings(),
                 TerminalContextMenuCallbacks(
                     self.terminal, self.get_window(), self.get_settings(),
@@ -178,8 +184,9 @@ class TerminalBox(Gtk.Box, TerminalHolder):
             )
             try:
                 menu.popup_at_pointer(event)
-            except:
-                menu.popup(None, None, None, None, 3, event.get_time())
+            except AttributeError:
+                # Gtk 3.18 fallback ("'Menu' object has no attribute 'popup_at_pointer'")
+                menu.popup(None, None, None, None, event.button, event.time)
             self.terminal.grab_focus()
             return True
         self.terminal.grab_focus()
@@ -257,11 +264,12 @@ class TabLabelEventBox(Gtk.EventBox):
 
     def on_button_press(self, target, event, user_data):
         if event.button == 3:
-            menu = TabContextMenu(self)
+            menu = mk_tab_context_menu(self)
             try:
                 menu.popup_at_pointer(event)
-            except:
-                menu.popup(None, None, None, Gtk.StatusIcon.position_menu, 3, event.get_time())
+            except AttributeError:
+                # Gtk 3.18 fallback ("'Menu' object has no attribute 'popup_at_pointer'")
+                menu.popup(None, None, None, None, event.button, event.get_time())
             self.notebook.get_current_terminal().grab_focus()
             return True
         if event.button == 2:

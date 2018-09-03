@@ -10,10 +10,13 @@ import logging
 log = logging.getLogger(__name__)
 
 
-def TabContextMenu(callback_object):
+def mk_tab_context_menu(callback_object):
     """Create the context menu for a notebook tab
     """
-    menu = Gtk.Menu()
+    # Store the menu in a temp variable in terminal so that popup() is happy. See:
+    #   https://stackoverflow.com/questions/28465956/
+    callback_object.context_menu = Gtk.Menu()
+    menu = callback_object.context_menu
     mi1 = Gtk.MenuItem(_("New Tab"))
     mi1.connect("activate", callback_object.on_new_tab)
     menu.add(mi1)
@@ -31,10 +34,13 @@ SEARCH_SELECTION_LENGTH = 20
 FILE_SELECTION_LENGTH = 30
 
 
-def TerminalContextMenu(terminal, window, settings, callback_object):
-    """Create the context menu for a terminal
+def mk_terminal_context_menu(terminal, window, settings, callback_object):
+    """Create the context menu for a terminal.
     """
-    menu = Gtk.Menu()
+    # Store the menu in a temp variable in terminal so that popup() is happy. See:
+    #   https://stackoverflow.com/questions/28465956/
+    terminal.context_menu = Gtk.Menu()
+    menu = terminal.context_menu
     mi = Gtk.MenuItem(_("Copy"))
     mi.connect("activate", callback_object.on_copy_clipboard)
     menu.add(mi)
@@ -121,10 +127,10 @@ def TerminalContextMenu(terminal, window, settings, callback_object):
     menu.add(mi)
     customcommands = CustomCommands(settings, callback_object)
     if customcommands.should_load():
-        menu.add(Gtk.SeparatorMenuItem())
-        mi = Gtk.MenuItem(_("Custom Commands"))
         submen = customcommands.build_menu()
         if submen:
+            menu.add(Gtk.SeparatorMenuItem())
+            mi = Gtk.MenuItem(_("Custom Commands"))
             mi.set_submenu(submen)
             menu.add(mi)
     menu.add(Gtk.SeparatorMenuItem())

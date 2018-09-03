@@ -945,3 +945,7 @@ msgstr "Använd kommandoraden i en Quake-liknande terminal"
 #: data/prefs.glade:680
 msgid "Set window title to current tab name"
 msgstr ""
+
+#: guake/menus.py:48
+msgid "Copy Url"
+msgstr ""

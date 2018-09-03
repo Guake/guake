@@ -1219,6 +1219,10 @@ msgstr "guake-prefs"
 msgid "Set window title to current tab name"
 msgstr "Сделать название текущей вкладки заголовком окна"
 
+#: guake/menus.py:48
+msgid "Copy Url"
+msgstr ""
+
 #~ msgid "Path to script executed on Guake start:"
 #~ msgstr "Путь к скрипту, запускаемому при старте Guake:"
 

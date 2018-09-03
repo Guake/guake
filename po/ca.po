@@ -1184,6 +1184,10 @@ msgstr ""
 msgid "Set window title to current tab name"
 msgstr ""
 
+#: guake/menus.py:48
+msgid "Copy Url"
+msgstr ""
+
 #~ msgid "key binding error"
 #~ msgstr "S'ha produït un error en definir la drecera de teclat"
 

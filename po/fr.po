@@ -959,6 +959,10 @@ msgstr "Terminal;Utilitaires;"
 msgid "Set window title to current tab name"
 msgstr ""
 
+#: guake/menus.py:48
+msgid "Copy Url"
+msgstr ""
+
 #~ msgid "Specify the tab to rename. Default is 0."
 #~ msgstr "Spécifier un onglet à renommer. Defaut: 0."
 
