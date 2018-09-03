@@ -77,6 +77,7 @@ from guake.terminal import GuakeTerminal
 from guake.theme import patch_gtk_theme
 from guake.theme import select_gtk_theme
 from guake.utils import FullscreenManager
+from guake.utils import HidePrevention
 from guake.utils import RectCalculator
 from guake.utils import TabNameUtils
 from guake.utils import get_server_time
@@ -140,7 +141,6 @@ class Guake(SimpleGladeApp):
 
         self.hidden = True
         self.forceHide = False
-        self.preventHide = False
 
         # trayicon! Using SVG handles better different OS trays
         # img = pixmapfile('guake-tray.svg')
@@ -402,7 +402,7 @@ class Guake(SimpleGladeApp):
         """Hides terminal main window when it loses the focus and if
         the window_losefocus gconf variable is True.
         """
-        if self.preventHide:
+        if not HidePrevention(self.window).may_hide():
             return
 
         value = self.settings.general.get_boolean('window-losefocus')
@@ -454,7 +454,7 @@ class Guake(SimpleGladeApp):
             self.forceHide = False
             return
 
-        if self.preventHide:
+        if not HidePrevention(self.window).may_hide():
             return
 
         if not self.win_prepare():
@@ -637,7 +637,7 @@ class Guake(SimpleGladeApp):
         """Hides the main window of the terminal and sets the visible
         flag to False.
         """
-        if self.preventHide:
+        if not HidePrevention(self.window).may_hide():
             return
         self.hidden = True
         self.get_widget('window-root').unstick()
@@ -979,7 +979,7 @@ class Guake(SimpleGladeApp):
     def find_tab(self, directory=None):
         log.debug("find")
         # TODO SEARCH
-        self.preventHide = True
+        HidePrevention(self.window).prevent()
         search_text = Gtk.TextView()
 
         dialog = Gtk.Dialog(
@@ -1001,7 +1001,7 @@ class Guake(SimpleGladeApp):
     def _dialog_response_callback(self, dialog, response_id):
         if response_id not in (RESPONSE_FORWARD, RESPONSE_BACKWARD):
             dialog.destroy()
-            self.preventHide = False
+            HidePrevention(self.window).allow()
             return
 
         start, end = dialog.buffer.get_bounds()
