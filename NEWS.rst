@@ -5,8 +5,42 @@ Guake
 (unreleased yet)
 ================
 
+Release Summary
+---------------
+
+This release adds a big rewrite of the Terminal underlying mechanism by Mario Aichinger. It will serve as a foundation layer for long-awaiting features such as `Split Terminal <https://github.com/Guake/guake/issues/71>`_, `Find Text <https://github.com/Guake/guake/issues/116>`_, `Save/Load Session <https://github.com/Guake/guake/issues/114>`_, and so on.
+
+New Features
+------------
+
+- add a new option in the context menu (copy url)
+
+- support for per terminal context menus
+
+- new more fullscreen handeling
+
+- load default font via python Gio and not via cli call
+
+- add json example for custom commands in the code
+
+- port screen selectino (use_mouse) to Gdk
+
+- add notification for failed show-hide key rebindings
+
+- add one-click key binding editing
+
+- port word character exceptions for newer vte versions
+
+- use Gtk.Box instead of Gtk.HBox
+
+- use Gtk.Notebook's tabs implementation
+
+- enable tab switching by scrolling (mouse wheel) over the tabs/tab-bar
+
 Bug Fixes
 ---------
+
+- fixes Settings schema 'guake.general' does not contain a key named 'display_n'
 
 - fixes ``guake --fgcolor/--bgcolor`` error (#1376).
 
@@ -21,7 +55,7 @@ Translation Updates
 
 - cz (thanks Pavel Borecki)
 
-- de (thanks Dirk den Hoedt)
+- de (thanks Dirk den Hoedt and Mario Aichinger)
 
 Notes for Package Maintainers
 -----------------------------
