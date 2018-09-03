@@ -70,6 +70,8 @@ class HidePrevention():
     def __init__(self, window):
         """Create a new HidePrevention object like `HidePrevention(window)`
         """
+        if not isinstance(window, Gtk.Window):
+            raise ValueError("window must be of type Gtk.Window, not of type %s" % type(window))
         self.window = window
 
     def may_hide(self):
