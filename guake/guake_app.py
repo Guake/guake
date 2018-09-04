@@ -915,10 +915,12 @@ class Guake(SimpleGladeApp):
         return TabNameUtils.shorten(vte_title, self.settings)
 
     def on_terminal_title_changed(self, vte, term):
-        box = term.get_parent()
+        # box must be a page
+        box = term.get_parent().get_root_box()
         use_vte_titles = self.settings.general.get_boolean('use-vte-titles')
         if not use_vte_titles:
             return
+        # this may return -1, should be checked ;)
         page_num = self.notebook.page_num(box)
         # if tab has been renamed by user, don't override.
         if not getattr(box, 'custom_label_set', False):
