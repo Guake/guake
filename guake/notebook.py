@@ -171,11 +171,11 @@ class TerminalNotebook(Gtk.Notebook):
             directory = os.environ['HOME']
             try:
                 if self.guake.settings.general.get_boolean('open-tab-cwd'):
-                    active_terminal = self.get_current_terminal()
-                    if not active_terminal:
-                        directory = os.path.expanduser('~')
-                    directory = active_terminal.get_current_directory()
-            except:  # pylint: disable=bare-except
+                    active_terminal = self.get_focused_terminal()
+                    directory = os.path.expanduser('~')
+                    if active_terminal:
+                        directory = active_terminal.get_current_directory()
+            except Exception as e:
                 pass
         terminal.spawn_sync_pid(directory)
 
