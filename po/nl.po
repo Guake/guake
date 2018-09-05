@@ -9,8 +9,8 @@ msgstr ""
 "Project-Id-Version: Guake 0.4.5\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-04-14 12:33+0200\n"
-"PO-Revision-Date: 2018-08-16 12:35+0000\n"
-"Last-Translator: Dirk den Hoedt <dirkdenhoedt@gmail.com>\n"
+"PO-Revision-Date: 2018-09-05 11:52+0000\n"
+"Last-Translator: Heimen Stoffels <vistausss@outlook.com>\n"
 "Language-Team: Dutch <https://hosted.weblate.org/projects/guake/guake/nl/>\n"
 "Language: nl\n"
 "MIME-Version: 1.0\n"
@@ -138,11 +138,11 @@ msgstr ""
 
 #: ../data/prefs.glade.h:15
 msgid "Enable popup notifications on startup"
-msgstr "Pop-up-meldingen weergeven bij opstarten"
+msgstr "Pop-upmeldingen tonen bij opstarten"
 
 #: ../data/prefs.glade.h:16
 msgid "Show tray icon"
-msgstr "Systeemvakpictogram weergeven"
+msgstr "Systeemvakpictogram tonen"
 
 #: ../data/prefs.glade.h:17
 msgid "Always prompt on quit"
@@ -208,7 +208,7 @@ msgstr "Verbergen bij verliezen van focus"
 
 #: ../data/prefs.glade.h:33
 msgid "Show tab bar"
-msgstr "Tabbladbalk weergeven"
+msgstr "Tabbladbalk tonen"
 
 #: ../data/prefs.glade.h:34
 msgid "Start fullscreen"
@@ -260,7 +260,7 @@ msgstr "Bestandspad aangepaste opdracht: "
 
 #: ../data/prefs.glade.h:46
 msgid "Please select a json file"
-msgstr "Selecteer een JSON-bestand"
+msgstr "Kies een JSON-bestand"
 
 #: ../data/prefs.glade.h:47 ../src/guake/prefs.py:75
 msgid "General"
@@ -288,11 +288,11 @@ msgstr "Shell"
 
 #: ../data/prefs.glade.h:53
 msgid "Show scrollbar"
-msgstr "Scrollbalk weergeven"
+msgstr "Schuifbalk tonen"
 
 #: ../data/prefs.glade.h:54
 msgid "Scrollback lines:"
-msgstr "Aantal terugscroll-regels:"
+msgstr "Aantal terug te scrollen regels:"
 
 #: ../data/prefs.glade.h:55
 msgid "On output"
@@ -320,7 +320,7 @@ msgstr "Lettertype:"
 
 #: ../data/prefs.glade.h:61
 msgid "Show resizer"
-msgstr "Herschaler weergeven"
+msgstr "Herschaler tonen"
 
 #: ../data/prefs.glade.h:62
 msgid "Choose some font"
@@ -408,7 +408,7 @@ msgstr "Achtergrondafbeelding:"
 
 #: ../data/prefs.glade.h:84
 msgid "Select A File"
-msgstr "Selecteer een bestand"
+msgstr "Kies een bestand"
 
 #: ../data/prefs.glade.h:85 ../src/guake/prefs.py:130
 msgid "Appearance"
@@ -421,9 +421,9 @@ msgid ""
 "your terminal. See the list of currently supported text patterns used to "
 "extract filename below.</small>"
 msgstr ""
-"<small>Snel openen is een functie die u in staat stelt een bestand direct te "
-"openen in uw favoriete tekstbewerker door te klikken op de bestandsnaam van "
-"een genoemd bestand in uw terminal. Hieronder vindt u een lijst van "
+"<small>Snel openen is een functie die je in staat stelt een bestand direct "
+"te openen in je favoriete tekstbewerker door te klikken op de bestandsnaam "
+"van een genoemd bestand in je terminal. Hieronder vindt je een lijst van "
 "momenteel ondersteunde tekstpatronen die kunnen worden gebruikt om de "
 "bestandsnaam te achterhalen.</small>"
 
@@ -448,13 +448,14 @@ msgid ""
 "For example, for sublime, use <b>subl %(file_path)s:%(line_number)s</b>\n"
 "</i></small>"
 msgstr ""
-"<small><i>Gebruik de volgende elementen in het tekstbewerker-opdrachtregel-"
-"veld:\n"
+"<small><i>Gebruik de volgende elementen in het tekstbewerker-"
+"opdrachtregelveld:\n"
 " - <b>%(file_path)s</b>: pad naar het aangeklikte bestand\n"
-" - <b>%(line_number)s</b>: u kunt, als uw tekstbewerker dit ondersteunt, het "
-"bestand direct openen op een opgegeven regelnummer indien dit overeenkomt.\n"
+" - <b>%(line_number)s</b>: je kunt, als je tekstbewerker dit ondersteunt, "
+"het bestand direct openen op een opgegeven regelnummer indien dit "
+"overeenkomt.\n"
 "\n"
-"Gebruik bijv., voor sublime, <b>subl %(file_path)s:%(line_number)s</b>\n"
+"Gebruik bijv. voor Sublime <b>subl %(file_path)s:%(line_number)s</b>\n"
 "</i></small>"
 
 #: ../data/prefs.glade.h:96
@@ -466,7 +467,7 @@ msgid ""
 "Here is the list of supported patterns: (to add your own, please contact the "
 "Guake's authors)"
 msgstr ""
-"Hier vindt u een lijst van ondersteunde patronen: (als u uw eigen patronen "
+"Hier vindt je een lijst van ondersteunde patronen: (als je je eigen patronen "
 "wilt toevoegen, neem dan contact op met de Guake-ontwikkelaars)"
 
 #: ../data/prefs.glade.h:98
@@ -536,7 +537,7 @@ msgid ""
 "<small>In this dialog you can attach your own command or script to various "
 "guake events</small>"
 msgstr ""
-"<small>In dit dialoogvenster kunt u uw eigen opdracht of script toevoegen "
+"<small>In dit dialoogvenster kun je je eigen opdracht of script toevoegen "
 "aan allerlei Guake-gebeurtenissen</small>"
 
 #: ../data/prefs.glade.h:113
@@ -545,11 +546,11 @@ msgid ""
 "For details, see https://github.com/Guake/guake/issues/793"
 msgstr ""
 "Voer de opdracht of het pad naar het script in.\n"
-"Voor meer informatie, zie https://github.com/Guake/guake/issues/793"
+"Meer informatie: https://github.com/Guake/guake/issues/793"
 
 #: ../data/prefs.glade.h:115
 msgid "On show:"
-msgstr "Na weergeven:"
+msgstr "Na tonen:"
 
 #: ../data/prefs.glade.h:116
 msgid "<b>Hooks</b>"
@@ -575,11 +576,11 @@ msgstr ""
 
 #: ../src/guake/guake_app.py:133
 msgid "Do you want to close the tab?"
-msgstr "Weet u zeker dat u dit tabblad wilt sluiten?"
+msgstr "Weet je zeker dat je dit tabblad wilt sluiten?"
 
 #: ../src/guake/guake_app.py:136
 msgid "Do you really want to quit Guake?"
-msgstr "Weet u zeker dat u Gauke wilt afsluiten?"
+msgstr "Weet je zeker dat je Guake wilt afsluiten?"
 
 #: ../src/guake/guake_app.py:138
 msgid " and one tab open"
@@ -613,14 +614,14 @@ msgstr "guake-tray"
 
 #: ../src/guake/guake_app.py:194
 msgid "Show"
-msgstr "Weergeven"
+msgstr "Tonen"
 
 #: ../src/guake/guake_app.py:366
 msgid ""
 "Guake is now running,\n"
 "press <b>{!s}</b> to use it."
 msgstr ""
-"Guake nu actief!\n"
+"Guake is nu actief!\n"
 "Druk op <b>{!s}</b> om Guake te gebruiken."
 
 #: ../src/guake/guake_app.py:669
@@ -706,15 +707,15 @@ msgstr "Nieuw tabblad toevoegen (met huidige map ingesteld op NEW_TAB)"
 
 #: ../src/guake/main.py:97
 msgid "Select a tab (SELECT_TAB is the index of the tab)"
-msgstr "Selecteer een tabblad (SELECT_TAB is de index van het tabblad)"
+msgstr "Kies een tabblad (SELECT_TAB is de index van het tabblad)"
 
 #: ../src/guake/main.py:101
 msgid "Return the selected tab index."
-msgstr "Geef de geselecteerde tabindex."
+msgstr "Toon de geselecteerde tabindex."
 
 #: ../src/guake/main.py:105
 msgid "Execute an arbitrary command in the selected tab."
-msgstr "Voer een willekeurig commando uit in het geselecteerde tabblad."
+msgstr "Voer een willekeurige opdracht uit op het geselecteerde tabblad."
 
 #: ../src/guake/main.py:109
 msgid "Specify the tab to rename. Default is 0."
@@ -770,7 +771,7 @@ msgid ""
 "Have you installed <b>guake.schemas</b> properly?"
 msgstr ""
 "Gconf-fout.\n"
-"Heeft u <b>guake.schemas</b> op de juiste wijze geïnstalleerd?"
+"Heb je <b>guake.schemas</b> op de juiste wijze geïnstalleerd?"
 
 #. string to show in prefereces dialog for user shell option
 #: ../src/guake/prefs.py:67
@@ -779,7 +780,7 @@ msgstr "<gebruikersshell>"
 
 #: ../src/guake/prefs.py:77
 msgid "Toggle Guake visibility"
-msgstr "Guake weergeven/verbergen"
+msgstr "Guake tonen/verbergen"
 
 #: ../src/guake/prefs.py:81
 msgid "Toggle Hide on Lose Focus"
@@ -957,7 +958,7 @@ msgstr ""
 
 #: guake/main.py:153
 msgid "Return the selected tab label."
-msgstr "Geef de geselecteerde tab naam."
+msgstr "Toont het geselecteerde tabbladlabel."
 
 #: guake/data/prefs.glade:264
 msgid "Never"
@@ -965,7 +966,7 @@ msgstr "Nooit"
 
 #: guake/data/prefs.glade:265
 msgid "With process running"
-msgstr "Met draaiend proces"
+msgstr "Als er een proces wordt uitgevoerd"
 
 #: guake/data/prefs.glade:266
 msgid "Always"
@@ -973,11 +974,11 @@ msgstr "Altijd"
 
 #: guake/data/prefs.glade:499
 msgid "Refocus if open"
-msgstr ""
+msgstr "Opnieuw focussen indien geopend"
 
 #: guake/data/prefs.glade:865
 msgid "Custom command file path:"
-msgstr ""
+msgstr "Aangepaste bestandspad voor opdracht:"
 
 #: guake/data/prefs.glade:1423
 msgid "Block"
@@ -985,7 +986,7 @@ msgstr "Blokkeren"
 
 #: guake/data/prefs.glade:1424
 msgid "I-Beam"
-msgstr ""
+msgstr "I-Streepje"
 
 #: guake/data/prefs.glade:1425
 msgid "Underline"
@@ -993,15 +994,15 @@ msgstr "Onderstrepen"
 
 #: guake/data/prefs.glade:1443
 msgid "Follow GTK+ setting"
-msgstr ""
+msgstr "GTK+-instelling volgen"
 
 #: guake/data/prefs.glade:1444
 msgid "Blink on"
-msgstr ""
+msgstr "Knipperen"
 
 #: guake/data/prefs.glade:1445
 msgid "Blink off"
-msgstr ""
+msgstr "Niet knipperen"
 
 #: guake/data/prefs.glade:2236
 msgid ""
@@ -1013,86 +1014,93 @@ msgid ""
 "For example, for sublime, use <b>subl %(file_path)s:%(line_number)s</b>\n"
 "</i></small>"
 msgstr ""
+"<small><i>Gebruik de volgende elementen in de geopende bewerker:\n"
+"- <b>%(file_path)s</b>: pad naar het aangeklikte bestand\n"
+"- <b>%(line_number)s</b>: als je bewerker dit ondersteunt, dan kun je het "
+"bestand direct openen op een opgegeven regelnummer, indien aanwezig.\n"
+"\n"
+"Gebruik bijv. voor Sublime <b>subl %(file_path)s:%(line_number)s</b>\n"
+"</i></small>"
 
 #: guake/data/prefs.glade:2442 guake/data/prefs.glade:2462
 msgid "ASCII DEL"
-msgstr ""
+msgstr "ASCII DEL"
 
 #: guake/data/prefs.glade:2443 guake/data/prefs.glade:2463
 msgid "Escape sequence"
-msgstr ""
+msgstr "Escape-sequentie"
 
 #: guake/data/prefs.glade:2444 guake/data/prefs.glade:2464
 msgid "Control-H"
-msgstr ""
+msgstr "Ctrl-H"
 
 #: guake/data/prefs.glade:2665
 msgid "On start:"
-msgstr ""
+msgstr "Bij opstarten:"
 
 #: guake/data/guake-prefs.desktop:8
 msgid "Configure your Guake sessions"
-msgstr ""
+msgstr "Stel je Guake-sessies in"
 
 #: guake/data/guake-prefs.desktop:15 guake/data/guake.desktop:18
 msgid "guake"
-msgstr ""
+msgstr "guake"
 
 #: guake/data/guake-prefs.desktop:20
 msgid "Terminal;Utility;"
-msgstr ""
+msgstr "Terminal;Hulpmiddel;"
 
 #: guake/data/guake.desktop:10
 msgid "Use the command line in a Quake-like terminal"
-msgstr ""
+msgstr "Gebruik de opdrachtregel in een Quake-achtige terminal"
 
 #: guake/data/prefs.glade:770
 msgid "Main Window Horizontal Alignment"
-msgstr ""
+msgstr "Hoofdvenster - horizontale uitlijning"
 
 #: guake/prefs.py:89
 msgid "Show and focus Guake window"
-msgstr ""
+msgstr "Guake-venster tonen en focusen"
 
 #: guake/data/prefs.glade:566
 msgid "0"
-msgstr ""
+msgstr "0"
 
 #: guake/data/prefs.glade:610
 msgid "<b>Main Window Options</b>"
-msgstr ""
+msgstr "<b>Hoofdvenster-opties</b>"
 
 #: guake/data/prefs.glade:770
 msgid "Horizontal Alignment:"
-msgstr ""
+msgstr "Horizontale uitlijning:"
 
 #: guake/data/prefs.glade:855
 msgid "Height:"
-msgstr ""
+msgstr "Hoogte:"
 
 #: guake/data/prefs.glade:868
 msgid "Width:"
-msgstr ""
+msgstr "Breedte:"
 
 #: guake/data/prefs.glade:913
 msgid "<b>Geometry</b>"
-msgstr ""
+msgstr "<b>Afmetingen</b>"
 
 #: guake/data/prefs.glade:944
 msgid "Main Window"
-msgstr ""
+msgstr "Hoofdvenster"
 
 #: guake/data/prefs.glade:1197
 msgid "Infinite scrolling"
-msgstr ""
+msgstr "Oneindig terugscrollen"
 
 #: guake/data/prefs.glade:1219
 msgid "<b>Scrollbar</b>"
-msgstr ""
+msgstr "<b>Schuifbalk</b>"
 
 #: guake/data/prefs.glade:1304
 msgid "<b>Scroll to Bottom</b>"
-msgstr ""
+msgstr "<b>Naar onderkant schuiven</b>"
 
 #: guake/data/prefs.glade:2117
 msgid ""
@@ -1101,10 +1109,15 @@ msgid ""
 "terminal. See the list of currently supported text patterns used to extract "
 "filename below."
 msgstr ""
+"Snel openen is een functie die je in staat stelt een bestand direct te "
+"openen in je favoriete tekstbewerker door te klikken op de bestandsnaam van "
+"een genoemd bestand in je terminal. Hieronder vindt je een lijst van "
+"momenteel ondersteunde tekstpatronen die kunnen worden gebruikt om de "
+"bestandsnaam te achterhalen."
 
 #: guake/main.py:64
 msgid "Show Guake version number and exit"
-msgstr ""
+msgstr "Guake-versienummer tonen en afsluiten"
 
 #: guake/data/prefs.glade:93
 msgid "<span size=\"18000\"><b>Guake properties</b></span>"
@@ -1116,27 +1129,27 @@ msgstr "Pas Guake's gedrag en uiterlijk aan"
 
 #: guake/data/prefs.glade:929
 msgid "Displacement in pixels"
-msgstr ""
+msgstr "Verschuiving in pixels"
 
 #: guake/main.py:73
 msgid "Enable verbose logging"
-msgstr ""
+msgstr "Uitgebreid loggen inschakelen"
 
 #: guake/guake_app.py:680
 msgid "Quick Open: '{!s}...'"
-msgstr ""
+msgstr "Snel openen: '{!s}...'"
 
 #: guake/guake_app.py:683
 msgid "Quick Open: {!s}"
-msgstr ""
+msgstr "Snel openen: {!s}"
 
 #: guake/guake_app.py:691
 msgid "Open Link: '{!s}...'"
-msgstr ""
+msgstr "Link openen: '{!s}...'"
 
 #: guake/guake_app.py:694
 msgid "Open Link: {!s}"
-msgstr ""
+msgstr "Link openen: {!s}"
 
 #: guake/data/prefs.glade:2175
 msgid ""
@@ -1146,65 +1159,75 @@ msgid ""
 "VTE with PCRE2 enabled ! To use Quick Open, you <b>must select the text</b> "
 "before using Ctrl+click</i>."
 msgstr ""
+"<i><b>WAARSCHUWING</b>: het lijkt erop dat je systeem PCRE2 heeft "
+"uitgeschakeld voor VTE. Dit voorkomt dat applicaties zoals Guake \""
+"overeenkomsten\" met behulp van reguliere expressies kunnen vastleggen. Neem "
+"contact op met de beheerders van je distributie om een nieuwe versie van VTE "
+"met PCRE2 aan te vragen! Om Snel openen te gebruiken <b>moet je de tekst "
+"selecteren</b> vóórdat je op Ctrl+klik gebruikt</i>."
 
 #: guake/guake_app.py:680
 msgid "Quick Open: {!s}..."
-msgstr ""
+msgstr "Snel openen: {!s}..."
 
 #: guake/guake_app.py:691
 msgid "Open Link: {!s}..."
-msgstr ""
+msgstr "Link openen: {!s}..."
 
 #: guake/guake_app.py:688
 msgid "Quick Open..."
-msgstr ""
+msgstr "Snel openen..."
 
 #: guake/data/prefs.glade:223
 msgid "Start Guake at login"
-msgstr ""
+msgstr "Guake opstarten bij inloggen"
 
 #: guake/data/prefs.glade:363
 msgid "Gtk Theme:"
-msgstr ""
+msgstr "Gtk-thema:"
 
 #: guake/data/prefs.glade:387
 msgid "Prefer dark theme"
-msgstr ""
+msgstr "Voorkeur voor donker thema"
 
 #: guake/guake_app.py:435
 msgid "Custom Commands"
-msgstr ""
+msgstr "Aangepaste opdrachten"
 
 #: guake/main.py:184
 msgid ""
 "Specify the tab to rename. Default is 0. Can be used to select tab by UUID."
 msgstr ""
+"Geef het tabblad op waarvan je de naam wilt wijzigen. Standaard is dit 0. "
+"Kan worden gebruikt om te selecteren op UUID."
 
 #: guake/main.py:212
 msgid ""
 "Rename the specified tab by --tab-index. Reset to default if TITLE is a "
 "single dash \"-\"."
 msgstr ""
+"Wijzig de naam van het opgegeven tabblad met --tab-index. Herstel naar "
+"standaardwaarden als TITEL een enkel streepje \"-\" is."
 
 #: data/search.glade:138
 msgid "Search forward"
-msgstr ""
+msgstr "Voorwaarts zoeken"
 
 #: data/search.glade:153
 msgid "Match case"
-msgstr ""
+msgstr "Lettergrootte moet overeen komen"
 
 #: data/search.glade:186
 msgid "Current search direction: Backward"
-msgstr ""
+msgstr "Huidige zoekrichting: achterwaarts"
 
 #: data/prefs.glade:680
 msgid "Set window title to current tab name"
-msgstr ""
+msgstr "Venstertitel instellen op huidige tabbladnaam"
 
 #: guake/menus.py:48
 msgid "Copy Url"
-msgstr ""
+msgstr "URL kopiëren"
 
 #~ msgid "key binding error"
 #~ msgstr "Fout bij toets-binding"
