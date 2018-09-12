@@ -13,15 +13,15 @@ msgstr ""
 "Project-Id-Version: Guake 0.4.5\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-09-03 11:35+0200\n"
-"PO-Revision-Date: 2018-09-03 11:35+0200\n"
-"Last-Translator: samuelorsi125t <samuelorsi125t@gmail.com>\n"
+"PO-Revision-Date: 2018-09-13 14:16+0000\n"
+"Last-Translator: ButterflyOfFire <ButterflyOfFire@protonmail.com>\n"
 "Language-Team: French <https://hosted.weblate.org/projects/guake/guake/fr/>\n"
 "Language: fr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
-"X-Generator: Poedit 1.8.7.1\n"
+"X-Generator: Weblate 3.2-dev\n"
 
 #: guake/menus.py:20 guake/menus.py:73
 msgid "New Tab"
@@ -81,7 +81,7 @@ msgstr "Ouvrir le lien: {!s}..."
 
 #: guake/menus.py:93
 msgid "Open Link: {!s}"
-msgstr "Ouvrir le lien: {!s}..."
+msgstr "Ouvrir le lien : {!s}"
 
 #: guake/menus.py:98
 msgid "Search on Web"
@@ -461,7 +461,7 @@ msgstr "Renomme l'onglet"
 
 #: guake/dialogs.py:46
 msgid "Do you want to close the tab?"
-msgstr "Voulez-vous vraiment fermer l'onglet?"
+msgstr "Voulez-vous vraiment fermer l'onglet ?"
 
 #: guake/dialogs.py:49
 msgid "Do you really want to quit Guake?"
@@ -535,7 +535,7 @@ msgstr "Lancer Guake au login"
 
 #: data/prefs.glade:246
 msgid "Prompt on close tab:"
-msgstr "Confirmer la fermeture d'onglet:"
+msgstr "Confirmer la fermeture d'onglet :"
 
 #: data/prefs.glade:260
 msgid "Never"
@@ -567,7 +567,7 @@ msgstr "<b>Général</b>"
 
 #: data/prefs.glade:363
 msgid "Gtk Theme:"
-msgstr "Thème Gtk:"
+msgstr "Thème Gtk :"
 
 #: data/prefs.glade:387
 msgid "Prefer dark theme"
@@ -575,7 +575,7 @@ msgstr "Préférer le thème sombre"
 
 #: data/prefs.glade:416
 msgid "Custom command file path:"
-msgstr "Fichier de lignes de commande personnalisées:"
+msgstr "Fichier de lignes de commande personnalisées :"
 
 #: data/prefs.glade:428
 msgid "Please select a json file"
@@ -611,7 +611,7 @@ msgstr "Réduit des noms de dossiers dans les onglets"
 
 #: data/prefs.glade:643
 msgid "Max tab name length:"
-msgstr "Taille max de l'onglet:"
+msgstr "Longueur maximale du nom de l'onglet :"
 
 #: data/prefs.glade:658
 msgid "0"
@@ -635,7 +635,7 @@ msgstr "Apparition sur la fenêtre de la souris"
 
 #: data/prefs.glade:774
 msgid "Appear on display:"
-msgstr "Apparition sur l'écran:"
+msgstr "Apparition sur l'écran :"
 
 #: data/prefs.glade:804
 msgid "Place tabs on top"
@@ -647,7 +647,7 @@ msgstr "<b>Palette</b>"
 
 #: data/prefs.glade:862
 msgid "Horizontal Alignment:"
-msgstr "Alignement horizontal:"
+msgstr "Alignement horizontal :"
 
 #: data/prefs.glade:878
 msgid "Left"
@@ -663,11 +663,11 @@ msgstr "Droit"
 
 #: data/prefs.glade:947
 msgid "Height:"
-msgstr "Hauteur:"
+msgstr "Hauteur :"
 
 #: data/prefs.glade:960
 msgid "Width:"
-msgstr "Largeur:"
+msgstr "Largeur :"
 
 #: data/prefs.glade:1014
 msgid "Displacement in pixels"
@@ -743,7 +743,7 @@ msgstr "Choisissez une police"
 
 #: data/prefs.glade:1549
 msgid "Cursor shape:"
-msgstr "Forme du curseur:"
+msgstr "Forme du curseur :"
 
 #: data/prefs.glade:1564
 msgid "Block"
@@ -759,7 +759,7 @@ msgstr "Souligné"
 
 #: data/prefs.glade:1580
 msgid "Cursor blink mode:"
-msgstr "Mode de clignotement du curseur:"
+msgstr "Mode de clignotement du curseur :"
 
 #: data/prefs.glade:1594
 msgid "Follow GTK+ setting"
@@ -787,7 +787,7 @@ msgstr "Palette de couleurs :"
 
 #: data/prefs.glade:1711
 msgid "Demo:"
-msgstr "Demo:"
+msgstr "Démo :"
 
 #: data/prefs.glade:2014
 msgid "<b>Palette</b>"
@@ -834,7 +834,7 @@ msgstr ""
 
 #: data/prefs.glade:2310
 msgid "Editor command line:"
-msgstr "Ligne de commande de l'éditeur:"
+msgstr "Ligne de commande de l'éditeur :"
 
 #: data/prefs.glade:2356
 msgid ""
@@ -873,11 +873,11 @@ msgstr "<small>Scripts à exécuter lors d’événement:</small>"
 
 #: data/prefs.glade:2527
 msgid "On show:"
-msgstr "A l’affichage:"
+msgstr "À l’affichage :"
 
 #: data/prefs.glade:2539
 msgid "On start:"
-msgstr "Au démarrage:"
+msgstr "Au démarrage :"
 
 #: data/prefs.glade:2605
 msgid "Hooks"
