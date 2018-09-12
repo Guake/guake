@@ -23,6 +23,7 @@ import os
 import re
 import signal
 import subprocess
+import sys
 import threading
 import uuid
 
