@@ -147,12 +147,12 @@ class TerminalNotebook(Gtk.Notebook):
                     return
 
         for terminal in self.get_terminals_for_page(page_num):
-            terminal.get_parent().unset_terminal()
             if kill:
                 terminal.kill()
             terminal.destroy()
 
-        self.remove_page(page_num)
+    def remove_page(self, page_num):
+        super().remove_page(page_num)
         # focusing the first terminal on the previous page
         if self.get_current_page() > -1:
             page = self.get_nth_page(self.get_current_page())
@@ -167,6 +167,20 @@ class TerminalNotebook(Gtk.Notebook):
         self.delete_page(self.get_current_page(), kill)
 
     def new_page(self, directory=None):
+        terminal = self.terminal_spawn(directory)
+        terminal_box = TerminalBox()
+        terminal_box.set_terminal(terminal)
+        root_terminal_box = RootTerminalBox(self.guake)
+        root_terminal_box.set_child(terminal_box)
+        page_num = self.append_page(root_terminal_box, None)
+        self.set_tab_reorderable(root_terminal_box, True)
+        self.show_all()  # needed to show newly added tabs and pages
+        # this is needed to initially set the last_terminal_focused,
+        # one could also call terminal.get_parent().on_terminal_focus()
+        self.terminal_attached(terminal)
+        return root_terminal_box, page_num, terminal
+
+    def terminal_spawn(self, directory=None):
         terminal = GuakeTerminal(self.guake)
         terminal.grab_focus()
         if not isinstance(directory, str):
@@ -180,19 +194,11 @@ class TerminalNotebook(Gtk.Notebook):
             except Exception as e:
                 pass
         terminal.spawn_sync_pid(directory)
+        return terminal
 
-        terminal_box = TerminalBox()
-        terminal_box.set_terminal(terminal)
-        root_terminal_box = RootTerminalBox(self.guake)
-        root_terminal_box.set_child(terminal_box)
-        page_num = self.append_page(root_terminal_box, None)
-        self.set_tab_reorderable(root_terminal_box, True)
-        self.show_all()  # needed to show newly added tabs and pages
-        # this is needed to initially set the last_terminal_focused,
-        # one could also call terminal.get_parent().on_terminal_focus()
+    def terminal_attached(self, terminal):
         terminal.emit("focus", Gtk.DirectionType.TAB_FORWARD)
         self.emit('terminal-spawned', terminal, terminal.pid)
-        return root_terminal_box, page_num, terminal
 
     def new_page_with_focus(self, directory=None):
         box, page_num, terminal = self.new_page()

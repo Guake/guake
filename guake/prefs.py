@@ -134,6 +134,56 @@ HOTKEYS = [
         ]
     },
     {
+        'label': _('Split management'),
+        'key': 'split',
+        'keys': [
+            {
+                'key': 'split-tab-vertical',
+                'label': _('Split tab vertical')
+            },
+            {
+                'key': 'split-tab-horizontal',
+                'label': _('Split tab horizontal')
+            },
+            {
+                'key': 'close-terminal',
+                'label': _('Close terminal')
+            },
+            {
+                'key': 'focus-terminal-up',
+                'label': _('Focus terminal above')
+            },
+            {
+                'key': 'focus-terminal-down',
+                'label': _('Focus terminal below')
+            },
+            {
+                'key': 'focus-terminal-left',
+                'label': _('Focus terminal on the left')
+            },
+            {
+                'key': 'focus-terminal-right',
+                'label': _('Focus terminal on the right')
+            },
+            {
+                'key': 'move-terminal-split-up',
+                'label': _('Move the terminal split handle up')
+            },
+            {
+                'key': 'move-terminal-split-down',
+                'label': _('Move the terminal split handle down')
+            },
+            {
+                'key': 'move-terminal-split-right',
+                'label': _('Move the terminal split handle right')
+            },
+            {
+                'key': 'move-terminal-split-left',
+                'label': _('Move the terminal split handle left')
+            },
+        ]
+    },
+    {
         'label': _('Navigation'),
         'key': 'nav',
         'keys': [
