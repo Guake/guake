@@ -133,14 +133,20 @@ class TerminalBox(Gtk.Box, TerminalHolder):
         return self.terminal
 
     def get_terminals(self):
-        return [self.terminal]
+        if self.terminal is not None:
+            return [self.terminal]
+        return []
 
     def iter_terminals(self):
-        yield self.terminal
+        if self.terminal is not None:
+            yield self.terminal
 
     def replace_child(self, old, new):
         print("why would you call this on me?")
         pass
+
+    def unset_terminal(self, *args):
+        self.terminal = None
 
     def split_h(self):
         self.split(DualTerminalBox.ORIENT_H)
@@ -167,7 +173,7 @@ class TerminalBox(Gtk.Box, TerminalHolder):
     def get_root_box(self):
         return self.get_parent()
 
-    def on_terminal_focus(self,*args):
+    def on_terminal_focus(self, *args):
         self.get_root_box().set_last_terminal_focused(self.terminal)
 
     def on_button_press(self, target, event, user_data):

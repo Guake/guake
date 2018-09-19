@@ -884,7 +884,12 @@ class Guake(SimpleGladeApp):
         `delete_tab' method to do the work.
         """
         log.debug("Terminal exited: %s", term)
-        self.delete_tab(self.notebook.find_page_index_by_terminal(term), kill=False, prompt=False)
+        page_num = self.notebook.find_page_index_by_terminal(term)
+        # if page_num is -1 it means that the terminal is already removed from the
+        # page (or its children) and that the terminal-destroy was triggered by a
+        # TerminalNotebook.delete_page call, so skill deleting the page
+        if page_num != -1:
+            self.notebook.delete_page(page_num, kill=False, prompt=False)
 
     def recompute_tabs_titles(self):
         """Updates labels on all tabs. This is required when `self.abbreviate`
