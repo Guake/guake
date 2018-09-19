@@ -309,7 +309,8 @@ class GuakeTerminal(Vte.Terminal):
 
     def on_child_exited(self, target, status, *user_data):
         if libutempter is not None:
-            libutempter.utempter_remove_record(self.get_pty())
+            if self.get_pty() is not None:
+                libutempter.utempter_remove_record(self.get_pty().get_fd())
 
     def quick_open(self):
         self.copy_clipboard()

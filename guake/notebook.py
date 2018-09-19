@@ -133,7 +133,7 @@ class TerminalNotebook(Gtk.Notebook):
             yield self.get_nth_page(page_num)
 
     def delete_page(self, page_num, kill=True, prompt=False):
-        if page_num >= self.get_n_pages():
+        if page_num >= self.get_n_pages() or page_num < 0:
             log.debug("Can not delete page %s no such index", page_num)
             return
         # TODO NOTEBOOK it would be nice if none of the "ui" stuff
@@ -147,9 +147,11 @@ class TerminalNotebook(Gtk.Notebook):
                     return
 
         for terminal in self.get_terminals_for_page(page_num):
+            terminal.get_parent().unset_terminal()
             if kill:
                 terminal.kill()
             terminal.destroy()
+
         self.remove_page(page_num)
         # focusing the first terminal on the previous page
         if self.get_current_page() > -1:
