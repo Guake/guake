@@ -2322,9 +2322,9 @@ To disable a shortcut, press the "Backspace" key.</property>
                                             <property name="can_focus">False</property>
                                             <property name="has_entry">True</property>
                                             <items>
-                                              <item>subl %(filepath)s:%(line_number)s</item>
-                                              <item>code -g %(filepath)s:%(line_number)s</item>
-                                              <item>atom %(filepath)s:%(line_number)s</item>
+                                              <item>subl %(file_path)s:%(line_number)s</item>
+                                              <item>code -g %(file_path)s:%(line_number)s</item>
+                                              <item>atom %(file_path)s:%(line_number)s</item>
                                             </items>
                                             <child internal-child="entry">
                                               <object class="GtkEntry" id="quick_open_command_line">
