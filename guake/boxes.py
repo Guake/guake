@@ -115,7 +115,7 @@ class TerminalBox(Gtk.Box, TerminalHolder):
         if self.terminal is not None:
             raise RuntimeError("TerminalBox: terminal already set")
         self.terminal = terminal
-        self.terminal.connect("focus", self.on_terminal_focus)
+        self.terminal.connect("grab-focus", self.on_terminal_focus)
         self.terminal.connect("button-press-event", self.on_button_press, None)
         self.pack_start(self.terminal, True, True, 0)
         self.terminal.show()
@@ -167,7 +167,7 @@ class TerminalBox(Gtk.Box, TerminalHolder):
     def get_root_box(self):
         return self.get_parent()
 
-    def on_terminal_focus(self, direction, user_data):
+    def on_terminal_focus(self,*args):
         self.get_root_box().set_last_terminal_focused(self.terminal)
 
     def on_button_press(self, target, event, user_data):
