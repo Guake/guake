@@ -370,14 +370,8 @@ class Guake(SimpleGladeApp):
         if command[-1] != '\n':
             command += '\n'
 
-        index = self.notebook.get_current_page()
-        index = tab or self.notebook.get_current_page()
-        for terminal in self.notebook.get_terminals_for_page(index):  # TODO NOTEBOOK
-            # this is a stupid quick fix I did while rewriting the notebook to
-            # make it work some how but running the command on all terminals in a
-            # page might be a bad idea...
-            terminal.feed_child(command)
-            break
+        terminal = self.notebook.get_last_terminal_focused()
+        terminal.feed_child(command)
 
     def execute_command_by_uuid(self, tab_uuid, command):
         # TODO DBUS_ONLY
@@ -437,6 +431,7 @@ class Guake(SimpleGladeApp):
         PrefsDialog(self.settings).show()
 
     def is_iconified(self):
+        # TODO this is "dead" code only gets called to log output or in out commented code
         if self.window:
             cur_state = int(self.window.get_state())
             return bool(cur_state & GDK_WINDOW_STATE_ICONIFIED)
@@ -711,11 +706,10 @@ class Guake(SimpleGladeApp):
     def accel_reset_terminal(self, *args):
         # TODO KEYBINDINGS ONLY
         """Callback to reset and clean the terminal"""
-        # TODO PREVENTHIDE remove
-        # self.preventHide = True
+        HidePrevention(self.window).prevent()
         current_term = self.notebook.get_current_terminal()
         current_term.reset(True, True)
-        # self.preventHide = False
+        HidePrevention(self.window).allow()
         return True
 
     def accel_zoom_in(self, *args):
@@ -878,19 +872,6 @@ class Guake(SimpleGladeApp):
 
     # -- callbacks --
 
-    def on_terminal_exited(self, term, status, term1):
-        """When a terminal is closed, shell process should be killed,
-        this is the method that does that, or, at least calls
-        `delete_tab' method to do the work.
-        """
-        log.debug("Terminal exited: %s", term)
-        page_num = self.notebook.find_page_index_by_terminal(term)
-        # if page_num is -1 it means that the terminal is already removed from the
-        # page (or its children) and that the terminal-destroy was triggered by a
-        # TerminalNotebook.delete_page call, so skill deleting the page
-        if page_num != -1:
-            self.notebook.delete_page(page_num, kill=False, prompt=False)
-
     def recompute_tabs_titles(self):
         """Updates labels on all tabs. This is required when `self.abbreviate`
         changes
@@ -975,7 +956,6 @@ class Guake(SimpleGladeApp):
 
     def terminal_spawned(self, notebook, terminal, pid):
         self.load_config()
-        terminal.connect('child-exited', self.on_terminal_exited, terminal)
         terminal.connect('window-title-changed', self.on_terminal_title_changed, terminal)
 
     def add_tab(self, directory=None):

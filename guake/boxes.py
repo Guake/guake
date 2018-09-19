@@ -23,6 +23,10 @@ log = logging.getLogger(__name__)
 
 
 class TerminalHolder():
+    UP = 0
+    DOWN = 1
+    RIGHT = 2
+    LEFT = 3
 
     def get_terminals(self):
         pass
@@ -45,6 +49,12 @@ class TerminalHolder():
     def get_root_box(self):
         pass
 
+    def get_notebook(self):
+        pass
+
+    def remove_dead_child(self, child):
+        pass
+
 
 class RootTerminalBox(Gtk.Box, TerminalHolder):
 
@@ -64,7 +74,7 @@ class RootTerminalBox(Gtk.Box, TerminalHolder):
 
     def replace_child(self, old, new):
         self.remove(old)
-        self.set_child(new_child)
+        self.set_child(new)
 
     def set_child(self, terminal_holder):
         if isinstance(terminal_holder, TerminalHolder) or True:
@@ -99,6 +109,19 @@ class RootTerminalBox(Gtk.Box, TerminalHolder):
         self.last_terminal_focused = terminal
         self.guake.notebook.set_last_terminal_focused(terminal)
 
+    def get_last_terminal_focused(self, terminal):
+        return self.last_terminal_focused
+
+    def get_notebook(self):
+        return self.guake.notebook
+
+    def remove_dead_child(self, child):
+        page_num = self.guake.notebook.page_num(self)
+        self.guake.notebook.remove_page(page_num)
+
+    def move_focus(self, direction, fromChild):
+        pass
+
 
 class TerminalBox(Gtk.Box, TerminalHolder):
 
@@ -117,6 +140,8 @@ class TerminalBox(Gtk.Box, TerminalHolder):
         self.terminal = terminal
         self.terminal.connect("grab-focus", self.on_terminal_focus)
         self.terminal.connect("button-press-event", self.on_button_press, None)
+        self.terminal.connect('child-exited', self.on_terminal_exited)
+
         self.pack_start(self.terminal, True, True, 0)
         self.terminal.show()
         self.add_scroll_bar()
@@ -149,17 +174,31 @@ class TerminalBox(Gtk.Box, TerminalHolder):
         self.terminal = None
 
     def split_h(self):
-        self.split(DualTerminalBox.ORIENT_H)
-
-    def split_v(self):
         self.split(DualTerminalBox.ORIENT_V)
 
+    def split_v(self):
+        self.split(DualTerminalBox.ORIENT_H)
+
     def split(self, orientation):
+        print("in split")
+        notebook = self.get_notebook()
         parent = self.get_parent()
+        if orientation == DualTerminalBox.ORIENT_H:
+            position = self.get_allocation().width / 2
+        else:
+            position = self.get_allocation().height / 2
+
+        terminal_box = TerminalBox()
+        terminal = notebook.terminal_spawn()
+        terminal_box.set_terminal(terminal)
         dual_terminal_box = DualTerminalBox(orientation)
+        dual_terminal_box.set_position(position)
         parent.replace_child(self, dual_terminal_box)
         dual_terminal_box.set_child_first(self)
-        dual_terminal_box.set_child_second(GuakeTerminal())
+        dual_terminal_box.set_child_second(terminal_box)
+        dual_terminal_box.show()
+        dual_terminal_box.show_all()
+        notebook.terminal_attached(terminal)
 
     def get_guake(self):
         return self.get_parent().get_guake()
@@ -171,10 +210,19 @@ class TerminalBox(Gtk.Box, TerminalHolder):
         return self.get_parent().get_settings()
 
     def get_root_box(self):
-        return self.get_parent()
+        return self.get_parent().get_root_box()
+
+    def get_notebook(self):
+        return self.get_parent().get_notebook()
+
+    def remove_dead_child(self, child):
+        print("Can't do, have no \"child\"")
 
     def on_terminal_focus(self, *args):
         self.get_root_box().set_last_terminal_focused(self.terminal)
+
+    def on_terminal_exited(self, *args):
+        self.get_parent().remove_dead_child(self)
 
     def on_button_press(self, target, event, user_data):
         if event.button == 3:
@@ -211,6 +259,7 @@ class DualTerminalBox(Gtk.Paned, TerminalHolder):
     def __init__(self, orientation):
         super().__init__()
 
+        self.orient = orientation
         if orientation is DualTerminalBox.ORIENT_H:
             self.set_orientation(orientation=Gtk.Orientation.HORIZONTAL)
         else:
@@ -232,13 +281,17 @@ class DualTerminalBox(Gtk.Paned, TerminalHolder):
         return self.get_child1().get_terminals() + self.get_child2().get_terminals()
 
     def iter_terminals(self):
-        self.get_child1().iter_terminals(self)
-        self.get_child2().iter_terminals(self)
+        for t in self.get_child1().iter_terminals():
+            yield t
+        for t in self.get_child2().iter_terminals():
+            yield t
 
     def replace_child(self, old, new):
         if self.get_child1() is old:
+            self.remove(old)
             self.set_child_first(new)
         elif self.get_child2() is old:
+            self.remove(old)
             self.set_child_second(new)
         else:
             print("I have never seen this widget!")
@@ -253,7 +306,22 @@ class DualTerminalBox(Gtk.Paned, TerminalHolder):
         return self.get_parent().get_settings()
 
     def get_root_box(self):
-        return self.get_parent()
+        return self.get_parent().get_root_box()
+
+    def get_notebook(self):
+        return self.get_parent().get_notebook()
+
+    def remove_dead_child(self, child):
+        if self.get_child1() is child:
+            livingChild = self.get_child2()
+            self.remove(livingChild)
+            self.get_parent().replace_child(self, livingChild)
+        elif self.get_child2() is child:
+            livingChild = self.get_child1()
+            self.remove(livingChild)
+            self.get_parent().replace_child(self, livingChild)
+        else:
+            print("I have never seen this widget!")
 
 
 class TabLabelEventBox(Gtk.EventBox):

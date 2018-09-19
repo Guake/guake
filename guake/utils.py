@@ -1,5 +1,6 @@
 # -*- coding: utf-8; -*-
 """
+Copyright (C) 2018 Mario Aichinger <aichingm@gmail.com>
 Copyright (C) 2007-2012 Lincoln de Sousa <lincoln@minaslivre.org>
 Copyright (C) 2007 Gabriel Falcão <gabrielteratos@gmail.com>
 

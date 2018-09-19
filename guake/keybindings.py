@@ -25,6 +25,8 @@ from gi.repository import Gtk
 
 from guake import notifier
 from guake.common import pixmapfile
+from guake.split_utils import FocusMover
+from guake.split_utils import SplitMover
 from locale import gettext as _
 
 log = logging.getLogger(__name__)
@@ -59,7 +61,10 @@ class Keybindings():
             'toggle-transparency', "search-on-web", 'move-tab-left', 'move-tab-right',
             'switch-tab1', 'switch-tab2', 'switch-tab3', 'switch-tab4', 'switch-tab5',
             'switch-tab6', 'switch-tab7', 'switch-tab8', 'switch-tab9', 'switch-tab10',
-            'switch-tab-last', 'reset-terminal'
+            'switch-tab-last', 'reset-terminal', 'split-tab-vertical', 'split-tab-horizontal',
+            'close-terminal', 'focus-terminal-up', 'focus-terminal-down', 'focus-terminal-right',
+            'focus-terminal-left', 'move-terminal-split-up', 'move-terminal-split-down',
+            'move-terminal-split-left', 'move-terminal-split-right'
         ]
         for key in keys:
             guake.settings.keybindingsLocal.onChangedValue(key, self.reload_accelerators)
@@ -248,3 +253,112 @@ class Keybindings():
                 )
         except Exception:
             log.exception("Exception occured")
+
+        key, mask = Gtk.accelerator_parse(getk('split-tab-vertical'))
+        if key > 0:
+            self.accel_group.connect(
+                key,
+                mask,
+                Gtk.AccelFlags.VISIBLE,
+                (
+                    lambda *args:  # keep make style from concat this lines
+                    self.guake.notebook.get_current_terminal().get_parent().split_v() or True
+                )
+            )
+        key, mask = Gtk.accelerator_parse(getk('split-tab-horizontal'))
+        if key > 0:
+            self.accel_group.connect(
+                key,
+                mask,
+                Gtk.AccelFlags.VISIBLE,
+                (
+                    lambda *args:  # keep make style from concat this lines
+                    self.guake.notebook.get_current_terminal().get_parent().split_h() or True
+                )
+            )
+        key, mask = Gtk.accelerator_parse(getk('close-terminal'))
+        if key > 0:
+            self.accel_group.connect(
+                key, mask, Gtk.AccelFlags.VISIBLE,
+                (lambda *args: self.guake.notebook.get_current_terminal().kill() or True)
+            )
+        key, mask = Gtk.accelerator_parse(getk('focus-terminal-up'))
+        if key > 0:
+            self.accel_group.connect(
+                key, mask, Gtk.AccelFlags.VISIBLE, (
+                    lambda *args:
+                        FocusMover(self.guake.window).move_up(
+                            self.guake.notebook.get_current_terminal()
+                        ) or True)
+            )
+        key, mask = Gtk.accelerator_parse(getk('focus-terminal-down'))
+        if key > 0:
+            self.accel_group.connect(
+                key, mask, Gtk.AccelFlags.VISIBLE, (
+                    lambda *args:
+                        FocusMover(self.guake.window).move_down(
+                            self.guake.notebook.get_current_terminal()
+                        ) or True)
+            )
+        key, mask = Gtk.accelerator_parse(getk('focus-terminal-right'))
+        if key > 0:
+            self.accel_group.connect(
+                key, mask, Gtk.AccelFlags.VISIBLE, (
+                    lambda *args:
+                        FocusMover(self.guake.window).move_right(
+                            self.guake.notebook.get_current_terminal()
+                        ) or True)
+            )
+        key, mask = Gtk.accelerator_parse(getk('focus-terminal-left'))
+        if key > 0:
+            self.accel_group.connect(
+                key, mask, Gtk.AccelFlags.VISIBLE, (
+                    lambda *args:
+                        FocusMover(self.guake.window).move_left(
+                            self.guake.notebook.get_current_terminal()
+                        ) or True)
+            )
+        key, mask = Gtk.accelerator_parse(getk('move-terminal-split-up'))
+        if key > 0:
+            self.accel_group.connect(
+                key,
+                mask,
+                Gtk.AccelFlags.VISIBLE,
+                (
+                    lambda *args:  # keep make style from concat this lines
+                    SplitMover.move_up(self.guake.notebook.get_current_terminal()) or True
+                )
+            )
+        key, mask = Gtk.accelerator_parse(getk('move-terminal-split-down'))
+        if key > 0:
+            self.accel_group.connect(
+                key,
+                mask,
+                Gtk.AccelFlags.VISIBLE,
+                (
+                    lambda *args:  # keep make style from concat this lines
+                    SplitMover.move_down(self.guake.notebook.get_current_terminal()) or True
+                )
+            )
+        key, mask = Gtk.accelerator_parse(getk('move-terminal-split-left'))
+        if key > 0:
+            self.accel_group.connect(
+                key,
+                mask,
+                Gtk.AccelFlags.VISIBLE,
+                (
+                    lambda *args:  # keep make style from concat this lines
+                    SplitMover.move_left(self.guake.notebook.get_current_terminal()) or True
+                )
+            )
+        key, mask = Gtk.accelerator_parse(getk('move-terminal-split-right'))
+        if key > 0:
+            self.accel_group.connect(
+                key,
+                mask,
+                Gtk.AccelFlags.VISIBLE,
+                (
+                    lambda *args:  # keep make style from concat this lines
+                    SplitMover.move_right(self.guake.notebook.get_current_terminal()) or True
+                )
+            )

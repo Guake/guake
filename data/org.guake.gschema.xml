@@ -463,6 +463,61 @@
             <summary>Last tab.</summary>
             <description>Switch to the last tab.</description>
         </key>
+        <key name="split-tab-vertical" type="s">
+            <default>'&lt;Super&gt;less'</default>
+            <summary>Split tab vertical.</summary>
+            <description>Split tab vertical.</description>
+        </key>
+        <key name="split-tab-horizontal" type="s">
+            <default>'&lt;Super&gt;minus'</default>
+            <summary>Split tab horizontal.</summary>
+            <description>Split tab horizontal.</description>
+        </key>
+        <key name="close-terminal" type="s">
+            <default>'&lt;Super&gt;x'</default>
+            <summary>Close terminal.</summary>
+            <description>Close the currently focused terminal.</description>
+        </key>
+        <key name="focus-terminal-up" type="s">
+            <default>'&lt;Super&gt;&lt;Shift&gt;Up'</default>
+            <summary>Focus terminal above.</summary>
+            <description>Focus terminal above.</description>
+        </key>
+        <key name="focus-terminal-down" type="s">
+            <default>'&lt;Super&gt;&lt;Shift&gt;Down'</default>
+            <summary>Focus terminal below.</summary>
+            <description>Focus terminal below.</description>
+        </key>
+        <key name="focus-terminal-right" type="s">
+            <default>'&lt;Super&gt;&lt;Shift&gt;Right'</default>
+            <summary>Focus terminal on the right.</summary>
+            <description>Focus terminal on the right.</description>
+        </key>
+        <key name="focus-terminal-left" type="s">
+            <default>'&lt;Super&gt;&lt;Shift&gt;Left'</default>
+            <summary>Focus terminal on the left.</summary>
+            <description>Focus terminal on the left.</description>
+        </key>
+        <key name="move-terminal-split-up" type="s">
+            <default>''</default>
+            <summary>Move the terminal split handle up.</summary>
+            <description>Move the terminal split handle up.</description>
+        </key>
+        <key name="move-terminal-split-down" type="s">
+            <default>''</default>
+            <summary>Move the terminal split handle down.</summary>
+            <description>Move the terminal split handle down.</description>
+        </key>
+        <key name="move-terminal-split-left" type="s">
+            <default>''</default>
+            <summary>Move the terminal split handle left.</summary>
+            <description>Move the terminal split handle left.</description>
+        </key>
+        <key name="move-terminal-split-right" type="s">
+            <default>''</default>
+            <summary>Move the terminal split handle right.</summary>
+            <description>Move the terminal split handle right.</description>
+        </key>
     </schema>
     <schema id="guake.hooks" path="/apps/guake/hooks/">
         <key name="show" type="s">

@@ -94,6 +94,15 @@ class TerminalContextMenuCallbacks():
     def on_quit(self, *args):
         self.notebook.guake.accel_quit()
 
+    def on_split_vertical(self, *args):
+        self.terminal.get_parent().split_v()
+
+    def on_split_horizontal(self, *args):
+        self.terminal.get_parent().split_h()
+
+    def on_close_terminal(self, *args):
+        self.terminal.kill()
+
 
 class NotebookScrollCallback():
 
