@@ -262,19 +262,22 @@ class GuakeTerminal(Vte.Terminal):
 
         pt = Path(text)
         log.debug("checking file existance: %r", pt)
-        if pt.exists():
-            lineno = find_lineno(text, pt, lineno, py_func)
-            log.info("File exists: %r, line=%r", pt.absolute().as_posix(), lineno)
-            return (pt, lineno, colno)
-        log.debug("No file found matching: %r", text)
-        cwd = self.get_current_directory()
-        pt = Path(cwd) / pt
-        log.debug("checking file existance: %r", pt)
-        if pt.exists():
-            lineno = find_lineno(text, pt, lineno, py_func)
-            log.info("File exists: %r, line=%r", pt.absolute().as_posix(), lineno)
-            return (pt, lineno, colno)
-        log.info("file does not exist: %s", str(pt))
+        try:
+            if pt.exists():
+                lineno = find_lineno(text, pt, lineno, py_func)
+                log.info("File exists: %r, line=%r", pt.absolute().as_posix(), lineno)
+                return (pt, lineno, colno)
+            log.debug("No file found matching: %r", text)
+            cwd = self.get_current_directory()
+            pt = Path(cwd) / pt
+            log.debug("checking file existance: %r", pt)
+            if pt.exists():
+                lineno = find_lineno(text, pt, lineno, py_func)
+                log.info("File exists: %r, line=%r", pt.absolute().as_posix(), lineno)
+                return (pt, lineno, colno)
+            log.debug("file does not exist: %s", str(pt))
+        except OSError:
+            log.debug("not a file name: %r", text)
         return (None, None, None)
 
     def button_press(self, terminal, event):
