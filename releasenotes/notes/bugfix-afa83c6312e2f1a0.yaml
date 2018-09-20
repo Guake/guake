@@ -1,0 +1,3 @@
+fixes:
+  - |
+    Fix multiline selection right click (#1413)
