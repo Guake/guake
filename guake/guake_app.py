@@ -914,7 +914,7 @@ class Guake(SimpleGladeApp):
             self.notebook.rename_page(page_num, title, False)
             self.update_window_title(title)
         else:
-            text = self.notebook.get_tab_text_page(page)
+            text = self.notebook.get_tab_text_page(box)
             if text:
                 self.update_window_title(text)
 
