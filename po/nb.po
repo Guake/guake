@@ -133,8 +133,8 @@ msgid ""
 "guake -r \"main\" -e \"cd ~/projects/myproject/main\"\n"
 "guake -r \"prod\" -e \"cd ~/projects/myproject/prod\"\n"
 msgstr ""
-"Sti til Bash-skript som startes ved åpning av Guake, med mindre du angir "
-"--no-startup-script.\n"
+"Sti til Bash-skript som startes ved åpning av Guake, med mindre du angir --"
+"no-startup-script.\n"
 "\n"
 "Dette vil typisk bruke oppsettet i kommandolinjefuksjonen i Guake:\n"
 "\n"
@@ -465,8 +465,8 @@ msgid ""
 "For example, for sublime, use <b>subl %(file_path)s:%(line_number)s</b>\n"
 "</i></small>"
 msgstr ""
-"<small><i>Bruk følgende elementer i den åpne tekstbehandlerens kommandolinje:"
-"\n"
+"<small><i>Bruk følgende elementer i den åpne tekstbehandlerens "
+"kommandolinje:\n"
 " - <b>%(file_path)s</b>: Sti til filen som har blitt klikket\n"
 " - <b>%(line_number)s</b>: Hvis din tekstbehandler støtter det, kan du "
 "direkte åpne en fil til et gitt linjenummer når funnet på skjermen.\n"
@@ -1015,8 +1015,8 @@ msgid ""
 "For example, for sublime, use <b>subl %(file_path)s:%(line_number)s</b>\n"
 "</i></small>"
 msgstr ""
-"<small><i>Bruk følgende elementer i den åpne tekstbehandlerens kommandolinje:"
-"\n"
+"<small><i>Bruk følgende elementer i den åpne tekstbehandlerens "
+"kommandolinje:\n"
 " - <b>%(file_path)s</b>: Sti til filen som har blitt klikket\n"
 " - <b>%(line_number)s</b>: Hvis din tekstbehandler støtter det, kan du "
 "direkte åpne en fil til et gitt linjenummer når funnet på skjermen.\n"
@@ -1263,6 +1263,70 @@ msgstr "Sett vindustittel til gjeldende fanenavn"
 #, fuzzy
 msgid "Copy Url"
 msgstr "Kopier nettadresse"
+
+#: guake/menus.py:62
+msgid "Split ―"
+msgstr ""
+
+#: guake/menus.py:65
+msgid "Split  "
+msgstr ""
+
+#: guake/menus.py:68 guake/prefs.py:150
+msgid "Close terminal"
+msgstr ""
+
+#: guake/prefs.py:137
+msgid "Split management"
+msgstr ""
+
+#: guake/prefs.py:142
+msgid "Split tab vertical"
+msgstr ""
+
+#: guake/prefs.py:146
+msgid "Split tab horizontal"
+msgstr ""
+
+#: guake/prefs.py:154
+msgid "Focus terminal above"
+msgstr ""
+
+#: guake/prefs.py:158
+msgid "Focus terminal below"
+msgstr ""
+
+#: guake/prefs.py:162
+msgid "Focus terminal on the left"
+msgstr ""
+
+#: guake/prefs.py:166
+msgid "Focus terminal on the right"
+msgstr ""
+
+#: guake/prefs.py:170
+msgid "Move the terminal split handle up"
+msgstr ""
+
+#: guake/prefs.py:174
+msgid "Move the terminal split handle down"
+msgstr ""
+
+#: guake/prefs.py:178
+msgid "Move the terminal split handle right"
+msgstr ""
+
+#: guake/prefs.py:182
+msgid "Move the terminal split handle left"
+msgstr ""
+
+#: guake/menus.py:65
+msgid "Split ｜"
+msgstr ""
+
+#: guake/menus.py:72
+msgid "Save content..."
+msgstr ""
 
 #~ msgid "key binding error"
 #~ msgstr "Hurtigtast error"
