@@ -316,10 +316,12 @@ class DualTerminalBox(Gtk.Paned, TerminalHolder):
             livingChild = self.get_child2()
             self.remove(livingChild)
             self.get_parent().replace_child(self, livingChild)
+            livingChild.get_terminal().grab_focus()
         elif self.get_child2() is child:
             livingChild = self.get_child1()
             self.remove(livingChild)
             self.get_parent().replace_child(self, livingChild)
+            livingChild.get_terminal().grab_focus()
         else:
             print("I have never seen this widget!")
 
