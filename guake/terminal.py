@@ -491,6 +491,8 @@ class GuakeTerminal(Vte.Terminal):
         if login_shell:
             argv.append('--login')
 
+        log.debug("Spawn command: \"%s\"", " ".join(argv))
+
         pid = self.spawn_sync(
             Vte.PtyFlags.DEFAULT, directory, argv, [], GLib.SpawnFlags.DO_NOT_REAP_CHILD, None,
             None, None
