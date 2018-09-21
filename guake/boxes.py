@@ -180,7 +180,6 @@ class TerminalBox(Gtk.Box, TerminalHolder):
         self.split(DualTerminalBox.ORIENT_H)
 
     def split(self, orientation):
-        print("in split")
         notebook = self.get_notebook()
         parent = self.get_parent()
         if orientation == DualTerminalBox.ORIENT_H:
