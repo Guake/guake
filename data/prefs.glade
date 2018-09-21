@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Generated with glade 3.20.0 -->
+<!-- Generated with glade 3.22.1 -->
 <interface domain="guake">
   <requires lib="gtk+" version="3.18"/>
   <object class="GtkAdjustment" id="max_tab_name_length_adj">
@@ -48,6 +48,9 @@
     <property name="urgency_hint">True</property>
     <property name="gravity">center</property>
     <property name="startup_id">Guake Preferences</property>
+    <child type="titlebar">
+      <placeholder/>
+    </child>
     <child>
       <object class="GtkBox" id="vbox4">
         <property name="visible">True</property>
@@ -1149,6 +1152,7 @@
                                     <property name="visible">True</property>
                                     <property name="can_focus">False</property>
                                     <property name="halign">start</property>
+                                    <property name="margin_right">4</property>
                                     <property name="margin_top">4</property>
                                     <property name="orientation">vertical</property>
                                     <property name="spacing">6</property>
@@ -1160,7 +1164,6 @@
                                         <property name="receives_default">False</property>
                                         <property name="halign">start</property>
                                         <property name="use_underline">True</property>
-                                        <property name="xalign">0.5</property>
                                         <property name="draw_indicator">True</property>
                                         <signal name="toggled" handler="on_use_login_shell_toggled" swapped="no"/>
                                       </object>
@@ -1171,6 +1174,25 @@
                                       </packing>
                                     </child>
                                     <child>
+                                      <object class="GtkLabel">
+                                        <property name="visible">True</property>
+                                        <property name="can_focus">False</property>
+                                        <property name="halign">start</property>
+                                        <property name="margin_left">25</property>
+                                        <property name="label" translatable="yes">This might not work on all shells, make sure that your shell supports the --login option</property>
+                                        <property name="track_visited_links">False</property>
+                                        <attributes>
+                                          <attribute name="style" value="italic"/>
+                                          <attribute name="weight" value="light"/>
+                                        </attributes>
+                                      </object>
+                                      <packing>
+                                        <property name="expand">True</property>
+                                        <property name="fill">True</property>
+                                        <property name="position">1</property>
+                                      </packing>
+                                    </child>
+                                    <child>
                                       <object class="GtkCheckButton" id="open_tab_cwd">
                                         <property name="label" translatable="yes">_Open new tab in current directory</property>
                                         <property name="visible">True</property>
@@ -1178,14 +1200,13 @@
                                         <property name="receives_default">False</property>
                                         <property name="halign">start</property>
                                         <property name="use_underline">True</property>
-                                        <property name="xalign">0.5</property>
                                         <property name="draw_indicator">True</property>
                                         <signal name="toggled" handler="on_open_tab_cwd_toggled" swapped="no"/>
                                       </object>
                                       <packing>
                                         <property name="expand">False</property>
                                         <property name="fill">False</property>
-                                        <property name="position">1</property>
+                                        <property name="position">2</property>
                                       </packing>
                                     </child>
                                   </object>
@@ -2824,9 +2845,6 @@ For example, for sublime, use &lt;b&gt;subl %(file_path)s:%(line_number)s&lt;/b&
           </packing>
         </child>
       </object>
-    </child>
-    <child type="titlebar">
-      <placeholder/>
     </child>
   </object>
 </interface>
