@@ -1160,11 +1160,11 @@ msgid ""
 "before using Ctrl+click</i>."
 msgstr ""
 "<i><b>WAARSCHUWING</b>: het lijkt erop dat je systeem PCRE2 heeft "
-"uitgeschakeld voor VTE. Dit voorkomt dat applicaties zoals Guake \""
-"overeenkomsten\" met behulp van reguliere expressies kunnen vastleggen. Neem "
-"contact op met de beheerders van je distributie om een nieuwe versie van VTE "
-"met PCRE2 aan te vragen! Om Snel openen te gebruiken <b>moet je de tekst "
-"selecteren</b> vóórdat je op Ctrl+klik gebruikt</i>."
+"uitgeschakeld voor VTE. Dit voorkomt dat applicaties zoals Guake "
+"\"overeenkomsten\" met behulp van reguliere expressies kunnen vastleggen. "
+"Neem contact op met de beheerders van je distributie om een nieuwe versie "
+"van VTE met PCRE2 aan te vragen! Om Snel openen te gebruiken <b>moet je de "
+"tekst selecteren</b> vóórdat je op Ctrl+klik gebruikt</i>."
 
 #: guake/guake_app.py:680
 msgid "Quick Open: {!s}..."
@@ -1228,6 +1228,70 @@ msgstr "Venstertitel instellen op huidige tabbladnaam"
 #: guake/menus.py:48
 msgid "Copy Url"
 msgstr "URL kopiëren"
+
+#: guake/menus.py:62
+msgid "Split ―"
+msgstr ""
+
+#: guake/menus.py:65
+msgid "Split  "
+msgstr ""
+
+#: guake/menus.py:68 guake/prefs.py:150
+msgid "Close terminal"
+msgstr ""
+
+#: guake/prefs.py:137
+msgid "Split management"
+msgstr ""
+
+#: guake/prefs.py:142
+msgid "Split tab vertical"
+msgstr ""
+
+#: guake/prefs.py:146
+msgid "Split tab horizontal"
+msgstr ""
+
+#: guake/prefs.py:154
+msgid "Focus terminal above"
+msgstr ""
+
+#: guake/prefs.py:158
+msgid "Focus terminal below"
+msgstr ""
+
+#: guake/prefs.py:162
+msgid "Focus terminal on the left"
+msgstr ""
+
+#: guake/prefs.py:166
+msgid "Focus terminal on the right"
+msgstr ""
+
+#: guake/prefs.py:170
+msgid "Move the terminal split handle up"
+msgstr ""
+
+#: guake/prefs.py:174
+msgid "Move the terminal split handle down"
+msgstr ""
+
+#: guake/prefs.py:178
+msgid "Move the terminal split handle right"
+msgstr ""
+
+#: guake/prefs.py:182
+msgid "Move the terminal split handle left"
+msgstr ""
+
+#: guake/menus.py:65
+msgid "Split ｜"
+msgstr ""
+
+#: guake/menus.py:72
+msgid "Save content..."
+msgstr ""
 
 #~ msgid "key binding error"
 #~ msgstr "Fout bij toets-binding"

@@ -12,8 +12,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Guake 0.4.5\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-09-03 11:35+0200\n"
-"PO-Revision-Date: 2018-09-13 14:16+0000\n"
+"POT-Creation-Date: 2018-09-21 10:34+0200\n"
+"PO-Revision-Date: 2018-09-21 10:34+0200\n"
 "Last-Translator: ButterflyOfFire <ButterflyOfFire@protonmail.com>\n"
 "Language-Team: French <https://hosted.weblate.org/projects/guake/guake/fr/>\n"
 "Language: fr\n"
@@ -21,9 +21,9 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
-"X-Generator: Weblate 3.2-dev\n"
+"X-Generator: Poedit 1.8.7.1\n"
 
-#: guake/menus.py:20 guake/menus.py:73
+#: guake/menus.py:20 guake/menus.py:83
 msgid "New Tab"
 msgstr "Nouvel onglet"
 
@@ -52,63 +52,75 @@ msgid "Toggle Fullscreen"
 msgstr "Activer/Désactiver le plein écran"
 
 #: guake/menus.py:62
-msgid "Save to File..."
-msgstr "Enregister..."
+msgid "Split ―"
+msgstr "Découper ―"
 
-#: guake/menus.py:65 guake/prefs.py:114
+#: guake/menus.py:65
+msgid "Split ｜"
+msgstr "Découper ｜"
+
+#: guake/menus.py:68 guake/prefs.py:150
+msgid "Close terminal"
+msgstr "Fermer ce terminal"
+
+#: guake/menus.py:72
+msgid "Save content..."
+msgstr "Enregistrer le contenu..."
+
+#: guake/menus.py:75 guake/prefs.py:114
 msgid "Reset terminal"
 msgstr "Mise à zéro du terminal"
 
-#: guake/menus.py:69
+#: guake/menus.py:79
 msgid "Find..."
 msgstr "Recherche..."
 
-#: guake/menus.py:76
+#: guake/menus.py:86
 msgid "Rename Tab"
 msgstr "Renommer l'onglet"
 
-#: guake/menus.py:79
+#: guake/menus.py:89
 msgid "Close Tab"
 msgstr "Fermer onglet"
 
-#: guake/menus.py:83
+#: guake/menus.py:93
 msgid "Open link..."
 msgstr "Ouvrir le lien..."
 
-#: guake/menus.py:91
+#: guake/menus.py:101
 msgid "Open Link: {!s}..."
 msgstr "Ouvrir le lien: {!s}..."
 
-#: guake/menus.py:93
+#: guake/menus.py:103
 msgid "Open Link: {!s}"
 msgstr "Ouvrir le lien : {!s}"
 
-#: guake/menus.py:98
+#: guake/menus.py:108
 msgid "Search on Web"
 msgstr "Rechercher sur le Web"
 
-#: guake/menus.py:105
+#: guake/menus.py:115
 #, python-format
 msgid "Search on Web: '%s'"
 msgstr "Rechercher sur le Web: '%s'"
 
-#: guake/menus.py:110
+#: guake/menus.py:120
 msgid "Quick Open..."
 msgstr "Ouverture Rapide..."
 
-#: guake/menus.py:118
+#: guake/menus.py:128
 msgid "Quick Open: {!s}..."
 msgstr "Ouverture Rapide: {!s}..."
 
-#: guake/menus.py:121
+#: guake/menus.py:131
 msgid "Quick Open: {!s}"
 msgstr "Ouverture Rapide: {!s}"
 
-#: guake/menus.py:133
+#: guake/menus.py:143
 msgid "Custom Commands"
 msgstr "Commandes personnalisées:"
 
-#: guake/menus.py:146 guake/prefs.py:110
+#: guake/menus.py:156 guake/prefs.py:110
 msgid "Quit"
 msgstr "Quitter"
 
@@ -149,155 +161,199 @@ msgid "Rename current tab"
 msgstr "Renommer l'onglet actuel"
 
 #: guake/prefs.py:137
+msgid "Split management"
+msgstr "Gestion multi-terminal"
+
+#: guake/prefs.py:142
+msgid "Split tab vertical"
+msgstr "Découpage vertical"
+
+#: guake/prefs.py:146
+msgid "Split tab horizontal"
+msgstr "Découpage horizontal"
+
+#: guake/prefs.py:154
+msgid "Focus terminal above"
+msgstr "Activer le terminal au dessus"
+
+#: guake/prefs.py:158
+msgid "Focus terminal below"
+msgstr "Activer le teminal en dessous"
+
+#: guake/prefs.py:162
+msgid "Focus terminal on the left"
+msgstr "Activer le terminal à gauche"
+
+#: guake/prefs.py:166
+msgid "Focus terminal on the right"
+msgstr "Activer le terminal à droite"
+
+#: guake/prefs.py:170
+msgid "Move the terminal split handle up"
+msgstr "Déplacer la poignée vers le haut"
+
+#: guake/prefs.py:174
+msgid "Move the terminal split handle down"
+msgstr "Déplacer la poignée vers le bas"
+
+#: guake/prefs.py:178
+msgid "Move the terminal split handle right"
+msgstr "Déplacer la poignée vers la droite"
+
+#: guake/prefs.py:182
+msgid "Move the terminal split handle left"
+msgstr "Déplacer la poignée vers la gauche"
+
+#: guake/prefs.py:187
 msgid "Navigation"
 msgstr "Navigation"
 
-#: guake/prefs.py:142
+#: guake/prefs.py:192
 msgid "Go to previous tab"
 msgstr "Aller à l'onglet précédent"
 
-#: guake/prefs.py:146
+#: guake/prefs.py:196
 msgid "Go to next tab"
 msgstr "Aller à l'onglet suivant"
 
-#: guake/prefs.py:150
+#: guake/prefs.py:200
 msgid "Move current tab left"
 msgstr "Déplacer à gauche l'onglet actuel"
 
-#: guake/prefs.py:154
+#: guake/prefs.py:204
 msgid "Move current tab right"
 msgstr "Déplacer à droite l'onglet actuel"
 
-#: guake/prefs.py:158
+#: guake/prefs.py:208
 msgid "Go to first tab"
 msgstr "Aller au premier onglet"
 
-#: guake/prefs.py:162
+#: guake/prefs.py:212
 msgid "Go to second tab"
 msgstr "Aller au second onglet"
 
-#: guake/prefs.py:166
+#: guake/prefs.py:216
 msgid "Go to third tab"
 msgstr "Aller au troisième onglet"
 
-#: guake/prefs.py:170
+#: guake/prefs.py:220
 msgid "Go to fourth tab"
 msgstr "Aller au quatrième onglet"
 
-#: guake/prefs.py:174
+#: guake/prefs.py:224
 msgid "Go to fifth tab"
 msgstr "Aller au cinquième onglet"
 
-#: guake/prefs.py:178
+#: guake/prefs.py:228
 msgid "Go to sixth tab"
 msgstr "Aller au sixième onglet"
 
-#: guake/prefs.py:182
+#: guake/prefs.py:232
 msgid "Go to seventh tab"
 msgstr "Aller au septième onglet"
 
-#: guake/prefs.py:186
+#: guake/prefs.py:236
 msgid "Go to eighth tab"
 msgstr "Aller au huitième onglet"
 
-#: guake/prefs.py:190
+#: guake/prefs.py:240
 msgid "Go to ninth tab"
 msgstr "Aller au neuvième onglet"
 
-#: guake/prefs.py:194
+#: guake/prefs.py:244
 msgid "Go to tenth tab"
 msgstr "Aller au dixième onglet"
 
-#: guake/prefs.py:198
+#: guake/prefs.py:248
 msgid "Go to last tab"
 msgstr "Aller au dernier onglet"
 
-#: guake/prefs.py:203
+#: guake/prefs.py:253
 msgid "Appearance"
 msgstr "Apparence"
 
-#: guake/prefs.py:207
+#: guake/prefs.py:257
 msgid "Zoom out"
 msgstr "Dézoomer"
 
-#: guake/prefs.py:210
+#: guake/prefs.py:260
 msgid "Zoom in"
 msgstr "Zoomer"
 
-#: guake/prefs.py:213
+#: guake/prefs.py:263
 msgid "Zoom in (alternative)"
 msgstr "Zoomer (alternatif)"
 
-#: guake/prefs.py:216
+#: guake/prefs.py:266
 msgid "Increase height"
 msgstr "Augmenter la taille"
 
-#: guake/prefs.py:219
+#: guake/prefs.py:269
 msgid "Decrease height"
 msgstr "Réduire la taille"
 
-#: guake/prefs.py:222
+#: guake/prefs.py:272
 msgid "Increase transparency"
 msgstr "Augmenter la transparence"
 
-#: guake/prefs.py:225
+#: guake/prefs.py:275
 msgid "Decrease transparency"
 msgstr "Réduire la transparence"
 
-#: guake/prefs.py:228
+#: guake/prefs.py:278
 msgid "Toggle transparency"
 msgstr "Activer/Désactiver la transparence"
 
-#: guake/prefs.py:232
+#: guake/prefs.py:282
 msgid "Clipboard"
 msgstr "Presse-papiers"
 
-#: guake/prefs.py:237
+#: guake/prefs.py:287
 msgid "Copy text to clipboard"
 msgstr "Copier dans le presse-papiers"
 
-#: guake/prefs.py:241
+#: guake/prefs.py:291
 msgid "Paste text from clipboard"
 msgstr "Coller à partir du presse-papiers"
 
-#: guake/prefs.py:246
+#: guake/prefs.py:296
 msgid "Extra features"
 msgstr "Extra"
 
-#: guake/prefs.py:250
+#: guake/prefs.py:300
 msgid "Search select text on web"
 msgstr "Rechercher le texte sélectionné sur le Web"
 
-#: guake/prefs.py:687
+#: guake/prefs.py:737
 msgid "Action"
 msgstr "Action"
 
-#: guake/prefs.py:695
+#: guake/prefs.py:745
 msgid "Shortcut"
 msgstr "Raccourcis"
 
-#: guake/prefs.py:856 guake/prefs.py:910
+#: guake/prefs.py:906 guake/prefs.py:960
 msgid "Custom"
 msgstr "Personnalisé"
 
-#: guake/prefs.py:1200
+#: guake/prefs.py:1250
 msgid "JSON files"
 msgstr "Fichiers JSON"
 
-#: guake/prefs.py:1204 guake/dialogs.py:106
+#: guake/prefs.py:1254 guake/dialogs.py:106
 msgid "All files"
 msgstr "Tous les fichiers"
 
-#: guake/prefs.py:1299
+#: guake/prefs.py:1349
 #, python-format
 msgid "The shortcut \"%s\" is already in use."
 msgstr "Le raccourcis « %s » est déjà utilisé."
 
-#: guake/prefs.py:1300
+#: guake/prefs.py:1350
 msgid "Error setting keybinding."
 msgstr "Erreur d'attribution des raccourcis."
 
-#: guake/prefs.py:1316
+#: guake/prefs.py:1366
 #, python-format
 msgid ""
 "The shortcut \"%s\" cannot be used because it will become impossible to type "
@@ -404,7 +460,7 @@ msgstr "Dis au-revoir à Guake =("
 msgid "Do not execute the start up script"
 msgstr "Ne pas executer le script de démarrage"
 
-#: guake/guake_app.py:154 guake/guake_app.py:273 guake/keybindings.py:87
+#: guake/guake_app.py:154 guake/guake_app.py:273 guake/keybindings.py:92
 #: guake/about.py:54
 msgid "Guake Terminal"
 msgstr "Terminal Guake"
@@ -429,23 +485,23 @@ msgstr ""
 "Guake est démarré, \n"
 "appuyer sur <b>{!s}</b> pour ouvrir Guake."
 
-#: guake/guake_app.py:906 guake/notebook.py:198
+#: guake/guake_app.py:892 guake/notebook.py:206
 msgid "Terminal"
 msgstr "Terminal"
 
-#: guake/guake_app.py:986
+#: guake/guake_app.py:973
 msgid "Find"
 msgstr "Rechercher"
 
-#: guake/guake_app.py:988
+#: guake/guake_app.py:975
 msgid "Forward"
 msgstr "Suivant"
 
-#: guake/guake_app.py:988
+#: guake/guake_app.py:975
 msgid "Backward"
 msgstr "Précédent"
 
-#: guake/keybindings.py:89
+#: guake/keybindings.py:94
 #, python-format
 msgid ""
 "A problem happened when binding <b>%s</b> key.\n"
@@ -936,23 +992,29 @@ msgid "Current search direction: Backward"
 msgstr "Direction de la recherche: Arrière"
 
 #: data/guake.template.desktop:4 data/autostart-guake.desktop:31
-#: data/guake.desktop:32
+#: data/guake.desktop:34
 msgid "Use the command line in a Quake-like terminal"
 msgstr "Exploitez la ligne command dans un terminal tel Quake"
 
 #: data/guake.template.desktop:7 data/autostart-guake.desktop:34
-#: data/guake-prefs.template.desktop:7 data/guake-prefs.desktop:41
-#: data/guake.desktop:39
+#: data/guake-prefs.template.desktop:7 data/guake-prefs.desktop:45
+#: data/guake.desktop:43
 msgid "guake"
 msgstr "guake"
 
-#: data/guake-prefs.template.desktop:4 data/guake-prefs.desktop:34
+#: data/guake-prefs.template.desktop:4 data/guake-prefs.desktop:36
 msgid "Configure your Guake sessions"
 msgstr "Configurer vos sessions Guake"
 
-#: data/guake-prefs.template.desktop:13 data/guake-prefs.desktop:53
+#: data/guake-prefs.template.desktop:13 data/guake-prefs.desktop:59
 msgid "Terminal;Utility;"
 msgstr "Terminal;Utilitaires;"
+
+#~ msgid "Save to File..."
+#~ msgstr "Enregister..."
+
+#~ msgid "Split  "
+#~ msgstr "Découpage  "
 
 #~ msgid "Search on Web (no selection)"
 #~ msgstr "Rechercher sur le Web (pas de sélection)"
