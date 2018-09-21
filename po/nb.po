@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: Guake 0.4.5\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-08-18 17:32+0200\n"
-"PO-Revision-Date: 2018-09-04 19:20+0000\n"
+"PO-Revision-Date: 2018-09-21 17:58+0000\n"
 "Last-Translator: Allan Nordhøy <epost@anotheragency.no>\n"
 "Language-Team: Norwegian Bokmål <https://hosted.weblate.org/projects/guake/"
 "guake/nb/>\n"
@@ -1274,7 +1274,7 @@ msgstr ""
 
 #: guake/menus.py:68 guake/prefs.py:150
 msgid "Close terminal"
-msgstr ""
+msgstr "Lukk terminal"
 
 #: guake/prefs.py:137
 msgid "Split management"
@@ -1290,19 +1290,19 @@ msgstr ""
 
 #: guake/prefs.py:154
 msgid "Focus terminal above"
-msgstr ""
+msgstr "Fokuser terminal ovenfor"
 
 #: guake/prefs.py:158
 msgid "Focus terminal below"
-msgstr ""
+msgstr "Fokuser terminal nedenfor"
 
 #: guake/prefs.py:162
 msgid "Focus terminal on the left"
-msgstr ""
+msgstr "Fokuser terminal til venstre"
 
 #: guake/prefs.py:166
 msgid "Focus terminal on the right"
-msgstr ""
+msgstr "Fokuser terminal til høyre"
 
 #: guake/prefs.py:170
 msgid "Move the terminal split handle up"
@@ -1325,8 +1325,9 @@ msgid "Split ｜"
 msgstr ""
 
 #: guake/menus.py:72
+#, fuzzy
 msgid "Save content..."
-msgstr ""
+msgstr "Lagre innhold…"
 
 #~ msgid "key binding error"
 #~ msgstr "Hurtigtast error"
