@@ -49,6 +49,9 @@ class CustomCommands():
         return os.path.expanduser(self.settings.general.get_string('custom-command-file'))
 
     def _load_json(self, file_name):
+        if not os.path.exists(file_name):
+            log.error("Custom file does not exit: %s", file_name)
+            return None
         try:
             with open(file_name) as f:
                 data_file = f.read()
