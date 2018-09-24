@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: Guake 0.4.5\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-05-20 23:56+0800\n"
-"PO-Revision-Date: 2018-09-24 09:22+0000\n"
+"PO-Revision-Date: 2018-09-25 11:22+0000\n"
 "Last-Translator: 庄秋彬 <zhuangqiubin@gmail.com>\n"
 "Language-Team: Chinese (Simplified) <https://hosted.weblate.org/projects/"
 "guake/guake/zh_Hans/>\n"
@@ -947,7 +947,7 @@ msgstr "从不"
 
 #: guake/data/prefs.glade:265
 msgid "With process running"
-msgstr ""
+msgstr "跟随正在运行的进程"
 
 #: guake/data/prefs.glade:266
 msgid "Always"
@@ -1238,19 +1238,19 @@ msgstr "窗口停靠到右侧"
 
 #: guake/prefs.py:170
 msgid "Move the terminal split handle up"
-msgstr ""
+msgstr "移动到上方的分割窗口"
 
 #: guake/prefs.py:174
 msgid "Move the terminal split handle down"
-msgstr ""
+msgstr "移动到下方的分割窗口"
 
 #: guake/prefs.py:178
 msgid "Move the terminal split handle right"
-msgstr ""
+msgstr "移动到右方的分割窗口"
 
 #: guake/prefs.py:182
 msgid "Move the terminal split handle left"
-msgstr ""
+msgstr "移动到左方的分割窗口"
 
 #: guake/menus.py:65
 msgid "Split ｜"
