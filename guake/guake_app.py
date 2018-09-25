@@ -370,7 +370,7 @@ class Guake(SimpleGladeApp):
         if command[-1] != '\n':
             command += '\n'
 
-        terminal = self.notebook.get_last_terminal_focused()
+        terminal = self.notebook.get_current_terminal()
         terminal.feed_child(command)
 
     def execute_command_by_uuid(self, tab_uuid, command):
