@@ -86,7 +86,7 @@ class TerminalNotebook(Gtk.Notebook):
         page = self.get_nth_page(index)
         return page.get_terminals()
 
-    def get_terminals(self, index):
+    def get_terminals(self):
         terminals = []
         for page in self.iter_pages():
             terminals += page.get_terminals()
