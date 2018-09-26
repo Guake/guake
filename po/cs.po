@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: Guake 0.4.5\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-08-18 17:32+0200\n"
-"PO-Revision-Date: 2018-08-12 19:36+0000\n"
+"PO-Revision-Date: 2018-09-27 18:24+0000\n"
 "Last-Translator: Pavel Borecki <pavel.borecki@gmail.com>\n"
 "Language-Team: Czech <https://hosted.weblate.org/projects/guake/guake/cs/>\n"
 "Language: cs\n"
@@ -1137,6 +1137,11 @@ msgid ""
 "VTE with PCRE2 enabled ! To use Quick Open, you <b>must select the text</b> "
 "before using Ctrl+click</i>."
 msgstr ""
+"<i><b>VAROVÁNÍ</b>: zdá se, že váš systém má pro VTE vypnuté PCRE2, což "
+"brání aplikacím jako je Guake registrovat tzv. „shodovače“ pomocí "
+"regulárních výrazů. Obraťte se na vývojáře vámi používané distribuce a "
+"požádejte o novou verzi VTE se PCRE2 zapnutým! Pro použití Rychlého otevření "
+"je třeba před použitím Ctrl+kliknutí <b>označit text</b></i>."
 
 #: guake/guake_app.py:680
 msgid "Quick Open: {!s}..."
@@ -1199,71 +1204,71 @@ msgstr "Nastavit titulek okna na název stávající karty"
 
 #: guake/menus.py:48
 msgid "Copy Url"
-msgstr ""
+msgstr "Zkopírovat URL adresu"
 
 #: guake/menus.py:62
 msgid "Split ―"
-msgstr ""
+msgstr "Rozdělit ―"
 
 #: guake/menus.py:65
 msgid "Split  "
-msgstr ""
+msgstr "Rozdělit  "
 
 #: guake/menus.py:68 guake/prefs.py:150
 msgid "Close terminal"
-msgstr ""
+msgstr "Zavřít terminál"
 
 #: guake/prefs.py:137
 msgid "Split management"
-msgstr ""
+msgstr "Správa rozdělování"
 
 #: guake/prefs.py:142
 msgid "Split tab vertical"
-msgstr ""
+msgstr "Rozdělit kartu svisle"
 
 #: guake/prefs.py:146
 msgid "Split tab horizontal"
-msgstr ""
+msgstr "Rozdělit kartu vodorovně"
 
 #: guake/prefs.py:154
 msgid "Focus terminal above"
-msgstr ""
+msgstr "Zaměřit terminál nad"
 
 #: guake/prefs.py:158
 msgid "Focus terminal below"
-msgstr ""
+msgstr "Zaměřit terminál pod"
 
 #: guake/prefs.py:162
 msgid "Focus terminal on the left"
-msgstr ""
+msgstr "Zaměřit terminál nalevo"
 
 #: guake/prefs.py:166
 msgid "Focus terminal on the right"
-msgstr ""
+msgstr "Zaměřit terminál napravo"
 
 #: guake/prefs.py:170
 msgid "Move the terminal split handle up"
-msgstr ""
+msgstr "Přesunout ovládací prvek rozdělení terminálu nahoru"
 
 #: guake/prefs.py:174
 msgid "Move the terminal split handle down"
-msgstr ""
+msgstr "Přesunout ovládací prvek rozdělení terminálu dolů"
 
 #: guake/prefs.py:178
 msgid "Move the terminal split handle right"
-msgstr ""
+msgstr "Přesunout ovládací prvek rozdělení terminálu napravo"
 
 #: guake/prefs.py:182
 msgid "Move the terminal split handle left"
-msgstr ""
+msgstr "Přesunout ovládací prvek rozdělení terminálu nalevo"
 
 #: guake/menus.py:65
 msgid "Split ｜"
-msgstr ""
+msgstr "Rozdělit ｜"
 
 #: guake/menus.py:72
 msgid "Save content..."
-msgstr ""
+msgstr "Uložit obsah…"
 
 #~ msgid "key binding error"
 #~ msgstr "chyba klávesových zkratek"
