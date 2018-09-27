@@ -48,6 +48,7 @@ You need to ensure the following points are met in your configuration:
   - ``gir1.2-vte-2.91``
   - ``libkeybinder-3.0-0``
   - ``libutempter0``
+  - ``python3-setuptools``
   - ``python3-cairo``
   - ``python3-dbus``
   - ``python3-gi``
