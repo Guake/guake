@@ -2,6 +2,53 @@
 Guake
 =====
 
+(unreleased yet)
+================
+
+Release Summary
+---------------
+
+This major release provides one of the most awaited feature to every Guake adicts: Split terminal. Split easily vertically and horizontally each terminal and have more than one terminal per tab.
+There have been several shortcut changes to help navigate easily on your screen: Ctrl+Shift+Up/Down/Left/Right to switch from terminal to terminal.
+Thanks for you hard work, @aichingm !
+
+New Features
+------------
+
+- Split and resize terminals via mouse or keyboard shortcuts.
+
+Bug Fixes
+---------
+
+- Fix multiline selection right click (#1413)
+
+- Fix tab name (#1017)
+
+- fixes jumping preference window (#1149)
+
+- fix no focus after closing a split terminal (#1421)
+
+- Add note about shell that does not support --login parameter (#469)
+
+Translation Updates
+-------------------
+
+- pl (Piotr Drąg on weblate)
+
+- nl (Heimen Stoffels on weblate)
+
+- nb (Allan Nordhøy on weblate)
+
+- ru (Igor on weblate)
+
+- zh_CN (庄秋彬 on weblate)
+
+- cs (Pavel Borecki on weblate)
+
+- de (Robin Bauknecht on weblate)
+
+- fr (Gaetan Semet)
+
 3.3.3
 =====
 
@@ -125,7 +172,7 @@ Bug Fixes
 
 - Wayland is a bit more well supported. The X11 backend is now used by default for
   GDK and it seems to make the shortcut works under most situation.
-
+  
   A more cleaner solution would be to develop a GAction
   (`vote for this feature here <https://feathub.com/Guake/guake/+29>`_])
 
@@ -192,10 +239,10 @@ Bug Fixes
   This may causes some issues with log and so that use parenthesis *around* hyperlinks,
   but since parenthesis and quotes are valid characters inside a URL, like for instance
   URL created by Kibana, they deserve the right to be shown as proper url in Guake.
-
+  
   User can still select the URL in the terminal if he wishes to capture the exact url, before
   doing a Ctrl+click or a right click.
-
+  
   For developers, it is advised to end the URL with a character that cannot be used in URL, such
   as space, tab, new line. Ending with a dot (``.``) or a comma (``,``) will not be seen as part
   of the URL by Guake, so most logs and traces that adds a dot or a comma at the end of the URL
@@ -271,7 +318,7 @@ New Features
 
 - Add great color palettes from
   `Guake Color Scheme <https://github.com/ziyenano/Guake-Color-Schemes>`_, thanks for @ziyenano :
-
+  
     - `Aci`,
     - `aco`,
     - `Azu`,
@@ -314,17 +361,17 @@ Bug Fixes
 - change scope of ``which_align`` variable in ``pref.py`` (#1225)
 
 - Fix several issues on Quick Edit:
-
+  
   - quick open freezes guake
   - support for systems with PCRE2 (regular expression in terminal) disabled for VTE, like
     Ubuntu 17.10 and +.
-
+  
     This might disable quick open and open url on direct Ctrl+click.
     User can still select the wanted url or text and Cltr+click or use contextual menu.
-
+  
     See this `discussion on Tilix <https://github.com/gnunn1/tilix/issues/916>`_, another
     Terminal emulator that suffurs the same issue.
-
+  
   - quick open now appears in contextual menu (#1157)
   - bad translation update on the contextual menu. This causes new strings that was hidden to
     appear for translators.
@@ -356,28 +403,28 @@ Notes for Package Maintainers
 - The setup mecanism has changed a little bit. Some maintainers used to patch the source code
   of Guake to change the pixmap, Gtk schema or locale paths directly in the ``guake/globals.py``
   file. This was due to a lack of flexibility of the installation target of the ``Makefile``.
-
+  
   The ``make install`` target looks now a little bit more familiar, allowing distribution
   packager to set the various paths directly with make flags.
-
+  
   For example:
-
+  
   .. code-block:: bash
-
+  
       sudo make install \
           prefix=/usr \
           DESTDIR=/path/for/packager \
           PYTHON_SITE_PACKAGE_NAME=site-package \
           localedir=/usr/share/locale
-
+  
   The main overrides are:
-
+  
   - ``IMAGE_DIR``: where the pixmap should be installed. Default: ``/usr/local/share/guake/pixmaps``
   - ``localedir``: where locales should be installed. Default: ``/usr/local/share/locale``
   - ``GLADE_DIR``: where the Glade files should be installed. Default: ``/usr/local/share/guake``
   - ``gsettingsschemadir``: where gsettings/dconf schema should be installed.
     Default: ``/usr/local/share/glib-2.0/schemas/``
-
+  
   I invite package maintainers to open tickets on Github about any other difficulties
   encountered when packaging Guake.
 
@@ -419,10 +466,10 @@ New Features
   to virtually open any file path in your terminal (if they are on your local machine), but
   requires the user to select the file path first, compared to the Quick Open feature that
   finds file names using regular expression.
-
+  
   Also notes that is it able to look in the current folder if the selected file name exists,
   allowing Ctrl+click on relative paths as well.
-
+  
   Line number syntax is also supported: ``filename.txt:5`` will directly on the 5th line if
   your Quick Open is set for.
 
@@ -573,7 +620,7 @@ New Features
 ------------
 
 - Ported to GTK3:
-
+  
     - cli arguments
     - D-Bus
     - context menu of the terminal, the tab bar and the tray icon
@@ -591,7 +638,7 @@ New Features
     - ``Guake.accel*`` methods
 
 - Guake now use a brand new build system:
-
+  
     - ``pipenv`` to manage dependencies in `Pipfile`
     - enforced code styling and checks using Pylint, Flake8, Yapf, ISort.
     - simpler release management thanks to PBR
@@ -602,7 +649,7 @@ New Features
   note directly from their Pull Request.
 
 - Update Guake window title when:
-
+  
     - the active tab changes
     - the active tab is renamed
     - the vte title changes

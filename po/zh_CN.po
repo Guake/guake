@@ -530,7 +530,9 @@ msgstr "兼容性"
 msgid ""
 "<small>In this dialog you can attach your own command or script to various "
 "guake events</small>"
-msgstr "<small>在这个对话框中，您可以将您的自定义命令或脚本绑定到各种guake事件</small>"
+msgstr ""
+"<small>在这个对话框中，您可以将您的自定义命令或脚本绑定到各种guake事件</"
+"small>"
 
 #: ../data/prefs.glade.h:113
 msgid ""
@@ -1088,7 +1090,9 @@ msgid ""
 "favorite text editor by clicking on its filename when it appears in your "
 "terminal. See the list of currently supported text patterns used to extract "
 "filename below."
-msgstr "快速打开是一项允许您使用喜欢的编辑器打开文件的功能，只需要在文件名出现在终端时点击它即可。符合下方模式的字符串将被识别为可打开的文件名字。"
+msgstr ""
+"快速打开是一项允许您使用喜欢的编辑器打开文件的功能，只需要在文件名出现在终端"
+"时点击它即可。符合下方模式的字符串将被识别为可打开的文件名字。"
 
 #: guake/main.py:64
 msgid "Show Guake version number and exit"
@@ -1134,8 +1138,9 @@ msgid ""
 "VTE with PCRE2 enabled ! To use Quick Open, you <b>must select the text</b> "
 "before using Ctrl+click</i>."
 msgstr ""
-"<i><b>警告</b>:你的系统看起来拥有一个禁止了VTE的PCRE2，阻止了像Guake等应用使用正则表达式注册“matchers”。请设法获得一个新"
-"的使能了VTE的PCRE2！为了使用快速打开功能，你在使用 Ctrl+单击之前<b>必须先选中文字</b></i>。"
+"<i><b>警告</b>:你的系统看起来拥有一个禁止了VTE的PCRE2，阻止了像Guake等应用使"
+"用正则表达式注册“matchers”。请设法获得一个新的使能了VTE的PCRE2！为了使用快速"
+"打开功能，你在使用 Ctrl+单击之前<b>必须先选中文字</b></i>。"
 
 #: guake/guake_app.py:680
 msgid "Quick Open: {!s}..."
@@ -1259,6 +1264,12 @@ msgstr "分割 ｜"
 #: guake/menus.py:72
 msgid "Save content..."
 msgstr "保存内容..."
+
+#: data/prefs.glade:1182
+msgid ""
+"This might not work on all shells, make sure that your shell supports the --"
+"login option"
+msgstr ""
 
 #~ msgid "0 means no size limit"
 #~ msgstr "0表示没有大小限制"

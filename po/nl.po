@@ -1293,6 +1293,12 @@ msgstr "| splitsen"
 msgid "Save content..."
 msgstr "Inhoud opslaan..."
 
+#: data/prefs.glade:1182
+msgid ""
+"This might not work on all shells, make sure that your shell supports the --"
+"login option"
+msgstr ""
+
 #~ msgid "key binding error"
 #~ msgstr "Fout bij toets-binding"
 

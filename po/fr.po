@@ -12,8 +12,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Guake 0.4.5\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-09-21 10:34+0200\n"
-"PO-Revision-Date: 2018-09-21 10:34+0200\n"
+"POT-Creation-Date: 2018-10-02 13:20+0200\n"
+"PO-Revision-Date: 2018-10-02 13:20+0200\n"
 "Last-Translator: ButterflyOfFire <ButterflyOfFire@protonmail.com>\n"
 "Language-Team: French <https://hosted.weblate.org/projects/guake/guake/fr/>\n"
 "Language: fr\n"
@@ -569,295 +569,303 @@ msgstr "Guake !"
 msgid "Guake Preferences"
 msgstr "Préférences de Guake"
 
-#: data/prefs.glade:93
+#: data/prefs.glade:96
 msgid "<span size=\"18000\"><b>Guake properties</b></span>"
 msgstr "<span size=\"18000\"><b>Propriétés de Guake</b></span>"
 
-#: data/prefs.glade:107
+#: data/prefs.glade:110
 msgid "Customize behavior and appearance of Guake!"
 msgstr "Personnaliser Guake !"
 
-#: data/prefs.glade:190
+#: data/prefs.glade:193
 msgid "Enable popup notifications on startup"
 msgstr "Activer la notification par pop-up au démarrage"
 
-#: data/prefs.glade:207
+#: data/prefs.glade:210
 msgid "_Play system alert sound on bell"
 msgstr "_Jouer une alerte système sur un signal \"bell\""
 
-#: data/prefs.glade:223
+#: data/prefs.glade:226
 msgid "Start Guake at login"
 msgstr "Lancer Guake au login"
 
-#: data/prefs.glade:246
+#: data/prefs.glade:249
 msgid "Prompt on close tab:"
 msgstr "Confirmer la fermeture d'onglet :"
 
-#: data/prefs.glade:260
+#: data/prefs.glade:263
 msgid "Never"
 msgstr "Jamais"
 
-#: data/prefs.glade:261
+#: data/prefs.glade:264
 msgid "With process running"
 msgstr "Avec le processus lancé"
 
-#: data/prefs.glade:262
+#: data/prefs.glade:265
 msgid "Always"
 msgstr "Toujours"
 
-#: data/prefs.glade:281
+#: data/prefs.glade:284
 msgid "Always prompt on quit"
 msgstr "Toujours confirmer pour quitter"
 
-#: data/prefs.glade:297
+#: data/prefs.glade:300
 msgid "Show tray icon"
 msgstr "Afficher l'icône de notification"
 
-#: data/prefs.glade:313
+#: data/prefs.glade:316
 msgid "_Flash terminal on bell"
 msgstr "_Flash du terminal lors d'un \"bell\""
 
-#: data/prefs.glade:337 data/prefs.glade:1635
+#: data/prefs.glade:340 data/prefs.glade:1656
 msgid "<b>General</b>"
 msgstr "<b>Général</b>"
 
-#: data/prefs.glade:363
+#: data/prefs.glade:366
 msgid "Gtk Theme:"
 msgstr "Thème Gtk :"
 
-#: data/prefs.glade:387
+#: data/prefs.glade:390
 msgid "Prefer dark theme"
 msgstr "Préférer le thème sombre"
 
-#: data/prefs.glade:416
+#: data/prefs.glade:419
 msgid "Custom command file path:"
 msgstr "Fichier de lignes de commande personnalisées :"
 
-#: data/prefs.glade:428
+#: data/prefs.glade:431
 msgid "Please select a json file"
 msgstr "Veuillez sélectionnez un fichier JSON"
 
-#: data/prefs.glade:516
+#: data/prefs.glade:519
 msgid "Refocus if open"
 msgstr "Reprendre le focus à l'affichage"
 
-#: data/prefs.glade:533
+#: data/prefs.glade:536
 msgid "Hide on lose focus"
 msgstr "Cacher lors de la perte du focus"
 
-#: data/prefs.glade:550
+#: data/prefs.glade:553
 msgid "Start fullscreen"
 msgstr "Active/Désactive le plein écran"
 
-#: data/prefs.glade:566
+#: data/prefs.glade:569
 msgid "Stay on top"
 msgstr "Reste au premier plan"
 
-#: data/prefs.glade:584
+#: data/prefs.glade:587
 msgid "Show tab bar"
 msgstr "Afficher la barre d'onglets"
 
-#: data/prefs.glade:600
+#: data/prefs.glade:603
 msgid "Use VTE titles for tab names"
 msgstr "Utiliser les titres VTE pour le nom des tabs"
 
-#: data/prefs.glade:618
+#: data/prefs.glade:621
 msgid "Abbreviate directories in tab names"
 msgstr "Réduit des noms de dossiers dans les onglets"
 
-#: data/prefs.glade:643
+#: data/prefs.glade:646
 msgid "Max tab name length:"
 msgstr "Longueur maximale du nom de l'onglet :"
 
-#: data/prefs.glade:658
+#: data/prefs.glade:661
 msgid "0"
 msgstr "0"
 
-#: data/prefs.glade:680
+#: data/prefs.glade:683
 msgid "Set window title to current tab name"
 msgstr "Mettre le titre de la fenêtre au nom de l'onglet courant"
 
-#: data/prefs.glade:702
+#: data/prefs.glade:705
 msgid "<b>Main Window Options</b>"
 msgstr "<b>Option de la fenetre fenêtre</b>"
 
-#: data/prefs.glade:733
+#: data/prefs.glade:736
 msgid "Bottom align window instead of top align"
 msgstr "Aligner la fenêtre par le bas au lieu de par le haut"
 
-#: data/prefs.glade:749
+#: data/prefs.glade:752
 msgid "Appear on mouse display"
 msgstr "Apparition sur la fenêtre de la souris"
 
-#: data/prefs.glade:774
+#: data/prefs.glade:777
 msgid "Appear on display:"
 msgstr "Apparition sur l'écran :"
 
-#: data/prefs.glade:804
+#: data/prefs.glade:807
 msgid "Place tabs on top"
 msgstr "Rester au premier plan"
 
-#: data/prefs.glade:826
+#: data/prefs.glade:829
 msgid "<b>Placement</b>"
 msgstr "<b>Palette</b>"
 
-#: data/prefs.glade:862
+#: data/prefs.glade:865
 msgid "Horizontal Alignment:"
 msgstr "Alignement horizontal :"
 
-#: data/prefs.glade:878
+#: data/prefs.glade:881
 msgid "Left"
 msgstr "Gauche"
 
-#: data/prefs.glade:898
+#: data/prefs.glade:901
 msgid "Center"
 msgstr "Centre"
 
-#: data/prefs.glade:918
+#: data/prefs.glade:921
 msgid "Right"
 msgstr "Droit"
 
-#: data/prefs.glade:947
+#: data/prefs.glade:950
 msgid "Height:"
 msgstr "Hauteur :"
 
-#: data/prefs.glade:960
+#: data/prefs.glade:963
 msgid "Width:"
 msgstr "Largeur :"
 
-#: data/prefs.glade:1014
+#: data/prefs.glade:1017
 msgid "Displacement in pixels"
 msgstr "Espace en pixels"
 
-#: data/prefs.glade:1042
+#: data/prefs.glade:1045
 msgid "<b>Geometry</b>"
 msgstr "<b>Géometrie</b>"
 
-#: data/prefs.glade:1073
+#: data/prefs.glade:1076
 msgid "Main Window"
 msgstr "Fenêtre Principale"
 
-#: data/prefs.glade:1118
+#: data/prefs.glade:1121
 msgid "Default interpreter:"
 msgstr "Interpréteur par défaut :"
 
-#: data/prefs.glade:1157
+#: data/prefs.glade:1161
 msgid "_Run command as a login shell"
 msgstr "_Exécuter les commandes comme shell de connexion"
 
-#: data/prefs.glade:1175
+#: data/prefs.glade:1182
+msgid ""
+"This might not work on all shells, make sure that your shell supports the --"
+"login option"
+msgstr ""
+"Ceci peut ne pas fonctionner pour tous les shell, veuillez vous assurer que "
+"votre shell support l'option --login"
+
+#: data/prefs.glade:1197
 msgid "_Open new tab in current directory"
 msgstr "_Ouvrir un nouvel onglet dans le dossier courant"
 
-#: data/prefs.glade:1220
+#: data/prefs.glade:1241
 msgid "Shell"
 msgstr "Shell"
 
-#: data/prefs.glade:1266
+#: data/prefs.glade:1287
 msgid "Show scrollbar"
 msgstr "Afficher la barre de défilement"
 
-#: data/prefs.glade:1290
+#: data/prefs.glade:1311
 msgid "Scrollback lines:"
 msgstr "Nombres de lignes en mémoire :"
 
-#: data/prefs.glade:1326
+#: data/prefs.glade:1347
 msgid "Infinite scrolling"
 msgstr "Défilement infini"
 
-#: data/prefs.glade:1348
+#: data/prefs.glade:1369
 msgid "<b>Scrollbar</b>"
 msgstr "<b>Défilement</b>"
 
-#: data/prefs.glade:1393
+#: data/prefs.glade:1414
 msgid "On output"
 msgstr "En sortie"
 
-#: data/prefs.glade:1410
+#: data/prefs.glade:1431
 msgid "On key stroke"
 msgstr "Par raccourcis clavier"
 
-#: data/prefs.glade:1433
+#: data/prefs.glade:1454
 msgid "<b>Scroll to Bottom</b>"
 msgstr "<b>Défiler vers le bas</b>"
 
-#: data/prefs.glade:1457
+#: data/prefs.glade:1478
 msgid "Scrolling"
 msgstr "Défilement"
 
-#: data/prefs.glade:1492
+#: data/prefs.glade:1513
 msgid "Use the system fixed width font"
 msgstr "Utiliser la taille de police définie par le système"
 
-#: data/prefs.glade:1520
+#: data/prefs.glade:1541
 msgid "Font:"
 msgstr "Police de caractères :"
 
-#: data/prefs.glade:1535
+#: data/prefs.glade:1556
 msgid "Choose some font"
 msgstr "Choisissez une police"
 
-#: data/prefs.glade:1549
+#: data/prefs.glade:1570
 msgid "Cursor shape:"
 msgstr "Forme du curseur :"
 
-#: data/prefs.glade:1564
+#: data/prefs.glade:1585
 msgid "Block"
 msgstr "Bloc"
 
-#: data/prefs.glade:1565
+#: data/prefs.glade:1586
 msgid "I-Beam"
 msgstr "I-Beam"
 
-#: data/prefs.glade:1566
+#: data/prefs.glade:1587
 msgid "Underline"
 msgstr "Souligné"
 
-#: data/prefs.glade:1580
+#: data/prefs.glade:1601
 msgid "Cursor blink mode:"
 msgstr "Mode de clignotement du curseur :"
 
-#: data/prefs.glade:1594
+#: data/prefs.glade:1615
 msgid "Follow GTK+ setting"
 msgstr "Suivant les paramètres GTK+"
 
-#: data/prefs.glade:1595
+#: data/prefs.glade:1616
 msgid "Blink on"
 msgstr "Clignotement activé"
 
-#: data/prefs.glade:1596
+#: data/prefs.glade:1617
 msgid "Blink off"
 msgstr "Clignotement désactivé"
 
-#: data/prefs.glade:1613
+#: data/prefs.glade:1634
 msgid "Allow bold font"
 msgstr "Autoriser les polices grasses"
 
-#: data/prefs.glade:1670
+#: data/prefs.glade:1691
 msgid "Built-in schemes:"
 msgstr "Arrangements pré-définis :"
 
-#: data/prefs.glade:1696
+#: data/prefs.glade:1717
 msgid "Color palette:"
 msgstr "Palette de couleurs :"
 
-#: data/prefs.glade:1711
+#: data/prefs.glade:1732
 msgid "Demo:"
 msgstr "Démo :"
 
-#: data/prefs.glade:2014
+#: data/prefs.glade:2035
 msgid "<b>Palette</b>"
 msgstr "<b>Palette</b>"
 
-#: data/prefs.glade:2036
+#: data/prefs.glade:2057
 msgid "<b>Effects</b>"
 msgstr "<b>Effets</b>"
 
-#: data/prefs.glade:2061
+#: data/prefs.glade:2082
 msgid "Transparency:"
 msgstr "Transparence :"
 
-#: data/prefs.glade:2145
+#: data/prefs.glade:2166
 msgid ""
 "To change a shortcut simply click on its name.\n"
 "To disable a shortcut, press the \"Backspace\" key."
@@ -865,11 +873,11 @@ msgstr ""
 "Pour changer un raccourcis, cliquer sur son nom.\n"
 "Pour désactiver un raccourcis, appuyer sur la touche \"Retour Arrière\"."
 
-#: data/prefs.glade:2195
+#: data/prefs.glade:2216
 msgid "Keyboard shortcuts"
 msgstr "Raccourcis clavier"
 
-#: data/prefs.glade:2247
+#: data/prefs.glade:2268
 msgid ""
 "Quick open is a feature allowing you to open a file directly into your "
 "favorite text editor by clicking on its filename when it appears in your "
@@ -882,17 +890,17 @@ msgstr ""
 "modèles de texte actuellement utilisés pour extraire le nom de fichier ci-"
 "dessous."
 
-#: data/prefs.glade:2285
+#: data/prefs.glade:2306
 msgid "Enable Quick Open when Ctrl+clicking on a filename in the terminal"
 msgstr ""
 "Activer l'Ouverture Rapide lors d'un Ctrl+clic sur un nom de fichier dans le "
 "terminal"
 
-#: data/prefs.glade:2310
+#: data/prefs.glade:2331
 msgid "Editor command line:"
 msgstr "Ligne de commande de l'éditeur :"
 
-#: data/prefs.glade:2356
+#: data/prefs.glade:2377
 msgid ""
 "<small><i>Use the following elements in the open editor command line:\n"
 "- <b>%(file_path)s</b>: path to the file that has been clicked\n"
@@ -913,33 +921,33 @@ msgstr ""
 "b>\n"
 "</i></small>"
 
-#: data/prefs.glade:2411
+#: data/prefs.glade:2432
 msgid "Quick open in current terminal"
 msgstr "Ouverture Rapide dans le terminal courant"
 
-#: data/prefs.glade:2455
+#: data/prefs.glade:2476
 msgid "Quick Open"
 msgstr "Ouverture Rapide"
 
-#: data/prefs.glade:2505
+#: data/prefs.glade:2526
 msgid ""
 "<small>In this dialog you can attach your own command or script to various "
 "guake events</small>"
 msgstr "<small>Scripts à exécuter lors d’événement:</small>"
 
-#: data/prefs.glade:2527
+#: data/prefs.glade:2548
 msgid "On show:"
 msgstr "À l’affichage :"
 
-#: data/prefs.glade:2539
+#: data/prefs.glade:2560
 msgid "On start:"
 msgstr "Au démarrage :"
 
-#: data/prefs.glade:2605
+#: data/prefs.glade:2626
 msgid "Hooks"
 msgstr "Scripts"
 
-#: data/prefs.glade:2634
+#: data/prefs.glade:2655
 msgid ""
 "<small><i><b>Note:</b> These options may cause some applications to behave "
 "incorrectly.  They are only here to allow you to work around certain "
@@ -951,31 +959,31 @@ msgstr ""
 "certains logiciels ou système d'exploitation attendent un comportement "
 "différent du terminal.</i></small>"
 
-#: data/prefs.glade:2654
+#: data/prefs.glade:2675
 msgid "_Backspace key generates:"
 msgstr "La touche _Retour correspond à :"
 
-#: data/prefs.glade:2667
+#: data/prefs.glade:2688
 msgid "_Delete key generates:"
 msgstr "La touche _Suppr correspond  à :"
 
-#: data/prefs.glade:2682 data/prefs.glade:2699
+#: data/prefs.glade:2703 data/prefs.glade:2720
 msgid "ASCII DEL"
 msgstr "ASCII DEL"
 
-#: data/prefs.glade:2683 data/prefs.glade:2700
+#: data/prefs.glade:2704 data/prefs.glade:2721
 msgid "Escape sequence"
 msgstr "Séquence d'échapement"
 
-#: data/prefs.glade:2684 data/prefs.glade:2701
+#: data/prefs.glade:2705 data/prefs.glade:2722
 msgid "Control-H"
 msgstr "Controle+H"
 
-#: data/prefs.glade:2726
+#: data/prefs.glade:2747
 msgid "_Reset Compatibility Options to Defaults"
 msgstr "_Rétablir la configuration par défaut"
 
-#: data/prefs.glade:2757
+#: data/prefs.glade:2778
 msgid "Compatibility"
 msgstr "Compatibilité"
 
