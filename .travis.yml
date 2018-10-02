@@ -46,12 +46,13 @@ script:
 
 deploy:
   provider: pypi
-  user: Stibbons
+  user: stibbons
   skip_cleanup: true  # keep build artifacts for paths.py !
   distributions: sdist bdist_wheel
   password:
-    secure: XNXxMzRr3b44DpjbH/yyVYfonS/PkDsE7VMm4Mv4WSQf2SDuwxa/KZTtoforSr6AbYef16d4ZU5EELlOIQ31n3I
-            eVCE+yrFoCh96yOW4x2wMEdJfV5D9bKa5CNxyzYiHF2FvLh69yuIyOwpv89WGp0m8aowuYxwiOEdkrdm/ZVg=
+    secure: >
+      ARo04J13A2+CGAqvIoKsypctOIQZI8e07to8OGtrhC7gVv92Fkw0peHpn7t0DFODFAjPhFZIGsNAvy3bST
+      sB2UQ85b+fCdcsltFSBHKknvixXOSfE0LbBEzHpGKYvUci0Y2cYWzBVZuj7gR76YWWIGK9560EnXML2eNtTJ4cVuQ=
   on:
     tags: true
     repo: Guake/guake

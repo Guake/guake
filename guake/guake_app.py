@@ -995,8 +995,8 @@ class Guake(SimpleGladeApp):
         search_string = start.get_text(end)
 
         log.debug(
-            "Searching for %r %s\n", search_string, "forward"
-            if response_id == RESPONSE_FORWARD else "backward"
+            "Searching for %r %s\n", search_string,
+            "forward" if response_id == RESPONSE_FORWARD else "backward"
         )
 
         current_term = self.notebook.get_current_terminal()
