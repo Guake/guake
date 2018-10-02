@@ -12,19 +12,20 @@ msgstr ""
 "Project-Id-Version: Guake 0.4.5\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-07-07 19:07+0200\n"
-"PO-Revision-Date: 2018-09-01 01:16+0200\n"
-"Last-Translator: Mario Aichinger <aichingm@gmail.com>\n"
-"Language-Team: guake@lists.guake.org\n"
+"PO-Revision-Date: 2018-09-29 15:27+0000\n"
+"Last-Translator: Robin Bauknecht <robin.bauknecht@gmail.com>\n"
+"Language-Team: German <https://hosted.weblate.org/projects/guake/guake/de/>\n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 2.1.1\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 3.2-dev\n"
 
 #: guake/about.py:54 guake/keybindings.py:94 guake/guake_app.py:201
 #: guake/guake_app.py:414
 msgid "Guake Terminal"
-msgstr ""
+msgstr "Guake Terminal"
 
 #: guake/keybindings.py:96
 #, python-format
@@ -937,7 +938,7 @@ msgstr "Umbenennen"
 
 #: data/guake.glade:256
 msgid "Guake!"
-msgstr ""
+msgstr "Guake"
 
 #: data/guake.desktop:32 data/autostart-guake.desktop:31
 #: data/guake.template.desktop:4
@@ -980,11 +981,11 @@ msgstr ""
 
 #: guake/prefs.py:142
 msgid "Split tab vertical"
-msgstr ""
+msgstr "Tab vertikal aufteilen"
 
 #: guake/prefs.py:146
 msgid "Split tab horizontal"
-msgstr ""
+msgstr "Tab horizontal aufteilen"
 
 #: guake/prefs.py:154
 msgid "Focus terminal above"
@@ -1024,4 +1025,4 @@ msgstr ""
 
 #: guake/menus.py:72
 msgid "Save content..."
-msgstr ""
+msgstr "Inhalt speichern..."
