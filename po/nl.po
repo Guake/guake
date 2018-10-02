@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: Guake 0.4.5\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-04-14 12:33+0200\n"
-"PO-Revision-Date: 2018-09-05 11:52+0000\n"
+"PO-Revision-Date: 2018-09-21 17:58+0000\n"
 "Last-Translator: Heimen Stoffels <vistausss@outlook.com>\n"
 "Language-Team: Dutch <https://hosted.weblate.org/projects/guake/guake/nl/>\n"
 "Language: nl\n"
@@ -1231,67 +1231,67 @@ msgstr "URL kopiëren"
 
 #: guake/menus.py:62
 msgid "Split ―"
-msgstr ""
+msgstr "― splitsen"
 
 #: guake/menus.py:65
 msgid "Split  "
-msgstr ""
+msgstr "Splitsen  "
 
 #: guake/menus.py:68 guake/prefs.py:150
 msgid "Close terminal"
-msgstr ""
+msgstr "Terminal sluiten"
 
 #: guake/prefs.py:137
 msgid "Split management"
-msgstr ""
+msgstr "Splitsbeheer"
 
 #: guake/prefs.py:142
 msgid "Split tab vertical"
-msgstr ""
+msgstr "Tabblad verticaal splitsen"
 
 #: guake/prefs.py:146
 msgid "Split tab horizontal"
-msgstr ""
+msgstr "Tabblad horizontaal splitsen"
 
 #: guake/prefs.py:154
 msgid "Focus terminal above"
-msgstr ""
+msgstr "Terminal hierboven focussen"
 
 #: guake/prefs.py:158
 msgid "Focus terminal below"
-msgstr ""
+msgstr "Terminal hieronder focussen"
 
 #: guake/prefs.py:162
 msgid "Focus terminal on the left"
-msgstr ""
+msgstr "Terminal links focussen"
 
 #: guake/prefs.py:166
 msgid "Focus terminal on the right"
-msgstr ""
+msgstr "Terminal rechts focussen"
 
 #: guake/prefs.py:170
 msgid "Move the terminal split handle up"
-msgstr ""
+msgstr "Terminal-splitshandgreep omhoog verplaatsen"
 
 #: guake/prefs.py:174
 msgid "Move the terminal split handle down"
-msgstr ""
+msgstr "Terminal-splitshandgreep omlaag verplaatsen"
 
 #: guake/prefs.py:178
 msgid "Move the terminal split handle right"
-msgstr ""
+msgstr "Terminal-splitshandgreep naar rechts verplaatsen"
 
 #: guake/prefs.py:182
 msgid "Move the terminal split handle left"
-msgstr ""
+msgstr "Terminal-splitshandgreep naar links verplaatsen"
 
 #: guake/menus.py:65
 msgid "Split ｜"
-msgstr ""
+msgstr "| splitsen"
 
 #: guake/menus.py:72
 msgid "Save content..."
-msgstr ""
+msgstr "Inhoud opslaan..."
 
 #~ msgid "key binding error"
 #~ msgstr "Fout bij toets-binding"

@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: Guake 0.4.5\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-08-18 17:32+0200\n"
-"PO-Revision-Date: 2018-09-04 19:20+0000\n"
+"PO-Revision-Date: 2018-09-29 07:31+0000\n"
 "Last-Translator: Allan Nordhøy <epost@anotheragency.no>\n"
 "Language-Team: Norwegian Bokmål <https://hosted.weblate.org/projects/guake/"
 "guake/nb/>\n"
@@ -1265,68 +1265,73 @@ msgid "Copy Url"
 msgstr "Kopier nettadresse"
 
 #: guake/menus.py:62
+#, fuzzy
 msgid "Split ―"
-msgstr ""
+msgstr "Splitt ―"
 
 #: guake/menus.py:65
+#, fuzzy
 msgid "Split  "
-msgstr ""
+msgstr "Splitt  "
 
 #: guake/menus.py:68 guake/prefs.py:150
 msgid "Close terminal"
-msgstr ""
+msgstr "Lukk terminal"
 
 #: guake/prefs.py:137
+#, fuzzy
 msgid "Split management"
-msgstr ""
+msgstr "Splitt-behandling"
 
 #: guake/prefs.py:142
 msgid "Split tab vertical"
-msgstr ""
+msgstr "Splitt fane loddrett"
 
 #: guake/prefs.py:146
 msgid "Split tab horizontal"
-msgstr ""
+msgstr "Splitt fane vannrett"
 
 #: guake/prefs.py:154
 msgid "Focus terminal above"
-msgstr ""
+msgstr "Fokuser terminal ovenfor"
 
 #: guake/prefs.py:158
 msgid "Focus terminal below"
-msgstr ""
+msgstr "Fokuser terminal nedenfor"
 
 #: guake/prefs.py:162
 msgid "Focus terminal on the left"
-msgstr ""
+msgstr "Fokuser terminal til venstre"
 
 #: guake/prefs.py:166
 msgid "Focus terminal on the right"
-msgstr ""
+msgstr "Fokuser terminal til høyre"
 
 #: guake/prefs.py:170
 msgid "Move the terminal split handle up"
-msgstr ""
+msgstr "Flytt terminalsplitthendelen oppover"
 
 #: guake/prefs.py:174
 msgid "Move the terminal split handle down"
-msgstr ""
+msgstr "Flytt terminalsplitthendelen nedover"
 
 #: guake/prefs.py:178
 msgid "Move the terminal split handle right"
-msgstr ""
+msgstr "Flytt terminalsplitthendelen til høyre"
 
 #: guake/prefs.py:182
 msgid "Move the terminal split handle left"
-msgstr ""
+msgstr "Flytt terminalsplitthendelen til venstre"
 
 #: guake/menus.py:65
+#, fuzzy
 msgid "Split ｜"
-msgstr ""
+msgstr "Splitt ｜"
 
 #: guake/menus.py:72
+#, fuzzy
 msgid "Save content..."
-msgstr ""
+msgstr "Lagre innhold…"
 
 #~ msgid "key binding error"
 #~ msgstr "Hurtigtast error"

@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: guake\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-04-22 19:49+0200\n"
-"PO-Revision-Date: 2018-09-03 14:46+0000\n"
+"PO-Revision-Date: 2018-09-21 14:43+0000\n"
 "Last-Translator: Piotr Drąg <piotrdrag@gmail.com>\n"
 "Language-Team: Polish <https://hosted.weblate.org/projects/guake/guake/pl/>\n"
 "Language: pl\n"
@@ -956,64 +956,64 @@ msgstr "Skopiuj adres URL"
 
 #: guake/menus.py:62
 msgid "Split ―"
-msgstr ""
+msgstr "Podziel ―"
 
 #: guake/menus.py:65
 msgid "Split  "
-msgstr ""
+msgstr "Podziel  "
 
 #: guake/menus.py:68 guake/prefs.py:150
 msgid "Close terminal"
-msgstr ""
+msgstr "Zamknij terminal"
 
 #: guake/prefs.py:137
 msgid "Split management"
-msgstr ""
+msgstr "Zarządzanie podziałem"
 
 #: guake/prefs.py:142
 msgid "Split tab vertical"
-msgstr ""
+msgstr "Pionowy podział karty"
 
 #: guake/prefs.py:146
 msgid "Split tab horizontal"
-msgstr ""
+msgstr "Poziomy podział karty"
 
 #: guake/prefs.py:154
 msgid "Focus terminal above"
-msgstr ""
+msgstr "Aktywacja terminala na górze"
 
 #: guake/prefs.py:158
 msgid "Focus terminal below"
-msgstr ""
+msgstr "Aktywacja terminala na dole"
 
 #: guake/prefs.py:162
 msgid "Focus terminal on the left"
-msgstr ""
+msgstr "Aktywacja terminala po lewej"
 
 #: guake/prefs.py:166
 msgid "Focus terminal on the right"
-msgstr ""
+msgstr "Aktywacja terminala po prawej"
 
 #: guake/prefs.py:170
 msgid "Move the terminal split handle up"
-msgstr ""
+msgstr "Przeniesienie uchwytu podziału terminala w górę"
 
 #: guake/prefs.py:174
 msgid "Move the terminal split handle down"
-msgstr ""
+msgstr "Przeniesienie uchwytu podziału terminala w dół"
 
 #: guake/prefs.py:178
 msgid "Move the terminal split handle right"
-msgstr ""
+msgstr "Przeniesienie uchwytu podziału terminala w prawo"
 
 #: guake/prefs.py:182
 msgid "Move the terminal split handle left"
-msgstr ""
+msgstr "Przeniesienie uchwytu podziału terminala w lewo"
 
 #: guake/menus.py:65
 msgid "Split ｜"
-msgstr ""
+msgstr "Podziel ｜"
 
 #: guake/menus.py:72
 msgid "Save content..."
-msgstr ""
+msgstr "Zapisz zawartość…"
