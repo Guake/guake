@@ -2,179 +2,342 @@
 Guake
 =====
 
+.. _Guake_3.4.0:
+
 3.4.0
 =====
 
+.. _Guake_3.4.0_Release Summary:
+
 Release Summary
 ---------------
+
+.. releasenotes/notes/split-terminal-b924ad9a29f59b8b.yaml @ b'82509847402ac900d1c8b48dd93f681e27e1b83f'
 
 This major release provides one of the most awaited feature to every Guake adicts: Split terminal. Split easily vertically and horizontally each terminal and have more than one terminal per tab.
 There have been several shortcut changes to help navigate easily on your screen: Ctrl+Shift+Up/Down/Left/Right to switch from terminal to terminal.
 Thanks for you hard work, @aichingm !
 
+
+.. _Guake_3.4.0_New Features:
+
 New Features
 ------------
 
+.. releasenotes/notes/split-terminal-b924ad9a29f59b8b.yaml @ b'82509847402ac900d1c8b48dd93f681e27e1b83f'
+
 - Split and resize terminals via mouse or keyboard shortcuts.
+
+
+.. _Guake_3.4.0_Deprecations:
 
 Deprecations
 ------------
 
+.. releasenotes/notes/split-terminal-b924ad9a29f59b8b.yaml @ b'82509847402ac900d1c8b48dd93f681e27e1b83f'
+
 - "New terminal" / "Rename terminal" / "Close terminal" items has been removed from the
   terminal context menu. They are still available on the tab context menu.
+
+
+.. _Guake_3.4.0_Bug Fixes:
 
 Bug Fixes
 ---------
 
+.. releasenotes/notes/bugfix-afa83c6312e2f1a0.yaml @ b'7665e4eb6fd4d7fef3aee05206d9a05b12371881'
+
 - Fix multiline selection right click (#1413)
+
+.. releasenotes/notes/fix-1017-1dec922dcf6e914d.yaml @ b'653cd0b424d36bc26432ca0ada2800d7e6163184'
 
 - Fix tab name (#1017)
 
+.. releasenotes/notes/fix-1149-b3ba58cf4b8db01b.yaml @ b'653cd0b424d36bc26432ca0ada2800d7e6163184'
+
 - fixes jumping preference window (#1149)
+
+.. releasenotes/notes/fix-1421-c2cbf1c5f50da9af.yaml @ b'653cd0b424d36bc26432ca0ada2800d7e6163184'
 
 - fix no focus after closing a split terminal (#1421)
 
+.. releasenotes/notes/fix-469-f73da051e0bd7181.yaml @ b'653cd0b424d36bc26432ca0ada2800d7e6163184'
+
 - Add note about shell that does not support --login parameter (#469)
+
+
+.. _Guake_3.4.0_Translation Updates:
 
 Translation Updates
 -------------------
 
+.. releasenotes/notes/translations-bf782198a51d50f3.yaml @ b'653cd0b424d36bc26432ca0ada2800d7e6163184'
+
 - pl (Piotr Drąg on weblate)
+
+.. releasenotes/notes/translations-bf782198a51d50f3.yaml @ b'653cd0b424d36bc26432ca0ada2800d7e6163184'
 
 - nl (Heimen Stoffels on weblate)
 
+.. releasenotes/notes/translations-bf782198a51d50f3.yaml @ b'653cd0b424d36bc26432ca0ada2800d7e6163184'
+
 - nb (Allan Nordhøy on weblate)
+
+.. releasenotes/notes/translations-bf782198a51d50f3.yaml @ b'653cd0b424d36bc26432ca0ada2800d7e6163184'
 
 - ru (Igor on weblate)
 
+.. releasenotes/notes/translations-bf782198a51d50f3.yaml @ b'653cd0b424d36bc26432ca0ada2800d7e6163184'
+
 - zh_CN (庄秋彬 on weblate)
+
+.. releasenotes/notes/translations-bf782198a51d50f3.yaml @ b'653cd0b424d36bc26432ca0ada2800d7e6163184'
 
 - cs (Pavel Borecki on weblate)
 
+.. releasenotes/notes/translations-bf782198a51d50f3.yaml @ b'653cd0b424d36bc26432ca0ada2800d7e6163184'
+
 - de (Robin Bauknecht on weblate)
 
+.. releasenotes/notes/translations-bf782198a51d50f3.yaml @ b'653cd0b424d36bc26432ca0ada2800d7e6163184'
+
 - fr (Gaetan Semet)
+
+
+.. _Guake_3.3.3:
 
 3.3.3
 =====
 
+.. _Guake_3.3.3_Release Summary:
+
 Release Summary
 ---------------
 
+.. releasenotes/notes/gtk3-ports-676e683e82c3fa77.yaml @ b'5b7ac8c83cea027c86ca5566a8e2f16e19572998'
+
 This release adds a big rewrite of the Terminal underlying mechanism by Mario Aichinger. It will serve as a foundation layer for long-awaiting features such as `Split Terminal <https://github.com/Guake/guake/issues/71>`_, `Find Text <https://github.com/Guake/guake/issues/116>`_, `Save/Load Session <https://github.com/Guake/guake/issues/114>`_, and so on.
+
+
+.. _Guake_3.3.3_New Features:
 
 New Features
 ------------
 
+.. releasenotes/notes/add-copy-url-b39441ee986bf333.yaml @ b'6bc9e53a91fcf751ad225a4627fee822d7826696'
+
 - add a new option in the context menu (copy url)
+
+.. releasenotes/notes/context-menu-b45d815f7feaeecb.yaml @ b'4faf3b4bc03343f4fd8bfd4f84fc6b95f9960301'
 
 - support for per terminal context menus
 
+.. releasenotes/notes/context-menu-b45d815f7feaeecb.yaml @ b'4faf3b4bc03343f4fd8bfd4f84fc6b95f9960301'
+
 - new more fullscreen handeling
+
+.. releasenotes/notes/gtk3-ports-676e683e82c3fa77.yaml @ b'5b7ac8c83cea027c86ca5566a8e2f16e19572998'
 
 - load default font via python Gio and not via cli call
 
+.. releasenotes/notes/gtk3-ports-676e683e82c3fa77.yaml @ b'5b7ac8c83cea027c86ca5566a8e2f16e19572998'
+
 - add json example for custom commands in the code
+
+.. releasenotes/notes/gtk3-ports-676e683e82c3fa77.yaml @ b'5b7ac8c83cea027c86ca5566a8e2f16e19572998'
 
 - port screen selectino (use_mouse) to Gdk
 
+.. releasenotes/notes/gtk3-ports-676e683e82c3fa77.yaml @ b'5b7ac8c83cea027c86ca5566a8e2f16e19572998'
+
 - add notification for failed show-hide key rebindings
+
+.. releasenotes/notes/gtk3-ports-676e683e82c3fa77.yaml @ b'5b7ac8c83cea027c86ca5566a8e2f16e19572998'
 
 - add one-click key binding editing
 
+.. releasenotes/notes/gtk3-ports-676e683e82c3fa77.yaml @ b'5b7ac8c83cea027c86ca5566a8e2f16e19572998'
+
 - port word character exceptions for newer vte versions
+
+.. releasenotes/notes/gtk3-ports-676e683e82c3fa77.yaml @ b'5b7ac8c83cea027c86ca5566a8e2f16e19572998'
 
 - use Gtk.Box instead of Gtk.HBox
 
+.. releasenotes/notes/notebook-tabs-7986ca919d5904b3.yaml @ b'd7674bad12a141fc16b7c18f14931832c55770e1'
+
 - use Gtk.Notebook's tabs implementation
 
+.. releasenotes/notes/tab-scroll-switching-6c674056d1394dcd.yaml @ b'bdab3af5ef14baf22dae147d191f8187c4567922'
+
 - enable tab switching by scrolling (mouse wheel) over the tabs/tab-bar
+
+
+.. _Guake_3.3.3_Bug Fixes:
 
 Bug Fixes
 ---------
 
+.. releasenotes/notes/fix-1370-dca809a64dff2e3b.yaml @ b'0b1ada6a87b442eb50d6b07ca6a99b8fa80fd0d5'
+
 - fixes Settings schema 'guake.general' does not contain a key named 'display_n'
 
+.. releasenotes/notes/terminal-3d38462063ba8bf5.yaml @ b'7b3f22ac0a0aecdcfb5885bee9d671f5f6e42f2d'
+
 - fixes ``guake --fgcolor/--bgcolor`` error (#1376).
+
+
+.. _Guake_3.3.3_Translation Updates:
 
 Translation Updates
 -------------------
 
+.. releasenotes/notes/translations-b4a5bede065fcdcc.yaml @ b'8d05cf38d27650d1156ef165e57a1abfe6322d0b'
+
 - fr (thanks samuelorsi125t and ButterflyOfFire)
+
+.. releasenotes/notes/translations-b4a5bede065fcdcc.yaml @ b'8d05cf38d27650d1156ef165e57a1abfe6322d0b'
 
 - ru (thanks Igor)
 
+.. releasenotes/notes/translations-b4a5bede065fcdcc.yaml @ b'8d05cf38d27650d1156ef165e57a1abfe6322d0b'
+
 - pl (thanks Piotr Drąg)
+
+.. releasenotes/notes/translations-b4a5bede065fcdcc.yaml @ b'8d05cf38d27650d1156ef165e57a1abfe6322d0b'
 
 - cz (thanks Pavel Borecki)
 
+.. releasenotes/notes/translations-b4a5bede065fcdcc.yaml @ b'8d05cf38d27650d1156ef165e57a1abfe6322d0b'
+
 - de (thanks Dirk den Hoedt and Mario Aichinger)
 
+.. releasenotes/notes/translations-b4a5bede065fcdcc.yaml @ b'8d05cf38d27650d1156ef165e57a1abfe6322d0b'
+
 - gl (thanks Nacho Vidal)
+
+
+.. _Guake_3.3.3_Notes for Package Maintainers:
 
 Notes for Package Maintainers
 -----------------------------
 
+.. releasenotes/notes/dependencies-40d6237664b473cb.yaml @ b'dbca6271141def815e503aa9782dfbd80df051cd'
+
 - Please note ``libutempter0`` should now be considered as a mandatory dependency of Guake.
   It solves the frozen terminal issue on exit (#1014)
+
+
+.. _Guake_3.3.2:
 
 3.3.2
 =====
 
+.. _Guake_3.3.2_Bug Fixes:
+
 Bug Fixes
 ---------
+
+.. releasenotes/notes/travis-72ba95b09d9d6e67.yaml @ b'66dc3f0a3e631d971db4486c472458af267e9099'
 
 - Travis build cleaned build artifacts before deployment, leading to missing files when
   built in the CI.
 
+
+.. _Guake_3.3.1:
+
 3.3.1
 =====
+
+.. _Guake_3.3.1_Release Summary:
 
 Release Summary
 ---------------
 
+.. releasenotes/notes/translations-4106dec297b04a63.yaml @ b'45d6fad258e74f28fa294e73f18587d2b2028327'
+
 This minor release mainly fix some issues when installing Guake though ``pip install --user --upgrade guake``.
 A big thanks also to everyone who contributed to the translations on `Weblate <https://hosted.weblate.org/projects/guake/guake/>`_.
+
+.. _Guake_3.3.1_Bug Fixes:
 
 Bug Fixes
 ---------
 
+.. releasenotes/notes/bugfix-desktop-icons-d138f5862005ec4c.yaml @ b'e0047fe787f063042b40b2e14578fe9d29eb8be7'
+
 - Don't translate application icon (this finally fixes Guake application icon not being displayed with German locale, which was only partially resolved with #1320)
 
+.. releasenotes/notes/pip-b3c70a8c17ca5533.yaml @ b'45d6fad258e74f28fa294e73f18587d2b2028327'
+
 - Install of Guake through pip install was broken (missing ``paths.py``). Now fixed. Discarded generation of bdist. (fix
+
+
+.. _Guake_3.3.1_Translation Updates:
 
 Translation Updates
 -------------------
 
+.. releasenotes/notes/translation-a33ff067822bbfb9.yaml @ b'f94bf912c86708a4cc9eb36cca13f8b3b7810f41'
+
 - sv (thanks to @MorganAntonsson)
+
+.. releasenotes/notes/translation-de-c6495c0ae7523117.yaml @ b'f94bf912c86708a4cc9eb36cca13f8b3b7810f41'
 
 - de (thanks to @rzimmer)
 
+.. releasenotes/notes/translations-4106dec297b04a63.yaml @ b'45d6fad258e74f28fa294e73f18587d2b2028327'
+
 - fr
+
+.. releasenotes/notes/translations-4106dec297b04a63.yaml @ b'45d6fad258e74f28fa294e73f18587d2b2028327'
 
 - ru (thanks Igor "f2404" on Weblate)
 
+.. releasenotes/notes/translations-4106dec297b04a63.yaml @ b'45d6fad258e74f28fa294e73f18587d2b2028327'
+
 - cz (thanks Pavel Borecki on Weblate)
+
+.. releasenotes/notes/translations-4106dec297b04a63.yaml @ b'45d6fad258e74f28fa294e73f18587d2b2028327'
 
 - pl (thanks Piotr Drąg on Weblate)
 
+.. releasenotes/notes/translations-4106dec297b04a63.yaml @ b'45d6fad258e74f28fa294e73f18587d2b2028327'
+
 - it (thanks Maurizio De Santis on Weblate)
+
+
+.. _Guake_3.3.1_Other:
 
 Other
 -----
 
+.. releasenotes/notes/credits-17a8ac0624e7a46b.yaml @ b'f94bf912c86708a4cc9eb36cca13f8b3b7810f41'
+
 - Update about screen's credits
+
+
+.. _Guake_3.3.0:
 
 3.3.0
 =====
 
+.. _Guake_3.3.0_New Features:
+
 New Features
 ------------
 
+.. releasenotes/notes/pip-a8c7f5e91190b7ba.yaml @ b'86995359b2ed76d582bf7db3e37a19be4d411314'
+
 - ``pip install guake`` now compiles the gsettings schema and finds its languages automatically.
+
+
+.. _Guake_3.3.0_Bug Fixes:
 
 Bug Fixes
 ---------
+
+.. releasenotes/notes/wayland-3fcce3b30835e66d.yaml @ b'150a3a77f9355cb49e3c45a9be850b2f1ac684ec'
 
 - Wayland is a bit more well supported. The X11 backend is now used by default for
   GDK and it seems to make the shortcut works under most situation.
@@ -182,64 +345,117 @@ Bug Fixes
   A more cleaner solution would be to develop a GAction
   (`vote for this feature here <https://feathub.com/Guake/guake/+29>`_])
 
+.. releasenotes/notes/wayland-3fcce3b30835e66d.yaml @ b'150a3a77f9355cb49e3c45a9be850b2f1ac684ec'
+
 - A new command has been added: ``guake-toggle``, should be faster than
   ``guake -t``. You can use it when you register the global shortcut manually
   (X11 or Wayland).
 
+
+.. _Guake_3.2.2:
+
 3.2.2
 =====
+
+.. _Guake_3.2.2_Bug Fixes:
 
 Bug Fixes
 ---------
 
+.. releasenotes/notes/bugfix-b26aac4094ce8154.yaml @ b'48cf239e6accf9833926f2b9697731bfaca588aa'
+
 - Fix transparency regression on ubuntu composite (#1333)
+
+.. releasenotes/notes/bugfix-bb8c6dcf8cbd3b20.yaml @ b'2908357bf851063dbac7e813dfa746a06e0ba469'
 
 - Fix transparency issue
 
+.. releasenotes/notes/bugfix-bb8c6dcf8cbd3b20.yaml @ b'2908357bf851063dbac7e813dfa746a06e0ba469'
+
 - Fix right-click on link
+
+.. releasenotes/notes/bugfix-bb8c6dcf8cbd3b20.yaml @ b'2908357bf851063dbac7e813dfa746a06e0ba469'
 
 - Fix bad css override on check tab background (#1326)
 
+.. releasenotes/notes/bugfix-desktop-icon-68a8c2d6d2ef390c.yaml @ b'a4c9f1a74fb5e333ca0a789cce3189e5535ee390'
+
 - Fix Guake application icon not displayed with German locale
+
+.. releasenotes/notes/bugfix-f11b203584eeeb8e.yaml @ b'99ea0ab7ab8d14abb91d914da7bbc88d70411117'
 
 - fix ctrl+click on hyperlinks on VTE 0.50 (#1295)
 
+.. releasenotes/notes/palette-008d16139cff7b9c.yaml @ b'34b6259b388f44dab571e729ae1e9cc54d3d3b62'
+
 - Fixed "Gruvbox Dark" color palette (swapped foreground and background)
 
+.. releasenotes/notes/palette-ac719dfbd2dd49e9.yaml @ b'da0a5c25e7587292131895b34ff394e74075cd07'
+
 - Swapped foreground and background colors for palettes added in commit #58842e9.
+
+
+.. _Guake_3.2.2_Other:
 
 Other
 -----
 
+.. releasenotes/notes/update-bootstrap-scripts-1ba9e40b4ab1bfd4.yaml @ b'2fa4c7b238babc6e9cd5869c47209ea6dad75014'
+
 - Add option groupes to the bootstrap scripts
+
+
+.. _Guake_3.2.1:
 
 3.2.1
 =====
 
+.. _Guake_3.2.1_New Features:
+
 New Features
 ------------
+
+.. releasenotes/notes/palette-548f459256895a64.yaml @ b'de681c82ec77c7bebc9e23a76bf114641e8f5863'
 
 - Thanks to @arcticicestudio, a new nice, clean new palette theme is available for Guake users:
   Nord (#1275)
 
+
+.. _Guake_3.2.1_Known Issues:
+
 Known Issues
 ------------
 
+.. releasenotes/notes/hyperlinks-778efab6774df2e6.yaml @ b'3718a0a41c4c20bf3e966c48a9b3aefbe8874f0e'
+
 - Multiline url are sometimes not handled correctly.
+
+.. releasenotes/notes/translations-daa7e7aa85eec3bb.yaml @ b'40849130c85207d03bd077270ff09e632aa1cd58'
 
 - Users of Byobu or Tmux as default shell should disable the "login shell" option
   (in the "Shell" panel). This uses an option, ``--login``, that does not exist on these
   two tools.
 
+
+.. _Guake_3.2.1_Bug Fixes:
+
 Bug Fixes
 ---------
 
+.. releasenotes/notes/bugfix-5b330b910cf335bb.yaml @ b'9a53c4268b2764fb0a499405824e8adf967abdaf'
+
 - Fix duplication in theme list (#1304)
+
+.. releasenotes/notes/bugfix-ce7825d37bcf2273.yaml @ b'56f16c9b600fb2044b8d3db1fb6fe220438a258e'
 
 - Fix right click selection in Midnight Commander
 
+.. releasenotes/notes/fix-hyperlink-50901cd04a88876e.yaml @ b'fa20efa6d1530162f9c97f05d0552598a5d31afc'
+
 - Corrected usage of ``Vte.Regex.new_for_match`` to fix regular expression matching
   (hyperlinks, quick open) on VTE >0.50 (#1295)
+
+.. releasenotes/notes/hyperlinks-778efab6774df2e6.yaml @ b'3718a0a41c4c20bf3e966c48a9b3aefbe8874f0e'
 
 - URL with ``'`` (simple quote) and ``()`` (parenthesis) are now captured by hyperlink matcher.
   This may causes some issues with log and so that use parenthesis *around* hyperlinks,
@@ -254,73 +470,134 @@ Bug Fixes
   of the URL by Guake, so most logs and traces that adds a dot or a comma at the end of the URL
   might still work.
 
+.. releasenotes/notes/translations-daa7e7aa85eec3bb.yaml @ b'40849130c85207d03bd077270ff09e632aa1cd58'
+
 - Fix "Grubbox Dark" theme
+
+
+.. _Guake_3.2.1_Translation Updates:
 
 Translation Updates
 -------------------
 
+.. releasenotes/notes/translations-daa7e7aa85eec3bb.yaml @ b'40849130c85207d03bd077270ff09e632aa1cd58'
+
 - fr
+
+.. releasenotes/notes/translations-daa7e7aa85eec3bb.yaml @ b'40849130c85207d03bd077270ff09e632aa1cd58'
 
 - pl
 
+.. releasenotes/notes/translations-daa7e7aa85eec3bb.yaml @ b'40849130c85207d03bd077270ff09e632aa1cd58'
+
 - ru
+
+
+.. _Guake_3.2.1_Other:
 
 Other
 -----
 
+.. releasenotes/notes/docs-0c95ec1b74cc65d0.yaml @ b'352a2570ff7342a4a2cf53101b6afca7f6533e9e'
+
 - Rework the documentation. The README grew up a lot and was hard to use. It has been cut into
   several user manual pages in the official online documentation.
+
+
+.. _Guake_3.2.0:
 
 3.2.0
 =====
 
+.. _Guake_3.2.0_New Features:
+
 New Features
 ------------
 
+.. releasenotes/notes/theme-1c1f13e63e46d98b.yaml @ b'0779655fd34df6fb98d1bb49db1cbd46d7b44d6d'
+
 - Allow user to select the theme within the preference UI
 
+.. releasenotes/notes/theme-a11c5b3cf19de34f.yaml @ b'21cf658bacd2b3559ebdb36a1527d0c3631e631f'
+
 - Selected tab use "selected highlight" color from theme (#1036)
+
+
+.. _Guake_3.2.0_Translation Updates:
 
 Translation Updates
 -------------------
 
+.. releasenotes/notes/theme-1c1f13e63e46d98b.yaml @ b'0779655fd34df6fb98d1bb49db1cbd46d7b44d6d'
+
 - fr
+
+
+.. _Guake_3.1.1:
 
 3.1.1
 =====
 
+.. _Guake_3.1.1_New Features:
+
 New Features
 ------------
+
+.. releasenotes/notes/quick-open-52d040f5e34e4d35.yaml @ b'8491450161e24cde0548a7e8541e85fb73ae0722'
 
 - Quick open displays a combobox with predefined settings for Visual Studio Code, Atom and
   Sublime Text.
 
+
+.. _Guake_3.1.1_Bug Fixes:
+
 Bug Fixes
 ---------
 
+.. releasenotes/notes/bugfix-6096693463dd6c84.yaml @ b'8491450161e24cde0548a7e8541e85fb73ae0722'
+
 - Fix  hyperlink VTE
+
+
+.. _Guake_3.1.0:
 
 3.1.0
 =====
 
+.. _Guake_3.1.0_Release Summary:
+
 Release Summary
 ---------------
+
+.. releasenotes/notes/install-b017d0fe51f8e2ad.yaml @ b'97bf2cb22586bde930ea12b3ebfbc1e611967359'
+
 
 This version of Guake brings mostly bug fixes, and some new features like "Quick Open on selection". I have also reworked internally the Quick Open so that it can automatically open files from logs from pytest and other python development tools output.
 However, there might still some false positive on the hovering of the mouse in the terminal, the most famous being the output of ``ls -l`` which may have the mouse looks like it sees hyperlinks on the terminal everywhere. Click does nothing but its an annoying limitation.
 Package maintainers should read the "Notes for Package Maintainers" of this release note carefully.
 
+
+.. _Guake_3.1.0_New Features:
+
 New Features
 ------------
 
+.. releasenotes/notes/autostart-300343bbe644bd7e.yaml @ b'ddc45d6d3359675b08b169585b97b51a1dc3b675'
+
 - New "start at login" option in the settings (only for GNOME) #251
+
+.. releasenotes/notes/debug-d435207215fdcc2e.yaml @ b'8f5a665141cc0c6951d81026a079762b0239851b'
 
 - Add ``--verbose``/``-v`` parameter to enable debug logging. Please note the existing ``-v``
   (for version number) has been renamed ``-V``.
 
+.. releasenotes/notes/hyperlink-e40e87ae4dc83c8e.yaml @ b'ed0278eba97a56a11b64050ef41e9c42c5ae19aa'
+
 - Support for hyperlink VTE extension
   (`described here <https://gist.github.com/egmontkob/eb114294efbcd5adb1944c9f3cb5feda>`_ )
   #945 (Untested, as it requires VTE 0.50)
+
+.. releasenotes/notes/palettes-ec272b2335a1fa06.yaml @ b'5065bd3f426ab77197f9c4ebd96bef11840f0a53'
 
 - Add great color palettes from
   `Guake Color Scheme <https://github.com/ziyenano/Guake-Color-Schemes>`_, thanks for @ziyenano :
@@ -352,19 +629,34 @@ New Features
     - `Ura`,
     - `Vag`.
 
+.. releasenotes/notes/right-clic-f15043342128eb58.yaml @ b'0ff272c3f65ea9be7c5256962dbbf8be720f9763'
+
 - Allow application to capture right click (ex: Midnight commander). #1096.
   It is still possible to show the contextual menu with Shift+right click.
+
+
+.. _Guake_3.1.0_Bug Fixes:
 
 Bug Fixes
 ---------
 
+.. releasenotes/notes/bugfix-78df60050b344c0b.yaml @ b'3dd342c500bda9e03400d30980481308b4e30472'
+
 - delete tab even without libutempter (#1198)
+
+.. releasenotes/notes/bugfix-abe62750f777873f.yaml @ b'b86c84922fe6d6485b5141b21bac9acd99884124'
 
 - Fix crash when changing command file #1229
 
+.. releasenotes/notes/bugfix-b54670a057197a9f.yaml @ b'347d02a69b1af3c0a3bf781d3d09ba5b7cc8a73d'
+
 - fix ``import sys`` in ``simplegladeapp.py``
 
+.. releasenotes/notes/bugfix_1225-6eecf165d1d0e732.yaml @ b'347d02a69b1af3c0a3bf781d3d09ba5b7cc8a73d'
+
 - change scope of ``which_align`` variable in ``pref.py`` (#1225)
+
+.. releasenotes/notes/quick_open-bb22f82761ad564b.yaml @ b'8274e950893f9ed119f88ca6b99ebe167571143c'
 
 - Fix several issues on Quick Edit:
   
@@ -383,28 +675,52 @@ Bug Fixes
     appear for translators.
   - Fix quick open on pattern "File:line" line that was not opening the wanted file.
 
+.. releasenotes/notes/translation-bd1cd0a5447ee42f.yaml @ b'56f16c9b600fb2044b8d3db1fb6fe220438a258e'
+
 - Fix user interface translations #1228
+
+.. releasenotes/notes/translation-ccde91d14559d6ab.yaml @ b'0d6bf217c40a522c23cc83a7e06ad98273cbe32b'
 
 - Some systems such as Ubuntu did displayed Guake with a translated interface (#1209). The locale system has been reworked to fix that.
 
+.. releasenotes/notes/translation-ccde91d14559d6ab.yaml @ b'0d6bf217c40a522c23cc83a7e06ad98273cbe32b'
+
 - There might be broken translations, or not up-to-date language support by Guake. A global refresh of all existing translations would be welcomed. Most has not been updated since the transition to Guake 3, so these languages support might probably be unfunctional or at least partialy localized.
+
+.. releasenotes/notes/translation-ccde91d14559d6ab.yaml @ b'0d6bf217c40a522c23cc83a7e06ad98273cbe32b'
 
 - A big thank you for all the volunteers and Guake enthousiats would often update their own translation to help guake being used world-wide.
   - Help is always welcomed for updating translations !
 
+.. releasenotes/notes/vte-d6fd6406c673f71a.yaml @ b'5e6339865120775e77436e03ed90cef6bc715dc9'
+
 - Support for vte 2.91 (0.52) #1222
+
+
+.. _Guake_3.1.0_Translation Updates:
 
 Translation Updates
 -------------------
 
+.. releasenotes/notes/autostart-300343bbe644bd7e.yaml @ b'ddc45d6d3359675b08b169585b97b51a1dc3b675'
+
 - fr_FR
+
+.. releasenotes/notes/autostart-300343bbe644bd7e.yaml @ b'ddc45d6d3359675b08b169585b97b51a1dc3b675'
 
 - pl
 
+.. releasenotes/notes/update-de-translation-cfcb77e0e6b4543e.yaml @ b'2fe5656610a72d3a41fbf97c3e74a160b9821052'
+
 - de
+
+
+.. _Guake_3.1.0_Notes for Package Maintainers:
 
 Notes for Package Maintainers
 -----------------------------
+
+.. releasenotes/notes/install-b017d0fe51f8e2ad.yaml @ b'97bf2cb22586bde930ea12b3ebfbc1e611967359'
 
 - The setup mecanism has changed a little bit. Some maintainers used to patch the source code
   of Guake to change the pixmap, Gtk schema or locale paths directly in the ``guake/globals.py``
@@ -434,29 +750,53 @@ Notes for Package Maintainers
   I invite package maintainers to open tickets on Github about any other difficulties
   encountered when packaging Guake.
 
+
+.. _Guake_3.0.5:
+
 3.0.5
 =====
+
+.. _Guake_3.0.5_Bug Fixes:
 
 Bug Fixes
 ---------
 
+.. releasenotes/notes/bugfix-705c264a6b77f4d3.yaml @ b'45866977af61fdc18e2f8e4170ff6e8667ddea36'
+
 - Apply cursor blinking to new tabs as well, not only on settings change.
+
+.. releasenotes/notes/bugfix-c065e1a8b8e41270.yaml @ b'a17a2b5a4abcf18df96f83c1dca9f9519d75a5eb'
 
 - Fix window losefocus hotkey #1080
 
+.. releasenotes/notes/bugfix-cb51b18bfd3c8da3.yaml @ b'9465a191732f101891432bcdb70ce27cf6b37d8a'
+
 - Fix refocus if open #1188
+
+.. releasenotes/notes/fix-preference-window-header-color,-align-close-button-and-change-borders-to-margins-fa7ffffc45b12ea5.yaml @ b'2333606e7af3deb165bc8de23c392472420cf163'
 
 - fix preferences window header color, align the close button more nicely and change borders to margins
 
+.. releasenotes/notes/wayland-fa246d324c92fd80.yaml @ b'12a05905b2131dc091271cdf24b3c8b069da4cb0'
+
 - Implements a timestamp for wayland (#1215)
+
+
+.. _Guake_3.0.4:
 
 3.0.4
 =====
 
+.. _Guake_3.0.4_New Features:
+
 New Features
 ------------
 
+.. releasenotes/notes/Add-window-displacement-options-to-move-guake-away-from-the-edges-1b2d46997e8dbe91.yaml @ b'93099961f7c90a22089b76a8a9acf1414bea56e5'
+
 - Add window displacement options to move guake away from the screen edges
+
+.. releasenotes/notes/Add-window-displacement-options-to-move-guake-away-from-the-edges-1b2d46997e8dbe91.yaml @ b'93099961f7c90a22089b76a8a9acf1414bea56e5'
 
 - User can manually enter the name of the GTK theme it wants Guake to use. Note there is no
   Preference settings yet, one needs to manually enter the name using ``dconf-editor``, in the
@@ -465,7 +805,11 @@ New Features
   been tested on Ubuntu systems.
   Dark theme preference can be se with the key ``/apps/guake/general/gtk-prefer-dark-theme``.
 
+.. releasenotes/notes/fix-make-install-system-as-non-root-user-40cdbb0509660741.yaml @ b'7fb39459c9dd852411fcd968fcfbbf33f5bfa4ca'
+
 - Allow make install-system to be run as non root user and print a message if so.
+
+.. releasenotes/notes/quick_open-032209b39bb6831f.yaml @ b'4423af1c134e80a81e4c68fdcf5eea2ade969c74'
 
 - Quick open can now open file under selection. Simply select a filename in the current terminal
   and do a Ctrl+click, if the file path can be found, it will be open in your editor. It allows
@@ -479,151 +823,282 @@ New Features
   Line number syntax is also supported: ``filename.txt:5`` will directly on the 5th line if
   your Quick Open is set for.
 
+
+.. _Guake_3.0.4_Bug Fixes:
+
 Bug Fixes
 ---------
 
+.. releasenotes/notes/Add-window-displacement-options-to-move-guake-away-from-the-edges-1b2d46997e8dbe91.yaml @ b'93099961f7c90a22089b76a8a9acf1414bea56e5'
+
 - fixes issue with vertically stacked dual monitors #1162
+
+.. releasenotes/notes/bugfix-654583b5646cf905.yaml @ b'1367a6b7cdf856efea50e0956f894be088d1f681'
 
 - Quick Open functionnality is restored #1121
 
+.. releasenotes/notes/bugfix-90bd70c984ad6a73.yaml @ b'69ae4fe8036eae8e2f7418cd08fccb95fe41eb07'
+
 - Unusable Guake with "hide on focus lose" option #1152
 
+.. releasenotes/notes/dbus-c3861541c24b328a.yaml @ b'c0443dd7df49346a87f1fa08a52c1c6f76727ad8'
+
 - Speed up guake D-Bus communication (command line such as ``guake -t``).
+
+
+.. _Guake_3.0.3:
 
 3.0.3
 =====
 
+.. _Guake_3.0.3_Release Summary:
+
 Release Summary
 ---------------
 
+.. releasenotes/notes/gtk3-a429d01811754c42.yaml @ b'8ea70114fc51ffef8436da8cde631a8246cc6794'
+
 This minor release mainly focus on fixing big problems that was remaining after the migration to GTK3. I would like to akwonledge the work of some contributors that helped testing and reporting issues on Guake 3.0.0. Thanks a lot to @egmontkob and @aichingm.
 
+
+.. releasenotes/notes/prefs-032d2ab0c8e2f17a.yaml @ b'8ea70114fc51ffef8436da8cde631a8246cc6794'
+
 The Preference window has been deeply reworked and the hotkey management has been rewriten. This was one the the major regression in Guake 3.0.
+
+
+.. _Guake_3.0.3_New Features:
 
 New Features
 ------------
 
+.. releasenotes/notes/auto-edit-648e3609c9aee103.yaml @ b'8ea70114fc51ffef8436da8cde631a8246cc6794'
+
 - [dev env] automatically open reno slug after creation for editing
+
+.. releasenotes/notes/dev-env-fb2967d1ba8ee495.yaml @ b'8ea70114fc51ffef8436da8cde631a8246cc6794'
 
 - [dev env]: Add the possibility to terminate guake with ``Ctrl+c`` on terminal
   where Guake has been launched
 
+.. releasenotes/notes/scroll-959087c80640ceaf.yaml @ b'8ea70114fc51ffef8436da8cde631a8246cc6794'
+
 - Add "Infinite scrolling" option in "Scrolling" panel #274
+
+.. releasenotes/notes/show-focus-cab5307b44905f7e.yaml @ b'8ea70114fc51ffef8436da8cde631a8246cc6794'
 
 - Added hotkey for showing and focusing Guake window when it is opened or closed.
   It is convenient when Guake window are overlapped with another windows and user
   needs to just showing it without closing and opening it again. #1133
 
+
+.. _Guake_3.0.3_Known Issues:
+
 Known Issues
 ------------
 
+.. releasenotes/notes/packages-55d1017dd708b8de.yaml @ b'40849130c85207d03bd077270ff09e632aa1cd58'
+
 - Quick Edit feature is not working (#1121)
+
+
+.. _Guake_3.0.3_Deprecations:
 
 Deprecations
 ------------
 
+.. releasenotes/notes/visible-bell-12de7acf136d3fa4.yaml @ b'8ea70114fc51ffef8436da8cde631a8246cc6794'
+
 - Remove visible bell feature #1081
+
+
+.. _Guake_3.0.3_Bug Fixes:
 
 Bug Fixes
 ---------
 
+.. releasenotes/notes/fix-guake-showing-up-on-startup-0fdece37dc1616e4.yaml @ b'8ea70114fc51ffef8436da8cde631a8246cc6794'
+
 - Command options do not work, crash when disabling keybinding #1111
+
+.. releasenotes/notes/fix-guake-showing-up-on-startup-0fdece37dc1616e4.yaml @ b'8ea70114fc51ffef8436da8cde631a8246cc6794'
 
 - Do not open Guake window upon startup #1113
 
+.. releasenotes/notes/fix-in/decrease-height-8176a8313d9a1aba.yaml @ b'8ea70114fc51ffef8436da8cde631a8246cc6794'
+
 - Fix crash on increase/decrease main window height shortcut #1099
+
+.. releasenotes/notes/fix-rename-tab-shortcut-62ad1410c2958929.yaml @ b'8ea70114fc51ffef8436da8cde631a8246cc6794'
 
 - Resolved conflicting default shortcut for ``Ctrl+F2`` (now, rename current tab is set to
   ``Ctrl+Shift+R``) #1101, #1098
 
+.. releasenotes/notes/hotkeys-42708e8968fd7b25.yaml @ b'41c5b8b408b0360483f2e467f616f88a534acf83'
+
 - The hotkey management has been rewriten and is now fully functional
+
+.. releasenotes/notes/prefs-032d2ab0c8e2f17a.yaml @ b'8ea70114fc51ffef8436da8cde631a8246cc6794'
 
 - Rework the Preference window and reorganize the settings. Lot of small issues
   has been fixed.
   The Preference window now fits in a 1024x768 screen.
 
+.. releasenotes/notes/run-command-517683bd988aa06a.yaml @ b'8ea70114fc51ffef8436da8cde631a8246cc6794'
+
 - Fix 'Failed to execute child process "-"' - #1119
+
+.. releasenotes/notes/scroll-959087c80640ceaf.yaml @ b'8ea70114fc51ffef8436da8cde631a8246cc6794'
 
 - History size spin is fixed and now increment by 1000 steps. Default history value is now set to
   1000, because "1024" has no real meaning for end user. #1082
 
+
+.. _Guake_3.0.3_Translation Updates:
+
 Translation Updates
 -------------------
 
+.. releasenotes/notes/translation-31e67dc4190a9067.yaml @ b'7cb971cf125e41f6294b8b17003276abb18a8734'
+
 - de
+
+.. releasenotes/notes/translation-31e67dc4190a9067.yaml @ b'7cb971cf125e41f6294b8b17003276abb18a8734'
 
 - fr
 
+.. releasenotes/notes/translation-31e67dc4190a9067.yaml @ b'7cb971cf125e41f6294b8b17003276abb18a8734'
+
 - ru
+
+
+.. _Guake_3.0.3_Other:
 
 Other
 -----
+
+.. releasenotes/notes/packages-55d1017dd708b8de.yaml @ b'40849130c85207d03bd077270ff09e632aa1cd58'
 
 - The dependencies of the Guake executable has been slightly better described in README.
   There is an example for Debian/Ubuntu in the file ``scripts/bootstrap-dev-debian.sh`` which is
   the main environment where Guake is developed and tested.
 
+.. releasenotes/notes/packages-55d1017dd708b8de.yaml @ b'40849130c85207d03bd077270ff09e632aa1cd58'
+
 - Package maintainers are encouraged to submit their ``bootstrap-dev-[distribution].sh``,
   applicable for other distributions, to help users install Guake from source, and other package
   maintainers.
 
+
+.. _Guake_3.0.2:
+
 3.0.2
 =====
+
+.. _Guake_3.0.2_New Features:
 
 New Features
 ------------
 
+.. releasenotes/notes/dark_theme-4bb6be4b2cfd92ae.yaml @ b'b0f73e5d93f3b688cf311f5925eb0c95d8cc64e4'
+
 - Preliminary Dark theme support. To use it, install the 'numix' theme in your system.
   For example, Ubuntu/Debian users would use ``sudo apt install numix-gtk-theme``.
+
+
+.. _Guake_3.0.2_Known Issues:
 
 Known Issues
 ------------
 
+.. releasenotes/notes/dark_theme-4bb6be4b2cfd92ae.yaml @ b'b0f73e5d93f3b688cf311f5925eb0c95d8cc64e4'
+
 - Cannot enable or disable the GTK or Dark theme by a preference setting.
+
+
+.. _Guake_3.0.2_Deprecations:
 
 Deprecations
 ------------
 
+.. releasenotes/notes/resizer-d7c6553879852019.yaml @ b'4b50f6714f56e72b38856ec1933790c5624e3399'
+
 - Resizer discontinued
+
+
+.. _Guake_3.0.2_Bug Fixes:
 
 Bug Fixes
 ---------
 
+.. releasenotes/notes/make-096ad37e6079df09.yaml @ b'8ea70114fc51ffef8436da8cde631a8246cc6794'
+
 - Fix ``sudo make uninstall/install`` to work only with ``/usr/local``
+
+.. releasenotes/notes/make-096ad37e6079df09.yaml @ b'8ea70114fc51ffef8436da8cde631a8246cc6794'
 
 - Fix translation ``mo`` file generation
 
+.. releasenotes/notes/make-096ad37e6079df09.yaml @ b'8ea70114fc51ffef8436da8cde631a8246cc6794'
+
 - Fix crash on Wayland
+
+.. releasenotes/notes/match-b205323a7aa019f9.yaml @ b'dcb33c0f7048f5c96c2d13f747bbd686c65dd91d'
 
 - Fix quick open and open link in terminal
 
+.. releasenotes/notes/not_composited_de-505082d1c18eda3c.yaml @ b'6459a2c14fd5366fae5d245aac9df21e7e7955dc'
+
 - Fixed Guake initialization on desktop environment that does not support compositing.
+
+
+.. _Guake_3.0.1:
 
 3.0.1
 =====
 
+.. _Guake_3.0.1_Release Summary:
+
 Release Summary
 ---------------
 
+.. releasenotes/notes/maintenance-e02e946e15c940ab.yaml @ b'5cbf4cf065f11067118430eda32cb2fcb5516874'
+
 Minor maintenance release.
+
+
+.. _Guake_3.0.1_Bug Fixes:
 
 Bug Fixes
 ---------
 
+.. releasenotes/notes/maintenance-e02e946e15c940ab.yaml @ b'5cbf4cf065f11067118430eda32cb2fcb5516874'
+
 - Code cleaning and GNOME desktop file conformance
+
+
+.. _Guake_3.0.0:
 
 3.0.0
 =====
 
+.. _Guake_3.0.0_Release Summary:
+
 Release Summary
 ---------------
+
+.. releasenotes/notes/gtk3-800a345dfd067ae6.yaml @ b'dcb33c0f7048f5c96c2d13f747bbd686c65dd91d'
 
 Guake has been ported to GTK-3 thanks to the huge work of @aichingm. This also implies Guake now uses the latest version of the terminal emulator component, VTE 2.91.
 Guake is now only working on Python 3 (version 3.5 or 3.6). Official support for Python 2 has been dropped.
 This enables new features in upcoming releases, such as "find in terminal", or "split screen".
 
+
+.. _Guake_3.0.0_New Features:
+
 New Features
 ------------
+
+.. releasenotes/notes/gtk3-800a345dfd067ae6.yaml @ b'dcb33c0f7048f5c96c2d13f747bbd686c65dd91d'
 
 - Ported to GTK3:
   
@@ -643,16 +1118,22 @@ New Features
     - pattern matching
     - ``Guake.accel*`` methods
 
+.. releasenotes/notes/gtk3-800a345dfd067ae6.yaml @ b'dcb33c0f7048f5c96c2d13f747bbd686c65dd91d'
+
 - Guake now use a brand new build system:
   
     - ``pipenv`` to manage dependencies in `Pipfile`
     - enforced code styling and checks using Pylint, Flake8, Yapf, ISort.
     - simpler release management thanks to PBR
 
+.. releasenotes/notes/reno-3b5ad9829b256250.yaml @ b'8ea70114fc51ffef8436da8cde631a8246cc6794'
+
 - [dev env] `reno <https://docs.openstack.org/reno/latest/>`_ will be used to generate
   release notes for Guake starting version 3.0.0.
   It allows developers to write the right chunk that will appear in the release
   note directly from their Pull Request.
+
+.. releasenotes/notes/update-window-title-c6e6e3917821902d.yaml @ b'7bea32df163cde90d4aeca26a58305fc2db05bfd'
 
 - Update Guake window title when:
   
@@ -660,16 +1141,29 @@ New Features
     - the active tab is renamed
     - the vte title changes
 
+
+.. _Guake_3.0.0_Known Issues:
+
 Known Issues
 ------------
 
+.. releasenotes/notes/gtk3-800a345dfd067ae6.yaml @ b'dcb33c0f7048f5c96c2d13f747bbd686c65dd91d'
+
 - Translation might be broken in some language, waiting for the translation file to be updated by volunteers
+
+.. releasenotes/notes/gtk3-800a345dfd067ae6.yaml @ b'dcb33c0f7048f5c96c2d13f747bbd686c65dd91d'
 
 - Resizer does not work anymore
 
+.. releasenotes/notes/gtk3-800a345dfd067ae6.yaml @ b'dcb33c0f7048f5c96c2d13f747bbd686c65dd91d'
+
 - Package maintainers have to rework their integration script completely
 
+.. releasenotes/notes/gtk3-800a345dfd067ae6.yaml @ b'dcb33c0f7048f5c96c2d13f747bbd686c65dd91d'
+
 - quick open and open link in terminal is broken
+
+.. releasenotes/notes/update-window-title-c6e6e3917821902d.yaml @ b'7bea32df163cde90d4aeca26a58305fc2db05bfd'
 
 - **Note for package maintainers**: Guake 3 has a minor limitation regarding Glib/GTK Schemas
   files. Guake looks for the gsettings schema inside its data directory. So you will probably
@@ -678,495 +1172,37 @@ Known Issues
   `#1064 <https://github.com/Guake/guake/issues/1064>`_).
   This is planned to be fixed in Guake 3.1
 
+
+.. _Guake_3.0.0_Upgrade Notes:
+
 Upgrade Notes
 -------------
 
+.. releasenotes/notes/pref-af8621e5c04d973c.yaml @ b'5f6952a8385f93bfc649b434b6e4728b046f714d'
+
 - Minor rework of the preference window.
+
+
+.. _Guake_3.0.0_Deprecations:
 
 Deprecations
 ------------
 
+.. releasenotes/notes/gtk3-800a345dfd067ae6.yaml @ b'dcb33c0f7048f5c96c2d13f747bbd686c65dd91d'
+
 - Background picture is no more customizable on each terminal
 
+.. releasenotes/notes/gtk3-800a345dfd067ae6.yaml @ b'dcb33c0f7048f5c96c2d13f747bbd686c65dd91d'
+
 - Visual Bell has been deprecated
+
+
+.. _Guake_3.0.0_Translation Updates:
 
 Translation Updates
 -------------------
 
+.. releasenotes/notes/gtk3-800a345dfd067ae6.yaml @ b'dcb33c0f7048f5c96c2d13f747bbd686c65dd91d'
+
 - fr-FR
 
-
-
-Version 0.8.11
---------------
-
-Maintainance release with bug fixes and translation updates.
-
-- #885 revert to the old fixed-width tabs behavior
-- move the startup script setting to the hooks tab
-- #977 Add a configuration toggle to disable windows refocus
-- #970 Right-click tab options don't work properly
-- #995 Russian translation
-- #983 French translation
-- #986 Update German translation
-
-
-Version 0.8.10
---------------
-
-Minors Bug fixes and new Ocean and Oceanic Next color schemes.
-
-
-Version 0.8.9
--------------
-
-Thanks for guakers for the following contibutions:
-
-New features:
-
-- #793, #876: Execute a script on display event
-- #864: Add preference dialog checkbox for toggling 'resizer' visibility
-- #885: tabs share the full screen width
-- #942: Quick open also matches `/home` path
-- #933: Add `-l` option to get tab label
-
-Bug Fixes
-
-- #934: Quick open does not work with dash
-- #893, #896, #888: another Unity screen size fix
-- Translation update: ja (#875), cn (#955), nl (#931), pt (#895),
-
-
-Version 0.8.8
--------------
-
-Thank to these contribution from Guake users, I am happy to announce a new minor fix release of
-Guake.
-
-Features:
-
-* Close a tab with the middle button of the mouse
-
-Bug Fixes:
-
-- Fix error when toggle key was disabled
-- Update change news
-- Uppercase pallete name
-- Fix pylint errors
-- Convert README badge to SVG
-- Update Japanese translation
-- update Russian translation
-- updated CS translation
-- Update zh_CN translation
-
-
-Version 0.8.7
--------------
-
-Do not forget to update the software version
-
-Version 0.8.6
--------------
-
-Lot of bug fixes in this release. Thanks for all contributors !
-
-Please note that it is not tested on dual screen set ups.
-
-Bug fixes:
-
-* Terminal geometry fixes (#773 @koter84, #775 RedFlames, b36295 myself)
-* Fix "changing max tab length" set all tab to same title
-* Fix on terminal kill (#636, @coderstephen)
-* Typo/Cosmetics (#761, @thuandt)
-* Fix the bottom of tab buttons being cut off in Gnome (#786 @lopsided98)
-* Fix fullscreen follow mouse (#774 @koter84)
-* Option to shorten VTE tab name (#798 @versusvoid)
-* Updated translations:
-
-  - french (b071b4, myself)
-  - russian (#787 @vantu5z),
-  - corean (#766 @nessunkim),
-  - polish (#799 @piotrdrag)
-
-
-
-Version 0.8.5
--------------
-
-Minor version today, mostly minor bug fixes and translation update.
-
-I did have time to work on GTK3, maintaining Guake to keep using GTK2 is more and more difficult,
-Travis kind of abandonned the compatibility of PyGtk2.
-
-* Add a shortcut to open the last tab (#706, thanks @evgenius)
-* Fix icon size on Ubuntu (#734)
-* Add tab UUID and selection by UUID (#741, thanks @SoniEx2, @Ozzyboshi)
-* Updated Polish (#705), Chinese (#711), German (#732), Brazil Portuguese (#744), Czech (#747)
-* Fixed doc (#709, #706)
-* Fix some Pep8 issue
-
-
-
-Version 0.8.4
--------------
-
-Bug fixes:
-
- - Very big icon tray (#598, @thardev)
- - Feature keyboard shorcut hide on lose focus (#650, #262, #350, @thardev)
- - Endless transparency and small rework of hide on lose focus (#651, @thardev)
- - fix tray icon does not align in center (#663, @wuxinyumrx)
- - Updated pt_BR translation (#686, @matheus-manoel)
- - improved Bluloco theme readability (#693, @uloco)
- - ensure gsettings process is well kill (#636)
- - fix exception in preference panel
-
-
-
-Version 0.8.3
--------------
-
-Quick fix about missing svg file
-
-
-Version 0.8.2
--------------
-
-Bug fix version. Thanks for external contributions!
-
-Feature:
-
-- new palette 'Bluloco' (my default one now!) (@uloco)
-
-Bug fixes:
-
-- tab bar width (@ozzyboshi)
-- open new tab in current directory (#578, @Xtreak)
-- fix default interpreter (#619, @Xtreak)
-- fix use VTE title (#524, @Xtreak)
-- Russian tranlation (@vantu5z), german (@Airfunker), spanish (@thardev) chinese (@Xinyu Ng)
-- fix guake cannot restore fullscreen (#628, @thardev)
-
-
-Version 0.8.1
--------------
-
-  I started working on Guake 1.0.0, and not in a dedicated branch. It is now in its own source
-  folder. We clearly need to move to gtk3 soon, since GTK2 is being discontinued, the VTE is no more
-  maintained for GTK2-Python, and adds lot of cool features.
-
-  So I am now starting to work on a complete rewrite of Guake, so don't expect 0.8.x to see lot of
-  new features, unfortunately. But Guake 1.0.0 will add features such as:
-
-   - line wrap in terminal
-   - search in terminal
-   - dconf/gsettings to store configuration
-   - GTK3 look and feel
-   - much cleaner build and translation systems
-
-  But, this means I cannot work too much on 0.8.x. I still do some bug fixes, and thanks to external
-  contributors that share the love for Guake, Guake 0.8 still moves on!
-
-  So don't hesitate to have a look in the code to fix any bug you are experiencing and submit a Pull
-  Request.
-
-  New features:
-
-  - a-la guake-indicator custom commands (#564) - by @Ozzyboshi!
-  - Add option to allow/disallow bold font (#603) - by @helix84!
-  - Clean current terminal item in contextual menu (#608) - by @Denis Subbotin
-
-  Bug fixes:
-
-  - Terminal widget disappears at random times (#592)
-  - Typo - by @selivan, @Ruined1
-
-
-Version 0.8.0
--------------
-
-  I have been extremely busy the previous 3 months, so I have almost not worked on Guake. I wanted
-  to introduce in the next version some major features heavily asked, like session save and split
-  terminal. They will have to wait a bit more.
-
-  As a result, most of the contribution are from external contributors. Thank you very much for all
-  these patches!
-
-  This releases introduces two major changes in the project, thus the minor version change.
-
-  First, the new homepage is now online:
-
-    http://guake-project.org/
-
-  As I remind you, Guake has *not* control over the old domain guake.org. So far the content is
-  still one of the old content of this domain. So please use http://guake-project.org to reference
-  Guake.
-
-  Source code of the Web site can be found here:
-
-    https://github.com/Guake/guake-website
-
-  The second major change in the project is the abandon of our internal hotkey manager
-  ``globalhotkey``, which was responsible for binding hotkeys globally to the window manager. This
-  piece of code was extremely old and hard to maintain. This was also unnecessarily complexifying
-  the build process of Guake. Thanks to the contribution of @jenrik, we are now using a pretty
-  common package ``keybinder`` (Ubuntu: ``python-keybinder``).
-
-  Bug fixes:
-
-
-  - Guake fails to start due to a GlobalHotkey related C call fixed by replacing GlobalHotkeys with
-    keybinder. Fixed by @jenrik. (#558, #510)
-  - Fix icon issue with appindicator (#591)
-  - swap terms correctly when moving tabs (#473, #512, #588)
-  - Remove last reference to --show-hide (#587)
-  - fixed and completed german translation (#585)
-  - Drop duplicated man page (a526046a)
-  - use full path to tray icon with libappindicator (#591)
-
-
-Version 0.7.2 (2015.05.20)
---------------------------
-
-  Bug fixes:
-
-  - Fix Ctrl+D regresion (#550)
-  - update Quick Open Preference Window
-
-
-Version 0.7.1 (2015.05.18):
----------------------------
-
-  Some bug fixes, and cleared issues with new palette colors.
-
-  As side note, our domain 'guake.org' has been squatted by an outsider that seems only interested
-  in getting money to release the domain. Since Guake is a small project, based on 100% OpenSource
-  spirit, we do not want to loose more time on this subject. The guake website will be deployed soon
-  on a new URL:
-
-      http://guake-project.org
-
-  Please do **NOT** use guake.org anymore, until we can retrieve it. We cannot be hold responsible
-  for any content on guake.org anymore.
-
-  Bug fixes:
-
-  - Background and font color inversed for some color schemes (#516)
-  - Guake width wrong on non-Unity Ubuntu desktop (#517)
-  - Add get_gtktab_name dbus interface (#529, #530)
-  - Fix issue with selection copy (#514)
-  - I18n fixes and updated Polish translation (#519). Thanks a lot @piotrdrag!
-  - Remove add and guake icon in tab (#543)
-  - prompt_on_close_tab option (#546) Thanks a lot @tobz1000!
-  - Fix default shortcuts for move tabs
-
-
-Version 0.7.0 (2015.05.02):
----------------------------
-
-  I had more time working on Guake recently, so I fixed some long term issues, and exposed some
-  internal settings into the preference window.
-
-  Thanks for the external contribution: @varemenos, @seraff and others!
-
-  Here is the complete changelog for this release:
-
-  - Reorganised palette definition, add a demo terminal in preference panel (#504, #273, #220)
-  - Plenty of other new color palettes (thanks again @varemenos ! #504)
-  - don't propagate COLORTERM environment variable in terminal (#488)
-  - Force $TERM environment variable to 'xterm-256color' in terminals (#341)
-  - Fix issue with the quit confirmation dialog box (#499)
-  - Add shortcut for transparency level (#481)
-  - Add label to tell user how to disable a shortcut (#488)
-  - Expose cursor_shape and blink cursor method in pref window (#505)
-  - Expose Guake startup script to the pref window (#198)
-  - Some window management bug fixes (#506, #445)
-  - Fix "Not focused on openning if tab was moved" (#441)
-  - Add contextual menu item 'Open Link' on right click on a link (5476653)
-  - Fix compatibility with Ubuntu 15.04 (#509)
-  - Fix Guake Turns Gray sometimes (#473, #512)
-
-
-Version 0.6.2 (2015.04.20):
----------------------------
-  - Packaging issue fixes
-
-
-Version 0.6.1 (2015.04.19):
----------------------------
-  - bug fixes
-
-
-Version 0.6.0 (2015.04.18):
----------------------------
-  This version is poor in new feature, I just don't have time to work on Guake. I got a lot of
-  incompatibility reports on new systems, such as Wayland. Port to gtk3 is still a must have, but
-  all features of the VTE component does not seem to have been ported.
-
-  Features:
-
-   - Save current terminal buffer to file
-   - Hotkeys for moving tab
-   - plenty of color palettes (thanks @varemenos !)
-   - bug fixes
-
-
-Version 0.5.2 (2014.11.23):
----------------------------
-
- - bug fixes
- - Disable the 'focus_if_open' feature (hidden trigger, true per default). Restaure focus does not
-   work in all systems.
- - lot of "componentization" of the code, in preparation to the rebase of 'gtk3' branch.
-
-
-Version 0.5.1 (2014.11.06):
----------------------------
-
-  - minor bug fixes release
-
-
-Version 0.5.0 (2014.02.22):
----------------------------
-
-  - Tab can be moved
-  - Add change tab hotkey (F1-F10 by default) and is display on tab
-  - Add "New tab" menu item
-  - Quick open file path within the terminal output
-  - gconf only settings:
-
-     - startup scripts
-     - vertical aligments
-
-  - minor bug fixes
-  - New maintainer:
-
-    * Gaetan Semet <gaetan@xeberon.net>
-
-  - Contributors:
-
-    * @koter84
-    * @kneirinck
-
-
-Versions < 0.5.0
-----------------
-
-changes since 0.4.4:
-
-  - Custom tab titles are no longer overriden by VTE ones (rgaudin)
-  - Absent notifications daemon is no longer fatal
-  - Fix for <Ctrl>key hotkeys being recorded as <Primary>key (Ian MacLeod)
-  - Font resizing using <Ctrl>+ and <Ctrl>- (Eiichi Sato)
-  - D-Bus and commandline interface improvements
-  - L10n:
-
-    * Norwegian Bokmål po file renamed to nb_NO.po (Bjørn Lie)
-    * Added translations: Croatian, Czech, Dutch, Galician, Indonesian, Ukrainian.
-    * Updated translations: Catalan, French, German, Hungarian, Spanish, Swedish.
-
-changes since 0.4.3:
-
-  - New icon for both guake and guake-prefs
-  - Improved build scripts for themable icon installation
-  - Updated some autotools files
-  - Fixing a typo in the guake-prefs.desktop file (Zaitor)
-  - wm_class can't be get by gnome-shell css #414
-  - Add the missing "System" category required by FDO menu specification (Jekyll Wu)
-  - Do not install the system-wide autostart file (Jekyll Wu)
-  - Call window.move/resize only when not in fullscreen mode #403 (Empee584)
-  - Terminal scrolls to the wrong position when hiding and unhiding in fullscreen mode #258
-    (Empee584)
-  - Toggle fullscreen malfunction #371 (Empee584 & Sylvestre)
-  - Guake overlaped the second screen in a dual-monitor setup with a sidepanel (Sylvestre)
-  - Tree items in Keyboard shortcuts tab of preferences window not localized #280 (Robertd)
-  - Add option to start in fullscreen mode #408 (Dom Sekotill)
-  - Refactoring of the fullscreen logic and addition of the --fullscreen flag (Marcel Partap)
-
-changes since 0.4.2:
-
-  - Better tab titling, based on VTE title sequences (Aleksandar Krsteski & Max Ulidtko)
-  - Some drag & drop support (Max Ulidtko)
-  - Fix for the many times reported "gconf proxy port as int" issue (Pingou)
-  - Better file layout which doesn't modify PYTHONPATH (Max Ulidtko)
-
-Updated translation and new translation:
-
-  - Russian (Vadim Kotov)
-  - Spanish (Ricardo A. Hermosilla Carrillo)
-  - Japanese (kazutaka)
-  - Catalan (el_libre como el chaval)
-
-changes since 0.4.1:
-
-Updated translations and new translations (unsorted):
-
-  - Norwegian (wty)
-  - Turkish (Berk Demirkır)
-  - Swedish (Daniel Nylander)
-  - Persian (Kasra Keshavarz)
-  - French (Bouska and Pingou)
-  - Russian (Pavel Alexeev and vkotovv)
-  - Polish (Piotr Drąg)
-  - Spanish, Castilian (dmartinezc)
-  - Italian (Marco Leogrande a.k.a. dark)
-  - Chinese simplified (甘露, Gan Lu)
-  - Portuguese/Brazilian (Djavan Fagundes)
-  - Japanese (kazutaka)
-  - Punjabi (A S Alam)
-
-Bugs/Features:
-
-  - Calling the hide() method when closing main window: #229 (Lincoln)
-  - Fixing dbus path and name for the RemoteControl object: #202 (Lincoln)
-  - Setting http{s,}_proxy vars before calling fork_command: #172 (Lincoln)
-  - Adding the `fr' lang to ALL_LINGUAS: #189 (Lincoln)
-  - Option to configure the color palette: #51 (Eduardo Grajeda)
-  - Do not hide when showing rename dialog (Aleksandar Krsteski)
-  - Fixing the tab renaming feature: #205 (Lincoln)
-
-changes since 0.4.0:
-
-Updated translation and new translation:
-
-  - Italian
-  - French
-  - Portuguese/Brazilian
-  - Novergian
-  - German
-  - Polish
-  - Greek
-  - Hungarian
-
-Bugs/Features:
-
-  - Change start message #168
-  - Add an option to the preference windows to create new tab in cwd #146
-  - Preferences windows are resizable #149
-  - Guake's windows not shown when ran for the first time #174
-  - Implement dbus interface to script with guake #150, #138, #105, #126, #128, #109
-  - Command line arguments implemented -n create a new tab -e execute a command on a defined tab -r
-    rename a tab -t toggle visibility
-  - Improve regex to use character classes (improve the support of certain locales) #156
-  - Ask user if he really wants to quit when there is a child process #158
-  - Double click on a tab allows you to rename the tab #165
-  - Add more information on the INSTALL file
-  - Tray icon position fixed #161
-
-Infrastructure:
-
-  - Move from guake-terminal.org to guake.org
-  - Set up a mailing-list at: http://lists.guake.org/cgi-bin/mailman/listinfo/guake
-
-changes since 0.2
-
-    * Making prefs dialog window better, including a better title, fixing some paddings and spaces.
-    * Added backspace and delete compatibility options (thanks to gnome-terminal guys =)
-    * Cleanup of data files (images and glade files), mostly images.
-    * Complete rewrite of tab system in the main window.
-    * Fixing all issues (I think =) in close tab feature.
-    * Adding tab rename feature.
-    * Making easier to grab keybinging shortcuts from the prefs screen by using eggcellrendererkeys
-      lib.
-    * Now we look for more python interpreters when filling interpreters combo.
-    * Fixing a lot of bugs.
