@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: Guake 0.4.5\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-08-18 17:32+0200\n"
-"PO-Revision-Date: 2018-09-29 07:31+0000\n"
+"PO-Revision-Date: 2018-10-03 14:00+0000\n"
 "Last-Translator: Allan Nordhøy <epost@anotheragency.no>\n"
 "Language-Team: Norwegian Bokmål <https://hosted.weblate.org/projects/guake/"
 "guake/nb/>\n"
@@ -422,7 +422,7 @@ msgstr "<b>Effekter</b>"
 
 #: ../data/prefs.glade.h:82
 msgid "Transparency:"
-msgstr "Gjennomsiktighet"
+msgstr "Gjennomsiktighet:"
 
 #: ../data/prefs.glade.h:83
 msgid "Background image:"
@@ -1334,10 +1334,13 @@ msgid "Save content..."
 msgstr "Lagre innhold…"
 
 #: data/prefs.glade:1182
+#, fuzzy
 msgid ""
 "This might not work on all shells, make sure that your shell supports the --"
 "login option"
 msgstr ""
+"Dette fungerer kanskje ikke på alle skall, forsikre deg om at ditt skall "
+"støtter --login valget"
 
 #~ msgid "key binding error"
 #~ msgstr "Hurtigtast error"
