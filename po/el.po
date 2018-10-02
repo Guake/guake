@@ -1249,6 +1249,12 @@ msgstr ""
 msgid "Save content..."
 msgstr ""
 
+#: data/prefs.glade:1182
+msgid ""
+"This might not work on all shells, make sure that your shell supports the --"
+"login option"
+msgstr ""
+
 #~ msgid "key binding error"
 #~ msgstr "σφάλμα συντόμευσης πληκτρολογίου"
 

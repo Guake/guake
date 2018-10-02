@@ -1026,3 +1026,9 @@ msgstr ""
 #: guake/menus.py:72
 msgid "Save content..."
 msgstr "Inhalt speichern..."
+
+#: data/prefs.glade:1182
+msgid ""
+"This might not work on all shells, make sure that your shell supports the --"
+"login option"
+msgstr ""

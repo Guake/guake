@@ -1,2 +1,2 @@
 fixes:
-  - closes #469
+  - Add note about shell that does not support --login parameter (#469)
