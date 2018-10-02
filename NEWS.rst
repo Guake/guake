@@ -17,6 +17,12 @@ New Features
 
 - Split and resize terminals via mouse or keyboard shortcuts.
 
+Deprecations
+------------
+
+- "New terminal" / "Rename terminal" / "Close terminal" items has been removed from the
+  terminal context menu. They are still available on the tab context menu.
+
 Bug Fixes
 ---------
 
