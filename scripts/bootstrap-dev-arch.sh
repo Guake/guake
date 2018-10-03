@@ -51,7 +51,8 @@ if [[ $MAKE == "1" ]]; then
         gettext \
         gsettings-desktop-schemas \
         make \
-        pandoc
+        pandoc \
+        python-pipenv
 fi
 
 if [[ $DEV == "1" ]]; then
