@@ -46,23 +46,6 @@ class TerminalContextMenuCallbacks():
         # this is not implemented jet
         pass
 
-    def on_new_tab(self, *args):
-        self.notebook.new_page_with_focus(directory=self.terminal.get_current_directory())
-
-    def on_rename_tab(self, *args):
-        page_num = self.notebook.find_page_index_by_terminal(self.terminal)
-        tab_text = self.notebook.get_tab_text_index(page_num)
-        dialog = RenameDialog(self.window, tab_text)
-        r = dialog.run()
-        if r == Gtk.ResponseType.ACCEPT:
-            new_text = TabNameUtils.shorten(dialog.get_text(), self.settings)
-            self.notebook.rename_page(page_num, new_text, True)
-        dialog.destroy()
-
-    def on_close_tab(self, *args):
-        page_num = self.notebook.find_page_index_by_terminal(self.terminal)
-        self.notebook.delete_page(page_num, False, True)
-
     def on_open_link(self, *args):
         self.terminal.browse_link_under_cursor()
 
