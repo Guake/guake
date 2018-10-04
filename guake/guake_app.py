@@ -931,14 +931,8 @@ class Guake(SimpleGladeApp):
     def close_tab(self, *args):
         """Closes the current tab.
         """
-        self.notebook.delete_page_current()
-
-    def delete_tab(self, page_num, kill=True, prompt=True):
-        """This function will destroy the notebook page, terminal and
-        tab widgets and will call the function to kill interpreter
-        forked by vte.
-        """
-        self.notebook.delete_page(page_num, kill=kill, prompt=prompt)
+        prompt_cfg = self.settings.general.get_int('prompt-on-close-tab')
+        self.notebook.delete_page_current(prompt=prompt_cfg)
 
     def rename_tab_uuid(self, term_uuid, new_text, user_set=True):
         """Rename an already added tab by its UUID
@@ -995,8 +989,8 @@ class Guake(SimpleGladeApp):
         search_string = start.get_text(end)
 
         log.debug(
-            "Searching for %r %s\n", search_string,
-            "forward" if response_id == RESPONSE_FORWARD else "backward"
+            "Searching for %r %s\n", search_string, "forward"
+            if response_id == RESPONSE_FORWARD else "backward"
         )
 
         current_term = self.notebook.get_current_terminal()

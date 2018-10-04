@@ -136,9 +136,12 @@ class Keybindings():
 
         key, mask = Gtk.accelerator_parse(getk('close-tab'))
         if key > 0:
-            self.accel_group.connect(
-                key, mask, Gtk.AccelFlags.VISIBLE, self.guake.notebook.delete_page_current
-            )
+
+            def x(*args):
+                prompt_cfg = self.guake.settings.general.get_int('prompt-on-close-tab')
+                self.guake.notebook.delete_page_current(prompt=prompt_cfg)
+
+            self.accel_group.connect(key, mask, Gtk.AccelFlags.VISIBLE, x)
 
         key, mask = Gtk.accelerator_parse(getk('previous-tab'))
         if key > 0:

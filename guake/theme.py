@@ -28,8 +28,8 @@ def get_resource_dirs(resource):
         A list of resource dirs
     """
     dirs = [
-        os.path.join(dir, resource) for dir in itertools.
-        chain(GLib.get_system_data_dirs(), GUAKE_THEME_DIR, GLib.get_user_data_dir())
+        os.path.join(dir, resource) for dir in
+        itertools.chain(GLib.get_system_data_dirs(), GUAKE_THEME_DIR, GLib.get_user_data_dir())
     ]
     dirs += [os.path.join(os.path.expanduser("~"), ".{}".format(resource))]
 
@@ -86,8 +86,8 @@ def patch_gtk_theme(style_context, settings):
     selected_bg_color = rgba_to_hex(style_context.lookup_color("theme_selected_bg_color")[1])
     log.debug(
         "Patching theme '%s' (prefer dark = '%r'), overriding tab 'checked' state': "
-        "foreground: %r, background: %r", theme_name, "yes" if variant == "dark" else "no",
-        selected_fg_color, selected_bg_color
+        "foreground: %r, background: %r", theme_name, "yes"
+        if variant == "dark" else "no", selected_fg_color, selected_bg_color
     )
     css_data = dedent(
         """

@@ -83,19 +83,16 @@ TERMINAL_MATCH_EXPRS = [
     "(mailto:)?[-[:alnum:]][-[:alnum:].]*@[-[:alnum:]]+\.[-[:alnum:]]+(\\.[-[:alnum:]]+)*"
 ]
 # tuple (title/quick matcher/filename and line number extractor)
-QUICK_OPEN_MATCHERS = [
-    (
-        "Python traceback",
-        r"^\s*File\s\".*\",\sline\s[0-9]+",
-        r"^\s*File\s\"(.*)\",\sline\s([0-9]+)",
-    ), (
-        "Python pytest report",
-        r"^\s.*\:\:[a-zA-Z0-9\_]+\s",
-        r"^\s*(.*\:\:[a-zA-Z0-9\_]+)\s",
-    ),
-    (
-        "line starts by 'Filename:line' pattern (GCC/make). File path should exists.",
-        r"^\s*[a-zA-Z0-9\/\_\-\.\ ]+\.?[a-zA-Z0-9]+\:[0-9]+",
-        r"^\s*(.*)\:([0-9]+)",
-    )
-]
+QUICK_OPEN_MATCHERS = [(
+    "Python traceback",
+    r"^\s*File\s\".*\",\sline\s[0-9]+",
+    r"^\s*File\s\"(.*)\",\sline\s([0-9]+)",
+), (
+    "Python pytest report",
+    r"^\s.*\:\:[a-zA-Z0-9\_]+\s",
+    r"^\s*(.*\:\:[a-zA-Z0-9\_]+)\s",
+), (
+    "line starts by 'Filename:line' pattern (GCC/make). File path should exists.",
+    r"^\s*[a-zA-Z0-9\/\_\-\.\ ]+\.?[a-zA-Z0-9]+\:[0-9]+",
+    r"^\s*(.*)\:([0-9]+)",
+)]

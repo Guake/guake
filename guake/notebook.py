@@ -132,19 +132,17 @@ class TerminalNotebook(Gtk.Notebook):
         for page_num in range(self.get_n_pages()):
             yield self.get_nth_page(page_num)
 
-    def delete_page(self, page_num, kill=True, prompt=False):
+    def delete_page(self, page_num, kill=True, prompt=0):
         if page_num >= self.get_n_pages() or page_num < 0:
             log.debug("Can not delete page %s no such index", page_num)
             return
         # TODO NOTEBOOK it would be nice if none of the "ui" stuff
         # (PromptQuitDialog) would be in here
-        if prompt:
-            procs = self.get_running_fg_processes_count_page(page_num)
+        procs = self.get_running_fg_processes_count_page(page_num)
+        if prompt == 2 or (prompt == 1 and procs > 0):
             # TODO NOTEBOOK remove call to guake
-            prompt_cfg = self.guake.settings.general.get_int('prompt-on-close-tab')
-            if (prompt_cfg == 1 and procs > 0) or (prompt_cfg == 2):
-                if not PromptQuitDialog(self.guake.window, procs, -1).close_tab():
-                    return
+            if not PromptQuitDialog(self.guake.window, procs, -1).close_tab():
+                return
 
         for terminal in self.get_terminals_for_page(page_num):
             if kill:
@@ -160,11 +158,11 @@ class TerminalNotebook(Gtk.Notebook):
                 page.get_terminals()[0].grab_focus()
         self.emit('page-deleted')
 
-    def delete_page_by_label(self, label, kill=True):
-        self.delete_page(self.find_tab_index_by_label(label), kill)
+    def delete_page_by_label(self, label, kill=True, prompt=0):
+        self.delete_page(self.find_tab_index_by_label(label), kill, prompt)
 
-    def delete_page_current(self, kill=True):
-        self.delete_page(self.get_current_page(), kill)
+    def delete_page_current(self, kill=True, prompt=0):
+        self.delete_page(self.get_current_page(), kill, prompt)
 
     def new_page(self, directory=None):
         terminal = self.terminal_spawn(directory)
