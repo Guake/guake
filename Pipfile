@@ -23,6 +23,7 @@ colorlog = "*"
 sphinx-rtd-theme = "*"
 sphinxcontrib-programoutput = "*"
 "e1839a8" = {editable = true, path = "."}
+twine = "*"
 
 [packages]
 pbr = "*"
