@@ -354,7 +354,8 @@ class TabLabelEventBox(Gtk.EventBox):
             self.notebook.get_current_terminal().grab_focus()
             return True
         if event.button == 2:
-            self.notebook.delete_page_by_label(self)
+            prompt_cfg = self.notebook.guake.settings.general.get_int('prompt-on-close-tab')
+            self.notebook.delete_page_by_label(self, prompt=prompt_cfg)
             return True
         if event.button == 1 and event.type == Gdk.EventType._2BUTTON_PRESS:
             self.on_rename(None)
@@ -379,4 +380,5 @@ class TabLabelEventBox(Gtk.EventBox):
         #        self.set_terminal_focus()
 
     def on_close(self, user_data):
-        self.notebook.delete_page_by_label(self)
+        prompt_cfg = self.notebook.guake.settings.general.get_int('prompt-on-close-tab')
+        self.notebook.delete_page_by_label(self, prompt=prompt_cfg)
