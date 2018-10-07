@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: Guake 0.4.5\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-05-20 23:56+0800\n"
-"PO-Revision-Date: 2018-09-25 11:22+0000\n"
+"PO-Revision-Date: 2018-10-08 09:23+0000\n"
 "Last-Translator: 庄秋彬 <zhuangqiubin@gmail.com>\n"
 "Language-Team: Chinese (Simplified) <https://hosted.weblate.org/projects/"
 "guake/guake/zh_Hans/>\n"
@@ -20,7 +20,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Weblate 3.2-dev\n"
+"X-Generator: Weblate 3.2\n"
 
 #: ../data/about.glade.h:1
 msgid "About Guake"
@@ -1243,19 +1243,19 @@ msgstr "窗口停靠到右侧"
 
 #: guake/prefs.py:170
 msgid "Move the terminal split handle up"
-msgstr "移动到上方的分割窗口"
+msgstr "将分割线向上移动"
 
 #: guake/prefs.py:174
 msgid "Move the terminal split handle down"
-msgstr "移动到下方的分割窗口"
+msgstr "将分割线向下移动"
 
 #: guake/prefs.py:178
 msgid "Move the terminal split handle right"
-msgstr "移动到右方的分割窗口"
+msgstr "将分割线向右移动"
 
 #: guake/prefs.py:182
 msgid "Move the terminal split handle left"
-msgstr "移动到左方的分割窗口"
+msgstr "将分割线向左移动"
 
 #: guake/menus.py:65
 msgid "Split ｜"
@@ -1269,7 +1269,7 @@ msgstr "保存内容..."
 msgid ""
 "This might not work on all shells, make sure that your shell supports the --"
 "login option"
-msgstr ""
+msgstr "这可能无法在所有shell上正常工作，请确保你的shell支持--login选项"
 
 #~ msgid "0 means no size limit"
 #~ msgstr "0表示没有大小限制"
