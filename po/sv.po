@@ -10,15 +10,16 @@ msgstr ""
 "Project-Id-Version: Guake 0.4.5\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-06-22 14:32+0200\n"
-"PO-Revision-Date: 2018-06-22 23:41+0200\n"
+"PO-Revision-Date: 2018-10-08 09:38+0000\n"
 "Last-Translator: Morgan Antonsson <morgan.antonsson@gmail.com>\n"
-"Language-Team: \n"
+"Language-Team: Swedish <https://hosted.weblate.org/projects/guake/guake/sv/>"
+"\n"
 "Language: sv\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 2.0.6\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 3.2\n"
 
 #: guake/prefs.py:78
 msgid "<user shell>"
@@ -402,7 +403,7 @@ msgstr "Välj flik (SELECT_TAB är flikens index)"
 
 #: guake/main.py:158
 msgid "Return the selected tab index."
-msgstr "Returnerar valt flikindex"
+msgstr "Returnerar valt flikindex."
 
 #: guake/main.py:167
 msgid "Return the selected tab label."
@@ -417,15 +418,15 @@ msgid ""
 "Specify the tab to rename. Default is 0. Can be used to select tab by UUID."
 msgstr ""
 "Ange flik att byta namn på (standard är 0). Kan användas för att välja flik "
-"med UUID"
+"med UUID."
 
 #: guake/main.py:193
 msgid "Set the hexadecimal (#rrggbb) background color of the selected tab."
-msgstr "Ställ in bakgrundsfärg (hexadecimalt: #rrggbb) för vald flik. "
+msgstr "Ställ in bakgrundsfärg (hexadecimalt: #rrggbb) för vald flik."
 
 #: guake/main.py:202
 msgid "Set the hexadecimal (#rrggbb) foreground color of the selected tab."
-msgstr "Ställ in förgrundsfärg (hexadecimalt: #rrggbb) för vald flik. "
+msgstr "Ställ in förgrundsfärg (hexadecimalt: #rrggbb) för vald flik."
 
 #: guake/main.py:213
 msgid ""
@@ -931,7 +932,7 @@ msgstr "Anpassa Guake-sessioner"
 #: data/guake.template.desktop:7 data/guake.desktop:7
 #: data/autostart-guake.desktop:39
 msgid "guake"
-msgstr ""
+msgstr "guake"
 
 #: data/guake-prefs.desktop:13 data/guake-prefs.template.desktop:13
 msgid "Terminal;Utility;"
@@ -944,78 +945,80 @@ msgstr "Använd kommandoraden i en Quake-liknande terminal"
 
 #: data/prefs.glade:680
 msgid "Set window title to current tab name"
-msgstr ""
+msgstr "Sätt fönstertitel till aktuell fliks namn"
 
 #: guake/menus.py:48
 msgid "Copy Url"
-msgstr ""
+msgstr "Kopiera URL"
 
 #: guake/menus.py:62
 msgid "Split ―"
-msgstr ""
+msgstr "Dela ―"
 
 #: guake/menus.py:65
 msgid "Split  "
-msgstr ""
+msgstr "Dela  "
 
 #: guake/menus.py:68 guake/prefs.py:150
 msgid "Close terminal"
-msgstr ""
+msgstr "Stäng terminal"
 
 #: guake/prefs.py:137
 msgid "Split management"
-msgstr ""
+msgstr "Delningshantering"
 
 #: guake/prefs.py:142
 msgid "Split tab vertical"
-msgstr ""
+msgstr "Dela flik vertikalt"
 
 #: guake/prefs.py:146
 msgid "Split tab horizontal"
-msgstr ""
+msgstr "Dela flik horisontellt"
 
 #: guake/prefs.py:154
 msgid "Focus terminal above"
-msgstr ""
+msgstr "Fokusera terminal ovanför"
 
 #: guake/prefs.py:158
 msgid "Focus terminal below"
-msgstr ""
+msgstr "Fokusera terminal nedanför"
 
 #: guake/prefs.py:162
 msgid "Focus terminal on the left"
-msgstr ""
+msgstr "Fokusera terminal till vänster"
 
 #: guake/prefs.py:166
 msgid "Focus terminal on the right"
-msgstr ""
+msgstr "Fokusera terminal till höger"
 
 #: guake/prefs.py:170
 msgid "Move the terminal split handle up"
-msgstr ""
+msgstr "Flytta terminalavdelare uppåt"
 
 #: guake/prefs.py:174
 msgid "Move the terminal split handle down"
-msgstr ""
+msgstr "Flytta terminalavdelare nedåt"
 
 #: guake/prefs.py:178
 msgid "Move the terminal split handle right"
-msgstr ""
+msgstr "Flytta terminalavdelare åt höger"
 
 #: guake/prefs.py:182
 msgid "Move the terminal split handle left"
-msgstr ""
+msgstr "Flytta terminalavdelare åt vänster"
 
 #: guake/menus.py:65
 msgid "Split ｜"
-msgstr ""
+msgstr "Dela ｜"
 
 #: guake/menus.py:72
 msgid "Save content..."
-msgstr ""
+msgstr "Spara innehåll..."
 
 #: data/prefs.glade:1182
 msgid ""
 "This might not work on all shells, make sure that your shell supports the --"
 "login option"
 msgstr ""
+"Detta fungerar kanske inte för alla skal. Kontrollera att skalet stöder "
+"flaggan --login"
