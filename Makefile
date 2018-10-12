@@ -118,6 +118,7 @@ install-old-locale:
 install-schemas:
 	install -Dm644 "$(DEV_DATA_DIR)/guake.desktop" "$(DESTDIR)$(prefix)/share/applications/guake.desktop"
 	install -Dm644 "$(DEV_DATA_DIR)/guake-prefs.desktop" "$(DESTDIR)$(prefix)/share/applications/guake-prefs.desktop"
+	install -Dm644 "$(DEV_DATA_DIR)/guake.appdata.xml" "$(DESTDIR)$(prefix)/share/metainfo/guake.appdata.xml"
 	mkdir -p $(DESTDIR)$(IMAGE_DIR)
 	install -Dm644 $(DEV_DATA_DIR)/pixmaps/*.png "$(DESTDIR)$(IMAGE_DIR)/"
 	install -Dm644 $(DEV_DATA_DIR)/pixmaps/*.svg "$(DESTDIR)$(IMAGE_DIR)/"
@@ -144,6 +145,7 @@ purge-system: uninstall-system reset
 uninstall-schemas: uninstall-old-schemas
 	rm -f "$(prefix)/share/applications/guake.desktop"
 	rm -f "$(prefix)/share/applications/guake-prefs.desktop"
+	rm -f "$(prefix)/share/metainfo/guake.appdata.xml"
 	rm -fr "$(IMAGE_DIR)"
 	rm -fr "$(SHARE_DIR)"
 	rm -f "$(SCHEMA_DIR)/org.guake.gschema.xml"
@@ -151,6 +153,7 @@ uninstall-schemas: uninstall-old-schemas
 uninstall-old-schemas:
 	@rm -f "$(OLD_PREFIX)/share/applications/guake.desktop"
 	@rm -f "$(OLD_PREFIX)/share/applications/guake-prefs.desktop"
+	@rm -f "$(OLD_PREFIX)/share/metainfo/guake.appdata.xml"
 	@rm -f "$(OLD_PREFIX)/share/pixmaps/guake.png"
 	@rm -f "$(OLD_PREFIX)/share/glib-2.0/schemas/org.guake.gschema.xml"
 	@rm -f "$(OLD_PREFIX)/share/glib-2.0/schemas/schema.guake.gschema.xml"
