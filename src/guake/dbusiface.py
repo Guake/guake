@@ -64,6 +64,14 @@ class DbusManager(dbus.service.Object):
     def fullscreen(self):
         self.guake.fullscreen()
 
+    @dbus.service.method(DBUS_NAME)
+    def unfullscreen(self):
+        self.guake.unfullscreen()
+
+    @dbus.service.method(DBUS_NAME)
+    def fullscreen_toggle(self):
+        self.guake.accel_toggle_fullscreen()
+
     @dbus.service.method(DBUS_NAME, in_signature='s')
     def add_tab(self, directory=''):
         return self.guake.add_tab(directory)
