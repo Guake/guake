@@ -137,3 +137,11 @@ class DbusManager(dbus.service.Object):
     @dbus.service.method(DBUS_NAME, in_signature='ss')
     def execute_command_by_uuid(self, tab_uuid, command):
         self.guake.execute_command_by_uuid(tab_uuid, command)
+
+    @dbus.service.method(DBUS_NAME)
+    def v_split_current_terminal(self):
+        self.guake.notebook.get_current_terminal().get_parent().split_v()
+
+    @dbus.service.method(DBUS_NAME)
+    def h_split_current_terminal(self):
+        self.guake.notebook.get_current_terminal().get_parent().split_h()
