@@ -145,3 +145,7 @@ class DbusManager(dbus.service.Object):
     @dbus.service.method(DBUS_NAME)
     def h_split_current_terminal(self):
         self.guake.notebook.get_current_terminal().get_parent().split_h()
+
+    @dbus.service.method(DBUS_NAME, in_signature='s')
+    def execute_command_current_termbox(self, command):
+        self.guake.notebook.get_current_terminal().execute_command(command)
