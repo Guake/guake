@@ -66,6 +66,7 @@ from guake.gsettings import GSettingHandler
 from guake.guake_logging import setupLogging
 from guake.keybindings import Keybindings
 from guake.notebook import TerminalNotebook
+from guake.palettes import PALETTES
 from guake.paths import LOCALE_DIR
 from guake.paths import SCHEMA_DIR
 from guake.paths import try_to_compile_glib_schemas
@@ -354,6 +355,16 @@ class Guake(SimpleGladeApp):
         page_num = self.notebook.get_current_page()
         for terminal in self.notebook.get_nth_page(page_num).iter_terminals():
             terminal.set_color_foreground(fgcolor)
+
+    def change_palette_name(self, palette_name):
+        if isinstance(palette_name, str):
+            if palette_name not in PALETTES:
+                log.info("Palette name %s not found", palette_name)
+                return
+            log.debug("Settings palette name to %s", palette_name)
+            self.settings.styleFont.set_string('palette', PALETTES[palette_name])
+            self.settings.styleFont.set_string('palette-name', palette_name)
+            self.set_colors_from_settings()
 
     def execute_command(self, command, tab=None):
         # TODO DBUS_ONLY

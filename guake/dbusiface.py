@@ -95,6 +95,10 @@ class DbusManager(dbus.service.Object):
         return self.guake.set_fgcolor(fgcolor)
 
     @dbus.service.method(DBUS_NAME, in_signature='s')
+    def change_palette_name(self, palette_name):
+        self.guake.change_palette_name(palette_name)
+
+    @dbus.service.method(DBUS_NAME, in_signature='s')
     def execute_command(self, command):
         self.guake.execute_command(command)
 
