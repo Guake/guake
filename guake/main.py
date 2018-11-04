@@ -204,6 +204,14 @@ def main():
     )
 
     parser.add_option(
+        '--change-palette',
+        dest='palette_name',
+        action='store',
+        default='',
+        help=_('Change Guake palette scheme')
+    )
+
+    parser.add_option(
         '--rename-tab',
         dest='rename_tab',
         metavar='TITLE',
@@ -364,6 +372,10 @@ def main():
 
     if options.fgcolor:
         remote_object.set_fgcolor(options.fgcolor)
+        only_show_hide = False
+
+    if options.palette_name:
+        remote_object.change_palette_name(options.palette_name)
         only_show_hide = False
 
     if options.rename_current_tab:
