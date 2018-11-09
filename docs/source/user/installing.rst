@@ -21,8 +21,7 @@ TBD: Want to help fill this section? Please submit your suggestion on
 Arch Linux
 ----------
 
-TBD: Want to help fill this section? Please submit your suggestion on
-`GitHub <https://github.com/Guake/guake>`_.
+Guake is available on *community* repository, just use: ``sudo pacman -S guake`` to install it.
 
 Install from Pypi
 =================
