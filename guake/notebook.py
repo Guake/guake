@@ -199,7 +199,7 @@ class TerminalNotebook(Gtk.Notebook):
         self.emit('terminal-spawned', terminal, terminal.pid)
 
     def new_page_with_focus(self, directory=None):
-        box, page_num, terminal = self.new_page()
+        box, page_num, terminal = self.new_page(directory)
         self.set_current_page(page_num)
         self.rename_page(page_num, _("Terminal"), False)
         terminal.grab_focus()
