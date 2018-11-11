@@ -307,6 +307,11 @@
             <default>'&lt;Control&gt;&lt;Shift&gt;t'</default>
             <summary>Add a new tab.</summary>
             <description>Calls the function to add a new tab in guake window.</description>
+	</key>
+        <key name="new-tab-home" type="s">
+            <default>'&lt;Control&gt;&lt;Shift&gt;h'</default>
+            <summary>Add a new tab in home directory.</summary>
+            <description>Calls the function to add a new home directory tab in guake window.</description>
         </key>
         <key name="close-tab" type="s">
             <default>'&lt;Control&gt;&lt;Shift&gt;w'</default>

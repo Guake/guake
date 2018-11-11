@@ -165,6 +165,7 @@ class TerminalNotebook(Gtk.Notebook):
         self.delete_page(self.get_current_page(), kill, prompt)
 
     def new_page(self, directory=None):
+        log.info("Spawning new terminal at %s", directory)
         terminal = self.terminal_spawn(directory)
         terminal_box = TerminalBox()
         terminal_box.set_terminal(terminal)
