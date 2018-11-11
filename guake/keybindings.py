@@ -55,7 +55,7 @@ class Keybindings():
 
         # Setup local keys
         keys = [
-            'toggle-fullscreen', 'new-tab', 'close-tab', 'rename-current-tab', 'previous-tab',
+            'toggle-fullscreen', 'new-tab', 'new-tab-home', 'close-tab', 'rename-current-tab', 'previous-tab',
             'next-tab', 'clipboard-copy', 'clipboard-paste', 'quit', 'zoom-in', 'zoom-out',
             'increase-height', 'decrease-height', 'increase-transparency', 'decrease-transparency',
             'toggle-transparency', "search-on-web", 'move-tab-left', 'move-tab-right',
@@ -133,6 +133,10 @@ class Keybindings():
         key, mask = Gtk.accelerator_parse(getk('new-tab'))
         if key > 0:
             self.accel_group.connect(key, mask, Gtk.AccelFlags.VISIBLE, self.guake.accel_add)
+
+        key, mask = Gtk.accelerator_parse(getk('new-tab-home'))
+        if key > 0:
+            self.accel_group.connect(key, mask, Gtk.AccelFlags.VISIBLE, self.guake.accel_add_home)
 
         key, mask = Gtk.accelerator_parse(getk('close-tab'))
         if key > 0:
