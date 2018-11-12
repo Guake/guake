@@ -165,6 +165,7 @@ class TerminalNotebook(Gtk.Notebook):
         self.delete_page(self.get_current_page(), kill, prompt)
 
     def new_page(self, directory=None):
+        log.info("Spawning new terminal at %s", directory)
         terminal = self.terminal_spawn(directory)
         terminal_box = TerminalBox()
         terminal_box.set_terminal(terminal)
@@ -199,7 +200,7 @@ class TerminalNotebook(Gtk.Notebook):
         self.emit('terminal-spawned', terminal, terminal.pid)
 
     def new_page_with_focus(self, directory=None):
-        box, page_num, terminal = self.new_page()
+        box, page_num, terminal = self.new_page(directory)
         self.set_current_page(page_num)
         self.rename_page(page_num, _("Terminal"), False)
         terminal.grab_focus()

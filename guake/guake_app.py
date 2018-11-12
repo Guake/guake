@@ -497,7 +497,7 @@ class Guake(SimpleGladeApp):
         #         self.set_terminal_focus()
         #         return
 
-        log.info("hiding the terminal")
+        log.info("Hiding the terminal")
         self.hide()
 
     def show_focus(self, *args):
@@ -780,6 +780,12 @@ class Guake(SimpleGladeApp):
         """Callback to add a new tab. Called by the accel key.
         """
         self.add_tab()
+        return True
+
+    def accel_add_home(self, *args):
+        """Callback to add a new tab in home directory. Called by the accel key.
+        """
+        self.add_tab(os.environ['HOME'])
         return True
 
     def accel_prev(self, *args):

@@ -55,16 +55,23 @@ class Keybindings():
 
         # Setup local keys
         keys = [
-            'toggle-fullscreen', 'new-tab', 'close-tab', 'rename-current-tab', 'previous-tab',
-            'next-tab', 'clipboard-copy', 'clipboard-paste', 'quit', 'zoom-in', 'zoom-out',
-            'increase-height', 'decrease-height', 'increase-transparency', 'decrease-transparency',
-            'toggle-transparency', "search-on-web", 'move-tab-left', 'move-tab-right',
-            'switch-tab1', 'switch-tab2', 'switch-tab3', 'switch-tab4', 'switch-tab5',
-            'switch-tab6', 'switch-tab7', 'switch-tab8', 'switch-tab9', 'switch-tab10',
-            'switch-tab-last', 'reset-terminal', 'split-tab-vertical', 'split-tab-horizontal',
-            'close-terminal', 'focus-terminal-up', 'focus-terminal-down', 'focus-terminal-right',
-            'focus-terminal-left', 'move-terminal-split-up', 'move-terminal-split-down',
-            'move-terminal-split-left', 'move-terminal-split-right'
+            'toggle-fullscreen', 'new-tab', 'new-tab-home',
+            'close-tab', 'rename-current-tab', 'previous-tab',
+            'next-tab', 'clipboard-copy', 'clipboard-paste', 'quit',
+            'zoom-in', 'zoom-out', 'increase-height',
+            'decrease-height', 'increase-transparency',
+            'decrease-transparency', 'toggle-transparency',
+            "search-on-web", 'move-tab-left', 'move-tab-right',
+            'switch-tab1', 'switch-tab2', 'switch-tab3',
+            'switch-tab4', 'switch-tab5', 'switch-tab6',
+            'switch-tab7', 'switch-tab8', 'switch-tab9',
+            'switch-tab10', 'switch-tab-last', 'reset-terminal',
+            'split-tab-vertical', 'split-tab-horizontal',
+            'close-terminal', 'focus-terminal-up',
+            'focus-terminal-down', 'focus-terminal-right',
+            'focus-terminal-left', 'move-terminal-split-up',
+            'move-terminal-split-down', 'move-terminal-split-left',
+            'move-terminal-split-right'
         ]
         for key in keys:
             guake.settings.keybindingsLocal.onChangedValue(key, self.reload_accelerators)
@@ -133,6 +140,10 @@ class Keybindings():
         key, mask = Gtk.accelerator_parse(getk('new-tab'))
         if key > 0:
             self.accel_group.connect(key, mask, Gtk.AccelFlags.VISIBLE, self.guake.accel_add)
+
+        key, mask = Gtk.accelerator_parse(getk('new-tab-home'))
+        if key > 0:
+            self.accel_group.connect(key, mask, Gtk.AccelFlags.VISIBLE, self.guake.accel_add_home)
 
         key, mask = Gtk.accelerator_parse(getk('close-tab'))
         if key > 0:
