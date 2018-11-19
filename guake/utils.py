@@ -274,19 +274,11 @@ class RectCalculator():
         dest_screen = settings.general.get_int('display-n')
 
         if use_mouse:
-            """
-            TODO this is ported from widget.get_pointer() to
-            GdkSeat.get_pointer(), but this whole method could be
-            ported to Gdk (eg. gdk_display_get_default_screen(...)
-            and gdk-screen-get-n-monitors(...))
-            """
-            gdk_window = window.get_window()
-            if gdk_window is not None:
-                display = Gdk.Display.get_default()
-                seat = display.get_default_seat()
-                device = seat.get_pointer()
-                win, x, y, _ = gdk_window.get_device_position(device)
-                dest_screen = screen.get_monitor_at_point(x, y)
+
+            # TODO PORT get_pointer is deprecated
+            # https://developer.gnome.org/gtk3/stable/GtkWidget.html#gtk-widget-get-pointer
+            win, x, y, _ = screen.get_root_window().get_pointer()
+            dest_screen = screen.get_monitor_at_point(x, y)
 
         # If Guake is configured to use a screen that is not currently attached,
         # default to 'primary display' option.
