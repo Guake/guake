@@ -28,7 +28,7 @@ Then you can open it via:
 guake
 ```
 
-To allow global 'F12' to open the guake, go to Setting >> Device >> Keyboard >> Scroll to bottom >> "+" to create a new global short cut with 'F12' keybinding and comand 'guake'. 
+To allow global 'F12' to open the guake, go to Setting >> Device >> Keyboard >> Scroll to bottom >> "+" to create a new global short cut with 'F12' keybinding and comand 'guake-toggle'. 
 
 You may notice the style may have some error. You can fix this by installing and apply custom theme. 
 
