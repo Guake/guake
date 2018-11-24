@@ -30,6 +30,31 @@ def mk_tab_context_menu(callback_object):
     return menu
 
 
+def mk_notebook_context_menu(callback_object):
+    """Create the context menu for the notebook
+    """
+    callback_object.context_menu = Gtk.Menu()
+    menu = callback_object.context_menu
+    mi = Gtk.MenuItem(_("New Tab"))
+    mi.connect("activate", callback_object.on_new_tab)
+    menu.add(mi)
+    menu.add(Gtk.SeparatorMenuItem())
+    mi = Gtk.ImageMenuItem("gtk-preferences")
+    mi.set_use_stock(True)
+    mi.connect("activate", callback_object.on_show_preferences)
+    menu.add(mi)
+    mi = Gtk.ImageMenuItem("gtk-about")
+    mi.set_use_stock(True)
+    mi.connect("activate", callback_object.on_show_about)
+    menu.add(mi)
+    menu.add(Gtk.SeparatorMenuItem())
+    mi = Gtk.MenuItem(_("Quit"))
+    mi.connect("activate", callback_object.on_quit)
+    menu.add(mi)
+    menu.show_all()
+    return menu
+
+
 SEARCH_SELECTION_LENGTH = 20
 FILE_SELECTION_LENGTH = 30
 
