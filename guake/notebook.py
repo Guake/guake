@@ -23,7 +23,11 @@ from guake.boxes import RootTerminalBox
 from guake.boxes import TabLabelEventBox
 from guake.boxes import TerminalBox
 from guake.callbacks import NotebookScrollCallback
+from guake.callbacks import MenuHideCallback
 from guake.dialogs import PromptQuitDialog
+from guake.menus import mk_notebook_context_menu
+from guake.prefs import PrefsDialog
+from guake.about import AboutDialog
 
 import gi
 import os
@@ -68,6 +72,20 @@ class TerminalNotebook(Gtk.Notebook):
         self.scroll_callback = NotebookScrollCallback(self)
         self.add_events(Gdk.EventMask.SCROLL_MASK)
         self.connect('scroll-event', self.scroll_callback.on_scroll)
+        self.connect("button-press-event", self.on_button_press, None)
+
+    def on_button_press(self, target, event, user_data):
+        if event.button == 3:
+            menu = mk_notebook_context_menu(self)
+            menu.connect("hide", MenuHideCallback(self.guake.window).on_hide)
+
+            try:
+                menu.popup_at_pointer(event)
+            except AttributeError:
+                # Gtk 3.18 fallback ("'Menu' object has no attribute 'popup_at_pointer'")
+                menu.popup(None, None, None, None, event.button, event.time)
+
+        return False
 
     def set_last_terminal_focused(self, terminal):
         self.last_terminal_focused = terminal
@@ -242,3 +260,17 @@ class TerminalNotebook(Gtk.Notebook):
 
     def get_tab_text_page(self, page):
         return self.get_tab_label(page).get_text()
+
+    def on_new_tab(self, user_data):
+        self.new_page_with_focus()
+
+    def on_show_preferences(self, user_data):
+        self.guake.hide()
+        PrefsDialog(self.guake.settings).show()
+
+    def on_show_about(self, user_data):
+        self.guake.hide()
+        AboutDialog()
+
+    def on_quit(self, user_data):
+        self.guake.accel_quit()
