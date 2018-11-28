@@ -1,877 +1,412 @@
 # Japanese translation of the Guake software
-# Copyright (C) 2008-2016 Guake Translators
+# Copyright (C) 2008-2018 Guake Translators
 # This file is distributed under the same license as the Guake package.
 #
 # Translators:
 # Nishio Futoshi <futoshi@momonga-linux.org>, 2008, 2010.
 # IWAI, Masaharu <iwaim.sub@gmail.com>, 2016.
+# KUSABA Takeshi <maleic1618@gmail.com>, 2018
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: Guake 0.8.7\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-08-18 17:32+0200\n"
-"PO-Revision-Date: 2018-01-25 20:59+0100\n"
-"Last-Translator: IWAI, Masaharu <iwaim.sub@gmail.com>\n"
+"POT-Creation-Date: 2018-11-28 00:34+0900\n"
+"PO-Revision-Date: 2018-11-29 02:28+0900\n"
+"Last-Translator: KUSABA Takeshi<maleic1618@gmail.com>\n"
 "Language-Team: Japanese <translation-team-ja@lists.sourceforge.net>\n"
 "Language: ja\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Poedit 2.0.6\n"
+"X-Generator: Poedit 1.8.11\n"
 
-#: ../data/about.glade.h:1
-msgid "About Guake"
-msgstr "Guakeについて"
-
-#: ../data/about.glade.h:5
-msgid ""
-"Guake is an easy to access\n"
-"terminal based on FPS games terminal"
-msgstr ""
-"Guakeは、FPS ゲーム用端末をベースにした\n"
-"簡単にアクセスできる端末です"
-
-#: ../data/guake.glade.h:1
-msgid "Copy"
-msgstr "コピー"
-
-#: ../data/guake.glade.h:2
-msgid "Paste"
-msgstr "貼り付け"
-
-#: ../data/guake.glade.h:3 ../src/guake/prefs.py:79
-msgid "Toggle Fullscreen"
-msgstr "全画面表示"
-
-#: ../data/guake.glade.h:4
-msgid "Save to File..."
-msgstr ""
-
-#: ../data/guake.glade.h:5 ../src/guake/prefs.py:85
-#, fuzzy
-msgid "Reset terminal"
-msgstr "Guake 端末"
-
-#: ../data/guake.glade.h:6
-msgid "Find..."
-msgstr ""
-
-#: ../data/guake.glade.h:7
-msgid "New Tab"
-msgstr "新規TAB"
-
-#: ../data/guake.glade.h:8
-msgid "Rename Tab"
-msgstr "タブの名前を変更"
-
-#: ../data/guake.glade.h:9
-msgid "Close Tab"
-msgstr "タブを閉じる"
-
-#: ../data/guake.glade.h:10
-msgid "Open link..."
-msgstr ""
-
-#: ../data/guake.glade.h:11
-msgid "Search on Web"
-msgstr ""
-
-#: ../data/guake.glade.h:12 ../src/guake/prefs.py:83
-msgid "Quit"
-msgstr "終了"
-
-#: ../data/guake.glade.h:13
-msgid "Rename"
-msgstr "名前の変更"
-
-#: ../data/guake.glade.h:14
-msgid "Close"
-msgstr "閉じる"
-
-#: ../data/guake.glade.h:15
-msgid "Guake!"
-msgstr "Guake!"
-
-#: ../data/guake.glade.h:16
-msgid "Add a new tab"
-msgstr "新しいタブを追加"
-
-#: ../data/prefs.glade.h:1
-msgid "Guake Preferences"
-msgstr "Guakeの設定"
-
-#: ../data/prefs.glade.h:2
-msgid "<span size=\"18000\" color=\"black\"><b>Guake properties</b></span>"
-msgstr "<span size=\"18000\" color=\"black\"><b>Guake の設定</b></span>"
-
-#: ../data/prefs.glade.h:3
-msgid ""
-"<span color=\"black\">Customize behavior and appearance of Guake!</span>"
-msgstr "<span color=\"black\">Guake の動作や外観をカスタマイズします</span>"
-
-#: ../data/prefs.glade.h:4
-msgid ""
-"Path to a bash script that would be automatically executed when Guake "
-"starts, unless you specify --no-startup-script.\n"
-"\n"
-"This would typically use the configuration by command line feature of "
-"Guake:\n"
-"\n"
-"#!/bin/bash\n"
-"\n"
-"sleep 5  # it is advised to wait a bit before Guake has been successfully "
-"started\n"
-"\n"
-"guake -r \"main\" -e \"cd ~/projects/myproject/main\"\n"
-"guake -r \"prod\" -e \"cd ~/projects/myproject/prod\"\n"
-msgstr ""
-
-#: ../data/prefs.glade.h:15
-msgid "Enable popup notifications on startup"
-msgstr "起動時にポップアップ通知を表示する"
-
-#: ../data/prefs.glade.h:16
-msgid "Show tray icon"
-msgstr "通知エリアにアイコンを表示する"
-
-#: ../data/prefs.glade.h:17
-#, fuzzy
-msgid "Always prompt on quit"
-msgstr "終了時に確認する"
-
-#: ../data/prefs.glade.h:18
-msgid "_Flash terminal on bell"
-msgstr ""
-
-#: ../data/prefs.glade.h:19
-msgid "_Play system alert sound on bell"
-msgstr ""
-
-#: ../data/prefs.glade.h:20
-msgid "Path to script executed on Guake start:"
-msgstr ""
-
-#: ../data/prefs.glade.h:21
-#, fuzzy
-msgid "Prompt on close tab:"
-msgstr "終了時に確認する"
-
-#: ../data/prefs.glade.h:22
-msgid ""
-"Never\n"
-"With process running\n"
-"Always"
-msgstr ""
-
-#: ../data/prefs.glade.h:25
-msgid "<b>General</b>"
-msgstr "<b>一般</b>"
-
-#: ../data/prefs.glade.h:26
-msgid "Bottom align window instead of top align"
-msgstr ""
-
-#: ../data/prefs.glade.h:27
-msgid "Appear on mouse display"
-msgstr ""
-
-#: ../data/prefs.glade.h:28
-msgid "Appear on display:"
-msgstr ""
-
-#: ../data/prefs.glade.h:29
-#, fuzzy
-msgid "Place tabs on top"
-msgstr "常に前面に配置する"
-
-#: ../data/prefs.glade.h:30
-#, fuzzy
-msgid "<b>Placement</b>"
-msgstr "<b>パレット</b>"
-
-#: ../data/prefs.glade.h:31
-msgid "Stay on top"
-msgstr "常に前面に配置する"
-
-#: ../data/prefs.glade.h:32
-msgid "Use VTE titles for tab names"
-msgstr ""
-
-#: ../data/prefs.glade.h:33
-msgid "Max tab name length:"
-msgstr ""
-
-#: ../data/prefs.glade.h:34
-msgid "0 means no size limit"
-msgstr ""
-
-#: ../data/prefs.glade.h:35
-msgid "Abbreviate directories in tab names"
-msgstr ""
-
-#: ../data/prefs.glade.h:36
-msgid "Hide on lose focus"
-msgstr "フォーカスを失ったら隠す"
-
-#: ../data/prefs.glade.h:37
-msgid "Show tab bar"
-msgstr "タブバーを表示する"
-
-#: ../data/prefs.glade.h:38
-msgid "Start fullscreen"
-msgstr "全画面表示で開始"
-
-#: ../data/prefs.glade.h:39
-msgid "<b>Main Window</b>"
-msgstr "<b>メインウィンドウ</b>"
-
-#: ../data/prefs.glade.h:40
-msgid "Left"
-msgstr ""
-
-#: ../data/prefs.glade.h:41
-msgid "Center"
-msgstr ""
-
-#: ../data/prefs.glade.h:42
-msgid "Right"
-msgstr ""
-
-#: ../data/prefs.glade.h:43
-#, fuzzy
-msgid "<b>Main Window Horizontal Alignment</b>"
-msgstr "<b>ウィンドウサイズ</b>"
-
-#: ../data/prefs.glade.h:44
-msgid "<b>Main Window Height</b>"
-msgstr "<b>メインウィンドウの高さ</b>"
-
-#: ../data/prefs.glade.h:45
-msgid "<b>Main Window Width</b>"
-msgstr "<b>メインウィンドウの幅</b>"
-
-#: ../data/prefs.glade.h:46
-msgid "Custom command file path: "
-msgstr ""
-
-#: ../data/prefs.glade.h:47
-msgid "Please select a json file"
-msgstr ""
-
-#: ../data/prefs.glade.h:48 ../src/guake/prefs.py:75
-msgid "General"
-msgstr "全般"
-
-#: ../data/prefs.glade.h:49
-msgid "Default interpreter:"
-msgstr "デフォルトのシェル:"
-
-#: ../data/prefs.glade.h:50
-msgid "_Run command as a login shell"
-msgstr "ログイン・シェルとしてコマンドを実行する(_R)"
-
-#: ../data/prefs.glade.h:51
-msgid "_Open new tab in current directory"
-msgstr "カレントディレクトリを新しいタブに開く(_O)"
-
-#: ../data/prefs.glade.h:52
-msgid "<b>Shell</b>"
-msgstr "<b>シェル</b>"
-
-#: ../data/prefs.glade.h:53
-msgid "Shell"
-msgstr ""
-
-#: ../data/prefs.glade.h:54
-msgid "Show scrollbar"
-msgstr "スクロールバーを表示する"
-
-#: ../data/prefs.glade.h:55
-msgid "Scrollback lines:"
-msgstr "スクロールバック行:"
-
-#: ../data/prefs.glade.h:56
-msgid "On output"
-msgstr "出力するたびにスクロールする"
-
-#: ../data/prefs.glade.h:57
-msgid "On key stroke"
-msgstr "キー入力するたびにスクロールする"
-
-#: ../data/prefs.glade.h:58
-msgid "<b>Scroll</b>"
-msgstr "<b>スクロール</b>"
-
-#: ../data/prefs.glade.h:59
-msgid "Scrolling"
-msgstr "スクロール"
-
-#: ../data/prefs.glade.h:60
-msgid "Use the system fixed width font"
-msgstr "\"固定幅のフォント\" を使用する"
-
-#: ../data/prefs.glade.h:61
-msgid "Font:"
-msgstr "フォント:"
-
-#: ../data/prefs.glade.h:62
-msgid "Choose some font"
-msgstr "フォントの選択"
-
-#: ../data/prefs.glade.h:63
-msgid "Text color:"
-msgstr "文字の色:"
-
-#: ../data/prefs.glade.h:64
-msgid "Background color:"
-msgstr "背景色"
-
-#: ../data/prefs.glade.h:65
-msgid "Cursor shape:"
-msgstr ""
-
-#: ../data/prefs.glade.h:66
-msgid ""
-"Block\n"
-"I-Beam\n"
-"Underline"
-msgstr ""
-
-#: ../data/prefs.glade.h:69
-msgid ""
-"Follow GTK+ setting\n"
-"Blink on\n"
-"Blink off"
-msgstr ""
-
-#: ../data/prefs.glade.h:72
-msgid "Cursor blink mode:"
-msgstr ""
-
-#: ../data/prefs.glade.h:73
-msgid "Allow bold font"
-msgstr ""
-
-#: ../data/prefs.glade.h:74
-msgid "<b>Palette</b>"
-msgstr "<b>パレット</b>"
-
-#: ../data/prefs.glade.h:75
-msgid "Built-in schemes:"
-msgstr "組み込みのスキーム:"
-
-#: ../data/prefs.glade.h:76
-msgid "Color palette:"
-msgstr "色:"
-
-#: ../data/prefs.glade.h:77
-msgid "Font color"
-msgstr "文字の色:"
-
-#: ../data/prefs.glade.h:78
-msgid "Background color"
-msgstr "背景色"
-
-#: ../data/prefs.glade.h:79
-msgid "Use font and background color from the palette"
-msgstr ""
-
-#: ../data/prefs.glade.h:80
-msgid "Demo:"
-msgstr ""
-
-#: ../data/prefs.glade.h:81
-msgid "<b>Effects</b>"
-msgstr "<b>効果</b>"
-
-#: ../data/prefs.glade.h:82
-msgid "Transparency:"
-msgstr "透明度:"
-
-#: ../data/prefs.glade.h:83
-msgid "Background image:"
-msgstr "背景の画像:"
-
-#: ../data/prefs.glade.h:84 ../src/guake/prefs.py:130
-msgid "Appearance"
-msgstr "外観"
-
-#: ../data/prefs.glade.h:85
-msgid ""
-"<small>Quick open is a feature allowing you to open a file directly into "
-"your favorite text editor by clicking on its filename when it appears in "
-"your terminal. See the list of currently supported text patterns used to "
-"extract filename below.</small>"
-msgstr ""
-
-#: ../data/prefs.glade.h:86
-msgid "Enable Quick Open when Ctrl+clicking on a filename in the terminal"
-msgstr ""
-
-#: ../data/prefs.glade.h:87
-msgid "Editor command line:"
-msgstr ""
-
-#: ../data/prefs.glade.h:89
-#, no-c-format
-msgid ""
-"<small><i>Use the following elements in the open editor command line:\n"
-" - <b>%(file_path)s</b>: path to the file that has been clicked\n"
-" - <b>%(line_number)s</b>: if your editor supports it, you can directly open "
-"the file to a given line number when found on the screen.\n"
-"\n"
-"For example, for sublime, use <b>subl %(file_path)s:%(line_number)s</b>\n"
-"</i></small>"
-msgstr ""
-
-#: ../data/prefs.glade.h:95
-msgid "Quick open in current terminal"
-msgstr ""
-
-#: ../data/prefs.glade.h:96
-msgid ""
-"Here is the list of supported patterns: (to add your own, please contact the "
-"Guake's authors)"
-msgstr ""
-
-#: ../data/prefs.glade.h:97
-#, fuzzy
-msgid "<b>Quick Open</b>"
-msgstr "<b>TABの位置</b>"
-
-#: ../data/prefs.glade.h:98
-msgid "Quick Open"
-msgstr ""
-
-#: ../data/prefs.glade.h:99
-msgid ""
-"To change a shortcut simply click on its name.\n"
-"To disable a shortcut, press the \"Backspace\" key."
-msgstr ""
-
-#: ../data/prefs.glade.h:101
-msgid "Keyboard shortcuts"
-msgstr "キーボードショートカット"
-
-#: ../data/prefs.glade.h:102
-msgid ""
-"<small><i><b>Note:</b> These options may cause some applications to behave "
-"incorrectly.  They are only here to allow you to work around certain "
-"applications and operating systems that expect different terminal behavior.</"
-"i></small>"
-msgstr ""
-"<small><i><b>注意:</b> これらのオプションが影響して、いくつかのアプリケーショ"
-"ンが正常に動作しなくなるかもしれません。これらのオプションは特定のアプリや "
-"OS 上で異なった動作になってしまう問題を解決するために提供されています。</i></"
-"small>"
-
-#: ../data/prefs.glade.h:103
-msgid ""
-"ASCII DEL\n"
-"Escape sequence\n"
-"Control-H"
-msgstr ""
-"ASCII DEL\n"
-"エスケープ・シーケンス\n"
-"Control-H"
-
-#: ../data/prefs.glade.h:106
-msgid "_Backspace key generates:"
-msgstr "[BS] キーが生成するコード(_B):"
-
-#: ../data/prefs.glade.h:107
-msgid "_Delete key generates:"
-msgstr "[DEL] キーが生成するコード(_D):"
-
-#: ../data/prefs.glade.h:108
-msgid "_Reset Compatibility Options to Defaults"
-msgstr "互換性のオプションをデフォルトに戻す(_R)"
-
-#: ../data/prefs.glade.h:109
-msgid "<b>Keyboard compatibility</b>"
-msgstr "<b>キーボードの互換性</b>"
-
-#: ../data/prefs.glade.h:110
-msgid "Compatibility"
-msgstr "互換性"
-
-#: ../src/guake/about.py:47 ../src/guake/gconfhandler.py:439
-#: ../src/guake/guake_app.py:181 ../src/guake/guake_app.py:378
+#: guake/guake_app.py:155 guake/guake_app.py:274 guake/keybindings.py:99
+#: guake/about.py:54
 msgid "Guake Terminal"
-msgstr "Guake 端末"
+msgstr "Guake Terminal"
 
-#: ../src/guake/gconfhandler.py:369 ../src/guake/guake_app.py:1386
-msgid "Terminal"
-msgstr "端末"
-
-#: ../src/guake/gconfhandler.py:440
-#, python-format
-msgid ""
-"A problem happened when binding <b>%s</b> key.\n"
-"Please use Guake Preferences dialog to choose another key"
-msgstr ""
-"<b>%s</b>キーの割り当てで問題が発生しました。\n"
-"設定画面で別のキーを選択してください。(通知エリアのアイコンが有効でした)"
-
-#: ../src/guake/guake_app.py:132
-msgid "Do you want to close the tab?"
-msgstr "タブを閉じますか?"
-
-#: ../src/guake/guake_app.py:135
-msgid "Do you really want to quit Guake?"
-msgstr "本当に Guake を終了しますか?"
-
-#: ../src/guake/guake_app.py:137
-#, fuzzy
-msgid " and one tab open"
-msgstr "新しいタブを追加します"
-
-#: ../src/guake/guake_app.py:139
-#, python-brace-format
-msgid " and {0} tabs open"
-msgstr ""
-
-#: ../src/guake/guake_app.py:142
-msgid "There are no processes running"
-msgstr "実行中のプロセスはありません"
-
-#: ../src/guake/guake_app.py:144
-msgid "There is a process still running"
-msgstr "まだ、1つのプロセスが実行中です"
-
-#: ../src/guake/guake_app.py:146
-#, python-brace-format
-msgid "There are {0} processes still running"
-msgstr "まだ %dつのプロセスが実行中です"
-
-#: ../src/guake/guake_app.py:186
+#: guake/guake_app.py:161
 msgid "guake-indicator"
-msgstr ""
+msgstr "guake-indicator"
 
-#: ../src/guake/guake_app.py:186
+#: guake/guake_app.py:161
 msgid "guake-tray"
-msgstr ""
+msgstr "guake-tray"
 
-#: ../src/guake/guake_app.py:190
+#: guake/guake_app.py:166
 msgid "Show"
-msgstr ""
+msgstr "表示する"
 
-#: ../src/guake/guake_app.py:379
-#, python-format
+#: guake/guake_app.py:275
 msgid ""
 "Guake is now running,\n"
 "press <b>{!s}</b> to use it."
 msgstr ""
 "Guakeを起動しました。\n"
-"<b>{!s}</b>を押すと表示されます。"
+"表示するには<b>{!s}</b>を押してください。"
 
-#: ../src/guake/guake_app.py:670
-#, python-format
-msgid "Search on Web: '%s'"
-msgstr ""
+#: guake/guake_app.py:909 guake/notebook.py:205
+msgid "Terminal"
+msgstr "端末"
 
-#: ../src/guake/guake_app.py:675
-msgid "Search on Web (no selection)"
-msgstr ""
-
-#: ../src/guake/guake_app.py:683
-msgid "Open Link: '{}...'"
-msgstr ""
-
-#: ../src/guake/guake_app.py:685
-msgid "Open Link: {}"
-msgstr ""
-
-#: ../src/guake/guake_app.py:688
-msgid "Open Link..."
-msgstr ""
-
-#: ../src/guake/guake_app.py:1425
-msgid "Rename tab"
-msgstr "タブの名前を変更"
-
-#: ../src/guake/guake_app.py:1736
-msgid "Save to..."
-msgstr ""
-
-#: ../src/guake/guake_app.py:1743 ../src/guake/prefs.py:973
-msgid "All files"
-msgstr ""
-
-#: ../src/guake/guake_app.py:1748
-msgid "Text and Logs"
-msgstr ""
-
-#: ../src/guake/guake_app.py:1766
+#: guake/guake_app.py:984
 msgid "Find"
-msgstr ""
+msgstr "検索"
 
-#: ../src/guake/guake_app.py:1768
+#: guake/guake_app.py:986
 msgid "Forward"
-msgstr ""
+msgstr "次へ"
 
-#: ../src/guake/guake_app.py:1769
+#: guake/guake_app.py:986
 msgid "Backward"
-msgstr ""
+msgstr "前へ"
 
-#: ../src/guake/main.py:68
+#: guake/main.py:70
+msgid "Show Guake version number and exit"
+msgstr "Guakeのバージョンを出力して終了します。"
+
+#: guake/main.py:79
+msgid "Enable verbose logging"
+msgstr "冗長な(verbose)ログを出力します。"
+
+#: guake/main.py:88
 msgid "Put Guake in fullscreen mode"
-msgstr ""
+msgstr "フルスクリーンモードにします。"
 
-#: ../src/guake/main.py:72
+#: guake/main.py:97
 msgid "Toggles the visibility of the terminal window"
-msgstr "端末の表示を変更します"
+msgstr "ウィンドウの表示/非表示を切り替えます。"
 
-#: ../src/guake/main.py:76
+#: guake/main.py:105
 msgid "Shows Guake main window"
-msgstr "Guakeのメインウインドウを表示します"
+msgstr "ウィンドウを表示します。"
 
-#: ../src/guake/main.py:80
+#: guake/main.py:113
 msgid "Hides Guake main window"
-msgstr "Guakeのメインウインドウを隠します"
+msgstr "ウィンドウを非表示にします。"
 
-#: ../src/guake/main.py:84
+#: guake/main.py:122
 msgid "Shows Guake preference window"
-msgstr "Guakeの設定画面を表示します"
+msgstr "設定画面を表示します。"
 
-#: ../src/guake/main.py:88
+#: guake/main.py:131
 msgid "Shows Guake's about info"
 msgstr "Guakeの情報を表示します"
 
-#: ../src/guake/main.py:92
+#: guake/main.py:140
 msgid "Add a new tab (with current directory set to NEW_TAB)"
-msgstr "カレントディレクトリを新しいタブに開く"
+msgstr "カレントディレクトリがNEW_TABの新規タブを開きます。"
 
-#: ../src/guake/main.py:96
+#: guake/main.py:149
 msgid "Select a tab (SELECT_TAB is the index of the tab)"
-msgstr ""
+msgstr "indexがSELECT_TABのタブを選択します。"
 
-#: ../src/guake/main.py:100
+#: guake/main.py:158
 msgid "Return the selected tab index."
-msgstr "選択したタブのインデックスを返す"
+msgstr "選択中のタブのindexを返します。"
 
-#: ../src/guake/main.py:104
+#: guake/main.py:167
+msgid "Return the selected tab label."
+msgstr "選択中のタブ名を返します。"
+
+#: guake/main.py:176
 msgid "Execute an arbitrary command in the selected tab."
-msgstr "選択したタブでコマンドを実行する"
+msgstr "選択中のタブでコマンドを実行します。"
 
-#: ../src/guake/main.py:108
-msgid "Specify the tab to rename. Default is 0."
-msgstr ""
-
-#: ../src/guake/main.py:112
-msgid "Set the hexadecimal (#rrggbb) background color of the selected tab."
-msgstr ""
-
-#: ../src/guake/main.py:117
-msgid "Set the hexadecimal (#rrggbb) foreground color of the selected tab."
-msgstr ""
-
-#: ../src/guake/main.py:123
+#: guake/main.py:185
 msgid ""
-"Rename the specified tab. Reset to default if TITLE is a single dash \"-\"."
+"Specify the tab to rename. Default is 0. Can be used to select tab by UUID."
 msgstr ""
+"名前を変更するタブを指定してください。(デフォルトは0) UUIDでもタブを指定でき"
+"ます。"
 
-#: ../src/guake/main.py:129
+#: guake/main.py:193
+msgid "Set the hexadecimal (#rrggbb) background color of the selected tab."
+msgstr "選択中のタブの背景色を16進数(#rrggbb)で指定した色に変更します。"
+
+#: guake/main.py:202
+msgid "Set the hexadecimal (#rrggbb) foreground color of the selected tab."
+msgstr "選択中のタブの文字色を16進数(#rrggbb)で指定した色に変更します。"
+
+#: guake/main.py:211
+msgid "Change Guake palette scheme"
+msgstr "Guakeのパレットスキームを変更する"
+
+#: guake/main.py:221
+msgid ""
+"Rename the specified tab by --tab-index. Reset to default if TITLE is a "
+"single dash \"-\"."
+msgstr ""
+"--tab-indexで指定したタブの名前を TITLE に変更します。TITLEに \"-\" を指定し"
+"た場合はデフォルトに戻します。"
+
+#: guake/main.py:233
 msgid ""
 "Rename the current tab. Reset to default if TITLE is a single dash \"-\"."
 msgstr ""
+"選択中のタブの名前を TITLE に変更します。TITLEに \"-\" を指定した場合はデフォ"
+"ルトに戻します。"
 
-#: ../src/guake/main.py:134
+#: guake/main.py:243
 msgid "Says to Guake go away =("
-msgstr "Guakeに消えてなくなれと言ってください (T_T)"
+msgstr "Guakeを終了します(;_;)"
 
-#: ../src/guake/main.py:138
+#: guake/main.py:252
 msgid "Do not execute the start up script"
-msgstr ""
+msgstr "スタートアップスクリプトの実行を抑止します。"
 
-#: ../src/guake/main.py:235
-msgid "Guake can not init!"
-msgstr "Guakeを初期化できません"
-
-#: ../src/guake/main.py:236
-msgid ""
-"Gconf Error.\n"
-"Have you installed <b>guake.schemas</b> properly?"
-msgstr ""
-"Gconf Error.\n"
-"<b>guake.schemas</b>を適切にインストールしましたか？"
-
-#. string to show in prefereces dialog for user shell option
-#: ../src/guake/prefs.py:67
+#: guake/prefs.py:78
 msgid "<user shell>"
 msgstr "<ユーザのシェル>"
 
-#: ../src/guake/prefs.py:77
+#: guake/prefs.py:89
+msgid "General"
+msgstr "全般"
+
+#: guake/prefs.py:94
 msgid "Toggle Guake visibility"
 msgstr "端末表示の切り替え"
 
-#: ../src/guake/prefs.py:81
+#: guake/prefs.py:98
+msgid "Show and focus Guake window"
+msgstr "ウィンドウを表示してフォーカスする"
+
+#: guake/prefs.py:102 guake/menus.py:58
+msgid "Toggle Fullscreen"
+msgstr "全画面表示"
+
+#: guake/prefs.py:106
 msgid "Toggle Hide on Lose Focus"
 msgstr "フォーカスを失ったら隠す"
 
-#: ../src/guake/prefs.py:88
+#: guake/prefs.py:110 guake/menus.py:146
+msgid "Quit"
+msgstr "終了"
+
+#: guake/prefs.py:114 guake/menus.py:75
+msgid "Reset terminal"
+msgstr "出力をリセット"
+
+#: guake/prefs.py:119
 msgid "Tab management"
 msgstr "タブの管理"
 
-#: ../src/guake/prefs.py:90
+#: guake/prefs.py:124
 msgid "New tab"
 msgstr "新規タブ"
 
-#: ../src/guake/prefs.py:92
+#: guake/prefs.py:128
+msgid "New tab in home directory"
+msgstr "新規タブ(ホームディレクトリ)"
+
+#: guake/prefs.py:132
 msgid "Close tab"
 msgstr "タブを閉じる"
 
-#: ../src/guake/prefs.py:94
+#: guake/prefs.py:136
 msgid "Rename current tab"
 msgstr "現在のタブの名前を変更"
 
-#: ../src/guake/prefs.py:97
+#: guake/prefs.py:141
+msgid "Split management"
+msgstr "ターミナル分割の管理"
+
+#: guake/prefs.py:146
+msgid "Split tab vertical"
+msgstr "タブを垂直分割する"
+
+#: guake/prefs.py:150
+msgid "Split tab horizontal"
+msgstr "タブを水平分割する"
+
+#: guake/prefs.py:154 guake/menus.py:68
+msgid "Close terminal"
+msgstr "ターミナルを閉じる"
+
+#: guake/prefs.py:158
+msgid "Focus terminal above"
+msgstr "フォーカスを上へ"
+
+#: guake/prefs.py:162
+msgid "Focus terminal below"
+msgstr "フォーカスを下へ"
+
+#: guake/prefs.py:166
+msgid "Focus terminal on the left"
+msgstr "フォーカスを左へ"
+
+#: guake/prefs.py:170
+msgid "Focus terminal on the right"
+msgstr "フォーカスを右へ"
+
+#: guake/prefs.py:174
+msgid "Move the terminal split handle up"
+msgstr ""
+
+#: guake/prefs.py:178
+msgid "Move the terminal split handle down"
+msgstr ""
+
+#: guake/prefs.py:182
+msgid "Move the terminal split handle right"
+msgstr ""
+
+#: guake/prefs.py:186
+msgid "Move the terminal split handle left"
+msgstr ""
+
+#: guake/prefs.py:191
 msgid "Navigation"
 msgstr "ナビゲーション"
 
-#: ../src/guake/prefs.py:99
+#: guake/prefs.py:196
 msgid "Go to previous tab"
 msgstr "前のタブに移動"
 
-#: ../src/guake/prefs.py:101
+#: guake/prefs.py:200
 msgid "Go to next tab"
 msgstr "次のタブに移動"
 
-#: ../src/guake/prefs.py:103
+#: guake/prefs.py:204
 msgid "Move current tab left"
 msgstr "現在のタブを左に移動"
 
-#: ../src/guake/prefs.py:105
+#: guake/prefs.py:208
 msgid "Move current tab right"
 msgstr "現在のタブの名前を右に移動"
 
-#: ../src/guake/prefs.py:107
+#: guake/prefs.py:212
 msgid "Go to first tab"
 msgstr "最初のタブに移動"
 
-#: ../src/guake/prefs.py:109
+#: guake/prefs.py:216
 msgid "Go to second tab"
 msgstr "2つめのタブに移動"
 
-#: ../src/guake/prefs.py:111
+#: guake/prefs.py:220
 msgid "Go to third tab"
 msgstr "3つめタブに移動"
 
-#: ../src/guake/prefs.py:113
+#: guake/prefs.py:224
 msgid "Go to fourth tab"
 msgstr "4つめタブに移動"
 
-#: ../src/guake/prefs.py:115
+#: guake/prefs.py:228
 msgid "Go to fifth tab"
 msgstr "5つめのタブに移動"
 
-#: ../src/guake/prefs.py:117
+#: guake/prefs.py:232
 msgid "Go to sixth tab"
 msgstr "6つめのタブに移動"
 
-#: ../src/guake/prefs.py:119
+#: guake/prefs.py:236
 msgid "Go to seventh tab"
 msgstr "7つめのタブに移動"
 
-#: ../src/guake/prefs.py:121
+#: guake/prefs.py:240
 msgid "Go to eighth tab"
 msgstr "8つめのタブに移動"
 
-#: ../src/guake/prefs.py:123
+#: guake/prefs.py:244
 msgid "Go to ninth tab"
 msgstr "9つめのタブに移動"
 
-#: ../src/guake/prefs.py:125
+#: guake/prefs.py:248
 msgid "Go to tenth tab"
 msgstr "10個目のタブに移動"
 
-#: ../src/guake/prefs.py:127
+#: guake/prefs.py:252
 msgid "Go to last tab"
 msgstr "最後のタブに移動"
 
-#: ../src/guake/prefs.py:132
+#: guake/prefs.py:257
+msgid "Appearance"
+msgstr "外観"
+
+#: guake/prefs.py:261
 msgid "Zoom out"
 msgstr "縮小"
 
-#: ../src/guake/prefs.py:134
+#: guake/prefs.py:264
 msgid "Zoom in"
 msgstr "拡大"
 
-#: ../src/guake/prefs.py:136
+#: guake/prefs.py:267
 msgid "Zoom in (alternative)"
-msgstr ""
+msgstr "拡大(2つ目)"
 
-#: ../src/guake/prefs.py:138
+#: guake/prefs.py:270
 msgid "Increase height"
-msgstr ""
+msgstr "高くする"
 
-#: ../src/guake/prefs.py:140
+#: guake/prefs.py:273
 msgid "Decrease height"
-msgstr ""
+msgstr "低くする"
 
-#: ../src/guake/prefs.py:142
-#, fuzzy
+#: guake/prefs.py:276
 msgid "Increase transparency"
-msgstr "透明度:"
+msgstr "透明度を増やす"
 
-#: ../src/guake/prefs.py:144
-#, fuzzy
+#: guake/prefs.py:279
 msgid "Decrease transparency"
-msgstr "透明度:"
+msgstr "透明度を減らす"
 
-#: ../src/guake/prefs.py:146
-#, fuzzy
+#: guake/prefs.py:282
 msgid "Toggle transparency"
 msgstr "透明度:"
 
-#: ../src/guake/prefs.py:149
+#: guake/prefs.py:286
 msgid "Clipboard"
 msgstr "クリップボード"
 
-#: ../src/guake/prefs.py:151
+#: guake/prefs.py:291
 msgid "Copy text to clipboard"
 msgstr "テキストをクリップボードにコピー"
 
-#: ../src/guake/prefs.py:153
+#: guake/prefs.py:295
 msgid "Paste text from clipboard"
 msgstr "クリップボードからテキストをペースト"
 
-#: ../src/guake/prefs.py:156
+#: guake/prefs.py:300
 msgid "Extra features"
-msgstr ""
+msgstr "その他の機能"
 
-#: ../src/guake/prefs.py:159
+#: guake/prefs.py:304
 msgid "Search select text on web"
-msgstr ""
+msgstr "選択したテキストをWebで検索"
 
-#: ../src/guake/prefs.py:481
+#: guake/prefs.py:741
 msgid "Action"
 msgstr "動作"
 
-#: ../src/guake/prefs.py:491
+#: guake/prefs.py:749
 msgid "Shortcut"
 msgstr "ショートカット"
 
-#: ../src/guake/prefs.py:651 ../src/guake/prefs.py:697
+#: guake/prefs.py:910 guake/prefs.py:964
 msgid "Custom"
-msgstr ""
+msgstr "カスタム"
 
-#: ../src/guake/prefs.py:969
+#: guake/prefs.py:1254
 msgid "JSON files"
-msgstr ""
+msgstr "JSONファイル"
 
-#: ../src/guake/prefs.py:1063
+#: guake/prefs.py:1258 guake/dialogs.py:106
+msgid "All files"
+msgstr "すべてのファイル"
+
+#: guake/prefs.py:1353
 #, python-format
 msgid "The shortcut \"%s\" is already in use."
-msgstr "ショートカット \"%s\"は既に使用されています."
+msgstr "ショートカット \"%s\" は既に使用されています."
 
-#: ../src/guake/prefs.py:1064
+#: guake/prefs.py:1354
 msgid "Error setting keybinding."
 msgstr "ショートカットの設定中にエラーが起きました"
 
-#: ../src/guake/prefs.py:1076
+#: guake/prefs.py:1370
 #, python-format
 msgid ""
 "The shortcut \"%s\" cannot be used because it will become impossible to type "
@@ -879,65 +414,472 @@ msgid ""
 "\n"
 "Please try with a key such as Control, Alt or Shift at the same time.\n"
 msgstr ""
-"このキーでは入力できないので \"%s\" というショートカット・キーは利用できませ"
-"ん。\n"
+"このキーが入力不能になってしまうので、 \"%s\" はショートカットとして利用でき"
+"ません。\n"
 "\n"
 "[Control] や [Alt] や [Shift] といった修飾キーを一緒に使うようにしてみて下さ"
 "い。\n"
 
-#: guake/main.py:153
-msgid "Return the selected tab label."
-msgstr ""
+#: guake/dialogs.py:11
+msgid "Rename tab"
+msgstr "タブの名前を変更"
 
-#: guake/data/prefs.glade:264
+#: guake/dialogs.py:46
+msgid "Do you want to close the tab?"
+msgstr "タブを閉じますか?"
+
+#: guake/dialogs.py:49
+msgid "Do you really want to quit Guake?"
+msgstr "本当に Guake を終了しますか?"
+
+#: guake/dialogs.py:51
+msgid " and one tab open"
+msgstr "1個のタブが開いています"
+
+#: guake/dialogs.py:53
+#, python-brace-format
+msgid " and {0} tabs open"
+msgstr "{0}個のタブが開いています"
+
+#: guake/dialogs.py:56
+msgid "There are no processes running"
+msgstr "実行中のプロセスはありませんが、"
+
+#: guake/dialogs.py:58
+msgid "There is a process still running"
+msgstr "まだ、1個のプロセスが実行中で、"
+
+#: guake/dialogs.py:60
+#, python-brace-format
+msgid "There are {0} processes still running"
+msgstr "まだ、{0}個のプロセスが実行中で、"
+
+#: guake/dialogs.py:89
+msgid "Save to..."
+msgstr "保存先を選択"
+
+#: guake/dialogs.py:111
+msgid "Text and Logs"
+msgstr "テキストファイル、及びログファイル"
+
+#: guake/menus.py:20
+msgid "New Tab"
+msgstr "新規TAB"
+
+#: guake/menus.py:23
+msgid "Rename"
+msgstr "名前の変更"
+
+#: guake/menus.py:26
+msgid "Close"
+msgstr "閉じる"
+
+#: guake/menus.py:44
+msgid "Copy"
+msgstr "コピー"
+
+#: guake/menus.py:48
+msgid "Copy Url"
+msgstr "URLをコピー"
+
+#: guake/menus.py:51
+msgid "Paste"
+msgstr "貼り付け"
+
+#: guake/menus.py:62
+msgid "Split ―"
+msgstr "水平に分割"
+
+#: guake/menus.py:65
+msgid "Split ｜"
+msgstr "垂直に分割"
+
+#: guake/menus.py:72
+msgid "Save content..."
+msgstr "出力内容を保存"
+
+#: guake/menus.py:79
+msgid "Find..."
+msgstr "検索..."
+
+#: guake/menus.py:83
+msgid "Open link..."
+msgstr "リンクを開く..."
+
+#: guake/menus.py:91
+msgid "Open Link: {!s}..."
+msgstr "リンクを開く: {!s}..."
+
+#: guake/menus.py:93
+msgid "Open Link: {!s}"
+msgstr "リンクを開く: {!s}"
+
+#: guake/menus.py:98
+msgid "Search on Web"
+msgstr "Webで検索"
+
+#: guake/menus.py:105
+#, python-format
+msgid "Search on Web: '%s'"
+msgstr "Webで検索: '%s'"
+
+#: guake/menus.py:110
+msgid "Quick Open..."
+msgstr "Quick Open..."
+
+#: guake/menus.py:118
+msgid "Quick Open: {!s}..."
+msgstr "Quick Open: {!s}..."
+
+#: guake/menus.py:121
+msgid "Quick Open: {!s}"
+msgstr "Quick Open: {!s}"
+
+#: guake/menus.py:133
+msgid "Custom Commands"
+msgstr "カスタムコマンド"
+
+#: guake/keybindings.py:101
+#, python-format
+msgid ""
+"A problem happened when binding <b>%s</b> key.\n"
+"Please use Guake Preferences dialog to choose another key"
+msgstr ""
+"<b>%s</b>キーの割り当てで問題が発生しました。\n"
+"設定画面から別のキーを割り当ててください。"
+
+#: data/prefs.glade:43
+msgid "Guake Preferences"
+msgstr "Guakeの設定"
+
+#: data/prefs.glade:96
+msgid "<span size=\"18000\"><b>Guake properties</b></span>"
+msgstr "<span size=\"18000\"><b>Guake の設定</b></span>"
+
+#: data/prefs.glade:110
+msgid "Customize behavior and appearance of Guake!"
+msgstr "Guake の動作や外観をカスタマイズします"
+
+#: data/prefs.glade:193
+msgid "Enable popup notifications on startup"
+msgstr "起動時にポップアップ通知を表示する"
+
+#: data/prefs.glade:210
+msgid "_Play system alert sound on bell"
+msgstr "ベルの代わりにシステムのアラートを使用する"
+
+#: data/prefs.glade:226
+msgid "Start Guake at login"
+msgstr "ログイン時にGuakeを起動する"
+
+#: data/prefs.glade:249
+msgid "Prompt on close tab:"
+msgstr "タブを閉じるときの確認"
+
+#: data/prefs.glade:263
 msgid "Never"
-msgstr ""
+msgstr "常に確認しない"
 
-#: guake/data/prefs.glade:265
+#: data/prefs.glade:264
 msgid "With process running"
-msgstr ""
+msgstr "プロセス起動中のみ確認する"
 
-#: guake/data/prefs.glade:266
+#: data/prefs.glade:265
 msgid "Always"
-msgstr ""
+msgstr "常に確認"
 
-#: guake/data/prefs.glade:499
+#: data/prefs.glade:284
+msgid "Always prompt on quit"
+msgstr "終了時は常に確認する"
+
+#: data/prefs.glade:300
+msgid "Show tray icon"
+msgstr "通知エリアにアイコンを表示する"
+
+#: data/prefs.glade:316
+msgid "_Flash terminal on bell"
+msgstr "ベルの代わりにターミナルを点滅させる"
+
+#: data/prefs.glade:340 data/prefs.glade:1656
+msgid "<b>General</b>"
+msgstr "<b>一般</b>"
+
+#: data/prefs.glade:366
+msgid "Gtk Theme:"
+msgstr "GTKのテーマ"
+
+#: data/prefs.glade:390
+msgid "Prefer dark theme"
+msgstr "ダークテーマにする"
+
+#: data/prefs.glade:419
+msgid "Custom command file path:"
+msgstr "カスタムコマンドのパス"
+
+#: data/prefs.glade:431
+msgid "Please select a json file"
+msgstr "JSONファイルを選択"
+
+#: data/prefs.glade:519
 msgid "Refocus if open"
 msgstr ""
 
-#: guake/data/prefs.glade:865
-msgid "Custom command file path:"
-msgstr ""
+#: data/prefs.glade:536
+msgid "Hide on lose focus"
+msgstr "フォーカスを失ったら隠す"
 
-#: guake/data/prefs.glade:1315
-msgid "Show resizer"
-msgstr ""
+#: data/prefs.glade:553
+msgid "Start fullscreen"
+msgstr "全画面表示で開始"
 
-#: guake/data/prefs.glade:1423
+#: data/prefs.glade:569
+msgid "Stay on top"
+msgstr "常に前面に配置する"
+
+#: data/prefs.glade:587
+msgid "Show tab bar"
+msgstr "タブバーを表示する"
+
+#: data/prefs.glade:603
+msgid "Use VTE titles for tab names"
+msgstr "タブ名としてVTEのタイトルを使用する"
+
+#: data/prefs.glade:621
+msgid "Abbreviate directories in tab names"
+msgstr "タブ名のディレクトリを省略して表示する"
+
+#: data/prefs.glade:646
+msgid "Max tab name length:"
+msgstr "タブ名の最大長"
+
+#: data/prefs.glade:661
+msgid "0"
+msgstr "0"
+
+#: data/prefs.glade:683
+msgid "Set window title to current tab name"
+msgstr "タブ名をウィンドウタイトルにする"
+
+#: data/prefs.glade:705
+msgid "<b>Main Window Options</b>"
+msgstr "<b>メインウィンドウの設定</b>"
+
+#: data/prefs.glade:736
+msgid "Bottom align window instead of top align"
+msgstr "下寄せにする"
+
+#: data/prefs.glade:752
+msgid "Appear on mouse display"
+msgstr "マウスカーソルがあるディスプレイに表示する"
+
+#: data/prefs.glade:777
+msgid "Appear on display:"
+msgstr "次のディスプレイに表示"
+
+#: data/prefs.glade:807
+msgid "Place tabs on top"
+msgstr "常に最前面で表示する"
+
+#: data/prefs.glade:829
+msgid "<b>Placement</b>"
+msgstr "<b>パレット</b>"
+
+#: data/prefs.glade:865
+msgid "Horizontal Alignment:"
+msgstr "水平方向の配置場所"
+
+#: data/prefs.glade:881
+msgid "Left"
+msgstr "左寄せ"
+
+#: data/prefs.glade:901
+msgid "Center"
+msgstr "中央寄せ"
+
+#: data/prefs.glade:921
+msgid "Right"
+msgstr "右寄せ"
+
+#: data/prefs.glade:950
+msgid "Height:"
+msgstr "高さ"
+
+#: data/prefs.glade:963
+msgid "Width:"
+msgstr "幅"
+
+#: data/prefs.glade:1017
+msgid "Displacement in pixels"
+msgstr "ずらして表示(ピクセル単位)"
+
+#: data/prefs.glade:1045
+msgid "<b>Geometry</b>"
+msgstr "配置"
+
+#: data/prefs.glade:1076
+msgid "Main Window"
+msgstr "メインウィンドウ"
+
+#: data/prefs.glade:1121
+msgid "Default interpreter:"
+msgstr "デフォルトのシェル:"
+
+#: data/prefs.glade:1161
+msgid "_Run command as a login shell"
+msgstr "ログインシェルとしてコマンドを実行する(_R)"
+
+#: data/prefs.glade:1182
+msgid ""
+"This might not work on all shells, make sure that your shell supports the --"
+"login option"
+msgstr ""
+"シェルに依っては正常に動作しない場合があります。--login オプションが使用可能"
+"か確認してください。"
+
+#: data/prefs.glade:1197
+msgid "_Open new tab in current directory"
+msgstr "カレントディレクトリを新しいタブに開く(_O)"
+
+#: data/prefs.glade:1241
+msgid "Shell"
+msgstr "Shell"
+
+#: data/prefs.glade:1287
+msgid "Show scrollbar"
+msgstr "スクロールバーを表示する"
+
+#: data/prefs.glade:1311
+msgid "Scrollback lines:"
+msgstr "スクロール可能な行数:"
+
+#: data/prefs.glade:1347
+msgid "Infinite scrolling"
+msgstr "どこまでもスクロール可能にする"
+
+#: data/prefs.glade:1369
+msgid "<b>Scrollbar</b>"
+msgstr "<b>スクロールバー</b>"
+
+#: data/prefs.glade:1414
+msgid "On output"
+msgstr "出力がある度に最下行へスクロールする"
+
+#: data/prefs.glade:1431
+msgid "On key stroke"
+msgstr "キー入力の度に最下行へスクロールする"
+
+#: data/prefs.glade:1454
+msgid "<b>Scroll to Bottom</b>"
+msgstr "<b>最下行へスクロールする</b>"
+
+#: data/prefs.glade:1478
+msgid "Scrolling"
+msgstr "スクロール"
+
+#: data/prefs.glade:1513
+msgid "Use the system fixed width font"
+msgstr "\"固定幅のフォント\" を使用する"
+
+#: data/prefs.glade:1541
+msgid "Font:"
+msgstr "フォント:"
+
+#: data/prefs.glade:1556
+msgid "Choose some font"
+msgstr "フォントの選択"
+
+#: data/prefs.glade:1570
+msgid "Cursor shape:"
+msgstr "カーソルの形状:"
+
+#: data/prefs.glade:1585
 msgid "Block"
-msgstr ""
+msgstr "矩形"
 
-#: guake/data/prefs.glade:1424
+#: data/prefs.glade:1586
 msgid "I-Beam"
-msgstr ""
+msgstr "縦線"
 
-#: guake/data/prefs.glade:1425
+#: data/prefs.glade:1587
 msgid "Underline"
-msgstr ""
+msgstr "下線"
 
-#: guake/data/prefs.glade:1443
+#: data/prefs.glade:1601
+msgid "Cursor blink mode:"
+msgstr "カーソルの点滅"
+
+#: data/prefs.glade:1615
 msgid "Follow GTK+ setting"
-msgstr ""
+msgstr "GTK+の設定に合わせる"
 
-#: guake/data/prefs.glade:1444
+#: data/prefs.glade:1616
 msgid "Blink on"
-msgstr ""
+msgstr "点滅する"
 
-#: guake/data/prefs.glade:1445
+#: data/prefs.glade:1617
 msgid "Blink off"
-msgstr ""
+msgstr "点滅しない"
 
-#: guake/data/prefs.glade:2236
+#: data/prefs.glade:1634
+msgid "Allow bold font"
+msgstr "太字を使用可能にする"
+
+#: data/prefs.glade:1691
+msgid "Built-in schemes:"
+msgstr "組み込みのスキーム:"
+
+#: data/prefs.glade:1717
+msgid "Color palette:"
+msgstr "色:"
+
+#: data/prefs.glade:1732
+msgid "Demo:"
+msgstr "サンプル:"
+
+#: data/prefs.glade:2035
+msgid "<b>Palette</b>"
+msgstr "<b>パレット</b>"
+
+#: data/prefs.glade:2057
+msgid "<b>Effects</b>"
+msgstr "<b>効果</b>"
+
+#: data/prefs.glade:2082
+msgid "Transparency:"
+msgstr "透明度:"
+
+#: data/prefs.glade:2166
+msgid ""
+"To change a shortcut simply click on its name.\n"
+"To disable a shortcut, press the \"Backspace\" key."
+msgstr ""
+"ショートカットを変更するには名前を選択してキーを入力してください。\n"
+"ショートカットを無効化する場合は\"Backspace\"キーを入力してください。"
+
+#: data/prefs.glade:2216
+msgid "Keyboard shortcuts"
+msgstr "キーボードショートカット"
+
+#: data/prefs.glade:2268
+msgid ""
+"Quick open is a feature allowing you to open a file directly into your "
+"favorite text editor by clicking on its filename when it appears in your "
+"terminal. See the list of currently supported text patterns used to extract "
+"filename below."
+msgstr ""
+"Quick Openはファイル名をクリックするだけで好きなエディタで開くことが出来る機"
+"能です。現在判別可能なファイル名の判定パターンについては下のリストを確認して"
+"ください。"
+
+#: data/prefs.glade:2306
+msgid "Enable Quick Open when Ctrl+clicking on a filename in the terminal"
+msgstr "Quick Openを有効にする(Ctrl+クリック)"
+
+#: data/prefs.glade:2331
+msgid "Editor command line:"
+msgstr "エディタのコマンド"
+
+#: data/prefs.glade:2377
 msgid ""
 "<small><i>Use the following elements in the open editor command line:\n"
 "- <b>%(file_path)s</b>: path to the file that has been clicked\n"
@@ -947,346 +889,118 @@ msgid ""
 "For example, for sublime, use <b>subl %(file_path)s:%(line_number)s</b>\n"
 "</i></small>"
 msgstr ""
+"<small><i>コマンドでは以下の要素を利用可能です。\n"
+" - <b>%(file_path)s</b>: クリックされたファイル名\n"
+" - <b>%(line_number)s</b>: エディタが対応していれば、該当行を直接開くことが出"
+"来ます。\n"
+"例えばSublime Textの場合は <b>subl %(file_path)s:%(line_number)s</b> としてく"
+"ださい。</i></small>"
 
-#: guake/data/prefs.glade:2442 guake/data/prefs.glade:2462
-msgid "ASCII DEL"
-msgstr ""
+#: data/prefs.glade:2432
+msgid "Quick open in current terminal"
+msgstr "現在の端末で開く"
 
-#: guake/data/prefs.glade:2443 guake/data/prefs.glade:2463
-msgid "Escape sequence"
-msgstr ""
+#: data/prefs.glade:2476
+msgid "Quick Open"
+msgstr "Quick Open"
 
-#: guake/data/prefs.glade:2444 guake/data/prefs.glade:2464
-msgid "Control-H"
-msgstr ""
-
-#: guake/data/prefs.glade:2600
+#: data/prefs.glade:2526
 msgid ""
 "<small>In this dialog you can attach your own command or script to various "
 "guake events</small>"
 msgstr ""
+"<small>イベント発生時にコマンドやスクリプトを実行することができます。</small>"
 
-#: guake/data/prefs.glade:2635
+#: data/prefs.glade:2548
 msgid "On show:"
-msgstr ""
+msgstr "表示時"
 
-#: guake/data/prefs.glade:2665
+#: data/prefs.glade:2560
 msgid "On start:"
-msgstr ""
+msgstr "起動時"
 
-#: guake/data/prefs.glade:2714
+#: data/prefs.glade:2626
 msgid "Hooks"
-msgstr ""
+msgstr "Hooks"
 
-#: guake/data/guake-prefs.desktop:8
-msgid "Configure your Guake sessions"
-msgstr ""
-
-#: guake/data/guake-prefs.desktop:15 guake/data/guake.desktop:18
-msgid "guake"
-msgstr ""
-
-#: guake/data/guake-prefs.desktop:20
-msgid "Terminal;Utility;"
-msgstr ""
-
-#: guake/data/guake.desktop:10
-msgid "Use the command line in a Quake-like terminal"
-msgstr ""
-
-#: guake/data/prefs.glade:770
-msgid "Main Window Horizontal Alignment"
-msgstr ""
-
-#: guake/prefs.py:89
-msgid "Show and focus Guake window"
-msgstr ""
-
-#: guake/data/prefs.glade:566
-msgid "0"
-msgstr ""
-
-#: guake/data/prefs.glade:610
-msgid "<b>Main Window Options</b>"
-msgstr ""
-
-#: guake/data/prefs.glade:770
-msgid "Horizontal Alignment:"
-msgstr ""
-
-#: guake/data/prefs.glade:855
-msgid "Height:"
-msgstr ""
-
-#: guake/data/prefs.glade:868
-msgid "Width:"
-msgstr ""
-
-#: guake/data/prefs.glade:913
-msgid "<b>Geometry</b>"
-msgstr ""
-
-#: guake/data/prefs.glade:944
-msgid "Main Window"
-msgstr ""
-
-#: guake/data/prefs.glade:1197
-msgid "Infinite scrolling"
-msgstr ""
-
-#: guake/data/prefs.glade:1219
-msgid "<b>Scrollbar</b>"
-msgstr ""
-
-#: guake/data/prefs.glade:1304
-msgid "<b>Scroll to Bottom</b>"
-msgstr ""
-
-#: guake/data/prefs.glade:2117
+#: data/prefs.glade:2655
 msgid ""
-"Quick open is a feature allowing you to open a file directly into your "
-"favorite text editor by clicking on its filename when it appears in your "
-"terminal. See the list of currently supported text patterns used to extract "
-"filename below."
+"<small><i><b>Note:</b> These options may cause some applications to behave "
+"incorrectly.  They are only here to allow you to work around certain "
+"applications and operating systems that expect different terminal behavior.</"
+"i></small>"
 msgstr ""
+"<small><i><b>注意:</b> このオプションを変更するとアプリケーションが正常に動作"
+"しなくなる可能性があります。端末の挙動に変更が必要な一部のアプリケーションや"
+"OSを使用するためにのみ使用してください。</i></small>"
 
-#: guake/main.py:64
-msgid "Show Guake version number and exit"
-msgstr ""
+#: data/prefs.glade:2675
+msgid "_Backspace key generates:"
+msgstr "[BS] キーが生成するコード(_B):"
 
-#: guake/data/prefs.glade:93
-msgid "<span size=\"18000\"><b>Guake properties</b></span>"
-msgstr "<span size=\"18000\"><b>Guake の設定</b></span>"
+#: data/prefs.glade:2688
+msgid "_Delete key generates:"
+msgstr "[DEL] キーが生成するコード(_D):"
 
-#: guake/data/prefs.glade:107
-msgid "Customize behavior and appearance of Guake!"
-msgstr "Guake の動作や外観をカスタマイズします"
+#: data/prefs.glade:2703 data/prefs.glade:2720
+msgid "ASCII DEL"
+msgstr "ASCII DEL"
 
-#: guake/data/prefs.glade:929
-msgid "Displacement in pixels"
-msgstr ""
+#: data/prefs.glade:2704 data/prefs.glade:2721
+msgid "Escape sequence"
+msgstr "エスケープシーケンス"
 
-#: guake/main.py:73
-msgid "Enable verbose logging"
-msgstr ""
+#: data/prefs.glade:2705 data/prefs.glade:2722
+msgid "Control-H"
+msgstr "Ctrl+h"
 
-#: guake/guake_app.py:680
-msgid "Quick Open: '{!s}...'"
-msgstr ""
+#: data/prefs.glade:2747
+msgid "_Reset Compatibility Options to Defaults"
+msgstr "互換性のオプションをデフォルトに戻す(_R)"
 
-#: guake/guake_app.py:683
-msgid "Quick Open: {!s}"
-msgstr ""
-
-#: guake/guake_app.py:691
-msgid "Open Link: '{!s}...'"
-msgstr ""
-
-#: guake/guake_app.py:694
-msgid "Open Link: {!s}"
-msgstr ""
-
-#: guake/data/prefs.glade:2175
-msgid ""
-"<i><b>WARNING</b>: your system seems to have PCRE2 disabled for VTE, "
-"preventing application such as Guake to register \"matchers\" using regular "
-"expressions. Please contact your distribution to request a new version of "
-"VTE with PCRE2 enabled ! To use Quick Open, you <b>must select the text</b> "
-"before using Ctrl+click</i>."
-msgstr ""
-
-#: guake/guake_app.py:680
-msgid "Quick Open: {!s}..."
-msgstr ""
-
-#: guake/guake_app.py:691
-msgid "Open Link: {!s}..."
-msgstr ""
-
-#: guake/guake_app.py:688
-msgid "Quick Open..."
-msgstr ""
-
-#: guake/data/prefs.glade:223
-msgid "Start Guake at login"
-msgstr ""
-
-#: guake/data/prefs.glade:363
-msgid "Gtk Theme:"
-msgstr ""
-
-#: guake/data/prefs.glade:387
-msgid "Prefer dark theme"
-msgstr ""
-
-#: guake/guake_app.py:435
-msgid "Custom Commands"
-msgstr ""
-
-#: guake/main.py:184
-msgid ""
-"Specify the tab to rename. Default is 0. Can be used to select tab by UUID."
-msgstr ""
-
-#: guake/main.py:212
-msgid ""
-"Rename the specified tab by --tab-index. Reset to default if TITLE is a "
-"single dash \"-\"."
-msgstr ""
+#: data/prefs.glade:2778
+msgid "Compatibility"
+msgstr "互換性"
 
 #: data/search.glade:138
 msgid "Search forward"
-msgstr ""
+msgstr "前方検索"
 
 #: data/search.glade:153
 msgid "Match case"
-msgstr ""
+msgstr "マッチした文字列"
 
 #: data/search.glade:186
 msgid "Current search direction: Backward"
-msgstr ""
+msgstr "現在の検索方向: 逆向き"
 
-#: data/prefs.glade:680
-msgid "Set window title to current tab name"
-msgstr ""
-
-#: guake/menus.py:48
-msgid "Copy Url"
-msgstr ""
-
-#: guake/menus.py:62
-msgid "Split ―"
-msgstr ""
-
-#: guake/menus.py:65
-msgid "Split  "
-msgstr ""
-
-#: guake/menus.py:68 guake/prefs.py:150
-msgid "Close terminal"
-msgstr ""
-
-#: guake/prefs.py:137
-msgid "Split management"
-msgstr ""
-
-#: guake/prefs.py:142
-msgid "Split tab vertical"
-msgstr ""
-
-#: guake/prefs.py:146
-msgid "Split tab horizontal"
-msgstr ""
-
-#: guake/prefs.py:154
-msgid "Focus terminal above"
-msgstr ""
-
-#: guake/prefs.py:158
-msgid "Focus terminal below"
-msgstr ""
-
-#: guake/prefs.py:162
-msgid "Focus terminal on the left"
-msgstr ""
-
-#: guake/prefs.py:166
-msgid "Focus terminal on the right"
-msgstr ""
-
-#: guake/prefs.py:170
-msgid "Move the terminal split handle up"
-msgstr ""
-
-#: guake/prefs.py:174
-msgid "Move the terminal split handle down"
-msgstr ""
-
-#: guake/prefs.py:178
-msgid "Move the terminal split handle right"
-msgstr ""
-
-#: guake/prefs.py:182
-msgid "Move the terminal split handle left"
-msgstr ""
-
-#: guake/menus.py:65
-msgid "Split ｜"
-msgstr ""
-
-#: guake/menus.py:72
-msgid "Save content..."
-msgstr ""
-
-#: data/prefs.glade:1182
+#: data/about.glade:14
 msgid ""
-"This might not work on all shells, make sure that your shell supports the --"
-"login option"
+"Guake is an easy to access\n"
+"terminal based on FPS games terminal"
 msgstr ""
+"Guakeは、FPS ゲーム用端末をベースにした\n"
+"簡単にアクセスできる端末です"
 
-#~ msgid "key binding error"
-#~ msgstr "キーの割り当てエラー"
+#: data/guake.glade:47
+msgid "Guake!"
+msgstr "Guake!"
 
-#~ msgid "Unable to bind global <b>%s</b> key"
-#~ msgstr "%s キーを割り当てられません"
+#: data/autostart-guake.desktop:31 data/guake.desktop:36
+#: data/guake.template.desktop:4
+msgid "Use the command line in a Quake-like terminal"
+msgstr "Quake-likeなターミナルを使えます"
 
-#~ msgid "http://guake.org"
-#~ msgstr "http://guake.org"
+#: data/autostart-guake.desktop:34 data/guake-prefs.desktop:48
+#: data/guake-prefs.template.desktop:7 data/guake.desktop:47
+#: data/guake.template.desktop:7
+msgid "guake"
+msgstr "guake"
 
-#~ msgid ""
-#~ "Tango\n"
-#~ "Linux console\n"
-#~ "XTerm\n"
-#~ "Rxvt\n"
-#~ "Custom\n"
-#~ msgstr ""
-#~ "Tango\n"
-#~ "Linux 端末\n"
-#~ "XTerm\n"
-#~ "Rxvt\n"
-#~ "指定する\n"
+#: data/guake-prefs.desktop:37 data/guake-prefs.template.desktop:4
+msgid "Configure your Guake sessions"
+msgstr "Guake セッションの設定"
 
-#~ msgid "Select a tab"
-#~ msgstr "タブを選択"
-
-#~ msgid "Rename the selected tab."
-#~ msgstr "選択したタブの名前を変更する"
-
-#~ msgid "<b>Background</b>"
-#~ msgstr "<b>背景</b>"
-
-#~ msgid "Choose some color"
-#~ msgstr "色を選択する"
-
-#~ msgid "Image:"
-#~ msgstr "画像："
-
-#~ msgid "Style:"
-#~ msgstr "スタイル"
-
-#~ msgid "Could not connect to dbus session bus. dbus will be unavailable.\n"
-#~ msgstr "dbusセッションに接続できませんでした。dbusは利用できません。\n"
-
-#~ msgid "<b>Window behavior</b>"
-#~ msgstr "<b>ウィンドウの動作</b>"
-
-#~ msgid "Desaturation:"
-#~ msgstr "不透明度:"
-
-#~ msgid "Style"
-#~ msgstr "スタイル"
-
-#~ msgid "Global hotkeys"
-#~ msgstr "全体のホットキー"
-
-#~ msgid "Local hotkeys"
-#~ msgstr "ローカルのホットキー"
-
-#~ msgid "Bottom"
-#~ msgstr "下"
-
-#~ msgid "Top"
-#~ msgstr "上"
-
-#~ msgid "<b><big>Guake Properties</big></b>"
-#~ msgstr "<b><big>Guakeの設定</big></b>"
+#: data/guake-prefs.desktop:63 data/guake-prefs.template.desktop:13
+msgid "Terminal;Utility;"
+msgstr "Terminal;Utility;"
