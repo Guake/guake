@@ -12,15 +12,15 @@ msgstr ""
 "Project-Id-Version: Guake 0.4.5\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-07-07 19:07+0200\n"
-"PO-Revision-Date: 2018-09-29 15:27+0000\n"
-"Last-Translator: Robin Bauknecht <robin.bauknecht@gmail.com>\n"
+"PO-Revision-Date: 2018-11-28 21:08+0000\n"
+"Last-Translator: ssantos <ssantos@web.de>\n"
 "Language-Team: German <https://hosted.weblate.org/projects/guake/guake/de/>\n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 3.2-dev\n"
+"X-Generator: Weblate 3.3-dev\n"
 
 #: guake/about.py:54 guake/keybindings.py:94 guake/guake_app.py:201
 #: guake/guake_app.py:414
@@ -372,11 +372,11 @@ msgstr "Es existieren noch {0} laufende Prozesse"
 
 #: guake/guake_app.py:207
 msgid "guake-indicator"
-msgstr ""
+msgstr "Guake-Indikator"
 
 #: guake/guake_app.py:207
 msgid "guake-tray"
-msgstr ""
+msgstr "guake-tray"
 
 #: guake/guake_app.py:212
 msgid "Show"
@@ -571,7 +571,7 @@ msgstr "Max. Länge der Reiternamen:"
 
 #: data/prefs.glade:658
 msgid "0"
-msgstr ""
+msgstr "0"
 
 #: data/prefs.glade:680
 msgid "Set window title to current tab name"
@@ -949,7 +949,7 @@ msgstr "Verwenden Sie die Befehlszeile in einem Quake-ähnlichen Terminal"
 #: data/guake-prefs.desktop:41 data/guake-prefs.template.desktop:7
 #: data/guake.template.desktop:7
 msgid "guake"
-msgstr ""
+msgstr "Guake"
 
 #: data/guake-prefs.desktop:33 data/guake-prefs.template.desktop:4
 msgid "Configure your Guake sessions"
@@ -965,15 +965,15 @@ msgstr "Verweis kopieren"
 
 #: guake/menus.py:62
 msgid "Split ―"
-msgstr ""
+msgstr "Aufteilen ―"
 
 #: guake/menus.py:65
 msgid "Split  "
-msgstr ""
+msgstr "Aufteilen"
 
 #: guake/menus.py:68 guake/prefs.py:150
 msgid "Close terminal"
-msgstr ""
+msgstr "Terminal schließen"
 
 #: guake/prefs.py:137
 msgid "Split management"
@@ -1021,7 +1021,7 @@ msgstr ""
 
 #: guake/menus.py:65
 msgid "Split ｜"
-msgstr ""
+msgstr "Aufteilen |"
 
 #: guake/menus.py:72
 msgid "Save content..."
@@ -1032,3 +1032,5 @@ msgid ""
 "This might not work on all shells, make sure that your shell supports the --"
 "login option"
 msgstr ""
+"Diese Option funktioniert nicht in allen Shells, stelle sicher dass deine "
+"Shell die --login Option unterstützt"
