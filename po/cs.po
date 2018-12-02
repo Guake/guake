@@ -1275,8 +1275,16 @@ msgid ""
 "This might not work on all shells, make sure that your shell supports the --"
 "login option"
 msgstr ""
-"Toto nemusí fungovat se všemi shelly – ověřte, že shell podporuje volbu "
-"--login"
+"Toto nemusí fungovat se všemi shelly – ověřte, že shell podporuje volbu --"
+"login"
+
+#: guake/prefs.py:128
+msgid "New tab in home directory"
+msgstr ""
+
+#: guake/main.py:211
+msgid "Change Guake palette scheme"
+msgstr ""
 
 #~ msgid "key binding error"
 #~ msgstr "chyba klávesových zkratek"

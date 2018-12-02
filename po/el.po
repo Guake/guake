@@ -1255,6 +1255,14 @@ msgid ""
 "login option"
 msgstr ""
 
+#: guake/prefs.py:128
+msgid "New tab in home directory"
+msgstr ""
+
+#: guake/main.py:211
+msgid "Change Guake palette scheme"
+msgstr ""
+
 #~ msgid "key binding error"
 #~ msgstr "σφάλμα συντόμευσης πληκτρολογίου"
 

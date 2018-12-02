@@ -13,8 +13,8 @@ msgstr ""
 "POT-Creation-Date: 2016-08-18 17:32+0200\n"
 "PO-Revision-Date: 2018-10-24 22:38+0000\n"
 "Last-Translator: Pablo Bianchi <pablo.bianchi@gmail.com>\n"
-"Language-Team: Spanish <https://hosted.weblate.org/projects/guake/guake/es/>"
-"\n"
+"Language-Team: Spanish <https://hosted.weblate.org/projects/guake/guake/es/"
+">\n"
 "Language: es\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -993,8 +993,8 @@ msgstr ""
 "- <b>%(line_number)s</b>: si su editor lo soporta usted puede directamente "
 "abrir el archivo en una línea dada cuando es encontrado en pantalla.\n"
 "\n"
-"Por ejemplo, para Sublime, use <b>subl %(file_path)s:%(número de línea)s</b>"
-"\n"
+"Por ejemplo, para Sublime, use <b>subl %(file_path)s:%(número de línea)s</"
+"b>\n"
 "</i></small>"
 
 #: guake/data/prefs.glade:2442 guake/data/prefs.glade:2462
@@ -1153,8 +1153,8 @@ msgstr ""
 "evitando que aplicaciones como Guake registren \"coincidencias\" usando "
 "expresiones regulares. Por favor contacte a su distribución para pedir que "
 "la nueva versión de VTE con PCRE2 sea habilitada! Para usar Abrir "
-"rápidamente usted <b>debe seleccionar el texto</b> antes de hacer "
-"Ctrl+clic</i>."
+"rápidamente usted <b>debe seleccionar el texto</b> antes de hacer Ctrl+clic</"
+"i>."
 
 #: guake/guake_app.py:680
 msgid "Quick Open: {!s}..."
@@ -1290,6 +1290,14 @@ msgid ""
 msgstr ""
 "Esto puede que no funcione en todos los shells, asegúrese que su shell "
 "soporta opción --login"
+
+#: guake/prefs.py:128
+msgid "New tab in home directory"
+msgstr ""
+
+#: guake/main.py:211
+msgid "Change Guake palette scheme"
+msgstr ""
 
 #~ msgid "key binding error"
 #~ msgstr "Error al asignar tecla"

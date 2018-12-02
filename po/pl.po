@@ -1025,3 +1025,11 @@ msgid ""
 msgstr ""
 "To może nie działać we wszystkich powłokach, proszę się upewnić, że używana "
 "powłoka obsługuje opcję --login"
+
+#: guake/prefs.py:128
+msgid "New tab in home directory"
+msgstr ""
+
+#: guake/main.py:211
+msgid "Change Guake palette scheme"
+msgstr ""

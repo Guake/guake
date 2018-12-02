@@ -14,14 +14,14 @@ msgstr ""
 "POT-Creation-Date: 2018-04-17 13:26+0300\n"
 "PO-Revision-Date: 2018-11-01 06:23+0000\n"
 "Last-Translator: Igor <f2404@yandex.ru>\n"
-"Language-Team: Russian <https://hosted.weblate.org/projects/guake/guake/ru/>"
-"\n"
+"Language-Team: Russian <https://hosted.weblate.org/projects/guake/guake/ru/"
+">\n"
 "Language: ru\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<="
-"4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
+"Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
+"%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
 "X-Generator: Weblate 3.3-dev\n"
 
 #: ../data/about.glade.h:1
@@ -1294,6 +1294,14 @@ msgid ""
 msgstr ""
 "Это может работать не со всеми оболочками – удостоверьтесь, что ваша "
 "оболочка поддерживает параметр --login"
+
+#: guake/prefs.py:128
+msgid "New tab in home directory"
+msgstr ""
+
+#: guake/main.py:211
+msgid "Change Guake palette scheme"
+msgstr ""
 
 #~ msgid "Path to script executed on Guake start:"
 #~ msgstr "Путь к скрипту, запускаемому при старте Guake:"
