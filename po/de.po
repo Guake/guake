@@ -1032,3 +1032,7 @@ msgid ""
 "This might not work on all shells, make sure that your shell supports the --"
 "login option"
 msgstr ""
+
+#: data/prefs.glade:331
+msgid "Use workspace-specific tab sets"
+msgstr "Jedem Workspace eigene Tabs zuweisen"
