@@ -260,9 +260,6 @@ class Guake(SimpleGladeApp):
         Keybindings(self)
         self.load_config()
 
-        # adding the first tab on guake
-        self.add_tab()
-
         if self.settings.general.get_boolean('start-fullscreen'):
             self.fullscreen()
 
@@ -295,11 +292,17 @@ class Guake(SimpleGladeApp):
             self.notebooks[self.current_workspace] = notebook
             log.info("created fresh notebook for workspace %d", self.current_workspace)
 
+            # add a tab if there is none
+            if not self.notebook.has_page():
+                self.add_tab()
+
             return self.notebooks[self.current_workspace]
 
     def workspace_changed(self, screen, previous_workspace):
+        self.mainframe.remove(self.notebook)
         self.current_workspace = self.screen.get_active_workspace().get_number()
         log.info("current workspace is %d", self.current_workspace)
+        self.mainframe.add(self.notebook)
 
     # new color methods should be moved to the GuakeTerminal class
 
