@@ -323,6 +323,23 @@
                                           </object>
                                           <packing>
                                             <property name="left_attach">1</property>
+                                            <property name="top_attach">3</property>
+                                          </packing>
+                                        </child>
+                                        <child>
+                                          <object class="GtkCheckButton" id="workspace-specific-tab-sets">
+                                            <property name="label" translatable="yes">Use workspace-specific tab sets</property>
+                                            <property name="visible">True</property>
+                                            <property name="can_focus">True</property>
+                                            <property name="receives_default">False</property>
+                                            <property name="halign">start</property>
+                                            <property name="valign">center</property>
+                                            <property name="use_underline">True</property>
+                                            <property name="draw_indicator">True</property>
+                                            <signal name="toggled" handler="on_workspace_specific_tab_sets_toggled" swapped="no"/>
+                                          </object>
+                                          <packing>
+                                            <property name="left_attach">1</property>
                                             <property name="top_attach">2</property>
                                           </packing>
                                         </child>
