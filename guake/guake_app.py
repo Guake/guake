@@ -36,6 +36,7 @@ gi.require_version('Gtk', '3.0')
 gi.require_version('Gdk', '3.0')
 gi.require_version('Vte', '2.91')  # vte-0.42
 gi.require_version('Keybinder', '3.0')
+gi.require_version('Wnck', '3.0')
 from gi.repository import GLib
 from gi.repository import GObject
 from gi.repository import Gdk
@@ -44,6 +45,7 @@ from gi.repository import Gio
 from gi.repository import Gtk
 from gi.repository import Keybinder
 from gi.repository import Vte
+from gi.repository import Wnck
 
 import cairo
 
@@ -142,6 +144,11 @@ class Guake(SimpleGladeApp):
 
         self.hidden = True
         self.forceHide = False
+
+        # Workspace tracking
+        self.current_workspace = 0
+        self.screen = Wnck.Screen.get_default()
+        self.screen.connect("active-workspace-changed", self.workspace_changed)
 
         # trayicon! Using SVG handles better different OS trays
         # img = pixmapfile('guake-tray.svg')
@@ -277,6 +284,10 @@ class Guake(SimpleGladeApp):
             )
 
         log.info("Guake initialized")
+
+    def workspace_changed(self, screen, previous_workspace):
+        self.current_workspace = self.screen.get_active_workspace().get_number()
+        log.info("current workspace is %d", self.current_workspace)
 
     # new color methods should be moved to the GuakeTerminal class
 
