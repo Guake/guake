@@ -145,13 +145,6 @@ class Guake(SimpleGladeApp):
         self.hidden = True
         self.forceHide = False
 
-        # Workspace tracking
-        self.current_workspace = 0
-        self.screen = Wnck.Screen.get_default()
-        self.screen.connect("active-workspace-changed", self.workspace_changed)
-
-        self.notebooks = {}
-
         # trayicon! Using SVG handles better different OS trays
         # img = pixmapfile('guake-tray.svg')
         # trayicon!
@@ -184,6 +177,15 @@ class Guake(SimpleGladeApp):
         self.window.set_keep_above(True)
         self.mainframe = self.get_widget('mainframe')
         self.mainframe.remove(self.get_widget('notebook-teminals'))
+
+        # Workspace tracking
+        self.notebooks = {}
+        self.current_workspace = 0
+        if self.settings.general.get_boolean('workspace-specific-tab-sets'):
+            self.screen = Wnck.Screen.get_default()
+            self.screen.connect("active-workspace-changed", self.workspace_changed)
+        else:
+            self.mainframe.add(self.notebook)
 
         self.set_tab_position()
 
