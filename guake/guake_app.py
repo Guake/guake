@@ -150,6 +150,8 @@ class Guake(SimpleGladeApp):
         self.screen = Wnck.Screen.get_default()
         self.screen.connect("active-workspace-changed", self.workspace_changed)
 
+        self.notebooks = {}
+
         # trayicon! Using SVG handles better different OS trays
         # img = pixmapfile('guake-tray.svg')
         # trayicon!
@@ -182,11 +184,7 @@ class Guake(SimpleGladeApp):
         self.window.set_keep_above(True)
         self.mainframe = self.get_widget('mainframe')
         self.mainframe.remove(self.get_widget('notebook-teminals'))
-        self.notebook = TerminalNotebook(self)
-        self.notebook.connect('terminal-spawned', self.terminal_spawned)
-        self.notebook.connect('page-deleted', self.page_deleted)
 
-        self.mainframe.add(self.notebook)
         self.set_tab_position()
 
         # check and set ARGB for real transparency
@@ -284,6 +282,20 @@ class Guake(SimpleGladeApp):
             )
 
         log.info("Guake initialized")
+
+    @property
+    def notebook(self):
+        try:
+            return self.notebooks[self.current_workspace]
+        except KeyError:
+            notebook = TerminalNotebook(self)
+            notebook.connect('terminal-spawned', self.terminal_spawned)
+            notebook.connect('page-deleted', self.page_deleted)
+            self.mainframe.add(notebook)
+            self.notebooks[self.current_workspace] = notebook
+            log.info("created fresh notebook for workspace %d", self.current_workspace)
+
+            return self.notebooks[self.current_workspace]
 
     def workspace_changed(self, screen, previous_workspace):
         self.current_workspace = self.screen.get_active_workspace().get_number()
