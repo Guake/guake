@@ -63,11 +63,15 @@ class TerminalNotebook(Gtk.Notebook):
         self.set_property("is-focus", True)
         self.set_property("expand", True)
 
-        GObject.signal_new(
-            'terminal-spawned', self, GObject.SIGNAL_RUN_LAST, GObject.TYPE_NONE,
-            (GObject.TYPE_PYOBJECT, GObject.TYPE_INT)
-        )
-        GObject.signal_new('page-deleted', self, GObject.SIGNAL_RUN_LAST, GObject.TYPE_NONE, ())
+        try:
+            GObject.signal_new(
+                'terminal-spawned', self, GObject.SIGNAL_RUN_LAST, GObject.TYPE_NONE,
+                (GObject.TYPE_PYOBJECT, GObject.TYPE_INT)
+            )
+            GObject.signal_new('page-deleted', self, GObject.SIGNAL_RUN_LAST, GObject.TYPE_NONE, ())
+        except RuntimeError:
+            # in case these are already registered
+            pass
 
         self.scroll_callback = NotebookScrollCallback(self)
         self.add_events(Gdk.EventMask.SCROLL_MASK)
