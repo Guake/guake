@@ -305,6 +305,9 @@ class Guake(SimpleGladeApp):
         self.current_workspace = self.screen.get_active_workspace().get_number()
         log.info("current workspace is %d", self.current_workspace)
         self.mainframe.add(self.notebook)
+        if self.window.get_property('visible'):
+            self.hide()
+            self.show()
 
     # new color methods should be moved to the GuakeTerminal class
 
