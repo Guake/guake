@@ -512,7 +512,8 @@ class Guake(SimpleGladeApp):
             pass
         elif not self.settings.general.get_boolean('window-losefocus'):
             if self.losefocus_time and self.losefocus_time < event_time:
-                if self.window.get_window() and self.window.get_property('visible'):
+                if self.window.get_window() and self.window.get_property('visible') and \
+                        not self.window.get_window().get_state() & Gdk.WindowState.FOCUSED:
                     log.debug("DBG: Restoring the focus to the terminal")
                     self.window.get_window().focus(event_time)
                     self.set_terminal_focus()
