@@ -96,7 +96,6 @@ class GuakeTerminal(Vte.Terminal):
         self.configure_terminal()
         self.add_matches()
         self.connect('button-press-event', self.button_press)
-        self.connect('button-press-event', self.button_press)
         self.connect('child-exited', self.on_child_exited)
         self.matched_value = ''
         self.font_scale_index = 0
