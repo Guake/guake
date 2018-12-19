@@ -36,6 +36,7 @@ gi.require_version('Gtk', '3.0')
 gi.require_version('Gdk', '3.0')
 gi.require_version('Vte', '2.91')  # vte-0.42
 gi.require_version('Keybinder', '3.0')
+gi.require_version('Wnck', '3.0')
 from gi.repository import GLib
 from gi.repository import GObject
 from gi.repository import Gdk
@@ -44,6 +45,7 @@ from gi.repository import Gio
 from gi.repository import Gtk
 from gi.repository import Keybinder
 from gi.repository import Vte
+from gi.repository import Wnck
 
 import cairo
 
@@ -175,11 +177,16 @@ class Guake(SimpleGladeApp):
         self.window.set_keep_above(True)
         self.mainframe = self.get_widget('mainframe')
         self.mainframe.remove(self.get_widget('notebook-teminals'))
-        self.notebook = TerminalNotebook(self)
-        self.notebook.connect('terminal-spawned', self.terminal_spawned)
-        self.notebook.connect('page-deleted', self.page_deleted)
 
-        self.mainframe.add(self.notebook)
+        # Workspace tracking
+        self.notebooks = {}
+        self.current_workspace = 0
+        if self.settings.general.get_boolean('workspace-specific-tab-sets'):
+            self.screen = Wnck.Screen.get_default()
+            self.screen.connect("active-workspace-changed", self.workspace_changed)
+        else:
+            self.mainframe.add(self.notebook)
+
         self.set_tab_position()
 
         # check and set ARGB for real transparency
@@ -255,9 +262,6 @@ class Guake(SimpleGladeApp):
         Keybindings(self)
         self.load_config()
 
-        # adding the first tab on guake
-        self.add_tab()
-
         if self.settings.general.get_boolean('start-fullscreen'):
             self.fullscreen()
 
@@ -277,6 +281,33 @@ class Guake(SimpleGladeApp):
             )
 
         log.info("Guake initialized")
+
+    @property
+    def notebook(self):
+        try:
+            return self.notebooks[self.current_workspace]
+        except KeyError:
+            notebook = TerminalNotebook(self)
+            notebook.connect('terminal-spawned', self.terminal_spawned)
+            notebook.connect('page-deleted', self.page_deleted)
+            self.mainframe.add(notebook)
+            self.notebooks[self.current_workspace] = notebook
+            log.info("created fresh notebook for workspace %d", self.current_workspace)
+
+            # add a tab if there is none
+            if not self.notebook.has_page():
+                self.add_tab()
+
+            return self.notebooks[self.current_workspace]
+
+    def workspace_changed(self, screen, previous_workspace):
+        self.mainframe.remove(self.notebook)
+        self.current_workspace = self.screen.get_active_workspace().get_number()
+        log.info("current workspace is %d", self.current_workspace)
+        self.mainframe.add(self.notebook)
+        if self.window.get_property('visible'):
+            self.hide()
+            self.show()
 
     # new color methods should be moved to the GuakeTerminal class
 
@@ -512,7 +543,8 @@ class Guake(SimpleGladeApp):
             pass
         elif not self.settings.general.get_boolean('window-losefocus'):
             if self.losefocus_time and self.losefocus_time < event_time:
-                if self.window.get_window() and self.window.get_property('visible'):
+                if self.window.get_window() and self.window.get_property('visible') and \
+                        not self.window.get_window().get_state() & Gdk.WindowState.FOCUSED:
                     log.debug("DBG: Restoring the focus to the terminal")
                     self.window.get_window().focus(event_time)
                     self.set_terminal_focus()

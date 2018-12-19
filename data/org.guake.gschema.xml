@@ -36,6 +36,11 @@
             <summary>Sets the tray visibility.</summary>
             <description>When true tray is visible.</description>
         </key>
+        <key name="workspace-specific-tab-sets" type="b">
+            <default>false</default>
+            <summary>Use workspace specific tab sets</summary>
+            <description>When true, each workspace gets their own set of tabs.</description>
+        </key>
         <key name="use-popup" type="b">
             <default>true</default>
             <summary>Sets the popup notifications visibility.</summary>

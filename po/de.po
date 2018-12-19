@@ -1042,3 +1042,7 @@ msgstr ""
 #: guake/main.py:211
 msgid "Change Guake palette scheme"
 msgstr ""
+
+#: data/prefs.glade:331
+msgid "Use workspace-specific tab sets"
+msgstr "Jedem Workspace eigene Tabs zuweisen"

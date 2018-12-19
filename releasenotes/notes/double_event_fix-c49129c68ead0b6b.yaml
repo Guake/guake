@@ -1,0 +1,48 @@
+release_summary: >
+  quick fix/bring up issue of double quick_open event firing
+
+features:
+  - |
+    List new features here followed by the ticket number, for example::
+
+      - new exiting feature #1234
+
+known_issues:
+  - |
+    List know issue introduced by the change here, followed if possible by a
+    ticket number, for example::
+
+      - such other feature is broken #1234
+
+upgrade:
+  - |
+    List upgrade note for end users here
+
+deprecations:
+  - |
+    List deprecations notes heres, ie, feature that are being removed by the
+    change.
+
+security:
+  - |
+    Add security notes here.
+
+fixes:
+  - |
+    removed duplicate event bind? previously I had issue where quick-open event would be fired 
+twice because of this.
+
+translations:
+  - Only put a list of updated 2 letters language code, for example::
+
+        translations:
+          - fr
+          - de
+
+notes_for_package_maintainers:
+  - |
+    Add notes for package maintainers here.
+
+other:
+  - |
+    Add other notes here.

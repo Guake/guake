@@ -386,6 +386,11 @@ class PrefsCallbacks():
         """
         self.settings.general.set_boolean('use-popup', chk.get_active())
 
+    def on_workspace_specific_tab_sets_toggled(self, chk):
+        """Sets the 'workspace-specific-tab-sets' property in dconf
+        """
+        self.settings.general.set_boolean('workspace-specific-tab-sets', chk.get_active())
+
     def on_prompt_on_quit_toggled(self, chk):
         """Set the `prompt on quit' property in dconf
         """
@@ -1059,6 +1064,10 @@ class PrefsDialog(SimpleGladeApp):
         # popup
         value = self.settings.general.get_boolean('use-popup')
         self.get_widget('use_popup').set_active(value)
+
+        # workspace-specific tab sets
+        value = self.settings.general.get_boolean('workspace-specific-tab-sets')
+        self.get_widget('workspace-specific-tab-sets').set_active(value)
 
         # prompt on quit
         value = self.settings.general.get_boolean('prompt-on-quit')
