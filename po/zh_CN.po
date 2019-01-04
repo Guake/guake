@@ -1271,6 +1271,23 @@ msgid ""
 "login option"
 msgstr "这可能无法在所有shell上正常工作，请确保你的shell支持--login选项"
 
+#: guake/prefs.py:128
+msgid "New tab in home directory"
+msgstr ""
+
+#: guake/dialogs.py:56
+#, python-brace-format
+msgid " on {0} workspaces"
+msgstr ""
+
+#: guake/main.py:211
+msgid "Change Guake palette scheme"
+msgstr ""
+
+#: data/prefs.glade:331
+msgid "Use workspace-specific tab sets (requires restart)"
+msgstr ""
+
 #~ msgid "0 means no size limit"
 #~ msgstr "0表示没有大小限制"
 
