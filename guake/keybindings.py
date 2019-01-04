@@ -55,23 +55,16 @@ class Keybindings():
 
         # Setup local keys
         keys = [
-            'toggle-fullscreen', 'new-tab', 'new-tab-home',
-            'close-tab', 'rename-current-tab', 'previous-tab',
-            'next-tab', 'clipboard-copy', 'clipboard-paste', 'quit',
-            'zoom-in', 'zoom-out', 'increase-height',
-            'decrease-height', 'increase-transparency',
-            'decrease-transparency', 'toggle-transparency',
-            "search-on-web", 'move-tab-left', 'move-tab-right',
-            'switch-tab1', 'switch-tab2', 'switch-tab3',
-            'switch-tab4', 'switch-tab5', 'switch-tab6',
-            'switch-tab7', 'switch-tab8', 'switch-tab9',
-            'switch-tab10', 'switch-tab-last', 'reset-terminal',
-            'split-tab-vertical', 'split-tab-horizontal',
-            'close-terminal', 'focus-terminal-up',
-            'focus-terminal-down', 'focus-terminal-right',
-            'focus-terminal-left', 'move-terminal-split-up',
-            'move-terminal-split-down', 'move-terminal-split-left',
-            'move-terminal-split-right'
+            'toggle-fullscreen', 'new-tab', 'new-tab-home', 'close-tab', 'rename-current-tab',
+            'previous-tab', 'next-tab', 'clipboard-copy', 'clipboard-paste', 'quit', 'zoom-in',
+            'zoom-out', 'increase-height', 'decrease-height', 'increase-transparency',
+            'decrease-transparency', 'toggle-transparency', "search-on-web", 'move-tab-left',
+            'move-tab-right', 'switch-tab1', 'switch-tab2', 'switch-tab3', 'switch-tab4',
+            'switch-tab5', 'switch-tab6', 'switch-tab7', 'switch-tab8', 'switch-tab9',
+            'switch-tab10', 'switch-tab-last', 'reset-terminal', 'split-tab-vertical',
+            'split-tab-horizontal', 'close-terminal', 'focus-terminal-up', 'focus-terminal-down',
+            'focus-terminal-right', 'focus-terminal-left', 'move-terminal-split-up',
+            'move-terminal-split-down', 'move-terminal-split-left', 'move-terminal-split-right'
         ]
         for key in keys:
             guake.settings.keybindingsLocal.onChangedValue(key, self.reload_accelerators)
@@ -150,7 +143,7 @@ class Keybindings():
 
             def x(*args):
                 prompt_cfg = self.guake.settings.general.get_int('prompt-on-close-tab')
-                self.guake.notebook.delete_page_current(prompt=prompt_cfg)
+                self.guake.get_notebook().delete_page_current(prompt=prompt_cfg)
 
             self.accel_group.connect(key, mask, Gtk.AccelFlags.VISIBLE, x)
 
@@ -276,7 +269,7 @@ class Keybindings():
                 Gtk.AccelFlags.VISIBLE,
                 (
                     lambda *args:  # keep make style from concat this lines
-                    self.guake.notebook.get_current_terminal().get_parent().split_v() or True
+                    self.guake.get_notebook().get_current_terminal().get_parent().split_v() or True
                 )
             )
         key, mask = Gtk.accelerator_parse(getk('split-tab-horizontal'))
@@ -287,14 +280,14 @@ class Keybindings():
                 Gtk.AccelFlags.VISIBLE,
                 (
                     lambda *args:  # keep make style from concat this lines
-                    self.guake.notebook.get_current_terminal().get_parent().split_h() or True
+                    self.guake.get_notebook().get_current_terminal().get_parent().split_h() or True
                 )
             )
         key, mask = Gtk.accelerator_parse(getk('close-terminal'))
         if key > 0:
             self.accel_group.connect(
                 key, mask, Gtk.AccelFlags.VISIBLE,
-                (lambda *args: self.guake.notebook.get_current_terminal().kill() or True)
+                (lambda *args: self.guake.get_notebook().get_current_terminal().kill() or True)
             )
         key, mask = Gtk.accelerator_parse(getk('focus-terminal-up'))
         if key > 0:
@@ -302,7 +295,7 @@ class Keybindings():
                 key, mask, Gtk.AccelFlags.VISIBLE, (
                     lambda *args:
                         FocusMover(self.guake.window).move_up(
-                            self.guake.notebook.get_current_terminal()
+                            self.guake.get_notebook().get_current_terminal()
                         ) or True)
             )
         key, mask = Gtk.accelerator_parse(getk('focus-terminal-down'))
@@ -311,7 +304,7 @@ class Keybindings():
                 key, mask, Gtk.AccelFlags.VISIBLE, (
                     lambda *args:
                         FocusMover(self.guake.window).move_down(
-                            self.guake.notebook.get_current_terminal()
+                            self.guake.get_notebook().get_current_terminal()
                         ) or True)
             )
         key, mask = Gtk.accelerator_parse(getk('focus-terminal-right'))
@@ -320,7 +313,7 @@ class Keybindings():
                 key, mask, Gtk.AccelFlags.VISIBLE, (
                     lambda *args:
                         FocusMover(self.guake.window).move_right(
-                            self.guake.notebook.get_current_terminal()
+                            self.guake.get_notebook().get_current_terminal()
                         ) or True)
             )
         key, mask = Gtk.accelerator_parse(getk('focus-terminal-left'))
@@ -329,7 +322,7 @@ class Keybindings():
                 key, mask, Gtk.AccelFlags.VISIBLE, (
                     lambda *args:
                         FocusMover(self.guake.window).move_left(
-                            self.guake.notebook.get_current_terminal()
+                            self.guake.get_notebook().get_current_terminal()
                         ) or True)
             )
         key, mask = Gtk.accelerator_parse(getk('move-terminal-split-up'))
@@ -340,7 +333,7 @@ class Keybindings():
                 Gtk.AccelFlags.VISIBLE,
                 (
                     lambda *args:  # keep make style from concat this lines
-                    SplitMover.move_up(self.guake.notebook.get_current_terminal()) or True
+                    SplitMover.move_up(self.guake.get_notebook().get_current_terminal()) or True
                 )
             )
         key, mask = Gtk.accelerator_parse(getk('move-terminal-split-down'))
@@ -351,7 +344,7 @@ class Keybindings():
                 Gtk.AccelFlags.VISIBLE,
                 (
                     lambda *args:  # keep make style from concat this lines
-                    SplitMover.move_down(self.guake.notebook.get_current_terminal()) or True
+                    SplitMover.move_down(self.guake.get_notebook().get_current_terminal()) or True
                 )
             )
         key, mask = Gtk.accelerator_parse(getk('move-terminal-split-left'))
@@ -362,7 +355,7 @@ class Keybindings():
                 Gtk.AccelFlags.VISIBLE,
                 (
                     lambda *args:  # keep make style from concat this lines
-                    SplitMover.move_left(self.guake.notebook.get_current_terminal()) or True
+                    SplitMover.move_left(self.guake.get_notebook().get_current_terminal()) or True
                 )
             )
         key, mask = Gtk.accelerator_parse(getk('move-terminal-split-right'))
@@ -373,6 +366,6 @@ class Keybindings():
                 Gtk.AccelFlags.VISIBLE,
                 (
                     lambda *args:  # keep make style from concat this lines
-                    SplitMover.move_right(self.guake.notebook.get_current_terminal()) or True
+                    SplitMover.move_right(self.guake.get_notebook().get_current_terminal()) or True
                 )
             )
