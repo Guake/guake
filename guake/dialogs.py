@@ -55,7 +55,7 @@ class PromptQuitDialog(Gtk.MessageDialog):
             if notebooks > 1:
                 notebooks_str = _(' on {0} workspaces').format(notebooks)
             else:
-                notebooks_str = ''.format(notebooks)
+                notebooks_str = ''
 
         if procs == 0:
             proc_str = _("There are no processes running")
