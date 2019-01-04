@@ -58,9 +58,10 @@ class TerminalHolder():
 
 class RootTerminalBox(Gtk.Box, TerminalHolder):
 
-    def __init__(self, guake):
+    def __init__(self, guake, parent_notebook):
         super().__init__(orientation=Gtk.Orientation.HORIZONTAL)
         self.guake = guake
+        self.notebook = parent_notebook
         self.child = None
         self.last_terminal_focused = None
 
@@ -107,17 +108,17 @@ class RootTerminalBox(Gtk.Box, TerminalHolder):
 
     def set_last_terminal_focused(self, terminal):
         self.last_terminal_focused = terminal
-        self.guake.notebook.set_last_terminal_focused(terminal)
+        self.get_notebook().set_last_terminal_focused(terminal)
 
     def get_last_terminal_focused(self, terminal):
         return self.last_terminal_focused
 
     def get_notebook(self):
-        return self.guake.notebook
+        return self.notebook
 
     def remove_dead_child(self, child):
-        page_num = self.guake.notebook.page_num(self)
-        self.guake.notebook.remove_page(page_num)
+        page_num = self.get_notebook().page_num(self)
+        self.get_notebook().remove_page(page_num)
 
     def move_focus(self, direction, fromChild):
         pass
@@ -234,7 +235,7 @@ class TerminalBox(Gtk.Box, TerminalHolder):
                 self.terminal, self.get_window(), self.get_settings(),
                 TerminalContextMenuCallbacks(
                     self.terminal, self.get_window(), self.get_settings(),
-                    self.get_guake().notebook
+                    self.get_root_box().get_notebook()
                 )
             )
             menu.connect("hide", MenuHideCallback(self.get_window()).on_hide)

@@ -72,19 +72,20 @@ class DbusManager(dbus.service.Object):
 
     @dbus.service.method(DBUS_NAME, in_signature='i')
     def select_tab(self, tab_index=0):
-        return self.guake.notebook.set_current_page(int(tab_index))
+        return self.guake.get_notebook().set_current_page(int(tab_index))
 
     @dbus.service.method(DBUS_NAME, out_signature='i')
     def get_selected_tab(self):
-        return self.guake.notebook.get_current_page()
+        return self.guake.get_notebook().get_current_page()
 
     @dbus.service.method(DBUS_NAME, out_signature='s')
     def get_selected_tablabel(self):
-        return self.guake.notebook.get_tab_text_index(self.guake.notebook.get_current_page())
+        return self.guake.get_notebook(
+        ).get_tab_text_index(self.guake.get_notebook().get_current_page())
 
     @dbus.service.method(DBUS_NAME, out_signature='i')
     def get_tab_count(self):
-        return len(self.guake.notebook.get_terminals())
+        return len(self.guake.notebook_manager.get_terminals())
 
     @dbus.service.method(DBUS_NAME, in_signature='s')
     def set_bgcolor(self, bgcolor):
@@ -104,7 +105,7 @@ class DbusManager(dbus.service.Object):
 
     @dbus.service.method(DBUS_NAME, in_signature='i', out_signature='s')
     def get_tab_name(self, tab_index=0):
-        return self.guake.notebook.get_tab_text_index(tab_index)
+        return self.guake.get_notebook().get_tab_text_index(tab_index)
 
     @dbus.service.method(DBUS_NAME, in_signature='ss')
     def rename_tab_uuid(self, tab_uuid, new_text):
@@ -112,7 +113,7 @@ class DbusManager(dbus.service.Object):
 
     @dbus.service.method(DBUS_NAME, in_signature='is')
     def rename_tab(self, tab_index, new_text):
-        self.guake.notebook.rename_page(tab_index, new_text, True)
+        self.guake.get_notebook().rename_page(tab_index, new_text, True)
 
     @dbus.service.method(DBUS_NAME, in_signature='s')
     def rename_current_tab(self, new_text):
@@ -132,7 +133,7 @@ class DbusManager(dbus.service.Object):
 
     @dbus.service.method(DBUS_NAME, in_signature='i', out_signature='s')
     def get_gtktab_name(self, tab_index=0):
-        return self.guake.notebook.get_tab_text_index(tab_index)
+        return self.guake.get_notebook().get_tab_text_index(tab_index)
 
     @dbus.service.method(DBUS_NAME, out_signature='s')
     def get_selected_uuidtab(self):
@@ -144,12 +145,12 @@ class DbusManager(dbus.service.Object):
 
     @dbus.service.method(DBUS_NAME)
     def v_split_current_terminal(self):
-        self.guake.notebook.get_current_terminal().get_parent().split_v()
+        self.guake.get_notebook().get_current_terminal().get_parent().split_v()
 
     @dbus.service.method(DBUS_NAME)
     def h_split_current_terminal(self):
-        self.guake.notebook.get_current_terminal().get_parent().split_h()
+        self.guake.get_notebook().get_current_terminal().get_parent().split_h()
 
     @dbus.service.method(DBUS_NAME, in_signature='s')
     def execute_command_current_termbox(self, command):
-        self.guake.notebook.get_current_terminal().execute_command(command)
+        self.guake.get_notebook().get_current_terminal().execute_command(command)
