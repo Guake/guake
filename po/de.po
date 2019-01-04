@@ -5,14 +5,15 @@
 # Translators:
 # Markus Majer <mm@mpathy.de>, 2009
 # Frank Dietrich <bits_n_bytes@gmx.de>, 2016
-# Mario Aichinger <aichingm@gmail.com>, 2017
 # Roman Zimmer <hello@roman-zimmer.app>, 2018
+# Mario Aichinger <aichingm@gmail.com>, 2019
+
 msgid ""
 msgstr ""
 "Project-Id-Version: Guake 0.4.5\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-07-07 19:07+0200\n"
-"PO-Revision-Date: 2018-09-29 15:27+0000\n"
+"PO-Revision-Date: 2019-01-04 19:54+0100\n"
 "Last-Translator: Robin Bauknecht <robin.bauknecht@gmail.com>\n"
 "Language-Team: German <https://hosted.weblate.org/projects/guake/guake/de/>\n"
 "Language: de\n"
@@ -20,7 +21,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 3.2-dev\n"
+"X-Generator: Poedit 2.2\n"
 
 #: guake/about.py:54 guake/keybindings.py:94 guake/guake_app.py:201
 #: guake/guake_app.py:414
@@ -965,19 +966,19 @@ msgstr "Verweis kopieren"
 
 #: guake/menus.py:62
 msgid "Split ―"
-msgstr ""
+msgstr "Teile ―"
 
 #: guake/menus.py:65
 msgid "Split  "
-msgstr ""
+msgstr "Teile "
 
 #: guake/menus.py:68 guake/prefs.py:150
 msgid "Close terminal"
-msgstr ""
+msgstr "Terminal schließen"
 
 #: guake/prefs.py:137
 msgid "Split management"
-msgstr ""
+msgstr "Teilungsverwaltung"
 
 #: guake/prefs.py:142
 msgid "Split tab vertical"
@@ -989,39 +990,39 @@ msgstr "Tab horizontal aufteilen"
 
 #: guake/prefs.py:154
 msgid "Focus terminal above"
-msgstr ""
+msgstr "Terminal oberhalb fokusieren"
 
 #: guake/prefs.py:158
 msgid "Focus terminal below"
-msgstr ""
+msgstr "Terminal unterhalb fokusieren"
 
 #: guake/prefs.py:162
 msgid "Focus terminal on the left"
-msgstr ""
+msgstr "Terminal links fokusieren"
 
 #: guake/prefs.py:166
 msgid "Focus terminal on the right"
-msgstr ""
+msgstr "Terminal rechts fokusieren"
 
 #: guake/prefs.py:170
 msgid "Move the terminal split handle up"
-msgstr ""
+msgstr "Terminal-Trenner nach oben bewegen"
 
 #: guake/prefs.py:174
 msgid "Move the terminal split handle down"
-msgstr ""
+msgstr "Terminal-Trenner nach unten bewegen"
 
 #: guake/prefs.py:178
 msgid "Move the terminal split handle right"
-msgstr ""
+msgstr "Terminal-Trenner nach rechts bewegen"
 
 #: guake/prefs.py:182
 msgid "Move the terminal split handle left"
-msgstr ""
+msgstr "Terminal-Trenner nach links bewegen"
 
 #: guake/menus.py:65
 msgid "Split ｜"
-msgstr ""
+msgstr "Teilen ｜"
 
 #: guake/menus.py:72
 msgid "Save content..."
@@ -1032,7 +1033,26 @@ msgid ""
 "This might not work on all shells, make sure that your shell supports the --"
 "login option"
 msgstr ""
+"Dies funktioniert möglicherweise nicht in allen Shells, stellen Sie sicher "
+"das Ihre Shell --login unterstützt"
 
 #: data/prefs.glade:331
 msgid "Use workspace-specific tab sets"
 msgstr "Jedem Workspace eigene Tabs zuweisen"
+
+#: guake/prefs.py:128
+msgid "New tab in home directory"
+msgstr "Neuen Tab im HOME-Verzeichnis"
+
+#: guake/dialogs.py:56
+#, python-brace-format
+msgid " on {0} workspaces"
+msgstr " auf {0} Arbeitsflächen"
+
+#: guake/main.py:211
+msgid "Change Guake palette scheme"
+msgstr ""
+
+#: data/prefs.glade:331
+msgid "Use workspace-specific tab sets (requires restart)"
+msgstr "Arbeitsflächenspezifische Tab-Gruppen verwenden (erfordert Neustart)"
