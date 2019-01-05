@@ -78,6 +78,12 @@ class TerminalNotebook(Gtk.Notebook):
         self.connect('scroll-event', self.scroll_callback.on_scroll)
         self.connect("button-press-event", self.on_button_press, None)
 
+        self.new_page_button = Gtk.Button(
+            image=Gtk.Image.new_from_icon_name("tab-new", Gtk.IconSize.MENU), visible=True
+        )
+        self.new_page_button.connect("clicked", self.on_new_tab)
+        self.set_action_widget(self.new_page_button, Gtk.PackType.END)
+
     def attach_guake(self, guake):
         self.guake = guake
 
