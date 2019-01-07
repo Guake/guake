@@ -36,7 +36,6 @@ gi.require_version('Gtk', '3.0')
 gi.require_version('Gdk', '3.0')
 gi.require_version('Vte', '2.91')  # vte-0.42
 gi.require_version('Keybinder', '3.0')
-gi.require_version('Wnck', '3.0')
 from gi.repository import GLib
 from gi.repository import GObject
 from gi.repository import Gdk
@@ -45,7 +44,6 @@ from gi.repository import Gio
 from gi.repository import Gtk
 from gi.repository import Keybinder
 from gi.repository import Vte
-from gi.repository import Wnck
 
 import cairo
 
@@ -67,6 +65,7 @@ from guake.globals import NAME
 from guake.gsettings import GSettingHandler
 from guake.guake_logging import setupLogging
 from guake.keybindings import Keybindings
+from guake.notebook import NotebookManager
 from guake.notebook import TerminalNotebook
 from guake.palettes import PALETTES
 from guake.paths import LOCALE_DIR
@@ -179,14 +178,13 @@ class Guake(SimpleGladeApp):
         self.mainframe.remove(self.get_widget('notebook-teminals'))
 
         # Workspace tracking
-        self.notebooks = {}
-        self.current_workspace = 0
-        if self.settings.general.get_boolean('workspace-specific-tab-sets'):
-            self.screen = Wnck.Screen.get_default()
-            self.screen.connect("active-workspace-changed", self.workspace_changed)
-        else:
-            self.mainframe.add(self.notebook)
-
+        self.notebook_manager = NotebookManager(
+            self.window, self.mainframe,
+            self.settings.general.get_boolean('workspace-specific-tab-sets'), self.terminal_spawned,
+            self.page_deleted
+        )
+        self.notebook_manager.connect('notebook-created', self.notebook_created)
+        self.notebook_manager.set_workspace(0)
         self.set_tab_position()
 
         # check and set ARGB for real transparency
@@ -282,32 +280,11 @@ class Guake(SimpleGladeApp):
 
         log.info("Guake initialized")
 
-    @property
-    def notebook(self):
-        try:
-            return self.notebooks[self.current_workspace]
-        except KeyError:
-            notebook = TerminalNotebook(self)
-            notebook.connect('terminal-spawned', self.terminal_spawned)
-            notebook.connect('page-deleted', self.page_deleted)
-            self.mainframe.add(notebook)
-            self.notebooks[self.current_workspace] = notebook
-            log.info("created fresh notebook for workspace %d", self.current_workspace)
+    def get_notebook(self):
+        return self.notebook_manager.get_current_notebook()
 
-            # add a tab if there is none
-            if not self.notebook.has_page():
-                self.add_tab()
-
-            return self.notebooks[self.current_workspace]
-
-    def workspace_changed(self, screen, previous_workspace):
-        self.mainframe.remove(self.notebook)
-        self.current_workspace = self.screen.get_active_workspace().get_number()
-        log.info("current workspace is %d", self.current_workspace)
-        self.mainframe.add(self.notebook)
-        if self.window.get_property('visible'):
-            self.hide()
-            self.show()
+    def notebook_created(self, nm, notebook, key):
+        notebook.attach_guake(self)
 
     # new color methods should be moved to the GuakeTerminal class
 
@@ -355,7 +332,7 @@ class Guake(SimpleGladeApp):
         font_color = self.get_fgcolor()
         palette_list = self._load_palette()
 
-        for i in self.notebook.iter_terminals():
+        for i in self.get_notebook().iter_terminals():
             i.set_color_foreground(font_color)
             i.set_color_bold(font_color)
             i.set_colors(font_color, bg_color, palette_list[:16])
@@ -370,8 +347,8 @@ class Guake(SimpleGladeApp):
             raise TypeError("color should be Gdk.RGBA, is: {!r}".format(bgcolor))
         bgcolor = self._apply_transparency_to_color(bgcolor)
         log.debug("setting background color to: %r", bgcolor)
-        page_num = self.notebook.get_current_page()
-        for terminal in self.notebook.get_nth_page(page_num).iter_terminals():
+        page_num = self.get_notebook().get_current_page()
+        for terminal in self.get_notebook().get_nth_page(page_num).iter_terminals():
             terminal.set_color_background(bgcolor)
 
     def set_fgcolor(self, fgcolor):
@@ -383,8 +360,8 @@ class Guake(SimpleGladeApp):
         if not isinstance(fgcolor, Gdk.RGBA):
             raise TypeError("color should be Gdk.RGBA, is: {!r}".format(fgcolor))
         log.debug("setting background color to: %r", fgcolor)
-        page_num = self.notebook.get_current_page()
-        for terminal in self.notebook.get_nth_page(page_num).iter_terminals():
+        page_num = self.get_notebook().get_current_page()
+        for terminal in self.get_notebook().get_nth_page(page_num).iter_terminals():
             terminal.set_color_foreground(fgcolor)
 
     def change_palette_name(self, palette_name):
@@ -406,13 +383,13 @@ class Guake(SimpleGladeApp):
         """
         # TODO CONTEXTMENU this has to be rewriten and only serves the
         # dbus interface, maybe this should be moved to dbusinterface.py
-        if not self.notebook.has_page():
+        if not self.get_notebook().has_page():
             self.add_tab()
 
         if command[-1] != '\n':
             command += '\n'
 
-        terminal = self.notebook.get_current_terminal()
+        terminal = self.get_notebook().get_current_terminal()
         terminal.feed_child(command)
 
     def execute_command_by_uuid(self, tab_uuid, command):
@@ -424,13 +401,13 @@ class Guake(SimpleGladeApp):
         try:
             tab_uuid = uuid.UUID(tab_uuid)
             page_index, = (
-                index for index, t in enumerate(self.notebook.iter_terminals())
+                index for index, t in enumerate(self.get_notebook().iter_terminals())
                 if t.get_uuid() == tab_uuid
             )
         except ValueError:
             pass
         else:
-            terminals = self.notebook.get_terminals_for_page(page_index)
+            terminals = self.get_notebook().get_terminals_for_page(page_index)
             for current_vte in terminals:
                 current_vte.feed_child(command)
 
@@ -587,11 +564,11 @@ class Guake(SimpleGladeApp):
         # setting window in all desktops
 
         window_rect = RectCalculator.set_final_window_rect(self.settings, self.window)
-        self.get_widget('window-root').stick()
+        self.window.stick()
 
         # add tab must be called before window.show to avoid a
         # blank screen before adding the tab.
-        if not self.notebook.has_page():
+        if not self.get_notebook().has_page():
             self.add_tab()
 
         self.window.set_keep_below(False)
@@ -732,14 +709,15 @@ class Guake(SimpleGladeApp):
     def accel_quit(self, *args):
         """Callback to prompt the user whether to quit Guake or not.
         """
-        procs = self.notebook.get_running_fg_processes_count()
-        tabs = self.notebook.get_n_pages()
+        procs = self.notebook_manager.get_running_fg_processes_count()
+        tabs = self.notebook_manager.get_n_pages()
+        notebooks = self.notebook_manager.get_n_notebooks()
         prompt_cfg = self.settings.general.get_boolean('prompt-on-quit')
         prompt_tab_cfg = self.settings.general.get_int('prompt-on-close-tab')
         # "Prompt on tab close" config overrides "prompt on quit" config
         if prompt_cfg or (prompt_tab_cfg == 1 and procs > 0) or (prompt_tab_cfg == 2):
             log.debug("Remaining procs=%r", procs)
-            if PromptQuitDialog(self.window, procs, tabs).quit():
+            if PromptQuitDialog(self.window, procs, tabs, notebooks).quit():
                 log.info("Quitting Guake")
                 Gtk.main_quit()
         else:
@@ -750,7 +728,7 @@ class Guake(SimpleGladeApp):
         # TODO KEYBINDINGS ONLY
         """Callback to reset and clean the terminal"""
         HidePrevention(self.window).prevent()
-        current_term = self.notebook.get_current_terminal()
+        current_term = self.get_notebook().get_current_terminal()
         current_term.reset(True, True)
         HidePrevention(self.window).allow()
         return True
@@ -758,14 +736,14 @@ class Guake(SimpleGladeApp):
     def accel_zoom_in(self, *args):
         """Callback to zoom in.
         """
-        for term in self.notebook.iter_terminals():
+        for term in self.get_notebook().iter_terminals():
             term.increase_font_size()
         return True
 
     def accel_zoom_out(self, *args):
         """Callback to zoom out.
         """
-        for term in self.notebook.iter_terminals():
+        for term in self.get_notebook().iter_terminals():
             term.decrease_font_size()
         return True
 
@@ -823,25 +801,25 @@ class Guake(SimpleGladeApp):
     def accel_prev(self, *args):
         """Callback to go to the previous tab. Called by the accel key.
         """
-        if self.notebook.get_current_page() == 0:
-            self.notebook.set_current_page(self.notebook.get_n_pages() - 1)
+        if self.get_notebook().get_current_page() == 0:
+            self.get_notebook().set_current_page(self.get_notebook().get_n_pages() - 1)
         else:
-            self.notebook.prev_page()
+            self.get_notebook().prev_page()
         return True
 
     def accel_next(self, *args):
         """Callback to go to the next tab. Called by the accel key.
         """
-        if self.notebook.get_current_page() + 1 == self.notebook.get_n_pages():
-            self.notebook.set_current_page(0)
+        if self.get_notebook().get_current_page() + 1 == self.get_notebook().get_n_pages():
+            self.get_notebook().set_current_page(0)
         else:
-            self.notebook.next_page()
+            self.get_notebook().next_page()
         return True
 
     def accel_move_tab_left(self, *args):
         # TODO KEYBINDINGS ONLY
         """ Callback to move a tab to the left """
-        pos = self.notebook.get_current_page()
+        pos = self.get_notebook().get_current_page()
         if pos != 0:
             self.move_tab(pos, pos - 1)
         return True
@@ -849,38 +827,39 @@ class Guake(SimpleGladeApp):
     def accel_move_tab_right(self, *args):
         # TODO KEYBINDINGS ONLY
         """ Callback to move a tab to the right """
-        pos = self.notebook.get_current_page()
-        if pos != self.notebook.get_n_pages() - 1:
+        pos = self.get_notebook().get_current_page()
+        if pos != self.get_notebook().get_n_pages() - 1:
             self.move_tab(pos, pos + 1)
         return True
 
     def move_tab(self, old_tab_pos, new_tab_pos):
-        self.notebook.reorder_child(self.notebook.get_nth_page(old_tab_pos), new_tab_pos)
-        self.notebook.set_current_page(new_tab_pos)
+        self.get_notebook(
+        ).reorder_child(self.get_notebook().get_nth_page(old_tab_pos), new_tab_pos)
+        self.get_notebook().set_current_page(new_tab_pos)
 
     def gen_accel_switch_tabN(self, N):
         """Generates callback (which called by accel key) to go to the Nth tab.
         """
 
         def callback(*args):
-            if 0 <= N < self.notebook.get_n_pages():
-                self.notebook.set_current_page(N)
+            if 0 <= N < self.get_notebook().get_n_pages():
+                self.get_notebook().set_current_page(N)
             return True
 
         return callback
 
     def accel_switch_tab_last(self, *args):
-        last_tab = self.notebook.get_n_pages() - 1
-        self.notebook.set_current_page(last_tab)
+        last_tab = self.get_notebook().get_n_pages() - 1
+        self.get_notebook().set_current_page(last_tab)
         return True
 
     def accel_rename_current_tab(self, *args):
         """Callback to show the rename tab dialog. Called by the accel
         key.
         """
-        page_num = self.notebook.get_current_page()
-        page = self.notebook.get_nth_page(page_num)
-        self.notebook.get_tab_label(page).on_rename(None)
+        page_num = self.get_notebook().get_current_page()
+        page = self.get_notebook().get_nth_page(page_num)
+        self.get_notebook().get_tab_label(page).on_rename(None)
         return True
 
     def accel_copy_clipboard(self, *args):
@@ -888,7 +867,7 @@ class Guake(SimpleGladeApp):
         """Callback to copy text in the shown terminal. Called by the
         accel key.
         """
-        self.notebook.get_current_terminal().copy_clipboard()
+        self.get_notebook().get_current_terminal().copy_clipboard()
         return True
 
     def accel_paste_clipboard(self, *args):
@@ -896,7 +875,7 @@ class Guake(SimpleGladeApp):
         """Callback to paste text in the shown terminal. Called by the
         accel key.
         """
-        self.notebook.get_current_terminal().paste_clipboard()
+        self.get_notebook().get_current_terminal().paste_clipboard()
         return True
 
     def accel_toggle_hide_on_lose_focus(self, *args):
@@ -931,9 +910,9 @@ class Guake(SimpleGladeApp):
 
         # TODO NOTEBOOK this code only works if there is only one terminal in a
         # page, this need to be rewritten
-        for terminal in self.notebook.iter_terminals():
-            page_num = self.notebook.page_num(terminal.get_parent())
-            self.notebook.rename_page(page_num, self.compute_tab_title(terminal), False)
+        for terminal in self.get_notebook().iter_terminals():
+            page_num = self.get_notebook().page_num(terminal.get_parent())
+            self.get_notebook().rename_page(page_num, self.compute_tab_title(terminal), False)
 
     def compute_tab_title(self, vte):
         """Abbreviate and cut vte terminal title when necessary
@@ -956,14 +935,14 @@ class Guake(SimpleGladeApp):
         if not use_vte_titles:
             return
         # this may return -1, should be checked ;)
-        page_num = self.notebook.page_num(box)
+        page_num = self.get_notebook().page_num(box)
         # if tab has been renamed by user, don't override.
         if not getattr(box, 'custom_label_set', False):
             title = self.compute_tab_title(vte)
-            self.notebook.rename_page(page_num, title, False)
+            self.get_notebook().rename_page(page_num, title, False)
             self.update_window_title(title)
         else:
-            text = self.notebook.get_tab_text_page(box)
+            text = self.get_notebook().get_tab_text_page(box)
             if text:
                 self.update_window_title(text)
 
@@ -981,21 +960,21 @@ class Guake(SimpleGladeApp):
         """Closes the current tab.
         """
         prompt_cfg = self.settings.general.get_int('prompt-on-close-tab')
-        self.notebook.delete_page_current(prompt=prompt_cfg)
+        self.get_notebook().delete_page_current(prompt=prompt_cfg)
 
     def rename_tab_uuid(self, term_uuid, new_text, user_set=True):
         """Rename an already added tab by its UUID
         """
         term_uuid = uuid.UUID(term_uuid)
         page_index, = (
-            index for index, t in enumerate(self.notebook.iter_terminals())
+            index for index, t in enumerate(self.get_notebook().iter_terminals())
             if t.get_uuid() == term_uuid
         )
-        self.notebook.rename_page(page_index, new_text, user_set)
+        self.get_notebook().rename_page(page_index, new_text, user_set)
 
     def rename_current_tab(self, new_text, user_set=False):
-        page_num = self.notebook.get_current_page()
-        self.notebook.rename_page(page_num, new_text, user_set)
+        page_num = self.get_notebook().get_current_page()
+        self.get_notebook().rename_page(page_num, new_text, user_set)
 
     def terminal_spawned(self, notebook, terminal, pid):
         self.load_config()
@@ -1004,7 +983,7 @@ class Guake(SimpleGladeApp):
     def add_tab(self, directory=None):
         """Adds a new tab to the terminal notebook.
         """
-        self.notebook.new_page_with_focus(directory)
+        self.get_notebook().new_page_with_focus(directory)
 
     def find_tab(self, directory=None):
         log.debug("find")
@@ -1042,7 +1021,7 @@ class Guake(SimpleGladeApp):
             if response_id == RESPONSE_FORWARD else "backward"
         )
 
-        current_term = self.notebook.get_current_terminal()
+        current_term = self.get_notebook().get_current_terminal()
         log.debug("type: %r", type(current_term))
         log.debug("dir: %r", dir(current_term))
         current_term.search_set_gregex()
@@ -1055,7 +1034,7 @@ class Guake(SimpleGladeApp):
         #     buffer.search_backward(search_string, self)
 
     def page_deleted(self, *args):
-        if not self.notebook.has_page():
+        if not self.get_notebook().has_page():
             self.hide()
             # avoiding the delay on next Guake show request
             self.add_tab()
@@ -1071,21 +1050,21 @@ class Guake(SimpleGladeApp):
     def set_terminal_focus(self):
         """Grabs the focus on the current tab.
         """
-        self.notebook.set_current_page(self.notebook.get_current_page())
+        self.get_notebook().set_current_page(self.get_notebook().get_current_page())
 
     def get_selected_uuidtab(self):
         # TODO DBUS ONLY
         """Returns the uuid of the current selected terminal
         """
-        page_num = self.notebook.get_current_page()
-        terminals = self.notebook.get_terminals_for_page(page_num)
+        page_num = self.get_notebook().get_current_page()
+        terminals = self.get_notebook().get_terminals_for_page(page_num)
         return str(terminals[0].get_uuid())
 
     def search_on_web(self, *args):
         """Search for the selected text on the web
         """
         # TODO KEYBINDINGS ONLY
-        current_term = self.notebook.get_current_terminal()
+        current_term = self.get_notebook().get_current_terminal()
 
         if current_term.get_has_selection():
             current_term.copy_clipboard()
@@ -1101,9 +1080,9 @@ class Guake(SimpleGladeApp):
 
     def set_tab_position(self, *args):
         if self.settings.general.get_boolean('tab-ontop'):
-            self.notebook.set_tab_pos(Gtk.PositionType.TOP)
+            self.get_notebook().set_tab_pos(Gtk.PositionType.TOP)
         else:
-            self.notebook.set_tab_pos(Gtk.PositionType.BOTTOM)
+            self.get_notebook().set_tab_pos(Gtk.PositionType.BOTTOM)
 
     def execute_hook(self, event_name):
         """Execute shell commands related to current event_name"""

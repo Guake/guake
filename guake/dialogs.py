@@ -36,7 +36,7 @@ class PromptQuitDialog(Gtk.MessageDialog):
     """Prompts the user whether to quit/close a tab.
     """
 
-    def __init__(self, parent, procs, tabs):
+    def __init__(self, parent, procs, tabs, notebooks):
         super(PromptQuitDialog, self).__init__(
             parent, Gtk.DialogFlags.MODAL | Gtk.DialogFlags.DESTROY_WITH_PARENT,
             Gtk.MessageType.QUESTION, Gtk.ButtonsType.YES_NO
@@ -45,12 +45,17 @@ class PromptQuitDialog(Gtk.MessageDialog):
         if tabs == -1:
             primary_msg = _("Do you want to close the tab?")
             tab_str = ''
+            notebooks_str = ''
         else:
             primary_msg = _("Do you really want to quit Guake?")
             if tabs == 1:
                 tab_str = _(" and one tab open")
             else:
                 tab_str = _(" and {0} tabs open").format(tabs)
+            if notebooks > 1:
+                notebooks_str = _(' on {0} workspaces').format(notebooks)
+            else:
+                notebooks_str = ''
 
         if procs == 0:
             proc_str = _("There are no processes running")
@@ -60,7 +65,7 @@ class PromptQuitDialog(Gtk.MessageDialog):
             proc_str = _("There are {0} processes still running").format(procs)
 
         self.set_markup(primary_msg)
-        self.format_secondary_markup("<b>{0}{1}.</b>".format(proc_str, tab_str))
+        self.format_secondary_markup("<b>{0}{1}{2}.</b>".format(proc_str, tab_str, notebooks_str))
 
     def quit(self):
         """Run the "are you sure" dialog for quitting Guake

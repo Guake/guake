@@ -18,23 +18,25 @@ Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor,
 Boston, MA 02110-1301 USA
 """
 
+from guake.about import AboutDialog
 from guake.boxes import DualTerminalBox
 from guake.boxes import RootTerminalBox
 from guake.boxes import TabLabelEventBox
 from guake.boxes import TerminalBox
-from guake.callbacks import NotebookScrollCallback
 from guake.callbacks import MenuHideCallback
+from guake.callbacks import NotebookScrollCallback
 from guake.dialogs import PromptQuitDialog
 from guake.menus import mk_notebook_context_menu
 from guake.prefs import PrefsDialog
-from guake.about import AboutDialog
 
 import gi
 import os
 gi.require_version('Gtk', '3.0')
+gi.require_version('Wnck', '3.0')
 from gi.repository import GObject
 from gi.repository import Gdk
 from gi.repository import Gtk
+from gi.repository import Wnck
 from guake.terminal import GuakeTerminal
 from locale import gettext as _
 
@@ -46,9 +48,8 @@ log = logging.getLogger(__name__)
 
 class TerminalNotebook(Gtk.Notebook):
 
-    def __init__(self, guake, *args, **kwargs):
+    def __init__(self, *args, **kwargs):
         Gtk.Notebook.__init__(self, *args, **kwargs)
-        self.guake = guake
         self.last_terminal_focused = None
 
         self.set_name("notebook-teminals")
@@ -63,20 +64,22 @@ class TerminalNotebook(Gtk.Notebook):
         self.set_property("is-focus", True)
         self.set_property("expand", True)
 
-        try:
+        if GObject.signal_lookup('terminal-spawned', TerminalNotebook) == 0:
             GObject.signal_new(
-                'terminal-spawned', self, GObject.SIGNAL_RUN_LAST, GObject.TYPE_NONE,
+                'terminal-spawned', TerminalNotebook, GObject.SIGNAL_RUN_LAST, GObject.TYPE_NONE,
                 (GObject.TYPE_PYOBJECT, GObject.TYPE_INT)
             )
-            GObject.signal_new('page-deleted', self, GObject.SIGNAL_RUN_LAST, GObject.TYPE_NONE, ())
-        except RuntimeError:
-            # in case these are already registered
-            pass
+            GObject.signal_new(
+                'page-deleted', TerminalNotebook, GObject.SIGNAL_RUN_LAST, GObject.TYPE_NONE, ()
+            )
 
         self.scroll_callback = NotebookScrollCallback(self)
         self.add_events(Gdk.EventMask.SCROLL_MASK)
         self.connect('scroll-event', self.scroll_callback.on_scroll)
         self.connect("button-press-event", self.on_button_press, None)
+
+    def attach_guake(self, guake):
+        self.guake = guake
 
     def on_button_press(self, target, event, user_data):
         if event.button == 3:
@@ -190,11 +193,10 @@ class TerminalNotebook(Gtk.Notebook):
         self.delete_page(self.get_current_page(), kill, prompt)
 
     def new_page(self, directory=None):
-        log.info("Spawning new terminal at %s", directory)
         terminal = self.terminal_spawn(directory)
         terminal_box = TerminalBox()
         terminal_box.set_terminal(terminal)
-        root_terminal_box = RootTerminalBox(self.guake)
+        root_terminal_box = RootTerminalBox(self.guake, self)
         root_terminal_box.set_child(terminal_box)
         page_num = self.append_page(root_terminal_box, None)
         self.set_tab_reorderable(root_terminal_box, True)
@@ -217,6 +219,7 @@ class TerminalNotebook(Gtk.Notebook):
                         directory = active_terminal.get_current_directory()
             except Exception as e:
                 pass
+        log.info("Spawning new terminal at %s", directory)
         terminal.spawn_sync_pid(directory)
         return terminal
 
@@ -281,3 +284,95 @@ class TerminalNotebook(Gtk.Notebook):
 
     def on_quit(self, user_data):
         self.guake.accel_quit()
+
+
+class NotebookManager(GObject.Object):
+
+    def __init__(
+        self, window, notebook_parent, workspaces_enabled, terminal_spawned_cb, page_deleted_cb
+    ):
+        GObject.Object.__init__(self)
+        GObject.signal_new(
+            'notebook-created', self, GObject.SIGNAL_RUN_LAST, GObject.TYPE_NONE,
+            (GObject.TYPE_PYOBJECT, GObject.TYPE_INT)
+        )
+        self.current_notebook = 0
+        self.notebooks = {}
+        self.window = window
+        self.notebook_parent = notebook_parent
+        self.terminal_spawned_cb = terminal_spawned_cb
+        self.page_deleted_cb = page_deleted_cb
+        self.screen = Wnck.Screen.get_default()
+        if workspaces_enabled:
+            self.screen.connect("active-workspace-changed", self.workspace_changed)
+
+    def workspace_changed(self, screen, previous_workspace):
+        self.set_workspace(self.screen.get_active_workspace().get_number())
+
+    def get_notebook(self, workspace_index):
+        if not self.has_notebook_for_workspace(workspace_index):
+            self.notebooks[workspace_index] = TerminalNotebook()
+            self.emit('notebook-created', self.notebooks[workspace_index], workspace_index)
+            self.notebooks[workspace_index].connect('terminal-spawned', self.terminal_spawned_cb)
+            self.notebooks[workspace_index].connect('page-deleted', self.page_deleted_cb)
+            log.info("created fresh notebook for workspace %d", self.current_notebook)
+
+            # add a tab if there is none
+            if not self.notebooks[workspace_index].has_page():
+                self.notebooks[workspace_index].new_page_with_focus(None)
+
+        return self.notebooks[workspace_index]
+
+    def get_current_notebook(self):
+        return self.get_notebook(self.current_notebook)
+
+    def has_notebook_for_workspace(self, workspace_index):
+        return workspace_index in self.notebooks.keys()
+
+    def set_workspace(self, index):
+        self.notebook_parent.remove(self.get_current_notebook())
+        self.current_notebook = index
+        log.info("current workspace is %d", self.current_notebook)
+        notebook = self.get_current_notebook()
+        self.notebook_parent.add(notebook)
+        if self.window.get_property('visible') and \
+                notebook.last_terminal_focused is not None:
+            notebook.last_terminal_focused.grab_focus()
+
+    def get_notebooks(self):
+        return self.notebooks
+
+    def get_terminals(self):
+        terminals = []
+        for k in self.notebooks:
+            terminals += self.notebooks[k].get_terminals()
+        return terminals
+
+    def iter_terminals(self):
+        for k in self.notebooks:
+            for t in self.notebooks[k].iter_terminals():
+                yield t
+
+    def iter_pages(self):
+        for k in self.notebooks:
+            for t in self.notebooks[k].iter_pages():
+                yield t
+
+    def iter_notebooks(self):
+        for k in self.notebooks:
+            yield self.notebooks[k]
+
+    def get_n_pages(self):
+        n = 0
+        for k in self.notebooks:
+            n += self.notebooks[k].get_n_pages()
+        return n
+
+    def get_n_notebooks(self):
+        return len(self.notebooks.keys())
+
+    def get_running_fg_processes_count(self):
+        r_fg_c = 0
+        for k in self.notebooks:
+            r_fg_c += self.notebooks[k].get_running_fg_processes_count()
+        return r_fg_c
