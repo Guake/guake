@@ -6,6 +6,7 @@ import gi
 gi.require_version('Vte', '2.91')  # vte-0.42
 gi.require_version('Gtk', '3.0')
 from gi.repository import Gdk
+from gi.repository import Gio
 from gi.repository import Gtk
 from gi.repository import Vte
 
@@ -328,13 +329,23 @@ class DualTerminalBox(Gtk.Paned, TerminalHolder):
 
 class TabLabelEventBox(Gtk.EventBox):
 
-    def __init__(self, notebook, text):
+    def __init__(self, notebook, text, settings):
         super().__init__()
         self.notebook = notebook
-        self.label = Gtk.Label(text)
-        self.add(self.label)
+        self.box = Gtk.Box(Gtk.Orientation.HORIZONTAL, 0, visible=True)
+        self.label = Gtk.Label(text, visible=True)
+        self.close_button = Gtk.Button(
+            image=Gtk.Image.new_from_icon_name("window-close", Gtk.IconSize.MENU),
+            relief=Gtk.ReliefStyle.NONE
+        )
+        self.close_button.connect('clicked', self.on_close)
+        settings.general.bind(
+            'tab-close-buttons', self.close_button, 'visible', Gio.SettingsBindFlags.GET
+        )
+        self.box.pack_start(self.label, True, True, 0)
+        self.box.pack_end(self.close_button, False, False, 0)
+        self.add(self.box)
         self.connect("button-press-event", self.on_button_press, self.label)
-        self.label.show()
 
     def set_text(self, text):
         self.label.set_text(text)
