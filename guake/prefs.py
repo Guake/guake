@@ -32,6 +32,7 @@ gi.require_version('Vte', '2.91')  # vte-0.38
 from gi.repository import GLib
 from gi.repository import GObject
 from gi.repository import Gdk
+from gi.repository import Gio
 from gi.repository import Gtk
 from gi.repository import Keybinder
 from gi.repository import Pango
@@ -771,6 +772,11 @@ class PrefsDialog(SimpleGladeApp):
         pid = self.spawn_sync_pid(None, self.demo_terminal)
 
         self.demo_terminal.pid = pid
+
+        self.settings.general.bind(
+            'tab-close-buttons', self.get_widget('tab-close-buttons'), 'active',
+            Gio.SettingsBindFlags.DEFAULT
+        )
 
         self.populate_shell_combo()
         self.populate_keys_tree()

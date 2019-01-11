@@ -250,7 +250,7 @@ class TerminalNotebook(Gtk.Notebook):
             if isinstance(old_label, TabLabelEventBox):
                 old_label.set_text(new_text)
             else:
-                label = TabLabelEventBox(self, new_text)
+                label = TabLabelEventBox(self, new_text, self.guake.settings)
                 label.add_events(Gdk.EventMask.SCROLL_MASK)
                 label.connect('scroll-event', self.scroll_callback.on_scroll)
 
