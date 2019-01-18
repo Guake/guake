@@ -1417,7 +1417,7 @@ class Guake(SimpleGladeApp):
         log.debug("Terminal exited: %s", term)
         if libutempter is not None:
             libutempter.utempter_remove_record(term.get_pty())
-            self.delete_tab(self.notebook.page_num(widget), kill=False, prompt=False)
+        self.delete_tab(self.notebook.page_num(widget), kill=False, prompt=False)
 
     def recompute_tabs_titles(self):
         """Updates labels on all tabs. This is required when `self.abbreviate`
