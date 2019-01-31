@@ -168,6 +168,22 @@ def main():
     )
 
     parser.add_option(
+        '--split-vertical',
+        dest='split_vertical',
+        action='store_true',
+        default=False,
+        help=_('Split the selected tab vertically.')
+    )
+
+    parser.add_option(
+        '--split-horizontal',
+        dest='split_horizontal',
+        action='store_true',
+        default=False,
+        help=_('Split the selected tab horizontally.')
+    )
+
+    parser.add_option(
         '-e',
         '--execute-command',
         dest='command',
@@ -355,6 +371,14 @@ def main():
     if options.selected_tablabel:
         selectedlabel = remote_object.get_selected_tablabel()
         sys.stdout.write('%s\n' % selectedlabel)
+        only_show_hide = False
+
+    if options.split_vertical:
+        remote_object.v_split_current_terminal()
+        only_show_hide = False
+
+    if options.split_horizontal:
+        remote_object.h_split_current_terminal()
         only_show_hide = False
 
     if options.command:
