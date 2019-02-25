@@ -340,9 +340,11 @@ def main():
 
     if options.select_tab:
         selected = int(options.select_tab)
-        i = remote_object.select_tab(selected)
-        if i is None:
-            sys.stdout.write('invalid index: %d\n' % selected)
+        tab_count = int(remote_object.get_tab_count())
+        if 0 <= selected < tab_count:
+            remote_object.select_tab(selected)
+        else:
+            sys.stderr.write('invalid index: %d\n' % selected)
         only_show_hide = False
 
     if options.selected_tab:

@@ -1004,3 +1004,12 @@ msgstr "Guake セッションの設定"
 #: data/guake-prefs.desktop:63 data/guake-prefs.template.desktop:13
 msgid "Terminal;Utility;"
 msgstr "Terminal;Utility;"
+
+#: guake/dialogs.py:56
+#, python-brace-format
+msgid " on {0} workspaces"
+msgstr ""
+
+#: data/prefs.glade:331
+msgid "Use workspace-specific tab sets (requires restart)"
+msgstr ""

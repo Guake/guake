@@ -3,19 +3,5 @@ features:
     Guake can now provide a set of tabs per workspace
       - new exiting feature #32
 
-known_issues:
-
-upgrade:
-
-deprecations:
-
-security:
-
-fixes:
-
 translations:
   - de
-
-notes_for_package_maintainers:
-
-other:

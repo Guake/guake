@@ -1301,6 +1301,23 @@ msgstr ""
 "Dit werkt mogelijk niet in alle shells; zorg dat je shell ondersteuning "
 "heeft voor de optie --login"
 
+#: guake/prefs.py:128
+msgid "New tab in home directory"
+msgstr ""
+
+#: guake/dialogs.py:56
+#, python-brace-format
+msgid " on {0} workspaces"
+msgstr ""
+
+#: guake/main.py:211
+msgid "Change Guake palette scheme"
+msgstr ""
+
+#: data/prefs.glade:331
+msgid "Use workspace-specific tab sets (requires restart)"
+msgstr ""
+
 #~ msgid "key binding error"
 #~ msgstr "Fout bij toets-binding"
 

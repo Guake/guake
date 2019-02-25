@@ -6,6 +6,7 @@ import gi
 gi.require_version('Vte', '2.91')  # vte-0.42
 gi.require_version('Gtk', '3.0')
 from gi.repository import Gdk
+from gi.repository import Gio
 from gi.repository import Gtk
 from gi.repository import Vte
 
@@ -58,9 +59,10 @@ class TerminalHolder():
 
 class RootTerminalBox(Gtk.Box, TerminalHolder):
 
-    def __init__(self, guake):
+    def __init__(self, guake, parent_notebook):
         super().__init__(orientation=Gtk.Orientation.HORIZONTAL)
         self.guake = guake
+        self.notebook = parent_notebook
         self.child = None
         self.last_terminal_focused = None
 
@@ -107,17 +109,17 @@ class RootTerminalBox(Gtk.Box, TerminalHolder):
 
     def set_last_terminal_focused(self, terminal):
         self.last_terminal_focused = terminal
-        self.guake.notebook.set_last_terminal_focused(terminal)
+        self.get_notebook().set_last_terminal_focused(terminal)
 
     def get_last_terminal_focused(self, terminal):
         return self.last_terminal_focused
 
     def get_notebook(self):
-        return self.guake.notebook
+        return self.notebook
 
     def remove_dead_child(self, child):
-        page_num = self.guake.notebook.page_num(self)
-        self.guake.notebook.remove_page(page_num)
+        page_num = self.get_notebook().page_num(self)
+        self.get_notebook().remove_page(page_num)
 
     def move_focus(self, direction, fromChild):
         pass
@@ -234,7 +236,7 @@ class TerminalBox(Gtk.Box, TerminalHolder):
                 self.terminal, self.get_window(), self.get_settings(),
                 TerminalContextMenuCallbacks(
                     self.terminal, self.get_window(), self.get_settings(),
-                    self.get_guake().notebook
+                    self.get_root_box().get_notebook()
                 )
             )
             menu.connect("hide", MenuHideCallback(self.get_window()).on_hide)
@@ -327,13 +329,23 @@ class DualTerminalBox(Gtk.Paned, TerminalHolder):
 
 class TabLabelEventBox(Gtk.EventBox):
 
-    def __init__(self, notebook, text):
+    def __init__(self, notebook, text, settings):
         super().__init__()
         self.notebook = notebook
-        self.label = Gtk.Label(text)
-        self.add(self.label)
+        self.box = Gtk.Box(Gtk.Orientation.HORIZONTAL, 0, visible=True)
+        self.label = Gtk.Label(text, visible=True)
+        self.close_button = Gtk.Button(
+            image=Gtk.Image.new_from_icon_name("window-close", Gtk.IconSize.MENU),
+            relief=Gtk.ReliefStyle.NONE
+        )
+        self.close_button.connect('clicked', self.on_close)
+        settings.general.bind(
+            'tab-close-buttons', self.close_button, 'visible', Gio.SettingsBindFlags.GET
+        )
+        self.box.pack_start(self.label, True, True, 0)
+        self.box.pack_end(self.close_button, False, False, 0)
+        self.add(self.box)
         self.connect("button-press-event", self.on_button_press, self.label)
-        self.label.show()
 
     def set_text(self, text):
         self.label.set_text(text)
