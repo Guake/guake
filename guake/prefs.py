@@ -606,6 +606,11 @@ class PrefsCallbacks():
         """
         self.settings.styleFont.set_boolean('allow-bold', chk.get_active())
 
+    def on_bold_is_bright_toggled(self, chk):
+        """Changes the value of bold_is_bright in dconf
+        """
+        self.settings.styleFont.set_boolean('bold-is-bright', chk.get_active())
+
     def on_font_style_font_set(self, fbtn):
         """Changes the value of font_style in dconf
         """
@@ -1233,6 +1238,10 @@ class PrefsDialog(SimpleGladeApp):
         # allow bold font
         value = self.settings.styleFont.get_boolean('allow-bold')
         self.get_widget('allow_bold').set_active(value)
+
+        # use bold is bright
+        value = self.settings.styleFont.get_boolean('bold-is-bright')
+        self.get_widget('bold_is_bright').set_active(value)
 
         # palette
         self.fill_palette_names()
