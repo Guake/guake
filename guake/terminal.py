@@ -156,6 +156,9 @@ class GuakeTerminal(Vte.Terminal):
         if (Vte.MAJOR_VERSION, Vte.MINOR_VERSION) >= (0, 50):
             self.set_allow_hyperlink(True)
 
+        if (Vte.MAJOR_VERSION, Vte.MINOR_VERSION) >= (0, 56):
+            self.set_bold_is_bright(self.guake.settings.styleFont.get_boolean('bold-is-bright'))
+
         # TODO PORT is this still the case with the newer vte version?
         # -- Ubuntu has a patch to libvte which disables mouse scrolling in apps
         # -- like vim and less by default. If this is the case, enable it back.
