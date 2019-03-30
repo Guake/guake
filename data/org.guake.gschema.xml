@@ -282,6 +282,11 @@
             <summary>Allow displaying bold font in Guake terminal.</summary>
             <description>When allow_bold is disabled, any text in Guake terminal intended to print as bold text will be instead rendered as normal text.</description>
         </key>
+        <key name="bold-is-bright" type="b">
+            <default>false</default>
+            <summary>Use bright colors for bold text</summary>
+            <description>If true, text from the first 8 colors that is formatted as bold will also be switched to its bright variant.</description>
+        </key>
     </schema>
     <schema id="guake.style.background" path="/apps/guake/style/background/">
         <key name="transparency" type="i">
