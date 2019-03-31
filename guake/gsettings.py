@@ -79,6 +79,7 @@ class GSettingHandler():
         settings.styleFont.onChangedValue('style', self.fstyle_changed)
         settings.styleFont.onChangedValue('palette', self.fpalette_changed)
         settings.styleFont.onChangedValue('allow-bold', self.allow_bold_toggled)
+        settings.styleFont.onChangedValue('bold-is-bright', self.bold_is_bright_toggled)
         settings.styleBackground.onChangedValue('transparency', self.bgtransparency_changed)
 
         settings.general.onChangedValue('compat-backspace', self.backspace_changed)
@@ -229,6 +230,13 @@ class GSettingHandler():
         """
         for term in self.guake.notebook_manager.iter_terminals():
             term.set_allow_bold(settings.get_boolean(key))
+
+    def bold_is_bright_toggled(self, settings, key, user_data):
+        """If the dconf var bold_is_bright is changed, this method will be called
+        and will change the VTE terminal to toggle auto-brightened bold text.
+        """
+        for term in self.guake.notebook_manager.iter_terminals():
+            term.set_bold_is_bright(settings.get_boolean(key))
 
     def palette_font_and_background_color_toggled(self, settings, key, user_data):
         """If the gconf var use_palette_font_and_background_color be changed, this method
