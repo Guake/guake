@@ -1,6 +1,8 @@
 ---
-branch: master
 earliest_version: 3.0.0.a4
+branch_name_re: stable/.+
+branch_name_prefix: stable/
+unreleased_version_title: "(unreleased)"
 collapse_pre_releases: true
 pre_release_tag_re: (?P<pre_release>\.(?:\d*[ab]|rc)+\d*)$
 stop_at_branch_base: true

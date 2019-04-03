@@ -79,3 +79,4 @@ docs/_build/
 guake/paths.py
 releasenotes/notes/reno.cache
 data/gschemas.compiled
+RELEASENOTES.rst

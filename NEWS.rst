@@ -1,6 +1,14 @@
 Release Notes
 =============
 
+3.0.6
+-----
+
+Bug Fixes
+~~~~~~~~~
+
+- Hotfix of #1198 (Ctrl+D in the terminal does not close) and #1014 (guake hangs on exit)
+
 3.0.5
 -----
 

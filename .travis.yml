@@ -10,6 +10,9 @@ install:
 
 
 script:
+    - git fetch --unshallow
+    - git fetch --all
+    - git fetch --tags
     # users should be able to build without python dev dependencies
     - make
     # for dev
