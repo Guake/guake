@@ -61,6 +61,7 @@ from guake.globals import ALIGN_LEFT
 from guake.globals import ALIGN_RIGHT
 from guake.globals import ALIGN_TOP
 from guake.globals import ALWAYS_ON_PRIMARY
+from guake.globals import MAX_TRANSPARENCY
 from guake.globals import NAME
 from guake.gsettings import GSettingHandler
 from guake.guake_logging import setupLogging
@@ -104,9 +105,6 @@ GDK_WINDOW_STATE_WITHDRAWN = 1
 GDK_WINDOW_STATE_ICONIFIED = 2
 GDK_WINDOW_STATE_STICKY = 8
 GDK_WINDOW_STATE_ABOVE = 32
-
-# Transparency max level (should be always 100)
-MAX_TRANSPARENCY = 100
 
 
 class Guake(SimpleGladeApp):
