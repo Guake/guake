@@ -2,6 +2,60 @@
 Guake
 =====
 
+(unreleased yet)
+================
+
+Release Summary
+---------------
+
+Adds two new command line options `--split-vertical` and `split-horizontal`
+
+New Features
+------------
+
+- new hotkey (CTRL+SHIFT+H) to open new tab in home directory
+
+- "New tab" button #1471
+
+- Open new tab by double-clicking on the tab bar
+
+- Add new context menu on the notebook
+
+- Add a CLI option to change palette scheme #1345
+
+- `guake --split-vertical` and `--split-horizontal` split the current
+   tab just like the context menu does
+
+- Optional close buttons for tabs (disabled by default)
+
+- Guake can now provide a set of tabs per workspace
+    - new exiting feature #32
+
+Bug Fixes
+---------
+
+- Fix command-line select tab behavior #1492
+
+- removed duplicate event bind? previously I had issue where quick-open event would be fired 
+  twice because of this.
+
+- fixes
+
+- fixes
+
+- fix unnecessary show/hide
+
+- fix settings only applied to the active workspace if more the 1 is used
+
+- fix prompt quit dialog numbers when more then 1 workspace is used
+
+Translation Updates
+-------------------
+
+- de
+
+- de
+
 3.4.0
 =====
 
