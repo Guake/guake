@@ -992,8 +992,7 @@ class Guake(SimpleGladeApp):
         search_text = Gtk.TextView()
 
         dialog = Gtk.Dialog(
-            _("Find"), self.window, Gtk.DialogFlags.DESTROY_WITH_PARENT,
-            (
+            _("Find"), self.window, Gtk.DialogFlags.DESTROY_WITH_PARENT, (
                 _("Forward"), RESPONSE_FORWARD, _("Backward"), RESPONSE_BACKWARD, Gtk.STOCK_CANCEL,
                 Gtk.ResponseType.NONE
             )
@@ -1017,8 +1016,8 @@ class Guake(SimpleGladeApp):
         search_string = start.get_text(end)
 
         log.debug(
-            "Searching for %r %s\n", search_string, "forward"
-            if response_id == RESPONSE_FORWARD else "backward"
+            "Searching for %r %s\n", search_string,
+            "forward" if response_id == RESPONSE_FORWARD else "backward"
         )
 
         current_term = self.get_notebook().get_current_terminal()

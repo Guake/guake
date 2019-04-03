@@ -1258,6 +1258,22 @@ msgstr ""
 msgid "Use workspace-specific tab sets (requires restart)"
 msgstr ""
 
+#: guake/main.py:175
+msgid "Split the selected tab vertically."
+msgstr ""
+
+#: guake/main.py:183
+msgid "Split the selected tab horizontally."
+msgstr ""
+
+#: data/prefs.glade:348
+msgid "Show close buttons for tabs"
+msgstr ""
+
+#: data/prefs.glade:1682
+msgid "Bold text is also bright"
+msgstr ""
+
 #~ msgid "key binding error"
 #~ msgstr "ਕੁੰਜੀ ਬਾਈਡਿੰਗ ਗਲਤੀ"
 
