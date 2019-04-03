@@ -1239,5 +1239,9 @@ msgstr ""
 msgid "Bold text is also bright"
 msgstr ""
 
+#: data/prefs.glade:1682
+msgid "Bold text is also bright (VTE >=0.52)"
+msgstr ""
+
 #~ msgid "http://guake.org"
 #~ msgstr "http://guake.org"

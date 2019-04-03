@@ -1679,7 +1679,7 @@
                                 </child>
                                 <child>
                                   <object class="GtkCheckButton" id="bold_is_bright">
-                                    <property name="label" translatable="yes">Bold text is also bright</property>
+                                    <property name="label" translatable="yes">Bold text is also bright (VTE >=0.52)</property>
                                     <property name="visible">True</property>
                                     <property name="can_focus">True</property>
                                     <property name="receives_default">False</property>

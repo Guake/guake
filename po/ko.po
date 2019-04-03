@@ -1285,6 +1285,10 @@ msgstr ""
 msgid "Bold text is also bright"
 msgstr ""
 
+#: data/prefs.glade:1682
+msgid "Bold text is also bright (VTE >=0.52)"
+msgstr ""
+
 #~ msgid "key binding error"
 #~ msgstr "키 바인딩 에러"
 

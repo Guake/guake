@@ -1328,6 +1328,10 @@ msgstr ""
 msgid "Bold text is also bright"
 msgstr ""
 
+#: data/prefs.glade:1682
+msgid "Bold text is also bright (VTE >=0.52)"
+msgstr ""
+
 #~ msgid "Path to script executed on Guake start:"
 #~ msgstr "Путь к скрипту, запускаемому при старте Guake:"
 
