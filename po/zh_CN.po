@@ -1304,6 +1304,10 @@ msgstr ""
 msgid "Bold text is also bright"
 msgstr ""
 
+#: data/prefs.glade:1682
+msgid "Bold text is also bright (VTE >=0.52)"
+msgstr ""
+
 #~ msgid "0 means no size limit"
 #~ msgstr "0表示没有大小限制"
 

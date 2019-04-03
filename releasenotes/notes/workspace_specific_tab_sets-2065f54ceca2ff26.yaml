@@ -1,7 +1,6 @@
 features:
   - |
     Guake can now provide a set of tabs per workspace
-      - new exiting feature #32
 
 translations:
   - de

@@ -1,6 +1,3 @@
-release_summary: >
-  Adds two new command line options `--split-vertical` and `split-horizontal`
-
 features:
       - |
         `guake --split-vertical` and `--split-horizontal` split the current

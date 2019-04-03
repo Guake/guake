@@ -235,8 +235,11 @@ class GSettingHandler():
         """If the dconf var bold_is_bright is changed, this method will be called
         and will change the VTE terminal to toggle auto-brightened bold text.
         """
-        for term in self.guake.notebook_manager.iter_terminals():
-            term.set_bold_is_bright(settings.get_boolean(key))
+        try:
+            for term in self.guake.notebook_manager.iter_terminals():
+                term.set_bold_is_bright(settings.get_boolean(key))
+        except:  # pylint: disable=bare-except
+            log.error("set_bold_is_bright not supported by your version of VTE")
 
     def palette_font_and_background_color_toggled(self, settings, key, user_data):
         """If the gconf var use_palette_font_and_background_color be changed, this method

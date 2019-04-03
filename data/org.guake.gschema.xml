@@ -285,7 +285,7 @@
         <key name="bold-is-bright" type="b">
             <default>false</default>
             <summary>Use bright colors for bold text</summary>
-            <description>If true, text from the first 8 colors that is formatted as bold will also be switched to its bright variant.</description>
+            <description>If true, text from the first 8 colors that is formatted as bold will also be switched to its bright variant (VTE >=0.52).</description>
         </key>
     </schema>
     <schema id="guake.style.background" path="/apps/guake/style/background/">
