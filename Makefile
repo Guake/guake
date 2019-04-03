@@ -19,7 +19,7 @@ reset:
 
 all: clean dev style checks dists test docs
 
-dev: pipenv-install-dev requirements ln-venv setup-githook prepare-install
+dev: clean pipenv-install-dev requirements ln-venv setup-githook prepare-install
 
 dev-no-pipenv: clean
 	virtualenv --python $(PYTHON_INTERPRETER) .venv

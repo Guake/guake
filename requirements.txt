@@ -1,5 +1,5 @@
 ################################################################################
-# This requirements files has been automatically generated from `Pipfile` with
+# This requirements file has been automatically generated from `Pipfile` with
 # `pipenv-to-requirements`
 #
 #
