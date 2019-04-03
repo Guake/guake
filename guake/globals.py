@@ -99,3 +99,6 @@ QUICK_OPEN_MATCHERS = [
         r"^\s*(.*)\:([0-9]+)",
     )
 ]
+
+# Transparency max level (should be always 100)
+MAX_TRANSPARENCY = 100

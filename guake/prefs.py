@@ -49,6 +49,7 @@ from guake.globals import ALIGN_LEFT
 from guake.globals import ALIGN_RIGHT
 from guake.globals import ALIGN_TOP
 from guake.globals import ALWAYS_ON_PRIMARY
+from guake.globals import MAX_TRANSPARENCY
 from guake.globals import NAME
 from guake.globals import QUICK_OPEN_MATCHERS
 from guake.globals import bindtextdomain
@@ -621,7 +622,7 @@ class PrefsCallbacks():
         """
         value = hscale.get_value()
         self.prefDlg.set_colors_from_settings()
-        self.settings.styleBackground.set_int('transparency', int(value))
+        self.settings.styleBackground.set_int('transparency', MAX_TRANSPARENCY - int(value))
 
     # compatibility tab
 
@@ -1260,7 +1261,7 @@ class PrefsDialog(SimpleGladeApp):
         self.set_cursor_blink_mode(value)
 
         value = self.settings.styleBackground.get_int('transparency')
-        self.get_widget('background_transparency').set_value(value)
+        self.get_widget('background_transparency').set_value(MAX_TRANSPARENCY - value)
 
         value = self.settings.general.get_int('window-valignment')
         self.get_widget('top_align').set_active(value)
