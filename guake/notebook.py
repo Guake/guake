@@ -233,10 +233,13 @@ class TerminalNotebook(Gtk.Notebook):
         terminal.emit("focus", Gtk.DirectionType.TAB_FORWARD)
         self.emit('terminal-spawned', terminal, terminal.pid)
 
-    def new_page_with_focus(self, directory=None):
+    def new_page_with_focus(self, directory=None, label=None):
         box, page_num, terminal = self.new_page(directory)
         self.set_current_page(page_num)
-        self.rename_page(page_num, _("Terminal"), False)
+        if not label:
+            self.rename_page(page_num, _("Terminal"), False)
+        else:
+            self.rename_page(page_num, label, True)
         terminal.grab_focus()
 
     def rename_page(self, page_index, new_text, user_set=False):
