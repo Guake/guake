@@ -182,7 +182,6 @@ class TerminalNotebook(Gtk.Notebook):
             if kill:
                 terminal.kill()
             terminal.destroy()
-        self.remove_page(page_num)
 
     def remove_page(self, page_num):
         super().remove_page(page_num)
