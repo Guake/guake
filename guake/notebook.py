@@ -294,6 +294,12 @@ class TerminalNotebook(Gtk.Notebook):
     def on_quit(self, user_data):
         self.guake.accel_quit()
 
+    def on_save_tabs(self, user_data):
+        self.guake.save_tabs()
+
+    def on_restore_tabs(self, user_data):
+        self.guake.restore_tabs()
+
 
 class NotebookManager(GObject.Object):
 

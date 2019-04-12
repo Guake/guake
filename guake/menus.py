@@ -51,6 +51,12 @@ def mk_notebook_context_menu(callback_object):
     mi = Gtk.MenuItem(_("Quit"))
     mi.connect("activate", callback_object.on_quit)
     menu.add(mi)
+    mi = Gtk.MenuItem(_("Save Tabs"))
+    mi.connect("activate", callback_object.on_save_tabs)
+    menu.add(mi)
+    mi = Gtk.MenuItem(_("Restore Tabs"))
+    mi.connect("activate", callback_object.on_restore_tabs)
+    menu.add(mi)
     menu.show_all()
     return menu
 

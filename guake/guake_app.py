@@ -24,6 +24,7 @@ import os
 import platform
 import subprocess
 import sys
+import time as pytime
 import traceback
 import uuid
 
@@ -1099,3 +1100,35 @@ class Guake(SimpleGladeApp):
                 log.debug(traceback.format_exc())
             else:
                 log.debug("hook on event %s has been executed", event_name)
+
+    def save_tabs(self, output_path='.guake_tabs.json'):
+        nb = self.get_notebook()
+        tabs = {}
+        for index in range(nb.get_n_pages()):
+            page = nb.get_nth_page(index)
+            tabs[index] = {
+                'directory': page.child.terminal.get_current_directory(),
+                'label': nb.get_tab_text_index(index)
+            }
+        with open(output_path, 'w') as f:
+            json.dump({
+                'timestamp': int(pytime.time()),
+                'tabs': tabs
+            }, f, ensure_ascii=False, indent=4)
+
+    def restore_tabs(self, path='.guake_tabs.json'):
+        if not Path(path).exists():
+            return
+        with open(path) as f:
+            config = json.load(f)
+        nb = self.get_notebook()
+        current_pages = nb.get_n_pages()
+
+        # Restore tabs from config
+        for index in sorted(map(int, config['tabs'].keys())):
+            tab = config['tabs'][str(index)]
+            nb.new_page_with_focus(tab['directory'], tab['label'])
+
+        # Remove original pages in notebook
+        for i in range(current_pages):
+            nb.delete_page(0)
