@@ -1140,11 +1140,11 @@ class Guake(SimpleGladeApp):
             nb.delete_page(0)
 
         # Notify the user
-        # XXX: Should add prefs to disable
-        filename = pixmapfile('guake-notification.png')
-        notifier.showMessage(
-            _("Guake Terminal"),
-            _("Your tabs has been restored!"),
-            filename)
+        if self.settings.general.get_boolean('restore-tabs-notify'):
+            filename = pixmapfile('guake-notification.png')
+            notifier.showMessage(
+                _("Guake Terminal"),
+                _("Your tabs has been restored!"),
+                filename)
 
         log.info('Guake tabs restored')
