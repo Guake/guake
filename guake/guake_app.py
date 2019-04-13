@@ -263,6 +263,10 @@ class Guake(SimpleGladeApp):
 
         refresh_user_start(self.settings)
 
+        # Restore tabs when startup
+        if self.settings.general.get_boolean('restore-tabs-startup'):
+            self.restore_tabs(suppress_notify=True)
+
         # Pop-up that shows that guake is working properly (if not
         # unset in the preferences windows)
         if self.settings.general.get_boolean('use-popup'):
@@ -1119,7 +1123,7 @@ class Guake(SimpleGladeApp):
 
         log.info('Guake tabs saved')
 
-    def restore_tabs(self, filename='session.json'):
+    def restore_tabs(self, filename='session.json', suppress_notify=False):
         path = self.get_xdg_config_directory() / filename
         if not path.exists():
             return
@@ -1138,7 +1142,8 @@ class Guake(SimpleGladeApp):
             nb.delete_page(0)
 
         # Notify the user
-        if self.settings.general.get_boolean('restore-tabs-notify'):
+        if (self.settings.general.get_boolean('restore-tabs-notify') and
+                not suppress_notify):
             filename = pixmapfile('guake-notification.png')
             notifier.showMessage(
                 _("Guake Terminal"),
