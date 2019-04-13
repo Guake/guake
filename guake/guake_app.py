@@ -47,6 +47,7 @@ from gi.repository import Keybinder
 from gi.repository import Vte
 
 import cairo
+import xdg.BaseDirectory
 
 from guake import gtk_version
 from guake import guake_version
@@ -1101,7 +1102,10 @@ class Guake(SimpleGladeApp):
             else:
                 log.debug("hook on event %s has been executed", event_name)
 
-    def save_tabs(self, output_path='.guake_tabs.json'):
+    def get_xdg_config_directory(self):
+        return Path(xdg.BaseDirectory.save_config_path('guake'))
+
+    def save_tabs(self, filename='session.json'):
         nb = self.get_notebook()
         tabs = {}
         for index in range(nb.get_n_pages()):
@@ -1110,14 +1114,14 @@ class Guake(SimpleGladeApp):
                 'directory': page.child.terminal.get_current_directory(),
                 'label': nb.get_tab_text_index(index)
             }
-        with open(output_path, 'w') as f:
-            json.dump({
-                'timestamp': int(pytime.time()),
-                'tabs': tabs
-            }, f, ensure_ascii=False, indent=4)
 
-    def restore_tabs(self, path='.guake_tabs.json'):
-        if not Path(path).exists():
+        config = {'timestamp': int(pytime.time()), 'tabs': tabs}
+        with open(self.get_xdg_config_directory() / filename, 'w') as f:
+            json.dump(config, f, ensure_ascii=False, indent=4)
+
+    def restore_tabs(self, filename='session.json'):
+        path = self.get_xdg_config_directory() / filename
+        if not path.exists():
             return
         with open(path) as f:
             config = json.load(f)
