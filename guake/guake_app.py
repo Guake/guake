@@ -1119,6 +1119,8 @@ class Guake(SimpleGladeApp):
         with open(self.get_xdg_config_directory() / filename, 'w') as f:
             json.dump(config, f, ensure_ascii=False, indent=4)
 
+        log.info('Guake tabs saved')
+
     def restore_tabs(self, filename='session.json'):
         path = self.get_xdg_config_directory() / filename
         if not path.exists():
@@ -1136,3 +1138,5 @@ class Guake(SimpleGladeApp):
         # Remove original pages in notebook
         for i in range(current_pages):
             nb.delete_page(0)
+
+        log.info('Guake tabs restored')
