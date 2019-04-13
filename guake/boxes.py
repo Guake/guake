@@ -17,6 +17,8 @@ from guake.menus import mk_tab_context_menu
 from guake.menus import mk_terminal_context_menu
 from guake.utils import HidePrevention
 from guake.utils import TabNameUtils
+from guake.utils import save_tabs_when_changed
+
 
 log = logging.getLogger(__name__)
 
@@ -375,9 +377,11 @@ class TabLabelEventBox(Gtk.EventBox):
         self.notebook.get_current_terminal().grab_focus()
         return False
 
+    @save_tabs_when_changed
     def on_new_tab(self, user_data):
         self.notebook.new_page_with_focus()
 
+    @save_tabs_when_changed
     def on_rename(self, user_data):
         HidePrevention(self.get_toplevel()).prevent()
         dialog = RenameDialog(self.notebook.guake.window, self.label.get_text())

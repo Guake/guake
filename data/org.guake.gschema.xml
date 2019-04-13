@@ -26,6 +26,21 @@
             <summary>Path to the default shell.</summary>
             <description>Path to the default shell. Set to empty to use default user shell. If invalid path is set here, guake will fallback to user shell.</description>
         </key>
+		<key name="restore-tabs-startup" type="b">
+		    <default>false</default>
+		    <summary>Restore tabs when startup</summary>
+		    <description>If true, when guake startup, it will restore tabs from previous session</description>
+		</key>
+		<key name="restore-tabs-notify" type="b">
+		    <default>true</default>
+		    <summary>Notify when restored the tabs</summary>
+		    <description>If true, when guake restored the tabs, it will notify the user that the tabs has been restored</description>
+		</key>
+		<key name="save-tabs-when-changed" type="b">
+		    <default>false</default>
+		    <summary>Automatically save tabs session when changed</summary>
+		    <description>If true, when tabs has changed (add / delete ...etc.), it will automatically saved the tabs session</description>
+		</key>
         <key name="use-login-shell" type="b">
             <default>false</default>
             <summary>Login shell</summary>

@@ -86,6 +86,7 @@ from guake.utils import HidePrevention
 from guake.utils import RectCalculator
 from guake.utils import TabNameUtils
 from guake.utils import get_server_time
+from guake.utils import save_tabs_when_changed
 
 from locale import gettext as _
 
@@ -135,8 +136,6 @@ class Guake(SimpleGladeApp):
         patch_gtk_theme(self.get_widget("window-root").get_style_context(), self.settings)
         self.add_callbacks(self)
 
-        self.debug_mode = self.settings.general.get_boolean('debug-mode')
-        setupLogging(self.debug_mode)
         log.info('Guake Terminal %s', guake_version())
         log.info('VTE %s', vte_version())
         log.info('Gtk %s', gtk_version())
@@ -265,6 +264,10 @@ class Guake(SimpleGladeApp):
 
         refresh_user_start(self.settings)
 
+        # Restore tabs when startup
+        if self.settings.general.get_boolean('restore-tabs-startup'):
+            self.restore_tabs(suppress_notify=True)
+
         # Pop-up that shows that guake is working properly (if not
         # unset in the preferences windows)
         if self.settings.general.get_boolean('use-popup'):
@@ -285,6 +288,9 @@ class Guake(SimpleGladeApp):
 
     def notebook_created(self, nm, notebook, key):
         notebook.attach_guake(self)
+
+        # Tracking when reorder page
+        notebook.connect('page-reordered', self.on_page_reorder)
 
     # new color methods should be moved to the GuakeTerminal class
 
@@ -980,6 +986,7 @@ class Guake(SimpleGladeApp):
         self.load_config()
         terminal.connect('window-title-changed', self.on_terminal_title_changed, terminal)
 
+    @save_tabs_when_changed
     def add_tab(self, directory=None):
         """Adds a new tab to the terminal notebook.
         """
@@ -1102,6 +1109,11 @@ class Guake(SimpleGladeApp):
             else:
                 log.debug("hook on event %s has been executed", event_name)
 
+    @save_tabs_when_changed
+    def on_page_reorder(self, notebook, child, page_num):
+        # Yep, just used for save tabs when changed
+        pass
+
     def get_xdg_config_directory(self):
         return Path(xdg.BaseDirectory.save_config_path('guake'))
 
@@ -1119,7 +1131,9 @@ class Guake(SimpleGladeApp):
         with open(self.get_xdg_config_directory() / filename, 'w') as f:
             json.dump(config, f, ensure_ascii=False, indent=4)
 
-    def restore_tabs(self, filename='session.json'):
+        log.info('Guake tabs saved')
+
+    def restore_tabs(self, filename='session.json', suppress_notify=False):
         path = self.get_xdg_config_directory() / filename
         if not path.exists():
             return
@@ -1127,6 +1141,10 @@ class Guake(SimpleGladeApp):
             config = json.load(f)
         nb = self.get_notebook()
         current_pages = nb.get_n_pages()
+
+        # Disable auto save tabs
+        v = self.settings.general.get_boolean('save-tabs-when-changed')
+        self.settings.general.set_boolean('save-tabs-when-changed', False)
 
         # Restore tabs from config
         for index in sorted(map(int, config['tabs'].keys())):
@@ -1136,3 +1154,17 @@ class Guake(SimpleGladeApp):
         # Remove original pages in notebook
         for i in range(current_pages):
             nb.delete_page(0)
+
+        # Reset auto save tabs
+        self.settings.general.set_boolean('save-tabs-when-changed', v)
+
+        # Notify the user
+        if (self.settings.general.get_boolean('restore-tabs-notify') and
+                not suppress_notify):
+            filename = pixmapfile('guake-notification.png')
+            notifier.showMessage(
+                _("Guake Terminal"),
+                _("Your tabs has been restored!"),
+                filename)
+
+        log.info('Guake tabs restored')

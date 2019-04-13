@@ -28,6 +28,7 @@ from guake.callbacks import NotebookScrollCallback
 from guake.dialogs import PromptQuitDialog
 from guake.menus import mk_notebook_context_menu
 from guake.prefs import PrefsDialog
+from guake.utils import save_tabs_when_changed
 
 import gi
 import os
@@ -183,6 +184,7 @@ class TerminalNotebook(Gtk.Notebook):
                 terminal.kill()
             terminal.destroy()
 
+    @save_tabs_when_changed
     def remove_page(self, page_num):
         super().remove_page(page_num)
         # focusing the first terminal on the previous page
@@ -280,6 +282,7 @@ class TerminalNotebook(Gtk.Notebook):
     def get_tab_text_page(self, page):
         return self.get_tab_label(page).get_text()
 
+    @save_tabs_when_changed
     def on_new_tab(self, user_data):
         self.new_page_with_focus()
 
