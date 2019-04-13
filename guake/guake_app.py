@@ -135,8 +135,6 @@ class Guake(SimpleGladeApp):
         patch_gtk_theme(self.get_widget("window-root").get_style_context(), self.settings)
         self.add_callbacks(self)
 
-        self.debug_mode = self.settings.general.get_boolean('debug-mode')
-        setupLogging(self.debug_mode)
         log.info('Guake Terminal %s', guake_version())
         log.info('VTE %s', vte_version())
         log.info('Gtk %s', gtk_version())
