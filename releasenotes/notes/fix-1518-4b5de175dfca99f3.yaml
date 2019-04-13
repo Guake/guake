@@ -1,0 +1,2 @@
+fixes:
+  - Remove unused logging level setup #1518
