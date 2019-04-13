@@ -21,6 +21,8 @@ install:
 
     - yes | sudo ./scripts/bootstrap-dev-debian.sh
     - ./scripts/bootstrap-dev-pip.sh system
+    - sudo apt update -q
+    - sudo apt install --no-install-recommands -y xvfb gir1.2-gtk-3.0 python3-gi python3-gi-cairo
 
 
 script:
