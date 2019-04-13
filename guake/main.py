@@ -38,6 +38,8 @@ log = logging.getLogger(__name__)
 
 from guake.globals import NAME
 from guake.globals import bindtextdomain
+from guake.utils import save_preferences
+from guake.utils import restore_preferences
 
 # When we are in the document generation on readthedocs, we do not have paths.py generated
 try:
@@ -268,6 +270,22 @@ def main():
         help=_('Do not execute the start up script')
     )
 
+    parser.add_option(
+        '--save-preferences',
+        dest='save_preferences',
+        action='store',
+        default=None,
+        help=_('Save Guake preferences to this filename')
+    )
+
+    parser.add_option(
+        '--restore-preferences',
+        dest='restore_preferences',
+        action='store',
+        default=None,
+        help=_('Restore Guake preferences from this file')
+    )
+
     # checking mandatory dependencies
     import gi
 
@@ -300,6 +318,15 @@ def main():
         print('VTE: {}'.format(vte_version()))
         print('VTE runtime: {}'.format(vte_runtime_version()))
         print('Gtk: {}'.format(gtk_version()))
+        sys.exit(0)
+
+    if options.save_preferences and options.restore_preferences:
+        parser.error('options --save-preferences and --restore-preferences are mutually exclusive')
+    if options.save_preferences:
+        save_preferences(options.save_preferences)
+        sys.exit(0)
+    elif options.restore_preferences:
+        restore_preferences(options.restore_preferences)
         sys.exit(0)
 
     import dbus
