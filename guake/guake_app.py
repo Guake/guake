@@ -86,6 +86,7 @@ from guake.utils import HidePrevention
 from guake.utils import RectCalculator
 from guake.utils import TabNameUtils
 from guake.utils import get_server_time
+from guake.utils import save_tabs_when_changed
 
 from locale import gettext as _
 
@@ -289,6 +290,9 @@ class Guake(SimpleGladeApp):
 
     def notebook_created(self, nm, notebook, key):
         notebook.attach_guake(self)
+
+        # Tracking when reorder page
+        notebook.connect('page-reordered', self.on_page_reorder)
 
     # new color methods should be moved to the GuakeTerminal class
 
@@ -984,6 +988,7 @@ class Guake(SimpleGladeApp):
         self.load_config()
         terminal.connect('window-title-changed', self.on_terminal_title_changed, terminal)
 
+    @save_tabs_when_changed
     def add_tab(self, directory=None):
         """Adds a new tab to the terminal notebook.
         """
@@ -1106,6 +1111,11 @@ class Guake(SimpleGladeApp):
             else:
                 log.debug("hook on event %s has been executed", event_name)
 
+    @save_tabs_when_changed
+    def on_page_reorder(self, notebook, child, page_num):
+        # Yep, just used for save tabs when changed
+        pass
+
     def get_xdg_config_directory(self):
         return Path(xdg.BaseDirectory.save_config_path('guake'))
 
@@ -1134,6 +1144,10 @@ class Guake(SimpleGladeApp):
         nb = self.get_notebook()
         current_pages = nb.get_n_pages()
 
+        # Disable auto save tabs
+        v = self.settings.general.get_boolean('save-tabs-when-changed')
+        self.settings.general.set_boolean('save-tabs-when-changed', False)
+
         # Restore tabs from config
         for index in sorted(map(int, config['tabs'].keys())):
             tab = config['tabs'][str(index)]
@@ -1142,6 +1156,9 @@ class Guake(SimpleGladeApp):
         # Remove original pages in notebook
         for i in range(current_pages):
             nb.delete_page(0)
+
+        # Reset auto save tabs
+        self.settings.general.set_boolean('save-tabs-when-changed', v)
 
         # Notify the user
         if (self.settings.general.get_boolean('restore-tabs-notify') and
