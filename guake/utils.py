@@ -28,6 +28,7 @@ import time
 
 import gi
 gi.require_version('Gtk', '3.0')
+gi.require_version('Gdk', '3.0')
 
 from gi.repository import Gdk
 from gi.repository import GdkX11
@@ -80,6 +81,22 @@ def save_tabs_when_changed(func):
         if g and g.settings.general.get_boolean('save-tabs-when-changed'):
             g.save_tabs()
     return wrapper
+
+
+def save_preferences(filename):
+    # XXX: Hardcode?
+    prefs = subprocess.check_output(['dconf', 'dump', '/apps/guake/'])
+    with open(filename, 'wb') as f:
+        f.write(prefs)
+
+
+def restore_preferences(filename):
+    # XXX: Hardcode?
+    with open(filename, 'rb') as f:
+        prefs = f.read()
+    p = subprocess.Popen(['dconf', 'load', '/apps/guake/'],
+                         stdin=subprocess.PIPE)
+    p.communicate(input=prefs)
 
 
 class TabNameUtils():
