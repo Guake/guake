@@ -1,0 +1,2 @@
+fixes:
+    - Fix window-title-changed didn't save tabs
