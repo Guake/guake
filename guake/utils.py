@@ -28,6 +28,7 @@ import time
 
 import gi
 gi.require_version('Gtk', '3.0')
+gi.require_version('Gdk', '3.0')
 
 from gi.repository import Gdk
 from gi.repository import GdkX11
@@ -38,6 +39,7 @@ from guake.globals import ALIGN_LEFT
 from guake.globals import ALIGN_RIGHT
 from guake.globals import ALIGN_TOP
 from guake.globals import ALWAYS_ON_PRIMARY
+
 
 log = logging.getLogger(__name__)
 
@@ -51,6 +53,50 @@ def get_server_time(widget):
         # Use local timestamp instead
         ts = time.time()
         return ts
+
+
+# Decorator for save-tabs-when-changed
+def save_tabs_when_changed(func):
+    """Decorator for save-tabs-when-changed
+    """
+    def wrapper(*args, **kwargs):
+        func(*args, **kwargs)
+        log.debug("mom, I've been called: %s %s", func.__name__, func)
+
+        # Find me the Guake!
+        clsname = args[0].__class__.__name__
+        g = None
+        if clsname == 'Guake':
+            g = args[0]
+        elif getattr(args[0], 'get_guake', None):
+            g = args[0].get_guake()
+        elif getattr(args[0], 'get_notebook', None):
+            g = args[0].get_notebook().guake
+        elif getattr(args[0], 'guake', None):
+            g = args[0].guake
+        elif getattr(args[0], 'notebook', None):
+            g = args[0].notebook.guake
+
+        # Tada!
+        if g and g.settings.general.get_boolean('save-tabs-when-changed'):
+            g.save_tabs()
+    return wrapper
+
+
+def save_preferences(filename):
+    # XXX: Hardcode?
+    prefs = subprocess.check_output(['dconf', 'dump', '/apps/guake/'])
+    with open(filename, 'wb') as f:
+        f.write(prefs)
+
+
+def restore_preferences(filename):
+    # XXX: Hardcode?
+    with open(filename, 'rb') as f:
+        prefs = f.read()
+    p = subprocess.Popen(['dconf', 'load', '/apps/guake/'],
+                         stdin=subprocess.PIPE)
+    p.communicate(input=prefs)
 
 
 class TabNameUtils():

@@ -19,17 +19,17 @@ pytest-mock = "*"
 pyflakes = "<2.0.0"
 pytest = "*"
 yapf = "*"
-reno = {version = ">=2.8.0", extras = ["sphinx"]}
+reno = {version = ">=2.8.0",extras = ["sphinx"]}
 pipenv-to-requirements = "*"
 colorlog = "*"
 sphinx-rtd-theme = "*"
 sphinxcontrib-programoutput = "*"
-"e1839a8" = {editable = true, path = "."}
+e1839a8 = {editable = true,path = "."}
 twine = "*"
 pathlib2 = "*"
-scandir = {markers="python_version < '3.5'"}
-
+scandir = {markers = "python_version < '3.5'"}
 
 [packages]
 pbr = "*"
-typing = {markers="python_version < '3.5'"}
+typing = {markers = "python_version < '3.5'"}
+pyxdg = "==0.26"

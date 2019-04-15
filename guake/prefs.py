@@ -354,6 +354,21 @@ class PrefsCallbacks():
 
     # general tab
 
+    def on_restore_tabs_startup_toggled(self, chk):
+        """Changes the activity of restore-tabs-startup in dconf
+        """
+        self.settings.general.set_boolean('restore-tabs-startup', chk.get_active())
+
+    def on_restore_tabs_notify_toggled(self, chk):
+        """Changes the activity of restore-tabs-notify in dconf
+        """
+        self.settings.general.set_boolean('restore-tabs-notify', chk.get_active())
+
+    def on_save_tabs_when_changed_toggled(self, chk):
+        """Changes the activity of save-tabs-when-changed in dconf
+        """
+        self.settings.general.set_boolean('save-tabs-when-changed', chk.get_active())
+
     def on_default_shell_changed(self, combo):
         """Changes the activity of default_shell in dconf
         """
@@ -1064,6 +1079,18 @@ class PrefsDialog(SimpleGladeApp):
         and Appearance tabs from dconf.
         """
         self._load_default_shell_settings()
+
+        # restore tabs startup
+        value = self.settings.general.get_boolean('restore-tabs-startup')
+        self.get_widget('restore-tabs-startup').set_active(value)
+
+        # restore tabs notify
+        value = self.settings.general.get_boolean('restore-tabs-notify')
+        self.get_widget('restore-tabs-notify').set_active(value)
+
+        # save tabs when changed
+        value = self.settings.general.get_boolean('save-tabs-when-changed')
+        self.get_widget('save-tabs-when-changed').set_active(value)
 
         # login shell
         value = self.settings.general.get_boolean('use-login-shell')
