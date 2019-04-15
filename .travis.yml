@@ -6,6 +6,11 @@ python:
     - "3.6"
 
 
+env:
+	global:
+		- PIPENV_VENV_IN_PROJECT=1
+		- PIPENV_IGNORE_VIRTUALENVS=1
+
 install:
     - |
         # Force unshallow and checkout the current branch
