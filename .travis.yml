@@ -1,10 +1,15 @@
 language: python
 
+dist: xenial
 
 python:
     - "3.5"
     - "3.6"
 
+env:
+    global:
+        - PIPENV_VENV_IN_PROJECT=1
+        - PIPENV_IGNORE_VIRTUALENVS=1
 
 install:
     - |
@@ -19,9 +24,14 @@ install:
         fi
         git log --pretty=format:"%h %s" --graph
 
+    - sudo apt update -q
     - yes | sudo ./scripts/bootstrap-dev-debian.sh
     - ./scripts/bootstrap-dev-pip.sh system
+    - sudo apt install --no-install-recommends -y xvfb gir1.2-gtk-3.0 python3-gi python3-gi-cairo gir1.2-wnck-3.0 gobject-introspection libgirepository1.0-dev
 
+
+before_script:
+    - export DISPLAY=:99.0
 
 script:
     # Test no system dependencies prevent readthedocs build
@@ -36,10 +46,12 @@ script:
         )
     # for dev
     - make dev-travis
+    - pipenv install pycairo
+    - pipenv install pygobject
     # check
     - make check
     - make build
-    - make test
+    - make test-travis
     # prepare for deployment
     - make generate-paths
 
