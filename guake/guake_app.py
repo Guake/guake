@@ -934,6 +934,7 @@ class Guake(SimpleGladeApp):
             pass
         return TabNameUtils.shorten(vte_title, self.settings)
 
+    @save_tabs_when_changed
     def on_terminal_title_changed(self, vte, term):
         # box must be a page
         box = term.get_parent().get_root_box()
