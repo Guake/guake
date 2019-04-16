@@ -375,11 +375,11 @@ def main():
 
     if options.show_preferences:
         remote_object.show_prefs()
-        only_show_hide = False
+        only_show_hide = options.show
 
     if options.new_tab:
         remote_object.add_tab(options.new_tab)
-        only_show_hide = False
+        only_show_hide = options.show
 
     if options.select_tab:
         selected = int(options.select_tab)
@@ -388,56 +388,56 @@ def main():
             remote_object.select_tab(selected)
         else:
             sys.stderr.write('invalid index: %d\n' % selected)
-        only_show_hide = False
+        only_show_hide = options.show
 
     if options.selected_tab:
         selected = remote_object.get_selected_tab()
         sys.stdout.write('%d\n' % selected)
-        only_show_hide = False
+        only_show_hide = options.show
 
     if options.selected_tablabel:
         selectedlabel = remote_object.get_selected_tablabel()
         sys.stdout.write('%s\n' % selectedlabel)
-        only_show_hide = False
+        only_show_hide = options.show
 
     if options.split_vertical:
         remote_object.v_split_current_terminal()
-        only_show_hide = False
+        only_show_hide = options.show
 
     if options.split_horizontal:
         remote_object.h_split_current_terminal()
-        only_show_hide = False
+        only_show_hide = options.show
 
     if options.command:
         remote_object.execute_command(options.command)
-        only_show_hide = False
+        only_show_hide = options.show
 
     if options.tab_index and options.rename_tab:
         try:
             remote_object.rename_tab_uuid(str(uuid.UUID(options.tab_index)), options.rename_tab)
         except ValueError:
             remote_object.rename_tab(int(options.tab_index), options.rename_tab)
-        only_show_hide = False
+        only_show_hide = options.show
 
     if options.bgcolor:
         remote_object.set_bgcolor(options.bgcolor)
-        only_show_hide = False
+        only_show_hide = options.show
 
     if options.fgcolor:
         remote_object.set_fgcolor(options.fgcolor)
-        only_show_hide = False
+        only_show_hide = options.show
 
     if options.palette_name:
         remote_object.change_palette_name(options.palette_name)
-        only_show_hide = False
+        only_show_hide = options.show
 
     if options.rename_current_tab:
         remote_object.rename_current_tab(options.rename_current_tab)
-        only_show_hide = False
+        only_show_hide = options.show
 
     if options.show_about:
         remote_object.show_about()
-        only_show_hide = False
+        only_show_hide = options.show
 
     if options.quit:
         try:
