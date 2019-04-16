@@ -235,13 +235,14 @@ class TerminalNotebook(Gtk.Notebook):
         terminal.emit("focus", Gtk.DirectionType.TAB_FORWARD)
         self.emit('terminal-spawned', terminal, terminal.pid)
 
-    def new_page_with_focus(self, directory=None, label=None):
+    def new_page_with_focus(self, directory=None,
+                            label=None, user_set=False):
         box, page_num, terminal = self.new_page(directory)
         self.set_current_page(page_num)
         if not label:
             self.rename_page(page_num, _("Terminal"), False)
         else:
-            self.rename_page(page_num, label, True)
+            self.rename_page(page_num, label, user_set)
         terminal.grab_focus()
 
     def rename_page(self, page_index, new_text, user_set=False):
@@ -327,7 +328,7 @@ class NotebookManager(GObject.Object):
     def workspace_changed(self, screen, previous_workspace):
         self.set_workspace(self.screen.get_active_workspace().get_number())
 
-    def get_notebook(self, workspace_index):
+    def get_notebook(self, workspace_index: int):
         if not self.has_notebook_for_workspace(workspace_index):
             self.notebooks[workspace_index] = TerminalNotebook()
             self.emit('notebook-created', self.notebooks[workspace_index], workspace_index)
@@ -347,7 +348,7 @@ class NotebookManager(GObject.Object):
     def has_notebook_for_workspace(self, workspace_index):
         return workspace_index in self.notebooks.keys()
 
-    def set_workspace(self, index):
+    def set_workspace(self, index: int):
         self.notebook_parent.remove(self.get_current_notebook())
         self.current_notebook = index
         log.info("current workspace is %d", self.current_notebook)

@@ -22,6 +22,7 @@ import json
 import logging
 import os
 import platform
+import shutil
 import subprocess
 import sys
 import time as pytime
@@ -941,15 +942,20 @@ class Guake(SimpleGladeApp):
         use_vte_titles = self.settings.general.get_boolean('use-vte-titles')
         if not use_vte_titles:
             return
+
+        # NOTE: Try our best to find the page_num inside all notebooks
         # this may return -1, should be checked ;)
-        page_num = self.get_notebook().page_num(box)
+        for nb in self.notebook_manager.iter_notebooks():
+            page_num = nb.page_num(box)
+            if page_num != -1:
+                break
         # if tab has been renamed by user, don't override.
         if not getattr(box, 'custom_label_set', False):
             title = self.compute_tab_title(vte)
-            self.get_notebook().rename_page(page_num, title, False)
+            nb.rename_page(page_num, title, False)
             self.update_window_title(title)
         else:
-            text = self.get_notebook().get_tab_text_page(box)
+            text = nb.get_tab_text_page(box)
             if text:
                 self.update_window_title(text)
 
@@ -1119,16 +1125,20 @@ class Guake(SimpleGladeApp):
         return Path(xdg.BaseDirectory.save_config_path('guake'))
 
     def save_tabs(self, filename='session.json'):
-        nb = self.get_notebook()
-        tabs = {}
-        for index in range(nb.get_n_pages()):
-            page = nb.get_nth_page(index)
-            tabs[index] = {
-                'directory': page.child.terminal.get_current_directory(),
-                'label': nb.get_tab_text_index(index)
-            }
+        config = {'schema_version': 1, 'timestamp': int(pytime.time()), 'workspace': {}}
+        for key, nb in self.notebook_manager.get_notebooks().items():
+            tabs = []
+            for index in range(nb.get_n_pages()):
+                page = nb.get_nth_page(index)
+                tabs.append({
+                    'directory': page.child.terminal.get_current_directory(),
+                    'label': nb.get_tab_text_index(index),
+                    'custom_label_set': getattr(page, 'custom_label_set', False)
+                })
+            # NOTE: Maybe we will have frame inside the workspace in future
+            #       So lets use list to store the tabs (as for each frame)
+            config['workspace'][key] = [tabs]
 
-        config = {'timestamp': int(pytime.time()), 'tabs': tabs}
         with open(self.get_xdg_config_directory() / filename, 'w') as f:
             json.dump(config, f, ensure_ascii=False, indent=4)
 
@@ -1137,24 +1147,54 @@ class Guake(SimpleGladeApp):
     def restore_tabs(self, filename='session.json', suppress_notify=False):
         path = self.get_xdg_config_directory() / filename
         if not path.exists():
+            log.info('Cannot found tabs session.json file')
             return
         with open(path) as f:
-            config = json.load(f)
-        nb = self.get_notebook()
-        current_pages = nb.get_n_pages()
+            try:
+                config = json.load(f)
+            except Exception:
+                log.warning('session.json is broken')
+                shutil.copy(path, self.get_xdg_config_directory() / f'{filename}.bak')
+                img_filename = pixmapfile('guake-notification.png')
+                notifier.showMessage(
+                    _('Guake Terminal'),
+                    _(f'Your session.json file is broken, backup to {filename}.bak'),
+                    img_filename)
+                return
 
         # Disable auto save tabs
         v = self.settings.general.get_boolean('save-tabs-when-changed')
         self.settings.general.set_boolean('save-tabs-when-changed', False)
 
-        # Restore tabs from config
-        for index in sorted(map(int, config['tabs'].keys())):
-            tab = config['tabs'][str(index)]
-            nb.new_page_with_focus(tab['directory'], tab['label'])
+        # Restore all tabs for all workspaces
+        try:
+            for key, frames in config['workspace'].items():
+                nb = self.notebook_manager.get_notebook(int(key))
+                current_pages = nb.get_n_pages()
 
-        # Remove original pages in notebook
-        for i in range(current_pages):
-            nb.delete_page(0)
+                # Restore each frames' tabs from config
+                # NOTE: If frame implement in future, we will need to update this code
+                for tabs in frames:
+                    for index, tab in enumerate(tabs):
+                        nb.new_page_with_focus(
+                            tab['directory'],
+                            tab['label'],
+                            tab['custom_label_set'])
+
+                    # Remove original pages in notebook
+                    for i in range(current_pages):
+                        nb.delete_page(0)
+        except KeyError:
+            log.warning('session.json schema is broken')
+            shutil.copy(path, self.get_xdg_config_directory() / f'{filename}.bak')
+            with open(self.get_xdg_config_directory() / f'{filename}.log.err', 'w') as f:
+                traceback.print_exc(file=f)
+            img_filename = pixmapfile('guake-notification.png')
+            notifier.showMessage(
+                _('Guake Terminal'),
+                _(f'Your session.json schema is broken, backup to {filename}.bak,'
+                  f'and error message has been saved to {filename}.log.err'),
+                img_filename)
 
         # Reset auto save tabs
         self.settings.general.set_boolean('save-tabs-when-changed', v)
