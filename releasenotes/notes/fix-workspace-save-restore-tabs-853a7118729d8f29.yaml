@@ -1,0 +1,3 @@
+fixes:
+    - Workspaces can now properly save/restore tabs
+    - Fix on_terminal_title_changed only search in current_notebook (it should find every notebook)
