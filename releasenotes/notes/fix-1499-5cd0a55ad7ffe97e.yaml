@@ -1,0 +1,3 @@
+fixes:
+    - Fix guake will need 2 toggle to hide when using command line 
+with --show and option with only_show_hide = False
