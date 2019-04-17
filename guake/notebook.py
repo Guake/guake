@@ -100,6 +100,8 @@ class TerminalNotebook(Gtk.Notebook):
                 menu.popup(None, None, None, None, event.button, event.time)
 
         elif event.type == Gdk.EventType.DOUBLE_BUTTON_PRESS and event.button == 1:
+            # XXX: WTF is this?
+            return
             self.new_page_with_focus()
 
         return False

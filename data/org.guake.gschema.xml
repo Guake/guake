@@ -328,6 +328,11 @@
         </key>
     </schema>
     <schema id="guake.keybindings.local" path="/apps/guake/keybindings/local/">
+        <key name="search-terminal" type="s">
+            <default>'&lt;Control&gt;&lt;Shift&gt;f'</default>
+            <summary>Search terminal</summary>
+            <description>Show search box to search text inside the terminal</description>
+        </key>
         <key name="quit" type="s">
             <default>'&lt;Control&gt;&lt;Shift&gt;q'</default>
             <summary>Quit</summary>

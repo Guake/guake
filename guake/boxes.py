@@ -9,6 +9,7 @@ from gi.repository import Gdk
 from gi.repository import Gio
 from gi.repository import Gtk
 from gi.repository import Vte
+from gi.repository import GLib
 
 from guake.callbacks import MenuHideCallback
 from guake.callbacks import TerminalContextMenuCallbacks
@@ -59,14 +60,92 @@ class TerminalHolder():
         pass
 
 
-class RootTerminalBox(Gtk.Box, TerminalHolder):
+class RootTerminalBox(Gtk.Overlay, TerminalHolder):
 
     def __init__(self, guake, parent_notebook):
-        super().__init__(orientation=Gtk.Orientation.HORIZONTAL)
+        super().__init__()
         self.guake = guake
         self.notebook = parent_notebook
         self.child = None
         self.last_terminal_focused = None
+
+        self.searchstring = None
+        self.searchre = None
+        self._add_search_box()
+
+    def _add_search_box(self):
+        """ --------------------------------|
+            | Revealer                      |
+            | |-----------------------------|
+            | | Frame                       |
+            | | |---------------------------|
+            | | | HBox                      |
+            | | | |-------| |----| |------| |
+            | | | | Entry | |Prev| | Next | |
+            | | | |-------| |----| |------| |
+            --------------------------------|
+        """
+        self.search_revealer = Gtk.Revealer()
+        self.search_frame = Gtk.Frame(name='search-frame')
+        self.search_box = Gtk.HBox()
+
+        # Search
+        self.search_entry = Gtk.SearchEntry()
+        self.search_prev_btn = Gtk.Button()
+        self.search_prev_btn.set_can_focus(False)
+        prev_icon = Gio.ThemedIcon(name='go-up-symbolic')
+        prev_image = Gtk.Image.new_from_gicon(prev_icon, Gtk.IconSize.BUTTON)
+        self.search_prev_btn.set_image(prev_image)
+        self.search_next_btn = Gtk.Button()
+        self.search_next_btn.set_can_focus(False)
+        next_icon = Gio.ThemedIcon(name='go-down-symbolic')
+        next_image = Gtk.Image.new_from_gicon(next_icon, Gtk.IconSize.BUTTON)
+        self.search_next_btn.set_image(next_image)
+
+        # Pack into box
+        self.search_box.pack_start(self.search_entry, False, False, 0)
+        self.search_box.pack_start(self.search_prev_btn, False, False, 0)
+        self.search_box.pack_start(self.search_next_btn, False, False, 0)
+
+        # Add into frame
+        self.search_frame.add(self.search_box)
+
+        # Frame
+        self.search_frame.set_margin_end(12)
+        css_provider = Gtk.CssProvider()
+        css_provider.load_from_data(
+            b'#search-frame border {'
+            b'    padding: 5px 5px 5px 5px;'
+            b'    background-color: #CFCFCF;'
+            b'}')
+        Gtk.StyleContext.add_provider_for_screen(
+            Gdk.Screen.get_default(),
+            css_provider,
+            Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION)
+
+        # Add to revealer
+        self.search_revealer.add(self.search_frame)
+        self.search_revealer.set_transition_duration(500)
+        self.search_revealer.set_transition_type(
+            Gtk.RevealerTransitionType.CROSSFADE)
+        self.search_revealer.set_valign(Gtk.Align.END)
+        self.search_revealer.set_halign(Gtk.Align.END)
+
+        # Welcome to the overlay
+        self.add_overlay(self.search_revealer)
+
+        # Events
+        self.search_entry.connect('key-press-event',
+                                  self.on_search_entry_keypress)
+        self.search_entry.connect('changed', self.do_search)
+        self.search_entry.connect('activate', self.do_search)
+        self.search_entry.connect('focus-out-event',
+                                  self.on_search_entry_focus_out_event)
+        self.search_next_btn.connect('clicked',
+                                     self.on_search_next_clicked)
+        self.search_prev_btn.connect('clicked',
+                                     self.on_search_prev_clicked)
+        self.search_prev = False
 
     def get_terminals(self):
         return self.get_child().get_terminals()
@@ -83,7 +162,7 @@ class RootTerminalBox(Gtk.Box, TerminalHolder):
     def set_child(self, terminal_holder):
         if isinstance(terminal_holder, TerminalHolder) or True:
             self.child = terminal_holder
-            self.pack_start(terminal_holder, True, True, 0)
+            self.add(self.child)
         else:
             print(
                 "wtf, what have you added to me???"
@@ -125,6 +204,66 @@ class RootTerminalBox(Gtk.Box, TerminalHolder):
 
     def move_focus(self, direction, fromChild):
         pass
+
+    def show_search_box(self):
+        if not self.search_revealer.get_reveal_child():
+            self.search_revealer.set_reveal_child(True)
+            # XXX: Mestery line to avoid Gtk-CRITICAL stuff
+            # (guake:22694): Gtk-CRITICAL **: 18:04:57.345:
+            # gtk_widget_event: assertion 'WIDGET_REALIZED_FOR_EVENT (widget, event)' failed
+            self.search_entry.realize()
+            self.search_entry.grab_focus()
+
+    def hide_search_box(self):
+        if self.search_revealer.get_reveal_child():
+            self.search_revealer.set_reveal_child(False)
+            self.last_terminal_focused.grab_focus()
+            self.last_terminal_focused.unselect_all()
+
+    def on_search_entry_focus_out_event(self, event, user_data):
+        self.hide_search_box()
+
+    def on_search_prev_clicked(self, widget):
+        term = self.last_terminal_focused
+        result = term.search_find_previous()
+        self.search_prev_btn.set_sensitive(result)
+        self.search_next_btn.set_sensitive(True)
+
+    def on_search_next_clicked(self, widget):
+        term = self.last_terminal_focused
+        result = term.search_find_next()
+        self.search_next_btn.set_sensitive(result)
+        self.search_prev_btn.set_sensitive(True)
+
+    def on_search_entry_keypress(self, widget, event):
+        key = Gdk.keyval_name(event.keyval)
+        if key == 'Escape':
+            self.hide_search_box()
+        elif key == 'Return':
+            # Combine with Shift?
+            if event.state & Gdk.ModifierType.SHIFT_MASK:
+                self.search_prev = True
+                self.do_search(None)
+            else:
+                self.search_prev = False
+
+    def do_search(self, widget):
+        text = self.search_entry.get_text()
+        if not text:
+            return
+
+        term = self.last_terminal_focused
+        if text != self.searchstring:
+            self.searchstring = text
+            self.searchre = GLib.Regex(text, 0, 0)
+            term.search_set_gregex(self.searchre, 0)
+
+        self.search_next_btn.set_sensitive(True)
+        self.search_prev_btn.set_sensitive(True)
+        if self.search_prev:
+            self.on_search_prev_clicked(None)
+        else:
+            self.on_search_next_clicked(None)
 
 
 class TerminalBox(Gtk.Box, TerminalHolder):

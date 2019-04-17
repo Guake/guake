@@ -115,6 +115,10 @@ HOTKEYS = [
                 'key': 'reset-terminal',
                 'label': _('Reset terminal')
             },
+            {
+                'key': 'search-terminal',
+                'label': _('Search terminal')
+            }
         ]
     },
     {

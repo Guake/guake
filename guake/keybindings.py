@@ -64,11 +64,11 @@ class Keybindings():
             'switch-tab10', 'switch-tab-last', 'reset-terminal', 'split-tab-vertical',
             'split-tab-horizontal', 'close-terminal', 'focus-terminal-up', 'focus-terminal-down',
             'focus-terminal-right', 'focus-terminal-left', 'move-terminal-split-up',
-            'move-terminal-split-down', 'move-terminal-split-left', 'move-terminal-split-right'
+            'move-terminal-split-down', 'move-terminal-split-left', 'move-terminal-split-right',
+            'search-terminal'
         ]
         for key in keys:
             guake.settings.keybindingsLocal.onChangedValue(key, self.reload_accelerators)
-
             self.reload_accelerators()
 
     def reload_global(self, settings, key, user_data):
@@ -364,4 +364,10 @@ class Keybindings():
                     lambda *args:  # keep make style from concat this lines
                     SplitMover.move_right(self.guake.get_notebook().get_current_terminal()) or True
                 )
+            )
+
+        key, mask = Gtk.accelerator_parse(getk('search-terminal'))
+        if key > 0:
+            self.accel_group.connect(
+                key, mask, Gtk.AccelFlags.VISIBLE, self.guake.accel_search_terminal
             )
