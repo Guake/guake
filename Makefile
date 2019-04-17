@@ -216,7 +216,11 @@ wheels: generate-paths
 wheel: wheels
 
 run-local: compile-glib-schemas-dev
+ifdef V
+	pipenv run ./scripts/run-local.sh -v
+else
 	pipenv run ./scripts/run-local.sh
+endif
 
 run-local-prefs: compile-glib-schemas-dev
 	pipenv run ./scripts/run-local-prefs.sh
