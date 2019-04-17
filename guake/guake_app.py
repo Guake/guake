@@ -213,6 +213,9 @@ class Guake(SimpleGladeApp):
 
         self.window.connect('draw', draw_callback)
 
+        # Debounce accel_search_terminal
+        self.prev_accel_search_terminal_time = 0.0
+
         # holds the timestamp of the losefocus event
         self.losefocus_time = 0
 
@@ -712,6 +715,22 @@ class Guake(SimpleGladeApp):
         self.settings.general.triggerOnChangedValue(self.settings.general, 'use-default-font')
         self.settings.general.triggerOnChangedValue(self.settings.general, 'compat-backspace')
         self.settings.general.triggerOnChangedValue(self.settings.general, 'compat-delete')
+
+    def accel_search_terminal(self, *args):
+        nb = self.get_notebook()
+        term = nb.get_current_terminal()
+        box = nb.get_nth_page(nb.find_page_index_by_terminal(term))
+
+        # Debounce it
+        current_time = pytime.time()
+        if current_time - self.prev_accel_search_terminal_time < 0.3:
+            return
+
+        self.prev_accel_search_terminal_time = current_time
+        if box.search_revealer.get_reveal_child():
+            box.hide_search_box()
+        else:
+            box.show_search_box()
 
     def accel_quit(self, *args):
         """Callback to prompt the user whether to quit Guake or not.
