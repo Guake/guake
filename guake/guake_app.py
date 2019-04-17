@@ -945,6 +945,8 @@ class Guake(SimpleGladeApp):
 
         # NOTE: Try our best to find the page_num inside all notebooks
         # this may return -1, should be checked ;)
+        nb = self.get_notebook()
+        page_num = nb.page_num(box)
         for nb in self.notebook_manager.iter_notebooks():
             page_num = nb.page_num(box)
             if page_num != -1:
