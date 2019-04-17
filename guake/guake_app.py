@@ -1156,11 +1156,11 @@ class Guake(SimpleGladeApp):
                 config = json.load(f)
             except Exception:
                 log.warning('session.json is broken')
-                shutil.copy(path, self.get_xdg_config_directory() / f'{filename}.bak')
+                shutil.copy(path, self.get_xdg_config_directory() / '{}.bak'.format(filename))
                 img_filename = pixmapfile('guake-notification.png')
                 notifier.showMessage(
                     _('Guake Terminal'),
-                    _(f'Your session.json file is broken, backup to {filename}.bak'),
+                    _('Your session.json file is broken, backup to {}.bak'.format(filename)),
                     img_filename)
                 return
 
@@ -1188,14 +1188,14 @@ class Guake(SimpleGladeApp):
                         nb.delete_page(0)
         except KeyError:
             log.warning('session.json schema is broken')
-            shutil.copy(path, self.get_xdg_config_directory() / f'{filename}.bak')
-            with open(self.get_xdg_config_directory() / f'{filename}.log.err', 'w') as f:
+            shutil.copy(path, self.get_xdg_config_directory() / '{}.bak'.format(filename))
+            with open(self.get_xdg_config_directory() / '{}.log.err'.format(filename), 'w') as f:
                 traceback.print_exc(file=f)
             img_filename = pixmapfile('guake-notification.png')
             notifier.showMessage(
                 _('Guake Terminal'),
-                _(f'Your session.json schema is broken, backup to {filename}.bak,'
-                  f'and error message has been saved to {filename}.log.err'),
+                _('Your session.json schema is broken, backup to {0}.bak,'
+                  'and error message has been saved to {0}.log.err'.format(filename)),
                 img_filename)
 
         # Reset auto save tabs
