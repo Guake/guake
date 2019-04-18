@@ -183,12 +183,14 @@ class GuakeTerminal(Vte.Terminal):
             VTE_REGEX_FLAGS = 0x40080400
             for expr in TERMINAL_MATCH_EXPRS:
                 tag = self.match_add_regex(
-                    Vte.Regex.new_for_match(expr, len(expr), VTE_REGEX_FLAGS), 0)
+                    Vte.Regex.new_for_match(expr, len(expr), VTE_REGEX_FLAGS), 0
+                )
                 self.match_set_cursor_type(tag, Gdk.CursorType.HAND2)
 
             for _useless, match, _otheruseless in QUICK_OPEN_MATCHERS:
                 tag = self.match_add_regex(
-                    Vte.Regex.new_for_match(match, len(match), VTE_REGEX_FLAGS), 0)
+                    Vte.Regex.new_for_match(match, len(match), VTE_REGEX_FLAGS), 0
+                )
                 self.match_set_cursor_type(tag, Gdk.CursorType.HAND2)
         except (GLib.Error, AttributeError) as e:  # pylint: disable=catching-non-exception
             try:
