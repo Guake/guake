@@ -10,6 +10,7 @@ from gi.repository import Gio
 from gi.repository import Gtk
 from gi.repository import Vte
 from gi.repository import GLib
+from gi.repository import GObject
 
 from guake.callbacks import MenuHideCallback
 from guake.callbacks import TerminalContextMenuCallbacks
@@ -213,12 +214,18 @@ class RootTerminalBox(Gtk.Overlay, TerminalHolder):
             # gtk_widget_event: assertion 'WIDGET_REALIZED_FOR_EVENT (widget, event)' failed
             self.search_entry.realize()
             self.search_entry.grab_focus()
+            GObject.signal_handler_block(
+                self.get_notebook(),
+                self.get_notebook().notebook_on_button_press_id)
 
     def hide_search_box(self):
         if self.search_revealer.get_reveal_child():
             self.search_revealer.set_reveal_child(False)
             self.last_terminal_focused.grab_focus()
             self.last_terminal_focused.unselect_all()
+            GObject.signal_handler_unblock(
+                self.get_notebook(),
+                self.get_notebook().notebook_on_button_press_id)
 
     def on_search_entry_focus_out_event(self, event, user_data):
         self.hide_search_box()
