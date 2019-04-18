@@ -48,7 +48,6 @@ from gi.repository import Keybinder
 from gi.repository import Vte
 
 import cairo
-import xdg.BaseDirectory
 
 from guake import gtk_version
 from guake import guake_version
@@ -1143,7 +1142,7 @@ class Guake(SimpleGladeApp):
         pass
 
     def get_xdg_config_directory(self):
-        return Path(xdg.BaseDirectory.save_config_path('guake'))
+        return Path('~/.config/guake').expanduser()
 
     def save_tabs(self, filename='session.json'):
         config = {'schema_version': 1, 'timestamp': int(pytime.time()), 'workspace': {}}
@@ -1181,7 +1180,7 @@ class Guake(SimpleGladeApp):
             try:
                 config = json.load(f)
             except Exception:
-                log.warning('session.json is broken')
+                log.warning('%s is broken', session_filen)
                 shutil.copy(
                     session_file,
                     self.get_xdg_config_directory() / '{0}.bak'.format(filename)
@@ -1189,9 +1188,8 @@ class Guake(SimpleGladeApp):
                 img_filename = pixmapfile('guake-notification.png')
                 notifier.showMessage(
                     _('Guake Terminal'),
-                    _('Your session.json file is broken, backup to {session_filename}.bak').format(
-                        session_filename=filename
-                    ), img_filename
+                    _('Your {session_filename} file is broken, backup to {session_filename}.bak'
+                      ).format(session_filename=filename), img_filename
                 )
                 return
 
@@ -1217,7 +1215,7 @@ class Guake(SimpleGladeApp):
                     for i in range(current_pages):
                         nb.delete_page(0)
         except KeyError:
-            log.warning('session.json schema is broken')
+            log.warning('%s schema is broken', session_file)
             shutil.copy(path, self.get_xdg_config_directory() / '{}.bak'.format(filename))
             with open(self.get_xdg_config_directory() / '{}.log.err'.format(filename), 'w') as f:
                 traceback.print_exc(file=f)
@@ -1225,8 +1223,10 @@ class Guake(SimpleGladeApp):
             notifier.showMessage(
                 _('Guake Terminal'),
                 _(
-                    'Your session.json schema is broken, backup to {0}.bak,'
-                    'and error message has been saved to {0}.log.err'.format(filename)
+                    'Your {session_filename} schema is broken, backup to {session_filename}.bak, '
+                    'and error message has been saved to {session_filename}.log.err.'.format(
+                        session_filename=filename
+                    )
                 ), img_filename
             )
 

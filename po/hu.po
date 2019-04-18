@@ -1346,6 +1346,33 @@ msgstr ""
 msgid "Startup & Tabs (Experiment)"
 msgstr ""
 
+#: guake/guake_app.py:1192
+#, python-brace-format
+msgid ""
+"Your {session_filename} file is broken, backup to {session_filename}.bak"
+msgstr ""
+
+#: guake/guake_app.py:1227
+#, python-brace-format
+msgid ""
+"Your {session_filename} schema is broken, backup to {0}.bak,and error "
+"message has been saved to {session_filename}.log.err"
+msgstr ""
+
+#: guake/guake_app.py:1227
+#, python-brace-format
+msgid ""
+"Your {session_filename} schema is broken, backup to {session_filename}.bak,"
+"and error message has been saved to {session_filename}.log.err."
+msgstr ""
+
+#: guake/guake_app.py:1227
+#, python-brace-format
+msgid ""
+"Your {session_filename} schema is broken, backup to {session_filename}.bak, "
+"and error message has been saved to {session_filename}.log.err."
+msgstr ""
+
 #~ msgid "key binding error"
 #~ msgstr "Hiba történt a billentyűkombináció hozzárendelésekor"
 
