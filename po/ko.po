@@ -1289,6 +1289,58 @@ msgstr ""
 msgid "Bold text is also bright (VTE >=0.52)"
 msgstr ""
 
+#: guake/menus.py:42
+msgid "Save Tabs"
+msgstr ""
+
+#: guake/menus.py:45
+msgid "Restore Tabs"
+msgstr ""
+
+#: guake/prefs.py:113
+msgid "Search terminal"
+msgstr ""
+
+#: guake/main.py:278
+msgid "Save Guake preferences to this filename"
+msgstr ""
+
+#: guake/main.py:286
+msgid "Restore Guake preferences from this file"
+msgstr ""
+
+#: guake/guake_app.py:1192
+#, python-brace-format
+msgid "Your session.json file is broken, backup to {session_filename}.bak"
+msgstr ""
+
+#: guake/guake_app.py:1228
+#, python-brace-format
+msgid ""
+"Your session.json schema is broken, backup to {0}.bak,and error message has "
+"been saved to {0}.log.err"
+msgstr ""
+
+#: guake/guake_app.py:1239
+msgid "Your tabs has been restored!"
+msgstr ""
+
+#: data/prefs.glade:190
+msgid "Restore previous session (tabs)"
+msgstr ""
+
+#: data/prefs.glade:204
+msgid "Enable notification when restore tabs"
+msgstr ""
+
+#: data/prefs.glade:218
+msgid "Automatically save session when the tabs has been modified"
+msgstr ""
+
+#: data/prefs.glade:238
+msgid "Startup & Tabs (Experiment)"
+msgstr ""
+
 #~ msgid "key binding error"
 #~ msgstr "키 바인딩 에러"
 

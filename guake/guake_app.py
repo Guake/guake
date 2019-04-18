@@ -1150,37 +1150,49 @@ class Guake(SimpleGladeApp):
         for key, nb in self.notebook_manager.get_notebooks().items():
             tabs = []
             for index in range(nb.get_n_pages()):
-                page = nb.get_nth_page(index)
-                tabs.append({
-                    'directory': page.child.terminal.get_current_directory(),
-                    'label': nb.get_tab_text_index(index),
-                    'custom_label_set': getattr(page, 'custom_label_set', False)
-                })
+                try:
+                    page = nb.get_nth_page(index)
+                    tabs.append({
+                        'directory': page.child.terminal.get_current_directory(),
+                        'label': nb.get_tab_text_index(index),
+                        'custom_label_set': getattr(page, 'custom_label_set', False)
+                    })
+                except FileNotFoundError:
+                    # discard same broken tabs
+                    pass
             # NOTE: Maybe we will have frame inside the workspace in future
             #       So lets use list to store the tabs (as for each frame)
             config['workspace'][key] = [tabs]
 
-        with open(self.get_xdg_config_directory() / filename, 'w') as f:
+        if not self.get_xdg_config_directory().exists():
+            self.get_xdg_config_directory().mkdir(parents=True)
+        session_file = self.get_xdg_config_directory() / filename
+        with session_file.open('w') as f:
             json.dump(config, f, ensure_ascii=False, indent=4)
 
-        log.info('Guake tabs saved')
+        log.info('Guake tabs saved to %s', session_file)
 
     def restore_tabs(self, filename='session.json', suppress_notify=False):
-        path = self.get_xdg_config_directory() / filename
-        if not path.exists():
+        session_file = self.get_xdg_config_directory() / filename
+        if not session_file.exists():
             log.info('Cannot found tabs session.json file')
             return
-        with open(path) as f:
+        with session_file.open() as f:
             try:
                 config = json.load(f)
             except Exception:
                 log.warning('session.json is broken')
-                shutil.copy(path, self.get_xdg_config_directory() / '{}.bak'.format(filename))
+                shutil.copy(
+                    session_file,
+                    self.get_xdg_config_directory() / '{0}.bak'.format(filename)
+                )
                 img_filename = pixmapfile('guake-notification.png')
                 notifier.showMessage(
                     _('Guake Terminal'),
-                    _('Your session.json file is broken, backup to {}.bak'.format(filename)),
-                    img_filename)
+                    _('Your session.json file is broken, backup to {session_filename}.bak').format(
+                        session_filename=filename
+                    ), img_filename
+                )
                 return
 
         # Disable auto save tabs
@@ -1198,9 +1210,8 @@ class Guake(SimpleGladeApp):
                 for tabs in frames:
                     for index, tab in enumerate(tabs):
                         nb.new_page_with_focus(
-                            tab['directory'],
-                            tab['label'],
-                            tab['custom_label_set'])
+                            tab['directory'], tab['label'], tab['custom_label_set']
+                        )
 
                     # Remove original pages in notebook
                     for i in range(current_pages):
@@ -1213,20 +1224,18 @@ class Guake(SimpleGladeApp):
             img_filename = pixmapfile('guake-notification.png')
             notifier.showMessage(
                 _('Guake Terminal'),
-                _('Your session.json schema is broken, backup to {0}.bak,'
-                  'and error message has been saved to {0}.log.err'.format(filename)),
-                img_filename)
+                _(
+                    'Your session.json schema is broken, backup to {0}.bak,'
+                    'and error message has been saved to {0}.log.err'.format(filename)
+                ), img_filename
+            )
 
         # Reset auto save tabs
         self.settings.general.set_boolean('save-tabs-when-changed', v)
 
         # Notify the user
-        if (self.settings.general.get_boolean('restore-tabs-notify') and
-                not suppress_notify):
+        if (self.settings.general.get_boolean('restore-tabs-notify') and not suppress_notify):
             filename = pixmapfile('guake-notification.png')
-            notifier.showMessage(
-                _("Guake Terminal"),
-                _("Your tabs has been restored!"),
-                filename)
+            notifier.showMessage(_("Guake Terminal"), _("Your tabs has been restored!"), filename)
 
-        log.info('Guake tabs restored')
+        log.info('Guake tabs restored from %s', session_file)

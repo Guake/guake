@@ -40,7 +40,6 @@ from guake.globals import ALIGN_RIGHT
 from guake.globals import ALIGN_TOP
 from guake.globals import ALWAYS_ON_PRIMARY
 
-
 log = logging.getLogger(__name__)
 
 
@@ -59,6 +58,7 @@ def get_server_time(widget):
 def save_tabs_when_changed(func):
     """Decorator for save-tabs-when-changed
     """
+
     def wrapper(*args, **kwargs):
         func(*args, **kwargs)
         log.debug("mom, I've been called: %s %s", func.__name__, func)
@@ -80,6 +80,7 @@ def save_tabs_when_changed(func):
         # Tada!
         if g and g.settings.general.get_boolean('save-tabs-when-changed'):
             g.save_tabs()
+
     return wrapper
 
 
@@ -94,8 +95,7 @@ def restore_preferences(filename):
     # XXX: Hardcode?
     with open(filename, 'rb') as f:
         prefs = f.read()
-    p = subprocess.Popen(['dconf', 'load', '/apps/guake/'],
-                         stdin=subprocess.PIPE)
+    p = subprocess.Popen(['dconf', 'load', '/apps/guake/'], stdin=subprocess.PIPE)
     p.communicate(input=prefs)
 
 

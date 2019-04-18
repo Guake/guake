@@ -11,8 +11,7 @@ def nb(mocker):
     targets = [
         'guake.notebook.TerminalNotebook.terminal_spawn',
         'guake.notebook.TerminalNotebook.terminal_attached',
-        'guake.notebook.TerminalNotebook.guake',
-        'guake.notebook.TerminalBox.set_terminal'
+        'guake.notebook.TerminalNotebook.guake', 'guake.notebook.TerminalBox.set_terminal'
     ]
     for target in targets:
         mocker.patch(target, create=True)

@@ -2,17 +2,22 @@
 # pylint: disable=redefined-outer-name
 
 import pytest
+import os
 
 from guake import guake_version
 from guake.about import AboutDialog
-from locale import gettext as _
 
 
 @pytest.fixture
 def dialog(mocker):
     mocker.patch('guake.simplegladeapp.Gtk.Widget.show_all')
-    ad = AboutDialog()
-    return ad
+    try:
+        old_os_environ = os.environ
+        os.environ["LANGUAGE"] = "en_US.UTF-8"
+        ad = AboutDialog()
+        yield ad
+    finally:
+        os.environ = old_os_environ
 
 
 def test_version_test(dialog):
@@ -20,4 +25,4 @@ def test_version_test(dialog):
 
 
 def test_title(dialog):
-    assert dialog.get_widget('aboutdialog').get_title() == _('About Guake')
+    assert dialog.get_widget('aboutdialog').get_title() == 'About Guake'

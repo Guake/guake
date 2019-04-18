@@ -90,36 +90,28 @@ HOTKEYS = [
     {
         'label': _('General'),
         'key': 'general',
-        'keys': [
-            {
-                'key': 'show-hide',
-                'label': _('Toggle Guake visibility')
-            },
-            {
-                'key': 'show-focus',
-                'label': _('Show and focus Guake window')
-            },
-            {
-                'key': 'toggle-fullscreen',
-                'label': _('Toggle Fullscreen')
-            },
-            {
-                'key': 'toggle-hide-on-lose-focus',
-                'label': _('Toggle Hide on Lose Focus')
-            },
-            {
-                'key': 'quit',
-                'label': _('Quit')
-            },
-            {
-                'key': 'reset-terminal',
-                'label': _('Reset terminal')
-            },
-            {
-                'key': 'search-terminal',
-                'label': _('Search terminal')
-            }
-        ]
+        'keys': [{
+            'key': 'show-hide',
+            'label': _('Toggle Guake visibility')
+        }, {
+            'key': 'show-focus',
+            'label': _('Show and focus Guake window')
+        }, {
+            'key': 'toggle-fullscreen',
+            'label': _('Toggle Fullscreen')
+        }, {
+            'key': 'toggle-hide-on-lose-focus',
+            'label': _('Toggle Hide on Lose Focus')
+        }, {
+            'key': 'quit',
+            'label': _('Quit')
+        }, {
+            'key': 'reset-terminal',
+            'label': _('Reset terminal')
+        }, {
+            'key': 'search-terminal',
+            'label': _('Search terminal')
+        }]
     },
     {
         'label': _('Tab management'),

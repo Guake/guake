@@ -5,12 +5,12 @@ from locale import gettext as _
 import gi
 gi.require_version('Vte', '2.91')  # vte-0.42
 gi.require_version('Gtk', '3.0')
+from gi.repository import GLib
+from gi.repository import GObject
 from gi.repository import Gdk
 from gi.repository import Gio
 from gi.repository import Gtk
 from gi.repository import Vte
-from gi.repository import GLib
-from gi.repository import GObject
 
 from guake.callbacks import MenuHideCallback
 from guake.callbacks import TerminalContextMenuCallbacks
@@ -20,7 +20,6 @@ from guake.menus import mk_terminal_context_menu
 from guake.utils import HidePrevention
 from guake.utils import TabNameUtils
 from guake.utils import save_tabs_when_changed
-
 
 log = logging.getLogger(__name__)
 
@@ -118,17 +117,16 @@ class RootTerminalBox(Gtk.Overlay, TerminalHolder):
             b'#search-frame border {'
             b'    padding: 5px 5px 5px 5px;'
             b'    background-color: #CFCFCF;'
-            b'}')
+            b'}'
+        )
         Gtk.StyleContext.add_provider_for_screen(
-            Gdk.Screen.get_default(),
-            css_provider,
-            Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION)
+            Gdk.Screen.get_default(), css_provider, Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION
+        )
 
         # Add to revealer
         self.search_revealer.add(self.search_frame)
         self.search_revealer.set_transition_duration(500)
-        self.search_revealer.set_transition_type(
-            Gtk.RevealerTransitionType.CROSSFADE)
+        self.search_revealer.set_transition_type(Gtk.RevealerTransitionType.CROSSFADE)
         self.search_revealer.set_valign(Gtk.Align.END)
         self.search_revealer.set_halign(Gtk.Align.END)
 
@@ -136,16 +134,12 @@ class RootTerminalBox(Gtk.Overlay, TerminalHolder):
         self.add_overlay(self.search_revealer)
 
         # Events
-        self.search_entry.connect('key-press-event',
-                                  self.on_search_entry_keypress)
+        self.search_entry.connect('key-press-event', self.on_search_entry_keypress)
         self.search_entry.connect('changed', self.do_search)
         self.search_entry.connect('activate', self.do_search)
-        self.search_entry.connect('focus-out-event',
-                                  self.on_search_entry_focus_out_event)
-        self.search_next_btn.connect('clicked',
-                                     self.on_search_next_clicked)
-        self.search_prev_btn.connect('clicked',
-                                     self.on_search_prev_clicked)
+        self.search_entry.connect('focus-out-event', self.on_search_entry_focus_out_event)
+        self.search_next_btn.connect('clicked', self.on_search_next_clicked)
+        self.search_prev_btn.connect('clicked', self.on_search_prev_clicked)
         self.search_prev = False
 
     def get_terminals(self):
@@ -216,7 +210,8 @@ class RootTerminalBox(Gtk.Overlay, TerminalHolder):
             self.search_entry.grab_focus()
             GObject.signal_handler_block(
                 self.get_notebook(),
-                self.get_notebook().notebook_on_button_press_id)
+                self.get_notebook().notebook_on_button_press_id
+            )
 
     def hide_search_box(self):
         if self.search_revealer.get_reveal_child():
@@ -225,7 +220,8 @@ class RootTerminalBox(Gtk.Overlay, TerminalHolder):
             self.last_terminal_focused.unselect_all()
             GObject.signal_handler_unblock(
                 self.get_notebook(),
-                self.get_notebook().notebook_on_button_press_id)
+                self.get_notebook().notebook_on_button_press_id
+            )
 
     def on_search_entry_focus_out_event(self, event, user_data):
         self.hide_search_box()

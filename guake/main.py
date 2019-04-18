@@ -38,8 +38,8 @@ log = logging.getLogger(__name__)
 
 from guake.globals import NAME
 from guake.globals import bindtextdomain
-from guake.utils import save_preferences
 from guake.utils import restore_preferences
+from guake.utils import save_preferences
 
 # When we are in the document generation on readthedocs, we do not have paths.py generated
 try:

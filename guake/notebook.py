@@ -78,7 +78,8 @@ class TerminalNotebook(Gtk.Notebook):
         self.add_events(Gdk.EventMask.SCROLL_MASK)
         self.connect('scroll-event', self.scroll_callback.on_scroll)
         self.notebook_on_button_press_id = self.connect(
-            "button-press-event", self.on_button_press, None)
+            "button-press-event", self.on_button_press, None
+        )
 
         self.new_page_button = Gtk.Button(
             image=Gtk.Image.new_from_icon_name("tab-new", Gtk.IconSize.MENU), visible=True
@@ -137,7 +138,10 @@ class TerminalNotebook(Gtk.Notebook):
     def get_running_fg_processes_count_page(self, index):
         total_procs = 0
         for terminal in self.get_terminals_for_page(index):
-            fdpty = terminal.get_pty().get_fd()
+            pty = terminal.get_pty()
+            if not pty:
+                continue
+            fdpty = pty.get_fd()
             term_pid = terminal.pid
             try:
                 fgpid = posix.tcgetpgrp(fdpty)
@@ -236,8 +240,7 @@ class TerminalNotebook(Gtk.Notebook):
         terminal.emit("focus", Gtk.DirectionType.TAB_FORWARD)
         self.emit('terminal-spawned', terminal, terminal.pid)
 
-    def new_page_with_focus(self, directory=None,
-                            label=None, user_set=False):
+    def new_page_with_focus(self, directory=None, label=None, user_set=False):
         box, page_num, terminal = self.new_page(directory)
         self.set_current_page(page_num)
         if not label:
