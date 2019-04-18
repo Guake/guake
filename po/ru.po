@@ -12,17 +12,17 @@ msgstr ""
 "Project-Id-Version: Guake 0.4.5\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-04-17 13:26+0300\n"
-"PO-Revision-Date: 2018-10-03 14:00+0000\n"
+"PO-Revision-Date: 2019-04-20 13:33+0000\n"
 "Last-Translator: Igor <f2404@yandex.ru>\n"
-"Language-Team: Russian <https://hosted.weblate.org/projects/guake/guake/ru/"
-">\n"
+"Language-Team: Russian <https://hosted.weblate.org/projects/guake/guake/ru/>"
+"\n"
 "Language: ru\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
-"%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
-"X-Generator: Weblate 3.2-dev\n"
+"Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<="
+"4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
+"X-Generator: Weblate 3.6\n"
 
 #: ../data/about.glade.h:1
 msgid "About Guake"
@@ -484,7 +484,7 @@ msgid ""
 "Control-H"
 msgstr ""
 "ASCII DEL\n"
-"Escape sequence\n"
+"Escape-последовательность\n"
 "Control-H"
 
 #: ../data/prefs.glade.h:96
@@ -1297,65 +1297,66 @@ msgstr ""
 
 #: guake/prefs.py:128
 msgid "New tab in home directory"
-msgstr ""
+msgstr "Новая вкладка в домашнем каталоге"
 
 #: guake/dialogs.py:56
 #, python-brace-format
 msgid " on {0} workspaces"
-msgstr ""
+msgstr " на {0} рабочих местах"
 
 #: guake/main.py:211
 msgid "Change Guake palette scheme"
-msgstr ""
+msgstr "Изменить схему палитры Guake"
 
 #: data/prefs.glade:331
 msgid "Use workspace-specific tab sets (requires restart)"
 msgstr ""
+"Использовать вкладки, специфичные для рабочих мест (требуется перезапуск)"
 
 #: guake/main.py:175
 msgid "Split the selected tab vertically."
-msgstr ""
+msgstr "Разделить выбранную вкладку вертикально."
 
 #: guake/main.py:183
 msgid "Split the selected tab horizontally."
-msgstr ""
+msgstr "Разделить выбранную вкладку горизонтально."
 
 #: data/prefs.glade:348
 msgid "Show close buttons for tabs"
-msgstr ""
+msgstr "Показывать кнопки закрытия для вкладок"
 
 #: data/prefs.glade:1682
 msgid "Bold text is also bright"
-msgstr ""
+msgstr "Полужирный текст также яркий"
 
 #: data/prefs.glade:1682
 msgid "Bold text is also bright (VTE >=0.52)"
-msgstr ""
+msgstr "Полужирный текст также яркий (VTE >=0.52)"
 
 #: guake/menus.py:42
 msgid "Save Tabs"
-msgstr ""
+msgstr "Сохранить вкладки"
 
 #: guake/menus.py:45
 msgid "Restore Tabs"
-msgstr ""
+msgstr "Восстановить вкладки"
 
 #: guake/prefs.py:113
 msgid "Search terminal"
-msgstr ""
+msgstr "Искать терминал"
 
 #: guake/main.py:278
 msgid "Save Guake preferences to this filename"
-msgstr ""
+msgstr "Сохранить настройки Guake в этом имени файла"
 
 #: guake/main.py:286
 msgid "Restore Guake preferences from this file"
-msgstr ""
+msgstr "Восстанавливать настройки Guake из этого файла"
 
 #: guake/guake_app.py:1192
 #, python-brace-format
 msgid "Your session.json file is broken, backup to {session_filename}.bak"
-msgstr ""
+msgstr "Ваш файл session.json повреждён, возврат к {session_filename}.bak"
 
 #: guake/guake_app.py:1228
 #, python-brace-format
@@ -1363,32 +1364,34 @@ msgid ""
 "Your session.json schema is broken, backup to {0}.bak,and error message has "
 "been saved to {0}.log.err"
 msgstr ""
+"Ваша схема session.json повреждена, возврат к {0}.bak, сообщение об ошибке "
+"сохранено в {0}.log.err"
 
 #: guake/guake_app.py:1239
 msgid "Your tabs has been restored!"
-msgstr ""
+msgstr "Ваши вкладки восстановлены!"
 
 #: data/prefs.glade:190
 msgid "Restore previous session (tabs)"
-msgstr ""
+msgstr "Восстановить предыдущую сессию (вкладки)"
 
 #: data/prefs.glade:204
 msgid "Enable notification when restore tabs"
-msgstr ""
+msgstr "Включить уведомление при восстановлении вкладок"
 
 #: data/prefs.glade:218
 msgid "Automatically save session when the tabs has been modified"
-msgstr ""
+msgstr "Автоматически сохранять сессию при изменении вкладок"
 
 #: data/prefs.glade:238
 msgid "Startup & Tabs (Experiment)"
-msgstr ""
+msgstr "Запуск и вкладки (эксперимент)"
 
 #: guake/guake_app.py:1192
 #, python-brace-format
 msgid ""
 "Your {session_filename} file is broken, backup to {session_filename}.bak"
-msgstr ""
+msgstr "Ваш файл {session_filename} сломан, возврат к {session_filename}.bak"
 
 #: guake/guake_app.py:1227
 #, python-brace-format
@@ -1396,6 +1399,8 @@ msgid ""
 "Your {session_filename} schema is broken, backup to {0}.bak,and error "
 "message has been saved to {session_filename}.log.err"
 msgstr ""
+"Ваша схема {session_filename} сломана, возврат к {0}.bak, сообщение об "
+"ошибке сохранено в {session_filename}.log.err"
 
 #: guake/guake_app.py:1227
 #, python-brace-format
@@ -1403,6 +1408,8 @@ msgid ""
 "Your {session_filename} schema is broken, backup to {session_filename}.bak,"
 "and error message has been saved to {session_filename}.log.err."
 msgstr ""
+"Ваша схема {session_filename} сломана, возврат к {session_filename}.bak, "
+"сообщение об ошибке сохранено в {session_filename}.log.err."
 
 #: guake/guake_app.py:1227
 #, python-brace-format
@@ -1410,6 +1417,8 @@ msgid ""
 "Your {session_filename} schema is broken, backup to {session_filename}.bak, "
 "and error message has been saved to {session_filename}.log.err."
 msgstr ""
+"Ваша схема {session_filename} сломана, возврат к {session_filename}.bak, "
+"сообщение об ошибке сохранено в {session_filename}.log.err."
 
 #~ msgid "Path to script executed on Guake start:"
 #~ msgstr "Путь к скрипту, запускаемому при старте Guake:"
