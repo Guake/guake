@@ -77,7 +77,8 @@ class TerminalNotebook(Gtk.Notebook):
         self.scroll_callback = NotebookScrollCallback(self)
         self.add_events(Gdk.EventMask.SCROLL_MASK)
         self.connect('scroll-event', self.scroll_callback.on_scroll)
-        self.connect("button-press-event", self.on_button_press, None)
+        self.notebook_on_button_press_id = self.connect(
+            "button-press-event", self.on_button_press, None)
 
         self.new_page_button = Gtk.Button(
             image=Gtk.Image.new_from_icon_name("tab-new", Gtk.IconSize.MENU), visible=True
@@ -100,8 +101,6 @@ class TerminalNotebook(Gtk.Notebook):
                 menu.popup(None, None, None, None, event.button, event.time)
 
         elif event.type == Gdk.EventType.DOUBLE_BUTTON_PRESS and event.button == 1:
-            # XXX: WTF is this?
-            return
             self.new_page_with_focus()
 
         return False
