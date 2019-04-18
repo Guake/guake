@@ -9,16 +9,16 @@ msgstr ""
 "Project-Id-Version: Guake 0.4.5\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-08-18 17:32+0200\n"
-"PO-Revision-Date: 2018-10-03 14:00+0000\n"
+"PO-Revision-Date: 2019-04-20 13:33+0000\n"
 "Last-Translator: Allan Nordhøy <epost@anotheragency.no>\n"
 "Language-Team: Norwegian Bokmål <https://hosted.weblate.org/projects/guake/"
-"guake/nb/>\n"
+"guake/nb_NO/>\n"
 "Language: nb\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 3.2-dev\n"
+"X-Generator: Weblate 3.6\n"
 
 #: ../data/about.glade.h:1
 msgid "About Guake"
@@ -1344,105 +1344,117 @@ msgstr ""
 
 #: guake/prefs.py:128
 msgid "New tab in home directory"
-msgstr ""
+msgstr "Ny fane i hjemmemappe"
 
 #: guake/dialogs.py:56
 #, python-brace-format
 msgid " on {0} workspaces"
-msgstr ""
+msgstr " på {0} arbeidsområder"
 
 #: guake/main.py:211
+#, fuzzy
 msgid "Change Guake palette scheme"
-msgstr ""
+msgstr "Endre Guake palett-valg"
 
 #: data/prefs.glade:331
 msgid "Use workspace-specific tab sets (requires restart)"
-msgstr ""
+msgstr "Bruk arbeidsområdespesifikke fanesett (omstart kreves)"
 
 #: guake/main.py:175
 msgid "Split the selected tab vertically."
-msgstr ""
+msgstr "Del valgt fane loddrett."
 
 #: guake/main.py:183
 msgid "Split the selected tab horizontally."
-msgstr ""
+msgstr "Del valft fane vannrett."
 
 #: data/prefs.glade:348
 msgid "Show close buttons for tabs"
-msgstr ""
+msgstr "Vis lukkeknapper for faner"
 
 #: data/prefs.glade:1682
 msgid "Bold text is also bright"
-msgstr ""
+msgstr "Fet tekst er også lysnet"
 
 #: data/prefs.glade:1682
 msgid "Bold text is also bright (VTE >=0.52)"
-msgstr ""
+msgstr "Fet tekst er også lysnet (VTE  >=0.52)"
 
 #: guake/menus.py:42
 msgid "Save Tabs"
-msgstr ""
+msgstr "Lagre faner"
 
 #: guake/menus.py:45
 msgid "Restore Tabs"
-msgstr ""
+msgstr "Gjenopprett faner"
 
 #: guake/prefs.py:113
+#, fuzzy
 msgid "Search terminal"
-msgstr ""
+msgstr "Søk i terminalen"
 
 #: guake/main.py:278
+#, fuzzy
 msgid "Save Guake preferences to this filename"
-msgstr ""
+msgstr "Lagre Guake-innstillinger til denne filen"
 
 #: guake/main.py:286
 msgid "Restore Guake preferences from this file"
-msgstr ""
+msgstr "Gjenopprett Guake-innstillinger fra denne filen"
 
 #: guake/guake_app.py:1192
 #, python-brace-format
 msgid "Your session.json file is broken, backup to {session_filename}.bak"
 msgstr ""
+"Din session.json-fil er ødelagt, sikkerhetskopier til {session_filename}.bak"
 
 #: guake/guake_app.py:1228
-#, python-brace-format
+#, fuzzy, python-brace-format
 msgid ""
 "Your session.json schema is broken, backup to {0}.bak,and error message has "
 "been saved to {0}.log.err"
 msgstr ""
+"Din session.json-fil er ødelagt, sikkerhetskopier til {0}.bag, og "
+"feilmeldingen har blitt lagret til {0}.log.err"
 
 #: guake/guake_app.py:1239
+#, fuzzy
 msgid "Your tabs has been restored!"
-msgstr ""
+msgstr "Fanene dine har blitt gjenopprettet."
 
 #: data/prefs.glade:190
 msgid "Restore previous session (tabs)"
-msgstr ""
+msgstr "Gjenopprett forrige økt (faner)"
 
 #: data/prefs.glade:204
 msgid "Enable notification when restore tabs"
-msgstr ""
+msgstr "Skru på merknader når faner gjenopprettes"
 
 #: data/prefs.glade:218
 msgid "Automatically save session when the tabs has been modified"
-msgstr ""
+msgstr "Lagre økt automatisk når fanene har blitt endret"
 
 #: data/prefs.glade:238
+#, fuzzy
 msgid "Startup & Tabs (Experiment)"
-msgstr ""
+msgstr "Oppstart og faner (eksperimentelt)"
 
 #: guake/guake_app.py:1192
 #, python-brace-format
 msgid ""
 "Your {session_filename} file is broken, backup to {session_filename}.bak"
 msgstr ""
+"Din {session_filename}-fil er ødelagt, sikkerhetskopier til "
+"{session_filename}.bak"
 
 #: guake/guake_app.py:1227
-#, python-brace-format
+#, fuzzy, python-brace-format
 msgid ""
 "Your {session_filename} schema is broken, backup to {0}.bak,and error "
 "message has been saved to {session_filename}.log.err"
 msgstr ""
+"Din {session_filename}-fil er ødelagt, sikkerhetskopier til {0}.bak. "
+"Feilmledingen har blitt lagret i {session_filename}.log.err"
 
 #: guake/guake_app.py:1227
 #, python-brace-format
@@ -1450,6 +1462,9 @@ msgid ""
 "Your {session_filename} schema is broken, backup to {session_filename}.bak,"
 "and error message has been saved to {session_filename}.log.err."
 msgstr ""
+"Din {session_filename}-fil er ødelagt, sikkerhetskopier til "
+"{session_filename}.bak. Feilmledingen har blitt lagret i "
+"{session_filename}.log.err"
 
 #: guake/guake_app.py:1227
 #, python-brace-format
@@ -1457,6 +1472,9 @@ msgid ""
 "Your {session_filename} schema is broken, backup to {session_filename}.bak, "
 "and error message has been saved to {session_filename}.log.err."
 msgstr ""
+"Din {session_filename}-fil er ødelagt, sikkerhetskopier til "
+"{session_filename}.bak. Feilmledingen har blitt lagret i "
+"{session_filename}.log.err"
 
 #~ msgid "key binding error"
 #~ msgstr "Hurtigtast error"
