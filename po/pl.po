@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: guake\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-04-22 19:49+0200\n"
-"PO-Revision-Date: 2018-10-02 13:43+0000\n"
+"PO-Revision-Date: 2019-04-18 16:36+0000\n"
 "Last-Translator: Piotr Drąg <piotrdrag@gmail.com>\n"
 "Language-Team: Polish <https://hosted.weblate.org/projects/guake/guake/pl/>\n"
 "Language: pl\n"
@@ -19,7 +19,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 "
 "|| n%100>=20) ? 1 : 2;\n"
-"X-Generator: Weblate 3.2-dev\n"
+"X-Generator: Weblate 3.6-dev\n"
 
 #: guake/keybindings.py:94 guake/guake_app.py:191 guake/guake_app.py:403
 #: guake/about.py:54
@@ -1028,65 +1028,69 @@ msgstr ""
 
 #: guake/prefs.py:128
 msgid "New tab in home directory"
-msgstr ""
+msgstr "Nowa karta w katalogu domowym"
 
 #: guake/dialogs.py:56
 #, python-brace-format
 msgid " on {0} workspaces"
-msgstr ""
+msgstr " na obszarach roboczych: {0}"
 
 #: guake/main.py:211
 msgid "Change Guake palette scheme"
-msgstr ""
+msgstr "Zmienia schemat palety Guake"
 
 #: data/prefs.glade:331
 msgid "Use workspace-specific tab sets (requires restart)"
 msgstr ""
+"Używa zestawów kart dla konkretnych obszarów roboczych (wymaga ponownego "
+"uruchomienia)"
 
 #: guake/main.py:175
 msgid "Split the selected tab vertically."
-msgstr ""
+msgstr "Dzieli wybraną kartę w pionie."
 
 #: guake/main.py:183
 msgid "Split the selected tab horizontally."
-msgstr ""
+msgstr "Dzieli wybraną kartę w poziomie."
 
 #: data/prefs.glade:348
 msgid "Show close buttons for tabs"
-msgstr ""
+msgstr "Przyciski zamknięcia kart"
 
 #: data/prefs.glade:1682
 msgid "Bold text is also bright"
-msgstr ""
+msgstr "Pogrubiony tekst jest także jasny"
 
 #: data/prefs.glade:1682
 msgid "Bold text is also bright (VTE >=0.52)"
 msgstr ""
+"Pogrubiony tekst jest także jasny (biblioteka VTE w wersji co najmniej 0.52)"
 
 #: guake/menus.py:42
 msgid "Save Tabs"
-msgstr ""
+msgstr "Zapisz karty"
 
 #: guake/menus.py:45
 msgid "Restore Tabs"
-msgstr ""
+msgstr "Przywróć karty"
 
 #: guake/prefs.py:113
 msgid "Search terminal"
-msgstr ""
+msgstr "Wyszukaj w terminalu"
 
 #: guake/main.py:278
 msgid "Save Guake preferences to this filename"
-msgstr ""
+msgstr "Zapisywanie preferencji programu Guake do tego pliku"
 
 #: guake/main.py:286
 msgid "Restore Guake preferences from this file"
-msgstr ""
+msgstr "Przywracanie preferencji programu Guake z tego pliku"
 
 #: guake/guake_app.py:1192
 #, python-brace-format
 msgid "Your session.json file is broken, backup to {session_filename}.bak"
 msgstr ""
+"Plik session.json jest uszkodzony, kopia zapasowa w {session_filename}.bak"
 
 #: guake/guake_app.py:1228
 #, python-brace-format
@@ -1094,36 +1098,40 @@ msgid ""
 "Your session.json schema is broken, backup to {0}.bak,and error message has "
 "been saved to {0}.log.err"
 msgstr ""
+"Schemat session.json jest uszkodzony, kopia zapasowa w {0}.bak, a komunikat "
+"o błędzie został zapisany w {0}.log.err"
 
 #: guake/guake_app.py:1239
 msgid "Your tabs has been restored!"
-msgstr ""
+msgstr "Przywrócono karty"
 
 #: guake/tests/test_about.py:23
 msgid "About Guake"
-msgstr ""
+msgstr "O programie"
 
 #: data/prefs.glade:190
 msgid "Restore previous session (tabs)"
-msgstr ""
+msgstr "Przywracanie poprzedniej sesji (kart)"
 
 #: data/prefs.glade:204
 msgid "Enable notification when restore tabs"
-msgstr ""
+msgstr "Powiadomienie po przywróceniu kart"
 
 #: data/prefs.glade:218
 msgid "Automatically save session when the tabs has been modified"
-msgstr ""
+msgstr "Automatyczne zapisywanie sesji po modyfikacji kart"
 
 #: data/prefs.glade:238
 msgid "Startup & Tabs (Experiment)"
-msgstr ""
+msgstr "Uruchamianie i karty (eksperymentalne)"
 
 #: guake/guake_app.py:1192
 #, python-brace-format
 msgid ""
 "Your {session_filename} file is broken, backup to {session_filename}.bak"
 msgstr ""
+"Plik {session_filename} jest uszkodzony, kopia zapasowa w "
+"{session_filename}.bak"
 
 #: guake/guake_app.py:1227
 #, python-brace-format
@@ -1131,6 +1139,8 @@ msgid ""
 "Your {session_filename} schema is broken, backup to {0}.bak,and error "
 "message has been saved to {session_filename}.log.err"
 msgstr ""
+"Schemat {session_filename} jest uszkodzony, kopia zapasowa w {0}.bak, a "
+"komunikat o błędzie został zapisany w {session_filename}.log.err"
 
 #: guake/guake_app.py:1227
 #, python-brace-format
@@ -1138,6 +1148,9 @@ msgid ""
 "Your {session_filename} schema is broken, backup to {session_filename}.bak,"
 "and error message has been saved to {session_filename}.log.err."
 msgstr ""
+"Schemat {session_filename} jest uszkodzony, kopia zapasowa w "
+"{session_filename}.bak, a komunikat o błędzie został zapisany w "
+"{session_filename}.log.err."
 
 #: guake/guake_app.py:1227
 #, python-brace-format
@@ -1145,3 +1158,6 @@ msgid ""
 "Your {session_filename} schema is broken, backup to {session_filename}.bak, "
 "and error message has been saved to {session_filename}.log.err."
 msgstr ""
+"Schemat {session_filename} jest uszkodzony, kopia zapasowa w "
+"{session_filename}.bak, a komunikat o błędzie został zapisany w "
+"{session_filename}.log.err."
