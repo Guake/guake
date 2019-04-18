@@ -177,12 +177,18 @@ class GuakeTerminal(Vte.Terminal):
         highlight text that matches them.
         """
         try:
+            # NOTE: PCRE2_UTF | PCRE2_NO_UTF_CHECK | PCRE2_MULTILINE
+            # reference from vte/bindings/vala/app.vala, flags = 0x40080400u
+            # also ref: https://mail.gnome.org/archives/commits-list/2016-September/msg06218.html
+            VTE_REGEX_FLAGS = 0x40080400
             for expr in TERMINAL_MATCH_EXPRS:
-                tag = self.match_add_regex(Vte.Regex.new_for_match(expr, len(expr), 0), 0)
+                tag = self.match_add_regex(
+                    Vte.Regex.new_for_match(expr, len(expr), VTE_REGEX_FLAGS), 0)
                 self.match_set_cursor_type(tag, Gdk.CursorType.HAND2)
 
             for _useless, match, _otheruseless in QUICK_OPEN_MATCHERS:
-                tag = self.match_add_regex(Vte.Regex.new_for_match(match, len(match), 0), 0)
+                tag = self.match_add_regex(
+                    Vte.Regex.new_for_match(match, len(match), VTE_REGEX_FLAGS), 0)
                 self.match_set_cursor_type(tag, Gdk.CursorType.HAND2)
         except (GLib.Error, AttributeError) as e:  # pylint: disable=catching-non-exception
             try:
