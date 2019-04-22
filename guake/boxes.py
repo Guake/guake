@@ -245,18 +245,12 @@ class RootTerminalBox(Gtk.Overlay, TerminalHolder):
     def on_search_prev_clicked(self, widget):
         term = self.last_terminal_focused
         result = term.search_find_previous()
-        self.search_prev_btn.set_sensitive(result)
-        self.search_next_btn.set_sensitive(True)
-
         if not result:
             term.search_find_previous()
 
     def on_search_next_clicked(self, widget):
         term = self.last_terminal_focused
         result = term.search_find_next()
-        self.search_next_btn.set_sensitive(result)
-        self.search_prev_btn.set_sensitive(True)
-
         if not result:
             term.search_find_next()
 
@@ -291,8 +285,6 @@ class RootTerminalBox(Gtk.Overlay, TerminalHolder):
             self.searchre = GLib.Regex(text, 0, 0)
             term.search_set_gregex(self.searchre, 0)
 
-        self.search_next_btn.set_sensitive(True)
-        self.search_prev_btn.set_sensitive(True)
         self.do_search(None)
 
     def do_search(self, widget):
