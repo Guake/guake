@@ -727,7 +727,13 @@ class Guake(SimpleGladeApp):
 
         self.prev_accel_search_terminal_time = current_time
         if box.search_revealer.get_reveal_child():
-            box.hide_search_box()
+            if box.search_entry.has_focus():
+                box.hide_search_box()
+            else:
+                # The box was showed, but out of focus
+                # Don't hide it, re-grab the focus to search entry
+                box.search_entry.grab_focus()
+                box.block_notebook_on_button_press_id()
         else:
             box.show_search_box()
 
