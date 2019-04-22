@@ -1463,8 +1463,8 @@ msgid ""
 "and error message has been saved to {session_filename}.log.err."
 msgstr ""
 "Din {session_filename}-fil er ødelagt, sikkerhetskopier til "
-"{session_filename}.bak. Feilmledingen har blitt lagret i "
-"{session_filename}.log.err"
+"{session_filename}.bak. Feilmledingen har blitt lagret i {session_filename}."
+"log.err"
 
 #: guake/guake_app.py:1227
 #, python-brace-format
@@ -1473,8 +1473,16 @@ msgid ""
 "and error message has been saved to {session_filename}.log.err."
 msgstr ""
 "Din {session_filename}-fil er ødelagt, sikkerhetskopier til "
-"{session_filename}.bak. Feilmledingen har blitt lagret i "
-"{session_filename}.log.err"
+"{session_filename}.bak. Feilmledingen har blitt lagret i {session_filename}."
+"log.err"
+
+#: guake/notebook.py:317
+msgid ""
+"You are going to restore *all* the tabs!\n"
+"which means all your terminals & pages will be replaced.\n"
+"\n"
+"Do you want to continue?"
+msgstr ""
 
 #~ msgid "key binding error"
 #~ msgstr "Hurtigtast error"

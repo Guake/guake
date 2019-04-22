@@ -1130,8 +1130,8 @@ msgstr "Uruchamianie i karty (eksperymentalne)"
 msgid ""
 "Your {session_filename} file is broken, backup to {session_filename}.bak"
 msgstr ""
-"Plik {session_filename} jest uszkodzony, kopia zapasowa w "
-"{session_filename}.bak"
+"Plik {session_filename} jest uszkodzony, kopia zapasowa w {session_filename}."
+"bak"
 
 #: guake/guake_app.py:1227
 #, python-brace-format
@@ -1139,8 +1139,8 @@ msgid ""
 "Your {session_filename} schema is broken, backup to {0}.bak,and error "
 "message has been saved to {session_filename}.log.err"
 msgstr ""
-"Schemat {session_filename} jest uszkodzony, kopia zapasowa w {0}.bak, a "
-"komunikat o błędzie został zapisany w {session_filename}.log.err"
+"Schemat {session_filename} jest uszkodzony, kopia zapasowa w {0}.bak, "
+"a komunikat o błędzie został zapisany w {session_filename}.log.err"
 
 #: guake/guake_app.py:1227
 #, python-brace-format
@@ -1148,9 +1148,9 @@ msgid ""
 "Your {session_filename} schema is broken, backup to {session_filename}.bak,"
 "and error message has been saved to {session_filename}.log.err."
 msgstr ""
-"Schemat {session_filename} jest uszkodzony, kopia zapasowa w "
-"{session_filename}.bak, a komunikat o błędzie został zapisany w "
-"{session_filename}.log.err."
+"Schemat {session_filename} jest uszkodzony, kopia zapasowa "
+"w {session_filename}.bak, a komunikat o błędzie został zapisany "
+"w {session_filename}.log.err."
 
 #: guake/guake_app.py:1227
 #, python-brace-format
@@ -1158,6 +1158,14 @@ msgid ""
 "Your {session_filename} schema is broken, backup to {session_filename}.bak, "
 "and error message has been saved to {session_filename}.log.err."
 msgstr ""
-"Schemat {session_filename} jest uszkodzony, kopia zapasowa w "
-"{session_filename}.bak, a komunikat o błędzie został zapisany w "
-"{session_filename}.log.err."
+"Schemat {session_filename} jest uszkodzony, kopia zapasowa "
+"w {session_filename}.bak, a komunikat o błędzie został zapisany "
+"w {session_filename}.log.err."
+
+#: guake/notebook.py:317
+msgid ""
+"You are going to restore *all* the tabs!\n"
+"which means all your terminals & pages will be replaced.\n"
+"\n"
+"Do you want to continue?"
+msgstr ""
