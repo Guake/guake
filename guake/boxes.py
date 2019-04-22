@@ -135,7 +135,7 @@ class RootTerminalBox(Gtk.Overlay, TerminalHolder):
 
         # Events
         self.search_entry.connect('key-press-event', self.on_search_entry_keypress)
-        self.search_entry.connect('changed', self.do_search)
+        self.search_entry.connect('changed', self.set_search)
         self.search_entry.connect('activate', self.do_search)
         self.search_entry.connect('focus-out-event', self.on_search_entry_focus_out_event)
         self.search_next_btn.connect('clicked', self.on_search_next_clicked)
@@ -250,19 +250,30 @@ class RootTerminalBox(Gtk.Overlay, TerminalHolder):
             else:
                 self.search_prev = False
 
-    def do_search(self, widget):
+    def reset_term_search(self, term):
+        term.search_set_gregex(GLib.Regex('', 0, 0), 0)
+        term.search_find_next()
+
+    def set_search(self, widget):
+        term = self.last_terminal_focused
         text = self.search_entry.get_text()
         if not text:
+            self.reset_term_search(term)
             return
 
-        term = self.last_terminal_focused
         if text != self.searchstring:
+            self.reset_term_search(term)
+
+            # Set search regex on term
             self.searchstring = text
             self.searchre = GLib.Regex(text, 0, 0)
             term.search_set_gregex(self.searchre, 0)
 
         self.search_next_btn.set_sensitive(True)
         self.search_prev_btn.set_sensitive(True)
+        self.do_search(None)
+
+    def do_search(self, widget):
         if self.search_prev:
             self.on_search_prev_clicked(None)
         else:
