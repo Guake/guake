@@ -1116,3 +1116,11 @@ msgid ""
 "Your {session_filename} schema is broken, backup to {session_filename}.bak, "
 "and error message has been saved to {session_filename}.log.err."
 msgstr ""
+
+#: guake/notebook.py:317
+msgid ""
+"You are going to restore *all* the tabs!\n"
+"which means all your terminals & pages will be replaced.\n"
+"\n"
+"Do you want to continue?"
+msgstr ""

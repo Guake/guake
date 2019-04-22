@@ -1368,6 +1368,14 @@ msgid ""
 "and error message has been saved to {session_filename}.log.err."
 msgstr ""
 
+#: guake/notebook.py:317
+msgid ""
+"You are going to restore *all* the tabs!\n"
+"which means all your terminals & pages will be replaced.\n"
+"\n"
+"Do you want to continue?"
+msgstr ""
+
 #~ msgid "key binding error"
 #~ msgstr "키 바인딩 에러"
 

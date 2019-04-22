@@ -35,7 +35,7 @@ fi
 
 if [[ $RUN == "1" ]]; then
     echo "Install packages needed for execution"
-    sudo apt install \
+    sudo apt install -y \
         gir1.2-keybinder-3.0 \
         gir1.2-notify-0.7 \
         gir1.2-vte-2.91 \
@@ -51,7 +51,7 @@ fi
 
 if [[ $MAKE == "1" ]]; then
     echo "Install packages needed for making guake"
-    sudo apt install \
+    sudo apt install -y \
         gettext \
         gsettings-desktop-schemas \
         make \
@@ -60,7 +60,7 @@ fi
 
 if [[ $DEV == "1" ]]; then
     echo "Install needed development packages"
-    sudo apt install \
+    sudo apt install -y \
         aspell-fr \
         colortest \
         dconf-editor \
@@ -71,6 +71,6 @@ fi
 
 if [[ $OPT == "1" ]]; then
     echo "Install packages optional for execution"
-    sudo apt install \
+    sudo apt install -y \
         numix-gtk-theme
 fi
