@@ -143,6 +143,7 @@ class RootTerminalBox(Gtk.Overlay, TerminalHolder):
         self.search_entry.connect('key-press-event', self.on_search_entry_keypress)
         self.search_entry.connect('changed', self.set_search)
         self.search_entry.connect('activate', self.do_search)
+        self.search_entry.connect('focus-in-event', self.on_search_entry_focus_in)
         self.search_entry.connect('focus-out-event', self.on_search_entry_focus_out)
         self.search_next_btn.connect('clicked', self.on_search_next_clicked)
         self.search_prev_btn.connect('clicked', self.on_search_prev_clicked)
@@ -227,17 +228,18 @@ class RootTerminalBox(Gtk.Overlay, TerminalHolder):
             # gtk_widget_event: assertion 'WIDGET_REALIZED_FOR_EVENT (widget, event)' failed
             self.search_entry.realize()
             self.search_entry.grab_focus()
-            self.block_notebook_on_button_press_id()
 
     def hide_search_box(self):
         if self.search_revealer.get_reveal_child():
             self.search_revealer.set_reveal_child(False)
             self.last_terminal_focused.grab_focus()
             self.last_terminal_focused.unselect_all()
-            self.unblock_notebook_on_button_press_id()
 
     def close_search_box(self, event):
         self.hide_search_box()
+
+    def on_search_entry_focus_in(self, event, user_data):
+        self.block_notebook_on_button_press_id()
 
     def on_search_entry_focus_out(self, event, user_data):
         self.unblock_notebook_on_button_press_id()
