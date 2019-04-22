@@ -74,22 +74,27 @@ class RootTerminalBox(Gtk.Overlay, TerminalHolder):
         self._add_search_box()
 
     def _add_search_box(self):
-        """ --------------------------------|
-            | Revealer                      |
-            | |-----------------------------|
-            | | Frame                       |
-            | | |---------------------------|
-            | | | HBox                      |
-            | | | |-------| |----| |------| |
-            | | | | Entry | |Prev| | Next | |
-            | | | |-------| |----| |------| |
-            --------------------------------|
+        """ --------------------------------------|
+            | Revealer                            |
+            | |-----------------------------------|
+            | | Frame                             |
+            | | |---------------------------------|
+            | | | HBox                            |
+            | | | |---| |-------| |----| |------| |
+            | | | | x | | Entry | |Prev| | Next | |
+            | | | |---| |-------| |----| |------| |
+            --------------------------------------|
         """
         self.search_revealer = Gtk.Revealer()
         self.search_frame = Gtk.Frame(name='search-frame')
         self.search_box = Gtk.HBox()
 
         # Search
+        self.search_close_btn = Gtk.Button()
+        self.search_close_btn.set_can_focus(False)
+        close_icon = Gio.ThemedIcon(name='window-close-symbolic')
+        close_image = Gtk.Image.new_from_gicon(close_icon, Gtk.IconSize.BUTTON)
+        self.search_close_btn.set_image(close_image)
         self.search_entry = Gtk.SearchEntry()
         self.search_prev_btn = Gtk.Button()
         self.search_prev_btn.set_can_focus(False)
@@ -103,6 +108,7 @@ class RootTerminalBox(Gtk.Overlay, TerminalHolder):
         self.search_next_btn.set_image(next_image)
 
         # Pack into box
+        self.search_box.pack_start(self.search_close_btn, False, False, 0)
         self.search_box.pack_start(self.search_entry, False, False, 0)
         self.search_box.pack_start(self.search_prev_btn, False, False, 0)
         self.search_box.pack_start(self.search_next_btn, False, False, 0)
@@ -137,9 +143,10 @@ class RootTerminalBox(Gtk.Overlay, TerminalHolder):
         self.search_entry.connect('key-press-event', self.on_search_entry_keypress)
         self.search_entry.connect('changed', self.set_search)
         self.search_entry.connect('activate', self.do_search)
-        self.search_entry.connect('focus-out-event', self.on_search_entry_focus_out_event)
+        self.search_entry.connect('focus-out-event', self.on_search_entry_focus_out)
         self.search_next_btn.connect('clicked', self.on_search_next_clicked)
         self.search_prev_btn.connect('clicked', self.on_search_prev_clicked)
+        self.search_close_btn.connect('clicked', self.close_search_box)
         self.search_prev = True
 
     def get_terminals(self):
@@ -200,6 +207,18 @@ class RootTerminalBox(Gtk.Overlay, TerminalHolder):
     def move_focus(self, direction, fromChild):
         pass
 
+    def block_notebook_on_button_press_id(self):
+        GObject.signal_handler_block(
+            self.get_notebook(),
+            self.get_notebook().notebook_on_button_press_id
+        )
+
+    def unblock_notebook_on_button_press_id(self):
+        GObject.signal_handler_unblock(
+            self.get_notebook(),
+            self.get_notebook().notebook_on_button_press_id
+        )
+
     def show_search_box(self):
         if not self.search_revealer.get_reveal_child():
             self.search_revealer.set_reveal_child(True)
@@ -208,23 +227,20 @@ class RootTerminalBox(Gtk.Overlay, TerminalHolder):
             # gtk_widget_event: assertion 'WIDGET_REALIZED_FOR_EVENT (widget, event)' failed
             self.search_entry.realize()
             self.search_entry.grab_focus()
-            GObject.signal_handler_block(
-                self.get_notebook(),
-                self.get_notebook().notebook_on_button_press_id
-            )
+            self.block_notebook_on_button_press_id()
 
     def hide_search_box(self):
         if self.search_revealer.get_reveal_child():
             self.search_revealer.set_reveal_child(False)
             self.last_terminal_focused.grab_focus()
             self.last_terminal_focused.unselect_all()
-            GObject.signal_handler_unblock(
-                self.get_notebook(),
-                self.get_notebook().notebook_on_button_press_id
-            )
+            self.unblock_notebook_on_button_press_id()
 
-    def on_search_entry_focus_out_event(self, event, user_data):
+    def close_search_box(self, event):
         self.hide_search_box()
+
+    def on_search_entry_focus_out(self, event, user_data):
+        self.unblock_notebook_on_button_press_id()
 
     def on_search_prev_clicked(self, widget):
         term = self.last_terminal_focused
