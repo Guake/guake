@@ -232,11 +232,17 @@ class RootTerminalBox(Gtk.Overlay, TerminalHolder):
         self.search_prev_btn.set_sensitive(result)
         self.search_next_btn.set_sensitive(True)
 
+        if not result:
+            term.search_find_previous()
+
     def on_search_next_clicked(self, widget):
         term = self.last_terminal_focused
         result = term.search_find_next()
         self.search_next_btn.set_sensitive(result)
         self.search_prev_btn.set_sensitive(True)
+
+        if not result:
+            term.search_find_next()
 
     def on_search_entry_keypress(self, widget, event):
         key = Gdk.keyval_name(event.keyval)
