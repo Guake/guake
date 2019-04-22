@@ -43,7 +43,7 @@ def mk_notebook_context_menu(callback_object):
     mi.connect("activate", callback_object.on_save_tabs)
     menu.add(mi)
     mi = Gtk.MenuItem(_("Restore Tabs"))
-    mi.connect("activate", callback_object.on_restore_tabs)
+    mi.connect("activate", callback_object.on_restore_tabs_with_dialog)
     menu.add(mi)
     menu.add(Gtk.SeparatorMenuItem())
     mi = Gtk.ImageMenuItem("gtk-preferences")

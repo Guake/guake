@@ -308,6 +308,21 @@ class TerminalNotebook(Gtk.Notebook):
     def on_restore_tabs(self, user_data):
         self.guake.restore_tabs()
 
+    def on_restore_tabs_with_dialog(self, user_data):
+        dialog = Gtk.MessageDialog(parent=self.guake.window,
+                                   flags=Gtk.DialogFlags.MODAL,
+                                   buttons=Gtk.ButtonsType.OK_CANCEL,
+                                   message_format=_('You are going to restore *all* the tabs!\n'
+                                                    'which means all your terminals & pages '
+                                                    'will be replaced.\n\nDo you want to continue?'))
+        dialog.connect('response', self.restore_tabs_dialog_response)
+        dialog.show()
+
+    def restore_tabs_dialog_response(self, widget, response_id):
+        if response_id == Gtk.ResponseType.OK:
+            self.guake.restore_tabs()
+        widget.destroy()
+
 
 class NotebookManager(GObject.Object):
 
