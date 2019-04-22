@@ -140,7 +140,7 @@ class RootTerminalBox(Gtk.Overlay, TerminalHolder):
         self.search_entry.connect('focus-out-event', self.on_search_entry_focus_out_event)
         self.search_next_btn.connect('clicked', self.on_search_next_clicked)
         self.search_prev_btn.connect('clicked', self.on_search_prev_clicked)
-        self.search_prev = False
+        self.search_prev = True
 
     def get_terminals(self):
         return self.get_child().get_terminals()
@@ -245,10 +245,10 @@ class RootTerminalBox(Gtk.Overlay, TerminalHolder):
         elif key == 'Return':
             # Combine with Shift?
             if event.state & Gdk.ModifierType.SHIFT_MASK:
-                self.search_prev = True
+                self.search_prev = False
                 self.do_search(None)
             else:
-                self.search_prev = False
+                self.search_prev = True
 
     def reset_term_search(self, term):
         term.search_set_gregex(GLib.Regex('', 0, 0), 0)
