@@ -1,7 +1,2 @@
-release_summary: >
-    Add save/restore preferences to Guake CLI
-
 features:
-  - |
-    - Save preferences of Guake
-    - Restore preferences of Guake
+  - Save and restore Guake settings

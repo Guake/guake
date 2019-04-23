@@ -1,0 +1,21 @@
+release_summary: >
+  This release brings three of the most awaited features on Guake:
+
+     - search in current terminal
+     - session saving
+     - settings export and import
+
+  Our MVC ("most valuable contributor") for this release is Louie Lu (@mlouielu) who worked hard
+  to build these three features in a row!
+
+features:
+  - |
+      Add CLI option to split tab: ``--split-vertical`` and ``--split-horizontal``.
+
+translations:
+  - fr (French)
+  - pl (Polish)
+  - added zh_Hant (Chinese Traditional). Need help for translation!
+  - ru (Russian)
+  - nb (Norvegian)
+  - sv (Swedish)

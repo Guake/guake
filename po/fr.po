@@ -12,8 +12,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Guake 0.4.5\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-04-18 15:13+0200\n"
-"PO-Revision-Date: 2019-04-18 15:13+0200\n"
+"POT-Creation-Date: 2019-04-23 11:46+0200\n"
+"PO-Revision-Date: 2019-04-23 11:47+0200\n"
 "Last-Translator: ButterflyOfFire <ButterflyOfFire@protonmail.com>\n"
 "Language-Team: French <https://hosted.weblate.org/projects/guake/guake/fr/>\n"
 "Language: fr\n"
@@ -488,8 +488,8 @@ msgstr "Exporter  les préférences de Guake dans ce fichier"
 msgid "Restore Guake preferences from this file"
 msgstr "Restaurer les préférences de Guake depuis ce fichier."
 
-#: guake/guake_app.py:155 guake/guake_app.py:282 guake/guake_app.py:1190
-#: guake/guake_app.py:1224 guake/guake_app.py:1239 guake/keybindings.py:92
+#: guake/guake_app.py:155 guake/guake_app.py:282 guake/guake_app.py:1196
+#: guake/guake_app.py:1230 guake/guake_app.py:1245 guake/keybindings.py:92
 #: guake/about.py:54
 msgid "Guake Terminal"
 msgstr "Terminal Guake"
@@ -514,23 +514,23 @@ msgstr ""
 "Guake est démarré, \n"
 "appuyer sur <b>{!s}</b> pour ouvrir Guake."
 
-#: guake/guake_app.py:945 guake/notebook.py:247
+#: guake/guake_app.py:950 guake/notebook.py:249
 msgid "Terminal"
 msgstr "Terminal"
 
-#: guake/guake_app.py:1029
+#: guake/guake_app.py:1034
 msgid "Find"
 msgstr "Rechercher"
 
-#: guake/guake_app.py:1030
+#: guake/guake_app.py:1035
 msgid "Forward"
 msgstr "Suivant"
 
-#: guake/guake_app.py:1030
+#: guake/guake_app.py:1035
 msgid "Backward"
 msgstr "Précédent"
 
-#: guake/guake_app.py:1191
+#: guake/guake_app.py:1197
 #, python-brace-format
 msgid ""
 "Your {session_filename} file is broken, backup to {session_filename}.bak"
@@ -538,7 +538,7 @@ msgstr ""
 "Votre fichier {session_filename} est cassé, sauvegarde vers "
 "{session_filename}.bak."
 
-#: guake/guake_app.py:1226
+#: guake/guake_app.py:1232
 #, python-brace-format
 msgid ""
 "Your {session_filename} schema is broken, backup to {session_filename}.bak, "
@@ -548,9 +548,21 @@ msgstr ""
 "{session_filename}.bak, et enregistrement des messages d'erreur vers "
 "{session_filename}.log.err."
 
-#: guake/guake_app.py:1239
+#: guake/guake_app.py:1245
 msgid "Your tabs has been restored!"
 msgstr "Vos onglets ont été restauré!"
+
+#: guake/notebook.py:319
+msgid ""
+"You are going to restore *all* the tabs!\n"
+"which means all your terminals & pages will be replaced.\n"
+"\n"
+"Do you want to continue?"
+msgstr ""
+"Vous êtes sur le point de restaurer *tous* les onglets!\n"
+"Ceci signifie que tous les terminaux ouverts seront fermés.\n"
+"\n"
+"Voulez-vous continuer?"
 
 #: guake/keybindings.py:94
 #, python-format
@@ -1102,14 +1114,6 @@ msgstr "Configurer vos sessions Guake"
 #: data/guake-prefs.template.desktop:13 data/guake-prefs.desktop:66
 msgid "Terminal;Utility;"
 msgstr "Terminal;Utilitaires;"
-
-#: guake/notebook.py:317
-msgid ""
-"You are going to restore *all* the tabs!\n"
-"which means all your terminals & pages will be replaced.\n"
-"\n"
-"Do you want to continue?"
-msgstr ""
 
 #~ msgid ""
 #~ "Your {session_filename} schema is broken, backup to {0}.bak,and error "
