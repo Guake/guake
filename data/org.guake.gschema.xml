@@ -37,7 +37,7 @@
 		    <description>If true, when guake restored the tabs, it will notify the user that the tabs has been restored</description>
 		</key>
 		<key name="save-tabs-when-changed" type="b">
-		    <default>false</default>
+		    <default>true</default>
 		    <summary>Automatically save tabs session when changed</summary>
 		    <description>If true, when tabs has changed (add / delete ...etc.), it will automatically saved the tabs session</description>
 		</key>
