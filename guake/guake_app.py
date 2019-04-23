@@ -733,7 +733,6 @@ class Guake(SimpleGladeApp):
                 # The box was showed, but out of focus
                 # Don't hide it, re-grab the focus to search entry
                 box.search_entry.grab_focus()
-                box.block_notebook_on_button_press_id()
         else:
             box.show_search_box()
 
