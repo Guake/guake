@@ -1,3 +1,2 @@
 fixes:
-    - Fix vte-warning when using Vte.Regex.new_for_match
-
+    - Fix ``vte-warning`` when using ``Vte.Regex.new_for_match``

@@ -2,13 +2,79 @@
 Guake
 =====
 
+(unreleased yet)
+================
+
+Release Summary
+---------------
+
+This release brings three of the most awaited features on Guake:
+
+   - search in current terminal
+   - session saving
+   - settings export and import
+
+Our MVC ("most valuable contributor") for this release is Louie Lu (@mlouielu) who worked hard to build these three features in a row!
+
+New Features
+------------
+
+- Add save/restore tabs function.
+
+- Add label parameter to ``notebook.new_page_with_focus``
+
+- Add search box for terminal. Default hotkey is ``Ctrl+Shift+F``.
+
+- Add session save preferences for startup/tabs:
+  
+    - "restore-tabs-startup": when enabled, it will restore tabs when startup
+    - "restore-tabs-notify": when enabled, it will notify user after tabs restored (except startup)
+    - "save-tabs-when-changed": when enabled, it will automatically save tabs session
+      when changed (new/del/reorder)
+
+- Add CLI option to split tab: ``--split-vertical`` and ``--split-horizontal``.
+
+- Save and restore Guake settings
+
+Bug Fixes
+---------
+
+- Fix a need for double toggling to hide when using command line with ``--show`` and option with ``only_show_hide = False``.
+
+- Remove unused logging level setup
+
+- Fix window-title-changed didn't save tabs
+
+- fix typo
+
+- Fix ``vte-warning`` when using ``Vte.Regex.new_for_match``
+
+- Workspaces can now properly save/restore tabs
+
+- Fix ``on_terminal_title_changed`` only searching in current_notebook (it should find every notebook)
+
+Translation Updates
+-------------------
+
+- fr (French)
+
+- pl (Polish)
+
+- added zh_Hant (Chinese Traditional). Need help for translation!
+
+- ru (Russian)
+
+- nb (Norvegian)
+
+- sv (Swedish)
+
 3.5.0
 =====
 
 Release Summary
 ---------------
 
-This version is mainly a maintaince release, after the big reworks on Guake from last year. I took some delay in fixing Guake due to a growning family.
+This version is mainly a maintaince release, after the big reworks on Guake from last year. I took some delay in fixing Guake due to a growing family.
 Thanks again for the various contributors who submitted their patches, it helps a lot the whole community. I may be able to find more time in the upcoming months to add even cooler features to our beloved Guake.
 
 New Features
@@ -40,7 +106,7 @@ Bug Fixes
 
 - Fix command-line select tab behavior #1492
 
-- removed duplicate event bind? previously I had issue where quick-open event would be fired
+- removed duplicate event bind? previously I had issue where quick-open event would be fired 
   twice because of this.
 
 - fixes
@@ -243,7 +309,7 @@ Bug Fixes
 
 - Wayland is a bit more well supported. The X11 backend is now used by default for
   GDK and it seems to make the shortcut works under most situation.
-
+  
   A more cleaner solution would be to develop a GAction
   (`vote for this feature here <https://feathub.com/Guake/guake/+29>`_])
 
@@ -310,10 +376,10 @@ Bug Fixes
   This may causes some issues with log and so that use parenthesis *around* hyperlinks,
   but since parenthesis and quotes are valid characters inside a URL, like for instance
   URL created by Kibana, they deserve the right to be shown as proper url in Guake.
-
+  
   User can still select the URL in the terminal if he wishes to capture the exact url, before
   doing a Ctrl+click or a right click.
-
+  
   For developers, it is advised to end the URL with a character that cannot be used in URL, such
   as space, tab, new line. Ending with a dot (``.``) or a comma (``,``) will not be seen as part
   of the URL by Guake, so most logs and traces that adds a dot or a comma at the end of the URL
@@ -389,7 +455,7 @@ New Features
 
 - Add great color palettes from
   `Guake Color Scheme <https://github.com/ziyenano/Guake-Color-Schemes>`_, thanks for @ziyenano :
-
+  
     - `Aci`,
     - `aco`,
     - `Azu`,
@@ -432,17 +498,17 @@ Bug Fixes
 - change scope of ``which_align`` variable in ``pref.py`` (#1225)
 
 - Fix several issues on Quick Edit:
-
+  
   - quick open freezes guake
   - support for systems with PCRE2 (regular expression in terminal) disabled for VTE, like
     Ubuntu 17.10 and +.
-
+  
     This might disable quick open and open url on direct Ctrl+click.
     User can still select the wanted url or text and Cltr+click or use contextual menu.
-
+  
     See this `discussion on Tilix <https://github.com/gnunn1/tilix/issues/916>`_, another
     Terminal emulator that suffurs the same issue.
-
+  
   - quick open now appears in contextual menu (#1157)
   - bad translation update on the contextual menu. This causes new strings that was hidden to
     appear for translators.
@@ -474,28 +540,28 @@ Notes for Package Maintainers
 - The setup mecanism has changed a little bit. Some maintainers used to patch the source code
   of Guake to change the pixmap, Gtk schema or locale paths directly in the ``guake/globals.py``
   file. This was due to a lack of flexibility of the installation target of the ``Makefile``.
-
+  
   The ``make install`` target looks now a little bit more familiar, allowing distribution
   packager to set the various paths directly with make flags.
-
+  
   For example:
-
+  
   .. code-block:: bash
-
+  
       sudo make install \
           prefix=/usr \
           DESTDIR=/path/for/packager \
           PYTHON_SITE_PACKAGE_NAME=site-package \
           localedir=/usr/share/locale
-
+  
   The main overrides are:
-
+  
   - ``IMAGE_DIR``: where the pixmap should be installed. Default: ``/usr/local/share/guake/pixmaps``
   - ``localedir``: where locales should be installed. Default: ``/usr/local/share/locale``
   - ``GLADE_DIR``: where the Glade files should be installed. Default: ``/usr/local/share/guake``
   - ``gsettingsschemadir``: where gsettings/dconf schema should be installed.
     Default: ``/usr/local/share/glib-2.0/schemas/``
-
+  
   I invite package maintainers to open tickets on Github about any other difficulties
   encountered when packaging Guake.
 
@@ -537,10 +603,10 @@ New Features
   to virtually open any file path in your terminal (if they are on your local machine), but
   requires the user to select the file path first, compared to the Quick Open feature that
   finds file names using regular expression.
-
+  
   Also notes that is it able to look in the current folder if the selected file name exists,
   allowing Ctrl+click on relative paths as well.
-
+  
   Line number syntax is also supported: ``filename.txt:5`` will directly on the 5th line if
   your Quick Open is set for.
 
@@ -691,7 +757,7 @@ New Features
 ------------
 
 - Ported to GTK3:
-
+  
     - cli arguments
     - D-Bus
     - context menu of the terminal, the tab bar and the tray icon
@@ -709,7 +775,7 @@ New Features
     - ``Guake.accel*`` methods
 
 - Guake now use a brand new build system:
-
+  
     - ``pipenv`` to manage dependencies in `Pipfile`
     - enforced code styling and checks using Pylint, Flake8, Yapf, ISort.
     - simpler release management thanks to PBR
@@ -720,7 +786,7 @@ New Features
   note directly from their Pull Request.
 
 - Update Guake window title when:
-
+  
     - the active tab changes
     - the active tab is renamed
     - the vte title changes
