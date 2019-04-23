@@ -68,6 +68,8 @@ Translation Updates
 
 - sv (Swedish)
 
+- nl (Dutch)
+
 3.5.0
 =====
 

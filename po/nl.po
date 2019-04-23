@@ -1409,8 +1409,8 @@ msgid ""
 "message has been saved to {session_filename}.log.err"
 msgstr ""
 "Je {session_bestandsnaam}-schema is beschadigd; maak een back-up onder de "
-"naam {0}.bak - foumeldingen zijn opgeslagen als "
-"{session_bestandsnaam}.log.err"
+"naam {0}.bak - foumeldingen zijn opgeslagen als {session_bestandsnaam}.log."
+"err"
 
 #: guake/guake_app.py:1227
 #, python-brace-format
