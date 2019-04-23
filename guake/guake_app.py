@@ -1156,11 +1156,12 @@ class Guake(SimpleGladeApp):
             for index in range(nb.get_n_pages()):
                 try:
                     page = nb.get_nth_page(index)
-                    tabs.append({
-                        'directory': page.child.terminal.get_current_directory(),
-                        'label': nb.get_tab_text_index(index),
-                        'custom_label_set': getattr(page, 'custom_label_set', False)
-                    })
+                    if page.child:
+                        tabs.append({
+                            'directory': page.child.terminal.get_current_directory(),
+                            'label': nb.get_tab_text_index(index),
+                            'custom_label_set': getattr(page, 'custom_label_set', False)
+                        })
                 except FileNotFoundError:
                     # discard same broken tabs
                     pass

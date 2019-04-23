@@ -173,8 +173,9 @@ class TerminalNotebook(Gtk.Notebook):
             yield self.get_nth_page(page_num)
 
     def delete_page(self, page_num, kill=True, prompt=0):
+        log.debug("Deleting page index %s", page_num)
         if page_num >= self.get_n_pages() or page_num < 0:
-            log.debug("Can not delete page %s no such index", page_num)
+            log.error("Can not delete page %s no such index", page_num)
             return
         # TODO NOTEBOOK it would be nice if none of the "ui" stuff
         # (PromptQuitDialog) would be in here
@@ -188,6 +189,7 @@ class TerminalNotebook(Gtk.Notebook):
             if kill:
                 terminal.kill()
             terminal.destroy()
+        self.remove_page(page_num)
 
     @save_tabs_when_changed
     def remove_page(self, page_num):
