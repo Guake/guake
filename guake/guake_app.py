@@ -1186,7 +1186,7 @@ class Guake(SimpleGladeApp):
             try:
                 config = json.load(f)
             except Exception:
-                log.warning('%s is broken', session_filen)
+                log.warning('%s is broken', session_file)
                 shutil.copy(
                     session_file,
                     self.get_xdg_config_directory() / '{0}.bak'.format(filename)
