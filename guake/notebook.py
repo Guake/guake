@@ -185,11 +185,23 @@ class TerminalNotebook(Gtk.Notebook):
             if not PromptQuitDialog(self.guake.window, procs, -1).close_tab():
                 return
 
+        page = self.get_nth_page(page_num)
         for terminal in self.get_terminals_for_page(page_num):
             if kill:
                 terminal.kill()
             terminal.destroy()
-        self.remove_page(page_num)
+
+        if self.get_nth_page(page_num) is page:
+            # NOTE: GitHub issue #1438
+            # Previous line `terminal.destroy()` will finally called `on_terminal_exited`,
+            # and called `RootTerminalBox.remove_dead_child`, then called `remove_page`.
+            #
+            # But in some cases (e.g. #1438), it will not remove the page by
+            # `terminal.destory() chain`.
+            #
+            # Check this by compare same page_num page with previous saved page instance,
+            # and remove the page if it really didn't remove it.
+            self.remove_page(page_num)
 
     @save_tabs_when_changed
     def remove_page(self, page_num):
