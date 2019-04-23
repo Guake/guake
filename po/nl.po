@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: Guake 0.4.5\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-04-14 12:33+0200\n"
-"PO-Revision-Date: 2018-10-02 12:03+0000\n"
+"PO-Revision-Date: 2019-04-23 10:31+0000\n"
 "Last-Translator: Heimen Stoffels <vistausss@outlook.com>\n"
 "Language-Team: Dutch <https://hosted.weblate.org/projects/guake/guake/nl/>\n"
 "Language: nl\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 3.2-dev\n"
+"X-Generator: Weblate 3.7-dev\n"
 
 #: ../data/about.glade.h:1
 msgid "About Guake"
@@ -1303,65 +1303,67 @@ msgstr ""
 
 #: guake/prefs.py:128
 msgid "New tab in home directory"
-msgstr ""
+msgstr "Nieuw tabblad in persoonlijke map"
 
 #: guake/dialogs.py:56
 #, python-brace-format
 msgid " on {0} workspaces"
-msgstr ""
+msgstr " op {0} werkbladen"
 
 #: guake/main.py:211
 msgid "Change Guake palette scheme"
-msgstr ""
+msgstr "Guake-paletschema aanpassen"
 
 #: data/prefs.glade:331
 msgid "Use workspace-specific tab sets (requires restart)"
-msgstr ""
+msgstr "Werkblad-specifieke tabbladsets gebruiken (herstart vereist)"
 
 #: guake/main.py:175
 msgid "Split the selected tab vertically."
-msgstr ""
+msgstr "Geselecteerd tabblad verticaal splitsen"
 
 #: guake/main.py:183
 msgid "Split the selected tab horizontally."
-msgstr ""
+msgstr "Geselecteerd tabblad horizontaal splitsen"
 
 #: data/prefs.glade:348
 msgid "Show close buttons for tabs"
-msgstr ""
+msgstr "Sluiknop tonen op tabbladen"
 
 #: data/prefs.glade:1682
 msgid "Bold text is also bright"
-msgstr ""
+msgstr "Vetgedrukte tekst ook helder maken"
 
 #: data/prefs.glade:1682
 msgid "Bold text is also bright (VTE >=0.52)"
-msgstr ""
+msgstr "Vetgedrukte tekst ook helder maken (VTE >=0.52)"
 
 #: guake/menus.py:42
 msgid "Save Tabs"
-msgstr ""
+msgstr "Tabbladen opslaan"
 
 #: guake/menus.py:45
 msgid "Restore Tabs"
-msgstr ""
+msgstr "Tabbladen herstellen"
 
 #: guake/prefs.py:113
 msgid "Search terminal"
-msgstr ""
+msgstr "Terminal doorzoeken"
 
 #: guake/main.py:278
 msgid "Save Guake preferences to this filename"
-msgstr ""
+msgstr "Guake-voorkeuren opslaan onder deze bestandsnaam"
 
 #: guake/main.py:286
 msgid "Restore Guake preferences from this file"
-msgstr ""
+msgstr "Guake-voorkeuren herstellen uit dit bestand"
 
 #: guake/guake_app.py:1192
 #, python-brace-format
 msgid "Your session.json file is broken, backup to {session_filename}.bak"
 msgstr ""
+"Je session.json-bestand is beschadigd; maak een back-up onder de naam "
+"{session_bestandsnaam}.bak"
 
 #: guake/guake_app.py:1228
 #, python-brace-format
@@ -1369,32 +1371,36 @@ msgid ""
 "Your session.json schema is broken, backup to {0}.bak,and error message has "
 "been saved to {0}.log.err"
 msgstr ""
+"Je session.json-schema is beschadigd; maak een back-up onder de naam {0}.bak "
+"- foumeldingen zijn opgeslagen als {0}.log.err"
 
 #: guake/guake_app.py:1239
 msgid "Your tabs has been restored!"
-msgstr ""
+msgstr "Je tabbladen zijn hersteld!"
 
 #: data/prefs.glade:190
 msgid "Restore previous session (tabs)"
-msgstr ""
+msgstr "Vorige sessie (tabbladen) herstellen"
 
 #: data/prefs.glade:204
 msgid "Enable notification when restore tabs"
-msgstr ""
+msgstr "Melding tonen na herstellen van tabbladen"
 
 #: data/prefs.glade:218
 msgid "Automatically save session when the tabs has been modified"
-msgstr ""
+msgstr "Sessie automatisch opslaan als de tabbladinhoud is gewijzigd"
 
 #: data/prefs.glade:238
 msgid "Startup & Tabs (Experiment)"
-msgstr ""
+msgstr "Opstarten en tabbladen (experimenteel)"
 
 #: guake/guake_app.py:1192
 #, python-brace-format
 msgid ""
 "Your {session_filename} file is broken, backup to {session_filename}.bak"
 msgstr ""
+"Je {session_bestandsnaam}-bestand is beschadigd; maak een back-up onder de "
+"naam {session_bestandsnaam}.bak"
 
 #: guake/guake_app.py:1227
 #, python-brace-format
@@ -1402,6 +1408,9 @@ msgid ""
 "Your {session_filename} schema is broken, backup to {0}.bak,and error "
 "message has been saved to {session_filename}.log.err"
 msgstr ""
+"Je {session_bestandsnaam}-schema is beschadigd; maak een back-up onder de "
+"naam {0}.bak - foumeldingen zijn opgeslagen als "
+"{session_bestandsnaam}.log.err"
 
 #: guake/guake_app.py:1227
 #, python-brace-format
@@ -1409,6 +1418,9 @@ msgid ""
 "Your {session_filename} schema is broken, backup to {session_filename}.bak,"
 "and error message has been saved to {session_filename}.log.err."
 msgstr ""
+"Je {session_bestandsnaam}-schema is beschadigd; maak een back-up onder de "
+"naam {session_bestandsnaam}.bak - foumeldingen zijn opgeslagen als "
+"{session_bestandsnaam}.log.err"
 
 #: guake/guake_app.py:1227
 #, python-brace-format
@@ -1416,6 +1428,9 @@ msgid ""
 "Your {session_filename} schema is broken, backup to {session_filename}.bak, "
 "and error message has been saved to {session_filename}.log.err."
 msgstr ""
+"Je {session_bestandsnaam}-schema is beschadigd; maak een back-up onder de "
+"naam {session_bestandsnaam}.bak - foumeldingen zijn opgeslagen als "
+"{session_bestandsnaam}.log.err"
 
 #: guake/notebook.py:317
 msgid ""
@@ -1424,6 +1439,10 @@ msgid ""
 "\n"
 "Do you want to continue?"
 msgstr ""
+"Je staat op het punt om alle tabbladen te herstellen.\n"
+"Dit betekent dat al je terminals en pagina's worden vervangen.\n"
+"\n"
+"Weet je zeker dat je wilt doorgaan?"
 
 #~ msgid "key binding error"
 #~ msgstr "Fout bij toets-binding"
