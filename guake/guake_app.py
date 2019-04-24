@@ -1174,7 +1174,6 @@ class Guake(SimpleGladeApp):
         session_file = self.get_xdg_config_directory() / filename
         with session_file.open('w') as f:
             json.dump(config, f, ensure_ascii=False, indent=4)
-
         log.info('Guake tabs saved to %s', session_file)
 
     def restore_tabs(self, filename='session.json', suppress_notify=False):
@@ -1223,7 +1222,7 @@ class Guake(SimpleGladeApp):
         except KeyError:
             log.warning('%s schema is broken', session_file)
             shutil.copy(session_file, self.get_xdg_config_directory() / '{}.bak'.format(filename))
-            with open(self.get_xdg_config_directory() / '{}.log.err'.format(filename), 'w') as f:
+            with (self.get_xdg_config_directory() / '{}.log.err'.format(filename)).open('w') as f:
                 traceback.print_exc(file=f)
             img_filename = pixmapfile('guake-notification.png')
             notifier.showMessage(

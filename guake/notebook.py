@@ -348,10 +348,11 @@ class NotebookManager(GObject.Object):
         self, window, notebook_parent, workspaces_enabled, terminal_spawned_cb, page_deleted_cb
     ):
         GObject.Object.__init__(self)
-        GObject.signal_new(
-            'notebook-created', self, GObject.SIGNAL_RUN_LAST, GObject.TYPE_NONE,
-            (GObject.TYPE_PYOBJECT, GObject.TYPE_INT)
-        )
+        if not GObject.signal_lookup('notebook-created', self):
+            GObject.signal_new(
+                'notebook-created', self, GObject.SIGNAL_RUN_LAST, GObject.TYPE_NONE,
+                (GObject.TYPE_PYOBJECT, GObject.TYPE_INT)
+            )
         self.current_notebook = 0
         self.notebooks = {}
         self.window = window

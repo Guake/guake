@@ -215,7 +215,10 @@ class GuakeTerminal(Vte.Terminal):
     def get_current_directory(self):
         directory = os.path.expanduser('~')
         if self.pid is not None:
-            cwd = os.readlink("/proc/{}/cwd".format(self.pid))
+            try:
+                cwd = os.readlink("/proc/{}/cwd".format(self.pid))
+            except Exception as e:
+                return directory
             if os.path.exists(cwd):
                 directory = cwd
         return directory
