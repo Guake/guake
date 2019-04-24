@@ -1222,7 +1222,7 @@ class Guake(SimpleGladeApp):
                         nb.delete_page(0)
         except KeyError:
             log.warning('%s schema is broken', session_file)
-            shutil.copy(path, self.get_xdg_config_directory() / '{}.bak'.format(filename))
+            shutil.copy(session_file, self.get_xdg_config_directory() / '{}.bak'.format(filename))
             with open(self.get_xdg_config_directory() / '{}.log.err'.format(filename), 'w') as f:
                 traceback.print_exc(file=f)
             img_filename = pixmapfile('guake-notification.png')
