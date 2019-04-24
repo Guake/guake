@@ -28,6 +28,8 @@ e1839a8 = {editable = true,path = "."}
 twine = "*"
 pathlib2 = "*"
 scandir = {markers = "python_version < '3.5'"}
+pyfakefs = "*"
+pytest-cov = "*"
 
 [packages]
 pbr = "*"
