@@ -38,8 +38,10 @@ log = logging.getLogger(__name__)
 
 from guake.globals import NAME
 from guake.globals import bindtextdomain
+from guake.support import print_support
 from guake.utils import restore_preferences
 from guake.utils import save_preferences
+
 
 # When we are in the document generation on readthedocs, we do not have paths.py generated
 try:
@@ -286,6 +288,14 @@ def main():
         help=_('Restore Guake preferences from this file')
     )
 
+    parser.add_option(
+        '--support',
+        dest='support',
+        action='store_true',
+        default=False,
+        help=_('Show support infomations')
+    )
+
     # checking mandatory dependencies
     import gi
 
@@ -327,6 +337,10 @@ def main():
         sys.exit(0)
     elif options.restore_preferences:
         restore_preferences(options.restore_preferences)
+        sys.exit(0)
+
+    if options.support:
+        print_support()
         sys.exit(0)
 
     import dbus
