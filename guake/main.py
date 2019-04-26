@@ -42,7 +42,6 @@ from guake.support import print_support
 from guake.utils import restore_preferences
 from guake.utils import save_preferences
 
-
 # When we are in the document generation on readthedocs, we do not have paths.py generated
 try:
     from guake.paths import LOCALE_DIR

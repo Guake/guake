@@ -433,26 +433,27 @@ release-note-github: reno-lint
 			sed 's/\\\#/\#/g' | \
 		tr '\r' '\n'
 
-release: git-pull-rebase tag-pbr git-commit-release-commit release-note-news rm-dists update-po dists release-git-tag release-note-github git-commit-amend
-
-git-pull-rebase:
+release:
 	git checkout -f master
 	git pull --rebase upstream master
-
-release-git-tag:
 	@{ \
-		set -x \
-		git tag -d "$$(pipenv run python setup.py --version | cut -d. -f1,2,3)"; \
-		git commit --all -m "Release ???"; \
+		set -e ;\
+		set -x ;\
+		export VERSION=$$(pipenv run python setup.py --version | cut -d. -f1,2,3); \
+		echo "I: Computed new version: $$VERSION"; \
+		echo "I: presse ENTER to accept or type new version number:"; \
+		read VERSION_OVERRIDE; \
+		VERSION=$${VERSION_OVERRIDE:-$$VERSION}; \
 		PROJECTNAME=$$(pipenv run python setup.py --name); \
-		echo "Note: tag has been removed. Use 'make tag-pbr' to tag and push to origin"; \
+		echo "I: Tagging $$PROJECTNAME in version $$VERSION with tag: $$VERSION" ; \
+		echo "I: Pushing tag $$VERSION, press ENTER to continue, C-c to interrupt"; \
+		(git commit --all -m "Release $${VERSION}" || true) ; \
+		git tag $$VERSION -m "$$PROJECTNAME $$VERSION"; \
+		make release-note-news rm-dists update-po dists ; \
+		git commit --all --amend -n; \
+		git tag -f "$${VERSION}"; \
 	}
-
-git-commit-amend:
-	git commit -a --amend
-
-git-commit-release-commit:
-	git commit --all -m "Release $$(pipenv run python setup.py --version | cut -d. -f1,2,3)"
+	make release-note-github
 
 
 # aliases to gracefully handle typos on poor dev's terminal

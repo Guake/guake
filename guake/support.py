@@ -10,10 +10,10 @@ from gi.repository import Gdk
 from gi.repository import GdkX11
 from gi.repository import Gtk
 
-from guake import guake_version
 from guake import gtk_version
-from guake import vte_version
+from guake import guake_version
 from guake import vte_runtime_version
+from guake import vte_version
 
 
 def horizonal_line():
@@ -35,17 +35,18 @@ def populate_display(display):
         monitor = display.get_monitor(i)
         manufacturer = monitor.get_manufacturer()
         model = monitor.get_model()
-        v = '%s%s%s' % (manufacturer if manufacturer else '',
-                        ' ' if manufacturer or model else '',
-                        model if model else '')
+        v = '%s%s%s' % (
+            manufacturer if manufacturer else '', ' ' if manufacturer or model else '',
+            model if model else ''
+        )
         print('* Monitor: {} - {}'.format(i, v))
 
         # Geometry
         rect = monitor.get_geometry()
         scale = monitor.get_scale_factor()
-        v = '%d x %d%s at %d, %d' % (rect.width, rect.height,
-                                     ' % 2' if scale == 2 else '',
-                                     rect.x, rect.y)
+        v = '%d x %d%s at %d, %d' % (
+            rect.width, rect.height, ' % 2' if scale == 2 else '', rect.x, rect.y
+        )
         print('    * Geometry:\t\t{}'.format(v))
 
         # Size

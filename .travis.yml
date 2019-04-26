@@ -63,8 +63,9 @@ deploy:
   distributions: sdist bdist_wheel
   password:
     secure: >
-      ARo04J13A2+CGAqvIoKsypctOIQZI8e07to8OGtrhC7gVv92Fkw0peHpn7t0DFODFAjPhFZIGsNAvy3bST
-      sB2UQ85b+fCdcsltFSBHKknvixXOSfE0LbBEzHpGKYvUci0Y2cYWzBVZuj7gR76YWWIGK9560EnXML2eNtTJ4cVuQ=
+        MIbsyar7H1epBcp+TpSJ3APYUnIiQAB0M9cLEXFzqwJU1bjPev8fYNbfCQB0bA/TSHXaQjfR
+        F3sTFFYxpVOxjRHPIWctBTTuKOETAd3XR96YtVRGLpglxLvI+9U5YPuGWC4SbKuAE8L8pqH9
+        O9pnKqZCaarGxOm+GjEZrfzfm1g=
   on:
     tags: true
     repo: Guake/guake

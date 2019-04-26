@@ -2,6 +2,14 @@
 Guake
 =====
 
+3.6.1
+=====
+
+Bug Fixes
+---------
+
+- Minor build system fixes
+
 3.6.0
 =====
 
