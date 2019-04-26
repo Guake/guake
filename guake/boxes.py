@@ -118,11 +118,12 @@ class RootTerminalBox(Gtk.Overlay, TerminalHolder):
 
         # Frame
         self.search_frame.set_margin_end(12)
+        self.search_frame.get_style_context().add_class('background')
         css_provider = Gtk.CssProvider()
         css_provider.load_from_data(
             b'#search-frame border {'
             b'    padding: 5px 5px 5px 5px;'
-            b'    background-color: #CFCFCF;'
+            b'    border: none;'
             b'}'
         )
         Gtk.StyleContext.add_provider_for_screen(
