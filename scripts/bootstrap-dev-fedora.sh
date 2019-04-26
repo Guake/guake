@@ -40,7 +40,8 @@ if [[ $RUN == "1" ]]; then
         python3-cairo \
         python3-dbus \
         python3-pip \
-        keybinder3
+        keybinder3 \
+		libwnck
 fi
 
 if [[ $MAKE == "1" ]]; then
