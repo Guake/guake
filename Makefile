@@ -433,7 +433,7 @@ release-note-github: reno-lint
 			sed 's/\\\#/\#/g' | \
 		tr '\r' '\n'
 
-release: git-pull-rebase tag-pbr release-note-news rm-dists update-po dists release-git-tag release-note-github git-commit-amend
+release: git-pull-rebase tag-pbr git-commit-release-commit release-note-news rm-dists update-po dists release-git-tag release-note-github git-commit-amend
 
 git-pull-rebase:
 	git checkout -f master
@@ -442,14 +442,18 @@ git-pull-rebase:
 release-git-tag:
 	@{ \
 		set -x \
-		git commit --all -m "Release $$(pipenv run python setup.py --version | cut -d. -f1,2,3)"; \
-		PROJECTNAME=$$(pipenv run python setup.py --name); \
 		git tag -d "$$(pipenv run python setup.py --version | cut -d. -f1,2,3)"; \
+		git commit --all -m "Release ???"; \
+		PROJECTNAME=$$(pipenv run python setup.py --name); \
 		echo "Note: tag has been removed. Use 'make tag-pbr' to tag and push to origin"; \
 	}
 
 git-commit-amend:
 	git commit -a --amend
+
+git-commit-release-commit:
+	git commit --all -m "Release $$(pipenv run python setup.py --version | cut -d. -f1,2,3)"
+
 
 # aliases to gracefully handle typos on poor dev's terminal
 check: checks
