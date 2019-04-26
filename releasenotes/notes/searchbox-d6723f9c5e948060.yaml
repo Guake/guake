@@ -1,0 +1,5 @@
+fixes:
+  - |
+    Make searchbox background color use the theme background color.
+    This requires to restart Guake completely after a theme change, or the
+    searchbox background color won't be updated. (#1561)

@@ -20,6 +20,7 @@ from guake.menus import mk_terminal_context_menu
 from guake.utils import HidePrevention
 from guake.utils import TabNameUtils
 from guake.utils import save_tabs_when_changed
+from guake.common import rgba_to_hex
 
 log = logging.getLogger(__name__)
 
@@ -119,11 +120,18 @@ class RootTerminalBox(Gtk.Overlay, TerminalHolder):
         # Frame
         self.search_frame.set_margin_end(12)
         css_provider = Gtk.CssProvider()
+
+        bg_color = rgba_to_hex(
+            self.search_frame.get_style_context().lookup_color("theme_bg_color")[1]
+        )
         css_provider.load_from_data(
-            b'#search-frame border {'
-            b'    padding: 5px 5px 5px 5px;'
-            b'    background-color: #CFCFCF;'
-            b'}'
+            """
+            #search-frame {{
+                padding: 5px 5px 5px 5px;
+                background-color: {bg_color};
+                border: none;
+            }}
+            """.format(bg_color=bg_color).encode()
         )
         Gtk.StyleContext.add_provider_for_screen(
             Gdk.Screen.get_default(), css_provider, Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION

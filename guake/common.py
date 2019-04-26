@@ -91,3 +91,9 @@ def shell_quote(text):
 
 def clamp(value, lower, upper):
     return max(min(value, upper), lower)
+
+
+def rgba_to_hex(color):
+    return "#{0:02x}{1:02x}{2:02x}".format(
+        int(color.red * 255), int(color.green * 255), int(color.blue * 255)
+    )

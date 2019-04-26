@@ -11,6 +11,7 @@ from gi.repository import Gdk
 from gi.repository import Gtk
 from textwrap import dedent
 
+from guake.common import rgba_to_hex
 from guake.paths import GUAKE_THEME_DIR
 
 log = logging.getLogger(__name__)
@@ -64,12 +65,6 @@ def get_gtk_theme(settings):
 
 def patch_gtk_theme(style_context, settings):
     theme_name, variant = get_gtk_theme(settings)
-
-    def rgba_to_hex(color):
-        return "#{0:02x}{1:02x}{2:02x}".format(
-            int(color.red * 255), int(color.green * 255), int(color.blue * 255)
-        )
-
     # for n in [
     #     "inverted_bg_color",
     #     "inverted_fg_color",
