@@ -1382,6 +1382,10 @@ msgid ""
 "Do you want to continue?"
 msgstr ""
 
+#: guake/main.py:296
+msgid "Show support infomations"
+msgstr ""
+
 #~ msgid "key binding error"
 #~ msgstr "S'ha produït un error en definir la drecera de teclat"
 

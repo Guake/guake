@@ -1395,6 +1395,10 @@ msgid ""
 "Do you want to continue?"
 msgstr ""
 
+#: guake/main.py:296
+msgid "Show support infomations"
+msgstr ""
+
 #~ msgid "0 means no size limit"
 #~ msgstr "0表示没有大小限制"
 

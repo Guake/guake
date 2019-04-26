@@ -14,10 +14,12 @@ This release brings three of the most awaited features on Guake:
    - session saving
    - settings export and import
 
-Our MVC ("most valuable contributor") for this release is Louie Lu (@mlouielu) who worked hard to build these three features in a row!
+Our MVC ("Most Valuable Contributor") for this release is Louie Lu (@mlouielu) who worked hard to build these three features in a row! Thank you very much for your hard work !
 
 New Features
 ------------
+
+- Add --support option to Guake CLI for user when need to report issue
 
 - Add save/restore tabs function.
 
@@ -38,6 +40,8 @@ New Features
 
 Bug Fixes
 ---------
+
+- Add libwnck to bootstrap scripts
 
 - Fix a need for double toggling to hide when using command line with ``--show`` and option with ``only_show_hide = False``.
 
@@ -60,7 +64,7 @@ Translation Updates
 
 - pl (Polish)
 
-- added zh_Hant (Chinese Traditional). Need help for translation!
+- added zh_Hant (Chinese Traditional). Louie Lu would be very glad to have some help on localizing Guake!
 
 - ru (Russian)
 
@@ -69,6 +73,12 @@ Translation Updates
 - sv (Swedish)
 
 - nl (Dutch)
+
+Notes for Package Maintainers
+-----------------------------
+
+- Package maintainers should be aware that ``libwnck`` (Window Navigator Construction Kit)
+  is now a mandatory dependency of Guake.
 
 3.5.0
 =====

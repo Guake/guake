@@ -1054,3 +1054,7 @@ msgstr ""
 #: data/guake-prefs.desktop:66 data/guake-prefs.template.desktop:13
 msgid "Terminal;Utility;"
 msgstr ""
+
+#: guake/main.py:296
+msgid "Show support infomations"
+msgstr ""

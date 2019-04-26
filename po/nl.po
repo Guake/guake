@@ -1444,6 +1444,10 @@ msgstr ""
 "\n"
 "Weet je zeker dat je wilt doorgaan?"
 
+#: guake/main.py:296
+msgid "Show support infomations"
+msgstr ""
+
 #~ msgid "key binding error"
 #~ msgstr "Fout bij toets-binding"
 

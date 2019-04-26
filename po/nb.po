@@ -1488,6 +1488,10 @@ msgstr ""
 "\n"
 "Ønsker du å fortsette?"
 
+#: guake/main.py:296
+msgid "Show support infomations"
+msgstr ""
+
 #~ msgid "key binding error"
 #~ msgstr "Hurtigtast error"
 
