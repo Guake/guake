@@ -1173,3 +1173,7 @@ msgstr ""
 "że wszystkie obecne terminale i strony zostaną zastąpione.\n"
 "\n"
 "Kontynuować?"
+
+#: guake/main.py:296
+msgid "Show support infomations"
+msgstr ""

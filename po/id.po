@@ -1330,5 +1330,9 @@ msgid ""
 "Do you want to continue?"
 msgstr ""
 
+#: guake/main.py:296
+msgid "Show support infomations"
+msgstr ""
+
 #~ msgid "http://guake.org"
 #~ msgstr "http://guake.org"

@@ -5,8 +5,8 @@ release_summary: >
      - session saving
      - settings export and import
 
-  Our MVC ("most valuable contributor") for this release is Louie Lu (@mlouielu) who worked hard
-  to build these three features in a row!
+  Our MVC ("Most Valuable Contributor") for this release is Louie Lu (@mlouielu) who worked hard
+  to build these three features in a row! Thank you very much for your hard work !
 
 features:
   - |
@@ -15,8 +15,14 @@ features:
 translations:
   - fr (French)
   - pl (Polish)
-  - added zh_Hant (Chinese Traditional). Need help for translation!
+  - added zh_Hant (Chinese Traditional). Louie Lu would be very glad to have some help
+    on localizing Guake!
   - ru (Russian)
   - nb (Norvegian)
   - sv (Swedish)
   - nl (Dutch)
+
+notes_for_package_maintainers:
+  - |
+    Package maintainers should be aware that ``libwnck`` (Window Navigator Construction Kit)
+    is now a mandatory dependency of Guake.
