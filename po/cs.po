@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: Guake 0.4.5\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-08-18 17:32+0200\n"
-"PO-Revision-Date: 2018-09-27 18:24+0000\n"
+"PO-Revision-Date: 2019-04-28 18:50+0000\n"
 "Last-Translator: Pavel Borecki <pavel.borecki@gmail.com>\n"
 "Language-Team: Czech <https://hosted.weblate.org/projects/guake/guake/cs/>\n"
 "Language: cs\n"
@@ -19,7 +19,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
-"X-Generator: Weblate 3.2-dev\n"
+"X-Generator: Weblate 3.6.1\n"
 
 #: ../data/about.glade.h:1
 msgid "About Guake"
@@ -1275,68 +1275,71 @@ msgid ""
 "This might not work on all shells, make sure that your shell supports the --"
 "login option"
 msgstr ""
+"Toto nemusí fungovat se všemi shelly – ověřte, že shell podporuje volbu "
+"--login"
 
 #: guake/prefs.py:128
 msgid "New tab in home directory"
-msgstr ""
+msgstr "Nová karta s domovskou složkou"
 
 #: guake/dialogs.py:56
 #, python-brace-format
 msgid " on {0} workspaces"
-msgstr ""
+msgstr " na {0} pracovních plochách"
 
 #: guake/main.py:211
 msgid "Change Guake palette scheme"
-msgstr ""
+msgstr "Změnit schéma palety pro Guake"
 
 #: data/prefs.glade:331
 msgid "Use workspace-specific tab sets (requires restart)"
-msgstr ""
+msgstr "Použít sady karet podle pracovních ploch (vyžaduje restart)"
 
 #: guake/main.py:175
 msgid "Split the selected tab vertically."
-msgstr ""
+msgstr "Rozdělit označenou kartu svisle."
 
 #: guake/main.py:183
 msgid "Split the selected tab horizontally."
-msgstr ""
+msgstr "Rozdělit označenou kartu vodorovně."
 
 #: data/prefs.glade:348
 msgid "Show close buttons for tabs"
-msgstr ""
+msgstr "Zobrazovat na kartách tlačítka pro zavření"
 
 #: data/prefs.glade:1682
 msgid "Bold text is also bright"
-msgstr ""
+msgstr "Tučný text je také rozjasněný"
 
 #: data/prefs.glade:1682
 msgid "Bold text is also bright (VTE >=0.52)"
-msgstr ""
+msgstr "Tučný text je také rozjasněný (VTE verze 0.52 a starší)"
 
 #: guake/menus.py:42
 msgid "Save Tabs"
-msgstr ""
+msgstr "Uložit karty"
 
 #: guake/menus.py:45
 msgid "Restore Tabs"
-msgstr ""
+msgstr "Obnovit karty"
 
 #: guake/prefs.py:113
 msgid "Search terminal"
-msgstr ""
+msgstr "Hledat terminál"
 
 #: guake/main.py:278
 msgid "Save Guake preferences to this filename"
-msgstr ""
+msgstr "Uložit předvolby Guake do tohoto souboru"
 
 #: guake/main.py:286
 msgid "Restore Guake preferences from this file"
-msgstr ""
+msgstr "Obnovit předvolby Guake z tohoto souboru"
 
 #: guake/guake_app.py:1192
 #, python-brace-format
 msgid "Your session.json file is broken, backup to {session_filename}.bak"
 msgstr ""
+"Vás soubor session.json je poškozený, zálohovat do {session_filename}.bak"
 
 #: guake/guake_app.py:1228
 #, python-brace-format
@@ -1344,32 +1347,35 @@ msgid ""
 "Your session.json schema is broken, backup to {0}.bak,and error message has "
 "been saved to {0}.log.err"
 msgstr ""
+"Vaše schema session.json je poškozené, záloha do {0}.bak, a chybové hlášení "
+"bylo uložen do {0}.log.err"
 
 #: guake/guake_app.py:1239
 msgid "Your tabs has been restored!"
-msgstr ""
+msgstr "Vaše karty byly obnoveny!"
 
 #: data/prefs.glade:190
 msgid "Restore previous session (tabs)"
-msgstr ""
+msgstr "Obnovit předchozí relaci (karty)"
 
 #: data/prefs.glade:204
 msgid "Enable notification when restore tabs"
-msgstr ""
+msgstr "Zapnout oznamování při obnovování karet"
 
 #: data/prefs.glade:218
 msgid "Automatically save session when the tabs has been modified"
-msgstr ""
+msgstr "Automaticky uložit relaci když jsou karty upraveny"
 
 #: data/prefs.glade:238
 msgid "Startup & Tabs (Experiment)"
-msgstr ""
+msgstr "Spouštění a karty (experiment)"
 
 #: guake/guake_app.py:1192
 #, python-brace-format
 msgid ""
 "Your {session_filename} file is broken, backup to {session_filename}.bak"
 msgstr ""
+"Váš soubor {session_filename} je poškozený, záloha do {session_filename}.bak"
 
 #: guake/guake_app.py:1227
 #, python-brace-format
@@ -1377,6 +1383,8 @@ msgid ""
 "Your {session_filename} schema is broken, backup to {0}.bak,and error "
 "message has been saved to {session_filename}.log.err"
 msgstr ""
+"Váš {session_filename} schema je poškozené, záloha do {0}.bak, a chybové "
+"hlášení bylo uloženo do {session_filename}.log.err"
 
 #: guake/guake_app.py:1227
 #, python-brace-format
@@ -1384,6 +1392,9 @@ msgid ""
 "Your {session_filename} schema is broken, backup to {session_filename}.bak,"
 "and error message has been saved to {session_filename}.log.err."
 msgstr ""
+"Vaše {session_filename} schema je poškozené, náhradně se použije "
+"{session_filename}.bak, a chybové hlášení bylo uloženo do "
+"{session_filename}.log.err."
 
 #: guake/guake_app.py:1227
 #, python-brace-format
@@ -1391,6 +1402,9 @@ msgid ""
 "Your {session_filename} schema is broken, backup to {session_filename}.bak, "
 "and error message has been saved to {session_filename}.log.err."
 msgstr ""
+"Vaše {session_filename} schema je poškozené, náhradně bude použito "
+"{session_filename}.bak, a hlášení chyby bylo uloženo do "
+"{session_filename}.log.err."
 
 #: guake/notebook.py:317
 msgid ""
@@ -1399,10 +1413,14 @@ msgid ""
 "\n"
 "Do you want to continue?"
 msgstr ""
+"Chystáte se obnovit *všechny* karty!\n"
+"což znamená, že všechny terminály a stránky budou nahrazeny.\n"
+"\n"
+"Chcete pokračovat?"
 
 #: guake/main.py:296
 msgid "Show support infomations"
-msgstr ""
+msgstr "Zobrazit informace pro podporu"
 
 #~ msgid "key binding error"
 #~ msgstr "chyba klávesových zkratek"
