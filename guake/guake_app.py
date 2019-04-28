@@ -1147,7 +1147,8 @@ class Guake(SimpleGladeApp):
         pass
 
     def get_xdg_config_directory(self):
-        return Path('~/.config/guake').expanduser()
+        xdg_config_home = os.environ.get('XDG_CONFIG_HOME', '~/.config')
+        return Path(xdg_config_home, 'guake').expanduser()
 
     def save_tabs(self, filename='session.json'):
         config = {'schema_version': 1, 'timestamp': int(pytime.time()), 'workspace': {}}
