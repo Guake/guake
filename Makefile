@@ -10,7 +10,7 @@ bindir = $(exec_prefix)/bin
 # findout the dist-package directory name. Under most system, users can install on dist-package.
 # On debian, site-package is reserved for the official python packages and has precedence over
 # dist-package
-PYTHON_SITE_PACKAGE_NAME:=$(shell $(PYTHON_INTERPRETER) -c "import site; import os; print(os.path.basename(site.getsitepackages()[0]))")
+PYTHON_SITE_PACKAGE_NAME:=$(shell $(PYTHON_INTERPRETER) scripts/find-first-site-package.py)
 PYTHON_SITE_PACKAGE_DIR=$(prefix)/lib/python$(shell $(PYTHON_INTERPRETER) -c "import sys; v = sys.version_info; print('{}.{}'.format(v.major, v.minor))")/$(PYTHON_SITE_PACKAGE_NAME)
 OLD_PREFIX:=$(DESTDIR)usr
 ROOT_DIR=$(shell pwd)
