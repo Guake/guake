@@ -22,11 +22,11 @@ msgstr ""
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Generator: Weblate 3.2\n"
 
-#: ../data/about.glade.h:1
+#: ../guake/data/about.glade.h:1
 msgid "About Guake"
 msgstr "关于 Guake"
 
-#: ../data/about.glade.h:5
+#: ../guake/data/about.glade.h:5
 msgid ""
 "Guake is an easy to access\n"
 "terminal based on FPS games terminal"
@@ -34,84 +34,84 @@ msgstr ""
 "Guake 是一个易于使用的\n"
 "基于 fps 游戏终端的终端"
 
-#: ../data/guake.glade.h:1
+#: ../guake/data/guake.glade.h:1
 msgid "Copy"
 msgstr "复制"
 
-#: ../data/guake.glade.h:2
+#: ../guake/data/guake.glade.h:2
 msgid "Paste"
 msgstr "粘贴"
 
-#: ../data/guake.glade.h:3 ../src/guake/prefs.py:79
+#: ../guake/data/guake.glade.h:3 ../src/guake/prefs.py:79
 msgid "Toggle Fullscreen"
 msgstr "切换全屏"
 
-#: ../data/guake.glade.h:4
+#: ../guake/data/guake.glade.h:4
 msgid "Save to File..."
 msgstr "保存到文件..."
 
-#: ../data/guake.glade.h:5 ../src/guake/prefs.py:85
+#: ../guake/data/guake.glade.h:5 ../src/guake/prefs.py:85
 msgid "Reset terminal"
 msgstr "重置终端"
 
-#: ../data/guake.glade.h:6
+#: ../guake/data/guake.glade.h:6
 msgid "Find..."
 msgstr "查找..."
 
-#: ../data/guake.glade.h:7
+#: ../guake/data/guake.glade.h:7
 msgid "New Tab"
 msgstr "新标签页"
 
-#: ../data/guake.glade.h:8
+#: ../guake/data/guake.glade.h:8
 msgid "Rename Tab"
 msgstr "重命名标签页"
 
-#: ../data/guake.glade.h:9
+#: ../guake/data/guake.glade.h:9
 msgid "Close Tab"
 msgstr "关闭标签页"
 
-#: ../data/guake.glade.h:10
+#: ../guake/data/guake.glade.h:10
 msgid "Open link..."
 msgstr "打开链接..."
 
-#: ../data/guake.glade.h:11
+#: ../guake/data/guake.glade.h:11
 msgid "Search on Web"
 msgstr "使用搜索引擎搜索"
 
-#: ../data/guake.glade.h:12 ../src/guake/prefs.py:83
+#: ../guake/data/guake.glade.h:12 ../src/guake/prefs.py:83
 msgid "Quit"
 msgstr "退出"
 
-#: ../data/guake.glade.h:13
+#: ../guake/data/guake.glade.h:13
 msgid "Rename"
 msgstr "重命名"
 
-#: ../data/guake.glade.h:14
+#: ../guake/data/guake.glade.h:14
 msgid "Close"
 msgstr "关闭"
 
-#: ../data/guake.glade.h:15
+#: ../guake/data/guake.glade.h:15
 msgid "Guake!"
 msgstr "Guake！"
 
-#: ../data/guake.glade.h:16
+#: ../guake/data/guake.glade.h:16
 msgid "Add a new tab"
 msgstr "新增标签页"
 
-#: ../data/prefs.glade.h:1
+#: ../guake/data/prefs.glade.h:1
 msgid "Guake Preferences"
 msgstr "Guake 首选项"
 
-#: ../data/prefs.glade.h:2
+#: ../guake/data/prefs.glade.h:2
 msgid "<span size=\"18000\" color=\"black\"><b>Guake properties</b></span>"
 msgstr "<span size=\"18000\" color=\"black\"><b>Guake 属性</b></span>"
 
-#: ../data/prefs.glade.h:3
+#: ../guake/data/prefs.glade.h:3
 msgid ""
 "<span color=\"black\">Customize behavior and appearance of Guake!</span>"
 msgstr "<span color=\"black\">自定义 Guake 的行为和外观！</span>"
 
-#: ../data/prefs.glade.h:4
+#: ../guake/data/prefs.glade.h:4
 msgid ""
 "Path to a bash script that would be automatically executed when Guake "
 "starts, unless you specify --no-startup-script.\n"
@@ -139,35 +139,35 @@ msgstr ""
 "guake -r \"main\" -e \"cd ~/projects/myproject/main\"\n"
 "guake -r \"prod\" -e \"cd ~/projects/myproject/prod\"\n"
 
-#: ../data/prefs.glade.h:15
+#: ../guake/data/prefs.glade.h:15
 msgid "Enable popup notifications on startup"
 msgstr "启用启动时的弹出通知"
 
-#: ../data/prefs.glade.h:16
+#: ../guake/data/prefs.glade.h:16
 msgid "Show tray icon"
 msgstr "显示系统托盘图标"
 
-#: ../data/prefs.glade.h:17
+#: ../guake/data/prefs.glade.h:17
 msgid "Always prompt on quit"
 msgstr "退出时提示"
 
-#: ../data/prefs.glade.h:18
+#: ../guake/data/prefs.glade.h:18
 msgid "_Flash terminal on bell"
 msgstr "告警时闪屏"
 
-#: ../data/prefs.glade.h:19
+#: ../guake/data/prefs.glade.h:19
 msgid "_Play system alert sound on bell"
 msgstr "告警时播放系统告警音"
 
-#: ../data/prefs.glade.h:20
+#: ../guake/data/prefs.glade.h:20
 msgid "Path to script executed on Guake start:"
 msgstr "Guake启动时执行脚本路径:"
 
-#: ../data/prefs.glade.h:21
+#: ../guake/data/prefs.glade.h:21
 msgid "Prompt on close tab:"
 msgstr "退出时提示:"
 
-#: ../data/prefs.glade.h:22
+#: ../guake/data/prefs.glade.h:22
 msgid ""
 "Never\n"
 "With process running\n"
@@ -177,171 +177,171 @@ msgstr ""
 "有进程正在运行时\n"
 "总是"
 
-#: ../data/prefs.glade.h:25
+#: ../guake/data/prefs.glade.h:25
 msgid "<b>General</b>"
 msgstr "<b>常规</b>"
 
-#: ../data/prefs.glade.h:26
+#: ../guake/data/prefs.glade.h:26
 msgid "Bottom align window instead of top align"
 msgstr "窗口停靠到底部"
 
-#: ../data/prefs.glade.h:27
+#: ../guake/data/prefs.glade.h:27
 msgid "Appear on mouse display"
 msgstr "在光标所在显示器显示"
 
-#: ../data/prefs.glade.h:28
+#: ../guake/data/prefs.glade.h:28
 msgid "Appear on display:"
 msgstr "选择显示器:"
 
-#: ../data/prefs.glade.h:29
+#: ../guake/data/prefs.glade.h:29
 msgid "Place tabs on top"
 msgstr "将标签栏置于上方"
 
-#: ../data/prefs.glade.h:30
+#: ../guake/data/prefs.glade.h:30
 msgid "<b>Placement</b>"
 msgstr "<b>位置</b>"
 
-#: ../data/prefs.glade.h:31
+#: ../guake/data/prefs.glade.h:31
 msgid "Stay on top"
 msgstr "保持在最前端"
 
-#: ../data/prefs.glade.h:32
+#: ../guake/data/prefs.glade.h:32
 msgid "Hide on lose focus"
 msgstr "失去焦点后隐藏"
 
-#: ../data/prefs.glade.h:33
+#: ../guake/data/prefs.glade.h:33
 msgid "Show tab bar"
 msgstr "显示标签栏"
 
-#: ../data/prefs.glade.h:34
+#: ../guake/data/prefs.glade.h:34
 msgid "Start fullscreen"
 msgstr "启动默认全屏"
 
-#: ../data/prefs.glade.h:35
+#: ../guake/data/prefs.glade.h:35
 msgid "Use VTE titles for tab names"
 msgstr "使用VTE标题作为标签名"
 
-#: ../data/prefs.glade.h:36
+#: ../guake/data/prefs.glade.h:36
 msgid "Abbreviate directories in tab names"
 msgstr "在标签名中缩写目录"
 
-#: ../data/prefs.glade.h:37
+#: ../guake/data/prefs.glade.h:37
 msgid "Max tab name length:"
 msgstr "最大标签名长度:"
 
-#: ../data/prefs.glade.h:38
+#: ../guake/data/prefs.glade.h:38
 msgid "<b>Main Window</b>"
 msgstr "<b>主窗口</b>"
 
-#: ../data/prefs.glade.h:39
+#: ../guake/data/prefs.glade.h:39
 msgid "Left"
 msgstr "左"
 
-#: ../data/prefs.glade.h:40
+#: ../guake/data/prefs.glade.h:40
 msgid "Center"
 msgstr "中"
 
-#: ../data/prefs.glade.h:41
+#: ../guake/data/prefs.glade.h:41
 msgid "Right"
 msgstr "右"
 
-#: ../data/prefs.glade.h:42
+#: ../guake/data/prefs.glade.h:42
 msgid "<b>Main Window Horizontal Alignment</b>"
 msgstr "<b>主窗口对齐</b>"
 
-#: ../data/prefs.glade.h:43
+#: ../guake/data/prefs.glade.h:43
 msgid "<b>Main Window Height</b>"
 msgstr "<b>主窗口高度</b>"
 
-#: ../data/prefs.glade.h:44
+#: ../guake/data/prefs.glade.h:44
 msgid "<b>Main Window Width</b>"
 msgstr "<b>主窗口宽度</b>"
 
-#: ../data/prefs.glade.h:45
+#: ../guake/data/prefs.glade.h:45
 msgid "Custom command file path: "
 msgstr "自定义命令路径: "
 
-#: ../data/prefs.glade.h:46
+#: ../guake/data/prefs.glade.h:46
 msgid "Please select a json file"
 msgstr "请选择Json文件"
 
-#: ../data/prefs.glade.h:47 ../src/guake/prefs.py:75
+#: ../guake/data/prefs.glade.h:47 ../src/guake/prefs.py:75
 msgid "General"
 msgstr "常规"
 
-#: ../data/prefs.glade.h:48
+#: ../guake/data/prefs.glade.h:48
 msgid "Default interpreter:"
 msgstr "默认解释器:"
 
-#: ../data/prefs.glade.h:49
+#: ../guake/data/prefs.glade.h:49
 msgid "_Run command as a login shell"
 msgstr "运行命令作为登录外壳"
 
-#: ../data/prefs.glade.h:50
+#: ../guake/data/prefs.glade.h:50
 msgid "_Open new tab in current directory"
 msgstr "在当前目录打开新标签页"
 
-#: ../data/prefs.glade.h:51
+#: ../guake/data/prefs.glade.h:51
 msgid "<b>Shell</b>"
 msgstr "<b>外壳</b>"
 
-#: ../data/prefs.glade.h:52
+#: ../guake/data/prefs.glade.h:52
 msgid "Shell"
 msgstr "外壳"
 
-#: ../data/prefs.glade.h:53
+#: ../guake/data/prefs.glade.h:53
 msgid "Show scrollbar"
 msgstr "显示滚动条"
 
-#: ../data/prefs.glade.h:54
+#: ../guake/data/prefs.glade.h:54
 msgid "Scrollback lines:"
 msgstr "回卷行数："
 
-#: ../data/prefs.glade.h:55
+#: ../guake/data/prefs.glade.h:55
 msgid "On output"
 msgstr "输出时"
 
-#: ../data/prefs.glade.h:56
+#: ../guake/data/prefs.glade.h:56
 msgid "On key stroke"
 msgstr "键敲下时"
 
-#: ../data/prefs.glade.h:57
+#: ../guake/data/prefs.glade.h:57
 msgid "<b>Scroll</b>"
 msgstr "<b>滚动</b>"
 
-#: ../data/prefs.glade.h:58
+#: ../guake/data/prefs.glade.h:58
 msgid "Scrolling"
 msgstr "滚屏"
 
-#: ../data/prefs.glade.h:59
+#: ../guake/data/prefs.glade.h:59
 msgid "Use the system fixed width font"
 msgstr "使用系统的等宽字体"
 
-#: ../data/prefs.glade.h:60
+#: ../guake/data/prefs.glade.h:60
 msgid "Font:"
 msgstr "字体："
 
-#: ../data/prefs.glade.h:61
+#: ../guake/data/prefs.glade.h:61
 msgid "Show resizer"
 msgstr "显示大小设置"
 
-#: ../data/prefs.glade.h:62
+#: ../guake/data/prefs.glade.h:62
 msgid "Choose some font"
 msgstr "选择字体"
 
-#: ../data/prefs.glade.h:63
+#: ../guake/data/prefs.glade.h:63
 msgid "Text color:"
 msgstr "文字颜色："
 
-#: ../data/prefs.glade.h:64
+#: ../guake/data/prefs.glade.h:64
 msgid "Background color:"
 msgstr "背景颜色："
 
-#: ../data/prefs.glade.h:65
+#: ../guake/data/prefs.glade.h:65
 msgid "Cursor shape:"
 msgstr "光标形状:"
 
-#: ../data/prefs.glade.h:66
+#: ../guake/data/prefs.glade.h:66
 msgid ""
 "Block\n"
 "I-Beam\n"
@@ -351,7 +351,7 @@ msgstr ""
 "细线状\n"
 "下划线"
 
-#: ../data/prefs.glade.h:69
+#: ../guake/data/prefs.glade.h:69
 msgid ""
 "Follow GTK+ setting\n"
 "Blink on\n"
@@ -361,63 +361,63 @@ msgstr ""
 "打开光标闪烁\n"
 "关闭光标闪烁"
 
-#: ../data/prefs.glade.h:72
+#: ../guake/data/prefs.glade.h:72
 msgid "Cursor blink mode:"
 msgstr "光标闪动类型:"
 
-#: ../data/prefs.glade.h:73
+#: ../guake/data/prefs.glade.h:73
 msgid "Allow bold font"
 msgstr "允许使用粗体"
 
-#: ../data/prefs.glade.h:74
+#: ../guake/data/prefs.glade.h:74
 msgid "<b>Palette</b>"
 msgstr "<b>调色板</b>"
 
-#: ../data/prefs.glade.h:75
+#: ../guake/data/prefs.glade.h:75
 msgid "Built-in schemes:"
 msgstr "内建方案："
 
-#: ../data/prefs.glade.h:76
+#: ../guake/data/prefs.glade.h:76
 msgid "Color palette:"
 msgstr "调色板："
 
-#: ../data/prefs.glade.h:77
+#: ../guake/data/prefs.glade.h:77
 msgid "Font color"
 msgstr "文字颜色"
 
-#: ../data/prefs.glade.h:78
+#: ../guake/data/prefs.glade.h:78
 msgid "Background color"
 msgstr "背景颜色"
 
-#: ../data/prefs.glade.h:79
+#: ../guake/data/prefs.glade.h:79
 msgid "Use font and background color from the palette"
 msgstr "使用调色板设置的字体和背景颜色"
 
-#: ../data/prefs.glade.h:80
+#: ../guake/data/prefs.glade.h:80
 msgid "Demo:"
 msgstr "样例："
 
-#: ../data/prefs.glade.h:81
+#: ../guake/data/prefs.glade.h:81
 msgid "<b>Effects</b>"
 msgstr "<b>效果</b>"
 
-#: ../data/prefs.glade.h:82
+#: ../guake/data/prefs.glade.h:82
 msgid "Transparency:"
 msgstr "透明度："
 
-#: ../data/prefs.glade.h:83
+#: ../guake/data/prefs.glade.h:83
 msgid "Background image:"
 msgstr "背景图像："
 
-#: ../data/prefs.glade.h:84
+#: ../guake/data/prefs.glade.h:84
 msgid "Select A File"
 msgstr "选择一个文件"
 
-#: ../data/prefs.glade.h:85 ../src/guake/prefs.py:130
+#: ../guake/data/prefs.glade.h:85 ../src/guake/prefs.py:130
 msgid "Appearance"
 msgstr "外观"
 
-#: ../data/prefs.glade.h:86
+#: ../guake/data/prefs.glade.h:86
 msgid ""
 "<small>Quick open is a feature allowing you to open a file directly into "
 "your favorite text editor by clicking on its filename when it appears in "
@@ -428,15 +428,15 @@ msgstr ""
 "在终端时点击它即可。符合下方模式的字符串将被识别为可快速打开的文件名字。</"
 "small>"
 
-#: ../data/prefs.glade.h:87
+#: ../guake/data/prefs.glade.h:87
 msgid "Enable Quick Open when Ctrl+clicking on a filename in the terminal"
 msgstr "允许以按住Ctrl并单击终端中的文件名的方式快速打开"
 
-#: ../data/prefs.glade.h:88
+#: ../guake/data/prefs.glade.h:88
 msgid "Editor command line:"
 msgstr "编辑器的命令行设置："
 
-#: ../data/prefs.glade.h:90
+#: ../guake/data/prefs.glade.h:90
 #, no-c-format
 msgid ""
 "<small><i>Use the following elements in the open editor command line:\n"
@@ -454,11 +454,11 @@ msgstr ""
 "比如，对于 sublime, 可以使用 <b>subl %(file_path)s:%(line_number)s</b>\n"
 "</i></small>"
 
-#: ../data/prefs.glade.h:96
+#: ../guake/data/prefs.glade.h:96
 msgid "Quick open in current terminal"
 msgstr "在当前终端中快速打开"
 
-#: ../data/prefs.glade.h:97
+#: ../guake/data/prefs.glade.h:97
 msgid ""
 "Here is the list of supported patterns: (to add your own, please contact the "
 "Guake's authors)"
@@ -466,15 +466,15 @@ msgstr ""
 "以下为当前文件名匹配模式的列表: (如果想加入您自己的一些匹配模式，请联系Guake"
 "作者)"
 
-#: ../data/prefs.glade.h:98
+#: ../guake/data/prefs.glade.h:98
 msgid "<b>Quick Open</b>"
 msgstr "<b>快速打开</b>"
 
-#: ../data/prefs.glade.h:99
+#: ../guake/data/prefs.glade.h:99
 msgid "Quick Open"
 msgstr "快速打开"
 
-#: ../data/prefs.glade.h:100
+#: ../guake/data/prefs.glade.h:100
 msgid ""
 "To change a shortcut simply click on its name.\n"
 "To disable a shortcut, press the \"Backspace\" key."
@@ -482,11 +482,11 @@ msgstr ""
 "单击以修改快捷键。\n"
 "使用退格键\"Backspace\" 可禁用某个快捷键。"
 
-#: ../data/prefs.glade.h:102
+#: ../guake/data/prefs.glade.h:102
 msgid "Keyboard shortcuts"
 msgstr "键盘快捷键"
 
-#: ../data/prefs.glade.h:103
+#: ../guake/data/prefs.glade.h:103
 msgid ""
 "<small><i><b>Note:</b> These options may cause some applications to behave "
 "incorrectly.  They are only here to allow you to work around certain "
@@ -496,7 +496,7 @@ msgstr ""
 "<small><i><b>注意：</b>这些选项可能会导致一些程序行为异常。仅仅是允许您暂时应"
 "对某程序和期望不同终端行为的操作系统。</i></small>"
 
-#: ../data/prefs.glade.h:104
+#: ../guake/data/prefs.glade.h:104
 msgid ""
 "ASCII DEL\n"
 "Escape sequence\n"
@@ -506,27 +506,27 @@ msgstr ""
 "Escape 序列\n"
 "Control-H"
 
-#: ../data/prefs.glade.h:107
+#: ../guake/data/prefs.glade.h:107
 msgid "_Backspace key generates:"
 msgstr "Backspace 键产生："
 
-#: ../data/prefs.glade.h:108
+#: ../guake/data/prefs.glade.h:108
 msgid "_Delete key generates:"
 msgstr "Delete 键产生："
 
-#: ../data/prefs.glade.h:109
+#: ../guake/data/prefs.glade.h:109
 msgid "_Reset Compatibility Options to Defaults"
 msgstr "重新设定兼容性选项为默认值"
 
-#: ../data/prefs.glade.h:110
+#: ../guake/data/prefs.glade.h:110
 msgid "<b>Keyboard compatibility</b>"
 msgstr "<b>键盘兼容性</b>"
 
-#: ../data/prefs.glade.h:111
+#: ../guake/data/prefs.glade.h:111
 msgid "Compatibility"
 msgstr "兼容性"
 
-#: ../data/prefs.glade.h:112
+#: ../guake/data/prefs.glade.h:112
 msgid ""
 "<small>In this dialog you can attach your own command or script to various "
 "guake events</small>"
@@ -534,7 +534,7 @@ msgstr ""
 "<small>在这个对话框中，您可以将您的自定义命令或脚本绑定到各种guake事件</"
 "small>"
 
-#: ../data/prefs.glade.h:113
+#: ../guake/data/prefs.glade.h:113
 msgid ""
 "Insert command or path to script.\n"
 "For details, see https://github.com/Guake/guake/issues/793"
@@ -542,15 +542,15 @@ msgstr ""
 "增加命令或脚本路径。\n"
 "更多细节请参考 https://github.com/Guake/guake/issues/793"
 
-#: ../data/prefs.glade.h:115
+#: ../guake/data/prefs.glade.h:115
 msgid "On show:"
 msgstr "显示时:"
 
-#: ../data/prefs.glade.h:116
+#: ../guake/data/prefs.glade.h:116
 msgid "<b>Hooks</b>"
 msgstr "<b>钩子</b>"
 
-#: ../data/prefs.glade.h:117
+#: ../guake/data/prefs.glade.h:117
 msgid "Hooks"
 msgstr "钩子"
 

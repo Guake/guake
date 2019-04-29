@@ -3,7 +3,7 @@
 Guake User Documentation
 ========================
 
-.. image:: ../../data/pixmaps/intro-small.jpg
+.. image:: ../../guake/data/pixmaps/intro-small.jpg
 
 Welcome to the official Guake User Documentation.
 

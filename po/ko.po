@@ -20,11 +20,11 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Poedit 2.0.6\n"
 
-#: ../data/about.glade.h:1
+#: ../guake/data/about.glade.h:1
 msgid "About Guake"
 msgstr "Guake에 대해서"
 
-#: ../data/about.glade.h:5
+#: ../guake/data/about.glade.h:5
 msgid ""
 "Guake is an easy to access\n"
 "terminal based on FPS games terminal"
@@ -32,84 +32,84 @@ msgstr ""
 "Guake는 FPS 게임의 터미널에서 착안한\n"
 "접근이 편리한 터미널입니다."
 
-#: ../data/guake.glade.h:1
+#: ../guake/data/guake.glade.h:1
 msgid "Copy"
 msgstr "복사"
 
-#: ../data/guake.glade.h:2
+#: ../guake/data/guake.glade.h:2
 msgid "Paste"
 msgstr "붙여넣기"
 
-#: ../data/guake.glade.h:3 ../src/guake/prefs.py:79
+#: ../guake/data/guake.glade.h:3 ../src/guake/prefs.py:79
 msgid "Toggle Fullscreen"
 msgstr "전체 화면 설정"
 
-#: ../data/guake.glade.h:4
+#: ../guake/data/guake.glade.h:4
 msgid "Save to File..."
 msgstr "파일로 저장"
 
-#: ../data/guake.glade.h:5 ../src/guake/prefs.py:85
+#: ../guake/data/guake.glade.h:5 ../src/guake/prefs.py:85
 msgid "Reset terminal"
 msgstr "터미널 초기화"
 
-#: ../data/guake.glade.h:6
+#: ../guake/data/guake.glade.h:6
 msgid "Find..."
 msgstr "찾기"
 
-#: ../data/guake.glade.h:7
+#: ../guake/data/guake.glade.h:7
 msgid "New Tab"
 msgstr "새 탭"
 
-#: ../data/guake.glade.h:8
+#: ../guake/data/guake.glade.h:8
 msgid "Rename Tab"
 msgstr "탭 이름 변경"
 
-#: ../data/guake.glade.h:9
+#: ../guake/data/guake.glade.h:9
 msgid "Close Tab"
 msgstr "탭 닫기"
 
-#: ../data/guake.glade.h:10
+#: ../guake/data/guake.glade.h:10
 msgid "Open link..."
 msgstr "링크 열기"
 
-#: ../data/guake.glade.h:11
+#: ../guake/data/guake.glade.h:11
 msgid "Search on Web"
 msgstr "선택된 텍스트를 웹에 검색"
 
-#: ../data/guake.glade.h:12 ../src/guake/prefs.py:83
+#: ../guake/data/guake.glade.h:12 ../src/guake/prefs.py:83
 msgid "Quit"
 msgstr "닫기"
 
-#: ../data/guake.glade.h:13
+#: ../guake/data/guake.glade.h:13
 msgid "Rename"
 msgstr "이름변경"
 
-#: ../data/guake.glade.h:14
+#: ../guake/data/guake.glade.h:14
 msgid "Close"
 msgstr "닫기"
 
-#: ../data/guake.glade.h:15
+#: ../guake/data/guake.glade.h:15
 msgid "Guake!"
 msgstr "Guake!"
 
-#: ../data/guake.glade.h:16
+#: ../guake/data/guake.glade.h:16
 msgid "Add a new tab"
 msgstr "새 탭 열기"
 
-#: ../data/prefs.glade.h:1
+#: ../guake/data/prefs.glade.h:1
 msgid "Guake Preferences"
 msgstr "Guake 속성"
 
-#: ../data/prefs.glade.h:2
+#: ../guake/data/prefs.glade.h:2
 msgid "<span size=\"18000\" color=\"black\"><b>Guake properties</b></span>"
 msgstr "<span size=\"18000\" color=\"black\"><b>Guake 속성</b></span>"
 
-#: ../data/prefs.glade.h:3
+#: ../guake/data/prefs.glade.h:3
 msgid ""
 "<span color=\"black\">Customize behavior and appearance of Guake!</span>"
 msgstr "<span color=\"black\">Guake의 행동 및 모양 사용자 정의 설정!</span>"
 
-#: ../data/prefs.glade.h:4
+#: ../guake/data/prefs.glade.h:4
 msgid ""
 "Path to a bash script that would be automatically executed when Guake "
 "starts, unless you specify --no-startup-script.\n"
@@ -139,35 +139,35 @@ msgstr ""
 "guake -r \"main\" -e \"cd ~/projects/myproject/main\"\n"
 "guake -r \"prod\" -e \"cd ~/projects/myproject/prod\"\n"
 
-#: ../data/prefs.glade.h:15
+#: ../guake/data/prefs.glade.h:15
 msgid "Enable popup notifications on startup"
 msgstr "시작시 팝업 알림창 활성화"
 
-#: ../data/prefs.glade.h:16
+#: ../guake/data/prefs.glade.h:16
 msgid "Show tray icon"
 msgstr "트래이 아이콘 보이기"
 
-#: ../data/prefs.glade.h:17
+#: ../guake/data/prefs.glade.h:17
 msgid "Always prompt on quit"
 msgstr "Guake 종료시 알림"
 
-#: ../data/prefs.glade.h:18
+#: ../guake/data/prefs.glade.h:18
 msgid "_Flash terminal on bell"
 msgstr "알림시 터미널 깜빡이기"
 
-#: ../data/prefs.glade.h:19
+#: ../guake/data/prefs.glade.h:19
 msgid "_Play system alert sound on bell"
 msgstr "알림시 시스템 경고음 울리기"
 
-#: ../data/prefs.glade.h:20
+#: ../guake/data/prefs.glade.h:20
 msgid "Path to script executed on Guake start:"
 msgstr "Guake 시작시 실행될 스크립트 경로:"
 
-#: ../data/prefs.glade.h:21
+#: ../guake/data/prefs.glade.h:21
 msgid "Prompt on close tab:"
 msgstr "탭 종료시 알림:"
 
-#: ../data/prefs.glade.h:22
+#: ../guake/data/prefs.glade.h:22
 msgid ""
 "Never\n"
 "With process running\n"
@@ -177,171 +177,171 @@ msgstr ""
 "프로세스 실행 중일 때만 알림\n"
 "항상 알림"
 
-#: ../data/prefs.glade.h:25
+#: ../guake/data/prefs.glade.h:25
 msgid "<b>General</b>"
 msgstr "<b>일반</b>"
 
-#: ../data/prefs.glade.h:26
+#: ../guake/data/prefs.glade.h:26
 msgid "Bottom align window instead of top align"
 msgstr "터미널을 아래에 붙이기"
 
-#: ../data/prefs.glade.h:27
+#: ../guake/data/prefs.glade.h:27
 msgid "Appear on mouse display"
 msgstr "마우스 커서가 위치한 디스플레이에 보이기"
 
-#: ../data/prefs.glade.h:28
+#: ../guake/data/prefs.glade.h:28
 msgid "Appear on display:"
 msgstr "창이 보일 디스플레이"
 
-#: ../data/prefs.glade.h:29
+#: ../guake/data/prefs.glade.h:29
 msgid "Place tabs on top"
 msgstr "탭을 최상위로 배치하기"
 
-#: ../data/prefs.glade.h:30
+#: ../guake/data/prefs.glade.h:30
 msgid "<b>Placement</b>"
 msgstr "<b>배치</b>"
 
-#: ../data/prefs.glade.h:31
+#: ../guake/data/prefs.glade.h:31
 msgid "Stay on top"
 msgstr "항상위에 표시"
 
-#: ../data/prefs.glade.h:32
+#: ../guake/data/prefs.glade.h:32
 msgid "Use VTE titles for tab names"
 msgstr "탭 이름에 VTE 타일 사용하기"
 
-#: ../data/prefs.glade.h:33
+#: ../guake/data/prefs.glade.h:33
 msgid "Max tab name length:"
 msgstr "탭 이름 최대 길이:"
 
-#: ../data/prefs.glade.h:34
+#: ../guake/data/prefs.glade.h:34
 msgid "0 means no size limit"
 msgstr ""
 
-#: ../data/prefs.glade.h:35
+#: ../guake/data/prefs.glade.h:35
 msgid "Abbreviate directories in tab names"
 msgstr ""
 
-#: ../data/prefs.glade.h:36
+#: ../guake/data/prefs.glade.h:36
 msgid "Hide on lose focus"
 msgstr "포커스를 잃을 때 감추기"
 
-#: ../data/prefs.glade.h:37
+#: ../guake/data/prefs.glade.h:37
 msgid "Show tab bar"
 msgstr "탭바 보이기"
 
-#: ../data/prefs.glade.h:38
+#: ../guake/data/prefs.glade.h:38
 msgid "Start fullscreen"
 msgstr "전체화면으로 시작하기"
 
-#: ../data/prefs.glade.h:39
+#: ../guake/data/prefs.glade.h:39
 msgid "<b>Main Window</b>"
 msgstr "<b>메인 윈도우</b>"
 
-#: ../data/prefs.glade.h:40
+#: ../guake/data/prefs.glade.h:40
 msgid "Left"
 msgstr "왼쪽"
 
-#: ../data/prefs.glade.h:41
+#: ../guake/data/prefs.glade.h:41
 msgid "Center"
 msgstr "가운데"
 
-#: ../data/prefs.glade.h:42
+#: ../guake/data/prefs.glade.h:42
 msgid "Right"
 msgstr "오른쪽"
 
-#: ../data/prefs.glade.h:43
+#: ../guake/data/prefs.glade.h:43
 msgid "<b>Main Window Horizontal Alignment</b>"
 msgstr "<b>메인 윈도우 수평 정렬</b>"
 
-#: ../data/prefs.glade.h:44
+#: ../guake/data/prefs.glade.h:44
 msgid "<b>Main Window Height</b>"
 msgstr "<b>메인 윈도우 높이 설정</b>"
 
-#: ../data/prefs.glade.h:45
+#: ../guake/data/prefs.glade.h:45
 msgid "<b>Main Window Width</b>"
 msgstr "<b>메인 윈도우 너미 설정</b>"
 
-#: ../data/prefs.glade.h:46
+#: ../guake/data/prefs.glade.h:46
 msgid "Custom command file path: "
 msgstr "사용자 정의 명령어 파일 위치:"
 
-#: ../data/prefs.glade.h:47
+#: ../guake/data/prefs.glade.h:47
 msgid "Please select a json file"
 msgstr "json 파일 선택"
 
-#: ../data/prefs.glade.h:48 ../src/guake/prefs.py:75
+#: ../guake/data/prefs.glade.h:48 ../src/guake/prefs.py:75
 msgid "General"
 msgstr "일반"
 
-#: ../data/prefs.glade.h:49
+#: ../guake/data/prefs.glade.h:49
 msgid "Default interpreter:"
 msgstr "기본 인터프리터:"
 
-#: ../data/prefs.glade.h:50
+#: ../guake/data/prefs.glade.h:50
 msgid "_Run command as a login shell"
 msgstr "로그인 쉘 실행시 명령어 실행"
 
-#: ../data/prefs.glade.h:51
+#: ../guake/data/prefs.glade.h:51
 msgid "_Open new tab in current directory"
 msgstr "새 탭 생성시 현재 디렉토리로 설정"
 
-#: ../data/prefs.glade.h:52
+#: ../guake/data/prefs.glade.h:52
 msgid "<b>Shell</b>"
 msgstr "<b>쉘</b>"
 
-#: ../data/prefs.glade.h:53
+#: ../guake/data/prefs.glade.h:53
 msgid "Shell"
 msgstr "쉘"
 
-#: ../data/prefs.glade.h:54
+#: ../guake/data/prefs.glade.h:54
 msgid "Show scrollbar"
 msgstr "스크롤바 보이기"
 
-#: ../data/prefs.glade.h:55
+#: ../guake/data/prefs.glade.h:55
 msgid "Scrollback lines:"
 msgstr "스크롤 할 라인 수:"
 
-#: ../data/prefs.glade.h:56
+#: ../guake/data/prefs.glade.h:56
 msgid "On output"
 msgstr "콘솔 출력시"
 
-#: ../data/prefs.glade.h:57
+#: ../guake/data/prefs.glade.h:57
 msgid "On key stroke"
 msgstr "키가 눌렸을 때"
 
-#: ../data/prefs.glade.h:58
+#: ../guake/data/prefs.glade.h:58
 msgid "<b>Scroll</b>"
 msgstr "<b>스크롤</b>"
 
-#: ../data/prefs.glade.h:59
+#: ../guake/data/prefs.glade.h:59
 msgid "Scrolling"
 msgstr "스크롤"
 
-#: ../data/prefs.glade.h:60
+#: ../guake/data/prefs.glade.h:60
 msgid "Use the system fixed width font"
 msgstr "시스템 폰트 사용"
 
-#: ../data/prefs.glade.h:61
+#: ../guake/data/prefs.glade.h:61
 msgid "Font:"
 msgstr "글꼴:"
 
-#: ../data/prefs.glade.h:62
+#: ../guake/data/prefs.glade.h:62
 msgid "Choose some font"
 msgstr "글꼴 선택"
 
-#: ../data/prefs.glade.h:63
+#: ../guake/data/prefs.glade.h:63
 msgid "Text color:"
 msgstr "글자 색상:"
 
-#: ../data/prefs.glade.h:64
+#: ../guake/data/prefs.glade.h:64
 msgid "Background color:"
 msgstr "배경색:"
 
-#: ../data/prefs.glade.h:65
+#: ../guake/data/prefs.glade.h:65
 msgid "Cursor shape:"
 msgstr "커서 모양:"
 
-#: ../data/prefs.glade.h:66
+#: ../guake/data/prefs.glade.h:66
 msgid ""
 "Block\n"
 "I-Beam\n"
@@ -351,7 +351,7 @@ msgstr ""
 "I-Beam\n"
 "밑줄"
 
-#: ../data/prefs.glade.h:69
+#: ../guake/data/prefs.glade.h:69
 msgid ""
 "Follow GTK+ setting\n"
 "Blink on\n"
@@ -361,59 +361,59 @@ msgstr ""
 "깜빡임\n"
 "깜빡이지 않음"
 
-#: ../data/prefs.glade.h:72
+#: ../guake/data/prefs.glade.h:72
 msgid "Cursor blink mode:"
 msgstr "커서 깜빡임:"
 
-#: ../data/prefs.glade.h:73
+#: ../guake/data/prefs.glade.h:73
 msgid "Allow bold font"
 msgstr "볼드체 허용"
 
-#: ../data/prefs.glade.h:74
+#: ../guake/data/prefs.glade.h:74
 msgid "<b>Palette</b>"
 msgstr "<b>팔레트</b>"
 
-#: ../data/prefs.glade.h:75
+#: ../guake/data/prefs.glade.h:75
 msgid "Built-in schemes:"
 msgstr "지정된 테마:"
 
-#: ../data/prefs.glade.h:76
+#: ../guake/data/prefs.glade.h:76
 msgid "Color palette:"
 msgstr "색상 파레트:"
 
-#: ../data/prefs.glade.h:77
+#: ../guake/data/prefs.glade.h:77
 msgid "Font color"
 msgstr "글자 색상:"
 
-#: ../data/prefs.glade.h:78
+#: ../guake/data/prefs.glade.h:78
 msgid "Background color"
 msgstr "배경색:"
 
-#: ../data/prefs.glade.h:79
+#: ../guake/data/prefs.glade.h:79
 msgid "Use font and background color from the palette"
 msgstr "글자색과 배경색을 팔레트에서 가져오기"
 
-#: ../data/prefs.glade.h:80
+#: ../guake/data/prefs.glade.h:80
 msgid "Demo:"
 msgstr "미리 보기:"
 
-#: ../data/prefs.glade.h:81
+#: ../guake/data/prefs.glade.h:81
 msgid "<b>Effects</b>"
 msgstr "<b>효과</b>"
 
-#: ../data/prefs.glade.h:82
+#: ../guake/data/prefs.glade.h:82
 msgid "Transparency:"
 msgstr "투명도:"
 
-#: ../data/prefs.glade.h:83
+#: ../guake/data/prefs.glade.h:83
 msgid "Background image:"
 msgstr "배경 이미지:"
 
-#: ../data/prefs.glade.h:84 ../src/guake/prefs.py:130
+#: ../guake/data/prefs.glade.h:84 ../src/guake/prefs.py:130
 msgid "Appearance"
 msgstr "모양"
 
-#: ../data/prefs.glade.h:85
+#: ../guake/data/prefs.glade.h:85
 msgid ""
 "<small>Quick open is a feature allowing you to open a file directly into "
 "your favorite text editor by clicking on its filename when it appears in "
@@ -423,15 +423,15 @@ msgstr ""
 "<small>빠른 열기는 파일명을 클릭하면 지정된 텍스트 에디터로 실행할 수 있는 기"
 "능입니다. 아래에서 현재 지원되는 패턴을 확인하실 수 있습니다.</small>"
 
-#: ../data/prefs.glade.h:86
+#: ../guake/data/prefs.glade.h:86
 msgid "Enable Quick Open when Ctrl+clicking on a filename in the terminal"
 msgstr "빠른 열기 (파일 이름 위에서 Ctrl+클릭) 활성화"
 
-#: ../data/prefs.glade.h:87
+#: ../guake/data/prefs.glade.h:87
 msgid "Editor command line:"
 msgstr "에디터 실행 명령어:"
 
-#: ../data/prefs.glade.h:89
+#: ../guake/data/prefs.glade.h:89
 #, no-c-format
 msgid ""
 "<small><i>Use the following elements in the open editor command line:\n"
@@ -450,25 +450,25 @@ msgstr ""
 "다.\n"
 "</i></small>"
 
-#: ../data/prefs.glade.h:95
+#: ../guake/data/prefs.glade.h:95
 msgid "Quick open in current terminal"
 msgstr "현재 터미널에서 빠른 열기 사용"
 
-#: ../data/prefs.glade.h:96
+#: ../guake/data/prefs.glade.h:96
 msgid ""
 "Here is the list of supported patterns: (to add your own, please contact the "
 "Guake's authors)"
 msgstr "지원되는 패턴 목록: (추가하고 싶다면 Guake의 개발자에게 연락해 주세요)"
 
-#: ../data/prefs.glade.h:97
+#: ../guake/data/prefs.glade.h:97
 msgid "<b>Quick Open</b>"
 msgstr "<b>빠른 열기</b>"
 
-#: ../data/prefs.glade.h:98
+#: ../guake/data/prefs.glade.h:98
 msgid "Quick Open"
 msgstr "빠른 열기"
 
-#: ../data/prefs.glade.h:99
+#: ../guake/data/prefs.glade.h:99
 msgid ""
 "To change a shortcut simply click on its name.\n"
 "To disable a shortcut, press the \"Backspace\" key."
@@ -476,11 +476,11 @@ msgstr ""
 "단축키를 변경하려면 클릭하세요.\n"
 "해당 단축키를 비활성화하고 싶다면, Backspace 키를 누르세요."
 
-#: ../data/prefs.glade.h:101
+#: ../guake/data/prefs.glade.h:101
 msgid "Keyboard shortcuts"
 msgstr "키보드 단축키"
 
-#: ../data/prefs.glade.h:102
+#: ../guake/data/prefs.glade.h:102
 msgid ""
 "<small><i><b>Note:</b> These options may cause some applications to behave "
 "incorrectly.  They are only here to allow you to work around certain "
@@ -492,7 +492,7 @@ msgstr ""
 "한 행동을 유발 할 수 있기 때문에 확실한 경우에만 변경하시기 바랍니다.</i></"
 "small>"
 
-#: ../data/prefs.glade.h:103
+#: ../guake/data/prefs.glade.h:103
 msgid ""
 "ASCII DEL\n"
 "Escape sequence\n"
@@ -502,23 +502,23 @@ msgstr ""
 "Escape sequence\n"
 "Control-H"
 
-#: ../data/prefs.glade.h:106
+#: ../guake/data/prefs.glade.h:106
 msgid "_Backspace key generates:"
 msgstr "_Backspace 키가 생성:"
 
-#: ../data/prefs.glade.h:107
+#: ../guake/data/prefs.glade.h:107
 msgid "_Delete key generates:"
 msgstr "_Delete 키가 생성:"
 
-#: ../data/prefs.glade.h:108
+#: ../guake/data/prefs.glade.h:108
 msgid "_Reset Compatibility Options to Defaults"
 msgstr "호환성 옵션을 모두 초기화"
 
-#: ../data/prefs.glade.h:109
+#: ../guake/data/prefs.glade.h:109
 msgid "<b>Keyboard compatibility</b>"
 msgstr "<b>키보드 호환성</b>"
 
-#: ../data/prefs.glade.h:110
+#: ../guake/data/prefs.glade.h:110
 msgid "Compatibility"
 msgstr "호환성"
 

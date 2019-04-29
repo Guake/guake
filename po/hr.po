@@ -23,11 +23,11 @@ msgstr ""
 "%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
 "X-Generator: Poedit 2.0.6\n"
 
-#: ../data/about.glade.h:1
+#: ../guake/data/about.glade.h:1
 msgid "About Guake"
 msgstr "О Guake"
 
-#: ../data/about.glade.h:5
+#: ../guake/data/about.glade.h:5
 #, fuzzy
 msgid ""
 "Guake is an easy to access\n"
@@ -36,88 +36,88 @@ msgstr ""
 "Guake je lako dostupan terminal,\n"
 "temeljen na terminalu iz FPS igre Quake"
 
-#: ../data/guake.glade.h:1
+#: ../guake/data/guake.glade.h:1
 msgid "Copy"
 msgstr "Kopiraj"
 
-#: ../data/guake.glade.h:2
+#: ../guake/data/guake.glade.h:2
 msgid "Paste"
 msgstr "Zalijepi"
 
-#: ../data/guake.glade.h:3 ../src/guake/prefs.py:79
+#: ../guake/data/guake.glade.h:3 ../src/guake/prefs.py:79
 msgid "Toggle Fullscreen"
 msgstr "Cijelozaslonski prikaz"
 
-#: ../data/guake.glade.h:4
+#: ../guake/data/guake.glade.h:4
 msgid "Save to File..."
 msgstr ""
 
-#: ../data/guake.glade.h:5 ../src/guake/prefs.py:85
+#: ../guake/data/guake.glade.h:5 ../src/guake/prefs.py:85
 #, fuzzy
 msgid "Reset terminal"
 msgstr "Guake Terminal"
 
-#: ../data/guake.glade.h:6
+#: ../guake/data/guake.glade.h:6
 msgid "Find..."
 msgstr ""
 
-#: ../data/guake.glade.h:7
+#: ../guake/data/guake.glade.h:7
 #, fuzzy
 msgid "New Tab"
 msgstr "Nova kartica"
 
-#: ../data/guake.glade.h:8
+#: ../guake/data/guake.glade.h:8
 #, fuzzy
 msgid "Rename Tab"
 msgstr "Preimenuj karticu"
 
-#: ../data/guake.glade.h:9
+#: ../guake/data/guake.glade.h:9
 msgid "Close Tab"
 msgstr "Zatvori karticu"
 
-#: ../data/guake.glade.h:10
+#: ../guake/data/guake.glade.h:10
 msgid "Open link..."
 msgstr ""
 
-#: ../data/guake.glade.h:11
+#: ../guake/data/guake.glade.h:11
 msgid "Search on Web"
 msgstr ""
 
-#: ../data/guake.glade.h:12 ../src/guake/prefs.py:83
+#: ../guake/data/guake.glade.h:12 ../src/guake/prefs.py:83
 msgid "Quit"
 msgstr "Zatvori"
 
-#: ../data/guake.glade.h:13
+#: ../guake/data/guake.glade.h:13
 msgid "Rename"
 msgstr "Preimenuj"
 
-#: ../data/guake.glade.h:14
+#: ../guake/data/guake.glade.h:14
 msgid "Close"
 msgstr "Zatvori"
 
-#: ../data/guake.glade.h:15
+#: ../guake/data/guake.glade.h:15
 msgid "Guake!"
 msgstr "Guake!"
 
-#: ../data/guake.glade.h:16
+#: ../guake/data/guake.glade.h:16
 #, fuzzy
 msgid "Add a new tab"
 msgstr "Dodaj novu karticu"
 
-#: ../data/prefs.glade.h:1
+#: ../guake/data/prefs.glade.h:1
 msgid "Guake Preferences"
 msgstr "Guake osobitosti"
 
-#: ../data/prefs.glade.h:2
+#: ../guake/data/prefs.glade.h:2
 msgid "<span size=\"18000\" color=\"black\"><b>Guake properties</b></span>"
 msgstr "<span size=\"18000\" color=\"black\"><b>Guake svojstva</b></span>"
 
-#: ../data/prefs.glade.h:3
+#: ../guake/data/prefs.glade.h:3
 msgid ""
 "<span color=\"black\">Customize behavior and appearance of Guake!</span>"
 msgstr "<span color=\"black\">Prilagodite ponašanje i izgled Guakea!</span>"
 
-#: ../data/prefs.glade.h:4
+#: ../guake/data/prefs.glade.h:4
 msgid ""
 "Path to a bash script that would be automatically executed when Guake "
 "starts, unless you specify --no-startup-script.\n"
@@ -134,282 +134,282 @@ msgid ""
 "guake -r \"prod\" -e \"cd ~/projects/myproject/prod\"\n"
 msgstr ""
 
-#: ../data/prefs.glade.h:15
+#: ../guake/data/prefs.glade.h:15
 msgid "Enable popup notifications on startup"
 msgstr "Omogući obavijesti skočnog prozora prilikom pokretanja"
 
-#: ../data/prefs.glade.h:16
+#: ../guake/data/prefs.glade.h:16
 msgid "Show tray icon"
 msgstr "Prikaži ikonu u traci sustava"
 
-#: ../data/prefs.glade.h:17
+#: ../guake/data/prefs.glade.h:17
 #, fuzzy
 msgid "Always prompt on quit"
 msgstr "Upozori pri zatvaranju"
 
-#: ../data/prefs.glade.h:18
+#: ../guake/data/prefs.glade.h:18
 msgid "_Flash terminal on bell"
 msgstr ""
 
-#: ../data/prefs.glade.h:19
+#: ../guake/data/prefs.glade.h:19
 msgid "_Play system alert sound on bell"
 msgstr ""
 
-#: ../data/prefs.glade.h:20
+#: ../guake/data/prefs.glade.h:20
 msgid "Path to script executed on Guake start:"
 msgstr ""
 
-#: ../data/prefs.glade.h:21
+#: ../guake/data/prefs.glade.h:21
 #, fuzzy
 msgid "Prompt on close tab:"
 msgstr "Upozori pri zatvaranju"
 
-#: ../data/prefs.glade.h:22
+#: ../guake/data/prefs.glade.h:22
 msgid ""
 "Never\n"
 "With process running\n"
 "Always"
 msgstr ""
 
-#: ../data/prefs.glade.h:25
+#: ../guake/data/prefs.glade.h:25
 msgid "<b>General</b>"
 msgstr "<b>Općenito</b>"
 
-#: ../data/prefs.glade.h:26
+#: ../guake/data/prefs.glade.h:26
 msgid "Bottom align window instead of top align"
 msgstr ""
 
-#: ../data/prefs.glade.h:27
+#: ../guake/data/prefs.glade.h:27
 msgid "Appear on mouse display"
 msgstr ""
 
-#: ../data/prefs.glade.h:28
+#: ../guake/data/prefs.glade.h:28
 msgid "Appear on display:"
 msgstr ""
 
-#: ../data/prefs.glade.h:29
+#: ../guake/data/prefs.glade.h:29
 #, fuzzy
 msgid "Place tabs on top"
 msgstr "Uvijek na vrhu"
 
-#: ../data/prefs.glade.h:30
+#: ../guake/data/prefs.glade.h:30
 #, fuzzy
 msgid "<b>Placement</b>"
 msgstr "<b>Boje</b>"
 
-#: ../data/prefs.glade.h:31
+#: ../guake/data/prefs.glade.h:31
 msgid "Stay on top"
 msgstr "Uvijek na vrhu"
 
-#: ../data/prefs.glade.h:32
+#: ../guake/data/prefs.glade.h:32
 msgid "Use VTE titles for tab names"
 msgstr ""
 
-#: ../data/prefs.glade.h:33
+#: ../guake/data/prefs.glade.h:33
 msgid "Max tab name length:"
 msgstr ""
 
-#: ../data/prefs.glade.h:34
+#: ../guake/data/prefs.glade.h:34
 msgid "0 means no size limit"
 msgstr ""
 
-#: ../data/prefs.glade.h:35
+#: ../guake/data/prefs.glade.h:35
 msgid "Abbreviate directories in tab names"
 msgstr ""
 
-#: ../data/prefs.glade.h:36
+#: ../guake/data/prefs.glade.h:36
 msgid "Hide on lose focus"
 msgstr "Sakrij pri gubitku fokusa"
 
-#: ../data/prefs.glade.h:37
+#: ../guake/data/prefs.glade.h:37
 msgid "Show tab bar"
 msgstr "Prikaži donju traku"
 
-#: ../data/prefs.glade.h:38
+#: ../guake/data/prefs.glade.h:38
 #, fuzzy
 msgid "Start fullscreen"
 msgstr "Cijelozaslonski prikaz"
 
-#: ../data/prefs.glade.h:39
+#: ../guake/data/prefs.glade.h:39
 msgid "<b>Main Window</b>"
 msgstr "<b>Glavni prozor</b>"
 
-#: ../data/prefs.glade.h:40
+#: ../guake/data/prefs.glade.h:40
 msgid "Left"
 msgstr ""
 
-#: ../data/prefs.glade.h:41
+#: ../guake/data/prefs.glade.h:41
 msgid "Center"
 msgstr ""
 
-#: ../data/prefs.glade.h:42
+#: ../guake/data/prefs.glade.h:42
 msgid "Right"
 msgstr ""
 
-#: ../data/prefs.glade.h:43
+#: ../guake/data/prefs.glade.h:43
 #, fuzzy
 msgid "<b>Main Window Horizontal Alignment</b>"
 msgstr "<b>Visina glavnog prozora</b>"
 
-#: ../data/prefs.glade.h:44
+#: ../guake/data/prefs.glade.h:44
 #, fuzzy
 msgid "<b>Main Window Height</b>"
 msgstr "<b>Visina glavnog prozora</b>"
 
-#: ../data/prefs.glade.h:45
+#: ../guake/data/prefs.glade.h:45
 #, fuzzy
 msgid "<b>Main Window Width</b>"
 msgstr "<b>Visina glavnog prozora</b>"
 
-#: ../data/prefs.glade.h:46
+#: ../guake/data/prefs.glade.h:46
 msgid "Custom command file path: "
 msgstr ""
 
-#: ../data/prefs.glade.h:47
+#: ../guake/data/prefs.glade.h:47
 msgid "Please select a json file"
 msgstr ""
 
-#: ../data/prefs.glade.h:48 ../src/guake/prefs.py:75
+#: ../guake/data/prefs.glade.h:48 ../src/guake/prefs.py:75
 msgid "General"
 msgstr "Općenito"
 
-#: ../data/prefs.glade.h:49
+#: ../guake/data/prefs.glade.h:49
 msgid "Default interpreter:"
 msgstr "Zadani interpretator:"
 
-#: ../data/prefs.glade.h:50
+#: ../guake/data/prefs.glade.h:50
 msgid "_Run command as a login shell"
 msgstr "_Pokreni naredbu kao ljusku prijave"
 
-#: ../data/prefs.glade.h:51
+#: ../guake/data/prefs.glade.h:51
 msgid "_Open new tab in current directory"
 msgstr "_Оtvori novu karticu u trenutnom direktoriju"
 
-#: ../data/prefs.glade.h:52
+#: ../guake/data/prefs.glade.h:52
 msgid "<b>Shell</b>"
 msgstr "<b>Ljuska</b>"
 
-#: ../data/prefs.glade.h:53
+#: ../guake/data/prefs.glade.h:53
 msgid "Shell"
 msgstr ""
 
-#: ../data/prefs.glade.h:54
+#: ../guake/data/prefs.glade.h:54
 msgid "Show scrollbar"
 msgstr "Prikaži traku pomicanja"
 
-#: ../data/prefs.glade.h:55
+#: ../guake/data/prefs.glade.h:55
 msgid "Scrollback lines:"
 msgstr "Redci pomicanja:"
 
-#: ../data/prefs.glade.h:56
+#: ../guake/data/prefs.glade.h:56
 msgid "On output"
 msgstr "Pri izlazu"
 
-#: ../data/prefs.glade.h:57
+#: ../guake/data/prefs.glade.h:57
 msgid "On key stroke"
 msgstr "Pri pritisku tipke"
 
-#: ../data/prefs.glade.h:58
+#: ../guake/data/prefs.glade.h:58
 msgid "<b>Scroll</b>"
 msgstr "<b>Pomicanje kotačićem miša</b>"
 
-#: ../data/prefs.glade.h:59
+#: ../guake/data/prefs.glade.h:59
 msgid "Scrolling"
 msgstr "Pomicanje kotačićem miša"
 
-#: ../data/prefs.glade.h:60
+#: ../guake/data/prefs.glade.h:60
 msgid "Use the system fixed width font"
 msgstr "Koristi širinu slova ispravljenu sustavom"
 
-#: ../data/prefs.glade.h:61
+#: ../guake/data/prefs.glade.h:61
 msgid "Font:"
 msgstr "Slova:"
 
-#: ../data/prefs.glade.h:62
+#: ../guake/data/prefs.glade.h:62
 msgid "Choose some font"
 msgstr "Odaberite neka slova"
 
-#: ../data/prefs.glade.h:63
+#: ../guake/data/prefs.glade.h:63
 msgid "Text color:"
 msgstr "Boja teksta:"
 
-#: ../data/prefs.glade.h:64
+#: ../guake/data/prefs.glade.h:64
 msgid "Background color:"
 msgstr "Boja pozadine:"
 
-#: ../data/prefs.glade.h:65
+#: ../guake/data/prefs.glade.h:65
 msgid "Cursor shape:"
 msgstr ""
 
-#: ../data/prefs.glade.h:66
+#: ../guake/data/prefs.glade.h:66
 msgid ""
 "Block\n"
 "I-Beam\n"
 "Underline"
 msgstr ""
 
-#: ../data/prefs.glade.h:69
+#: ../guake/data/prefs.glade.h:69
 msgid ""
 "Follow GTK+ setting\n"
 "Blink on\n"
 "Blink off"
 msgstr ""
 
-#: ../data/prefs.glade.h:72
+#: ../guake/data/prefs.glade.h:72
 msgid "Cursor blink mode:"
 msgstr ""
 
-#: ../data/prefs.glade.h:73
+#: ../guake/data/prefs.glade.h:73
 msgid "Allow bold font"
 msgstr ""
 
-#: ../data/prefs.glade.h:74
+#: ../guake/data/prefs.glade.h:74
 msgid "<b>Palette</b>"
 msgstr "<b>Boje</b>"
 
-#: ../data/prefs.glade.h:75
+#: ../guake/data/prefs.glade.h:75
 msgid "Built-in schemes:"
 msgstr "Ugrađene sheme:"
 
-#: ../data/prefs.glade.h:76
+#: ../guake/data/prefs.glade.h:76
 msgid "Color palette:"
 msgstr "Paleta boja:"
 
-#: ../data/prefs.glade.h:77
+#: ../guake/data/prefs.glade.h:77
 #, fuzzy
 msgid "Font color"
 msgstr "Boja teksta:"
 
-#: ../data/prefs.glade.h:78
+#: ../guake/data/prefs.glade.h:78
 #, fuzzy
 msgid "Background color"
 msgstr "Boja pozadine:"
 
-#: ../data/prefs.glade.h:79
+#: ../guake/data/prefs.glade.h:79
 msgid "Use font and background color from the palette"
 msgstr ""
 
-#: ../data/prefs.glade.h:80
+#: ../guake/data/prefs.glade.h:80
 msgid "Demo:"
 msgstr ""
 
-#: ../data/prefs.glade.h:81
+#: ../guake/data/prefs.glade.h:81
 msgid "<b>Effects</b>"
 msgstr "<b>Efekti</b>"
 
-#: ../data/prefs.glade.h:82
+#: ../guake/data/prefs.glade.h:82
 msgid "Transparency:"
 msgstr "Prozirnost:"
 
-#: ../data/prefs.glade.h:83
+#: ../guake/data/prefs.glade.h:83
 msgid "Background image:"
 msgstr "Slika pozadine:"
 
-#: ../data/prefs.glade.h:84 ../src/guake/prefs.py:130
+#: ../guake/data/prefs.glade.h:84 ../src/guake/prefs.py:130
 msgid "Appearance"
 msgstr "Izgled"
 
-#: ../data/prefs.glade.h:85
+#: ../guake/data/prefs.glade.h:85
 msgid ""
 "<small>Quick open is a feature allowing you to open a file directly into "
 "your favorite text editor by clicking on its filename when it appears in "
@@ -417,15 +417,15 @@ msgid ""
 "extract filename below.</small>"
 msgstr ""
 
-#: ../data/prefs.glade.h:86
+#: ../guake/data/prefs.glade.h:86
 msgid "Enable Quick Open when Ctrl+clicking on a filename in the terminal"
 msgstr ""
 
-#: ../data/prefs.glade.h:87
+#: ../guake/data/prefs.glade.h:87
 msgid "Editor command line:"
 msgstr ""
 
-#: ../data/prefs.glade.h:89
+#: ../guake/data/prefs.glade.h:89
 #, no-c-format
 msgid ""
 "<small><i>Use the following elements in the open editor command line:\n"
@@ -437,36 +437,36 @@ msgid ""
 "</i></small>"
 msgstr ""
 
-#: ../data/prefs.glade.h:95
+#: ../guake/data/prefs.glade.h:95
 msgid "Quick open in current terminal"
 msgstr ""
 
-#: ../data/prefs.glade.h:96
+#: ../guake/data/prefs.glade.h:96
 msgid ""
 "Here is the list of supported patterns: (to add your own, please contact the "
 "Guake's authors)"
 msgstr ""
 
-#: ../data/prefs.glade.h:97
+#: ../guake/data/prefs.glade.h:97
 #, fuzzy
 msgid "<b>Quick Open</b>"
 msgstr "<b>Boje</b>"
 
-#: ../data/prefs.glade.h:98
+#: ../guake/data/prefs.glade.h:98
 msgid "Quick Open"
 msgstr ""
 
-#: ../data/prefs.glade.h:99
+#: ../guake/data/prefs.glade.h:99
 msgid ""
 "To change a shortcut simply click on its name.\n"
 "To disable a shortcut, press the \"Backspace\" key."
 msgstr ""
 
-#: ../data/prefs.glade.h:101
+#: ../guake/data/prefs.glade.h:101
 msgid "Keyboard shortcuts"
 msgstr "Prečaci tipkovnice"
 
-#: ../data/prefs.glade.h:102
+#: ../guake/data/prefs.glade.h:102
 msgid ""
 "<small><i><b>Note:</b> These options may cause some applications to behave "
 "incorrectly.  They are only here to allow you to work around certain "
@@ -478,7 +478,7 @@ msgstr ""
 "aplikacijama i operativnim sustavima, to očekuje drugačije ponašanje "
 "terminala.</i></small>"
 
-#: ../data/prefs.glade.h:103
+#: ../guake/data/prefs.glade.h:103
 msgid ""
 "ASCII DEL\n"
 "Escape sequence\n"
@@ -488,23 +488,23 @@ msgstr ""
 "Escape slijed\n"
 "Control-H"
 
-#: ../data/prefs.glade.h:106
+#: ../guake/data/prefs.glade.h:106
 msgid "_Backspace key generates:"
 msgstr "_'Backspace' tipka generira:"
 
-#: ../data/prefs.glade.h:107
+#: ../guake/data/prefs.glade.h:107
 msgid "_Delete key generates:"
 msgstr "_'Delete' tipka generira:"
 
-#: ../data/prefs.glade.h:108
+#: ../guake/data/prefs.glade.h:108
 msgid "_Reset Compatibility Options to Defaults"
 msgstr "_Vrati mogućnosti kompatibilnosti na početno"
 
-#: ../data/prefs.glade.h:109
+#: ../guake/data/prefs.glade.h:109
 msgid "<b>Keyboard compatibility</b>"
 msgstr "<b>Кompatibilnost tipkovnice</b>"
 
-#: ../data/prefs.glade.h:110
+#: ../guake/data/prefs.glade.h:110
 msgid "Compatibility"
 msgstr "Kompatibilnost"
 

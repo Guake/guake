@@ -14,7 +14,7 @@ PYTHON_SITE_PACKAGE_NAME:=$(shell $(PYTHON_INTERPRETER) scripts/find-first-site-
 PYTHON_SITE_PACKAGE_DIR=$(prefix)/lib/python$(shell $(PYTHON_INTERPRETER) -c "import sys; v = sys.version_info; print('{}.{}'.format(v.major, v.minor))")/$(PYTHON_SITE_PACKAGE_NAME)
 OLD_PREFIX:=$(DESTDIR)usr
 ROOT_DIR=$(shell pwd)
-DATA_DIR=$(ROOT_DIR)/data
+DATA_DIR=$(ROOT_DIR)/guake/data
 COMPILE_SCHEMA:=1
 
 datarootdir:=$(prefix)/share
@@ -411,7 +411,8 @@ release-note-news: reno-lint
 	@pipenv run python setup.py build_reno --output-file NEWS.rst.in
 	@grep -v -R "^\.\.\ " NEWS.rst.in | cat -s > NEWS.rst
 	@cat releasenotes/archive/NEWS.pre-3.0 >> NEWS.rst
-	@rm -f NEWS.rst.in
+	@rm -fv NEWS.rst.in
+	@echo "Updated NEWS.rst"
 
 
 release-note-github: reno-lint
