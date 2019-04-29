@@ -69,4 +69,4 @@ deploy:
   on:
     tags: true
     repo: Guake/guake
-    branch: master
+    condition: $TRAVIS_PYTHON_VERSION = 3.6
