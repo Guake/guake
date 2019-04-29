@@ -87,29 +87,6 @@ class TerminalNotebook(Gtk.Notebook):
         self.new_page_button.connect("clicked", self.on_new_tab)
         self.set_action_widget(self.new_page_button, Gtk.PackType.END)
 
-        # Styling tabs
-        css_provider = Gtk.CssProvider()
-        css_provider.load_from_data(
-            b'.reorderable-page {'
-            b'    margin-right: 0px;'
-            b'    margin-left: 0px;'
-            b'    border-width: 0px 1px 0px 0px;'
-            b'    border-image: linear-gradient(to bottom, rgba(0,0,0,0) 0%, rgba(0,0,0,0) 15%,'
-            b'    rgba(0,0,0,0) 15%, rgba(186, 186, 186,1) 16%, rgba(186,186,186,1) 85%,'
-            b'    rgba(0,0,0,0) 86%, rgba(0,0,0,0) 100%) 1;'
-            b'    transition: box-shadow 100ms ease-in;'
-            b'}'
-            b'.reorderable-page:checked, .reorderable-page:hover {'
-            b'    border-left: 1px rgb(186, 186, 186) solid;'
-            b'    border-right: 1px rgb(186, 186, 186) solid;'
-            b'    border-image: none;'
-            b'    margin-left: -1px;'
-            b'}'
-        )
-        Gtk.StyleContext.add_provider_for_screen(
-            Gdk.Screen.get_default(), css_provider, Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION
-        )
-
     def attach_guake(self, guake):
         self.guake = guake
 
