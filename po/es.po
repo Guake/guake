@@ -22,11 +22,11 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Poedit 2.0.6\n"
 
-#: ../data/about.glade.h:1
+#: ../guake/data/about.glade.h:1
 msgid "About Guake"
 msgstr "Acerca de Guake"
 
-#: ../data/about.glade.h:5
+#: ../guake/data/about.glade.h:5
 #, fuzzy
 msgid ""
 "Guake is an easy to access\n"
@@ -36,87 +36,87 @@ msgstr ""
 "basado en los terminales de los juegos\n"
 "de acción en primera persona."
 
-#: ../data/guake.glade.h:1
+#: ../guake/data/guake.glade.h:1
 msgid "Copy"
 msgstr "Copiar"
 
-#: ../data/guake.glade.h:2
+#: ../guake/data/guake.glade.h:2
 msgid "Paste"
 msgstr "Pegar"
 
-#: ../data/guake.glade.h:3 ../src/guake/prefs.py:79
+#: ../guake/data/guake.glade.h:3 ../src/guake/prefs.py:79
 msgid "Toggle Fullscreen"
 msgstr "Conmutar pantalla completa"
 
-#: ../data/guake.glade.h:4
+#: ../guake/data/guake.glade.h:4
 msgid "Save to File..."
 msgstr "Guardar en fichero..."
 
-#: ../data/guake.glade.h:5 ../src/guake/prefs.py:85
+#: ../guake/data/guake.glade.h:5 ../src/guake/prefs.py:85
 msgid "Reset terminal"
 msgstr "Reiniciar terminal"
 
-#: ../data/guake.glade.h:6
+#: ../guake/data/guake.glade.h:6
 msgid "Find..."
 msgstr "Buscar..."
 
-#: ../data/guake.glade.h:7
+#: ../guake/data/guake.glade.h:7
 msgid "New Tab"
 msgstr "Nueva pestaña"
 
-#: ../data/guake.glade.h:8
+#: ../guake/data/guake.glade.h:8
 msgid "Rename Tab"
 msgstr "Renombrar pestaña"
 
-#: ../data/guake.glade.h:9
+#: ../guake/data/guake.glade.h:9
 msgid "Close Tab"
 msgstr "Cerrar pestaña"
 
-#: ../data/guake.glade.h:10
+#: ../guake/data/guake.glade.h:10
 msgid "Open link..."
 msgstr "Abrir vínculo..."
 
-#: ../data/guake.glade.h:11
+#: ../guake/data/guake.glade.h:11
 msgid "Search on Web"
 msgstr "Buscar en la Web"
 
-#: ../data/guake.glade.h:12 ../src/guake/prefs.py:83
+#: ../guake/data/guake.glade.h:12 ../src/guake/prefs.py:83
 msgid "Quit"
 msgstr "Salir"
 
-#: ../data/guake.glade.h:13
+#: ../guake/data/guake.glade.h:13
 msgid "Rename"
 msgstr "Renombrar"
 
-#: ../data/guake.glade.h:14
+#: ../guake/data/guake.glade.h:14
 msgid "Close"
 msgstr "Cerrar"
 
-#: ../data/guake.glade.h:15
+#: ../guake/data/guake.glade.h:15
 msgid "Guake!"
 msgstr "Guake!"
 
-#: ../data/guake.glade.h:16
+#: ../guake/data/guake.glade.h:16
 msgid "Add a new tab"
 msgstr "Agregar nueva pestaña"
 
-#: ../data/prefs.glade.h:1
+#: ../guake/data/prefs.glade.h:1
 msgid "Guake Preferences"
 msgstr "Preferencias de Guake"
 
-#: ../data/prefs.glade.h:2
+#: ../guake/data/prefs.glade.h:2
 msgid "<span size=\"18000\" color=\"black\"><b>Guake properties</b></span>"
 msgstr ""
 "<span size=\"18000\" color=\"black\"><b>Propiedades de Guake</b></span>"
 
-#: ../data/prefs.glade.h:3
+#: ../guake/data/prefs.glade.h:3
 msgid ""
 "<span color=\"black\">Customize behavior and appearance of Guake!</span>"
 msgstr ""
 "<span color=\"black\">Personaliza el comportamiento y apariencia Guake!</"
 "span>"
 
-#: ../data/prefs.glade.h:4
+#: ../guake/data/prefs.glade.h:4
 msgid ""
 "Path to a bash script that would be automatically executed when Guake "
 "starts, unless you specify --no-startup-script.\n"
@@ -145,35 +145,35 @@ msgstr ""
 "guake -r \"main\" -e \"cd ~/projects/myproject/main\"\n"
 "guake -r \"prod\" -e \"cd ~/projects/myproject/prod\"\n"
 
-#: ../data/prefs.glade.h:15
+#: ../guake/data/prefs.glade.h:15
 msgid "Enable popup notifications on startup"
 msgstr "Activar notificaciones emergentes al inicio"
 
-#: ../data/prefs.glade.h:16
+#: ../guake/data/prefs.glade.h:16
 msgid "Show tray icon"
 msgstr "Mostrar icono en la bandeja del sistema"
 
-#: ../data/prefs.glade.h:17
+#: ../guake/data/prefs.glade.h:17
 msgid "Always prompt on quit"
 msgstr "Advertir siempre al salir"
 
-#: ../data/prefs.glade.h:18
+#: ../guake/data/prefs.glade.h:18
 msgid "_Flash terminal on bell"
 msgstr ""
 
-#: ../data/prefs.glade.h:19
+#: ../guake/data/prefs.glade.h:19
 msgid "_Play system alert sound on bell"
 msgstr ""
 
-#: ../data/prefs.glade.h:20
+#: ../guake/data/prefs.glade.h:20
 msgid "Path to script executed on Guake start:"
 msgstr "Ruta del script que se ejecutará al iniciar Guake:"
 
-#: ../data/prefs.glade.h:21
+#: ../guake/data/prefs.glade.h:21
 msgid "Prompt on close tab:"
 msgstr "Advertir al cerrar pestaña:"
 
-#: ../data/prefs.glade.h:22
+#: ../guake/data/prefs.glade.h:22
 msgid ""
 "Never\n"
 "With process running\n"
@@ -183,171 +183,171 @@ msgstr ""
 "Mientras se ejecute un proceso\n"
 "Siempre"
 
-#: ../data/prefs.glade.h:25
+#: ../guake/data/prefs.glade.h:25
 msgid "<b>General</b>"
 msgstr "<b>General</b>"
 
-#: ../data/prefs.glade.h:26
+#: ../guake/data/prefs.glade.h:26
 msgid "Bottom align window instead of top align"
 msgstr "Alinear ventana abajo "
 
-#: ../data/prefs.glade.h:27
+#: ../guake/data/prefs.glade.h:27
 msgid "Appear on mouse display"
 msgstr "Mostrar en pantalla en la que se encuentra el ratón"
 
-#: ../data/prefs.glade.h:28
+#: ../guake/data/prefs.glade.h:28
 msgid "Appear on display:"
 msgstr "Mostrar en pantalla:"
 
-#: ../data/prefs.glade.h:29
+#: ../guake/data/prefs.glade.h:29
 msgid "Place tabs on top"
 msgstr "Posicionar pestañas arriba"
 
-#: ../data/prefs.glade.h:30
+#: ../guake/data/prefs.glade.h:30
 msgid "<b>Placement</b>"
 msgstr "<b>Posicionamiento</b>"
 
-#: ../data/prefs.glade.h:31
+#: ../guake/data/prefs.glade.h:31
 msgid "Stay on top"
 msgstr "Permanecer encima"
 
-#: ../data/prefs.glade.h:32
+#: ../guake/data/prefs.glade.h:32
 msgid "Use VTE titles for tab names"
 msgstr "Usar nombres estilo VTE para las pestañas"
 
-#: ../data/prefs.glade.h:33
+#: ../guake/data/prefs.glade.h:33
 msgid "Max tab name length:"
 msgstr ""
 
-#: ../data/prefs.glade.h:34
+#: ../guake/data/prefs.glade.h:34
 msgid "0 means no size limit"
 msgstr ""
 
-#: ../data/prefs.glade.h:35
+#: ../guake/data/prefs.glade.h:35
 msgid "Abbreviate directories in tab names"
 msgstr ""
 
-#: ../data/prefs.glade.h:36
+#: ../guake/data/prefs.glade.h:36
 msgid "Hide on lose focus"
 msgstr "Esconder al perder el foco"
 
-#: ../data/prefs.glade.h:37
+#: ../guake/data/prefs.glade.h:37
 msgid "Show tab bar"
 msgstr "Mostrar barra de pestañas"
 
-#: ../data/prefs.glade.h:38
+#: ../guake/data/prefs.glade.h:38
 msgid "Start fullscreen"
 msgstr "Iniciar en pantalla completa"
 
-#: ../data/prefs.glade.h:39
+#: ../guake/data/prefs.glade.h:39
 msgid "<b>Main Window</b>"
 msgstr "<b>Ventana principal</b>"
 
-#: ../data/prefs.glade.h:40
+#: ../guake/data/prefs.glade.h:40
 msgid "Left"
 msgstr "Izquierda"
 
-#: ../data/prefs.glade.h:41
+#: ../guake/data/prefs.glade.h:41
 msgid "Center"
 msgstr "Centro"
 
-#: ../data/prefs.glade.h:42
+#: ../guake/data/prefs.glade.h:42
 msgid "Right"
 msgstr "Derecha"
 
-#: ../data/prefs.glade.h:43
+#: ../guake/data/prefs.glade.h:43
 msgid "<b>Main Window Horizontal Alignment</b>"
 msgstr "<b>Alineación horizontal de la ventana principal</b>"
 
-#: ../data/prefs.glade.h:44
+#: ../guake/data/prefs.glade.h:44
 msgid "<b>Main Window Height</b>"
 msgstr "<b>Altura de la ventana principal</b>"
 
-#: ../data/prefs.glade.h:45
+#: ../guake/data/prefs.glade.h:45
 msgid "<b>Main Window Width</b>"
 msgstr "<b>Anchura de la ventana principal</b>"
 
-#: ../data/prefs.glade.h:46
+#: ../guake/data/prefs.glade.h:46
 msgid "Custom command file path: "
 msgstr "Ruta del fichero de comandos personalizados:"
 
-#: ../data/prefs.glade.h:47
+#: ../guake/data/prefs.glade.h:47
 msgid "Please select a json file"
 msgstr "Seleccione un fichero JSON"
 
-#: ../data/prefs.glade.h:48 ../src/guake/prefs.py:75
+#: ../guake/data/prefs.glade.h:48 ../src/guake/prefs.py:75
 msgid "General"
 msgstr "General"
 
-#: ../data/prefs.glade.h:49
+#: ../guake/data/prefs.glade.h:49
 msgid "Default interpreter:"
 msgstr "Intérprete predeterminado:"
 
-#: ../data/prefs.glade.h:50
+#: ../guake/data/prefs.glade.h:50
 msgid "_Run command as a login shell"
 msgstr "_Ejecutar comando como un usuario de shell"
 
-#: ../data/prefs.glade.h:51
+#: ../guake/data/prefs.glade.h:51
 msgid "_Open new tab in current directory"
 msgstr "_Abrir nueva pestaña en el directorio actual"
 
-#: ../data/prefs.glade.h:52
+#: ../guake/data/prefs.glade.h:52
 msgid "<b>Shell</b>"
 msgstr "<b>Shell</b>"
 
-#: ../data/prefs.glade.h:53
+#: ../guake/data/prefs.glade.h:53
 msgid "Shell"
 msgstr "Shell"
 
-#: ../data/prefs.glade.h:54
+#: ../guake/data/prefs.glade.h:54
 msgid "Show scrollbar"
 msgstr "Mostrar barra de desplazamiento"
 
-#: ../data/prefs.glade.h:55
+#: ../guake/data/prefs.glade.h:55
 msgid "Scrollback lines:"
 msgstr "Desplazamiento hacia atrás (líneas):"
 
-#: ../data/prefs.glade.h:56
+#: ../guake/data/prefs.glade.h:56
 msgid "On output"
 msgstr "En la salida"
 
-#: ../data/prefs.glade.h:57
+#: ../guake/data/prefs.glade.h:57
 msgid "On key stroke"
 msgstr "Al presionar una tecla"
 
-#: ../data/prefs.glade.h:58
+#: ../guake/data/prefs.glade.h:58
 msgid "<b>Scroll</b>"
 msgstr "<b>Desplazar</b>"
 
-#: ../data/prefs.glade.h:59
+#: ../guake/data/prefs.glade.h:59
 msgid "Scrolling"
 msgstr "Desplazamiento hacia atrás (líneas):"
 
-#: ../data/prefs.glade.h:60
+#: ../guake/data/prefs.glade.h:60
 msgid "Use the system fixed width font"
 msgstr "Usar tamaño de letra del sistema"
 
-#: ../data/prefs.glade.h:61
+#: ../guake/data/prefs.glade.h:61
 msgid "Font:"
 msgstr "Fuente:"
 
-#: ../data/prefs.glade.h:62
+#: ../guake/data/prefs.glade.h:62
 msgid "Choose some font"
 msgstr "Elija una tipografía"
 
-#: ../data/prefs.glade.h:63
+#: ../guake/data/prefs.glade.h:63
 msgid "Text color:"
 msgstr "Color del texto:"
 
-#: ../data/prefs.glade.h:64
+#: ../guake/data/prefs.glade.h:64
 msgid "Background color:"
 msgstr "Color de fondo:"
 
-#: ../data/prefs.glade.h:65
+#: ../guake/data/prefs.glade.h:65
 msgid "Cursor shape:"
 msgstr "Forma del cursor:"
 
-#: ../data/prefs.glade.h:66
+#: ../guake/data/prefs.glade.h:66
 msgid ""
 "Block\n"
 "I-Beam\n"
@@ -357,7 +357,7 @@ msgstr ""
 "Forma de viga\n"
 "Guión bajo"
 
-#: ../data/prefs.glade.h:69
+#: ../guake/data/prefs.glade.h:69
 msgid ""
 "Follow GTK+ setting\n"
 "Blink on\n"
@@ -367,59 +367,59 @@ msgstr ""
 "Parpadeo activado\n"
 "Parpadeo desactivado"
 
-#: ../data/prefs.glade.h:72
+#: ../guake/data/prefs.glade.h:72
 msgid "Cursor blink mode:"
 msgstr "Modo de parpadeo del cursor:"
 
-#: ../data/prefs.glade.h:73
+#: ../guake/data/prefs.glade.h:73
 msgid "Allow bold font"
 msgstr "Permitir negrita"
 
-#: ../data/prefs.glade.h:74
+#: ../guake/data/prefs.glade.h:74
 msgid "<b>Palette</b>"
 msgstr "<b>Paleta</b>"
 
-#: ../data/prefs.glade.h:75
+#: ../guake/data/prefs.glade.h:75
 msgid "Built-in schemes:"
 msgstr "Esquemas incorporados:"
 
-#: ../data/prefs.glade.h:76
+#: ../guake/data/prefs.glade.h:76
 msgid "Color palette:"
 msgstr "Paleta de colores:"
 
-#: ../data/prefs.glade.h:77
+#: ../guake/data/prefs.glade.h:77
 msgid "Font color"
 msgstr "Color del texto"
 
-#: ../data/prefs.glade.h:78
+#: ../guake/data/prefs.glade.h:78
 msgid "Background color"
 msgstr "Color de fondo"
 
-#: ../data/prefs.glade.h:79
+#: ../guake/data/prefs.glade.h:79
 msgid "Use font and background color from the palette"
 msgstr "Utilizar color de texto y de fondo de la paleta de colores"
 
-#: ../data/prefs.glade.h:80
+#: ../guake/data/prefs.glade.h:80
 msgid "Demo:"
 msgstr "Demo:"
 
-#: ../data/prefs.glade.h:81
+#: ../guake/data/prefs.glade.h:81
 msgid "<b>Effects</b>"
 msgstr "<b>Efectos</b>"
 
-#: ../data/prefs.glade.h:82
+#: ../guake/data/prefs.glade.h:82
 msgid "Transparency:"
 msgstr "Fondo transparente:"
 
-#: ../data/prefs.glade.h:83
+#: ../guake/data/prefs.glade.h:83
 msgid "Background image:"
 msgstr "Imagen de fondo:"
 
-#: ../data/prefs.glade.h:84 ../src/guake/prefs.py:130
+#: ../guake/data/prefs.glade.h:84 ../src/guake/prefs.py:130
 msgid "Appearance"
 msgstr "Apariencia"
 
-#: ../data/prefs.glade.h:85
+#: ../guake/data/prefs.glade.h:85
 msgid ""
 "<small>Quick open is a feature allowing you to open a file directly into "
 "your favorite text editor by clicking on its filename when it appears in "
@@ -431,17 +431,17 @@ msgstr ""
 "dispone de una lista de los patrones de texto utilizados para mostrar el "
 "nombre del fichero.</small>"
 
-#: ../data/prefs.glade.h:86
+#: ../guake/data/prefs.glade.h:86
 msgid "Enable Quick Open when Ctrl+clicking on a filename in the terminal"
 msgstr ""
 "Habilitar Abrir rápido cuando abra un fichero de la terminal pulsando Ctrl"
 "+Clic"
 
-#: ../data/prefs.glade.h:87
+#: ../guake/data/prefs.glade.h:87
 msgid "Editor command line:"
 msgstr "Editor de línea de comandos:"
 
-#: ../data/prefs.glade.h:89
+#: ../guake/data/prefs.glade.h:89
 #, no-c-format
 msgid ""
 "<small><i>Use the following elements in the open editor command line:\n"
@@ -462,11 +462,11 @@ msgstr ""
 "b>\n"
 "</i></small>"
 
-#: ../data/prefs.glade.h:95
+#: ../guake/data/prefs.glade.h:95
 msgid "Quick open in current terminal"
 msgstr "Abrir rápido en el terminal actual"
 
-#: ../data/prefs.glade.h:96
+#: ../guake/data/prefs.glade.h:96
 msgid ""
 "Here is the list of supported patterns: (to add your own, please contact the "
 "Guake's authors)"
@@ -474,15 +474,15 @@ msgstr ""
 "Aquí encontrará una lista de patrones soportados: (Si desea añadir uno "
 "propio, contacte con los autores de Guake)"
 
-#: ../data/prefs.glade.h:97
+#: ../guake/data/prefs.glade.h:97
 msgid "<b>Quick Open</b>"
 msgstr "<b>Abrir rápido</b>"
 
-#: ../data/prefs.glade.h:98
+#: ../guake/data/prefs.glade.h:98
 msgid "Quick Open"
 msgstr "Abrir rápido"
 
-#: ../data/prefs.glade.h:99
+#: ../guake/data/prefs.glade.h:99
 msgid ""
 "To change a shortcut simply click on its name.\n"
 "To disable a shortcut, press the \"Backspace\" key."
@@ -490,11 +490,11 @@ msgstr ""
 "Para cambiar un atajo del teclado haga clic encima de su nombre.\n"
 "Para desactivar un atajo del teclado, presione la tecla \"Backspace\"."
 
-#: ../data/prefs.glade.h:101
+#: ../guake/data/prefs.glade.h:101
 msgid "Keyboard shortcuts"
 msgstr "Atajos de teclado"
 
-#: ../data/prefs.glade.h:102
+#: ../guake/data/prefs.glade.h:102
 msgid ""
 "<small><i><b>Note:</b> These options may cause some applications to behave "
 "incorrectly.  They are only here to allow you to work around certain "
@@ -506,7 +506,7 @@ msgstr ""
 "alternativa a ciertas aplicaciones o sistemas operativos que esperan un "
 "comportamiento del terminal distinto.</i></small>"
 
-#: ../data/prefs.glade.h:103
+#: ../guake/data/prefs.glade.h:103
 msgid ""
 "ASCII DEL\n"
 "Escape sequence\n"
@@ -516,23 +516,23 @@ msgstr ""
 "Secuencia de Escape \n"
 "Control-H"
 
-#: ../data/prefs.glade.h:106
+#: ../guake/data/prefs.glade.h:106
 msgid "_Backspace key generates:"
 msgstr "Tecla _Backspace genera:"
 
-#: ../data/prefs.glade.h:107
+#: ../guake/data/prefs.glade.h:107
 msgid "_Delete key generates:"
 msgstr "Tecla _Delete genera:"
 
-#: ../data/prefs.glade.h:108
+#: ../guake/data/prefs.glade.h:108
 msgid "_Reset Compatibility Options to Defaults"
 msgstr "_Reiniciar "
 
-#: ../data/prefs.glade.h:109
+#: ../guake/data/prefs.glade.h:109
 msgid "<b>Keyboard compatibility</b>"
 msgstr "<b>Compatibilidad del teclado</b>"
 
-#: ../data/prefs.glade.h:110
+#: ../guake/data/prefs.glade.h:110
 msgid "Compatibility"
 msgstr "Compatibilidad"
 

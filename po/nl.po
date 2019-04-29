@@ -19,11 +19,11 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 "X-Generator: Weblate 3.6.1\n"
 
-#: ../data/about.glade.h:1
+#: ../guake/data/about.glade.h:1
 msgid "About Guake"
 msgstr "Over Guake"
 
-#: ../data/about.glade.h:5
+#: ../guake/data/about.glade.h:5
 msgid ""
 "Guake is an easy to access\n"
 "terminal based on FPS games terminal"
@@ -31,84 +31,84 @@ msgstr ""
 "Guake is een makkelijk toegankelijke\n"
 "terminal, gebaseerd op de terminal van FPS-spellen"
 
-#: ../data/guake.glade.h:1
+#: ../guake/data/guake.glade.h:1
 msgid "Copy"
 msgstr "Kopiëren"
 
-#: ../data/guake.glade.h:2
+#: ../guake/data/guake.glade.h:2
 msgid "Paste"
 msgstr "Plakken"
 
-#: ../data/guake.glade.h:3 ../src/guake/prefs.py:79
+#: ../guake/data/guake.glade.h:3 ../src/guake/prefs.py:79
 msgid "Toggle Fullscreen"
 msgstr "Volledig scherm aan/uit"
 
-#: ../data/guake.glade.h:4
+#: ../guake/data/guake.glade.h:4
 msgid "Save to File..."
 msgstr "Opslaan naar bestand..."
 
-#: ../data/guake.glade.h:5 ../src/guake/prefs.py:85
+#: ../guake/data/guake.glade.h:5 ../src/guake/prefs.py:85
 msgid "Reset terminal"
 msgstr "Standaardwaarden"
 
-#: ../data/guake.glade.h:6
+#: ../guake/data/guake.glade.h:6
 msgid "Find..."
 msgstr "Zoeken..."
 
-#: ../data/guake.glade.h:7
+#: ../guake/data/guake.glade.h:7
 msgid "New Tab"
 msgstr "Nieuw tabblad"
 
-#: ../data/guake.glade.h:8
+#: ../guake/data/guake.glade.h:8
 msgid "Rename Tab"
 msgstr "Tabbladnaam wijzigen"
 
-#: ../data/guake.glade.h:9
+#: ../guake/data/guake.glade.h:9
 msgid "Close Tab"
 msgstr "Tabblad sluiten"
 
-#: ../data/guake.glade.h:10
+#: ../guake/data/guake.glade.h:10
 msgid "Open link..."
 msgstr "Link openen..."
 
-#: ../data/guake.glade.h:11
+#: ../guake/data/guake.glade.h:11
 msgid "Search on Web"
 msgstr "Zoeken op internet"
 
-#: ../data/guake.glade.h:12 ../src/guake/prefs.py:83
+#: ../guake/data/guake.glade.h:12 ../src/guake/prefs.py:83
 msgid "Quit"
 msgstr "Afsluiten"
 
-#: ../data/guake.glade.h:13
+#: ../guake/data/guake.glade.h:13
 msgid "Rename"
 msgstr "Naam wijzigen"
 
-#: ../data/guake.glade.h:14
+#: ../guake/data/guake.glade.h:14
 msgid "Close"
 msgstr "Sluiten"
 
-#: ../data/guake.glade.h:15
+#: ../guake/data/guake.glade.h:15
 msgid "Guake!"
 msgstr "Guake!"
 
-#: ../data/guake.glade.h:16
+#: ../guake/data/guake.glade.h:16
 msgid "Add a new tab"
 msgstr "Nieuw tabblad toevoegen"
 
-#: ../data/prefs.glade.h:1
+#: ../guake/data/prefs.glade.h:1
 msgid "Guake Preferences"
 msgstr "Guake-voorkeuren"
 
-#: ../data/prefs.glade.h:2
+#: ../guake/data/prefs.glade.h:2
 msgid "<span size=\"18000\" color=\"black\"><b>Guake properties</b></span>"
 msgstr "<span size=\"18000\" color=\"black\"><b>Guake-voorkeuren</b></span>"
 
-#: ../data/prefs.glade.h:3
+#: ../guake/data/prefs.glade.h:3
 msgid ""
 "<span color=\"black\">Customize behavior and appearance of Guake!</span>"
 msgstr "<span color=\"black\">Pas Guake's gedrag en uiterlijk aan</span>"
 
-#: ../data/prefs.glade.h:4
+#: ../guake/data/prefs.glade.h:4
 msgid ""
 "Path to a bash script that would be automatically executed when Guake "
 "starts, unless you specify --no-startup-script.\n"
@@ -136,35 +136,35 @@ msgstr ""
 "guake -r \"main\" -e \"cd ~/projecten/mijnproject/main\"\n"
 "guake -r \"prod\" -e \"cd ~/projecten/mijnproject/prod\"\n"
 
-#: ../data/prefs.glade.h:15
+#: ../guake/data/prefs.glade.h:15
 msgid "Enable popup notifications on startup"
 msgstr "Pop-upmeldingen tonen bij opstarten"
 
-#: ../data/prefs.glade.h:16
+#: ../guake/data/prefs.glade.h:16
 msgid "Show tray icon"
 msgstr "Systeemvakpictogram tonen"
 
-#: ../data/prefs.glade.h:17
+#: ../guake/data/prefs.glade.h:17
 msgid "Always prompt on quit"
 msgstr "Altijd om bevestiging vragen bij afsluiten"
 
-#: ../data/prefs.glade.h:18
+#: ../guake/data/prefs.glade.h:18
 msgid "_Flash terminal on bell"
 msgstr "Terminal _knipperen bij bel"
 
-#: ../data/prefs.glade.h:19
+#: ../guake/data/prefs.glade.h:19
 msgid "_Play system alert sound on bell"
 msgstr "Systeem-meldingsgeluid afs_pelen bij bel"
 
-#: ../data/prefs.glade.h:20
+#: ../guake/data/prefs.glade.h:20
 msgid "Path to script executed on Guake start:"
 msgstr "Pad naar bij opstarten uit te voeren script:"
 
-#: ../data/prefs.glade.h:21
+#: ../guake/data/prefs.glade.h:21
 msgid "Prompt on close tab:"
 msgstr "Sluiten van tabblad bevestigen:"
 
-#: ../data/prefs.glade.h:22
+#: ../guake/data/prefs.glade.h:22
 msgid ""
 "Never\n"
 "With process running\n"
@@ -174,171 +174,171 @@ msgstr ""
 "Als er een proces wordt uitgevoerd\n"
 "Altijd"
 
-#: ../data/prefs.glade.h:25
+#: ../guake/data/prefs.glade.h:25
 msgid "<b>General</b>"
 msgstr "<b>Algemeen</b>"
 
-#: ../data/prefs.glade.h:26
+#: ../guake/data/prefs.glade.h:26
 msgid "Bottom align window instead of top align"
 msgstr "Venster uitlijnen aan onderkant i.p.v. bovenkant"
 
-#: ../data/prefs.glade.h:27
+#: ../guake/data/prefs.glade.h:27
 msgid "Appear on mouse display"
 msgstr "Verschijnen op scherm waar muis aanwezig is"
 
-#: ../data/prefs.glade.h:28
+#: ../guake/data/prefs.glade.h:28
 msgid "Appear on display:"
 msgstr "Verschijnen op scherm:"
 
-#: ../data/prefs.glade.h:29
+#: ../guake/data/prefs.glade.h:29
 msgid "Place tabs on top"
 msgstr "Tabbladen bovenaan plaatsen"
 
-#: ../data/prefs.glade.h:30
+#: ../guake/data/prefs.glade.h:30
 msgid "<b>Placement</b>"
 msgstr "<b>Plaatsing</b>"
 
-#: ../data/prefs.glade.h:31
+#: ../guake/data/prefs.glade.h:31
 msgid "Stay on top"
 msgstr "Altijd bovenop"
 
-#: ../data/prefs.glade.h:32
+#: ../guake/data/prefs.glade.h:32
 msgid "Hide on lose focus"
 msgstr "Verbergen bij verliezen van focus"
 
-#: ../data/prefs.glade.h:33
+#: ../guake/data/prefs.glade.h:33
 msgid "Show tab bar"
 msgstr "Tabbladbalk tonen"
 
-#: ../data/prefs.glade.h:34
+#: ../guake/data/prefs.glade.h:34
 msgid "Start fullscreen"
 msgstr "In volledig scherm-modus starten"
 
-#: ../data/prefs.glade.h:35
+#: ../guake/data/prefs.glade.h:35
 msgid "Use VTE titles for tab names"
 msgstr "VTE-titels gebruiken voor tabbladnamen"
 
-#: ../data/prefs.glade.h:36
+#: ../guake/data/prefs.glade.h:36
 msgid "Abbreviate directories in tab names"
 msgstr "Mapnamen inkorten in tabbladnamen"
 
-#: ../data/prefs.glade.h:37
+#: ../guake/data/prefs.glade.h:37
 msgid "Max tab name length:"
 msgstr "Max. lengte van tabbladnaam:"
 
-#: ../data/prefs.glade.h:38
+#: ../guake/data/prefs.glade.h:38
 msgid "<b>Main Window</b>"
 msgstr "<b>Hoofdvenster</b>"
 
-#: ../data/prefs.glade.h:39
+#: ../guake/data/prefs.glade.h:39
 msgid "Left"
 msgstr "Links"
 
-#: ../data/prefs.glade.h:40
+#: ../guake/data/prefs.glade.h:40
 msgid "Center"
 msgstr "Gecentreerd"
 
-#: ../data/prefs.glade.h:41
+#: ../guake/data/prefs.glade.h:41
 msgid "Right"
 msgstr "Rechts"
 
-#: ../data/prefs.glade.h:42
+#: ../guake/data/prefs.glade.h:42
 msgid "<b>Main Window Horizontal Alignment</b>"
 msgstr "<b>Hoofdvenster - Horizontale uitlijning</b>"
 
-#: ../data/prefs.glade.h:43
+#: ../guake/data/prefs.glade.h:43
 msgid "<b>Main Window Height</b>"
 msgstr "<b>Hoofdvenster - Hoogte</b>"
 
-#: ../data/prefs.glade.h:44
+#: ../guake/data/prefs.glade.h:44
 msgid "<b>Main Window Width</b>"
 msgstr "<b>Hoofdvenster - Breedte</b>"
 
-#: ../data/prefs.glade.h:45
+#: ../guake/data/prefs.glade.h:45
 msgid "Custom command file path: "
 msgstr "Bestandspad aangepaste opdracht: "
 
-#: ../data/prefs.glade.h:46
+#: ../guake/data/prefs.glade.h:46
 msgid "Please select a json file"
 msgstr "Kies een JSON-bestand"
 
-#: ../data/prefs.glade.h:47 ../src/guake/prefs.py:75
+#: ../guake/data/prefs.glade.h:47 ../src/guake/prefs.py:75
 msgid "General"
 msgstr "Algemeen"
 
-#: ../data/prefs.glade.h:48
+#: ../guake/data/prefs.glade.h:48
 msgid "Default interpreter:"
 msgstr "Standaard interpreter:"
 
-#: ../data/prefs.glade.h:49
+#: ../guake/data/prefs.glade.h:49
 msgid "_Run command as a login shell"
 msgstr "Opdracht uitvoe_ren als aanmeldshell"
 
-#: ../data/prefs.glade.h:50
+#: ../guake/data/prefs.glade.h:50
 msgid "_Open new tab in current directory"
 msgstr "Nieuw tabblad _openen in huidige map"
 
-#: ../data/prefs.glade.h:51
+#: ../guake/data/prefs.glade.h:51
 msgid "<b>Shell</b>"
 msgstr "<b>Shell</b>"
 
-#: ../data/prefs.glade.h:52
+#: ../guake/data/prefs.glade.h:52
 msgid "Shell"
 msgstr "Shell"
 
-#: ../data/prefs.glade.h:53
+#: ../guake/data/prefs.glade.h:53
 msgid "Show scrollbar"
 msgstr "Schuifbalk tonen"
 
-#: ../data/prefs.glade.h:54
+#: ../guake/data/prefs.glade.h:54
 msgid "Scrollback lines:"
 msgstr "Aantal terug te scrollen regels:"
 
-#: ../data/prefs.glade.h:55
+#: ../guake/data/prefs.glade.h:55
 msgid "On output"
 msgstr "Bij uitvoer"
 
-#: ../data/prefs.glade.h:56
+#: ../guake/data/prefs.glade.h:56
 msgid "On key stroke"
 msgstr "Na toetsaanslag"
 
-#: ../data/prefs.glade.h:57
+#: ../guake/data/prefs.glade.h:57
 msgid "<b>Scroll</b>"
 msgstr "<b>Scrollen</b>"
 
-#: ../data/prefs.glade.h:58
+#: ../guake/data/prefs.glade.h:58
 msgid "Scrolling"
 msgstr "Scrollen"
 
-#: ../data/prefs.glade.h:59
+#: ../guake/data/prefs.glade.h:59
 msgid "Use the system fixed width font"
 msgstr "Vaste breedte-lettertype van systeem gebruiken"
 
-#: ../data/prefs.glade.h:60
+#: ../guake/data/prefs.glade.h:60
 msgid "Font:"
 msgstr "Lettertype:"
 
-#: ../data/prefs.glade.h:61
+#: ../guake/data/prefs.glade.h:61
 msgid "Show resizer"
 msgstr "Herschaler tonen"
 
-#: ../data/prefs.glade.h:62
+#: ../guake/data/prefs.glade.h:62
 msgid "Choose some font"
 msgstr "Kies een lettertype"
 
-#: ../data/prefs.glade.h:63
+#: ../guake/data/prefs.glade.h:63
 msgid "Text color:"
 msgstr "Tekstkleur:"
 
-#: ../data/prefs.glade.h:64
+#: ../guake/data/prefs.glade.h:64
 msgid "Background color:"
 msgstr "Achtergrondkleur:"
 
-#: ../data/prefs.glade.h:65
+#: ../guake/data/prefs.glade.h:65
 msgid "Cursor shape:"
 msgstr "Cursorvorm:"
 
-#: ../data/prefs.glade.h:66
+#: ../guake/data/prefs.glade.h:66
 msgid ""
 "Block\n"
 "I-Beam\n"
@@ -348,7 +348,7 @@ msgstr ""
 "I-Streepje\n"
 "Onderstrepen"
 
-#: ../data/prefs.glade.h:69
+#: ../guake/data/prefs.glade.h:69
 msgid ""
 "Follow GTK+ setting\n"
 "Blink on\n"
@@ -358,63 +358,63 @@ msgstr ""
 "Knipperen aan\n"
 "Knipperen uit"
 
-#: ../data/prefs.glade.h:72
+#: ../guake/data/prefs.glade.h:72
 msgid "Cursor blink mode:"
 msgstr "Knippermodus van cursor:"
 
-#: ../data/prefs.glade.h:73
+#: ../guake/data/prefs.glade.h:73
 msgid "Allow bold font"
 msgstr "Vetgedrukt lettertype toestaan"
 
-#: ../data/prefs.glade.h:74
+#: ../guake/data/prefs.glade.h:74
 msgid "<b>Palette</b>"
 msgstr "<b>Palet</b>"
 
-#: ../data/prefs.glade.h:75
+#: ../guake/data/prefs.glade.h:75
 msgid "Built-in schemes:"
 msgstr "Ingebouwde schema's:"
 
-#: ../data/prefs.glade.h:76
+#: ../guake/data/prefs.glade.h:76
 msgid "Color palette:"
 msgstr "Kleurenpalet:"
 
-#: ../data/prefs.glade.h:77
+#: ../guake/data/prefs.glade.h:77
 msgid "Font color"
 msgstr "Tekstkleur"
 
-#: ../data/prefs.glade.h:78
+#: ../guake/data/prefs.glade.h:78
 msgid "Background color"
 msgstr "Achtergrondkleur"
 
-#: ../data/prefs.glade.h:79
+#: ../guake/data/prefs.glade.h:79
 msgid "Use font and background color from the palette"
 msgstr "Lettertype- en achtergrondkleur uit het palet gebruiken"
 
-#: ../data/prefs.glade.h:80
+#: ../guake/data/prefs.glade.h:80
 msgid "Demo:"
 msgstr "Demo:"
 
-#: ../data/prefs.glade.h:81
+#: ../guake/data/prefs.glade.h:81
 msgid "<b>Effects</b>"
 msgstr "<b>Effecten</b>"
 
-#: ../data/prefs.glade.h:82
+#: ../guake/data/prefs.glade.h:82
 msgid "Transparency:"
 msgstr "Doorzichtigheid:"
 
-#: ../data/prefs.glade.h:83
+#: ../guake/data/prefs.glade.h:83
 msgid "Background image:"
 msgstr "Achtergrondafbeelding:"
 
-#: ../data/prefs.glade.h:84
+#: ../guake/data/prefs.glade.h:84
 msgid "Select A File"
 msgstr "Kies een bestand"
 
-#: ../data/prefs.glade.h:85 ../src/guake/prefs.py:130
+#: ../guake/data/prefs.glade.h:85 ../src/guake/prefs.py:130
 msgid "Appearance"
 msgstr "Uiterlijk"
 
-#: ../data/prefs.glade.h:86
+#: ../guake/data/prefs.glade.h:86
 msgid ""
 "<small>Quick open is a feature allowing you to open a file directly into "
 "your favorite text editor by clicking on its filename when it appears in "
@@ -427,17 +427,17 @@ msgstr ""
 "momenteel ondersteunde tekstpatronen die kunnen worden gebruikt om de "
 "bestandsnaam te achterhalen.</small>"
 
-#: ../data/prefs.glade.h:87
+#: ../guake/data/prefs.glade.h:87
 msgid "Enable Quick Open when Ctrl+clicking on a filename in the terminal"
 msgstr ""
 "Snel openen inschakelen door Ctrl+klik te gebruiken op een bestandsnaam in "
 "de terminal"
 
-#: ../data/prefs.glade.h:88
+#: ../guake/data/prefs.glade.h:88
 msgid "Editor command line:"
 msgstr "Tekstbewerker-opdrachtregel:"
 
-#: ../data/prefs.glade.h:90
+#: ../guake/data/prefs.glade.h:90
 #, no-c-format
 msgid ""
 "<small><i>Use the following elements in the open editor command line:\n"
@@ -458,11 +458,11 @@ msgstr ""
 "Gebruik bijv. voor Sublime <b>subl %(file_path)s:%(line_number)s</b>\n"
 "</i></small>"
 
-#: ../data/prefs.glade.h:96
+#: ../guake/data/prefs.glade.h:96
 msgid "Quick open in current terminal"
 msgstr "Snel openen in huidige terminal"
 
-#: ../data/prefs.glade.h:97
+#: ../guake/data/prefs.glade.h:97
 msgid ""
 "Here is the list of supported patterns: (to add your own, please contact the "
 "Guake's authors)"
@@ -470,15 +470,15 @@ msgstr ""
 "Hier vindt je een lijst van ondersteunde patronen: (als je je eigen patronen "
 "wilt toevoegen, neem dan contact op met de Guake-ontwikkelaars)"
 
-#: ../data/prefs.glade.h:98
+#: ../guake/data/prefs.glade.h:98
 msgid "<b>Quick Open</b>"
 msgstr "<b>Snel openen</b>"
 
-#: ../data/prefs.glade.h:99
+#: ../guake/data/prefs.glade.h:99
 msgid "Quick Open"
 msgstr "Snel openen"
 
-#: ../data/prefs.glade.h:100
+#: ../guake/data/prefs.glade.h:100
 msgid ""
 "To change a shortcut simply click on its name.\n"
 "To disable a shortcut, press the \"Backspace\" key."
@@ -486,11 +486,11 @@ msgstr ""
 "Klik op de naam van een sneltoets om deze te wijzigen.\n"
 "Druk op de \"Backspace\"-toets om een sneltoets uit te schakelen."
 
-#: ../data/prefs.glade.h:102
+#: ../guake/data/prefs.glade.h:102
 msgid "Keyboard shortcuts"
 msgstr "Sneltoetsen"
 
-#: ../data/prefs.glade.h:103
+#: ../guake/data/prefs.glade.h:103
 msgid ""
 "<small><i><b>Note:</b> These options may cause some applications to behave "
 "incorrectly.  They are only here to allow you to work around certain "
@@ -502,7 +502,7 @@ msgstr ""
 "en besturingssystemen die ander terminal-gedrag verwachten omzeild kunnen "
 "worden.</i></small>"
 
-#: ../data/prefs.glade.h:104
+#: ../guake/data/prefs.glade.h:104
 msgid ""
 "ASCII DEL\n"
 "Escape sequence\n"
@@ -512,27 +512,27 @@ msgstr ""
 "Escape-sequentie\n"
 "Control-H"
 
-#: ../data/prefs.glade.h:107
+#: ../guake/data/prefs.glade.h:107
 msgid "_Backspace key generates:"
 msgstr "Resultaat _backspace-toets:"
 
-#: ../data/prefs.glade.h:108
+#: ../guake/data/prefs.glade.h:108
 msgid "_Delete key generates:"
 msgstr "Resultaat _delete-toets:"
 
-#: ../data/prefs.glade.h:109
+#: ../guake/data/prefs.glade.h:109
 msgid "_Reset Compatibility Options to Defaults"
 msgstr "Standaardwaarden he_rstellen"
 
-#: ../data/prefs.glade.h:110
+#: ../guake/data/prefs.glade.h:110
 msgid "<b>Keyboard compatibility</b>"
 msgstr "<b>Toetsenbord-compatibiliteit</b>"
 
-#: ../data/prefs.glade.h:111
+#: ../guake/data/prefs.glade.h:111
 msgid "Compatibility"
 msgstr "Compatibiliteit"
 
-#: ../data/prefs.glade.h:112
+#: ../guake/data/prefs.glade.h:112
 msgid ""
 "<small>In this dialog you can attach your own command or script to various "
 "guake events</small>"
@@ -540,7 +540,7 @@ msgstr ""
 "<small>In dit dialoogvenster kun je je eigen opdracht of script toevoegen "
 "aan allerlei Guake-gebeurtenissen</small>"
 
-#: ../data/prefs.glade.h:113
+#: ../guake/data/prefs.glade.h:113
 msgid ""
 "Insert command or path to script.\n"
 "For details, see https://github.com/Guake/guake/issues/793"
@@ -548,15 +548,15 @@ msgstr ""
 "Voer de opdracht of het pad naar het script in.\n"
 "Meer informatie: https://github.com/Guake/guake/issues/793"
 
-#: ../data/prefs.glade.h:115
+#: ../guake/data/prefs.glade.h:115
 msgid "On show:"
 msgstr "Na tonen:"
 
-#: ../data/prefs.glade.h:116
+#: ../guake/data/prefs.glade.h:116
 msgid "<b>Hooks</b>"
 msgstr "<b>Extra's</b>"
 
-#: ../data/prefs.glade.h:117
+#: ../guake/data/prefs.glade.h:117
 msgid "Hooks"
 msgstr "Extra's"
 

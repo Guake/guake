@@ -2,6 +2,30 @@
 Guake
 =====
 
+(unreleased yet)
+================
+
+Translation Updates
+-------------------
+
+- Czech (thanks @p-bo)
+
+- Dutch (thanks @Vistaus)
+
+- Norwegian Bokmål (thanks @comradekingu)
+
+- Polish (thanks @piotrdrag)
+
+- Russian (thanks @f2404)
+
+Notes for Package Maintainers
+-----------------------------
+
+- The ``data`` directory is back into ``guake`` module, in order to prepare for
+  the migration to importlib-resource (#1405). This should simplify a lot
+  the load of resources, and avoid all the complication due to difference in
+  prod/dev/traditional linux/debian customization/...
+
 3.6.1
 =====
 

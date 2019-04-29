@@ -45,7 +45,7 @@ Guake automatically finds URL printed in your terminal and allow you to click on
 Quick-Open
 ----------
 
-.. image:: ../../../data/pixmaps/quick-open.png
+.. image:: ../../../guake/data/pixmaps/quick-open.png
     :align: right
 
 Guake is also able to find out file names and open it in your favorite code editor, such as
@@ -56,14 +56,14 @@ as ``gcc``, Python's traceback or ``pytest`` report, and allowing you to automat
 file at the correct line number. Guake is even able to find the Python function name automatically
 when used with ``pytest``.
 
-.. image:: ../../../data/pixmaps/quick-open-python-exception.png
+.. image:: ../../../guake/data/pixmaps/quick-open-python-exception.png
     :align: center
 
 Even if Guake cannot parse the output, you can still ask him to open a wanted file path displayed
 in your terminal, provided the file exists at this path. Simply select the full path and click
 using the ``[Ctrl]+click``, or with the contextual menu on right click.
 
-.. image:: ../../../data/pixmaps/quick-open-selection.png
+.. image:: ../../../guake/data/pixmaps/quick-open-selection.png
     :align: center
 
 Contextual menu
