@@ -439,7 +439,6 @@ release:
 	git pull --rebase upstream master
 	@{ \
 		set -e ;\
-		set -x ;\
 		export VERSION=$$(pipenv run python setup.py --version | cut -d. -f1,2,3); \
 		echo "I: Computed new version: $$VERSION"; \
 		echo "I: presse ENTER to accept or type new version number:"; \
@@ -448,13 +447,20 @@ release:
 		PROJECTNAME=$$(pipenv run python setup.py --name); \
 		echo "I: Tagging $$PROJECTNAME in version $$VERSION with tag: $$VERSION" ; \
 		echo "I: Pushing tag $$VERSION, press ENTER to continue, C-c to interrupt"; \
-		(git commit --all -m "Release $${VERSION}" || true) ; \
+		git commit --all -m "Release $$VERSION" --allow-empty --no-edit ; \
 		git tag $$VERSION -m "$$PROJECTNAME $$VERSION"; \
 		make release-note-news rm-dists update-po dists ; \
-		git commit --all --amend -n; \
+		git commit --all --amend --no-edit; \
 		git tag -f "$${VERSION}"; \
+		make release-note-github; \
+		echo ""; \
+		echo "Please check your git history and push when ready with:"; \
+		echo "  git push upstream master"; \
+		echo "  git push upstream $$VERSION"; \
+		echo ""; \
+		echo "Revert with:"; \
+		echo "  git tag -d $$VERSION"; \
 	}
-	make release-note-github
 
 
 # aliases to gracefully handle typos on poor dev's terminal
