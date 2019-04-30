@@ -267,6 +267,7 @@ class TerminalNotebook(Gtk.Notebook):
         else:
             self.rename_page(page_num, label, user_set)
         terminal.grab_focus()
+        return box, page_num, terminal
 
     def rename_page(self, page_index, new_text, user_set=False):
         """Rename an already added page by its index. Use user_set to define
@@ -342,9 +343,9 @@ class TerminalNotebook(Gtk.Notebook):
         dialog.show()
 
     def restore_tabs_dialog_response(self, widget, response_id):
+        widget.destroy()
         if response_id == Gtk.ResponseType.OK:
             self.guake.restore_tabs()
-        widget.destroy()
 
 
 class NotebookManager(GObject.Object):
@@ -400,6 +401,9 @@ class NotebookManager(GObject.Object):
         if self.window.get_property('visible') and \
                 notebook.last_terminal_focused is not None:
             notebook.last_terminal_focused.grab_focus()
+
+        # Restore pending page terminal split
+        notebook.guake.restore_pending_terminal_split()
 
     def get_notebooks(self):
         return self.notebooks

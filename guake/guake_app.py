@@ -176,6 +176,11 @@ class Guake(SimpleGladeApp):
         self.mainframe = self.get_widget('mainframe')
         self.mainframe.remove(self.get_widget('notebook-teminals'))
 
+        # Pending restore for terminal split after show-up
+        #     [(RootTerminalBox, TerminaBox, panes), ...]
+        self.pending_restore_page_split = []
+        self._failed_restore_page_split = []
+
         # Workspace tracking
         self.notebook_manager = NotebookManager(
             self.window, self.mainframe,
@@ -565,6 +570,21 @@ class Guake(SimpleGladeApp):
             return True
         return False
 
+    def restore_pending_terminal_split(self):
+        # Restore pending terminal split
+        # XXX: Consider refactor how to handle failed restore page split
+        self.pending_restore_page_split = self._failed_restore_page_split
+        self._failed_restore_page_split = []
+        for root, box, panes in self.pending_restore_page_split:
+            if (
+                self.window.get_property('visible') and
+                root.get_notebook() == self.notebook_manager.get_current_notebook()
+            ):
+                root.restore_box_layout(box, panes)
+            else:
+                # Consider failed if the window is not visible
+                self._failed_restore_page_split.append((root, box, panes))
+
     def show(self):
         """Shows the main window and grabs the focus on it.
         """
@@ -637,7 +657,7 @@ class Guake(SimpleGladeApp):
         self.settings.styleBackground.triggerOnChangedValue(self.settings.styleBackground, 'color')
 
         log.debug("Current window position: %r", self.window.get_position())
-
+        self.restore_pending_terminal_split()
         self.execute_hook('show')
 
     def hide_from_remote(self):
@@ -961,6 +981,8 @@ class Guake(SimpleGladeApp):
     @save_tabs_when_changed
     def on_terminal_title_changed(self, vte, term):
         # box must be a page
+        if not term.get_parent():
+            return
         box = term.get_parent().get_root_box()
         use_vte_titles = self.settings.general.get_boolean('use-vte-titles')
         if not use_vte_titles:
@@ -1016,7 +1038,9 @@ class Guake(SimpleGladeApp):
 
     def terminal_spawned(self, notebook, terminal, pid):
         self.load_config()
-        terminal.connect('window-title-changed', self.on_terminal_title_changed, terminal)
+        terminal.handler_ids.append(
+            terminal.connect('window-title-changed', self.on_terminal_title_changed, terminal)
+        )
 
     @save_tabs_when_changed
     def add_tab(self, directory=None):
@@ -1151,15 +1175,17 @@ class Guake(SimpleGladeApp):
         return Path(xdg_config_home, 'guake').expanduser()
 
     def save_tabs(self, filename='session.json'):
-        config = {'schema_version': 1, 'timestamp': int(pytime.time()), 'workspace': {}}
+        config = {'schema_version': 2, 'timestamp': int(pytime.time()), 'workspace': {}}
         for key, nb in self.notebook_manager.get_notebooks().items():
             tabs = []
             for index in range(nb.get_n_pages()):
                 try:
                     page = nb.get_nth_page(index)
                     if page.child:
+                        panes = []
+                        page.save_box_layout(page.child, panes)
                         tabs.append({
-                            'directory': page.child.terminal.get_current_directory(),
+                            'panes': panes,
                             'label': nb.get_tab_text_index(index),
                             'custom_label_set': getattr(page, 'custom_label_set', False)
                         })
@@ -1204,6 +1230,8 @@ class Guake(SimpleGladeApp):
         self.settings.general.set_boolean('save-tabs-when-changed', False)
 
         # Restore all tabs for all workspaces
+        self.pending_restore_page_split = []
+        self._failed_restore_page_split = []
         try:
             for key, frames in config['workspace'].items():
                 nb = self.notebook_manager.get_notebook(int(key))
@@ -1213,9 +1241,16 @@ class Guake(SimpleGladeApp):
                 # NOTE: If frame implement in future, we will need to update this code
                 for tabs in frames:
                     for index, tab in enumerate(tabs):
-                        nb.new_page_with_focus(
-                            tab['directory'], tab['label'], tab['custom_label_set']
+                        directory = tab['panes'][0]['directory'] if len(
+                            tab.get('panes', [])
+                        ) == 1 else tab.get('directory', None)
+                        box, page_num, term = nb.new_page_with_focus(
+                            directory, tab['label'], tab['custom_label_set']
                         )
+                        if tab.get('panes', False):
+                            if directory:
+                                continue
+                            box.restore_box_layout(box.child, tab['panes'])
 
                     # Remove original pages in notebook
                     for i in range(current_pages):

@@ -21,8 +21,8 @@ import code
 import logging
 import os
 import re
-import signal
 import shlex
+import signal
 import subprocess
 import sys
 import threading
@@ -88,6 +88,7 @@ __all__ = ['GuakeTerminal']
 
 # pylint: enable=anomalous-backslash-in-string
 
+
 class DropTargets(IntEnum):
     URIS = 0
     TEXT = 1
@@ -103,8 +104,9 @@ class GuakeTerminal(Vte.Terminal):
         self.guake = guake
         self.configure_terminal()
         self.add_matches()
-        self.connect('button-press-event', self.button_press)
-        self.connect('child-exited', self.on_child_exited)
+        self.handler_ids = []
+        self.handler_ids.append(self.connect('button-press-event', self.button_press))
+        self.connect('child-exited', self.on_child_exited)  # Call on_child_exited, don't remove it
         self.matched_value = ''
         self.font_scale_index = 0
         self._pid = None
