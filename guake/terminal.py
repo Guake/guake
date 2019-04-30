@@ -22,14 +22,18 @@ import logging
 import os
 import re
 import signal
+import shlex
 import subprocess
 import sys
 import threading
 import uuid
 
+from enum import IntEnum
 from pathlib import Path
 from typing import Optional
 from typing import Tuple
+from urllib.parse import unquote
+from urllib.parse import urlparse
 
 from time import sleep
 
@@ -84,6 +88,10 @@ __all__ = ['GuakeTerminal']
 
 # pylint: enable=anomalous-backslash-in-string
 
+class DropTargets(IntEnum):
+    URIS = 0
+    TEXT = 1
+
 
 class GuakeTerminal(Vte.Terminal):
 
@@ -104,6 +112,16 @@ class GuakeTerminal(Vte.Terminal):
         self.custom_fgcolor = None
         self.found_link = None
         self.uuid = uuid.uuid4()
+
+        self.setup_drag_and_drop()
+
+    def setup_drag_and_drop(self):
+        self.targets = Gtk.TargetList()
+        self.targets.add_uri_targets(DropTargets.URIS)
+        self.targets.add_text_targets(DropTargets.TEXT)
+        self.drag_dest_set(Gtk.DestDefaults.ALL, [], Gdk.DragAction.COPY)
+        self.drag_dest_set_target_list(self.targets)
+        self.connect('drag-data-received', self.on_drag_data_received)
 
     def get_uuid(self):
         return self.uuid
@@ -330,6 +348,17 @@ class GuakeTerminal(Vte.Terminal):
         if libutempter is not None:
             if self.get_pty() is not None:
                 libutempter.utempter_remove_record(self.get_pty().get_fd())
+
+    def on_drag_data_received(self, widget, drag_context, x, y, data, info, time):
+        if info == DropTargets.URIS:
+            uris = data.get_uris()
+            for uri in uris:
+                path = Path(unquote(urlparse(uri).path))
+                self.feed_child(shlex.quote(str(path.absolute())) + ' ')
+        elif info == DropTargets.TEXT:
+            text = data.get_text()
+            if text:
+                self.feed_child(text)
 
     def quick_open(self):
         self.copy_clipboard()
