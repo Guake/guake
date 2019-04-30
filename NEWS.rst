@@ -5,6 +5,12 @@ Guake
 (unreleased yet)
 ================
 
+Bug Fixes
+---------
+
+- Respect the XDG Base Directory Specification by supporting ``XDG_CONFIG_HOME``
+  environment variable to find the ``~/.config`` directory.
+
 Translation Updates
 -------------------
 
