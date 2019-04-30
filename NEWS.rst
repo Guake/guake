@@ -2,8 +2,8 @@
 Guake
 =====
 
-(unreleased yet)
-================
+3.6.2
+=====
 
 Bug Fixes
 ---------
