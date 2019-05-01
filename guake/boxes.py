@@ -571,17 +571,23 @@ class DualTerminalBox(Gtk.Paned, TerminalHolder):
     def get_notebook(self):
         return self.get_parent().get_notebook()
 
+    def grab_box_terminal_focus(self, box):
+        if isinstance(box, DualTerminalBox):
+            next(box.iter_terminals()).grab_focus()
+        else:
+            box.get_terminal().grab_focus()
+
     def remove_dead_child(self, child):
         if self.get_child1() is child:
-            livingChild = self.get_child2()
-            self.remove(livingChild)
-            self.get_parent().replace_child(self, livingChild)
-            livingChild.get_terminal().grab_focus()
+            living_child = self.get_child2()
+            self.remove(living_child)
+            self.get_parent().replace_child(self, living_child)
+            self.grab_box_terminal_focus(living_child)
         elif self.get_child2() is child:
-            livingChild = self.get_child1()
-            self.remove(livingChild)
-            self.get_parent().replace_child(self, livingChild)
-            livingChild.get_terminal().grab_focus()
+            living_child = self.get_child1()
+            self.remove(living_child)
+            self.get_parent().replace_child(self, living_child)
+            self.grab_box_terminal_focus(living_child)
         else:
             print("I have never seen this widget!")
 
