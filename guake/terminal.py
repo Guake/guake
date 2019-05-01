@@ -492,38 +492,29 @@ class GuakeTerminal(Vte.Terminal):
         # start_new_thread(self.delete_shell, (pid,))
 
     def delete_shell(self, pid):
-        """This function will kill the shell on a tab, trying to send
-        a sigterm and if it doesn't work, a sigkill. Between these two
-        signals, we have a timeout of 3 seconds, so is recommended to
-        call this in another thread. This doesn't change any thing in
-        UI, so you can use python's start_new_thread.
+        """Kill the shell with SIGHUP
+
+        NOTE: Leave it alone, DO NOT USE os.waitpid
+
+        > sys:1: Warning: GChildWatchSource: Exit status of a child process was requested but
+                 ECHILD was received by waitpid(). See the documentation of
+                 g_child_watch_source_new() for possible causes.
+
+        g_child_watch_source_new() documentation:
+            https://developer.gnome.org/glib/stable/glib-The-Main-Event-Loop.html#g-child-watch-source-new
+
+        On POSIX platforms, the following restrictions apply to this API due to limitations
+        in POSIX process interfaces:
+            ...
+            * the application must not wait for pid to exit by any other mechanism,
+              including waitpid(pid, ...) or a second child-watch source for the same pid
+            ...
+        For this reason, we should not call os.waitpid(pid, ...), leave it to OS
         """
         try:
             os.kill(pid, signal.SIGHUP)
         except OSError:
             pass
-        num_tries = 30
-
-        while num_tries > 0:
-            try:
-                # Try to wait for the pid to be closed. If it does not
-                # exist anymore, an OSError is raised and we can
-                # safely ignore it.
-                if os.waitpid(pid, os.WNOHANG)[0] != 0:
-                    break
-            except OSError:
-                break
-            sleep(0.1)
-            num_tries -= 1
-
-        if num_tries == 0:
-            try:
-                os.kill(pid, signal.SIGKILL)
-                os.waitpid(pid, 0)
-            except OSError:
-                # if this part of code was reached, means that SIGTERM
-                # did the work and SIGKILL wasnt needed.
-                pass
 
     def spawn_sync_pid(self, directory):
 
