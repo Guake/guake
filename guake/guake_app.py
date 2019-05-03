@@ -65,6 +65,7 @@ from guake.globals import ALIGN_TOP
 from guake.globals import ALWAYS_ON_PRIMARY
 from guake.globals import MAX_TRANSPARENCY
 from guake.globals import NAME
+from guake.globals import TABS_SESSION_SCHEMA_VERSION
 from guake.gsettings import GSettingHandler
 from guake.guake_logging import setupLogging
 from guake.keybindings import Keybindings
@@ -1175,7 +1176,12 @@ class Guake(SimpleGladeApp):
         return Path(xdg_config_home, 'guake').expanduser()
 
     def save_tabs(self, filename='session.json'):
-        config = {'schema_version': 2, 'timestamp': int(pytime.time()), 'workspace': {}}
+        config = {
+            'schema_version': TABS_SESSION_SCHEMA_VERSION,
+            'timestamp': int(pytime.time()),
+            'workspace': {}
+        }
+
         for key, nb in self.notebook_manager.get_notebooks().items():
             tabs = []
             for index in range(nb.get_n_pages()):
@@ -1224,6 +1230,34 @@ class Guake(SimpleGladeApp):
                       ).format(session_filename=filename), img_filename
                 )
                 return
+
+        # Check schema_version exist
+        if 'schema_version' not in config:
+            img_filename = pixmapfile('guake-notification.png')
+            notifier.showMessage(
+                _('Guake Terminal'),
+                _(
+                    'Tabs session restore abort.\n'
+                    'Your session file ({session_filename}) missing schema_version as key'
+                ).format(session_filename=session_file), img_filename
+            )
+            return
+
+        # Check schema version is not higher than current version
+        if config['schema_version'] > TABS_SESSION_SCHEMA_VERSION:
+            img_filename = pixmapfile('guake-notification.png')
+            notifier.showMessage(
+                _('Guake Terminal'),
+                _(
+                    'Tabs session restore abort.\n'
+                    'Your session file schema version is higher than current version '
+                    '({session_file_schema_version} > {current_schema_version}).'
+                ).format(
+                    session_file_schema_version=config['schema_version'],
+                    current_schema_version=TABS_SESSION_SCHEMA_VERSION
+                ), img_filename
+            )
+            return
 
         # Disable auto save tabs
         v = self.settings.general.get_boolean('save-tabs-when-changed')

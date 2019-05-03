@@ -118,6 +118,28 @@ def test_guake_restore_tabs(g, fs):
     assert nb.get_tab_text_index(0) == '4'
 
 
+def test_guake_restore_tabs_json_without_schema_version(g, fs):
+    guake.guake_app.notifier.showMessage.reset_mock()
+
+    fn = fs.create_file('/foobar/bar.json')
+    with open(fn.path, 'w') as f:
+        f.write('{}')
+
+    g.restore_tabs(fn.name)
+    assert guake.guake_app.notifier.showMessage.call_count == 1
+
+
+def test_guake_restore_tabs_with_higher_schema_version(g, fs):
+    guake.guake_app.notifier.showMessage.reset_mock()
+
+    fn = fs.create_file('/foobar/bar.json')
+    with open(fn.path, 'w') as f:
+        f.write('{"schema_version": 2147483647}')
+
+    g.restore_tabs(fn.name)
+    assert guake.guake_app.notifier.showMessage.call_count == 1
+
+
 def test_guake_restore_tabs_json_broken_session_file(g, fs):
     guake.guake_app.notifier.showMessage.reset_mock()
     fn = fs.create_file('/foobar/foobar.json')
@@ -135,7 +157,7 @@ def test_guake_restore_tabs_schema_broken_session_file(g, fs):
     fn = fs.create_file('/foobar/bar.json')
     d = fs.create_dir('/foobar/foo')
     with open(fn.path, 'w') as f:
-        f.write('{"workspace": {"0": [[{"directory": "%s"}]]}}' % (d.path))
+        f.write('{"schema_version": 1, "workspace": {"0": [[{"directory": "%s"}]]}}' % (d.path))
 
     g.restore_tabs(fn.name)
     assert guake.guake_app.shutil.copy.call_count == 1
