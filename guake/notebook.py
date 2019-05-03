@@ -240,9 +240,14 @@ class TerminalNotebook(Gtk.Notebook):
             directory = os.environ['HOME']
             try:
                 if self.guake.settings.general.get_boolean('open-tab-cwd'):
-                    active_terminal = self.get_focused_terminal()
+                    # Do last focused terminal still alive?
+                    active_terminal = self.get_current_terminal()
+                    if not active_terminal:
+                        # If not alive, can we get any focused terminal?
+                        active_terminal = self.get_focused_terminal()
                     directory = os.path.expanduser('~')
                     if active_terminal:
+                        # If found, we will use its directory as new terminal's directory
                         directory = active_terminal.get_current_directory()
             except Exception as e:
                 pass
