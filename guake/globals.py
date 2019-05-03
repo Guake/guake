@@ -102,3 +102,6 @@ QUICK_OPEN_MATCHERS = [
 
 # Transparency max level (should be always 100)
 MAX_TRANSPARENCY = 100
+
+# Tabs session schema version
+TABS_SESSION_SCHEMA_VERSION = 2
