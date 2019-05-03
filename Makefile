@@ -50,7 +50,8 @@ reset:
 
 all: clean dev style checks dists test docs
 
-dev: clean-ln-venv ensure-pip pipenv-install-dev requirements ln-venv setup-githook prepare-install
+dev: clean-ln-venv ensure-pip pipenv-install-dev requirements ln-venv setup-githook \
+	 prepare-install install-dev-locale
 dev-travis: ensure-pip-system pipenv-install-dev requirements setup-githook prepare-install
 
 ensure-pip:
@@ -109,8 +110,18 @@ install-locale:
 		install -Dm644 "$$f" "$(DESTDIR)$(localedir)/$$lb/LC_MESSAGES/guake.mo"; \
 	done;
 
+install-dev-locale:
+	for f in $$(find po -iname "*.mo"); do \
+		l="$${f%%.*}"; \
+		lb=$$(basename $$l); \
+		install -Dm644 "$$f" "guake/po/$$lb/LC_MESSAGES/guake.mo"; \
+	done;
+
 uninstall-locale: install-old-locale
 	find $(DESTDIR)$(localedir)/ -name "guake.mo" -exec rm -f {} \;
+
+uninstall-dev-locale:
+	@rm -rf guake/po
 
 install-old-locale:
 	@find $(OLD_PREFIX)/share/locale/ -name "guake.mo" -exec rm -f {} \;
@@ -321,7 +332,7 @@ push: githook
 	git push origin --tags
 
 
-clean: clean-ln-venv rm-dists clean-docs clean-po clean-schemas clean-py clean-paths
+clean: clean-ln-venv rm-dists clean-docs clean-po clean-schemas clean-py clean-paths uninstall-dev-locale
 	@echo "clean successful"
 
 clean-py:
