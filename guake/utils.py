@@ -187,11 +187,9 @@ class RectCalculator():
         """
         # fetch settings
         height_percents = settings.general.get_int('window-height')
-
         width_percents = settings.general.get_int('window-width')
         halignment = settings.general.get_int('window-halignment')
         valignment = settings.general.get_int('window-valignment')
-
         vdisplacement = settings.general.get_int('window-vertical-displacement')
         hdisplacement = settings.general.get_int('window-horizontal-displacement')
 
@@ -200,8 +198,8 @@ class RectCalculator():
         log.debug("  width_percents = %s", width_percents)
         log.debug("  halignment = %s", halignment)
         log.debug("  valignment = %s", valignment)
-        log.debug("  vdisplacement = %s", vdisplacement)
         log.debug("  hdisplacement = %s", hdisplacement)
+        log.debug("  vdisplacement = %s", vdisplacement)
 
         # get the rectangle just from the destination monitor
         screen = window.get_screen()
@@ -212,93 +210,28 @@ class RectCalculator():
         log.debug("  window_rect.y: %s", window_rect.y)
         log.debug("  window_rect.height: %s", window_rect.height)
         log.debug("  window_rect.width: %s", window_rect.width)
-        log.debug("is unity: %s", cls.is_using_unity(settings, window))
 
-        # TODO PORT remove this UNITY is DEAD
-        if cls.is_using_unity(settings, window):
-
-            # For Ubuntu 12.10 and above, try to use dconf:
-            # see if unity dock is hidden => unity_hide
-            # and the width of unity dock => unity_dock
-            # and the position of the unity dock. => unity_pos
-            # found = False
-            unity_hide = 0
-            unity_dock = 0
-            unity_pos = "Left"
-            # float() conversion might mess things up. Add 0.01 so the comparison will always be
-            # valid, even in case of float("10.10") = 10.099999999999999
-            if float(platform.linux_distribution()[1]) + 0.01 >= 12.10:
-                try:
-                    unity_hide = int(
-                        subprocess.check_output([
-                            '/usr/bin/dconf', 'read',
-                            '/org/compiz/profiles/unity/plugins/unityshell/launcher-hide-mode'
-                        ])
-                    )
-                    unity_dock = int(
-                        subprocess.check_output([
-                            '/usr/bin/dconf', 'read',
-                            '/org/compiz/profiles/unity/plugins/unityshell/icon-size'
-                        ]) or "48"
-                    )
-                    unity_pos = subprocess.check_output([
-                        '/usr/bin/dconf', 'read', '/com/canonical/unity/launcher/launcher-position'
-                    ]) or "Left"
-                    # found = True
-                except Exception as e:
-                    # in case of error, just ignore it, 'found' will not be set to True and so
-                    # we execute the fallback
-                    pass
-            # FIXME: remove self.client dependency
-            # if not found:
-            #     # Fallback: try to bet from gconf
-            #     unity_hide = self.client.get_int(
-            #         KEY('/apps/compiz-1/plugins/unityshell/screen0/options/launcher_hide_mode')
-            #     )
-            #     unity_icon_size = self.client.get_int(
-            #         KEY('/apps/compiz-1/plugins/unityshell/screen0/options/icon_size')
-            #     )
-            #     unity_dock = unity_icon_size + 17
-
-            # launcher_hide_mode = 1 => autohide
-            # only adjust guake window width if Unity dock is positioned "Left" or "Right"
-            if unity_hide != 1 and unity_pos not in ("Left", "Right"):
-                log.debug(
-                    "correcting window width because of launcher position %s "
-                    "and width %s (from %s to %s)", unity_pos, unity_dock, window_rect.width,
-                    window_rect.width - unity_dock
-                )
-
-                window_rect.width = window_rect.width - unity_dock
-
-        total_width = window_rect.width
         total_height = window_rect.height
+        total_width = window_rect.width
 
-        log.debug("Correcteed monitor size:")
-        log.debug("  total_width: %s", total_width)
-        log.debug("  total_height: %s", total_height)
+        if halignment == ALIGN_CENTER:
+            log.debug("aligning to center!")
+            window_rect.width = int(float(total_width) * float(width_percents) / 100.0)
+            window_rect.x += (total_width - window_rect.width) / 2
+        elif halignment == ALIGN_LEFT:
+            log.debug("aligning to left!")
+            window_rect.width = int(float(total_width - hdisplacement) * float(width_percents) / 100.0)
+            window_rect.x += hdisplacement
+        elif halignment == ALIGN_RIGHT:
+            log.debug("aligning to right!")
+            window_rect.width = int(float(total_width - hdisplacement) * float(width_percents) / 100.0)
+            window_rect.x += total_width - window_rect.width - hdisplacement
 
-        window_rect.height = int(float(window_rect.height) * float(height_percents) / 100.0)
-        window_rect.width = int(float(window_rect.width) * float(width_percents) / 100.0)
-
-        if window_rect.width < total_width:
-            if halignment == ALIGN_CENTER:
-                # log.debug("aligning to center!")
-                window_rect.x += (total_width - window_rect.width) / 2
-            elif halignment == ALIGN_LEFT:
-                # log.debug("aligning to left!")
-                window_rect.x += 0 + hdisplacement
-            elif halignment == ALIGN_RIGHT:
-                # log.debug("aligning to right!")
-                window_rect.x += total_width - window_rect.width - hdisplacement
-        if window_rect.height < total_height:
-            if valignment == ALIGN_BOTTOM:
-                window_rect.y += (total_height - window_rect.height)
-
+        window_rect.height = int(float(total_height) * float(height_percents) / 100.0)
         if valignment == ALIGN_TOP:
             window_rect.y += vdisplacement
         elif valignment == ALIGN_BOTTOM:
-            window_rect.y -= vdisplacement
+            window_rect.y += total_height - window_rect.height - vdisplacement
 
         if width_percents == 100 and height_percents == 100:
             log.debug("MAXIMIZING MAIN WINDOW")
@@ -312,7 +245,6 @@ class RectCalculator():
             log.debug("  window_rect.width: %s", window_rect.width)
             # Note: move_resize is only on GTK3
             window.resize(window_rect.width, window_rect.height)
-            window.move(window_rect.x, window_rect.y)
             window.move(window_rect.x, window_rect.y)
             log.debug("Updated window position: %r", window.get_position())
 
@@ -349,19 +281,3 @@ class RectCalculator():
             dest_screen = screen.get_primary_monitor()
 
         return dest_screen
-
-    # TODO PORT remove this UNITY is DEAD
-    @classmethod
-    def is_using_unity(cls, settings, window):
-        linux_distrib = platform.linux_distribution()
-        if linux_distrib[0].lower() != "ubuntu":
-            return False
-
-        # http://askubuntu.com/questions/70296/is-there-an-environment-variable-that-is-set-for-unity
-        if float(linux_distrib[1]) - 0.01 < 11.10:
-            if os.environ.get('DESKTOP_SESSION', '').lower() == "gnome".lower():
-                return True
-        else:
-            if os.environ.get('XDG_CURRENT_DESKTOP', '').lower() == "unity".lower():
-                return True
-        return False
