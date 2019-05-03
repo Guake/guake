@@ -3,7 +3,7 @@
 PYTHON_INTERPRETER?=python3
 MODULE:=guake
 DESTDIR:=/
-prefix:=/usr/local
+prefix?=/usr/local
 exec_prefix:=$(prefix)
 bindir = $(exec_prefix)/bin
 
