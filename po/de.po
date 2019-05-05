@@ -12,15 +12,15 @@ msgstr ""
 "Project-Id-Version: Guake 0.4.5\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-07-07 19:07+0200\n"
-"PO-Revision-Date: 2019-01-04 19:54+0100\n"
-"Last-Translator: Robin Bauknecht <robin.bauknecht@gmail.com>\n"
+"PO-Revision-Date: 2019-05-06 20:48+0000\n"
+"Last-Translator: ssantos <ssantos@web.de>\n"
 "Language-Team: German <https://hosted.weblate.org/projects/guake/guake/de/>\n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Poedit 2.2\n"
+"X-Generator: Weblate 3.7-dev\n"
 
 #: guake/about.py:54 guake/keybindings.py:94 guake/guake_app.py:201
 #: guake/guake_app.py:414
@@ -35,7 +35,7 @@ msgid ""
 msgstr ""
 "Ein Problem trat beim Belegen der Taste <b>%s</b> auf.\n"
 "Bitte benutzen Sie die Einstellungen, um eine andere Taste oder eine andere "
-"Tastenkombination zu wählen."
+"Tastenkombination zu wählen"
 
 #: guake/prefs.py:78
 msgid "<user shell>"
@@ -372,11 +372,11 @@ msgstr "Es existieren noch {0} laufende Prozesse"
 
 #: guake/guake_app.py:207
 msgid "guake-indicator"
-msgstr ""
+msgstr "Guake-Indikator"
 
 #: guake/guake_app.py:207
 msgid "guake-tray"
-msgstr ""
+msgstr "Guake-Tray"
 
 #: guake/guake_app.py:212
 msgid "Show"
@@ -474,8 +474,7 @@ msgstr "<span size=\"18000\"><b>Guake-Einstellungen</b></span>"
 
 #: data/prefs.glade:107
 msgid "Customize behavior and appearance of Guake!"
-msgstr ""
-"Passen Sie das Aussehen und Verhalten von Guake an Ihre Bedürfnisse an."
+msgstr "Passen Sie das Aussehen und Verhalten von Guake an Ihre Bedürfnisse an!"
 
 #: data/prefs.glade:190
 msgid "Enable popup notifications on startup"
@@ -571,7 +570,7 @@ msgstr "Max. Länge der Reiternamen:"
 
 #: data/prefs.glade:658
 msgid "0"
-msgstr ""
+msgstr "0"
 
 #: data/prefs.glade:680
 msgid "Set window title to current tab name"
@@ -938,7 +937,7 @@ msgstr "Umbenennen"
 
 #: data/guake.glade:256
 msgid "Guake!"
-msgstr "Guake"
+msgstr "Guake!"
 
 #: data/guake.desktop:32 data/autostart-guake.desktop:31
 #: data/guake.template.desktop:4
@@ -949,7 +948,7 @@ msgstr "Verwenden Sie die Befehlszeile in einem Quake-ähnlichen Terminal"
 #: data/guake-prefs.desktop:41 data/guake-prefs.template.desktop:7
 #: data/guake.template.desktop:7
 msgid "guake"
-msgstr ""
+msgstr "guake"
 
 #: data/guake-prefs.desktop:33 data/guake-prefs.template.desktop:4
 msgid "Configure your Guake sessions"
@@ -957,7 +956,7 @@ msgstr "Konfigurieren Sie Ihre Guake-Sitzungen"
 
 #: data/guake-prefs.desktop:52 data/guake-prefs.template.desktop:13
 msgid "Terminal;Utility;"
-msgstr ""
+msgstr "Terminal;Dienstprogramm;"
 
 #: guake/menus.py:42
 msgid "Copy Url"
@@ -969,7 +968,7 @@ msgstr "Teile ―"
 
 #: guake/menus.py:65
 msgid "Split  "
-msgstr "Teile "
+msgstr "Teile  "
 
 #: guake/menus.py:68 guake/prefs.py:150
 msgid "Close terminal"
@@ -1050,7 +1049,7 @@ msgstr " auf {0} Arbeitsflächen"
 
 #: guake/main.py:211
 msgid "Change Guake palette scheme"
-msgstr ""
+msgstr "Guake-Farbpalettenschema ändern"
 
 #: data/prefs.glade:331
 msgid "Use workspace-specific tab sets (requires restart)"
@@ -1058,48 +1057,49 @@ msgstr "Arbeitsflächenspezifische Tab-Gruppen verwenden (erfordert Neustart)"
 
 #: guake/main.py:175
 msgid "Split the selected tab vertically."
-msgstr ""
+msgstr "Die ausgewählte Registerkarte vertikal aufteilen."
 
 #: guake/main.py:183
 msgid "Split the selected tab horizontally."
-msgstr ""
+msgstr "Die ausgewählte Registerkarte horizontal aufteilen."
 
 #: data/prefs.glade:348
 msgid "Show close buttons for tabs"
-msgstr ""
+msgstr "Schließen-Knöpfe für Registerkarten anzeigen"
 
 #: data/prefs.glade:1682
 msgid "Bold text is also bright"
-msgstr ""
+msgstr "Fettgedruckter Text ist auch hell"
 
 #: data/prefs.glade:1682
 msgid "Bold text is also bright (VTE >=0.52)"
-msgstr ""
+msgstr "Fettgedruckter Text ist ebenfalls hell (VTE >=0,52)"
 
 #: guake/menus.py:42
 msgid "Save Tabs"
-msgstr ""
+msgstr "Registerkarten speichern"
 
 #: guake/menus.py:45
 msgid "Restore Tabs"
-msgstr ""
+msgstr "Registerkarten Wiederherstellen"
 
 #: guake/prefs.py:113
 msgid "Search terminal"
-msgstr ""
+msgstr "Terminal durchsuchen"
 
 #: guake/main.py:278
 msgid "Save Guake preferences to this filename"
-msgstr ""
+msgstr "Guake-Einstellungen unter diesem Dateinamen speichern"
 
 #: guake/main.py:286
 msgid "Restore Guake preferences from this file"
-msgstr ""
+msgstr "Guake-Einstellungen aus dieser Datei wiederherstellen"
 
 #: guake/guake_app.py:1192
 #, python-brace-format
 msgid "Your session.json file is broken, backup to {session_filename}.bak"
 msgstr ""
+"Ihre session.json-Datei ist defekt, Sicherung auf {session_filename}.bak"
 
 #: guake/guake_app.py:1228
 #, python-brace-format
@@ -1107,36 +1107,41 @@ msgid ""
 "Your session.json schema is broken, backup to {0}.bak,and error message has "
 "been saved to {0}.log.err"
 msgstr ""
+"Ihr session.json-Schema ist defekt, Backup auf {0}.bak erstellen und die "
+"Fehlermeldung wurde auf {0}.log.err gespeichert"
 
 #: guake/guake_app.py:1239
 msgid "Your tabs has been restored!"
-msgstr ""
+msgstr "Ihre Registerkarten wurden wiederhergestellt!"
 
 #: guake/tests/test_about.py:23
 msgid "About Guake"
-msgstr ""
+msgstr "Über Guake"
 
 #: data/prefs.glade:190
 msgid "Restore previous session (tabs)"
-msgstr ""
+msgstr "Wiederherstellen der vorherigen Sitzung (Registerkarten)"
 
 #: data/prefs.glade:204
 msgid "Enable notification when restore tabs"
 msgstr ""
+"Benachrichtigung bei der Wiederherstellung von Registerkarten aktivieren"
 
 #: data/prefs.glade:218
 msgid "Automatically save session when the tabs has been modified"
-msgstr ""
+msgstr "Sitzung automatisch speichern, wenn die Registerkarten geändert wurden"
 
 #: data/prefs.glade:238
 msgid "Startup & Tabs (Experiment)"
-msgstr ""
+msgstr "Start & Registerkarten (Experiment)"
 
 #: guake/guake_app.py:1192
 #, python-brace-format
 msgid ""
 "Your {session_filename} file is broken, backup to {session_filename}.bak"
 msgstr ""
+"Ihre {session_filename} Datei ist beschädigt, Backup auf "
+"{session_filename}.bak"
 
 #: guake/guake_app.py:1227
 #, python-brace-format
@@ -1144,6 +1149,8 @@ msgid ""
 "Your {session_filename} schema is broken, backup to {0}.bak,and error "
 "message has been saved to {session_filename}.log.err"
 msgstr ""
+"Ihr Schema {session_filename} ist defekt, Backup auf {0}.bak erstellt und "
+"die Fehlermeldung wurde unter {session_filename}.log.err gespeichert"
 
 #: guake/guake_app.py:1227
 #, python-brace-format
@@ -1151,6 +1158,9 @@ msgid ""
 "Your {session_filename} schema is broken, backup to {session_filename}.bak,"
 "and error message has been saved to {session_filename}.log.err."
 msgstr ""
+"Ihr Schema {session_filename} ist beschädigt, Backup auf {session_filename}"
+".bak erstellt und die Fehlermeldung wurde auf {session_filename}.log.err "
+"gespeichert."
 
 #: guake/guake_app.py:1227
 #, python-brace-format
@@ -1158,6 +1168,9 @@ msgid ""
 "Your {session_filename} schema is broken, backup to {session_filename}.bak, "
 "and error message has been saved to {session_filename}.log.err."
 msgstr ""
+"Ihr Schema {session_filename} ist beschädigt, Backup auf {session_filename}"
+".bak erstellt und die Fehlermeldung wurde auf {session_filename}.log.err "
+"gespeichert."
 
 #: guake/notebook.py:317
 msgid ""
@@ -1166,7 +1179,11 @@ msgid ""
 "\n"
 "Do you want to continue?"
 msgstr ""
+"Sie werden * alle * Tabs wiederherstellen!\n"
+"Das bedeutet, dass alle Terminals und Seiten ersetzt werden.\n"
+"\n"
+"Wollen Sie weitermachen?"
 
 #: guake/main.py:296
 msgid "Show support infomations"
-msgstr ""
+msgstr "Support-Informationen anzeigen"
