@@ -31,7 +31,6 @@ gi.require_version('Gtk', '3.0')
 gi.require_version('Gdk', '3.0')
 
 from gi.repository import Gdk
-from gi.repository import GdkX11
 from gi.repository import Gtk
 from guake.globals import ALIGN_BOTTOM
 from guake.globals import ALIGN_CENTER
@@ -39,6 +38,11 @@ from guake.globals import ALIGN_LEFT
 from guake.globals import ALIGN_RIGHT
 from guake.globals import ALIGN_TOP
 from guake.globals import ALWAYS_ON_PRIMARY
+
+try:
+    from gi.repository import GdkX11
+except ImportError:
+    GdkX11 = False
 
 log = logging.getLogger(__name__)
 
