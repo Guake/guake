@@ -28,6 +28,7 @@ from guake.callbacks import NotebookScrollCallback
 from guake.dialogs import PromptQuitDialog
 from guake.menus import mk_notebook_context_menu
 from guake.prefs import PrefsDialog
+from guake.utils import gdk_is_x11_display
 from guake.utils import save_tabs_when_changed
 
 import gi
@@ -365,11 +366,15 @@ class NotebookManager(GObject.Object):
         self.notebook_parent = notebook_parent
         self.terminal_spawned_cb = terminal_spawned_cb
         self.page_deleted_cb = page_deleted_cb
-        self.screen = Wnck.Screen.get_default()
-        if workspaces_enabled:
-            self.screen.connect("active-workspace-changed", self.workspace_changed)
+        if workspaces_enabled and gdk_is_x11_display(Gdk.Display.get_default()):
+            # NOTE: Wnck didn't support non-X11 display backend, so we need to check if the display
+            #       is X11 or not, if not, it will not able to enable workspace-specific-tab-sets
+            #
+            # TODO: Is there anyway to support this in non-X11 display backend?
+            self.screen = Wnck.Screen.get_default()
+            self.screen.connect("active-workspace-changed", self.__workspace_changed_cb)
 
-    def workspace_changed(self, screen, previous_workspace):
+    def __workspace_changed_cb(self, screen, previous_workspace):
         self.set_workspace(self.screen.get_active_workspace().get_number())
 
     def get_notebook(self, workspace_index: int):

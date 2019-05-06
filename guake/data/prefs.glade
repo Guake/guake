@@ -406,7 +406,7 @@
                                         </child>
                                         <child>
                                           <object class="GtkCheckButton" id="workspace-specific-tab-sets">
-                                            <property name="label" translatable="yes">Use workspace-specific tab sets (requires restart)</property>
+                                            <property name="label" translatable="yes">Use workspace-specific tab sets (requires restart, only work on X11)</property>
                                             <property name="visible">True</property>
                                             <property name="can_focus">True</property>
                                             <property name="receives_default">False</property>
