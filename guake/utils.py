@@ -47,6 +47,12 @@ except ImportError:
 log = logging.getLogger(__name__)
 
 
+def gdk_is_x11_display(instance):
+    if GdkX11:
+        return isinstance(instance, GdkX11.X11Display)
+    return False
+
+
 def get_server_time(widget):
     try:
         return GdkX11.x11_get_server_time(widget.get_window())
