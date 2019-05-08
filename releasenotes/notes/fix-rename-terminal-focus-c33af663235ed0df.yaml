@@ -1,0 +1,2 @@
+fixes:
+    - Fix re-focus on terminal after rename dialog destroy

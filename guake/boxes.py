@@ -20,6 +20,7 @@ from guake.menus import mk_tab_context_menu
 from guake.menus import mk_terminal_context_menu
 from guake.utils import HidePrevention
 from guake.utils import TabNameUtils
+from guake.utils import get_server_time
 from guake.utils import save_tabs_when_changed
 
 log = logging.getLogger(__name__)
@@ -618,6 +619,11 @@ class TabLabelEventBox(Gtk.EventBox):
     def get_text(self):
         return self.label.get_text()
 
+    def grab_focus_on_last_focused_terminal(self):
+        server_time = get_server_time(self.notebook.guake.window)
+        self.notebook.guake.window.get_window().focus(server_time)
+        self.notebook.get_current_terminal().grab_focus()
+
     def on_button_press(self, target, event, user_data):
         if event.button == 3:
             menu = mk_tab_context_menu(self)
@@ -628,7 +634,6 @@ class TabLabelEventBox(Gtk.EventBox):
             except AttributeError:
                 # Gtk 3.18 fallback ("'Menu' object has no attribute 'popup_at_pointer'")
                 menu.popup(None, None, None, None, event.button, event.get_time())
-            self.notebook.get_current_terminal().grab_focus()
             return True
         if event.button == 2:
             prompt_cfg = self.notebook.guake.settings.general.get_int('prompt-on-close-tab')
@@ -637,7 +642,6 @@ class TabLabelEventBox(Gtk.EventBox):
         if event.button == 1 and event.type == Gdk.EventType._2BUTTON_PRESS:
             self.on_rename(None)
 
-        self.notebook.get_current_terminal().grab_focus()
         return False
 
     @save_tabs_when_changed
@@ -655,8 +659,8 @@ class TabLabelEventBox(Gtk.EventBox):
             self.notebook.rename_page(page_num, new_text, True)
         dialog.destroy()
         HidePrevention(self.get_toplevel()).allow()
-        # TODO
-        #        self.set_terminal_focus()
+
+        self.grab_focus_on_last_focused_terminal()
 
     def on_close(self, user_data):
         prompt_cfg = self.notebook.guake.settings.general.get_int('prompt-on-close-tab')
