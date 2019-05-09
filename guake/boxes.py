@@ -411,6 +411,24 @@ class TerminalBox(Gtk.Box, TerminalHolder):
         self.scroll.show()
         self.pack_start(self.scroll, False, False, 0)
 
+        self.terminal.handler_ids.append(
+            self.terminal.connect('scroll-event', self.__scroll_event_cb))
+
+    def __scroll_event_cb(self, widget, event):
+        # Adjust scrolling speed when adding "shift" or "shift + ctrl"
+        adj = self.scroll.get_adjustment()
+        page_size = adj.get_page_size()
+        if (event.get_state() & Gdk.ModifierType.SHIFT_MASK and
+                event.get_state() & Gdk.ModifierType.CONTROL_MASK):
+            # Ctrl + Shift + Mouse Scroll (4 pages)
+            adj.set_page_increment(page_size * 40)
+        elif event.get_state() & Gdk.ModifierType.SHIFT_MASK:
+            # Shift + Mouse Scroll (1 page)
+            adj.set_page_increment(page_size * 10)
+        else:
+            # Mouse Scroll
+            adj.set_page_increment(page_size)
+
     def get_terminal(self):
         return self.terminal
 
