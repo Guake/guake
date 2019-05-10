@@ -183,7 +183,7 @@ class Guake(SimpleGladeApp):
         self._failed_restore_page_split = []
 
         # FullscreenManager
-        self.fullscreen_manager = FullscreenManager(self.settings, self.window)
+        self.fullscreen_manager = FullscreenManager(self.settings, self.window, self)
 
         # Workspace tracking
         self.notebook_manager = NotebookManager(
@@ -711,6 +711,7 @@ class Guake(SimpleGladeApp):
         self.settings.general.triggerOnChangedValue(self.settings.general, 'prompt-on-quit')
         self.settings.general.triggerOnChangedValue(self.settings.general, 'prompt-on-close-tab')
         self.settings.general.triggerOnChangedValue(self.settings.general, 'window-tabbar')
+        self.settings.general.triggerOnChangedValue(self.settings.general, 'fullscreen-hide-tabbar')
         self.settings.general.triggerOnChangedValue(self.settings.general, 'mouse-display')
         self.settings.general.triggerOnChangedValue(self.settings.general, 'display-n')
         self.settings.general.triggerOnChangedValue(self.settings.general, 'window-ontop')

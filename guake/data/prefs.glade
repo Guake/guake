@@ -722,8 +722,8 @@
                                             <signal name="toggled" handler="toggle_use_vte_titles" swapped="no"/>
                                           </object>
                                           <packing>
-                                            <property name="left_attach">1</property>
-                                            <property name="top_attach">2</property>
+                                            <property name="left_attach">0</property>
+                                            <property name="top_attach">3</property>
                                           </packing>
                                         </child>
                                         <child>
@@ -739,7 +739,7 @@
                                             <signal name="toggled" handler="on_abbreviate_tab_names_toggled" swapped="no"/>
                                           </object>
                                           <packing>
-                                            <property name="left_attach">0</property>
+                                            <property name="left_attach">1</property>
                                             <property name="top_attach">3</property>
                                           </packing>
                                         </child>
@@ -784,7 +784,7 @@
                                           </object>
                                           <packing>
                                             <property name="left_attach">0</property>
-                                            <property name="top_attach">4</property>
+                                            <property name="top_attach">5</property>
                                             <property name="width">2</property>
                                           </packing>
                                         </child>
@@ -800,9 +800,27 @@
                                             <signal name="toggled" handler="on_set_window_title_toggled" swapped="no"/>
                                           </object>
                                           <packing>
-                                            <property name="left_attach">1</property>
-                                            <property name="top_attach">3</property>
+                                            <property name="left_attach">0</property>
+                                            <property name="top_attach">4</property>
                                           </packing>
+                                        </child>
+                                        <child>
+                                          <object class="GtkCheckButton" id="fullscreen_hide_tabbar">
+                                            <property name="label" translatable="yes">Hide tabbar when fullscreen</property>
+                                            <property name="visible">True</property>
+                                            <property name="can_focus">True</property>
+                                            <property name="receives_default">False</property>
+                                            <property name="active">True</property>
+                                            <property name="draw_indicator">True</property>
+                                            <signal name="toggled" handler="on_fullscreen_hide_tabbar_toggled" swapped="no"/>
+                                          </object>
+                                          <packing>
+                                            <property name="left_attach">1</property>
+                                            <property name="top_attach">2</property>
+                                          </packing>
+                                        </child>
+                                        <child>
+                                          <placeholder/>
                                         </child>
                                       </object>
                                     </child>

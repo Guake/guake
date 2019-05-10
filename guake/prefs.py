@@ -472,6 +472,11 @@ class PrefsCallbacks():
         """
         self.settings.general.set_boolean('window-tabbar', chk.get_active())
 
+    def on_fullscreen_hide_tabbar_toggled(self, chk):
+        """Changes the activity of fullscreen_hide_tabbar in dconf
+        """
+        self.settings.general.set_boolean('fullscreen-hide-tabbar', chk.get_active())
+
     def on_start_fullscreen_toggled(self, chk):
         """Changes the activity of start_fullscreen in dconf
         """
@@ -1188,6 +1193,10 @@ class PrefsDialog(SimpleGladeApp):
         # tab bar
         value = self.settings.general.get_boolean('window-tabbar')
         self.get_widget('window_tabbar').set_active(value)
+
+        # fullscreen hide tabbar
+        value = self.settings.general.get_boolean('fullscreen-hide-tabbar')
+        self.get_widget('fullscreen_hide_tabbar').set_active(value)
 
         # start fullscreen
         value = self.settings.general.get_boolean('start-fullscreen')

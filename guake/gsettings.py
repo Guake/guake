@@ -60,6 +60,9 @@ class GSettingHandler():
         settings.general.onChangedValue('window-ontop', self.ontop_toggled)
         settings.general.onChangedValue('tab-ontop', self.tab_ontop_toggled)
         settings.general.onChangedValue('window-tabbar', self.tabbar_toggled)
+        settings.general.onChangedValue(
+            'fullscreen-hide-tabbar', self.fullscreen_hide_tabbar_toggled
+        )
         settings.general.onChangedValue('window-height', self.size_changed)
         settings.general.onChangedValue('window-width', self.size_changed)
         settings.general.onChangedValue('window-valignment', self.alignment_changed)
@@ -120,6 +123,18 @@ class GSettingHandler():
             self.guake.notebook_manager.set_notebooks_tabbar_visible(True)
         else:
             self.guake.notebook_manager.set_notebooks_tabbar_visible(False)
+
+    def fullscreen_hide_tabbar_toggled(self, settings, key, user_data):
+        """If the gconf var fullscreen_hide_tabbar be changed, this method will be
+        called and will show/hide the tabbar when fullscreen.
+        """
+        if not self.guake.fullscreen_manager.is_fullscreen():
+            return
+
+        if settings.get_boolean(key):
+            self.guake.notebook_manager.set_notebooks_tabbar_visible(False)
+        else:
+            self.guake.notebook_manager.set_notebooks_tabbar_visible(True)
 
     def alignment_changed(self, settings, key, user_data):
         """If the gconf var window_halignment be changed, this method will
