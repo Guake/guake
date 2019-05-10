@@ -117,11 +117,9 @@ class GSettingHandler():
         called and will show/hide the tabbar.
         """
         if settings.get_boolean(key):
-            for n in self.guake.notebook_manager.iter_notebooks():
-                n.set_property("show-tabs", True)
+            self.guake.notebook_manager.set_notebooks_tabbar_visible(True)
         else:
-            for n in self.guake.notebook_manager.iter_notebooks():
-                n.set_property("show-tabs", False)
+            self.guake.notebook_manager.set_notebooks_tabbar_visible(False)
 
     def alignment_changed(self, settings, key, user_data):
         """If the gconf var window_halignment be changed, this method will

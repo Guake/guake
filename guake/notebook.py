@@ -107,6 +107,9 @@ class TerminalNotebook(Gtk.Notebook):
 
         return False
 
+    def set_tabbar_visible(self, v):
+        self.set_property('show-tabs', v)
+
     def set_last_terminal_focused(self, terminal):
         self.last_terminal_focused = terminal
 
@@ -409,6 +412,10 @@ class NotebookManager(GObject.Object):
 
         # Restore pending page terminal split
         notebook.guake.restore_pending_terminal_split()
+
+    def set_notebooks_tabbar_visible(self, v):
+        for nb in self.iter_notebooks():
+            nb.set_tabbar_visible(v)
 
     def get_notebooks(self):
         return self.notebooks
