@@ -182,6 +182,9 @@ class Guake(SimpleGladeApp):
         self.pending_restore_page_split = []
         self._failed_restore_page_split = []
 
+        # FullscreenManager
+        self.fullscreen_manager = FullscreenManager(self.settings, self.window)
+
         # Workspace tracking
         self.notebook_manager = NotebookManager(
             self.window, self.mainframe,
@@ -602,7 +605,7 @@ class Guake(SimpleGladeApp):
             self.add_tab()
 
         self.window.set_keep_below(False)
-        if not FullscreenManager(self.settings, self.window).is_fullscreen():
+        if not self.fullscreen_manager.is_fullscreen():
             self.window.show_all()
         # this is needed because self.window.show_all() results in showing every
         # thing which includes the scrollbar too
@@ -613,7 +616,7 @@ class Guake(SimpleGladeApp):
         self.window.move(window_rect.x, window_rect.y)
 
         # this works around an issue in fluxbox
-        if not FullscreenManager(self.settings, self.window).is_fullscreen():
+        if not self.fullscreen_manager.is_fullscreen():
             self.settings.general.triggerOnChangedValue(self.settings.general, 'window-height')
 
         time = get_server_time(self.window)
@@ -711,7 +714,7 @@ class Guake(SimpleGladeApp):
         self.settings.general.triggerOnChangedValue(self.settings.general, 'mouse-display')
         self.settings.general.triggerOnChangedValue(self.settings.general, 'display-n')
         self.settings.general.triggerOnChangedValue(self.settings.general, 'window-ontop')
-        if not FullscreenManager(self.settings, self.window).is_fullscreen():
+        if not self.fullscreen_manager.is_fullscreen():
             self.settings.general.triggerOnChangedValue(self.settings.general, 'window-height')
             self.settings.general.triggerOnChangedValue(self.settings.general, 'window-width')
         self.settings.general.triggerOnChangedValue(self.settings.general, 'use-scrollbar')
@@ -941,14 +944,14 @@ class Guake(SimpleGladeApp):
         return True
 
     def accel_toggle_fullscreen(self, *args):
-        FullscreenManager(self.settings, self.window).toggle()
+        self.fullscreen_manager.toggle()
         return True
 
     def fullscreen(self):
-        FullscreenManager(self.settings, self.window).fullscreen()
+        self.fullscreen_manager.fullscreen()
 
     def unfullscreen(self):
-        FullscreenManager(self.settings, self.window).unfullscreen()
+        self.fullscreen_manager.unfullscreen()
 
     # -- callbacks --
 
