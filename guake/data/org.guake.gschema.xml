@@ -96,6 +96,11 @@
             <summary>The tab bar visibility.</summary>
             <description>When true, the tab bar is visible.</description>
         </key>
+		<key name="fullscreen-hide-tabbar" type="b">
+		  <default>true</default>
+		  <summary>Hide tab bar when fullscreen</summary>
+		  <description>When true, the tab bar will hide when is in fullscreen</description>
+		</key>
         <key name="quick-open-enable" type="b">
             <default>false</default>
             <summary>Enable Quick Open feature.</summary>
