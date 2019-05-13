@@ -18,12 +18,13 @@ Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor,
 Boston, MA 02110-1301 USA
 """
 
-from pkg_resources import Requirement
-from pkg_resources import resource_filename
 import guake
 import logging
 import os
 import sys
+
+from pkg_resources import Requirement
+from pkg_resources import resource_filename
 
 log = logging.getLogger(__name__)
 

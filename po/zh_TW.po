@@ -1058,3 +1058,22 @@ msgstr ""
 #: guake/main.py:296
 msgid "Show support infomations"
 msgstr ""
+
+#: guake/guake_app.py:1240
+#, python-brace-format
+msgid ""
+"Tabs session restore abort.\n"
+"Your session file ({session_filename}) missing schema_version as key"
+msgstr ""
+
+#: guake/guake_app.py:1252
+#, python-brace-format
+msgid ""
+"Tabs session restore abort.\n"
+"Your session file schema version is higher than current version "
+"({session_file_schema_version} > {current_schema_version})."
+msgstr ""
+
+#: guake/data/prefs.glade:409
+msgid "Use workspace-specific tab sets (requires restart, only work on X11)"
+msgstr ""

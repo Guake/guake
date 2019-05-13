@@ -12,8 +12,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Guake 0.4.5\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-04-29 10:57+0200\n"
-"PO-Revision-Date: 2019-04-29 10:57+0200\n"
+"POT-Creation-Date: 2019-05-13 10:56+0200\n"
+"PO-Revision-Date: 2019-05-13 11:06+0200\n"
 "Last-Translator: ButterflyOfFire <ButterflyOfFire@protonmail.com>\n"
 "Language-Team: French <https://hosted.weblate.org/projects/guake/guake/fr/>\n"
 "Language: fr\n"
@@ -492,25 +492,25 @@ msgstr "Restaurer les préférences de Guake depuis ce fichier."
 msgid "Show support infomations"
 msgstr "Afficher les informations pour le support"
 
-#: guake/guake_app.py:155 guake/guake_app.py:282 guake/guake_app.py:1196
-#: guake/guake_app.py:1230 guake/guake_app.py:1245 guake/keybindings.py:92
-#: guake/about.py:54
+#: guake/guake_app.py:156 guake/guake_app.py:288 guake/guake_app.py:1228
+#: guake/guake_app.py:1238 guake/guake_app.py:1250 guake/guake_app.py:1299
+#: guake/guake_app.py:1314 guake/keybindings.py:92 guake/about.py:54
 msgid "Guake Terminal"
 msgstr "Terminal Guake"
 
-#: guake/guake_app.py:161
+#: guake/guake_app.py:162
 msgid "guake-indicator"
 msgstr "guake-indicator"
 
-#: guake/guake_app.py:161
+#: guake/guake_app.py:162
 msgid "guake-tray"
 msgstr "guake-tray"
 
-#: guake/guake_app.py:166
+#: guake/guake_app.py:167
 msgid "Show"
 msgstr "Afficher"
 
-#: guake/guake_app.py:283
+#: guake/guake_app.py:289
 msgid ""
 "Guake is now running,\n"
 "press <b>{!s}</b> to use it."
@@ -518,23 +518,23 @@ msgstr ""
 "Guake est démarré, \n"
 "appuyer sur <b>{!s}</b> pour ouvrir Guake."
 
-#: guake/guake_app.py:950 guake/notebook.py:261
+#: guake/guake_app.py:971 guake/notebook.py:267
 msgid "Terminal"
 msgstr "Terminal"
 
-#: guake/guake_app.py:1034
+#: guake/guake_app.py:1059
 msgid "Find"
 msgstr "Rechercher"
 
-#: guake/guake_app.py:1035
+#: guake/guake_app.py:1060
 msgid "Forward"
 msgstr "Suivant"
 
-#: guake/guake_app.py:1035
+#: guake/guake_app.py:1060
 msgid "Backward"
 msgstr "Précédent"
 
-#: guake/guake_app.py:1197
+#: guake/guake_app.py:1229
 #, python-brace-format
 msgid ""
 "Your {session_filename} file is broken, backup to {session_filename}.bak"
@@ -542,7 +542,29 @@ msgstr ""
 "Votre fichier {session_filename} est cassé, sauvegarde vers "
 "{session_filename}.bak."
 
-#: guake/guake_app.py:1232
+#: guake/guake_app.py:1240
+#, python-brace-format
+msgid ""
+"Tabs session restore abort.\n"
+"Your session file ({session_filename}) missing schema_version as key"
+msgstr ""
+"La restauration de session annulé.\n"
+"Votre fichier de session ({session_filename}) ne dispose de la clé "
+"schema_version"
+
+#: guake/guake_app.py:1252
+#, python-brace-format
+msgid ""
+"Tabs session restore abort.\n"
+"Your session file schema version is higher than current version "
+"({session_file_schema_version} > {current_schema_version})."
+msgstr ""
+"La restauration de session annulé.\n"
+"Votre fichier de session a une version de schema supérieure à la version "
+"supportée actuellement ({session_file_schema_version} > "
+"{current_schema_version})."
+
+#: guake/guake_app.py:1301
 #, python-brace-format
 msgid ""
 "Your {session_filename} schema is broken, backup to {session_filename}.bak, "
@@ -552,11 +574,11 @@ msgstr ""
 "{session_filename}.bak, et enregistrement des messages d'erreur vers "
 "{session_filename}.log.err."
 
-#: guake/guake_app.py:1245
+#: guake/guake_app.py:1314
 msgid "Your tabs has been restored!"
 msgstr "Vos onglets ont été restauré!"
 
-#: guake/notebook.py:331
+#: guake/notebook.py:338
 msgid ""
 "You are going to restore *all* the tabs!\n"
 "which means all your terminals & pages will be replaced.\n"
@@ -707,8 +729,10 @@ msgid "_Flash terminal on bell"
 msgstr "_Flash du terminal lors d'un \"bell\""
 
 #: guake/data/prefs.glade:409
-msgid "Use workspace-specific tab sets (requires restart)"
-msgstr "Utiliser les bureaux virtuels pour les onglets (redémarrage requis)"
+msgid "Use workspace-specific tab sets (requires restart, only work on X11)"
+msgstr ""
+"Utiliser les lots d'onglets spécifiques par espace de travail (nécessite un "
+"redémarrage, supporté uniquement par X11)"
 
 #: guake/data/prefs.glade:426
 msgid "Show close buttons for tabs"
@@ -1101,21 +1125,26 @@ msgid "Current search direction: Backward"
 msgstr "Direction de la recherche: Arrière"
 
 #: guake/data/guake.template.desktop:4 guake/data/autostart-guake.desktop:31
+#: guake/data/guake.desktop:37
 msgid "Use the command line in a Quake-like terminal"
 msgstr "Exploitez la ligne command dans un terminal tel Quake"
 
 #: guake/data/guake.template.desktop:7 guake/data/autostart-guake.desktop:34
-#: guake/data/guake-prefs.template.desktop:7
+#: guake/data/guake-prefs.template.desktop:7 guake/data/guake-prefs.desktop:50
+#: guake/data/guake.desktop:49
 msgid "guake"
 msgstr "guake"
 
-#: guake/data/guake-prefs.template.desktop:4
+#: guake/data/guake-prefs.template.desktop:4 guake/data/guake-prefs.desktop:38
 msgid "Configure your Guake sessions"
 msgstr "Configurer vos sessions Guake"
 
-#: guake/data/guake-prefs.template.desktop:13
+#: guake/data/guake-prefs.template.desktop:13 guake/data/guake-prefs.desktop:66
 msgid "Terminal;Utility;"
 msgstr "Terminal;Utilitaires;"
+
+#~ msgid "Use workspace-specific tab sets (requires restart)"
+#~ msgstr "Utiliser les bureaux virtuels pour les onglets (redémarrage requis)"
 
 #~ msgid ""
 #~ "Your {session_filename} schema is broken, backup to {0}.bak,and error "
