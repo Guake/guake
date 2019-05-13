@@ -46,8 +46,7 @@ script:
         )
     # for dev
     - make dev-travis
-    - pipenv install pycairo
-    - pipenv install pygobject
+    - pipenv run pip install pycairo pygobject
     # check
     - make check
     - make build
