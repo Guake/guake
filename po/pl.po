@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: guake\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-04-22 19:49+0200\n"
-"PO-Revision-Date: 2019-04-28 18:50+0000\n"
+"PO-Revision-Date: 2019-05-13 15:51+0000\n"
 "Last-Translator: Piotr Drąg <piotrdrag@gmail.com>\n"
 "Language-Team: Polish <https://hosted.weblate.org/projects/guake/guake/pl/>\n"
 "Language: pl\n"
@@ -19,7 +19,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 "
 "|| n%100>=20) ? 1 : 2;\n"
-"X-Generator: Weblate 3.6.1\n"
+"X-Generator: Weblate 3.7-dev\n"
 
 #: guake/keybindings.py:94 guake/guake_app.py:191 guake/guake_app.py:403
 #: guake/about.py:54
@@ -1184,6 +1184,8 @@ msgid ""
 "Tabs session restore abort.\n"
 "Your session file ({session_filename}) missing schema_version as key"
 msgstr ""
+"Przerwano przywracanie sesji kart.\n"
+"Plik sesji ({session_filename}) nie ma schema_version jako klucz"
 
 #: guake/guake_app.py:1252
 #, python-brace-format
@@ -1192,7 +1194,12 @@ msgid ""
 "Your session file schema version is higher than current version "
 "({session_file_schema_version} > {current_schema_version})."
 msgstr ""
+"Przerwano przywracanie sesji kart.\n"
+"Wersja schematu pliku sesji jest wyższa od obecnej wersji "
+"({session_file_schema_version} > {current_schema_version})."
 
 #: guake/data/prefs.glade:409
 msgid "Use workspace-specific tab sets (requires restart, only work on X11)"
 msgstr ""
+"Używa zestawów kart dla konkretnych obszarów roboczych (wymaga ponownego "
+"uruchomienia, działa tylko w systemie X11)"
