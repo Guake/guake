@@ -220,11 +220,15 @@ class RectCalculator():
             window_rect.x += (total_width - window_rect.width) / 2
         elif halignment == ALIGN_LEFT:
             log.debug("aligning to left!")
-            window_rect.width = int(float(total_width - hdisplacement) * float(width_percents) / 100.0)
+            window_rect.width = int(
+                float(total_width - hdisplacement) * float(width_percents) / 100.0
+            )
             window_rect.x += hdisplacement
         elif halignment == ALIGN_RIGHT:
             log.debug("aligning to right!")
-            window_rect.width = int(float(total_width - hdisplacement) * float(width_percents) / 100.0)
+            window_rect.width = int(
+                float(total_width - hdisplacement) * float(width_percents) / 100.0
+            )
             window_rect.x += total_width - window_rect.width - hdisplacement
 
         window_rect.height = int(float(total_height) * float(height_percents) / 100.0)
