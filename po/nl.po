@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: Guake 0.4.5\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-04-14 12:33+0200\n"
-"PO-Revision-Date: 2019-04-28 18:50+0000\n"
+"PO-Revision-Date: 2019-05-14 16:48+0000\n"
 "Last-Translator: Heimen Stoffels <vistausss@outlook.com>\n"
 "Language-Team: Dutch <https://hosted.weblate.org/projects/guake/guake/nl/>\n"
 "Language: nl\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 3.6.1\n"
+"X-Generator: Weblate 3.7-dev\n"
 
 #: ../guake/data/about.glade.h:1
 msgid "About Guake"
@@ -1454,6 +1454,8 @@ msgid ""
 "Tabs session restore abort.\n"
 "Your session file ({session_filename}) missing schema_version as key"
 msgstr ""
+"Sessieherstel afgebroken.\n"
+"schema_version ontbreekt als sleutel in je sessiebestand '{session_filename}'"
 
 #: guake/guake_app.py:1252
 #, python-brace-format
@@ -1462,10 +1464,15 @@ msgid ""
 "Your session file schema version is higher than current version "
 "({session_file_schema_version} > {current_schema_version})."
 msgstr ""
+"Sessieherstel afgebroken.\n"
+"Je sessiebestandsschema is nieuwer dan het huidige "
+"({session_file_schema_version} > {current_schema_version})."
 
 #: guake/data/prefs.glade:409
 msgid "Use workspace-specific tab sets (requires restart, only work on X11)"
 msgstr ""
+"Werkblad-specifieke tabbladsets gebruiken (herstart vereist - werkt alleen "
+"onder X11)"
 
 #~ msgid "key binding error"
 #~ msgstr "Fout bij toets-binding"
