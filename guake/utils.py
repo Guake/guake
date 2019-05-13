@@ -156,9 +156,20 @@ class FullscreenManager():
         self.settings = settings
         self.window = window
         self.guake = guake
+        self.window_state = None
 
     def is_fullscreen(self):
         return getattr(self.window, self.FULLSCREEN_ATTR, False)
+
+    def set_window_state(self, window_state):
+        self.window_state = window_state
+        setattr(self.window, self.FULLSCREEN_ATTR, bool(window_state & Gdk.WindowState.FULLSCREEN))
+
+        if not window_state & Gdk.WindowState.WITHDRAWN:
+            if self.is_fullscreen():
+                self.fullscreen()
+            else:
+                self.unfullscreen()
 
     def fullscreen(self):
         self.window.fullscreen()
