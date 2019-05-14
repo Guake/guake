@@ -82,11 +82,24 @@ class TerminalNotebook(Gtk.Notebook):
             "button-press-event", self.on_button_press, None
         )
 
+        # Action box
         self.new_page_button = Gtk.Button(
             image=Gtk.Image.new_from_icon_name("tab-new", Gtk.IconSize.MENU), visible=True
         )
         self.new_page_button.connect("clicked", self.on_new_tab)
-        self.set_action_widget(self.new_page_button, Gtk.PackType.END)
+
+        self.tab_selection_button = Gtk.Button(
+            image=Gtk.Image.new_from_icon_name('pan-down-symbolic', Gtk.IconSize.MENU),
+            visible=True
+        )
+        self.popover = Gtk.Popover()
+        self.popover_window = None
+        self.tab_selection_button.connect('clicked', self.on_tab_selection)
+
+        self.action_box = Gtk.Box(visible=True)
+        self.action_box.pack_start(self.new_page_button, 0, 0, 0)
+        self.action_box.pack_end(self.tab_selection_button, 0, 0, 0)
+        self.set_action_widget(self.action_box, Gtk.PackType.END)
 
     def attach_guake(self, guake):
         self.guake = guake
@@ -106,6 +119,92 @@ class TerminalNotebook(Gtk.Notebook):
             self.new_page_with_focus()
 
         return False
+
+    @save_tabs_when_changed
+    def on_new_tab(self, user_data):
+        self.new_page_with_focus()
+
+    def on_tab_selection(self, user_data):
+        """Construct the tab selection popover
+
+        Since we did not use Gtk.ListStore to store tab information, we will construct the
+        tab selection popover content each time when user click them.
+        """
+
+        # Remove previous window
+        if self.popover_window:
+            self.popover.remove(self.popover_window)
+
+        # This makes the list's background transparent
+        # ref: epiphany
+        css_provider = Gtk.CssProvider()
+        css_provider.load_from_data(
+            b'#popover-window list { border-style: none; background-color: transparent; }'
+        )
+        Gtk.StyleContext.add_provider_for_screen(
+            Gdk.Screen.get_default(), css_provider, Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION
+        )
+
+        # Construct popover properties
+        BOX_HEIGHT = 30
+        LISTBOX_MARGIN = 12
+        self.popover_window = Gtk.ScrolledWindow(name='popover-window')
+        self.popover_listbox = Gtk.ListBox()
+        self.popover_listbox.set_property('margin', LISTBOX_MARGIN)
+        self.popover_window.add_with_viewport(self.popover_listbox)
+
+        max_height = self.guake.window.get_allocation().height - BOX_HEIGHT if \
+            self.guake else BOX_HEIGHT * 10
+        height = BOX_HEIGHT * self.get_n_pages() + LISTBOX_MARGIN * 4
+        self.popover_window.set_min_content_height(min(max_height, height))
+        self.popover_window.set_min_content_width(325)
+        self.popover.add(self.popover_window)
+
+        # Construct content
+        current_term = self.get_current_terminal()
+        selected_row = 0
+        for i in range(self.get_n_pages()):
+            row = Gtk.ListBoxRow()
+            box = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL)
+            box.set_size_request(200, BOX_HEIGHT)
+            label = Gtk.Label(self.get_tab_text_index(i))
+            label.set_xalign(0.0)
+            box.pack_start(label, 0, 0, 5)
+            row.add(box)
+            setattr(row, 'page_index', i)
+            self.popover_listbox.add(row)
+            if current_term in self.get_terminals_for_page(i):
+                self.popover_listbox.select_row(row)
+                selected_row = i
+
+        # Signal
+        self.popover_listbox.connect('row-activated', self.on_popover_tab_select)
+
+        # Show popup
+        self.popover.set_position(Gtk.PositionType.TOP)
+        self.popover.set_relative_to(user_data)
+        self.popover.show_all()
+        try:
+            # GTK >= 3.22
+            self.popover.popup()
+        except AttributeError:
+            pass
+
+        # Adjust scrollor
+        while Gtk.events_pending():
+            Gtk.main_iteration()
+
+        if selected_row:
+            adj = self.popover_window.get_vadjustment()
+            v = adj.get_upper() - adj.get_page_size()
+            part = v / self.get_n_pages()
+            adj.set_value(part * (selected_row + 1))
+
+    def on_popover_tab_select(self, list_box, row):
+        page_index = getattr(row, 'page_index', -1)
+        if page_index != -1:
+            self.set_current_page(page_index)
+            self.get_terminals_for_page(page_index)[0].grab_focus()
 
     def set_tabbar_visible(self, v):
         self.set_property('show-tabs', v)
@@ -310,10 +409,6 @@ class TerminalNotebook(Gtk.Notebook):
 
     def get_tab_text_page(self, page):
         return self.get_tab_label(page).get_text()
-
-    @save_tabs_when_changed
-    def on_new_tab(self, user_data):
-        self.new_page_with_focus()
 
     def on_show_preferences(self, user_data):
         self.guake.hide()

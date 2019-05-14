@@ -693,6 +693,9 @@ class Guake(SimpleGladeApp):
         self.get_widget('window-root').unstick()
         self.window.hide()  # Don't use hide_all here!
 
+        # Hide popover
+        self.notebook_manager.get_current_notebook().popover.hide()
+
     def force_move_if_shown(self):
         if not self.hidden:
             # when displayed, GTK might refuse to move the window (X or Y position). Just hide and
