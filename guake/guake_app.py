@@ -196,15 +196,8 @@ class Guake(SimpleGladeApp):
         self.set_tab_position()
 
         # check and set ARGB for real transparency
-        screen = self.window.get_screen()
-        visual = screen.get_rgba_visual()
-        if visual and screen.is_composited():
-            self.window.set_visual(visual)
-            self.window.transparency = True
-        else:
-            log.warn('System doesn\'t support transparency')
-            self.window.transparency = False
-            self.window.set_visual(screen.get_system_visual())
+        self.update_visual()
+        self.window.get_screen().connect('composited-changed', self.update_visual)
 
         # Debounce accel_search_terminal
         self.prev_accel_search_terminal_time = 0.0
@@ -288,6 +281,25 @@ class Guake(SimpleGladeApp):
 
         # Tracking when reorder page
         notebook.connect('page-reordered', self.on_page_reorder)
+
+    def update_visual(self, user_data=None):
+        screen = self.window.get_screen()
+        visual = screen.get_rgba_visual()
+        if visual and screen.is_composited():
+            # NOTE: We should re-realize window when update window visual
+            # Otherwise it may failed, when the Guake it start without compositor
+            self.window.unrealize()
+            self.window.set_visual(visual)
+            self.window.set_app_paintable(True)
+            self.window.transparency = True
+            self.window.realize()
+            if self.window.get_property('visible'):
+                self.hide()
+                self.show()
+        else:
+            log.warn('System doesn\'t support transparency')
+            self.window.transparency = False
+            self.window.set_visual(screen.get_system_visual())
 
     # new color methods should be moved to the GuakeTerminal class
 
