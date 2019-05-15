@@ -1203,3 +1203,7 @@ msgid "Use workspace-specific tab sets (requires restart, only work on X11)"
 msgstr ""
 "Używa zestawów kart dla konkretnych obszarów roboczych (wymaga ponownego "
 "uruchomienia, działa tylko w systemie X11)"
+
+#: guake/data/prefs.glade:809
+msgid "Hide tabbar when fullscreen"
+msgstr ""

@@ -1186,3 +1186,7 @@ msgstr ""
 #: guake/data/prefs.glade:409
 msgid "Use workspace-specific tab sets (requires restart, only work on X11)"
 msgstr ""
+
+#: guake/data/prefs.glade:809
+msgid "Hide tabbar when fullscreen"
+msgstr ""

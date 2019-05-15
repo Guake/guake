@@ -1474,6 +1474,10 @@ msgstr ""
 "Werkblad-specifieke tabbladsets gebruiken (herstart vereist - werkt alleen "
 "onder X11)"
 
+#: guake/data/prefs.glade:809
+msgid "Hide tabbar when fullscreen"
+msgstr ""
+
 #~ msgid "key binding error"
 #~ msgstr "Fout bij toets-binding"
 

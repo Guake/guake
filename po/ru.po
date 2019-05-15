@@ -1455,6 +1455,10 @@ msgstr ""
 msgid "Use workspace-specific tab sets (requires restart, only work on X11)"
 msgstr ""
 
+#: guake/data/prefs.glade:809
+msgid "Hide tabbar when fullscreen"
+msgstr ""
+
 #~ msgid "Path to script executed on Guake start:"
 #~ msgstr "Путь к скрипту, запускаемому при старте Guake:"
 
