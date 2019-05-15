@@ -1,6 +1,7 @@
 .PHONY: build dev
 
-PYTHON_INTERPRETER?=python3
+PYTHON?=python3
+PYTHON_INTERPRETER?=$(PYTHON)
 MODULE:=guake
 DESTDIR:=/
 prefix?=/usr/local
