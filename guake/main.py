@@ -296,25 +296,51 @@ def main():
     )
 
     # checking mandatory dependencies
-    import gi
 
+    missing_deps = False
     try:
+        import gi
         gi.require_version('Gtk', '3.0')
         gi.require_version('Gdk', '3.0')
     except ValueError:
-        print("[ERROR] Unable to start Guake, missing mandatory dependency: GtK 3.0")
-        sys.exit(1)
+        print("[ERROR] missing mandatory dependency: GtK 3.0")
+        missing_deps = True
 
     try:
         gi.require_version('Vte', '2.91')  # vte-0.42
     except ValueError:
-        print("[ERROR] Unable to start Guake, missing mandatory dependency: Vte >= 0.42")
-        sys.exit(1)
+        print("[ERROR] missing mandatory dependency: Vte >= 0.42")
+        missing_deps = True
 
     try:
         gi.require_version('Keybinder', '3.0')
     except ValueError:
-        print("[ERROR] Unable to start Guake, missing mandatory dependency: Keybinder 3")
+        print("[ERROR] missing mandatory dependency: Keybinder 3")
+        missing_deps = True
+
+    try:
+        import cairo
+    except ImportError:
+        print("[ERROR] missing mandatory dependency: cairo")
+        missing_deps = True
+
+    if missing_deps:
+        print("[ERROR] missing at least one system dependencies. "
+            "You need to install additional packages for Guake to run")
+        print("[ERROR] On Debian/Ubuntu you need to install the following libraries:\n"
+            "    sudo apt-get install -y --no-install-recommends \\\n"
+            "        gir1.2-keybinder-3.0 \\\n"
+            "        gir1.2-notify-0.7 \\\n"
+            "        gir1.2-vte-2.91 \\\n"
+            "        gir1.2-wnck-3.0 \\\n"
+            "        libkeybinder-3.0-0 \\\n"
+            "        libutempter0 \\\n"
+            "        python3 \\\n"
+            "        python3-cairo \\\n"
+            "        python3-dbus \\\n"
+            "        python3-gi \\\n"
+            "        python3-pbr \\\n"
+            "        python3-pip")
         sys.exit(1)
 
     options = parser.parse_args()[0]
