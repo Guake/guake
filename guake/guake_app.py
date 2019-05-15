@@ -119,7 +119,7 @@ class Guake(SimpleGladeApp):
     def __init__(self):
 
         def load_schema():
-            log.info("Loading Gnome schema from: {0}".format(SCHEMA_DIR))
+            log.info("Loading Gnome schema from: %s", SCHEMA_DIR)
             return Gio.SettingsSchemaSource.new_from_directory(
                 SCHEMA_DIR, Gio.SettingsSchemaSource.get_default(), False
             )
@@ -132,7 +132,7 @@ class Guake(SimpleGladeApp):
             schema_source = load_schema()
         self.settings = Settings(schema_source)
 
-        log.info("Language previously loaded from: {0}".format(LOCALE_DIR))
+        log.info("Language previously loaded from: %s", LOCALE_DIR)
 
         super(Guake, self).__init__(gladefile('guake.glade'))
 

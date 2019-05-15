@@ -325,9 +325,12 @@ def main():
         missing_deps = True
 
     if missing_deps:
-        print("[ERROR] missing at least one system dependencies. "
-            "You need to install additional packages for Guake to run")
-        print("[ERROR] On Debian/Ubuntu you need to install the following libraries:\n"
+        print(
+            "[ERROR] missing at least one system dependencies. "
+            "You need to install additional packages for Guake to run"
+        )
+        print(
+            "[ERROR] On Debian/Ubuntu you need to install the following libraries:\n"
             "    sudo apt-get install -y --no-install-recommends \\\n"
             "        gir1.2-keybinder-3.0 \\\n"
             "        gir1.2-notify-0.7 \\\n"
@@ -340,7 +343,8 @@ def main():
             "        python3-dbus \\\n"
             "        python3-gi \\\n"
             "        python3-pbr \\\n"
-            "        python3-pip")
+            "        python3-pip"
+        )
         sys.exit(1)
 
     options = parser.parse_args()[0]
