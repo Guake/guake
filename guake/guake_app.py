@@ -196,21 +196,8 @@ class Guake(SimpleGladeApp):
         self.set_tab_position()
 
         # check and set ARGB for real transparency
-        color = self.window.get_style_context().get_background_color(Gtk.StateFlags.NORMAL)
-        self.window.set_app_paintable(True)
-
-        def draw_callback(widget, cr):
-            if widget.transparency:
-                cr.set_source_rgba(color.red, color.green, color.blue, 1)
-            else:
-                cr.set_source_rgb(0, 0, 0)
-            cr.set_operator(cairo.OPERATOR_SOURCE)
-            cr.paint()
-            cr.set_operator(cairo.OPERATOR_OVER)
-
         screen = self.window.get_screen()
         visual = screen.get_rgba_visual()
-
         if visual and screen.is_composited():
             self.window.set_visual(visual)
             self.window.transparency = True
@@ -218,8 +205,6 @@ class Guake(SimpleGladeApp):
             log.warn('System doesn\'t support transparency')
             self.window.transparency = False
             self.window.set_visual(screen.get_system_visual())
-
-        self.window.connect('draw', draw_callback)
 
         # Debounce accel_search_terminal
         self.prev_accel_search_terminal_time = 0.0
