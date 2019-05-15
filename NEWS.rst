@@ -1,6 +1,38 @@
 =====
-Guake
+guake
 =====
+
+(unreleased yet)
+================
+
+New Features
+------------
+
+- Add tab selection popover in each notebook
+
+- Add fullscreen hide tabbar option
+
+Bug Fixes
+---------
+
+- When composited changed, it will update Guake window visual to make it transparent
+
+- Fix fullscreen/unfullscreen not handle correctly when trigger by wm
+
+- Remove no need window draw callback
+
+- Update some dependencies for build environment
+
+- Update the error message on missing dependencies (ex: when use 'pip install' guake)
+
+Translation Updates
+-------------------
+
+- Dutch
+
+- Polish
+
+- French
 
 3.6.3
 =====
