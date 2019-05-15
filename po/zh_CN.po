@@ -1418,6 +1418,10 @@ msgstr ""
 msgid "Use workspace-specific tab sets (requires restart, only work on X11)"
 msgstr ""
 
+#: guake/data/prefs.glade:809
+msgid "Hide tabbar when fullscreen"
+msgstr ""
+
 #~ msgid "0 means no size limit"
 #~ msgstr "0表示没有大小限制"
 
