@@ -336,6 +336,10 @@ class BackgroundImageManager:
         self._layout_mode = mode
 
     def load_from_file(self, filename):
+        if not filename:
+            # Clear the background image
+            self.bg_surface = None
+            return
         if not os.path.exists(filename):
             raise FileNotFoundError('Background file not found: %s' % (filename))
         img = Gtk.Image.new_from_file(filename)
