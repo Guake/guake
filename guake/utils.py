@@ -321,6 +321,7 @@ class BackgroundImageManager:
 
     def __init__(self, window, filename=None, layout_mode=ImageLayoutMode.SCALE):
         self.window = window
+        self.filename = ''
         self.bg_surface = self.load_from_file(filename) if filename else None
         self.target_surface = None
         self.target_info = (-1, -1, -1)  # (width, height, model)
@@ -344,8 +345,16 @@ class BackgroundImageManager:
             self.bg_surface = None
             self.window.queue_draw()
             return
+
         if not os.path.exists(filename):
             raise FileNotFoundError('Background file not found: %s' % (filename))
+
+        if self.filename:
+            # Cached rendered surface
+            if os.path.samefile(self.filename, filename):
+                return self.bg_surface
+
+        self.filename = filename
         img = Gtk.Image.new_from_file(filename)
         pixbuf = img.get_pixbuf()
         surface = cairo.ImageSurface(cairo.FORMAT_ARGB32, pixbuf.get_width(), pixbuf.get_height())
