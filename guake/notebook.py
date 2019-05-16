@@ -534,6 +534,9 @@ class NotebookManager(GObject.Object):
         # Restore pending page terminal split
         notebook.guake.restore_pending_terminal_split()
 
+        # Restore config to workspace
+        notebook.guake.load_config()
+
     def set_notebooks_tabbar_visible(self, v):
         for nb in self.iter_notebooks():
             nb.set_tabbar_visible(v)
