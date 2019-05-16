@@ -169,7 +169,7 @@ class Guake(SimpleGladeApp):
         self._failed_restore_page_split = []
 
         # BackgroundImageManager
-        self.background_image_manager = BackgroundImageManager()
+        self.background_image_manager = BackgroundImageManager(self.window)
 
         # FullscreenManager
         self.fullscreen_manager = FullscreenManager(self.settings, self.window, self)

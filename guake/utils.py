@@ -318,7 +318,8 @@ class ImageLayoutMode(enum.IntEnum):
 
 
 class BackgroundImageManager:
-    def __init__(self, filename=None, layout_mode=ImageLayoutMode.SCALE):
+    def __init__(self, window, filename=None, layout_mode=ImageLayoutMode.SCALE):
+        self.window = window
         self.bg_surface = self.load_from_file(filename) if filename else None
         self.target_surface = None
         self.target_info = (-1, -1, -1)  # (width, height, model)
@@ -334,11 +335,13 @@ class BackgroundImageManager:
         if mode not in ImageLayoutMode:
             raise ValueError('Unknown layout mode')
         self._layout_mode = mode
+        self.window.queue_draw()
 
     def load_from_file(self, filename):
         if not filename:
             # Clear the background image
             self.bg_surface = None
+            self.window.queue_draw()
             return
         if not os.path.exists(filename):
             raise FileNotFoundError('Background file not found: %s' % (filename))
@@ -354,6 +357,7 @@ class BackgroundImageManager:
 
         self.bg_surface = surface
         self.target_info = (-1, -1, -1)
+        self.window.queue_draw()
         return surface
 
     def render_target(self, width, height, mode, scale_mode=cairo.FILTER_BILINEAR):
