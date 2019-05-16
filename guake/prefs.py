@@ -1155,9 +1155,9 @@ class PrefsDialog(SimpleGladeApp):
         self.get_widget("bold_is_bright").set_active(value)
 
         # background image file
-        value = self.settings.general.get_string('background-image-file')
-        if value:
-            self.get_widget('background_image_filechooser').set_filename(value)
+        filename = self.settings.general.get_string('background-image-file')
+        if os.path.exists(filename):
+            self.get_widget('background_image_filechooser').set_filename(filename)
 
         # background image layout mode
         value = self.settings.general.get_int('background-image-layout-mode')

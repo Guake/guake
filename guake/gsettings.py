@@ -18,6 +18,7 @@ Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor,
 Boston, MA 02110-1301 USA
 """
 import logging
+import os
 
 import gi
 
@@ -171,7 +172,9 @@ class GSettingHandler:
     def background_image_file_changed(self, settings, key, user_data):
         """Called when the background image file settings has been changed
         """
-        self.guake.background_image_manager.load_from_file(settings.get_string(key))
+        filename = settings.get_string(key)
+        if not filename or os.path.exists(filename):
+            self.guake.background_image_manager.load_from_file(settings.get_string(key))
 
     def background_image_layout_mode_changed(self, settings, key, user_data):
         """Called when the background image layout mode settings has been changed
