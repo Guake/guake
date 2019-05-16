@@ -330,6 +330,7 @@ class BackgroundImageManager:
 
     @layout_mode.setter
     def layout_mode(self, mode):
+        mode = ImageLayoutMode(mode)
         if mode not in ImageLayoutMode:
             raise ValueError('Unknown layout mode')
         self._layout_mode = mode
