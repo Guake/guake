@@ -19,9 +19,12 @@ License along with this program; if not, write to the
 Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor,
 Boston, MA 02110-1301 USA
 """
+import enum
 import logging
 import subprocess
 import time
+
+import cairo
 
 import gi
 
@@ -305,3 +308,140 @@ class RectCalculator:
             dest_screen = screen.get_primary_monitor()
 
         return dest_screen
+
+
+class ImageLayoutMode(enum.IntEnum):
+    SCALE = 0
+    TILE = 1
+    CENTER = 2
+    STRETCH = 3
+
+
+class BackgroundImageManager:
+    def __init__(self, filename=None, layout_mode=ImageLayoutMode.SCALE):
+        self.bg_surface = self.load_from_file(filename) if filename else None
+        self.target_surface = None
+        self.target_info = (-1, -1, -1)  # (width, height, model)
+        self._layout_mode = layout_mode
+
+    @property
+    def layout_mode(self):
+        return self._layout_mode
+
+    @layout_mode.setter
+    def layout_mode(self, mode):
+        if mode not in ImageLayoutMode:
+            raise ValueError('Unknown layout mode')
+        self._layout_mode = mode
+
+    def load_from_file(self, filename):
+        if not os.path.exists(filename):
+            raise FileNotFoundError('Background file not found: %s' % (filename))
+        img = Gtk.Image.new_from_file(filename)
+        pixbuf = img.get_pixbuf()
+        surface = cairo.ImageSurface(cairo.FORMAT_ARGB32,
+                                     pixbuf.get_width(),
+                                     pixbuf.get_height())
+        cr = cairo.Context(surface)
+        Gdk.cairo_set_source_pixbuf(cr, pixbuf, 0, 0)
+        cr.set_operator(cairo.OPERATOR_SOURCE)
+        cr.paint()
+
+        self.bg_surface = surface
+        self.target_info = (-1, -1, -1)
+        return surface
+
+    def render_target(self, width, height, mode, scale_mode=cairo.FILTER_BILINEAR):
+        """Paint bacground image to the specific size target surface with different layout mode
+        """
+        if not self.bg_surface:
+            return None
+
+        # Check if target surface has been rendered
+        if self.target_info == (width, height, mode):
+            return self.target_surface
+
+        # Render new target
+        self.target_info = (width, height, mode)
+        surface = cairo.ImageSurface(cairo.FORMAT_ARGB32, width, height)
+        cr = cairo.Context(surface)
+        cr.set_operator(cairo.OPERATOR_SOURCE)
+
+        xscale = width / self.bg_surface.get_width()
+        yscale = height / self.bg_surface.get_height()
+        if mode == ImageLayoutMode.SCALE:
+            ratio = max(xscale, yscale)
+            xoffset = (width - (self.bg_surface.get_width() * ratio)) / 2.0
+            yoffset = (height - (self.bg_surface.get_height() * ratio)) / 2.0
+            cr.translate(xoffset, yoffset)
+            cr.scale(ratio, ratio)
+            cr.set_source_surface(self.bg_surface, 0, 0)
+            cr.get_source().set_filter(scale_mode)
+        elif mode == ImageLayoutMode.TILE:
+            cr.set_source_surface(self.bg_surface, 0, 0)
+            cr.get_source().set_extend(cairo.EXTEND_REPEAT)
+        elif mode == ImageLayoutMode.CENTER:
+            x = (width - self.bg_surface.get_width()) / 2.0
+            y = (height - self.bg_surface.get_height()) / 2.0
+            cr.translate(x, y)
+            cr.set_source_surface(self.bg_surface, 0, 0)
+        elif mode == ImageLayoutMode.STRETCH:
+            cr.scale(xscale, yscale)
+            cr.set_source_surface(self.bg_surface, 0, 0)
+            cr.get_source().set_filter(scale_mode)
+        cr.paint()
+
+        self.target_surface = surface
+        return surface
+
+    def draw(self, widget, cr):
+        if not self.bg_surface:
+            return
+
+        # Step 1. Get target surface
+        #         (paint background image into widget size surface by layout mode)
+        surface = self.render_target(widget.get_allocated_width(),
+                                     widget.get_allocated_height(),
+                                     self.layout_mode)
+
+        cr.save()
+        # Step 2. Paint target surface to context (in our case, the RootTerminalBox)
+        #
+        #         At this step, RootTerminalBox will be painted to our background image,
+        #         and all the draw done by VTE has been overlapped.
+        #
+        cr.set_source_surface(surface, 0, 0)
+        cr.paint()
+
+        # Step 3. Re-paint child draw result to a new surface
+        #
+        #         We need to re-paint what we overlapped in previous step,
+        #         so we paint our child (again, in lifecycle view) into a similar surface.
+        #
+        child = widget.get_child()
+        child_surface = cr.get_target().create_similar(cairo.CONTENT_COLOR_ALPHA,
+                                                       child.get_allocated_width(),
+                                                       child.get_allocated_height())
+        child_cr = cairo.Context(child_surface)
+
+        # Re-paint child draw into child context (which using child_surface as target)
+        widget.propagate_draw(child, child_cr)
+
+        # Step 4. Paint child surface into our context (RootTerminalBox)
+        #
+        #         Before this step, we have two important context/surface
+        #             1. cr       / RootTerminalBox
+        #             2. child_cr / child (RootTerminalBox's child)
+        #         And current context have these draw:
+        #             1. cr       - background image
+        #             2. child_cr - child re-paint (split terminal, VTE draw ...etc)
+        #         In this step, we are going to paint child_cr result back to cr,
+        #         so in the end, we will get background image + other child stuff
+        #
+        # DEBUG: If you don't believe, use cairo.Surface.wrte_to_png(filename) to check what is
+        #        inside the surface.
+        #
+        cr.set_source_surface(child_surface, 0, 0)
+        cr.set_operator(cairo.OPERATOR_OVER)
+        cr.paint()
+        cr.restore()
