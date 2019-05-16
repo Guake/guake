@@ -816,6 +816,8 @@ class Guake(SimpleGladeApp):
         self.settings.styleFont.triggerOnChangedValue(
             self.settings.styleFont, "allow-bold", user_data=user_data
         )
+        self.settings.general.triggerOnChangedValue(self.settings.general, 'background-image-file')
+        self.settings.general.triggerOnChangedValue(self.settings.general, 'background-image-layout-mode')
         self.settings.styleBackground.triggerOnChangedValue(
             self.settings.styleBackground, "transparency", user_data=user_data
         )

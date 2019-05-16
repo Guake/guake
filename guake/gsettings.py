@@ -55,14 +55,17 @@ class GSettingHandler:
         settings.general.onChangedValue(
             "fullscreen-hide-tabbar", self.fullscreen_hide_tabbar_toggled
         )
-        settings.general.onChangedValue("window-height", self.size_changed)
-        settings.general.onChangedValue("window-width", self.size_changed)
-        settings.general.onChangedValue("window-valignment", self.alignment_changed)
-        settings.general.onChangedValue("window-halignment", self.alignment_changed)
-        settings.general.onChangedValue("window-vertical-displacement", self.alignment_changed)
-        settings.general.onChangedValue("window-horizontal-displacement", self.alignment_changed)
-        settings.style.onChangedValue("cursor-blink-mode", self.cursor_blink_mode_changed)
-        settings.style.onChangedValue("cursor-shape", self.cursor_shape_changed)
+        settings.general.onChangedValue('window-height', self.size_changed)
+        settings.general.onChangedValue('window-width', self.size_changed)
+        settings.general.onChangedValue('window-valignment', self.alignment_changed)
+        settings.general.onChangedValue('window-halignment', self.alignment_changed)
+        settings.general.onChangedValue('window-vertical-displacement', self.alignment_changed)
+        settings.general.onChangedValue('window-horizontal-displacement', self.alignment_changed)
+        settings.style.onChangedValue('cursor-blink-mode', self.cursor_blink_mode_changed)
+        settings.style.onChangedValue('cursor-shape', self.cursor_shape_changed)
+        settings.general.onChangedValue('background-image-file', self.background_image_file_changed)
+        settings.general.onChangedValue('background-image-layout-mode',
+                                        self.background_image_layout_mode_changed)
 
         settings.general.onChangedValue("use-scrollbar", self.scrollbar_toggled)
         settings.general.onChangedValue("history-size", self.history_size_changed)
@@ -163,6 +166,16 @@ class GSettingHandler:
         terminals = (terminal,) if terminal else self.guake.notebook_manager.iter_terminals()
         for term in terminals:
             term.set_property("cursor-shape", settings.get_int(key))
+
+    def background_image_file_changed(self, settings, key, user_data):
+        """Called when the background image file settings has been changed
+        """
+        self.guake.background_image_manager.load_from_file(settings.get_string(key))
+
+    def background_image_layout_mode_changed(self, settings, key, user_data):
+        """Called when the background image layout mode settings has been changed
+        """
+        self.guake.background_image_manager.layout_mode = settings.get_int(key)
 
     def scrollbar_toggled(self, settings, key, user_data):
         """If the gconf var use_scrollbar be changed, this method will
