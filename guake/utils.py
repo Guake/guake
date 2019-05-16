@@ -318,6 +318,7 @@ class ImageLayoutMode(enum.IntEnum):
 
 
 class BackgroundImageManager:
+
     def __init__(self, window, filename=None, layout_mode=ImageLayoutMode.SCALE):
         self.window = window
         self.bg_surface = self.load_from_file(filename) if filename else None
@@ -347,9 +348,7 @@ class BackgroundImageManager:
             raise FileNotFoundError('Background file not found: %s' % (filename))
         img = Gtk.Image.new_from_file(filename)
         pixbuf = img.get_pixbuf()
-        surface = cairo.ImageSurface(cairo.FORMAT_ARGB32,
-                                     pixbuf.get_width(),
-                                     pixbuf.get_height())
+        surface = cairo.ImageSurface(cairo.FORMAT_ARGB32, pixbuf.get_width(), pixbuf.get_height())
         cr = cairo.Context(surface)
         Gdk.cairo_set_source_pixbuf(cr, pixbuf, 0, 0)
         cr.set_operator(cairo.OPERATOR_SOURCE)
@@ -409,9 +408,9 @@ class BackgroundImageManager:
 
         # Step 1. Get target surface
         #         (paint background image into widget size surface by layout mode)
-        surface = self.render_target(widget.get_allocated_width(),
-                                     widget.get_allocated_height(),
-                                     self.layout_mode)
+        surface = self.render_target(
+            widget.get_allocated_width(), widget.get_allocated_height(), self.layout_mode
+        )
 
         cr.save()
         # Step 2. Paint target surface to context (in our case, the RootTerminalBox)
@@ -428,9 +427,9 @@ class BackgroundImageManager:
         #         so we paint our child (again, in lifecycle view) into a similar surface.
         #
         child = widget.get_child()
-        child_surface = cr.get_target().create_similar(cairo.CONTENT_COLOR_ALPHA,
-                                                       child.get_allocated_width(),
-                                                       child.get_allocated_height())
+        child_surface = cr.get_target().create_similar(
+            cairo.CONTENT_COLOR_ALPHA, child.get_allocated_width(), child.get_allocated_height()
+        )
         child_cr = cairo.Context(child_surface)
 
         # Re-paint child draw into child context (which using child_surface as target)

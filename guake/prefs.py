@@ -485,8 +485,10 @@ class PrefsCallbacks:
         self.settings.styleFont.set_string("style", fbtn.get_font_name())
 
     def on_background_image_file_chooser_file_changed(self, fc):
-        self.settings.general.set_string('background-image-file',
-                                         fc.get_filename() if fc.get_filename() else '')
+        self.settings.general.set_string(
+            'background-image-file',
+            fc.get_filename() if fc.get_filename() else ''
+        )
 
     def on_background_image_file_remove_clicked(self, btn):
         filechooser = self.prefDlg.get_widget('background_image_filechooser')

@@ -64,8 +64,9 @@ class GSettingHandler:
         settings.style.onChangedValue('cursor-blink-mode', self.cursor_blink_mode_changed)
         settings.style.onChangedValue('cursor-shape', self.cursor_shape_changed)
         settings.general.onChangedValue('background-image-file', self.background_image_file_changed)
-        settings.general.onChangedValue('background-image-layout-mode',
-                                        self.background_image_layout_mode_changed)
+        settings.general.onChangedValue(
+            'background-image-layout-mode', self.background_image_layout_mode_changed
+        )
 
         settings.general.onChangedValue("use-scrollbar", self.scrollbar_toggled)
         settings.general.onChangedValue("history-size", self.history_size_changed)
