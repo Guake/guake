@@ -53,11 +53,42 @@ class PinnedTab(Gtk.Button):
         PinnedTab.set_css_name('tab')
         super().__init__(*args, **kwargs)
 
+        self._page = None
+
+        # CSS
         style = self.get_style_context()
         style.remove_class('text-button')
         style.add_class('reorderable-page')
         style.add_class('pinned-page')
 
+        # Signal
+        self.connect('clicked', self.on_click)
+
+    @property
+    def page(self):
+        return self._page
+
+    @page.setter
+    def page(self, page):
+        self._page = page
+
+    def on_click(self, widget):
+        self.reset_tabs_checked_state()
+        self.set_state_flags(Gtk.StateFlags.CHECKED, False)
+
+        nb = self.get_parent().get_parent()
+        page_num = nb.page_num(self.page)
+        if page_num == -1:
+            print('no include in notebook')
+            return
+
+        nb.set_current_page(page_num)
+        nb.get_terminals_for_page(page_num)[0].grab_focus()
+
+    def reset_tabs_checked_state(self):
+        tabbox = self.get_parent()
+        for tab in tabbox.tabs:
+            tab.unset_state_flags(Gtk.StateFlags.CHECKED)
 
 class PinnedTabBox(Gtk.Box):
     def __init__(self, *args, **kwargs):
@@ -70,10 +101,14 @@ class PinnedTabBox(Gtk.Box):
         # Tabs
         self.tabs = []
 
-    def add_tab(self, label):
+    def add_tab(self, page, label=None):
+        if not label:
+            label = str(len(self.tabs))
         tab = PinnedTab(visible=True, label=label)
+        tab.page = page
+
         self.tabs.append(tab)
-        self.pack_end(tab, 0, 0, 0)
+        self.pack_start(tab, 0, 0, 0)
 
         
 class TerminalNotebook(Gtk.Notebook):
@@ -420,7 +455,7 @@ class TerminalNotebook(Gtk.Notebook):
                 self.set_tab_label(page, label)
 
                 label.hide()
-                self.pinned_box.add_tab("X")
+                self.pinned_box.add_tab(page)
             if user_set:
                 setattr(page, "custom_label_set", new_text != "-")
 
