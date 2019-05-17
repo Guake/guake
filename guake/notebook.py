@@ -48,6 +48,34 @@ import posix
 log = logging.getLogger(__name__)
 
 
+class PinnedTab(Gtk.Button):
+    def __init__(self, *args, **kwargs):
+        PinnedTab.set_css_name('tab')
+        super().__init__(*args, **kwargs)
+
+        style = self.get_style_context()
+        style.remove_class('text-button')
+        style.add_class('reorderable-page')
+        style.add_class('pinned-page')
+
+
+class PinnedTabBox(Gtk.Box):
+    def __init__(self, *args, **kwargs):
+        PinnedTabBox.set_css_name('tabs')
+        super().__init__(*args, **kwargs)
+
+        # CSS
+        self.get_style_context().remove_class('horizontal')
+
+        # Tabs
+        self.tabs = []
+
+    def add_tab(self, label):
+        tab = PinnedTab(visible=True, label=label)
+        self.tabs.append(tab)
+        self.pack_end(tab, 0, 0, 0)
+
+        
 class TerminalNotebook(Gtk.Notebook):
 
     def __init__(self, *args, **kwargs):
@@ -100,6 +128,9 @@ class TerminalNotebook(Gtk.Notebook):
         self.action_box.pack_start(self.new_page_button, 0, 0, 0)
         self.action_box.pack_end(self.tab_selection_button, 0, 0, 0)
         self.set_action_widget(self.action_box, Gtk.PackType.END)
+
+        self.pinned_box = PinnedTabBox(visible=True)
+        self.set_action_widget(self.pinned_box, Gtk.PackType.START)
 
     def attach_guake(self, guake):
         self.guake = guake
@@ -386,8 +417,10 @@ class TerminalNotebook(Gtk.Notebook):
                 label = TabLabelEventBox(self, new_text, self.guake.settings)
                 label.add_events(Gdk.EventMask.SCROLL_MASK)
                 label.connect('scroll-event', self.scroll_callback.on_scroll)
-
                 self.set_tab_label(page, label)
+
+                label.hide()
+                self.pinned_box.add_tab("X")
             if user_set:
                 setattr(page, "custom_label_set", new_text != "-")
 
