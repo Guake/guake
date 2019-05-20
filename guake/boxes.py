@@ -153,6 +153,17 @@ class RootTerminalBox(Gtk.Overlay, TerminalHolder):
         self.search_close_btn.connect('clicked', self.close_search_box)
         self.search_prev = True
 
+        # Search revealer visible
+        def search_revealer_show_cb(widget):
+            if not widget.get_child_revealed():
+                widget.hide()
+
+        self.search_revealer.hide()
+        self.search_revealer_show_cb_id = self.search_revealer.connect(
+            'show', search_revealer_show_cb
+        )
+        self.search_frame.connect('unmap', lambda x: self.search_revealer.hide())
+
     def get_terminals(self):
         return self.get_child().get_terminals()
 
@@ -301,7 +312,10 @@ class RootTerminalBox(Gtk.Overlay, TerminalHolder):
 
     def show_search_box(self):
         if not self.search_revealer.get_reveal_child():
+            GObject.signal_handler_block(self.search_revealer, self.search_revealer_show_cb_id)
+            self.search_revealer.set_visible(True)
             self.search_revealer.set_reveal_child(True)
+            GObject.signal_handler_unblock(self.search_revealer, self.search_revealer_show_cb_id)
             # XXX: Mestery line to avoid Gtk-CRITICAL stuff
             # (guake:22694): Gtk-CRITICAL **: 18:04:57.345:
             # gtk_widget_event: assertion 'WIDGET_REALIZED_FOR_EVENT (widget, event)' failed
