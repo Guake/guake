@@ -1,0 +1,2 @@
+fixes:
+    - Fix search revealer causing terminal unclickable at bottom right
