@@ -22,6 +22,57 @@ Introduction
 Guake is a dropdown terminal made for the GNOME desktop environment. Guake's style of window is
 based on an FPS game, and one of its goals is to be easy to reach.
 
+
+Installation
+============
+
+Guake can be install from source code or from your distributorion's package manager. If you want to
+experience with latest Guake, which have more feature (e.g. tab session save/restore) and bug fixed,
+we encourage you install Guake from source code. On the other hand, you still can install Guake from
+package maanger, but with distribution that is not rolling updated, it may not install with latest Guake version.
+
+For Debian / Ubuntu, we are looking for contributor who can help with official PPA release,
+please refer to `#1602 <https://github.com/Guake/guake/issues/1602>`_.
+
+
+From source code (recommand)
+----------------------------
+
+.. code-block:: bash
+
+   $ git clone https://github.com/guake/guake
+   $ cd guake
+     # Replace your distribution in square brackets.
+   $ ./scripts/bootstrap-dev-[debian, arch, fedora].sh run make
+   $ make
+   $ make install
+
+
+From distributions' package manager
+-----------------------------------
+
+Debian / Ubuntu
+^^^^^^^^^^^^^^^
+
+.. code-block:: bash
+
+   $ apt install guake
+
+Fedora
+^^^^^^
+
+.. code-block:: bash
+
+    $ dnf install -y guake
+
+Arch Linux
+^^^^^^^^^^
+
+.. code-block:: bash
+
+    $ pacman -S guake
+
+
 Features Request
 ----------------
 
