@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: Guake 0.4.5\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-04-14 12:33+0200\n"
-"PO-Revision-Date: 2019-05-16 22:48+0000\n"
+"PO-Revision-Date: 2019-06-02 17:04+0000\n"
 "Last-Translator: Allan Nordhøy <epost@anotheragency.no>\n"
 "Language-Team: Dutch <https://hosted.weblate.org/projects/guake/guake/nl/>\n"
 "Language: nl\n"
@@ -1121,7 +1121,7 @@ msgstr "Guake-versienummer tonen en afsluiten"
 
 #: guake/data/prefs.glade:93
 msgid "<span size=\"18000\"><b>Guake properties</b></span>"
-msgstr "<span size=\"1800><b>Guake-voorkeuren</b></span>"
+msgstr "<span size=\"18000\"><b>Guake-voorkeuren</b></span>"
 
 #: guake/data/prefs.glade:107
 msgid "Customize behavior and appearance of Guake!"
