@@ -11,16 +11,16 @@ msgstr ""
 "Project-Id-Version: Guake 0.4.5\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-08-18 17:32+0200\n"
-"PO-Revision-Date: 2018-01-25 21:00+0100\n"
-"Last-Translator: Dante Bravo <dbravo.iessabadell@gmail.com>\n"
-"Language-Team: Spanish (http://www.transifex.com/projects/p/guake/language/"
-"es/)\n"
+"PO-Revision-Date: 2019-06-18 19:05+0000\n"
+"Last-Translator: Nicolas Dalessandro <nicolasdalessandro2@gmail.com>\n"
+"Language-Team: Spanish <https://hosted.weblate.org/projects/guake/guake/es/>"
+"\n"
 "Language: es\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 2.0.6\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 3.7\n"
 
 #: ../guake/data/about.glade.h:1
 msgid "About Guake"
@@ -217,15 +217,15 @@ msgstr "Usar nombres estilo VTE para las pestañas"
 
 #: ../guake/data/prefs.glade.h:33
 msgid "Max tab name length:"
-msgstr ""
+msgstr "Longitud máxima del nombre de la pestaña:"
 
 #: ../guake/data/prefs.glade.h:34
 msgid "0 means no size limit"
-msgstr ""
+msgstr "0 significa que no hay límite de tamaño"
 
 #: ../guake/data/prefs.glade.h:35
 msgid "Abbreviate directories in tab names"
-msgstr ""
+msgstr "Abreviar directorios en nombres de pestaña"
 
 #: ../guake/data/prefs.glade.h:36
 msgid "Hide on lose focus"
@@ -586,7 +586,7 @@ msgstr "Hay {0} procesos ejecutándose actualmente"
 
 #: ../src/guake/guake_app.py:186
 msgid "guake-indicator"
-msgstr ""
+msgstr "guake-indicator"
 
 #: ../src/guake/guake_app.py:186
 msgid "guake-tray"
@@ -617,7 +617,7 @@ msgstr "Buscar en la Web (nada seleccionado)"
 #: ../src/guake/guake_app.py:683
 #, fuzzy
 msgid "Open Link: '{}...'"
-msgstr "Abrir vínculo: {}"
+msgstr "Abrir enlace: '{}...'"
 
 #: ../src/guake/guake_app.py:685
 msgid "Open Link: {}"
@@ -641,7 +641,7 @@ msgstr "Todos los ficheros"
 
 #: ../src/guake/guake_app.py:1748
 msgid "Text and Logs"
-msgstr ""
+msgstr "Texto y registros"
 
 #: ../src/guake/guake_app.py:1766
 msgid "Find"
@@ -757,7 +757,7 @@ msgstr "Conmuta la visibilidad del terminal"
 #: ../src/guake/prefs.py:81
 #, fuzzy
 msgid "Toggle Hide on Lose Focus"
-msgstr "Esconder al perder el foco"
+msgstr "Alternar ocultar en perder enfoque"
 
 #: ../src/guake/prefs.py:88
 msgid "Tab management"

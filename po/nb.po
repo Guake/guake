@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: Guake 0.4.5\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-08-18 17:32+0200\n"
-"PO-Revision-Date: 2019-04-28 18:50+0000\n"
+"PO-Revision-Date: 2019-06-18 19:05+0000\n"
 "Last-Translator: Allan Nordhøy <epost@anotheragency.no>\n"
 "Language-Team: Norwegian Bokmål <https://hosted.weblate.org/projects/guake/"
 "guake/nb_NO/>\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 3.6.1\n"
+"X-Generator: Weblate 3.7\n"
 
 #: ../guake/data/about.glade.h:1
 msgid "About Guake"
@@ -1498,22 +1498,29 @@ msgid ""
 "Tabs session restore abort.\n"
 "Your session file ({session_filename}) missing schema_version as key"
 msgstr ""
+"Gjenoppretting av faneøkt ble avbrutt.\n"
+"Din økt-fil ({session_filename}) mangler schema_version som nøkkel."
 
 #: guake/guake_app.py:1252
-#, python-brace-format
+#, fuzzy, python-brace-format
 msgid ""
 "Tabs session restore abort.\n"
 "Your session file schema version is higher than current version "
 "({session_file_schema_version} > {current_schema_version})."
 msgstr ""
+"Gjenoppretting av faneøkt ble avbrutt.\n"
+"Din øktfils schema-versjon er høyere enn nåværende versjon "
+"({session_file_schema_version} > {current_schema_version})."
 
 #: guake/data/prefs.glade:409
+#, fuzzy
 msgid "Use workspace-specific tab sets (requires restart, only work on X11)"
 msgstr ""
+"Bruk arbeidsområdespesifikke fanesett (krever omstart, fungerer kun på X11)"
 
 #: guake/data/prefs.glade:809
 msgid "Hide tabbar when fullscreen"
-msgstr ""
+msgstr "Skjul faner i fullskjermsvisning"
 
 #~ msgid "key binding error"
 #~ msgstr "Hurtigtast error"
