@@ -9,16 +9,16 @@ msgstr ""
 "Project-Id-Version: Guake 0.4.5\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-08-18 17:32+0200\n"
-"PO-Revision-Date: 2018-07-13 22:39+0000\n"
-"Last-Translator: Maurizio De Santis <desantis.maurizio@gmail.com>\n"
-"Language-Team: Italian <https://hosted.weblate.org/projects/guake/guake/it/"
-">\n"
+"PO-Revision-Date: 2019-06-26 20:01+0000\n"
+"Last-Translator: Jimmy Scionti <jimmy.scionti@gmail.com>\n"
+"Language-Team: Italian <https://hosted.weblate.org/projects/guake/guake/it/>"
+"\n"
 "Language: it\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 3.1-dev\n"
+"X-Generator: Weblate 3.7.1-dev\n"
 
 #: ../guake/data/about.glade.h:1
 msgid "About Guake"
@@ -1214,11 +1214,11 @@ msgstr ""
 
 #: guake/menus.py:48
 msgid "Copy Url"
-msgstr ""
+msgstr "Copia Url"
 
 #: guake/menus.py:62
 msgid "Split ―"
-msgstr ""
+msgstr "Dividi ―"
 
 #: guake/menus.py:65
 msgid "Split  "
@@ -1226,7 +1226,7 @@ msgstr ""
 
 #: guake/menus.py:68 guake/prefs.py:150
 msgid "Close terminal"
-msgstr ""
+msgstr "Chiude terminale"
 
 #: guake/prefs.py:137
 msgid "Split management"
@@ -1278,17 +1278,19 @@ msgstr ""
 
 #: guake/menus.py:72
 msgid "Save content..."
-msgstr ""
+msgstr "Salva il contenuto..."
 
 #: data/prefs.glade:1182
 msgid ""
 "This might not work on all shells, make sure that your shell supports the --"
 "login option"
 msgstr ""
+"Potrebbe non funzionare su tutte le interfacce. Richiede il supporto "
+"all'opzione --login"
 
 #: guake/prefs.py:128
 msgid "New tab in home directory"
-msgstr ""
+msgstr "Nuova scheda nella cartella home"
 
 #: guake/dialogs.py:56
 #, python-brace-format
