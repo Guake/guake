@@ -88,6 +88,9 @@ class TerminalNotebook(Gtk.Notebook):
         )
         self.new_page_button.connect("clicked", self.on_new_tab)
 
+        self.hide_lose_focus_button = Gtk.Button(visible=True)
+        self.hide_lose_focus_button.connect("clicked", self.on_hide_lose_focus)
+
         self.tab_selection_button = Gtk.Button(
             image=Gtk.Image.new_from_icon_name('pan-down-symbolic', Gtk.IconSize.MENU),
             visible=True
@@ -100,9 +103,11 @@ class TerminalNotebook(Gtk.Notebook):
         self.action_box.pack_start(self.new_page_button, 0, 0, 0)
         self.action_box.pack_end(self.tab_selection_button, 0, 0, 0)
         self.set_action_widget(self.action_box, Gtk.PackType.END)
+        self.set_action_widget(self.hide_lose_focus_button, Gtk.PackType.START)
 
     def attach_guake(self, guake):
         self.guake = guake
+        self.set_hide_lose_focus_image()
 
     def on_button_press(self, target, event, user_data):
         if event.button == 3:
@@ -123,6 +128,19 @@ class TerminalNotebook(Gtk.Notebook):
     @save_tabs_when_changed
     def on_new_tab(self, user_data):
         self.new_page_with_focus()
+
+    def set_hide_lose_focus_image(self):
+        if self.guake.settings.general.get_boolean('window-losefocus'):
+            self.hide_lose_focus_button.set_image(Gtk.Image.new_from_icon_name("go-up",
+                                                                               Gtk.IconSize.MENU))
+        else:
+            self.hide_lose_focus_button.set_image(Gtk.Image.new_from_icon_name("go-down",
+                                                                               Gtk.IconSize.MENU))
+
+    def on_hide_lose_focus(self, user_data):
+        self.guake.accel_toggle_hide_on_lose_focus()
+        self.set_hide_lose_focus_image()
+        self.last_terminal_focused.grab_focus()
 
     def on_tab_selection(self, user_data):
         """Construct the tab selection popover
