@@ -727,20 +727,46 @@
                                           </packing>
                                         </child>
                                         <child>
-                                          <object class="GtkCheckButton" id="abbreviate_tab_names">
-                                            <property name="label" translatable="yes">Abbreviate directories in tab names</property>
+                                          <object class="GtkBox" id="hbox_tab_name_display">
                                             <property name="visible">True</property>
-                                            <property name="can_focus">True</property>
-                                            <property name="receives_default">False</property>
-                                            <property name="halign">start</property>
-                                            <property name="use_underline">True</property>
-                                            <property name="active">True</property>
-                                            <property name="draw_indicator">True</property>
-                                            <signal name="toggled" handler="on_abbreviate_tab_names_toggled" swapped="no"/>
+                                            <property name="can_focus">False</property>
+                                            <property name="spacing">6</property>
+                                            <child>
+                                              <object class="GtkLabel" id="lbl_tab_name_display">
+                                                <property name="visible">True</property>
+                                                <property name="can_focus">False</property>
+                                                <property name="valign">center</property>
+                                                <property name="label" translatable="yes">Display as tab names:</property>
+                                                <property name="use_markup">True</property>
+                                              </object>
+                                              <packing>
+                                                <property name="expand">False</property>
+                                                <property name="fill">False</property>
+                                                <property name="position">0</property>
+                                              </packing>
+                                            </child>
+                                            <child>
+                                              <object class="GtkComboBoxText" id="tab_name_display">
+                                                <property name="visible">True</property>
+                                                <property name="can_focus">True</property>
+                                                <items>
+                                                  <item translatable="yes" >Full Path</item>
+                                                  <item translatable="yes">Abbreviated Path</item>
+                                                  <item translatable="yes">Last Segment</item>
+                                                </items>
+                                                <signal name="changed" handler="on_tab_name_display_changed" swapped="no"/>
+                                              </object>
+                                              <packing>
+                                                <property name="expand">False</property>
+                                                <property name="fill">True</property>
+                                                <property name="position">1</property>
+                                              </packing>
+                                            </child>
                                           </object>
                                           <packing>
-                                            <property name="left_attach">1</property>
-                                            <property name="top_attach">3</property>
+                                            <property name="left_attach">0</property>
+                                            <property name="top_attach">5</property>
+                                            <property name="width">2</property>
                                           </packing>
                                         </child>
                                         <child>
@@ -784,7 +810,7 @@
                                           </object>
                                           <packing>
                                             <property name="left_attach">0</property>
-                                            <property name="top_attach">5</property>
+                                            <property name="top_attach">6</property>
                                             <property name="width">2</property>
                                           </packing>
                                         </child>

@@ -218,10 +218,6 @@ msgstr "Lunghezza massima nome scheda:"
 msgid "0 means no size limit"
 msgstr "0 disabilita il limite di dimensioni"
 
-#: ../guake/data/prefs.glade.h:35
-msgid "Abbreviate directories in tab names"
-msgstr "Abbrevia le cartelle nei nomi delle schede"
-
 #: ../guake/data/prefs.glade.h:36
 msgid "Hide on lose focus"
 msgstr "Nascondere alla perdita del focus"
@@ -1435,6 +1431,22 @@ msgstr ""
 
 #: guake/data/prefs.glade:809
 msgid "Hide tabbar when fullscreen"
+msgstr ""
+
+#: guake/data/prefs.glade:739
+msgid "Display as tab names:"
+msgstr ""
+
+#: guake/data/prefs.glade:753
+msgid "Full Path"
+msgstr ""
+
+#: guake/data/prefs.glade:754
+msgid "Abbreviated Path"
+msgstr ""
+
+#: guake/data/prefs.glade:755
+msgid "Last Segment"
 msgstr ""
 
 #~ msgid "key binding error"

@@ -498,10 +498,10 @@ class PrefsCallbacks():
         """
         self.settings.general.set_boolean('set-window-title', chk.get_active())
 
-    def on_abbreviate_tab_names_toggled(self, chk):
-        """Save `abbreviate_tab_names` property value in dconf
+    def on_tab_name_display_changed(self, combo):
+        """Save `display-tab-names` property value in dconf
         """
-        self.settings.general.set_boolean('abbreviate-tab-names', chk.get_active())
+        self.settings.general.set_int('display-tab-names', combo.get_active())
 
     def on_max_tab_name_length_changed(self, spin):
         """Changes the value of max_tab_name_length in dconf
@@ -895,10 +895,10 @@ class PrefsDialog(SimpleGladeApp):
 
     def update_vte_subwidgets_states(self):
         do_use_vte_titles = self.get_widget('use_vte_titles').get_active()
-        max_tab_name_length_wdg = self.get_widget('max_tab_name_length')
-        max_tab_name_length_wdg.set_sensitive(do_use_vte_titles)
+        self.get_widget('tab_name_display').set_sensitive(do_use_vte_titles)
+        self.get_widget('lbl_tab_name_display').set_sensitive(do_use_vte_titles)
+        self.get_widget('max_tab_name_length').set_sensitive(do_use_vte_titles)
         self.get_widget('lbl_max_tab_name_length').set_sensitive(do_use_vte_titles)
-        self.get_widget('abbreviate_tab_names').set_sensitive(do_use_vte_titles)
 
     def on_reset_compat_defaults_clicked(self, bnt):
         """Reset default values to compat_{backspace,delete} dconf
@@ -1154,10 +1154,10 @@ class PrefsDialog(SimpleGladeApp):
         value = self.settings.general.get_boolean('set-window-title')
         self.get_widget('set_window_title').set_active(value)
 
-        # abbreviate tab names
-        self.get_widget('abbreviate_tab_names').set_sensitive(value)
-        value = self.settings.general.get_boolean('abbreviate-tab-names')
-        self.get_widget('abbreviate_tab_names').set_active(value)
+        # set tab name display method
+        self.get_widget('tab_name_display').set_sensitive(value)
+        value = self.settings.general.get_int('display-tab-names')
+        self.get_widget('tab_name_display').set_active(value)
 
         # max tab name length
         value = self.settings.general.get_int('max-tab-name-length')

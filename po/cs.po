@@ -217,10 +217,6 @@ msgstr "Maximální délka názvu karty:"
 msgid "0 means no size limit"
 msgstr "0 znamená žádný limit velikosti"
 
-#: ../guake/data/prefs.glade.h:35
-msgid "Abbreviate directories in tab names"
-msgstr "Zkrátit jména složek v názvech karet"
-
 #: ../guake/data/prefs.glade.h:36
 msgid "Hide on lose focus"
 msgstr "Skrýt při ztrátě zaměření okna"
@@ -1443,6 +1439,22 @@ msgstr ""
 
 #: guake/data/prefs.glade:809
 msgid "Hide tabbar when fullscreen"
+msgstr ""
+
+#: guake/data/prefs.glade:739
+msgid "Display as tab names:"
+msgstr ""
+
+#: guake/data/prefs.glade:753
+msgid "Full Path"
+msgstr ""
+
+#: guake/data/prefs.glade:754
+msgid "Abbreviated Path"
+msgstr ""
+
+#: guake/data/prefs.glade:755
+msgid "Last Segment"
 msgstr ""
 
 #~ msgid "key binding error"

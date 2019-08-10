@@ -89,7 +89,7 @@ class GSettingHandler():
         settings.general.onChangedValue('compat-delete', self.delete_changed)
         settings.general.onChangedValue('custom-command_file', self.custom_command_file_changed)
         settings.general.onChangedValue('max-tab-name-length', self.max_tab_name_length_changed)
-        settings.general.onChangedValue('abbreviate-tab-names', self.abbreviate_tab_names_changed)
+        settings.general.onChangedValue('display-tab-names', self.display_tab_names_changed)
 
     def custom_command_file_changed(self, settings, key, user_data):
         self.guake.load_custom_commands()
@@ -327,10 +327,9 @@ class GSettingHandler():
 
         self.guake.recompute_tabs_titles()
 
-    def abbreviate_tab_names_changed(self, settings, key, user_data):
-        """If the gconf var abbreviate_tab_names be changed, this method will
+    def display_tab_names_changed(self, settings, key, user_data):
+        """If the gconf var display-tab-names was changed, this method will
         be called and will update tab names.
         """
-        abbreviate_tab_names = settings.get_boolean('abbreviate-tab-names')
-        self.guake.abbreviate = abbreviate_tab_names
+        self.guake.display_tab_names = settings.get_int('display-tab-names')
         self.guake.recompute_tabs_titles()

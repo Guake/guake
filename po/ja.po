@@ -644,10 +644,6 @@ msgstr "タブバーを表示する"
 msgid "Use VTE titles for tab names"
 msgstr "タブ名としてVTEのタイトルを使用する"
 
-#: data/prefs.glade:621
-msgid "Abbreviate directories in tab names"
-msgstr "タブ名のディレクトリを省略して表示する"
-
 #: data/prefs.glade:646
 msgid "Max tab name length:"
 msgstr "タブ名の最大長"
@@ -1150,4 +1146,20 @@ msgstr ""
 
 #: guake/data/prefs.glade:809
 msgid "Hide tabbar when fullscreen"
+msgstr ""
+
+#: guake/data/prefs.glade:739
+msgid "Display as tab names:"
+msgstr ""
+
+#: guake/data/prefs.glade:753
+msgid "Full Path"
+msgstr ""
+
+#: guake/data/prefs.glade:754
+msgid "Abbreviated Path"
+msgstr ""
+
+#: guake/data/prefs.glade:755
+msgid "Last Segment"
 msgstr ""

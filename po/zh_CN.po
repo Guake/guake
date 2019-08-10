@@ -221,10 +221,6 @@ msgstr "启动默认全屏"
 msgid "Use VTE titles for tab names"
 msgstr "使用VTE标题作为标签名"
 
-#: ../guake/data/prefs.glade.h:36
-msgid "Abbreviate directories in tab names"
-msgstr "在标签名中缩写目录"
-
 #: ../guake/data/prefs.glade.h:37
 msgid "Max tab name length:"
 msgstr "最大标签名长度:"
@@ -1420,6 +1416,22 @@ msgstr ""
 
 #: guake/data/prefs.glade:809
 msgid "Hide tabbar when fullscreen"
+msgstr ""
+
+#: guake/data/prefs.glade:739
+msgid "Display as tab names:"
+msgstr ""
+
+#: guake/data/prefs.glade:753
+msgid "Full Path"
+msgstr ""
+
+#: guake/data/prefs.glade:754
+msgid "Abbreviated Path"
+msgstr ""
+
+#: guake/data/prefs.glade:755
+msgid "Last Segment"
 msgstr ""
 
 #~ msgid "0 means no size limit"

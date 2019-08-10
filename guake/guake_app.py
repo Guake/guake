@@ -217,7 +217,7 @@ class Guake(SimpleGladeApp):
         # store the default window title to reset it when update is not wanted
         self.default_window_title = self.window.get_title()
 
-        self.abbreviate = False
+        self.display_tab_names = 0
 
         self.window.connect('focus-out-event', self.on_window_losefocus)
 
@@ -727,7 +727,7 @@ class Guake(SimpleGladeApp):
         self.settings.general.triggerOnChangedValue(self.settings.general, 'infinite-history')
         self.settings.general.triggerOnChangedValue(self.settings.general, 'use-vte-titles')
         self.settings.general.triggerOnChangedValue(self.settings.general, 'set-window-title')
-        self.settings.general.triggerOnChangedValue(self.settings.general, 'abbreviate-tab-names')
+        self.settings.general.triggerOnChangedValue(self.settings.general, 'display-tab-names')
         self.settings.general.triggerOnChangedValue(self.settings.general, 'max-tab-name-length')
         self.settings.general.triggerOnChangedValue(self.settings.general, 'quick-open-enable')
         self.settings.general.triggerOnChangedValue(
@@ -961,7 +961,7 @@ class Guake(SimpleGladeApp):
     # -- callbacks --
 
     def recompute_tabs_titles(self):
-        """Updates labels on all tabs. This is required when `self.abbreviate`
+        """Updates labels on all tabs. This is required when `self.display_tab_names`
         changes
         """
         use_vte_titles = self.settings.general.get_boolean("use-vte-titles")
@@ -975,15 +975,19 @@ class Guake(SimpleGladeApp):
             self.get_notebook().rename_page(page_num, self.compute_tab_title(terminal), False)
 
     def compute_tab_title(self, vte):
-        """Abbreviate and cut vte terminal title when necessary
+        """Compute the tab title
         """
         vte_title = vte.get_window_title() or _("Terminal")
         try:
             current_directory = vte.get_current_directory()
-            if self.abbreviate and vte_title.endswith(current_directory):
+            if self.display_tab_names == 1 and vte_title.endswith(current_directory):
                 parts = current_directory.split('/')
                 parts = [s[:1] for s in parts[:-1]] + [parts[-1]]
                 vte_title = vte_title[:len(vte_title) - len(current_directory)] + '/'.join(parts)
+            if self.display_tab_names == 2:
+                vte_title = current_directory.split('/')[-1]
+                if not vte_title:
+                    vte_title = "(root)"
         except OSError:
             pass
         return TabNameUtils.shorten(vte_title, self.settings)
@@ -1114,10 +1118,8 @@ class Guake(SimpleGladeApp):
             self.set_terminal_focus()
 
         self.was_deleted_tab = True
-        abbreviate_tab_names = self.settings.general.get_boolean('abbreviate-tab-names')
-        if abbreviate_tab_names:
-            self.abbreviate = False
-            self.recompute_tabs_titles()
+        self.display_tab_names = self.settings.general.get_int('display-tab-names')
+        self.recompute_tabs_titles()
 
     def set_terminal_focus(self):
         """Grabs the focus on the current tab.

@@ -619,10 +619,6 @@ msgstr "Visa flikrad"
 msgid "Use VTE titles for tab names"
 msgstr "Visa VTE-titel som fliknamn"
 
-#: data/prefs.glade:618
-msgid "Abbreviate directories in tab names"
-msgstr "Förkorta katalognamn i flikar"
-
 #: data/prefs.glade:643
 msgid "Max tab name length:"
 msgstr "Maxlängd för fliknamn:"
@@ -1189,4 +1185,20 @@ msgstr ""
 
 #: guake/data/prefs.glade:809
 msgid "Hide tabbar when fullscreen"
+msgstr ""
+
+#: guake/data/prefs.glade:739
+msgid "Display as tab names:"
+msgstr ""
+
+#: guake/data/prefs.glade:753
+msgid "Full Path"
+msgstr ""
+
+#: guake/data/prefs.glade:754
+msgid "Abbreviated Path"
+msgstr ""
+
+#: guake/data/prefs.glade:755
+msgid "Last Segment"
 msgstr ""
