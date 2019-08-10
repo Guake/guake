@@ -195,10 +195,6 @@ msgstr "Запускать в полноэкранном режиме"
 msgid "Use VTE titles for tab names"
 msgstr "Использовать заголовки VTE для названий вкладок"
 
-#: ../guake/data/prefs.glade.h:25
-msgid "Abbreviate directories in tab names"
-msgstr "Сокращать пути в названиях вкладок"
-
 #: ../guake/data/prefs.glade.h:26
 msgid "Max tab name length:"
 msgstr "Макс. ширина вкладки:"
@@ -1457,6 +1453,22 @@ msgstr ""
 
 #: guake/data/prefs.glade:809
 msgid "Hide tabbar when fullscreen"
+msgstr ""
+
+#: guake/data/prefs.glade:739
+msgid "Display as tab names:"
+msgstr ""
+
+#: guake/data/prefs.glade:753
+msgid "Full Path"
+msgstr ""
+
+#: guake/data/prefs.glade:754
+msgid "Abbreviated Path"
+msgstr ""
+
+#: guake/data/prefs.glade:755
+msgid "Last Segment"
 msgstr ""
 
 #~ msgid "Path to script executed on Guake start:"

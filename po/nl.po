@@ -218,10 +218,6 @@ msgstr "In volledig scherm-modus starten"
 msgid "Use VTE titles for tab names"
 msgstr "VTE-titels gebruiken voor tabbladnamen"
 
-#: ../guake/data/prefs.glade.h:36
-msgid "Abbreviate directories in tab names"
-msgstr "Mapnamen inkorten in tabbladnamen"
-
 #: ../guake/data/prefs.glade.h:37
 msgid "Max tab name length:"
 msgstr "Max. lengte van tabbladnaam:"
@@ -1476,6 +1472,22 @@ msgstr ""
 
 #: guake/data/prefs.glade:809
 msgid "Hide tabbar when fullscreen"
+msgstr ""
+
+#: guake/data/prefs.glade:739
+msgid "Display as tab names:"
+msgstr ""
+
+#: guake/data/prefs.glade:753
+msgid "Full Path"
+msgstr ""
+
+#: guake/data/prefs.glade:754
+msgid "Abbreviated Path"
+msgstr ""
+
+#: guake/data/prefs.glade:755
+msgid "Last Segment"
 msgstr ""
 
 #~ msgid "key binding error"

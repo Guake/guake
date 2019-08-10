@@ -782,10 +782,6 @@ msgstr "Afficher la barre d'onglets"
 msgid "Use VTE titles for tab names"
 msgstr "Utiliser les titres VTE pour le nom des tabs"
 
-#: guake/data/prefs.glade:731
-msgid "Abbreviate directories in tab names"
-msgstr "Réduit des noms de dossiers dans les onglets"
-
 #: guake/data/prefs.glade:756
 msgid "Max tab name length:"
 msgstr "Longueur maximale du nom de l'onglet :"
@@ -1146,6 +1142,22 @@ msgstr "Configurer vos sessions Guake"
 #: guake/data/guake-prefs.template.desktop:13 guake/data/guake-prefs.desktop:68
 msgid "Terminal;Utility;"
 msgstr "Terminal;Utilitaires;"
+
+#: guake/data/prefs.glade:739
+msgid "Display as tab names:"
+msgstr ""
+
+#: guake/data/prefs.glade:753
+msgid "Full Path"
+msgstr ""
+
+#: guake/data/prefs.glade:754
+msgid "Abbreviated Path"
+msgstr ""
+
+#: guake/data/prefs.glade:755
+msgid "Last Segment"
+msgstr ""
 
 #~ msgid "Use workspace-specific tab sets (requires restart)"
 #~ msgstr "Utiliser les bureaux virtuels pour les onglets (redémarrage requis)"

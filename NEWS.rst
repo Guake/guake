@@ -19,6 +19,8 @@ Bug Fixes
 
 - Fix fullscreen/unfullscreen not handle correctly when trigger by wm
 
+- Fix search revealer causing terminal unclickable at bottom right
+
 - Remove no need window draw callback
 
 - Update some dependencies for build environment
