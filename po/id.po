@@ -9,8 +9,8 @@ msgstr ""
 "Project-Id-Version: Guake 0.4.5\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-08-18 17:32+0200\n"
-"PO-Revision-Date: 2019-06-02 16:59+0000\n"
-"Last-Translator: Allan Nordhøy <epost@anotheragency.no>\n"
+"PO-Revision-Date: 2019-08-23 17:24+0000\n"
+"Last-Translator: Rendi 7936 <rendi.7936@gmail.com>\n"
 "Language-Team: Indonesian <https://hosted.weblate.org/projects/guake/guake/"
 "id/>\n"
 "Language: id\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Weblate 3.7-dev\n"
+"X-Generator: Weblate 3.9-dev\n"
 
 #: ../guake/data/about.glade.h:1
 msgid "About Guake"
@@ -35,7 +35,7 @@ msgstr ""
 
 #: ../guake/data/guake.glade.h:1
 msgid "Copy"
-msgstr "Gandakan"
+msgstr "Salin"
 
 #: ../guake/data/guake.glade.h:2
 msgid "Paste"
@@ -55,7 +55,7 @@ msgstr ""
 
 #: ../guake/data/guake.glade.h:6
 msgid "Find..."
-msgstr ""
+msgstr "Cari..."
 
 #: ../guake/data/guake.glade.h:7
 #, fuzzy
@@ -63,9 +63,8 @@ msgid "New Tab"
 msgstr "Tutup Tab"
 
 #: ../guake/data/guake.glade.h:8
-#, fuzzy
 msgid "Rename Tab"
-msgstr "Namai ulang"
+msgstr "Ganti nama Tab"
 
 #: ../guake/data/guake.glade.h:9
 msgid "Close Tab"
@@ -73,11 +72,11 @@ msgstr "Tutup Tab"
 
 #: ../guake/data/guake.glade.h:10
 msgid "Open link..."
-msgstr ""
+msgstr "Buka tautan..."
 
 #: ../guake/data/guake.glade.h:11
 msgid "Search on Web"
-msgstr ""
+msgstr "Cari di Web"
 
 #: ../guake/data/guake.glade.h:12 ../src/guake/prefs.py:83
 msgid "Quit"
@@ -85,7 +84,7 @@ msgstr "Keluar"
 
 #: ../guake/data/guake.glade.h:13
 msgid "Rename"
-msgstr "Namai ulang"
+msgstr "Ganti nama"
 
 #: ../guake/data/guake.glade.h:14
 msgid "Close"
@@ -102,16 +101,16 @@ msgstr "Tambah tab baru"
 
 #: ../guake/data/prefs.glade.h:1
 msgid "Guake Preferences"
-msgstr ""
+msgstr "Preferensi Guake"
 
 #: ../guake/data/prefs.glade.h:2
 msgid "<span size=\"18000\" color=\"black\"><b>Guake properties</b></span>"
-msgstr ""
+msgstr "<span size=\"18000\" color=\"black\"><b>Properti Guake</b></span>"
 
 #: ../guake/data/prefs.glade.h:3
 msgid ""
 "<span color=\"black\">Customize behavior and appearance of Guake!</span>"
-msgstr ""
+msgstr "<span color=\"black\">Ubah Kebiasaan dan tampilan Guake</span>"
 
 #: ../guake/data/prefs.glade.h:4
 msgid ""
@@ -129,34 +128,46 @@ msgid ""
 "guake -r \"main\" -e \"cd ~/projects/myproject/main\"\n"
 "guake -r \"prod\" -e \"cd ~/projects/myproject/prod\"\n"
 msgstr ""
+"Alur ke sebuah skrip bash yang otomatis dieksekusi ketika Guake dijalankan, "
+"kecuali kamu menyematkan --no-startup-script.\n"
+"\n"
+"Ini konfigurasi untuk penggunaan umum oleh fitur command line Guake:\n"
+"\n"
+"#!/bin/bash\n"
+"\n"
+"sleep 5  # Ini dianjurkan untuk menunggu sebentar sebelum Guake benar - "
+"benar berjalan\n"
+"\n"
+"guake -r \"main\" -e \"cd ~/projects/myproject/main\"\n"
+"guake -r \"prod\" -e \"cd ~/projects/myproject/prod\"\n"
 
 #: ../guake/data/prefs.glade.h:15
 msgid "Enable popup notifications on startup"
-msgstr ""
+msgstr "Hidupkan notifikasi popup saat dijalankan"
 
 #: ../guake/data/prefs.glade.h:16
 msgid "Show tray icon"
-msgstr ""
+msgstr "Tampilkan ikon pada tray"
 
 #: ../guake/data/prefs.glade.h:17
 msgid "Always prompt on quit"
-msgstr ""
+msgstr "Selalu tanya saat keluar"
 
 #: ../guake/data/prefs.glade.h:18
 msgid "_Flash terminal on bell"
-msgstr ""
+msgstr "_Flash terminal saat bell"
 
 #: ../guake/data/prefs.glade.h:19
 msgid "_Play system alert sound on bell"
-msgstr ""
+msgstr "_Putar suara peringatan sistem saat bell"
 
 #: ../guake/data/prefs.glade.h:20
 msgid "Path to script executed on Guake start:"
-msgstr ""
+msgstr "Jalur ke skrip yang dieksekusi saat Guake berjalan:"
 
 #: ../guake/data/prefs.glade.h:21
 msgid "Prompt on close tab:"
-msgstr ""
+msgstr "Tanya saat menutup tab:"
 
 #: ../guake/data/prefs.glade.h:22
 msgid ""
@@ -164,6 +175,9 @@ msgid ""
 "With process running\n"
 "Always"
 msgstr ""
+"Jangan Pernah\n"
+"Dengan proses berjalan\n"
+"Selalu"
 
 #: ../guake/data/prefs.glade.h:25
 msgid "<b>General</b>"
@@ -171,135 +185,131 @@ msgstr "<b>Umum</b>"
 
 #: ../guake/data/prefs.glade.h:26
 msgid "Bottom align window instead of top align"
-msgstr ""
+msgstr "Atur Jendela ke bawah daripada ke atas"
 
 #: ../guake/data/prefs.glade.h:27
 msgid "Appear on mouse display"
-msgstr ""
+msgstr "Muncul saat mouse berada di layar"
 
 #: ../guake/data/prefs.glade.h:28
 msgid "Appear on display:"
-msgstr ""
+msgstr "Muncul pada layar:"
 
 #: ../guake/data/prefs.glade.h:29
 msgid "Place tabs on top"
-msgstr ""
+msgstr "Tempatkan tab di atas"
 
 #: ../guake/data/prefs.glade.h:30
-#, fuzzy
 msgid "<b>Placement</b>"
-msgstr "<b>Palet</b>"
+msgstr "<b>Penempatan</b>"
 
 #: ../guake/data/prefs.glade.h:31
 msgid "Stay on top"
-msgstr ""
+msgstr "Tetap di atas"
 
 #: ../guake/data/prefs.glade.h:32
 msgid "Use VTE titles for tab names"
-msgstr ""
+msgstr "Gunakan judul VTE untuk nama - nama tab"
 
 #: ../guake/data/prefs.glade.h:33
 msgid "Max tab name length:"
-msgstr ""
+msgstr "Panjang maksimum nama tab:"
 
 #: ../guake/data/prefs.glade.h:34
 msgid "0 means no size limit"
-msgstr ""
+msgstr "0 berarti tidak ada batas ukuran"
 
 #: ../guake/data/prefs.glade.h:35
 msgid "Abbreviate directories in tab names"
-msgstr ""
+msgstr "Singkatkan direktori - direktori di nama tab"
 
 #: ../guake/data/prefs.glade.h:36
 msgid "Hide on lose focus"
-msgstr ""
+msgstr "Sembunyikan saat kehilangan fokus"
 
 #: ../guake/data/prefs.glade.h:37
 msgid "Show tab bar"
-msgstr ""
+msgstr "Tampilkan bilah tab"
 
 #: ../guake/data/prefs.glade.h:38
 msgid "Start fullscreen"
-msgstr ""
+msgstr "Mulai layar penuh"
 
 #: ../guake/data/prefs.glade.h:39
 msgid "<b>Main Window</b>"
-msgstr "<b>Jendela Utama</b>"
+msgstr "<b> Jendela Utama </b>"
 
 #: ../guake/data/prefs.glade.h:40
 msgid "Left"
-msgstr ""
+msgstr "Kiri"
 
 #: ../guake/data/prefs.glade.h:41
 msgid "Center"
-msgstr ""
+msgstr "Tengah"
 
 #: ../guake/data/prefs.glade.h:42
 msgid "Right"
-msgstr ""
+msgstr "Kanan"
 
 #: ../guake/data/prefs.glade.h:43
-#, fuzzy
 msgid "<b>Main Window Horizontal Alignment</b>"
-msgstr "<b>Tinggi Jendela utama</b>"
+msgstr "<b> Perataan Horizontal Jendela Utama </b>"
 
 #: ../guake/data/prefs.glade.h:44
-#, fuzzy
 msgid "<b>Main Window Height</b>"
-msgstr "<b>Tinggi Jendela utama</b>"
+msgstr "<b> Tinggi Jendela Utama </b>"
 
 #: ../guake/data/prefs.glade.h:45
-#, fuzzy
 msgid "<b>Main Window Width</b>"
-msgstr "<b>Tinggi Jendela utama</b>"
+msgstr "<b> Lebar Jendela Utama </b>"
 
 #: ../guake/data/prefs.glade.h:46
 msgid "Custom command file path: "
-msgstr ""
+msgstr "Jalur file perintah khusus: "
 
 #: ../guake/data/prefs.glade.h:47
 msgid "Please select a json file"
-msgstr ""
+msgstr "Silakan pilih file json"
 
 #: ../guake/data/prefs.glade.h:48 ../src/guake/prefs.py:75
 msgid "General"
-msgstr ""
+msgstr "Umum"
 
 #: ../guake/data/prefs.glade.h:49
 msgid "Default interpreter:"
-msgstr ""
+msgstr "Penerjemah utama:"
 
 #: ../guake/data/prefs.glade.h:50
 msgid "_Run command as a login shell"
-msgstr ""
+msgstr "_ Jalankan perintah sebagai shell login"
 
 #: ../guake/data/prefs.glade.h:51
 msgid "_Open new tab in current directory"
-msgstr ""
+msgstr "_ Buka tab baru di direktori saat ini"
 
 #: ../guake/data/prefs.glade.h:52
 msgid "<b>Shell</b>"
-msgstr "<b>Inti</b>"
+msgstr "<b> Shell </b>"
 
 #: ../guake/data/prefs.glade.h:53
 msgid "Shell"
-msgstr ""
+msgstr "Shell"
 
 #: ../guake/data/prefs.glade.h:54
 msgid "Show scrollbar"
-msgstr ""
+msgstr "Tampilkan bilah gulir"
 
 #: ../guake/data/prefs.glade.h:55
 msgid "Scrollback lines:"
-msgstr ""
+msgstr "Garis gulir kembali:"
 
 #: ../guake/data/prefs.glade.h:56
 msgid "On output"
-msgstr ""
+msgstr "Pada output"
 
 #: ../guake/data/prefs.glade.h:57
 msgid "On key stroke"
-msgstr ""
+msgstr "Pada tombol stroke"
 
 #: ../guake/data/prefs.glade.h:58
 msgid "<b>Scroll</b>"
@@ -307,31 +317,32 @@ msgstr "<b>Gulir</b>"
 
 #: ../guake/data/prefs.glade.h:59
 msgid "Scrolling"
-msgstr ""
+msgstr "Gulung Layar"
 
 #: ../guake/data/prefs.glade.h:60
 msgid "Use the system fixed width font"
-msgstr ""
+msgstr "Gunakan lebar font pada sistem"
 
 #: ../guake/data/prefs.glade.h:61
+#, fuzzy
 msgid "Font:"
-msgstr ""
+msgstr "Font:"
 
 #: ../guake/data/prefs.glade.h:62
 msgid "Choose some font"
-msgstr ""
+msgstr "Pilih beberapa font"
 
 #: ../guake/data/prefs.glade.h:63
 msgid "Text color:"
-msgstr ""
+msgstr "Warna teks:"
 
 #: ../guake/data/prefs.glade.h:64
 msgid "Background color:"
-msgstr ""
+msgstr "Warna latar belakang:"
 
 #: ../guake/data/prefs.glade.h:65
 msgid "Cursor shape:"
-msgstr ""
+msgstr "Bentuk kursor:"
 
 #: ../guake/data/prefs.glade.h:66
 msgid ""
