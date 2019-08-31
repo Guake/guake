@@ -292,7 +292,7 @@ def main():
         dest='support',
         action='store_true',
         default=False,
-        help=_('Show support infomations')
+        help=_('Show support infomation')
     )
 
     # checking mandatory dependencies
