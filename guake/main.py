@@ -92,6 +92,14 @@ def main():
     )
 
     parser.add_option(
+        '--unfullscreen',
+        dest='unfullscreen',
+        action='store_true',
+        default=False,
+        help=_('Put Guake out from fullscreen mode')
+    )
+
+    parser.add_option(
         '-t',
         '--toggle-visibility',
         dest='show_hide',
@@ -409,6 +417,9 @@ def main():
 
     if options.fullscreen:
         remote_object.fullscreen()
+
+    if options.unfullscreen:
+        remote_object.unfullscreen()
 
     if options.show:
         remote_object.show_from_remote()
