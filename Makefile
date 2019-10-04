@@ -4,21 +4,17 @@ PYTHON?=python3
 PYTHON_INTERPRETER?=$(PYTHON)
 MODULE:=guake
 DESTDIR:=/
-prefix?=/usr/local
-exec_prefix:=$(prefix)
+PREFIX?=/usr/local
+exec_prefix:=$(PREFIX)
 bindir = $(exec_prefix)/bin
 
-# findout the dist-package directory name. Under most system, users can install on dist-package.
-# On debian, site-package is reserved for the official python packages and has precedence over
-# dist-package
-PYTHON_SITE_PACKAGE_NAME:=$(shell $(PYTHON_INTERPRETER) scripts/find-first-site-package.py)
-PYTHON_SITE_PACKAGE_DIR=$(prefix)/lib/python$(shell $(PYTHON_INTERPRETER) -c "import sys; v = sys.version_info; print('{}.{}'.format(v.major, v.minor))")/$(PYTHON_SITE_PACKAGE_NAME)
-OLD_PREFIX:=$(DESTDIR)usr
+# Use site.getsitepackages([PREFIX]) to guess possible install paths for uninstall.
+PYTHON_SITEDIRS_FOR_PREFIX="env PREFIX=$(PREFIX) $(PYTHON_INTERPRETER) scripts/all-sitedirs-in-prefix.py"
 ROOT_DIR=$(shell pwd)
 DATA_DIR=$(ROOT_DIR)/guake/data
 COMPILE_SCHEMA:=1
 
-datarootdir:=$(prefix)/share
+datarootdir:=$(PREFIX)/share
 datadir:=$(datarootdir)
 localedir:=$(datarootdir)/locale
 gsettingsschemadir:=$(datarootdir)/glib-2.0/schemas
@@ -26,11 +22,6 @@ gsettingsschemadir:=$(datarootdir)/glib-2.0/schemas
 AUTOSTART_FOLDER:=~/.config/autostart
 
 DEV_DATA_DIR:=$(DATA_DIR)
-DEV_IMAGE_DIR:=$(DATA_DIR)/pixmaps
-DEV_LOCALE_DIR:=$(localedir)
-DEV_GLADE_DIR:=$(DATA_DIR)
-DEV_SCHEMA_DIR:=$(DATA_DIR)
-DEV_GUAKE_THEME_DIR:=$(DATA_DIR)/themes
 
 SHARE_DIR:=$(datadir)/guake
 GUAKE_THEME_DIR:=$(SHARE_DIR)/guake
@@ -38,6 +29,7 @@ LOGIN_DESTOP_PATH = $(SHARE_DIR)
 IMAGE_DIR:=$(SHARE_DIR)/pixmaps
 GLADE_DIR:=$(SHARE_DIR)
 SCHEMA_DIR:=$(gsettingsschemadir)
+
 SLUG:=fragment_name
 
 default: prepare-install
@@ -81,11 +73,15 @@ install-system: install-schemas compile-shemas install-locale install-guake
 install-guake:
 	# you probably want to execute this target with sudo:
 	# sudo make install
-	@echo "Installing from on your system is not recommended."
+	@echo "#############################################################"
+	@echo
+	@echo "Installing from source on your system is not recommended."
 	@echo "Please prefer you application package manager (apt, yum, ...)"
+	@echo
+	@echo "#############################################################"
 	@$(PYTHON_INTERPRETER) -m pip install -r requirements.txt
 
-	@if [ -f guake/paths.py.dev ]; then rm -f guake/paths.py.dev; fi
+	@rm -f guake/paths.py.dev
 	@if [ -f guake/paths.py ]; then mv guake/paths.py guake/paths.py.dev; fi
 	@cp -f guake/paths.py.in guake/paths.py
 	@sed -i -e 's|{{ LOCALE_DIR }}|"$(localedir)"|g' guake/paths.py
@@ -96,7 +92,7 @@ install-guake:
 	@sed -i -e 's|{{ LOGIN_DESTOP_PATH }}|"$(LOGIN_DESTOP_PATH)"|g' guake/paths.py
 	@sed -i -e 's|{{ AUTOSTART_FOLDER }}|"$(AUTOSTART_FOLDER)"|g' guake/paths.py
 
-	@$(PYTHON_INTERPRETER) setup.py install --root "$(DESTDIR)" --prefix="$(prefix)" --optimize=1
+	@$(PYTHON_INTERPRETER) setup.py install --root "$(DESTDIR)" --prefix="$(PREFIX)" --optimize=1
 
 	@rm -f guake/paths.py
 	@if [ -f guake/paths.py.dev ]; then mv guake/paths.py.dev guake/paths.py; fi
@@ -118,59 +114,59 @@ install-dev-locale:
 		install -Dm644 "$$f" "guake/po/$$lb/LC_MESSAGES/guake.mo"; \
 	done;
 
-uninstall-locale: install-old-locale
-	find $(DESTDIR)$(localedir)/ -name "guake.mo" -exec rm -f {} \;
+uninstall-locale:
+	find $(DESTDIR)$(localedir)/ -name "guake.mo" -exec rm -f "{}" + || :
+	# prune two levels of empty locale/ subdirs
+	find "$(DESTDIR)$(localedir)" -type d -a -empty -exec rmdir "{}" + || :
+	find "$(DESTDIR)$(localedir)" -type d -a -empty -exec rmdir "{}" + || :
 
 uninstall-dev-locale:
 	@rm -rf guake/po
 
-install-old-locale:
-	@find $(OLD_PREFIX)/share/locale/ -name "guake.mo" -exec rm -f {} \;
-
 install-schemas:
-	install -Dm644 "$(DEV_DATA_DIR)/guake.desktop" "$(DESTDIR)$(prefix)/share/applications/guake.desktop"
-	install -Dm644 "$(DEV_DATA_DIR)/guake-prefs.desktop" "$(DESTDIR)$(prefix)/share/applications/guake-prefs.desktop"
-	install -Dm644 "$(DEV_DATA_DIR)/guake.appdata.xml" "$(DESTDIR)$(prefix)/share/metainfo/guake.appdata.xml"
-	mkdir -p $(DESTDIR)$(IMAGE_DIR)
-	install -Dm644 $(DEV_DATA_DIR)/pixmaps/*.png "$(DESTDIR)$(IMAGE_DIR)/"
-	install -Dm644 $(DEV_DATA_DIR)/pixmaps/*.svg "$(DESTDIR)$(IMAGE_DIR)/"
-	install -Dm644 $(DEV_DATA_DIR)/pixmaps/guake.png "$(DESTDIR)$(prefix)/share/pixmaps/guake.png"
-	mkdir -p $(DESTDIR)$(SHARE_DIR)
-	mkdir -p $(DESTDIR)$(GLADE_DIR)
-	install -Dm644  $(DEV_DATA_DIR)/*.glade "$(DESTDIR)$(GLADE_DIR)"
-	mkdir -p $(DESTDIR)$(SHARE_DIR)
-	install -Dm644 "$(DEV_DATA_DIR)/autostart-guake.desktop" "$(DESTDIR)$(SHARE_DIR)"
-	mkdir -p $(DESTDIR)$(SCHEMA_DIR)
+	install -dm755                                       "$(DESTDIR)$(datadir)/applications"
+	install -Dm644 "$(DEV_DATA_DIR)/guake.desktop"       "$(DESTDIR)$(datadir)/applications/"
+	install -Dm644 "$(DEV_DATA_DIR)/guake-prefs.desktop" "$(DESTDIR)$(datadir)/applications/"
+	install -dm755                                       "$(DESTDIR)$(datadir)/metainfo"
+	install -Dm644 "$(DEV_DATA_DIR)/guake.appdata.xml"   "$(DESTDIR)$(datadir)/metainfo/"
+	install -dm755                                 "$(DESTDIR)$(IMAGE_DIR)"
+	install -Dm644 "$(DEV_DATA_DIR)"/pixmaps/*.png "$(DESTDIR)$(IMAGE_DIR)/"
+	install -Dm644 "$(DEV_DATA_DIR)"/pixmaps/*.svg "$(DESTDIR)$(IMAGE_DIR)/"
+	install -dm755                                     "$(DESTDIR)$(PREFIX)/share/pixmaps"
+	install -Dm644 "$(DEV_DATA_DIR)/pixmaps/guake.png" "$(DESTDIR)$(PREFIX)/share/pixmaps/"
+	install -dm755                                           "$(DESTDIR)$(SHARE_DIR)"
+	install -Dm644 "$(DEV_DATA_DIR)/autostart-guake.desktop" "$(DESTDIR)$(SHARE_DIR)/"
+	install -dm755                           "$(DESTDIR)$(GLADE_DIR)"
+	install -Dm644 "$(DEV_DATA_DIR)"/*.glade "$(DESTDIR)$(GLADE_DIR)/"
+	install -dm755                                         "$(DESTDIR)$(SCHEMA_DIR)"
 	install -Dm644 "$(DEV_DATA_DIR)/org.guake.gschema.xml" "$(DESTDIR)$(SCHEMA_DIR)/"
 
 compile-shemas:
 	if [ $(COMPILE_SCHEMA) = 1 ]; then glib-compile-schemas $(DESTDIR)$(gsettingsschemadir); fi
 
 
-uninstall-system: uninstall-schemas
-	@rm -rf $(PYTHON_SITE_PACKAGE_DIR)/guake || true
-	@rm -f $(bindir)/guake
-	@rm -f $(bindir)/guake-prefs
+uninstall-system: uninstall-schemas uninstall-locale
+	$(SHELL) -c $(PYTHON_SITEDIRS_FOR_PREFIX) \
+		| while read sitedir; do \
+			echo "rm -rf $(DESTDIR)$$sitedir/{guake,guake-*.egg-info}"; \
+			rm -rf $(DESTDIR)$$sitedir/guake; \
+			rm -rf $(DESTDIR)$$sitedir/guake-*.egg-info; \
+		done
+	rm -f "$(DESTDIR)$(bindir)/guake"
+	rm -f "$(DESTDIR)$(bindir)/guake-prefs"
+	rm -f "$(DESTDIR)$(bindir)/guake-toggle"
 
 purge-system: uninstall-system reset
 
-uninstall-schemas: uninstall-old-schemas
-	rm -f "$(prefix)/share/applications/guake.desktop"
-	rm -f "$(prefix)/share/applications/guake-prefs.desktop"
-	rm -f "$(prefix)/share/metainfo/guake.appdata.xml"
-	rm -fr "$(IMAGE_DIR)"
-	rm -fr "$(SHARE_DIR)"
-	rm -f "$(SCHEMA_DIR)/org.guake.gschema.xml"
-
-uninstall-old-schemas:
-	@rm -f "$(OLD_PREFIX)/share/applications/guake.desktop"
-	@rm -f "$(OLD_PREFIX)/share/applications/guake-prefs.desktop"
-	@rm -f "$(OLD_PREFIX)/share/metainfo/guake.appdata.xml"
-	@rm -f "$(OLD_PREFIX)/share/pixmaps/guake.png"
-	@rm -f "$(OLD_PREFIX)/share/glib-2.0/schemas/org.guake.gschema.xml"
-	@rm -f "$(OLD_PREFIX)/share/glib-2.0/schemas/schema.guake.gschema.xml"
-	@rm -fr "$(OLD_PREFIX)/share/guake"
-	@rm -f $(OLD_PREFIX)/lib/python$(shell $(PYTHON_INTERPRETER) -c "import sys; v = sys.version_info; print('{}.{}'.format(v.major, v.minor))")/$(PYTHON_SITE_PACKAGE_DIR)/guake/data/schema.guake.gschema.xml
+uninstall-schemas:
+	rm -f "$(DESTDIR)$(datadir)/applications/guake.desktop"
+	rm -f "$(DESTDIR)$(datadir)/applications/guake-prefs.desktop"
+	rm -f "$(DESTDIR)$(datadir)/metainfo/guake.appdata.xml"
+	rm -f "$(DESTDIR)$(datadir)/pixmaps/guake.png"
+	rm -fr "$(DESTDIR)$(IMAGE_DIR)"
+	rm -fr "$(DESTDIR)$(SHARE_DIR)"
+	rm -f "$(DESTDIR)$(SCHEMA_DIR)/org.guake.gschema.xml"
+	rm -f "$(DESTDIR)$(SCHEMA_DIR)/gschemas.compiled"
 
 reinstall:
 	sudo make uninstall && make && sudo make install && $(DESTDIR)$(bindir)/guake
