@@ -19,6 +19,7 @@ flake8<3.6
 mock>=2.0.0
 pathlib2
 pep8
+pew
 pipenv-to-requirements
 pyfakefs
 pyflakes<2.0.0
@@ -26,7 +27,7 @@ pylint<2.3.0
 pytest
 pytest-cov
 pytest-mock
-reno>=2.8.0
+reno[sphinx]>=2.8.0
 scandir ; python_version < '3.5'
 sphinx-rtd-theme
 sphinxcontrib-programoutput
