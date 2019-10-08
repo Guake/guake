@@ -386,11 +386,11 @@
         },
         "pyfakefs": {
             "hashes": [
-                "sha256:2d973133c81c005ec8d713b76e2d9cc9e4946f6d95775bd283863ccf0f3e6604",
-                "sha256:87a9819dafa2b210a26d9453aea1903eb88bd76a2425053a8f4ba6245777c498"
+                "sha256:2654c665500ea8117b55cab51d4683a83ec1c76ddfae13640e509e4aac64b308",
+                "sha256:e85a454bcdab7671243d2b7df386ab6a310f1378bf3317b2b84a7bcf88eff21a"
             ],
             "index": "pypi",
-            "version": "==3.6"
+            "version": "==3.6.1"
         },
         "pyflakes": {
             "hashes": [
@@ -609,11 +609,11 @@
         },
         "twine": {
             "hashes": [
-                "sha256:5319dd3e02ac73fcddcd94f035b9631589ab5d23e1f4699d57365199d85261e1",
-                "sha256:9fe7091715c7576df166df8ef6654e61bada39571783f2fd415bdcba867c6993"
+                "sha256:630fadd6e342e725930be6c696537e3f9ccc54331742b16245dab292a17d0460",
+                "sha256:a3d22aab467b4682a22de4a422632e79d07eebd07ff2a7079effb13f8a693787"
             ],
             "index": "pypi",
-            "version": "==2.0.0"
+            "version": "==1.15.0"
         },
         "typed-ast": {
             "hashes": [
