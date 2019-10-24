@@ -825,7 +825,7 @@ class Guake(SimpleGladeApp):
         """Callback to increase transparency.
         """
         transparency = self.settings.styleBackground.get_int('transparency')
-        if int(transparency) - 2 > 0:
+        if int(transparency) > 0:
             self.settings.styleBackground.set_int('transparency', int(transparency) - 2)
         return True
 
@@ -833,7 +833,7 @@ class Guake(SimpleGladeApp):
         """Callback to decrease transparency.
         """
         transparency = self.settings.styleBackground.get_int('transparency')
-        if int(transparency) + 2 < MAX_TRANSPARENCY:
+        if int(transparency) < MAX_TRANSPARENCY:
             self.settings.styleBackground.set_int('transparency', int(transparency) + 2)
         return True
 
