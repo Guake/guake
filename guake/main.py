@@ -223,6 +223,24 @@ def main():
     )
 
     parser.add_option(
+        '--bgcolor-focused',
+        dest='bgcolor_focused',
+        action='store',
+        default='',
+        help=_('Set the hexadecimal (#rrggbb) background color of '
+               'the focused terminal.')
+    )
+
+    parser.add_option(
+        '--fgcolor-focused',
+        dest='fgcolor_focused',
+        action='store',
+        default='',
+        help=_('Set the hexadecimal (#rrggbb) foreground color of the '
+               'focused terminal.')
+    )
+
+    parser.add_option(
         '--change-palette',
         dest='palette_name',
         action='store',
@@ -236,6 +254,14 @@ def main():
         action='store_true',
         default=False,
         help=_('Set colors from settings.')
+    )
+
+    parser.add_option(
+        '--reset-colors-focused',
+        dest='reset_colors_focused',
+        action='store_true',
+        default=False,
+        help=_('Set colors of the focused terminal from settings.')
     )
 
     parser.add_option(
@@ -478,12 +504,24 @@ def main():
         remote_object.set_fgcolor(options.fgcolor)
         only_show_hide = options.show
 
+    if options.bgcolor_focused:
+        remote_object.set_bgcolor_focused_terminal(options.bgcolor_focused)
+        only_show_hide = options.show
+
+    if options.fgcolor_focused:
+        remote_object.set_fgcolor_focused_terminal(options.fgcolor_focused)
+        only_show_hide = options.show
+
     if options.palette_name:
         remote_object.change_palette_name(options.palette_name)
         only_show_hide = options.show
 
     if options.reset_colors:
         remote_object.reset_colors()
+        only_show_hide = options.show
+
+    if options.reset_colors_focused:
+        remote_object.reset_colors_focused()
         only_show_hide = options.show
 
     if options.rename_current_tab:

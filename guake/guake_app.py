@@ -355,18 +355,20 @@ class Guake(SimpleGladeApp):
             i.set_color_bold(font_color)
             i.set_colors(font_color, bg_color, palette_list[:16])
 
-    def set_colors_from_settings_on_current_page(self):
+    def set_colors_from_settings_on_current_page(self, focused_only=False):
         bg_color = self.get_bgcolor()
         font_color = self.get_fgcolor()
         palette_list = self._load_palette()
 
         page_num = self.get_notebook().get_current_page()
         for terminal in self.get_notebook().get_nth_page(page_num).iter_terminals():
+            if focused_only and not terminal.has_focus():
+                continue
             terminal.set_color_foreground(font_color)
             terminal.set_color_bold(font_color)
             terminal.set_colors(font_color, bg_color, palette_list[:16])
 
-    def set_bgcolor(self, bgcolor):
+    def set_bgcolor(self, bgcolor, focused_only=False):
         if isinstance(bgcolor, str):
             c = Gdk.RGBA(0, 0, 0, 0)
             log.debug("Building Gdk Color from: %r", bgcolor)
@@ -378,9 +380,11 @@ class Guake(SimpleGladeApp):
         log.debug("setting background color to: %r", bgcolor)
         page_num = self.get_notebook().get_current_page()
         for terminal in self.get_notebook().get_nth_page(page_num).iter_terminals():
+            if focused_only and not terminal.has_focus():
+                continue
             terminal.set_color_background(bgcolor)
 
-    def set_fgcolor(self, fgcolor):
+    def set_fgcolor(self, fgcolor, focused_only=False):
         if isinstance(fgcolor, str):
             c = Gdk.RGBA(0, 0, 0, 0)
             log.debug("Building Gdk Color from: %r", fgcolor)
@@ -391,6 +395,8 @@ class Guake(SimpleGladeApp):
         log.debug("setting background color to: %r", fgcolor)
         page_num = self.get_notebook().get_current_page()
         for terminal in self.get_notebook().get_nth_page(page_num).iter_terminals():
+            if focused_only and not terminal.has_focus():
+                continue
             terminal.set_color_foreground(fgcolor)
 
     def change_palette_name(self, palette_name):
