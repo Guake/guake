@@ -231,6 +231,14 @@ def main():
     )
 
     parser.add_option(
+        '--reset-colors',
+        dest='reset_colors',
+        action='store_true',
+        default=False,
+        help=_('Set colors from settings.')
+    )
+
+    parser.add_option(
         '--rename-tab',
         dest='rename_tab',
         metavar='TITLE',
@@ -472,6 +480,10 @@ def main():
 
     if options.palette_name:
         remote_object.change_palette_name(options.palette_name)
+        only_show_hide = options.show
+
+    if options.reset_colors:
+        remote_object.reset_colors()
         only_show_hide = options.show
 
     if options.rename_current_tab:
