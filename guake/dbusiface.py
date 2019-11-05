@@ -100,12 +100,12 @@ class DbusManager(dbus.service.Object):
         return self.guake.set_fgcolor(fgcolor)
 
     @dbus.service.method(DBUS_NAME, in_signature='s')
-    def set_bgcolor_focused_terminal(self, bgcolor):
-        return self.guake.set_bgcolor(bgcolor, focused_only=True)
+    def set_bgcolor_current_terminal(self, bgcolor):
+        return self.guake.set_bgcolor(bgcolor, current_terminal_only=True)
 
     @dbus.service.method(DBUS_NAME, in_signature='s')
-    def set_fgcolor_focused_terminal(self, fgcolor):
-        return self.guake.set_fgcolor(fgcolor, focused_only=True)
+    def set_fgcolor_current_terminal(self, fgcolor):
+        return self.guake.set_fgcolor(fgcolor, current_terminal_only=True)
 
     @dbus.service.method(DBUS_NAME, in_signature='s')
     def change_palette_name(self, palette_name):
@@ -116,8 +116,8 @@ class DbusManager(dbus.service.Object):
         self.guake.set_colors_from_settings_on_current_page()
 
     @dbus.service.method(DBUS_NAME)
-    def reset_colors_focused(self):
-        self.guake.set_colors_from_settings_on_current_page(focused_only=True)
+    def reset_colors_current(self):
+        self.guake.set_colors_from_settings_on_current_page(current_terminal_only=True)
 
     @dbus.service.method(DBUS_NAME, in_signature='s')
     def execute_command(self, command):
