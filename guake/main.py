@@ -231,21 +231,21 @@ def main():
     )
 
     parser.add_option(
-        '--bgcolor-focused',
-        dest='bgcolor_focused',
+        '--bgcolor-current',
+        dest='bgcolor_current',
         action='store',
         default='',
         help=_('Set the hexadecimal (#rrggbb) background color of '
-               'the focused terminal.')
+               'the current terminal.')
     )
 
     parser.add_option(
-        '--fgcolor-focused',
-        dest='fgcolor_focused',
+        '--fgcolor-current',
+        dest='fgcolor_current',
         action='store',
         default='',
-        help=_('Set the hexadecimal (#rrggbb) foreground color of the '
-               'focused terminal.')
+        help=_('Set the hexadecimal (#rrggbb) foreground color of '
+               'the current terminal.')
     )
 
     parser.add_option(
@@ -265,11 +265,11 @@ def main():
     )
 
     parser.add_option(
-        '--reset-colors-focused',
-        dest='reset_colors_focused',
+        '--reset-colors-current',
+        dest='reset_colors_current',
         action='store_true',
         default=False,
-        help=_('Set colors of the focused terminal from settings.')
+        help=_('Set colors of the current terminal from settings.')
     )
 
     parser.add_option(
@@ -515,12 +515,12 @@ def main():
         remote_object.set_fgcolor(options.fgcolor)
         only_show_hide = options.show
 
-    if options.bgcolor_focused:
-        remote_object.set_bgcolor_focused_terminal(options.bgcolor_focused)
+    if options.bgcolor_current:
+        remote_object.set_bgcolor_current_terminal(options.bgcolor_current)
         only_show_hide = options.show
 
-    if options.fgcolor_focused:
-        remote_object.set_fgcolor_focused_terminal(options.fgcolor_focused)
+    if options.fgcolor_current:
+        remote_object.set_fgcolor_current_terminal(options.fgcolor_current)
         only_show_hide = options.show
 
     if options.palette_name:
@@ -531,8 +531,8 @@ def main():
         remote_object.reset_colors()
         only_show_hide = options.show
 
-    if options.reset_colors_focused:
-        remote_object.reset_colors_focused()
+    if options.reset_colors_current:
+        remote_object.reset_colors_current()
         only_show_hide = options.show
 
     if options.rename_current_tab:
