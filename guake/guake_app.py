@@ -1248,7 +1248,7 @@ class Guake(SimpleGladeApp):
     def restore_tabs(self, filename='session.json', suppress_notify=False):
         session_file = self.get_xdg_config_directory() / filename
         if not session_file.exists():
-            log.info('Cannot found tabs session.json file')
+            log.info('Cannot find session.json file')
             return
         with session_file.open() as f:
             try:
