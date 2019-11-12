@@ -1,7 +1,8 @@
 # Linux, IDE and Editors
 
-#    pycharm
+#    pycharm & IntelliJ
 .idea
+*.iml
 
 #    kde
 .directory

@@ -1,0 +1,2 @@
+features:
+  - Add --select-terminal and --selected-terminal options to Guake CLI

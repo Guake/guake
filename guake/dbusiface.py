@@ -91,6 +91,30 @@ class DbusManager(dbus.service.Object):
     def get_tab_count(self):
         return len(self.guake.notebook_manager.get_terminals())
 
+    @dbus.service.method(DBUS_NAME, in_signature='i')
+    def select_terminal(self, term_index=0):
+        notebook = self.guake.get_notebook()
+        current_page_index = notebook.get_current_page()
+        terminals = notebook.get_terminals_for_page(current_page_index)
+        return terminals[term_index].grab_focus()
+
+    @dbus.service.method(DBUS_NAME, out_signature='i')
+    def get_selected_terminal(self):
+        notebook = self.guake.get_notebook()
+        current_page_index = notebook.get_current_page()
+        terminals = notebook.get_terminals_for_page(current_page_index)
+        for i, term in enumerate(terminals, 0):
+            if term.is_focus():
+                return i
+        return -1
+
+    @dbus.service.method(DBUS_NAME, out_signature='i')
+    def get_term_count(self):
+        notebook = self.guake.get_notebook()
+        current_page_index = notebook.get_current_page()
+        terminals = notebook.get_terminals_for_page(current_page_index)
+        return len(terminals)
+
     @dbus.service.method(DBUS_NAME, in_signature='s')
     def set_bgcolor(self, bgcolor):
         return self.guake.set_bgcolor(bgcolor)
