@@ -179,6 +179,27 @@ def main():
     )
 
     parser.add_option(
+        '-S',
+        '--select-terminal',
+        dest='select_terminal',
+        metavar='TERMINAL_INDEX',
+        action='store',
+        default='',
+        help=_(
+            'Select a specific terminal in a split tab. ' +
+            'Only useful with split terminals (TERMINAL_INDEX is the index of the tab)'
+        )
+    )
+
+    parser.add_option(
+        '--selected-terminal',
+        dest='selected_terminal',
+        action='store_true',
+        default=False,
+        help=_('Return the selected terminal index.')
+    )
+
+    parser.add_option(
         '--split-vertical',
         dest='split_vertical',
         action='store_true',
@@ -494,6 +515,20 @@ def main():
 
     if options.split_horizontal:
         remote_object.h_split_current_terminal()
+        only_show_hide = options.show
+
+    if options.selected_terminal:
+        selected = remote_object.get_selected_terminal()
+        sys.stdout.write('%d\n' % selected)
+        only_show_hide = options.show
+
+    if options.select_terminal:
+        selected = int(options.select_terminal)
+        term_count = int(remote_object.get_term_count())
+        if 0 <= selected < term_count:
+            remote_object.select_terminal(selected)
+        else:
+            sys.stderr.write('invalid index: %d\n' % selected)
         only_show_hide = options.show
 
     if options.command:
