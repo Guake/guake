@@ -154,20 +154,29 @@ class GSettingHandler():
     def cursor_blink_mode_changed(self, settings, key, user_data):
         """Called when cursor blink mode settings has been changed
         """
-        for term in self.guake.notebook_manager.iter_terminals():
+        terminal = self.guake.notebook_manager.get_terminal_by_uuid(user_data.get('terminal_uuid'))\
+            if user_data else None
+        terminals = (terminal, ) if terminal else self.guake.notebook_manager.iter_terminals()
+        for term in terminals:
             term.set_property("cursor-blink-mode", settings.get_int(key))
 
     def cursor_shape_changed(self, settings, key, user_data):
         """Called when the cursor shape settings has been changed
         """
-        for term in self.guake.notebook_manager.iter_terminals():
+        terminal = self.guake.notebook_manager.get_terminal_by_uuid(user_data.get('terminal_uuid'))\
+            if user_data else None
+        terminals = (terminal, ) if terminal else self.guake.notebook_manager.iter_terminals()
+        for term in terminals:
             term.set_property("cursor-shape", settings.get_int(key))
 
     def scrollbar_toggled(self, settings, key, user_data):
         """If the gconf var use_scrollbar be changed, this method will
         be called and will show/hide scrollbars of all terminals open.
         """
-        for term in self.guake.notebook_manager.iter_terminals():
+        terminal = self.guake.notebook_manager.get_terminal_by_uuid(user_data.get('terminal_uuid'))\
+            if user_data else None
+        terminals = (terminal, ) if terminal else self.guake.notebook_manager.iter_terminals()
+        for term in terminals:
             # There is an hbox in each tab of the main notebook and it
             # contains a Terminal and a Scrollbar. Since only have the
             # Terminal here, we're going to use this to get the
@@ -187,7 +196,10 @@ class GSettingHandler():
         terminals open.
         """
         lines = settings.get_int(key)
-        for i in self.guake.notebook_manager.iter_terminals():
+        terminal = self.guake.notebook_manager.get_terminal_by_uuid(user_data.get('terminal_uuid'))\
+            if user_data else None
+        terminals = (terminal, ) if terminal else self.guake.notebook_manager.iter_terminals()
+        for i in terminals:
             i.set_scrollback_lines(lines)
 
     def infinite_history_changed(self, settings, key, user_data):
@@ -195,7 +207,10 @@ class GSettingHandler():
             lines = -1
         else:
             lines = self.settings.general.get_int("history-size")
-        for i in self.guake.notebook_manager.iter_terminals():
+        terminal = self.guake.notebook_manager.get_terminal_by_uuid(user_data.get('terminal_uuid'))\
+            if user_data else None
+        terminals = (terminal, ) if terminal else self.guake.notebook_manager.iter_terminals()
+        for i in terminals:
             i.set_scrollback_lines(lines)
 
     def keystroke_output(self, settings, key, user_data):
@@ -203,7 +218,10 @@ class GSettingHandler():
         be called and will set the scroll_on_output in all terminals
         open.
         """
-        for i in self.guake.notebook_manager.iter_terminals():
+        terminal = self.guake.notebook_manager.get_terminal_by_uuid(user_data.get('terminal_uuid'))\
+            if user_data else None
+        terminals = (terminal, ) if terminal else self.guake.notebook_manager.iter_terminals()
+        for i in terminals:
             i.set_scroll_on_output(settings.get_boolean(key))
 
     def keystroke_toggled(self, settings, key, user_data):
@@ -211,7 +229,10 @@ class GSettingHandler():
         will be called and will set the scroll_on_keystroke in all
         terminals open.
         """
-        for i in self.guake.notebook_manager.iter_terminals():
+        terminal = self.guake.notebook_manager.get_terminal_by_uuid(user_data.get('terminal_uuid'))\
+            if user_data else None
+        terminals = (terminal, ) if terminal else self.guake.notebook_manager.iter_terminals()
+        for i in terminals:
             i.set_scroll_on_keystroke(settings.get_boolean(key))
 
     def default_font_toggled(self, settings, key, user_data):
@@ -233,7 +254,10 @@ class GSettingHandler():
         if not font:
             log.error("Error: unable to load font (%s)", font_name)
             return
-        for i in self.guake.notebook_manager.iter_terminals():
+        terminal = self.guake.notebook_manager.get_terminal_by_uuid(user_data.get('terminal_uuid'))\
+            if user_data else None
+        terminals = (terminal, ) if terminal else self.guake.notebook_manager.iter_terminals()
+        for i in terminals:
             i.set_font(font)
 
     def allow_bold_toggled(self, settings, key, user_data):
@@ -241,7 +265,10 @@ class GSettingHandler():
         and will change the VTE terminal o.
         displaying characters in bold font.
         """
-        for term in self.guake.notebook_manager.iter_terminals():
+        terminal = self.guake.notebook_manager.get_terminal_by_uuid(user_data.get('terminal_uuid'))\
+            if user_data else None
+        terminals = (terminal, ) if terminal else self.guake.notebook_manager.iter_terminals()
+        for term in terminals:
             term.set_allow_bold(settings.get_boolean(key))
 
     def bold_is_bright_toggled(self, settings, key, user_data):
@@ -249,7 +276,11 @@ class GSettingHandler():
         and will change the VTE terminal to toggle auto-brightened bold text.
         """
         try:
-            for term in self.guake.notebook_manager.iter_terminals():
+            terminal = self.guake.notebook_manager.get_terminal_by_uuid(
+                user_data.get('terminal_uuid')
+            )
+            terminals = (terminal, ) if terminal else self.guake.notebook_manager.iter_terminals()
+            for term in terminals:
                 term.set_bold_is_bright(settings.get_boolean(key))
         except:  # pylint: disable=bare-except
             log.error("set_bold_is_bright not supported by your version of VTE")
@@ -266,8 +297,16 @@ class GSettingHandler():
         will be called and will change the font style in all terminals
         open.
         """
+        terminal_uuid = user_data.get('terminal_uuid')
+
+        if terminal_uuid:
+            terminal = self.guake.notebook_manager.get_terminal_by_uuid(terminal_uuid)
+            terminals = (terminal, ) if terminal else tuple()
+        else:
+            terminals = self.guake.notebook_manager.iter_terminals()
+
         font = Pango.FontDescription(settings.get_string(key))
-        for i in self.guake.notebook_manager.iter_terminals():
+        for i in terminals:
             i.set_font(font)
 
     def fpalette_changed(self, settings, key, user_data):
@@ -275,14 +314,16 @@ class GSettingHandler():
         will be called and will change the color scheme in all terminals
         open.
         """
-        self.guake.set_colors_from_settings()
+        self.guake.set_colors_from_settings(terminal_uuid=user_data.get('terminal_uuid'))
 
     def bgtransparency_changed(self, settings, key, user_data):
         """If the gconf var style/background/transparency be changed, this
         method will be called and will set the saturation and transparency
         properties in all terminals open.
         """
-        self.guake.set_background_color_from_settings()
+        self.guake.set_background_color_from_settings(
+            terminal_uuid=user_data.get('terminal_uuid') if user_data else None
+        )
 
     def getEraseBinding(self, str):
         if str == "auto":
@@ -301,7 +342,10 @@ class GSettingHandler():
         will be called and will change the binding configuration in
         all terminals open.
         """
-        for i in self.guake.notebook_manager.iter_terminals():
+        terminal = self.guake.notebook_manager.get_terminal_by_uuid(user_data.get('terminal_uuid'))\
+            if user_data else None
+        terminals = (terminal, ) if terminal else self.guake.notebook_manager.iter_terminals()
+        for i in terminals:
             i.set_backspace_binding(self.getEraseBinding(settings.get_string(key)))
 
     def delete_changed(self, settings, key, user_data):
@@ -309,7 +353,10 @@ class GSettingHandler():
         will be called and will change the binding configuration in
         all terminals open.
         """
-        for i in self.guake.notebook_manager.iter_terminals():
+        terminal = self.guake.notebook_manager.get_terminal_by_uuid(user_data.get('terminal_uuid'))\
+            if user_data else None
+        terminals = (terminal, ) if terminal else self.guake.notebook_manager.iter_terminals()
+        for i in terminals:
             i.set_delete_binding(self.getEraseBinding(settings.get_string(key)))
 
     def max_tab_name_length_changed(self, settings, key, user_data):
