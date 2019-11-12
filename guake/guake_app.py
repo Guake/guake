@@ -330,8 +330,8 @@ class Guake(SimpleGladeApp):
             bg_color.alpha = 1
         return bg_color
 
-    def set_background_color_from_settings(self):
-        self.set_colors_from_settings()
+    def set_background_color_from_settings(self, terminal_uuid=None):
+        self.set_colors_from_settings(terminal_uuid)
 
     def get_bgcolor(self):
         palette_list = self._load_palette()
@@ -345,12 +345,16 @@ class Guake(SimpleGladeApp):
             font_color = Gdk.RGBA(0, 0, 0, 0)
         return font_color
 
-    def set_colors_from_settings(self):
+    def set_colors_from_settings(self, terminal_uuid=None):
         bg_color = self.get_bgcolor()
         font_color = self.get_fgcolor()
         palette_list = self._load_palette()
 
-        for i in self.get_notebook().iter_terminals():
+        terminals = self.get_notebook().iter_terminals()
+        if terminal_uuid:
+            terminals = [t for t in terminals if t.uuid == terminal_uuid]
+
+        for i in terminals:
             i.set_color_foreground(font_color)
             i.set_color_bold(font_color)
             i.set_colors(font_color, bg_color, palette_list[:16])
@@ -732,43 +736,98 @@ class Guake(SimpleGladeApp):
 
     # -- configuration --
 
-    def load_config(self):
+    def load_config(self, terminal_uuid=None):
         """"Just a proxy for all the configuration stuff.
         """
+        user_data = {}
+        if terminal_uuid:
+            user_data['terminal_uuid'] = terminal_uuid
 
-        self.settings.general.triggerOnChangedValue(self.settings.general, 'use-trayicon')
-        self.settings.general.triggerOnChangedValue(self.settings.general, 'prompt-on-quit')
-        self.settings.general.triggerOnChangedValue(self.settings.general, 'prompt-on-close-tab')
-        self.settings.general.triggerOnChangedValue(self.settings.general, 'window-tabbar')
-        self.settings.general.triggerOnChangedValue(self.settings.general, 'fullscreen-hide-tabbar')
-        self.settings.general.triggerOnChangedValue(self.settings.general, 'mouse-display')
-        self.settings.general.triggerOnChangedValue(self.settings.general, 'display-n')
-        self.settings.general.triggerOnChangedValue(self.settings.general, 'window-ontop')
-        if not self.fullscreen_manager.is_fullscreen():
-            self.settings.general.triggerOnChangedValue(self.settings.general, 'window-height')
-            self.settings.general.triggerOnChangedValue(self.settings.general, 'window-width')
-        self.settings.general.triggerOnChangedValue(self.settings.general, 'use-scrollbar')
-        self.settings.general.triggerOnChangedValue(self.settings.general, 'history-size')
-        self.settings.general.triggerOnChangedValue(self.settings.general, 'infinite-history')
-        self.settings.general.triggerOnChangedValue(self.settings.general, 'use-vte-titles')
-        self.settings.general.triggerOnChangedValue(self.settings.general, 'set-window-title')
-        self.settings.general.triggerOnChangedValue(self.settings.general, 'display-tab-names')
-        self.settings.general.triggerOnChangedValue(self.settings.general, 'max-tab-name-length')
-        self.settings.general.triggerOnChangedValue(self.settings.general, 'quick-open-enable')
         self.settings.general.triggerOnChangedValue(
-            self.settings.general, 'quick-open-command-line'
+            self.settings.general, 'use-trayicon', user_data=user_data
         )
-        self.settings.style.triggerOnChangedValue(self.settings.style, 'cursor-shape')
-        self.settings.styleFont.triggerOnChangedValue(self.settings.styleFont, 'style')
-        self.settings.styleFont.triggerOnChangedValue(self.settings.styleFont, 'palette')
-        self.settings.styleFont.triggerOnChangedValue(self.settings.styleFont, 'palette-name')
-        self.settings.styleFont.triggerOnChangedValue(self.settings.styleFont, 'allow-bold')
+        self.settings.general.triggerOnChangedValue(
+            self.settings.general, 'prompt-on-quit', user_data=user_data
+        )
+        self.settings.general.triggerOnChangedValue(
+            self.settings.general, 'prompt-on-close-tab', user_data=user_data
+        )
+        self.settings.general.triggerOnChangedValue(
+            self.settings.general, 'window-tabbar', user_data=user_data
+        )
+        self.settings.general.triggerOnChangedValue(
+            self.settings.general, 'fullscreen-hide-tabbar', user_data=user_data
+        )
+        self.settings.general.triggerOnChangedValue(
+            self.settings.general, 'mouse-display', user_data=user_data
+        )
+        self.settings.general.triggerOnChangedValue(
+            self.settings.general, 'display-n', user_data=user_data
+        )
+        self.settings.general.triggerOnChangedValue(
+            self.settings.general, 'window-ontop', user_data=user_data
+        )
+        if not self.fullscreen_manager.is_fullscreen():
+            self.settings.general.triggerOnChangedValue(
+                self.settings.general, 'window-height', user_data=user_data
+            )
+            self.settings.general.triggerOnChangedValue(
+                self.settings.general, 'window-width', user_data=user_data
+            )
+        self.settings.general.triggerOnChangedValue(
+            self.settings.general, 'use-scrollbar', user_data=user_data
+        )
+        self.settings.general.triggerOnChangedValue(
+            self.settings.general, 'history-size', user_data=user_data
+        )
+        self.settings.general.triggerOnChangedValue(
+            self.settings.general, 'infinite-history', user_data=user_data
+        )
+        self.settings.general.triggerOnChangedValue(
+            self.settings.general, 'use-vte-titles', user_data=user_data
+        )
+        self.settings.general.triggerOnChangedValue(
+            self.settings.general, 'set-window-title', user_data=user_data
+        )
+        self.settings.general.triggerOnChangedValue(
+            self.settings.general, 'display-tab-names', user_data=user_data
+        )
+        self.settings.general.triggerOnChangedValue(
+            self.settings.general, 'max-tab-name-length', user_data=user_data
+        )
+        self.settings.general.triggerOnChangedValue(
+            self.settings.general, 'quick-open-enable', user_data=user_data
+        )
+        self.settings.general.triggerOnChangedValue(
+            self.settings.general, 'quick-open-command-line', user_data=user_data
+        )
+        self.settings.style.triggerOnChangedValue(
+            self.settings.style, 'cursor-shape', user_data=user_data
+        )
+        self.settings.styleFont.triggerOnChangedValue(
+            self.settings.styleFont, 'style', user_data=user_data
+        )
+        self.settings.styleFont.triggerOnChangedValue(
+            self.settings.styleFont, 'palette', user_data=user_data
+        )
+        self.settings.styleFont.triggerOnChangedValue(
+            self.settings.styleFont, 'palette-name', user_data=user_data
+        )
+        self.settings.styleFont.triggerOnChangedValue(
+            self.settings.styleFont, 'allow-bold', user_data=user_data
+        )
         self.settings.styleBackground.triggerOnChangedValue(
-            self.settings.styleBackground, 'transparency'
+            self.settings.styleBackground, 'transparency', user_data=user_data
         )
-        self.settings.general.triggerOnChangedValue(self.settings.general, 'use-default-font')
-        self.settings.general.triggerOnChangedValue(self.settings.general, 'compat-backspace')
-        self.settings.general.triggerOnChangedValue(self.settings.general, 'compat-delete')
+        self.settings.general.triggerOnChangedValue(
+            self.settings.general, 'use-default-font', user_data=user_data
+        )
+        self.settings.general.triggerOnChangedValue(
+            self.settings.general, 'compat-backspace', user_data=user_data
+        )
+        self.settings.general.triggerOnChangedValue(
+            self.settings.general, 'compat-delete', user_data=user_data
+        )
 
     def accel_search_terminal(self, *args):
         nb = self.get_notebook()
@@ -1076,7 +1135,7 @@ class Guake(SimpleGladeApp):
         self.get_notebook().rename_page(page_num, new_text, user_set)
 
     def terminal_spawned(self, notebook, terminal, pid):
-        self.load_config()
+        self.load_config(terminal_uuid=terminal.uuid)
         terminal.handler_ids.append(
             terminal.connect('window-title-changed', self.on_terminal_title_changed, terminal)
         )

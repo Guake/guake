@@ -526,6 +526,12 @@ class NotebookManager(GObject.Object):
             for t in self.notebooks[k].iter_terminals():
                 yield t
 
+    def get_terminal_by_uuid(self, terminal_uuid):
+        for t in self.iter_terminals():
+            if t.uuid == terminal_uuid:
+                return t
+        return None
+
     def iter_pages(self):
         for k in self.notebooks:
             for t in self.notebooks[k].iter_pages():
