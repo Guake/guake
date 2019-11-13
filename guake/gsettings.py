@@ -277,7 +277,7 @@ class GSettingHandler():
         """
         try:
             terminal = self.guake.notebook_manager.get_terminal_by_uuid(
-                user_data.get('terminal_uuid')
+                user_data.get('terminal_uuid') if user_data else None
             )
             terminals = (terminal, ) if terminal else self.guake.notebook_manager.iter_terminals()
             for term in terminals:
@@ -297,7 +297,7 @@ class GSettingHandler():
         will be called and will change the font style in all terminals
         open.
         """
-        terminal_uuid = user_data.get('terminal_uuid')
+        terminal_uuid = user_data.get('terminal_uuid') if user_data else None
 
         if terminal_uuid:
             terminal = self.guake.notebook_manager.get_terminal_by_uuid(terminal_uuid)
@@ -314,7 +314,9 @@ class GSettingHandler():
         will be called and will change the color scheme in all terminals
         open.
         """
-        self.guake.set_colors_from_settings(terminal_uuid=user_data.get('terminal_uuid'))
+        self.guake.set_colors_from_settings(
+            terminal_uuid=user_data.get('terminal_uuid') if user_data else None
+        )
 
     def bgtransparency_changed(self, settings, key, user_data):
         """If the gconf var style/background/transparency be changed, this
