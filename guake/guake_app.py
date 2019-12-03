@@ -376,6 +376,30 @@ class Guake(SimpleGladeApp):
                 terminal.set_color_bold(font_color)
                 terminal.set_colors(font_color, bg_color, palette_list[:16])
 
+    def reset_terminal_custom_colors(self, current_terminal=False, current_page=False,
+                                     terminal_uuid=None):
+        """Resets terminal(s) colors to the settings colors.
+        If current_terminal == False and current_page == False and terminal_uuid is None,
+        resets colors of all terminals.
+        """
+        terminals = []
+
+        if current_terminal:
+            terminals.append(self.get_notebook().get_current_terminal())
+        if current_page:
+            page_num = self.get_notebook().get_current_page()
+            for t in self.get_notebook().get_nth_page(page_num).iter_terminals():
+                terminals.append(t)
+        if terminal_uuid:
+            for t in self.get_notebook().iter_terminals():
+                if t.uuid == terminal_uuid:
+                    terminals.append(t)
+        if not current_terminal and not current_page and not terminal_uuid:
+            terminals = list(self.get_notebook().iter_terminals())
+
+        for i in terminals:
+            i.reset_custom_colors()
+
     def set_bgcolor(self, bgcolor, current_terminal_only=False):
         if isinstance(bgcolor, str):
             c = Gdk.RGBA(0, 0, 0, 0)
@@ -388,11 +412,11 @@ class Guake(SimpleGladeApp):
         log.debug("setting background color to: %r", bgcolor)
 
         if current_terminal_only:
-            self.get_notebook().get_current_terminal().set_color_background(bgcolor)
+            self.get_notebook().get_current_terminal().set_color_background_custom(bgcolor)
         else:
             page_num = self.get_notebook().get_current_page()
             for terminal in self.get_notebook().get_nth_page(page_num).iter_terminals():
-                terminal.set_color_background(bgcolor)
+                terminal.set_color_background_custom(bgcolor)
 
     def set_fgcolor(self, fgcolor, current_terminal_only=False):
         if isinstance(fgcolor, str):

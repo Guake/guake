@@ -137,10 +137,12 @@ class DbusManager(dbus.service.Object):
 
     @dbus.service.method(DBUS_NAME)
     def reset_colors(self):
+        self.guake.reset_terminal_custom_colors(current_page=True)
         self.guake.set_colors_from_settings_on_current_page()
 
     @dbus.service.method(DBUS_NAME)
     def reset_colors_current(self):
+        self.guake.reset_terminal_custom_colors(current_terminal=True)
         self.guake.set_colors_from_settings_on_current_page(current_terminal_only=True)
 
     @dbus.service.method(DBUS_NAME, in_signature='s')
