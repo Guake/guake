@@ -220,7 +220,9 @@ class RootTerminalBox(Gtk.Overlay, TerminalHolder):
         elif isinstance(box, TerminalBox):
             btype = 'term'
             directory = box.terminal.get_current_directory()
-            panes.append({'type': btype, 'directory': directory})
+            panes.append({'type': btype, 'directory': directory,
+                          'custom_colors': box.terminal.get_custom_colors_dict(),
+                          })
 
     def restore_box_layout(self, box, panes: list):
         """Restore box layout by `panes`
@@ -278,6 +280,7 @@ class RootTerminalBox(Gtk.Overlay, TerminalHolder):
 
             # Replace term in the TerminalBox
             term = self.get_notebook().terminal_spawn(cur['directory'])
+            term.set_custom_colors_from_dict(cur.get('custom_colors', None))
             box.set_terminal(term)
             self.get_notebook().terminal_attached(term)
 
