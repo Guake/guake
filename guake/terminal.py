@@ -118,6 +118,7 @@ class GuakeTerminal(Vte.Terminal):
         # Custom colors
         self.custom_bgcolor = None
         self.custom_fgcolor = None
+        self.custom_palette = None
 
         self.setup_drag_and_drop()
 
@@ -555,23 +556,35 @@ class GuakeTerminal(Vte.Terminal):
         return pid
 
     def set_color_foreground(self, font_color, *args, **kwargs):
-        super(GuakeTerminal, self).set_color_foreground(font_color, *args, **kwargs)
+        real_fgcolor = self.custom_fgcolor if self.custom_fgcolor else font_color
+        super(GuakeTerminal, self).set_color_foreground(real_fgcolor, *args, **kwargs)
 
     def set_color_background(self, bgcolor, *args, **kwargs):
         real_bgcolor = self.custom_bgcolor if self.custom_bgcolor else bgcolor
         super(GuakeTerminal, self).set_color_background(real_bgcolor, *args, **kwargs)
 
     def set_color_bold(self, font_color, *args, **kwargs):
-        super(GuakeTerminal, self).set_color_bold(font_color, *args, **kwargs)
+        real_fgcolor = self.custom_fgcolor if self.custom_fgcolor else font_color
+        super(GuakeTerminal, self).set_color_bold(real_fgcolor, *args, **kwargs)
 
     def set_colors(self, font_color, bg_color, palette_list, *args, **kwargs):
         real_bgcolor = self.custom_bgcolor if self.custom_bgcolor else bg_color
-        super(GuakeTerminal, self).set_colors(font_color, real_bgcolor, palette_list, *args, **kwargs)
+        real_fgcolor = self.custom_fgcolor if self.custom_fgcolor else font_color
+        real_palette = self.custom_palette if self.custom_palette else palette_list
+        super(GuakeTerminal, self).set_colors(real_fgcolor, real_bgcolor, real_palette, *args, **kwargs)
+
+    def set_color_foreground_custom(self, fgcolor, *args, **kwargs):
+        """Sets custom foreground color for this terminal"""
+        print('set_color_foreground_custom: %s' % self.uuid)
+        self.custom_fgcolor = fgcolor
+        super(GuakeTerminal, self).set_color_foreground(self.custom_fgcolor, *args, **kwargs)
 
     def set_color_background_custom(self, bgcolor, *args, **kwargs):
-        """Sets custom color for this terminal"""
+        """Sets custom background color for this terminal"""
         self.custom_bgcolor = bgcolor
         super(GuakeTerminal, self).set_color_background(self.custom_bgcolor, *args, **kwargs)
 
     def reset_custom_colors(self):
+        self.custom_fgcolor = None
         self.custom_bgcolor = None
+        self.custom_palette = None
