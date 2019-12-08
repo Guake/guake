@@ -429,11 +429,11 @@ class Guake(SimpleGladeApp):
         log.debug("setting background color to: %r", fgcolor)
 
         if current_terminal_only:
-            self.get_notebook().get_current_terminal().set_color_foreground(fgcolor)
+            self.get_notebook().get_current_terminal().set_color_foreground_custom(fgcolor)
         else:
             page_num = self.get_notebook().get_current_page()
             for terminal in self.get_notebook().get_nth_page(page_num).iter_terminals():
-                terminal.set_color_foreground(fgcolor)
+                terminal.set_color_foreground_custom(fgcolor)
 
     def change_palette_name(self, palette_name):
         if isinstance(palette_name, str):
