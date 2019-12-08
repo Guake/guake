@@ -1401,8 +1401,9 @@ class Guake(SimpleGladeApp):
                             directory, tab['label'], tab['custom_label_set']
                         )
                         if tab.get('panes', False):
-                            if directory:
-                                continue
+                            # ToDo: Is it safe to delete this?
+                            # if directory:
+                            #     continue
                             box.restore_box_layout(box.child, tab['panes'])
 
                     # Remove original pages in notebook

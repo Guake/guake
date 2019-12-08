@@ -588,3 +588,47 @@ class GuakeTerminal(Vte.Terminal):
         self.custom_fgcolor = None
         self.custom_bgcolor = None
         self.custom_palette = None
+
+    @staticmethod
+    def _color_to_list(color):
+        """This method is used for serialization."""
+        if color is None:
+            return None
+        return [color.red, color.green, color.blue, color.alpha]
+
+    @staticmethod
+    def _color_from_list(color_list):
+        """This method is used for deserialization."""
+        return Gdk.RGBA(red=color_list[0], green=color_list[1], blue=color_list[2],\
+                         alpha=color_list[3])
+
+    def get_custom_colors_dict(self):
+        """Returns dictionary of custom colors."""
+        return {
+            'fg_color': self._color_to_list(self.custom_fgcolor),
+            'bg_color': self._color_to_list(self.custom_bgcolor),
+            'palette': [self._color_to_list(col) for col in self.custom_palette]
+                if self.custom_palette else None,
+        }
+
+    def set_custom_colors_from_dict(self, colors_dict):
+        if type(colors_dict) != dict:
+            return
+
+        bg_color = colors_dict.get('bg_color', None)
+        if type(bg_color) == list:
+            self.custom_bgcolor = self._color_from_list(bg_color)
+        else:
+            self.custom_bgcolor = None
+
+        fg_color = colors_dict.get('fg_color', None)
+        if type(fg_color) == list:
+            self.custom_fgcolor = self._color_from_list(fg_color)
+        else:
+            self.custom_fgcolor = None
+
+        palette = colors_dict.get('palette', None)
+        if type(palette) == list:
+            self.custom_palette = [self._color_from_list(col) for col in palette]
+        else:
+            self.custom_palette = None
