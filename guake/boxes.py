@@ -15,7 +15,7 @@ from gi.repository import Vte
 
 from guake.callbacks import MenuHideCallback
 from guake.callbacks import TerminalContextMenuCallbacks
-from guake.dialogs import RenameDialog
+from guake.dialogs import RenameDialog, PromptResetColorsDialog
 from guake.menus import mk_tab_context_menu
 from guake.menus import mk_terminal_context_menu
 from guake.utils import HidePrevention
@@ -696,6 +696,18 @@ class TabLabelEventBox(Gtk.EventBox):
             page_num = self.notebook.find_tab_index_by_label(self)
             self.notebook.rename_page(page_num, new_text, True)
         dialog.destroy()
+        HidePrevention(self.get_toplevel()).allow()
+
+        self.grab_focus_on_last_focused_terminal()
+
+    @save_tabs_when_changed
+    def on_reset_custom_colors(self, user_data):
+        HidePrevention(self.get_toplevel()).prevent()
+        if PromptResetColorsDialog(self.notebook.guake.window).reset_tab_custom_colors():
+            page_num = self.notebook.find_tab_index_by_label(self)
+            for t in self.notebook.get_nth_page(page_num).iter_terminals():
+                t.reset_custom_colors()
+            self.notebook.guake.set_colors_from_settings_on_page(page_num=page_num)
         HidePrevention(self.get_toplevel()).allow()
 
         self.grab_focus_on_last_focused_terminal()

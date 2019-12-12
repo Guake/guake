@@ -17,15 +17,18 @@ def mk_tab_context_menu(callback_object):
     #   https://stackoverflow.com/questions/28465956/
     callback_object.context_menu = Gtk.Menu()
     menu = callback_object.context_menu
-    mi1 = Gtk.MenuItem(_("New Tab"))
-    mi1.connect("activate", callback_object.on_new_tab)
-    menu.add(mi1)
-    mi2 = Gtk.MenuItem(_("Rename"))
-    mi2.connect("activate", callback_object.on_rename)
-    menu.add(mi2)
-    mi3 = Gtk.MenuItem(_("Close"))
-    mi3.connect("activate", callback_object.on_close)
-    menu.add(mi3)
+    mi_new_tab = Gtk.MenuItem(_("New Tab"))
+    mi_new_tab.connect("activate", callback_object.on_new_tab)
+    menu.add(mi_new_tab)
+    mi_rename = Gtk.MenuItem(_("Rename"))
+    mi_rename.connect("activate", callback_object.on_rename)
+    menu.add(mi_rename)
+    mi_reset_custom_colors = Gtk.MenuItem(_("Reset custom colors"))
+    mi_reset_custom_colors.connect("activate", callback_object.on_reset_custom_colors)
+    menu.add(mi_reset_custom_colors)
+    mi_close = Gtk.MenuItem(_("Close"))
+    mi_close.connect("activate", callback_object.on_close)
+    menu.add(mi_close)
     menu.show_all()
     return menu
 

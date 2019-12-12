@@ -359,7 +359,8 @@ class Guake(SimpleGladeApp):
             i.set_color_bold(font_color)
             i.set_colors(font_color, bg_color, palette_list[:16])
 
-    def set_colors_from_settings_on_current_page(self, current_terminal_only=False):
+    def set_colors_from_settings_on_page(self, current_terminal_only=False, page_num=None):
+        """If page_num is None, sets colors on the current page."""
         bg_color = self.get_bgcolor()
         font_color = self.get_fgcolor()
         palette_list = self._load_palette()
@@ -370,7 +371,8 @@ class Guake(SimpleGladeApp):
             terminal.set_color_bold(font_color)
             terminal.set_colors(font_color, bg_color, palette_list[:16])
         else:
-            page_num = self.get_notebook().get_current_page()
+            if page_num is None:
+                page_num = self.get_notebook().get_current_page()
             for terminal in self.get_notebook().get_nth_page(page_num).iter_terminals():
                 terminal.set_color_foreground(font_color)
                 terminal.set_color_bold(font_color)

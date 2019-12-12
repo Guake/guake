@@ -87,6 +87,33 @@ class PromptQuitDialog(Gtk.MessageDialog):
         return response
 
 
+class PromptResetColorsDialog(Gtk.MessageDialog):
+
+    """Prompts the user whether to reset tab colors.
+    """
+
+    def __init__(self, parent):
+        super(PromptResetColorsDialog, self).__init__(
+            parent, Gtk.DialogFlags.MODAL | Gtk.DialogFlags.DESTROY_WITH_PARENT,
+            Gtk.MessageType.QUESTION, Gtk.ButtonsType.YES_NO
+        )
+
+        primary_msg = _("Do you want to reset custom colors for this tab?")
+
+        self.set_markup(primary_msg)
+
+    def reset_tab_custom_colors(self):
+        """Run the "are you sure" dialog for resetting tab colors
+        """
+        # Stop an open "close tab" dialog from obstructing a quit
+        response = self.run() == Gtk.ResponseType.YES
+        self.destroy()
+        # Keep Guake focussed after dismissing tab-close prompt
+        # if tab == -1:
+        #     self.window.present()
+        return response
+
+
 class SaveTerminalDialog(Gtk.FileChooserDialog):
 
     def __init__(self, terminal, window):
