@@ -176,6 +176,7 @@ class Guake(SimpleGladeApp):
 
         # important widgets
         self.window = self.get_widget('window-root')
+        self.window.set_name('guake-terminal')
         self.window.set_keep_above(True)
         self.mainframe = self.get_widget('mainframe')
         self.mainframe.remove(self.get_widget('notebook-teminals'))
