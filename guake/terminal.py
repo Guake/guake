@@ -571,7 +571,8 @@ class GuakeTerminal(Vte.Terminal):
         real_bgcolor = self.custom_bgcolor if self.custom_bgcolor else bg_color
         real_fgcolor = self.custom_fgcolor if self.custom_fgcolor else font_color
         real_palette = self.custom_palette if self.custom_palette else palette_list
-        super(GuakeTerminal, self).set_colors(real_fgcolor, real_bgcolor, real_palette, *args, **kwargs)
+        super(GuakeTerminal,
+              self).set_colors(real_fgcolor, real_bgcolor, real_palette, *args, **kwargs)
 
     def set_color_foreground_custom(self, fgcolor, *args, **kwargs):
         """Sets custom foreground color for this terminal"""
@@ -599,16 +600,17 @@ class GuakeTerminal(Vte.Terminal):
     @staticmethod
     def _color_from_list(color_list):
         """This method is used for deserialization."""
-        return Gdk.RGBA(red=color_list[0], green=color_list[1], blue=color_list[2],\
-                         alpha=color_list[3])
+        return Gdk.RGBA(
+            red=color_list[0], green=color_list[1], blue=color_list[2], alpha=color_list[3]
+        )
 
     def get_custom_colors_dict(self):
         """Returns dictionary of custom colors."""
         return {
             'fg_color': self._color_to_list(self.custom_fgcolor),
             'bg_color': self._color_to_list(self.custom_bgcolor),
-            'palette': [self._color_to_list(col) for col in self.custom_palette]
-                if self.custom_palette else None,
+            'palette': [self._color_to_list(col)
+                        for col in self.custom_palette] if self.custom_palette else None,
         }
 
     def set_custom_colors_from_dict(self, colors_dict):
