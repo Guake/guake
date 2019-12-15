@@ -378,8 +378,9 @@ class Guake(SimpleGladeApp):
                 terminal.set_color_bold(font_color)
                 terminal.set_colors(font_color, bg_color, palette_list[:16])
 
-    def reset_terminal_custom_colors(self, current_terminal=False, current_page=False,
-                                     terminal_uuid=None):
+    def reset_terminal_custom_colors(
+        self, current_terminal=False, current_page=False, terminal_uuid=None
+    ):
         """Resets terminal(s) colors to the settings colors.
         If current_terminal == False and current_page == False and terminal_uuid is None,
         resets colors of all terminals.
@@ -1403,7 +1404,6 @@ class Guake(SimpleGladeApp):
                             directory, tab['label'], tab['custom_label_set']
                         )
                         if tab.get('panes', False):
-                            # ToDo: Is it safe to delete this?
                             # if directory:
                             #     continue
                             box.restore_box_layout(box.child, tab['panes'])

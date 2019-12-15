@@ -15,7 +15,8 @@ from gi.repository import Vte
 
 from guake.callbacks import MenuHideCallback
 from guake.callbacks import TerminalContextMenuCallbacks
-from guake.dialogs import RenameDialog, PromptResetColorsDialog
+from guake.dialogs import PromptResetColorsDialog
+from guake.dialogs import RenameDialog
 from guake.menus import mk_tab_context_menu
 from guake.menus import mk_terminal_context_menu
 from guake.utils import HidePrevention
@@ -220,9 +221,11 @@ class RootTerminalBox(Gtk.Overlay, TerminalHolder):
         elif isinstance(box, TerminalBox):
             btype = 'term'
             directory = box.terminal.get_current_directory()
-            panes.append({'type': btype, 'directory': directory,
-                          'custom_colors': box.terminal.get_custom_colors_dict(),
-                          })
+            panes.append({
+                'type': btype,
+                'directory': directory,
+                'custom_colors': box.terminal.get_custom_colors_dict(),
+            })
 
     def restore_box_layout(self, box, panes: list):
         """Restore box layout by `panes`
