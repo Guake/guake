@@ -1,0 +1,5 @@
+features:
+  - |
+    List new features here followed by the ticket number, for example::
+
+      - RFE: Open new tab next to current tab #582

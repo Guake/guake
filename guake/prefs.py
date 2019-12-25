@@ -440,6 +440,11 @@ class PrefsCallbacks():
         """
         self.settings.general.set_boolean('tab-ontop', chk.get_active())
 
+    def on_new_tab_after_toggled(self, chk):
+        """Changes the activity of new_tab_after in dconf
+        """
+        self.settings.general.set_boolean('new-tab-after', chk.get_active())
+
     def on_quick_open_enable_toggled(self, chk):
         """Changes the activity of quick_open_enable in dconf
         """

@@ -322,13 +322,15 @@ class TerminalNotebook(Gtk.Notebook):
     def delete_page_current(self, kill=True, prompt=0):
         self.delete_page(self.get_current_page(), kill, prompt)
 
-    def new_page(self, directory=None):
+    def new_page(self, directory=None, position=None):
         terminal = self.terminal_spawn(directory)
         terminal_box = TerminalBox()
         terminal_box.set_terminal(terminal)
         root_terminal_box = RootTerminalBox(self.guake, self)
         root_terminal_box.set_child(terminal_box)
-        page_num = self.append_page(root_terminal_box, None)
+        page_num = self.insert_page(
+            root_terminal_box, None, position if position is not None else -1
+        )
         self.set_tab_reorderable(root_terminal_box, True)
         self.show_all()  # needed to show newly added tabs and pages
         # this is needed to initially set the last_terminal_focused,
@@ -362,8 +364,8 @@ class TerminalNotebook(Gtk.Notebook):
         terminal.emit("focus", Gtk.DirectionType.TAB_FORWARD)
         self.emit('terminal-spawned', terminal, terminal.pid)
 
-    def new_page_with_focus(self, directory=None, label=None, user_set=False):
-        box, page_num, terminal = self.new_page(directory)
+    def new_page_with_focus(self, directory=None, label=None, user_set=False, position=None):
+        box, page_num, terminal = self.new_page(directory, position=position)
         self.set_current_page(page_num)
         if not label:
             self.rename_page(page_num, _("Terminal"), False)
