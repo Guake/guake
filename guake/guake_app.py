@@ -1172,7 +1172,10 @@ class Guake(SimpleGladeApp):
     def add_tab(self, directory=None):
         """Adds a new tab to the terminal notebook.
         """
-        self.get_notebook().new_page_with_focus(directory)
+        position = None
+        if self.settings.general.get_boolean('new-tab-after'):
+            position = 1 + self.get_notebook().get_current_page()
+        self.get_notebook().new_page_with_focus(directory, position=position)
 
     def find_tab(self, directory=None):
         log.debug("find")
