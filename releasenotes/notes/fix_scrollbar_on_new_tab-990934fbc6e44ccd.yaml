@@ -1,0 +1,3 @@
+fixes:
+  - |
+      - adding a new tab no longer shows the hidden scrollbars on other tabs

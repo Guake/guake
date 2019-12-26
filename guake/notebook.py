@@ -333,6 +333,11 @@ class TerminalNotebook(Gtk.Notebook):
         )
         self.set_tab_reorderable(root_terminal_box, True)
         self.show_all()  # needed to show newly added tabs and pages
+        # this is needed because self.window.show_all() results in showing every
+        # thing which includes the scrollbar too
+        self.guake.settings.general.triggerOnChangedValue(
+            self.guake.settings.general, "use-scrollbar"
+        )
         # this is needed to initially set the last_terminal_focused,
         # one could also call terminal.get_parent().on_terminal_focus()
         self.terminal_attached(terminal)
