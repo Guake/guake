@@ -614,23 +614,23 @@ class GuakeTerminal(Vte.Terminal):
         }
 
     def set_custom_colors_from_dict(self, colors_dict):
-        if type(colors_dict) != dict:
+        if not isinstance(colors_dict, dict):
             return
 
         bg_color = colors_dict.get('bg_color', None)
-        if type(bg_color) == list:
+        if isinstance(bg_color, list):
             self.custom_bgcolor = self._color_from_list(bg_color)
         else:
             self.custom_bgcolor = None
 
         fg_color = colors_dict.get('fg_color', None)
-        if type(fg_color) == list:
+        if isinstance(fg_color, list):
             self.custom_fgcolor = self._color_from_list(fg_color)
         else:
             self.custom_fgcolor = None
 
         palette = colors_dict.get('palette', None)
-        if type(palette) == list:
+        if isinstance(palette, list):
             self.custom_palette = [self._color_from_list(col) for col in palette]
         else:
             self.custom_palette = None
