@@ -72,7 +72,7 @@ except Exception as e:
     sys.stderr.write(
         "[WARN] Some feature might not work:\n"
         "[WARN]  - 'exit' command might freeze the terminal instead of closing the tab\n"
-        "[WARN]  - the 'wall' command is know to work badly\n"
+        "[WARN]  - the 'wall' command is known to work badly\n"
     )
     sys.stderr.write("[WARN] Error: " + str(e) + '\n')
     sys.stderr.write(
