@@ -545,6 +545,7 @@ class Guake(SimpleGladeApp):
         """Toggles the main window visibility
         """
         log.debug("Show_hide called")
+        
         if self.forceHide:
             self.forceHide = False
             return
@@ -558,36 +559,19 @@ class Guake(SimpleGladeApp):
         if not self.window.get_property("visible"):
             log.info("Showing the terminal")
             self.show()
+            self.window.get_window().focus(0)
             self.set_terminal_focus()
             return
 
-        # Disable the focus_if_open feature
-        #  - if doesn't work seamlessly on all system
-        #  - self.window.window.get_state doesn't provides us the right information on all
-        #    systems, especially on MATE/XFCE
-        #
-        # if self.client.get_bool(KEY('/general/focus_if_open')):
-        #     restore_focus = False
-        #     if self.window.window:
-        #         state = int(self.window.window.get_state())
-        #         if ((state & GDK_WINDOW_STATE_STICKY or
-        #                 state & GDK_WINDOW_STATE_WITHDRAWN
-        #              )):
-        #             restore_focus = True
-        #     else:
-        #         restore_focus = True
-        # if not self.hidden:
-        # restore_focus = True
-        #     if restore_focus:
-        #         log.debug("DBG: Restoring the focus to the terminal")
-        #         self.hide()
-        #         self.show()
-        #         self.window.window.focus()
-        #         self.set_terminal_focus()
-        #         return
-
-        log.info("Hiding the terminal")
-        self.hide()
+        should_refocus = self.settings.general.get_boolean('window-refocus')
+        has_focus = self.window.get_window().get_state() & Gdk.WindowState.FOCUSED
+        if should_refocus and not has_focus:
+            log.info("Refocussing the terminal")
+            self.window.get_window().focus(0)
+            self.set_terminal_focus()
+        else:
+            log.info("Hiding the terminal")
+            self.hide()
 
     def show_focus(self, *args):
         self.win_prepare()
