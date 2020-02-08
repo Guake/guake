@@ -700,7 +700,7 @@ class PrefsDialog(SimpleGladeApp):
 
         try:
             tuple_type = gi._gi.ResultTuple  # pylint: disable=c-extension-no-member
-        except:  # pylint: disable=bare-except
+        except Exception:  # pylint: disable=bare-except
             tuple_type = tuple
         if isinstance(pid, (tuple, tuple_type)):
             # Return a tuple in 2.91

@@ -301,7 +301,7 @@ class GSettingHandler:
             terminals = (terminal,) if terminal else self.guake.notebook_manager.iter_terminals()
             for term in terminals:
                 term.set_bold_is_bright(settings.get_boolean(key))
-        except:  # pylint: disable=bare-except
+        except Exception:  # pylint: disable=bare-except
             log.error("set_bold_is_bright not supported by your version of VTE")
 
     def palette_font_and_background_color_toggled(self, settings, key, user_data):

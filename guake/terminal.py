@@ -173,7 +173,7 @@ class GuakeTerminal(Vte.Terminal):
         if (Vte.MAJOR_VERSION, Vte.MINOR_VERSION) >= (0, 56):
             try:
                 self.set_bold_is_bright(self.guake.settings.styleFont.get_boolean("bold-is-bright"))
-            except:  # pylint: disable=bare-except
+            except Exception:  # pylint: disable=bare-except
                 log.error("set_bold_is_bright not supported by your version of VTE")
 
         # TODO PORT is this still the case with the newer vte version?
@@ -538,7 +538,7 @@ class GuakeTerminal(Vte.Terminal):
         )
         try:
             tuple_type = gi._gi.ResultTuple  # pylint: disable=c-extension-no-member
-        except:  # pylint: disable=bare-except
+        except Exception:  # pylint: disable=bare-except
             tuple_type = tuple
         if isinstance(pid, (tuple, tuple_type)):
             # Return a tuple in 2.91

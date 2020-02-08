@@ -36,7 +36,7 @@ log = logging.getLogger(__name__)
 try:
     from guake.paths import LOCALE_DIR
     bindtextdomain(NAME, LOCALE_DIR)
-except:  # pylint: disable=bare-except
+except Exception:  # pylint: disable=bare-except
     pass
 
 
