@@ -40,7 +40,7 @@ def setupLogging(debug_mode):
             {
                 "version": 1,
                 "disable_existing_loggers": False,
-                "loggers": {"": {"handlers": ["default"], "level": level_str, "propagate": True},},
+                "loggers": {"": {"handlers": ["default"], "level": level_str, "propagate": True}, },
                 "handlers": {
                     "default": {
                         "level": level_str,

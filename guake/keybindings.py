@@ -303,7 +303,8 @@ class Keybindings:
                 mask,
                 Gtk.AccelFlags.VISIBLE,
                 (
-                    lambda *args: self.guake.get_notebook()  # keep make style from concat this lines
+                    # keep make style from concat this lines
+                    lambda *args: self.guake.get_notebook()
                     .get_current_terminal()
                     .get_parent()
                     .split_v()
@@ -317,7 +318,8 @@ class Keybindings:
                 mask,
                 Gtk.AccelFlags.VISIBLE,
                 (
-                    lambda *args: self.guake.get_notebook()  # keep make style from concat this lines
+                    # keep make style from concat this lines
+                    lambda *args: self.guake.get_notebook()
                     .get_current_terminal()
                     .get_parent()
                     .split_h()

@@ -163,7 +163,7 @@ HOTKEYS = [
     {
         "label": _("Extra features"),
         "key": "extra",
-        "keys": [{"key": "search-on-web", "label": _("Search select text on web")},],
+        "keys": [{"key": "search-on-web", "label": _("Search select text on web")}],
     },
 ]
 
