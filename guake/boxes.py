@@ -1,28 +1,18 @@
 import logging
 import time
-
 from locale import gettext as _
 
 import gi
+from gi.repository import Gdk, Gio, GLib, GObject, Gtk, Vte
+
+from guake.callbacks import MenuHideCallback, TerminalContextMenuCallbacks
+from guake.dialogs import PromptResetColorsDialog, RenameDialog
+from guake.menus import mk_tab_context_menu, mk_terminal_context_menu
+from guake.utils import HidePrevention, TabNameUtils, get_server_time, save_tabs_when_changed
+
 gi.require_version('Vte', '2.91')  # vte-0.42
 gi.require_version('Gtk', '3.0')
-from gi.repository import GLib
-from gi.repository import GObject
-from gi.repository import Gdk
-from gi.repository import Gio
-from gi.repository import Gtk
-from gi.repository import Vte
 
-from guake.callbacks import MenuHideCallback
-from guake.callbacks import TerminalContextMenuCallbacks
-from guake.dialogs import PromptResetColorsDialog
-from guake.dialogs import RenameDialog
-from guake.menus import mk_tab_context_menu
-from guake.menus import mk_terminal_context_menu
-from guake.utils import HidePrevention
-from guake.utils import TabNameUtils
-from guake.utils import get_server_time
-from guake.utils import save_tabs_when_changed
 
 log = logging.getLogger(__name__)
 

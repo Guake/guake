@@ -1,12 +1,12 @@
 import json
+import logging
 import os
+from locale import gettext as _
 
 import gi
-import logging
-
-from locale import gettext as _
-gi.require_version('Gtk', '3.0')
 from gi.repository import Gtk
+
+gi.require_version('Gtk', '3.0')
 
 log = logging.getLogger(__name__)
 

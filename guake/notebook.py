@@ -17,32 +17,26 @@ Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor,
 Boston, MA 02110-1301 USA
 """
 
+import logging
+import os
+import posix
+from locale import gettext as _
+
+import gi
+from gi.repository import Gdk, GObject, Gtk, Wnck
+
 from guake.about import AboutDialog
-from guake.boxes import DualTerminalBox
-from guake.boxes import RootTerminalBox
-from guake.boxes import TabLabelEventBox
-from guake.boxes import TerminalBox
-from guake.callbacks import MenuHideCallback
-from guake.callbacks import NotebookScrollCallback
+from guake.boxes import DualTerminalBox, RootTerminalBox, TabLabelEventBox, TerminalBox
+from guake.callbacks import MenuHideCallback, NotebookScrollCallback
 from guake.dialogs import PromptQuitDialog
 from guake.menus import mk_notebook_context_menu
 from guake.prefs import PrefsDialog
-from guake.utils import gdk_is_x11_display
-from guake.utils import save_tabs_when_changed
+from guake.terminal import GuakeTerminal
+from guake.utils import gdk_is_x11_display, save_tabs_when_changed
 
-import gi
-import os
 gi.require_version('Gtk', '3.0')
 gi.require_version('Wnck', '3.0')
-from gi.repository import GObject
-from gi.repository import Gdk
-from gi.repository import Gtk
-from gi.repository import Wnck
-from guake.terminal import GuakeTerminal
-from locale import gettext as _
 
-import logging
-import posix
 
 log = logging.getLogger(__name__)
 

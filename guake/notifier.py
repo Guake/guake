@@ -18,9 +18,9 @@ Boston, MA 02110-1301 USA
 """
 
 import gi
+from gi.repository import GLib, Notify
+
 gi.require_version('Notify', '0.7')
-from gi.repository import GLib
-from gi.repository import Notify
 
 Notify.init("Guake")
 

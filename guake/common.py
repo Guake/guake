@@ -22,12 +22,13 @@ import os
 import sys
 
 import gi
-gi.require_version('Gtk', '3.0')
-gi.require_version('Vte', '2.91')  # vte-0.38
 from gi.repository import Gtk
 
-from guake.paths import GLADE_DIR
-from guake.paths import IMAGE_DIR
+from guake.paths import GLADE_DIR, IMAGE_DIR
+
+gi.require_version('Gtk', '3.0')
+gi.require_version('Vte', '2.91')  # vte-0.38
+
 
 log = logging.getLogger(__name__)
 

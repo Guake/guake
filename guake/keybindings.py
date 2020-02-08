@@ -17,16 +17,17 @@ Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor,
 Boston, MA 02110-1301 USA
 """
 import logging
+from locale import gettext as _
 
 import gi
-gi.require_version('Gtk', '3.0')
 from gi.repository import Gtk
 
 from guake import notifier
 from guake.common import pixmapfile
-from guake.split_utils import FocusMover
-from guake.split_utils import SplitMover
-from locale import gettext as _
+from guake.split_utils import FocusMover, SplitMover
+
+gi.require_version('Gtk', '3.0')
+
 
 log = logging.getLogger(__name__)
 

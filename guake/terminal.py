@@ -26,31 +26,22 @@ import subprocess
 import sys
 import threading
 import uuid
-
 from enum import IntEnum
 from pathlib import Path
-from typing import Optional
-from typing import Tuple
-from urllib.parse import unquote
-from urllib.parse import urlparse
-
 from time import sleep
+from typing import Optional, Tuple
+from urllib.parse import unquote, urlparse
 
 import gi
+from gi.repository import Gdk, GdkX11, GLib, Gtk, Pango, Vte
+
+from guake.common import clamp
+from guake.globals import QUICK_OPEN_MATCHERS, TERMINAL_MATCH_EXPRS, TERMINAL_MATCH_TAGS
+
 gi.require_version('Gtk', '3.0')
 gi.require_version('Vte', '2.91')  # vte-0.38
 
-from gi.repository import GLib
-from gi.repository import Gdk
-from gi.repository import GdkX11
-from gi.repository import Gtk
-from gi.repository import Pango
-from gi.repository import Vte
 
-from guake.common import clamp
-from guake.globals import QUICK_OPEN_MATCHERS
-from guake.globals import TERMINAL_MATCH_EXPRS
-from guake.globals import TERMINAL_MATCH_TAGS
 
 log = logging.getLogger(__name__)
 

@@ -18,21 +18,18 @@ Boston, MA 02110-1301 USA
 """
 import logging
 import subprocess
-
+from locale import gettext as _
 from xml.sax.saxutils import escape as xml_escape
 
 import gi
-gi.require_version('Gtk', '3.0')
-gi.require_version('Vte', '2.91')  # vte-0.38
-from gi.repository import Gdk
-from gi.repository import Gio
-from gi.repository import Gtk
-from gi.repository import Pango
-from gi.repository import Vte
-from guake.utils import RectCalculator
+from gi.repository import Gdk, Gio, Gtk, Pango, Vte
 
 from guake.common import pixmapfile
-from locale import gettext as _
+from guake.utils import RectCalculator
+
+gi.require_version('Gtk', '3.0')
+gi.require_version('Vte', '2.91')  # vte-0.38
+
 
 log = logging.getLogger(__name__)
 

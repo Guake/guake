@@ -4,13 +4,11 @@ import json
 import os
 import tempfile
 import time
-
 from pathlib import Path
 
 import pytest
 
 import guake.guake_app
-
 from guake.common import pixmapfile
 from guake.guake_app import Guake
 

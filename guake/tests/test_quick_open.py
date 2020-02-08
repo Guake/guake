@@ -1,8 +1,9 @@
 import re
+from textwrap import dedent
+
+from mock import Mock
 
 from guake.globals import QUICK_OPEN_MATCHERS
-from mock import Mock
-from textwrap import dedent
 
 
 def test_quick_open():

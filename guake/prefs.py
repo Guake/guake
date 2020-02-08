@@ -21,46 +21,26 @@ import os
 import re
 import shutil
 import warnings
-
+from locale import gettext as _
 from textwrap import dedent
 
 import gi
+from gi.repository import Gdk, Gio, GLib, GObject, Gtk, Keybinder, Pango, Vte
+
+from guake.common import ShowableError, get_binaries_from_path, gladefile, hexify_color, pixmapfile
+from guake.globals import (ALIGN_BOTTOM, ALIGN_CENTER, ALIGN_LEFT, ALIGN_RIGHT, ALIGN_TOP,
+                           ALWAYS_ON_PRIMARY, MAX_TRANSPARENCY, NAME, QUICK_OPEN_MATCHERS,
+                           bindtextdomain)
+from guake.palettes import PALETTES
+from guake.paths import AUTOSTART_FOLDER, LOCALE_DIR, LOGIN_DESTOP_PATH
+from guake.simplegladeapp import SimpleGladeApp
+from guake.terminal import GuakeTerminal
+from guake.theme import list_all_themes, select_gtk_theme
+
 gi.require_version('Gtk', '3.0')
 gi.require_version('Keybinder', '3.0')
 gi.require_version('Vte', '2.91')  # vte-0.38
-from gi.repository import GLib
-from gi.repository import GObject
-from gi.repository import Gdk
-from gi.repository import Gio
-from gi.repository import Gtk
-from gi.repository import Keybinder
-from gi.repository import Pango
-from gi.repository import Vte
 
-from guake.common import ShowableError
-from guake.common import get_binaries_from_path
-from guake.common import gladefile
-from guake.common import hexify_color
-from guake.common import pixmapfile
-from guake.globals import ALIGN_BOTTOM
-from guake.globals import ALIGN_CENTER
-from guake.globals import ALIGN_LEFT
-from guake.globals import ALIGN_RIGHT
-from guake.globals import ALIGN_TOP
-from guake.globals import ALWAYS_ON_PRIMARY
-from guake.globals import MAX_TRANSPARENCY
-from guake.globals import NAME
-from guake.globals import QUICK_OPEN_MATCHERS
-from guake.globals import bindtextdomain
-from guake.palettes import PALETTES
-from guake.paths import AUTOSTART_FOLDER
-from guake.paths import LOCALE_DIR
-from guake.paths import LOGIN_DESTOP_PATH
-from guake.simplegladeapp import SimpleGladeApp
-from guake.terminal import GuakeTerminal
-from guake.theme import list_all_themes
-from guake.theme import select_gtk_theme
-from locale import gettext as _
 
 # pylint: disable=unsubscriptable-object
 

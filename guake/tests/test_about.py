@@ -1,6 +1,7 @@
 # pylint: disable=redefined-outer-name
 
 import os
+
 import pytest
 
 from guake import guake_version

@@ -17,8 +17,6 @@ Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor,
 Boston, MA 02110-1301 USA
 """
 import inspect
-import time
-
 # You can put calls to p() everywhere in this page to inspect timing
 # g_start = time.time()
 # def p():
@@ -28,18 +26,17 @@ import os
 import signal
 import subprocess
 import sys
+import time
 import uuid
-
 from locale import gettext as _
 from optparse import OptionParser
 
+from guake.globals import NAME, bindtextdomain
+from guake.support import print_support
+from guake.utils import restore_preferences, save_preferences
+
 log = logging.getLogger(__name__)
 
-from guake.globals import NAME
-from guake.globals import bindtextdomain
-from guake.support import print_support
-from guake.utils import restore_preferences
-from guake.utils import save_preferences
 
 # When we are in the document generation on readthedocs, we do not have paths.py generated
 try:

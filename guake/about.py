@@ -18,16 +18,17 @@ Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor,
 Boston, MA 02110-1301 USA
 """
 
+from locale import gettext as _
+
 import gi
-gi.require_version('Gtk', '3.0')
-from gi.repository import GObject
-from gi.repository import Gtk
+from gi.repository import GObject, Gtk
 
 from guake import guake_version
-from guake.common import gladefile
-from guake.common import pixmapfile
+from guake.common import gladefile, pixmapfile
 from guake.simplegladeapp import SimpleGladeApp
-from locale import gettext as _
+
+gi.require_version('Gtk', '3.0')
+
 
 
 class AboutDialog(SimpleGladeApp):

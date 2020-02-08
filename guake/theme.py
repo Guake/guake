@@ -1,17 +1,16 @@
 import itertools
 import logging
 import os
-
 from pathlib import Path
-
-import gi
-gi.require_version('Gtk', '3.0')
-from gi.repository import GLib
-from gi.repository import Gdk
-from gi.repository import Gtk
 from textwrap import dedent
 
+import gi
+from gi.repository import Gdk, GLib, Gtk
+
 from guake.paths import GUAKE_THEME_DIR
+
+gi.require_version('Gtk', '3.0')
+
 
 log = logging.getLogger(__name__)
 

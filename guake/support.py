@@ -1,17 +1,14 @@
 import os
 
 import gi
+from gi.repository import Gdk, GdkX11, Gtk
+
+from guake import gtk_version, guake_version, vte_runtime_version, vte_version
+
 gi.require_version('Gtk', '3.0')
 gi.require_version('Gdk', '3.0')
 
-from gi.repository import Gdk
-from gi.repository import GdkX11
-from gi.repository import Gtk
 
-from guake import gtk_version
-from guake import guake_version
-from guake import vte_runtime_version
-from guake import vte_version
 
 
 def horizonal_line():

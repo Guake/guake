@@ -43,7 +43,7 @@ twine = "*"
 line_length = 100
 combine_star = true
 quiet = true
-known_third_party = []
+known_third_party = ["cairo", "dbus", "gi", "mock", "pytest", "setuptools"]
 
 [tool.black]
 line-length = 100

@@ -27,68 +27,42 @@ import sys
 import time as pytime
 import traceback
 import uuid
-
+from locale import gettext as _
 from pathlib import Path
 from urllib.parse import quote_plus
 from xml.sax.saxutils import escape as xml_escape
 
+import cairo
 import gi
+from gi.repository import Gdk, GdkX11, Gio, GLib, GObject, Gtk, Keybinder, Vte
+
+from guake import gtk_version, guake_version, notifier, vte_version
+from guake.about import AboutDialog
+from guake.common import gladefile, pixmapfile
+from guake.dialogs import PromptQuitDialog
+from guake.globals import (ALIGN_BOTTOM, ALIGN_CENTER, ALIGN_LEFT, ALIGN_RIGHT, ALIGN_TOP,
+                           ALWAYS_ON_PRIMARY, MAX_TRANSPARENCY, NAME, TABS_SESSION_SCHEMA_VERSION)
+from guake.gsettings import GSettingHandler
+from guake.guake_logging import setupLogging
+from guake.keybindings import Keybindings
+from guake.notebook import NotebookManager, TerminalNotebook
+from guake.palettes import PALETTES
+from guake.paths import LOCALE_DIR, SCHEMA_DIR, try_to_compile_glib_schemas
+from guake.prefs import PrefsDialog, refresh_user_start
+from guake.settings import Settings
+from guake.simplegladeapp import SimpleGladeApp
+from guake.terminal import GuakeTerminal
+from guake.theme import patch_gtk_theme, select_gtk_theme
+from guake.utils import (FullscreenManager, HidePrevention, RectCalculator, TabNameUtils,
+                         get_server_time, save_tabs_when_changed)
+
 gi.require_version('Gtk', '3.0')
 gi.require_version('Gdk', '3.0')
 gi.require_version('Vte', '2.91')  # vte-0.42
 gi.require_version('Keybinder', '3.0')
-from gi.repository import GLib
-from gi.repository import GObject
-from gi.repository import Gdk
-from gi.repository import GdkX11
-from gi.repository import Gio
-from gi.repository import Gtk
-from gi.repository import Keybinder
-from gi.repository import Vte
 
-import cairo
 
-from guake import gtk_version
-from guake import guake_version
-from guake import notifier
-from guake import vte_version
-from guake.about import AboutDialog
-from guake.common import gladefile
-from guake.common import pixmapfile
-from guake.dialogs import PromptQuitDialog
-from guake.globals import ALIGN_BOTTOM
-from guake.globals import ALIGN_CENTER
-from guake.globals import ALIGN_LEFT
-from guake.globals import ALIGN_RIGHT
-from guake.globals import ALIGN_TOP
-from guake.globals import ALWAYS_ON_PRIMARY
-from guake.globals import MAX_TRANSPARENCY
-from guake.globals import NAME
-from guake.globals import TABS_SESSION_SCHEMA_VERSION
-from guake.gsettings import GSettingHandler
-from guake.guake_logging import setupLogging
-from guake.keybindings import Keybindings
-from guake.notebook import NotebookManager
-from guake.notebook import TerminalNotebook
-from guake.palettes import PALETTES
-from guake.paths import LOCALE_DIR
-from guake.paths import SCHEMA_DIR
-from guake.paths import try_to_compile_glib_schemas
-from guake.prefs import PrefsDialog
-from guake.prefs import refresh_user_start
-from guake.settings import Settings
-from guake.simplegladeapp import SimpleGladeApp
-from guake.terminal import GuakeTerminal
-from guake.theme import patch_gtk_theme
-from guake.theme import select_gtk_theme
-from guake.utils import FullscreenManager
-from guake.utils import HidePrevention
-from guake.utils import RectCalculator
-from guake.utils import TabNameUtils
-from guake.utils import get_server_time
-from guake.utils import save_tabs_when_changed
 
-from locale import gettext as _
 
 log = logging.getLogger(__name__)
 

@@ -20,8 +20,9 @@ Boston, MA 02110-1301 USA
 import logging
 
 import gi
-gi.require_version('Gtk', '3.0')
 from gi.repository import Gio
+
+gi.require_version('Gtk', '3.0')
 
 log = logging.getLogger(__name__)
 
