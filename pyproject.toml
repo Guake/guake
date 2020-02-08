@@ -1,0 +1,50 @@
+[tool]
+[tool.poetry]
+name = "guake"
+version = "4.0.0"
+description = "Copyright (C) 2007-2020 Guake authors"
+authors = [
+    "Gaetan Semet <gaetan@xeberon.net>"
+]
+
+[tool.poetry.dependencies]
+python = "^3.6"
+pbr = "*"
+
+[tool.poetry.dev-dependencies]
+astroid = "<2.2.0"
+autopep8 = "<1.4"
+black = "==19.10b0"
+blacken-docs = "*"
+colorlog = "*"
+eradicate = "*"
+flake8 = "^3.7"
+flake8-annotations-coverage = "*"
+flake8-blind-except = "*"
+flake8-comprehensions = "*"
+flake8-debugger  = "*"
+# flake8-docstrings = "*"
+isort = "*"
+mock = ">=2.0.0"
+mypy = "*"
+pew = "*"
+pre-commit = "*"
+pyfakefs = "*"
+pylint = "<2.3.0"
+pytest = "*"
+pytest-cov = "*"
+pytest-mock = "*"
+reno = {version = ">=2.8.0", extras = ["sphinx"]}
+sphinx-rtd-theme = "*"
+sphinxcontrib-programoutput = "*"
+twine = "*"
+
+[tool.isort]
+line_length = 100
+combine_star = true
+quiet = true
+known_third_party = []
+
+[tool.black]
+line-length = 100
+target-version = ['py36']
