@@ -171,7 +171,7 @@ class RootTerminalBox(Gtk.Overlay, TerminalHolder):
                 "(RootTerminalBox.add(%s))" % type(terminal_holder)
             )
 
-    def focus():
+    def focus(self):
         if self.get_terminals():
             self.get_terminals()[0].grab_focus()
 

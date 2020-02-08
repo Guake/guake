@@ -218,7 +218,7 @@ class GuakeTerminal(Vte.Terminal):
                 for _useless, match, _otheruseless in QUICK_OPEN_MATCHERS:
                     tag = self.match_add_gregex(GLib.Regex.new(match, compile_flag, 0), 0)
                     self.match_set_cursor_type(tag, Gdk.CursorType.HAND2)
-            except GLib.Error:  # pylint: disable=catching-non-exception
+            except GLib.Error as e:  # pylint: disable=catching-non-exception
                 log.error(
                     "ERROR: PCRE2 does not seems to be enabled on your system. "
                     "Quick Edit and other Ctrl+click features are disabled. "
