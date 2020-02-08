@@ -1,4 +1,3 @@
-# -*- coding: utf-8; -*-
 """
 Copyright (C) 2007-2012 Lincoln de Sousa <lincoln@minaslivre.org>
 Copyright (C) 2007 Gabriel Falcão <gabrielteratos@gmail.com>

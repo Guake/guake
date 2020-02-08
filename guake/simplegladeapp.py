@@ -1,4 +1,3 @@
-# -*- coding: utf-8; -*-
 """
 Copyright (C) 2007-2013 Guake authors
 
@@ -89,9 +88,9 @@ class SimpleGladeApp():
         class_name = self.__class__.__name__
         if self.main_widget:
             root = Gtk.Widget.get_name(self.main_widget)
-            repr = '%s(path="%s", root="%s")' % (class_name, self.glade_path, root)
+            repr = f'{class_name}(path="{self.glade_path}", root="{root}")'
         else:
-            repr = '%s(path="%s")' % (class_name, self.glade_path)
+            repr = f'{class_name}(path="{self.glade_path}")'
         return repr
 
     def new(self):
@@ -136,7 +135,7 @@ class SimpleGladeApp():
                 widget_name = Gtk.Buildable.set_name(widget, widget_api_name)
                 if hasattr(self, widget_api_name):
                     raise AttributeError(
-                        "instance %s already has an attribute %s" % (self, widget_api_name)
+                        f"instance {self} already has an attribute {widget_api_name}"
                     )
                 else:
                     setattr(self, widget_api_name, widget)

@@ -1,4 +1,3 @@
-# -*- coding: utf-8; -*-
 """
 Copyright (C) 2007-2013 Guake authors
 
@@ -38,7 +37,7 @@ class DbusManager(dbus.service.Object):
         self.guake = guakeinstance
         self.bus = dbus.SessionBus()
         bus_name = dbus.service.BusName(DBUS_NAME, bus=self.bus)
-        super(DbusManager, self).__init__(bus_name, DBUS_PATH)
+        super().__init__(bus_name, DBUS_PATH)
 
     @dbus.service.method(DBUS_NAME)
     def show_hide(self):

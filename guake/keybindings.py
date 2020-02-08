@@ -1,4 +1,3 @@
-# -*- coding: utf-8; -*-
 """
 Copyright (C) 2007-2013 Guake authors
 
@@ -240,7 +239,7 @@ class Keybindings():
             )
 
         for tab in range(1, 11):
-            key, mask = Gtk.accelerator_parse(getk('switch-tab%d' % tab))
+            key, mask = Gtk.accelerator_parse(getk(f'switch-tab{tab:d}'))
             if key > 0:
                 self.accel_group.connect(
                     key, mask, Gtk.AccelFlags.VISIBLE, self.guake.gen_accel_switch_tabN(tab - 1)

@@ -1,4 +1,3 @@
-# -*- coding: utf-8; -*-
 """
 Copyright (C) 2007-2013 Guake authors
 
@@ -46,7 +45,7 @@ def ShowableError(parent, title, msg, exit_code=1):
         parent, Gtk.DialogFlags.MODAL | Gtk.DialogFlags.DESTROY_WITH_PARENT,
         Gtk.MessageType.WARNING, Gtk.ButtonsType.CLOSE
     )
-    d.set_markup('<b><big>%s</big></b>' % title)
+    d.set_markup(f'<b><big>{title}</big></b>')
     d.format_secondary_markup(msg)
     d.run()
     d.destroy()
@@ -55,14 +54,14 @@ def ShowableError(parent, title, msg, exit_code=1):
 def pixmapfile(x):
     f = os.path.join(IMAGE_DIR, x)
     if not os.path.exists(f):
-        raise IOError('No such file or directory: %s' % f)
+        raise OSError(f'No such file or directory: {f}')
     return os.path.abspath(f)
 
 
 def gladefile(x):
     f = os.path.join(GLADE_DIR, x)
     if not os.path.exists(f):
-        raise IOError('No such file or directory: %s' % f)
+        raise OSError(f'No such file or directory: {f}')
     return os.path.abspath(f)
 
 
@@ -71,7 +70,7 @@ def hexify_color(c):
     def h(x):
         return hex(x).replace('0x', '').zfill(4)
 
-    return '#%s%s%s' % (h(c.red), h(c.green), h(c.blue))
+    return f'#{h(c.red)}{h(c.green)}{h(c.blue)}'
 
 
 def get_binaries_from_path(compiled_re):
@@ -86,7 +85,7 @@ def get_binaries_from_path(compiled_re):
 
 def shell_quote(text):
     """ quote text (filename) for inserting into a shell """
-    return r"\'".join("'%s'" % p for p in text.split("'"))
+    return r"\'".join(f"'{p}'" for p in text.split("'"))
 
 
 def clamp(value, lower, upper):

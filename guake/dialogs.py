@@ -37,7 +37,7 @@ class PromptQuitDialog(Gtk.MessageDialog):
     """
 
     def __init__(self, parent, procs, tabs, notebooks):
-        super(PromptQuitDialog, self).__init__(
+        super().__init__(
             parent, Gtk.DialogFlags.MODAL | Gtk.DialogFlags.DESTROY_WITH_PARENT,
             Gtk.MessageType.QUESTION, Gtk.ButtonsType.YES_NO
         )
@@ -65,7 +65,7 @@ class PromptQuitDialog(Gtk.MessageDialog):
             proc_str = _("There are {0} processes still running").format(procs)
 
         self.set_markup(primary_msg)
-        self.format_secondary_markup("<b>{0}{1}{2}.</b>".format(proc_str, tab_str, notebooks_str))
+        self.format_secondary_markup(f"<b>{proc_str}{tab_str}{notebooks_str}.</b>")
 
     def quit(self):
         """Run the "are you sure" dialog for quitting Guake
@@ -93,7 +93,7 @@ class PromptResetColorsDialog(Gtk.MessageDialog):
     """
 
     def __init__(self, parent):
-        super(PromptResetColorsDialog, self).__init__(
+        super().__init__(
             parent, Gtk.DialogFlags.MODAL | Gtk.DialogFlags.DESTROY_WITH_PARENT,
             Gtk.MessageType.QUESTION, Gtk.ButtonsType.YES_NO
         )

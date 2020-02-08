@@ -1,4 +1,3 @@
-# -*- coding: utf-8; -*-
 """
 Copyright (C) 2007-2012 Lincoln de Sousa <lincoln@minaslivre.org>
 Copyright (C) 2007 Gabriel Falcão <gabrielteratos@gmail.com>
@@ -134,7 +133,7 @@ class Guake(SimpleGladeApp):
 
         log.info("Language previously loaded from: %s", LOCALE_DIR)
 
-        super(Guake, self).__init__(gladefile('guake.glade'))
+        super().__init__(gladefile('guake.glade'))
 
         select_gtk_theme(self.settings)
         patch_gtk_theme(self.get_widget("window-root").get_style_context(), self.settings)
@@ -411,7 +410,7 @@ class Guake(SimpleGladeApp):
             c.parse("#" + bgcolor)
             bgcolor = c
         if not isinstance(bgcolor, Gdk.RGBA):
-            raise TypeError("color should be Gdk.RGBA, is: {!r}".format(bgcolor))
+            raise TypeError(f"color should be Gdk.RGBA, is: {bgcolor!r}")
         bgcolor = self._apply_transparency_to_color(bgcolor)
         log.debug("setting background color to: %r", bgcolor)
 
@@ -429,7 +428,7 @@ class Guake(SimpleGladeApp):
             c.parse("#" + fgcolor)
             fgcolor = c
         if not isinstance(fgcolor, Gdk.RGBA):
-            raise TypeError("color should be Gdk.RGBA, is: {!r}".format(fgcolor))
+            raise TypeError(f"color should be Gdk.RGBA, is: {fgcolor!r}")
         log.debug("setting background color to: %r", fgcolor)
 
         if current_terminal_only:
@@ -1263,7 +1262,7 @@ class Guake(SimpleGladeApp):
             if search_query:
                 # TODO search provider should be selectable (someone might
                 # prefer bing.com, the internet is a strange place ¯\_(ツ)_/¯ )
-                search_url = "https://www.google.com/#q={!s}&safe=off".format(search_query, )
+                search_url = f"https://www.google.com/#q={search_query!s}&safe=off"
                 Gtk.show_uri(self.window.get_screen(), search_url, get_server_time(self.window))
         return True
 
@@ -1275,7 +1274,7 @@ class Guake(SimpleGladeApp):
 
     def execute_hook(self, event_name):
         """Execute shell commands related to current event_name"""
-        hook = self.settings.hooks.get_string('{!s}'.format(event_name))
+        hook = self.settings.hooks.get_string(f'{event_name!s}')
         if hook is not None and hook != "":
             hook = hook.split()
             try:
@@ -1347,7 +1346,7 @@ class Guake(SimpleGladeApp):
                 log.warning('%s is broken', session_file)
                 shutil.copy(
                     session_file,
-                    self.get_xdg_config_directory() / '{0}.bak'.format(filename)
+                    self.get_xdg_config_directory() / f'{filename}.bak'
                 )
                 img_filename = pixmapfile('guake-notification.png')
                 notifier.showMessage(
@@ -1417,8 +1416,8 @@ class Guake(SimpleGladeApp):
                         nb.delete_page(0)
         except KeyError:
             log.warning('%s schema is broken', session_file)
-            shutil.copy(session_file, self.get_xdg_config_directory() / '{}.bak'.format(filename))
-            with (self.get_xdg_config_directory() / '{}.log.err'.format(filename)).open('w') as f:
+            shutil.copy(session_file, self.get_xdg_config_directory() / f'{filename}.bak')
+            with (self.get_xdg_config_directory() / f'{filename}.log.err').open('w') as f:
                 traceback.print_exc(file=f)
             img_filename = pixmapfile('guake-notification.png')
             notifier.showMessage(

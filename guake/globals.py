@@ -1,4 +1,3 @@
-# -*- coding: utf-8; -*-
 """
 Copyright (C) 2007-2013 Guake authors
 
@@ -60,7 +59,7 @@ def bindtextdomain(app_name, locale_dir=None):
 
 def is_run_from_git_workdir():
     self_path = os.path.abspath(inspect.getfile(inspect.currentframe()))
-    return os.path.exists('%s.in' % self_path)
+    return os.path.exists(f'{self_path}.in')
 
 
 NAME = 'guake'
@@ -75,12 +74,12 @@ TERMINAL_MATCH_TAGS = ('schema', 'http', 'https', 'email', 'ftp')
 # Beware this is a PRCE (Perl) regular expression, not a Python one!
 # Edit: use regex101.com with PCRE syntax
 TERMINAL_MATCH_EXPRS = [
-    "(news:|telnet:|nntp:|file:\/|https?:|ftps?:|webcal:)\/\/([-[:alnum:]]+"
-    "(:[-[:alnum:],?;.:\/!%$^\*&~\"#']+)?\@)?[-[:alnum:]]+(\.[-[:alnum:]]+)*"
-    "(:[0-9]{1,5})?(\/[-[:alnum:]_$.+!*(),;:@&=?\/~#'%]*[^].> \t\r\n,\\\"])?",
-    "(www|ftp)[-[:alnum:]]*\.[-[:alnum:]]+(\.[-[:alnum:]]+)*(:[0-9]{1,5})?"
-    "(\/[-[:alnum:]_$.+!*(),;:@&=?\/~#%]*[^]'.>) \t\r\n,\\\"])?",
-    "(mailto:)?[-[:alnum:]][-[:alnum:].]*@[-[:alnum:]]+\.[-[:alnum:]]+(\\.[-[:alnum:]]+)*"
+    r"(news:|telnet:|nntp:|file:\/|https?:|ftps?:|webcal:)\/\/([-[:alnum:]]+"
+    "(:[-[:alnum:],?;.:\\/!%$^\\*&~\"#']+)?\\@)?[-[:alnum:]]+(\\.[-[:alnum:]]+)*"
+    "(:[0-9]{1,5})?(\\/[-[:alnum:]_$.+!*(),;:@&=?\\/~#'%]*[^].> \t\r\n,\\\"])?",
+    r"(www|ftp)[-[:alnum:]]*\.[-[:alnum:]]+(\.[-[:alnum:]]+)*(:[0-9]{1,5})?"
+    "(\\/[-[:alnum:]_$.+!*(),;:@&=?\\/~#%]*[^]'.>) \t\r\n,\\\"])?",
+    "(mailto:)?[-[:alnum:]][-[:alnum:].]*@[-[:alnum:]]+\\.[-[:alnum:]]+(\\.[-[:alnum:]]+)*"
 ]
 # tuple (title/quick matcher/filename and line number extractor)
 QUICK_OPEN_MATCHERS = [

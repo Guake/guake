@@ -170,8 +170,7 @@ class RootTerminalBox(Gtk.Overlay, TerminalHolder):
 
     def iter_terminals(self):
         if self.get_child() is not None:
-            for t in self.get_child().iter_terminals():
-                yield t
+            yield from self.get_child().iter_terminals()
 
     def replace_child(self, old, new):
         self.remove(old)
@@ -583,10 +582,8 @@ class DualTerminalBox(Gtk.Paned, TerminalHolder):
         return self.get_child1().get_terminals() + self.get_child2().get_terminals()
 
     def iter_terminals(self):
-        for t in self.get_child1().iter_terminals():
-            yield t
-        for t in self.get_child2().iter_terminals():
-            yield t
+        yield from self.get_child1().iter_terminals()
+        yield from self.get_child2().iter_terminals()
 
     def replace_child(self, old, new):
         if self.get_child1() is old:

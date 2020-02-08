@@ -31,17 +31,17 @@ def get_resource_dirs(resource):
         os.path.join(dir, resource) for dir in
         itertools.chain(GLib.get_system_data_dirs(), GUAKE_THEME_DIR, GLib.get_user_data_dir())
     ]
-    dirs += [os.path.join(os.path.expanduser("~"), ".{}".format(resource))]
+    dirs += [os.path.join(os.path.expanduser("~"), f".{resource}")]
 
     return [Path(dir) for dir in dirs if os.path.isdir(dir)]
 
 
 def list_all_themes():
     return sorted(
-        set(
+        {
             x.name for theme_dir in get_resource_dirs("themes") for x in theme_dir.iterdir()
             if x.is_dir()
-        )
+        }
     )
 
 
@@ -66,9 +66,7 @@ def patch_gtk_theme(style_context, settings):
     theme_name, variant = get_gtk_theme(settings)
 
     def rgba_to_hex(color):
-        return "#{0:02x}{1:02x}{2:02x}".format(
-            int(color.red * 255), int(color.green * 255), int(color.blue * 255)
-        )
+        return f"#{int(color.red * 255):02x}{int(color.green * 255):02x}{int(color.blue * 255):02x}"
 
     # for n in [
     #     "inverted_bg_color",

@@ -1,4 +1,3 @@
-# -*- coding: utf-8; -*-
 """
 Copyright (C) 2007-2013 Guake authors
 
@@ -727,7 +726,7 @@ class PrefsDialog(SimpleGladeApp):
         self.hotkey_alread_used = False
         self.store = None
 
-        super(PrefsDialog, self).__init__(gladefile('prefs.glade'), root='config-window')
+        super().__init__(gladefile('prefs.glade'), root='config-window')
         style_provider = Gtk.CssProvider()
         css_data = dedent(
             """
@@ -942,7 +941,7 @@ class PrefsDialog(SimpleGladeApp):
 
         palette = []
         for i in range(18):
-            palette.append(hexify_color(self.get_widget('palette_%d' % i).get_color()))
+            palette.append(hexify_color(self.get_widget(f'palette_{i:d}').get_color()))
         palette = ':'.join(palette)
         self.settings.styleFont.set_string('palette', palette)
         self.settings.styleFont.set_string('palette-name', _('Custom'))
@@ -1013,7 +1012,7 @@ class PrefsDialog(SimpleGladeApp):
         palette = palette.split(':')
         for i, pal in enumerate(palette):
             x, color = Gdk.Color.parse(pal)
-            self.get_widget('palette_%d' % i).set_color(color)
+            self.get_widget(f'palette_{i:d}').set_color(color)
 
     def reload_erase_combos(self, btn=None):
         """Read from dconf the value of compat_{backspace,delete} vars
@@ -1224,7 +1223,7 @@ class PrefsDialog(SimpleGladeApp):
         text = Gtk.TextBuffer()
         text = self.get_widget('quick_open_supported_patterns').get_buffer()
         for title, matcher, _useless in QUICK_OPEN_MATCHERS:
-            text.insert_at_cursor("%s: %s\n" % (title, matcher))
+            text.insert_at_cursor(f"{title}: {matcher}\n")
         self.get_widget('quick_open_supported_patterns').set_buffer(text)
 
         value = self.settings.general.get_string('quick-open-command-line')
@@ -1495,7 +1494,7 @@ class KeyEntry():
         self.mask = mask
 
     def __repr__(self):
-        return u'KeyEntry(%d, %d)' % (self.keycode, self.mask)
+        return f'KeyEntry({self.keycode:d}, {self.mask:d})'
 
     def __eq__(self, rval):
         return self.keycode == rval.keycode and self.mask == rval.mask
