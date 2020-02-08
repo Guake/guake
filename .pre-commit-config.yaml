@@ -1,0 +1,76 @@
+# https://pre-commit.com/
+default_language_version:
+    python: python3.6
+repos:
+
+# modernizing syntax
+-   repo: https://github.com/asottile/pyupgrade
+    rev: v1.26.2
+    hooks:
+    -   id: pyupgrade
+        args: [--py36-plus]
+-   repo: local
+    hooks:
+    -   id: flynt
+        name: flynt
+        entry: flynt
+        types: [python]
+        language: python
+        args: [--quiet, --line_length, "100"]
+        additional_dependencies:
+        -   flynt
+
+# isort
+-   repo: https://github.com/asottile/seed-isort-config
+    rev: v1.9.4
+    hooks:
+    -   id: seed-isort-config
+-   repo: local
+    hooks:
+    -   id: isort
+        name: isort
+        entry: isort
+        language: system
+        require_serial: true
+        types: [python]
+        args: [--quiet, --apply, --line-width, "100"]
+
+# black
+-   repo: local
+    hooks:
+    -   id: black
+        name: black
+        language: system
+        entry: black
+        require_serial: true
+        types: [python]
+        args: [--quiet]
+-   repo: local
+    hooks:
+    -   id: blacken-docs
+        name: blacken-docs
+        language: system
+        entry: blacken-docs
+        require_serial: true
+        types: [file]
+        files: \.(rst)
+
+# flake8
+-   repo: local
+    hooks:
+    -   id: flake8
+        name: flake8
+        entry: flake8
+        language: system
+        types: [python]
+        stages: [push]
+
+# running tests
+-   repo: local
+    hooks:
+    -   id: tests
+        name: run tests
+        entry: pytest -v
+        language: system
+        types: [python]
+        stages: [push]
