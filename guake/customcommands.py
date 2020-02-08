@@ -1,7 +1,6 @@
 import json
 import logging
 import os
-from locale import gettext as _
 
 import gi
 from gi.repository import Gtk

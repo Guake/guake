@@ -17,14 +17,10 @@ Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor,
 Boston, MA 02110-1301 USA
 """
 import logging
-import subprocess
-from locale import gettext as _
-from xml.sax.saxutils import escape as xml_escape
 
 import gi
-from gi.repository import Gdk, Gio, Gtk, Pango, Vte
+from gi.repository import Gio, Pango, Vte
 
-from guake.common import pixmapfile
 from guake.utils import RectCalculator
 
 gi.require_version("Gtk", "3.0")

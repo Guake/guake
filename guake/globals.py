@@ -49,7 +49,6 @@ def bindtextdomain(app_name, locale_dir=None):
     """
 
     import locale
-    from locale import gettext as _
 
     log.info("Local binding for app '%s', local dir: %s", app_name, locale_dir)
 

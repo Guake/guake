@@ -26,7 +26,7 @@ import gi
 from gi.repository import Gdk, GObject, Gtk, Wnck
 
 from guake.about import AboutDialog
-from guake.boxes import DualTerminalBox, RootTerminalBox, TabLabelEventBox, TerminalBox
+from guake.boxes import RootTerminalBox, TabLabelEventBox, TerminalBox
 from guake.callbacks import MenuHideCallback, NotebookScrollCallback
 from guake.dialogs import PromptQuitDialog
 from guake.menus import mk_notebook_context_menu

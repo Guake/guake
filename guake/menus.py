@@ -2,7 +2,7 @@ import logging
 from locale import gettext as _
 
 import gi
-from gi.repository import Gtk, Vte
+from gi.repository import Gtk
 
 from guake.customcommands import CustomCommands
 

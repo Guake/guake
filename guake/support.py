@@ -1,7 +1,7 @@
 import os
 
 import gi
-from gi.repository import Gdk, GdkX11, Gtk
+from gi.repository import Gdk
 
 from guake import gtk_version, guake_version, vte_runtime_version, vte_version
 

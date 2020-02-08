@@ -28,12 +28,11 @@ import threading
 import uuid
 from enum import IntEnum
 from pathlib import Path
-from time import sleep
 from typing import Optional, Tuple
 from urllib.parse import unquote, urlparse
 
 import gi
-from gi.repository import Gdk, GdkX11, GLib, Gtk, Pango, Vte
+from gi.repository import Gdk, GLib, Gtk, Pango, Vte
 
 from guake.common import clamp
 from guake.globals import QUICK_OPEN_MATCHERS, TERMINAL_MATCH_EXPRS, TERMINAL_MATCH_TAGS

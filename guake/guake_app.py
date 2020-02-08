@@ -20,10 +20,8 @@ Boston, MA 02110-1301 USA
 import json
 import logging
 import os
-import platform
 import shutil
 import subprocess
-import sys
 import time as pytime
 import traceback
 import uuid
@@ -32,35 +30,22 @@ from pathlib import Path
 from urllib.parse import quote_plus
 from xml.sax.saxutils import escape as xml_escape
 
-import cairo
 import gi
-from gi.repository import Gdk, GdkX11, Gio, GLib, GObject, Gtk, Keybinder, Vte
+from gi.repository import Gdk, Gio, GLib, GObject, Gtk, Keybinder
 
 from guake import gtk_version, guake_version, notifier, vte_version
 from guake.about import AboutDialog
 from guake.common import gladefile, pixmapfile
 from guake.dialogs import PromptQuitDialog
-from guake.globals import (
-    ALIGN_BOTTOM,
-    ALIGN_CENTER,
-    ALIGN_LEFT,
-    ALIGN_RIGHT,
-    ALIGN_TOP,
-    ALWAYS_ON_PRIMARY,
-    MAX_TRANSPARENCY,
-    NAME,
-    TABS_SESSION_SCHEMA_VERSION,
-)
+from guake.globals import MAX_TRANSPARENCY, NAME, TABS_SESSION_SCHEMA_VERSION
 from guake.gsettings import GSettingHandler
-from guake.guake_logging import setupLogging
 from guake.keybindings import Keybindings
-from guake.notebook import NotebookManager, TerminalNotebook
+from guake.notebook import NotebookManager
 from guake.palettes import PALETTES
 from guake.paths import LOCALE_DIR, SCHEMA_DIR, try_to_compile_glib_schemas
 from guake.prefs import PrefsDialog, refresh_user_start
 from guake.settings import Settings
 from guake.simplegladeapp import SimpleGladeApp
-from guake.terminal import GuakeTerminal
 from guake.theme import patch_gtk_theme, select_gtk_theme
 from guake.utils import (
     FullscreenManager,

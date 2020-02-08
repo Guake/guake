@@ -21,7 +21,7 @@ Boston, MA 02110-1301 USA
 from locale import gettext as _
 
 import gi
-from gi.repository import GObject, Gtk
+from gi.repository import Gtk
 
 from guake import guake_version
 from guake.common import gladefile, pixmapfile

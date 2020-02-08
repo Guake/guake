@@ -20,12 +20,11 @@ import logging
 import os
 import re
 import shutil
-import warnings
 from locale import gettext as _
 from textwrap import dedent
 
 import gi
-from gi.repository import Gdk, Gio, GLib, GObject, Gtk, Keybinder, Pango, Vte
+from gi.repository import Gdk, Gio, GLib, Gtk, Vte
 
 from guake.common import ShowableError, get_binaries_from_path, gladefile, hexify_color, pixmapfile
 from guake.globals import (

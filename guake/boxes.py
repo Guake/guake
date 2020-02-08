@@ -1,6 +1,5 @@
 import logging
 import time
-from locale import gettext as _
 
 import gi
 from gi.repository import Gdk, Gio, GLib, GObject, Gtk, Vte

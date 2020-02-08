@@ -16,18 +16,11 @@ License along with this program; if not, write to the
 Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor,
 Boston, MA 02110-1301 USA
 """
-import inspect
-
-# You can put calls to p() everywhere in this page to inspect timing
-# g_start = time.time()
-# def p():
-#     print(time.time() - g_start, __file__, inspect.currentframe().f_back.f_lineno)
 import logging
 import os
 import signal
 import subprocess
 import sys
-import time
 import uuid
 from locale import gettext as _
 from optparse import OptionParser
@@ -42,7 +35,6 @@ log = logging.getLogger(__name__)
 # When we are in the document generation on readthedocs, we do not have paths.py generated
 try:
     from guake.paths import LOCALE_DIR
-
     bindtextdomain(NAME, LOCALE_DIR)
 except:  # pylint: disable=bare-except
     pass
@@ -368,7 +360,7 @@ def main():
         missing_deps = True
 
     try:
-        import cairo
+        import cairo  # noqa
     except ImportError:
         print("[ERROR] missing mandatory dependency: cairo")
         missing_deps = True

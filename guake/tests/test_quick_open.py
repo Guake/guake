@@ -1,7 +1,7 @@
 import re
 from textwrap import dedent
 
-from mock import Mock
+from mock import Mock  # noqa - TODO: IS this import required?
 
 from guake.globals import QUICK_OPEN_MATCHERS
 
