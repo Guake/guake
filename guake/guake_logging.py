@@ -22,7 +22,7 @@ import logging.config
 
 try:
     from colorlog import ColoredFormatter
-except ImportError as ie:
+except ImportError:
     ColoredFormatter = None
 
 log = logging.getLogger(__name__)

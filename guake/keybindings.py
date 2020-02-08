@@ -111,7 +111,7 @@ class Keybindings:
 
         try:
             self.guake.hotkeys.unbind(self.globalhotkeys[key])
-        except Exception as e:
+        except Exception:
             pass
 
         self.globalhotkeys[key] = value

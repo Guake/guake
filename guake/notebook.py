@@ -355,7 +355,7 @@ class TerminalNotebook(Gtk.Notebook):
                     if active_terminal:
                         # If found, we will use its directory as new terminal's directory
                         directory = active_terminal.get_current_directory()
-            except Exception as e:
+            except Exception:
                 pass
         log.info("Spawning new terminal at %s", directory)
         terminal.spawn_sync_pid(directory)

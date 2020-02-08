@@ -206,7 +206,7 @@ class GuakeTerminal(Vte.Terminal):
                     Vte.Regex.new_for_match(match, len(match), VTE_REGEX_FLAGS), 0
                 )
                 self.match_set_cursor_type(tag, Gdk.CursorType.HAND2)
-        except (GLib.Error, AttributeError) as e:  # pylint: disable=catching-non-exception
+        except (GLib.Error, AttributeError):  # pylint: disable=catching-non-exception
             try:
                 compile_flag = 0
                 if (Vte.MAJOR_VERSION, Vte.MINOR_VERSION) >= (0, 44):
@@ -218,7 +218,7 @@ class GuakeTerminal(Vte.Terminal):
                 for _useless, match, _otheruseless in QUICK_OPEN_MATCHERS:
                     tag = self.match_add_gregex(GLib.Regex.new(match, compile_flag, 0), 0)
                     self.match_set_cursor_type(tag, Gdk.CursorType.HAND2)
-            except GLib.Error as e:  # pylint: disable=catching-non-exception
+            except GLib.Error:  # pylint: disable=catching-non-exception
                 log.error(
                     "ERROR: PCRE2 does not seems to be enabled on your system. "
                     "Quick Edit and other Ctrl+click features are disabled. "
@@ -232,7 +232,7 @@ class GuakeTerminal(Vte.Terminal):
         if self.pid is not None:
             try:
                 cwd = os.readlink(f"/proc/{self.pid}/cwd")
-            except Exception as e:
+            except Exception:
                 return directory
             if os.path.exists(cwd):
                 directory = cwd
