@@ -283,7 +283,7 @@ class Guake(SimpleGladeApp):
 
     def _load_palette(self):
         colorRGBA = Gdk.RGBA(0, 0, 0, 0)
-        paletteList = list()
+        paletteList = []
         for color in self.settings.styleFont.get_string("palette").split(":"):
             colorRGBA.parse(color)
             paletteList.append(colorRGBA.copy())

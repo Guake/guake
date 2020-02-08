@@ -678,7 +678,7 @@ class PrefsDialog(SimpleGladeApp):
         self.get_widget("config-window").hide()
 
     def spawn_sync_pid(self, directory=None, terminal=None):
-        argv = list()
+        argv = []
         user_shell = self.settings.general.get_string("default-shell")
         if user_shell and os.path.exists(user_shell):
             argv.append(user_shell)
@@ -837,7 +837,7 @@ class PrefsDialog(SimpleGladeApp):
     def set_colors_from_settings(self):
         transparency = self.settings.styleBackground.get_int("transparency")
         colorRGBA = Gdk.RGBA(0, 0, 0, 0)
-        palette_list = list()
+        palette_list = []
         for color in self.settings.styleFont.get_string("palette").split(":"):
             colorRGBA.parse(color)
             palette_list.append(colorRGBA.copy())

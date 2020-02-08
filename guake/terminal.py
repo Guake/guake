@@ -513,7 +513,7 @@ class GuakeTerminal(Vte.Terminal):
 
     def spawn_sync_pid(self, directory):
 
-        argv = list()
+        argv = []
         user_shell = self.guake.settings.general.get_string("default-shell")
         if user_shell and os.path.exists(user_shell):
             argv.append(user_shell)
