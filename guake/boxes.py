@@ -10,8 +10,8 @@ from guake.dialogs import PromptResetColorsDialog, RenameDialog
 from guake.menus import mk_tab_context_menu, mk_terminal_context_menu
 from guake.utils import HidePrevention, TabNameUtils, get_server_time, save_tabs_when_changed
 
-gi.require_version('Vte', '2.91')  # vte-0.42
-gi.require_version('Gtk', '3.0')
+gi.require_version("Vte", "2.91")  # vte-0.42
+gi.require_version("Gtk", "3.0")
 
 
 log = logging.getLogger(__name__)
@@ -19,7 +19,7 @@ log = logging.getLogger(__name__)
 # TODO remove calls to guake
 
 
-class TerminalHolder():
+class TerminalHolder:
     UP = 0
     DOWN = 1
     RIGHT = 2
@@ -54,7 +54,6 @@ class TerminalHolder():
 
 
 class RootTerminalBox(Gtk.Overlay, TerminalHolder):
-
     def __init__(self, guake, parent_notebook):
         super().__init__()
         self.guake = guake
@@ -79,24 +78,24 @@ class RootTerminalBox(Gtk.Overlay, TerminalHolder):
             --------------------------------------|
         """
         self.search_revealer = Gtk.Revealer()
-        self.search_frame = Gtk.Frame(name='search-frame')
+        self.search_frame = Gtk.Frame(name="search-frame")
         self.search_box = Gtk.HBox()
 
         # Search
         self.search_close_btn = Gtk.Button()
         self.search_close_btn.set_can_focus(False)
-        close_icon = Gio.ThemedIcon(name='window-close-symbolic')
+        close_icon = Gio.ThemedIcon(name="window-close-symbolic")
         close_image = Gtk.Image.new_from_gicon(close_icon, Gtk.IconSize.BUTTON)
         self.search_close_btn.set_image(close_image)
         self.search_entry = Gtk.SearchEntry()
         self.search_prev_btn = Gtk.Button()
         self.search_prev_btn.set_can_focus(False)
-        prev_icon = Gio.ThemedIcon(name='go-up-symbolic')
+        prev_icon = Gio.ThemedIcon(name="go-up-symbolic")
         prev_image = Gtk.Image.new_from_gicon(prev_icon, Gtk.IconSize.BUTTON)
         self.search_prev_btn.set_image(prev_image)
         self.search_next_btn = Gtk.Button()
         self.search_next_btn.set_can_focus(False)
-        next_icon = Gio.ThemedIcon(name='go-down-symbolic')
+        next_icon = Gio.ThemedIcon(name="go-down-symbolic")
         next_image = Gtk.Image.new_from_gicon(next_icon, Gtk.IconSize.BUTTON)
         self.search_next_btn.set_image(next_image)
 
@@ -111,13 +110,10 @@ class RootTerminalBox(Gtk.Overlay, TerminalHolder):
 
         # Frame
         self.search_frame.set_margin_end(12)
-        self.search_frame.get_style_context().add_class('background')
+        self.search_frame.get_style_context().add_class("background")
         css_provider = Gtk.CssProvider()
         css_provider.load_from_data(
-            b'#search-frame border {'
-            b'    padding: 5px 5px 5px 5px;'
-            b'    border: none;'
-            b'}'
+            b"#search-frame border {" b"    padding: 5px 5px 5px 5px;" b"    border: none;" b"}"
         )
         Gtk.StyleContext.add_provider_for_screen(
             Gdk.Screen.get_default(), css_provider, Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION
@@ -134,14 +130,14 @@ class RootTerminalBox(Gtk.Overlay, TerminalHolder):
         self.add_overlay(self.search_revealer)
 
         # Events
-        self.search_entry.connect('key-press-event', self.on_search_entry_keypress)
-        self.search_entry.connect('changed', self.set_search)
-        self.search_entry.connect('activate', self.do_search)
-        self.search_entry.connect('focus-in-event', self.on_search_entry_focus_in)
-        self.search_entry.connect('focus-out-event', self.on_search_entry_focus_out)
-        self.search_next_btn.connect('clicked', self.on_search_next_clicked)
-        self.search_prev_btn.connect('clicked', self.on_search_prev_clicked)
-        self.search_close_btn.connect('clicked', self.close_search_box)
+        self.search_entry.connect("key-press-event", self.on_search_entry_keypress)
+        self.search_entry.connect("changed", self.set_search)
+        self.search_entry.connect("activate", self.do_search)
+        self.search_entry.connect("focus-in-event", self.on_search_entry_focus_in)
+        self.search_entry.connect("focus-out-event", self.on_search_entry_focus_out)
+        self.search_next_btn.connect("clicked", self.on_search_next_clicked)
+        self.search_prev_btn.connect("clicked", self.on_search_prev_clicked)
+        self.search_close_btn.connect("clicked", self.close_search_box)
         self.search_prev = True
 
         # Search revealer visible
@@ -151,9 +147,9 @@ class RootTerminalBox(Gtk.Overlay, TerminalHolder):
 
         self.search_revealer.hide()
         self.search_revealer_show_cb_id = self.search_revealer.connect(
-            'show', search_revealer_show_cb
+            "show", search_revealer_show_cb
         )
-        self.search_frame.connect('unmap', lambda x: self.search_revealer.hide())
+        self.search_frame.connect("unmap", lambda x: self.search_revealer.hide())
 
     def get_terminals(self):
         return self.get_child().get_terminals()
@@ -200,21 +196,23 @@ class RootTerminalBox(Gtk.Overlay, TerminalHolder):
            a full binary tree in list.
         """
         if not box:
-            panes.append({'type': None, 'directory': None})
+            panes.append({"type": None, "directory": None})
             return
         if isinstance(box, DualTerminalBox):
-            btype = 'dual' + ('_h' if box.orient is DualTerminalBox.ORIENT_V else '_v')
-            panes.append({'type': btype, 'directory': None})
+            btype = "dual" + ("_h" if box.orient is DualTerminalBox.ORIENT_V else "_v")
+            panes.append({"type": btype, "directory": None})
             self.save_box_layout(box.get_child1(), panes)
             self.save_box_layout(box.get_child2(), panes)
         elif isinstance(box, TerminalBox):
-            btype = 'term'
+            btype = "term"
             directory = box.terminal.get_current_directory()
-            panes.append({
-                'type': btype,
-                'directory': directory,
-                'custom_colors': box.terminal.get_custom_colors_dict(),
-            })
+            panes.append(
+                {
+                    "type": btype,
+                    "directory": directory,
+                    "custom_colors": box.terminal.get_custom_colors_dict(),
+                }
+            )
 
     def restore_box_layout(self, box, panes: list):
         """Restore box layout by `panes`
@@ -226,7 +224,7 @@ class RootTerminalBox(Gtk.Overlay, TerminalHolder):
             return
 
         cur = panes.pop(0)
-        if cur['type'].startswith('dual'):
+        if cur["type"].startswith("dual"):
             while True:
                 if self.guake:
                     # If Guake are not visible, we should pending the restore, then do the
@@ -235,8 +233,9 @@ class RootTerminalBox(Gtk.Overlay, TerminalHolder):
                     # Otherwise we will stuck in the infinite loop, since new DualTerminalBox
                     # cannot get any allocation when Guake is invisible
                     if (
-                        not self.guake.window.get_property('visible') or self.get_notebook() is
-                        not self.guake.notebook_manager.get_current_notebook()
+                        not self.guake.window.get_property("visible")
+                        or self.get_notebook()
+                        is not self.guake.notebook_manager.get_current_notebook()
                     ):
                         panes.insert(0, cur)
                         self.guake._failed_restore_page_split.append((self, box, panes))
@@ -245,7 +244,7 @@ class RootTerminalBox(Gtk.Overlay, TerminalHolder):
                 # UI didn't update, wait for it
                 alloc = box.get_allocation()
                 if alloc.width == 1 and alloc.height == 1:
-                    time.sleep(.01)
+                    time.sleep(0.01)
                 else:
                     break
 
@@ -253,7 +252,7 @@ class RootTerminalBox(Gtk.Overlay, TerminalHolder):
                 while Gtk.events_pending():
                     Gtk.main_iteration()
 
-            if cur['type'].endswith('v'):
+            if cur["type"].endswith("v"):
                 box = box.split_v()
             else:
                 box = box.split_h()
@@ -271,8 +270,8 @@ class RootTerminalBox(Gtk.Overlay, TerminalHolder):
                 box.unset_terminal()
 
             # Replace term in the TerminalBox
-            term = self.get_notebook().terminal_spawn(cur['directory'])
-            term.set_custom_colors_from_dict(cur.get('custom_colors', None))
+            term = self.get_notebook().terminal_spawn(cur["directory"])
+            term.set_custom_colors_from_dict(cur.get("custom_colors", None))
             box.set_terminal(term)
             self.get_notebook().terminal_attached(term)
 
@@ -295,14 +294,12 @@ class RootTerminalBox(Gtk.Overlay, TerminalHolder):
 
     def block_notebook_on_button_press_id(self):
         GObject.signal_handler_block(
-            self.get_notebook(),
-            self.get_notebook().notebook_on_button_press_id
+            self.get_notebook(), self.get_notebook().notebook_on_button_press_id
         )
 
     def unblock_notebook_on_button_press_id(self):
         GObject.signal_handler_unblock(
-            self.get_notebook(),
-            self.get_notebook().notebook_on_button_press_id
+            self.get_notebook(), self.get_notebook().notebook_on_button_press_id
         )
 
     def show_search_box(self):
@@ -346,9 +343,9 @@ class RootTerminalBox(Gtk.Overlay, TerminalHolder):
 
     def on_search_entry_keypress(self, widget, event):
         key = Gdk.keyval_name(event.keyval)
-        if key == 'Escape':
+        if key == "Escape":
             self.hide_search_box()
-        elif key == 'Return':
+        elif key == "Return":
             # Combine with Shift?
             if event.state & Gdk.ModifierType.SHIFT_MASK:
                 self.search_prev = False
@@ -357,7 +354,7 @@ class RootTerminalBox(Gtk.Overlay, TerminalHolder):
                 self.search_prev = True
 
     def reset_term_search(self, term):
-        term.search_set_gregex(GLib.Regex('', 0, 0), 0)
+        term.search_set_gregex(GLib.Regex("", 0, 0), 0)
         term.search_find_next()
 
     def set_search(self, widget):
@@ -406,7 +403,7 @@ class TerminalBox(Gtk.Box, TerminalHolder):
             self.terminal.connect("button-press-event", self.on_button_press, None)
         )
         self.terminal.handler_ids.append(
-            self.terminal.connect('child-exited', self.on_terminal_exited)
+            self.terminal.connect("child-exited", self.on_terminal_exited)
         )
         self.pack_start(self.terminal, True, True, 0)
         self.terminal.show()
@@ -421,7 +418,7 @@ class TerminalBox(Gtk.Box, TerminalHolder):
         self.pack_start(self.scroll, False, False, 0)
 
         self.terminal.handler_ids.append(
-            self.terminal.connect('scroll-event', self.__scroll_event_cb)
+            self.terminal.connect("scroll-event", self.__scroll_event_cb)
         )
 
     def __scroll_event_cb(self, widget, event):
@@ -429,8 +426,8 @@ class TerminalBox(Gtk.Box, TerminalHolder):
         adj = self.scroll.get_adjustment()
         page_size = adj.get_page_size()
         if (
-            event.get_state() & Gdk.ModifierType.SHIFT_MASK and
-            event.get_state() & Gdk.ModifierType.CONTROL_MASK
+            event.get_state() & Gdk.ModifierType.SHIFT_MASK
+            and event.get_state() & Gdk.ModifierType.CONTROL_MASK
         ):
             # Ctrl + Shift + Mouse Scroll (4 pages)
             adj.set_page_increment(page_size * 40)
@@ -505,7 +502,7 @@ class TerminalBox(Gtk.Box, TerminalHolder):
         return self.get_parent().get_notebook()
 
     def remove_dead_child(self, child):
-        print("Can't do, have no \"child\"")
+        print('Can\'t do, have no "child"')
 
     def on_terminal_focus(self, *args):
         self.get_root_box().set_last_terminal_focused(self.terminal)
@@ -523,11 +520,15 @@ class TerminalBox(Gtk.Box, TerminalHolder):
                     return True
 
             menu = mk_terminal_context_menu(
-                self.terminal, self.get_window(), self.get_settings(),
+                self.terminal,
+                self.get_window(),
+                self.get_settings(),
                 TerminalContextMenuCallbacks(
-                    self.terminal, self.get_window(), self.get_settings(),
-                    self.get_root_box().get_notebook()
-                )
+                    self.terminal,
+                    self.get_window(),
+                    self.get_settings(),
+                    self.get_root_box().get_notebook(),
+                ),
             )
             menu.connect("hide", MenuHideCallback(self.get_window()).on_hide)
             HidePrevention(self.get_window()).prevent()
@@ -622,7 +623,6 @@ class DualTerminalBox(Gtk.Paned, TerminalHolder):
 
 
 class TabLabelEventBox(Gtk.EventBox):
-
     def __init__(self, notebook, text, settings):
         super().__init__()
         self.notebook = notebook
@@ -630,11 +630,11 @@ class TabLabelEventBox(Gtk.EventBox):
         self.label = Gtk.Label(text, visible=True)
         self.close_button = Gtk.Button(
             image=Gtk.Image.new_from_icon_name("window-close", Gtk.IconSize.MENU),
-            relief=Gtk.ReliefStyle.NONE
+            relief=Gtk.ReliefStyle.NONE,
         )
-        self.close_button.connect('clicked', self.on_close)
+        self.close_button.connect("clicked", self.on_close)
         settings.general.bind(
-            'tab-close-buttons', self.close_button, 'visible', Gio.SettingsBindFlags.GET
+            "tab-close-buttons", self.close_button, "visible", Gio.SettingsBindFlags.GET
         )
         self.box.pack_start(self.label, True, True, 0)
         self.box.pack_end(self.close_button, False, False, 0)
@@ -664,7 +664,7 @@ class TabLabelEventBox(Gtk.EventBox):
                 menu.popup(None, None, None, None, event.button, event.get_time())
             return True
         if event.button == 2:
-            prompt_cfg = self.notebook.guake.settings.general.get_int('prompt-on-close-tab')
+            prompt_cfg = self.notebook.guake.settings.general.get_int("prompt-on-close-tab")
             self.notebook.delete_page_by_label(self, prompt=prompt_cfg)
             return True
         if event.button == 1 and event.type == Gdk.EventType._2BUTTON_PRESS:
@@ -703,5 +703,5 @@ class TabLabelEventBox(Gtk.EventBox):
         self.grab_focus_on_last_focused_terminal()
 
     def on_close(self, user_data):
-        prompt_cfg = self.notebook.guake.settings.general.get_int('prompt-on-close-tab')
+        prompt_cfg = self.notebook.guake.settings.general.get_int("prompt-on-close-tab")
         self.notebook.delete_page_by_label(self, prompt=prompt_cfg)

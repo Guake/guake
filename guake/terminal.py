@@ -38,9 +38,8 @@ from gi.repository import Gdk, GdkX11, GLib, Gtk, Pango, Vte
 from guake.common import clamp
 from guake.globals import QUICK_OPEN_MATCHERS, TERMINAL_MATCH_EXPRS, TERMINAL_MATCH_TAGS
 
-gi.require_version('Gtk', '3.0')
-gi.require_version('Vte', '2.91')  # vte-0.38
-
+gi.require_version("Gtk", "3.0")
+gi.require_version("Vte", "2.91")  # vte-0.38
 
 
 log = logging.getLogger(__name__)
@@ -51,7 +50,8 @@ try:
     # be injected in current process, as: wall
     from atexit import register as at_exit_call
     from ctypes import cdll
-    libutempter = cdll.LoadLibrary('libutempter.so.0')
+
+    libutempter = cdll.LoadLibrary("libutempter.so.0")
     if libutempter is not None:
         # We absolutely need to remove the old tty from the utmp !!!
         at_exit_call(libutempter.utempter_remove_added_record)
@@ -64,7 +64,7 @@ except Exception as e:
         "[WARN]  - 'exit' command might freeze the terminal instead of closing the tab\n"
         "[WARN]  - the 'wall' command is known to work badly\n"
     )
-    sys.stderr.write("[WARN] Error: " + str(e) + '\n')
+    sys.stderr.write("[WARN] Error: " + str(e) + "\n")
     sys.stderr.write(
         "[WARN] ===================================================================²\n"
     )
@@ -74,7 +74,7 @@ def halt(loc):
     code.interact(local=loc)
 
 
-__all__ = ['GuakeTerminal']
+__all__ = ["GuakeTerminal"]
 
 # pylint: enable=anomalous-backslash-in-string
 
@@ -95,9 +95,9 @@ class GuakeTerminal(Vte.Terminal):
         self.configure_terminal()
         self.add_matches()
         self.handler_ids = []
-        self.handler_ids.append(self.connect('button-press-event', self.button_press))
-        self.connect('child-exited', self.on_child_exited)  # Call on_child_exited, don't remove it
-        self.matched_value = ''
+        self.handler_ids.append(self.connect("button-press-event", self.button_press))
+        self.connect("child-exited", self.on_child_exited)  # Call on_child_exited, don't remove it
+        self.matched_value = ""
         self.font_scale_index = 0
         self._pid = None
         # self.custom_bgcolor = None
@@ -118,7 +118,7 @@ class GuakeTerminal(Vte.Terminal):
         self.targets.add_text_targets(DropTargets.TEXT)
         self.drag_dest_set(Gtk.DestDefaults.ALL, [], Gdk.DragAction.COPY)
         self.drag_dest_set_target_list(self.targets)
-        self.connect('drag-data-received', self.on_drag_data_received)
+        self.connect("drag-data-received", self.on_drag_data_received)
 
     def get_uuid(self):
         return self.uuid
@@ -144,7 +144,7 @@ class GuakeTerminal(Vte.Terminal):
             super().feed_child(resolved_cmdline, len(resolved_cmdline))
 
     def execute_command(self, command):
-        if command[-1] != '\n':
+        if command[-1] != "\n":
             command += "\n"
         self.feed_child(command)
 
@@ -159,21 +159,21 @@ class GuakeTerminal(Vte.Terminal):
         """Sets all customized properties on the terminal
         """
         client = self.guake.settings.general
-        word_chars = client.get_string('word-chars')
+        word_chars = client.get_string("word-chars")
         if word_chars:
             self.set_word_char_exceptions(word_chars)
-        self.set_audible_bell(client.get_boolean('use-audible-bell'))
+        self.set_audible_bell(client.get_boolean("use-audible-bell"))
         self.set_sensitive(True)
 
-        cursor_blink_mode = self.guake.settings.style.get_int('cursor-blink-mode')
-        self.set_property('cursor-blink-mode', cursor_blink_mode)
+        cursor_blink_mode = self.guake.settings.style.get_int("cursor-blink-mode")
+        self.set_property("cursor-blink-mode", cursor_blink_mode)
 
         if (Vte.MAJOR_VERSION, Vte.MINOR_VERSION) >= (0, 50):
             self.set_allow_hyperlink(True)
 
         if (Vte.MAJOR_VERSION, Vte.MINOR_VERSION) >= (0, 56):
             try:
-                self.set_bold_is_bright(self.guake.settings.styleFont.get_boolean('bold-is-bright'))
+                self.set_bold_is_bright(self.guake.settings.styleFont.get_boolean("bold-is-bright"))
             except:  # pylint: disable=bare-except
                 log.error("set_bold_is_bright not supported by your version of VTE")
 
@@ -224,11 +224,12 @@ class GuakeTerminal(Vte.Terminal):
                     "ERROR: PCRE2 does not seems to be enabled on your system. "
                     "Quick Edit and other Ctrl+click features are disabled. "
                     "Please update your VTE package or contact your distribution to ask "
-                    "to enable regular expression support in VTE. Exception: '%s'", str(e)
+                    "to enable regular expression support in VTE. Exception: '%s'",
+                    str(e),
                 )
 
     def get_current_directory(self):
-        directory = os.path.expanduser('~')
+        directory = os.path.expanduser("~")
         if self.pid is not None:
             try:
                 cwd = os.readlink(f"/proc/{self.pid}/cwd")
@@ -316,7 +317,7 @@ class GuakeTerminal(Vte.Terminal):
         any match string is caught, another application is open to
         handle the matched resource uri.
         """
-        self.matched_value = ''
+        self.matched_value = ""
         if (Vte.MAJOR_VERSION, Vte.MINOR_VERSION) >= (0, 46):
             matched_string = self.match_check_event(event)
         else:
@@ -351,7 +352,7 @@ class GuakeTerminal(Vte.Terminal):
             uris = data.get_uris()
             for uri in uris:
                 path = Path(unquote(urlparse(uri).path))
-                self.feed_child(shlex.quote(str(path.absolute())) + ' ')
+                self.feed_child(shlex.quote(str(path.absolute())) + " ")
         elif info == DropTargets.TEXT:
             text = data.get_text()
             if text:
@@ -416,8 +417,8 @@ class GuakeTerminal(Vte.Terminal):
         )
         if quick_open_in_current_terminal:
             logging.debug("Executing it in current tab")
-            if resolved_cmdline[-1] != '\n':
-                resolved_cmdline += '\n'
+            if resolved_cmdline[-1] != "\n":
+                resolved_cmdline += "\n"
             self.feed_child(resolved_cmdline)
         else:
             resolved_cmdline += " &"
@@ -428,18 +429,18 @@ class GuakeTerminal(Vte.Terminal):
         value, tag = matched_string
         log.debug("found tag: %r, item: %r", tag, value)
         if tag in TERMINAL_MATCH_TAGS:
-            if TERMINAL_MATCH_TAGS[tag] == 'schema':
+            if TERMINAL_MATCH_TAGS[tag] == "schema":
                 # value here should not be changed, it is right and
                 # ready to be used.
                 pass
-            elif TERMINAL_MATCH_TAGS[tag] == 'http':
-                value = f'http://{value}'
-            elif TERMINAL_MATCH_TAGS[tag] == 'https':
-                value = f'https://{value}'
-            elif TERMINAL_MATCH_TAGS[tag] == 'ftp':
-                value = f'ftp://{value}'
-            elif TERMINAL_MATCH_TAGS[tag] == 'email':
-                value = f'mailto:{value}'
+            elif TERMINAL_MATCH_TAGS[tag] == "http":
+                value = f"http://{value}"
+            elif TERMINAL_MATCH_TAGS[tag] == "https":
+                value = f"https://{value}"
+            elif TERMINAL_MATCH_TAGS[tag] == "ftp":
+                value = f"ftp://{value}"
+            elif TERMINAL_MATCH_TAGS[tag] == "email":
+                value = f"mailto:{value}"
 
         if value:
             return value
@@ -483,7 +484,7 @@ class GuakeTerminal(Vte.Terminal):
 
     def kill(self):
         pid = self.pid
-        threading.Thread(target=self.delete_shell, args=(pid, )).start()
+        threading.Thread(target=self.delete_shell, args=(pid,)).start()
         # start_new_thread(self.delete_shell, (pid,))
 
     def delete_shell(self, pid):
@@ -514,21 +515,27 @@ class GuakeTerminal(Vte.Terminal):
     def spawn_sync_pid(self, directory):
 
         argv = list()
-        user_shell = self.guake.settings.general.get_string('default-shell')
+        user_shell = self.guake.settings.general.get_string("default-shell")
         if user_shell and os.path.exists(user_shell):
             argv.append(user_shell)
         else:
-            argv.append(os.environ['SHELL'])
+            argv.append(os.environ["SHELL"])
 
-        login_shell = self.guake.settings.general.get_boolean('use-login-shell')
+        login_shell = self.guake.settings.general.get_boolean("use-login-shell")
         if login_shell:
-            argv.append('--login')
+            argv.append("--login")
 
-        log.debug("Spawn command: \"%s\"", " ".join(argv))
+        log.debug('Spawn command: "%s"', " ".join(argv))
 
         pid = self.spawn_sync(
-            Vte.PtyFlags.DEFAULT, directory, argv, [], GLib.SpawnFlags.DO_NOT_REAP_CHILD, None,
-            None, None
+            Vte.PtyFlags.DEFAULT,
+            directory,
+            argv,
+            [],
+            GLib.SpawnFlags.DO_NOT_REAP_CHILD,
+            None,
+            None,
+            None,
         )
         try:
             tuple_type = gi._gi.ResultTuple  # pylint: disable=c-extension-no-member
@@ -565,7 +572,7 @@ class GuakeTerminal(Vte.Terminal):
 
     def set_color_foreground_custom(self, fgcolor, *args, **kwargs):
         """Sets custom foreground color for this terminal"""
-        print(f'set_color_foreground_custom: {self.uuid}')
+        print(f"set_color_foreground_custom: {self.uuid}")
         self.custom_fgcolor = fgcolor
         super().set_color_foreground(self.custom_fgcolor, *args, **kwargs)
 
@@ -596,29 +603,30 @@ class GuakeTerminal(Vte.Terminal):
     def get_custom_colors_dict(self):
         """Returns dictionary of custom colors."""
         return {
-            'fg_color': self._color_to_list(self.custom_fgcolor),
-            'bg_color': self._color_to_list(self.custom_bgcolor),
-            'palette': [self._color_to_list(col)
-                        for col in self.custom_palette] if self.custom_palette else None,
+            "fg_color": self._color_to_list(self.custom_fgcolor),
+            "bg_color": self._color_to_list(self.custom_bgcolor),
+            "palette": [self._color_to_list(col) for col in self.custom_palette]
+            if self.custom_palette
+            else None,
         }
 
     def set_custom_colors_from_dict(self, colors_dict):
         if not isinstance(colors_dict, dict):
             return
 
-        bg_color = colors_dict.get('bg_color', None)
+        bg_color = colors_dict.get("bg_color", None)
         if isinstance(bg_color, list):
             self.custom_bgcolor = self._color_from_list(bg_color)
         else:
             self.custom_bgcolor = None
 
-        fg_color = colors_dict.get('fg_color', None)
+        fg_color = colors_dict.get("fg_color", None)
         if isinstance(fg_color, list):
             self.custom_fgcolor = self._color_from_list(fg_color)
         else:
             self.custom_fgcolor = None
 
-        palette = colors_dict.get('palette', None)
+        palette = colors_dict.get("palette", None)
         if isinstance(palette, list):
             self.custom_palette = [self._color_from_list(col) for col in palette]
         else:

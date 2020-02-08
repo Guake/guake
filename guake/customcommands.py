@@ -6,12 +6,12 @@ from locale import gettext as _
 import gi
 from gi.repository import Gtk
 
-gi.require_version('Gtk', '3.0')
+gi.require_version("Gtk", "3.0")
 
 log = logging.getLogger(__name__)
 
 
-class CustomCommands():
+class CustomCommands:
 
     """
     Example for a custom commands file
@@ -42,11 +42,11 @@ class CustomCommands():
         self.callback = callback
 
     def should_load(self):
-        file_path = self.settings.general.get_string('custom-command-file')
+        file_path = self.settings.general.get_string("custom-command-file")
         return file_path is not None
 
     def get_file_path(self):
-        return os.path.expanduser(self.settings.general.get_string('custom-command-file'))
+        return os.path.expanduser(self.settings.general.get_string("custom-command-file"))
 
     def _load_json(self, file_name):
         if not os.path.exists(file_name):
@@ -71,20 +71,20 @@ class CustomCommands():
         return menu
 
     def _parse_custom_commands(self, json_object, menu):
-        if json_object.get('type') == "menu":
+        if json_object.get("type") == "menu":
             newmenu = Gtk.Menu()
-            newmenuitem = Gtk.MenuItem(json_object['description'])
+            newmenuitem = Gtk.MenuItem(json_object["description"])
             newmenuitem.set_submenu(newmenu)
             newmenuitem.show()
             menu.append(newmenuitem)
-            for item in json_object['items']:
+            for item in json_object["items"]:
                 self._parse_custom_commands(item, newmenu)
         else:
-            menu_item = Gtk.MenuItem(json_object['description'])
+            menu_item = Gtk.MenuItem(json_object["description"])
             custom_command = ""
             space = ""
-            for command in json_object['cmd']:
-                custom_command += (space + command)
+            for command in json_object["cmd"]:
+                custom_command += space + command
                 space = " "
             menu_item.connect("activate", self.on_menu_item_activated, custom_command)
             menu.append(menu_item)

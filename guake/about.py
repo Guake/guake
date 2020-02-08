@@ -27,8 +27,7 @@ from guake import guake_version
 from guake.common import gladefile, pixmapfile
 from guake.simplegladeapp import SimpleGladeApp
 
-gi.require_version('Gtk', '3.0')
-
+gi.require_version("Gtk", "3.0")
 
 
 class AboutDialog(SimpleGladeApp):
@@ -37,8 +36,8 @@ class AboutDialog(SimpleGladeApp):
     """
 
     def __init__(self):
-        super().__init__(gladefile('about.glade'), root='aboutdialog')
-        dialog = self.get_widget('aboutdialog')
+        super().__init__(gladefile("about.glade"), root="aboutdialog")
+        dialog = self.get_widget("aboutdialog")
 
         # images
         # ipath = pixmapfile('guake-notification.png')
@@ -46,11 +45,11 @@ class AboutDialog(SimpleGladeApp):
 
         # img = pixmapfile('guake-notification.png')
         image = Gtk.Image()
-        image.set_from_file(pixmapfile('guake-notification.png'))
+        image.set_from_file(pixmapfile("guake-notification.png"))
         pixbuf = image.get_pixbuf()
 
-        dialog.set_property('logo', pixbuf)
+        dialog.set_property("logo", pixbuf)
 
-        dialog.set_name(_('Guake Terminal'))
+        dialog.set_name(_("Guake Terminal"))
         dialog.set_version(guake_version())
         dialog.connect("response", lambda x, y: dialog.destroy())

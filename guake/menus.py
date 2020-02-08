@@ -6,8 +6,8 @@ from gi.repository import Gtk, Vte
 
 from guake.customcommands import CustomCommands
 
-gi.require_version('Gtk', '3.0')
-gi.require_version('Vte', '2.91')  # vte-0.42
+gi.require_version("Gtk", "3.0")
+gi.require_version("Vte", "2.91")  # vte-0.42
 
 log = logging.getLogger(__name__)
 
@@ -125,7 +125,7 @@ def mk_terminal_context_menu(terminal, window, settings, callback_object):
     # implementation does not support this at the moment
     if link:
         if len(link) >= FILE_SELECTION_LENGTH:
-            mi.set_label(_("Open Link: {!s}...").format(link[:FILE_SELECTION_LENGTH - 3]))
+            mi.set_label(_("Open Link: {!s}...").format(link[: FILE_SELECTION_LENGTH - 3]))
         else:
             mi.set_label(_("Open Link: {!s}").format(link))
         mi.set_sensitive(True)
@@ -138,7 +138,7 @@ def mk_terminal_context_menu(terminal, window, settings, callback_object):
     if selection:
         search_text = selection.rstrip()
         if len(search_text) > SEARCH_SELECTION_LENGTH:
-            search_text = search_text[:SEARCH_SELECTION_LENGTH - 3] + "..."
+            search_text = search_text[: SEARCH_SELECTION_LENGTH - 3] + "..."
         mi.set_label(_("Search on Web: '%s'") % search_text)
         mi.set_sensitive(True)
     else:
@@ -152,7 +152,7 @@ def mk_terminal_context_menu(terminal, window, settings, callback_object):
             filename_str = str(filename)
             if len(filename_str) > FILE_SELECTION_LENGTH:
                 mi.set_label(
-                    _("Quick Open: {!s}...").format(filename_str[:FILE_SELECTION_LENGTH - 3])
+                    _("Quick Open: {!s}...").format(filename_str[: FILE_SELECTION_LENGTH - 3])
                 )
             else:
                 mi.set_label(_("Quick Open: {!s}").format(filename_str))

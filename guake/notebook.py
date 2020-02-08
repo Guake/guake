@@ -34,15 +34,14 @@ from guake.prefs import PrefsDialog
 from guake.terminal import GuakeTerminal
 from guake.utils import gdk_is_x11_display, save_tabs_when_changed
 
-gi.require_version('Gtk', '3.0')
-gi.require_version('Wnck', '3.0')
+gi.require_version("Gtk", "3.0")
+gi.require_version("Wnck", "3.0")
 
 
 log = logging.getLogger(__name__)
 
 
 class TerminalNotebook(Gtk.Notebook):
-
     def __init__(self, *args, **kwargs):
         Gtk.Notebook.__init__(self, *args, **kwargs)
         self.last_terminal_focused = None
@@ -59,18 +58,21 @@ class TerminalNotebook(Gtk.Notebook):
         self.set_property("is-focus", True)
         self.set_property("expand", True)
 
-        if GObject.signal_lookup('terminal-spawned', TerminalNotebook) == 0:
+        if GObject.signal_lookup("terminal-spawned", TerminalNotebook) == 0:
             GObject.signal_new(
-                'terminal-spawned', TerminalNotebook, GObject.SIGNAL_RUN_LAST, GObject.TYPE_NONE,
-                (GObject.TYPE_PYOBJECT, GObject.TYPE_INT)
+                "terminal-spawned",
+                TerminalNotebook,
+                GObject.SIGNAL_RUN_LAST,
+                GObject.TYPE_NONE,
+                (GObject.TYPE_PYOBJECT, GObject.TYPE_INT),
             )
             GObject.signal_new(
-                'page-deleted', TerminalNotebook, GObject.SIGNAL_RUN_LAST, GObject.TYPE_NONE, ()
+                "page-deleted", TerminalNotebook, GObject.SIGNAL_RUN_LAST, GObject.TYPE_NONE, ()
             )
 
         self.scroll_callback = NotebookScrollCallback(self)
         self.add_events(Gdk.EventMask.SCROLL_MASK)
-        self.connect('scroll-event', self.scroll_callback.on_scroll)
+        self.connect("scroll-event", self.scroll_callback.on_scroll)
         self.notebook_on_button_press_id = self.connect(
             "button-press-event", self.on_button_press, None
         )
@@ -82,12 +84,11 @@ class TerminalNotebook(Gtk.Notebook):
         self.new_page_button.connect("clicked", self.on_new_tab)
 
         self.tab_selection_button = Gtk.Button(
-            image=Gtk.Image.new_from_icon_name('pan-down-symbolic', Gtk.IconSize.MENU),
-            visible=True
+            image=Gtk.Image.new_from_icon_name("pan-down-symbolic", Gtk.IconSize.MENU), visible=True
         )
         self.popover = Gtk.Popover()
         self.popover_window = None
-        self.tab_selection_button.connect('clicked', self.on_tab_selection)
+        self.tab_selection_button.connect("clicked", self.on_tab_selection)
 
         self.action_box = Gtk.Box(visible=True)
         self.action_box.pack_start(self.new_page_button, 0, 0, 0)
@@ -132,7 +133,7 @@ class TerminalNotebook(Gtk.Notebook):
         # ref: epiphany
         css_provider = Gtk.CssProvider()
         css_provider.load_from_data(
-            b'#popover-window list { border-style: none; background-color: transparent; }'
+            b"#popover-window list { border-style: none; background-color: transparent; }"
         )
         Gtk.StyleContext.add_provider_for_screen(
             Gdk.Screen.get_default(), css_provider, Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION
@@ -141,13 +142,16 @@ class TerminalNotebook(Gtk.Notebook):
         # Construct popover properties
         BOX_HEIGHT = 30
         LISTBOX_MARGIN = 12
-        self.popover_window = Gtk.ScrolledWindow(name='popover-window')
+        self.popover_window = Gtk.ScrolledWindow(name="popover-window")
         self.popover_listbox = Gtk.ListBox()
-        self.popover_listbox.set_property('margin', LISTBOX_MARGIN)
+        self.popover_listbox.set_property("margin", LISTBOX_MARGIN)
         self.popover_window.add_with_viewport(self.popover_listbox)
 
-        max_height = self.guake.window.get_allocation().height - BOX_HEIGHT if \
-            self.guake else BOX_HEIGHT * 10
+        max_height = (
+            self.guake.window.get_allocation().height - BOX_HEIGHT
+            if self.guake
+            else BOX_HEIGHT * 10
+        )
         height = BOX_HEIGHT * self.get_n_pages() + LISTBOX_MARGIN * 4
         self.popover_window.set_min_content_height(min(max_height, height))
         self.popover_window.set_min_content_width(325)
@@ -164,14 +168,14 @@ class TerminalNotebook(Gtk.Notebook):
             label.set_xalign(0.0)
             box.pack_start(label, 0, 0, 5)
             row.add(box)
-            setattr(row, 'page_index', i)
+            setattr(row, "page_index", i)
             self.popover_listbox.add(row)
             if current_term in self.get_terminals_for_page(i):
                 self.popover_listbox.select_row(row)
                 selected_row = i
 
         # Signal
-        self.popover_listbox.connect('row-activated', self.on_popover_tab_select)
+        self.popover_listbox.connect("row-activated", self.on_popover_tab_select)
 
         # Show popup
         self.popover.set_position(Gtk.PositionType.TOP)
@@ -194,13 +198,13 @@ class TerminalNotebook(Gtk.Notebook):
             adj.set_value(part * (selected_row + 1))
 
     def on_popover_tab_select(self, list_box, row):
-        page_index = getattr(row, 'page_index', -1)
+        page_index = getattr(row, "page_index", -1)
         if page_index != -1:
             self.set_current_page(page_index)
             self.get_terminals_for_page(page_index)[0].grab_focus()
 
     def set_tabbar_visible(self, v):
-        self.set_property('show-tabs', v)
+        self.set_property("show-tabs", v)
 
     def set_last_terminal_focused(self, terminal):
         self.last_terminal_focused = terminal
@@ -306,7 +310,7 @@ class TerminalNotebook(Gtk.Notebook):
             page = self.get_nth_page(self.get_current_page())
             if page.get_terminals():
                 page.get_terminals()[0].grab_focus()
-        self.emit('page-deleted')
+        self.emit("page-deleted")
 
     def delete_page_by_label(self, label, kill=True, prompt=0):
         self.delete_page(self.find_tab_index_by_label(label), kill, prompt)
@@ -339,15 +343,15 @@ class TerminalNotebook(Gtk.Notebook):
         terminal = GuakeTerminal(self.guake)
         terminal.grab_focus()
         if not isinstance(directory, str):
-            directory = os.environ['HOME']
+            directory = os.environ["HOME"]
             try:
-                if self.guake.settings.general.get_boolean('open-tab-cwd'):
+                if self.guake.settings.general.get_boolean("open-tab-cwd"):
                     # Do last focused terminal still alive?
                     active_terminal = self.get_current_terminal()
                     if not active_terminal:
                         # If not alive, can we get any focused terminal?
                         active_terminal = self.get_focused_terminal()
-                    directory = os.path.expanduser('~')
+                    directory = os.path.expanduser("~")
                     if active_terminal:
                         # If found, we will use its directory as new terminal's directory
                         directory = active_terminal.get_current_directory()
@@ -359,7 +363,7 @@ class TerminalNotebook(Gtk.Notebook):
 
     def terminal_attached(self, terminal):
         terminal.emit("focus", Gtk.DirectionType.TAB_FORWARD)
-        self.emit('terminal-spawned', terminal, terminal.pid)
+        self.emit("terminal-spawned", terminal, terminal.pid)
 
     def new_page_with_focus(self, directory=None, label=None, user_set=False, position=None):
         box, page_num, terminal = self.new_page(directory, position=position)
@@ -384,7 +388,7 @@ class TerminalNotebook(Gtk.Notebook):
             else:
                 label = TabLabelEventBox(self, new_text, self.guake.settings)
                 label.add_events(Gdk.EventMask.SCROLL_MASK)
-                label.connect('scroll-event', self.scroll_callback.on_scroll)
+                label.connect("scroll-event", self.scroll_callback.on_scroll)
 
                 self.set_tab_label(page, label)
             if user_set:
@@ -432,12 +436,12 @@ class TerminalNotebook(Gtk.Notebook):
             flags=Gtk.DialogFlags.MODAL,
             buttons=Gtk.ButtonsType.OK_CANCEL,
             message_format=_(
-                'You are going to restore *all* the tabs!\n'
-                'which means all your terminals & pages '
-                'will be replaced.\n\nDo you want to continue?'
-            )
+                "You are going to restore *all* the tabs!\n"
+                "which means all your terminals & pages "
+                "will be replaced.\n\nDo you want to continue?"
+            ),
         )
-        dialog.connect('response', self.restore_tabs_dialog_response)
+        dialog.connect("response", self.restore_tabs_dialog_response)
         dialog.show()
 
     def restore_tabs_dialog_response(self, widget, response_id):
@@ -447,15 +451,17 @@ class TerminalNotebook(Gtk.Notebook):
 
 
 class NotebookManager(GObject.Object):
-
     def __init__(
         self, window, notebook_parent, workspaces_enabled, terminal_spawned_cb, page_deleted_cb
     ):
         GObject.Object.__init__(self)
-        if not GObject.signal_lookup('notebook-created', self):
+        if not GObject.signal_lookup("notebook-created", self):
             GObject.signal_new(
-                'notebook-created', self, GObject.SIGNAL_RUN_LAST, GObject.TYPE_NONE,
-                (GObject.TYPE_PYOBJECT, GObject.TYPE_INT)
+                "notebook-created",
+                self,
+                GObject.SIGNAL_RUN_LAST,
+                GObject.TYPE_NONE,
+                (GObject.TYPE_PYOBJECT, GObject.TYPE_INT),
             )
         self.current_notebook = 0
         self.notebooks = {}
@@ -477,9 +483,9 @@ class NotebookManager(GObject.Object):
     def get_notebook(self, workspace_index: int):
         if not self.has_notebook_for_workspace(workspace_index):
             self.notebooks[workspace_index] = TerminalNotebook()
-            self.emit('notebook-created', self.notebooks[workspace_index], workspace_index)
-            self.notebooks[workspace_index].connect('terminal-spawned', self.terminal_spawned_cb)
-            self.notebooks[workspace_index].connect('page-deleted', self.page_deleted_cb)
+            self.emit("notebook-created", self.notebooks[workspace_index], workspace_index)
+            self.notebooks[workspace_index].connect("terminal-spawned", self.terminal_spawned_cb)
+            self.notebooks[workspace_index].connect("page-deleted", self.page_deleted_cb)
             log.info("created fresh notebook for workspace %d", self.current_notebook)
 
             # add a tab if there is none
@@ -500,8 +506,7 @@ class NotebookManager(GObject.Object):
         log.info("current workspace is %d", self.current_notebook)
         notebook = self.get_current_notebook()
         self.notebook_parent.add(notebook)
-        if self.window.get_property('visible') and \
-                notebook.last_terminal_focused is not None:
+        if self.window.get_property("visible") and notebook.last_terminal_focused is not None:
             notebook.last_terminal_focused.grab_focus()
 
         # Restore pending page terminal split

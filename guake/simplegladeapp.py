@@ -24,12 +24,10 @@ import tokenize
 import gi
 from gi.repository import Gtk
 
-gi.require_version('Gtk', '3.0')
+gi.require_version("Gtk", "3.0")
 
 
-
-class SimpleGladeApp():
-
+class SimpleGladeApp:
     def __init__(self, path, root=None, domain=None, **kwargs):
         """
         Load a glade file specified by glade_filename, using root as

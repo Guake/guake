@@ -21,11 +21,10 @@ from gi.repository import Gtk
 
 from guake.boxes import DualTerminalBox, RootTerminalBox
 
-gi.require_version('Gtk', '3.0')
+gi.require_version("Gtk", "3.0")
 
 
-
-class FocusMover():
+class FocusMover:
 
     THRESHOLD = 10
     BORDER_THICKNESS = 2
@@ -94,7 +93,7 @@ class FocusMover():
         return x, y, terminal_rect.width, terminal_rect.height
 
 
-class SplitMover():
+class SplitMover:
 
     THRESHOLD = 35
     STEP = 10

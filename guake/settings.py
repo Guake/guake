@@ -22,13 +22,12 @@ import logging
 import gi
 from gi.repository import Gio
 
-gi.require_version('Gtk', '3.0')
+gi.require_version("Gtk", "3.0")
 
 log = logging.getLogger(__name__)
 
 
-class Settings():
-
+class Settings:
     def __init__(self, schema_source):
         Settings.enhanceSetting()
 
@@ -51,22 +50,25 @@ class Settings():
         self.keybindings.connect("changed", self.keybindings.triggerOnChangedValue)
 
         self.keybindingsGlobal = Gio.Settings.new_full(
-            Gio.SettingsSchemaSource.lookup(schema_source, "guake.keybindings.global", False), None,
-            None
+            Gio.SettingsSchemaSource.lookup(schema_source, "guake.keybindings.global", False),
+            None,
+            None,
         )
         self.keybindingsGlobal.initEnhancements()
         self.keybindingsGlobal.connect("changed", self.keybindingsGlobal.triggerOnChangedValue)
 
         self.keybindingsLocal = Gio.Settings.new_full(
-            Gio.SettingsSchemaSource.lookup(schema_source, "guake.keybindings.local", False), None,
-            None
+            Gio.SettingsSchemaSource.lookup(schema_source, "guake.keybindings.local", False),
+            None,
+            None,
         )
         self.keybindingsLocal.initEnhancements()
         self.keybindingsLocal.connect("changed", self.keybindingsLocal.triggerOnChangedValue)
 
         self.styleBackground = Gio.Settings.new_full(
-            Gio.SettingsSchemaSource.lookup(schema_source, "guake.style.background", False), None,
-            None
+            Gio.SettingsSchemaSource.lookup(schema_source, "guake.style.background", False),
+            None,
+            None,
         )
         self.styleBackground.initEnhancements()
         self.styleBackground.connect("changed", self.styleBackground.triggerOnChangedValue)
@@ -90,7 +92,6 @@ class Settings():
         self.hooks.connect("changed", self.hooks.triggerOnChangedValue)
 
     def enhanceSetting():
-
         def initEnhancements(self):
             self.listeners = dict()
 

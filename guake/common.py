@@ -26,27 +26,29 @@ from gi.repository import Gtk
 
 from guake.paths import GLADE_DIR, IMAGE_DIR
 
-gi.require_version('Gtk', '3.0')
-gi.require_version('Vte', '2.91')  # vte-0.38
+gi.require_version("Gtk", "3.0")
+gi.require_version("Vte", "2.91")  # vte-0.38
 
 
 log = logging.getLogger(__name__)
 
 __all__ = [
-    'get_binaries_from_path',
-    'gladefile',
-    'hexify_color',
-    'pixmapfile',
-    'ShowableError',
+    "get_binaries_from_path",
+    "gladefile",
+    "hexify_color",
+    "pixmapfile",
+    "ShowableError",
 ]
 
 
 def ShowableError(parent, title, msg, exit_code=1):
     d = Gtk.MessageDialog(
-        parent, Gtk.DialogFlags.MODAL | Gtk.DialogFlags.DESTROY_WITH_PARENT,
-        Gtk.MessageType.WARNING, Gtk.ButtonsType.CLOSE
+        parent,
+        Gtk.DialogFlags.MODAL | Gtk.DialogFlags.DESTROY_WITH_PARENT,
+        Gtk.MessageType.WARNING,
+        Gtk.ButtonsType.CLOSE,
     )
-    d.set_markup(f'<b><big>{title}</big></b>')
+    d.set_markup(f"<b><big>{title}</big></b>")
     d.format_secondary_markup(msg)
     d.run()
     d.destroy()
@@ -55,28 +57,27 @@ def ShowableError(parent, title, msg, exit_code=1):
 def pixmapfile(x):
     f = os.path.join(IMAGE_DIR, x)
     if not os.path.exists(f):
-        raise OSError(f'No such file or directory: {f}')
+        raise OSError(f"No such file or directory: {f}")
     return os.path.abspath(f)
 
 
 def gladefile(x):
     f = os.path.join(GLADE_DIR, x)
     if not os.path.exists(f):
-        raise OSError(f'No such file or directory: {f}')
+        raise OSError(f"No such file or directory: {f}")
     return os.path.abspath(f)
 
 
 def hexify_color(c):
-
     def h(x):
-        return hex(x).replace('0x', '').zfill(4)
+        return hex(x).replace("0x", "").zfill(4)
 
-    return f'#{h(c.red)}{h(c.green)}{h(c.blue)}'
+    return f"#{h(c.red)}{h(c.green)}{h(c.blue)}"
 
 
 def get_binaries_from_path(compiled_re):
     ret = []
-    for i in os.environ.get('PATH', '').split(os.pathsep):
+    for i in os.environ.get("PATH", "").split(os.pathsep):
         if os.path.isdir(i):
             for j in os.listdir(i):
                 if compiled_re.match(j):

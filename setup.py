@@ -8,4 +8,4 @@ try:
 except ImportError:
     pass
 
-setuptools.setup(setup_requires=['pbr'], pbr=True)
+setuptools.setup(setup_requires=["pbr"], pbr=True)
