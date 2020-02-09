@@ -1435,7 +1435,7 @@ class PrefsDialog(SimpleGladeApp):
                     "Please try with a key such as "
                     "Control, Alt or Shift at the same "
                     "time.\n"
-                ) % html_escape(key)
+                ) % html_escape(chr(key))
             )
             dialog.run()
             dialog.destroy()
