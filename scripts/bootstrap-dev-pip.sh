@@ -9,7 +9,7 @@ else
 fi
 
 python3 -m pip install $op --upgrade \
-    'pip==19.1.1' \
+    'pip==20.0.2' \
     'pipenv==2018.11.26' \
     || echo "you may need to sudo me !"
 
