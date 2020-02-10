@@ -1422,6 +1422,52 @@ msgstr ""
 msgid "Last Segment"
 msgstr ""
 
+#: guake/main.py:99
+msgid "Put Guake out from fullscreen mode"
+msgstr ""
+
+#: guake/main.py:189
+msgid ""
+"Select a specific terminal in a split tab. Only useful with split terminals "
+"(TERMINAL_INDEX is the index of the tab)"
+msgstr ""
+
+#: guake/main.py:199
+msgid "Return the selected terminal index."
+msgstr ""
+
+#: guake/main.py:259
+msgid "Set the hexadecimal (#rrggbb) background color of the current terminal."
+msgstr ""
+
+#: guake/main.py:268
+msgid "Set the hexadecimal (#rrggbb) foreground color of the current terminal."
+msgstr ""
+
+#: guake/main.py:285
+msgid "Set colors from settings."
+msgstr ""
+
+#: guake/main.py:293
+msgid "Set colors of the current terminal from settings."
+msgstr ""
+
+#: guake/main.py:358
+msgid "Show support infomation"
+msgstr ""
+
+#: guake/menus.py:26
+msgid "Reset custom colors"
+msgstr ""
+
+#: guake/dialogs.py:101
+msgid "Do you want to reset custom colors for this tab?"
+msgstr ""
+
+#: guake/data/prefs.glade:835
+msgid "New tabs appear after the current tab"
+msgstr ""
+
 #~ msgid "key binding error"
 #~ msgstr "Greška dodjeljivanja tipke"
 
