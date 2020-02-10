@@ -2,8 +2,8 @@
 guake
 =====
 
-(unreleased yet)
-================
+3.7.0
+=====
 
 Release Summary
 ---------------
