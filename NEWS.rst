@@ -5,6 +5,21 @@ guake
 (unreleased yet)
 ================
 
+Release Summary
+---------------
+
+Fixes the bug when "New Tab" or "Split Terminal" resets colors set by "--bgcolor" command.
+
+Custom colors for every terminal added. Colors are saved alongside with another tab info. "Reset custom colors" menu item added to hte tab context menu.
+
+Resetting colors of the current page. Managing background and foreground colors of the current terminal. --reset-colors, --bgcolor-focused, --fgcolor-focused and
+  --reset-colors-focused command line arguments added.
+
+--bgcolor-focused, --fgcolor-focused and --reset-colors-focused command line arguments
+    renamed to --bgcolor-current, --fgcolor-current and --reset-colors-current respectively.
+
+Adds an option to display only the last directory on the current path as the tab name.
+
 New Features
 ------------
 
@@ -12,8 +27,43 @@ New Features
 
 - Add fullscreen hide tabbar option
 
+- List new features here followed by the ticket number, for example::
+  
+    - Resetting colors of the current page.
+    - Setting of background and foreground colors and resetting colors of the focused terminal.
+
+- Setting of background and foreground colors and resetting colors of the current terminal (not the focused one).
+
+- Add --select-terminal and --selected-terminal options to Guake CLI
+
+- Adds an option to display only the last directory on the current path as the tab name.
+
+- Reworked the tab name selection to use a drop-down menu.
+
+- Unfullscreen through D-Bus interface, as well as through CLI.
+
+Known Issues
+------------
+
+- When a user changes a background color of a terminal or a tab, this color is saved, and cannot
+  be reset by changing settings. This is OK.
+  The issue is that the user cannot set color transparency, and the transparency becomes fixed
+  until the terminal colors are reset by the user (with a --reset* command or via the tab
+  context menu.
+
+Deprecations
+------------
+
+- Translations need to be updated.
+
 Bug Fixes
 ---------
+
+- Fix Crash (TypeError) when common keys are found in config #1713
+
+- Fixes the bug when "New Tab" or "Split Terminal" resets colors set by "--bgcolor" command.
+
+- Add pew package to Pipfile
 
 - When composited changed, it will update Guake window visual to make it transparent
 
@@ -21,7 +71,11 @@ Bug Fixes
 
 - Fix search revealer causing terminal unclickable at bottom right
 
+- - adding a new tab no longer shows the hidden scrollbars on other tabs
+
 - Remove no need window draw callback
+
+- Fix `make uninstall` not cleaning up properly
 
 - Update some dependencies for build environment
 
@@ -35,6 +89,12 @@ Translation Updates
 - Polish
 
 - French
+
+Other
+-----
+
+- Add a recommendation on how to install Guake from pypi. The best way is to use `pipx` installer,
+  which install guake in its own virtual environment and create a launcher in `~/.local/bin`.
 
 3.6.3
 =====
@@ -84,6 +144,13 @@ Translation Updates
 
 3.6.2
 =====
+
+New Features
+------------
+
+- List new features here followed by the ticket number, for example::
+  
+    - RFE: Open new tab next to current tab #582
 
 Bug Fixes
 ---------
