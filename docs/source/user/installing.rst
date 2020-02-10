@@ -15,10 +15,10 @@ Ubuntu and Debian users will use ``sudo apt install guake``.
 Fedora
 ------
 
-Tested in 29: 
-We can use dnf to install it. 
+Tested in 29:
+We can use dnf to install it.
 
-```bash 
+```bash
 sudo dnf install -y guake
 ```
 
@@ -28,21 +28,21 @@ Then you can open it via:
 guake
 ```
 
-To allow global 'F12' to open the guake, go to Setting >> Device >> Keyboard >> Scroll to bottom >> "+" to create a new global short cut with 'F12' keybinding and comand 'guake'. 
+To allow global 'F12' to open the guake, go to Setting >> Device >> Keyboard >> Scroll to bottom >> "+" to create a new global short cut with 'F12' keybinding and comand 'guake'.
 
-You may notice the style may have some error. You can fix this by installing and apply custom theme. 
+You may notice the style may have some error. You can fix this by installing and apply custom theme.
 
-```bash 
-sudo dnf install -y arc-theme gnome-tweaks 
+```bash
+sudo dnf install -y arc-theme gnome-tweaks
 ```
 
-Then use 
+Then use
 
-```bash 
+```bash
 gnome-tweaks
 ```
 
-to change theme to change theme to one of the yakuake will fix this. 
+to change theme to change theme to one of the yakuake will fix this.
 
 
 Arch Linux
@@ -54,15 +54,23 @@ Install from Pypi
 =================
 
 Guake is now automatically published on Pypi.
-Please use the following command to install on your environment:
+
+Please note the recommended way is to install Guake using `pipx` that will put Guake in a
+dedicated, isolated environment for your local user. Ensure `$HOME/.local/bin` is in your `PATH`.
+
+.. code-block:: bash
+
+    $ python3 -m pip install --user pipx
+    $ pipx install guake
+
+Alternatively, you can use the following command to install on a local environment:
 
 .. code-block:: bash
 
     $ pip install --user guake
 
 
-Avoid using ``pip install guake`` without the ``--user``, you may break
-your system.
+Avoid using ``pip install guake`` without the ``--user``, you may break your system.
 
 You need to ensure the following points are met in your configuration:
 
