@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: Guake 0.4.5\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-07-07 19:07+0200\n"
-"PO-Revision-Date: 2019-05-06 20:48+0000\n"
+"PO-Revision-Date: 2019-05-19 09:48+0000\n"
 "Last-Translator: ssantos <ssantos@web.de>\n"
 "Language-Team: German <https://hosted.weblate.org/projects/guake/guake/de/>\n"
 "Language: de\n"
@@ -977,11 +977,11 @@ msgstr "Teilungsverwaltung"
 
 #: guake/prefs.py:142
 msgid "Split tab vertical"
-msgstr "Tab vertikal aufteilen"
+msgstr "Reiter vertikal aufteilen"
 
 #: guake/prefs.py:146
 msgid "Split tab horizontal"
-msgstr "Tab horizontal aufteilen"
+msgstr "Reiter horizontal aufteilen"
 
 #: guake/prefs.py:154
 msgid "Focus terminal above"
@@ -1037,7 +1037,7 @@ msgstr "Jedem Workspace eigene Tabs zuweisen"
 
 #: guake/prefs.py:128
 msgid "New tab in home directory"
-msgstr "Neuen Tab im HOME-Verzeichnis"
+msgstr "Neuen Reiter im HOME-Verzeichnis"
 
 #: guake/dialogs.py:56
 #, python-brace-format
@@ -1050,15 +1050,16 @@ msgstr "Guake-Farbpalettenschema ändern"
 
 #: data/prefs.glade:331
 msgid "Use workspace-specific tab sets (requires restart)"
-msgstr "Arbeitsflächenspezifische Tab-Gruppen verwenden (erfordert Neustart)"
+msgstr ""
+"Arbeitsflächenspezifische Reiter-Gruppen verwenden (erfordert Neustart)"
 
 #: guake/main.py:175
 msgid "Split the selected tab vertically."
-msgstr "Die ausgewählte Registerkarte vertikal aufteilen."
+msgstr "Die ausgewählten Reiter vertikal aufteilen."
 
 #: guake/main.py:183
 msgid "Split the selected tab horizontally."
-msgstr "Die ausgewählte Registerkarte horizontal aufteilen."
+msgstr "Den ausgewählte Reiter horizontal aufteilen."
 
 #: data/prefs.glade:348
 msgid "Show close buttons for tabs"
@@ -1191,6 +1192,9 @@ msgid ""
 "Tabs session restore abort.\n"
 "Your session file ({session_filename}) missing schema_version as key"
 msgstr ""
+"Abbruch der Wiederherstellung der Sitzungsreiter.\n"
+"Ihrer Sitzungsdatei ({session_filename}) fehlt die schema_version als "
+"Schlüssel"
 
 #: guake/guake_app.py:1252
 #, python-brace-format
@@ -1199,14 +1203,19 @@ msgid ""
 "Your session file schema version is higher than current version "
 "({session_file_schema_version} > {current_schema_version})."
 msgstr ""
+"Abbruch der Wiederherstellung der Sitzungsregisterkarten.\n"
+"Ihre Sitzungsdateischema-Version ist höher als die aktuelle Version "
+"({session_file_schema_version} > {current_schema_version})."
 
 #: guake/data/prefs.glade:409
 msgid "Use workspace-specific tab sets (requires restart, only work on X11)"
 msgstr ""
+"Arbeitsbereichsspezifische Registerkarten verwenden (erfordert Neustart, "
+"funktioniert nur auf X11)"
 
 #: guake/data/prefs.glade:809
 msgid "Hide tabbar when fullscreen"
-msgstr ""
+msgstr "Registerkartenleiste beim Vollbildmodus ausblenden"
 
 #: guake/data/prefs.glade:739
 msgid "Display as tab names:"

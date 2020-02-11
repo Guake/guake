@@ -9,8 +9,8 @@ msgstr ""
 "Project-Id-Version: Guake 0.4.5\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-04-14 12:33+0200\n"
-"PO-Revision-Date: 2019-05-14 16:48+0000\n"
-"Last-Translator: Heimen Stoffels <vistausss@outlook.com>\n"
+"PO-Revision-Date: 2019-06-02 17:04+0000\n"
+"Last-Translator: Allan Nordhøy <epost@anotheragency.no>\n"
 "Language-Team: Dutch <https://hosted.weblate.org/projects/guake/guake/nl/>\n"
 "Language: nl\n"
 "MIME-Version: 1.0\n"
@@ -1117,7 +1117,7 @@ msgstr "Guake-versienummer tonen en afsluiten"
 
 #: guake/data/prefs.glade:93
 msgid "<span size=\"18000\"><b>Guake properties</b></span>"
-msgstr "<span size=\"1800><b>Guake-voorkeuren</b></span>"
+msgstr "<span size=\"18000\"><b>Guake-voorkeuren</b></span>"
 
 #: guake/data/prefs.glade:107
 msgid "Customize behavior and appearance of Guake!"
@@ -1359,7 +1359,7 @@ msgstr "Guake-voorkeuren herstellen uit dit bestand"
 msgid "Your session.json file is broken, backup to {session_filename}.bak"
 msgstr ""
 "Je session.json-bestand is beschadigd; maak een back-up onder de naam "
-"{session_bestandsnaam}.bak"
+"{session_filename}.bak"
 
 #: guake/guake_app.py:1228
 #, python-brace-format
@@ -1395,8 +1395,8 @@ msgstr "Opstarten en tabbladen (experimenteel)"
 msgid ""
 "Your {session_filename} file is broken, backup to {session_filename}.bak"
 msgstr ""
-"Je {session_bestandsnaam}-bestand is beschadigd; maak een back-up onder de "
-"naam {session_bestandsnaam}.bak"
+"Je {session_filename}-bestand is beschadigd; maak een back-up onder de naam "
+"{session_filename}.bak"
 
 #: guake/guake_app.py:1227
 #, python-brace-format
@@ -1404,9 +1404,8 @@ msgid ""
 "Your {session_filename} schema is broken, backup to {0}.bak,and error "
 "message has been saved to {session_filename}.log.err"
 msgstr ""
-"Je {session_bestandsnaam}-schema is beschadigd; maak een back-up onder de "
-"naam {0}.bak - foumeldingen zijn opgeslagen als {session_bestandsnaam}.log."
-"err"
+"Je {session_filename}-schema is beschadigd; maak een back-up onder de naam "
+"{0}.bak - foumeldingen zijn opgeslagen als {session_filename}.log.err"
 
 #: guake/guake_app.py:1227
 #, python-brace-format
@@ -1414,9 +1413,9 @@ msgid ""
 "Your {session_filename} schema is broken, backup to {session_filename}.bak,"
 "and error message has been saved to {session_filename}.log.err."
 msgstr ""
-"Je {session_bestandsnaam}-schema is beschadigd; maak een back-up onder de "
-"naam {session_bestandsnaam}.bak - foumeldingen zijn opgeslagen als "
-"{session_bestandsnaam}.log.err"
+"Je {session_filename}-schema is beschadigd; maak een back-up onder de naam "
+"{session_filename}.bak - foumeldingen zijn opgeslagen als {session_filename}."
+"log.err"
 
 #: guake/guake_app.py:1227
 #, python-brace-format
@@ -1424,9 +1423,9 @@ msgid ""
 "Your {session_filename} schema is broken, backup to {session_filename}.bak, "
 "and error message has been saved to {session_filename}.log.err."
 msgstr ""
-"Je {session_bestandsnaam}-schema is beschadigd; maak een back-up onder de "
-"naam {session_bestandsnaam}.bak - foumeldingen zijn opgeslagen als "
-"{session_bestandsnaam}.log.err"
+"Je {session_filename}-schema is beschadigd; maak een back-up onder de naam "
+"{session_filename}.bak - foumeldingen zijn opgeslagen als {session_filename}."
+"log.err"
 
 #: guake/notebook.py:317
 msgid ""
@@ -1472,7 +1471,7 @@ msgstr ""
 
 #: guake/data/prefs.glade:809
 msgid "Hide tabbar when fullscreen"
-msgstr ""
+msgstr "Tabbladbalk verbergen op volledig scherm"
 
 #: guake/data/prefs.glade:739
 msgid "Display as tab names:"

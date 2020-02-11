@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: Guake 0.4.5\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-06-22 14:32+0200\n"
-"PO-Revision-Date: 2019-04-19 11:18+0000\n"
+"PO-Revision-Date: 2019-05-20 13:01+0000\n"
 "Last-Translator: Morgan Antonsson <morgan.antonsson@gmail.com>\n"
 "Language-Team: Swedish <https://hosted.weblate.org/projects/guake/guake/sv/"
 ">\n"
@@ -19,7 +19,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 3.6-dev\n"
+"X-Generator: Weblate 3.7-dev\n"
 
 #: guake/prefs.py:78
 msgid "<user shell>"
@@ -1159,10 +1159,14 @@ msgid ""
 "\n"
 "Do you want to continue?"
 msgstr ""
+"Du är på väg att återställa *alla* flikar!\n"
+"Detta betyder att alla terminaler och sidor kommer att ersättas.\n"
+"\n"
+"Vill du fortsätta?"
 
 #: guake/main.py:296
 msgid "Show support infomations"
-msgstr ""
+msgstr "Visa stödinformation"
 
 #: guake/guake_app.py:1240
 #, python-brace-format
@@ -1170,6 +1174,8 @@ msgid ""
 "Tabs session restore abort.\n"
 "Your session file ({session_filename}) missing schema_version as key"
 msgstr ""
+"Återställning av fliksession avbröts.\n"
+"Sessionsfilen ({session_filename}) saknar nyckeln schema_version"
 
 #: guake/guake_app.py:1252
 #, python-brace-format
@@ -1178,14 +1184,17 @@ msgid ""
 "Your session file schema version is higher than current version "
 "({session_file_schema_version} > {current_schema_version})."
 msgstr ""
+"Återställning av fliksession avbröts.\n"
+"Sessionsfilens schemaversion är högre än nuvarande version "
+"({session_file_schema_version} > {current_schema_version})."
 
 #: guake/data/prefs.glade:409
 msgid "Use workspace-specific tab sets (requires restart, only work on X11)"
-msgstr ""
+msgstr "Använd arbetsytespecifika flikar (kräver omstart, fungerar bara i X11)"
 
 #: guake/data/prefs.glade:809
 msgid "Hide tabbar when fullscreen"
-msgstr ""
+msgstr "Dölj flikfältet vid fullskärmsläge"
 
 #: guake/data/prefs.glade:739
 msgid "Display as tab names:"

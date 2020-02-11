@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: Guake 0.4.5\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-08-18 17:32+0200\n"
-"PO-Revision-Date: 2019-04-28 18:50+0000\n"
+"PO-Revision-Date: 2019-09-01 19:24+0000\n"
 "Last-Translator: Pavel Borecki <pavel.borecki@gmail.com>\n"
 "Language-Team: Czech <https://hosted.weblate.org/projects/guake/guake/cs/>\n"
 "Language: cs\n"
@@ -19,7 +19,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
-"X-Generator: Weblate 3.6.1\n"
+"X-Generator: Weblate 3.9-dev\n"
 
 #: ../guake/data/about.glade.h:1
 msgid "About Guake"
@@ -1424,6 +1424,8 @@ msgid ""
 "Tabs session restore abort.\n"
 "Your session file ({session_filename}) missing schema_version as key"
 msgstr ""
+"Obnovení relace záložek přerušeno.\n"
+"V souboru relace ({session_filename}) chybí schema_version jako klíč"
 
 #: guake/guake_app.py:1252
 #, python-brace-format
@@ -1432,14 +1434,19 @@ msgid ""
 "Your session file schema version is higher than current version "
 "({session_file_schema_version} > {current_schema_version})."
 msgstr ""
+"Obnovení relace záložek přerušeno.\n"
+"Verze vašeho schématu souboru relace je vyšší než aktuální verze "
+"({session_file_schema_version}> {current_schema_version})."
 
 #: guake/data/prefs.glade:409
 msgid "Use workspace-specific tab sets (requires restart, only work on X11)"
 msgstr ""
+"Použít sady karet specifické pro pracovní prostor (vyžaduje restart, funguje "
+"pouze v X11)"
 
 #: guake/data/prefs.glade:809
 msgid "Hide tabbar when fullscreen"
-msgstr ""
+msgstr "V režimu na celou obrazovku skrýt pruh s kartami"
 
 #: guake/data/prefs.glade:739
 msgid "Display as tab names:"

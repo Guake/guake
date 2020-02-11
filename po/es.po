@@ -11,30 +11,29 @@ msgstr ""
 "Project-Id-Version: Guake 0.4.5\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-08-18 17:32+0200\n"
-"PO-Revision-Date: 2018-01-25 21:00+0100\n"
-"Last-Translator: Dante Bravo <dbravo.iessabadell@gmail.com>\n"
-"Language-Team: Spanish (http://www.transifex.com/projects/p/guake/language/"
-"es/)\n"
+"PO-Revision-Date: 2019-11-13 03:04+0000\n"
+"Last-Translator: Federico Ciuffardi <Federico.ciuffardi@outlook.com>\n"
+"Language-Team: Spanish <https://hosted.weblate.org/projects/guake/guake/es/"
+">\n"
 "Language: es\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 2.0.6\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 3.10-dev\n"
 
 #: ../guake/data/about.glade.h:1
 msgid "About Guake"
 msgstr "Acerca de Guake"
 
 #: ../guake/data/about.glade.h:5
-#, fuzzy
 msgid ""
 "Guake is an easy to access\n"
 "terminal based on FPS games terminal"
 msgstr ""
 "Guake es un terminal de fácil acceso\n"
 "basado en los terminales de los juegos\n"
-"de acción en primera persona."
+"FPS."
 
 #: ../guake/data/guake.glade.h:1
 msgid "Copy"
@@ -163,7 +162,7 @@ msgstr ""
 
 #: ../guake/data/prefs.glade.h:19
 msgid "_Play system alert sound on bell"
-msgstr ""
+msgstr "_Reproducir el sonido de alerta del sistema  en las \"bell\""
 
 #: ../guake/data/prefs.glade.h:20
 msgid "Path to script executed on Guake start:"
@@ -217,11 +216,11 @@ msgstr "Usar nombres estilo VTE para las pestañas"
 
 #: ../guake/data/prefs.glade.h:33
 msgid "Max tab name length:"
-msgstr ""
+msgstr "Longitud máxima del nombre de la pestaña:"
 
 #: ../guake/data/prefs.glade.h:34
 msgid "0 means no size limit"
-msgstr ""
+msgstr "0 significa que no hay límite de tamaño"
 
 #: ../guake/data/prefs.glade.h:36
 msgid "Hide on lose focus"
@@ -582,11 +581,11 @@ msgstr "Hay {0} procesos ejecutándose actualmente"
 
 #: ../src/guake/guake_app.py:186
 msgid "guake-indicator"
-msgstr ""
+msgstr "guake-indicator"
 
 #: ../src/guake/guake_app.py:186
 msgid "guake-tray"
-msgstr ""
+msgstr "bandeja-guake"
 
 #: ../src/guake/guake_app.py:190
 msgid "Show"
@@ -611,9 +610,8 @@ msgid "Search on Web (no selection)"
 msgstr "Buscar en la Web (nada seleccionado)"
 
 #: ../src/guake/guake_app.py:683
-#, fuzzy
 msgid "Open Link: '{}...'"
-msgstr "Abrir vínculo: {}"
+msgstr "Abrir enlace: '{}...'"
 
 #: ../src/guake/guake_app.py:685
 msgid "Open Link: {}"
@@ -637,7 +635,7 @@ msgstr "Todos los ficheros"
 
 #: ../src/guake/guake_app.py:1748
 msgid "Text and Logs"
-msgstr ""
+msgstr "Texto y registros"
 
 #: ../src/guake/guake_app.py:1766
 msgid "Find"
@@ -751,16 +749,14 @@ msgid "Toggle Guake visibility"
 msgstr "Conmuta la visibilidad del terminal"
 
 #: ../src/guake/prefs.py:81
-#, fuzzy
 msgid "Toggle Hide on Lose Focus"
-msgstr "Esconder al perder el foco"
+msgstr "Alternar Ocultar al Perder el Enfoque"
 
 #: ../src/guake/prefs.py:88
 msgid "Tab management"
 msgstr "Administrar pestañas"
 
 #: ../src/guake/prefs.py:90
-#, fuzzy
 msgid "New tab"
 msgstr "Nueva pestaña"
 
@@ -785,125 +781,108 @@ msgid "Go to next tab"
 msgstr "Ir a la pestaña siguiente"
 
 #: ../src/guake/prefs.py:103
-#, fuzzy
 msgid "Move current tab left"
-msgstr "Renombrar la pestaña actual"
+msgstr "Mover la pestaña actual a la izquierda"
 
 #: ../src/guake/prefs.py:105
-#, fuzzy
 msgid "Move current tab right"
-msgstr "Renombrar la pestaña actual"
+msgstr "Mover la pestaña actual a la derecha"
 
 #: ../src/guake/prefs.py:107
-#, fuzzy
 msgid "Go to first tab"
-msgstr "Ir a la pestaña siguiente"
+msgstr "Ir a la primera pestaña"
 
 #: ../src/guake/prefs.py:109
-#, fuzzy
 msgid "Go to second tab"
-msgstr "Ir a la pestaña siguiente"
+msgstr "Ir a la segunda pestaña"
 
 #: ../src/guake/prefs.py:111
-#, fuzzy
 msgid "Go to third tab"
-msgstr "Ir a la pestaña siguiente"
+msgstr "Ir a la tercera pestaña"
 
 #: ../src/guake/prefs.py:113
-#, fuzzy
 msgid "Go to fourth tab"
-msgstr "Ir a la pestaña siguiente"
+msgstr "Ir a la cuarta pestaña"
 
 #: ../src/guake/prefs.py:115
-#, fuzzy
 msgid "Go to fifth tab"
-msgstr "Ir a la pestaña siguiente"
+msgstr "Ir a la quinta pestaña"
 
 #: ../src/guake/prefs.py:117
-#, fuzzy
 msgid "Go to sixth tab"
-msgstr "Ir a la pestaña siguiente"
+msgstr "Ir a la sexta pestaña"
 
 #: ../src/guake/prefs.py:119
-#, fuzzy
 msgid "Go to seventh tab"
-msgstr "Ir a la pestaña siguiente"
+msgstr "Ir a la séptima pestaña"
 
 #: ../src/guake/prefs.py:121
-#, fuzzy
 msgid "Go to eighth tab"
-msgstr "Ir a la pestaña siguiente"
+msgstr "Ir a la octava pestaña"
 
 #: ../src/guake/prefs.py:123
-#, fuzzy
 msgid "Go to ninth tab"
-msgstr "Ir a la pestaña siguiente"
+msgstr "Ir a la novena pestaña"
 
 #: ../src/guake/prefs.py:125
-#, fuzzy
 msgid "Go to tenth tab"
-msgstr "Ir a la pestaña siguiente"
+msgstr "Ir a la décima pestaña"
 
 #: ../src/guake/prefs.py:127
-#, fuzzy
 msgid "Go to last tab"
-msgstr "Ir a la pestaña siguiente"
+msgstr "Ir a la ultima pestaña"
 
 #: ../src/guake/prefs.py:132
 msgid "Zoom out"
-msgstr ""
+msgstr "Disminuir el zoom"
 
 #: ../src/guake/prefs.py:134
 msgid "Zoom in"
-msgstr ""
+msgstr "Aumentar el zoom"
 
 #: ../src/guake/prefs.py:136
 msgid "Zoom in (alternative)"
-msgstr ""
+msgstr "Aumentar el zoom (alternativo)"
 
 #: ../src/guake/prefs.py:138
 msgid "Increase height"
-msgstr ""
+msgstr "Aumentar altura"
 
 #: ../src/guake/prefs.py:140
 msgid "Decrease height"
-msgstr ""
+msgstr "Disminuir altura"
 
 #: ../src/guake/prefs.py:142
-#, fuzzy
 msgid "Increase transparency"
-msgstr "Fondo transparente:"
+msgstr "Aumentar la transparencia"
 
 #: ../src/guake/prefs.py:144
-#, fuzzy
 msgid "Decrease transparency"
-msgstr "Fondo transparente:"
+msgstr "Disminuir la transparencia"
 
 #: ../src/guake/prefs.py:146
-#, fuzzy
 msgid "Toggle transparency"
-msgstr "Fondo transparente:"
+msgstr "Alternar la transparencia"
 
 #: ../src/guake/prefs.py:149
 msgid "Clipboard"
-msgstr "Portapapeles"
+msgstr "Porta papeles"
 
 #: ../src/guake/prefs.py:151
 msgid "Copy text to clipboard"
-msgstr "Copiar texto al portapapeles"
+msgstr "Copiar texto al porta papeles"
 
 #: ../src/guake/prefs.py:153
 msgid "Paste text from clipboard"
-msgstr "Pegar texto del portapapeles"
+msgstr "Pegar texto del porta papeles"
 
 #: ../src/guake/prefs.py:156
 msgid "Extra features"
-msgstr ""
+msgstr "Características adicionales"
 
 #: ../src/guake/prefs.py:159
-#, fuzzy
 msgid "Search select text on web"
-msgstr "Buscar en la Web"
+msgstr "Buscar el texto seleccionado en la web"
 
 #: ../src/guake/prefs.py:481
 msgid "Action"
@@ -945,43 +924,44 @@ msgstr ""
 
 #: guake/main.py:153
 msgid "Return the selected tab label."
-msgstr ""
+msgstr "Regresar la etiqueta de la pestaña seleccionada."
 
 #: guake/data/prefs.glade:264
 msgid "Never"
-msgstr ""
+msgstr "Nunca"
 
 #: guake/data/prefs.glade:265
 msgid "With process running"
-msgstr ""
+msgstr "Con el proceso corriendo"
 
 #: guake/data/prefs.glade:266
 msgid "Always"
-msgstr ""
+msgstr "Siempre"
 
 #: guake/data/prefs.glade:499
 msgid "Refocus if open"
-msgstr ""
+msgstr "Re enfocar si se abre"
 
 #: guake/data/prefs.glade:865
 msgid "Custom command file path:"
-msgstr ""
+msgstr "Camino al archivo de comandos personalizado:"
 
 #: guake/data/prefs.glade:1315
+#, fuzzy
 msgid "Show resizer"
-msgstr ""
+msgstr "Mostrar el \"cambiador de tamaños\""
 
 #: guake/data/prefs.glade:1423
 msgid "Block"
-msgstr ""
+msgstr "Bloquear"
 
 #: guake/data/prefs.glade:1424
 msgid "I-Beam"
-msgstr ""
+msgstr "I-Beam"
 
 #: guake/data/prefs.glade:1425
 msgid "Underline"
-msgstr ""
+msgstr "Subrayar"
 
 #: guake/data/prefs.glade:1443
 msgid "Follow GTK+ setting"

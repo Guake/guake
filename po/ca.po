@@ -9,29 +9,29 @@ msgstr ""
 "Project-Id-Version: Guake 0.4.5\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-08-18 17:32+0200\n"
-"PO-Revision-Date: 2018-01-25 20:58+0100\n"
-"Last-Translator: Raül Cambeiro <xrulet@gmail.com>\n"
-"Language-Team: Catalan (http://www.transifex.com/projects/p/guake/language/"
-"ca/)\n"
+"PO-Revision-Date: 2019-06-02 16:51+0000\n"
+"Last-Translator: Eduard Ereza Martínez <eduard@ereza.cat>\n"
+"Language-Team: Catalan <https://hosted.weblate.org/projects/guake/guake/ca/"
+">\n"
 "Language: ca\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 2.0.6\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 3.7-dev\n"
 
 #: ../guake/data/about.glade.h:1
 msgid "About Guake"
 msgstr "Quant al Guake"
 
 #: ../guake/data/about.glade.h:5
-#, fuzzy
 msgid ""
 "Guake is an easy to access\n"
 "terminal based on FPS games terminal"
 msgstr ""
 "El Guake és un terminal de fàcil accés\n"
-"basat en els terminals dels jocs FPS"
+"basat en els terminals dels videojocs\n"
+"d'acció en primera persona"
 
 #: ../guake/data/guake.glade.h:1
 msgid "Copy"
@@ -47,24 +47,21 @@ msgstr "Commuta la pantalla completa"
 
 #: ../guake/data/guake.glade.h:4
 msgid "Save to File..."
-msgstr ""
+msgstr "Desa a un fitxer..."
 
 #: ../guake/data/guake.glade.h:5 ../src/guake/prefs.py:85
-#, fuzzy
 msgid "Reset terminal"
-msgstr "Terminal Guake"
+msgstr "Reinicia el terminal"
 
 #: ../guake/data/guake.glade.h:6
 msgid "Find..."
-msgstr ""
+msgstr "Cerca..."
 
 #: ../guake/data/guake.glade.h:7
-#, fuzzy
 msgid "New Tab"
 msgstr "Pestanya nova"
 
 #: ../guake/data/guake.glade.h:8
-#, fuzzy
 msgid "Rename Tab"
 msgstr "Canvia el nom de la pestanya"
 
@@ -74,11 +71,11 @@ msgstr "Tanca la pestanya"
 
 #: ../guake/data/guake.glade.h:10
 msgid "Open link..."
-msgstr ""
+msgstr "Obre l'enllaç..."
 
 #: ../guake/data/guake.glade.h:11
 msgid "Search on Web"
-msgstr ""
+msgstr "Cerca al web"
 
 #: ../guake/data/guake.glade.h:12 ../src/guake/prefs.py:83
 msgid "Quit"
@@ -97,7 +94,6 @@ msgid "Guake!"
 msgstr "Guake!"
 
 #: ../guake/data/guake.glade.h:16
-#, fuzzy
 msgid "Add a new tab"
 msgstr "Afegeix una pestanya nova"
 
@@ -133,36 +129,47 @@ msgid ""
 "guake -r \"main\" -e \"cd ~/projects/myproject/main\"\n"
 "guake -r \"prod\" -e \"cd ~/projects/myproject/prod\"\n"
 msgstr ""
+"Camí a l'script de bash que s'executarà automàticament quan s'iniciï el "
+"Guake, llevat que especifiqueu --no-startup-script.\n"
+"\n"
+"Normalment es fa servir la configuració de la funcionalitat de línia "
+"d'ordres del Guake:\n"
+"\n"
+"#!/bin/bash\n"
+"\n"
+"sleep 5  # es recomana esperar una mica abans que el Guake s'hagi iniciat "
+"correctament\n"
+"\n"
+"guake -r \"main\" -e \"cd ~/projects/myproject/main\"\n"
+"guake -r \"prod\" -e \"cd ~/projects/myproject/prod\"\n"
 
 #: ../guake/data/prefs.glade.h:15
 msgid "Enable popup notifications on startup"
-msgstr "Habilita les notificacions emergents en arrencar"
+msgstr "Activa les notificacions emergents en iniciar"
 
 #: ../guake/data/prefs.glade.h:16
 msgid "Show tray icon"
-msgstr "Mostra una icona a la safata"
+msgstr "Mostra la icona a la safata"
 
 #: ../guake/data/prefs.glade.h:17
-#, fuzzy
 msgid "Always prompt on quit"
-msgstr "Demana confirmació per sortir"
+msgstr "Demana confirmació en sortir"
 
 #: ../guake/data/prefs.glade.h:18
 msgid "_Flash terminal on bell"
-msgstr ""
+msgstr "_Fes pampalluguejar el terminal quan soni l'avís del sistema"
 
 #: ../guake/data/prefs.glade.h:19
 msgid "_Play system alert sound on bell"
-msgstr ""
+msgstr "_Reprodueix el so d'alerta del sistema quan soni l'avís del sistema"
 
 #: ../guake/data/prefs.glade.h:20
 msgid "Path to script executed on Guake start:"
-msgstr ""
+msgstr "Camí a l'script que s'executarà en iniciar el Guake:"
 
 #: ../guake/data/prefs.glade.h:21
-#, fuzzy
 msgid "Prompt on close tab:"
-msgstr "Demana confirmació per sortir"
+msgstr "Demana confirmació en tancar la pestanya:"
 
 #: ../guake/data/prefs.glade.h:22
 msgid ""
@@ -170,6 +177,9 @@ msgid ""
 "With process running\n"
 "Always"
 msgstr ""
+"Mai\n"
+"Quan el procés estigui en execució\n"
+"Sempre"
 
 #: ../guake/data/prefs.glade.h:25
 msgid "<b>General</b>"
@@ -177,41 +187,39 @@ msgstr "<b>General</b>"
 
 #: ../guake/data/prefs.glade.h:26
 msgid "Bottom align window instead of top align"
-msgstr ""
+msgstr "Alinea la finestra a sota en lloc de dalt"
 
 #: ../guake/data/prefs.glade.h:27
 msgid "Appear on mouse display"
-msgstr ""
+msgstr "Mostra a la pantalla del ratolí"
 
 #: ../guake/data/prefs.glade.h:28
 msgid "Appear on display:"
-msgstr ""
+msgstr "Mostra a la pantalla:"
 
 #: ../guake/data/prefs.glade.h:29
-#, fuzzy
 msgid "Place tabs on top"
-msgstr "Resta al damunt"
+msgstr "Col·loca les pestanyes a dalt"
 
 #: ../guake/data/prefs.glade.h:30
-#, fuzzy
 msgid "<b>Placement</b>"
-msgstr "<b>Paleta</b>"
+msgstr "<b>Posicionament</b>"
 
 #: ../guake/data/prefs.glade.h:31
 msgid "Stay on top"
-msgstr "Resta al damunt"
+msgstr "Roman al damunt"
 
 #: ../guake/data/prefs.glade.h:32
 msgid "Use VTE titles for tab names"
-msgstr ""
+msgstr "Utilitza títols VTE per als noms de les pestanyes"
 
 #: ../guake/data/prefs.glade.h:33
 msgid "Max tab name length:"
-msgstr ""
+msgstr "Longitud màxima del nom de les pestanyes:"
 
 #: ../guake/data/prefs.glade.h:34
 msgid "0 means no size limit"
-msgstr ""
+msgstr "0 equival a sense límit"
 
 #: ../guake/data/prefs.glade.h:36
 msgid "Hide on lose focus"
@@ -222,9 +230,8 @@ msgid "Show tab bar"
 msgstr "Mostra la barra de pestanyes"
 
 #: ../guake/data/prefs.glade.h:38
-#, fuzzy
 msgid "Start fullscreen"
-msgstr "Commuta la pantalla completa"
+msgstr "Inicia en pantalla completa"
 
 #: ../guake/data/prefs.glade.h:39
 msgid "<b>Main Window</b>"
@@ -232,38 +239,35 @@ msgstr "<b>Finestra principal</b>"
 
 #: ../guake/data/prefs.glade.h:40
 msgid "Left"
-msgstr ""
+msgstr "Esquerra"
 
 #: ../guake/data/prefs.glade.h:41
 msgid "Center"
-msgstr ""
+msgstr "Centre"
 
 #: ../guake/data/prefs.glade.h:42
 msgid "Right"
-msgstr ""
+msgstr "Dreta"
 
 #: ../guake/data/prefs.glade.h:43
-#, fuzzy
 msgid "<b>Main Window Horizontal Alignment</b>"
-msgstr "<b>Alçària de la finestra principal</b>"
+msgstr "<b>Alineació horitzontal de la finestra principal</b>"
 
 #: ../guake/data/prefs.glade.h:44
-#, fuzzy
 msgid "<b>Main Window Height</b>"
-msgstr "<b>Alçària de la finestra principal</b>"
+msgstr "<b>Alçada de la finestra principal</b>"
 
 #: ../guake/data/prefs.glade.h:45
-#, fuzzy
 msgid "<b>Main Window Width</b>"
-msgstr "<b>Alçària de la finestra principal</b>"
+msgstr "<b>Amplada de la finestra principal</b>"
 
 #: ../guake/data/prefs.glade.h:46
 msgid "Custom command file path: "
-msgstr ""
+msgstr "Camí al fitxer d'ordres personalitzades: "
 
 #: ../guake/data/prefs.glade.h:47
 msgid "Please select a json file"
-msgstr ""
+msgstr "Seleccioneu un fitxer JSON"
 
 #: ../guake/data/prefs.glade.h:48 ../src/guake/prefs.py:75
 msgid "General"
@@ -279,7 +283,7 @@ msgstr "_Executa una ordre com a intèrpret d'inici de sessió"
 
 #: ../guake/data/prefs.glade.h:51
 msgid "_Open new tab in current directory"
-msgstr "_Obre les pestanyes noves en el directori actual"
+msgstr "_Obre una pestanya nova al directori actual"
 
 #: ../guake/data/prefs.glade.h:52
 msgid "<b>Shell</b>"
@@ -287,7 +291,7 @@ msgstr "<b>Intèrpret d'ordres</b>"
 
 #: ../guake/data/prefs.glade.h:53
 msgid "Shell"
-msgstr ""
+msgstr "Intèrpret d'ordres"
 
 #: ../guake/data/prefs.glade.h:54
 msgid "Show scrollbar"
@@ -295,11 +299,11 @@ msgstr "Mostra la barra de desplaçament"
 
 #: ../guake/data/prefs.glade.h:55
 msgid "Scrollback lines:"
-msgstr "Línies emmagatzemades:"
+msgstr "Línies de desplaçament cap a endarrere:"
 
 #: ../guake/data/prefs.glade.h:56
 msgid "On output"
-msgstr "Segons la sortida"
+msgstr "A la sortida"
 
 #: ../guake/data/prefs.glade.h:57
 msgid "On key stroke"
@@ -323,7 +327,7 @@ msgstr "Tipus de lletra:"
 
 #: ../guake/data/prefs.glade.h:62
 msgid "Choose some font"
-msgstr "Trieu el tipus de lletra"
+msgstr "Trieu un tipus de lletra"
 
 #: ../guake/data/prefs.glade.h:63
 msgid "Text color:"
@@ -335,7 +339,7 @@ msgstr "Color de fons:"
 
 #: ../guake/data/prefs.glade.h:65
 msgid "Cursor shape:"
-msgstr ""
+msgstr "Forma del cursor:"
 
 #: ../guake/data/prefs.glade.h:66
 msgid ""
@@ -343,6 +347,9 @@ msgid ""
 "I-Beam\n"
 "Underline"
 msgstr ""
+"Bloc\n"
+"Forma de biga\n"
+"Guió baix"
 
 #: ../guake/data/prefs.glade.h:69
 msgid ""
@@ -350,14 +357,17 @@ msgid ""
 "Blink on\n"
 "Blink off"
 msgstr ""
+"Utilitza la configuració del GTK+\n"
+"Activa el parpelleig\n"
+"Desactiva el parpelleig"
 
 #: ../guake/data/prefs.glade.h:72
 msgid "Cursor blink mode:"
-msgstr ""
+msgstr "Mode de parpelleig del cursor:"
 
 #: ../guake/data/prefs.glade.h:73
 msgid "Allow bold font"
-msgstr ""
+msgstr "Permet la negreta"
 
 #: ../guake/data/prefs.glade.h:74
 msgid "<b>Palette</b>"
@@ -372,22 +382,20 @@ msgid "Color palette:"
 msgstr "Paleta de colors:"
 
 #: ../guake/data/prefs.glade.h:77
-#, fuzzy
 msgid "Font color"
-msgstr "Color del text:"
+msgstr "Color del text"
 
 #: ../guake/data/prefs.glade.h:78
-#, fuzzy
 msgid "Background color"
-msgstr "Color de fons:"
+msgstr "Color de fons"
 
 #: ../guake/data/prefs.glade.h:79
 msgid "Use font and background color from the palette"
-msgstr ""
+msgstr "Utilitza el color de text i de fons de la paleta"
 
 #: ../guake/data/prefs.glade.h:80
 msgid "Demo:"
-msgstr ""
+msgstr "Demostració:"
 
 #: ../guake/data/prefs.glade.h:81
 msgid "<b>Effects</b>"
@@ -412,14 +420,19 @@ msgid ""
 "your terminal. See the list of currently supported text patterns used to "
 "extract filename below.</small>"
 msgstr ""
+"<small>L'obertura ràpida és una funcionalitat que us permet obrir un fitxer "
+"directament amb el vostre editor de text preferit en fer-hi clic al nom de "
+"fitxer que apareix al terminal. Vegeu la llista de patrons de texts per a "
+"extreure'n el nom de fitxer suportats actualment a continuació.</small>"
 
 #: ../guake/data/prefs.glade.h:86
 msgid "Enable Quick Open when Ctrl+clicking on a filename in the terminal"
 msgstr ""
+"Activa l'obertura ràpida en fer Control+clic en un nom de fitxer al terminal"
 
 #: ../guake/data/prefs.glade.h:87
 msgid "Editor command line:"
-msgstr ""
+msgstr "Línia d'ordres de l'editor:"
 
 #: ../guake/data/prefs.glade.h:89
 #, no-c-format
@@ -432,31 +445,42 @@ msgid ""
 "For example, for sublime, use <b>subl %(file_path)s:%(line_number)s</b>\n"
 "</i></small>"
 msgstr ""
+"<small><i>Utilitzer els següents elements a la línia d'ordres de l'editor:\n"
+" - <b>%(file_path)s</b>: camí al fitxer en què heu fet clic\n"
+" - <b>%(line_number)s</b>: si el vostre editor ho suporta, podeu obrir el "
+"fitxer directament en una línia concreta, si es troba a la pantalla.\n"
+"\n"
+"Per exemple, per al Sublime, utilitzeu <b>subl %(file_path)s:"
+"%(line_number)s</b>\n"
+"</i></small>"
 
 #: ../guake/data/prefs.glade.h:95
 msgid "Quick open in current terminal"
-msgstr ""
+msgstr "Obertura ràpida al terminal actual"
 
 #: ../guake/data/prefs.glade.h:96
 msgid ""
 "Here is the list of supported patterns: (to add your own, please contact the "
 "Guake's authors)"
 msgstr ""
+"Aquesta és la llista de patrons suportats: (per a afegir-hi els vostres, "
+"contacteu amb els autors del Guake)"
 
 #: ../guake/data/prefs.glade.h:97
-#, fuzzy
 msgid "<b>Quick Open</b>"
-msgstr "<b>Paleta</b>"
+msgstr "<b>Obertura ràpida</b>"
 
 #: ../guake/data/prefs.glade.h:98
 msgid "Quick Open"
-msgstr ""
+msgstr "Obertura ràpida"
 
 #: ../guake/data/prefs.glade.h:99
 msgid ""
 "To change a shortcut simply click on its name.\n"
 "To disable a shortcut, press the \"Backspace\" key."
 msgstr ""
+"Per a canviar una dreceta feu-hi clic al nom.\n"
+"Per a desactivar una drecera, premeu la tecla \"Retrocés\"."
 
 #: ../guake/data/prefs.glade.h:101
 msgid "Keyboard shortcuts"
@@ -469,8 +493,8 @@ msgid ""
 "applications and operating systems that expect different terminal behavior.</"
 "i></small>"
 msgstr ""
-"<small><i><b>Nota:</b> aquestes opcions poden fer que algunes aplicacions no "
-"funcionin correctament. Només hi són per poder evitar certs aspectes "
+"<small><i><b>Nota:</b> Aquestes opcions poden fer que algunes aplicacions no "
+"funcionin correctament. Només hi són per a poder evitar certs aspectes "
 "d'aquelles aplicacions i sistemes operatius que esperen un comportament "
 "diferent del terminal.</i></small>"
 
@@ -480,7 +504,7 @@ msgid ""
 "Escape sequence\n"
 "Control-H"
 msgstr ""
-"ASCII DEL\n"
+"DEL ASCII\n"
 "Seqüència d'escapament\n"
 "Control-H"
 
@@ -494,7 +518,7 @@ msgstr "La tecla de _supressió genera:"
 
 #: ../guake/data/prefs.glade.h:108
 msgid "_Reset Compatibility Options to Defaults"
-msgstr "Reinicia les _opcions de compatibilitat als valors predeterminats"
+msgstr "Reinicia les _opcions de compatibilitat als valors per defecte"
 
 #: ../guake/data/prefs.glade.h:109
 msgid "<b>Keyboard compatibility</b>"
@@ -510,9 +534,8 @@ msgid "Guake Terminal"
 msgstr "Terminal Guake"
 
 #: ../src/guake/gconfhandler.py:369 ../src/guake/guake_app.py:1386
-#, fuzzy
 msgid "Terminal"
-msgstr "Terminal %s"
+msgstr "Terminal"
 
 #: ../src/guake/gconfhandler.py:440
 #, python-format
@@ -521,76 +544,70 @@ msgid ""
 "Please use Guake Preferences dialog to choose another key"
 msgstr ""
 "S'ha produït un problema en definir la drecera amb la tecla <b>%s</b>.\n"
-"Empreu la finestra Preferències del Guake per triar una altra tecla (la "
-"icona de la safata era habilitada)."
+"Feu servir la finestra Preferències del Guake per a triar una altra tecla"
 
 #: ../src/guake/guake_app.py:132
-#, fuzzy
 msgid "Do you want to close the tab?"
-msgstr "De debò voleu sortir del Guake?"
+msgstr "Esteu segur que voleu tancar la pestanya?"
 
 #: ../src/guake/guake_app.py:135
-#, fuzzy
 msgid "Do you really want to quit Guake?"
-msgstr "De debò voleu sortir del Guake?"
+msgstr "Esteu segur que voleu sortir del Guake?"
 
 #: ../src/guake/guake_app.py:137
-#, fuzzy
 msgid " and one tab open"
-msgstr "Afegeix una pestanya nova"
+msgstr " i una pestanya oberta"
 
 #: ../src/guake/guake_app.py:139
 #, python-brace-format
 msgid " and {0} tabs open"
-msgstr ""
+msgstr " i {0} pestanyes obertes"
 
 #: ../src/guake/guake_app.py:142
-#, fuzzy
 msgid "There are no processes running"
-msgstr "<b>Encara hi ha un procés en execució.</b>"
+msgstr "No hi ha cap procés en execució"
 
 #: ../src/guake/guake_app.py:144
-#, fuzzy
 msgid "There is a process still running"
-msgstr "<b>Encara hi ha un procés en execució.</b>"
+msgstr "Encara hi ha un procés en execució"
 
 #: ../src/guake/guake_app.py:146
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid "There are {0} processes still running"
-msgstr "<b>Encara hi ha %d processos en execució.</b>"
+msgstr "Encara hi ha {0} processos en execució"
 
 #: ../src/guake/guake_app.py:186
 msgid "guake-indicator"
-msgstr ""
+msgstr "guake-indicator"
 
 #: ../src/guake/guake_app.py:186
 msgid "guake-tray"
-msgstr ""
+msgstr "guake-tray"
 
 #: ../src/guake/guake_app.py:190
 msgid "Show"
-msgstr ""
+msgstr "Mostra"
 
 #: ../src/guake/guake_app.py:670
 #, python-format
 msgid "Search on Web: '%s'"
-msgstr ""
+msgstr "Cerca al web: '%s'"
 
 #: ../src/guake/guake_app.py:675
 msgid "Search on Web (no selection)"
-msgstr ""
+msgstr "Cerca al web (no hi ha cap selecció)"
 
 #: ../src/guake/guake_app.py:683
 msgid "Open Link: '{}...'"
-msgstr ""
+msgstr "Obre l'enllaç: '{}...'"
 
 #: ../src/guake/guake_app.py:685
 msgid "Open Link: {}"
-msgstr ""
+msgstr "Obre l'enllaç: {}"
 
 #: ../src/guake/guake_app.py:688
 msgid "Open Link..."
-msgstr ""
+msgstr "Obre l'enllaç..."
 
 #: ../src/guake/guake_app.py:1425
 msgid "Rename tab"
@@ -598,45 +615,43 @@ msgstr "Canvia el nom de la pestanya"
 
 #: ../src/guake/guake_app.py:1736
 msgid "Save to..."
-msgstr ""
+msgstr "Anomena i desa..."
 
 #: ../src/guake/guake_app.py:1743 ../src/guake/prefs.py:973
 msgid "All files"
-msgstr ""
+msgstr "Tots els fitxers"
 
 #: ../src/guake/guake_app.py:1748
 msgid "Text and Logs"
-msgstr ""
+msgstr "Text i fitxers de registre"
 
 #: ../src/guake/guake_app.py:1766
 msgid "Find"
-msgstr ""
+msgstr "Cerca"
 
 #: ../src/guake/guake_app.py:1768
 msgid "Forward"
-msgstr ""
+msgstr "Endavant"
 
 #: ../src/guake/guake_app.py:1769
 msgid "Backward"
-msgstr ""
+msgstr "Endarrere"
 
 #: ../src/guake/main.py:68
 msgid "Put Guake in fullscreen mode"
-msgstr ""
+msgstr "Posa el Guake en mode pantalla completa"
 
 #: ../src/guake/main.py:72
 msgid "Toggles the visibility of the terminal window"
 msgstr "Commuta la visibilitat de la finestra del terminal"
 
 #: ../src/guake/main.py:76
-#, fuzzy
 msgid "Shows Guake main window"
-msgstr "Mostra la finestra de preferències del Guake"
+msgstr "Mostra la finestra principal del Guake"
 
 #: ../src/guake/main.py:80
-#, fuzzy
 msgid "Hides Guake main window"
-msgstr "Mostra la finestra de preferències del Guake"
+msgstr "Amaga la finestra principal del Guake"
 
 #: ../src/guake/main.py:84
 msgid "Shows Guake preference window"
@@ -644,20 +659,20 @@ msgstr "Mostra la finestra de preferències del Guake"
 
 #: ../src/guake/main.py:88
 msgid "Shows Guake's about info"
-msgstr "Mostra informació diversa del Guake"
+msgstr "Mostra la informació \"Quant a\" del Guake"
 
 #: ../src/guake/main.py:92
-#, fuzzy
 msgid "Add a new tab (with current directory set to NEW_TAB)"
-msgstr "_Obre les pestanyes noves en el directori actual"
+msgstr ""
+"Afegeix una pestanya nova (amb el directori actual establert a NEW_TAB)"
 
 #: ../src/guake/main.py:96
 msgid "Select a tab (SELECT_TAB is the index of the tab)"
-msgstr ""
+msgstr "Selecciona una pestanya (SELECT_TAB és l'índex de la pestanya)"
 
 #: ../src/guake/main.py:100
 msgid "Return the selected tab index."
-msgstr "Retorna l'índex de la pestanya seleccionada."
+msgstr "Retorna a l'índex de la pestanya seleccionada."
 
 #: ../src/guake/main.py:104
 msgid "Execute an arbitrary command in the selected tab."
@@ -666,66 +681,72 @@ msgstr "Executa una ordre arbitrària a la pestanya seleccionada."
 #: ../src/guake/main.py:108
 msgid "Specify the tab to rename. Default is 0."
 msgstr ""
+"Especifiqueu la pestanya a la qual voleu canviar el nom. Per defecte és 0."
 
 #: ../src/guake/main.py:112
 msgid "Set the hexadecimal (#rrggbb) background color of the selected tab."
 msgstr ""
+"Definiu el color de fons en hexadecimal (#rrggbb) de la pestanya "
+"seleccionada."
 
 #: ../src/guake/main.py:117
 msgid "Set the hexadecimal (#rrggbb) foreground color of the selected tab."
 msgstr ""
+"Definiu el color del text en hexadecimal (#rrggbb) de la pestanya "
+"seleccionada."
 
 #: ../src/guake/main.py:123
 msgid ""
 "Rename the specified tab. Reset to default if TITLE is a single dash \"-\"."
 msgstr ""
+"Canvieu el nom de la pestanya especificada. Tornarà a ser el valor per "
+"defecte si TITLE és un guió \"-\"."
 
 #: ../src/guake/main.py:129
 msgid ""
 "Rename the current tab. Reset to default if TITLE is a single dash \"-\"."
 msgstr ""
+"Canvieu el nom de la pestanya actual. Tornarà a ser el valor per defecte si "
+"TITLE és un guió \"-\"."
 
 #: ../src/guake/main.py:134
 msgid "Says to Guake go away =("
-msgstr "Fa que el Guake desaparegui"
+msgstr "Fa que el Guake desaparegui =("
 
 #: ../src/guake/main.py:138
 msgid "Do not execute the start up script"
-msgstr ""
+msgstr "No executis l'script d'inici"
 
 #: ../src/guake/main.py:235
 msgid "Guake can not init!"
-msgstr "No s'ha pogut iniciar el Guake."
+msgstr "No s'ha pogut iniciar el Guake!"
 
 #: ../src/guake/main.py:236
-#, fuzzy
 msgid ""
 "Gconf Error.\n"
 "Have you installed <b>guake.schemas</b> properly?"
 msgstr ""
 "S'ha produït un error del Gconf.\n"
-"Heu instal·lat correctament la propietat <b>guake.schemas</b>?"
+"Heu instal·lat <b>guake.schemas</b> correctament?"
 
 #. string to show in prefereces dialog for user shell option
 #: ../src/guake/prefs.py:67
 msgid "<user shell>"
-msgstr "<intèrpret de l'usuari>"
+msgstr "<intèrpret d'ordres de l'usuari>"
 
 #: ../src/guake/prefs.py:77
 msgid "Toggle Guake visibility"
 msgstr "Commuta la visibilitat del Guake"
 
 #: ../src/guake/prefs.py:81
-#, fuzzy
 msgid "Toggle Hide on Lose Focus"
-msgstr "Amaga-la en perdre el focus"
+msgstr "Commuta l'amagat en perdre el focus"
 
 #: ../src/guake/prefs.py:88
 msgid "Tab management"
 msgstr "Gestió de pestanyes"
 
 #: ../src/guake/prefs.py:90
-#, fuzzy
 msgid "New tab"
 msgstr "Pestanya nova"
 
@@ -735,7 +756,7 @@ msgstr "Tanca la pestanya"
 
 #: ../src/guake/prefs.py:94
 msgid "Rename current tab"
-msgstr "Canvia el nom a la pestanya actual"
+msgstr "Canvia el nom de la pestanya actual"
 
 #: ../src/guake/prefs.py:97
 msgid "Navigation"
@@ -750,104 +771,88 @@ msgid "Go to next tab"
 msgstr "Vés a la pestanya següent"
 
 #: ../src/guake/prefs.py:103
-#, fuzzy
 msgid "Move current tab left"
-msgstr "Canvia el nom a la pestanya actual"
+msgstr "Mou la pestanya actual a l'esquerra"
 
 #: ../src/guake/prefs.py:105
-#, fuzzy
 msgid "Move current tab right"
-msgstr "Canvia el nom a la pestanya actual"
+msgstr "Mou la pestanya actual a la dreta"
 
 #: ../src/guake/prefs.py:107
-#, fuzzy
 msgid "Go to first tab"
-msgstr "Vés a la pestanya següent"
+msgstr "Vés a la primera pestanya"
 
 #: ../src/guake/prefs.py:109
-#, fuzzy
 msgid "Go to second tab"
-msgstr "Vés a la pestanya següent"
+msgstr "Vés a la segona pestanya"
 
 #: ../src/guake/prefs.py:111
-#, fuzzy
 msgid "Go to third tab"
-msgstr "Vés a la pestanya següent"
+msgstr "Vés a la tercera pestanya"
 
 #: ../src/guake/prefs.py:113
-#, fuzzy
 msgid "Go to fourth tab"
-msgstr "Vés a la pestanya següent"
+msgstr "Vés a la quarta pestanya"
 
 #: ../src/guake/prefs.py:115
-#, fuzzy
 msgid "Go to fifth tab"
-msgstr "Vés a la pestanya següent"
+msgstr "Vés a la cinquena pestanya"
 
 #: ../src/guake/prefs.py:117
-#, fuzzy
 msgid "Go to sixth tab"
-msgstr "Vés a la pestanya següent"
+msgstr "Vés a la sisena pestanya"
 
 #: ../src/guake/prefs.py:119
-#, fuzzy
 msgid "Go to seventh tab"
-msgstr "Vés a la pestanya següent"
+msgstr "Vés a la setena pestanya"
 
 #: ../src/guake/prefs.py:121
-#, fuzzy
 msgid "Go to eighth tab"
-msgstr "Vés a la pestanya següent"
+msgstr "Vés a la vuitena pestanya"
 
 #: ../src/guake/prefs.py:123
-#, fuzzy
 msgid "Go to ninth tab"
-msgstr "Vés a la pestanya següent"
+msgstr "Vés a la novena pestanya"
 
 #: ../src/guake/prefs.py:125
-#, fuzzy
 msgid "Go to tenth tab"
-msgstr "Vés a la pestanya següent"
+msgstr "Vés a la desena pestanya"
 
 #: ../src/guake/prefs.py:127
-#, fuzzy
 msgid "Go to last tab"
-msgstr "Vés a la pestanya següent"
+msgstr "Vés a l'última pestanya"
 
 #: ../src/guake/prefs.py:132
 msgid "Zoom out"
-msgstr ""
+msgstr "Redueix l'ampliació"
 
 #: ../src/guake/prefs.py:134
 msgid "Zoom in"
-msgstr ""
+msgstr "Augmenta l'ampliació"
 
 #: ../src/guake/prefs.py:136
 msgid "Zoom in (alternative)"
-msgstr ""
+msgstr "Augmenta l'ampliació (alternativa)"
 
 #: ../src/guake/prefs.py:138
 msgid "Increase height"
-msgstr ""
+msgstr "Augmenta l'alçada"
 
 #: ../src/guake/prefs.py:140
 msgid "Decrease height"
-msgstr ""
+msgstr "Redueix l'alçada"
 
 #: ../src/guake/prefs.py:142
-#, fuzzy
 msgid "Increase transparency"
-msgstr "Transparència:"
+msgstr "Augmenta la transparència"
 
 #: ../src/guake/prefs.py:144
-#, fuzzy
 msgid "Decrease transparency"
-msgstr "Transparència:"
+msgstr "Disminueix la transparència"
 
 #: ../src/guake/prefs.py:146
-#, fuzzy
 msgid "Toggle transparency"
-msgstr "Transparència:"
+msgstr "Commuta la transparència"
 
 #: ../src/guake/prefs.py:149
 msgid "Clipboard"
@@ -863,11 +868,11 @@ msgstr "Enganxa el text del porta-retalls"
 
 #: ../src/guake/prefs.py:156
 msgid "Extra features"
-msgstr ""
+msgstr "Funcionalitats extra"
 
 #: ../src/guake/prefs.py:159
 msgid "Search select text on web"
-msgstr ""
+msgstr "Cerca el text seleccionat al web"
 
 #: ../src/guake/prefs.py:481
 msgid "Action"
@@ -879,11 +884,11 @@ msgstr "Drecera"
 
 #: ../src/guake/prefs.py:651 ../src/guake/prefs.py:697
 msgid "Custom"
-msgstr ""
+msgstr "Personalitzat"
 
 #: ../src/guake/prefs.py:969
 msgid "JSON files"
-msgstr ""
+msgstr "Fitxers JSON"
 
 #: ../src/guake/prefs.py:1063
 #, python-format
@@ -904,60 +909,60 @@ msgid ""
 msgstr ""
 "No es pot emprar \"%s\"  com a drecera perquè seria impossible escriure amb "
 "aquesta tecla.\n"
-"Proveu de combinar-la amb tecles com la de Control, Majúscula o "
-"Alternativa.\n"
+"\n"
+"Proveu de combinar-la amb tecles com ara Control, Alt o Majúscules.\n"
 
 #: guake/main.py:153
 msgid "Return the selected tab label."
-msgstr ""
+msgstr "Retorna l'etiqueta de la pestanya seleccionada."
 
 #: guake/data/prefs.glade:264
 msgid "Never"
-msgstr ""
+msgstr "Mai"
 
 #: guake/data/prefs.glade:265
 msgid "With process running"
-msgstr ""
+msgstr "Quan el procés estigui en execució"
 
 #: guake/data/prefs.glade:266
 msgid "Always"
-msgstr ""
+msgstr "Sempre"
 
 #: guake/data/prefs.glade:499
 msgid "Refocus if open"
-msgstr ""
+msgstr "Torna a posar-hi el focus si és obert"
 
 #: guake/data/prefs.glade:865
 msgid "Custom command file path:"
-msgstr ""
+msgstr "Camí al fitxer d'ordres personalitzades:"
 
 #: guake/data/prefs.glade:1315
 msgid "Show resizer"
-msgstr ""
+msgstr "Mostra el redimensionador"
 
 #: guake/data/prefs.glade:1423
 msgid "Block"
-msgstr ""
+msgstr "Bloc"
 
 #: guake/data/prefs.glade:1424
 msgid "I-Beam"
-msgstr ""
+msgstr "Forma de biga"
 
 #: guake/data/prefs.glade:1425
 msgid "Underline"
-msgstr ""
+msgstr "Guió baix"
 
 #: guake/data/prefs.glade:1443
 msgid "Follow GTK+ setting"
-msgstr ""
+msgstr "Utilitza la configuració del GTK+"
 
 #: guake/data/prefs.glade:1444
 msgid "Blink on"
-msgstr ""
+msgstr "Activa el parpelleig"
 
 #: guake/data/prefs.glade:1445
 msgid "Blink off"
-msgstr ""
+msgstr "Desactiva el parpelleig"
 
 #: guake/data/prefs.glade:2236
 msgid ""
@@ -969,100 +974,110 @@ msgid ""
 "For example, for sublime, use <b>subl %(file_path)s:%(line_number)s</b>\n"
 "</i></small>"
 msgstr ""
+"<small><i>Utilitzer els següents elements a la línia d'ordres de l'editor:\n"
+"- <b>%(file_path)s</b>: camí al fitxer en què heu fet clic\n"
+"- <b>%(line_number)s</b>: si el vostre editor ho suporta, podeu obrir el "
+"fitxer directament en una línia concreta, si es troba a la pantalla.\n"
+"\n"
+"Per exemple, per al Sublime, utilitzeu <b>subl %(file_path)s:"
+"%(line_number)s</b>\n"
+"</i></small>"
 
 #: guake/data/prefs.glade:2442 guake/data/prefs.glade:2462
 msgid "ASCII DEL"
-msgstr ""
+msgstr "DEL ASCII"
 
 #: guake/data/prefs.glade:2443 guake/data/prefs.glade:2463
 msgid "Escape sequence"
-msgstr ""
+msgstr "Seqüència d'escapament"
 
 #: guake/data/prefs.glade:2444 guake/data/prefs.glade:2464
 msgid "Control-H"
-msgstr ""
+msgstr "Control-H"
 
 #: guake/data/prefs.glade:2600
 msgid ""
 "<small>In this dialog you can attach your own command or script to various "
 "guake events</small>"
 msgstr ""
+"<small>En aquesta finestra podeu associar un script o una ordre pròpia a "
+"diversos esdeveniments del Guake</small>"
 
 #: guake/data/prefs.glade:2635
 msgid "On show:"
-msgstr ""
+msgstr "En mostrar:"
 
 #: guake/data/prefs.glade:2665
 msgid "On start:"
-msgstr ""
+msgstr "En iniciar:"
 
 #: guake/data/prefs.glade:2714
 msgid "Hooks"
-msgstr ""
+msgstr "Acoblaments"
 
 #: guake/data/guake-prefs.desktop:8
 msgid "Configure your Guake sessions"
-msgstr ""
+msgstr "Configureu les vostres sessions del Guake"
 
 #: guake/data/guake-prefs.desktop:15 guake/data/guake.desktop:18
 msgid "guake"
-msgstr ""
+msgstr "guake"
 
 #: guake/data/guake-prefs.desktop:20
 msgid "Terminal;Utility;"
-msgstr ""
+msgstr "Terminal;Utilitats;"
 
 #: guake/data/guake.desktop:10
 msgid "Use the command line in a Quake-like terminal"
-msgstr ""
+msgstr "Feu servir la línia d'ordres en un terminal semblant al del Quake"
 
 #: guake/data/prefs.glade:770
 msgid "Main Window Horizontal Alignment"
-msgstr ""
+msgstr "Alineació horitzontal de la finestra principal"
 
 #: guake/prefs.py:89
 msgid "Show and focus Guake window"
-msgstr ""
+msgstr "Mostra i posa el focus a la finestra del Guake"
 
 #: guake/data/prefs.glade:566
 msgid "0"
-msgstr ""
+msgstr "0"
 
 #: guake/data/prefs.glade:610
 msgid "<b>Main Window Options</b>"
-msgstr ""
+msgstr "<b>Opcions de la finestra principal</b>"
 
 #: guake/data/prefs.glade:770
 msgid "Horizontal Alignment:"
-msgstr ""
+msgstr "Alineació horitzontal:"
 
 #: guake/data/prefs.glade:855
 msgid "Height:"
-msgstr ""
+msgstr "Alçada:"
 
 #: guake/data/prefs.glade:868
 msgid "Width:"
-msgstr ""
+msgstr "Amplada:"
 
 #: guake/data/prefs.glade:913
 msgid "<b>Geometry</b>"
-msgstr ""
+msgstr "<b>Geometria</b>"
 
 #: guake/data/prefs.glade:944
 msgid "Main Window"
-msgstr ""
+msgstr "Finestra principal"
 
 #: guake/data/prefs.glade:1197
 msgid "Infinite scrolling"
-msgstr ""
+msgstr "Desplaçament infinit"
 
 #: guake/data/prefs.glade:1219
 msgid "<b>Scrollbar</b>"
-msgstr ""
+msgstr "<b>Barra de desplaçament</b>"
 
 #: guake/data/prefs.glade:1304
 msgid "<b>Scroll to Bottom</b>"
-msgstr ""
+msgstr "<b>Desplaça al final</b>"
 
 #: guake/data/prefs.glade:2117
 msgid ""
@@ -1071,10 +1086,14 @@ msgid ""
 "terminal. See the list of currently supported text patterns used to extract "
 "filename below."
 msgstr ""
+"L'obertura ràpida és una funcionalitat que us permet obrir un fitxer "
+"directament amb el vostre editor de text preferit en fer-hi clic al nom de "
+"fitxer que apareix al terminal. Vegeu la llista de patrons de texts per a "
+"extreure'n el nom de fitxer suportats actualment a continuació."
 
 #: guake/main.py:64
 msgid "Show Guake version number and exit"
-msgstr ""
+msgstr "Mostra la versió del Guake i surt"
 
 #: guake/data/prefs.glade:93
 msgid "<span size=\"18000\"><b>Guake properties</b></span>"
@@ -1086,35 +1105,35 @@ msgstr "Personalitzeu el comportament i l'aparença del Guake!"
 
 #: guake/data/prefs.glade:929
 msgid "Displacement in pixels"
-msgstr ""
+msgstr "Desplaçament en píxels"
 
 #: guake/guake_app.py:400
 msgid ""
 "Guake is now running,\n"
 "press <b>{!s}</b> to use it."
 msgstr ""
-"El Guake està en execució,\n"
-"premeu<b>{!s}</b> per fer-lo servir."
+"El Guake s'està executant,\n"
+"premeu<b>{!s}</b> per a fer-lo servir."
 
 #: guake/main.py:73
 msgid "Enable verbose logging"
-msgstr ""
+msgstr "Activa la depuració detallada"
 
 #: guake/guake_app.py:680
 msgid "Quick Open: '{!s}...'"
-msgstr ""
+msgstr "Obertura ràpida: '{!s}...'"
 
 #: guake/guake_app.py:683
 msgid "Quick Open: {!s}"
-msgstr ""
+msgstr "Obertura ràpida: {!s}"
 
 #: guake/guake_app.py:691
 msgid "Open Link: '{!s}...'"
-msgstr ""
+msgstr "Obre l'enllaç: '{!s}...'"
 
 #: guake/guake_app.py:694
 msgid "Open Link: {!s}"
-msgstr ""
+msgstr "Obre l'enllaç: {!s}"
 
 #: guake/data/prefs.glade:2175
 msgid ""
@@ -1124,197 +1143,213 @@ msgid ""
 "VTE with PCRE2 enabled ! To use Quick Open, you <b>must select the text</b> "
 "before using Ctrl+click</i>."
 msgstr ""
+"<i><b>ADVERTIMENT</b>: sembla que el vostre sistema té PCRE2 desactivat per "
+"al VTE, la qual cosa evita que aplicacions com el Guake puguin registrar "
+"\"cercadors\" fent servir expressions regulars. Contacteu amb la vostra "
+"distribució i demaneu una versió nova del VTE amb PCRE2 activat! Per a fer "
+"servir l'obertura ràpida, <b>cal que seleccioneu el text</b> abans de fer "
+"servir Control+clic</i>."
 
 #: guake/guake_app.py:680
 msgid "Quick Open: {!s}..."
-msgstr ""
+msgstr "Obertura ràpida: {!s}..."
 
 #: guake/guake_app.py:691
 msgid "Open Link: {!s}..."
-msgstr ""
+msgstr "Obre l'enllaç: {!s}..."
 
 #: guake/guake_app.py:688
 msgid "Quick Open..."
-msgstr ""
+msgstr "Obertura ràpida..."
 
 #: guake/data/prefs.glade:223
 msgid "Start Guake at login"
-msgstr ""
+msgstr "Inicia el Guake en iniciar la sessió"
 
 #: guake/data/prefs.glade:363
 msgid "Gtk Theme:"
-msgstr ""
+msgstr "Tema GTK:"
 
 #: guake/data/prefs.glade:387
 msgid "Prefer dark theme"
-msgstr ""
+msgstr "Prefereix el tema fosc"
 
 #: guake/guake_app.py:435
 msgid "Custom Commands"
-msgstr ""
+msgstr "Ordres personalitzades"
 
 #: guake/main.py:184
 msgid ""
 "Specify the tab to rename. Default is 0. Can be used to select tab by UUID."
 msgstr ""
+"Especifiqueu la pestanya a la qual voleu canviar el nom. Per defecte és 0. "
+"Es pot fer servir per a seleccionar la pestanya per UUID."
 
 #: guake/main.py:212
 msgid ""
 "Rename the specified tab by --tab-index. Reset to default if TITLE is a "
 "single dash \"-\"."
 msgstr ""
+"Canvieu el nom de la pestanya especificada amb --tab-index. Tornarà a ser el "
+"valor per defecte si TITLE és un guió \"-\"."
 
 #: data/search.glade:138
 msgid "Search forward"
-msgstr ""
+msgstr "Cerca cap a endavant"
 
 #: data/search.glade:153
 msgid "Match case"
-msgstr ""
+msgstr "Coincidència de majúscules i minúscules"
 
 #: data/search.glade:186
 msgid "Current search direction: Backward"
-msgstr ""
+msgstr "Direcció de la cerca actual: Endarrere"
 
 #: data/prefs.glade:680
 msgid "Set window title to current tab name"
-msgstr ""
+msgstr "Definiu el títol de la finestra al nom de la pestanya actual"
 
 #: guake/menus.py:48
 msgid "Copy Url"
-msgstr ""
+msgstr "Copia la URL"
 
 #: guake/menus.py:62
 msgid "Split ―"
-msgstr ""
+msgstr "Divideix ―"
 
 #: guake/menus.py:65
 msgid "Split  "
-msgstr ""
+msgstr "Divideix  "
 
 #: guake/menus.py:68 guake/prefs.py:150
 msgid "Close terminal"
-msgstr ""
+msgstr "Tanca el terminal"
 
 #: guake/prefs.py:137
 msgid "Split management"
-msgstr ""
+msgstr "Gestió de les divisions"
 
 #: guake/prefs.py:142
 msgid "Split tab vertical"
-msgstr ""
+msgstr "Divideix la pestanya en vertical"
 
 #: guake/prefs.py:146
 msgid "Split tab horizontal"
-msgstr ""
+msgstr "Divideix la pestanya en horitzontal"
 
 #: guake/prefs.py:154
 msgid "Focus terminal above"
-msgstr ""
+msgstr "Posa el focus al terminal superior"
 
 #: guake/prefs.py:158
 msgid "Focus terminal below"
-msgstr ""
+msgstr "Posa el focus al terminal inferior"
 
 #: guake/prefs.py:162
 msgid "Focus terminal on the left"
-msgstr ""
+msgstr "Posa el focus al terminal esquerre"
 
 #: guake/prefs.py:166
 msgid "Focus terminal on the right"
-msgstr ""
+msgstr "Posa el focus al terminal dret"
 
 #: guake/prefs.py:170
 msgid "Move the terminal split handle up"
-msgstr ""
+msgstr "Mou la nansa de divisió de terminal cap amunt"
 
 #: guake/prefs.py:174
 msgid "Move the terminal split handle down"
-msgstr ""
+msgstr "Mou la nansa de divisió de terminal cap avall"
 
 #: guake/prefs.py:178
 msgid "Move the terminal split handle right"
-msgstr ""
+msgstr "Mou la nansa de divisió de terminal cap a la dreta"
 
 #: guake/prefs.py:182
 msgid "Move the terminal split handle left"
-msgstr ""
+msgstr "Mou la nansa de divisió de terminal cap a l'esquerra"
 
 #: guake/menus.py:65
 msgid "Split ｜"
-msgstr ""
+msgstr "Divideix ｜"
 
 #: guake/menus.py:72
 msgid "Save content..."
-msgstr ""
+msgstr "Desa el contingut..."
 
 #: data/prefs.glade:1182
 msgid ""
 "This might not work on all shells, make sure that your shell supports the --"
 "login option"
 msgstr ""
+"És possible que això no funcioni en tots els intèrprets d'ordres, assegureu-"
+"vos que el vostre suporta l'opció --login"
 
 #: guake/prefs.py:128
 msgid "New tab in home directory"
-msgstr ""
+msgstr "Pestanya nova al directori d'usuari"
 
 #: guake/dialogs.py:56
 #, python-brace-format
 msgid " on {0} workspaces"
-msgstr ""
+msgstr " en {0} espais de treball"
 
 #: guake/main.py:211
 msgid "Change Guake palette scheme"
-msgstr ""
+msgstr "Canvia l'esquema de la paleta del Guake"
 
 #: data/prefs.glade:331
 msgid "Use workspace-specific tab sets (requires restart)"
 msgstr ""
+"Utilitza conjunts de pestanyes específics de l'espai de treball (cal "
+"reiniciar)"
 
 #: guake/main.py:175
 msgid "Split the selected tab vertically."
-msgstr ""
+msgstr "Divideix la pestanya seleccionada verticalment."
 
 #: guake/main.py:183
 msgid "Split the selected tab horizontally."
-msgstr ""
+msgstr "Divideix la pestanya seleccionada horitzontalment."
 
 #: data/prefs.glade:348
 msgid "Show close buttons for tabs"
-msgstr ""
+msgstr "Mostra botons de tancament a les pestanyes"
 
 #: data/prefs.glade:1682
 msgid "Bold text is also bright"
-msgstr ""
+msgstr "El text en negreta també és brillant"
 
 #: data/prefs.glade:1682
 msgid "Bold text is also bright (VTE >=0.52)"
-msgstr ""
+msgstr "El text en negreta també és brillant (VTE >=0.52)"
 
 #: guake/menus.py:42
 msgid "Save Tabs"
-msgstr ""
+msgstr "Desa les pestanyes"
 
 #: guake/menus.py:45
 msgid "Restore Tabs"
-msgstr ""
+msgstr "Restaura les pestanyes"
 
 #: guake/prefs.py:113
 msgid "Search terminal"
-msgstr ""
+msgstr "Cerca al terminal"
 
 #: guake/main.py:278
 msgid "Save Guake preferences to this filename"
-msgstr ""
+msgstr "Desa les preferències del Guake a aquest fitxer"
 
 #: guake/main.py:286
 msgid "Restore Guake preferences from this file"
-msgstr ""
+msgstr "Restaura les preferències del Guake d'aquest fitxer"
 
 #: guake/guake_app.py:1192
 #, python-brace-format
 msgid "Your session.json file is broken, backup to {session_filename}.bak"
 msgstr ""
+"El vostre fitxer session.json és incorrecte, s'ha restaurat la còpia de "
+"seguretat de {session_filename}.bak"
 
 #: guake/guake_app.py:1228
 #, python-brace-format
@@ -1322,32 +1357,36 @@ msgid ""
 "Your session.json schema is broken, backup to {0}.bak,and error message has "
 "been saved to {0}.log.err"
 msgstr ""
+"El vostre esquema session.json és incorrecte, s'ha restaurat la còpia de "
+"seguretat de {0}.bak, i el missatge d'error s'ha desat a {0}.log.err"
 
 #: guake/guake_app.py:1239
 msgid "Your tabs has been restored!"
-msgstr ""
+msgstr "S'han restaurat les vostres pestanyes!"
 
 #: data/prefs.glade:190
 msgid "Restore previous session (tabs)"
-msgstr ""
+msgstr "Restaura la sessió anterior (pestanyes)"
 
 #: data/prefs.glade:204
 msgid "Enable notification when restore tabs"
-msgstr ""
+msgstr "Activa la notificació en restaurar pestanyes"
 
 #: data/prefs.glade:218
 msgid "Automatically save session when the tabs has been modified"
-msgstr ""
+msgstr "Desa la sessió automàticament quan es modifiquin les pestanyes"
 
 #: data/prefs.glade:238
 msgid "Startup & Tabs (Experiment)"
-msgstr ""
+msgstr "Inici i pestanyes (Experiment)"
 
 #: guake/guake_app.py:1192
 #, python-brace-format
 msgid ""
 "Your {session_filename} file is broken, backup to {session_filename}.bak"
 msgstr ""
+"El vostre fitxer {session_filename} és incorrecte, s'ha restaurat la còpia "
+"de seguretat de {session_filename}.bak"
 
 #: guake/guake_app.py:1227
 #, python-brace-format
@@ -1355,6 +1394,9 @@ msgid ""
 "Your {session_filename} schema is broken, backup to {0}.bak,and error "
 "message has been saved to {session_filename}.log.err"
 msgstr ""
+"El vostre esquema {session_filename} és incorrecte, s'ha restaurat la còpia "
+"de seguretat de {0}.bak, i el missatge d'error s'ha desat a "
+"{session_filename}.log.err"
 
 #: guake/guake_app.py:1227
 #, python-brace-format
@@ -1362,6 +1404,9 @@ msgid ""
 "Your {session_filename} schema is broken, backup to {session_filename}.bak,"
 "and error message has been saved to {session_filename}.log.err."
 msgstr ""
+"El vostre esquema {session_filename} és incorrecte, s'ha restaurat la còpia "
+"de seguretat de {session_filename}.bak, i el missatge d'error s'ha desat a "
+"{session_filename}.log.err."
 
 #: guake/guake_app.py:1227
 #, python-brace-format
@@ -1369,6 +1414,9 @@ msgid ""
 "Your {session_filename} schema is broken, backup to {session_filename}.bak, "
 "and error message has been saved to {session_filename}.log.err."
 msgstr ""
+"El vostre esquema {session_filename} és incorrecte, s'ha restaurat la còpia "
+"de seguretat de {session_filename}.bak, i el missatge d'error s'ha desat a "
+"{session_filename}.log.err."
 
 #: guake/notebook.py:317
 msgid ""
@@ -1377,10 +1425,14 @@ msgid ""
 "\n"
 "Do you want to continue?"
 msgstr ""
+"Restaurareu *totes* les pestanyes!\n"
+"Això vol dir que se substituiran totes les vostres pàgines i terminals.\n"
+"\n"
+"Voleu continuar?"
 
 #: guake/main.py:296
 msgid "Show support infomations"
-msgstr ""
+msgstr "Mostra la informació de suport"
 
 #: guake/guake_app.py:1240
 #, python-brace-format
@@ -1388,6 +1440,8 @@ msgid ""
 "Tabs session restore abort.\n"
 "Your session file ({session_filename}) missing schema_version as key"
 msgstr ""
+"S'ha avortat la restauració de les pestanyes de la sessió.\n"
+"Al vostre fitxer de sessió {session_filename} hi manca la clau schema_version"
 
 #: guake/guake_app.py:1252
 #, python-brace-format
@@ -1396,14 +1450,19 @@ msgid ""
 "Your session file schema version is higher than current version "
 "({session_file_schema_version} > {current_schema_version})."
 msgstr ""
+"S'ha avortat la restauració de les pestanyes de la sessió.\n"
+"La versió de l'esquema del vostre fitxer de sessió és més alta que la versió "
+"actual ({session_file_schema_version} > {current_schema_version})."
 
 #: guake/data/prefs.glade:409
 msgid "Use workspace-specific tab sets (requires restart, only work on X11)"
 msgstr ""
+"Utilitza conjunts de pestanyes específics de l'espai de treball (cal "
+"reiniciar, només funciona a X11)"
 
 #: guake/data/prefs.glade:809
 msgid "Hide tabbar when fullscreen"
-msgstr ""
+msgstr "Amaga la barra de pestanyes en el mode de pantalla completa"
 
 #: guake/data/prefs.glade:739
 msgid "Display as tab names:"
