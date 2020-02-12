@@ -115,9 +115,6 @@ class TerminalNotebook(Gtk.Notebook):
                 # Gtk 3.18 fallback ("'Menu' object has no attribute 'popup_at_pointer'")
                 menu.popup(None, None, None, None, event.button, event.time)
 
-        elif event.type == Gdk.EventType.DOUBLE_BUTTON_PRESS and event.button == 1:
-            self.new_page_with_focus()
-
         return False
 
     @save_tabs_when_changed
