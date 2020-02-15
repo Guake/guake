@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: guake\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-04-22 19:49+0200\n"
-"PO-Revision-Date: 2019-05-15 15:42+0000\n"
+"PO-Revision-Date: 2020-02-15 13:34+0000\n"
 "Last-Translator: Piotr Drąg <piotrdrag@gmail.com>\n"
 "Language-Team: Polish <https://hosted.weblate.org/projects/guake/guake/pl/>\n"
 "Language: pl\n"
@@ -19,7 +19,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 "
 "|| n%100>=20) ? 1 : 2;\n"
-"X-Generator: Weblate 3.7-dev\n"
+"X-Generator: Weblate 3.11-dev\n"
 
 #: guake/keybindings.py:94 guake/guake_app.py:191 guake/guake_app.py:403
 #: guake/about.py:54
@@ -1206,62 +1206,64 @@ msgstr "Ukrywanie paska kart w trybie pełnoekranowym"
 
 #: guake/data/prefs.glade:739
 msgid "Display as tab names:"
-msgstr ""
+msgstr "Nazwy kart:"
 
 #: guake/data/prefs.glade:753
 msgid "Full Path"
-msgstr ""
+msgstr "Pełna ścieżka"
 
 #: guake/data/prefs.glade:754
 msgid "Abbreviated Path"
-msgstr ""
+msgstr "Skrócona ścieżka"
 
 #: guake/data/prefs.glade:755
 msgid "Last Segment"
-msgstr ""
+msgstr "Ostatni segment"
 
 #: guake/main.py:99
 msgid "Put Guake out from fullscreen mode"
-msgstr ""
+msgstr "Wyłącza tryb pełnoekranowy"
 
 #: guake/main.py:189
 msgid ""
 "Select a specific terminal in a split tab. Only useful with split terminals "
 "(TERMINAL_INDEX is the index of the tab)"
 msgstr ""
+"Wybiera podany terminal w podzielonej karcie. Przydatne tylko z podzielonymi "
+"terminalami (TERMINAL_INDEX jest indeksem karty)"
 
 #: guake/main.py:199
 msgid "Return the selected terminal index."
-msgstr ""
+msgstr "Wyświetla indeks wybranego terminala."
 
 #: guake/main.py:259
 msgid "Set the hexadecimal (#rrggbb) background color of the current terminal."
-msgstr ""
+msgstr "Ustawia szesnastkowy (#rrggbb) kolor tła bieżącego terminala."
 
 #: guake/main.py:268
 msgid "Set the hexadecimal (#rrggbb) foreground color of the current terminal."
-msgstr ""
+msgstr "Ustawia szesnastkowy (#rrggbb) kolor tekstu bieżącego terminala."
 
 #: guake/main.py:285
 msgid "Set colors from settings."
-msgstr ""
+msgstr "Ustawia kolory z ustawień."
 
 #: guake/main.py:293
 msgid "Set colors of the current terminal from settings."
-msgstr ""
+msgstr "Ustawia kolory bieżącego terminala z ustawień."
 
 #: guake/main.py:358
 msgid "Show support infomation"
-msgstr ""
+msgstr "Wyświetla informacje o pomocy"
 
 #: guake/menus.py:26
 msgid "Reset custom colors"
-msgstr ""
+msgstr "Przywraca niestandardowe kolory"
 
 #: guake/dialogs.py:101
 msgid "Do you want to reset custom colors for this tab?"
-msgstr ""
+msgstr "Przywrócić niestandardowe kolory dla tej karty?"
 
 #: guake/data/prefs.glade:835
 msgid "New tabs appear after the current tab"
-msgstr ""
+msgstr "Otwieranie nowych kart za bieżącą kartą"
