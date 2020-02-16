@@ -43,9 +43,9 @@ reset:
 
 all: clean dev style checks dists test docs
 
-dev: clean-ln-venv ensure-pip pipenv-install-dev requirements ln-venv setup-githook \
+dev: clean-ln-venv ensure-pip poetry-install-dev requirements ln-venv setup-githook \
 	 prepare-install install-dev-locale
-dev-travis: ensure-pip-system pipenv-install-dev requirements setup-githook prepare-install
+dev-travis: ensure-pip-system poetry-install-dev requirements setup-githook prepare-install
 
 ensure-pip:
 	./scripts/bootstrap-dev-pip.sh
@@ -53,17 +53,17 @@ ensure-pip:
 ensure-pip-system:
 	./scripts/bootstrap-dev-pip.sh system
 
-dev-no-pipenv: clean
+dev-no-poetry: clean
 	virtualenv --python $(PYTHON_INTERPRETER) .venv
 	. .venv/bin/activate && pip install -r requirements.txt -r requirements-dev.txt -e .
 
-pipenv-install-dev:
-	pipenv install --dev --python $(PYTHON_INTERPRETER)
+poetry-install-dev:
+	poetry add --dev --python $(PYTHON_INTERPRETER)
 
 ln-venv:
 	# use that to configure a symbolic link to the virtualenv in .venv
 	rm -rf .venv
-	ln -s $$(pipenv --venv) .venv
+	ln -s $$(poetry env info --path) .venv
 
 clean-ln-venv:
 	@rm -f .venv
@@ -185,23 +185,23 @@ style: fiximports autopep8 yapf
 fiximports:
 	@for fil in $$(find setup.py guake -name "*.py"); do \
 		echo "Sorting imports from: $$fil"; \
-		pipenv run fiximports $$fil; \
+		poetry run fiximports $$fil; \
 	done
 
 autopep8:
-	pipenv run autopep8 --in-place --recursive setup.py $(MODULE)
+	poetry run autopep8 --in-place --recursive setup.py $(MODULE)
 
 yapf:
-	pipenv run yapf --style .yapf --recursive -i $(MODULE)
+	poetry run yapf --style .yapf --recursive -i $(MODULE)
 
 
 checks: flake8 pylint reno-lint
 
 flake8:
-	pipenv run python setup.py flake8
+	poetry run python setup.py flake8
 
 pylint:
-	pipenv run pylint --rcfile=.pylintrc --output-format=colorized $(MODULE)
+	poetry run pylint --rcfile=.pylintrc --output-format=colorized $(MODULE)
 
 sc: style check
 
@@ -209,45 +209,45 @@ dists: update-po requirements prepare-install rm-dists sdist bdist wheels
 build: dists
 
 sdist: generate-paths
-	export SKIP_GIT_SDIST=1 && pipenv run python setup.py sdist
+	export SKIP_GIT_SDIST=1 && poetry run python setup.py sdist
 
 rm-dists:
 	rm -rf build dist
 
 bdist: generate-paths
-	# pipenv run python setup.py bdist
+	# poetry run python setup.py bdist
 	@echo "Ignoring build of bdist package"
 
 wheels: generate-paths
-	pipenv run python setup.py bdist_wheel
+	poetry run python setup.py bdist_wheel
 
 wheel: wheels
 
 run-local: compile-glib-schemas-dev
 ifdef V
-	pipenv run ./scripts/run-local.sh -v
+	poetry run ./scripts/run-local.sh -v
 else
-	pipenv run ./scripts/run-local.sh
+	poetry run ./scripts/run-local.sh
 endif
 
 run-local-prefs: compile-glib-schemas-dev
-	pipenv run ./scripts/run-local-prefs.sh
+	poetry run ./scripts/run-local-prefs.sh
 
 run-fr: compile-glib-schemas-dev
-	LC_ALL=fr_FR.UTF8 pipenv run ./scripts/run-local.sh
+	LC_ALL=fr_FR.UTF8 poetry run ./scripts/run-local.sh
 
 
 shell:
-	pipenv shell
+	poetry shell
 
 
 test:
-	pipenv run pytest $(MODULE)
+	poetry run pytest $(MODULE)
 
 test-travis:
-	xvfb-run -a pipenv run pytest $(MODULE)
+	xvfb-run -a poetry run pytest $(MODULE)
 test-coverage:
-	pipenv run py.test -v --cov $(MODULE) --cov-report term-missing
+	poetry run py.test -v --cov $(MODULE) --cov-report term-missing
 
 test-pip-install-sdist: clean-pip-install-local generate-paths sdist
 	@echo "Testing installation by pip (will install on ~/.local)"
@@ -271,7 +271,7 @@ sct: style check update-po requirements test
 
 
 docs: clean-docs sdist
-	cd docs && pipenv run make html
+	cd docs && poetry run make html
 
 docs-open:
 	xdg-open docs/_build/html/index.html
@@ -279,12 +279,12 @@ docs-open:
 tag-pbr:
 	@{ \
 		set -e ;\
-		export VERSION=$$(pipenv run python setup.py --version | cut -d. -f1,2,3); \
+		export VERSION=$$(poetry run python setup.py --version | cut -d. -f1,2,3); \
 		echo "I: Computed new version: $$VERSION"; \
 		echo "I: presse ENTER to accept or type new version number:"; \
 		read VERSION_OVERRIDE; \
 		VERSION=$${VERSION_OVERRIDE:-$$VERSION}; \
-		PROJECTNAME=$$(pipenv run python setup.py --name); \
+		PROJECTNAME=$$(poetry run python setup.py --name); \
 		echo "I: Tagging $$PROJECTNAME in version $$VERSION with tag: $$VERSION" ; \
 		echo "$$ git tag $$VERSION -m \"$$PROJECTNAME $$VERSION\""; \
 		git tag $$VERSION -m "$$PROJECTNAME $$VERSION"; \
@@ -296,25 +296,27 @@ tag-pbr:
 	@#  git tag -s $$VERSION -m \"$$PROJECTNAME $$VERSION\""
 
 pypi-publish: build
-	pipenv run python setup.py upload -r pypi
+	poetry run python setup.py upload -r pypi
 
 
 update:
-	pipenv update --clear
-	pipenv install --dev
+	poetry update --clear
+	poetry install --dev
 
 
-lock: pipenv-lock requirements
+lock: poetry-lock requirements
 
 requirements:
-	pipenv run pipenv_to_requirements
+	poetry export --without-hashes -f requirements.txt -o requirements.txt
+	# Note: requirements-dev.txt will also hold prod dependencies
+	poetry export --without-hashes --dev -f requirements.txt -o requirements-dev.txt
 
-pipenv-lock:
-	pipenv lock
+poetry-lock:
+	poetry lock
 
 
 freeze:
-	pipenv run pip freeze
+	poetry run pip freeze
 
 
 githook:
@@ -333,7 +335,7 @@ clean: clean-ln-venv rm-dists clean-docs clean-po clean-schemas clean-py clean-p
 	@echo "clean successful"
 
 clean-py:
-	@pipenv --rm ; true
+	@poetry env remove ; true
 	@find . -name "*.pyc" -exec rm -f {} \;
 	@rm -f $(DEV_DATA_DIR)/guake-prefs.desktop $(DEV_DATA_DIR)/guake.desktop
 	@rm -rf .eggs *.egg-info po/*.pot
@@ -406,17 +408,17 @@ generate-paths:
 	@sed -i -e 's|{{ SCHEMA_DIR }}|get_default_schema_dir()|g' guake/paths.py
 
 reno:
-	pipenv run reno new $(SLUG) --edit
+	poetry run reno new $(SLUG) --edit
 
 reno-lint:
-	pipenv run reno -q lint
+	poetry run reno -q lint
 
 release-note: reno-lint release-note-news release-note-github
 
 release-note-news: reno-lint
 	@echo "Generating release note for NEWS file"
 	@rm -f guake/releasenotes/notes/reno.cache
-	@pipenv run python setup.py build_reno --output-file NEWS.rst.in
+	@poetry run python setup.py build_reno --output-file NEWS.rst.in
 	@grep -v -R "^\.\.\ " NEWS.rst.in | cat -s > NEWS.rst
 	@cat releasenotes/archive/NEWS.pre-3.0 >> NEWS.rst
 	@rm -fv NEWS.rst.in
@@ -430,7 +432,7 @@ release-note-github: reno-lint
 	@echo "!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"
 	@echo "-------- copy / paste from here --------"
 	@# markdown_github to be avoided => gfm output comes in pandoc 2.0.4 release dec 2017
-	@pipenv run reno report 2>/dev/null | \
+	@poetry run reno report 2>/dev/null | \
 		pandoc -f rst -t markdown --atx-headers --wrap=none --tab-stop 2 | \
 		tr '\n' '\r' | \
 			sed 's/\r<!-- -->\r//g' | \
@@ -447,12 +449,12 @@ release:
 	git pull --rebase upstream master
 	@{ \
 		set -e ;\
-		export VERSION=$$(pipenv run python setup.py --version | cut -d. -f1,2,3); \
+		export VERSION=$$(poetry run python setup.py --version | cut -d. -f1,2,3); \
 		echo "I: Computed new version: $$VERSION"; \
 		echo "I: presse ENTER to accept or type new version number:"; \
 		read VERSION_OVERRIDE; \
 		VERSION=$${VERSION_OVERRIDE:-$$VERSION}; \
-		PROJECTNAME=$$(pipenv run python setup.py --name); \
+		PROJECTNAME=$$(poetry run python setup.py --name); \
 		echo "I: Tagging $$PROJECTNAME in version $$VERSION with tag: $$VERSION" ; \
 		echo "I: Pushing tag $$VERSION, press ENTER to continue, C-c to interrupt"; \
 		git commit --all -m "Release $$VERSION" --allow-empty --no-edit ; \
