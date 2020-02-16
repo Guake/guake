@@ -58,7 +58,7 @@ dev-no-poetry: clean
 	. .venv/bin/activate && pip install -r requirements.txt -r requirements-dev.txt -e .
 
 poetry-install-dev:
-	poetry add --dev --python $(PYTHON_INTERPRETER)
+	poetry install
 
 ln-venv:
 	# use that to configure a symbolic link to the virtualenv in .venv
