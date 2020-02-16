@@ -1,0 +1,48 @@
+[tool]
+[tool.poetry]
+name = "guake"
+version = "4.0.0"
+description = "Drop-down terminal for GNOME"
+authors = [
+    "Gaetan Semet <gaetan@xeberon.net>"
+]
+readme = "README.rst"
+repository = "https://github.com/Guake/guake"
+homepage = "http://guake-project.org/"
+documentation = "https://guake.readthedocs.io/"
+keywords = ["guake", "guake-terminal", "terminal", "terminal-emulator"]
+license = "GPL-2.0-only"
+exclude = []
+
+[tool.poetry.urls]
+"Bug Tracker" = "https://github.com/Guake/guake/issues"
+
+[tool.poetry.dependencies]
+python = "==3"
+pbr = "*"
+typing = {python = "<3.5", version = "*"}
+
+[tool.poetry.dev-dependencies]
+astroid = "<2.2.0"
+autopep8 = "*"
+colorlog = "*"
+fiximports = ">=0.1.18"
+flake8 = "<=3.6.0"
+# guake = {path = "/home/ben/Projects/GuakeRefurbish/guake", version = "*"}
+mock = ">=2.0.0"
+pathlib2 = "*"
+pep8 = "*"
+pew = "*"
+pyfakefs = "*"
+pyflakes = "*"
+pylint = "*"
+pytest = "*"
+pytest-cov = "*"
+pytest-mock = "*"
+reno = {version = ">=2.8.0", extras = ["sphinx"]}
+scandir = {python = "<3.5", version = "*"}
+sphinx-rtd-theme = "*"
+sphinxcontrib-programoutput = "*"
+twine = "*"
+# typed-ast = "<1.4.0,>=1.3.1"
+yapf = "*"
