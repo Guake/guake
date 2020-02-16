@@ -2,7 +2,7 @@
 
 echo "execute Guake GTK3 for developer."
 
-VIRTUALENV_PATH=$(pipenv --venv)
+VIRTUALENV_PATH=$(poetry env info --path)
 
 source $VIRTUALENV_PATH/bin/activate
 

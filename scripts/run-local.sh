@@ -6,7 +6,7 @@ if test "$1" == "-v"; then
 	VERBOSE="-v";
 fi
 
-VIRTUALENV_PATH=$(pipenv --venv)
+VIRTUALENV_PATH=$(poetry env info --path)
 
 source $VIRTUALENV_PATH/bin/activate
 

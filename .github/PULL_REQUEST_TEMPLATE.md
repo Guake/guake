@@ -22,7 +22,7 @@ Please follow these steps before submitting a new Pull Request to Guake:
   ```
 
   and edit the created file in `releasenotes/notes/`.
-  You can see how `reno` works using `pipenv run reno --help`.
+  You can see how `reno` works using `poetry run reno --help`.
 
   Please use a generic slug (eg, for translation update,
   use `translation`, for bugfix use `bugfix`,...)

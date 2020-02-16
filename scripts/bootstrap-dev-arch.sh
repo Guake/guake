@@ -53,7 +53,7 @@ if [[ $MAKE == "1" ]]; then
         gsettings-desktop-schemas \
         make \
         pandoc \
-        python-pipenv
+        python-poetry
 fi
 
 if [[ $DEV == "1" ]]; then
