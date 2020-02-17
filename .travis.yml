@@ -42,8 +42,6 @@ script:
     - make dev-travis
     - poetry config virtualenvs.create true
     - poetry config virtualenvs.in-project true
-    # - poetry run pip install --upgrade pip
-    - pip install poetry-dynamic-versioning
     - poetry run pip install pycairo pygobject
     # check
     - make check
