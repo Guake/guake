@@ -27,8 +27,9 @@ import subprocess
 import time
 
 import gi
-gi.require_version('Gtk', '3.0')
-gi.require_version('Gdk', '3.0')
+
+gi.require_version("Gtk", "3.0")
+gi.require_version("Gdk", "3.0")
 
 from gi.repository import Gdk
 from gi.repository import Gtk
@@ -76,19 +77,19 @@ def save_tabs_when_changed(func):
         # Find me the Guake!
         clsname = args[0].__class__.__name__
         g = None
-        if clsname == 'Guake':
+        if clsname == "Guake":
             g = args[0]
-        elif getattr(args[0], 'get_guake', None):
+        elif getattr(args[0], "get_guake", None):
             g = args[0].get_guake()
-        elif getattr(args[0], 'get_notebook', None):
+        elif getattr(args[0], "get_notebook", None):
             g = args[0].get_notebook().guake
-        elif getattr(args[0], 'guake', None):
+        elif getattr(args[0], "guake", None):
             g = args[0].guake
-        elif getattr(args[0], 'notebook', None):
+        elif getattr(args[0], "notebook", None):
             g = args[0].notebook.guake
 
         # Tada!
-        if g and g.settings.general.get_boolean('save-tabs-when-changed'):
+        if g and g.settings.general.get_boolean("save-tabs-when-changed"):
             g.save_tabs()
 
     return wrapper
@@ -96,24 +97,23 @@ def save_tabs_when_changed(func):
 
 def save_preferences(filename):
     # XXX: Hardcode?
-    prefs = subprocess.check_output(['dconf', 'dump', '/apps/guake/'])
-    with open(filename, 'wb') as f:
+    prefs = subprocess.check_output(["dconf", "dump", "/apps/guake/"])
+    with open(filename, "wb") as f:
         f.write(prefs)
 
 
 def restore_preferences(filename):
     # XXX: Hardcode?
-    with open(filename, 'rb') as f:
+    with open(filename, "rb") as f:
         prefs = f.read()
-    p = subprocess.Popen(['dconf', 'load', '/apps/guake/'], stdin=subprocess.PIPE)
+    p = subprocess.Popen(["dconf", "load", "/apps/guake/"], stdin=subprocess.PIPE)
     p.communicate(input=prefs)
 
 
-class TabNameUtils():
-
+class TabNameUtils:
     @classmethod
     def shorten(cls, text, settings):
-        use_vte_titles = settings.general.get_boolean('use-vte-titles')
+        use_vte_titles = settings.general.get_boolean("use-vte-titles")
         if not use_vte_titles:
             return text
         max_name_length = settings.general.get_int("max-tab-name-length")
@@ -122,8 +122,7 @@ class TabNameUtils():
         return text
 
 
-class HidePrevention():
-
+class HidePrevention:
     def __init__(self, window):
         """Create a new HidePrevention object like `HidePrevention(window)`
         """
@@ -135,22 +134,22 @@ class HidePrevention():
         """returns True if the window is allowed to hide and
         False if `prevent()` is called from some where
         """
-        return getattr(self.window, 'can_hide', True)
+        return getattr(self.window, "can_hide", True)
 
     def prevent(self):
         """sets a flag on the window object which indicates to
         may_hide that the window is NOT allowed to be hidden.
         """
-        setattr(self.window, 'can_hide', False)
+        setattr(self.window, "can_hide", False)
 
     def allow(self):
         """sets the flag so that it indicates to may_hide that the window is allowed to be hidden
         """
-        setattr(self.window, 'can_hide', True)
+        setattr(self.window, "can_hide", True)
 
 
-class FullscreenManager():
-    FULLSCREEN_ATTR = 'is_fullscreen'
+class FullscreenManager:
+    FULLSCREEN_ATTR = "is_fullscreen"
 
     def __init__(self, settings, window, guake=None):
         self.settings = settings
@@ -163,7 +162,9 @@ class FullscreenManager():
 
     def set_window_state(self, window_state):
         self.window_state = window_state
-        setattr(self.window, self.FULLSCREEN_ATTR, bool(window_state & Gdk.WindowState.FULLSCREEN))
+        setattr(
+            self.window, self.FULLSCREEN_ATTR, bool(window_state & Gdk.WindowState.FULLSCREEN),
+        )
 
         if not window_state & Gdk.WindowState.WITHDRAWN:
             if self.is_fullscreen():
@@ -193,17 +194,16 @@ class FullscreenManager():
 
     def toggle_fullscreen_hide_tabbar(self):
         if self.is_fullscreen():
-            if self.settings.general.get_boolean('fullscreen-hide-tabbar'):
+            if self.settings.general.get_boolean("fullscreen-hide-tabbar"):
                 if self.guake and self.guake.notebook_manager:
                     self.guake.notebook_manager.set_notebooks_tabbar_visible(False)
         else:
             if self.guake and self.guake.notebook_manager:
-                v = self.settings.general.get_boolean('window-tabbar')
+                v = self.settings.general.get_boolean("window-tabbar")
                 self.guake.notebook_manager.set_notebooks_tabbar_visible(v)
 
 
-class RectCalculator():
-
+class RectCalculator:
     @classmethod
     def set_final_window_rect(cls, settings, window):
         """Sets the final size and location of the main window of guake. The height
@@ -211,12 +211,12 @@ class RectCalculator():
         horizontal alignment is given by window_alignment.
         """
         # fetch settings
-        height_percents = settings.general.get_int('window-height')
-        width_percents = settings.general.get_int('window-width')
-        halignment = settings.general.get_int('window-halignment')
-        valignment = settings.general.get_int('window-valignment')
-        vdisplacement = settings.general.get_int('window-vertical-displacement')
-        hdisplacement = settings.general.get_int('window-horizontal-displacement')
+        height_percents = settings.general.get_int("window-height")
+        width_percents = settings.general.get_int("window-width")
+        halignment = settings.general.get_int("window-halignment")
+        valignment = settings.general.get_int("window-valignment")
+        vdisplacement = settings.general.get_int("window-vertical-displacement")
+        hdisplacement = settings.general.get_int("window-horizontal-displacement")
 
         log.debug("set_final_window_rect")
         log.debug("  height_percents = %s", height_percents)
@@ -287,8 +287,8 @@ class RectCalculator():
         screen = window.get_screen()
 
         # fetch settings
-        use_mouse = settings.general.get_boolean('mouse-display')
-        dest_screen = settings.general.get_int('display-n')
+        use_mouse = settings.general.get_boolean("mouse-display")
+        dest_screen = settings.general.get_int("display-n")
 
         if use_mouse:
 
@@ -301,8 +301,8 @@ class RectCalculator():
         # default to 'primary display' option.
         n_screens = screen.get_n_monitors()
         if dest_screen > n_screens - 1:
-            settings.general.set_boolean('mouse-display', False)
-            settings.general.set_int('display-n', dest_screen)
+            settings.general.set_boolean("mouse-display", False)
+            settings.general.set_int("display-n", dest_screen)
             dest_screen = screen.get_primary_monitor()
 
         # Use primary display if configured

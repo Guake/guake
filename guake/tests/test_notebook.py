@@ -9,9 +9,10 @@ from guake.notebook import TerminalNotebook
 @pytest.fixture
 def nb(mocker):
     targets = [
-        'guake.notebook.TerminalNotebook.terminal_spawn',
-        'guake.notebook.TerminalNotebook.terminal_attached',
-        'guake.notebook.TerminalNotebook.guake', 'guake.notebook.TerminalBox.set_terminal'
+        "guake.notebook.TerminalNotebook.terminal_spawn",
+        "guake.notebook.TerminalNotebook.terminal_attached",
+        "guake.notebook.TerminalNotebook.guake",
+        "guake.notebook.TerminalBox.set_terminal",
     ]
     for target in targets:
         mocker.patch(target, create=True)
@@ -44,8 +45,8 @@ def test_remove_page_in_notebook(nb):
 
 
 def test_rename_page(nb):
-    t1 = 'foo'
-    t2 = 'bar'
+    t1 = "foo"
+    t2 = "bar"
     nb.new_page()
     nb.rename_page(0, t1, True)
     assert nb.get_tab_text_index(0) == t1
@@ -56,7 +57,7 @@ def test_rename_page(nb):
 
 
 def test_add_new_page_with_focus_with_label(nb):
-    t = 'test_this_label'
+    t = "test_this_label"
     nb.new_page_with_focus(label=t)
     assert nb.get_n_pages() == 1
     assert nb.get_tab_text_index(0) == t

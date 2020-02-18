@@ -16,13 +16,13 @@ def test_quick_open():
     )
 
     found = _execute_quick_open(chunk)
-    assert found == [('./test.py', '5')]
+    assert found == [("./test.py", "5")]
 
 
 def _execute_quick_open(chunk):
     found = []
 
-    for line in chunk.split('\n'):
+    for line in chunk.split("\n"):
         for _1, _2, r in QUICK_OPEN_MATCHERS:
             g = re.compile(r).match(line)
             if g:

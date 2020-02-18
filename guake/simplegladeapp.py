@@ -22,14 +22,14 @@ import re
 import sys
 
 import gi
-gi.require_version('Gtk', '3.0')
+
+gi.require_version("Gtk", "3.0")
 from gi.repository import Gtk
 
 import tokenize
 
 
-class SimpleGladeApp():
-
+class SimpleGladeApp:
     def __init__(self, path, root=None, domain=None, **kwargs):
         """
         Load a glade file specified by glade_filename, using root as
@@ -138,11 +138,10 @@ class SimpleGladeApp():
                     raise AttributeError(
                         "instance %s already has an attribute %s" % (self, widget_api_name)
                     )
-                else:
-                    setattr(self, widget_api_name, widget)
-                    if prefixes:
-                        # TODO is is a guess
-                        Gtk.Buildable.set_data(widget, "prefixes", prefixes)
+                setattr(self, widget_api_name, widget)
+                if prefixes:
+                    # TODO is is a guess
+                    Gtk.Buildable.set_data(widget, "prefixes", prefixes)
 
     def add_prefix_actions(self, prefix_actions_proxy):
         """
