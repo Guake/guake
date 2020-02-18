@@ -20,6 +20,7 @@ exclude = []
 [tool.poetry-dynamic-versioning]
 enable = true
 vcs = "git"
+pattern = "^(?P<base>\d+\.\d+\.\d+)(-?((?P<stage>[a-zA-Z]+)\.?(?P<revision>\d+)?))?$"
 
 [tool.poetry.dependencies]
 python = "==3"
