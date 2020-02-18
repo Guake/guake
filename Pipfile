@@ -7,16 +7,16 @@ name = "pypi"
 python_version = "3"
 
 [dev-packages]
-"autopep8" = "<1.4"
-"flake8" = "<3.6"
+"autopep8" = "*"
+"flake8" = "*"
 "pep8" = "*"
-pylint = "<2.3.0"
-typed-ast = "<1.4.0,>=1.3.1"
-astroid = "<2.2.0"
+pylint = "*"
+typed-ast = "*"
+astroid = "*"
 fiximports = ">=0.1.18"
 mock = ">=2.0.0"
 pytest-mock = "*"
-pyflakes = "<2.0.0"
+pyflakes = "*"
 pytest = "*"
 yapf = "*"
 reno = {version = ">=2.8.0",extras = ["sphinx"]}
@@ -31,6 +31,8 @@ scandir = {markers = "python_version < '3.5'"}
 pyfakefs = "*"
 pytest-cov = "*"
 pew = "*"
+black = "==19.10b0"
+dephell = "*"
 
 [packages]
 pbr = "*"
