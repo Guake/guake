@@ -180,22 +180,16 @@ compile-glib-schemas-dev: clean-schemas
 clean-schemas:
 	rm -f $(DEV_DATA_DIR)/gschemas.compiled
 
-style: fiximports autopep8 yapf
+style: black
 
-fiximports:
-	@for fil in $$(find setup.py guake -name "*.py"); do \
-		echo "Sorting imports from: $$fil"; \
-		pipenv run fiximports $$fil; \
-	done
-
-autopep8:
-	pipenv run autopep8 --in-place --recursive setup.py $(MODULE)
-
-yapf:
-	pipenv run yapf --style .yapf --recursive -i $(MODULE)
+black:
+	pipenv run black $(MODULE)
 
 
-checks: flake8 pylint reno-lint
+checks: black-check flake8 pylint reno-lint
+
+black-check:
+	pipenv run black --check $(MODULE)
 
 flake8:
 	pipenv run python setup.py flake8

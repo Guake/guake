@@ -1,5 +1,6 @@
 import gi
-gi.require_version('Gtk', '3.0')
+
+gi.require_version("Gtk", "3.0")
 from gi.repository import Gdk
 from gi.repository import Gtk
 from guake.about import AboutDialog
@@ -13,8 +14,7 @@ from guake.utils import get_server_time
 from urllib.parse import quote_plus
 
 
-class TerminalContextMenuCallbacks():
-
+class TerminalContextMenuCallbacks:
     def __init__(self, terminal, window, settings, notebook):
         self.terminal = terminal
         self.window = window
@@ -87,15 +87,13 @@ class TerminalContextMenuCallbacks():
         self.terminal.kill()
 
 
-class NotebookScrollCallback():
-
+class NotebookScrollCallback:
     def __init__(self, notebook):
         self.notebook = notebook
 
     def on_scroll(self, widget, event):
         direction = event.get_scroll_direction().direction
-        if direction is Gdk.ScrollDirection.DOWN or \
-                direction is Gdk.ScrollDirection.RIGHT:
+        if direction is Gdk.ScrollDirection.DOWN or direction is Gdk.ScrollDirection.RIGHT:
             self.notebook.next_page()
         else:
             self.notebook.prev_page()
@@ -104,8 +102,7 @@ class NotebookScrollCallback():
         return True
 
 
-class MenuHideCallback():
-
+class MenuHideCallback:
     def __init__(self, window):
         self.window = window
 

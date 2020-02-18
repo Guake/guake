@@ -19,13 +19,14 @@ Boston, MA 02110-1301 USA
 """
 
 import gi
-gi.require_version('Notify', '0.7')
+
+gi.require_version("Notify", "0.7")
 from gi.repository import GLib
 from gi.repository import Notify
 
 Notify.init("Guake")
 
-__all__ = ['showMessage']
+__all__ = ["showMessage"]
 
 
 def showMessage(brief, body=None, icon=None):

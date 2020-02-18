@@ -1,6 +1,16 @@
 
 [flake8]
-ignore = E226,E302,E41,E402,F401,F821,C901,E722
+ignore =
+    E226,
+    E302,
+    E41,
+    E402,
+    F401,
+    F821,
+    C901,
+    E722,
+    W503, # line break before binary operator
+    E231, # missing whitespace after ','
 max-line-length = 100
 exclude = env
 max-complexity = 25

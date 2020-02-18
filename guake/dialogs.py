@@ -1,19 +1,21 @@
 import gi
-gi.require_version('Gtk', '3.0')
+
+gi.require_version("Gtk", "3.0")
 from gi.repository import Gtk
 from locale import gettext as _
 
 
 class RenameDialog(Gtk.Dialog):
-
     def __init__(self, window, current_name):
         super().__init__(
-            _("Rename tab"), window, Gtk.DialogFlags.MODAL | Gtk.DialogFlags.DESTROY_WITH_PARENT,
-            (Gtk.STOCK_CANCEL, Gtk.ResponseType.REJECT, Gtk.STOCK_OK, Gtk.ResponseType.ACCEPT)
+            _("Rename tab"),
+            window,
+            Gtk.DialogFlags.MODAL | Gtk.DialogFlags.DESTROY_WITH_PARENT,
+            (Gtk.STOCK_CANCEL, Gtk.ResponseType.REJECT, Gtk.STOCK_OK, Gtk.ResponseType.ACCEPT,),
         )
         self.entry = Gtk.Entry()
         self.entry.set_text(current_name)
-        self.entry.set_property('can-default', True)
+        self.entry.set_property("can-default", True)
         self.entry.show()
 
         vbox = Gtk.VBox()
@@ -38,14 +40,16 @@ class PromptQuitDialog(Gtk.MessageDialog):
 
     def __init__(self, parent, procs, tabs, notebooks):
         super(PromptQuitDialog, self).__init__(
-            parent, Gtk.DialogFlags.MODAL | Gtk.DialogFlags.DESTROY_WITH_PARENT,
-            Gtk.MessageType.QUESTION, Gtk.ButtonsType.YES_NO
+            parent,
+            Gtk.DialogFlags.MODAL | Gtk.DialogFlags.DESTROY_WITH_PARENT,
+            Gtk.MessageType.QUESTION,
+            Gtk.ButtonsType.YES_NO,
         )
 
         if tabs == -1:
             primary_msg = _("Do you want to close the tab?")
-            tab_str = ''
-            notebooks_str = ''
+            tab_str = ""
+            notebooks_str = ""
         else:
             primary_msg = _("Do you really want to quit Guake?")
             if tabs == 1:
@@ -53,9 +57,9 @@ class PromptQuitDialog(Gtk.MessageDialog):
             else:
                 tab_str = _(" and {0} tabs open").format(tabs)
             if notebooks > 1:
-                notebooks_str = _(' on {0} workspaces').format(notebooks)
+                notebooks_str = _(" on {0} workspaces").format(notebooks)
             else:
-                notebooks_str = ''
+                notebooks_str = ""
 
         if procs == 0:
             proc_str = _("There are no processes running")
@@ -94,8 +98,10 @@ class PromptResetColorsDialog(Gtk.MessageDialog):
 
     def __init__(self, parent):
         super(PromptResetColorsDialog, self).__init__(
-            parent, Gtk.DialogFlags.MODAL | Gtk.DialogFlags.DESTROY_WITH_PARENT,
-            Gtk.MessageType.QUESTION, Gtk.ButtonsType.YES_NO
+            parent,
+            Gtk.DialogFlags.MODAL | Gtk.DialogFlags.DESTROY_WITH_PARENT,
+            Gtk.MessageType.QUESTION,
+            Gtk.ButtonsType.YES_NO,
         )
 
         primary_msg = _("Do you want to reset custom colors for this tab?")
@@ -115,11 +121,12 @@ class PromptResetColorsDialog(Gtk.MessageDialog):
 
 
 class SaveTerminalDialog(Gtk.FileChooserDialog):
-
     def __init__(self, terminal, window):
         super().__init__(
-            _("Save to..."), window, Gtk.FileChooserAction.SAVE,
-            (Gtk.STOCK_CANCEL, Gtk.ResponseType.CANCEL, Gtk.STOCK_SAVE, Gtk.ResponseType.OK)
+            _("Save to..."),
+            window,
+            Gtk.FileChooserAction.SAVE,
+            (Gtk.STOCK_CANCEL, Gtk.ResponseType.CANCEL, Gtk.STOCK_SAVE, Gtk.ResponseType.OK,),
         )
         self.set_default_response(Gtk.ResponseType.OK)
         self.terminal = terminal

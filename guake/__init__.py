@@ -18,31 +18,34 @@ Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor,
 Boston, MA 02110-1301 USA
 """
 
+# pylint: disable=import-outside-toplevel
+
 
 def guake_version():
     # Do not import in the module root to speed up the dbus communication as much as possible
     import pbr.version
-    return pbr.version.VersionInfo('guake').version_string()
+
+    return pbr.version.VersionInfo("guake").version_string()
 
 
 def vte_version():
     import gi
-    gi.require_version('Vte', '2.91')
+
+    gi.require_version("Vte", "2.91")
 
     from gi.repository import Vte
-    s = "{}.{}.{}".format(
-        Vte.MAJOR_VERSION,
-        Vte.MINOR_VERSION,
-        Vte.MICRO_VERSION,
-    )
+
+    s = "{}.{}.{}".format(Vte.MAJOR_VERSION, Vte.MINOR_VERSION, Vte.MICRO_VERSION,)
     return s
 
 
 def vte_runtime_version():
     import gi
-    gi.require_version('Vte', '2.91')
+
+    gi.require_version("Vte", "2.91")
 
     from gi.repository import Vte
+
     return "{}.{}.{}".format(
         Vte.get_major_version(), Vte.get_minor_version(), Vte.get_micro_version()
     )
@@ -50,6 +53,8 @@ def vte_runtime_version():
 
 def gtk_version():
     import gi
-    gi.require_version('Gtk', '3.0')
+
+    gi.require_version("Gtk", "3.0")
     from gi.repository import Gtk
+
     return "{}.{}.{}".format(Gtk.MAJOR_VERSION, Gtk.MINOR_VERSION, Gtk.MICRO_VERSION)

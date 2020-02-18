@@ -42,12 +42,16 @@ from guake.support import print_support
 from guake.utils import restore_preferences
 from guake.utils import save_preferences
 
-# When we are in the document generation on readthedocs, we do not have paths.py generated
+# When we are in the document generation on readthedocs,
+# we do not have paths.py generated
 try:
     from guake.paths import LOCALE_DIR
+
     bindtextdomain(NAME, LOCALE_DIR)
 except:  # pylint: disable=bare-except
     pass
+
+# pylint: disable=import-outside-toplevel
 
 
 def main():
@@ -65,297 +69,292 @@ def main():
     # do not use version keywords here, pbr might be slow to find the version of Guake module
     parser = OptionParser()
     parser.add_option(
-        '-V',
-        '--version',
-        dest='version',
-        action='store_true',
+        "-V",
+        "--version",
+        dest="version",
+        action="store_true",
         default=False,
-        help=_('Show Guake version number and exit')
+        help=_("Show Guake version number and exit"),
     )
 
     parser.add_option(
-        '-v',
-        '--verbose',
-        dest='verbose',
-        action='store_true',
+        "-v",
+        "--verbose",
+        dest="verbose",
+        action="store_true",
         default=False,
-        help=_('Enable verbose logging')
+        help=_("Enable verbose logging"),
     )
 
     parser.add_option(
-        '-f',
-        '--fullscreen',
-        dest='fullscreen',
-        action='store_true',
+        "-f",
+        "--fullscreen",
+        dest="fullscreen",
+        action="store_true",
         default=False,
-        help=_('Put Guake in fullscreen mode')
+        help=_("Put Guake in fullscreen mode"),
     )
 
     parser.add_option(
-        '--unfullscreen',
-        dest='unfullscreen',
-        action='store_true',
+        "--unfullscreen",
+        dest="unfullscreen",
+        action="store_true",
         default=False,
-        help=_('Put Guake out from fullscreen mode')
+        help=_("Put Guake out from fullscreen mode"),
     )
 
     parser.add_option(
-        '-t',
-        '--toggle-visibility',
-        dest='show_hide',
-        action='store_true',
+        "-t",
+        "--toggle-visibility",
+        dest="show_hide",
+        action="store_true",
         default=False,
-        help=_('Toggles the visibility of the terminal window')
+        help=_("Toggles the visibility of the terminal window"),
     )
 
     parser.add_option(
-        '--show',
+        "--show",
         dest="show",
-        action='store_true',
+        action="store_true",
         default=False,
-        help=_('Shows Guake main window')
+        help=_("Shows Guake main window"),
     )
 
     parser.add_option(
-        '--hide',
-        dest='hide',
-        action='store_true',
+        "--hide",
+        dest="hide",
+        action="store_true",
         default=False,
-        help=_('Hides Guake main window')
+        help=_("Hides Guake main window"),
     )
 
     parser.add_option(
-        '-p',
-        '--preferences',
-        dest='show_preferences',
-        action='store_true',
+        "-p",
+        "--preferences",
+        dest="show_preferences",
+        action="store_true",
         default=False,
-        help=_('Shows Guake preference window')
+        help=_("Shows Guake preference window"),
     )
 
     parser.add_option(
-        '-a',
-        '--about',
-        dest='show_about',
-        action='store_true',
+        "-a",
+        "--about",
+        dest="show_about",
+        action="store_true",
         default=False,
-        help=_('Shows Guake\'s about info')
+        help=_("Shows Guake's about info"),
     )
 
     parser.add_option(
-        '-n',
-        '--new-tab',
-        dest='new_tab',
-        action='store',
-        default='',
-        help=_('Add a new tab (with current directory set to NEW_TAB)')
+        "-n",
+        "--new-tab",
+        dest="new_tab",
+        action="store",
+        default="",
+        help=_("Add a new tab (with current directory set to NEW_TAB)"),
     )
 
     parser.add_option(
-        '-s',
-        '--select-tab',
-        dest='select_tab',
-        action='store',
-        default='',
-        help=_('Select a tab (SELECT_TAB is the index of the tab)')
+        "-s",
+        "--select-tab",
+        dest="select_tab",
+        action="store",
+        default="",
+        help=_("Select a tab (SELECT_TAB is the index of the tab)"),
     )
 
     parser.add_option(
-        '-g',
-        '--selected-tab',
-        dest='selected_tab',
-        action='store_true',
+        "-g",
+        "--selected-tab",
+        dest="selected_tab",
+        action="store_true",
         default=False,
-        help=_('Return the selected tab index.')
+        help=_("Return the selected tab index."),
     )
 
     parser.add_option(
-        '-l',
-        '--selected-tablabel',
-        dest='selected_tablabel',
-        action='store_true',
+        "-l",
+        "--selected-tablabel",
+        dest="selected_tablabel",
+        action="store_true",
         default=False,
-        help=_('Return the selected tab label.')
+        help=_("Return the selected tab label."),
     )
 
     parser.add_option(
-        '-S',
-        '--select-terminal',
-        dest='select_terminal',
-        metavar='TERMINAL_INDEX',
-        action='store',
-        default='',
+        "-S",
+        "--select-terminal",
+        dest="select_terminal",
+        metavar="TERMINAL_INDEX",
+        action="store",
+        default="",
         help=_(
-            'Select a specific terminal in a split tab. ' +
-            'Only useful with split terminals (TERMINAL_INDEX is the index of the tab)'
-        )
+            "Select a specific terminal in a split tab. "
+            + "Only useful with split terminals (TERMINAL_INDEX is the index of the tab)"
+        ),
     )
 
     parser.add_option(
-        '--selected-terminal',
-        dest='selected_terminal',
-        action='store_true',
+        "--selected-terminal",
+        dest="selected_terminal",
+        action="store_true",
         default=False,
-        help=_('Return the selected terminal index.')
+        help=_("Return the selected terminal index."),
     )
 
     parser.add_option(
-        '--split-vertical',
-        dest='split_vertical',
-        action='store_true',
+        "--split-vertical",
+        dest="split_vertical",
+        action="store_true",
         default=False,
-        help=_('Split the selected tab vertically.')
+        help=_("Split the selected tab vertically."),
     )
 
     parser.add_option(
-        '--split-horizontal',
-        dest='split_horizontal',
-        action='store_true',
+        "--split-horizontal",
+        dest="split_horizontal",
+        action="store_true",
         default=False,
-        help=_('Split the selected tab horizontally.')
+        help=_("Split the selected tab horizontally."),
     )
 
     parser.add_option(
-        '-e',
-        '--execute-command',
-        dest='command',
-        action='store',
-        default='',
-        help=_('Execute an arbitrary command in the selected tab.')
+        "-e",
+        "--execute-command",
+        dest="command",
+        action="store",
+        default="",
+        help=_("Execute an arbitrary command in the selected tab."),
     )
 
     parser.add_option(
-        '-i',
-        '--tab-index',
-        dest='tab_index',
-        action='store',
-        default='0',
-        help=_('Specify the tab to rename. Default is 0. Can be used to select tab by UUID.')
+        "-i",
+        "--tab-index",
+        dest="tab_index",
+        action="store",
+        default="0",
+        help=_("Specify the tab to rename. Default is 0. Can be used to select tab by UUID."),
     )
 
     parser.add_option(
-        '--bgcolor',
-        dest='bgcolor',
-        action='store',
-        default='',
-        help=_('Set the hexadecimal (#rrggbb) background color of '
-               'the selected tab.')
+        "--bgcolor",
+        dest="bgcolor",
+        action="store",
+        default="",
+        help=_("Set the hexadecimal (#rrggbb) background color of " "the selected tab."),
     )
 
     parser.add_option(
-        '--fgcolor',
-        dest='fgcolor',
-        action='store',
-        default='',
-        help=_('Set the hexadecimal (#rrggbb) foreground color of the '
-               'selected tab.')
+        "--fgcolor",
+        dest="fgcolor",
+        action="store",
+        default="",
+        help=_("Set the hexadecimal (#rrggbb) foreground color of the " "selected tab."),
     )
 
     parser.add_option(
-        '--bgcolor-current',
-        dest='bgcolor_current',
-        action='store',
-        default='',
-        help=_('Set the hexadecimal (#rrggbb) background color of '
-               'the current terminal.')
+        "--bgcolor-current",
+        dest="bgcolor_current",
+        action="store",
+        default="",
+        help=_("Set the hexadecimal (#rrggbb) background color of " "the current terminal."),
     )
 
     parser.add_option(
-        '--fgcolor-current',
-        dest='fgcolor_current',
-        action='store',
-        default='',
-        help=_('Set the hexadecimal (#rrggbb) foreground color of '
-               'the current terminal.')
+        "--fgcolor-current",
+        dest="fgcolor_current",
+        action="store",
+        default="",
+        help=_("Set the hexadecimal (#rrggbb) foreground color of " "the current terminal."),
     )
 
     parser.add_option(
-        '--change-palette',
-        dest='palette_name',
-        action='store',
-        default='',
-        help=_('Change Guake palette scheme')
+        "--change-palette",
+        dest="palette_name",
+        action="store",
+        default="",
+        help=_("Change Guake palette scheme"),
     )
 
     parser.add_option(
-        '--reset-colors',
-        dest='reset_colors',
-        action='store_true',
+        "--reset-colors",
+        dest="reset_colors",
+        action="store_true",
         default=False,
-        help=_('Set colors from settings.')
+        help=_("Set colors from settings."),
     )
 
     parser.add_option(
-        '--reset-colors-current',
-        dest='reset_colors_current',
-        action='store_true',
+        "--reset-colors-current",
+        dest="reset_colors_current",
+        action="store_true",
         default=False,
-        help=_('Set colors of the current terminal from settings.')
+        help=_("Set colors of the current terminal from settings."),
     )
 
     parser.add_option(
-        '--rename-tab',
-        dest='rename_tab',
-        metavar='TITLE',
-        action='store',
-        default='',
+        "--rename-tab",
+        dest="rename_tab",
+        metavar="TITLE",
+        action="store",
+        default="",
         help=_(
-            'Rename the specified tab by --tab-index. Reset to default if TITLE is '
+            "Rename the specified tab by --tab-index. Reset to default if TITLE is "
             'a single dash "-".'
-        )
+        ),
     )
 
     parser.add_option(
-        '-r',
-        '--rename-current-tab',
-        dest='rename_current_tab',
-        metavar='TITLE',
-        action='store',
-        default='',
-        help=_('Rename the current tab. Reset to default if TITLE is a '
-               'single dash "-".')
+        "-r",
+        "--rename-current-tab",
+        dest="rename_current_tab",
+        metavar="TITLE",
+        action="store",
+        default="",
+        help=_("Rename the current tab. Reset to default if TITLE is a " 'single dash "-".'),
     )
 
     parser.add_option(
-        '-q',
-        '--quit',
-        dest='quit',
-        action='store_true',
+        "-q",
+        "--quit",
+        dest="quit",
+        action="store_true",
         default=False,
-        help=_('Says to Guake go away =(')
+        help=_("Says to Guake go away =("),
     )
 
     parser.add_option(
-        '-u',
-        '--no-startup-script',
-        dest='execute_startup_script',
-        action='store_false',
+        "-u",
+        "--no-startup-script",
+        dest="execute_startup_script",
+        action="store_false",
         default=True,
-        help=_('Do not execute the start up script')
+        help=_("Do not execute the start up script"),
     )
 
     parser.add_option(
-        '--save-preferences',
-        dest='save_preferences',
-        action='store',
+        "--save-preferences",
+        dest="save_preferences",
+        action="store",
         default=None,
-        help=_('Save Guake preferences to this filename')
+        help=_("Save Guake preferences to this filename"),
     )
 
     parser.add_option(
-        '--restore-preferences',
-        dest='restore_preferences',
-        action='store',
+        "--restore-preferences",
+        dest="restore_preferences",
+        action="store",
         default=None,
-        help=_('Restore Guake preferences from this file')
+        help=_("Restore Guake preferences from this file"),
     )
 
     parser.add_option(
-        '--support',
-        dest='support',
-        action='store_true',
+        "--support",
+        dest="support",
+        action="store_true",
         default=False,
-        help=_('Show support infomation')
+        help=_("Show support infomation"),
     )
 
     # checking mandatory dependencies
@@ -363,20 +362,21 @@ def main():
     missing_deps = False
     try:
         import gi
-        gi.require_version('Gtk', '3.0')
-        gi.require_version('Gdk', '3.0')
+
+        gi.require_version("Gtk", "3.0")
+        gi.require_version("Gdk", "3.0")
     except ValueError:
         print("[ERROR] missing mandatory dependency: GtK 3.0")
         missing_deps = True
 
     try:
-        gi.require_version('Vte', '2.91')  # vte-0.42
+        gi.require_version("Vte", "2.91")  # vte-0.42
     except ValueError:
         print("[ERROR] missing mandatory dependency: Vte >= 0.42")
         missing_deps = True
 
     try:
-        gi.require_version('Keybinder', '3.0')
+        gi.require_version("Keybinder", "3.0")
     except ValueError:
         print("[ERROR] missing mandatory dependency: Keybinder 3")
         missing_deps = True
@@ -416,14 +416,15 @@ def main():
         from guake import guake_version
         from guake import vte_version
         from guake import vte_runtime_version
-        print('Guake Terminal: {}'.format(guake_version()))
-        print('VTE: {}'.format(vte_version()))
-        print('VTE runtime: {}'.format(vte_runtime_version()))
-        print('Gtk: {}'.format(gtk_version()))
+
+        print("Guake Terminal: {}".format(guake_version()))
+        print("VTE: {}".format(vte_version()))
+        print("VTE runtime: {}".format(vte_runtime_version()))
+        print("Gtk: {}".format(gtk_version()))
         sys.exit(0)
 
     if options.save_preferences and options.restore_preferences:
-        parser.error('options --save-preferences and --restore-preferences are mutually exclusive')
+        parser.error("options --save-preferences and --restore-preferences are mutually exclusive")
     if options.save_preferences:
         save_preferences(options.save_preferences)
         sys.exit(0)
@@ -459,11 +460,12 @@ def main():
         # gnome-terminal.
         # To avoid confusing applications running inside Guake, clean up COLORTERM at startup.
         if "COLORTERM" in os.environ:
-            del os.environ['COLORTERM']
+            del os.environ["COLORTERM"]
 
         log.info("Guake not running, starting it")
         # late loading of the Guake object, to speed up dbus comm
         from guake.guake_app import Guake
+
         instance = Guake()
         remote_object = DbusManager(instance)
         already_running = False
@@ -496,17 +498,17 @@ def main():
         if 0 <= selected < tab_count:
             remote_object.select_tab(selected)
         else:
-            sys.stderr.write('invalid index: %d\n' % selected)
+            sys.stderr.write("invalid index: %d\n" % selected)
         only_show_hide = options.show
 
     if options.selected_tab:
         selected = remote_object.get_selected_tab()
-        sys.stdout.write('%d\n' % selected)
+        sys.stdout.write("%d\n" % selected)
         only_show_hide = options.show
 
     if options.selected_tablabel:
         selectedlabel = remote_object.get_selected_tablabel()
-        sys.stdout.write('%s\n' % selectedlabel)
+        sys.stdout.write("%s\n" % selectedlabel)
         only_show_hide = options.show
 
     if options.split_vertical:
@@ -519,7 +521,7 @@ def main():
 
     if options.selected_terminal:
         selected = remote_object.get_selected_terminal()
-        sys.stdout.write('%d\n' % selected)
+        sys.stdout.write("%d\n" % selected)
         only_show_hide = options.show
 
     if options.select_terminal:
@@ -528,7 +530,7 @@ def main():
         if 0 <= selected < term_count:
             remote_object.select_terminal(selected)
         else:
-            sys.stderr.write('invalid index: %d\n' % selected)
+            sys.stderr.write("invalid index: %d\n" % selected)
         only_show_hide = options.show
 
     if options.command:
@@ -595,12 +597,14 @@ def main():
             startup_script = instance.settings.general.get_string("startup-script")
             if startup_script:
                 log.info("Calling startup script: %s", startup_script)
-                pid = subprocess.Popen([startup_script],
-                                       shell=True,
-                                       stdin=None,
-                                       stdout=None,
-                                       stderr=None,
-                                       close_fds=True)
+                pid = subprocess.Popen(
+                    [startup_script],
+                    shell=True,
+                    stdin=None,
+                    stdout=None,
+                    stderr=None,
+                    close_fds=True,
+                )
                 log.info("Startup script started with pid: %s", pid)
                 # Please ensure this is the last line !!!!
     else:
@@ -617,10 +621,12 @@ def exec_main():
         # Load gi pretty late, to speed up as much as possible the parsing of the option for DBus
         # comm through command line
         import gi
-        gi.require_version('Gtk', '3.0')
+
+        gi.require_version("Gtk", "3.0")
         from gi.repository import Gtk
+
         Gtk.main()
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     exec_main()
