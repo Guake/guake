@@ -11,8 +11,8 @@ msgstr ""
 "POT-Creation-Date: 2016-08-18 17:32+0200\n"
 "PO-Revision-Date: 2020-02-14 09:50+0000\n"
 "Last-Translator: Eduard Ereza Martínez <eduard@ereza.cat>\n"
-"Language-Team: Catalan <https://hosted.weblate.org/projects/guake/guake/ca/>"
-"\n"
+"Language-Team: Catalan <https://hosted.weblate.org/projects/guake/guake/ca/"
+">\n"
 "Language: ca\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -1498,7 +1498,8 @@ msgstr "Torna a l'índex del terminal seleccionat."
 
 #: guake/main.py:259
 msgid "Set the hexadecimal (#rrggbb) background color of the current terminal."
-msgstr "Defineix el color de fons en hexadecimal (#rrggbb) del terminal actual."
+msgstr ""
+"Defineix el color de fons en hexadecimal (#rrggbb) del terminal actual."
 
 #: guake/main.py:268
 msgid "Set the hexadecimal (#rrggbb) foreground color of the current terminal."
