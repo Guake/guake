@@ -10,16 +10,16 @@ msgstr ""
 "Project-Id-Version: Guake 0.4.5\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-06-22 14:32+0200\n"
-"PO-Revision-Date: 2020-02-16 13:50+0000\n"
+"PO-Revision-Date: 2020-02-20 23:32+0000\n"
 "Last-Translator: Morgan Antonsson <morgan.antonsson@gmail.com>\n"
-"Language-Team: Swedish <https://hosted.weblate.org/projects/guake/guake/sv/"
-">\n"
+"Language-Team: Swedish <https://hosted.weblate.org/projects/guake/guake/sv/>"
+"\n"
 "Language: sv\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 3.11-dev\n"
+"X-Generator: Weblate 3.11.1\n"
 
 #: guake/prefs.py:78
 msgid "<user shell>"
@@ -403,11 +403,11 @@ msgstr "Välj flik (SELECT_TAB är flikens index)"
 
 #: guake/main.py:158
 msgid "Return the selected tab index."
-msgstr "Returnerar valt flikindex."
+msgstr "Returnerar vald fliks index."
 
 #: guake/main.py:167
 msgid "Return the selected tab label."
-msgstr "Returnera vald fliks märke."
+msgstr "Returnera vald fliks etikett."
 
 #: guake/main.py:176
 msgid "Execute an arbitrary command in the selected tab."
@@ -1214,7 +1214,7 @@ msgstr "Sista segmentet"
 
 #: guake/main.py:99
 msgid "Put Guake out from fullscreen mode"
-msgstr ""
+msgstr "Inaktivera helskärmsläge"
 
 #: guake/main.py:189
 msgid ""
@@ -1226,7 +1226,7 @@ msgstr ""
 
 #: guake/main.py:199
 msgid "Return the selected terminal index."
-msgstr ""
+msgstr "Returnera vald terminals index."
 
 #: guake/main.py:259
 msgid "Set the hexadecimal (#rrggbb) background color of the current terminal."
