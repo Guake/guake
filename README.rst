@@ -64,3 +64,5 @@ Bugs? Information?
 
 **Important note**: Do **NOT** use the domain guake.org, it has been registered by someone outside
 the team. We cannot be held responsible for the content on that web site.
+
+This project was originally created by Gabriel Falcão, see: https://sourceforge.net/projects/guake-gnome-vte/
