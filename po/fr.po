@@ -13,15 +13,15 @@ msgstr ""
 "Project-Id-Version: Guake 0.4.5\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-02-10 21:16+0100\n"
-"PO-Revision-Date: 2020-02-10 21:53+0100\n"
-"Last-Translator: Allan Nordhøy <epost@anotheragency.no>\n"
+"PO-Revision-Date: 2020-03-11 02:33+0000\n"
+"Last-Translator: Julien Humbert <julroy67@gmail.com>\n"
 "Language-Team: French <https://hosted.weblate.org/projects/guake/guake/fr/>\n"
 "Language: fr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
-"X-Generator: Poedit 2.0.6\n"
+"X-Generator: Weblate 4.0-dev\n"
 
 #: guake/main.py:73
 msgid "Show Guake version number and exit"
@@ -41,7 +41,7 @@ msgstr "Sortir Guake du mode plein écran"
 
 #: guake/main.py:108
 msgid "Toggles the visibility of the terminal window"
-msgstr "Activer/Désactiver la visibilité de la fenêtre principale"
+msgstr "Activer/désactiver la visibilité de la fenêtre de terminal"
 
 #: guake/main.py:116
 msgid "Shows Guake main window"
@@ -49,11 +49,11 @@ msgstr "Afficher la fenêtre principale de Guake"
 
 #: guake/main.py:124
 msgid "Hides Guake main window"
-msgstr "Afficher la fenêtre principale de Guake"
+msgstr "Masquer la fenêtre principale de Guake"
 
 #: guake/main.py:133
 msgid "Shows Guake preference window"
-msgstr "Afficher la fenêtre de préférences de Guake"
+msgstr "Afficher la fenêtre des préférences de Guake"
 
 #: guake/main.py:142
 msgid "Shows Guake's about info"
@@ -61,114 +61,112 @@ msgstr "Afficher les informations à propos de Guake"
 
 #: guake/main.py:151
 msgid "Add a new tab (with current directory set to NEW_TAB)"
-msgstr "Ajouter un nouvel onglet (le dossier courant est spécifié par NEW_TAB)"
+msgstr "Ajouter un nouvel onglet (avec le dossier courant défini à NEW_TAB)"
 
 #: guake/main.py:160
 msgid "Select a tab (SELECT_TAB is the index of the tab)"
-msgstr "Sélectionner un onglet (SELECT_TAB est l'index du tab)"
+msgstr "Sélectionner un onglet (SELECT_TAB est l’index de l’onglet)"
 
 #: guake/main.py:169
 msgid "Return the selected tab index."
-msgstr "Retourne l'index de l'onglet sélectionné."
+msgstr "Retourne l’index de l’onglet sélectionné."
 
 #: guake/main.py:178
 msgid "Return the selected tab label."
-msgstr "Retourne le label de l'onglet sélectionné."
+msgstr "Retourne le label de l’onglet sélectionné."
 
 #: guake/main.py:189
 msgid ""
 "Select a specific terminal in a split tab. Only useful with split terminals "
 "(TERMINAL_INDEX is the index of the tab)"
 msgstr ""
-"Sélectionner un terminal spécifique dans un onglet divisé (TERMINAL_INDEX "
-"est l'index de l'onglet)"
+"Sélectionner un terminal spécifique dans un onglet divisé. Utile uniquement "
+"pour les terminaux divisés (TERMINAL_INDEX est l’index de l’onglet)"
 
 #: guake/main.py:199
 msgid "Return the selected terminal index."
-msgstr "Retourne l'index du terminal actuellement sélectionné."
+msgstr "Retourne l’index du terminal sélectionné."
 
 #: guake/main.py:207
 msgid "Split the selected tab vertically."
-msgstr "Couper verticalement"
+msgstr "Diviser l’onglet sélectionné verticalement."
 
 #: guake/main.py:215
 msgid "Split the selected tab horizontally."
-msgstr "Couper horizontalement"
+msgstr "Diviser l’onglet sélectionné horizontalement."
 
 #: guake/main.py:224
 msgid "Execute an arbitrary command in the selected tab."
-msgstr "Exécuter une commande dans un onglet sélectionné."
+msgstr "Exécuter une commande arbitraire dans l’onglet sélectionné."
 
 #: guake/main.py:233
 msgid ""
 "Specify the tab to rename. Default is 0. Can be used to select tab by UUID."
 msgstr ""
-"Index de l'onglet à renommer. Par défaut 0. Peut aussi être utilisé pour "
-"spécifier l'UUID de l'onglet."
+"Spécifiez l’onglet à renommer. Par défaut 0. Peut aussi être utilisé pour "
+"sélectionner l’onglet via l’UUID."
 
 #: guake/main.py:241
 msgid "Set the hexadecimal (#rrggbb) background color of the selected tab."
 msgstr ""
-"Choisir la couleur hexadécimale (#rrggbb) du fond pour l'onglet sectionné."
+"Définit la couleur hexadécimale (#rrggbb) du fond de l’onglet sectionné."
 
 #: guake/main.py:250
 msgid "Set the hexadecimal (#rrggbb) foreground color of the selected tab."
 msgstr ""
-"Choisir la couleur hexadécimale (#rrggbb) de la police pour l'onglet "
+"Définit la couleur hexadécimale (#rrggbb) de la police pour l’onglet "
 "sectionné."
 
 #: guake/main.py:259
 msgid "Set the hexadecimal (#rrggbb) background color of the current terminal."
 msgstr ""
-"Place la valeur hexadécimale (#rrggbb) de la couleur de fond du terminal "
-"courant"
+"Définit la valeur hexadécimale (#rrggbb) de la couleur de fond du terminal "
+"courant."
 
 #: guake/main.py:268
 msgid "Set the hexadecimal (#rrggbb) foreground color of the current terminal."
 msgstr ""
-"Choisir la couleur hexadécimale (#rrggbb) de la police pour l'onglet courant."
+"Choisir la couleur hexadécimale (#rrggbb) de la police du terminal courant."
 
 #: guake/main.py:277
 msgid "Change Guake palette scheme"
-msgstr "Changer de palette de couleur"
+msgstr "Changer de palette de couleur de Guake"
 
 #: guake/main.py:285
 msgid "Set colors from settings."
-msgstr "Mettre les couleurs depuis les paramètres."
+msgstr "Appliquer les couleurs des paramètres."
 
 #: guake/main.py:293
 msgid "Set colors of the current terminal from settings."
-msgstr "Mettre les couleurs du terminal courant depuis les paramètres."
+msgstr "Appliquer les couleurs du terminal courant depuis les paramètres."
 
 #: guake/main.py:303
 msgid ""
 "Rename the specified tab by --tab-index. Reset to default if TITLE is a "
 "single dash \"-\"."
 msgstr ""
-"Renomme l'onglet spécifié par --tab-dex. Remet à zéro si le TITRE est \"-"
-"\" (simple tiret)."
+"Renomme l’onglet spécifié par --tab-dex. Remet à zéro si le TITRE est « - » ("
+"simple tiret)."
 
 #: guake/main.py:315
 msgid ""
 "Rename the current tab. Reset to default if TITLE is a single dash \"-\"."
 msgstr ""
-"Renommer  the tab actuel. Pour remettre à la valeur par défaut, utiliser \"-"
-"\"."
+"Renommer l’onglet courant. Remet à zéro si le TITRE est « - » (simple tiret)."
 
 #: guake/main.py:325
 msgid "Says to Guake go away =("
-msgstr "Dis au-revoir à Guake =("
+msgstr "Dis au revoir à Guake =("
 
 #: guake/main.py:334
 msgid "Do not execute the start up script"
-msgstr "Ne pas executer le script de démarrage"
+msgstr "Ne pas exécuter le script de démarrage"
 
 #: guake/main.py:342
 msgid "Save Guake preferences to this filename"
 msgstr "Exporter  les préférences de Guake dans ce fichier"
 
 #: guake/main.py:350
-#, fuzzy
 msgid "Restore Guake preferences from this file"
 msgstr "Restaurer les préférences de Guake depuis ce fichier"
 
@@ -186,7 +184,7 @@ msgstr "Renommer"
 
 #: guake/menus.py:26
 msgid "Reset custom colors"
-msgstr "Remettre à zéro les couleurs personnalisées."
+msgstr "Réinitialiser les couleurs personnalisées"
 
 #: guake/menus.py:29
 msgid "Close"
@@ -194,7 +192,7 @@ msgstr "Fermer"
 
 #: guake/menus.py:45
 msgid "Save Tabs"
-msgstr "Sauver les onglets"
+msgstr "Enregistrer les onglets"
 
 #: guake/menus.py:48
 msgid "Restore Tabs"
@@ -210,7 +208,7 @@ msgstr "Copier"
 
 #: guake/menus.py:83
 msgid "Copy Url"
-msgstr "Copier l'URL"
+msgstr "Copier l’URL"
 
 #: guake/menus.py:86
 msgid "Paste"
@@ -218,15 +216,15 @@ msgstr "Coller"
 
 #: guake/menus.py:93 guake/prefs.py:101
 msgid "Toggle Fullscreen"
-msgstr "Activer/Désactiver le plein écran"
+msgstr "Activer/désactiver le plein écran"
 
 #: guake/menus.py:97
 msgid "Split ―"
-msgstr "Découper ―"
+msgstr "Diviser ―"
 
 #: guake/menus.py:100
 msgid "Split ｜"
-msgstr "Découper ｜"
+msgstr "Diviser｜"
 
 #: guake/menus.py:103 guake/prefs.py:152
 msgid "Close terminal"
@@ -234,27 +232,27 @@ msgstr "Fermer ce terminal"
 
 #: guake/menus.py:107
 msgid "Save content..."
-msgstr "Enregistrer le contenu..."
+msgstr "Enregistrer le contenu…"
 
 #: guake/menus.py:110 guake/prefs.py:110
 msgid "Reset terminal"
-msgstr "Mise à zéro du terminal"
+msgstr "Réinitialisation du terminal"
 
 #: guake/menus.py:114
 msgid "Find..."
-msgstr "Recherche..."
+msgstr "Rechercher…"
 
 #: guake/menus.py:118
 msgid "Open link..."
-msgstr "Ouvrir le lien..."
+msgstr "Ouvrir le lien…"
 
 #: guake/menus.py:126
 msgid "Open Link: {!s}..."
-msgstr "Ouvrir le lien: {!s}..."
+msgstr "Ouvrir le lien : {!s}…"
 
 #: guake/menus.py:128
 msgid "Open Link: {!s}"
-msgstr "Ouvrir le lien : {!s}"
+msgstr "Ouvrir le lien : {!s}"
 
 #: guake/menus.py:133
 msgid "Search on Web"
@@ -263,19 +261,19 @@ msgstr "Rechercher sur le Web"
 #: guake/menus.py:140
 #, python-format
 msgid "Search on Web: '%s'"
-msgstr "Rechercher sur le Web: '%s'"
+msgstr "Rechercher sur le Web : « %s »"
 
 #: guake/menus.py:145
 msgid "Quick Open..."
-msgstr "Ouverture Rapide..."
+msgstr "Ouverture rapide…"
 
 #: guake/menus.py:153
 msgid "Quick Open: {!s}..."
-msgstr "Ouverture Rapide: {!s}..."
+msgstr "Ouverture rapide : {!s}…"
 
 #: guake/menus.py:156
 msgid "Quick Open: {!s}"
-msgstr "Ouverture Rapide: {!s}"
+msgstr "Ouverture rapide : {!s}"
 
 #: guake/menus.py:168
 msgid "Custom Commands"
@@ -304,8 +302,8 @@ msgid ""
 "Guake is now running,\n"
 "press <b>{!s}</b> to use it."
 msgstr ""
-"Guake est démarré, \n"
-"appuyer sur <b>{!s}</b> pour ouvrir Guake."
+"Guake est en cours d’exécution, \n"
+"appuyez sur <b>{!s}</b> pour ouvrir Guake."
 
 #: guake/guake_app.py:1092 guake/notebook.py:376
 msgid "Terminal"
@@ -337,8 +335,8 @@ msgid ""
 "Tabs session restore abort.\n"
 "Your session file ({session_filename}) missing schema_version as key"
 msgstr ""
-"La restauration de session annulé.\n"
-"Votre fichier de session ({session_filename}) ne dispose de la clé "
+"Restauration de session annulée.\n"
+"Votre fichier de session ({session_filename}) ne dispose pas de la clé "
 "schema_version"
 
 #: guake/guake_app.py:1378
@@ -348,10 +346,9 @@ msgid ""
 "Your session file schema version is higher than current version "
 "({session_file_schema_version} > {current_schema_version})."
 msgstr ""
-"La restauration de session annulé.\n"
-"Votre fichier de session a une version de schema supérieure à la version "
-"supportée actuellement ({session_file_schema_version} > "
-"{current_schema_version})."
+"Restauration de session annulée.\n"
+"Votre fichier de session a une version de schéma supérieure à la version "
+"courante ({session_file_schema_version} > {current_schema_version})."
 
 #: guake/guake_app.py:1427
 #, python-brace-format
@@ -359,13 +356,13 @@ msgid ""
 "Your {session_filename} schema is broken, backup to {session_filename}.bak, "
 "and error message has been saved to {session_filename}.log.err."
 msgstr ""
-"Votre schema {session_filename} est cassé, sauvegarde dans "
-"{session_filename}.bak, et enregistrement des messages d'erreur vers "
+"Votre schéma {session_filename} est cassé, sauvegarde dans {session_filename}"
+".bak, et enregistrement des messages d’erreur vers "
 "{session_filename}.log.err."
 
 #: guake/guake_app.py:1440
 msgid "Your tabs has been restored!"
-msgstr "Vos onglets ont été restauré!"
+msgstr "Vos onglets ont été restaurés !"
 
 #: guake/keybindings.py:94
 #, python-format
@@ -374,7 +371,7 @@ msgid ""
 "Please use Guake Preferences dialog to choose another key"
 msgstr ""
 "Un problème est survenu lors de la liaison avec la touche <b>%s</b>.\n"
-"Merci d'utiliser la fenêtre de préférences de Guake pour choisir une autre "
+"Merci d’utiliser la fenêtre de préférences de Guake pour choisir une autre "
 "touche"
 
 #: guake/prefs.py:80
@@ -387,7 +384,7 @@ msgstr "Général"
 
 #: guake/prefs.py:95
 msgid "Toggle Guake visibility"
-msgstr "Afficher/Cacher Guake"
+msgstr "Afficher/masquer Guake"
 
 #: guake/prefs.py:98
 msgid "Show and focus Guake window"
@@ -395,11 +392,11 @@ msgstr "Afficher et sélectionner la fenêtre Guake"
 
 #: guake/prefs.py:104
 msgid "Toggle Hide on Lose Focus"
-msgstr "Cacher lors de la perte du focus"
+msgstr "Masquer lors de la perte du focus"
 
 #: guake/prefs.py:113
 msgid "Search terminal"
-msgstr "Rechercher..."
+msgstr "Rechercher dans le terminal"
 
 #: guake/prefs.py:117
 msgid "Tab management"
@@ -411,15 +408,15 @@ msgstr "Nouvel onglet"
 
 #: guake/prefs.py:126
 msgid "New tab in home directory"
-msgstr "Nouvel onglet dans votre répertoire personnel"
+msgstr "Nouvel onglet dans votre dossier personnel"
 
 #: guake/prefs.py:130
 msgid "Close tab"
-msgstr "Fermer l'onglet"
+msgstr "Fermer l’onglet"
 
 #: guake/prefs.py:134
 msgid "Rename current tab"
-msgstr "Renommer l'onglet actuel"
+msgstr "Renommer l’onglet courant"
 
 #: guake/prefs.py:139
 msgid "Split management"
@@ -427,11 +424,11 @@ msgstr "Gestion multi-terminal"
 
 #: guake/prefs.py:144
 msgid "Split tab vertical"
-msgstr "Découpage vertical"
+msgstr "Diviser l’onglet verticalement"
 
 #: guake/prefs.py:148
 msgid "Split tab horizontal"
-msgstr "Découpage horizontal"
+msgstr "Diviser l’onglet horizontalement"
 
 #: guake/prefs.py:156
 msgid "Focus terminal above"
@@ -439,7 +436,7 @@ msgstr "Activer le terminal au dessus"
 
 #: guake/prefs.py:160
 msgid "Focus terminal below"
-msgstr "Activer le teminal en dessous"
+msgstr "Activer le terminal en dessous"
 
 #: guake/prefs.py:164
 msgid "Focus terminal on the left"
@@ -471,19 +468,19 @@ msgstr "Navigation"
 
 #: guake/prefs.py:194
 msgid "Go to previous tab"
-msgstr "Aller à l'onglet précédent"
+msgstr "Aller à l’onglet précédent"
 
 #: guake/prefs.py:198
 msgid "Go to next tab"
-msgstr "Aller à l'onglet suivant"
+msgstr "Aller à l’onglet suivant"
 
 #: guake/prefs.py:202
 msgid "Move current tab left"
-msgstr "Déplacer à gauche l'onglet actuel"
+msgstr "Déplacer à gauche l’onglet courant"
 
 #: guake/prefs.py:206
 msgid "Move current tab right"
-msgstr "Déplacer à droite l'onglet actuel"
+msgstr "Déplacer à droite l’onglet courant"
 
 #: guake/prefs.py:210
 msgid "Go to first tab"
@@ -612,7 +609,7 @@ msgstr "Le raccourcis « %s » est déjà utilisé."
 
 #: guake/prefs.py:1416
 msgid "Error setting keybinding."
-msgstr "Erreur d'attribution des raccourcis."
+msgstr "Erreur d’attribution des raccourcis."
 
 #: guake/prefs.py:1432
 #, python-format
@@ -622,11 +619,11 @@ msgid ""
 "\n"
 "Please try with a key such as Control, Alt or Shift at the same time.\n"
 msgstr ""
-"Le raccourcis « %s » ne peux être utilisé car il empêche une utilisation "
+"Le raccourci « %s » ne peux être utilisé, car il empêche une utilisation "
 "normale du clavier.\n"
 "\n"
-"Essayez de l'utiliser en combinaison avec une touche tel que Control, Alt ou "
-"Shift.\n"
+"Essayez de l’utiliser en combinaison avec une touche telle que Control, Alt "
+"ou Shift.\n"
 
 #: guake/notebook.py:443
 msgid ""
@@ -642,11 +639,11 @@ msgstr ""
 
 #: guake/dialogs.py:11
 msgid "Rename tab"
-msgstr "Renomme l'onglet"
+msgstr "Renomme l’onglet"
 
 #: guake/dialogs.py:46
 msgid "Do you want to close the tab?"
-msgstr "Voulez-vous vraiment fermer l'onglet ?"
+msgstr "Voulez-vous vraiment fermer l’onglet ?"
 
 #: guake/dialogs.py:50
 msgid "Do you really want to quit Guake?"
@@ -664,11 +661,11 @@ msgstr " et {0} onglets ouverts"
 #: guake/dialogs.py:56
 #, python-brace-format
 msgid " on {0} workspaces"
-msgstr "sur {0} espaces de travail"
+msgstr " sur {0} espaces de travail"
 
 #: guake/dialogs.py:61
 msgid "There are no processes running"
-msgstr "Il y n'a pas de processus actif"
+msgstr "Il y n’a pas de processus en cours d’exécution"
 
 #: guake/dialogs.py:63
 msgid "There is a process still running"
@@ -682,8 +679,8 @@ msgstr "Il y a {0} processus encore actifs"
 #: guake/dialogs.py:101
 msgid "Do you want to reset custom colors for this tab?"
 msgstr ""
-"Êtes-vous sure de vouloir remettre à zéro les couleurs personnalisées pour "
-"l'onglet courant?"
+"Êtes-vous sûr de vouloir réinitialiser les couleurs personnalisées pour cet "
+"onglet ?"
 
 #: guake/dialogs.py:121
 msgid "Save to..."
@@ -736,7 +733,7 @@ msgstr "Lancer Guake au login"
 
 #: guake/data/prefs.glade:327
 msgid "Prompt on close tab:"
-msgstr "Confirmer la fermeture d'onglet :"
+msgstr "Confirmer la fermeture d’onglet :"
 
 #: guake/data/prefs.glade:341
 msgid "Never"
@@ -756,21 +753,21 @@ msgstr "Toujours confirmer pour quitter"
 
 #: guake/data/prefs.glade:378
 msgid "Show tray icon"
-msgstr "Afficher l'icône de notification"
+msgstr "Afficher l’icône de notification"
 
 #: guake/data/prefs.glade:394
 msgid "_Flash terminal on bell"
-msgstr "_Flash du terminal lors d'un \"bell\""
+msgstr "_Flash du terminal lors d’un « bell »"
 
 #: guake/data/prefs.glade:409
 msgid "Use workspace-specific tab sets (requires restart, only work on X11)"
 msgstr ""
-"Utiliser les lots d'onglets spécifiques par espace de travail (nécessite un "
-"redémarrage, supporté uniquement par X11)"
+"Utiliser les lots d’onglets spécifiques par espace de travail (nécessite un "
+"redémarrage, ne fonctionne que sous X11)"
 
 #: guake/data/prefs.glade:426
 msgid "Show close buttons for tabs"
-msgstr "Afficher les boutons fermeture d'onglet"
+msgstr "Afficher les boutons de fermeture d’onglet"
 
 #: guake/data/prefs.glade:450 guake/data/prefs.glade:1842
 msgid "<b>General</b>"
@@ -794,7 +791,7 @@ msgstr "Veuillez sélectionnez un fichier JSON"
 
 #: guake/data/prefs.glade:629
 msgid "Refocus if open"
-msgstr "Reprendre le focus à l'affichage"
+msgstr "Reprendre le focus à l’affichage"
 
 #: guake/data/prefs.glade:646
 msgid "Hide on lose focus"
@@ -810,7 +807,7 @@ msgstr "Reste au premier plan"
 
 #: guake/data/prefs.glade:697
 msgid "Show tab bar"
-msgstr "Afficher la barre d'onglets"
+msgstr "Afficher la barre d’onglets"
 
 #: guake/data/prefs.glade:713
 msgid "Use VTE titles for tab names"
@@ -818,7 +815,7 @@ msgstr "Utiliser les titres VTE pour le nom des tabs"
 
 #: guake/data/prefs.glade:739
 msgid "Display as tab names:"
-msgstr ""
+msgstr "Afficher en tant que nom d’onglets :"
 
 #: guake/data/prefs.glade:753
 msgid "Full Path"
@@ -834,7 +831,7 @@ msgstr "Dernier Segment"
 
 #: guake/data/prefs.glade:782
 msgid "Max tab name length:"
-msgstr "Longueur maximale du nom de l'onglet :"
+msgstr "Longueur maximale du nom de l’onglet :"
 
 #: guake/data/prefs.glade:797
 msgid "0"
@@ -842,15 +839,15 @@ msgstr "0"
 
 #: guake/data/prefs.glade:819
 msgid "Set window title to current tab name"
-msgstr "Mettre le titre de la fenêtre au nom de l'onglet courant"
+msgstr "Définir le titre de la fenêtre au nom de l’onglet courant"
 
 #: guake/data/prefs.glade:835
 msgid "New tabs appear after the current tab"
-msgstr "Les nouveaux onglets doivent apparaître après l'onglet courant"
+msgstr "Les nouveaux onglets doivent apparaître après l’onglet courant"
 
 #: guake/data/prefs.glade:851
 msgid "Hide tabbar when fullscreen"
-msgstr "Cacher la barre des onglets en mode plein écran."
+msgstr "Masquer la barre des onglets en mode plein écran"
 
 #: guake/data/prefs.glade:875
 msgid "<b>Main Window Options</b>"
@@ -866,7 +863,7 @@ msgstr "Apparition sur la fenêtre de la souris"
 
 #: guake/data/prefs.glade:947
 msgid "Appear on display:"
-msgstr "Apparition sur l'écran :"
+msgstr "Apparition sur l’écran :"
 
 #: guake/data/prefs.glade:977
 msgid "Place tabs on top"
@@ -926,7 +923,7 @@ msgid ""
 "login option"
 msgstr ""
 "Ceci peut ne pas fonctionner pour tous les shell, veuillez vous assurer que "
-"votre shell support l'option --login"
+"votre shell support l’option --login"
 
 #: guake/data/prefs.glade:1367
 msgid "_Open new tab in current directory"
@@ -1063,21 +1060,21 @@ msgid ""
 "terminal. See the list of currently supported text patterns used to extract "
 "filename below."
 msgstr ""
-"L'ouverture rapide est une fonctionnalité qui vous permet d'ouvrir un "
+"L’ouverture rapide est une fonctionnalité qui vous permet d’ouvrir un "
 "fichier directement dans votre éditeur de texte favori en cliquant sur son "
-"nom de fichier lorsqu'il apparaît dans votre terminal. Voir la liste des "
+"nom de fichier lorsqu’il apparaît dans votre terminal. Voir la liste des "
 "modèles de texte actuellement utilisés pour extraire le nom de fichier ci-"
 "dessous."
 
 #: guake/data/prefs.glade:2492
 msgid "Enable Quick Open when Ctrl+clicking on a filename in the terminal"
 msgstr ""
-"Activer l'Ouverture Rapide lors d'un Ctrl+clic sur un nom de fichier dans le "
+"Activer l’Ouverture Rapide lors d’un Ctrl+clic sur un nom de fichier dans le "
 "terminal"
 
 #: guake/data/prefs.glade:2517
 msgid "Editor command line:"
-msgstr "Ligne de commande de l'éditeur :"
+msgstr "Ligne de commande de l’éditeur :"
 
 #: guake/data/prefs.glade:2563
 msgid ""
@@ -1089,15 +1086,15 @@ msgid ""
 "For example, for sublime, use <b>subl %(file_path)s:%(line_number)s</b>\n"
 "</i></small>"
 msgstr ""
-"<small><i>Utilisez les éléments suivants dans la ligne de commande de "
-"l'éditeur:\n"
-"- <b>%(file_path)s</b>: chemin d'accès au fichier sur lequel vous avez "
+"<small><i>Utilisez les éléments suivants dans la ligne de commande de l’"
+"éditeur :\n"
+"– <b>%(file_path)s</b> : chemin d’accès au fichier sur lequel vous avez "
 "cliqué\n"
-"- <b>%(line_number)s</b>: si votre éditeur le prend en charge, vous pouvez "
+"– <b>%(line_number)s</b> : si votre éditeur le prend en charge, vous pouvez "
 "directement ouvrir le fichier à un numéro de ligne donné.\n"
 "\n"
-"Par exemple, pour sublime, utilisez <b> subl%(file_path)s:%(line_number)s </"
-"b>\n"
+"Par exemple, pour sublime, utilisez <b> subl%(file_path)s:%(line_number)s "
+"</b>\n"
 "</i></small>"
 
 #: guake/data/prefs.glade:2618
@@ -1134,8 +1131,8 @@ msgid ""
 "i></small>"
 msgstr ""
 "<small><i><b>Note :</b> Ces options peuvent entrainer un comportement "
-"anormale. Elles ne sont disponible ici que pour des cas spécifiques où "
-"certains logiciels ou système d'exploitation attendent un comportement "
+"anormal. Elles ne sont disponibles ici que pour des cas spécifiques où "
+"certains logiciels ou systèmes d’exploitation attendent un comportement "
 "différent du terminal.</i></small>"
 
 #: guake/data/prefs.glade:2861
@@ -1152,7 +1149,7 @@ msgstr "ASCII DEL"
 
 #: guake/data/prefs.glade:2890 guake/data/prefs.glade:2907
 msgid "Escape sequence"
-msgstr "Séquence d'échapement"
+msgstr "Séquence d’échappement"
 
 #: guake/data/prefs.glade:2891 guake/data/prefs.glade:2908
 msgid "Control-H"
