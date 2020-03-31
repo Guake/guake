@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: Guake 0.4.5\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-08-18 17:32+0200\n"
-"PO-Revision-Date: 2019-09-01 19:24+0000\n"
+"PO-Revision-Date: 2020-04-01 09:34+0000\n"
 "Last-Translator: Pavel Borecki <pavel.borecki@gmail.com>\n"
 "Language-Team: Czech <https://hosted.weblate.org/projects/guake/guake/cs/>\n"
 "Language: cs\n"
@@ -19,7 +19,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
-"X-Generator: Weblate 3.9-dev\n"
+"X-Generator: Weblate 4.0-dev\n"
 
 #: ../guake/data/about.glade.h:1
 msgid "About Guake"
@@ -1450,65 +1450,69 @@ msgstr "V režimu na celou obrazovku skrýt pruh s kartami"
 
 #: guake/data/prefs.glade:739
 msgid "Display as tab names:"
-msgstr ""
+msgstr "Zobrazit jako názvy karet:"
 
 #: guake/data/prefs.glade:753
 msgid "Full Path"
-msgstr ""
+msgstr "Úplný popis umístění"
 
 #: guake/data/prefs.glade:754
 msgid "Abbreviated Path"
-msgstr ""
+msgstr "Zkrácený popis umístění"
 
 #: guake/data/prefs.glade:755
 msgid "Last Segment"
-msgstr ""
+msgstr "Poslední segment"
 
 #: guake/main.py:99
 msgid "Put Guake out from fullscreen mode"
-msgstr ""
+msgstr "Zrušit zobrazení Guake na celou obrazovku"
 
 #: guake/main.py:189
 msgid ""
 "Select a specific terminal in a split tab. Only useful with split terminals "
 "(TERMINAL_INDEX is the index of the tab)"
 msgstr ""
+"Vyberte konkrétní terminál v rozděleném panelu. Užitečné pouze u rozdělených "
+"terminálů (TERMINAL_INDEX je pořadové číslo panelu)"
 
 #: guake/main.py:199
 msgid "Return the selected terminal index."
-msgstr ""
+msgstr "Vrátit na vybrané pořadové číslo terminálu."
 
 #: guake/main.py:259
 msgid "Set the hexadecimal (#rrggbb) background color of the current terminal."
-msgstr ""
+msgstr "Nastavit šestnáctkově (#rrggbb) barvu pozadí stávajícího terminálu."
 
 #: guake/main.py:268
 msgid "Set the hexadecimal (#rrggbb) foreground color of the current terminal."
-msgstr ""
+msgstr "Nastavit šestnáctkově (#rrggbb) barvu popředí stávajícího terminálu."
 
 #: guake/main.py:285
 msgid "Set colors from settings."
-msgstr ""
+msgstr "Nastavit barvy z nastavení."
 
 #: guake/main.py:293
 msgid "Set colors of the current terminal from settings."
-msgstr ""
+msgstr "Nastavit barvy stávajícího terminálu z nastavení."
 
 #: guake/main.py:358
 msgid "Show support infomation"
-msgstr ""
+msgstr "Zobrazit podpůrnou informaci"
 
 #: guake/menus.py:26
 msgid "Reset custom colors"
-msgstr ""
+msgstr "Vrátit uživatelsky určené barvy do výchozího stavu"
 
 #: guake/dialogs.py:101
 msgid "Do you want to reset custom colors for this tab?"
 msgstr ""
+"Opravdu chcete vrátit uživatelsky určené barvy pro tento panel do výchozího "
+"stavu?"
 
 #: guake/data/prefs.glade:835
 msgid "New tabs appear after the current tab"
-msgstr ""
+msgstr "Nový panel se objeví za tím stávajícím"
 
 #~ msgid "key binding error"
 #~ msgstr "chyba klávesových zkratek"
