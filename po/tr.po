@@ -9,16 +9,16 @@ msgstr ""
 "Project-Id-Version: Guake 0.4.5\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-08-18 17:32+0200\n"
-"PO-Revision-Date: 2020-02-14 09:50+0000\n"
+"PO-Revision-Date: 2020-04-14 21:11+0000\n"
 "Last-Translator: Oğuz Ersen <oguzersen@protonmail.com>\n"
-"Language-Team: Turkish <https://hosted.weblate.org/projects/guake/guake/tr/"
-">\n"
+"Language-Team: Turkish <https://hosted.weblate.org/projects/guake/guake/tr/>"
+"\n"
 "Language: tr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
-"X-Generator: Weblate 3.11-dev\n"
+"X-Generator: Weblate 4.0-dev\n"
 
 #: ../guake/data/about.glade.h:1
 msgid "About Guake"
@@ -276,7 +276,7 @@ msgstr "Genel"
 
 #: ../guake/data/prefs.glade.h:49
 msgid "Default interpreter:"
-msgstr "Varsayılan yorumlayıcı:"
+msgstr "Öntanımlı yorumlayıcı:"
 
 #: ../guake/data/prefs.glade.h:50
 msgid "_Run command as a login shell"
@@ -376,7 +376,7 @@ msgstr "<b>Palet</b>"
 
 #: ../guake/data/prefs.glade.h:75
 msgid "Built-in schemes:"
-msgstr "Varsayılan düzenler:"
+msgstr "Yerleşik düzenler:"
 
 #: ../guake/data/prefs.glade.h:76
 msgid "Color palette:"
@@ -518,7 +518,7 @@ msgstr "_Delete tuşu yerine:"
 
 #: ../guake/data/prefs.glade.h:108
 msgid "_Reset Compatibility Options to Defaults"
-msgstr "Uyumluluk aya_rlarını varsayılan hale getir"
+msgstr "Uyumluluk Seçeneklerini Öntanımlılara _Sıfırla"
 
 #: ../guake/data/prefs.glade.h:109
 msgid "<b>Keyboard compatibility</b>"
@@ -689,7 +689,7 @@ msgstr "Seçili sekmede sınırsız komut çalıştırır."
 
 #: ../src/guake/main.py:108
 msgid "Specify the tab to rename. Default is 0."
-msgstr "Yeniden adlandırılacak sekmeyi belirtin. Varsayılan 0'dır."
+msgstr "Yeniden adlandırılacak sekmeyi belirtin. Öntanımlı değer 0'dır."
 
 #: ../src/guake/main.py:112
 msgid "Set the hexadecimal (#rrggbb) background color of the selected tab."
@@ -703,15 +703,15 @@ msgstr "Seçilen sekmenin onaltılık (#rrggbb) ön plan rengini ayarlayın."
 msgid ""
 "Rename the specified tab. Reset to default if TITLE is a single dash \"-\"."
 msgstr ""
-"Belirtilen sekmeyi yeniden adlandırın. TITLE tek bir çizgi \"-\" ise "
-"varsayılana sıfırlayın."
+"Belirtilen sekmeyi yeniden adlandır. TITLE tek bir çizgi \"-\" ise "
+"öntanımlıya sıfırla."
 
 #: ../src/guake/main.py:129
 msgid ""
 "Rename the current tab. Reset to default if TITLE is a single dash \"-\"."
 msgstr ""
-"Geçerli sekmeyi yeniden adlandırın. TITLE tek bir çizgi \"-\" ise "
-"varsayılana sıfırlayın."
+"Geçerli sekmeyi yeniden adlandır. TITLE tek bir çizgi \"-\" ise öntanımlıya "
+"sıfırla."
 
 #: ../src/guake/main.py:134
 msgid "Says to Guake go away =("
@@ -1177,8 +1177,8 @@ msgstr "Özel Komutlar"
 msgid ""
 "Specify the tab to rename. Default is 0. Can be used to select tab by UUID."
 msgstr ""
-"Yeniden adlandırılacak sekmeyi belirtin. Varsayılan 0'dır. Sekmeyi UUID ile "
-"seçmek için kullanılabilir."
+"Yeniden adlandırılacak sekmeyi belirtin. Öntanımlı değer 0'dır. Sekmeyi UUID "
+"ile seçmek için kullanılabilir."
 
 #: guake/main.py:212
 msgid ""
@@ -1186,7 +1186,7 @@ msgid ""
 "single dash \"-\"."
 msgstr ""
 "--tab-index ile belirtilen sekmeyi yeniden adlandır. TITLE tek bir çizgi \"-"
-"\" ise varsayılana sıfırla."
+"\" ise öntanımlıya sıfırla."
 
 #: data/search.glade:138
 msgid "Search forward"
