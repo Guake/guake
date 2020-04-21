@@ -11,8 +11,8 @@ msgstr ""
 "Project-Id-Version: Guake 0.4.5\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-08-18 17:32+0200\n"
-"PO-Revision-Date: 2019-08-22 06:24+0000\n"
-"Last-Translator: Nilton Rabelo <niltoncrs@gmail.com>\n"
+"PO-Revision-Date: 2020-04-22 02:11+0000\n"
+"Last-Translator: Lucas Araujo <lucassants2808@gmail.com>\n"
 "Language-Team: Portuguese (Brazil) <https://hosted.weblate.org/projects/"
 "guake/guake/pt_BR/>\n"
 "Language: pt_BR\n"
@@ -20,7 +20,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
-"X-Generator: Weblate 3.9-dev\n"
+"X-Generator: Weblate 4.0.2-dev\n"
 
 #: ../guake/data/about.glade.h:1
 msgid "About Guake"
@@ -191,7 +191,7 @@ msgstr "Alinhar janela à parte inferior em vez de superior"
 
 #: ../guake/data/prefs.glade.h:27
 msgid "Appear on mouse display"
-msgstr ""
+msgstr "aparecer na tela do mouse"
 
 #: ../guake/data/prefs.glade.h:28
 msgid "Appear on display:"
@@ -219,7 +219,7 @@ msgstr "Tamanho máximo para nome da aba:"
 
 #: ../guake/data/prefs.glade.h:34
 msgid "0 means no size limit"
-msgstr ""
+msgstr "0 significa que não há limite de tamanho"
 
 #: ../guake/data/prefs.glade.h:35
 msgid "Abbreviate directories in tab names"
@@ -351,6 +351,9 @@ msgid ""
 "I-Beam\n"
 "Underline"
 msgstr ""
+"Quadra\n"
+"I-Beam\n"
+"Sublinhado"
 
 #: ../guake/data/prefs.glade.h:69
 msgid ""
@@ -473,15 +476,15 @@ msgstr "<b>Quick Open</b>"
 
 #: ../guake/data/prefs.glade.h:98
 msgid "Quick Open"
-msgstr "Quick Open"
+msgstr "Abrir rapidamente"
 
 #: ../guake/data/prefs.glade.h:99
 msgid ""
 "To change a shortcut simply click on its name.\n"
 "To disable a shortcut, press the \"Backspace\" key."
 msgstr ""
-"Para mudar um atalho simplesmente clique em seu nome.\n"
-"Para desabilitar um atalho, aperte a tecla \"Backspace\""
+"Para mudar um atalho simplesmente clique em seu nome\n"
+"Para desabilitar um atalho, aperte a tecla \"Backspace\"."
 
 #: ../guake/data/prefs.glade.h:101
 msgid "Keyboard shortcuts"
@@ -506,7 +509,7 @@ msgid ""
 "Control-H"
 msgstr ""
 "ASCII DEL\n"
-"Escape sequence\n"
+"Sequencia de fuga\n"
 "Control-H"
 
 #: ../guake/data/prefs.glade.h:106
