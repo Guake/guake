@@ -12,7 +12,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-08-18 17:32+0200\n"
 "PO-Revision-Date: 2020-04-26 03:11+0000\n"
-"Last-Translator: Lucas Araujo <lucassants2808@gmail.com>\n"
+"Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Portuguese (Brazil) <https://hosted.weblate.org/projects/"
 "guake/guake/pt_BR/>\n"
 "Language: pt_BR\n"
@@ -585,7 +585,7 @@ msgstr "indicador de guake"
 
 #: ../src/guake/guake_app.py:186
 msgid "guake-tray"
-msgstr ""
+msgstr "bandeja-guake"
 
 #: ../src/guake/guake_app.py:190
 msgid "Show"
