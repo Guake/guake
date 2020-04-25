@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: Guake 0.4.5\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-08-18 17:32+0200\n"
-"PO-Revision-Date: 2020-04-22 02:11+0000\n"
+"PO-Revision-Date: 2020-04-26 03:11+0000\n"
 "Last-Translator: Lucas Araujo <lucassants2808@gmail.com>\n"
 "Language-Team: Portuguese (Brazil) <https://hosted.weblate.org/projects/"
 "guake/guake/pt_BR/>\n"
@@ -470,9 +470,8 @@ msgstr ""
 "faça contato com os autores do Guake)"
 
 #: ../guake/data/prefs.glade.h:97
-#, fuzzy
 msgid "<b>Quick Open</b>"
-msgstr "<b>Quick Open</b>"
+msgstr "<b>Abertura rápida</b>"
 
 #: ../guake/data/prefs.glade.h:98
 msgid "Quick Open"
@@ -573,16 +572,16 @@ msgstr "Não há nenhum processo sendo executado."
 
 #: ../src/guake/guake_app.py:144
 msgid "There is a process still running"
-msgstr "Há um processo sendo executado."
+msgstr "Há um processo que continua sendo executado"
 
 #: ../src/guake/guake_app.py:146
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid "There are {0} processes still running"
-msgstr "<b>Há %d processos sendo executados.</b>"
+msgstr "Existem {0} processos ainda em execução"
 
 #: ../src/guake/guake_app.py:186
 msgid "guake-indicator"
-msgstr ""
+msgstr "indicador de guake"
 
 #: ../src/guake/guake_app.py:186
 msgid "guake-tray"
@@ -611,9 +610,8 @@ msgid "Search on Web (no selection)"
 msgstr "Procurar na Web (sem seleção)"
 
 #: ../src/guake/guake_app.py:683
-#, fuzzy
 msgid "Open Link: '{}...'"
-msgstr "Abrir Link: {}"
+msgstr "Abrir Link: '{}...'"
 
 #: ../src/guake/guake_app.py:685
 msgid "Open Link: {}"
@@ -924,23 +922,23 @@ msgstr ""
 
 #: guake/main.py:153
 msgid "Return the selected tab label."
-msgstr ""
+msgstr "Retorne o rótulo da guia selecionada."
 
 #: guake/data/prefs.glade:264
 msgid "Never"
-msgstr ""
+msgstr "Nunca"
 
 #: guake/data/prefs.glade:265
 msgid "With process running"
-msgstr ""
+msgstr "Com o processo em execução"
 
 #: guake/data/prefs.glade:266
 msgid "Always"
-msgstr ""
+msgstr "Sempre"
 
 #: guake/data/prefs.glade:499
 msgid "Refocus if open"
-msgstr ""
+msgstr "Voltar a focar se estiver aberto"
 
 #: guake/data/prefs.glade:865
 msgid "Custom command file path:"
@@ -968,11 +966,11 @@ msgstr ""
 
 #: guake/data/prefs.glade:1444
 msgid "Blink on"
-msgstr ""
+msgstr "Piscar em"
 
 #: guake/data/prefs.glade:1445
 msgid "Blink off"
-msgstr ""
+msgstr "Piscar"
 
 #: guake/data/prefs.glade:2236
 msgid ""
