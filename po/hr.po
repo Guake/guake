@@ -11,17 +11,17 @@ msgstr ""
 "Project-Id-Version: Guake 0.4.5\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-08-18 17:32+0200\n"
-"PO-Revision-Date: 2018-01-25 21:03+0100\n"
-"Last-Translator: gogo <trebelnik2@gmail.com>\n"
-"Language-Team: Croatian (http://www.transifex.com/projects/p/guake/language/"
-"hr/)\n"
+"PO-Revision-Date: 2020-05-04 01:34+0000\n"
+"Last-Translator: Milo Ivir <mail@milotype.de>\n"
+"Language-Team: Croatian <https://hosted.weblate.org/projects/guake/guake/hr/>"
+"\n"
 "Language: hr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
-"%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
-"X-Generator: Poedit 2.0.6\n"
+"Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<="
+"4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
+"X-Generator: Weblate 4.1-dev\n"
 
 #: ../guake/data/about.glade.h:1
 msgid "About Guake"
@@ -50,24 +50,21 @@ msgstr "Cijelozaslonski prikaz"
 
 #: ../guake/data/guake.glade.h:4
 msgid "Save to File..."
-msgstr ""
+msgstr "Spremi u datoteku …"
 
 #: ../guake/data/guake.glade.h:5 ../src/guake/prefs.py:85
-#, fuzzy
 msgid "Reset terminal"
-msgstr "Guake Terminal"
+msgstr "Resetiraj terminal"
 
 #: ../guake/data/guake.glade.h:6
 msgid "Find..."
-msgstr ""
+msgstr "Pronađi …"
 
 #: ../guake/data/guake.glade.h:7
-#, fuzzy
 msgid "New Tab"
 msgstr "Nova kartica"
 
 #: ../guake/data/guake.glade.h:8
-#, fuzzy
 msgid "Rename Tab"
 msgstr "Preimenuj karticu"
 
@@ -77,11 +74,11 @@ msgstr "Zatvori karticu"
 
 #: ../guake/data/guake.glade.h:10
 msgid "Open link..."
-msgstr ""
+msgstr "Otvori poveznicu …"
 
 #: ../guake/data/guake.glade.h:11
 msgid "Search on Web"
-msgstr ""
+msgstr "Pretraži na webu"
 
 #: ../guake/data/guake.glade.h:12 ../src/guake/prefs.py:83
 msgid "Quit"
@@ -100,13 +97,12 @@ msgid "Guake!"
 msgstr "Guake!"
 
 #: ../guake/data/guake.glade.h:16
-#, fuzzy
 msgid "Add a new tab"
 msgstr "Dodaj novu karticu"
 
 #: ../guake/data/prefs.glade.h:1
 msgid "Guake Preferences"
-msgstr "Guake osobitosti"
+msgstr "Guake postavke"
 
 #: ../guake/data/prefs.glade.h:2
 msgid "<span size=\"18000\" color=\"black\"><b>Guake properties</b></span>"
@@ -115,7 +111,7 @@ msgstr "<span size=\"18000\" color=\"black\"><b>Guake svojstva</b></span>"
 #: ../guake/data/prefs.glade.h:3
 msgid ""
 "<span color=\"black\">Customize behavior and appearance of Guake!</span>"
-msgstr "<span color=\"black\">Prilagodite ponašanje i izgled Guakea!</span>"
+msgstr "<span color=\"black\">Prilagodi ponašanje i izgled Guakea!</span>"
 
 #: ../guake/data/prefs.glade.h:4
 msgid ""
@@ -136,16 +132,15 @@ msgstr ""
 
 #: ../guake/data/prefs.glade.h:15
 msgid "Enable popup notifications on startup"
-msgstr "Omogući obavijesti skočnog prozora prilikom pokretanja"
+msgstr "Aktiviraj skočne obavijesti pri pokretanju"
 
 #: ../guake/data/prefs.glade.h:16
 msgid "Show tray icon"
 msgstr "Prikaži ikonu u traci sustava"
 
 #: ../guake/data/prefs.glade.h:17
-#, fuzzy
 msgid "Always prompt on quit"
-msgstr "Upozori pri zatvaranju"
+msgstr "Uvijek pitaj pri zatvaranju"
 
 #: ../guake/data/prefs.glade.h:18
 msgid "_Flash terminal on bell"
@@ -153,16 +148,15 @@ msgstr ""
 
 #: ../guake/data/prefs.glade.h:19
 msgid "_Play system alert sound on bell"
-msgstr ""
+msgstr "_Sviraj sustavski zvuk upozorenja pri zvonu"
 
 #: ../guake/data/prefs.glade.h:20
 msgid "Path to script executed on Guake start:"
-msgstr ""
+msgstr "Staza do skripte koja se izvršava pri pokretanju Guakea:"
 
 #: ../guake/data/prefs.glade.h:21
-#, fuzzy
 msgid "Prompt on close tab:"
-msgstr "Upozori pri zatvaranju"
+msgstr "Upozori pri zatvaranju kartice:"
 
 #: ../guake/data/prefs.glade.h:22
 msgid ""
@@ -170,48 +164,49 @@ msgid ""
 "With process running\n"
 "Always"
 msgstr ""
+"Nikada\n"
+"Pri pokrenutom procesu\n"
+"Uvijek"
 
 #: ../guake/data/prefs.glade.h:25
 msgid "<b>General</b>"
-msgstr "<b>Općenito</b>"
+msgstr "<b>Opće</b>"
 
 #: ../guake/data/prefs.glade.h:26
 msgid "Bottom align window instead of top align"
-msgstr ""
+msgstr "Poravnaj prozor dolje umjesto gore"
 
 #: ../guake/data/prefs.glade.h:27
 msgid "Appear on mouse display"
-msgstr ""
+msgstr "Prikaži na ekranu gdje je miš"
 
 #: ../guake/data/prefs.glade.h:28
 msgid "Appear on display:"
-msgstr ""
+msgstr "Prikaži na ekranu:"
 
 #: ../guake/data/prefs.glade.h:29
-#, fuzzy
 msgid "Place tabs on top"
-msgstr "Uvijek na vrhu"
+msgstr "Postavi kartice naprijed"
 
 #: ../guake/data/prefs.glade.h:30
-#, fuzzy
 msgid "<b>Placement</b>"
-msgstr "<b>Boje</b>"
+msgstr "<b>Položaj</b>"
 
 #: ../guake/data/prefs.glade.h:31
 msgid "Stay on top"
-msgstr "Uvijek na vrhu"
+msgstr "Uvijek naprijed"
 
 #: ../guake/data/prefs.glade.h:32
 msgid "Use VTE titles for tab names"
-msgstr ""
+msgstr "Koristi VTE naslove za imena kartica"
 
 #: ../guake/data/prefs.glade.h:33
 msgid "Max tab name length:"
-msgstr ""
+msgstr "Maks. duljina imena kratica:"
 
 #: ../guake/data/prefs.glade.h:34
 msgid "0 means no size limit"
-msgstr ""
+msgstr "Nula znači neograničeno"
 
 #: ../guake/data/prefs.glade.h:36
 msgid "Hide on lose focus"
@@ -219,12 +214,11 @@ msgstr "Sakrij pri gubitku fokusa"
 
 #: ../guake/data/prefs.glade.h:37
 msgid "Show tab bar"
-msgstr "Prikaži donju traku"
+msgstr "Prikaži traku kartica"
 
 #: ../guake/data/prefs.glade.h:38
-#, fuzzy
 msgid "Start fullscreen"
-msgstr "Cijelozaslonski prikaz"
+msgstr "Cjeloekranski prikaz"
 
 #: ../guake/data/prefs.glade.h:39
 msgid "<b>Main Window</b>"
@@ -232,38 +226,35 @@ msgstr "<b>Glavni prozor</b>"
 
 #: ../guake/data/prefs.glade.h:40
 msgid "Left"
-msgstr ""
+msgstr "Lijevo"
 
 #: ../guake/data/prefs.glade.h:41
 msgid "Center"
-msgstr ""
+msgstr "Centrirano"
 
 #: ../guake/data/prefs.glade.h:42
 msgid "Right"
-msgstr ""
+msgstr "Desno"
 
 #: ../guake/data/prefs.glade.h:43
-#, fuzzy
 msgid "<b>Main Window Horizontal Alignment</b>"
-msgstr "<b>Visina glavnog prozora</b>"
+msgstr "<b>Vodoravno poravnanje glavnog prozora</b>"
 
 #: ../guake/data/prefs.glade.h:44
-#, fuzzy
 msgid "<b>Main Window Height</b>"
 msgstr "<b>Visina glavnog prozora</b>"
 
 #: ../guake/data/prefs.glade.h:45
-#, fuzzy
 msgid "<b>Main Window Width</b>"
-msgstr "<b>Visina glavnog prozora</b>"
+msgstr "<b>Širina glavnog prozora</b>"
 
 #: ../guake/data/prefs.glade.h:46
 msgid "Custom command file path: "
-msgstr ""
+msgstr "Staza datoteke prilagođenih naredbi: "
 
 #: ../guake/data/prefs.glade.h:47
 msgid "Please select a json file"
-msgstr ""
+msgstr "Odaberi json datoteku"
 
 #: ../guake/data/prefs.glade.h:48 ../src/guake/prefs.py:75
 msgid "General"
@@ -279,7 +270,7 @@ msgstr "_Pokreni naredbu kao ljusku prijave"
 
 #: ../guake/data/prefs.glade.h:51
 msgid "_Open new tab in current directory"
-msgstr "_Оtvori novu karticu u trenutnom direktoriju"
+msgstr "_Оtvori novu karticu u trenutačnom direktoriju"
 
 #: ../guake/data/prefs.glade.h:52
 msgid "<b>Shell</b>"
@@ -287,7 +278,7 @@ msgstr "<b>Ljuska</b>"
 
 #: ../guake/data/prefs.glade.h:53
 msgid "Shell"
-msgstr ""
+msgstr "Ljuska"
 
 #: ../guake/data/prefs.glade.h:54
 msgid "Show scrollbar"
@@ -315,15 +306,15 @@ msgstr "Pomicanje kotačićem miša"
 
 #: ../guake/data/prefs.glade.h:60
 msgid "Use the system fixed width font"
-msgstr "Koristi širinu slova ispravljenu sustavom"
+msgstr "Koristi sustavski font fiksne širine"
 
 #: ../guake/data/prefs.glade.h:61
 msgid "Font:"
-msgstr "Slova:"
+msgstr "Font:"
 
 #: ../guake/data/prefs.glade.h:62
 msgid "Choose some font"
-msgstr "Odaberite neka slova"
+msgstr "Odaberi neki font"
 
 #: ../guake/data/prefs.glade.h:63
 msgid "Text color:"
@@ -335,7 +326,7 @@ msgstr "Boja pozadine:"
 
 #: ../guake/data/prefs.glade.h:65
 msgid "Cursor shape:"
-msgstr ""
+msgstr "Oblik kursora:"
 
 #: ../guake/data/prefs.glade.h:66
 msgid ""
@@ -343,6 +334,9 @@ msgid ""
 "I-Beam\n"
 "Underline"
 msgstr ""
+"Pravokutnik\n"
+"Okomita crta\n"
+"Podcrtano"
 
 #: ../guake/data/prefs.glade.h:69
 msgid ""
@@ -350,18 +344,21 @@ msgid ""
 "Blink on\n"
 "Blink off"
 msgstr ""
+"Slijedi GTK+ postavke\n"
+"Žmiganje uključeno\n"
+"Žmiganje isključeno"
 
 #: ../guake/data/prefs.glade.h:72
 msgid "Cursor blink mode:"
-msgstr ""
+msgstr "Modus žmiganja kursora:"
 
 #: ../guake/data/prefs.glade.h:73
 msgid "Allow bold font"
-msgstr ""
+msgstr "Dozvoli podebljani font"
 
 #: ../guake/data/prefs.glade.h:74
 msgid "<b>Palette</b>"
-msgstr "<b>Boje</b>"
+msgstr "<b>Paleta</b>"
 
 #: ../guake/data/prefs.glade.h:75
 msgid "Built-in schemes:"
@@ -383,11 +380,11 @@ msgstr "Boja pozadine:"
 
 #: ../guake/data/prefs.glade.h:79
 msgid "Use font and background color from the palette"
-msgstr ""
+msgstr "Koristi font i boju pozadine iz palete"
 
 #: ../guake/data/prefs.glade.h:80
 msgid "Demo:"
-msgstr ""
+msgstr "Demo:"
 
 #: ../guake/data/prefs.glade.h:81
 msgid "<b>Effects</b>"
@@ -435,7 +432,7 @@ msgstr ""
 
 #: ../guake/data/prefs.glade.h:95
 msgid "Quick open in current terminal"
-msgstr ""
+msgstr "Brzo otvaranje u trenutačnom terminalu"
 
 #: ../guake/data/prefs.glade.h:96
 msgid ""
@@ -444,13 +441,12 @@ msgid ""
 msgstr ""
 
 #: ../guake/data/prefs.glade.h:97
-#, fuzzy
 msgid "<b>Quick Open</b>"
-msgstr "<b>Boje</b>"
+msgstr "<b>Brzo otvaranje</b>"
 
 #: ../guake/data/prefs.glade.h:98
 msgid "Quick Open"
-msgstr ""
+msgstr "Brzo otvaranje"
 
 #: ../guake/data/prefs.glade.h:99
 msgid ""
@@ -486,11 +482,11 @@ msgstr ""
 
 #: ../guake/data/prefs.glade.h:106
 msgid "_Backspace key generates:"
-msgstr "_'Backspace' tipka generira:"
+msgstr "_„Backspace” tipka generira:"
 
 #: ../guake/data/prefs.glade.h:107
 msgid "_Delete key generates:"
-msgstr "_'Delete' tipka generira:"
+msgstr "_„Delete” tipka generira:"
 
 #: ../guake/data/prefs.glade.h:108
 msgid "_Reset Compatibility Options to Defaults"
@@ -507,7 +503,7 @@ msgstr "Kompatibilnost"
 #: ../src/guake/about.py:47 ../src/guake/gconfhandler.py:439
 #: ../src/guake/guake_app.py:181 ../src/guake/guake_app.py:378
 msgid "Guake Terminal"
-msgstr "Guake Terminal"
+msgstr "Guake terminal"
 
 #: ../src/guake/gconfhandler.py:369 ../src/guake/guake_app.py:1386
 #, fuzzy
@@ -521,55 +517,49 @@ msgid ""
 "Please use Guake Preferences dialog to choose another key"
 msgstr ""
 "Problem je nastao dodjeljivanjem <b>%s</b> tipke.\n"
-"Koristite Guake dijalog osobitosti za odabir druge tipke (ikona u traci "
-"sustava je omogućena)"
+"Koristi Guakeov dijalog postavki za biranje jedne druge tipke"
 
 #: ../src/guake/guake_app.py:132
-#, fuzzy
 msgid "Do you want to close the tab?"
-msgstr "Sigurno želite zatvoriti Guake!?"
+msgstr "Zatvoriti Guake?"
 
 #: ../src/guake/guake_app.py:135
-#, fuzzy
 msgid "Do you really want to quit Guake?"
-msgstr "Sigurno želite zatvoriti Guake!?"
+msgstr "Stvarno  zatvoriti Guake?"
 
 #: ../src/guake/guake_app.py:137
-#, fuzzy
 msgid " and one tab open"
-msgstr "Dodaj novu karticu"
+msgstr " i jedna otvorena kartica"
 
 #: ../src/guake/guake_app.py:139
 #, python-brace-format
 msgid " and {0} tabs open"
-msgstr ""
+msgstr " i {0} otvorenih kartica"
 
 #: ../src/guake/guake_app.py:142
-#, fuzzy
 msgid "There are no processes running"
-msgstr "<b>Jedan proces se još uvijek izvodi.</b>"
+msgstr "Ne izvodi se niti jedan proces"
 
 #: ../src/guake/guake_app.py:144
-#, fuzzy
 msgid "There is a process still running"
-msgstr "<b>Jedan proces se još uvijek izvodi.</b>"
+msgstr "Još uvijek se izvodi jedan proces"
 
 #: ../src/guake/guake_app.py:146
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid "There are {0} processes still running"
-msgstr "<b>Još uvijek se %d procesa izvodi.</b>"
+msgstr "Još uvijek se izvodi {0} procesa"
 
 #: ../src/guake/guake_app.py:186
 msgid "guake-indicator"
-msgstr ""
+msgstr "guake-indikator"
 
 #: ../src/guake/guake_app.py:186
 msgid "guake-tray"
-msgstr ""
+msgstr "guake-traka"
 
 #: ../src/guake/guake_app.py:190
 msgid "Show"
-msgstr ""
+msgstr "Prikaži"
 
 #: ../src/guake/guake_app.py:379
 #, python-format
@@ -578,28 +568,28 @@ msgid ""
 "press <b>{!s}</b> to use it."
 msgstr ""
 "Guake je pokrenut,\n"
-"pritisnite <b>{!s}</b> za korištenje."
+"pritisni <b>{!s}</b> za korištenje."
 
 #: ../src/guake/guake_app.py:670
 #, python-format
 msgid "Search on Web: '%s'"
-msgstr ""
+msgstr "Pretraži na webu: „%s”"
 
 #: ../src/guake/guake_app.py:675
 msgid "Search on Web (no selection)"
-msgstr ""
+msgstr "Pretraži na webu (bez odabira)"
 
 #: ../src/guake/guake_app.py:683
 msgid "Open Link: '{}...'"
-msgstr ""
+msgstr "Otvori poveznicu: „{} …”"
 
 #: ../src/guake/guake_app.py:685
 msgid "Open Link: {}"
-msgstr ""
+msgstr "Otvori poveznicu: {}"
 
 #: ../src/guake/guake_app.py:688
 msgid "Open Link..."
-msgstr ""
+msgstr "Otvori poveznicu …"
 
 #: ../src/guake/guake_app.py:1425
 msgid "Rename tab"
@@ -607,62 +597,59 @@ msgstr "Preimenuj karticu"
 
 #: ../src/guake/guake_app.py:1736
 msgid "Save to..."
-msgstr ""
+msgstr "Spremi u …"
 
 #: ../src/guake/guake_app.py:1743 ../src/guake/prefs.py:973
 msgid "All files"
-msgstr ""
+msgstr "Sve datoteke"
 
 #: ../src/guake/guake_app.py:1748
 msgid "Text and Logs"
-msgstr ""
+msgstr "Tekst i zapisi"
 
 #: ../src/guake/guake_app.py:1766
 msgid "Find"
-msgstr ""
+msgstr "Pronađi"
 
 #: ../src/guake/guake_app.py:1768
 msgid "Forward"
-msgstr ""
+msgstr "Naprijed"
 
 #: ../src/guake/guake_app.py:1769
 msgid "Backward"
-msgstr ""
+msgstr "Natrag"
 
 #: ../src/guake/main.py:68
 msgid "Put Guake in fullscreen mode"
-msgstr ""
+msgstr "Postavi Guake u cjeloekranski prikaz"
 
 #: ../src/guake/main.py:72
 msgid "Toggles the visibility of the terminal window"
 msgstr "Isključivanje/Uključivanje vidljivosti prozora terminala"
 
 #: ../src/guake/main.py:76
-#, fuzzy
 msgid "Shows Guake main window"
-msgstr "Prikazuje Guake prozor osobitosti"
+msgstr "Prikazuje glavni Guake prozor"
 
 #: ../src/guake/main.py:80
-#, fuzzy
 msgid "Hides Guake main window"
-msgstr "Prikazuje Guake prozor osobitosti"
+msgstr "Skriva glavni Guake prozor"
 
 #: ../src/guake/main.py:84
 msgid "Shows Guake preference window"
-msgstr "Prikazuje Guake prozor osobitosti"
+msgstr "Prikazuje Guake prozor postavki"
 
 #: ../src/guake/main.py:88
 msgid "Shows Guake's about info"
-msgstr "Prikazuje Guake prozor informacija"
+msgstr "Prikazuje prozor Guake informacija"
 
 #: ../src/guake/main.py:92
-#, fuzzy
 msgid "Add a new tab (with current directory set to NEW_TAB)"
-msgstr "_Оtvori novu karticu u trenutnom direktoriju"
+msgstr "Dodaj novu karticu (s trenutačnim direktorijem postavljenim na NEW_TAB)"
 
 #: ../src/guake/main.py:96
 msgid "Select a tab (SELECT_TAB is the index of the tab)"
-msgstr ""
+msgstr "Odaberi karticu (SELECT_TAB je indeks kartice)"
 
 #: ../src/guake/main.py:100
 msgid "Return the selected tab index."
@@ -674,51 +661,54 @@ msgstr "Izvrši proizvoljnu naredbu u odabranoj kartici."
 
 #: ../src/guake/main.py:108
 msgid "Specify the tab to rename. Default is 0."
-msgstr ""
+msgstr "Odredi karticu za preimenovanje. Standardno je nula."
 
 #: ../src/guake/main.py:112
 msgid "Set the hexadecimal (#rrggbb) background color of the selected tab."
-msgstr ""
+msgstr "Postavi heksadecimalnu (#rrggbb) stražnju boju odabrane kartice."
 
 #: ../src/guake/main.py:117
 msgid "Set the hexadecimal (#rrggbb) foreground color of the selected tab."
-msgstr ""
+msgstr "Postavi heksadecimalnu (#rrggbb) prednju boju odabrane kartice."
 
 #: ../src/guake/main.py:123
 msgid ""
 "Rename the specified tab. Reset to default if TITLE is a single dash \"-\"."
 msgstr ""
+"Preimenuj navedenu karticu. Poništi na standardno, ako je TITLE (naslov) "
+"jedna crtica \"-\"."
 
 #: ../src/guake/main.py:129
 msgid ""
 "Rename the current tab. Reset to default if TITLE is a single dash \"-\"."
 msgstr ""
+"Preimenuj trenutačnu karticu. Poništi na standardno, ako je TITLE (naslov) "
+"jedna crtica \"-\"."
 
 #: ../src/guake/main.py:134
 msgid "Says to Guake go away =("
-msgstr "Recite Guakeu, odlazi! =("
+msgstr "Govori Guakeu, odlazi =("
 
 #: ../src/guake/main.py:138
 msgid "Do not execute the start up script"
-msgstr ""
+msgstr "Ne izvršavaj skriptu za pokretanje"
 
 #: ../src/guake/main.py:235
 msgid "Guake can not init!"
 msgstr "Guake se ne može pokrenuti!"
 
 #: ../src/guake/main.py:236
-#, fuzzy
 msgid ""
 "Gconf Error.\n"
 "Have you installed <b>guake.schemas</b> properly?"
 msgstr ""
 "Gconf greška.\n"
-"Jeste li instalirali <b>guake.schemas</b> ispravno?"
+"Je li <b>guake.schemas</b> ispravno instalirano?"
 
 #. string to show in prefereces dialog for user shell option
 #: ../src/guake/prefs.py:67
 msgid "<user shell>"
-msgstr "<Korisnikova ljuska>"
+msgstr "<korisnička ljuska>"
 
 #: ../src/guake/prefs.py:77
 msgid "Toggle Guake visibility"
@@ -744,7 +734,7 @@ msgstr "Zatvori karticu"
 
 #: ../src/guake/prefs.py:94
 msgid "Rename current tab"
-msgstr "Preimenuj trenutnu karticu"
+msgstr "Preimenuj trenutačnu karticu"
 
 #: ../src/guake/prefs.py:97
 msgid "Navigation"
@@ -752,76 +742,63 @@ msgstr "Navigacija"
 
 #: ../src/guake/prefs.py:99
 msgid "Go to previous tab"
-msgstr "Idi na prijašnju karticu"
+msgstr "Idi na prethodnu karticu"
 
 #: ../src/guake/prefs.py:101
 msgid "Go to next tab"
 msgstr "Idi na sljedeću karticu"
 
 #: ../src/guake/prefs.py:103
-#, fuzzy
 msgid "Move current tab left"
-msgstr "Preimenuj trenutnu karticu"
+msgstr "Premjesti trenutačnu karticu na lijevo"
 
 #: ../src/guake/prefs.py:105
-#, fuzzy
 msgid "Move current tab right"
-msgstr "Preimenuj trenutnu karticu"
+msgstr "Premjesti trenutačnu karticu na desno"
 
 #: ../src/guake/prefs.py:107
-#, fuzzy
 msgid "Go to first tab"
-msgstr "Idi na sljedeću karticu"
+msgstr "Idi na prvu karticu"
 
 #: ../src/guake/prefs.py:109
-#, fuzzy
 msgid "Go to second tab"
-msgstr "Idi na sljedeću karticu"
+msgstr "Idi na drugu karticu"
 
 #: ../src/guake/prefs.py:111
-#, fuzzy
 msgid "Go to third tab"
-msgstr "Idi na sljedeću karticu"
+msgstr "Idi na treću karticu"
 
 #: ../src/guake/prefs.py:113
-#, fuzzy
 msgid "Go to fourth tab"
-msgstr "Idi na sljedeću karticu"
+msgstr "Idi na četvrtu karticu"
 
 #: ../src/guake/prefs.py:115
-#, fuzzy
 msgid "Go to fifth tab"
-msgstr "Idi na sljedeću karticu"
+msgstr "Idi na petu karticu"
 
 #: ../src/guake/prefs.py:117
-#, fuzzy
 msgid "Go to sixth tab"
-msgstr "Idi na sljedeću karticu"
+msgstr "Idi na šestu karticu"
 
 #: ../src/guake/prefs.py:119
-#, fuzzy
 msgid "Go to seventh tab"
-msgstr "Idi na sljedeću karticu"
+msgstr "Idi na sedmu karticu"
 
 #: ../src/guake/prefs.py:121
-#, fuzzy
 msgid "Go to eighth tab"
-msgstr "Idi na sljedeću karticu"
+msgstr "Idi na osmu karticu"
 
 #: ../src/guake/prefs.py:123
-#, fuzzy
 msgid "Go to ninth tab"
-msgstr "Idi na sljedeću karticu"
+msgstr "Idi na devetu karticu"
 
 #: ../src/guake/prefs.py:125
-#, fuzzy
 msgid "Go to tenth tab"
-msgstr "Idi na sljedeću karticu"
+msgstr "Idi na desetu karticu"
 
 #: ../src/guake/prefs.py:127
-#, fuzzy
 msgid "Go to last tab"
-msgstr "Idi na sljedeću karticu"
+msgstr "Idi na zadnju karticu"
 
 #: ../src/guake/prefs.py:132
 msgid "Zoom out"
@@ -829,34 +806,31 @@ msgstr ""
 
 #: ../src/guake/prefs.py:134
 msgid "Zoom in"
-msgstr ""
+msgstr "Povećaj"
 
 #: ../src/guake/prefs.py:136
 msgid "Zoom in (alternative)"
-msgstr ""
+msgstr "Povećaj (alternativno)"
 
 #: ../src/guake/prefs.py:138
 msgid "Increase height"
-msgstr ""
+msgstr "Povećaj visinu"
 
 #: ../src/guake/prefs.py:140
 msgid "Decrease height"
-msgstr ""
+msgstr "Smanji visinu"
 
 #: ../src/guake/prefs.py:142
-#, fuzzy
 msgid "Increase transparency"
-msgstr "Prozirnost:"
+msgstr "Povećaj prozirnost"
 
 #: ../src/guake/prefs.py:144
-#, fuzzy
 msgid "Decrease transparency"
-msgstr "Prozirnost:"
+msgstr "Smanji prozirnost"
 
 #: ../src/guake/prefs.py:146
-#, fuzzy
 msgid "Toggle transparency"
-msgstr "Prozirnost:"
+msgstr "Uklj./Isklj. prozirnost"
 
 #: ../src/guake/prefs.py:149
 msgid "Clipboard"
@@ -872,11 +846,11 @@ msgstr "Zalijepi tekst iz međuspremnika"
 
 #: ../src/guake/prefs.py:156
 msgid "Extra features"
-msgstr ""
+msgstr "Dodatne funkcije"
 
 #: ../src/guake/prefs.py:159
 msgid "Search select text on web"
-msgstr ""
+msgstr "Traži odabrani tekst na webu"
 
 #: ../src/guake/prefs.py:481
 msgid "Action"
@@ -884,20 +858,20 @@ msgstr "Radnja"
 
 #: ../src/guake/prefs.py:491
 msgid "Shortcut"
-msgstr "Tipke prečaca"
+msgstr "Prečac"
 
 #: ../src/guake/prefs.py:651 ../src/guake/prefs.py:697
 msgid "Custom"
-msgstr ""
+msgstr "Prilagođeno"
 
 #: ../src/guake/prefs.py:969
 msgid "JSON files"
-msgstr ""
+msgstr "JSON datoteke"
 
 #: ../src/guake/prefs.py:1063
 #, python-format
 msgid "The shortcut \"%s\" is already in use."
-msgstr "Prečac \"%s\" se već koristi."
+msgstr "Prečac „%s” se već koristi."
 
 #: ../src/guake/prefs.py:1064
 msgid "Error setting keybinding."
@@ -911,34 +885,34 @@ msgid ""
 "\n"
 "Please try with a key such as Control, Alt or Shift at the same time.\n"
 msgstr ""
-"Tipka prečaca \"%s\", se ne može koristiti zato jer  ju je nemoguće upisati "
-"koristeći ovu tipku.\n"
+"Prečac „%s” se ne može koristiti, jer neće biti moguće pisati koristeći ovu "
+"tipku.\n"
 "\n"
-"Pokušajte sa tipkom poput 'Control', 'Alt' ili 'Shift'.\n"
+"Pokušaj s tipkom poput Control, Alt ili Shift istovremeno.\n"
 
 #: guake/main.py:153
 msgid "Return the selected tab label."
-msgstr ""
+msgstr "Vrati oznaku odabrane kartice."
 
 #: guake/data/prefs.glade:264
 msgid "Never"
-msgstr ""
+msgstr "Nikada"
 
 #: guake/data/prefs.glade:265
 msgid "With process running"
-msgstr ""
+msgstr "S pokrenutim procesom"
 
 #: guake/data/prefs.glade:266
 msgid "Always"
-msgstr ""
+msgstr "Uvijek"
 
 #: guake/data/prefs.glade:499
 msgid "Refocus if open"
-msgstr ""
+msgstr "Ponovo fokusiraj ako je otvoren"
 
 #: guake/data/prefs.glade:865
 msgid "Custom command file path:"
-msgstr ""
+msgstr "Staza datoteke prilagođenih naredbi:"
 
 #: guake/data/prefs.glade:1315
 msgid "Show resizer"
@@ -946,27 +920,27 @@ msgstr ""
 
 #: guake/data/prefs.glade:1423
 msgid "Block"
-msgstr ""
+msgstr "Pravokutnik"
 
 #: guake/data/prefs.glade:1424
 msgid "I-Beam"
-msgstr ""
+msgstr "Okomita crta"
 
 #: guake/data/prefs.glade:1425
 msgid "Underline"
-msgstr ""
+msgstr "Podcrtano"
 
 #: guake/data/prefs.glade:1443
 msgid "Follow GTK+ setting"
-msgstr ""
+msgstr "Slijedi GTK+ postavke"
 
 #: guake/data/prefs.glade:1444
 msgid "Blink on"
-msgstr ""
+msgstr "Žmiganje uključeno"
 
 #: guake/data/prefs.glade:1445
 msgid "Blink off"
-msgstr ""
+msgstr "Žmiganje isključeno"
 
 #: guake/data/prefs.glade:2236
 msgid ""
@@ -981,15 +955,15 @@ msgstr ""
 
 #: guake/data/prefs.glade:2442 guake/data/prefs.glade:2462
 msgid "ASCII DEL"
-msgstr ""
+msgstr "ASCII DEL"
 
 #: guake/data/prefs.glade:2443 guake/data/prefs.glade:2463
 msgid "Escape sequence"
-msgstr ""
+msgstr "Escape sekvenca"
 
 #: guake/data/prefs.glade:2444 guake/data/prefs.glade:2464
 msgid "Control-H"
-msgstr ""
+msgstr "Control-H"
 
 #: guake/data/prefs.glade:2600
 msgid ""
@@ -999,11 +973,11 @@ msgstr ""
 
 #: guake/data/prefs.glade:2635
 msgid "On show:"
-msgstr ""
+msgstr "Pri prikazivanju:"
 
 #: guake/data/prefs.glade:2665
 msgid "On start:"
-msgstr ""
+msgstr "Pri pokretanju:"
 
 #: guake/data/prefs.glade:2714
 msgid "Hooks"
@@ -1011,67 +985,67 @@ msgstr ""
 
 #: guake/data/guake-prefs.desktop:8
 msgid "Configure your Guake sessions"
-msgstr ""
+msgstr "Konfiguriraj Guake sesiju"
 
 #: guake/data/guake-prefs.desktop:15 guake/data/guake.desktop:18
 msgid "guake"
-msgstr ""
+msgstr "guake"
 
 #: guake/data/guake-prefs.desktop:20
 msgid "Terminal;Utility;"
-msgstr ""
+msgstr "Terminal;Pomoćni program;"
 
 #: guake/data/guake.desktop:10
 msgid "Use the command line in a Quake-like terminal"
-msgstr ""
+msgstr "Koristi naredbeni redak u Quake-sličnom terminalu"
 
 #: guake/data/prefs.glade:770
 msgid "Main Window Horizontal Alignment"
-msgstr ""
+msgstr "Vodoravno poravnanje glavnog prozora"
 
 #: guake/prefs.py:89
 msgid "Show and focus Guake window"
-msgstr ""
+msgstr "Prikaži i fokusiraj Guake prozor"
 
 #: guake/data/prefs.glade:566
 msgid "0"
-msgstr ""
+msgstr "0"
 
 #: guake/data/prefs.glade:610
 msgid "<b>Main Window Options</b>"
-msgstr ""
+msgstr "<b>Opcije glavnog prozora</b>"
 
 #: guake/data/prefs.glade:770
 msgid "Horizontal Alignment:"
-msgstr ""
+msgstr "Vodoravno poravnanje:"
 
 #: guake/data/prefs.glade:855
 msgid "Height:"
-msgstr ""
+msgstr "Visina:"
 
 #: guake/data/prefs.glade:868
 msgid "Width:"
-msgstr ""
+msgstr "Širina:"
 
 #: guake/data/prefs.glade:913
 msgid "<b>Geometry</b>"
-msgstr ""
+msgstr "<b>Geometrija</b>"
 
 #: guake/data/prefs.glade:944
 msgid "Main Window"
-msgstr ""
+msgstr "Glavni prozor"
 
 #: guake/data/prefs.glade:1197
 msgid "Infinite scrolling"
-msgstr ""
+msgstr "Beskonačno klizanje"
 
 #: guake/data/prefs.glade:1219
 msgid "<b>Scrollbar</b>"
-msgstr ""
+msgstr "<b>Klizna traka</b>"
 
 #: guake/data/prefs.glade:1304
 msgid "<b>Scroll to Bottom</b>"
-msgstr ""
+msgstr "<b>Klizni na kraj</b>"
 
 #: guake/data/prefs.glade:2117
 msgid ""
@@ -1083,7 +1057,7 @@ msgstr ""
 
 #: guake/main.py:64
 msgid "Show Guake version number and exit"
-msgstr ""
+msgstr "Prikaži broj Guake verzije i zatvori"
 
 #: guake/data/prefs.glade:93
 msgid "<span size=\"18000\"><b>Guake properties</b></span>"
@@ -1091,11 +1065,11 @@ msgstr "<span size=\"18000\"><b>Guake svojstva</b></span>"
 
 #: guake/data/prefs.glade:107
 msgid "Customize behavior and appearance of Guake!"
-msgstr "Prilagodite ponašanje i izgled Guakea!"
+msgstr "Prilagodi ponašanje i izgled Guakea!"
 
 #: guake/data/prefs.glade:929
 msgid "Displacement in pixels"
-msgstr ""
+msgstr "Premještanje u pikselima"
 
 #: guake/main.py:73
 msgid "Enable verbose logging"
@@ -1103,19 +1077,19 @@ msgstr ""
 
 #: guake/guake_app.py:680
 msgid "Quick Open: '{!s}...'"
-msgstr ""
+msgstr "Brzo otvaranje: „{!s} …”"
 
 #: guake/guake_app.py:683
 msgid "Quick Open: {!s}"
-msgstr ""
+msgstr "Brzo otvaranje: {!s}"
 
 #: guake/guake_app.py:691
 msgid "Open Link: '{!s}...'"
-msgstr ""
+msgstr "Otvori poveznicu: „{!s} …”"
 
 #: guake/guake_app.py:694
 msgid "Open Link: {!s}"
-msgstr ""
+msgstr "Otvori poveznicu: {!s}"
 
 #: guake/data/prefs.glade:2175
 msgid ""
@@ -1128,31 +1102,31 @@ msgstr ""
 
 #: guake/guake_app.py:680
 msgid "Quick Open: {!s}..."
-msgstr ""
+msgstr "Brzo otvaranje: {!s} …"
 
 #: guake/guake_app.py:691
 msgid "Open Link: {!s}..."
-msgstr ""
+msgstr "Brzo poveznicu: {!s} …"
 
 #: guake/guake_app.py:688
 msgid "Quick Open..."
-msgstr ""
+msgstr "Brzo otvaranje …"
 
 #: guake/data/prefs.glade:223
 msgid "Start Guake at login"
-msgstr ""
+msgstr "Pokreni Guake prilikom prijave"
 
 #: guake/data/prefs.glade:363
 msgid "Gtk Theme:"
-msgstr ""
+msgstr "Gtk tema:"
 
 #: guake/data/prefs.glade:387
 msgid "Prefer dark theme"
-msgstr ""
+msgstr "Preferiraj tamnu temu"
 
 #: guake/guake_app.py:435
 msgid "Custom Commands"
-msgstr ""
+msgstr "Prilagođene naredbe"
 
 #: guake/main.py:184
 msgid ""
