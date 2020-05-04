@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: Guake 0.4.5\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-08-18 17:32+0200\n"
-"PO-Revision-Date: 2020-05-04 01:34+0000\n"
+"PO-Revision-Date: 2020-05-04 01:37+0000\n"
 "Last-Translator: Milo Ivir <mail@milotype.de>\n"
 "Language-Team: Croatian <https://hosted.weblate.org/projects/guake/guake/hr/>"
 "\n"
@@ -28,13 +28,12 @@ msgid "About Guake"
 msgstr "О Guake"
 
 #: ../guake/data/about.glade.h:5
-#, fuzzy
 msgid ""
 "Guake is an easy to access\n"
 "terminal based on FPS games terminal"
 msgstr ""
 "Guake je lako dostupan terminal,\n"
-"temeljen na terminalu iz FPS igre Quake"
+"temeljen na terminalu FPS igara"
 
 #: ../guake/data/guake.glade.h:1
 msgid "Copy"
@@ -369,14 +368,12 @@ msgid "Color palette:"
 msgstr "Paleta boja:"
 
 #: ../guake/data/prefs.glade.h:77
-#, fuzzy
 msgid "Font color"
-msgstr "Boja teksta:"
+msgstr "Boja fonta"
 
 #: ../guake/data/prefs.glade.h:78
-#, fuzzy
 msgid "Background color"
-msgstr "Boja pozadine:"
+msgstr "Stražnja boja"
 
 #: ../guake/data/prefs.glade.h:79
 msgid "Use font and background color from the palette"
@@ -506,9 +503,8 @@ msgid "Guake Terminal"
 msgstr "Guake terminal"
 
 #: ../src/guake/gconfhandler.py:369 ../src/guake/guake_app.py:1386
-#, fuzzy
 msgid "Terminal"
-msgstr "Terminal %s"
+msgstr "Terminal"
 
 #: ../src/guake/gconfhandler.py:440
 #, python-format
@@ -525,7 +521,7 @@ msgstr "Zatvoriti Guake?"
 
 #: ../src/guake/guake_app.py:135
 msgid "Do you really want to quit Guake?"
-msgstr "Stvarno  zatvoriti Guake?"
+msgstr "Stvarno zatvoriti Guake?"
 
 #: ../src/guake/guake_app.py:137
 msgid " and one tab open"
@@ -715,7 +711,6 @@ msgid "Toggle Guake visibility"
 msgstr "Prikaži/Sakrij Guake"
 
 #: ../src/guake/prefs.py:81
-#, fuzzy
 msgid "Toggle Hide on Lose Focus"
 msgstr "Sakrij pri gubitku fokusa"
 
@@ -724,7 +719,6 @@ msgid "Tab management"
 msgstr "Upravljanje karticama"
 
 #: ../src/guake/prefs.py:90
-#, fuzzy
 msgid "New tab"
 msgstr "Nova kartica"
 
