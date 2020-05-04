@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: Guake 0.4.5\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-08-18 17:32+0200\n"
-"PO-Revision-Date: 2020-05-04 01:37+0000\n"
+"PO-Revision-Date: 2020-05-04 01:41+0000\n"
 "Last-Translator: Milo Ivir <mail@milotype.de>\n"
 "Language-Team: Croatian <https://hosted.weblate.org/projects/guake/guake/hr/>"
 "\n"
@@ -45,7 +45,7 @@ msgstr "Zalijepi"
 
 #: ../guake/data/guake.glade.h:3 ../src/guake/prefs.py:79
 msgid "Toggle Fullscreen"
-msgstr "Cijelozaslonski prikaz"
+msgstr "Uklj./isklj. cjeloekranski prikaz"
 
 #: ../guake/data/guake.glade.h:4
 msgid "Save to File..."
