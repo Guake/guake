@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: Guake 0.4.5\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-08-18 17:32+0200\n"
-"PO-Revision-Date: 2020-05-05 18:11+0000\n"
+"PO-Revision-Date: 2020-05-07 13:12+0000\n"
 "Last-Translator: Milo Ivir <mail@milotype.de>\n"
 "Language-Team: Croatian <https://hosted.weblate.org/projects/guake/guake/hr/>"
 "\n"
@@ -347,7 +347,7 @@ msgid ""
 msgstr ""
 "Pravokutnik\n"
 "Okomita crta\n"
-"Podcrtano"
+"Podvlaka"
 
 #: ../guake/data/prefs.glade.h:69
 msgid ""
@@ -950,7 +950,7 @@ msgstr "Okomita crta"
 
 #: guake/data/prefs.glade:1425
 msgid "Underline"
-msgstr "Podcrtano"
+msgstr "Podvlaka"
 
 #: guake/data/prefs.glade:1443
 msgid "Follow GTK+ setting"
