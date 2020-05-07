@@ -30,6 +30,7 @@ import uuid
 from pathlib import Path
 from urllib.parse import quote_plus
 from xml.sax.saxutils import escape as xml_escape
+from packaging import version
 
 import gi
 gi.require_version('Gtk', '3.0')
@@ -1006,11 +1007,14 @@ class Guake(SimpleGladeApp):
 
     def is_using_gnome(self):
         linux_distrib = platform.linux_distribution()
-        if float(linux_distrib[1]) - 0.01 < 11.10:
-            if os.environ.get('XDG_CURRENT_DESKTOP', '').lower() == "gnome".lower():
+        if linux_distrib[0].lower() != "ubuntu":
+            return False
+
+        if version.parse(linux_distrib[1]) <= version.parse("11.10"):
+            if os.environ.get('DESKTOP_SESSION', '').lower() == "gnome":
                 return True
         else:
-            if os.environ.get('XDG_CURRENT_DESKTOP', '').lower() == "ubuntu:gnome".lower():
+            if os.environ.get('XDG_CURRENT_DESKTOP', '').lower() == "ubuntu:gnome":
                 return True
 
         return False
