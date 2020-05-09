@@ -1113,83 +1113,96 @@ class Guake(SimpleGladeApp):
 
         if self.is_using_gnome():
             #log.debug("CURRENT MONITOR: %s", monitor)
+            dock_enabled = False
             try:
                 dock_enabled = subprocess.check_output([
-                        '/usr/bin/dconf', 'list', '/org/gnome/shell/extensions/dash-to-dock/'
+                    '/usr/bin/dconf', 'list', '/org/gnome/shell/extensions/dash-to-dock/'
+                ])
+            except Exception as e:
+                pass
+
+            ## If dock is enabled, check if it's active on current monitor ##
+            dock_active = False
+            if dock_enabled:
+                log.debug("Gnome dock enabled")
+        
+                #dconf VALUES:
+                #preferred-monitor=0|1 : monitor_num on which dock is shown
+                #multi-monitor=true|false : true=>shown on all monitors
+                #dock-fixed=true|false : false=>auto-hide on , unset=>true
+                #dock-position='LEFT'|'RIGHT'|'BOTTOM' (unset = 'LEFT')
+                #dash-max-icon-size=n : size in pixels
+
+                #check if active on all monitors
+                try:
+                    multi_monitor = subprocess.check_output([
+                        '/usr/bin/dconf', 'read',
+                        '/org/gnome/shell/extensions/dash-to-dock/multi-monitor'
+                    ]).decode("utf-8").rstrip() or "true"
+                except Exception as e:
+                    pass
+
+                if multi_monitor == "true":
+                    dock_active = True
+                else:
+                    try:
+                        preferred_monitor = subprocess.check_output([
+                            '/usr/bin/dconf', 'read',
+                            '/org/gnome/shell/extensions/dash-to-dock/preferred-monitor'
+                        ])
+                        #check if we are on preferred monitor
+                        if monitor == int(preferred_monitor):
+                            dock_active = True
+                    except Exception as e:
+                        pass
+
+            ## If active, check if and where the dock is shown ##
+            dock_shown = False
+            if dock_active:
+                log.debug("Gnome dock active")
+                #check if auto-hide is on
+                dock_fixed = "true"
+                try:
+                    dock_fixed = subprocess.check_output([
+                        '/usr/bin/dconf', 'read',
+                        '/org/gnome/shell/extensions/dash-to-dock/dock-fixed'
+                    ]).decode("utf-8").rstrip() or "true"
+                except Exception as e:
+                    pass
+
+                #if dock-fixed is unset is considered true
+                if dock_fixed != "false":
+                    dock_shown = True
+
+            #If dock is actually shown, check if it's LEFT or RIGHT (we ignore BOTTOM)
+            dock_pos = ""
+            if dock_shown:
+                #Check dock's position
+                try:
+                    dock_pos = subprocess.check_output([
+                        '/usr/bin/dconf', 'read',
+                        '/org/gnome/shell/extensions/dash-to-dock/dock-position'
+                    ]).decode("utf-8").rstrip() or "'LEFT'"
+                except Exception as e:
+                    pass
+
+            #We dock is shown and its position is LEFT or RIGHT, let's adjust width
+            if dock_pos == "'LEFT'" or dock_pos == "'RIGHT'":
+                #log.debug("dock_pos is LEFT or RIGHT")
+                try:
+                    dock_size = subprocess.check_output([
+                        '/usr/bin/dconf', 'read',
+                        '/org/gnome/shell/extensions/dash-to-dock/dash-max-icon-size'
                     ])
 
-                if dock_enabled:
-                    log.debug("Gnome dock enabled")
-		    
-                    #dconf VALUES:
-                    #preferred-monitor=0|1 : monitor_num on which dock is shown
-                    #multi-monitor=true|false : true=>shown on all monitors
-                    #dock-fixed=true|false : false=>auto-hide on , unset=>true
-                    #dock-position='LEFT'|'RIGHT'|'BOTTOM' (unset = 'LEFT')
-                    #dash-max-icon-size=n : size in pixels
-
-                    ## Check if dock is active on current monitor ##
-                    dock_active = False
-                    #check if active on all monitors
-                    multi_monitor = subprocess.check_output([
-                            '/usr/bin/dconf', 'read',
-                            '/org/gnome/shell/extensions/dash-to-dock/multi-monitor'
-                        ]).decode("utf-8").rstrip() or "true"
-
-                    if multi_monitor == "true":
-                        dock_active = True
-                    else:
-                        preferred_monitor = int(
-                            subprocess.check_output([
-                                '/usr/bin/dconf', 'read',
-                                '/org/gnome/shell/extensions/dash-to-dock/preferred-monitor'
-                            ])
-                        )
-                        #check if we are on preferred monitor
-                        if monitor == preferred_monitor:
-                            dock_active = True
-
-                    ## If active, check if and where the dock is shown ##
-                    dock_shown = False
-
-                    # If active, check if auto-hide is on
-                    if dock_active:
-                        log.debug("Gnome dock active")
-                        #check if auto-hide is on
-                        dock_fixed = subprocess.check_output([
-                            '/usr/bin/dconf', 'read',
-                            '/org/gnome/shell/extensions/dash-to-dock/dock-fixed'
-                        ]).decode("utf-8").rstrip() or "true"
-                        if dock_fixed == "false":
-                            auto_hide = True
-                        else: auto_hide = False
-
-                        #If actually shown
-                        if not auto_hide:
-                            #Check dock's position
-                            dock_pos = subprocess.check_output([
-                                '/usr/bin/dconf', 'read',
-                                '/org/gnome/shell/extensions/dash-to-dock/dock-position'
-                            ]).decode("utf-8").rstrip() or "'LEFT'"
-
-                            log.debug("dock_pos = %s", dock_pos)
-                            if dock_pos == "'LEFT'" or dock_pos == "'RIGHT'":
-                                log.debug("dock_pos is LEFT or RIGHT")
-                                dock_size = int(
-                                    subprocess.check_output([
-                                        '/usr/bin/dconf', 'read',
-                                        '/org/gnome/shell/extensions/dash-to-dock/dash-max-icon-size'
-                                    ])
-                                )
-                                ## Adjust width ##
-                                log.debug("Adjusting window size")
-                                dock_shown = True
-                                dock_size += 19
-                                window_rect.width = window_rect.width - dock_size
-                                if monitor == 1:
-                                    window_rect.x += dock_size                       
-
-            except Exception as e:
+                    ## Adjust width ##
+                    log.debug("Adjusting window size")
+                    dock_width = int(dock_size) + 19
+                    window_rect.width = window_rect.width - dock_width
+                    if monitor == 1:
+                        window_rect.x += dock_width
+                
+                except Exception as e:
                     pass
 
 
