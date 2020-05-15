@@ -35,6 +35,7 @@ black = "==21.8b0"
 flakehell = "*"
 toml = "*"
 dataclasses = "*"
+pyyaml = "*"
 
 [packages]
 pbr = "*"

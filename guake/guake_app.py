@@ -19,6 +19,7 @@ Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor,
 Boston, MA 02110-1301 USA
 """
 import json
+import yaml
 import logging
 import os
 import shutil
@@ -1102,8 +1103,30 @@ class Guake(SimpleGladeApp):
             page_num = self.get_notebook().page_num(terminal.get_parent())
             self.get_notebook().rename_page(page_num, self.compute_tab_title(terminal), False)
 
+    def load_cwd_guake_yaml(self, vte) -> dict:
+        # Read the content of .guake.yml in cwd
+        cwd = Path(vte.get_current_directory())
+        guake_yaml = cwd.joinpath(".guake.yml")
+        content = {}
+        try:
+            if guake_yaml.is_file():
+                with guake_yaml.open(encoding="utf-8") as fd:
+                    content = yaml.safe_load(fd)
+        except PermissionError:
+            log.debug("PermissionError on accessing .guake.yml")
+
+        if not isinstance(content, dict):
+            conent = {}
+        return content
+
     def compute_tab_title(self, vte):
         """Compute the tab title"""
+
+        guake_yml = self.load_cwd_guake_yaml(vte)
+
+        if "title" in guake_yml:
+            return guake_yml["title"]
+
         vte_title = vte.get_window_title() or _("Terminal")
         try:
             current_directory = vte.get_current_directory()
@@ -1117,6 +1140,7 @@ class Guake(SimpleGladeApp):
                     vte_title = "(root)"
         except OSError:
             pass
+
         return TabNameUtils.shorten(vte_title, self.settings)
 
     def check_if_terminal_directory_changed(self, term):
@@ -1151,6 +1175,7 @@ class Guake(SimpleGladeApp):
             page_num = nb.page_num(box)
             if page_num != -1:
                 break
+
         # if tab has been renamed by user, don't override.
         if not getattr(box, "custom_label_set", False):
             title = self.compute_tab_title(vte)
