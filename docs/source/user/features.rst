@@ -114,3 +114,11 @@ Tab UUID
 Tabs are uniquely identified with a UUID. Each terminal receives this UUID in the following
 environment varialbe: ``GUAKE_TAB_UUID``. It can be used to rename the tab from the command line
 using ``--tab-index 3c542bc1-7c99-4e73-8d37-e08281bd592c``.
+
+
+Per-directory `.guake.yml` file
+=============================
+
+If there is a file named `.guake.yml` in the current working directory of the shell associated with a tab, Guake will try to read the title from there. The current format is very simple and it will probably change in the future::
+
+    title: "My Great Project"

@@ -1,0 +1,10 @@
+release_summary: >
+    Add a per-directory .guake.yml to configure how guake behaves in that directory
+
+features:
+  - |
+    Check for a file .guake.yml on the CWD to extract the label to put in the tab #1758
+
+upgrade:
+  - |
+    Users should expect guake.yml files in current directory to override global settings
