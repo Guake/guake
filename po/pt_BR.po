@@ -11,8 +11,8 @@ msgstr ""
 "Project-Id-Version: Guake 0.4.5\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-08-18 17:32+0200\n"
-"PO-Revision-Date: 2020-04-26 03:11+0000\n"
-"Last-Translator: Anonymous <noreply@weblate.org>\n"
+"PO-Revision-Date: 2020-05-22 15:41+0000\n"
+"Last-Translator: Nilton Rabelo <niltoncrs@gmail.com>\n"
 "Language-Team: Portuguese (Brazil) <https://hosted.weblate.org/projects/"
 "guake/guake/pt_BR/>\n"
 "Language: pt_BR\n"
@@ -20,7 +20,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
-"X-Generator: Weblate 4.0.2-dev\n"
+"X-Generator: Weblate 4.1-dev\n"
 
 #: ../guake/data/about.glade.h:1
 msgid "About Guake"
@@ -958,11 +958,11 @@ msgstr ""
 
 #: guake/data/prefs.glade:1425
 msgid "Underline"
-msgstr ""
+msgstr "Sublinhar"
 
 #: guake/data/prefs.glade:1443
 msgid "Follow GTK+ setting"
-msgstr ""
+msgstr "Usar configuração do GTK+"
 
 #: guake/data/prefs.glade:1444
 msgid "Blink on"
@@ -984,22 +984,26 @@ msgid ""
 msgstr ""
 
 #: guake/data/prefs.glade:2442 guake/data/prefs.glade:2462
+#, fuzzy
 msgid "ASCII DEL"
-msgstr ""
+msgstr "ASCII DEL"
 
 #: guake/data/prefs.glade:2443 guake/data/prefs.glade:2463
 msgid "Escape sequence"
-msgstr ""
+msgstr "Sequência de escape"
 
 #: guake/data/prefs.glade:2444 guake/data/prefs.glade:2464
+#, fuzzy
 msgid "Control-H"
-msgstr ""
+msgstr "Control-H"
 
 #: guake/data/prefs.glade:2600
 msgid ""
 "<small>In this dialog you can attach your own command or script to various "
 "guake events</small>"
 msgstr ""
+"<small>Nesta janela você pode adicionar seus próprios comandos ou scripts "
+"para várias ações do guake</small>"
 
 #: guake/data/prefs.glade:2635
 msgid "On show:"
@@ -1007,7 +1011,7 @@ msgstr ""
 
 #: guake/data/prefs.glade:2665
 msgid "On start:"
-msgstr ""
+msgstr "Ao iniciar:"
 
 #: guake/data/prefs.glade:2714
 msgid "Hooks"
