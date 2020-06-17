@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: Guake 0.4.5\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-08-18 17:32+0200\n"
-"PO-Revision-Date: 2019-06-18 19:05+0000\n"
+"PO-Revision-Date: 2020-06-18 08:41+0000\n"
 "Last-Translator: Allan Nordhøy <epost@anotheragency.no>\n"
 "Language-Team: Norwegian Bokmål <https://hosted.weblate.org/projects/guake/"
 "guake/nb_NO/>\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 3.7\n"
+"X-Generator: Weblate 4.1.1-dev\n"
 
 #: ../guake/data/about.glade.h:1
 msgid "About Guake"
@@ -1374,7 +1374,7 @@ msgstr "Fet tekst er også lysnet"
 
 #: data/prefs.glade:1682
 msgid "Bold text is also bright (VTE >=0.52)"
-msgstr "Fet tekst er også lysnet (VTE  >=0.52)"
+msgstr "Fet tekst er også lysnet (VTE >=0.52)"
 
 #: guake/menus.py:42
 msgid "Save Tabs"
