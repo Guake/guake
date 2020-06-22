@@ -169,7 +169,7 @@ class FullscreenManager:
         if not window_state & Gdk.WindowState.WITHDRAWN:
             if self.is_fullscreen():
                 self.fullscreen()
-            else:
+            elif window_state & Gdk.WindowState.FOCUSED:
                 self.unfullscreen()
 
     def fullscreen(self):
