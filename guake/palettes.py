@@ -1051,8 +1051,8 @@ if os.path.isdir(themes_folder):
             try:
                 theme_to_load = json.load(theme_file)
                 PALETTES = {**PALETTES, **theme_to_load}
-                log.debug("Loaded themes %s" % ', '.join(theme_to_load.keys()))
+                log.debug("Loaded themes %s", " ".join(theme_to_load.keys()))
             except json.JSONDecodeError:
-                log.debug("Unable to load theme from file %s" % theme_file)
+                log.debug("Unable to load theme from file %s", theme_file)
 else:
-    log.debug("Could not find themes folder %s" % themes_folder)
+    log.debug("Could not find themes folder %s", themes_folder)
