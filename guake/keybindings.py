@@ -134,7 +134,7 @@ class Keybindings:
                 )
         elif key == "show-focus":
             if not self.guake.hotkeys.bind(value, self.guake.show_focus):
-                log.warn("can't bind show-focus key")
+                log.warning("can't bind show-focus key")
                 return
 
     def reload_accelerators(self, *args):

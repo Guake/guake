@@ -38,13 +38,13 @@ class PromptQuitDialog(Gtk.MessageDialog):
     """Prompts the user whether to quit/close a tab.
     """
 
-    def __init__(self, parent, procs, tabs, notebooks):
+    def __init__(self, transient_for, procs, tabs, notebooks):
+        """Prompts the user whether to quit or not if there are procs running.
+        """
         super(PromptQuitDialog, self).__init__(
-            parent,
+            transient_for,
             Gtk.DialogFlags.MODAL | Gtk.DialogFlags.DESTROY_WITH_PARENT,
-            Gtk.MessageType.QUESTION,
-            Gtk.ButtonsType.YES_NO,
-        )
+            Gtk.MessageType.QUESTION, Gtk.ButtonsType.YES_NO, modal=True, destroy_with_parent=True)
 
         if tabs == -1:
             primary_msg = _("Do you want to close the tab?")

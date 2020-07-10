@@ -425,7 +425,7 @@ class TerminalBox(Gtk.Box, TerminalHolder):
         """Packs the scrollbar.
         """
         adj = self.terminal.get_vadjustment()
-        self.scroll = Gtk.VScrollbar(adj)
+        self.scroll = Gtk.VScrollbar(adjustment=adj)
         self.scroll.show()
         self.pack_start(self.scroll, False, False, 0)
 
@@ -640,8 +640,8 @@ class TabLabelEventBox(Gtk.EventBox):
     def __init__(self, notebook, text, settings):
         super().__init__()
         self.notebook = notebook
-        self.box = Gtk.Box(Gtk.Orientation.HORIZONTAL, 0, visible=True)
-        self.label = Gtk.Label(text, visible=True)
+        self.box = Gtk.Box(homogeneous=Gtk.Orientation.HORIZONTAL, spacing=0, visible=True)
+        self.label = Gtk.Label(label=text, visible=True)
         self.close_button = Gtk.Button(
             image=Gtk.Image.new_from_icon_name("window-close", Gtk.IconSize.MENU),
             relief=Gtk.ReliefStyle.NONE,

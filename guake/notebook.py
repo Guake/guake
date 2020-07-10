@@ -170,7 +170,7 @@ class TerminalNotebook(Gtk.Notebook):
             row = Gtk.ListBoxRow()
             box = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL)
             box.set_size_request(200, BOX_HEIGHT)
-            label = Gtk.Label(self.get_tab_text_index(i))
+            label = Gtk.Label(label=self.get_tab_text_index(i))
             label.set_xalign(0.0)
             box.pack_start(label, 0, 0, 5)
             row.add(box)
@@ -289,9 +289,8 @@ class TerminalNotebook(Gtk.Notebook):
         procs = self.get_running_fg_processes_count_page(page_num)
         if prompt == 2 or (prompt == 1 and procs > 0):
             # TODO NOTEBOOK remove call to guake
-            if not PromptQuitDialog(self.guake.window, procs, -1).close_tab():
+            if not PromptQuitDialog(self.guake.window, procs, -1, notebooks='').close_tab():
                 return
-
         page = self.get_nth_page(page_num)
         for terminal in self.get_terminals_for_page(page_num):
             if kill:

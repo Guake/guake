@@ -101,10 +101,10 @@ RESPONSE_BACKWARD = 1
 # Disable find feature until python-vte hasn't been updated
 enable_find = False
 
-GObject.threads_init()
+# GObject.threads_init()
 
 # Setting gobject program name
-GObject.set_prgname(NAME)
+GLib.set_prgname(NAME)
 
 GDK_WINDOW_STATE_WITHDRAWN = 1
 GDK_WINDOW_STATE_ICONIFIED = 2
@@ -114,7 +114,7 @@ GDK_WINDOW_STATE_ABOVE = 32
 
 class Guake(SimpleGladeApp):
 
-    """Guake main class. Handles specialy the main window.
+    """Guake main class. Handles specially the main window.
     """
 
     def __init__(self):
@@ -305,7 +305,7 @@ class Guake(SimpleGladeApp):
                 self.hide()
                 self.show()
         else:
-            log.warn("System doesn't support transparency")
+            log.warning("System doesn't support transparency")
             self.window.transparency = False
             self.window.set_visual(screen.get_system_visual())
 
@@ -562,7 +562,7 @@ class Guake(SimpleGladeApp):
             self.set_terminal_focus()
             return
 
-        should_refocus = self.settings.general.get_boolean('window-refocus')
+        should_refocus = self.settings.general.get_boolean("window-refocus")
         has_focus = self.window.get_window().get_state() & Gdk.WindowState.FOCUSED
         if should_refocus and not has_focus:
             log.info("Refocussing the terminal")

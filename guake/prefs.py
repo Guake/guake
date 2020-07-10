@@ -1341,7 +1341,7 @@ class PrefsDialog(SimpleGladeApp):
 
         if dconf_path == "show-hide":
             # cannot disable 'show-hide' hotkey
-            log.warn("Cannot disable 'show-hide' hotkey")
+            log.warning("Cannot disable 'show-hide' hotkey")
             self.settings.keybindingsGlobal.set_string(dconf_path, old_accel)
         else:
             self.store[path][HOTKET_MODEL_INDEX_HUMAN_ACCEL] = ""

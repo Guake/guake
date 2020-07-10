@@ -265,7 +265,7 @@ class GSettingHandler:
         """
         font_name = None
         if settings.get_boolean(key):
-            gio_settings = Gio.Settings("org.gnome.desktop.interface")
+            gio_settings = Gio.Settings(schema="org.gnome.desktop.interface")
             font_name = gio_settings.get_string("monospace-font-name")
         else:
             font_name = self.settings.styleFont.get_string("style")

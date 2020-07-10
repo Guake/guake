@@ -690,7 +690,7 @@
                 "sha256:52caa73b474d2aed34fc0e5fa6c5b4abdb8b17405c56dc8fee500009af56496c"
             ],
             "index": "pypi",
-            "version": "==3.7.1"
+            "version": "==3.7.2"
         },
         "pyflakes": {
             "hashes": [
