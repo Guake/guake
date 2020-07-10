@@ -145,16 +145,16 @@ class SaveTerminalDialog(Gtk.FileChooserDialog):
         if not selection:
             return
         selection = selection.rstrip()
-        filter = Gtk.FileFilter()
-        filter.set_name(_("All files"))
-        filter.add_pattern("*")
-        self.add_filter(filter)
+        filteru = Gtk.FileFilter()
+        filteru.set_name(_("All files"))
+        filteru.add_pattern("*")
+        self.add_filter(filteru)
 
-        filter = Gtk.FileFilter()
-        filter.set_name(_("Text and Logs"))
-        filter.add_pattern("*.log")
-        filter.add_pattern("*.txt")
-        self.add_filter(filter)
+        filteru = Gtk.FileFilter()
+        filteru.set_name(_("Text and Logs"))
+        filteru.add_pattern("*.log")
+        filteru.add_pattern("*.txt")
+        self.add_filter(filteru)
 
         response = super().run()
         if response == Gtk.ResponseType.OK:
