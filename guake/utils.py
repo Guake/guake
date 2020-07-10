@@ -264,6 +264,7 @@ class RectCalculator:
 
         if width_percents == 100 and height_percents == 100:
             log.debug("MAXIMIZING MAIN WINDOW")
+            window.move(window_rect.x, window_rect.y)
             window.maximize()
         elif not FullscreenManager(settings, window).is_fullscreen():
             log.debug("RESIZING MAIN WINDOW TO THE FOLLOWING VALUES:")
