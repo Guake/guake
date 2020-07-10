@@ -401,6 +401,7 @@ class TerminalBox(Gtk.Box, TerminalHolder):
     def __init__(self):
         super().__init__(orientation=Gtk.Orientation.HORIZONTAL)
         self.terminal = None
+        self.scroll = None
 
     def set_terminal(self, terminal):
         """Packs the terminal widget.

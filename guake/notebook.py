@@ -291,6 +291,7 @@ class TerminalNotebook(Gtk.Notebook):
             # TODO NOTEBOOK remove call to guake
             if not PromptQuitDialog(self.guake.window, procs, -1, notebooks="").close_tab():
                 return
+
         page = self.get_nth_page(page_num)
         for terminal in self.get_terminals_for_page(page_num):
             if kill:

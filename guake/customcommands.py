@@ -65,7 +65,7 @@ class CustomCommands:
         if not self.should_load():
             return None
         menu = Gtk.Menu()
-        log.info("Loading menu json file: %s", self.get_file_path())
+        log.info("Loading session json file: %s", self.get_file_path())
         cust_comms = self._load_json(self.get_file_path())
         if not cust_comms:
             return None
@@ -73,7 +73,7 @@ class CustomCommands:
             try:
                 self._parse_custom_commands(obj, menu)
             except AttributeError:
-                log.error("Loading menu json file: %s", self.get_file_path())
+                log.error("Loading session json file: %s", self.get_file_path())
                 log.error("_parse_custom_commands parsing type: %s", type(obj))
                 log.error("_parse_custom_commands parsing json: %s", obj)
                 # AttributeError: 'str' object has no attribute 'get', ignore and move on
