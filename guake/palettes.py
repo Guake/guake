@@ -17,6 +17,11 @@ License along with this program; if not, write to the
 Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor,
 Boston, MA 02110-1301 USA
 """
+import json
+import os
+import logging
+
+log = logging.getLogger(__name__)
 
 # index 00: Host
 # index 01: Syntax string
@@ -1035,3 +1040,19 @@ PALETTES = {
         "#CFCFCFCFCFCF:#D9D9E6E6F2F2:#19191F1F1D1D"
     ),
 }
+
+
+themes_folder = os.path.expandvars("$HOME/.config/guake/themes")
+
+if os.path.isdir(themes_folder):
+    theme_filenames = next(os.walk(themes_folder))[2]
+    for theme_filename in theme_filenames:
+        with open(os.path.join(themes_folder, theme_filename)) as theme_file:
+            try:
+                theme_to_load = json.load(theme_file)
+                PALETTES = {**PALETTES, **theme_to_load}
+                log.debug("Loaded themes %s" % ', '.join(theme_to_load.keys()))
+            except json.JSONDecodeError:
+                log.debug("Unable to load theme from file %s" % theme_file)
+else:
+    log.debug("Could not find themes folder %s" % themes_folder)
