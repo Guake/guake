@@ -44,7 +44,11 @@ class PromptQuitDialog(Gtk.MessageDialog):
         super(PromptQuitDialog, self).__init__(
             transient_for,
             Gtk.DialogFlags.MODAL | Gtk.DialogFlags.DESTROY_WITH_PARENT,
-            Gtk.MessageType.QUESTION, Gtk.ButtonsType.YES_NO, modal=True, destroy_with_parent=True)
+            Gtk.MessageType.QUESTION,
+            Gtk.ButtonsType.YES_NO,
+            modal=True,
+            destroy_with_parent=True,
+        )
 
         if tabs == -1:
             primary_msg = _("Do you want to close the tab?")
