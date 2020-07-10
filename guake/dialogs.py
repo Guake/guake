@@ -81,7 +81,7 @@ class PromptQuitDialog(Gtk.MessageDialog):
         # Stop an open "close tab" dialog from obstructing a quit
         response = self.run() == Gtk.ResponseType.YES
         self.destroy()
-        # Keep Guake focussed after dismissing tab-close prompt
+        # Keep Guake focused after dismissing tab-close prompt
         # if tab == -1:
         #     self.window.present()
         return response
@@ -89,7 +89,7 @@ class PromptQuitDialog(Gtk.MessageDialog):
     def close_tab(self):
         response = self.run() == Gtk.ResponseType.YES
         self.destroy()
-        # Keep Guake focussed after dismissing tab-close prompt
+        # Keep Guake focused after dismissing tab-close prompt
         # if tab == -1:
         #     self.window.present()
         return response
@@ -118,7 +118,7 @@ class PromptResetColorsDialog(Gtk.MessageDialog):
         # Stop an open "close tab" dialog from obstructing a quit
         response = self.run() == Gtk.ResponseType.YES
         self.destroy()
-        # Keep Guake focussed after dismissing tab-close prompt
+        # Keep Guake focused after dismissing tab-close prompt
         # if tab == -1:
         #     self.window.present()
         return response
