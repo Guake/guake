@@ -1097,7 +1097,17 @@ class Guake(SimpleGladeApp):
             pass
         return TabNameUtils.shorten(vte_title, self.settings)
 
-    @save_tabs_when_changed
+    def check_if_terminal_directory_changed(self, term):
+        @save_tabs_when_changed
+        def terminal_directory_changed(self):
+            # Yep, just used for save tabs when changed
+            pass
+
+        current_directory = term.get_current_directory()
+        if current_directory != term.directory:
+            term.directory = current_directory
+            terminal_directory_changed(self)
+
     def on_terminal_title_changed(self, vte, term):
         # box must be a page
         if not term.get_parent():
@@ -1124,6 +1134,9 @@ class Guake(SimpleGladeApp):
             text = nb.get_tab_text_page(box)
             if text:
                 self.update_window_title(text)
+
+        # Check if terminal directory has changed
+        self.check_if_terminal_directory_changed(term)
 
     def update_window_title(self, title):
         if self.settings.general.get_boolean("set-window-title") is True:
@@ -1161,6 +1174,9 @@ class Guake(SimpleGladeApp):
         terminal.handler_ids.append(
             terminal.connect("window-title-changed", self.on_terminal_title_changed, terminal)
         )
+
+        # Use to detect if directory has changed
+        terminal.directory = terminal.get_current_directory()
 
     @save_tabs_when_changed
     def add_tab(self, directory=None):
