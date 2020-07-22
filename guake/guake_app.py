@@ -562,7 +562,7 @@ class Guake(SimpleGladeApp):
             self.set_terminal_focus()
             return
 
-        should_refocus = self.settings.general.get_boolean('window-refocus')
+        should_refocus = self.settings.general.get_boolean("window-refocus")
         has_focus = self.window.get_window().get_state() & Gdk.WindowState.FOCUSED
         if should_refocus and not has_focus:
             log.info("Refocussing the terminal")
