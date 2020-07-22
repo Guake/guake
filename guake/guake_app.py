@@ -1112,6 +1112,10 @@ class Guake(SimpleGladeApp):
         # box must be a page
         if not term.get_parent():
             return
+
+        # Check if terminal directory has changed
+        self.check_if_terminal_directory_changed(term)
+
         box = term.get_parent().get_root_box()
         use_vte_titles = self.settings.general.get_boolean("use-vte-titles")
         if not use_vte_titles:
@@ -1134,9 +1138,6 @@ class Guake(SimpleGladeApp):
             text = nb.get_tab_text_page(box)
             if text:
                 self.update_window_title(text)
-
-        # Check if terminal directory has changed
-        self.check_if_terminal_directory_changed(term)
 
     def update_window_title(self, title):
         if self.settings.general.get_boolean("set-window-title") is True:
