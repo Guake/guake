@@ -11,24 +11,23 @@ msgstr ""
 "Project-Id-Version: Guake 0.4.5\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-08-18 17:32+0200\n"
-"PO-Revision-Date: 2018-01-25 20:56+0100\n"
-"Last-Translator: Сергій Дубик <dubyk@ukr.net>\n"
-"Language-Team: Ukrainian (Ukraine) (http://www.transifex.com/projects/p/"
-"guake/language/uk_UA/)\n"
-"Language: uk_UA\n"
+"PO-Revision-Date: 2020-08-07 22:32+0000\n"
+"Last-Translator: Nazim-ua <nazim-ua@ukr.net>\n"
+"Language-Team: Ukrainian <https://hosted.weblate.org/projects/guake/guake/uk/"
+">\n"
+"Language: uk\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
-"%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
-"X-Generator: Poedit 2.0.6\n"
+"Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
+"%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
+"X-Generator: Weblate 4.2-dev\n"
 
 #: ../guake/data/about.glade.h:1
 msgid "About Guake"
 msgstr "Про Guake"
 
 #: ../guake/data/about.glade.h:5
-#, fuzzy
 msgid ""
 "Guake is an easy to access\n"
 "terminal based on FPS games terminal"
@@ -50,24 +49,21 @@ msgstr "Перемикання повноекранного режиму"
 
 #: ../guake/data/guake.glade.h:4
 msgid "Save to File..."
-msgstr ""
+msgstr "Зберегти до файлу..."
 
 #: ../guake/data/guake.glade.h:5 ../src/guake/prefs.py:85
-#, fuzzy
 msgid "Reset terminal"
-msgstr "Термінал Guake"
+msgstr "Скинути термінал"
 
 #: ../guake/data/guake.glade.h:6
 msgid "Find..."
 msgstr ""
 
 #: ../guake/data/guake.glade.h:7
-#, fuzzy
 msgid "New Tab"
 msgstr "Нова вкладка"
 
 #: ../guake/data/guake.glade.h:8
-#, fuzzy
 msgid "Rename Tab"
 msgstr "Перейменувати вкладку"
 
@@ -100,9 +96,8 @@ msgid "Guake!"
 msgstr "Guake!"
 
 #: ../guake/data/guake.glade.h:16
-#, fuzzy
 msgid "Add a new tab"
-msgstr "Додати вкладку"
+msgstr "Додати нову вкладку"
 
 #: ../guake/data/prefs.glade.h:1
 msgid "Guake Preferences"
@@ -136,16 +131,15 @@ msgstr ""
 
 #: ../guake/data/prefs.glade.h:15
 msgid "Enable popup notifications on startup"
-msgstr "Увімкнути сповіщення при запуску"
+msgstr "Увімкнути спливаюче сповіщення при запуску"
 
 #: ../guake/data/prefs.glade.h:16
 msgid "Show tray icon"
 msgstr "Показувати значок у системній таці"
 
 #: ../guake/data/prefs.glade.h:17
-#, fuzzy
 msgid "Always prompt on quit"
-msgstr "Перепитувати при виході"
+msgstr "Завжди запитувати про вихід"
 
 #: ../guake/data/prefs.glade.h:18
 msgid "_Flash terminal on bell"
@@ -160,9 +154,8 @@ msgid "Path to script executed on Guake start:"
 msgstr ""
 
 #: ../guake/data/prefs.glade.h:21
-#, fuzzy
 msgid "Prompt on close tab:"
-msgstr "Перепитувати при виході"
+msgstr "Запитувати при закритті вкладки:"
 
 #: ../guake/data/prefs.glade.h:22
 msgid ""
@@ -188,14 +181,12 @@ msgid "Appear on display:"
 msgstr ""
 
 #: ../guake/data/prefs.glade.h:29
-#, fuzzy
 msgid "Place tabs on top"
-msgstr "Триматися поверха"
+msgstr "Розташувати вкладки вгорі"
 
 #: ../guake/data/prefs.glade.h:30
-#, fuzzy
 msgid "<b>Placement</b>"
-msgstr "<b>Палітра</b>"
+msgstr "<b>Розміщення</b>"
 
 #: ../guake/data/prefs.glade.h:31
 msgid "Stay on top"
@@ -222,9 +213,8 @@ msgid "Show tab bar"
 msgstr "Показувати панель вкладок"
 
 #: ../guake/data/prefs.glade.h:38
-#, fuzzy
 msgid "Start fullscreen"
-msgstr "Перемикання повноекранного режиму"
+msgstr "Запускати в повноекранному режимі"
 
 #: ../guake/data/prefs.glade.h:39
 msgid "<b>Main Window</b>"
@@ -243,19 +233,16 @@ msgid "Right"
 msgstr ""
 
 #: ../guake/data/prefs.glade.h:43
-#, fuzzy
 msgid "<b>Main Window Horizontal Alignment</b>"
-msgstr "<b>Висота головного вікна</b>"
+msgstr "<b>Вирівняти по горизонталі</b>"
 
 #: ../guake/data/prefs.glade.h:44
-#, fuzzy
 msgid "<b>Main Window Height</b>"
 msgstr "<b>Висота головного вікна</b>"
 
 #: ../guake/data/prefs.glade.h:45
-#, fuzzy
 msgid "<b>Main Window Width</b>"
-msgstr "<b>Висота головного вікна</b>"
+msgstr "<b>Ширина головного вікна</b>"
 
 #: ../guake/data/prefs.glade.h:46
 msgid "Custom command file path: "
@@ -369,17 +356,15 @@ msgstr "Вбудовані схеми:"
 
 #: ../guake/data/prefs.glade.h:76
 msgid "Color palette:"
-msgstr "Палітра:"
+msgstr "Палітра кольорів:"
 
 #: ../guake/data/prefs.glade.h:77
-#, fuzzy
 msgid "Font color"
-msgstr "Колір тексту:"
+msgstr "Колір тексту"
 
 #: ../guake/data/prefs.glade.h:78
-#, fuzzy
 msgid "Background color"
-msgstr "Колір тла:"
+msgstr "Колір тла"
 
 #: ../guake/data/prefs.glade.h:79
 msgid "Use font and background color from the palette"
@@ -399,7 +384,7 @@ msgstr "Прозорість:"
 
 #: ../guake/data/prefs.glade.h:83
 msgid "Background image:"
-msgstr "Фонове зображення:"
+msgstr "Зображення тла:"
 
 #: ../guake/data/prefs.glade.h:84 ../src/guake/prefs.py:130
 msgid "Appearance"
@@ -444,9 +429,8 @@ msgid ""
 msgstr ""
 
 #: ../guake/data/prefs.glade.h:97
-#, fuzzy
 msgid "<b>Quick Open</b>"
-msgstr "<b>Палітра</b>"
+msgstr "<b>Швидке відкриття</b>"
 
 #: ../guake/data/prefs.glade.h:98
 msgid "Quick Open"
@@ -480,16 +464,16 @@ msgid ""
 "Control-H"
 msgstr ""
 "ASCII DEL\n"
-"Керуюча послідовність\n"
+"Escape послідовність\n"
 "Control-H"
 
 #: ../guake/data/prefs.glade.h:106
 msgid "_Backspace key generates:"
-msgstr "_Клавіша Backspace генерує:"
+msgstr "Клавіша _Backspace генерує:"
 
 #: ../guake/data/prefs.glade.h:107
 msgid "_Delete key generates:"
-msgstr "К_лавіша Delete генерує:"
+msgstr "Клавіша _Delete генерує:"
 
 #: ../guake/data/prefs.glade.h:108
 msgid "_Reset Compatibility Options to Defaults"
@@ -509,9 +493,8 @@ msgid "Guake Terminal"
 msgstr "Термінал Guake"
 
 #: ../src/guake/gconfhandler.py:369 ../src/guake/guake_app.py:1386
-#, fuzzy
 msgid "Terminal"
-msgstr "Термінал %s"
+msgstr "Термінал"
 
 #: ../src/guake/gconfhandler.py:440
 #, python-format
@@ -519,24 +502,21 @@ msgid ""
 "A problem happened when binding <b>%s</b> key.\n"
 "Please use Guake Preferences dialog to choose another key"
 msgstr ""
-"Виникла проблема при спробі призначити клавіатурне скорочення <b>%s</b>. "
+"Виникла проблема при спробі призначити клавіатурне скорочення <b>%s</b>. \n"
 "Будь ласка, скористайтесь діалогом налаштувань, щоб вибрати іншу гарячу "
-"клавішу (значок у таці був задіяний)."
+"клавішу"
 
 #: ../src/guake/guake_app.py:132
-#, fuzzy
 msgid "Do you want to close the tab?"
-msgstr "Ви дійсно хочете вийти з Guake!?"
+msgstr "Ви дійсно бажаєте закрити вкладку?"
 
 #: ../src/guake/guake_app.py:135
-#, fuzzy
 msgid "Do you really want to quit Guake?"
-msgstr "Ви дійсно хочете вийти з Guake!?"
+msgstr "Ви дійсно хочете вийти з Guake?"
 
 #: ../src/guake/guake_app.py:137
-#, fuzzy
 msgid " and one tab open"
-msgstr "Додати вкладку"
+msgstr " і одна вкладка відкрита"
 
 #: ../src/guake/guake_app.py:139
 #, python-brace-format
@@ -544,19 +524,17 @@ msgid " and {0} tabs open"
 msgstr ""
 
 #: ../src/guake/guake_app.py:142
-#, fuzzy
 msgid "There are no processes running"
-msgstr "<b>Один процес досі виконується.</b>"
+msgstr "Відсутні запущені процеси"
 
 #: ../src/guake/guake_app.py:144
-#, fuzzy
 msgid "There is a process still running"
-msgstr "<b>Один процес досі виконується.</b>"
+msgstr "Процес досі виконується"
 
 #: ../src/guake/guake_app.py:146
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid "There are {0} processes still running"
-msgstr "<b>%d процеси(ів) досі виконуються.</b>"
+msgstr "{0} процеси(ів) досі виконуються"
 
 #: ../src/guake/guake_app.py:186
 msgid "guake-indicator"
@@ -637,14 +615,12 @@ msgid "Toggles the visibility of the terminal window"
 msgstr "Перемикнути видимість головного вікна"
 
 #: ../src/guake/main.py:76
-#, fuzzy
 msgid "Shows Guake main window"
-msgstr "Показати вікно налаштувань Guake"
+msgstr "Показати головне вікно Guake"
 
 #: ../src/guake/main.py:80
-#, fuzzy
 msgid "Hides Guake main window"
-msgstr "Показати вікно налаштувань Guake"
+msgstr "Приховати головне вікно Guake"
 
 #: ../src/guake/main.py:84
 msgid "Shows Guake preference window"
@@ -843,19 +819,16 @@ msgid "Decrease height"
 msgstr ""
 
 #: ../src/guake/prefs.py:142
-#, fuzzy
 msgid "Increase transparency"
-msgstr "Прозорість:"
+msgstr "Збільшити прозорість"
 
 #: ../src/guake/prefs.py:144
-#, fuzzy
 msgid "Decrease transparency"
-msgstr "Прозорість:"
+msgstr "Зменшити прозорість"
 
 #: ../src/guake/prefs.py:146
-#, fuzzy
 msgid "Toggle transparency"
-msgstr "Прозорість:"
+msgstr "Перемкнути прозорість"
 
 #: ../src/guake/prefs.py:149
 msgid "Clipboard"
