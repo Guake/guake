@@ -11,8 +11,8 @@ msgstr ""
 "Project-Id-Version: Guake 0.4.5\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-08-18 17:32+0200\n"
-"PO-Revision-Date: 2020-07-21 10:41+0000\n"
-"Last-Translator: Adolfo Jayme Barrientos <fitojb@ubuntu.com>\n"
+"PO-Revision-Date: 2020-08-30 19:37+0000\n"
+"Last-Translator: Scoopity Whoop <Scoo0p@yandex.com>\n"
 "Language-Team: Spanish <https://hosted.weblate.org/projects/guake/guake/es/>"
 "\n"
 "Language: es\n"
@@ -20,7 +20,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.2-dev\n"
+"X-Generator: Weblate 4.2.1-dev\n"
 
 #: ../guake/data/about.glade.h:1
 msgid "About Guake"
@@ -187,7 +187,7 @@ msgstr "<b>General</b>"
 
 #: ../guake/data/prefs.glade.h:26
 msgid "Bottom align window instead of top align"
-msgstr "Alinear ventana abajo "
+msgstr "Alinear ventana abajo"
 
 #: ../guake/data/prefs.glade.h:27
 msgid "Appear on mouse display"
@@ -263,7 +263,7 @@ msgstr "<b>Anchura de la ventana principal</b>"
 
 #: ../guake/data/prefs.glade.h:46
 msgid "Custom command file path: "
-msgstr "Ruta del fichero de comandos personalizados:"
+msgstr "Ruta del fichero de comandos personalizados: "
 
 #: ../guake/data/prefs.glade.h:47
 msgid "Please select a json file"
@@ -520,7 +520,8 @@ msgstr "La tecla _Supr genera:"
 
 #: ../guake/data/prefs.glade.h:108
 msgid "_Reset Compatibility Options to Defaults"
-msgstr "Restablecer opcs. de compatibilidad a _valores predets."
+msgstr ""
+"_Restablecer las opciones de compatibilidad a los valores predeterminados"
 
 #: ../guake/data/prefs.glade.h:109
 msgid "<b>Keyboard compatibility</b>"
@@ -682,7 +683,7 @@ msgstr "Seleccionar una pestaña (SELECT_TAB es el índice de la pestaña)"
 
 #: ../src/guake/main.py:100
 msgid "Return the selected tab index."
-msgstr "Devolver el índice de la pestaña seleccionada"
+msgstr "Devolver el índice de la pestaña seleccionada."
 
 #: ../src/guake/main.py:104
 msgid "Execute an arbitrary command in the selected tab."
@@ -1047,15 +1048,15 @@ msgstr "Alineación horizontal de la ventana principal"
 
 #: guake/prefs.py:89
 msgid "Show and focus Guake window"
-msgstr ""
+msgstr "Mostrar y enfocar la ventana de Guake"
 
 #: guake/data/prefs.glade:566
 msgid "0"
-msgstr ""
+msgstr "0"
 
 #: guake/data/prefs.glade:610
 msgid "<b>Main Window Options</b>"
-msgstr ""
+msgstr "<b>Opciones de ventana principal</b>"
 
 #: guake/data/prefs.glade:770
 msgid "Horizontal Alignment:"
@@ -1387,6 +1388,8 @@ msgstr "Inicio y pestañas (experimental)"
 msgid ""
 "Your {session_filename} file is broken, backup to {session_filename}.bak"
 msgstr ""
+"Su archivo {session_filename} está roto, haga una copia de seguridad en "
+"{session_filename}.bak"
 
 #: guake/guake_app.py:1227
 #, python-brace-format
@@ -1394,6 +1397,8 @@ msgid ""
 "Your {session_filename} schema is broken, backup to {0}.bak,and error "
 "message has been saved to {session_filename}.log.err"
 msgstr ""
+"Su esquema de {session_filename} está roto, haz una copia de seguridad a {0}."
+"bak, y el mensaje de error se ha guardado en {session_filename}.log.err"
 
 #: guake/guake_app.py:1227
 #, python-brace-format
@@ -1401,6 +1406,9 @@ msgid ""
 "Your {session_filename} schema is broken, backup to {session_filename}.bak,"
 "and error message has been saved to {session_filename}.log.err."
 msgstr ""
+"Su esquema de {session_filename} está roto, la copia de seguridad en "
+"{session_filename}.bak, y el mensaje de error se ha guardado en "
+"{session_filename}.log.err."
 
 #: guake/guake_app.py:1227
 #, python-brace-format
@@ -1408,6 +1416,9 @@ msgid ""
 "Your {session_filename} schema is broken, backup to {session_filename}.bak, "
 "and error message has been saved to {session_filename}.log.err."
 msgstr ""
+"Su esquema de {session_filename} está roto, la copia de seguridad en "
+"{session_filename}.bak, y el mensaje de error se ha guardado en "
+"{session_filename}.log.err."
 
 #: guake/notebook.py:317
 msgid ""
@@ -1416,6 +1427,10 @@ msgid ""
 "\n"
 "Do you want to continue?"
 msgstr ""
+"¡Vas a restaurar *todas* las pestañas!\n"
+"lo que significa que todas tus terminales y páginas serán reemplazadas.\n"
+"\n"
+"¿Quieres continuar?"
 
 #: guake/main.py:296
 msgid "Show support infomations"
@@ -1427,6 +1442,9 @@ msgid ""
 "Tabs session restore abort.\n"
 "Your session file ({session_filename}) missing schema_version as key"
 msgstr ""
+"Restauración de las pestañas de la sesión cancelada.\n"
+"A su archivo de sesión ({session_filename}) le falta schema_version como "
+"clave"
 
 #: guake/guake_app.py:1252
 #, python-brace-format
@@ -1435,10 +1453,15 @@ msgid ""
 "Your session file schema version is higher than current version "
 "({session_file_schema_version} > {current_schema_version})."
 msgstr ""
+"Restauración de la sesión de pestañas cancelada.\n"
+"La versión del esquema de archivos de sesión es superior a la versión actual "
+"({session_file_schema_version} > {current_schema_version})."
 
 #: guake/data/prefs.glade:409
 msgid "Use workspace-specific tab sets (requires restart, only work on X11)"
 msgstr ""
+"Usar conjuntos de pestañas específicas del espacio de trabajo (requiere "
+"reiniciar, sólo funciona en X11)"
 
 #: guake/data/prefs.glade:809
 msgid "Hide tabbar when fullscreen"
@@ -1479,34 +1502,37 @@ msgstr "Devuelve el índice del terminal seleccionado."
 #: guake/main.py:259
 msgid "Set the hexadecimal (#rrggbb) background color of the current terminal."
 msgstr ""
+"Establece el valor hexadecimal (#rrggbb) del color de fondo de la terminal "
+"actual."
 
 #: guake/main.py:268
 msgid "Set the hexadecimal (#rrggbb) foreground color of the current terminal."
 msgstr ""
+"Seleccione el color hexadecimal (#rrggbb) de la fuente de la terminal actual."
 
 #: guake/main.py:285
 msgid "Set colors from settings."
-msgstr ""
+msgstr "Establece los colores desde los ajustes."
 
 #: guake/main.py:293
 msgid "Set colors of the current terminal from settings."
-msgstr ""
+msgstr "Establece los colores del terminal actual a partir de los ajustes."
 
 #: guake/main.py:358
 msgid "Show support infomation"
-msgstr ""
+msgstr "Mostrar información de soporte"
 
 #: guake/menus.py:26
 msgid "Reset custom colors"
-msgstr ""
+msgstr "Reajustar los colores personalizados"
 
 #: guake/dialogs.py:101
 msgid "Do you want to reset custom colors for this tab?"
-msgstr ""
+msgstr "¿Quieres restablecer los colores personalizados para esta pestaña?"
 
 #: guake/data/prefs.glade:835
 msgid "New tabs appear after the current tab"
-msgstr ""
+msgstr "Aparecen nuevas pestañas después de la pestaña actual"
 
 #~ msgid "key binding error"
 #~ msgstr "Error al asignar tecla"
