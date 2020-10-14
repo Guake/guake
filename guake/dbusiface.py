@@ -73,6 +73,10 @@ class DbusManager(dbus.service.Object):
     def add_tab(self, directory=""):
         return self.guake.add_tab(directory)
 
+    @dbus.service.method(DBUS_NAME)
+    def close_tab(self):
+        self.guake.close_tab()
+
     @dbus.service.method(DBUS_NAME, in_signature="i")
     def select_tab(self, tab_index=0):
         return self.guake.get_notebook().set_current_page(int(tab_index))
