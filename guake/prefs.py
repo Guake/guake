@@ -1338,18 +1338,12 @@ class PrefsDialog(SimpleGladeApp):
         with an empty key and set the 'disabled' string in dconf path.
         """
         dconf_path = self.store[path][HOTKET_MODEL_INDEX_DCONF]
-
-        if dconf_path == "show-hide":
-            # cannot disable 'show-hide' hotkey
-            log.warn("Cannot disable 'show-hide' hotkey")
-            self.settings.keybindingsGlobal.set_string(dconf_path, old_accel)
+        self.store[path][HOTKET_MODEL_INDEX_HUMAN_ACCEL] = ""
+        self.store[path][HOTKET_MODEL_INDEX_ACCEL] = "None"
+        if dconf_path == "show-focus" or dconf_path == "show-hide":
+            self.settings.keybindingsGlobal.set_string(dconf_path, "disabled")
         else:
-            self.store[path][HOTKET_MODEL_INDEX_HUMAN_ACCEL] = ""
-            self.store[path][HOTKET_MODEL_INDEX_ACCEL] = "None"
-            if dconf_path == "show-focus":
-                self.settings.keybindingsGlobal.set_string(dconf_path, "disabled")
-            else:
-                self.settings.keybindingsLocal.set_string(dconf_path, "disabled")
+            self.settings.keybindingsLocal.set_string(dconf_path, "disabled")
 
     def start_editing(self, treeview, event):
         """Make the treeview grab the focus and start editing the cell
