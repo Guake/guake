@@ -562,7 +562,7 @@ class Guake(SimpleGladeApp):
             self.set_terminal_focus()
             return
 
-        should_refocus = self.settings.general.get_boolean('window-refocus')
+        should_refocus = self.settings.general.get_boolean("window-refocus")
         has_focus = self.window.get_window().get_state() & Gdk.WindowState.FOCUSED
         if should_refocus and not has_focus:
             log.info("Refocussing the terminal")
@@ -1097,11 +1097,25 @@ class Guake(SimpleGladeApp):
             pass
         return TabNameUtils.shorten(vte_title, self.settings)
 
-    @save_tabs_when_changed
+    def check_if_terminal_directory_changed(self, term):
+        @save_tabs_when_changed
+        def terminal_directory_changed(self):
+            # Yep, just used for save tabs when changed
+            pass
+
+        current_directory = term.get_current_directory()
+        if current_directory != term.directory:
+            term.directory = current_directory
+            terminal_directory_changed(self)
+
     def on_terminal_title_changed(self, vte, term):
         # box must be a page
         if not term.get_parent():
             return
+
+        # Check if terminal directory has changed
+        self.check_if_terminal_directory_changed(term)
+
         box = term.get_parent().get_root_box()
         use_vte_titles = self.settings.general.get_boolean("use-vte-titles")
         if not use_vte_titles:
@@ -1161,6 +1175,9 @@ class Guake(SimpleGladeApp):
         terminal.handler_ids.append(
             terminal.connect("window-title-changed", self.on_terminal_title_changed, terminal)
         )
+
+        # Use to detect if directory has changed
+        terminal.directory = terminal.get_current_directory()
 
     @save_tabs_when_changed
     def add_tab(self, directory=None):
@@ -1265,7 +1282,7 @@ class Guake(SimpleGladeApp):
             if search_query:
                 # TODO search provider should be selectable (someone might
                 # prefer bing.com, the internet is a strange place ¯\_(ツ)_/¯ )
-                search_url = "https://www.google.com/#q={!s}&safe=off".format(search_query,)
+                search_url = "https://www.google.com/search?q={!s}&safe=off".format(search_query,)
                 Gtk.show_uri(self.window.get_screen(), search_url, get_server_time(self.window))
         return True
 
