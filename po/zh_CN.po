@@ -11,8 +11,8 @@ msgstr ""
 "Project-Id-Version: Guake 0.4.5\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-05-20 23:56+0800\n"
-"PO-Revision-Date: 2020-04-14 21:11+0000\n"
-"Last-Translator: Toney WANG <taian.wang@geely.com>\n"
+"PO-Revision-Date: 2020-11-15 12:29+0000\n"
+"Last-Translator: Eric <spice2wolf@gmail.com>\n"
 "Language-Team: Chinese (Simplified) <https://hosted.weblate.org/projects/"
 "guake/guake/zh_Hans/>\n"
 "Language: zh_CN\n"
@@ -20,10 +20,9 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Weblate 4.0-dev\n"
+"X-Generator: Weblate 4.4-dev\n"
 
 #: ../guake/data/about.glade.h:1
-#, fuzzy
 msgid "About Guake"
 msgstr "关于 Guake"
 
