@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: Guake 0.4.5\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-08-18 17:32+0200\n"
-"PO-Revision-Date: 2020-11-18 10:29+0000\n"
+"PO-Revision-Date: 2020-11-21 10:29+0000\n"
 "Last-Translator: Allan Nordhøy <epost@anotheragency.no>\n"
 "Language-Team: Norwegian Bokmål <https://hosted.weblate.org/projects/guake/"
 "guake/nb_NO/>\n"
@@ -1558,11 +1558,11 @@ msgstr ""
 
 #: guake/main.py:285
 msgid "Set colors from settings."
-msgstr ""
+msgstr "Sett farger fra innstillinger."
 
 #: guake/main.py:293
 msgid "Set colors of the current terminal from settings."
-msgstr ""
+msgstr "Sett farger for nåværende terminal fra innstillinger."
 
 #: guake/main.py:358
 #, fuzzy
