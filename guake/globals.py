@@ -110,3 +110,7 @@ MAX_TRANSPARENCY = 100
 
 # Tabs session schema version
 TABS_SESSION_SCHEMA_VERSION = 2
+
+# Constants for vte regex matching are documented in the pcre2 api:
+#   https://www.pcre.org/current/doc/html/pcre2api.html
+PCRE2_MULTILINE = 0x00000400

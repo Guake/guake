@@ -18,6 +18,7 @@ from guake.callbacks import MenuHideCallback
 from guake.callbacks import TerminalContextMenuCallbacks
 from guake.dialogs import PromptResetColorsDialog
 from guake.dialogs import RenameDialog
+from guake.globals import PCRE2_MULTILINE
 from guake.menus import mk_tab_context_menu
 from guake.menus import mk_terminal_context_menu
 from guake.utils import HidePrevention
@@ -363,7 +364,7 @@ class RootTerminalBox(Gtk.Overlay, TerminalHolder):
                 self.search_prev = True
 
     def reset_term_search(self, term):
-        term.search_set_gregex(GLib.Regex("", 0, 0), 0)
+        term.search_set_regex(None, 0)
         term.search_find_next()
 
     def set_search(self, widget):
@@ -378,9 +379,10 @@ class RootTerminalBox(Gtk.Overlay, TerminalHolder):
 
             # Set search regex on term
             self.searchstring = text
-            self.searchre = GLib.Regex(text, 0, 0)
-            term.search_set_gregex(self.searchre, 0)
-
+            self.searchre = Vte.Regex.new_for_search(
+                text, -1, Vte.REGEX_FLAGS_DEFAULT | PCRE2_MULTILINE
+            )
+            term.search_set_regex(self.searchre, 0)
         self.do_search(None)
 
     def do_search(self, widget):
