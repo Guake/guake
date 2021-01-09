@@ -95,7 +95,7 @@ HOTKEYS = [
             {"key": "show-hide", "label": _("Toggle Guake visibility")},
             {"key": "show-focus", "label": _("Show and focus Guake window")},
             {"key": "toggle-fullscreen", "label": _("Toggle Fullscreen")},
-            {"key": "toggle-hide-on-lose-focus", "label": _("Toggle Hide on Lose Focus"), },
+            {"key": "toggle-hide-on-lose-focus", "label": _("Toggle Hide on Lose Focus"),},
             {"key": "quit", "label": _("Quit")},
             {"key": "reset-terminal", "label": _("Reset terminal")},
             {"key": "search-terminal", "label": _("Search terminal")},
@@ -122,15 +122,13 @@ HOTKEYS = [
             {"key": "focus-terminal-down", "label": _("Focus terminal below")},
             {"key": "focus-terminal-left", "label": _("Focus terminal on the left")},
             {"key": "focus-terminal-right", "label": _("Focus terminal on the right")},
-            {"key": "move-terminal-split-up", "label": _("Move the terminal split handle up"), },
-            {"key": "move-terminal-split-down",
-                "label": _("Move the terminal split handle down"), },
+            {"key": "move-terminal-split-up", "label": _("Move the terminal split handle up"),},
+            {"key": "move-terminal-split-down", "label": _("Move the terminal split handle down"),},
             {
                 "key": "move-terminal-split-right",
                 "label": _("Move the terminal split handle right"),
             },
-            {"key": "move-terminal-split-left",
-                "label": _("Move the terminal split handle left"), },
+            {"key": "move-terminal-split-left", "label": _("Move the terminal split handle left"),},
         ],
     },
     {
@@ -179,7 +177,7 @@ HOTKEYS = [
     {
         "label": _("Extra features"),
         "key": "extra",
-        "keys": [{"key": "search-on-web", "label": _("Search select text on web")}, ],
+        "keys": [{"key": "search-on-web", "label": _("Search select text on web")},],
     },
 ]
 
@@ -1363,18 +1361,12 @@ class PrefsDialog(SimpleGladeApp):
         with an empty key and set the 'disabled' string in dconf path.
         """
         dconf_path = self.store[path][HOTKET_MODEL_INDEX_DCONF]
-
-        if dconf_path == "show-hide":
-            # cannot disable 'show-hide' hotkey
-            log.warning("Cannot disable 'show-hide' hotkey")
-            self.settings.keybindingsGlobal.set_string(dconf_path, old_accel)
+        self.store[path][HOTKET_MODEL_INDEX_HUMAN_ACCEL] = ""
+        self.store[path][HOTKET_MODEL_INDEX_ACCEL] = "None"
+        if dconf_path == "show-focus" or dconf_path == "show-hide":
+            self.settings.keybindingsGlobal.set_string(dconf_path, "disabled")
         else:
-            self.store[path][HOTKET_MODEL_INDEX_HUMAN_ACCEL] = ""
-            self.store[path][HOTKET_MODEL_INDEX_ACCEL] = "None"
-            if dconf_path == "show-focus":
-                self.settings.keybindingsGlobal.set_string(dconf_path, "disabled")
-            else:
-                self.settings.keybindingsLocal.set_string(dconf_path, "disabled")
+            self.settings.keybindingsLocal.set_string(dconf_path, "disabled")
 
     def start_editing(self, treeview, event):
         """Make the treeview grab the focus and start editing the cell
