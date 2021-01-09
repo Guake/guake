@@ -36,6 +36,9 @@ from optparse import OptionParser
 
 log = logging.getLogger(__name__)
 
+# Force use X11 backend under wayland before any import of GDK through dependencies
+os.environ["GDK_BACKEND"] = "x11"
+
 from guake.globals import NAME
 from guake.globals import bindtextdomain
 from guake.support import print_support
@@ -62,9 +65,6 @@ def main():
     """
     # Force to xterm-256 colors for compatibility with some old command line programs
     os.environ["TERM"] = "xterm-256color"
-
-    # Force use X11 backend underwayland
-    os.environ["GDK_BACKEND"] = "x11"
 
     # do not use version keywords here, pbr might be slow to find the version of Guake module
     parser = OptionParser()
