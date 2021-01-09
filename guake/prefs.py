@@ -95,7 +95,7 @@ HOTKEYS = [
             {"key": "show-hide", "label": _("Toggle Guake visibility")},
             {"key": "show-focus", "label": _("Show and focus Guake window")},
             {"key": "toggle-fullscreen", "label": _("Toggle Fullscreen")},
-            {"key": "toggle-hide-on-lose-focus", "label": _("Toggle Hide on Lose Focus"),},
+            {"key": "toggle-hide-on-lose-focus", "label": _("Toggle Hide on Lose Focus"), },
             {"key": "quit", "label": _("Quit")},
             {"key": "reset-terminal", "label": _("Reset terminal")},
             {"key": "search-terminal", "label": _("Search terminal")},
@@ -122,13 +122,15 @@ HOTKEYS = [
             {"key": "focus-terminal-down", "label": _("Focus terminal below")},
             {"key": "focus-terminal-left", "label": _("Focus terminal on the left")},
             {"key": "focus-terminal-right", "label": _("Focus terminal on the right")},
-            {"key": "move-terminal-split-up", "label": _("Move the terminal split handle up"),},
-            {"key": "move-terminal-split-down", "label": _("Move the terminal split handle down"),},
+            {"key": "move-terminal-split-up", "label": _("Move the terminal split handle up"), },
+            {"key": "move-terminal-split-down",
+                "label": _("Move the terminal split handle down"), },
             {
                 "key": "move-terminal-split-right",
                 "label": _("Move the terminal split handle right"),
             },
-            {"key": "move-terminal-split-left", "label": _("Move the terminal split handle left"),},
+            {"key": "move-terminal-split-left",
+                "label": _("Move the terminal split handle left"), },
         ],
     },
     {
@@ -177,7 +179,7 @@ HOTKEYS = [
     {
         "label": _("Extra features"),
         "key": "extra",
-        "keys": [{"key": "search-on-web", "label": _("Search select text on web")},],
+        "keys": [{"key": "search-on-web", "label": _("Search select text on web")}, ],
     },
 ]
 
@@ -461,7 +463,7 @@ class PrefsCallbacks:
         """
         self.settings.general.set_boolean("use-audible-bell", chk.get_active())
 
-    # scrolling tab
+    # scrolling tab 
 
     def on_use_scrollbar_toggled(self, chk):
         """Changes the activity of use_scrollbar in dconf
@@ -514,6 +516,20 @@ class PrefsCallbacks:
         """Changes the value of font_style in dconf
         """
         self.settings.styleFont.set_string("style", fbtn.get_font_name())
+
+    def on_background_image_file_chooser_file_changed(self, fc):
+        self.settings.general.set_string(
+            "background-image-file", fc.get_filename() if fc.get_filename() else ""
+        )
+
+    def on_background_image_file_remove_clicked(self, btn):
+        filechooser = self.prefDlg.get_widget("background_image_filechooser")
+        filechooser.unselect_all()
+        self.on_background_image_file_chooser_file_changed(filechooser)
+
+    def on_background_image_layout_mode_changed(self, combo):
+        val = combo.get_active()
+        self.settings.general.set_int("background-image-layout-mode", val)
 
     def on_transparency_value_changed(self, hscale):
         """Changes the value of background_transparency in dconf
@@ -1160,6 +1176,15 @@ class PrefsDialog(SimpleGladeApp):
         value = self.settings.styleFont.get_boolean("bold-is-bright")
         self.get_widget("bold_is_bright").set_active(value)
 
+        # background image file
+        filename = self.settings.general.get_string("background-image-file")
+        if os.path.exists(filename):
+            self.get_widget("background_image_filechooser").set_filename(filename)
+
+        # background image layout mode
+        value = self.settings.general.get_int("background-image-layout-mode")
+        self.get_widget("background_image_layout_mode").set_active(value)
+
         # palette
         self.fill_palette_names()
         value = self.settings.styleFont.get_string("palette-name")
@@ -1338,18 +1363,12 @@ class PrefsDialog(SimpleGladeApp):
         with an empty key and set the 'disabled' string in dconf path.
         """
         dconf_path = self.store[path][HOTKET_MODEL_INDEX_DCONF]
-
-        if dconf_path == "show-hide":
-            # cannot disable 'show-hide' hotkey
-            log.warning("Cannot disable 'show-hide' hotkey")
-            self.settings.keybindingsGlobal.set_string(dconf_path, old_accel)
+        self.store[path][HOTKET_MODEL_INDEX_HUMAN_ACCEL] = ""
+        self.store[path][HOTKET_MODEL_INDEX_ACCEL] = "None"
+        if dconf_path == "show-focus" or dconf_path == "show-hide":
+            self.settings.keybindingsGlobal.set_string(dconf_path, "disabled")
         else:
-            self.store[path][HOTKET_MODEL_INDEX_HUMAN_ACCEL] = ""
-            self.store[path][HOTKET_MODEL_INDEX_ACCEL] = "None"
-            if dconf_path == "show-focus":
-                self.settings.keybindingsGlobal.set_string(dconf_path, "disabled")
-            else:
-                self.settings.keybindingsLocal.set_string(dconf_path, "disabled")
+            self.settings.keybindingsLocal.set_string(dconf_path, "disabled")
 
     def start_editing(self, treeview, event):
         """Make the treeview grab the focus and start editing the cell

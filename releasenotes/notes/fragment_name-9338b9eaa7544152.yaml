@@ -1,0 +1,3 @@
+fixes:
+  - |
+      - Update `session.json` when directory changed, not terminal title changed #1633

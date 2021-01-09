@@ -1,0 +1,2 @@
+fixes:
+  - Added regex for line start by <word> <word>. Refer Issue #1798
