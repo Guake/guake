@@ -87,7 +87,7 @@ class TerminalNotebook(Gtk.Notebook):
 
         # Action box
         self.new_page_button = Gtk.Button(
-            image=Gtk.Image.new_from_icon_name("tab-new", Gtk.IconSize.MENU), visible=True,
+            image=Gtk.Image.new_from_icon_name("tab-new-symbolic", Gtk.IconSize.MENU), visible=True,
         )
         self.new_page_button.connect("clicked", self.on_new_tab)
 
