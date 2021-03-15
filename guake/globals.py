@@ -92,6 +92,11 @@ QUICK_OPEN_MATCHERS = [
         r"^\s*File\s\".*\",\sline\s[0-9]+",
         r"^\s*File\s\"(.*)\",\sline\s([0-9]+)",
     ),
+    (
+        "Python traceback 2",
+        r"^\s*.*\:\sline\s[0-9]+",
+        r"^\s*(.*)\:\sline\s([0-9]+)",
+    ),
     ("Python pytest report", r"^\s.*\:\:[a-zA-Z0-9\_]+\s", r"^\s*(.*\:\:[a-zA-Z0-9\_]+)\s",),
     (
         "line starts by 'ERROR in Filename:line' pattern (GCC/make). File path should exists.",
@@ -102,6 +107,26 @@ QUICK_OPEN_MATCHERS = [
         "line starts by 'Filename:line' pattern (GCC/make). File path should exists.",
         r"^\s*[a-zA-Z0-9\/\_\-\.\ ]+\.?[a-zA-Z0-9]+\:[0-9]+",
         r"^\s*(.*)\:([0-9]+)",
+    ),
+    (
+        "line starts by '/home/zeus/_/clis/task_intuivo_cli/install_brew.bash: line 43:' pattern Bash. File path should exists.",
+        r"^\s*[a-zA-Z0-9\/\_\-\.\ ]+\.?[a-zA-Z0-9]+\:\ \l\i\n\e\ [0-9]\:+",
+        r"^\s*(.*)\:\ \l\i\n\e\ ([0-9]+)\:",
+    ),    
+    (
+        "line starts by '/home/zeus/_/clis/task_intuivo_cli/install_brew.bash: line 43:a' pattern Bash. File path should exists.",
+        r"^\s*[a-zA-Z0-9\/\_\-\.\ ]+\.?[a-zA-Z0-9]+\:\s\w\s[0-9]\:+",
+        r"^\s*(.*)\:\s\w\s([0-9]+)\:",
+    ),    
+    (
+        "line starts by 'file: line 43:' pattern Bash. File path should exists.",
+        r"^\s*[a-zA-Z0-9\/\_\-\.\ ]+\.?[a-zA-Z0-9]+\:\sline\s[0-9]\:+",
+        r"^\s*(.*)\:\sline\s([0-9]\:+)",
+    ),
+    (
+        "line starts by 'file: line 432:' pattern Bash. File path should exists.",
+        r"^\s*[a-zA-Z0-9\/\_\-\.\ ]+\.?[a-zA-Z0-9]+\:\sline\s[0-9]+",
+        r"^\s*(.*)\:\sline\s([0-9]+)",
     ),
 ]
 
