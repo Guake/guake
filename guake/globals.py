@@ -103,9 +103,19 @@ QUICK_OPEN_MATCHERS = [
         r"^\s*Archivo\s\"(.*)\",\slinea\s([0-9]+)",
     ),
     (
+        "Python traceback Spanish acento",
+        r"^\s*Archivo\s\".*\",\slínea\s[0-9]+",
+        r"^\s*Archivo\s\"(.*)\",\slínea\s([0-9]+)",
+    ),
+    (
         "Python traceback 2 Spanish",
         r"^\s*.*\:\slinea\s[0-9]+",
         r"^\s*(.*)\:\slinea\s([0-9]+)",
+    ),
+    (   
+        "Python traceback 2 Spanish acento",
+        r"^\s*.*\:\slínea\s[0-9]+",
+        r"^\s*(.*)\:\slínea\s([0-9]+)",
     ),
     ("Python pytest report", r"^\s.*\:\:[a-zA-Z0-9\_]+\s", r"^\s*(.*\:\:[a-zA-Z0-9\_]+)\s",),
     (
@@ -124,7 +134,7 @@ QUICK_OPEN_MATCHERS = [
         r"^\s*(.*)\:\ \l\i\n\e\ ([0-9]+)\:",
     ),    
     (
-        "line starts by '/home/zeus/_/clis/task_intuivo_cli/install_brew.bash: line 43:a' pattern Bash. File path should exists.",
+        "line starts by '/home/user/_/clis/task_intuivo_cli/install_brew.bash: line 43:a' pattern Bash. File path should exists.",
         r"^\s*[a-zA-Z0-9\/\_\-\.\ ]+\.?[a-zA-Z0-9]+\:\s\w\s[0-9]\:+",
         r"^\s*(.*)\:\s\w\s([0-9]+)\:",
     ),    
@@ -147,6 +157,16 @@ QUICK_OPEN_MATCHERS = [
         "line starts by 'archivo: linea 432:' pattern Bash. File path should exists.",
         r"^\s*[a-zA-Z0-9\/\_\-\.\ ]+\.?[a-zA-Z0-9]+\:\slinea\s[0-9]+",
         r"^\s*(.*)\:\slinea\s([0-9]+)",
+    ),    
+    (
+        "line starts by 'archivo: linea 43:' acento pattern Bash. File path should exists.",
+        r"^\s*[a-zA-Z0-9\/\_\-\.\ ]+\.?[a-zA-Z0-9]+\:\slinea\s[0-9]\:+",
+        r"^\s*(.*)\:\slínea\s([0-9]\:+)",
+    ),
+    (
+        "line starts by 'archivo: linea 432:' acento pattern Bash. File path should exists.",
+        r"^\s*[a-zA-Z0-9\/\_\-\.\ ]+\.?[a-zA-Z0-9]+\:\slinea\s[0-9]+",
+        r"^\s*(.*)\:\slínea\s([0-9]+)",
     ),
 ]
 
