@@ -96,6 +96,16 @@ QUICK_OPEN_MATCHERS = [
         "Python traceback 2",
         r"^\s*.*\:\sline\s[0-9]+",
         r"^\s*(.*)\:\sline\s([0-9]+)",
+    ),    
+    (
+        "Php traceback",
+        r"^\s*.*\:\son\sline\s[0-9]+",
+        r"^\s*(.*)\:\son\sline\s([0-9]+)",
+    ),   
+    (
+        "Php traceback 2" ,
+        r"^\s*.*\:\s*.*\sin\s*.*\:\son\sline\s[0-9]+",
+        r"^\s*.*\:\s*.*\sin\s(.*)\:\son\sline\s([0-9]+)",
     ),
     ("Python pytest report", r"^\s.*\:\:[a-zA-Z0-9\_]+\s", r"^\s*(.*\:\:[a-zA-Z0-9\_]+)\s",),
     (
@@ -109,22 +119,22 @@ QUICK_OPEN_MATCHERS = [
         r"^\s*(.*)\:([0-9]+)",
     ),
     (
-        "line starts by '/home/zeus/_/clis/task_intuivo_cli/install_brew.bash: line 43:' pattern Bash. File path should exists.",
+        "line starts by 'Filename: line 43:' pattern Bash. File path should exists.",
         r"^\s*[a-zA-Z0-9\/\_\-\.\ ]+\.?[a-zA-Z0-9]+\:\ \l\i\n\e\ [0-9]\:+",
         r"^\s*(.*)\:\ \l\i\n\e\ ([0-9]+)\:",
     ),    
     (
-        "line starts by '/home/zeus/_/clis/task_intuivo_cli/install_brew.bash: line 43:a' pattern Bash. File path should exists.",
+        "line starts by 'Filename: line 43:' 2 pattern Bash. File path should exists.",
         r"^\s*[a-zA-Z0-9\/\_\-\.\ ]+\.?[a-zA-Z0-9]+\:\s\w\s[0-9]\:+",
         r"^\s*(.*)\:\s\w\s([0-9]+)\:",
     ),    
     (
-        "line starts by 'file: line 43:' pattern Bash. File path should exists.",
+        "line starts by 'Filename: line 43:' 3 pattern Bash. File path should exists.",
         r"^\s*[a-zA-Z0-9\/\_\-\.\ ]+\.?[a-zA-Z0-9]+\:\sline\s[0-9]\:+",
         r"^\s*(.*)\:\sline\s([0-9]\:+)",
     ),
     (
-        "line starts by 'file: line 432:' pattern Bash. File path should exists.",
+        "line starts by 'Filename: line 43:' 4 pattern Bash. File path should exists.",
         r"^\s*[a-zA-Z0-9\/\_\-\.\ ]+\.?[a-zA-Z0-9]+\:\sline\s[0-9]+",
         r"^\s*(.*)\:\sline\s([0-9]+)",
     ),
