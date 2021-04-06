@@ -15,6 +15,7 @@ typed-ast = "*"
 astroid = "*"
 fiximports = ">=0.1.18"
 mock = ">=2.0.0"
+pbr = "*"
 pytest-mock = "*"
 pyflakes = "*"
 pytest = "*"
@@ -35,5 +36,5 @@ black = "==19.10b0"
 dephell = "*"
 
 [packages]
-pbr = "*"
+setuptools = "*"
 typing = {markers = "python_version < '3.5'"}
