@@ -169,13 +169,13 @@ QUICK_OPEN_MATCHERS = [
         r"^\s*(.*)\:\slinea\s([0-9]+)",
     ),    
     (
-        "line starts by 'archivo: linea 43:' acento pattern Bash. File path should exists.",
-        r"^\s*[a-zA-Z0-9\/\_\-\.\ ]+\.?[a-zA-Z0-9]+\:\slinea\s[0-9]\:+",
+        "line starts by 'archivo: línea 43:' acento pattern Bash. File path should exists.",
+        r"^\s*[a-zA-Z0-9\/\_\-\.\ ]+\.?[a-zA-Z0-9]+\:\slínea\s[0-9]\:+",
         r"^\s*(.*)\:\slínea\s([0-9]\:+)",
     ),
     (
-        "line starts by 'archivo: linea 432:' acento pattern Bash. File path should exists.",
-        r"^\s*[a-zA-Z0-9\/\_\-\.\ ]+\.?[a-zA-Z0-9]+\:\slinea\s[0-9]+",
+        "line starts by 'archivo: línea 432:' acento pattern Bash. File path should exists.",
+        r"^\s*[a-zA-Z0-9\/\_\-\.\ ]+\.?[a-zA-Z0-9]+\:\slínea\s[0-9]+",
         r"^\s*(.*)\:\slínea\s([0-9]+)",
     ),
 ]
