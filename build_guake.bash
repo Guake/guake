@@ -1,6 +1,8 @@
 #!/bin/env bash
 
 function main(){
+# guake --quit     This just starts the terminal to later stop it. 
+
 pkill guake                                                        # incase is running in the background
 source env/bin/activate     # Go into your virtualenv environment
 make

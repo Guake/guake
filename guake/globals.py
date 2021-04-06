@@ -96,14 +96,14 @@ QUICK_OPEN_MATCHERS = [
         "Python traceback 2",
         r"^\s*.*\:\sline\s[0-9]+",
         r"^\s*(.*)\:\sline\s([0-9]+)",
-    ),    
+    ),
     (
         "Php traceback",
         r"^\s*.*\:\son\sline\s[0-9]+",
         r"^\s*(.*)\:\son\sline\s([0-9]+)",
-    ),   
+    ),
     (
-        "Php traceback 2" ,
+        "Php traceback 2",
         r"^\s*.*\:\s*.*\sin\s*.*\:\son\sline\s[0-9]+",
         r"^\s*.*\:\s*.*\sin\s(.*)\:\son\sline\s([0-9]+)",
     ),
@@ -122,7 +122,7 @@ QUICK_OPEN_MATCHERS = [
         r"^\s*.*\:\slinea\s[0-9]+",
         r"^\s*(.*)\:\slinea\s([0-9]+)",
     ),
-    (   
+    (
         "Python traceback 2 Spanish acento",
         r"^\s*.*\:\slínea\s[0-9]+",
         r"^\s*(.*)\:\slínea\s([0-9]+)",
@@ -140,14 +140,14 @@ QUICK_OPEN_MATCHERS = [
     ),
     (
         "line starts by 'Filename: line 43:' pattern Bash. File path should exists.",
-        r"^\s*[a-zA-Z0-9\/\_\-\.\ ]+\.?[a-zA-Z0-9]+\:\ \l\i\n\e\ [0-9]\:+",
+        r"^\s*[a-zA-Z0-9\/\_\-\.\ ]+\.?[a-zA-Z0-9]+\:\ line\ [0-9]\:+",
         r"^\s*(.*)\:\ \l\i\n\e\ ([0-9]+)\:",
-    ),    
+    ),
     (
         "line starts by 'Filename: line 43:a' 2 pattern Bash. File path should exists.",
         r"^\s*[a-zA-Z0-9\/\_\-\.\ ]+\.?[a-zA-Z0-9]+\:\s\w\s[0-9]\:+",
         r"^\s*(.*)\:\s\w\s([0-9]+)\:",
-    ),    
+    ),
     (
         "line starts by 'Filename: line 43:' 3 pattern Bash. File path should exists.",
         r"^\s*[a-zA-Z0-9\/\_\-\.\ ]+\.?[a-zA-Z0-9]+\:\sline\s[0-9]\:+",
@@ -167,7 +167,7 @@ QUICK_OPEN_MATCHERS = [
         "line starts by 'archivo: linea 432:' pattern Bash. File path should exists.",
         r"^\s*[a-zA-Z0-9\/\_\-\.\ ]+\.?[a-zA-Z0-9]+\:\slinea\s[0-9]+",
         r"^\s*(.*)\:\slinea\s([0-9]+)",
-    ),    
+    ),
     (
         "line starts by 'archivo: línea 43:' acento pattern Bash. File path should exists.",
         r"^\s*[a-zA-Z0-9\/\_\-\.\ ]+\.?[a-zA-Z0-9]+\:\slínea\s[0-9]\:+",
