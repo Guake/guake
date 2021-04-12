@@ -25,7 +25,7 @@ based on an FPS game, and one of its goals is to be easy to reach.
 Quick Installation Guide
 ------------------------
 
-Please refer to `Installtion Guide <https://guake.readthedocs.io/en/latest/user/installing.html#system-wide-installation>`_
+Please refer to `Installation Guide <https://guake.readthedocs.io/en/latest/user/installing.html#system-wide-installation>`_
 
 What it looks like ? 
 --------------------
