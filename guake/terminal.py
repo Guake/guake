@@ -550,7 +550,7 @@ class GuakeTerminal(Vte.Terminal):
             Vte.PtyFlags.DEFAULT,
             directory,
             argv,
-            [],
+            [f"GUAKE_TAB_UUID={self.uuid}"],
             GLib.SpawnFlags.DO_NOT_REAP_CHILD,
             None,
             None,
