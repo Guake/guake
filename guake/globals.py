@@ -113,6 +113,16 @@ QUICK_OPEN_MATCHERS = [
         r"^\s*Archivo\s\"(.*)\",\slinea\s([0-9]+)",
     ),
     (
+        "vite line starts by 'html:/home/_components/Base.svelte:5:25: error: Expected'",
+        r"^html\:.*\:[0-9]+",
+        r"^html\:(.*)\:([0-9]+)",
+    ),
+    (
+        "vite line starts by ' > html:/home/_components/Slider.svelte:12:16: error: Expected'",
+        r"^\s\>\shtml\:.*\:[0-9]+",
+        r"^\s\>\shtml\:(.*)\:([0-9]+)",
+    ),
+    (
         "Python traceback Spanish acento",
         r"^\s*Archivo\s\".*\",\slínea\s[0-9]+",
         r"^\s*Archivo\s\"(.*)\",\slínea\s([0-9]+)",
