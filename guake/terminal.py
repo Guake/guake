@@ -375,27 +375,30 @@ class GuakeTerminal(Vte.Terminal):
 
     def quick_open(self):
         self.copy_clipboard()
+        projectcwd = self.get_current_directory()
         clipboard = Gtk.Clipboard.get(Gdk.SELECTION_CLIPBOARD)
         text = clipboard.wait_for_text()
         if not text:
             return
         (fp, lo, co) = self.is_file_on_local_server(text)
-        self._execute_quick_open(fp, lo)
+        self._execute_quick_open(fp, lo, projectcwd)
 
     def _on_ctrl_click_matcher(self, matched_string):
         value, tag = matched_string
         found_matcher = False
+        projectcwd = self.get_current_directory()
+        log.debug("projectcwd: %s", projectcwd)
         log.debug("matched string: %s", matched_string)
         # First searching in additional matchers
         use_quick_open = self.guake.settings.general.get_boolean("quick-open-enable")
         if use_quick_open:
-            found_matcher = self._find_quick_matcher(value)
+            found_matcher = self._find_quick_matcher(value, projectcwd)
         if not found_matcher:
             self.found_link = self.handleTerminalMatch(matched_string)
             if self.found_link:
                 self.browse_link_under_cursor()
 
-    def _find_quick_matcher(self, value):
+    def _find_quick_matcher(self, value, projectcwd):
         for _useless, _otheruseless, extractor in QUICK_OPEN_MATCHERS:
             g = re.compile(extractor).match(value)
             if g and g.groups():
@@ -412,11 +415,11 @@ class GuakeTerminal(Vte.Terminal):
                     continue
                 if line_number is None:
                     line_number = "1"
-                self._execute_quick_open(filepath, line_number)
+                self._execute_quick_open(filepath, line_number, projectcwd)
                 return True
         return False
 
-    def _execute_quick_open(self, filepath, line_number):
+    def _execute_quick_open(self, filepath, line_number, projectcwd):
         if not filepath:
             return
         cmdline = self.guake.settings.general.get_string("quick-open-command-line")
@@ -424,6 +427,7 @@ class GuakeTerminal(Vte.Terminal):
             line_number = ""
         else:
             line_number = str(line_number)
+        logging.debug("Current working directory %s ", projectcwd)
         logging.debug("Opening file %s at line %s", filepath, line_number)
         resolved_cmdline = cmdline % {"file_path": filepath, "line_number": line_number}
         logging.debug("Command line: %s", resolved_cmdline)
@@ -436,8 +440,12 @@ class GuakeTerminal(Vte.Terminal):
                 resolved_cmdline += "\n"
             self.feed_child(resolved_cmdline)
         else:
-            resolved_cmdline += " &"
             logging.debug("Executing it independently")
+            resolved_cmdline = "cd  " + projectcwd + " && " + resolved_cmdline + " &"
+            # resolved_cmdline += " &"
+            # logging.debug("Openning new tab QUICKOPEN to execute")
+            # resolved_cmdline = "guake -n guake -e \"\"\"" + resolved_cmdline + "\"\"\" guake -r 'QUICKOPEN' & "
+            logging.debug("Command line new: %s", resolved_cmdline)
             subprocess.call(resolved_cmdline, shell=True)
 
     def handleTerminalMatch(self, matched_string):
