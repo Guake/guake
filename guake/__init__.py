@@ -23,9 +23,13 @@ Boston, MA 02110-1301 USA
 
 def guake_version():
     # Do not import in the module root to speed up the dbus communication as much as possible
-    import pbr.version
+    # That being said, importlib.metadata is pretty speedy unlike pbr/pkg_resources
+    try:
+        import importlib.metadata as importlib_metadata
+    except ImportError:
+        import importlib_metadata
 
-    return pbr.version.VersionInfo("guake").version_string()
+    return importlib_metadata.version("guake")
 
 
 def vte_version():
