@@ -56,7 +56,7 @@ class TerminalContextMenuCallbacks:
             query = clipboard.wait_for_text()
             query = quote_plus(query)
             if query:
-                search_url = "https://www.google.com/#q={!s}&safe=off".format(query)
+                search_url = "https://www.google.com/search?q={!s}&safe=off".format(query)
                 Gtk.show_uri(self.window.get_screen(), search_url, get_server_time(self.window))
 
     def on_quick_open(self, *args):
