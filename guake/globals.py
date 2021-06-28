@@ -123,6 +123,16 @@ QUICK_OPEN_MATCHERS = [
         r"^\s\>\shtml\:(.*)\:([0-9]+)",
     ),
     (
+        "vite line starts by '  File: /home/_components/_icons.svelte '",
+        r"^\sFile\:\s.*\s",
+        r"^\sFile\:\s(.*)\s",
+    ),
+    (
+        "vite line starts by '  at error (/home/.svelte@3.35.0/co.js:16752:20)'",
+        r"^\sat\serror\s\(.*\:[0-9]+\)",
+        r"^\sat\serror\s\((.*)\:([0-9]+)\)",
+    ),
+    (
         "Python traceback Spanish acento",
         r"^\s*Archivo\s\".*\",\slínea\s[0-9]+",
         r"^\s*Archivo\s\"(.*)\",\slínea\s([0-9]+)",
