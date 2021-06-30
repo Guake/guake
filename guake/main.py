@@ -381,12 +381,6 @@ def main():
         print("[ERROR] missing mandatory dependency: Keybinder 3")
         missing_deps = True
 
-    try:
-        import cairo
-    except ImportError:
-        print("[ERROR] missing mandatory dependency: cairo")
-        missing_deps = True
-
     if missing_deps:
         print(
             "[ERROR] missing at least one system dependencies. "
@@ -402,7 +396,6 @@ def main():
             "        libkeybinder-3.0-0 \\\n"
             "        libutempter0 \\\n"
             "        python3 \\\n"
-            "        python3-cairo \\\n"
             "        python3-dbus \\\n"
             "        python3-gi \\\n"
             "        python3-pbr \\\n"

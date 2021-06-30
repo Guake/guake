@@ -48,8 +48,6 @@ from gi.repository import Gtk
 from gi.repository import Keybinder
 from gi.repository import Vte
 
-import cairo
-
 from guake import gtk_version
 from guake import guake_version
 from guake import notifier
