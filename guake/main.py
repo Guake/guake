@@ -17,13 +17,14 @@ License along with this program; if not, write to the
 Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor,
 Boston, MA 02110-1301 USA
 """
-import inspect
-import time
-
 # You can put calls to p() everywhere in this page to inspect timing
+#
+# import inspect
+# import time
 # g_start = time.time()
 # def p():
 #     print(time.time() - g_start, __file__, inspect.currentframe().f_back.f_lineno)
+
 import logging
 import os
 import signal
