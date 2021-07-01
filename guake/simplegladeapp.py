@@ -143,46 +143,6 @@ class SimpleGladeApp:
                     # TODO is is a guess
                     Gtk.Buildable.set_data(widget, "prefixes", prefixes)
 
-    def add_prefix_actions(self, prefix_actions_proxy):
-        """
-        By using a gui designer (glade-2, gazpacho, etc)
-        widgets can have a prefix in theirs names
-        like foo:entry1 or foo:label3
-        It means entry1 and label3 has a prefix action named foo.
-
-        Then, prefix_actions_proxy must have a method named prefix_foo which
-        is called everytime a widget with prefix foo is found, using the found widget
-        as argument.
-
-        prefix_actions_proxy:
-            An instance with methods as prefix actions.
-            It means it has methods like prefix_foo, prefix_bar, etc.
-        """
-        prefix_s = "prefix_"
-        prefix_pos = len(prefix_s)
-
-        def is_method(t):
-            return callable(t[1])
-
-        def is_prefix_action(t):
-            return t[0].startswith(prefix_s)
-
-        def drop_prefix(k, w):
-            return (k[prefix_pos:], w)
-
-        members_t = inspect.getmembers(prefix_actions_proxy)
-        methods_t = filter(is_method, members_t)
-        prefix_actions_t = filter(is_prefix_action, methods_t)
-        prefix_actions_d = dict(map(drop_prefix, prefix_actions_t))
-
-        for widget in self.get_widgets():
-            prefixes = gtk.Widget.get_data(widget, "prefixes")
-            if prefixes:
-                for prefix in prefixes:
-                    if prefix in prefix_actions_d:
-                        prefix_action = prefix_actions_d[prefix]
-                        prefix_action(widget)
-
     def custom_handler(self, glade, function_name, widget_name, str1, str2, int1, int2):
         """
         Generic handler for creating custom widgets, internally used to
