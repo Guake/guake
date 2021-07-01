@@ -262,12 +262,6 @@ class SimpleGladeApp:
         """
         pass
 
-    def install_custom_handler(self, custom_handler):
-        gtk.glade.set_custom_handler(custom_handler)
-
-    def create_glade(self, glade_path, root, domain):
-        return gtk.glade.XML(glade_path, root, domain)
-
     def get_widget(self, widget_name):
         return self.builder.get_object(widget_name)
 
