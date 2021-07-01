@@ -228,7 +228,7 @@ class SimpleGladeApp:
         Do not directly call this method in your programs.
         Use the method run() instead.
         """
-        gtk.main()
+        Gtk.main()
 
     def quit(self, *args):
         """
