@@ -3,8 +3,6 @@ import gi
 gi.require_version("Gtk", "3.0")
 from gi.repository import Gtk
 
-gi.require_version("Vte", "2.91")  # vte-0.42
-from gi.repository import Vte
 from guake.customcommands import CustomCommands
 
 import logging

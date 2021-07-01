@@ -19,7 +19,6 @@ Boston, MA 02110-1301 USA
 """
 
 from guake.about import AboutDialog
-from guake.boxes import DualTerminalBox
 from guake.boxes import RootTerminalBox
 from guake.boxes import TabLabelEventBox
 from guake.boxes import TerminalBox

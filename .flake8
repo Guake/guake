@@ -7,7 +7,6 @@ ignore =
     E302,
     E41,
     E402,
-    F401,
     C901,
     E722,
     W503, # line break before binary operator

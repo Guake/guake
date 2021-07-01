@@ -21,22 +21,17 @@ import logging
 import os
 import re
 import shutil
-import warnings
 
 from textwrap import dedent
 
 import gi
 
 gi.require_version("Gtk", "3.0")
-gi.require_version("Keybinder", "3.0")
 gi.require_version("Vte", "2.91")  # vte-0.38
 from gi.repository import GLib
-from gi.repository import GObject
 from gi.repository import Gdk
 from gi.repository import Gio
 from gi.repository import Gtk
-from gi.repository import Keybinder
-from gi.repository import Pango
 from gi.repository import Vte
 
 from guake.common import ShowableError

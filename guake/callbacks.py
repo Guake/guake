@@ -4,12 +4,10 @@ gi.require_version("Gtk", "3.0")
 from gi.repository import Gdk
 from gi.repository import Gtk
 from guake.about import AboutDialog
-from guake.dialogs import RenameDialog
 from guake.dialogs import SaveTerminalDialog
 from guake.prefs import PrefsDialog
 from guake.utils import FullscreenManager
 from guake.utils import HidePrevention
-from guake.utils import TabNameUtils
 from guake.utils import get_server_time
 from urllib.parse import quote_plus
 
