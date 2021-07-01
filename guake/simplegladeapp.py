@@ -30,7 +30,7 @@ import tokenize
 
 
 class SimpleGladeApp:
-    def __init__(self, path, root=None, domain=None, **kwargs):
+    def __init__(self, path, root=None, domain=None):
         """
         Load a glade file specified by glade_filename, using root as
         root widget and domain as the domain for translations.
@@ -51,23 +51,12 @@ class SimpleGladeApp:
         domain:
             A domain to use for loading translations.
             If None or ommited, no translation is loaded.
-
-        **kwargs:
-            a dictionary representing the named extra arguments.
-            It is useful to set attributes of new instances, for example:
-                glade_app = SimpleGladeApp("ui.glade", foo="some value", bar="another value")
-            sets two attributes (foo and bar) to glade_app.
         """
         if os.path.isfile(path):
             self.glade_path = path
         else:
             glade_dir = os.path.dirname(sys.argv[0])
             self.glade_path = os.path.join(glade_dir, path)
-        for key, value in kwargs.items():
-            try:
-                setattr(self, key, weakref.proxy(value))
-            except TypeError:
-                setattr(self, key, value)
 
         self.glade = None
 
