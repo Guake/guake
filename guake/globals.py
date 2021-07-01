@@ -51,7 +51,6 @@ def bindtextdomain(app_name, locale_dir=None):
 
     # pylint: disable=import-outside-toplevel
     import locale
-    from locale import gettext as _
 
     # pylint: enable=import-outside-toplevel
 

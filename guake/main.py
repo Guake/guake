@@ -25,6 +25,7 @@ Boston, MA 02110-1301 USA
 # def p():
 #     print(time.time() - g_start, __file__, inspect.currentframe().f_back.f_lineno)
 
+import builtins
 import logging
 import os
 import signal
@@ -32,7 +33,10 @@ import subprocess
 import sys
 import uuid
 
-from locale import gettext as _
+from locale import gettext
+
+builtins.__dict__["_"] = gettext
+
 from optparse import OptionParser
 
 log = logging.getLogger(__name__)

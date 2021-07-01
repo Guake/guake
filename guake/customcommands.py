@@ -4,8 +4,6 @@ import os
 import gi
 import logging
 
-from locale import gettext as _
-
 gi.require_version("Gtk", "3.0")
 from gi.repository import Gtk
 

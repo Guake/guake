@@ -88,8 +88,6 @@ from guake.utils import TabNameUtils
 from guake.utils import get_server_time
 from guake.utils import save_tabs_when_changed
 
-from locale import gettext as _
-
 log = logging.getLogger(__name__)
 
 instance = None

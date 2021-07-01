@@ -34,7 +34,6 @@ from gi.repository import Vte
 from guake.utils import RectCalculator
 
 from guake.common import pixmapfile
-from locale import gettext as _
 
 log = logging.getLogger(__name__)
 

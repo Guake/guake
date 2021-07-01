@@ -41,7 +41,6 @@ from gi.repository import Gdk
 from gi.repository import Gtk
 from gi.repository import Wnck
 from guake.terminal import GuakeTerminal
-from locale import gettext as _
 
 import logging
 import posix

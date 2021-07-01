@@ -1,8 +1,6 @@
 import logging
 import time
 
-from locale import gettext as _
-
 import gi
 
 gi.require_version("Vte", "2.91")  # vte-0.42

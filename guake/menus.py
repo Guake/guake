@@ -2,7 +2,6 @@ import gi
 
 gi.require_version("Gtk", "3.0")
 from gi.repository import Gtk
-from locale import gettext as _
 
 gi.require_version("Vte", "2.91")  # vte-0.42
 from gi.repository import Vte

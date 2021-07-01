@@ -1,5 +1,6 @@
 
 [flake8]
+builtins = _
 ignore =
     E902,
     E226,
