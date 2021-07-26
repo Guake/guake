@@ -38,7 +38,7 @@ class AboutDialog(SimpleGladeApp):
     """
 
     def __init__(self):
-        super(AboutDialog, self).__init__(gladefile("about.glade"), root="aboutdialog")
+        super().__init__(gladefile("about.glade"), root="aboutdialog")
         dialog = self.get_widget("aboutdialog")
 
         # images

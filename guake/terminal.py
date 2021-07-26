@@ -102,7 +102,7 @@ class GuakeTerminal(Vte.Terminal):
     """
 
     def __init__(self, guake):
-        super(GuakeTerminal, self).__init__()
+        super().__init__()
         self.guake = guake
         self.configure_terminal()
         self.add_matches()
@@ -162,7 +162,7 @@ class GuakeTerminal(Vte.Terminal):
 
     def copy_clipboard(self):
         if self.get_has_selection():
-            super(GuakeTerminal, self).copy_clipboard()
+            super().copy_clipboard()
         elif self.matched_value:
             guake_clipboard = Gtk.Clipboard.get_default(self.guake.window.get_display())
             guake_clipboard.set_text(self.matched_value, len(self.matched_value))
@@ -234,13 +234,13 @@ class GuakeTerminal(Vte.Terminal):
                 for _useless, match, _otheruseless in QUICK_OPEN_MATCHERS:
                     tag = self.match_add_gregex(GLib.Regex.new(match, compile_flag, 0), 0)
                     self.match_set_cursor_type(tag, Gdk.CursorType.HAND2)
-            except GLib.Error as e:  # pylint: disable=catching-non-exception
+            except GLib.Error as ex:  # pylint: disable=catching-non-exception
                 log.error(
                     "ERROR: PCRE2 does not seems to be enabled on your system. "
                     "Quick Edit and other Ctrl+click features are disabled. "
                     "Please update your VTE package or contact your distribution to ask "
                     "to enable regular expression support in VTE. Exception: '%s'",
-                    str(e),
+                    str(ex),
                 )
 
     def get_current_directory(self):
@@ -487,7 +487,7 @@ class GuakeTerminal(Vte.Terminal):
         else:
             font.set_size(new_size)
 
-        super(GuakeTerminal, self).set_font(font)
+        super().set_font(font)
 
     font_scale = property(fset=set_font_scale_index, fget=lambda self: self.font_scale_index)
 
@@ -569,34 +569,32 @@ class GuakeTerminal(Vte.Terminal):
 
     def set_color_foreground(self, font_color, *args, **kwargs):
         real_fgcolor = self.custom_fgcolor if self.custom_fgcolor else font_color
-        super(GuakeTerminal, self).set_color_foreground(real_fgcolor, *args, **kwargs)
+        super().set_color_foreground(real_fgcolor, *args, **kwargs)
 
     def set_color_background(self, bgcolor, *args, **kwargs):
         real_bgcolor = self.custom_bgcolor if self.custom_bgcolor else bgcolor
-        super(GuakeTerminal, self).set_color_background(real_bgcolor, *args, **kwargs)
+        super().set_color_background(real_bgcolor, *args, **kwargs)
 
     def set_color_bold(self, font_color, *args, **kwargs):
         real_fgcolor = self.custom_fgcolor if self.custom_fgcolor else font_color
-        super(GuakeTerminal, self).set_color_bold(real_fgcolor, *args, **kwargs)
+        super().set_color_bold(real_fgcolor, *args, **kwargs)
 
     def set_colors(self, font_color, bg_color, palette_list, *args, **kwargs):
         real_bgcolor = self.custom_bgcolor if self.custom_bgcolor else bg_color
         real_fgcolor = self.custom_fgcolor if self.custom_fgcolor else font_color
         real_palette = self.custom_palette if self.custom_palette else palette_list
-        super(GuakeTerminal, self).set_colors(
-            real_fgcolor, real_bgcolor, real_palette, *args, **kwargs
-        )
+        super().set_colors(real_fgcolor, real_bgcolor, real_palette, *args, **kwargs)
 
     def set_color_foreground_custom(self, fgcolor, *args, **kwargs):
         """Sets custom foreground color for this terminal"""
         print("set_color_foreground_custom: %s" % self.uuid)
         self.custom_fgcolor = fgcolor
-        super(GuakeTerminal, self).set_color_foreground(self.custom_fgcolor, *args, **kwargs)
+        super().set_color_foreground(self.custom_fgcolor, *args, **kwargs)
 
     def set_color_background_custom(self, bgcolor, *args, **kwargs):
         """Sets custom background color for this terminal"""
         self.custom_bgcolor = bgcolor
-        super(GuakeTerminal, self).set_color_background(self.custom_bgcolor, *args, **kwargs)
+        super().set_color_background(self.custom_bgcolor, *args, **kwargs)
 
     def reset_custom_colors(self):
         self.custom_fgcolor = None

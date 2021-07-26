@@ -134,7 +134,7 @@ class Guake(SimpleGladeApp):
 
         log.info("Language previously loaded from: %s", LOCALE_DIR)
 
-        super(Guake, self).__init__(gladefile("guake.glade"))
+        super().__init__(gladefile("guake.glade"))
 
         select_gtk_theme(self.settings)
         patch_gtk_theme(self.get_widget("window-root").get_style_context(), self.settings)
