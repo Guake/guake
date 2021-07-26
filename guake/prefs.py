@@ -307,6 +307,12 @@ class PrefsCallbacks:
         self.settings.general.set_boolean("gtk-prefer-dark-theme", chk.get_active())
         select_gtk_theme(self.settings)
 
+    def on_gtk_use_system_default_theme_toggled(self, chk):
+        """Set the `gtk_prefer_dark_theme' property in dconf
+        """
+        self.settings.general.set_boolean("gtk-use-system-default-theme", chk.get_active())
+        select_gtk_theme(self.settings)
+
     def on_window_ontop_toggled(self, chk):
         """Changes the activity of window_ontop in dconf"""
         self.settings.general.set_boolean("window-ontop", chk.get_active())
@@ -513,6 +519,9 @@ class PrefsCallbacks:
     def toggle_style_sensitivity(self, chk):
         self.prefDlg.toggle_style_sensitivity(chk)
 
+    def toggle_use_theme_sensitivity(self, chk):
+        self.prefDlg.toggle_use_theme_sensitivity(chk)
+        
     def toggle_use_font_background_sensitivity(self, chk):
         self.prefDlg.toggle_use_font_background_sensitivity(chk)
 
@@ -725,6 +734,14 @@ class PrefsDialog(SimpleGladeApp):
         """
         self.get_widget("font_style").set_sensitive(not chk.get_active())
 
+    def toggle_use_theme_sensitivity(self, chk):
+        """If the user chooses to use the gnome default theme
+        configuration it means that he will not be able to use the
+        theme selector.
+        """
+        self.get_widget("gtk_theme_name").set_sensitive(not chk.get_active())
+        self.get_widget("gtk_prefer_dark_theme").set_sensitive(not chk.get_active())
+
     def toggle_use_font_background_sensitivity(self, chk):
         """If the user chooses to use the gnome default font
         configuration it means that he will not be able to use the
@@ -735,7 +752,7 @@ class PrefsDialog(SimpleGladeApp):
 
     def toggle_display_n_sensitivity(self, chk):
         """When the user unchecks 'on mouse display', the option to select an
-        alternate display should be enabeld.
+        alternate display should be enabled.
         """
         self.get_widget("display_n").set_sensitive(not chk.get_active())
 
