@@ -514,7 +514,7 @@ class PrefsCallbacks:
 
     def toggle_use_theme_sensitivity(self, chk):
         self.prefDlg.toggle_use_theme_sensitivity(chk)
-        
+
     def toggle_use_font_background_sensitivity(self, chk):
         self.prefDlg.toggle_use_font_background_sensitivity(chk)
 
@@ -978,7 +978,11 @@ class PrefsDialog(SimpleGladeApp):
         self.get_widget("prompt_on_close_tab").set_active(value)
         self.get_widget("prompt_on_quit").set_sensitive(value != 2)
 
-        # gtk theme theme
+        # use system theme
+        value = self.settings.general.get_boolean("gtk-use-system-default-theme")
+        self.get_widget("gtk_use_system_default_theme").set_active(value)
+        
+        # gtk theme name
         value = self.settings.general.get_string("gtk-theme-name")
         combo = self.get_widget("gtk_theme_name")
         for i in combo.get_model():
@@ -986,7 +990,7 @@ class PrefsDialog(SimpleGladeApp):
                 combo.set_active_iter(i.iter)
                 break
 
-        # prefer gtk theme theme
+        # prefer gtk dark theme
         value = self.settings.general.get_boolean("gtk-prefer-dark-theme")
         self.get_widget("gtk_prefer_dark_theme").set_active(value)
 
