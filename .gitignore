@@ -73,6 +73,8 @@ docs/_build/
 AUTHORS
 ChangeLog
 
+.direnv
+.envrc
 .venv
 .vscode/
 
