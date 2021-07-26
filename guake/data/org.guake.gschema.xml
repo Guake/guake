@@ -256,6 +256,11 @@
             <summary>How to display tab names.</summary>
             <description>Controls how the tab names are displayed. 0: Full Path, 1: Abbreviated Path, 2: Only display the last segment of the path</description>
         </key>
+        <key name="gtk-use-system-default-theme" type="b">
+            <default>true</default>
+            <summary>Use system default theme for GTK</summary>
+            <description>Prefer the system default theme</description>
+        </key>
         <key name="gtk-theme-name" type="s">
             <default>''</default>
             <summary>GTK Theme name</summary>

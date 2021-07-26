@@ -51,9 +51,15 @@ def list_all_themes():
 
 
 def select_gtk_theme(settings):
+    gtk_settings = Gtk.Settings.get_default()
+    if settings.general.get_boolean("gtk-use-system-default-theme"):
+        log.debug("Using system default theme")
+        gtk_settings.reset_property("gtk-theme-name")
+        gtk_settings.set_property("gtk-application-prefer-dark-theme", False)
+        return
+
     gtk_theme_name = settings.general.get_string("gtk-theme-name")
     log.debug("Wanted GTK theme: %r", gtk_theme_name)
-    gtk_settings = Gtk.Settings.get_default()
     gtk_settings.set_property("gtk-theme-name", gtk_theme_name)
 
     prefer_dark_theme = settings.general.get_boolean("gtk-prefer-dark-theme")
