@@ -730,6 +730,7 @@
                                             <property name="use_underline">True</property>
                                             <property name="draw_indicator">True</property>
                                             <signal name="toggled" handler="on_window_tabbar_toggled" swapped="no"/>
+                                            <signal name="toggled" handler="toggle_show_tabbar_sensitivity" swapped="no"/>
                                           </object>
                                           <packing>
                                             <property name="left_attach">0</property>
@@ -887,6 +888,21 @@
                                           <packing>
                                             <property name="left_attach">1</property>
                                             <property name="top_attach">2</property>
+                                          </packing>
+                                        </child>
+                                        <child>
+                                          <object class="GtkCheckButton" id="hide_tabs_if_one_tab">
+                                            <property name="label" translatable="yes">Hide tab bar if there is only one tab</property>
+                                            <property name="visible">True</property>
+                                            <property name="can_focus">True</property>
+                                            <property name="receives_default">True</property>
+                                            <property name="active">True</property>
+                                            <property name="draw_indicator">True</property>
+                                            <signal name="toggled" handler="on_hide_tabs_if_one_tab_toggled" swapped="no"/>
+                                          </object>
+                                          <packing>
+                                            <property name="left_attach">1</property>
+                                            <property name="top_attach">4</property>
                                           </packing>
                                         </child>
                                         <child>

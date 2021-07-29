@@ -91,6 +91,7 @@ class GSettingHandler:
         settings.general.onChangedValue("custom-command_file", self.custom_command_file_changed)
         settings.general.onChangedValue("max-tab-name-length", self.max_tab_name_length_changed)
         settings.general.onChangedValue("display-tab-names", self.display_tab_names_changed)
+        settings.general.onChangedValue("hide-tabs-if-one-tab", self.hide_tabs_if_one_tab_changed)
 
     def custom_command_file_changed(self, settings, key, user_data):
         self.guake.load_custom_commands()
@@ -121,7 +122,10 @@ class GSettingHandler:
         called and will show/hide the tabbar.
         """
         if settings.get_boolean(key):
-            self.guake.notebook_manager.set_notebooks_tabbar_visible(True)
+            if settings.get_boolean(key):
+                self.guake.get_notebook().hide_if_one_tab()
+            else:
+                self.guake.notebook_manager.set_notebooks_tabbar_visible(True)
         else:
             self.guake.notebook_manager.set_notebooks_tabbar_visible(False)
 
@@ -135,7 +139,10 @@ class GSettingHandler:
         if settings.get_boolean(key):
             self.guake.notebook_manager.set_notebooks_tabbar_visible(False)
         else:
-            self.guake.notebook_manager.set_notebooks_tabbar_visible(True)
+            if settings.get_boolean(key):
+                self.guake.get_notebook().hide_if_one_tab()
+            else:
+                self.guake.notebook_manager.set_notebooks_tabbar_visible(True)
 
     def alignment_changed(self, settings, key, user_data):
         """If the gconf var window_halignment be changed, this method will
@@ -420,3 +427,9 @@ class GSettingHandler:
         """
         self.guake.display_tab_names = settings.get_int("display-tab-names")
         self.guake.recompute_tabs_titles()
+
+    def hide_tabs_if_one_tab_changed(self, settings, key, user_data):
+        """If the gconf var hide-tabs-if-one-tab was changed, this method will
+        be called and will show/hide the tab bar if necessary
+        """
+        self.guake.get_notebook().hide_if_one_tab()
