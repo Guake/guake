@@ -111,6 +111,11 @@
 		  <summary>Hide tab bar when fullscreen</summary>
 		  <description>When true, the tab bar will hide when is in fullscreen</description>
 		</key>
+		<key name="hide-tabs-if-one-tab" type="b">
+		  <default>true</default>
+		  <summary>Hide tab bar if there is only one tab</summary>
+		  <description>When true, the tab bar will hide when there is only one tab</description>
+		</key>
         <key name="quick-open-enable" type="b">
             <default>false</default>
             <summary>Enable Quick Open feature.</summary>

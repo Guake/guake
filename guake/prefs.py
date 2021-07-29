@@ -349,6 +349,11 @@ class PrefsCallbacks:
         """Changes the activity of fullscreen_hide_tabbar in dconf"""
         self.settings.general.set_boolean("fullscreen-hide-tabbar", chk.get_active())
 
+    def on_hide_tabs_if_one_tab_toggled(self, chk):
+        """Changes the activity of hide_tabs_if_one_tab in dconf
+        """
+        self.settings.general.set_boolean("hide-tabs-if-one-tab", chk.get_active())
+
     def on_start_fullscreen_toggled(self, chk):
         """Changes the activity of start_fullscreen in dconf"""
         self.settings.general.set_boolean("start-fullscreen", chk.get_active())
@@ -537,6 +542,9 @@ class PrefsCallbacks:
 
     def toggle_display_n_sensitivity(self, chk):
         self.prefDlg.toggle_display_n_sensitivity(chk)
+
+    def toggle_show_tabbar_sensitivity(self, chk):
+        self.prefDlg.toggle_show_tabbar_sensitivity(chk)
 
     def toggle_quick_open_command_line_sensitivity(self, chk):
         self.prefDlg.toggle_quick_open_command_line_sensitivity(chk)
@@ -761,6 +769,13 @@ class PrefsDialog(SimpleGladeApp):
         """
         self.get_widget("palette_16").set_sensitive(chk.get_active())
         self.get_widget("palette_17").set_sensitive(chk.get_active())
+
+    def toggle_show_tabbar_sensitivity(self, chk):
+        """If the user chooses to not show the tab bar, it means that they
+        cannot see the tab bar regardless of what other tab bar options say.
+        """
+        self.get_widget("fullscreen_hide_tabbar").set_sensitive(chk.get_active())
+        self.get_widget("hide_tabs_if_one_tab").set_sensitive(chk.get_active())
 
     def toggle_display_n_sensitivity(self, chk):
         """When the user unchecks 'on mouse display', the option to select an
@@ -1079,6 +1094,10 @@ class PrefsDialog(SimpleGladeApp):
         # fullscreen hide tabbar
         value = self.settings.general.get_boolean("fullscreen-hide-tabbar")
         self.get_widget("fullscreen_hide_tabbar").set_active(value)
+
+        # hide tabbar if only one tab
+        value = self.settings.general.get_boolean("hide-tabs-if-one-tab")
+        self.get_widget("hide_tabs_if_one_tab").set_active(value)
 
         # start fullscreen
         value = self.settings.general.get_boolean("start-fullscreen")
