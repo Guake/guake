@@ -35,7 +35,7 @@ template: |
     - |
       List new features here followed by the ticket number, for example::
 
-        - new exiting feature #1234
+        - new exciting feature #1234
 
   known_issues:
     - |
