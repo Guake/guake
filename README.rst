@@ -19,8 +19,21 @@ Guake 3 README
 Introduction
 ============
 
-Guake is a dropdown terminal made for the GNOME desktop environment. Guake's style of window is
+Guake is a python based dropdown terminal made for the GNOME desktop environment. Guake's style of window is
 based on an FPS game, and one of its goals is to be easy to reach.
+
+Quick Installation Guide
+------------------------
+
+Please refer to `Installation Guide <https://guake.readthedocs.io/en/latest/user/installing.html#system-wide-installation>`_
+
+What it looks like ? 
+--------------------
+
+.. image:: https://i.ibb.co/s97cJWZ/guake.png
+   :alt: Guake Screenshot
+   :class: with-shadow
+Drop down terminal on pressing <F12>
 
 Features Request
 ----------------
@@ -35,7 +48,7 @@ Most requested features list for Guake:
 .. |feathub-badge| image:: http://feathub.com/Guake/guake?format=svg
 .. _feathub-badge: http://feathub.com/Guake/guake
 
-There is also a Bountysource opened here for those willing to pay a certain among of money for a
+There is also a Bountysource opened here for those willing to pay a certain amount of money for a
 really needed feature.
 `See our Bountysource page here <https://www.bountysource.com/teams/guake>`_.
 
