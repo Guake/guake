@@ -39,13 +39,17 @@ class Settings:
         self.guake.connect("changed", self.guake.triggerOnChangedValue)
 
         self.general = Gio.Settings.new_full(
-            Gio.SettingsSchemaSource.lookup(schema_source, "guake.general", False), None, None,
+            Gio.SettingsSchemaSource.lookup(schema_source, "guake.general", False),
+            None,
+            None,
         )
         self.general.initEnhancements()
         self.general.connect("changed", self.general.triggerOnChangedValue)
 
         self.keybindings = Gio.Settings.new_full(
-            Gio.SettingsSchemaSource.lookup(schema_source, "guake.keybindings", False), None, None,
+            Gio.SettingsSchemaSource.lookup(schema_source, "guake.keybindings", False),
+            None,
+            None,
         )
         self.keybindings.initEnhancements()
         self.keybindings.connect("changed", self.keybindings.triggerOnChangedValue)
@@ -75,19 +79,25 @@ class Settings:
         self.styleBackground.connect("changed", self.styleBackground.triggerOnChangedValue)
 
         self.styleFont = Gio.Settings.new_full(
-            Gio.SettingsSchemaSource.lookup(schema_source, "guake.style.font", False), None, None,
+            Gio.SettingsSchemaSource.lookup(schema_source, "guake.style.font", False),
+            None,
+            None,
         )
         self.styleFont.initEnhancements()
         self.styleFont.connect("changed", self.styleFont.triggerOnChangedValue)
 
         self.style = Gio.Settings.new_full(
-            Gio.SettingsSchemaSource.lookup(schema_source, "guake.style", False), None, None,
+            Gio.SettingsSchemaSource.lookup(schema_source, "guake.style", False),
+            None,
+            None,
         )
         self.style.initEnhancements()
         self.style.connect("changed", self.style.triggerOnChangedValue)
 
         self.hooks = Gio.Settings.new_full(
-            Gio.SettingsSchemaSource.lookup(schema_source, "guake.hooks", False), None, None,
+            Gio.SettingsSchemaSource.lookup(schema_source, "guake.hooks", False),
+            None,
+            None,
         )
         self.hooks.initEnhancements()
         self.hooks.connect("changed", self.hooks.triggerOnChangedValue)

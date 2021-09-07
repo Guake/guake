@@ -35,8 +35,7 @@ log = logging.getLogger(__name__)
 
 class Keybindings:
 
-    """Handles changes in keyboard shortcuts.
-    """
+    """Handles changes in keyboard shortcuts."""
 
     def __init__(self, guake):
         """Constructor of Keyboard, only receives the guake instance
@@ -230,7 +229,10 @@ class Keybindings:
         key, mask = Gtk.accelerator_parse(getk("toggle-hide-on-lose-focus"))
         if key > 0:
             self.accel_group.connect(
-                key, mask, Gtk.AccelFlags.VISIBLE, self.guake.accel_toggle_hide_on_lose_focus,
+                key,
+                mask,
+                Gtk.AccelFlags.VISIBLE,
+                self.guake.accel_toggle_hide_on_lose_focus,
             )
 
         key, mask = Gtk.accelerator_parse(getk("zoom-in"))
@@ -260,13 +262,19 @@ class Keybindings:
         key, mask = Gtk.accelerator_parse(getk("increase-transparency"))
         if key > 0:
             self.accel_group.connect(
-                key, mask, Gtk.AccelFlags.VISIBLE, self.guake.accel_increase_transparency,
+                key,
+                mask,
+                Gtk.AccelFlags.VISIBLE,
+                self.guake.accel_increase_transparency,
             )
 
         key, mask = Gtk.accelerator_parse(getk("decrease-transparency"))
         if key > 0:
             self.accel_group.connect(
-                key, mask, Gtk.AccelFlags.VISIBLE, self.guake.accel_decrease_transparency,
+                key,
+                mask,
+                Gtk.AccelFlags.VISIBLE,
+                self.guake.accel_decrease_transparency,
             )
 
         key, mask = Gtk.accelerator_parse(getk("toggle-transparency"))
@@ -279,7 +287,10 @@ class Keybindings:
             key, mask = Gtk.accelerator_parse(getk("switch-tab%d" % tab))
             if key > 0:
                 self.accel_group.connect(
-                    key, mask, Gtk.AccelFlags.VISIBLE, self.guake.gen_accel_switch_tabN(tab - 1),
+                    key,
+                    mask,
+                    Gtk.AccelFlags.VISIBLE,
+                    self.guake.gen_accel_switch_tabN(tab - 1),
                 )
 
         key, mask = Gtk.accelerator_parse(getk("switch-tab-last"))

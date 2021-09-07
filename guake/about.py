@@ -34,8 +34,7 @@ from locale import gettext as _
 
 class AboutDialog(SimpleGladeApp):
 
-    """The About Guake dialog class
-    """
+    """The About Guake dialog class"""
 
     def __init__(self):
         super().__init__(gladefile("about.glade"), root="aboutdialog")

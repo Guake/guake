@@ -95,7 +95,10 @@ HOTKEYS = [
             {"key": "show-hide", "label": _("Toggle Guake visibility")},
             {"key": "show-focus", "label": _("Show and focus Guake window")},
             {"key": "toggle-fullscreen", "label": _("Toggle Fullscreen")},
-            {"key": "toggle-hide-on-lose-focus", "label": _("Toggle Hide on Lose Focus"),},
+            {
+                "key": "toggle-hide-on-lose-focus",
+                "label": _("Toggle Hide on Lose Focus"),
+            },
             {"key": "quit", "label": _("Quit")},
             {"key": "reset-terminal", "label": _("Reset terminal")},
             {"key": "search-terminal", "label": _("Search terminal")},
@@ -122,13 +125,22 @@ HOTKEYS = [
             {"key": "focus-terminal-down", "label": _("Focus terminal below")},
             {"key": "focus-terminal-left", "label": _("Focus terminal on the left")},
             {"key": "focus-terminal-right", "label": _("Focus terminal on the right")},
-            {"key": "move-terminal-split-up", "label": _("Move the terminal split handle up"),},
-            {"key": "move-terminal-split-down", "label": _("Move the terminal split handle down"),},
+            {
+                "key": "move-terminal-split-up",
+                "label": _("Move the terminal split handle up"),
+            },
+            {
+                "key": "move-terminal-split-down",
+                "label": _("Move the terminal split handle down"),
+            },
             {
                 "key": "move-terminal-split-right",
                 "label": _("Move the terminal split handle right"),
             },
-            {"key": "move-terminal-split-left", "label": _("Move the terminal split handle left"),},
+            {
+                "key": "move-terminal-split-left",
+                "label": _("Move the terminal split handle left"),
+            },
         ],
     },
     {
@@ -177,7 +189,9 @@ HOTKEYS = [
     {
         "label": _("Extra features"),
         "key": "extra",
-        "keys": [{"key": "search-on-web", "label": _("Search select text on web")},],
+        "keys": [
+            {"key": "search-on-web", "label": _("Search select text on web")},
+        ],
     },
 ]
 
@@ -218,8 +232,7 @@ def refresh_user_start(settings):
 
 class PrefsCallbacks:
 
-    """Holds callbacks that will be used in the PrefsDialg class.
-    """
+    """Holds callbacks that will be used in the PrefsDialg class."""
 
     def __init__(self, prefDlg):
         self.prefDlg = prefDlg
@@ -228,23 +241,19 @@ class PrefsCallbacks:
     # general tab
 
     def on_restore_tabs_startup_toggled(self, chk):
-        """Changes the activity of restore-tabs-startup in dconf
-        """
+        """Changes the activity of restore-tabs-startup in dconf"""
         self.settings.general.set_boolean("restore-tabs-startup", chk.get_active())
 
     def on_restore_tabs_notify_toggled(self, chk):
-        """Changes the activity of restore-tabs-notify in dconf
-        """
+        """Changes the activity of restore-tabs-notify in dconf"""
         self.settings.general.set_boolean("restore-tabs-notify", chk.get_active())
 
     def on_save_tabs_when_changed_toggled(self, chk):
-        """Changes the activity of save-tabs-when-changed in dconf
-        """
+        """Changes the activity of save-tabs-when-changed in dconf"""
         self.settings.general.set_boolean("save-tabs-when-changed", chk.get_active())
 
     def on_default_shell_changed(self, combo):
-        """Changes the activity of default_shell in dconf
-        """
+        """Changes the activity of default_shell in dconf"""
         citer = combo.get_active_iter()
         if not citer:
             return
@@ -257,43 +266,35 @@ class PrefsCallbacks:
             self.settings.general.set_string("default-shell", shell)
 
     def on_use_login_shell_toggled(self, chk):
-        """Changes the activity of use_login_shell in dconf
-        """
+        """Changes the activity of use_login_shell in dconf"""
         self.settings.general.set_boolean("use-login-shell", chk.get_active())
 
     def on_open_tab_cwd_toggled(self, chk):
-        """Changes the activity of open_tab_cwd in dconf
-        """
+        """Changes the activity of open_tab_cwd in dconf"""
         self.settings.general.set_boolean("open-tab-cwd", chk.get_active())
 
     def on_use_trayicon_toggled(self, chk):
-        """Changes the activity of use_trayicon in dconf
-        """
+        """Changes the activity of use_trayicon in dconf"""
         self.settings.general.set_boolean("use-trayicon", chk.get_active())
 
     def on_use_popup_toggled(self, chk):
-        """Changes the activity of use_popup in dconf
-        """
+        """Changes the activity of use_popup in dconf"""
         self.settings.general.set_boolean("use-popup", chk.get_active())
 
     def on_workspace_specific_tab_sets_toggled(self, chk):
-        """Sets the 'workspace-specific-tab-sets' property in dconf
-        """
+        """Sets the 'workspace-specific-tab-sets' property in dconf"""
         self.settings.general.set_boolean("workspace-specific-tab-sets", chk.get_active())
 
     def on_prompt_on_quit_toggled(self, chk):
-        """Set the `prompt on quit' property in dconf
-        """
+        """Set the `prompt on quit' property in dconf"""
         self.settings.general.set_boolean("prompt-on-quit", chk.get_active())
 
     def on_prompt_on_close_tab_changed(self, combo):
-        """Set the `prompt_on_close_tab' property in dconf
-        """
+        """Set the `prompt_on_close_tab' property in dconf"""
         self.settings.general.set_int("prompt-on-close-tab", combo.get_active())
 
     def on_gtk_theme_name_changed(self, combo):
-        """Set the `gtk_theme_name' property in dconf
-        """
+        """Set the `gtk_theme_name' property in dconf"""
         citer = combo.get_active_iter()
         if not citer:
             return
@@ -302,29 +303,24 @@ class PrefsCallbacks:
         select_gtk_theme(self.settings)
 
     def on_gtk_prefer_dark_theme_toggled(self, chk):
-        """Set the `gtk_prefer_dark_theme' property in dconf
-        """
+        """Set the `gtk_prefer_dark_theme' property in dconf"""
         self.settings.general.set_boolean("gtk-prefer-dark-theme", chk.get_active())
         select_gtk_theme(self.settings)
 
     def on_window_ontop_toggled(self, chk):
-        """Changes the activity of window_ontop in dconf
-        """
+        """Changes the activity of window_ontop in dconf"""
         self.settings.general.set_boolean("window-ontop", chk.get_active())
 
     def on_tab_ontop_toggled(self, chk):
-        """Changes the activity of tab_ontop in dconf
-        """
+        """Changes the activity of tab_ontop in dconf"""
         self.settings.general.set_boolean("tab-ontop", chk.get_active())
 
     def on_new_tab_after_toggled(self, chk):
-        """Changes the activity of new_tab_after in dconf
-        """
+        """Changes the activity of new_tab_after in dconf"""
         self.settings.general.set_boolean("new-tab-after", chk.get_active())
 
     def on_quick_open_enable_toggled(self, chk):
-        """Changes the activity of quick_open_enable in dconf
-        """
+        """Changes the activity of quick_open_enable in dconf"""
         self.settings.general.set_boolean("quick-open-enable", chk.get_active())
 
     def on_quick_open_in_current_terminal_toggled(self, chk):
@@ -334,13 +330,11 @@ class PrefsCallbacks:
         self.settings.general.set_string("startup-script", edt.get_text())
 
     def on_window_refocus_toggled(self, chk):
-        """Changes the activity of window_refocus in dconf
-        """
+        """Changes the activity of window_refocus in dconf"""
         self.settings.general.set_boolean("window-refocus", chk.get_active())
 
     def on_window_losefocus_toggled(self, chk):
-        """Changes the activity of window_losefocus in dconf
-        """
+        """Changes the activity of window_losefocus in dconf"""
         self.settings.general.set_boolean("window-losefocus", chk.get_active())
 
     def on_quick_open_command_line_changed(self, edt):
@@ -350,44 +344,36 @@ class PrefsCallbacks:
         self.settings.hooks.set_string("show", edt.get_text())
 
     def on_window_tabbar_toggled(self, chk):
-        """Changes the activity of window_tabbar in dconf
-        """
+        """Changes the activity of window_tabbar in dconf"""
         self.settings.general.set_boolean("window-tabbar", chk.get_active())
 
     def on_fullscreen_hide_tabbar_toggled(self, chk):
-        """Changes the activity of fullscreen_hide_tabbar in dconf
-        """
+        """Changes the activity of fullscreen_hide_tabbar in dconf"""
         self.settings.general.set_boolean("fullscreen-hide-tabbar", chk.get_active())
 
     def on_start_fullscreen_toggled(self, chk):
-        """Changes the activity of start_fullscreen in dconf
-        """
+        """Changes the activity of start_fullscreen in dconf"""
         self.settings.general.set_boolean("start-fullscreen", chk.get_active())
 
     def on_start_at_login_toggled(self, chk):
-        """Changes the activity of start_at_login in dconf
-        """
+        """Changes the activity of start_at_login in dconf"""
         self.settings.general.set_boolean("start-at-login", chk.get_active())
         refresh_user_start(self.settings)
 
     def on_use_vte_titles_toggled(self, chk):
-        """Save `use_vte_titles` property value in dconf
-        """
+        """Save `use_vte_titles` property value in dconf"""
         self.settings.general.set_boolean("use-vte-titles", chk.get_active())
 
     def on_set_window_title_toggled(self, chk):
-        """Save `set_window_title` property value in dconf
-        """
+        """Save `set_window_title` property value in dconf"""
         self.settings.general.set_boolean("set-window-title", chk.get_active())
 
     def on_tab_name_display_changed(self, combo):
-        """Save `display-tab-names` property value in dconf
-        """
+        """Save `display-tab-names` property value in dconf"""
         self.settings.general.set_int("display-tab-names", combo.get_active())
 
     def on_max_tab_name_length_changed(self, spin):
-        """Changes the value of max_tab_name_length in dconf
-        """
+        """Changes the value of max_tab_name_length in dconf"""
         val = int(spin.get_value())
         self.settings.general.set_int("max-tab-name-length", val)
         self.prefDlg.update_vte_subwidgets_states()
@@ -399,20 +385,17 @@ class PrefsCallbacks:
         self.settings.general.set_boolean("mouse-display", chk.get_active())
 
     def on_right_align_toggled(self, chk):
-        """set the horizontal alignment setting.
-        """
+        """set the horizontal alignment setting."""
         v = chk.get_active()
         self.settings.general.set_int("window-halignment", 1 if v else 0)
 
     def on_bottom_align_toggled(self, chk):
-        """set the vertical alignment setting.
-        """
+        """set the vertical alignment setting."""
         v = chk.get_active()
         self.settings.general.set_int("window-valignment", ALIGN_BOTTOM if v else ALIGN_TOP)
 
     def on_display_n_changed(self, combo):
-        """Set the destination display in dconf.
-        """
+        """Set the destination display in dconf."""
 
         i = combo.get_active_iter()
         if not i:
@@ -429,20 +412,17 @@ class PrefsCallbacks:
         self.settings.general.set_int("display-n", val_int)
 
     def on_window_height_value_changed(self, hscale):
-        """Changes the value of window_height in dconf
-        """
+        """Changes the value of window_height in dconf"""
         val = hscale.get_value()
         self.settings.general.set_int("window-height", int(val))
 
     def on_window_width_value_changed(self, wscale):
-        """Changes the value of window_width in dconf
-        """
+        """Changes the value of window_width in dconf"""
         val = wscale.get_value()
         self.settings.general.set_int("window-width", int(val))
 
     def on_window_halign_value_changed(self, halign_button):
-        """Changes the value of window_halignment in dconf
-        """
+        """Changes the value of window_halignment in dconf"""
         which_align = {
             "radiobutton_align_left": ALIGN_LEFT,
             "radiobutton_align_right": ALIGN_RIGHT,
@@ -457,20 +437,17 @@ class PrefsCallbacks:
         )
 
     def on_use_audible_bell_toggled(self, chk):
-        """Changes the value of use_audible_bell in dconf
-        """
+        """Changes the value of use_audible_bell in dconf"""
         self.settings.general.set_boolean("use-audible-bell", chk.get_active())
 
     # scrolling tab
 
     def on_use_scrollbar_toggled(self, chk):
-        """Changes the activity of use_scrollbar in dconf
-        """
+        """Changes the activity of use_scrollbar in dconf"""
         self.settings.general.set_boolean("use-scrollbar", chk.get_active())
 
     def on_history_size_value_changed(self, spin):
-        """Changes the value of history_size in dconf
-        """
+        """Changes the value of history_size in dconf"""
         val = int(spin.get_value())
         self.settings.general.set_int("history-size", val)
         self._update_history_widgets()
@@ -484,40 +461,33 @@ class PrefsCallbacks:
         self.prefDlg.get_widget("history_size").set_sensitive(not infinite)
 
     def on_scroll_output_toggled(self, chk):
-        """Changes the activity of scroll_output in dconf
-        """
+        """Changes the activity of scroll_output in dconf"""
         self.settings.general.set_boolean("scroll-output", chk.get_active())
 
     def on_scroll_keystroke_toggled(self, chk):
-        """Changes the activity of scroll_keystroke in dconf
-        """
+        """Changes the activity of scroll_keystroke in dconf"""
         self.settings.general.set_boolean("scroll-keystroke", chk.get_active())
 
     # appearance tab
 
     def on_use_default_font_toggled(self, chk):
-        """Changes the activity of use_default_font in dconf
-        """
+        """Changes the activity of use_default_font in dconf"""
         self.settings.general.set_boolean("use-default-font", chk.get_active())
 
     def on_allow_bold_toggled(self, chk):
-        """Changes the value of allow_bold in dconf
-        """
+        """Changes the value of allow_bold in dconf"""
         self.settings.styleFont.set_boolean("allow-bold", chk.get_active())
 
     def on_bold_is_bright_toggled(self, chk):
-        """Changes the value of bold_is_bright in dconf
-        """
+        """Changes the value of bold_is_bright in dconf"""
         self.settings.styleFont.set_boolean("bold-is-bright", chk.get_active())
 
     def on_font_style_font_set(self, fbtn):
-        """Changes the value of font_style in dconf
-        """
+        """Changes the value of font_style in dconf"""
         self.settings.styleFont.set_string("style", fbtn.get_font_name())
 
     def on_transparency_value_changed(self, hscale):
-        """Changes the value of background_transparency in dconf
-        """
+        """Changes the value of background_transparency in dconf"""
         value = hscale.get_value()
         self.prefDlg.set_colors_from_settings()
         self.settings.styleBackground.set_int("transparency", MAX_TRANSPARENCY - int(value))
@@ -525,14 +495,12 @@ class PrefsCallbacks:
     # compatibility tab
 
     def on_backspace_binding_changed(self, combo):
-        """Changes the value of compat_backspace in dconf
-        """
+        """Changes the value of compat_backspace in dconf"""
         val = combo.get_active_text()
         self.settings.general.set_string("compat-backspace", ERASE_BINDINGS[val])
 
     def on_delete_binding_changed(self, combo):
-        """Changes the value of compat_delete in dconf
-        """
+        """Changes the value of compat_delete in dconf"""
         val = combo.get_active_text()
         self.settings.general.set_string("compat-delete", ERASE_BINDINGS[val])
 
@@ -576,13 +544,11 @@ class PrefsCallbacks:
         self.prefDlg.on_palette_color_set(btn)
 
     def on_window_vertical_displacement_value_changed(self, spin):
-        """Changes the value of window-vertical-displacement
-        """
+        """Changes the value of window-vertical-displacement"""
         self.settings.general.set_int("window-vertical-displacement", int(spin.get_value()))
 
     def on_window_horizontal_displacement_value_changed(self, spin):
-        """Changes the value of window-horizontal-displacement
-        """
+        """Changes the value of window-horizontal-displacement"""
         self.settings.general.set_int("window-horizontal-displacement", int(spin.get_value()))
 
     def reload_erase_combos(self, btn=None):
@@ -594,8 +560,7 @@ class PrefsCallbacks:
 
 class PrefsDialog(SimpleGladeApp):
 
-    """The Guake Preferences dialog.
-    """
+    """The Guake Preferences dialog."""
 
     def __init__(self, settings):
         """Setup the preferences dialog interface, loading images,
@@ -615,7 +580,9 @@ class PrefsDialog(SimpleGladeApp):
         ).encode()
         style_provider.load_from_data(css_data)
         Gtk.StyleContext.add_provider_for_screen(
-            Gdk.Screen.get_default(), style_provider, Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION,
+            Gdk.Screen.get_default(),
+            style_provider,
+            Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION,
         )
         self.get_widget("quick_open_command_line").get_style_context().add_class("monospace")
         self.get_widget("quick_open_supported_patterns").get_style_context().add_class("monospace")
@@ -709,7 +676,14 @@ class PrefsDialog(SimpleGladeApp):
             wd = os.environ["HOME"]
 
         pid = terminal.spawn_sync(
-            Vte.PtyFlags.DEFAULT, wd, argv, [], GLib.SpawnFlags.DO_NOT_REAP_CHILD, None, None, None,
+            Vte.PtyFlags.DEFAULT,
+            wd,
+            argv,
+            [],
+            GLib.SpawnFlags.DO_NOT_REAP_CHILD,
+            None,
+            None,
+            None,
         )
 
         try:
@@ -731,8 +705,7 @@ class PrefsDialog(SimpleGladeApp):
         self.get_widget("config-window").present()
 
     def hide(self):
-        """Calls the main window hide function.
-        """
+        """Calls the main window hide function."""
         self.get_widget("config-window").hide()
 
     def on_destroy(self, window):
@@ -767,14 +740,12 @@ class PrefsDialog(SimpleGladeApp):
         self.get_widget("display_n").set_sensitive(not chk.get_active())
 
     def toggle_quick_open_command_line_sensitivity(self, chk):
-        """When the user unchecks 'enable quick open', the command line should be disabled
-        """
+        """When the user unchecks 'enable quick open', the command line should be disabled"""
         self.get_widget("quick_open_command_line").set_sensitive(chk.get_active())
         self.get_widget("quick_open_in_current_terminal").set_sensitive(chk.get_active())
 
     def toggle_use_vte_titles(self, chk):
-        """When vte titles aren't used, there is nothing to abbreviate
-        """
+        """When vte titles aren't used, there is nothing to abbreviate"""
         self.update_vte_subwidgets_states()
 
     def update_vte_subwidgets_states(self):
@@ -794,8 +765,7 @@ class PrefsDialog(SimpleGladeApp):
         self.reload_erase_combos()
 
     def on_palette_name_changed(self, combo):
-        """Changes the value of palette in dconf
-        """
+        """Changes the value of palette in dconf"""
         palette_name = combo.get_active_text()
         if palette_name not in PALETTES:
             return
@@ -805,19 +775,16 @@ class PrefsDialog(SimpleGladeApp):
         self.update_demo_palette(PALETTES[palette_name])
 
     def on_cursor_shape_changed(self, combo):
-        """Changes the value of cursor_shape in dconf
-        """
+        """Changes the value of cursor_shape in dconf"""
         index = combo.get_active()
         self.settings.style.set_int("cursor-shape", index)
 
     def on_blink_cursor_toggled(self, chk):
-        """Changes the value of blink_cursor in dconf
-        """
+        """Changes the value of blink_cursor in dconf"""
         self.settings.style.set_int("cursor-blink-mode", chk.get_active())
 
     def on_palette_color_set(self, btn):
-        """Changes the value of palette in dconf
-        """
+        """Changes the value of palette in dconf"""
 
         palette = []
         for i in range(18):
@@ -887,8 +854,7 @@ class PrefsDialog(SimpleGladeApp):
         self.get_widget("cursor_blink_mode").set_active(mode_index)
 
     def set_palette_colors(self, palette):
-        """Updates the color buttons with the given palette
-        """
+        """Updates the color buttons with the given palette"""
         palette = palette.split(":")
         for i, pal in enumerate(palette):
             x, color = Gdk.Color.parse(pal)

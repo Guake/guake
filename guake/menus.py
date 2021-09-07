@@ -14,8 +14,7 @@ log = logging.getLogger(__name__)
 
 
 def mk_tab_context_menu(callback_object):
-    """Create the context menu for a notebook tab
-    """
+    """Create the context menu for a notebook tab"""
     # Store the menu in a temp variable in terminal so that popup() is happy. See:
     #   https://stackoverflow.com/questions/28465956/
     callback_object.context_menu = Gtk.Menu()
@@ -37,8 +36,7 @@ def mk_tab_context_menu(callback_object):
 
 
 def mk_notebook_context_menu(callback_object):
-    """Create the context menu for the notebook
-    """
+    """Create the context menu for the notebook"""
     callback_object.context_menu = Gtk.Menu()
     menu = callback_object.context_menu
     mi = Gtk.MenuItem(_("New Tab"))
@@ -73,8 +71,7 @@ FILE_SELECTION_LENGTH = 30
 
 
 def mk_terminal_context_menu(terminal, window, settings, callback_object):
-    """Create the context menu for a terminal.
-    """
+    """Create the context menu for a terminal."""
     # Store the menu in a temp variable in terminal so that popup() is happy. See:
     #   https://stackoverflow.com/questions/28465956/
     terminal.context_menu = Gtk.Menu()

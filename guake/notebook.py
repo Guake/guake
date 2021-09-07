@@ -75,7 +75,11 @@ class TerminalNotebook(Gtk.Notebook):
                 (GObject.TYPE_PYOBJECT, GObject.TYPE_INT),
             )
             GObject.signal_new(
-                "page-deleted", TerminalNotebook, GObject.SIGNAL_RUN_LAST, GObject.TYPE_NONE, (),
+                "page-deleted",
+                TerminalNotebook,
+                GObject.SIGNAL_RUN_LAST,
+                GObject.TYPE_NONE,
+                (),
             )
 
         self.scroll_callback = NotebookScrollCallback(self)
@@ -87,7 +91,8 @@ class TerminalNotebook(Gtk.Notebook):
 
         # Action box
         self.new_page_button = Gtk.Button(
-            image=Gtk.Image.new_from_icon_name("tab-new-symbolic", Gtk.IconSize.MENU), visible=True,
+            image=Gtk.Image.new_from_icon_name("tab-new-symbolic", Gtk.IconSize.MENU),
+            visible=True,
         )
         self.new_page_button.connect("clicked", self.on_new_tab)
 
@@ -142,7 +147,9 @@ class TerminalNotebook(Gtk.Notebook):
             b"#popover-window list { border-style: none; background-color: transparent; }"
         )
         Gtk.StyleContext.add_provider_for_screen(
-            Gdk.Screen.get_default(), css_provider, Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION,
+            Gdk.Screen.get_default(),
+            css_provider,
+            Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION,
         )
 
         # Construct popover properties
@@ -460,7 +467,12 @@ class TerminalNotebook(Gtk.Notebook):
 
 class NotebookManager(GObject.Object):
     def __init__(
-        self, window, notebook_parent, workspaces_enabled, terminal_spawned_cb, page_deleted_cb,
+        self,
+        window,
+        notebook_parent,
+        workspaces_enabled,
+        terminal_spawned_cb,
+        page_deleted_cb,
     ):
         GObject.Object.__init__(self)
         if not GObject.signal_lookup("notebook-created", self):
