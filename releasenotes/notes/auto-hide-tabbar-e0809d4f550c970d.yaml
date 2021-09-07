@@ -25,12 +25,6 @@ fixes:
   - |
     fixes #924
 
-translations:
-  - Only put a list of updated 2 letters language code, for example::
-
-        translations:
-          - en
-
 notes_for_package_maintainers:
   - |
     None

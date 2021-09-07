@@ -350,8 +350,7 @@ class PrefsCallbacks:
         self.settings.general.set_boolean("fullscreen-hide-tabbar", chk.get_active())
 
     def on_hide_tabs_if_one_tab_toggled(self, chk):
-        """Changes the activity of hide_tabs_if_one_tab in dconf
-        """
+        """Changes the activity of hide_tabs_if_one_tab in dconf"""
         self.settings.general.set_boolean("hide-tabs-if-one-tab", chk.get_active())
 
     def on_start_fullscreen_toggled(self, chk):
