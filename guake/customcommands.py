@@ -54,7 +54,7 @@ class CustomCommands:
             log.error("Custom file does not exit: %s", file_name)
             return None
         try:
-            with open(file_name) as f:
+            with open(file_name, encoding="utf-8") as f:
                 data_file = f.read()
                 return json.loads(data_file)
         except Exception as e:

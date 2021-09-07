@@ -604,7 +604,7 @@ class PrefsDialog(SimpleGladeApp):
         self.hotkey_alread_used = False
         self.store = None
 
-        super(PrefsDialog, self).__init__(gladefile("prefs.glade"), root="config-window")
+        super().__init__(gladefile("prefs.glade"), root="config-window")
         style_provider = Gtk.CssProvider()
         css_data = dedent(
             """
@@ -692,7 +692,7 @@ class PrefsDialog(SimpleGladeApp):
         self.get_widget("config-window").hide()
 
     def spawn_sync_pid(self, directory=None, terminal=None):
-        argv = list()
+        argv = []
         user_shell = self.settings.general.get_string("default-shell")
         if user_shell and os.path.exists(user_shell):
             argv.append(user_shell)
@@ -851,7 +851,7 @@ class PrefsDialog(SimpleGladeApp):
     def set_colors_from_settings(self):
         transparency = self.settings.styleBackground.get_int("transparency")
         colorRGBA = Gdk.RGBA(0, 0, 0, 0)
-        palette_list = list()
+        palette_list = []
         for color in self.settings.styleFont.get_string("palette").split(":"):
             colorRGBA.parse(color)
             palette_list.append(colorRGBA.copy())
@@ -1215,11 +1215,11 @@ class PrefsDialog(SimpleGladeApp):
         # append user shell as first option
         cb.append_text(USER_SHELL_VALUE)
         if os.path.exists(SHELLS_FILE):
-            lines = open(SHELLS_FILE).readlines()
-            for i in lines:
-                possible = i.strip()
-                if possible and not possible.startswith("#") and os.path.exists(possible):
-                    cb.append_text(possible)
+            with open(SHELLS_FILE, encoding="utf-8") as f:
+                for i in f.readlines():
+                    possible = i.strip()
+                    if possible and not possible.startswith("#") and os.path.exists(possible):
+                        cb.append_text(possible)
 
         for i in get_binaries_from_path(PYTHONS):
             cb.append_text(i)
@@ -1340,7 +1340,7 @@ class PrefsDialog(SimpleGladeApp):
         dconf_path = self.store[path][HOTKET_MODEL_INDEX_DCONF]
         self.store[path][HOTKET_MODEL_INDEX_HUMAN_ACCEL] = ""
         self.store[path][HOTKET_MODEL_INDEX_ACCEL] = "None"
-        if dconf_path == "show-focus" or dconf_path == "show-hide":
+        if dconf_path in ("show-focus", "show-hide"):
             self.settings.keybindingsGlobal.set_string(dconf_path, "disabled")
         else:
             self.settings.keybindingsLocal.set_string(dconf_path, "disabled")

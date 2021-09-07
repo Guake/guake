@@ -94,11 +94,11 @@ class Settings:
 
     def enhanceSetting():
         def initEnhancements(self):
-            self.listeners = dict()
+            self.listeners = {}
 
         def onChangedValue(self, key, user_func):
             if key not in self.listeners:
-                self.listeners[key] = list()
+                self.listeners[key] = []
             self.listeners[key].append(user_func)
 
         def triggerOnChangedValue(self, settings, key, user_data=None):

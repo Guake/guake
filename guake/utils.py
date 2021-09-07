@@ -106,8 +106,8 @@ def restore_preferences(filename):
     # XXX: Hardcode?
     with open(filename, "rb") as f:
         prefs = f.read()
-    p = subprocess.Popen(["dconf", "load", "/apps/guake/"], stdin=subprocess.PIPE)
-    p.communicate(input=prefs)
+    with subprocess.Popen(["dconf", "load", "/apps/guake/"], stdin=subprocess.PIPE) as p:
+        p.communicate(input=prefs)
 
 
 class TabNameUtils:

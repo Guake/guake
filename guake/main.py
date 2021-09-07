@@ -597,15 +597,15 @@ def main():
             startup_script = instance.settings.general.get_string("startup-script")
             if startup_script:
                 log.info("Calling startup script: %s", startup_script)
-                pid = subprocess.Popen(
+                with subprocess.Popen(
                     [startup_script],
                     shell=True,
                     stdin=None,
                     stdout=None,
                     stderr=None,
                     close_fds=True,
-                )
-                log.info("Startup script started with pid: %s", pid)
+                ) as pid:
+                    log.info("Startup script started with pid: %s", pid)
                 # Please ensure this is the last line !!!!
     else:
         log.info("--no-startup-script argument defined, so don't execute the startup script")

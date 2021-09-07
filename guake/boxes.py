@@ -175,14 +175,11 @@ class RootTerminalBox(Gtk.Overlay, TerminalHolder):
         self.set_child(new)
 
     def set_child(self, terminal_holder):
-        if isinstance(terminal_holder, TerminalHolder) or True:
+        if isinstance(terminal_holder, TerminalHolder):
             self.child = terminal_holder
             self.add(self.child)
         else:
-            print(
-                "wtf, what have you added to me???"
-                "(RootTerminalBox.add(%s))" % type(terminal_holder)
-            )
+            raise RuntimeError(f"Error adding (RootTerminalBox.add({type(terminal_holder)}))")
 
     def focus():
         if self.get_terminals():

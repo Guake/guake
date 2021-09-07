@@ -21,6 +21,7 @@ Boston, MA 02110-1301 USA
 import guake
 import logging
 import os
+import subprocess
 import sys
 
 from pkg_resources import Requirement
@@ -94,6 +95,5 @@ AUTOSTART_FOLDER = {{ AUTOSTART_FOLDER }}
 
 
 def try_to_compile_glib_schemas():
-    import subprocess
     log.info("Compiling schema: %s", SCHEMA_DIR)
     subprocess.check_call(["glib-compile-schemas", "--strict", SCHEMA_DIR])

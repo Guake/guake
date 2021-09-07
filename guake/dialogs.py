@@ -39,7 +39,7 @@ class PromptQuitDialog(Gtk.MessageDialog):
     """
 
     def __init__(self, parent, procs, tabs, notebooks):
-        super(PromptQuitDialog, self).__init__(
+        super().__init__(
             parent,
             Gtk.DialogFlags.MODAL | Gtk.DialogFlags.DESTROY_WITH_PARENT,
             Gtk.MessageType.QUESTION,
@@ -97,7 +97,7 @@ class PromptResetColorsDialog(Gtk.MessageDialog):
     """
 
     def __init__(self, parent):
-        super(PromptResetColorsDialog, self).__init__(
+        super().__init__(
             parent,
             Gtk.DialogFlags.MODAL | Gtk.DialogFlags.DESTROY_WITH_PARENT,
             Gtk.MessageType.QUESTION,
@@ -155,6 +155,6 @@ class SaveTerminalDialog(Gtk.FileChooserDialog):
         response = super().run()
         if response == Gtk.ResponseType.OK:
             filename = self.get_filename()
-            with open(filename, "w") as f:
+            with open(filename, "w", encoding="utf-8") as f:
                 f.write(selection)
         self.destroy()

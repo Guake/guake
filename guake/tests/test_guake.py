@@ -94,7 +94,7 @@ def test_guake_restore_tabs(g, fs):
     }
 
     fn = fs.create_file("/foobar/session.json")
-    with open(fn.path, "w") as f:
+    with open(fn.path, "w", encoding="utf-8") as f:
         f.write(json.dumps(session))
 
     g.restore_tabs(fn.name)
@@ -112,7 +112,7 @@ def test_guake_restore_tabs_json_without_schema_version(g, fs):
     guake.guake_app.notifier.showMessage.reset_mock()
 
     fn = fs.create_file("/foobar/bar.json")
-    with open(fn.path, "w") as f:
+    with open(fn.path, "w", encoding="utf-8") as f:
         f.write("{}")
 
     g.restore_tabs(fn.name)
@@ -123,7 +123,7 @@ def test_guake_restore_tabs_with_higher_schema_version(g, fs):
     guake.guake_app.notifier.showMessage.reset_mock()
 
     fn = fs.create_file("/foobar/bar.json")
-    with open(fn.path, "w") as f:
+    with open(fn.path, "w", encoding="utf-8") as f:
         f.write('{"schema_version": 2147483647}')
 
     g.restore_tabs(fn.name)
@@ -133,7 +133,7 @@ def test_guake_restore_tabs_with_higher_schema_version(g, fs):
 def test_guake_restore_tabs_json_broken_session_file(g, fs):
     guake.guake_app.notifier.showMessage.reset_mock()
     fn = fs.create_file("/foobar/foobar.json")
-    with open(fn.path, "w") as f:
+    with open(fn.path, "w", encoding="utf-8") as f:
         f.write("{")
 
     g.restore_tabs(fn.name)
@@ -146,7 +146,7 @@ def test_guake_restore_tabs_schema_broken_session_file(g, fs):
 
     fn = fs.create_file("/foobar/bar.json")
     d = fs.create_dir("/foobar/foo")
-    with open(fn.path, "w") as f:
+    with open(fn.path, "w", encoding="utf-8") as f:
         f.write('{"schema_version": 1, "workspace": {"0": [[{"directory": "%s"}]]}}' % (d.path))
 
     g.restore_tabs(fn.name)
