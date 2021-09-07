@@ -301,8 +301,7 @@ class PrefsCallbacks:
         select_gtk_theme(self.settings)
 
     def on_gtk_use_system_default_theme_toggled(self, chk):
-        """Set the `gtk_prefer_dark_theme' property in dconf
-        """
+        """Set the `gtk_prefer_dark_theme' property in dconf"""
         self.settings.general.set_boolean("gtk-use-system-default-theme", chk.get_active())
         select_gtk_theme(self.settings)
 
@@ -981,7 +980,7 @@ class PrefsDialog(SimpleGladeApp):
         # use system theme
         value = self.settings.general.get_boolean("gtk-use-system-default-theme")
         self.get_widget("gtk_use_system_default_theme").set_active(value)
-        
+
         # gtk theme name
         value = self.settings.general.get_string("gtk-theme-name")
         combo = self.get_widget("gtk_theme_name")
