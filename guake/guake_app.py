@@ -134,7 +134,7 @@ class Guake(SimpleGladeApp):
 
         log.info("Language previously loaded from: %s", LOCALE_DIR)
 
-        super(Guake, self).__init__(gladefile("guake.glade"))
+        super().__init__(gladefile("guake.glade"))
 
         select_gtk_theme(self.settings)
         patch_gtk_theme(self.get_widget("window-root").get_style_context(), self.settings)
@@ -313,7 +313,7 @@ class Guake(SimpleGladeApp):
 
     def _load_palette(self):
         colorRGBA = Gdk.RGBA(0, 0, 0, 0)
-        paletteList = list()
+        paletteList = []
         for color in self.settings.styleFont.get_string("palette").split(":"):
             colorRGBA.parse(color)
             paletteList.append(colorRGBA.copy())
@@ -1298,7 +1298,8 @@ class Guake(SimpleGladeApp):
         if hook is not None and hook != "":
             hook = hook.split()
             try:
-                subprocess.Popen(hook)
+                with subprocess.Popen(hook):
+                    pass
             except OSError as oserr:
                 if oserr.errno == 8:
                     log.error(
