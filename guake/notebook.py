@@ -323,7 +323,7 @@ class TerminalNotebook(Gtk.Notebook):
             page = self.get_nth_page(self.get_current_page())
             if page.get_terminals():
                 page.get_terminals()[0].grab_focus()
-                
+
         self.hide_if_one_tab()
         self.emit("page-deleted")
 
