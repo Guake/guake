@@ -489,8 +489,8 @@ class TerminalBox(Gtk.Box, TerminalHolder):
         parent.replace_child(self, dual_terminal_box)
         dual_terminal_box.set_child_first(self)
         dual_terminal_box.set_child_second(terminal_box)
+        terminal_box.show()
         dual_terminal_box.show()
-        dual_terminal_box.show_all()
         notebook.terminal_attached(terminal)
 
         return dual_terminal_box
