@@ -18,29 +18,29 @@ Fedora
 Tested in 29:
 We can use dnf to install it.
 
-```bash
-sudo dnf install -y guake
-```
+.. code-block:: bash
+
+    $ sudo dnf install -y guake
 
 Then you can open it via:
 
-```bash
-guake
-```
+.. code-block:: bash
+
+    $ guake
 
 To allow global 'F12' to open the guake, go to Setting >> Device >> Keyboard >> Scroll to bottom >> "+" to create a new global short cut with 'F12' keybinding and comand 'guake'.
 
 You may notice the style may have some error. You can fix this by installing and apply custom theme.
 
-```bash
-sudo dnf install -y arc-theme gnome-tweaks
-```
+.. code-block:: bash
+
+    $ sudo dnf install -y arc-theme gnome-tweaks
 
 Then use
 
-```bash
-gnome-tweaks
-```
+.. code-block:: bash
+
+    $ gnome-tweaks
 
 to change theme to change theme to one of the yakuake will fix this.
 
