@@ -2,10 +2,10 @@
 Guake 3 README
 ==============
 
-|travis-badge|_ |bountysource-badge|_ |docs-badge|_ |translation-badge|_
+|actions-badge|_ |bountysource-badge|_ |docs-badge|_ |translation-badge|_
 
-.. |travis-badge| image:: https://travis-ci.org/Guake/guake.svg?branch=master
-.. _travis-badge: https://travis-ci.org/Guake/guake
+.. |actions-badge| image:: https://github.com/Guake/guake/actions/workflows/ci.yml/badge.svg
+.. _actions-badge: https://github.com/Guake/guake/actions
 
 .. |bountysource-badge| image:: https://img.shields.io/bountysource/team/guake/activity.svg
 .. _bountysource-badge: https://www.bountysource.com/teams/guake
