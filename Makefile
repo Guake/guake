@@ -58,7 +58,7 @@ dev-no-pipenv: clean
 	. .venv/bin/activate && pip install -r requirements.txt -r requirements-dev.txt -e .
 
 pipenv-install-dev:
-	pipenv install --dev --python $(PYTHON_INTERPRETER)
+	PIPENV_IGNORE_VIRTUALENVS=1 pipenv install --dev --python $(PYTHON_INTERPRETER)
 
 ln-venv:
 	# use that to configure a symbolic link to the virtualenv in .venv
@@ -183,19 +183,19 @@ clean-schemas:
 style: black
 
 black:
-	pipenv run black $(MODULE)
+	PIPENV_IGNORE_VIRTUALENVS=1 pipenv run black $(MODULE)
 
 
 checks: black-check flake8 pylint reno-lint
 
 black-check:
-	pipenv run black --check $(MODULE)
+	PIPENV_IGNORE_VIRTUALENVS=1 pipenv run black --check $(MODULE)
 
 flake8:
-	pipenv run python setup.py flake8
+	PIPENV_IGNORE_VIRTUALENVS=1 pipenv run python setup.py flake8
 
 pylint:
-	pipenv run pylint --rcfile=.pylintrc --output-format=colorized $(MODULE)
+	PIPENV_IGNORE_VIRTUALENVS=1 pipenv run pylint --rcfile=.pylintrc --output-format=colorized $(MODULE)
 
 sc: style check
 
@@ -203,7 +203,7 @@ dists: update-po requirements prepare-install rm-dists sdist bdist wheels
 build: dists
 
 sdist: generate-paths
-	export SKIP_GIT_SDIST=1 && pipenv run python setup.py sdist
+	export SKIP_GIT_SDIST=1 && PIPENV_IGNORE_VIRTUALENVS=1 pipenv run python setup.py sdist
 
 rm-dists:
 	rm -rf build dist
@@ -213,35 +213,35 @@ bdist: generate-paths
 	@echo "Ignoring build of bdist package"
 
 wheels: generate-paths
-	pipenv run python setup.py bdist_wheel
+	PIPENV_IGNORE_VIRTUALENVS=1 pipenv run python setup.py bdist_wheel
 
 wheel: wheels
 
 run-local: compile-glib-schemas-dev
 ifdef V
-	pipenv run ./scripts/run-local.sh -v
+	PIPENV_IGNORE_VIRTUALENVS=1 pipenv run ./scripts/run-local.sh -v
 else
-	pipenv run ./scripts/run-local.sh
+	PIPENV_IGNORE_VIRTUALENVS=1 pipenv run ./scripts/run-local.sh
 endif
 
 run-local-prefs: compile-glib-schemas-dev
-	pipenv run ./scripts/run-local-prefs.sh
+	PIPENV_IGNORE_VIRTUALENVS=1 pipenv run ./scripts/run-local-prefs.sh
 
 run-fr: compile-glib-schemas-dev
-	LC_ALL=fr_FR.UTF8 pipenv run ./scripts/run-local.sh
+	LC_ALL=fr_FR.UTF8 PIPENV_IGNORE_VIRTUALENVS=1 pipenv run ./scripts/run-local.sh
 
 
 shell:
-	pipenv shell
+	PIPENV_IGNORE_VIRTUALENVS=1 pipenv shell
 
 
 test:
-	pipenv run pytest $(MODULE)
+	PIPENV_IGNORE_VIRTUALENVS=1 pipenv run pytest $(MODULE)
 
 test-actions:
 	xvfb-run -a pipenv run pytest $(MODULE)
 test-coverage:
-	pipenv run py.test -v --cov $(MODULE) --cov-report term-missing
+	PIPENV_IGNORE_VIRTUALENVS=1 pipenv run py.test -v --cov $(MODULE) --cov-report term-missing
 
 test-pip-install-sdist: clean-pip-install-local generate-paths sdist
 	@echo "Testing installation by pip (will install on ~/.local)"
@@ -265,7 +265,7 @@ sct: style check update-po requirements test
 
 
 docs: clean-docs sdist
-	cd docs && pipenv run make html
+	cd docs && PIPENV_IGNORE_VIRTUALENVS=1 pipenv run make html
 
 docs-open:
 	xdg-open docs/_build/html/index.html
@@ -273,12 +273,12 @@ docs-open:
 tag-pbr:
 	@{ \
 		set -e ;\
-		export VERSION=$$(pipenv run python setup.py --version | cut -d. -f1,2,3); \
+		export VERSION=$$(PIPENV_IGNORE_VIRTUALENVS=1 pipenv run python setup.py --version | cut -d. -f1,2,3); \
 		echo "I: Computed new version: $$VERSION"; \
 		echo "I: presse ENTER to accept or type new version number:"; \
 		read VERSION_OVERRIDE; \
 		VERSION=$${VERSION_OVERRIDE:-$$VERSION}; \
-		PROJECTNAME=$$(pipenv run python setup.py --name); \
+		PROJECTNAME=$$(PIPENV_IGNORE_VIRTUALENVS=1 pipenv run python setup.py --name); \
 		echo "I: Tagging $$PROJECTNAME in version $$VERSION with tag: $$VERSION" ; \
 		echo "$$ git tag $$VERSION -m \"$$PROJECTNAME $$VERSION\""; \
 		git tag $$VERSION -m "$$PROJECTNAME $$VERSION"; \
@@ -290,25 +290,25 @@ tag-pbr:
 	@#  git tag -s $$VERSION -m \"$$PROJECTNAME $$VERSION\""
 
 pypi-publish: build
-	pipenv run python setup.py upload -r pypi
+	PIPENV_IGNORE_VIRTUALENVS=1 pipenv run python setup.py upload -r pypi
 
 
 update:
-	pipenv update --clear
-	pipenv install --dev
+	PIPENV_IGNORE_VIRTUALENVS=1 pipenv update --clear
+	PIPENV_IGNORE_VIRTUALENVS=1 pipenv install --dev
 
 
 lock: pipenv-lock requirements
 
 requirements:
-	pipenv run pipenv_to_requirements
+	PIPENV_IGNORE_VIRTUALENVS=1 pipenv run pipenv_to_requirements
 
 pipenv-lock:
-	pipenv lock
+	PIPENV_IGNORE_VIRTUALENVS=1 pipenv lock
 
 
 freeze:
-	pipenv run pip freeze
+	PIPENV_IGNORE_VIRTUALENVS=1 pipenv run pip freeze
 
 
 githook:
@@ -400,10 +400,10 @@ generate-paths:
 	@sed -i -e 's|{{ SCHEMA_DIR }}|get_default_schema_dir()|g' guake/paths.py
 
 reno:
-	pipenv run reno new $(SLUG) --edit
+	PIPENV_IGNORE_VIRTUALENVS=1 pipenv run reno new $(SLUG) --edit
 
 reno-lint:
-	pipenv run reno -q lint
+	PIPENV_IGNORE_VIRTUALENVS=1 pipenv run reno -q lint
 
 release-note: reno-lint release-note-news release-note-github
 
@@ -441,12 +441,12 @@ release:
 	git pull --rebase upstream master
 	@{ \
 		set -e ;\
-		export VERSION=$$(pipenv run python setup.py --version | cut -d. -f1,2,3); \
+		export VERSION=$$(PIPENV_IGNORE_VIRTUALENVS=1 pipenv run python setup.py --version | cut -d. -f1,2,3); \
 		echo "I: Computed new version: $$VERSION"; \
 		echo "I: presse ENTER to accept or type new version number:"; \
 		read VERSION_OVERRIDE; \
 		VERSION=$${VERSION_OVERRIDE:-$$VERSION}; \
-		PROJECTNAME=$$(pipenv run python setup.py --name); \
+		PROJECTNAME=$$(PIPENV_IGNORE_VIRTUALENVS=1 pipenv run python setup.py --name); \
 		echo "I: Tagging $$PROJECTNAME in version $$VERSION with tag: $$VERSION" ; \
 		echo "I: Pushing tag $$VERSION, press ENTER to continue, C-c to interrupt"; \
 		git commit --all -m "Release $$VERSION" --allow-empty --no-edit ; \

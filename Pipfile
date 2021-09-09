@@ -31,8 +31,10 @@ scandir = {markers = "python_version > '3.5'"}
 pyfakefs = "*"
 pytest-cov = "*"
 pew = "*"
-black = "==19.10b0"
+black = "==21.8b0"
 dephell = "*"
+toml = "*"
+dataclasses = "*"
 
 [packages]
 pbr = "*"

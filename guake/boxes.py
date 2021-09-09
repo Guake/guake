@@ -78,16 +78,16 @@ class RootTerminalBox(Gtk.Overlay, TerminalHolder):
         self._add_search_box()
 
     def _add_search_box(self):
-        """ --------------------------------------|
-            | Revealer                            |
-            | |-----------------------------------|
-            | | Frame                             |
-            | | |---------------------------------|
-            | | | HBox                            |
-            | | | |---| |-------| |----| |------| |
-            | | | | x | | Entry | |Prev| | Next | |
-            | | | |---| |-------| |----| |------| |
-            --------------------------------------|
+        """--------------------------------------|
+        | Revealer                            |
+        | |-----------------------------------|
+        | | Frame                             |
+        | | |---------------------------------|
+        | | | HBox                            |
+        | | | |---| |-------| |----| |------| |
+        | | | | x | | Entry | |Prev| | Next | |
+        | | | |---| |-------| |----| |------| |
+        --------------------------------------|
         """
         self.search_revealer = Gtk.Revealer()
         self.search_frame = Gtk.Frame(name="search-frame")
@@ -128,7 +128,9 @@ class RootTerminalBox(Gtk.Overlay, TerminalHolder):
             b"#search-frame border {" b"    padding: 5px 5px 5px 5px;" b"    border: none;" b"}"
         )
         Gtk.StyleContext.add_provider_for_screen(
-            Gdk.Screen.get_default(), css_provider, Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION,
+            Gdk.Screen.get_default(),
+            css_provider,
+            Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION,
         )
 
         # Add to revealer
@@ -203,7 +205,7 @@ class RootTerminalBox(Gtk.Overlay, TerminalHolder):
 
     def save_box_layout(self, box, panes: list):
         """Save box layout with pre-order traversal, it should result `panes` with
-           a full binary tree in list.
+        a full binary tree in list.
         """
         if not box:
             panes.append({"type": None, "directory": None})
@@ -225,8 +227,7 @@ class RootTerminalBox(Gtk.Overlay, TerminalHolder):
             )
 
     def restore_box_layout(self, box, panes: list):
-        """Restore box layout by `panes`
-        """
+        """Restore box layout by `panes`"""
         if not panes or not isinstance(panes, list):
             return
         if not box or not isinstance(box, TerminalBox):
@@ -394,16 +395,14 @@ class RootTerminalBox(Gtk.Overlay, TerminalHolder):
 
 class TerminalBox(Gtk.Box, TerminalHolder):
 
-    """A box to group the terminal and a scrollbar.
-    """
+    """A box to group the terminal and a scrollbar."""
 
     def __init__(self):
         super().__init__(orientation=Gtk.Orientation.HORIZONTAL)
         self.terminal = None
 
     def set_terminal(self, terminal):
-        """Packs the terminal widget.
-        """
+        """Packs the terminal widget."""
         if self.terminal is not None:
             raise RuntimeError("TerminalBox: terminal already set")
         self.terminal = terminal
@@ -421,8 +420,7 @@ class TerminalBox(Gtk.Box, TerminalHolder):
         self.add_scroll_bar()
 
     def add_scroll_bar(self):
-        """Packs the scrollbar.
-        """
+        """Packs the scrollbar."""
         adj = self.terminal.get_vadjustment()
         self.scroll = Gtk.VScrollbar(adj)
         self.scroll.show()

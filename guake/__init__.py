@@ -35,7 +35,11 @@ def vte_version():
 
     from gi.repository import Vte
 
-    s = "{}.{}.{}".format(Vte.MAJOR_VERSION, Vte.MINOR_VERSION, Vte.MICRO_VERSION,)
+    s = "{}.{}.{}".format(
+        Vte.MAJOR_VERSION,
+        Vte.MINOR_VERSION,
+        Vte.MICRO_VERSION,
+    )
     return s
 
 

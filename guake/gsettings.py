@@ -112,8 +112,7 @@ class GSettingHandler:
         self.guake.window.set_keep_above(settings.get_boolean(key))
 
     def tab_ontop_toggled(self, settings, key, user_data):
-        """ tab_ontop changed
-        """
+        """tab_ontop changed"""
         self.guake.set_tab_position()
 
     def tabbar_toggled(self, settings, key, user_data):
@@ -153,8 +152,7 @@ class GSettingHandler:
         RectCalculator.set_final_window_rect(self.settings, self.guake.window)
 
     def cursor_blink_mode_changed(self, settings, key, user_data):
-        """Called when cursor blink mode settings has been changed
-        """
+        """Called when cursor blink mode settings has been changed"""
         terminal = (
             self.guake.notebook_manager.get_terminal_by_uuid(user_data.get("terminal_uuid"))
             if user_data
@@ -165,8 +163,7 @@ class GSettingHandler:
             term.set_property("cursor-blink-mode", settings.get_int(key))
 
     def cursor_shape_changed(self, settings, key, user_data):
-        """Called when the cursor shape settings has been changed
-        """
+        """Called when the cursor shape settings has been changed"""
         terminal = (
             self.guake.notebook_manager.get_terminal_by_uuid(user_data.get("terminal_uuid"))
             if user_data

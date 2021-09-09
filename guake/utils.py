@@ -67,8 +67,7 @@ def get_server_time(widget):
 
 # Decorator for save-tabs-when-changed
 def save_tabs_when_changed(func):
-    """Decorator for save-tabs-when-changed
-    """
+    """Decorator for save-tabs-when-changed"""
 
     def wrapper(*args, **kwargs):
         func(*args, **kwargs)
@@ -124,8 +123,7 @@ class TabNameUtils:
 
 class HidePrevention:
     def __init__(self, window):
-        """Create a new HidePrevention object like `HidePrevention(window)`
-        """
+        """Create a new HidePrevention object like `HidePrevention(window)`"""
         if not isinstance(window, Gtk.Window):
             raise ValueError("window must be of type Gtk.Window, not of type %s" % type(window))
         self.window = window
@@ -143,8 +141,7 @@ class HidePrevention:
         setattr(self.window, "can_hide", False)
 
     def allow(self):
-        """sets the flag so that it indicates to may_hide that the window is allowed to be hidden
-        """
+        """sets the flag so that it indicates to may_hide that the window is allowed to be hidden"""
         setattr(self.window, "can_hide", True)
 
 
@@ -163,7 +160,9 @@ class FullscreenManager:
     def set_window_state(self, window_state):
         self.window_state = window_state
         setattr(
-            self.window, self.FULLSCREEN_ATTR, bool(window_state & Gdk.WindowState.FULLSCREEN),
+            self.window,
+            self.FULLSCREEN_ATTR,
+            bool(window_state & Gdk.WindowState.FULLSCREEN),
         )
 
         if not window_state & Gdk.WindowState.WITHDRAWN:
@@ -281,8 +280,7 @@ class RectCalculator:
 
     @classmethod
     def get_final_window_monitor(cls, settings, window):
-        """Gets the final screen number for the main window of guake.
-        """
+        """Gets the final screen number for the main window of guake."""
 
         screen = window.get_screen()
 

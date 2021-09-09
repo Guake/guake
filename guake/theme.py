@@ -110,5 +110,7 @@ def patch_gtk_theme(style_context, settings):
     style_provider = Gtk.CssProvider()
     style_provider.load_from_data(css_data)
     Gtk.StyleContext.add_provider_for_screen(
-        Gdk.Screen.get_default(), style_provider, Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION,
+        Gdk.Screen.get_default(),
+        style_provider,
+        Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION,
     )

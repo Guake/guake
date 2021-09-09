@@ -98,8 +98,7 @@ class DropTargets(IntEnum):
 
 class GuakeTerminal(Vte.Terminal):
 
-    """Just a vte.Terminal with some properties already set.
-    """
+    """Just a vte.Terminal with some properties already set."""
 
     def __init__(self, guake):
         super().__init__()
@@ -168,8 +167,7 @@ class GuakeTerminal(Vte.Terminal):
             guake_clipboard.set_text(self.matched_value, len(self.matched_value))
 
     def configure_terminal(self):
-        """Sets all customized properties on the terminal
-        """
+        """Sets all customized properties on the terminal"""
         client = self.guake.settings.general
         word_chars = client.get_string("word-chars")
         if word_chars:
@@ -337,7 +335,8 @@ class GuakeTerminal(Vte.Terminal):
             matched_string = self.match_check_event(event)
         else:
             matched_string = self.match_check(
-                int(event.x / self.get_char_width()), int(event.y / self.get_char_height()),
+                int(event.x / self.get_char_width()),
+                int(event.y / self.get_char_height()),
             )
 
         self.found_link = None
@@ -616,7 +615,10 @@ class GuakeTerminal(Vte.Terminal):
     def _color_from_list(color_list):
         """This method is used for deserialization."""
         return Gdk.RGBA(
-            red=color_list[0], green=color_list[1], blue=color_list[2], alpha=color_list[3],
+            red=color_list[0],
+            green=color_list[1],
+            blue=color_list[2],
+            alpha=color_list[3],
         )
 
     def get_custom_colors_dict(self):
