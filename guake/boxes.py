@@ -5,7 +5,6 @@ import gi
 
 gi.require_version("Vte", "2.91")  # vte-0.42
 gi.require_version("Gtk", "3.0")
-from gi.repository import GLib
 from gi.repository import GObject
 from gi.repository import Gdk
 from gi.repository import Gio
