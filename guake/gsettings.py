@@ -118,7 +118,7 @@ class GSettingHandler:
         """
         if settings.get_boolean(key):
             if settings.get_boolean(key):
-                self.guake.get_notebook().hide_if_one_tab()
+                self.guake.get_notebook().hide_tabbar_if_one_tab()
             else:
                 self.guake.notebook_manager.set_notebooks_tabbar_visible(True)
         else:
@@ -135,7 +135,7 @@ class GSettingHandler:
             self.guake.notebook_manager.set_notebooks_tabbar_visible(False)
         else:
             if settings.get_boolean(key):
-                self.guake.get_notebook().hide_if_one_tab()
+                self.guake.get_notebook().hide_tabbar_if_one_tab()
             else:
                 self.guake.notebook_manager.set_notebooks_tabbar_visible(True)
 
@@ -435,4 +435,4 @@ class GSettingHandler:
         """If the gconf var hide-tabs-if-one-tab was changed, this method will
         be called and will show/hide the tab bar if necessary
         """
-        self.guake.get_notebook().hide_if_one_tab()
+        self.guake.get_notebook().hide_tabbar_if_one_tab()
