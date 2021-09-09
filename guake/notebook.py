@@ -324,7 +324,7 @@ class TerminalNotebook(Gtk.Notebook):
             if page.get_terminals():
                 page.get_terminals()[0].grab_focus()
 
-        self.hide_if_one_tab()
+        self.hide_tabbar_if_one_tab()
         self.emit("page-deleted")
 
     def delete_page_by_label(self, label, kill=True, prompt=0):
@@ -352,14 +352,16 @@ class TerminalNotebook(Gtk.Notebook):
         # this is needed to initially set the last_terminal_focused,
         # one could also call terminal.get_parent().on_terminal_focus()
         self.terminal_attached(terminal)
-        self.hide_if_one_tab()
+        self.hide_tabbar_if_one_tab()
 
         if self.guake:
             # Attack background image draw callback to root terminal box
             root_terminal_box.connect_after("draw", self.guake.background_image_manager.draw)
         return root_terminal_box, page_num, terminal
 
-    def hide_if_one_tab(self):
+    def hide_tabbar_if_one_tab(self):
+        """Hide the tab bar if hide-tabs-if-one-tab is true and there is only one
+        notebook page"""
         if self.guake.settings.general.get_boolean("window-tabbar"):
             if self.guake.settings.general.get_boolean("hide-tabs-if-one-tab"):
                 self.set_property("show-tabs", self.get_n_pages() != 1)
