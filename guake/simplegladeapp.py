@@ -30,7 +30,7 @@ import tokenize
 
 
 class SimpleGladeApp:
-    def __init__(self, path, root=None, domain=None, **kwargs):
+    def __init__(self, path, root=None, domain=None):
         """
         Load a glade file specified by glade_filename, using root as
         root widget and domain as the domain for translations.
@@ -51,23 +51,12 @@ class SimpleGladeApp:
         domain:
             A domain to use for loading translations.
             If None or ommited, no translation is loaded.
-
-        **kwargs:
-            a dictionary representing the named extra arguments.
-            It is useful to set attributes of new instances, for example:
-                glade_app = SimpleGladeApp("ui.glade", foo="some value", bar="another value")
-            sets two attributes (foo and bar) to glade_app.
         """
         if os.path.isfile(path):
             self.glade_path = path
         else:
             glade_dir = os.path.dirname(sys.argv[0])
             self.glade_path = os.path.join(glade_dir, path)
-        for key, value in kwargs.items():
-            try:
-                setattr(self, key, weakref.proxy(value))
-            except TypeError:
-                setattr(self, key, value)
 
         self.glade = None
 
@@ -142,46 +131,6 @@ class SimpleGladeApp:
                 if prefixes:
                     # TODO is is a guess
                     Gtk.Buildable.set_data(widget, "prefixes", prefixes)
-
-    def add_prefix_actions(self, prefix_actions_proxy):
-        """
-        By using a gui designer (glade-2, gazpacho, etc)
-        widgets can have a prefix in theirs names
-        like foo:entry1 or foo:label3
-        It means entry1 and label3 has a prefix action named foo.
-
-        Then, prefix_actions_proxy must have a method named prefix_foo which
-        is called everytime a widget with prefix foo is found, using the found widget
-        as argument.
-
-        prefix_actions_proxy:
-            An instance with methods as prefix actions.
-            It means it has methods like prefix_foo, prefix_bar, etc.
-        """
-        prefix_s = "prefix_"
-        prefix_pos = len(prefix_s)
-
-        def is_method(t):
-            return callable(t[1])
-
-        def is_prefix_action(t):
-            return t[0].startswith(prefix_s)
-
-        def drop_prefix(k, w):
-            return (k[prefix_pos:], w)
-
-        members_t = inspect.getmembers(prefix_actions_proxy)
-        methods_t = filter(is_method, members_t)
-        prefix_actions_t = filter(is_prefix_action, methods_t)
-        prefix_actions_d = dict(map(drop_prefix, prefix_actions_t))
-
-        for widget in self.get_widgets():
-            prefixes = gtk.Widget.get_data(widget, "prefixes")
-            if prefixes:
-                for prefix in prefixes:
-                    if prefix in prefix_actions_d:
-                        prefix_action = prefix_actions_d[prefix]
-                        prefix_action(widget)
 
     def custom_handler(self, glade, function_name, widget_name, str1, str2, int1, int2):
         """
@@ -279,7 +228,7 @@ class SimpleGladeApp:
         Do not directly call this method in your programs.
         Use the method run() instead.
         """
-        gtk.main()
+        Gtk.main()
 
     def quit(self, *args):
         """
@@ -312,12 +261,6 @@ class SimpleGladeApp:
         after a program is finished by pressing Control-C.
         """
         pass
-
-    def install_custom_handler(self, custom_handler):
-        gtk.glade.set_custom_handler(custom_handler)
-
-    def create_glade(self, glade_path, root, domain):
-        return gtk.glade.XML(glade_path, root, domain)
 
     def get_widget(self, widget_name):
         return self.builder.get_object(widget_name)

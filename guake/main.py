@@ -17,13 +17,15 @@ License along with this program; if not, write to the
 Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor,
 Boston, MA 02110-1301 USA
 """
-import inspect
-import time
-
 # You can put calls to p() everywhere in this page to inspect timing
+#
+# import inspect
+# import time
 # g_start = time.time()
 # def p():
 #     print(time.time() - g_start, __file__, inspect.currentframe().f_back.f_lineno)
+
+import builtins
 import logging
 import os
 import signal
@@ -31,7 +33,10 @@ import subprocess
 import sys
 import uuid
 
-from locale import gettext as _
+from locale import gettext
+
+builtins.__dict__["_"] = gettext
+
 from optparse import OptionParser
 
 log = logging.getLogger(__name__)
@@ -381,12 +386,6 @@ def main():
         print("[ERROR] missing mandatory dependency: Keybinder 3")
         missing_deps = True
 
-    try:
-        import cairo
-    except ImportError:
-        print("[ERROR] missing mandatory dependency: cairo")
-        missing_deps = True
-
     if missing_deps:
         print(
             "[ERROR] missing at least one system dependencies. "
@@ -402,7 +401,6 @@ def main():
             "        libkeybinder-3.0-0 \\\n"
             "        libutempter0 \\\n"
             "        python3 \\\n"
-            "        python3-cairo \\\n"
             "        python3-dbus \\\n"
             "        python3-gi \\\n"
             "        python3-pbr \\\n"

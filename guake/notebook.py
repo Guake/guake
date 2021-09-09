@@ -19,7 +19,6 @@ Boston, MA 02110-1301 USA
 """
 
 from guake.about import AboutDialog
-from guake.boxes import DualTerminalBox
 from guake.boxes import RootTerminalBox
 from guake.boxes import TabLabelEventBox
 from guake.boxes import TerminalBox
@@ -41,7 +40,6 @@ from gi.repository import Gdk
 from gi.repository import Gtk
 from gi.repository import Wnck
 from guake.terminal import GuakeTerminal
-from locale import gettext as _
 
 import logging
 import posix

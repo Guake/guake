@@ -21,22 +21,17 @@ import logging
 import os
 import re
 import shutil
-import warnings
 
 from textwrap import dedent
 
 import gi
 
 gi.require_version("Gtk", "3.0")
-gi.require_version("Keybinder", "3.0")
 gi.require_version("Vte", "2.91")  # vte-0.38
 from gi.repository import GLib
-from gi.repository import GObject
 from gi.repository import Gdk
 from gi.repository import Gio
 from gi.repository import Gtk
-from gi.repository import Keybinder
-from gi.repository import Pango
 from gi.repository import Vte
 
 from guake.common import ShowableError
@@ -53,7 +48,6 @@ from guake.globals import ALWAYS_ON_PRIMARY
 from guake.globals import MAX_TRANSPARENCY
 from guake.globals import NAME
 from guake.globals import QUICK_OPEN_MATCHERS
-from guake.globals import bindtextdomain
 from guake.palettes import PALETTES
 from guake.paths import AUTOSTART_FOLDER
 from guake.paths import LOCALE_DIR
@@ -62,7 +56,6 @@ from guake.simplegladeapp import SimpleGladeApp
 from guake.terminal import GuakeTerminal
 from guake.theme import list_all_themes
 from guake.theme import select_gtk_theme
-from locale import gettext as _
 
 # pylint: disable=unsubscriptable-object
 
@@ -1361,6 +1354,13 @@ def setup_standalone_signals(instance):
 
 
 if __name__ == "__main__":
+    import builtins
+    from locale import gettext
+    from guake.globals import bindtextdomain
+
+    builtins.__dict__["_"] = gettext
+
     bindtextdomain(NAME, LOCALE_DIR)
+
     setup_standalone_signals(PrefsDialog(None)).show()
     Gtk.main()

@@ -22,14 +22,12 @@ Boston, MA 02110-1301 USA
 import gi
 
 gi.require_version("Gtk", "3.0")
-from gi.repository import GObject
 from gi.repository import Gtk
 
 from guake import guake_version
 from guake.common import gladefile
 from guake.common import pixmapfile
 from guake.simplegladeapp import SimpleGladeApp
-from locale import gettext as _
 
 
 class AboutDialog(SimpleGladeApp):

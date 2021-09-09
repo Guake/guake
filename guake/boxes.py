@@ -1,13 +1,10 @@
 import logging
 import time
 
-from locale import gettext as _
-
 import gi
 
 gi.require_version("Vte", "2.91")  # vte-0.42
 gi.require_version("Gtk", "3.0")
-from gi.repository import GLib
 from gi.repository import GObject
 from gi.repository import Gdk
 from gi.repository import Gio
@@ -183,10 +180,6 @@ class RootTerminalBox(Gtk.Overlay, TerminalHolder):
             self.add(self.child)
         else:
             raise RuntimeError(f"Error adding (RootTerminalBox.add({type(terminal_holder)}))")
-
-    def focus():
-        if self.get_terminals():
-            self.get_terminals()[0].grab_focus()
 
     def get_child(self):
         return self.child

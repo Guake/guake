@@ -35,8 +35,6 @@ from typing import Tuple
 from urllib.parse import unquote
 from urllib.parse import urlparse
 
-from time import sleep
-
 import gi
 
 gi.require_version("Gtk", "3.0")
@@ -44,7 +42,6 @@ gi.require_version("Vte", "2.91")  # vte-0.38
 
 from gi.repository import GLib
 from gi.repository import Gdk
-from gi.repository import GdkX11
 from gi.repository import Gtk
 from gi.repository import Pango
 from gi.repository import Vte

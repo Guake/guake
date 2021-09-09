@@ -1,7 +1,6 @@
 import re
 
 from guake.globals import QUICK_OPEN_MATCHERS
-from mock import Mock
 from textwrap import dedent
 
 
