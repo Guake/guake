@@ -172,15 +172,15 @@
             <description>Place Guake at: 0: top, 1: bottom</description>
         </key>
         <key name="background-image-file" type="s">
-          <default>''</default>
-		  <summary>Background image filename.</summary>
-		  <description>When setup, the selected background image will show on guake</description>
+            <default>''</default>
+            <summary>Background image filename.</summary>            
+            <description>When setup, the selected background image will show on guake</description>
         </key>
-		<key name="background-image-layout-mode" type="i">
-		  <default>0</default>
-		  <summary>Background image layout mode.</summary>
-		  <description>To select which layout mode want to use for background image.</description>
-		</key>
+        <key name="background-image-layout-mode" type="i">
+            <default>0</default>
+            <summary>Background image layout mode.</summary>
+            <description>To select which layout mode want to use for background image.</description>
+        </key>
         <key name="use-scrollbar" type="b">
             <default>true</default>
             <summary>Sets the scrollbar visibility.</summary>
