@@ -294,7 +294,7 @@ class TerminalNotebook(Gtk.Notebook):
         procs = self.get_running_fg_processes_count_page(page_num)
         if prompt == 2 or (prompt == 1 and procs > 0):
             # TODO NOTEBOOK remove call to guake
-            if not PromptQuitDialog(self.guake.window, procs, -1).close_tab():
+            if not PromptQuitDialog(self.guake.window, procs, -1, None).close_tab():
                 return
 
         page = self.get_nth_page(page_num)
