@@ -79,7 +79,7 @@ install-guake:
 	@echo "Please prefer you application package manager (apt, yum, ...)"
 	@echo
 	@echo "#############################################################"
-	@$(PYTHON_INTERPRETER) -m pip install -r requirements.txt
+	@if [ "$(DESTDIR)" = "" ]; then $(PYTHON_INTERPRETER) -m pip install -r requirements.txt; fi
 
 	@rm -f guake/paths.py.dev
 	@if [ -f guake/paths.py ]; then mv guake/paths.py guake/paths.py.dev; fi
