@@ -354,9 +354,8 @@ class GuakeTerminal(Vte.Terminal):
             self.matched_value = matched_string[0]
 
     def on_child_exited(self, target, status, *user_data):
-        if libutempter is not None:
-            if self.get_pty() is not None:
-                libutempter.utempter_remove_record(self.get_pty().get_fd())
+        if None not in (libutempter, self.get_pty()):
+            libutempter.utempter_remove_record(self.get_pty().get_fd())
 
     def on_drag_data_received(self, widget, drag_context, x, y, data, info, time):
         if info == DropTargets.URIS:

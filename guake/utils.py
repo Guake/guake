@@ -190,9 +190,12 @@ class FullscreenManager:
 
     def toggle_fullscreen_hide_tabbar(self):
         if self.is_fullscreen():
-            if self.settings.general.get_boolean("fullscreen-hide-tabbar"):
-                if self.guake and self.guake.notebook_manager:
-                    self.guake.notebook_manager.set_notebooks_tabbar_visible(False)
+            if (
+                self.settings.general.get_boolean("fullscreen-hide-tabbar")
+                and self.guake
+                and self.guake.notebook_manager
+            ):
+                self.guake.notebook_manager.set_notebooks_tabbar_visible(False)
         else:
             if self.guake and self.guake.notebook_manager:
                 v = self.settings.general.get_boolean("window-tabbar")
