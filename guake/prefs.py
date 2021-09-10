@@ -908,9 +908,8 @@ class PrefsDialog(SimpleGladeApp):
         log.debug("executing _load_hooks_settings")
         hook_show_widget = self.get_widget("hook_show")
         hook_show_setting = self.settings.hooks.get_string("show")
-        if hook_show_widget is not None:
-            if hook_show_setting is not None:
-                hook_show_widget.set_text(hook_show_setting)
+        if None not in (hook_show_widget, hook_show_setting):
+            hook_show_widget.set_text(hook_show_setting)
 
     def _load_default_shell_settings(self):
         combo = self.get_widget("default_shell")

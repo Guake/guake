@@ -517,9 +517,11 @@ class TerminalBox(Gtk.Box, TerminalHolder):
     def on_button_press(self, target, event, user_data):
         if event.button == 3:
             # First send to background process if handled, do nothing else
-            if not event.get_state() & Gdk.ModifierType.SHIFT_MASK:
-                if Vte.Terminal.do_button_press_event(self.terminal, event):
-                    return True
+            if (
+                not event.get_state() & Gdk.ModifierType.SHIFT_MASK
+                and Vte.Terminal.do_button_press_event(self.terminal, event)
+            ):
+                return True
 
             menu = mk_terminal_context_menu(
                 self.terminal,
