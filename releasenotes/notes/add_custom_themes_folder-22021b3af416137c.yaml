@@ -1,0 +1,25 @@
+release_summary: >
+    Custom themes folder
+
+features:
+  - |
+      - User defined colour palettes #1766 
+
+known_issues:
+  - |
+    List know issue introduced by the change here, followed if possible by a
+    ticket number, for example::
+
+      - such other feature is broken #1234
+
+upgrade:
+  - |
+    List upgrade note for end users here
+
+notes_for_package_maintainers:
+  - |
+    Add notes for package maintainers here.
+
+other:
+  - |
+    Add other notes here.
