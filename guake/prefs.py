@@ -1215,7 +1215,7 @@ class PrefsDialog(SimpleGladeApp):
         for group in HOTKEYS:
             parent = self.store.append(None, [None, group["label"], None, None])
             for item in group["keys"]:
-                if item["key"] == "show-hide" or item["key"] == "show-focus":
+                if item["key"] in ("show-hide", "show-focus"):
                     accel = self.settings.keybindingsGlobal.get_string(item["key"])
                 else:
                     accel = self.settings.keybindingsLocal.get_string(item["key"])
