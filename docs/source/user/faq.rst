@@ -37,7 +37,7 @@ Note for Archlinux users
 
 This applies to users of Archlinux based distributions too and may be of help to non
 Debian/Ubuntu users as well. Currently ``make install`` is optimized for Ubuntu, which
-does not mean that it can not be used on other systems, but depending on your system
+does not mean that it cannot be used on other systems, but depending on your system
 you may have to tell ``make install`` where to install guake
 (the default for Ubuntu is ``/usr/local/lib/python3.x/dist-packages/guake``).
 
