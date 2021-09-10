@@ -695,7 +695,8 @@ class PrefsDialog(SimpleGladeApp):
             # Return a tuple in 2.91
             # https://lazka.github.io/pgi-docs/Vte-2.91/classes/Terminal.html#Vte.Terminal.spawn_sync
             pid = pid[1]
-        assert isinstance(pid, int)
+        if not isinstance(pid, int):
+            raise TypeError("pid must be an int")
         return pid
 
     def show(self):
