@@ -180,3 +180,11 @@ def test_guake_save_tabs_and_restore(mocker, g, fs):
     assert nb.get_n_pages() == 3
     assert nb.get_tab_text_index(1) == "foobar"
     assert nb.get_tab_text_index(2) == "python"
+
+
+def test_guake_hide_tab_bar_if_one_tab(mocker, g, fs):
+    # Set hide-tabs-if-one-tab to True
+    mocker.patch.object(g.settings.general, "get_boolean", return_value=True)
+
+    assert g.get_notebook().get_n_pages() == 1
+    assert g.get_notebook().get_property("show-tabs") is False
