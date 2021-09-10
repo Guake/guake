@@ -35,31 +35,31 @@ class TerminalHolder:
     LEFT = 3
 
     def get_terminals(self):
-        pass
+        raise NotImplementedError
 
     def iter_terminals(self):
-        pass
+        raise NotImplementedError
 
     def replace_child(self, old, new):
-        pass
+        raise NotImplementedError
 
     def get_guake(self):
-        pass
+        raise NotImplementedError
 
     def get_window(self):
-        pass
+        raise NotImplementedError
 
     def get_settings(self):
-        pass
+        raise NotImplementedError
 
     def get_root_box(self):
-        pass
+        raise NotImplementedError
 
     def get_notebook(self):
-        pass
+        raise NotImplementedError
 
     def remove_dead_child(self, child):
-        pass
+        raise NotImplementedError
 
 
 class RootTerminalBox(Gtk.Overlay, TerminalHolder):
@@ -292,9 +292,6 @@ class RootTerminalBox(Gtk.Overlay, TerminalHolder):
     def remove_dead_child(self, child):
         page_num = self.get_notebook().page_num(self)
         self.get_notebook().remove_page(page_num)
-
-    def move_focus(self, direction, fromChild):
-        pass
 
     def block_notebook_on_button_press_id(self):
         GObject.signal_handler_block(
