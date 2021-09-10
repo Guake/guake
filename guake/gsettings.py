@@ -317,7 +317,7 @@ class GSettingHandler:
 
         if terminal_uuid:
             terminal = self.guake.notebook_manager.get_terminal_by_uuid(terminal_uuid)
-            terminals = (terminal,) if terminal else tuple()
+            terminals = (terminal,) if terminal else ()
         else:
             terminals = self.guake.notebook_manager.iter_terminals()
 
