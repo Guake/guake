@@ -72,7 +72,7 @@ class SimpleGladeApp:
         # self.glade = self.create_glade(self.glade_path, root, domain)
 
         self.normalize_names()
-        self.new()
+        # Widgets are loaded and can be refered as self.widget_name
 
     def __repr__(self):
         class_name = self.__class__.__name__
@@ -82,13 +82,6 @@ class SimpleGladeApp:
         else:
             repr = '%s(path="%s")' % (class_name, self.glade_path)
         return repr
-
-    def new(self):
-        """
-        Method called when the user interface is loaded and ready to be used.
-        At this moment, the widgets are loaded and can be refered as self.widget_name
-        """
-        pass
 
     def add_callbacks(self, callbacks_proxy):
         """
@@ -253,14 +246,7 @@ class SimpleGladeApp:
         try:
             self.main()
         except KeyboardInterrupt:
-            self.on_keyboard_interrupt()
-
-    def on_keyboard_interrupt(self):
-        """
-        This method is called by the default implementation of run()
-        after a program is finished by pressing Control-C.
-        """
-        pass
+            sys.exit()
 
     def get_widget(self, widget_name):
         return self.builder.get_object(widget_name)
