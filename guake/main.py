@@ -359,7 +359,7 @@ def main():
         dest="support",
         action="store_true",
         default=False,
-        help=_("Show support infomation"),
+        help=_("Show support information"),
     )
 
     # checking mandatory dependencies

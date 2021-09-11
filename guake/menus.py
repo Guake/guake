@@ -77,7 +77,7 @@ def mk_terminal_context_menu(terminal, window, settings, callback_object):
     mi.connect("activate", callback_object.on_copy_clipboard)
     menu.add(mi)
     if get_link_under_cursor(terminal) is not None:
-        mi = Gtk.MenuItem(_("Copy Url"))
+        mi = Gtk.MenuItem(_("Copy URL"))
         mi.connect("activate", callback_object.on_copy_url_clipboard)
         menu.add(mi)
     mi = Gtk.MenuItem(_("Paste"))

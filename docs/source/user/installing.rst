@@ -15,12 +15,12 @@ Ubuntu and Debian users will use ``sudo apt install guake``.
 Fedora
 ------
 
-Tested in 29:
+Tested in Fedora 34:
 We can use dnf to install it.
 
 .. code-block:: bash
 
-    $ sudo dnf install -y guake
+    $ sudo dnf install guake
 
 Then you can open it via:
 
@@ -34,7 +34,7 @@ You may notice the style may have some error. You can fix this by installing and
 
 .. code-block:: bash
 
-    $ sudo dnf install -y arc-theme gnome-tweaks
+    $ sudo dnf install arc-theme gnome-tweaks
 
 Then use
 

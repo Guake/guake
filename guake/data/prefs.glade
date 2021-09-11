@@ -501,7 +501,7 @@
                                       <object class="GtkLabel" id="label1">
                                         <property name="visible">True</property>
                                         <property name="can_focus">False</property>
-                                        <property name="label" translatable="yes">Gtk Theme:</property>
+                                        <property name="label" translatable="yes">GTK Theme:</property>
                                       </object>
                                       <packing>
                                         <property name="expand">False</property>
@@ -566,7 +566,7 @@
                                       <object class="GtkFileChooserButton" id="custom_command_file_chooser">
                                         <property name="visible">True</property>
                                         <property name="can_focus">False</property>
-                                        <property name="title" translatable="yes">Please select a json file</property>
+                                        <property name="title" translatable="yes">Please select a JSON file</property>
                                         <signal name="file-set" handler="on_custom_command_file_chooser_file_changed" swapped="no"/>
                                       </object>
                                       <packing>
@@ -2592,7 +2592,7 @@ To disable a shortcut, press the "Backspace" key.</property>
 - &lt;b&gt;%(file_path)s&lt;/b&gt;: path to the file that has been clicked
 - &lt;b&gt;%(line_number)s&lt;/b&gt;: if your editor supports it, you can directly open the file to a given line number when found on the screen.
 
-For example, for sublime, use &lt;b&gt;subl %(file_path)s:%(line_number)s&lt;/b&gt;
+For example, use &lt;b&gt;subl %(file_path)s:%(line_number)s&lt;/b&gt; for Sublime Text.
 &lt;/i&gt;&lt;/small&gt;</property>
                                         <property name="use_markup">True</property>
                                         <property name="wrap">True</property>
@@ -2737,7 +2737,7 @@ For example, for sublime, use &lt;b&gt;subl %(file_path)s:%(line_number)s&lt;/b&
                                             <property name="can_focus">False</property>
                                             <property name="margin_top">12</property>
                                             <property name="margin_bottom">12</property>
-                                            <property name="label" translatable="yes">&lt;small&gt;In this dialog you can attach your own command or script to various guake events&lt;/small&gt;</property>
+                                            <property name="label" translatable="yes">&lt;small&gt;In this dialog you can attach your own command or script to various Guake events&lt;/small&gt;</property>
                                             <property name="use_markup">True</property>
                                           </object>
                                           <packing>
@@ -2866,7 +2866,7 @@ For example, for sublime, use &lt;b&gt;subl %(file_path)s:%(line_number)s&lt;/b&
                               <object class="GtkLabel" id="label51">
                                 <property name="visible">True</property>
                                 <property name="can_focus">False</property>
-                                <property name="label" translatable="yes">&lt;small&gt;&lt;i&gt;&lt;b&gt;Note:&lt;/b&gt; These options may cause some applications to behave incorrectly.  They are only here to allow you to work around certain applications and operating systems that expect different terminal behavior.&lt;/i&gt;&lt;/small&gt;</property>
+                                <property name="label" translatable="yes">&lt;small&gt;&lt;i&gt;&lt;b&gt;Note:&lt;/b&gt; These options may cause some applications to behave incorrectly. They are only here to allow you to work around certain applications and operating systems that expect different terminal behavior.&lt;/i&gt;&lt;/small&gt;</property>
                                 <property name="use_markup">True</property>
                                 <property name="wrap">True</property>
                               </object>
