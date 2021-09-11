@@ -515,22 +515,24 @@ class Guake(SimpleGladeApp):
         def loosefocus_callback(sleep_time):
             sleep(sleep_time)
 
-            if self.window.get_property("has-toplevel-focus") and (self.takefocus_time - self.lazy_losefocus_time) > 0:
+            if (
+                self.window.get_property("has-toplevel-focus")
+                and (self.takefocus_time - self.lazy_losefocus_time) > 0
+            ):
                 log.debug("Short term losefocus detected. Skip the hidding")
                 return
 
             if self.window.get_property("visible"):
-                from gi.repository import GLib
                 GLib.idle_add(hide_window_callback)
 
         if self.stub_for_postponed_losefocus_property:
             self.lazy_losefocus_time = get_server_time(self.window)
-            thread = Thread(target = loosefocus_callback, args = (0.3,))
+            thread = Thread(target=loosefocus_callback, args=(0.3,))
             thread.daemon = True
             thread.start()
             log.debug("Lazy losefocus check at %s", self.lazy_losefocus_time)
         else:
-            hide_window_callback(-1)
+            hide_window_callback()
 
     def on_window_takefocus(self, window, event):
         self.takefocus_time = get_server_time(self.window)
