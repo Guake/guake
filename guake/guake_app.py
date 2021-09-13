@@ -67,6 +67,7 @@ from guake.settings import Settings
 from guake.simplegladeapp import SimpleGladeApp
 from guake.theme import patch_gtk_theme
 from guake.theme import select_gtk_theme
+from guake.utils import BackgroundImageManager
 from guake.utils import FullscreenManager
 from guake.utils import HidePrevention
 from guake.utils import RectCalculator
@@ -166,6 +167,9 @@ class Guake(SimpleGladeApp):
         #     [(RootTerminalBox, TerminaBox, panes), ...]
         self.pending_restore_page_split = []
         self._failed_restore_page_split = []
+
+        # BackgroundImageManager
+        self.background_image_manager = BackgroundImageManager(self.window)
 
         # FullscreenManager
         self.fullscreen_manager = FullscreenManager(self.settings, self.window, self)
@@ -812,6 +816,15 @@ class Guake(SimpleGladeApp):
         self.settings.styleFont.triggerOnChangedValue(
             self.settings.styleFont, "allow-bold", user_data=user_data
         )
+        self.settings.general.triggerOnChangedValue(self.settings.general, "background-image-file")
+        self.settings.general.triggerOnChangedValue(
+            self.settings.general, "background-image-layout-mode"
+        )
+        self.settings.style.triggerOnChangedValue(self.settings.style, "cursor-shape")
+        self.settings.styleFont.triggerOnChangedValue(self.settings.styleFont, "style")
+        self.settings.styleFont.triggerOnChangedValue(self.settings.styleFont, "palette")
+        self.settings.styleFont.triggerOnChangedValue(self.settings.styleFont, "palette-name")
+        self.settings.styleFont.triggerOnChangedValue(self.settings.styleFont, "allow-bold")
         self.settings.styleBackground.triggerOnChangedValue(
             self.settings.styleBackground, "transparency", user_data=user_data
         )
@@ -1433,3 +1446,6 @@ class Guake(SimpleGladeApp):
             notifier.showMessage(_("Guake Terminal"), _("Your tabs has been restored!"), filename)
 
         log.info("Guake tabs restored from %s", session_file)
+
+    def load_background_image(self, filename):
+        self.background_image_manager.load_from_file(filename)

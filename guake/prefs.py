@@ -484,6 +484,20 @@ class PrefsCallbacks:
         """Changes the value of font_style in dconf"""
         self.settings.styleFont.set_string("style", fbtn.get_font_name())
 
+    def on_background_image_file_chooser_file_changed(self, fc):
+        self.settings.general.set_string(
+            "background-image-file", fc.get_filename() if fc.get_filename() else ""
+        )
+
+    def on_background_image_file_remove_clicked(self, btn):
+        filechooser = self.prefDlg.get_widget("background_image_filechooser")
+        filechooser.unselect_all()
+        self.on_background_image_file_chooser_file_changed(filechooser)
+
+    def on_background_image_layout_mode_changed(self, combo):
+        val = combo.get_active()
+        self.settings.general.set_int("background-image-layout-mode", val)
+
     def on_transparency_value_changed(self, hscale):
         """Changes the value of background_transparency in dconf"""
         value = hscale.get_value()
@@ -1138,6 +1152,15 @@ class PrefsDialog(SimpleGladeApp):
         # use bold is bright
         value = self.settings.styleFont.get_boolean("bold-is-bright")
         self.get_widget("bold_is_bright").set_active(value)
+
+        # background image file
+        filename = self.settings.general.get_string("background-image-file")
+        if os.path.exists(filename):
+            self.get_widget("background_image_filechooser").set_filename(filename)
+
+        # background image layout mode
+        value = self.settings.general.get_int("background-image-layout-mode")
+        self.get_widget("background_image_layout_mode").set_active(value)
 
         # palette
         self.fill_palette_names()
