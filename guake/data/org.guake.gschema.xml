@@ -6,6 +6,11 @@
         <child name="keybindings" schema="guake.keybindings"/>
     </schema>
     <schema id="guake.general" path="/apps/guake/general/">
+        <key name="schema-version" type="s">
+            <default>''</default>
+            <summary>Last used schema version</summary>
+            <description>If schema version is not equal to current guake version, the schema file is regenerated and this flag is set to the current guake version.</description>
+        </key>
         <key name="debug-mode" type="b">
             <default>false</default>
             <summary>Enable debug mode</summary>

@@ -101,6 +101,7 @@ class Guake(SimpleGladeApp):
     def __init__(self):
         def load_schema():
             log.info("Loading Gnome schema from: %s", SCHEMA_DIR)
+
             return Gio.SettingsSchemaSource.new_from_directory(
                 SCHEMA_DIR, Gio.SettingsSchemaSource.get_default(), False
             )
@@ -112,6 +113,16 @@ class Guake(SimpleGladeApp):
             try_to_compile_glib_schemas()
             schema_source = load_schema()
         self.settings = Settings(schema_source)
+
+        if (
+            "schema-version" not in self.settings.general.keys()
+            or self.settings.general.get_string("schema-version") != guake_version()
+        ):
+            log.exception("Schema from old guake version detected, regenerating schema")
+            try_to_compile_glib_schemas()
+            schema_source = load_schema()
+            self.settings = Settings(schema_source)
+            self.settings.general.set_string("schema-version", guake_version())
 
         log.info("Language previously loaded from: %s", LOCALE_DIR)
 
