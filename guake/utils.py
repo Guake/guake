@@ -23,6 +23,7 @@ import enum
 import logging
 import subprocess
 import time
+import os
 
 import cairo
 
