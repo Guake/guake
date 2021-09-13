@@ -120,7 +120,10 @@ class Guake(SimpleGladeApp):
             or self.settings.general.get_string("schema-version") != guake_version()
         ):
             log.exception("Schema from old guake version detected, regenerating schema")
-            try_to_compile_glib_schemas()
+            try:
+                try_to_compile_glib_schemas()
+            except subprocess.CalledProcessError:
+                log.exception("Schema in non user-editable location, attempting to continue")
             schema_source = load_schema()
             self.settings = Settings(schema_source)
             self.settings.general.set_string("schema-version", guake_version())
