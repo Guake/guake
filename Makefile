@@ -12,6 +12,7 @@ bindir = $(exec_prefix)/bin
 PYTHON_SITEDIRS_FOR_PREFIX="env PREFIX=$(PREFIX) $(PYTHON_INTERPRETER) scripts/all-sitedirs-in-prefix.py"
 ROOT_DIR=$(shell pwd)
 DATA_DIR=$(ROOT_DIR)/guake/data
+COMPILE_SCHEMA:=1
 
 datarootdir:=$(PREFIX)/share
 datadir:=$(datarootdir)
@@ -141,8 +142,7 @@ install-schemas:
 	install -Dm644 "$(DEV_DATA_DIR)/org.guake.gschema.xml" "$(DESTDIR)$(SCHEMA_DIR)/"
 
 compile-shemas:
-	glib-compile-schemas $(DESTDIR)$(gsettingsschemadir)
-
+	if [ $(COMPILE_SCHEMA) = 1 ]; then glib-compile-schemas $(DESTDIR)$(gsettingsschemadir); fi
 
 uninstall-system: uninstall-schemas uninstall-locale
 	$(SHELL) -c $(PYTHON_SITEDIRS_FOR_PREFIX) \
