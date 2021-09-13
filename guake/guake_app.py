@@ -816,15 +816,15 @@ class Guake(SimpleGladeApp):
         self.settings.styleFont.triggerOnChangedValue(
             self.settings.styleFont, "allow-bold", user_data=user_data
         )
-        self.settings.general.triggerOnChangedValue(self.settings.general, 'background-image-file')
+        self.settings.general.triggerOnChangedValue(self.settings.general, "background-image-file")
         self.settings.general.triggerOnChangedValue(
-            self.settings.general, 'background-image-layout-mode'
+            self.settings.general, "background-image-layout-mode"
         )
-        self.settings.style.triggerOnChangedValue(self.settings.style, 'cursor-shape')
-        self.settings.styleFont.triggerOnChangedValue(self.settings.styleFont, 'style')
-        self.settings.styleFont.triggerOnChangedValue(self.settings.styleFont, 'palette')
-        self.settings.styleFont.triggerOnChangedValue(self.settings.styleFont, 'palette-name')
-        self.settings.styleFont.triggerOnChangedValue(self.settings.styleFont, 'allow-bold')
+        self.settings.style.triggerOnChangedValue(self.settings.style, "cursor-shape")
+        self.settings.styleFont.triggerOnChangedValue(self.settings.styleFont, "style")
+        self.settings.styleFont.triggerOnChangedValue(self.settings.styleFont, "palette")
+        self.settings.styleFont.triggerOnChangedValue(self.settings.styleFont, "palette-name")
+        self.settings.styleFont.triggerOnChangedValue(self.settings.styleFont, "allow-bold")
         self.settings.styleBackground.triggerOnChangedValue(
             self.settings.styleBackground, "transparency", user_data=user_data
         )

@@ -353,7 +353,7 @@ class TerminalNotebook(Gtk.Notebook):
 
         if self.guake:
             # Attack background image draw callback to root terminal box
-            root_terminal_box.connect_after('draw', self.guake.background_image_manager.draw)
+            root_terminal_box.connect_after("draw", self.guake.background_image_manager.draw)
         return root_terminal_box, page_num, terminal
 
     def terminal_spawn(self, directory=None):
