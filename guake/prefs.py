@@ -366,6 +366,10 @@ class PrefsCallbacks:
         """Save `set_window_title` property value in dconf"""
         self.settings.general.set_boolean("set-window-title", chk.get_active())
 
+    def on_copy_on_select_toggled(self, chk):
+        """Changes the value of copy_on_select in dconf"""
+        self.settings.general.set_boolean("copy-on-select", chk.get_active())
+
     def on_tab_name_display_changed(self, combo):
         """Save `display-tab-names` property value in dconf"""
         self.settings.general.set_int("display-tab-names", combo.get_active())
@@ -1139,6 +1143,10 @@ class PrefsDialog(SimpleGladeApp):
         value = self.settings.general.get_boolean("use-default-font")
         self.get_widget("use_default_font").set_active(value)
         self.get_widget("font_style").set_sensitive(not value)
+
+        # use copy on select
+        value = self.settings.general.get_boolean("copy-on-select")
+        self.get_widget("copy_on_select").set_active(value)
 
         # font
         value = self.settings.styleFont.get_string("style")

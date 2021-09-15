@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Generated with glade 3.22.1 -->
+<!-- Generated with glade 3.22.2 -->
 <interface domain="guake">
   <requires lib="gtk+" version="3.18"/>
   <object class="GtkImage" id="image1">
@@ -468,7 +468,19 @@
                                           </packing>
                                         </child>
                                         <child>
-                                          <placeholder/>
+                                          <object class="GtkCheckButton" id="copy_on_select">
+                                            <property name="label" translatable="yes">Copy on select</property>
+                                            <property name="visible">True</property>
+                                            <property name="can_focus">True</property>
+                                            <property name="receives_default">False</property>
+                                            <property name="halign">start</property>
+                                            <property name="draw_indicator">True</property>
+                                            <signal name="toggled" handler="on_copy_on_select_toggled" swapped="no"/>
+                                          </object>
+                                          <packing>
+                                            <property name="left_attach">1</property>
+                                            <property name="top_attach">4</property>
+                                          </packing>
                                         </child>
                                       </object>
                                     </child>
@@ -809,7 +821,7 @@
                                                 <property name="visible">True</property>
                                                 <property name="can_focus">True</property>
                                                 <items>
-                                                  <item translatable="yes" >Full Path</item>
+                                                  <item translatable="yes">Full Path</item>
                                                   <item translatable="yes">Abbreviated Path</item>
                                                   <item translatable="yes">Last Segment</item>
                                                 </items>
