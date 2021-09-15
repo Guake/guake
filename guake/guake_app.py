@@ -114,6 +114,7 @@ class Guake(SimpleGladeApp):
             try_to_compile_glib_schemas()
             schema_source = load_schema()
         self.settings = Settings(schema_source)
+        self.accel_group = None
 
         if (
             "schema-version" not in self.settings.general.keys()

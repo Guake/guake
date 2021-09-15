@@ -636,6 +636,7 @@ class PrefsDialog(SimpleGladeApp):
 
         renderer = Gtk.CellRendererAccel()
         renderer.set_property("editable", True)
+        renderer.set_property("accel-mode", 1)
         renderer.connect("accel-edited", self.on_accel_edited)
         renderer.connect("accel-cleared", self.on_accel_cleared)
         column = Gtk.TreeViewColumn(_("Shortcut"), renderer, text=2)
