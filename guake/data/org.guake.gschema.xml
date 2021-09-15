@@ -404,12 +404,12 @@
             <description>Move the current tab to the right</description>
         </key>
         <key name="previous-tab" type="s">
-            <default>'&lt;Control&gt;Page_Up'</default>
+            <default>'&lt;Control&gt;&lt;Shift&gt;Tab'</default>
             <summary>Previous tab.</summary>
             <description>Shows the previous tab.</description>
         </key>
         <key name="next-tab" type="s">
-            <default>'&lt;Control&gt;Page_Down'</default>
+            <default>'&lt;Control&gt;Tab'</default>
             <summary>Next tab.</summary>
             <description>Shows the next tab.</description>
         </key>

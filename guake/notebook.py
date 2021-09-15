@@ -359,6 +359,10 @@ class TerminalNotebook(Gtk.Notebook):
     def terminal_spawn(self, directory=None):
         terminal = GuakeTerminal(self.guake)
         terminal.grab_focus()
+        terminal.connect(
+            "key-press-event",
+            lambda x, y: self.guake.accel_group.activate(x, y) if self.guake.accel_group else False,
+        )
         if not isinstance(directory, str):
             directory = os.environ["HOME"]
             try:
