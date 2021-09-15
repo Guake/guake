@@ -105,6 +105,7 @@ class GuakeTerminal(Vte.Terminal):
         self.handler_ids = []
         self.handler_ids.append(self.connect("button-press-event", self.button_press))
         self.connect("child-exited", self.on_child_exited)  # Call on_child_exited, don't remove it
+        self.connect("selection-changed", self.copy_on_select)
         self.matched_value = ""
         self.font_scale_index = 0
         self._pid = None
@@ -162,6 +163,10 @@ class GuakeTerminal(Vte.Terminal):
         elif self.matched_value:
             guake_clipboard = Gtk.Clipboard.get_default(self.guake.window.get_display())
             guake_clipboard.set_text(self.matched_value, len(self.matched_value))
+
+    def copy_on_select(self, event):
+        if self.guake.settings.general.get_boolean("copy-on-select") and self.get_has_selection():
+            self.copy_clipboard()
 
     def configure_terminal(self):
         """Sets all customized properties on the terminal"""

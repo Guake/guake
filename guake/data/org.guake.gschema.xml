@@ -291,6 +291,11 @@
             <summary>Show close buttons for tabs</summary>
             <description>Show close buttons next to tab titles</description>
         </key>
+        <key name="copy-on-select" type="b">
+            <default>false</default>
+            <summary>Copy selected text if enabled.</summary>
+            <description>Copy the selected text.</description>
+        </key>
     </schema>
     <schema id="guake.style" path="/apps/guake/style/">
         <key name="cursor-blink-mode" type="i">
