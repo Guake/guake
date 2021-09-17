@@ -32,7 +32,7 @@ pyfakefs = "*"
 pytest-cov = "*"
 pew = "*"
 black = "==21.8b0"
-dephell = "*"
+flakehell = "*"
 toml = "*"
 dataclasses = "*"
 
