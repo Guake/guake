@@ -536,7 +536,7 @@ class NotebookManager(GObject.Object):
         return self.get_notebook(self.current_notebook)
 
     def has_notebook_for_workspace(self, workspace_index):
-        return workspace_index in self.notebooks.keys()
+        return workspace_index in self.notebooks
 
     def set_workspace(self, index: int):
         self.notebook_parent.remove(self.get_current_notebook())

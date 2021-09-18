@@ -415,7 +415,7 @@ class Guake(SimpleGladeApp):
             c.parse("#" + bgcolor)
             bgcolor = c
         if not isinstance(bgcolor, Gdk.RGBA):
-            raise TypeError("color should be Gdk.RGBA, is: {!r}".format(bgcolor))
+            raise TypeError(f"color should be Gdk.RGBA, is: {bgcolor}")
         bgcolor = self._apply_transparency_to_color(bgcolor)
         log.debug("setting background color to: %r", bgcolor)
 
@@ -433,7 +433,7 @@ class Guake(SimpleGladeApp):
             c.parse("#" + fgcolor)
             fgcolor = c
         if not isinstance(fgcolor, Gdk.RGBA):
-            raise TypeError("color should be Gdk.RGBA, is: {!r}".format(fgcolor))
+            raise TypeError(f"color should be Gdk.RGBA, is: {fgcolor}")
         log.debug("setting background color to: %r", fgcolor)
 
         if current_terminal_only:
@@ -1266,9 +1266,7 @@ class Guake(SimpleGladeApp):
             if search_query:
                 # TODO search provider should be selectable (someone might
                 # prefer bing.com, the internet is a strange place ¯\_(ツ)_/¯ )
-                search_url = "https://www.google.com/search?q={!s}&safe=off".format(
-                    search_query,
-                )
+                search_url = f"https://www.google.com/search?q={search_query}&safe=off"
                 Gtk.show_uri(self.window.get_screen(), search_url, get_server_time(self.window))
         return True
 
@@ -1280,7 +1278,7 @@ class Guake(SimpleGladeApp):
 
     def execute_hook(self, event_name):
         """Execute shell commands related to current event_name"""
-        hook = self.settings.hooks.get_string("{!s}".format(event_name))
+        hook = self.settings.hooks.get_string(f"{event_name}")
         if hook is not None and hook != "":
             hook = hook.split()
             try:
@@ -1342,7 +1340,7 @@ class Guake(SimpleGladeApp):
         if not self.get_xdg_config_directory().exists():
             self.get_xdg_config_directory().mkdir(parents=True)
         session_file = self.get_xdg_config_directory() / filename
-        with session_file.open("w") as f:
+        with session_file.open("w", encoding="utf-8") as f:
             json.dump(config, f, ensure_ascii=False, indent=4)
         log.info("Guake tabs saved to %s", session_file)
 
@@ -1351,14 +1349,14 @@ class Guake(SimpleGladeApp):
         if not session_file.exists():
             log.info("Cannot find session.json file")
             return
-        with session_file.open() as f:
+        with session_file.open(encoding="utf-8") as f:
             try:
                 config = json.load(f)
             except Exception:
                 log.warning("%s is broken", session_file)
                 shutil.copy(
                     session_file,
-                    self.get_xdg_config_directory() / "{0}.bak".format(filename),
+                    self.get_xdg_config_directory() / f"{filename}.bak",
                 )
                 img_filename = pixmapfile("guake-notification.png")
                 notifier.showMessage(
@@ -1436,9 +1434,11 @@ class Guake(SimpleGladeApp):
             log.warning("%s schema is broken", session_file)
             shutil.copy(
                 session_file,
-                self.get_xdg_config_directory() / "{}.bak".format(filename),
+                self.get_xdg_config_directory() / f"{filename}.bak",
             )
-            with (self.get_xdg_config_directory() / "{}.log.err".format(filename)).open("w") as f:
+            with (self.get_xdg_config_directory() / f"{filename}.log.err").open(
+                "w", encoding="utf-8"
+            ) as f:
                 traceback.print_exc(file=f)
             img_filename = pixmapfile("guake-notification.png")
             notifier.showMessage(

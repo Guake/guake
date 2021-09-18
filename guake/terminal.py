@@ -247,7 +247,7 @@ class GuakeTerminal(Vte.Terminal):
         directory = os.path.expanduser("~")
         if self.pid is not None:
             try:
-                cwd = os.readlink("/proc/{}/cwd".format(self.pid))
+                cwd = os.readlink(f"/proc/{self.pid}/cwd")
             except Exception:
                 return directory
             if os.path.exists(cwd):
@@ -303,7 +303,7 @@ class GuakeTerminal(Vte.Terminal):
                 return
             with pt.open() as f:
                 for i, line in enumerate(f.readlines()):
-                    if line.startswith("def {}".format(py_func)):
+                    if line.startswith(f"def {py_func}"):
                         return i + 1
                         break
 
@@ -449,13 +449,13 @@ class GuakeTerminal(Vte.Terminal):
                 # ready to be used.
                 pass
             elif TERMINAL_MATCH_TAGS[tag] == "http":
-                value = "http://%s" % value
+                value = f"http://{value}"
             elif TERMINAL_MATCH_TAGS[tag] == "https":
-                value = "https://%s" % value
+                value = f"https://{value}"
             elif TERMINAL_MATCH_TAGS[tag] == "ftp":
-                value = "ftp://%s" % value
+                value = f"ftp://{value}"
             elif TERMINAL_MATCH_TAGS[tag] == "email":
-                value = "mailto:%s" % value
+                value = f"mailto:{value}"
 
         if value:
             return value
@@ -592,7 +592,7 @@ class GuakeTerminal(Vte.Terminal):
 
     def set_color_foreground_custom(self, fgcolor, *args, **kwargs):
         """Sets custom foreground color for this terminal"""
-        print("set_color_foreground_custom: %s" % self.uuid)
+        print(f"set_color_foreground_custom: {self.uuid}")
         self.custom_fgcolor = fgcolor
         super().set_color_foreground(self.custom_fgcolor, *args, **kwargs)
 
