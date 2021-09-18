@@ -415,10 +415,10 @@ def main():
         from guake import vte_version
         from guake import vte_runtime_version
 
-        print("Guake Terminal: {}".format(guake_version()))
-        print("VTE: {}".format(vte_version()))
-        print("VTE runtime: {}".format(vte_runtime_version()))
-        print("Gtk: {}".format(gtk_version()))
+        print(f"Guake Terminal: {guake_version()}")
+        print(f"VTE: {vte_version()}")
+        print(f"VTE runtime: {vte_runtime_version()}")
+        print(f"Gtk: {gtk_version()}")
         sys.exit(0)
 
     if options.save_preferences and options.restore_preferences:
@@ -496,17 +496,17 @@ def main():
         if 0 <= selected < tab_count:
             remote_object.select_tab(selected)
         else:
-            sys.stderr.write("invalid index: %d\n" % selected)
+            sys.stderr.write(f"invalid index: {selected}\n")
         only_show_hide = options.show
 
     if options.selected_tab:
         selected = remote_object.get_selected_tab()
-        sys.stdout.write("%d\n" % selected)
+        sys.stdout.write(f"{selected}\n")
         only_show_hide = options.show
 
     if options.selected_tablabel:
         selectedlabel = remote_object.get_selected_tablabel()
-        sys.stdout.write("%s\n" % selectedlabel)
+        sys.stdout.write(f"{selectedlabel}\n")
         only_show_hide = options.show
 
     if options.split_vertical:
@@ -519,7 +519,7 @@ def main():
 
     if options.selected_terminal:
         selected = remote_object.get_selected_terminal()
-        sys.stdout.write("%d\n" % selected)
+        sys.stdout.write(f"{selected}\n")
         only_show_hide = options.show
 
     if options.select_terminal:
@@ -528,7 +528,7 @@ def main():
         if 0 <= selected < term_count:
             remote_object.select_terminal(selected)
         else:
-            sys.stderr.write("invalid index: %d\n" % selected)
+            sys.stderr.write(f"invalid index: {selected}\n")
         only_show_hide = options.show
 
     if options.command:

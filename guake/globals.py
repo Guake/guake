@@ -62,7 +62,7 @@ def bindtextdomain(app_name, locale_dir=None):
 
 def is_run_from_git_workdir():
     self_path = os.path.abspath(inspect.getfile(inspect.currentframe()))
-    return os.path.exists("%s.in" % self_path)
+    return os.path.exists(f"{self_path}.in")
 
 
 NAME = "guake"

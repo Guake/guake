@@ -831,7 +831,7 @@ class PrefsDialog(SimpleGladeApp):
 
         palette = []
         for i in range(18):
-            palette.append(hexify_color(self.get_widget("palette_%d" % i).get_color()))
+            palette.append(hexify_color(self.get_widget(f"palette_{i}").get_color()))
         palette = ":".join(palette)
         self.settings.styleFont.set_string("palette", palette)
         self.settings.styleFont.set_string("palette-name", _("Custom"))
@@ -901,7 +901,7 @@ class PrefsDialog(SimpleGladeApp):
         palette = palette.split(":")
         for i, pal in enumerate(palette):
             x, color = Gdk.Color.parse(pal)
-            self.get_widget("palette_%d" % i).set_color(color)
+            self.get_widget(f"palette_{i}").set_color(color)
 
     def reload_erase_combos(self, btn=None):
         """Read from dconf the value of compat_{backspace,delete} vars
@@ -1119,7 +1119,7 @@ class PrefsDialog(SimpleGladeApp):
         text = Gtk.TextBuffer()
         text = self.get_widget("quick_open_supported_patterns").get_buffer()
         for title, matcher, _useless in QUICK_OPEN_MATCHERS:
-            text.insert_at_cursor("%s: %s\n" % (title, matcher))
+            text.insert_at_cursor(f"{title}: {matcher}\n")
         self.get_widget("quick_open_supported_patterns").set_buffer(text)
 
         value = self.settings.general.get_string("quick-open-command-line")
@@ -1400,7 +1400,7 @@ class KeyEntry:
         self.mask = mask
 
     def __repr__(self):
-        return "KeyEntry(%d, %d)" % (self.keycode, self.mask)
+        return f"KeyEntry({self.keycode}, {self.mask})"
 
     def __eq__(self, rval):
         return self.keycode == rval.keycode and self.mask == rval.mask
