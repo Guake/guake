@@ -191,7 +191,7 @@ black-check:
 	PIPENV_IGNORE_VIRTUALENVS=1 pipenv run black --check $(MODULE)
 
 flake8:
-	PIPENV_IGNORE_VIRTUALENVS=1 pipenv run python setup.py flake8
+	PIPENV_IGNORE_VIRTUALENVS=1 pipenv run flake8 guake
 
 pylint:
 	PIPENV_IGNORE_VIRTUALENVS=1 pipenv run pylint --rcfile=.pylintrc --output-format=colorized $(MODULE)
