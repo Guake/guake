@@ -43,15 +43,15 @@ msgstr "Tempelkan"
 
 #: ../guake/data/guake.glade.h:3 ../src/guake/prefs.py:79
 msgid "Toggle Fullscreen"
-msgstr ""
+msgstr "Beralih layar penuh"
 
 #: ../guake/data/guake.glade.h:4
 msgid "Save to File..."
-msgstr ""
+msgstr "Simpan ke File..."
 
 #: ../guake/data/guake.glade.h:5 ../src/guake/prefs.py:85
 msgid "Reset terminal"
-msgstr ""
+msgstr "Setel ulang terminal"
 
 #: ../guake/data/guake.glade.h:6
 msgid "Find..."
@@ -94,7 +94,6 @@ msgid "Guake!"
 msgstr "Guake!"
 
 #: ../guake/data/guake.glade.h:16
-#, fuzzy
 msgid "Add a new tab"
 msgstr "Tambah tab baru"
 
@@ -319,7 +318,6 @@ msgid "Use the system fixed width font"
 msgstr "Gunakan lebar font pada sistem"
 
 #: ../guake/data/prefs.glade.h:61
-#, fuzzy
 msgid "Font:"
 msgstr "Font:"
 
@@ -345,6 +343,9 @@ msgid ""
 "I-Beam\n"
 "Underline"
 msgstr ""
+"Block\n"
+"I-Beam\n"
+"Garis bawah"
 
 #: ../guake/data/prefs.glade.h:69
 msgid ""
@@ -352,14 +353,17 @@ msgid ""
 "Blink on\n"
 "Blink off"
 msgstr ""
+"Ikuti pengaturan GTK+\n"
+"Berkedip nyala\n"
+"Berkedip mati"
 
 #: ../guake/data/prefs.glade.h:72
 msgid "Cursor blink mode:"
-msgstr ""
+msgstr "Mode kedipan kursor:"
 
 #: ../guake/data/prefs.glade.h:73
 msgid "Allow bold font"
-msgstr ""
+msgstr "Izinkan font tebal"
 
 #: ../guake/data/prefs.glade.h:74
 msgid "<b>Palette</b>"
@@ -367,27 +371,27 @@ msgstr "<b>Palet</b>"
 
 #: ../guake/data/prefs.glade.h:75
 msgid "Built-in schemes:"
-msgstr ""
+msgstr "Skema bawaan:"
 
 #: ../guake/data/prefs.glade.h:76
 msgid "Color palette:"
-msgstr ""
+msgstr "Palet warna:"
 
 #: ../guake/data/prefs.glade.h:77
 msgid "Font color"
-msgstr ""
+msgstr "Warna font"
 
 #: ../guake/data/prefs.glade.h:78
 msgid "Background color"
-msgstr ""
+msgstr "Warna latar belakang"
 
 #: ../guake/data/prefs.glade.h:79
 msgid "Use font and background color from the palette"
-msgstr ""
+msgstr "Gunakan font dan warna latar belakang dari palet"
 
 #: ../guake/data/prefs.glade.h:80
 msgid "Demo:"
-msgstr ""
+msgstr "Demo:"
 
 #: ../guake/data/prefs.glade.h:81
 msgid "<b>Effects</b>"
@@ -395,15 +399,15 @@ msgstr "<b>Efek</b>"
 
 #: ../guake/data/prefs.glade.h:82
 msgid "Transparency:"
-msgstr ""
+msgstr "Transparansi:"
 
 #: ../guake/data/prefs.glade.h:83
 msgid "Background image:"
-msgstr ""
+msgstr "Gambar latar belakang:"
 
 #: ../guake/data/prefs.glade.h:84 ../src/guake/prefs.py:130
 msgid "Appearance"
-msgstr ""
+msgstr "Tampilan"
 
 #: ../guake/data/prefs.glade.h:85
 msgid ""
@@ -495,16 +499,16 @@ msgstr "<b>Kompabilitas papan ketik</b>"
 
 #: ../guake/data/prefs.glade.h:110
 msgid "Compatibility"
-msgstr ""
+msgstr "Kompabilitas"
 
 #: ../src/guake/about.py:47 ../src/guake/gconfhandler.py:439
 #: ../src/guake/guake_app.py:181 ../src/guake/guake_app.py:378
 msgid "Guake Terminal"
-msgstr ""
+msgstr "Terminal Guake"
 
 #: ../src/guake/gconfhandler.py:369 ../src/guake/guake_app.py:1386
 msgid "Terminal"
-msgstr ""
+msgstr "Terminal"
 
 #: ../src/guake/gconfhandler.py:440
 #, python-format
@@ -1415,7 +1419,7 @@ msgstr ""
 
 #: guake/menus.py:26
 msgid "Reset custom colors"
-msgstr ""
+msgstr "Setel ulang warna kustom"
 
 #: guake/dialogs.py:101
 msgid "Do you want to reset custom colors for this tab?"
