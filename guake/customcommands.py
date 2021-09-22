@@ -4,8 +4,6 @@ import os
 import gi
 import logging
 
-from locale import gettext as _
-
 gi.require_version("Gtk", "3.0")
 from gi.repository import Gtk
 
@@ -55,7 +53,7 @@ class CustomCommands:
             log.error("Custom file does not exit: %s", file_name)
             return None
         try:
-            with open(file_name) as f:
+            with open(file_name, encoding="utf-8") as f:
                 data_file = f.read()
                 return json.loads(data_file)
         except Exception as e:
