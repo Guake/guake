@@ -61,9 +61,26 @@ jobs:
           # prepare for deployment
           make generate-paths
 
+      - name: Stores dists (Python 3.8)
+        uses: actions/upload-artifact@v2
+        if: "${{ matrix.python-version }} == 3.8"
+        with:
+          name: dists
+          path: dist/*
+
+  release-test:
+    runs-on: ubuntu-latest
+    needs:
+      - build
+    if: github.ref == 'refs/heads/master'
+    steps:
+      - name: Retrieve dists
+        uses: actions/download-artifact@v2
+        with:
+          name: dists
       - name: Publish distribution 📦 to Test PyPI
         uses: pypa/gh-action-pypi-publish@master
-        if: github.ref == 'refs/heads/master'
         with:
+          verify_metadata: false
           password: ${{ secrets.TEST_PYPI_API_TOKEN }}
           repository_url: https://test.pypi.org/legacy/
