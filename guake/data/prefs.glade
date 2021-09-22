@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Generated with glade 3.22.1 -->
+<!-- Generated with glade 3.22.2 -->
 <interface domain="guake">
   <requires lib="gtk+" version="3.18"/>
   <object class="GtkImage" id="image1">
@@ -468,7 +468,19 @@
                                           </packing>
                                         </child>
                                         <child>
-                                          <placeholder/>
+                                          <object class="GtkCheckButton" id="copy_on_select">
+                                            <property name="label" translatable="yes">Copy on select</property>
+                                            <property name="visible">True</property>
+                                            <property name="can_focus">True</property>
+                                            <property name="receives_default">False</property>
+                                            <property name="halign">start</property>
+                                            <property name="draw_indicator">True</property>
+                                            <signal name="toggled" handler="on_copy_on_select_toggled" swapped="no"/>
+                                          </object>
+                                          <packing>
+                                            <property name="left_attach">1</property>
+                                            <property name="top_attach">4</property>
+                                          </packing>
                                         </child>
                                       </object>
                                     </child>
@@ -496,6 +508,34 @@
                                 <property name="orientation">vertical</property>
                                 <property name="spacing">6</property>
                                 <child>
+                                  <object class="GtkBox" id="box4">
+                                    <property name="visible">True</property>
+                                    <property name="can_focus">False</property>
+                                    <property name="spacing">12</property>
+                                    <child>
+                                      <object class="GtkCheckButton" id="gtk_use_system_default_theme">
+                                        <property name="label" translatable="yes">Use system default theme</property>
+                                        <property name="visible">True</property>
+                                        <property name="can_focus">True</property>
+                                        <property name="receives_default">False</property>
+                                        <property name="draw_indicator">True</property>
+                                        <signal name="toggled" handler="on_gtk_use_system_default_theme_toggled" swapped="no"/>
+                                        <signal name="toggled" handler="toggle_use_theme_sensitivity" swapped="no"/>
+                                      </object>
+                                      <packing>
+                                        <property name="expand">False</property>
+                                        <property name="fill">True</property>
+                                        <property name="position">0</property>
+                                      </packing>
+                                    </child>
+                                  </object>
+                                  <packing>
+                                    <property name="expand">False</property>
+                                    <property name="fill">True</property>
+                                    <property name="position">0</property>
+                                  </packing>
+                                </child>
+                                <child>
                                   <object class="GtkBox" id="box3">
                                     <property name="visible">True</property>
                                     <property name="can_focus">False</property>
@@ -504,7 +544,7 @@
                                       <object class="GtkLabel" id="label1">
                                         <property name="visible">True</property>
                                         <property name="can_focus">False</property>
-                                        <property name="label" translatable="yes">Gtk Theme:</property>
+                                        <property name="label" translatable="yes">GTK Theme:</property>
                                       </object>
                                       <packing>
                                         <property name="expand">False</property>
@@ -545,7 +585,7 @@
                                   <packing>
                                     <property name="expand">False</property>
                                     <property name="fill">True</property>
-                                    <property name="position">0</property>
+                                    <property name="position">1</property>
                                   </packing>
                                 </child>
                                 <child>
@@ -569,7 +609,7 @@
                                       <object class="GtkFileChooserButton" id="custom_command_file_chooser">
                                         <property name="visible">True</property>
                                         <property name="can_focus">False</property>
-                                        <property name="title" translatable="yes">Please select a json file</property>
+                                        <property name="title" translatable="yes">Please select a JSON file</property>
                                         <signal name="file-set" handler="on_custom_command_file_chooser_file_changed" swapped="no"/>
                                       </object>
                                       <packing>
@@ -582,7 +622,7 @@
                                   <packing>
                                     <property name="expand">False</property>
                                     <property name="fill">True</property>
-                                    <property name="position">1</property>
+                                    <property name="position">2</property>
                                   </packing>
                                 </child>
                               </object>
@@ -733,6 +773,7 @@
                                             <property name="use_underline">True</property>
                                             <property name="draw_indicator">True</property>
                                             <signal name="toggled" handler="on_window_tabbar_toggled" swapped="no"/>
+                                            <signal name="toggled" handler="toggle_show_tabbar_sensitivity" swapped="no"/>
                                           </object>
                                           <packing>
                                             <property name="left_attach">0</property>
@@ -781,7 +822,7 @@
                                                 <property name="visible">True</property>
                                                 <property name="can_focus">True</property>
                                                 <items>
-                                                  <item translatable="yes" >Full Path</item>
+                                                  <item translatable="yes">Full Path</item>
                                                   <item translatable="yes">Abbreviated Path</item>
                                                   <item translatable="yes">Last Segment</item>
                                                 </items>
@@ -890,6 +931,21 @@
                                           <packing>
                                             <property name="left_attach">1</property>
                                             <property name="top_attach">2</property>
+                                          </packing>
+                                        </child>
+                                        <child>
+                                          <object class="GtkCheckButton" id="hide_tabs_if_one_tab">
+                                            <property name="label" translatable="yes">Hide tab bar if there is only one tab</property>
+                                            <property name="visible">True</property>
+                                            <property name="can_focus">True</property>
+                                            <property name="receives_default">True</property>
+                                            <property name="active">True</property>
+                                            <property name="draw_indicator">True</property>
+                                            <signal name="toggled" handler="on_hide_tabs_if_one_tab_toggled" swapped="no"/>
+                                          </object>
+                                          <packing>
+                                            <property name="left_attach">1</property>
+                                            <property name="top_attach">4</property>
                                           </packing>
                                         </child>
                                         <child>
@@ -1862,7 +1918,7 @@
                                     <property name="top_attach">3</property>
                                   </packing>
                                 </child>
-                                                                <child>
+                                <child>
                                   <object class="GtkBox">
                                     <property name="visible">True</property>
                                     <property name="can_focus">False</property>
@@ -2675,7 +2731,7 @@ To disable a shortcut, press the "Backspace" key.</property>
 - &lt;b&gt;%(file_path)s&lt;/b&gt;: path to the file that has been clicked
 - &lt;b&gt;%(line_number)s&lt;/b&gt;: if your editor supports it, you can directly open the file to a given line number when found on the screen.
 
-For example, for sublime, use &lt;b&gt;subl %(file_path)s:%(line_number)s&lt;/b&gt;
+For example, use &lt;b&gt;subl %(file_path)s:%(line_number)s&lt;/b&gt; for Sublime Text.
 &lt;/i&gt;&lt;/small&gt;</property>
                                         <property name="use_markup">True</property>
                                         <property name="wrap">True</property>
@@ -2820,7 +2876,7 @@ For example, for sublime, use &lt;b&gt;subl %(file_path)s:%(line_number)s&lt;/b&
                                             <property name="can_focus">False</property>
                                             <property name="margin_top">12</property>
                                             <property name="margin_bottom">12</property>
-                                            <property name="label" translatable="yes">&lt;small&gt;In this dialog you can attach your own command or script to various guake events&lt;/small&gt;</property>
+                                            <property name="label" translatable="yes">&lt;small&gt;In this dialog you can attach your own command or script to various Guake events&lt;/small&gt;</property>
                                             <property name="use_markup">True</property>
                                           </object>
                                           <packing>
@@ -2949,7 +3005,7 @@ For example, for sublime, use &lt;b&gt;subl %(file_path)s:%(line_number)s&lt;/b&
                               <object class="GtkLabel" id="label51">
                                 <property name="visible">True</property>
                                 <property name="can_focus">False</property>
-                                <property name="label" translatable="yes">&lt;small&gt;&lt;i&gt;&lt;b&gt;Note:&lt;/b&gt; These options may cause some applications to behave incorrectly.  They are only here to allow you to work around certain applications and operating systems that expect different terminal behavior.&lt;/i&gt;&lt;/small&gt;</property>
+                                <property name="label" translatable="yes">&lt;small&gt;&lt;i&gt;&lt;b&gt;Note:&lt;/b&gt; These options may cause some applications to behave incorrectly. They are only here to allow you to work around certain applications and operating systems that expect different terminal behavior.&lt;/i&gt;&lt;/small&gt;</property>
                                 <property name="use_markup">True</property>
                                 <property name="wrap">True</property>
                               </object>
