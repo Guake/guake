@@ -51,7 +51,6 @@ def bindtextdomain(app_name, locale_dir=None):
 
     # pylint: disable=import-outside-toplevel
     import locale
-    from locale import gettext as _
 
     # pylint: enable=import-outside-toplevel
 
@@ -63,7 +62,7 @@ def bindtextdomain(app_name, locale_dir=None):
 
 def is_run_from_git_workdir():
     self_path = os.path.abspath(inspect.getfile(inspect.currentframe()))
-    return os.path.exists("%s.in" % self_path)
+    return os.path.exists(f"{self_path}.in")
 
 
 NAME = "guake"
@@ -80,7 +79,7 @@ TERMINAL_MATCH_TAGS = ("schema", "http", "https", "email", "ftp")
 TERMINAL_MATCH_EXPRS = [
     r"(news:|telnet:|nntp:|file:\/|https?:|ftps?:|webcal:)\/\/([-[:alnum:]]+"
     r"(:[-[:alnum:],?;.:\/!%$^\*&~\"#']+)?\@)?[-[:alnum:]]+(\.[-[:alnum:]]+)*"
-    r"(:[0-9]{1,5})?(\/[-[:alnum:]_$.+!*(),;:@&=?\/~#'%]*[^].> \t\r\n,\\\"])?",
+    r"(:[0-9]{1,5})?(\/[-[:alnum:]_$.+!*(),;:@&=?\/~#%]*[^]'.>) \t\r\n,\\\"])?",
     r"(www|ftp)[-[:alnum:]]*\.[-[:alnum:]]+(\.[-[:alnum:]]+)*(:[0-9]{1,5})?"
     r"(\/[-[:alnum:]_$.+!*(),;:@&=?\/~#%]*[^]'.>) \t\r\n,\\\"])?",
     r"(mailto:)?[-[:alnum:]][-[:alnum:].]*@[-[:alnum:]]+\.[-[:alnum:]]+(\\.[-[:alnum:]]+)*",
@@ -205,3 +204,7 @@ MAX_TRANSPARENCY = 100
 
 # Tabs session schema version
 TABS_SESSION_SCHEMA_VERSION = 2
+
+# Constants for vte regex matching are documented in the pcre2 api:
+#   https://www.pcre.org/current/doc/html/pcre2api.html
+PCRE2_MULTILINE = 0x00000400
