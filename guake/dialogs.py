@@ -2,7 +2,6 @@ import gi
 
 gi.require_version("Gtk", "3.0")
 from gi.repository import Gtk
-from locale import gettext as _
 
 
 class RenameDialog(Gtk.Dialog):
@@ -11,7 +10,12 @@ class RenameDialog(Gtk.Dialog):
             _("Rename tab"),
             window,
             Gtk.DialogFlags.MODAL | Gtk.DialogFlags.DESTROY_WITH_PARENT,
-            (Gtk.STOCK_CANCEL, Gtk.ResponseType.REJECT, Gtk.STOCK_OK, Gtk.ResponseType.ACCEPT,),
+            (
+                Gtk.STOCK_CANCEL,
+                Gtk.ResponseType.REJECT,
+                Gtk.STOCK_OK,
+                Gtk.ResponseType.ACCEPT,
+            ),
         )
         self.entry = Gtk.Entry()
         self.entry.set_text(current_name)
@@ -35,14 +39,13 @@ class RenameDialog(Gtk.Dialog):
 
 class PromptQuitDialog(Gtk.MessageDialog):
 
-    """Prompts the user whether to quit/close a tab.
-    """
+    """Prompts the user whether to quit/close a tab."""
 
-    def __init__(self, transient_for, procs, tabs, notebooks):
+    def __init__(self, parent, procs, tabs, notebooks):
         """Prompts the user whether to quit or not if there are procs running.
         """
         super(PromptQuitDialog, self).__init__(
-            transient_for,
+            parent,
             Gtk.DialogFlags.MODAL | Gtk.DialogFlags.DESTROY_WITH_PARENT,
             Gtk.MessageType.QUESTION,
             Gtk.ButtonsType.YES_NO,
@@ -76,8 +79,7 @@ class PromptQuitDialog(Gtk.MessageDialog):
         self.format_secondary_markup("<b>{0}{1}{2}.</b>".format(proc_str, tab_str, notebooks_str))
 
     def quit(self):
-        """Run the "are you sure" dialog for quitting Guake
-        """
+        """Run the "are you sure" dialog for quitting Guake"""
         # Stop an open "close tab" dialog from obstructing a quit
         response = self.run() == Gtk.ResponseType.YES
         self.destroy()
@@ -97,8 +99,7 @@ class PromptQuitDialog(Gtk.MessageDialog):
 
 class PromptResetColorsDialog(Gtk.MessageDialog):
 
-    """Prompts the user whether to reset tab colors.
-    """
+    """Prompts the user whether to reset tab colors."""
 
     def __init__(self, parent):
         super(PromptResetColorsDialog, self).__init__(
@@ -113,8 +114,7 @@ class PromptResetColorsDialog(Gtk.MessageDialog):
         self.set_markup(primary_msg)
 
     def reset_tab_custom_colors(self):
-        """Run the "are you sure" dialog for resetting tab colors
-        """
+        """Run the "are you sure" dialog for resetting tab colors"""
         # Stop an open "close tab" dialog from obstructing a quit
         response = self.run() == Gtk.ResponseType.YES
         self.destroy()
@@ -130,7 +130,12 @@ class SaveTerminalDialog(Gtk.FileChooserDialog):
             _("Save to..."),
             window,
             Gtk.FileChooserAction.SAVE,
-            (Gtk.STOCK_CANCEL, Gtk.ResponseType.CANCEL, Gtk.STOCK_SAVE, Gtk.ResponseType.OK,),
+            (
+                Gtk.STOCK_CANCEL,
+                Gtk.ResponseType.CANCEL,
+                Gtk.STOCK_SAVE,
+                Gtk.ResponseType.OK,
+            ),
         )
         self.set_default_response(Gtk.ResponseType.OK)
         self.terminal = terminal
@@ -159,6 +164,6 @@ class SaveTerminalDialog(Gtk.FileChooserDialog):
         response = super().run()
         if response == Gtk.ResponseType.OK:
             filename = self.get_filename()
-            with open(filename, "w") as f:
+            with open(filename, "w", encoding="utf-8") as f:
                 f.write(selection)
         self.destroy()
