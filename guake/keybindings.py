@@ -17,26 +17,27 @@ License along with this program; if not, write to the
 Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor,
 Boston, MA 02110-1301 USA
 """
+from collections import defaultdict
 import logging
 
 import gi
 
 gi.require_version("Gtk", "3.0")
+gi.require_version("Gdk", "3.0")
 from gi.repository import Gtk
+from gi.repository import Gdk
 
 from guake import notifier
 from guake.common import pixmapfile
 from guake.split_utils import FocusMover
 from guake.split_utils import SplitMover
-from locale import gettext as _
 
 log = logging.getLogger(__name__)
 
 
 class Keybindings:
 
-    """Handles changes in keyboard shortcuts.
-    """
+    """Handles changes in keyboard shortcuts."""
 
     def __init__(self, guake):
         """Constructor of Keyboard, only receives the guake instance
@@ -44,6 +45,8 @@ class Keybindings:
         """
         self.guake = guake
         self.accel_group = None  # see reload_accelerators
+        self._lookup = None
+        self._masks = None
 
         # Setup global keys
         self.globalhotkeys = {}
@@ -54,54 +57,141 @@ class Keybindings:
                 guake.settings.keybindingsGlobal, key, None
             )
 
+        def x(*args):
+            prompt_cfg = self.guake.settings.general.get_int("prompt-on-close-tab")
+            self.guake.get_notebook().delete_page_current(prompt=prompt_cfg)
+
         # Setup local keys
-        keys = [
-            "toggle-fullscreen",
-            "new-tab",
-            "new-tab-home",
-            "close-tab",
-            "rename-current-tab",
-            "previous-tab",
-            "next-tab",
-            "clipboard-copy",
-            "clipboard-paste",
-            "quit",
-            "zoom-in",
-            "zoom-out",
-            "increase-height",
-            "decrease-height",
-            "increase-transparency",
-            "decrease-transparency",
-            "toggle-transparency",
-            "search-on-web",
-            "move-tab-left",
-            "move-tab-right",
-            "switch-tab1",
-            "switch-tab2",
-            "switch-tab3",
-            "switch-tab4",
-            "switch-tab5",
-            "switch-tab6",
-            "switch-tab7",
-            "switch-tab8",
-            "switch-tab9",
-            "switch-tab10",
-            "switch-tab-last",
-            "reset-terminal",
-            "split-tab-vertical",
-            "split-tab-horizontal",
-            "close-terminal",
-            "focus-terminal-up",
-            "focus-terminal-down",
-            "focus-terminal-right",
-            "focus-terminal-left",
-            "move-terminal-split-up",
-            "move-terminal-split-down",
-            "move-terminal-split-left",
-            "move-terminal-split-right",
-            "search-terminal",
+        self.keys = [
+            ("toggle-fullscreen", self.guake.accel_toggle_fullscreen),
+            ("new-tab", self.guake.accel_add),
+            ("new-tab-home", self.guake.accel_add_home),
+            ("close-tab", x),
+            ("rename-current-tab", self.guake.accel_rename_current_tab),
+            ("previous-tab", self.guake.accel_prev),
+            ("next-tab", self.guake.accel_next),
+            ("clipboard-copy", self.guake.accel_copy_clipboard),
+            ("clipboard-paste", self.guake.accel_paste_clipboard),
+            ("quit", self.guake.accel_quit),
+            ("zoom-in", self.guake.accel_zoom_in),
+            ("zoom-in-alt", self.guake.accel_zoom_in),
+            ("zoom-out", self.guake.accel_zoom_out),
+            ("increase-height", self.guake.accel_increase_height),
+            ("decrease-height", self.guake.accel_decrease_height),
+            ("increase-transparency", self.guake.accel_increase_transparency),
+            ("decrease-transparency", self.guake.accel_decrease_transparency),
+            ("toggle-transparency", self.guake.accel_toggle_transparency),
+            ("search-on-web", self.guake.search_on_web),
+            ("move-tab-left", self.guake.accel_move_tab_left),
+            ("move-tab-right", self.guake.accel_move_tab_right),
+            ("switch-tab1", self.guake.gen_accel_switch_tabN(1)),
+            ("switch-tab2", self.guake.gen_accel_switch_tabN(2)),
+            ("switch-tab3", self.guake.gen_accel_switch_tabN(3)),
+            ("switch-tab4", self.guake.gen_accel_switch_tabN(4)),
+            ("switch-tab5", self.guake.gen_accel_switch_tabN(5)),
+            ("switch-tab6", self.guake.gen_accel_switch_tabN(6)),
+            ("switch-tab7", self.guake.gen_accel_switch_tabN(7)),
+            ("switch-tab8", self.guake.gen_accel_switch_tabN(8)),
+            ("switch-tab9", self.guake.gen_accel_switch_tabN(9)),
+            ("switch-tab10", self.guake.gen_accel_switch_tabN(10)),
+            ("switch-tab-last", self.guake.accel_switch_tab_last),
+            ("reset-terminal", self.guake.accel_reset_terminal),
+            (
+                "split-tab-vertical",
+                lambda *args: self.guake.get_notebook()
+                .get_current_terminal()
+                .get_parent()
+                .split_v()
+                or True,
+            ),
+            (
+                "split-tab-horizontal",
+                lambda *args: self.guake.get_notebook()
+                .get_current_terminal()
+                .get_parent()
+                .split_h()
+                or True,
+            ),
+            (
+                "close-terminal",
+                lambda *args: self.guake.get_notebook().get_current_terminal().kill() or True,
+            ),
+            (
+                "focus-terminal-up",
+                (
+                    lambda *args: FocusMover(self.guake.window).move_up(
+                        self.guake.get_notebook().get_current_terminal()
+                    )
+                    or True
+                ),
+            ),
+            (
+                "focus-terminal-down",
+                (
+                    lambda *args: FocusMover(self.guake.window).move_down(
+                        self.guake.get_notebook().get_current_terminal()
+                    )
+                    or True
+                ),
+            ),
+            (
+                "focus-terminal-right",
+                (
+                    lambda *args: FocusMover(self.guake.window).move_right(
+                        self.guake.get_notebook().get_current_terminal()
+                    )
+                    or True
+                ),
+            ),
+            (
+                "focus-terminal-left",
+                (
+                    lambda *args: FocusMover(self.guake.window).move_left(
+                        self.guake.get_notebook().get_current_terminal()
+                    )
+                    or True
+                ),
+            ),
+            (
+                "move-terminal-split-up",
+                (
+                    lambda *args: SplitMover.move_up(  # keep make style from concat this lines
+                        self.guake.get_notebook().get_current_terminal()
+                    )
+                    or True
+                ),
+            ),
+            (
+                "move-terminal-split-down",
+                (
+                    lambda *args: SplitMover.move_down(  # keep make style from concat this lines
+                        self.guake.get_notebook().get_current_terminal()
+                    )
+                    or True
+                ),
+            ),
+            (
+                "move-terminal-split-left",
+                (
+                    lambda *args: SplitMover.move_left(  # keep make style from concat this lines
+                        self.guake.get_notebook().get_current_terminal()
+                    )
+                    or True
+                ),
+            ),
+            (
+                "move-terminal-split-right",
+                (
+                    lambda *args: SplitMover.move_right(  # keep make style from concat this lines
+                        self.guake.get_notebook().get_current_terminal()
+                    )
+                    or True
+                ),
+            ),
+            ("search-terminal", self.guake.accel_search_terminal),
+            ("toggle-hide-on-lose-focus", self.guake.accel_toggle_hide_on_lose_focus),
         ]
-        for key in keys:
+        for key, _ in self.keys:
             guake.settings.keybindingsLocal.onChangedValue(key, self.reload_accelerators)
             self.reload_accelerators()
 
@@ -137,309 +227,50 @@ class Keybindings:
                 log.warning("can't bind show-focus key")
                 return
 
+    def activate(self, window, event):
+        """If keystroke matches a key binding, activate keybinding. Otherwise, allow
+        keystroke to pass through."""
+        key = event.keyval
+        mod = event.state
+        if mod & Gdk.ModifierType.SHIFT_MASK:
+            if key == Gdk.KEY_ISO_Left_Tab:
+                key = Gdk.KEY_Tab
+            else:
+                key = Gdk.keyval_to_lower(key)
+        else:
+            keys = Gdk.keyval_convert_case(key)
+            if keys[0] != keys[1]:
+                key = keys[1]
+                mod &= ~Gdk.ModifierType.SHIFT_MASK
+
+        mask = mod & self._masks
+
+        func = self._lookup[mask].get(key, None)
+        if func:
+            func()
+            return True
+
+        return False
+
     def reload_accelerators(self, *args):
         """Reassign an accel_group to guake main window and guake
         context menu and calls the load_accelerators method.
         """
-        if self.accel_group:
-            self.guake.window.remove_accel_group(self.accel_group)
-        self.accel_group = Gtk.AccelGroup()
-        self.guake.window.add_accel_group(self.accel_group)
+        self._lookup = defaultdict(dict)
+        self._masks = 0
+
         self.load_accelerators()
+        self.guake.accel_group = self
 
     def load_accelerators(self):
         """Reads all gconf paths under /apps/guake/keybindings/local
-        and adds to the main accel_group.
+        and adds to the _lookup.
         """
 
-        def getk(x):
-            return self.guake.settings.keybindingsLocal.get_string(x)
-
-        key, mask = Gtk.accelerator_parse(getk("reset-terminal"))
-
-        if key > 0:
-            self.accel_group.connect(
-                key, mask, Gtk.AccelFlags.VISIBLE, self.guake.accel_reset_terminal
+        for binding, action in self.keys:
+            key, mask = Gtk.accelerator_parse(
+                self.guake.settings.keybindingsLocal.get_string(binding)
             )
-
-        key, mask = Gtk.accelerator_parse(getk("quit"))
-        if key > 0:
-            self.accel_group.connect(key, mask, Gtk.AccelFlags.VISIBLE, self.guake.accel_quit)
-
-        key, mask = Gtk.accelerator_parse(getk("new-tab"))
-        if key > 0:
-            self.accel_group.connect(key, mask, Gtk.AccelFlags.VISIBLE, self.guake.accel_add)
-
-        key, mask = Gtk.accelerator_parse(getk("new-tab-home"))
-        if key > 0:
-            self.accel_group.connect(key, mask, Gtk.AccelFlags.VISIBLE, self.guake.accel_add_home)
-
-        key, mask = Gtk.accelerator_parse(getk("close-tab"))
-        if key > 0:
-
-            def x(*args):
-                prompt_cfg = self.guake.settings.general.get_int("prompt-on-close-tab")
-                self.guake.get_notebook().delete_page_current(prompt=prompt_cfg)
-
-            self.accel_group.connect(key, mask, Gtk.AccelFlags.VISIBLE, x)
-
-        key, mask = Gtk.accelerator_parse(getk("previous-tab"))
-        if key > 0:
-            self.accel_group.connect(key, mask, Gtk.AccelFlags.VISIBLE, self.guake.accel_prev)
-
-        key, mask = Gtk.accelerator_parse(getk("next-tab"))
-        if key > 0:
-            self.accel_group.connect(key, mask, Gtk.AccelFlags.VISIBLE, self.guake.accel_next)
-
-        key, mask = Gtk.accelerator_parse(getk("move-tab-left"))
-        if key > 0:
-            self.accel_group.connect(
-                key, mask, Gtk.AccelFlags.VISIBLE, self.guake.accel_move_tab_left
-            )
-
-        key, mask = Gtk.accelerator_parse(getk("move-tab-right"))
-        if key > 0:
-            self.accel_group.connect(
-                key, mask, Gtk.AccelFlags.VISIBLE, self.guake.accel_move_tab_right
-            )
-
-        key, mask = Gtk.accelerator_parse(getk("rename-current-tab"))
-        if key > 0:
-            self.accel_group.connect(
-                key, mask, Gtk.AccelFlags.VISIBLE, self.guake.accel_rename_current_tab
-            )
-
-        key, mask = Gtk.accelerator_parse(getk("clipboard-copy"))
-        if key > 0:
-            self.accel_group.connect(
-                key, mask, Gtk.AccelFlags.VISIBLE, self.guake.accel_copy_clipboard
-            )
-
-        key, mask = Gtk.accelerator_parse(getk("clipboard-paste"))
-        if key > 0:
-            self.accel_group.connect(
-                key, mask, Gtk.AccelFlags.VISIBLE, self.guake.accel_paste_clipboard
-            )
-
-        key, mask = Gtk.accelerator_parse(getk("toggle-fullscreen"))
-        if key > 0:
-            self.accel_group.connect(
-                key, mask, Gtk.AccelFlags.VISIBLE, self.guake.accel_toggle_fullscreen
-            )
-
-        key, mask = Gtk.accelerator_parse(getk("toggle-hide-on-lose-focus"))
-        if key > 0:
-            self.accel_group.connect(
-                key, mask, Gtk.AccelFlags.VISIBLE, self.guake.accel_toggle_hide_on_lose_focus,
-            )
-
-        key, mask = Gtk.accelerator_parse(getk("zoom-in"))
-        if key > 0:
-            self.accel_group.connect(key, mask, Gtk.AccelFlags.VISIBLE, self.guake.accel_zoom_in)
-
-        key, mask = Gtk.accelerator_parse(getk("zoom-in-alt"))
-        if key > 0:
-            self.accel_group.connect(key, mask, Gtk.AccelFlags.VISIBLE, self.guake.accel_zoom_in)
-
-        key, mask = Gtk.accelerator_parse(getk("zoom-out"))
-        if key > 0:
-            self.accel_group.connect(key, mask, Gtk.AccelFlags.VISIBLE, self.guake.accel_zoom_out)
-
-        key, mask = Gtk.accelerator_parse(getk("increase-height"))
-        if key > 0:
-            self.accel_group.connect(
-                key, mask, Gtk.AccelFlags.VISIBLE, self.guake.accel_increase_height
-            )
-
-        key, mask = Gtk.accelerator_parse(getk("decrease-height"))
-        if key > 0:
-            self.accel_group.connect(
-                key, mask, Gtk.AccelFlags.VISIBLE, self.guake.accel_decrease_height
-            )
-
-        key, mask = Gtk.accelerator_parse(getk("increase-transparency"))
-        if key > 0:
-            self.accel_group.connect(
-                key, mask, Gtk.AccelFlags.VISIBLE, self.guake.accel_increase_transparency,
-            )
-
-        key, mask = Gtk.accelerator_parse(getk("decrease-transparency"))
-        if key > 0:
-            self.accel_group.connect(
-                key, mask, Gtk.AccelFlags.VISIBLE, self.guake.accel_decrease_transparency,
-            )
-
-        key, mask = Gtk.accelerator_parse(getk("toggle-transparency"))
-        if key > 0:
-            self.accel_group.connect(
-                key, mask, Gtk.AccelFlags.VISIBLE, self.guake.accel_toggle_transparency
-            )
-
-        for tab in range(1, 11):
-            key, mask = Gtk.accelerator_parse(getk("switch-tab%d" % tab))
             if key > 0:
-                self.accel_group.connect(
-                    key, mask, Gtk.AccelFlags.VISIBLE, self.guake.gen_accel_switch_tabN(tab - 1),
-                )
-
-        key, mask = Gtk.accelerator_parse(getk("switch-tab-last"))
-        if key > 0:
-            self.accel_group.connect(
-                key, mask, Gtk.AccelFlags.VISIBLE, self.guake.accel_switch_tab_last
-            )
-
-        try:
-            key, mask = Gtk.accelerator_parse(getk("search-on-web"))
-            if key > 0:
-                self.accel_group.connect(
-                    key, mask, Gtk.AccelFlags.VISIBLE, self.guake.search_on_web
-                )
-        except Exception:
-            log.exception("Exception occured")
-
-        key, mask = Gtk.accelerator_parse(getk("split-tab-vertical"))
-        if key > 0:
-            self.accel_group.connect(
-                key,
-                mask,
-                Gtk.AccelFlags.VISIBLE,
-                (
-                    lambda *args: self.guake.get_notebook()
-                    .get_current_terminal()
-                    .get_parent()
-                    .split_v()
-                    or True
-                ),
-            )
-        key, mask = Gtk.accelerator_parse(getk("split-tab-horizontal"))
-        if key > 0:
-            self.accel_group.connect(
-                key,
-                mask,
-                Gtk.AccelFlags.VISIBLE,
-                (
-                    lambda *args: self.guake.get_notebook()
-                    .get_current_terminal()
-                    .get_parent()
-                    .split_h()
-                    or True
-                ),
-            )
-        key, mask = Gtk.accelerator_parse(getk("close-terminal"))
-        if key > 0:
-            self.accel_group.connect(
-                key,
-                mask,
-                Gtk.AccelFlags.VISIBLE,
-                (lambda *args: self.guake.get_notebook().get_current_terminal().kill() or True),
-            )
-        key, mask = Gtk.accelerator_parse(getk("focus-terminal-up"))
-        if key > 0:
-            self.accel_group.connect(
-                key,
-                mask,
-                Gtk.AccelFlags.VISIBLE,
-                (
-                    lambda *args: FocusMover(self.guake.window).move_up(
-                        self.guake.get_notebook().get_current_terminal()
-                    )
-                    or True
-                ),
-            )
-        key, mask = Gtk.accelerator_parse(getk("focus-terminal-down"))
-        if key > 0:
-            self.accel_group.connect(
-                key,
-                mask,
-                Gtk.AccelFlags.VISIBLE,
-                (
-                    lambda *args: FocusMover(self.guake.window).move_down(
-                        self.guake.get_notebook().get_current_terminal()
-                    )
-                    or True
-                ),
-            )
-        key, mask = Gtk.accelerator_parse(getk("focus-terminal-right"))
-        if key > 0:
-            self.accel_group.connect(
-                key,
-                mask,
-                Gtk.AccelFlags.VISIBLE,
-                (
-                    lambda *args: FocusMover(self.guake.window).move_right(
-                        self.guake.get_notebook().get_current_terminal()
-                    )
-                    or True
-                ),
-            )
-        key, mask = Gtk.accelerator_parse(getk("focus-terminal-left"))
-        if key > 0:
-            self.accel_group.connect(
-                key,
-                mask,
-                Gtk.AccelFlags.VISIBLE,
-                (
-                    lambda *args: FocusMover(self.guake.window).move_left(
-                        self.guake.get_notebook().get_current_terminal()
-                    )
-                    or True
-                ),
-            )
-        key, mask = Gtk.accelerator_parse(getk("move-terminal-split-up"))
-        if key > 0:
-            self.accel_group.connect(
-                key,
-                mask,
-                Gtk.AccelFlags.VISIBLE,
-                (
-                    lambda *args: SplitMover.move_up(  # keep make style from concat this lines
-                        self.guake.get_notebook().get_current_terminal()
-                    )
-                    or True
-                ),
-            )
-        key, mask = Gtk.accelerator_parse(getk("move-terminal-split-down"))
-        if key > 0:
-            self.accel_group.connect(
-                key,
-                mask,
-                Gtk.AccelFlags.VISIBLE,
-                (
-                    lambda *args: SplitMover.move_down(  # keep make style from concat this lines
-                        self.guake.get_notebook().get_current_terminal()
-                    )
-                    or True
-                ),
-            )
-        key, mask = Gtk.accelerator_parse(getk("move-terminal-split-left"))
-        if key > 0:
-            self.accel_group.connect(
-                key,
-                mask,
-                Gtk.AccelFlags.VISIBLE,
-                (
-                    lambda *args: SplitMover.move_left(  # keep make style from concat this lines
-                        self.guake.get_notebook().get_current_terminal()
-                    )
-                    or True
-                ),
-            )
-        key, mask = Gtk.accelerator_parse(getk("move-terminal-split-right"))
-        if key > 0:
-            self.accel_group.connect(
-                key,
-                mask,
-                Gtk.AccelFlags.VISIBLE,
-                (
-                    lambda *args: SplitMover.move_right(  # keep make style from concat this lines
-                        self.guake.get_notebook().get_current_terminal()
-                    )
-                    or True
-                ),
-            )
-
-        key, mask = Gtk.accelerator_parse(getk("search-terminal"))
-        if key > 0:
-            self.accel_group.connect(
-                key, mask, Gtk.AccelFlags.VISIBLE, self.guake.accel_search_terminal
-            )
+                self._lookup[mask][key] = action
+                self._masks |= mask
