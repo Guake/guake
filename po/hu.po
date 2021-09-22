@@ -1479,6 +1479,80 @@ msgstr ""
 msgid "New tabs appear after the current tab"
 msgstr ""
 
+#: guake/prefs.py:186
+msgid "Search selected text on web"
+msgstr ""
+
+#: guake/menus.py:80
+msgid "Copy URL"
+msgstr ""
+
+#: guake/main.py:362
+msgid "Show support information"
+msgstr ""
+
+#: guake/data/prefs.glade:19
+msgid "Scale"
+msgstr ""
+
+#: guake/data/prefs.glade:23
+msgid "Tile"
+msgstr ""
+
+#: guake/data/prefs.glade:31
+msgid "Stretch"
+msgstr ""
+
+#: guake/data/prefs.glade:472
+msgid "Copy on select"
+msgstr ""
+
+#: guake/data/prefs.glade:517
+msgid "Use system default theme"
+msgstr ""
+
+#: guake/data/prefs.glade:547
+msgid "GTK Theme:"
+msgstr ""
+
+#: guake/data/prefs.glade:612
+msgid "Please select a JSON file"
+msgstr ""
+
+#: guake/data/prefs.glade:938
+msgid "Hide tab bar if there is only one tab"
+msgstr ""
+
+#: guake/data/prefs.glade:1929
+msgid "Background image: "
+msgstr ""
+
+#: guake/data/prefs.glade:2730
+msgid ""
+"<small><i>Use the following elements in the open editor command line:\n"
+"- <b>%(file_path)s</b>: path to the file that has been clicked\n"
+"- <b>%(line_number)s</b>: if your editor supports it, you can directly open "
+"the file to a given line number when found on the screen.\n"
+"\n"
+"For example, use <b>subl %(file_path)s:%(line_number)s</b> for Sublime "
+"Text.\n"
+"</i></small>"
+msgstr ""
+
+#: guake/data/prefs.glade:2879
+msgid ""
+"<small>In this dialog you can attach your own command or script to various "
+"Guake events</small>"
+msgstr ""
+
+#: guake/data/prefs.glade:3008
+msgid ""
+"<small><i><b>Note:</b> These options may cause some applications to behave "
+"incorrectly. They are only here to allow you to work around certain "
+"applications and operating systems that expect different terminal behavior.</"
+"i></small>"
+msgstr ""
+
 #~ msgid "key binding error"
 #~ msgstr "Hiba történt a billentyűkombináció hozzárendelésekor"
 
