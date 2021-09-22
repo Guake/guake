@@ -17,13 +17,15 @@ License along with this program; if not, write to the
 Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor,
 Boston, MA 02110-1301 USA
 """
-import inspect
-import time
-
 # You can put calls to p() everywhere in this page to inspect timing
+#
+# import inspect
+# import time
 # g_start = time.time()
 # def p():
 #     print(time.time() - g_start, __file__, inspect.currentframe().f_back.f_lineno)
+
+import builtins
 import logging
 import os
 import signal
@@ -31,7 +33,10 @@ import subprocess
 import sys
 import uuid
 
-from locale import gettext as _
+from locale import gettext
+
+builtins.__dict__["_"] = gettext
+
 from optparse import OptionParser
 
 log = logging.getLogger(__name__)
@@ -358,7 +363,7 @@ def main():
         dest="support",
         action="store_true",
         default=False,
-        help=_("Show support infomation"),
+        help=_("Show support information"),
     )
 
     # checking mandatory dependencies
@@ -385,12 +390,6 @@ def main():
         print("[ERROR] missing mandatory dependency: Keybinder 3")
         missing_deps = True
 
-    try:
-        import cairo
-    except ImportError:
-        print("[ERROR] missing mandatory dependency: cairo")
-        missing_deps = True
-
     if missing_deps:
         print(
             "[ERROR] missing at least one system dependencies. "
@@ -406,7 +405,6 @@ def main():
             "        libkeybinder-3.0-0 \\\n"
             "        libutempter0 \\\n"
             "        python3 \\\n"
-            "        python3-cairo \\\n"
             "        python3-dbus \\\n"
             "        python3-gi \\\n"
             "        python3-pbr \\\n"
@@ -421,10 +419,10 @@ def main():
         from guake import vte_version
         from guake import vte_runtime_version
 
-        print("Guake Terminal: {}".format(guake_version()))
-        print("VTE: {}".format(vte_version()))
-        print("VTE runtime: {}".format(vte_runtime_version()))
-        print("Gtk: {}".format(gtk_version()))
+        print(f"Guake Terminal: {guake_version()}")
+        print(f"VTE: {vte_version()}")
+        print(f"VTE runtime: {vte_runtime_version()}")
+        print(f"Gtk: {gtk_version()}")
         sys.exit(0)
 
     if options.save_preferences and options.restore_preferences:
@@ -502,17 +500,17 @@ def main():
         if 0 <= selected < tab_count:
             remote_object.select_tab(selected)
         else:
-            sys.stderr.write("invalid index: %d\n" % selected)
+            sys.stderr.write(f"invalid index: {selected}\n")
         only_show_hide = options.show
 
     if options.selected_tab:
         selected = remote_object.get_selected_tab()
-        sys.stdout.write("%d\n" % selected)
+        sys.stdout.write(f"{selected}\n")
         only_show_hide = options.show
 
     if options.selected_tablabel:
         selectedlabel = remote_object.get_selected_tablabel()
-        sys.stdout.write("%s\n" % selectedlabel)
+        sys.stdout.write(f"{selectedlabel}\n")
         only_show_hide = options.show
 
     if options.split_vertical:
@@ -525,7 +523,7 @@ def main():
 
     if options.selected_terminal:
         selected = remote_object.get_selected_terminal()
-        sys.stdout.write("%d\n" % selected)
+        sys.stdout.write(f"{selected}\n")
         only_show_hide = options.show
 
     if options.select_terminal:
@@ -534,7 +532,7 @@ def main():
         if 0 <= selected < term_count:
             remote_object.select_terminal(selected)
         else:
-            sys.stderr.write("invalid index: %d\n" % selected)
+            sys.stderr.write(f"invalid index: {selected}\n")
         only_show_hide = options.show
 
     if options.command:
@@ -601,15 +599,15 @@ def main():
             startup_script = instance.settings.general.get_string("startup-script")
             if startup_script:
                 log.info("Calling startup script: %s", startup_script)
-                pid = subprocess.Popen(
+                with subprocess.Popen(
                     [startup_script],
                     shell=True,
                     stdin=None,
                     stdout=None,
                     stderr=None,
                     close_fds=True,
-                )
-                log.info("Startup script started with pid: %s", pid)
+                ) as pid:
+                    log.info("Startup script started with pid: %s", pid)
                 # Please ensure this is the last line !!!!
     else:
         log.info("--no-startup-script argument defined, so don't execute the startup script")
