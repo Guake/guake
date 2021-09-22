@@ -447,6 +447,20 @@ class BackgroundImageManager:
         # Re-paint child draw into child context (which using child_surface as target)
         widget.propagate_draw(child, child_cr)
 
+        # Step 3.1 Re-paint search revealer
+        child_sr_surface = None
+        if getattr(widget, "search_revealer", None):
+            child_sr = widget.search_revealer
+            child_sr_surface = cr.get_target().create_similar(
+                cairo.CONTENT_COLOR_ALPHA,
+                child_sr.get_allocated_width(),
+                child_sr.get_allocated_height(),
+            )
+            child_sr_cr = cairo.Context(child_surface)
+
+            # Re-paint child draw into child context (which using child_surface as target)
+            widget.propagate_draw(child_sr, child_sr_cr)
+
         # Step 4. Paint child surface into our context (RootTerminalBox)
         #
         #         Before this step, we have two important context/surface
@@ -464,4 +478,11 @@ class BackgroundImageManager:
         cr.set_source_surface(child_surface, 0, 0)
         cr.set_operator(cairo.OPERATOR_OVER)
         cr.paint()
+
+        # Paint search revealer
+        if child_sr_surface:
+            cr.set_source_surface(child_sr_surface, 0, 0)
+            cr.set_operator(cairo.OPERATOR_OVER)
+            cr.paint()
+
         cr.restore()
