@@ -6,6 +6,11 @@
         <child name="keybindings" schema="guake.keybindings"/>
     </schema>
     <schema id="guake.general" path="/apps/guake/general/">
+        <key name="schema-version" type="s">
+            <default>''</default>
+            <summary>Last used schema version</summary>
+            <description>If schema version is not equal to current guake version, the schema file is regenerated and this flag is set to the current guake version.</description>
+        </key>
         <key name="debug-mode" type="b">
             <default>false</default>
             <summary>Enable debug mode</summary>
@@ -106,6 +111,11 @@
 		  <summary>Hide tab bar when fullscreen</summary>
 		  <description>When true, the tab bar will hide when is in fullscreen</description>
 		</key>
+		<key name="hide-tabs-if-one-tab" type="b">
+		  <default>true</default>
+		  <summary>Hide tab bar if there is only one tab</summary>
+		  <description>When true, the tab bar will hide when there is only one tab</description>
+		</key>
         <key name="quick-open-enable" type="b">
             <default>false</default>
             <summary>Enable Quick Open feature.</summary>
@@ -166,20 +176,20 @@
             <summary>Window horizontal alignment.</summary>
             <description>Place Guake at: 0: center, 1: left, 2: right</description>
         </key>
+        <key name="window-valignment" type="i">
+            <default>0</default>
+            <summary>Window vertical alignment.</summary>
+            <description>Place Guake at: 0: top, 1: bottom</description>
+        </key>
         <key name="background-image-file" type="s">
             <default>''</default>
-            <summary>Background image filename.</summary>
-    		    <description>When setup, the selected background image will show on guake</description>
+            <summary>Background image filename.</summary>            
+            <description>When setup, the selected background image will show on guake</description>
         </key>
         <key name="background-image-layout-mode" type="i">
             <default>0</default>
             <summary>Background image layout mode.</summary>
             <description>To select which layout mode want to use for background image.</description>
-        </key>
-        <key name="window-valignment" type="i">
-            <default>0</default>
-            <summary>Window vertical alignment.</summary>
-            <description>Place Guake at: 0: top, 1: bottom</description>
         </key>
         <key name="use-scrollbar" type="b">
             <default>true</default>
@@ -266,6 +276,11 @@
             <summary>How to display tab names.</summary>
             <description>Controls how the tab names are displayed. 0: Full Path, 1: Abbreviated Path, 2: Only display the last segment of the path</description>
         </key>
+        <key name="gtk-use-system-default-theme" type="b">
+            <default>true</default>
+            <summary>Use system default theme for GTK</summary>
+            <description>Prefer the system default theme</description>
+        </key>
         <key name="gtk-theme-name" type="s">
             <default>''</default>
             <summary>GTK Theme name</summary>
@@ -280,6 +295,11 @@
             <default>false</default>
             <summary>Show close buttons for tabs</summary>
             <description>Show close buttons next to tab titles</description>
+        </key>
+        <key name="copy-on-select" type="b">
+            <default>false</default>
+            <summary>Copy selected text if enabled.</summary>
+            <description>Copy the selected text.</description>
         </key>
     </schema>
     <schema id="guake.style" path="/apps/guake/style/">
@@ -389,12 +409,12 @@
             <description>Move the current tab to the right</description>
         </key>
         <key name="previous-tab" type="s">
-            <default>'&lt;Control&gt;Page_Up'</default>
+            <default>'&lt;Control&gt;&lt;Shift&gt;Tab'</default>
             <summary>Previous tab.</summary>
             <description>Shows the previous tab.</description>
         </key>
         <key name="next-tab" type="s">
-            <default>'&lt;Control&gt;Page_Down'</default>
+            <default>'&lt;Control&gt;Tab'</default>
             <summary>Next tab.</summary>
             <description>Shows the next tab.</description>
         </key>
