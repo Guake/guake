@@ -19,23 +19,14 @@ Boston, MA 02110-1301 USA
 """
 import logging
 import os
-import subprocess
-
-from xml.sax.saxutils import escape as xml_escape
 
 import gi
 
-gi.require_version("Gtk", "3.0")
 gi.require_version("Vte", "2.91")  # vte-0.38
-from gi.repository import Gdk
 from gi.repository import Gio
-from gi.repository import Gtk
 from gi.repository import Pango
 from gi.repository import Vte
 from guake.utils import RectCalculator
-
-from guake.common import pixmapfile
-from locale import gettext as _
 
 log = logging.getLogger(__name__)
 
@@ -77,6 +68,7 @@ class GSettingHandler:
         settings.general.onChangedValue(
             "background-image-layout-mode", self.background_image_layout_mode_changed
         )
+
         settings.general.onChangedValue("use-scrollbar", self.scrollbar_toggled)
         settings.general.onChangedValue("history-size", self.history_size_changed)
         settings.general.onChangedValue("infinite-history", self.infinite_history_changed)
@@ -95,6 +87,7 @@ class GSettingHandler:
         settings.general.onChangedValue("custom-command_file", self.custom_command_file_changed)
         settings.general.onChangedValue("max-tab-name-length", self.max_tab_name_length_changed)
         settings.general.onChangedValue("display-tab-names", self.display_tab_names_changed)
+        settings.general.onChangedValue("hide-tabs-if-one-tab", self.hide_tabs_if_one_tab_changed)
 
     def custom_command_file_changed(self, settings, key, user_data):
         self.guake.load_custom_commands()
@@ -116,8 +109,7 @@ class GSettingHandler:
         self.guake.window.set_keep_above(settings.get_boolean(key))
 
     def tab_ontop_toggled(self, settings, key, user_data):
-        """ tab_ontop changed
-        """
+        """tab_ontop changed"""
         self.guake.set_tab_position()
 
     def tabbar_toggled(self, settings, key, user_data):
@@ -125,7 +117,10 @@ class GSettingHandler:
         called and will show/hide the tabbar.
         """
         if settings.get_boolean(key):
-            self.guake.notebook_manager.set_notebooks_tabbar_visible(True)
+            if settings.get_boolean(key):
+                self.guake.get_notebook().hide_tabbar_if_one_tab()
+            else:
+                self.guake.notebook_manager.set_notebooks_tabbar_visible(True)
         else:
             self.guake.notebook_manager.set_notebooks_tabbar_visible(False)
 
@@ -139,7 +134,10 @@ class GSettingHandler:
         if settings.get_boolean(key):
             self.guake.notebook_manager.set_notebooks_tabbar_visible(False)
         else:
-            self.guake.notebook_manager.set_notebooks_tabbar_visible(True)
+            if settings.get_boolean(key):
+                self.guake.get_notebook().hide_tabbar_if_one_tab()
+            else:
+                self.guake.notebook_manager.set_notebooks_tabbar_visible(True)
 
     def alignment_changed(self, settings, key, user_data):
         """If the gconf var window_halignment be changed, this method will
@@ -157,8 +155,7 @@ class GSettingHandler:
         RectCalculator.set_final_window_rect(self.settings, self.guake.window)
 
     def cursor_blink_mode_changed(self, settings, key, user_data):
-        """Called when cursor blink mode settings has been changed
-        """
+        """Called when cursor blink mode settings has been changed"""
         terminal = (
             self.guake.notebook_manager.get_terminal_by_uuid(user_data.get("terminal_uuid"))
             if user_data
@@ -169,8 +166,7 @@ class GSettingHandler:
             term.set_property("cursor-blink-mode", settings.get_int(key))
 
     def cursor_shape_changed(self, settings, key, user_data):
-        """Called when the cursor shape settings has been changed
-        """
+        """Called when the cursor shape settings has been changed"""
         terminal = (
             self.guake.notebook_manager.get_terminal_by_uuid(user_data.get("terminal_uuid"))
             if user_data
@@ -181,15 +177,13 @@ class GSettingHandler:
             term.set_property("cursor-shape", settings.get_int(key))
 
     def background_image_file_changed(self, settings, key, user_data):
-        """Called when the background image file settings has been changed
-        """
+        """Called when the background image file settings has been changed"""
         filename = settings.get_string(key)
         if not filename or os.path.exists(filename):
             self.guake.background_image_manager.load_from_file(settings.get_string(key))
 
     def background_image_layout_mode_changed(self, settings, key, user_data):
-        """Called when the background image layout mode settings has been changed
-        """
+        """Called when the background image layout mode settings has been changed"""
         self.guake.background_image_manager.layout_mode = settings.get_int(key)
 
     def scrollbar_toggled(self, settings, key, user_data):
@@ -345,7 +339,7 @@ class GSettingHandler:
 
         if terminal_uuid:
             terminal = self.guake.notebook_manager.get_terminal_by_uuid(terminal_uuid)
-            terminals = (terminal,) if terminal else tuple()
+            terminals = (terminal,) if terminal else ()
         else:
             terminals = self.guake.notebook_manager.iter_terminals()
 
@@ -436,3 +430,9 @@ class GSettingHandler:
         """
         self.guake.display_tab_names = settings.get_int("display-tab-names")
         self.guake.recompute_tabs_titles()
+
+    def hide_tabs_if_one_tab_changed(self, settings, key, user_data):
+        """If the gconf var hide-tabs-if-one-tab was changed, this method will
+        be called and will show/hide the tab bar if necessary
+        """
+        self.guake.get_notebook().hide_tabbar_if_one_tab()
