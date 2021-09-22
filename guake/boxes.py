@@ -1,13 +1,10 @@
 import logging
 import time
 
-from locale import gettext as _
-
 import gi
 
 gi.require_version("Vte", "2.91")  # vte-0.42
 gi.require_version("Gtk", "3.0")
-from gi.repository import GLib
 from gi.repository import GObject
 from gi.repository import Gdk
 from gi.repository import Gio
@@ -18,6 +15,7 @@ from guake.callbacks import MenuHideCallback
 from guake.callbacks import TerminalContextMenuCallbacks
 from guake.dialogs import PromptResetColorsDialog
 from guake.dialogs import RenameDialog
+from guake.globals import PCRE2_MULTILINE
 from guake.menus import mk_tab_context_menu
 from guake.menus import mk_terminal_context_menu
 from guake.utils import HidePrevention
@@ -37,31 +35,31 @@ class TerminalHolder:
     LEFT = 3
 
     def get_terminals(self):
-        pass
+        raise NotImplementedError
 
     def iter_terminals(self):
-        pass
+        raise NotImplementedError
 
     def replace_child(self, old, new):
-        pass
+        raise NotImplementedError
 
     def get_guake(self):
-        pass
+        raise NotImplementedError
 
     def get_window(self):
-        pass
+        raise NotImplementedError
 
     def get_settings(self):
-        pass
+        raise NotImplementedError
 
     def get_root_box(self):
-        pass
+        raise NotImplementedError
 
     def get_notebook(self):
-        pass
+        raise NotImplementedError
 
     def remove_dead_child(self, child):
-        pass
+        raise NotImplementedError
 
 
 class RootTerminalBox(Gtk.Overlay, TerminalHolder):
@@ -77,16 +75,16 @@ class RootTerminalBox(Gtk.Overlay, TerminalHolder):
         self._add_search_box()
 
     def _add_search_box(self):
-        """ --------------------------------------|
-            | Revealer                            |
-            | |-----------------------------------|
-            | | Frame                             |
-            | | |---------------------------------|
-            | | | HBox                            |
-            | | | |---| |-------| |----| |------| |
-            | | | | x | | Entry | |Prev| | Next | |
-            | | | |---| |-------| |----| |------| |
-            --------------------------------------|
+        """--------------------------------------|
+        | Revealer                            |
+        | |-----------------------------------|
+        | | Frame                             |
+        | | |---------------------------------|
+        | | | HBox                            |
+        | | | |---| |-------| |----| |------| |
+        | | | | x | | Entry | |Prev| | Next | |
+        | | | |---| |-------| |----| |------| |
+        --------------------------------------|
         """
         self.search_revealer = Gtk.Revealer()
         self.search_frame = Gtk.Frame(name="search-frame")
@@ -127,7 +125,9 @@ class RootTerminalBox(Gtk.Overlay, TerminalHolder):
             b"#search-frame border {" b"    padding: 5px 5px 5px 5px;" b"    border: none;" b"}"
         )
         Gtk.StyleContext.add_provider_for_screen(
-            Gdk.Screen.get_default(), css_provider, Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION,
+            Gdk.Screen.get_default(),
+            css_provider,
+            Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION,
         )
 
         # Add to revealer
@@ -175,18 +175,11 @@ class RootTerminalBox(Gtk.Overlay, TerminalHolder):
         self.set_child(new)
 
     def set_child(self, terminal_holder):
-        if isinstance(terminal_holder, TerminalHolder) or True:
+        if isinstance(terminal_holder, TerminalHolder):
             self.child = terminal_holder
             self.add(self.child)
         else:
-            print(
-                "wtf, what have you added to me???"
-                "(RootTerminalBox.add(%s))" % type(terminal_holder)
-            )
-
-    def focus():
-        if self.get_terminals():
-            self.get_terminals()[0].grab_focus()
+            raise RuntimeError(f"Error adding (RootTerminalBox.add({type(terminal_holder)}))")
 
     def get_child(self):
         return self.child
@@ -205,7 +198,7 @@ class RootTerminalBox(Gtk.Overlay, TerminalHolder):
 
     def save_box_layout(self, box, panes: list):
         """Save box layout with pre-order traversal, it should result `panes` with
-           a full binary tree in list.
+        a full binary tree in list.
         """
         if not box:
             panes.append({"type": None, "directory": None})
@@ -227,8 +220,7 @@ class RootTerminalBox(Gtk.Overlay, TerminalHolder):
             )
 
     def restore_box_layout(self, box, panes: list):
-        """Restore box layout by `panes`
-        """
+        """Restore box layout by `panes`"""
         if not panes or not isinstance(panes, list):
             return
         if not box or not isinstance(box, TerminalBox):
@@ -301,9 +293,6 @@ class RootTerminalBox(Gtk.Overlay, TerminalHolder):
         page_num = self.get_notebook().page_num(self)
         self.get_notebook().remove_page(page_num)
 
-    def move_focus(self, direction, fromChild):
-        pass
-
     def block_notebook_on_button_press_id(self):
         GObject.signal_handler_block(
             self.get_notebook(), self.get_notebook().notebook_on_button_press_id
@@ -366,7 +355,7 @@ class RootTerminalBox(Gtk.Overlay, TerminalHolder):
                 self.search_prev = True
 
     def reset_term_search(self, term):
-        term.search_set_gregex(GLib.Regex("", 0, 0), 0)
+        term.search_set_regex(None, 0)
         term.search_find_next()
 
     def set_search(self, widget):
@@ -381,9 +370,10 @@ class RootTerminalBox(Gtk.Overlay, TerminalHolder):
 
             # Set search regex on term
             self.searchstring = text
-            self.searchre = GLib.Regex(text, 0, 0)
-            term.search_set_gregex(self.searchre, 0)
-
+            self.searchre = Vte.Regex.new_for_search(
+                text, -1, Vte.REGEX_FLAGS_DEFAULT | PCRE2_MULTILINE
+            )
+            term.search_set_regex(self.searchre, 0)
         self.do_search(None)
 
     def do_search(self, widget):
@@ -395,8 +385,7 @@ class RootTerminalBox(Gtk.Overlay, TerminalHolder):
 
 class TerminalBox(Gtk.Box, TerminalHolder):
 
-    """A box to group the terminal and a scrollbar.
-    """
+    """A box to group the terminal and a scrollbar."""
 
     def __init__(self):
         super().__init__(orientation=Gtk.Orientation.HORIZONTAL)
@@ -404,8 +393,7 @@ class TerminalBox(Gtk.Box, TerminalHolder):
         self.scroll = None
 
     def set_terminal(self, terminal):
-        """Packs the terminal widget.
-        """
+        """Packs the terminal widget."""
         if self.terminal is not None:
             raise RuntimeError("TerminalBox: terminal already set")
         self.terminal = terminal
@@ -423,8 +411,7 @@ class TerminalBox(Gtk.Box, TerminalHolder):
         self.add_scroll_bar()
 
     def add_scroll_bar(self):
-        """Packs the scrollbar.
-        """
+        """Packs the scrollbar."""
         adj = self.terminal.get_vadjustment()
         self.scroll = Gtk.VScrollbar(adjustment=adj)
         self.scroll.show()
@@ -528,9 +515,11 @@ class TerminalBox(Gtk.Box, TerminalHolder):
     def on_button_press(self, target, event, user_data):
         if event.button == 3:
             # First send to background process if handled, do nothing else
-            if not event.get_state() & Gdk.ModifierType.SHIFT_MASK:
-                if Vte.Terminal.do_button_press_event(self.terminal, event):
-                    return True
+            if (
+                not event.get_state() & Gdk.ModifierType.SHIFT_MASK
+                and Vte.Terminal.do_button_press_event(self.terminal, event)
+            ):
+                return True
 
             menu = mk_terminal_context_menu(
                 self.terminal,
@@ -618,7 +607,10 @@ class DualTerminalBox(Gtk.Paned, TerminalHolder):
 
     def grab_box_terminal_focus(self, box):
         if isinstance(box, DualTerminalBox):
-            next(box.iter_terminals()).grab_focus()
+            try:
+                next(box.iter_terminals()).grab_focus()
+            except StopIteration:
+                log.error("Both panes are empty")
         else:
             box.get_terminal().grab_focus()
 
