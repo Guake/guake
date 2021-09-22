@@ -1,11 +1,16 @@
-# .github/workflows/ci.yml
+# .github/workflows/release.yml
 
-name: CI
+name: Release
 
-on: [push, pull_request]
+
+on:
+  push:
+    tags:
+      - '**'
+
 
 jobs:
-  build:
+  release:
 
     runs-on: ubuntu-latest
     strategy:
@@ -55,15 +60,18 @@ jobs:
           make dev-actions
           pipenv run pip install pycairo pygobject
           # check
-          make check
           make build
-          make test-actions
           # prepare for deployment
           make generate-paths
 
       - name: Publish distribution 📦 to Test PyPI
         uses: pypa/gh-action-pypi-publish@master
-        if: github.ref == 'refs/heads/master'
         with:
           password: ${{ secrets.TEST_PYPI_API_TOKEN }}
           repository_url: https://test.pypi.org/legacy/
+
+      # - name: Publish distribution 📦 to PyPI
+      #   if: startsWith(github.ref, 'refs/tags')
+      #   uses: pypa/gh-action-pypi-publish@master
+      #   with:
+      #     password: ${{ secrets.PYPI_API_TOKEN }}

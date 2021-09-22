@@ -1,33 +1,49 @@
-# EditorConfig is awesome: http://EditorConfig.org
 
-# top-most EditorConfig file
+# EditorConfig helps developers define and maintain consistent
+# coding styles between different editors and IDEs
+# https://editorconfig.org
 root = true
 
-[*]
-end_of_line = lf
-insert_final_newline = true
+[*.py]
 indent_style = space
 indent_size = 4
-tab_width = 4
-charset = utf-8
-trim_trailing_whitespace = true
-max_line_length = 100
 
-[*.rst]
-tab_width = 4
+[*.{md,rst,txt,md.j2,rst.j2}]
+indent_style = space
+indent_size = 2
 
-[*.yml]
-tab_width = 2
+[*.{ini,toml}]
+indent_style = space
+indent_size = 4
 
-[*.yaml]
-tab_width = 2
+[*Dockerfile]
+indent_style = space
+indent_size = 4
 
-[*.xml]
-tab_width = 2
+[*.js]
+indent_style = space
+indent_size = 2
 
-[*.glade]
-tab_width = 2
+[*.{html,css,html.j2,css.j2}]
+indent_style = space
+indent_size = 2
+
+[*.{yml,yaml,yaml.j2,yml.j2}]
+indent_style = space
+indent_size = 2
 
 [Makefile]
 indent_style = tab
 indent_size = 4
+
+# The JSON files contain newlines inconsistently
+[*.json]
+insert_final_newline = ignore
+indent_style = space
+indent_size = 2
+
+[*]
+end_of_line = lf
+charset = utf-8
+trim_trailing_whitespace = true
+insert_final_newline = true
