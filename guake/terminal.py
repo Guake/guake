@@ -121,6 +121,10 @@ class GuakeTerminal(Vte.Terminal):
 
         self.setup_drag_and_drop()
 
+        self.ENVV_EXCLUDE_LIST = ["GDK_BACKEND"]
+        self.envv = [f"{i}={os.environ[i]}" for i in os.environ if i not in self.ENVV_EXCLUDE_LIST]
+        self.envv.append(f"GUAKE_TAB_UUID={self.uuid}")
+
     def setup_drag_and_drop(self):
         self.targets = Gtk.TargetList()
         self.targets.add_uri_targets(DropTargets.URIS)
@@ -550,12 +554,13 @@ class GuakeTerminal(Vte.Terminal):
             Vte.PtyFlags.DEFAULT,
             directory,
             argv,
-            [f"GUAKE_TAB_UUID={self.uuid}"],
-            GLib.SpawnFlags.DO_NOT_REAP_CHILD,
+            self.envv,
+            GLib.SpawnFlags(Vte.SPAWN_NO_PARENT_ENVV | GLib.SpawnFlags.DO_NOT_REAP_CHILD),
             None,
             None,
             None,
         )
+
         try:
             tuple_type = gi._gi.ResultTuple  # pylint: disable=c-extension-no-member
         except:  # pylint: disable=bare-except
