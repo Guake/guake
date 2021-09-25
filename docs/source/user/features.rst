@@ -29,10 +29,10 @@ Color Palettes
 
 Thanks to the Guake community, a huge number of Terminal palettes are provided out of the box.
 
-Gtk Theme
+GTK Theme
 =========
 
-Guake allows you to choose a different Gtk theme than your environment.
+Guake allows you to choose a different GTK theme than your environment.
 
 .. note:: You need to restart Guake after changing the GTK theme.
 

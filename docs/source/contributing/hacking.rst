@@ -24,8 +24,8 @@ python 3 interpreter is forced to Python 3.6.
 Validate your code
 ------------------
 
-We are strict on code styling, with pep8 and pylint running automatically in travis in
-order to reject badly shaped patches. Please use the following command to validate all
+We are strict on code styling, with pep8 and pylint running automatically in GitHub Actions
+in order to reject badly shaped patches. Please use the following command to validate all
 python files:
 
 .. code-block:: bash
@@ -83,11 +83,9 @@ is automatically created by PBR.
 PBR also has some magic to generate the version automatically from ``sem-ver`` tag found in the
 commit message. See the ``Makefile``'s ``tag-pbr`` target.
 
-Travis build
-------------
+GitHub Actions build
+--------------------
 
-Travis automatically check pull requests are compiling and check for code style.
+GitHub Actions automatically check pull requests are compiling and check for code style.
 
-Status of the master branch: https://travis-ci.org/Guake/guake.png?branch=master
-
-The Travis job also pushes new release of Guake to Pypi.
+Status of the latest build: https://github.com/Guake/guake/actions

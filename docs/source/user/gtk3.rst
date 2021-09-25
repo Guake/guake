@@ -1,8 +1,8 @@
 
-Gtk 3 Port
+GTK 3 Port
 ==========
 
-Early 2018, Guake has been ported Gtk3, thanks to the huge work of @aichingm.
+Early 2018, Guake has been ported GTK3, thanks to the huge work of @aichingm.
 Old releases and code depending on GTK2 have been put on the
 `0.8.x <https://github.com/Guake/guake/tree/0.8.x>`_ branch
 of the GitHub project and will no more be actively maintained.
@@ -13,7 +13,7 @@ by default on most popular distribution such as Ubuntu or Arch Linux
 
 Guake is now only compatible with Python 3.5+.
 
-Port to Gtk 3 and Python 3 lead naturally to skip all 1.x and 2.x version in the
+Port to GTK 3 and Python 3 lead naturally to skip all 1.x and 2.x version in the
 version of Guake: Guake 3.
 
 Dropped Features from Guake 0.8.x

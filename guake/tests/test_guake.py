@@ -3,7 +3,6 @@
 
 import json
 import os
-import tempfile
 import time
 
 from pathlib import Path
@@ -94,7 +93,7 @@ def test_guake_restore_tabs(g, fs):
     }
 
     fn = fs.create_file("/foobar/session.json")
-    with open(fn.path, "w") as f:
+    with open(fn.path, "w", encoding="utf-8") as f:
         f.write(json.dumps(session))
 
     g.restore_tabs(fn.name)
@@ -112,7 +111,7 @@ def test_guake_restore_tabs_json_without_schema_version(g, fs):
     guake.guake_app.notifier.showMessage.reset_mock()
 
     fn = fs.create_file("/foobar/bar.json")
-    with open(fn.path, "w") as f:
+    with open(fn.path, "w", encoding="utf-8") as f:
         f.write("{}")
 
     g.restore_tabs(fn.name)
@@ -123,7 +122,7 @@ def test_guake_restore_tabs_with_higher_schema_version(g, fs):
     guake.guake_app.notifier.showMessage.reset_mock()
 
     fn = fs.create_file("/foobar/bar.json")
-    with open(fn.path, "w") as f:
+    with open(fn.path, "w", encoding="utf-8") as f:
         f.write('{"schema_version": 2147483647}')
 
     g.restore_tabs(fn.name)
@@ -133,7 +132,7 @@ def test_guake_restore_tabs_with_higher_schema_version(g, fs):
 def test_guake_restore_tabs_json_broken_session_file(g, fs):
     guake.guake_app.notifier.showMessage.reset_mock()
     fn = fs.create_file("/foobar/foobar.json")
-    with open(fn.path, "w") as f:
+    with open(fn.path, "w", encoding="utf-8") as f:
         f.write("{")
 
     g.restore_tabs(fn.name)
@@ -146,8 +145,8 @@ def test_guake_restore_tabs_schema_broken_session_file(g, fs):
 
     fn = fs.create_file("/foobar/bar.json")
     d = fs.create_dir("/foobar/foo")
-    with open(fn.path, "w") as f:
-        f.write('{"schema_version": 1, "workspace": {"0": [[{"directory": "%s"}]]}}' % (d.path))
+    with open(fn.path, "w", encoding="utf-8") as f:
+        f.write(f'{{"schema_version": 1, "workspace": {{"0": [[{{"directory": "{d.path}"}}]]}}}}')
 
     g.restore_tabs(fn.name)
     assert guake.guake_app.shutil.copy.call_count == 1
@@ -181,3 +180,11 @@ def test_guake_save_tabs_and_restore(mocker, g, fs):
     assert nb.get_n_pages() == 3
     assert nb.get_tab_text_index(1) == "foobar"
     assert nb.get_tab_text_index(2) == "python"
+
+
+def test_guake_hide_tab_bar_if_one_tab(mocker, g, fs):
+    # Set hide-tabs-if-one-tab to True
+    mocker.patch.object(g.settings.general, "get_boolean", return_value=True)
+
+    assert g.get_notebook().get_n_pages() == 1
+    assert g.get_notebook().get_property("show-tabs") is False
