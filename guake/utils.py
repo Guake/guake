@@ -19,13 +19,11 @@ License along with this program; if not, write to the
 Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor,
 Boston, MA 02110-1301 USA
 """
-import datetime
 import enum
 import logging
-import os
-import platform
 import subprocess
 import time
+import os
 
 import cairo
 
@@ -70,8 +68,7 @@ def get_server_time(widget):
 
 # Decorator for save-tabs-when-changed
 def save_tabs_when_changed(func):
-    """Decorator for save-tabs-when-changed
-    """
+    """Decorator for save-tabs-when-changed"""
 
     def wrapper(*args, **kwargs):
         func(*args, **kwargs)
@@ -109,8 +106,8 @@ def restore_preferences(filename):
     # XXX: Hardcode?
     with open(filename, "rb") as f:
         prefs = f.read()
-    p = subprocess.Popen(["dconf", "load", "/apps/guake/"], stdin=subprocess.PIPE)
-    p.communicate(input=prefs)
+    with subprocess.Popen(["dconf", "load", "/apps/guake/"], stdin=subprocess.PIPE) as p:
+        p.communicate(input=prefs)
 
 
 class TabNameUtils:
@@ -127,10 +124,9 @@ class TabNameUtils:
 
 class HidePrevention:
     def __init__(self, window):
-        """Create a new HidePrevention object like `HidePrevention(window)`
-        """
+        """Create a new HidePrevention object like `HidePrevention(window)`"""
         if not isinstance(window, Gtk.Window):
-            raise ValueError("window must be of type Gtk.Window, not of type %s" % type(window))
+            raise ValueError(f"window must be of type Gtk.Window, not of type {type(window)}")
         self.window = window
 
     def may_hide(self):
@@ -146,8 +142,7 @@ class HidePrevention:
         setattr(self.window, "can_hide", False)
 
     def allow(self):
-        """sets the flag so that it indicates to may_hide that the window is allowed to be hidden
-        """
+        """sets the flag so that it indicates to may_hide that the window is allowed to be hidden"""
         setattr(self.window, "can_hide", True)
 
 
@@ -166,13 +161,15 @@ class FullscreenManager:
     def set_window_state(self, window_state):
         self.window_state = window_state
         setattr(
-            self.window, self.FULLSCREEN_ATTR, bool(window_state & Gdk.WindowState.FULLSCREEN),
+            self.window,
+            self.FULLSCREEN_ATTR,
+            bool(window_state & Gdk.WindowState.FULLSCREEN),
         )
 
         if not window_state & Gdk.WindowState.WITHDRAWN:
             if self.is_fullscreen():
                 self.fullscreen()
-            elif window_state & Gdk.WindowState.FOCUSED:
+            elif window_state & Gdk.WindowState.FOCUSED and self.guake.hidden:
                 self.unfullscreen()
 
     def fullscreen(self):
@@ -197,9 +194,12 @@ class FullscreenManager:
 
     def toggle_fullscreen_hide_tabbar(self):
         if self.is_fullscreen():
-            if self.settings.general.get_boolean("fullscreen-hide-tabbar"):
-                if self.guake and self.guake.notebook_manager:
-                    self.guake.notebook_manager.set_notebooks_tabbar_visible(False)
+            if (
+                self.settings.general.get_boolean("fullscreen-hide-tabbar")
+                and self.guake
+                and self.guake.notebook_manager
+            ):
+                self.guake.notebook_manager.set_notebooks_tabbar_visible(False)
         else:
             if self.guake and self.guake.notebook_manager:
                 v = self.settings.general.get_boolean("window-tabbar")
@@ -285,8 +285,7 @@ class RectCalculator:
 
     @classmethod
     def get_final_window_monitor(cls, settings, window):
-        """Gets the final screen number for the main window of guake.
-        """
+        """Gets the final screen number for the main window of guake."""
 
         screen = window.get_screen()
 
@@ -352,7 +351,7 @@ class BackgroundImageManager:
             return
 
         if not os.path.exists(filename):
-            raise FileNotFoundError("Background file not found: %s" % (filename))
+            raise FileNotFoundError(f"Background file not found: {filename}")
 
         if self.filename:
             # Cached rendered surface
@@ -374,8 +373,7 @@ class BackgroundImageManager:
         return surface
 
     def render_target(self, width, height, mode, scale_mode=cairo.FILTER_BILINEAR):
-        """Paint bacground image to the specific size target surface with different layout mode
-        """
+        """Paint background image to the specific size target surface with different layout mode"""
         if not self.bg_surface:
             return None
 
@@ -449,6 +447,20 @@ class BackgroundImageManager:
         # Re-paint child draw into child context (which using child_surface as target)
         widget.propagate_draw(child, child_cr)
 
+        # Step 3.1 Re-paint search revealer
+        child_sr_surface = None
+        if getattr(widget, "search_revealer", None):
+            child_sr = widget.search_revealer
+            child_sr_surface = cr.get_target().create_similar(
+                cairo.CONTENT_COLOR_ALPHA,
+                child_sr.get_allocated_width(),
+                child_sr.get_allocated_height(),
+            )
+            child_sr_cr = cairo.Context(child_surface)
+
+            # Re-paint child draw into child context (which using child_surface as target)
+            widget.propagate_draw(child_sr, child_sr_cr)
+
         # Step 4. Paint child surface into our context (RootTerminalBox)
         #
         #         Before this step, we have two important context/surface
@@ -466,4 +478,11 @@ class BackgroundImageManager:
         cr.set_source_surface(child_surface, 0, 0)
         cr.set_operator(cairo.OPERATOR_OVER)
         cr.paint()
+
+        # Paint search revealer
+        if child_sr_surface:
+            cr.set_source_surface(child_sr_surface, 0, 0)
+            cr.set_operator(cairo.OPERATOR_OVER)
+            cr.paint()
+
         cr.restore()
