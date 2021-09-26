@@ -21,22 +21,17 @@ import logging
 import os
 import re
 import shutil
-import warnings
 
 from textwrap import dedent
 
 import gi
 
 gi.require_version("Gtk", "3.0")
-gi.require_version("Keybinder", "3.0")
 gi.require_version("Vte", "2.91")  # vte-0.38
 from gi.repository import GLib
-from gi.repository import GObject
 from gi.repository import Gdk
 from gi.repository import Gio
 from gi.repository import Gtk
-from gi.repository import Keybinder
-from gi.repository import Pango
 from gi.repository import Vte
 
 from guake.common import ShowableError
@@ -53,7 +48,6 @@ from guake.globals import ALWAYS_ON_PRIMARY
 from guake.globals import MAX_TRANSPARENCY
 from guake.globals import NAME
 from guake.globals import QUICK_OPEN_MATCHERS
-from guake.globals import bindtextdomain
 from guake.palettes import PALETTES
 from guake.paths import AUTOSTART_FOLDER
 from guake.paths import LOCALE_DIR
@@ -62,7 +56,6 @@ from guake.simplegladeapp import SimpleGladeApp
 from guake.terminal import GuakeTerminal
 from guake.theme import list_all_themes
 from guake.theme import select_gtk_theme
-from locale import gettext as _
 
 # pylint: disable=unsubscriptable-object
 
@@ -95,7 +88,10 @@ HOTKEYS = [
             {"key": "show-hide", "label": _("Toggle Guake visibility")},
             {"key": "show-focus", "label": _("Show and focus Guake window")},
             {"key": "toggle-fullscreen", "label": _("Toggle Fullscreen")},
-            {"key": "toggle-hide-on-lose-focus", "label": _("Toggle Hide on Lose Focus"), },
+            {
+                "key": "toggle-hide-on-lose-focus",
+                "label": _("Toggle Hide on Lose Focus"),
+            },
             {"key": "quit", "label": _("Quit")},
             {"key": "reset-terminal", "label": _("Reset terminal")},
             {"key": "search-terminal", "label": _("Search terminal")},
@@ -122,15 +118,22 @@ HOTKEYS = [
             {"key": "focus-terminal-down", "label": _("Focus terminal below")},
             {"key": "focus-terminal-left", "label": _("Focus terminal on the left")},
             {"key": "focus-terminal-right", "label": _("Focus terminal on the right")},
-            {"key": "move-terminal-split-up", "label": _("Move the terminal split handle up"), },
-            {"key": "move-terminal-split-down",
-                "label": _("Move the terminal split handle down"), },
+            {
+                "key": "move-terminal-split-up",
+                "label": _("Move the terminal split handle up"),
+            },
+            {
+                "key": "move-terminal-split-down",
+                "label": _("Move the terminal split handle down"),
+            },
             {
                 "key": "move-terminal-split-right",
                 "label": _("Move the terminal split handle right"),
             },
-            {"key": "move-terminal-split-left",
-                "label": _("Move the terminal split handle left"), },
+            {
+                "key": "move-terminal-split-left",
+                "label": _("Move the terminal split handle left"),
+            },
         ],
     },
     {
@@ -179,7 +182,9 @@ HOTKEYS = [
     {
         "label": _("Extra features"),
         "key": "extra",
-        "keys": [{"key": "search-on-web", "label": _("Search select text on web")}, ],
+        "keys": [
+            {"key": "search-on-web", "label": _("Search selected text on web")},
+        ],
     },
 ]
 
@@ -220,8 +225,7 @@ def refresh_user_start(settings):
 
 class PrefsCallbacks:
 
-    """Holds callbacks that will be used in the PrefsDialg class.
-    """
+    """Holds callbacks that will be used in the PrefsDialg class."""
 
     def __init__(self, prefDlg):
         self.prefDlg = prefDlg
@@ -230,23 +234,19 @@ class PrefsCallbacks:
     # general tab
 
     def on_restore_tabs_startup_toggled(self, chk):
-        """Changes the activity of restore-tabs-startup in dconf
-        """
+        """Changes the activity of restore-tabs-startup in dconf"""
         self.settings.general.set_boolean("restore-tabs-startup", chk.get_active())
 
     def on_restore_tabs_notify_toggled(self, chk):
-        """Changes the activity of restore-tabs-notify in dconf
-        """
+        """Changes the activity of restore-tabs-notify in dconf"""
         self.settings.general.set_boolean("restore-tabs-notify", chk.get_active())
 
     def on_save_tabs_when_changed_toggled(self, chk):
-        """Changes the activity of save-tabs-when-changed in dconf
-        """
+        """Changes the activity of save-tabs-when-changed in dconf"""
         self.settings.general.set_boolean("save-tabs-when-changed", chk.get_active())
 
     def on_default_shell_changed(self, combo):
-        """Changes the activity of default_shell in dconf
-        """
+        """Changes the activity of default_shell in dconf"""
         citer = combo.get_active_iter()
         if not citer:
             return
@@ -259,43 +259,35 @@ class PrefsCallbacks:
             self.settings.general.set_string("default-shell", shell)
 
     def on_use_login_shell_toggled(self, chk):
-        """Changes the activity of use_login_shell in dconf
-        """
+        """Changes the activity of use_login_shell in dconf"""
         self.settings.general.set_boolean("use-login-shell", chk.get_active())
 
     def on_open_tab_cwd_toggled(self, chk):
-        """Changes the activity of open_tab_cwd in dconf
-        """
+        """Changes the activity of open_tab_cwd in dconf"""
         self.settings.general.set_boolean("open-tab-cwd", chk.get_active())
 
     def on_use_trayicon_toggled(self, chk):
-        """Changes the activity of use_trayicon in dconf
-        """
+        """Changes the activity of use_trayicon in dconf"""
         self.settings.general.set_boolean("use-trayicon", chk.get_active())
 
     def on_use_popup_toggled(self, chk):
-        """Changes the activity of use_popup in dconf
-        """
+        """Changes the activity of use_popup in dconf"""
         self.settings.general.set_boolean("use-popup", chk.get_active())
 
     def on_workspace_specific_tab_sets_toggled(self, chk):
-        """Sets the 'workspace-specific-tab-sets' property in dconf
-        """
+        """Sets the 'workspace-specific-tab-sets' property in dconf"""
         self.settings.general.set_boolean("workspace-specific-tab-sets", chk.get_active())
 
     def on_prompt_on_quit_toggled(self, chk):
-        """Set the `prompt on quit' property in dconf
-        """
+        """Set the `prompt on quit' property in dconf"""
         self.settings.general.set_boolean("prompt-on-quit", chk.get_active())
 
     def on_prompt_on_close_tab_changed(self, combo):
-        """Set the `prompt_on_close_tab' property in dconf
-        """
+        """Set the `prompt_on_close_tab' property in dconf"""
         self.settings.general.set_int("prompt-on-close-tab", combo.get_active())
 
     def on_gtk_theme_name_changed(self, combo):
-        """Set the `gtk_theme_name' property in dconf
-        """
+        """Set the `gtk_theme_name' property in dconf"""
         citer = combo.get_active_iter()
         if not citer:
             return
@@ -304,29 +296,29 @@ class PrefsCallbacks:
         select_gtk_theme(self.settings)
 
     def on_gtk_prefer_dark_theme_toggled(self, chk):
-        """Set the `gtk_prefer_dark_theme' property in dconf
-        """
+        """Set the `gtk_prefer_dark_theme' property in dconf"""
         self.settings.general.set_boolean("gtk-prefer-dark-theme", chk.get_active())
         select_gtk_theme(self.settings)
 
+    def on_gtk_use_system_default_theme_toggled(self, chk):
+        """Set the `gtk_prefer_dark_theme' property in dconf"""
+        self.settings.general.set_boolean("gtk-use-system-default-theme", chk.get_active())
+        select_gtk_theme(self.settings)
+
     def on_window_ontop_toggled(self, chk):
-        """Changes the activity of window_ontop in dconf
-        """
+        """Changes the activity of window_ontop in dconf"""
         self.settings.general.set_boolean("window-ontop", chk.get_active())
 
     def on_tab_ontop_toggled(self, chk):
-        """Changes the activity of tab_ontop in dconf
-        """
+        """Changes the activity of tab_ontop in dconf"""
         self.settings.general.set_boolean("tab-ontop", chk.get_active())
 
     def on_new_tab_after_toggled(self, chk):
-        """Changes the activity of new_tab_after in dconf
-        """
+        """Changes the activity of new_tab_after in dconf"""
         self.settings.general.set_boolean("new-tab-after", chk.get_active())
 
     def on_quick_open_enable_toggled(self, chk):
-        """Changes the activity of quick_open_enable in dconf
-        """
+        """Changes the activity of quick_open_enable in dconf"""
         self.settings.general.set_boolean("quick-open-enable", chk.get_active())
 
     def on_quick_open_in_current_terminal_toggled(self, chk):
@@ -336,13 +328,11 @@ class PrefsCallbacks:
         self.settings.general.set_string("startup-script", edt.get_text())
 
     def on_window_refocus_toggled(self, chk):
-        """Changes the activity of window_refocus in dconf
-        """
+        """Changes the activity of window_refocus in dconf"""
         self.settings.general.set_boolean("window-refocus", chk.get_active())
 
     def on_window_losefocus_toggled(self, chk):
-        """Changes the activity of window_losefocus in dconf
-        """
+        """Changes the activity of window_losefocus in dconf"""
         self.settings.general.set_boolean("window-losefocus", chk.get_active())
 
     def on_quick_open_command_line_changed(self, edt):
@@ -352,44 +342,44 @@ class PrefsCallbacks:
         self.settings.hooks.set_string("show", edt.get_text())
 
     def on_window_tabbar_toggled(self, chk):
-        """Changes the activity of window_tabbar in dconf
-        """
+        """Changes the activity of window_tabbar in dconf"""
         self.settings.general.set_boolean("window-tabbar", chk.get_active())
 
     def on_fullscreen_hide_tabbar_toggled(self, chk):
-        """Changes the activity of fullscreen_hide_tabbar in dconf
-        """
+        """Changes the activity of fullscreen_hide_tabbar in dconf"""
         self.settings.general.set_boolean("fullscreen-hide-tabbar", chk.get_active())
 
+    def on_hide_tabs_if_one_tab_toggled(self, chk):
+        """Changes the activity of hide_tabs_if_one_tab in dconf"""
+        self.settings.general.set_boolean("hide-tabs-if-one-tab", chk.get_active())
+
     def on_start_fullscreen_toggled(self, chk):
-        """Changes the activity of start_fullscreen in dconf
-        """
+        """Changes the activity of start_fullscreen in dconf"""
         self.settings.general.set_boolean("start-fullscreen", chk.get_active())
 
     def on_start_at_login_toggled(self, chk):
-        """Changes the activity of start_at_login in dconf
-        """
+        """Changes the activity of start_at_login in dconf"""
         self.settings.general.set_boolean("start-at-login", chk.get_active())
         refresh_user_start(self.settings)
 
     def on_use_vte_titles_toggled(self, chk):
-        """Save `use_vte_titles` property value in dconf
-        """
+        """Save `use_vte_titles` property value in dconf"""
         self.settings.general.set_boolean("use-vte-titles", chk.get_active())
 
     def on_set_window_title_toggled(self, chk):
-        """Save `set_window_title` property value in dconf
-        """
+        """Save `set_window_title` property value in dconf"""
         self.settings.general.set_boolean("set-window-title", chk.get_active())
 
+    def on_copy_on_select_toggled(self, chk):
+        """Changes the value of copy_on_select in dconf"""
+        self.settings.general.set_boolean("copy-on-select", chk.get_active())
+
     def on_tab_name_display_changed(self, combo):
-        """Save `display-tab-names` property value in dconf
-        """
+        """Save `display-tab-names` property value in dconf"""
         self.settings.general.set_int("display-tab-names", combo.get_active())
 
     def on_max_tab_name_length_changed(self, spin):
-        """Changes the value of max_tab_name_length in dconf
-        """
+        """Changes the value of max_tab_name_length in dconf"""
         val = int(spin.get_value())
         self.settings.general.set_int("max-tab-name-length", val)
         self.prefDlg.update_vte_subwidgets_states()
@@ -401,20 +391,17 @@ class PrefsCallbacks:
         self.settings.general.set_boolean("mouse-display", chk.get_active())
 
     def on_right_align_toggled(self, chk):
-        """set the horizontal alignment setting.
-        """
+        """set the horizontal alignment setting."""
         v = chk.get_active()
         self.settings.general.set_int("window-halignment", 1 if v else 0)
 
     def on_bottom_align_toggled(self, chk):
-        """set the vertical alignment setting.
-        """
+        """set the vertical alignment setting."""
         v = chk.get_active()
         self.settings.general.set_int("window-valignment", ALIGN_BOTTOM if v else ALIGN_TOP)
 
     def on_display_n_changed(self, combo):
-        """Set the destination display in dconf.
-        """
+        """Set the destination display in dconf."""
 
         i = combo.get_active_iter()
         if not i:
@@ -431,20 +418,17 @@ class PrefsCallbacks:
         self.settings.general.set_int("display-n", val_int)
 
     def on_window_height_value_changed(self, hscale):
-        """Changes the value of window_height in dconf
-        """
+        """Changes the value of window_height in dconf"""
         val = hscale.get_value()
         self.settings.general.set_int("window-height", int(val))
 
     def on_window_width_value_changed(self, wscale):
-        """Changes the value of window_width in dconf
-        """
+        """Changes the value of window_width in dconf"""
         val = wscale.get_value()
         self.settings.general.set_int("window-width", int(val))
 
     def on_window_halign_value_changed(self, halign_button):
-        """Changes the value of window_halignment in dconf
-        """
+        """Changes the value of window_halignment in dconf"""
         which_align = {
             "radiobutton_align_left": ALIGN_LEFT,
             "radiobutton_align_right": ALIGN_RIGHT,
@@ -459,20 +443,17 @@ class PrefsCallbacks:
         )
 
     def on_use_audible_bell_toggled(self, chk):
-        """Changes the value of use_audible_bell in dconf
-        """
+        """Changes the value of use_audible_bell in dconf"""
         self.settings.general.set_boolean("use-audible-bell", chk.get_active())
 
     # scrolling tab
 
     def on_use_scrollbar_toggled(self, chk):
-        """Changes the activity of use_scrollbar in dconf
-        """
+        """Changes the activity of use_scrollbar in dconf"""
         self.settings.general.set_boolean("use-scrollbar", chk.get_active())
 
     def on_history_size_value_changed(self, spin):
-        """Changes the value of history_size in dconf
-        """
+        """Changes the value of history_size in dconf"""
         val = int(spin.get_value())
         self.settings.general.set_int("history-size", val)
         self._update_history_widgets()
@@ -486,35 +467,29 @@ class PrefsCallbacks:
         self.prefDlg.get_widget("history_size").set_sensitive(not infinite)
 
     def on_scroll_output_toggled(self, chk):
-        """Changes the activity of scroll_output in dconf
-        """
+        """Changes the activity of scroll_output in dconf"""
         self.settings.general.set_boolean("scroll-output", chk.get_active())
 
     def on_scroll_keystroke_toggled(self, chk):
-        """Changes the activity of scroll_keystroke in dconf
-        """
+        """Changes the activity of scroll_keystroke in dconf"""
         self.settings.general.set_boolean("scroll-keystroke", chk.get_active())
 
     # appearance tab
 
     def on_use_default_font_toggled(self, chk):
-        """Changes the activity of use_default_font in dconf
-        """
+        """Changes the activity of use_default_font in dconf"""
         self.settings.general.set_boolean("use-default-font", chk.get_active())
 
     def on_allow_bold_toggled(self, chk):
-        """Changes the value of allow_bold in dconf
-        """
+        """Changes the value of allow_bold in dconf"""
         self.settings.styleFont.set_boolean("allow-bold", chk.get_active())
 
     def on_bold_is_bright_toggled(self, chk):
-        """Changes the value of bold_is_bright in dconf
-        """
+        """Changes the value of bold_is_bright in dconf"""
         self.settings.styleFont.set_boolean("bold-is-bright", chk.get_active())
 
     def on_font_style_font_set(self, fbtn):
-        """Changes the value of font_style in dconf
-        """
+        """Changes the value of font_style in dconf"""
         self.settings.styleFont.set_string("style", fbtn.get_font_name())
 
     def on_background_image_file_chooser_file_changed(self, fc):
@@ -532,8 +507,7 @@ class PrefsCallbacks:
         self.settings.general.set_int("background-image-layout-mode", val)
 
     def on_transparency_value_changed(self, hscale):
-        """Changes the value of background_transparency in dconf
-        """
+        """Changes the value of background_transparency in dconf"""
         value = hscale.get_value()
         self.prefDlg.set_colors_from_settings()
         self.settings.styleBackground.set_int("transparency", MAX_TRANSPARENCY - int(value))
@@ -541,14 +515,12 @@ class PrefsCallbacks:
     # compatibility tab
 
     def on_backspace_binding_changed(self, combo):
-        """Changes the value of compat_backspace in dconf
-        """
+        """Changes the value of compat_backspace in dconf"""
         val = combo.get_active_text()
         self.settings.general.set_string("compat-backspace", ERASE_BINDINGS[val])
 
     def on_delete_binding_changed(self, combo):
-        """Changes the value of compat_delete in dconf
-        """
+        """Changes the value of compat_delete in dconf"""
         val = combo.get_active_text()
         self.settings.general.set_string("compat-delete", ERASE_BINDINGS[val])
 
@@ -561,11 +533,17 @@ class PrefsCallbacks:
     def toggle_style_sensitivity(self, chk):
         self.prefDlg.toggle_style_sensitivity(chk)
 
+    def toggle_use_theme_sensitivity(self, chk):
+        self.prefDlg.toggle_use_theme_sensitivity(chk)
+
     def toggle_use_font_background_sensitivity(self, chk):
         self.prefDlg.toggle_use_font_background_sensitivity(chk)
 
     def toggle_display_n_sensitivity(self, chk):
         self.prefDlg.toggle_display_n_sensitivity(chk)
+
+    def toggle_show_tabbar_sensitivity(self, chk):
+        self.prefDlg.toggle_show_tabbar_sensitivity(chk)
 
     def toggle_quick_open_command_line_sensitivity(self, chk):
         self.prefDlg.toggle_quick_open_command_line_sensitivity(chk)
@@ -592,13 +570,11 @@ class PrefsCallbacks:
         self.prefDlg.on_palette_color_set(btn)
 
     def on_window_vertical_displacement_value_changed(self, spin):
-        """Changes the value of window-vertical-displacement
-        """
+        """Changes the value of window-vertical-displacement"""
         self.settings.general.set_int("window-vertical-displacement", int(spin.get_value()))
 
     def on_window_horizontal_displacement_value_changed(self, spin):
-        """Changes the value of window-horizontal-displacement
-        """
+        """Changes the value of window-horizontal-displacement"""
         self.settings.general.set_int("window-horizontal-displacement", int(spin.get_value()))
 
     def reload_erase_combos(self, btn=None):
@@ -610,8 +586,7 @@ class PrefsCallbacks:
 
 class PrefsDialog(SimpleGladeApp):
 
-    """The Guake Preferences dialog.
-    """
+    """The Guake Preferences dialog."""
 
     def __init__(self, settings):
         """Setup the preferences dialog interface, loading images,
@@ -620,7 +595,7 @@ class PrefsDialog(SimpleGladeApp):
         self.hotkey_alread_used = False
         self.store = None
 
-        super(PrefsDialog, self).__init__(gladefile("prefs.glade"), root="config-window")
+        super().__init__(gladefile("prefs.glade"), root="config-window")
         style_provider = Gtk.CssProvider()
         css_data = dedent(
             """
@@ -631,7 +606,9 @@ class PrefsDialog(SimpleGladeApp):
         ).encode()
         style_provider.load_from_data(css_data)
         Gtk.StyleContext.add_provider_for_screen(
-            Gdk.Screen.get_default(), style_provider, Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION,
+            Gdk.Screen.get_default(),
+            style_provider,
+            Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION,
         )
         self.get_widget("quick_open_command_line").get_style_context().add_class("monospace")
         self.get_widget("quick_open_supported_patterns").get_style_context().add_class("monospace")
@@ -670,6 +647,7 @@ class PrefsDialog(SimpleGladeApp):
 
         renderer = Gtk.CellRendererAccel()
         renderer.set_property("editable", True)
+        renderer.set_property("accel-mode", 1)
         renderer.connect("accel-edited", self.on_accel_edited)
         renderer.connect("accel-cleared", self.on_accel_cleared)
         column = Gtk.TreeViewColumn(_("Shortcut"), renderer, text=2)
@@ -708,7 +686,7 @@ class PrefsDialog(SimpleGladeApp):
         self.get_widget("config-window").hide()
 
     def spawn_sync_pid(self, directory=None, terminal=None):
-        argv = list()
+        argv = []
         user_shell = self.settings.general.get_string("default-shell")
         if user_shell and os.path.exists(user_shell):
             argv.append(user_shell)
@@ -725,7 +703,14 @@ class PrefsDialog(SimpleGladeApp):
             wd = os.environ["HOME"]
 
         pid = terminal.spawn_sync(
-            Vte.PtyFlags.DEFAULT, wd, argv, [], GLib.SpawnFlags.DO_NOT_REAP_CHILD, None, None, None,
+            Vte.PtyFlags.DEFAULT,
+            wd,
+            argv,
+            [],
+            GLib.SpawnFlags.DO_NOT_REAP_CHILD,
+            None,
+            None,
+            None,
         )
 
         try:
@@ -736,7 +721,8 @@ class PrefsDialog(SimpleGladeApp):
             # Return a tuple in 2.91
             # https://lazka.github.io/pgi-docs/Vte-2.91/classes/Terminal.html#Vte.Terminal.spawn_sync
             pid = pid[1]
-        assert isinstance(pid, int)
+        if not isinstance(pid, int):
+            raise TypeError("pid must be an int")
         return pid
 
     def show(self):
@@ -747,8 +733,7 @@ class PrefsDialog(SimpleGladeApp):
         self.get_widget("config-window").present()
 
     def hide(self):
-        """Calls the main window hide function.
-        """
+        """Calls the main window hide function."""
         self.get_widget("config-window").hide()
 
     def on_destroy(self, window):
@@ -768,6 +753,14 @@ class PrefsDialog(SimpleGladeApp):
         """
         self.get_widget("font_style").set_sensitive(not chk.get_active())
 
+    def toggle_use_theme_sensitivity(self, chk):
+        """If the user chooses to use the gnome default theme
+        configuration it means that he will not be able to use the
+        theme selector.
+        """
+        self.get_widget("gtk_theme_name").set_sensitive(not chk.get_active())
+        self.get_widget("gtk_prefer_dark_theme").set_sensitive(not chk.get_active())
+
     def toggle_use_font_background_sensitivity(self, chk):
         """If the user chooses to use the gnome default font
         configuration it means that he will not be able to use the
@@ -776,21 +769,26 @@ class PrefsDialog(SimpleGladeApp):
         self.get_widget("palette_16").set_sensitive(chk.get_active())
         self.get_widget("palette_17").set_sensitive(chk.get_active())
 
+    def toggle_show_tabbar_sensitivity(self, chk):
+        """If the user chooses to not show the tab bar, it means that they
+        cannot see the tab bar regardless of what other tab bar options say.
+        """
+        self.get_widget("fullscreen_hide_tabbar").set_sensitive(chk.get_active())
+        self.get_widget("hide_tabs_if_one_tab").set_sensitive(chk.get_active())
+
     def toggle_display_n_sensitivity(self, chk):
         """When the user unchecks 'on mouse display', the option to select an
-        alternate display should be enabeld.
+        alternate display should be enabled.
         """
         self.get_widget("display_n").set_sensitive(not chk.get_active())
 
     def toggle_quick_open_command_line_sensitivity(self, chk):
-        """When the user unchecks 'enable quick open', the command line should be disabled
-        """
+        """When the user unchecks 'enable quick open', the command line should be disabled"""
         self.get_widget("quick_open_command_line").set_sensitive(chk.get_active())
         self.get_widget("quick_open_in_current_terminal").set_sensitive(chk.get_active())
 
     def toggle_use_vte_titles(self, chk):
-        """When vte titles aren't used, there is nothing to abbreviate
-        """
+        """When vte titles aren't used, there is nothing to abbreviate"""
         self.update_vte_subwidgets_states()
 
     def update_vte_subwidgets_states(self):
@@ -810,8 +808,7 @@ class PrefsDialog(SimpleGladeApp):
         self.reload_erase_combos()
 
     def on_palette_name_changed(self, combo):
-        """Changes the value of palette in dconf
-        """
+        """Changes the value of palette in dconf"""
         palette_name = combo.get_active_text()
         if palette_name not in PALETTES:
             return
@@ -821,23 +818,20 @@ class PrefsDialog(SimpleGladeApp):
         self.update_demo_palette(PALETTES[palette_name])
 
     def on_cursor_shape_changed(self, combo):
-        """Changes the value of cursor_shape in dconf
-        """
+        """Changes the value of cursor_shape in dconf"""
         index = combo.get_active()
         self.settings.style.set_int("cursor-shape", index)
 
     def on_blink_cursor_toggled(self, chk):
-        """Changes the value of blink_cursor in dconf
-        """
+        """Changes the value of blink_cursor in dconf"""
         self.settings.style.set_int("cursor-blink-mode", chk.get_active())
 
     def on_palette_color_set(self, btn):
-        """Changes the value of palette in dconf
-        """
+        """Changes the value of palette in dconf"""
 
         palette = []
         for i in range(18):
-            palette.append(hexify_color(self.get_widget("palette_%d" % i).get_color()))
+            palette.append(hexify_color(self.get_widget(f"palette_{i}").get_color()))
         palette = ":".join(palette)
         self.settings.styleFont.set_string("palette", palette)
         self.settings.styleFont.set_string("palette-name", _("Custom"))
@@ -867,7 +861,7 @@ class PrefsDialog(SimpleGladeApp):
     def set_colors_from_settings(self):
         transparency = self.settings.styleBackground.get_int("transparency")
         colorRGBA = Gdk.RGBA(0, 0, 0, 0)
-        palette_list = list()
+        palette_list = []
         for color in self.settings.styleFont.get_string("palette").split(":"):
             colorRGBA.parse(color)
             palette_list.append(colorRGBA.copy())
@@ -903,12 +897,11 @@ class PrefsDialog(SimpleGladeApp):
         self.get_widget("cursor_blink_mode").set_active(mode_index)
 
     def set_palette_colors(self, palette):
-        """Updates the color buttons with the given palette
-        """
+        """Updates the color buttons with the given palette"""
         palette = palette.split(":")
         for i, pal in enumerate(palette):
             x, color = Gdk.Color.parse(pal)
-            self.get_widget("palette_%d" % i).set_color(color)
+            self.get_widget(f"palette_{i}").set_color(color)
 
     def reload_erase_combos(self, btn=None):
         """Read from dconf the value of compat_{backspace,delete} vars
@@ -935,9 +928,8 @@ class PrefsDialog(SimpleGladeApp):
         log.debug("executing _load_hooks_settings")
         hook_show_widget = self.get_widget("hook_show")
         hook_show_setting = self.settings.hooks.get_string("show")
-        if hook_show_widget is not None:
-            if hook_show_setting is not None:
-                hook_show_widget.set_text(hook_show_setting)
+        if None not in (hook_show_widget, hook_show_setting):
+            hook_show_widget.set_text(hook_show_setting)
 
     def _load_default_shell_settings(self):
         combo = self.get_widget("default_shell")
@@ -1018,7 +1010,11 @@ class PrefsDialog(SimpleGladeApp):
         self.get_widget("prompt_on_close_tab").set_active(value)
         self.get_widget("prompt_on_quit").set_sensitive(value != 2)
 
-        # gtk theme theme
+        # use system theme
+        value = self.settings.general.get_boolean("gtk-use-system-default-theme")
+        self.get_widget("gtk_use_system_default_theme").set_active(value)
+
+        # gtk theme name
         value = self.settings.general.get_string("gtk-theme-name")
         combo = self.get_widget("gtk_theme_name")
         for i in combo.get_model():
@@ -1026,7 +1022,7 @@ class PrefsDialog(SimpleGladeApp):
                 combo.set_active_iter(i.iter)
                 break
 
-        # prefer gtk theme theme
+        # prefer gtk dark theme
         value = self.settings.general.get_boolean("gtk-prefer-dark-theme")
         self.get_widget("gtk_prefer_dark_theme").set_active(value)
 
@@ -1098,6 +1094,10 @@ class PrefsDialog(SimpleGladeApp):
         value = self.settings.general.get_boolean("fullscreen-hide-tabbar")
         self.get_widget("fullscreen_hide_tabbar").set_active(value)
 
+        # hide tabbar if only one tab
+        value = self.settings.general.get_boolean("hide-tabs-if-one-tab")
+        self.get_widget("hide_tabs_if_one_tab").set_active(value)
+
         # start fullscreen
         value = self.settings.general.get_boolean("start-fullscreen")
         self.get_widget("start_fullscreen").set_active(value)
@@ -1119,7 +1119,7 @@ class PrefsDialog(SimpleGladeApp):
         text = Gtk.TextBuffer()
         text = self.get_widget("quick_open_supported_patterns").get_buffer()
         for title, matcher, _useless in QUICK_OPEN_MATCHERS:
-            text.insert_at_cursor("%s: %s\n" % (title, matcher))
+            text.insert_at_cursor(f"{title}: {matcher}\n")
         self.get_widget("quick_open_supported_patterns").set_buffer(text)
 
         value = self.settings.general.get_string("quick-open-command-line")
@@ -1162,6 +1162,10 @@ class PrefsDialog(SimpleGladeApp):
         value = self.settings.general.get_boolean("use-default-font")
         self.get_widget("use_default_font").set_active(value)
         self.get_widget("font_style").set_sensitive(not value)
+
+        # use copy on select
+        value = self.settings.general.get_boolean("copy-on-select")
+        self.get_widget("copy_on_select").set_active(value)
 
         # font
         value = self.settings.styleFont.get_string("style")
@@ -1240,11 +1244,11 @@ class PrefsDialog(SimpleGladeApp):
         # append user shell as first option
         cb.append_text(USER_SHELL_VALUE)
         if os.path.exists(SHELLS_FILE):
-            lines = open(SHELLS_FILE).readlines()
-            for i in lines:
-                possible = i.strip()
-                if possible and not possible.startswith("#") and os.path.exists(possible):
-                    cb.append_text(possible)
+            with open(SHELLS_FILE, encoding="utf-8") as f:
+                for i in f.readlines():
+                    possible = i.strip()
+                    if possible and not possible.startswith("#") and os.path.exists(possible):
+                        cb.append_text(possible)
 
         for i in get_binaries_from_path(PYTHONS):
             cb.append_text(i)
@@ -1262,7 +1266,7 @@ class PrefsDialog(SimpleGladeApp):
         for group in HOTKEYS:
             parent = self.store.append(None, [None, group["label"], None, None])
             for item in group["keys"]:
-                if item["key"] == "show-hide" or item["key"] == "show-focus":
+                if item["key"] in ("show-hide", "show-focus"):
                     accel = self.settings.keybindingsGlobal.get_string(item["key"])
                 else:
                     accel = self.settings.keybindingsLocal.get_string(item["key"])
@@ -1365,7 +1369,7 @@ class PrefsDialog(SimpleGladeApp):
         dconf_path = self.store[path][HOTKET_MODEL_INDEX_DCONF]
         self.store[path][HOTKET_MODEL_INDEX_HUMAN_ACCEL] = ""
         self.store[path][HOTKET_MODEL_INDEX_ACCEL] = "None"
-        if dconf_path in ("show-hide", "show-focus"):
+        if dconf_path in ("show-focus", "show-hide"):
             self.settings.keybindingsGlobal.set_string(dconf_path, "disabled")
         else:
             self.settings.keybindingsLocal.set_string(dconf_path, "disabled")
@@ -1396,7 +1400,7 @@ class KeyEntry:
         self.mask = mask
 
     def __repr__(self):
-        return "KeyEntry(%d, %d)" % (self.keycode, self.mask)
+        return f"KeyEntry({self.keycode}, {self.mask})"
 
     def __eq__(self, rval):
         return self.keycode == rval.keycode and self.mask == rval.mask
@@ -1420,6 +1424,13 @@ def setup_standalone_signals(instance):
 
 
 if __name__ == "__main__":
+    import builtins
+    from locale import gettext
+    from guake.globals import bindtextdomain
+
+    builtins.__dict__["_"] = gettext
+
     bindtextdomain(NAME, LOCALE_DIR)
+
     setup_standalone_signals(PrefsDialog(None)).show()
     Gtk.main()
