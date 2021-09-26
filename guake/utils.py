@@ -21,9 +21,9 @@ Boston, MA 02110-1301 USA
 """
 import enum
 import logging
+import os
 import subprocess
 import time
-import os
 
 import cairo
 
