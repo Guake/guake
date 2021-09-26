@@ -1,0 +1,6 @@
+release_summary: >
+    Fix ignored "Show scrollbar" after spliting vertically
+
+fixes:
+  - |
+    fixes #1734
