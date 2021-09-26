@@ -34,26 +34,32 @@ def get_resource_dirs(resource):
             GLib.get_system_data_dirs(), GUAKE_THEME_DIR, GLib.get_user_data_dir()
         )
     ]
-    dirs += [os.path.join(os.path.expanduser("~"), ".{}".format(resource))]
+    dirs += [os.path.join(os.path.expanduser("~"), f".{resource}")]
 
     return [Path(dir) for dir in dirs if os.path.isdir(dir)]
 
 
 def list_all_themes():
     return sorted(
-        set(
+        {
             x.name
             for theme_dir in get_resource_dirs("themes")
             for x in theme_dir.iterdir()
             if x.is_dir()
-        )
+        }
     )
 
 
 def select_gtk_theme(settings):
+    gtk_settings = Gtk.Settings.get_default()
+    if settings.general.get_boolean("gtk-use-system-default-theme"):
+        log.debug("Using system default theme")
+        gtk_settings.reset_property("gtk-theme-name")
+        gtk_settings.set_property("gtk-application-prefer-dark-theme", False)
+        return
+
     gtk_theme_name = settings.general.get_string("gtk-theme-name")
     log.debug("Wanted GTK theme: %r", gtk_theme_name)
-    gtk_settings = Gtk.Settings.get_default()
     gtk_settings.set_property("gtk-theme-name", gtk_theme_name)
 
     prefer_dark_theme = settings.general.get_boolean("gtk-prefer-dark-theme")
@@ -71,9 +77,7 @@ def patch_gtk_theme(style_context, settings):
     theme_name, variant = get_gtk_theme(settings)
 
     def rgba_to_hex(color):
-        return "#{0:02x}{1:02x}{2:02x}".format(
-            int(color.red * 255), int(color.green * 255), int(color.blue * 255)
-        )
+        return f"#{''.join(f'{int(i*255):02x}' for i in (color.red, color.green, color.blue))}"
 
     # for n in [
     #     "inverted_bg_color",
@@ -98,17 +102,17 @@ def patch_gtk_theme(style_context, settings):
         selected_bg_color,
     )
     css_data = dedent(
-        """
+        f"""
         .custom_tab:checked {{
             color: {selected_fg_color};
             background: {selected_bg_color};
         }}
-        """.format(
-            selected_bg_color=selected_bg_color, selected_fg_color=selected_fg_color
-        )
+        """
     ).encode()
     style_provider = Gtk.CssProvider()
     style_provider.load_from_data(css_data)
     Gtk.StyleContext.add_provider_for_screen(
-        Gdk.Screen.get_default(), style_provider, Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION,
+        Gdk.Screen.get_default(),
+        style_provider,
+        Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION,
     )
