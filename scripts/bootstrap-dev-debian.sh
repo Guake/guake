@@ -47,7 +47,8 @@ if [[ $RUN == "1" ]]; then
         python3-dbus \
         python3-gi \
         python3-pbr \
-        python3-pip
+        python3-pip \
+        libgirepository1.0-dev
 fi
 
 if [[ $MAKE == "1" ]]; then
