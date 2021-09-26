@@ -35,8 +35,6 @@ from typing import Tuple
 from urllib.parse import unquote
 from urllib.parse import urlparse
 
-from time import sleep
-
 import gi
 
 gi.require_version("Gtk", "3.0")
@@ -44,7 +42,6 @@ gi.require_version("Vte", "2.91")  # vte-0.38
 
 from gi.repository import GLib
 from gi.repository import Gdk
-from gi.repository import GdkX11
 from gi.repository import Gtk
 from gi.repository import Pango
 from gi.repository import Vte
@@ -98,17 +95,17 @@ class DropTargets(IntEnum):
 
 class GuakeTerminal(Vte.Terminal):
 
-    """Just a vte.Terminal with some properties already set.
-    """
+    """Just a vte.Terminal with some properties already set."""
 
     def __init__(self, guake):
-        super(GuakeTerminal, self).__init__()
+        super().__init__()
         self.guake = guake
         self.configure_terminal()
         self.add_matches()
         self.handler_ids = []
         self.handler_ids.append(self.connect("button-press-event", self.button_press))
         self.connect("child-exited", self.on_child_exited)  # Call on_child_exited, don't remove it
+        self.connect("selection-changed", self.copy_on_select)
         self.matched_value = ""
         self.font_scale_index = 0
         self._pid = None
@@ -162,14 +159,17 @@ class GuakeTerminal(Vte.Terminal):
 
     def copy_clipboard(self):
         if self.get_has_selection():
-            super(GuakeTerminal, self).copy_clipboard()
+            super().copy_clipboard()
         elif self.matched_value:
             guake_clipboard = Gtk.Clipboard.get_default(self.guake.window.get_display())
             guake_clipboard.set_text(self.matched_value, len(self.matched_value))
 
+    def copy_on_select(self, event):
+        if self.guake.settings.general.get_boolean("copy-on-select") and self.get_has_selection():
+            self.copy_clipboard()
+
     def configure_terminal(self):
-        """Sets all customized properties on the terminal
-        """
+        """Sets all customized properties on the terminal"""
         client = self.guake.settings.general
         word_chars = client.get_string("word-chars")
         if word_chars:
@@ -234,20 +234,20 @@ class GuakeTerminal(Vte.Terminal):
                 for _useless, match, _otheruseless in QUICK_OPEN_MATCHERS:
                     tag = self.match_add_gregex(GLib.Regex.new(match, compile_flag, 0), 0)
                     self.match_set_cursor_type(tag, Gdk.CursorType.HAND2)
-            except GLib.Error as e:  # pylint: disable=catching-non-exception
+            except GLib.Error as err:  # pylint: disable=catching-non-exception
                 log.error(
                     "ERROR: PCRE2 does not seems to be enabled on your system. "
                     "Quick Edit and other Ctrl+click features are disabled. "
                     "Please update your VTE package or contact your distribution to ask "
                     "to enable regular expression support in VTE. Exception: '%s'",
-                    str(e),
+                    str(err),
                 )
 
     def get_current_directory(self):
         directory = os.path.expanduser("~")
         if self.pid is not None:
             try:
-                cwd = os.readlink("/proc/{}/cwd".format(self.pid))
+                cwd = os.readlink(f"/proc/{self.pid}/cwd")
             except Exception:
                 return directory
             if os.path.exists(cwd):
@@ -303,7 +303,7 @@ class GuakeTerminal(Vte.Terminal):
                 return
             with pt.open() as f:
                 for i, line in enumerate(f.readlines()):
-                    if line.startswith("def {}".format(py_func)):
+                    if line.startswith(f"def {py_func}"):
                         return i + 1
                         break
 
@@ -337,7 +337,8 @@ class GuakeTerminal(Vte.Terminal):
             matched_string = self.match_check_event(event)
         else:
             matched_string = self.match_check(
-                int(event.x / self.get_char_width()), int(event.y / self.get_char_height()),
+                int(event.x / self.get_char_width()),
+                int(event.y / self.get_char_height()),
             )
 
         self.found_link = None
@@ -358,9 +359,8 @@ class GuakeTerminal(Vte.Terminal):
             self.matched_value = matched_string[0]
 
     def on_child_exited(self, target, status, *user_data):
-        if libutempter is not None:
-            if self.get_pty() is not None:
-                libutempter.utempter_remove_record(self.get_pty().get_fd())
+        if None not in (libutempter, self.get_pty()):
+            libutempter.utempter_remove_record(self.get_pty().get_fd())
 
     def on_drag_data_received(self, widget, drag_context, x, y, data, info, time):
         if info == DropTargets.URIS:
@@ -457,13 +457,13 @@ class GuakeTerminal(Vte.Terminal):
                 # ready to be used.
                 pass
             elif TERMINAL_MATCH_TAGS[tag] == "http":
-                value = "http://%s" % value
+                value = f"http://{value}"
             elif TERMINAL_MATCH_TAGS[tag] == "https":
-                value = "https://%s" % value
+                value = f"https://{value}"
             elif TERMINAL_MATCH_TAGS[tag] == "ftp":
-                value = "ftp://%s" % value
+                value = f"ftp://{value}"
             elif TERMINAL_MATCH_TAGS[tag] == "email":
-                value = "mailto:%s" % value
+                value = f"mailto:{value}"
 
         if value:
             return value
@@ -477,7 +477,8 @@ class GuakeTerminal(Vte.Terminal):
             return
         log.debug("Opening link: %s", self.found_link)
         cmd = ["xdg-open", self.found_link]
-        subprocess.Popen(cmd, shell=False)
+        with subprocess.Popen(cmd, shell=False):
+            pass
 
     def set_font(self, font):
         self.font = font
@@ -495,7 +496,7 @@ class GuakeTerminal(Vte.Terminal):
         else:
             font.set_size(new_size)
 
-        super(GuakeTerminal, self).set_font(font)
+        super().set_font(font)
 
     font_scale = property(fset=set_font_scale_index, fget=lambda self: self.font_scale_index)
 
@@ -537,12 +538,15 @@ class GuakeTerminal(Vte.Terminal):
 
     def spawn_sync_pid(self, directory):
 
-        argv = list()
+        argv = []
         user_shell = self.guake.settings.general.get_string("default-shell")
         if user_shell and os.path.exists(user_shell):
             argv.append(user_shell)
         else:
-            argv.append(os.environ["SHELL"])
+            try:
+                argv.append(os.environ["SHELL"])
+            except KeyError:
+                argv.append("/usr/bin/bash")
 
         login_shell = self.guake.settings.general.get_boolean("use-login-shell")
         if login_shell:
@@ -554,7 +558,7 @@ class GuakeTerminal(Vte.Terminal):
             Vte.PtyFlags.DEFAULT,
             directory,
             argv,
-            [],
+            [f"GUAKE_TAB_UUID={self.uuid}"],
             GLib.SpawnFlags.DO_NOT_REAP_CHILD,
             None,
             None,
@@ -568,7 +572,8 @@ class GuakeTerminal(Vte.Terminal):
             # Return a tuple in 2.91
             # https://lazka.github.io/pgi-docs/Vte-2.91/classes/Terminal.html#Vte.Terminal.spawn_sync
             pid = pid[1]
-        assert isinstance(pid, int)
+        if not isinstance(pid, int):
+            raise TypeError("pid must be an int")
 
         if libutempter is not None:
             libutempter.utempter_add_record(self.get_pty().get_fd(), os.uname()[1])
@@ -577,34 +582,32 @@ class GuakeTerminal(Vte.Terminal):
 
     def set_color_foreground(self, font_color, *args, **kwargs):
         real_fgcolor = self.custom_fgcolor if self.custom_fgcolor else font_color
-        super(GuakeTerminal, self).set_color_foreground(real_fgcolor, *args, **kwargs)
+        super().set_color_foreground(real_fgcolor, *args, **kwargs)
 
     def set_color_background(self, bgcolor, *args, **kwargs):
         real_bgcolor = self.custom_bgcolor if self.custom_bgcolor else bgcolor
-        super(GuakeTerminal, self).set_color_background(real_bgcolor, *args, **kwargs)
+        super().set_color_background(real_bgcolor, *args, **kwargs)
 
     def set_color_bold(self, font_color, *args, **kwargs):
         real_fgcolor = self.custom_fgcolor if self.custom_fgcolor else font_color
-        super(GuakeTerminal, self).set_color_bold(real_fgcolor, *args, **kwargs)
+        super().set_color_bold(real_fgcolor, *args, **kwargs)
 
     def set_colors(self, font_color, bg_color, palette_list, *args, **kwargs):
         real_bgcolor = self.custom_bgcolor if self.custom_bgcolor else bg_color
         real_fgcolor = self.custom_fgcolor if self.custom_fgcolor else font_color
         real_palette = self.custom_palette if self.custom_palette else palette_list
-        super(GuakeTerminal, self).set_colors(
-            real_fgcolor, real_bgcolor, real_palette, *args, **kwargs
-        )
+        super().set_colors(real_fgcolor, real_bgcolor, real_palette, *args, **kwargs)
 
     def set_color_foreground_custom(self, fgcolor, *args, **kwargs):
         """Sets custom foreground color for this terminal"""
-        print("set_color_foreground_custom: %s" % self.uuid)
+        print(f"set_color_foreground_custom: {self.uuid}")
         self.custom_fgcolor = fgcolor
-        super(GuakeTerminal, self).set_color_foreground(self.custom_fgcolor, *args, **kwargs)
+        super().set_color_foreground(self.custom_fgcolor, *args, **kwargs)
 
     def set_color_background_custom(self, bgcolor, *args, **kwargs):
         """Sets custom background color for this terminal"""
         self.custom_bgcolor = bgcolor
-        super(GuakeTerminal, self).set_color_background(self.custom_bgcolor, *args, **kwargs)
+        super().set_color_background(self.custom_bgcolor, *args, **kwargs)
 
     def reset_custom_colors(self):
         self.custom_fgcolor = None
@@ -622,7 +625,10 @@ class GuakeTerminal(Vte.Terminal):
     def _color_from_list(color_list):
         """This method is used for deserialization."""
         return Gdk.RGBA(
-            red=color_list[0], green=color_list[1], blue=color_list[2], alpha=color_list[3],
+            red=color_list[0],
+            green=color_list[1],
+            blue=color_list[2],
+            alpha=color_list[3],
         )
 
     def get_custom_colors_dict(self):
