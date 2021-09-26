@@ -19,7 +19,6 @@ Boston, MA 02110-1301 USA
 """
 
 from guake.about import AboutDialog
-from guake.boxes import DualTerminalBox
 from guake.boxes import RootTerminalBox
 from guake.boxes import TabLabelEventBox
 from guake.boxes import TerminalBox
@@ -41,7 +40,6 @@ from gi.repository import Gdk
 from gi.repository import Gtk
 from gi.repository import Wnck
 from guake.terminal import GuakeTerminal
-from locale import gettext as _
 
 import logging
 import posix
@@ -75,7 +73,11 @@ class TerminalNotebook(Gtk.Notebook):
                 (GObject.TYPE_PYOBJECT, GObject.TYPE_INT),
             )
             GObject.signal_new(
-                "page-deleted", TerminalNotebook, GObject.SIGNAL_RUN_LAST, GObject.TYPE_NONE, (),
+                "page-deleted",
+                TerminalNotebook,
+                GObject.SIGNAL_RUN_LAST,
+                GObject.TYPE_NONE,
+                (),
             )
 
         self.scroll_callback = NotebookScrollCallback(self)
@@ -87,7 +89,8 @@ class TerminalNotebook(Gtk.Notebook):
 
         # Action box
         self.new_page_button = Gtk.Button(
-            image=Gtk.Image.new_from_icon_name("tab-new-symbolic", Gtk.IconSize.MENU), visible=True,
+            image=Gtk.Image.new_from_icon_name("tab-new-symbolic", Gtk.IconSize.MENU),
+            visible=True,
         )
         self.new_page_button.connect("clicked", self.on_new_tab)
 
@@ -142,7 +145,9 @@ class TerminalNotebook(Gtk.Notebook):
             b"#popover-window list { border-style: none; background-color: transparent; }"
         )
         Gtk.StyleContext.add_provider_for_screen(
-            Gdk.Screen.get_default(), css_provider, Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION,
+            Gdk.Screen.get_default(),
+            css_provider,
+            Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION,
         )
 
         # Construct popover properties
@@ -318,6 +323,8 @@ class TerminalNotebook(Gtk.Notebook):
             page = self.get_nth_page(self.get_current_page())
             if page.get_terminals():
                 page.get_terminals()[0].grab_focus()
+
+        self.hide_tabbar_if_one_tab()
         self.emit("page-deleted")
 
     def delete_page_by_label(self, label, kill=True, prompt=0):
@@ -345,15 +352,29 @@ class TerminalNotebook(Gtk.Notebook):
         # this is needed to initially set the last_terminal_focused,
         # one could also call terminal.get_parent().on_terminal_focus()
         self.terminal_attached(terminal)
+        self.hide_tabbar_if_one_tab()
 
         if self.guake:
             # Attack background image draw callback to root terminal box
             root_terminal_box.connect_after("draw", self.guake.background_image_manager.draw)
         return root_terminal_box, page_num, terminal
 
+    def hide_tabbar_if_one_tab(self):
+        """Hide the tab bar if hide-tabs-if-one-tab is true and there is only one
+        notebook page"""
+        if self.guake.settings.general.get_boolean("window-tabbar"):
+            if self.guake.settings.general.get_boolean("hide-tabs-if-one-tab"):
+                self.set_property("show-tabs", self.get_n_pages() != 1)
+            else:
+                self.set_property("show-tabs", True)
+
     def terminal_spawn(self, directory=None):
         terminal = GuakeTerminal(self.guake)
         terminal.grab_focus()
+        terminal.connect(
+            "key-press-event",
+            lambda x, y: self.guake.accel_group.activate(x, y) if self.guake.accel_group else False,
+        )
         if not isinstance(directory, str):
             directory = os.environ["HOME"]
             try:
@@ -464,7 +485,12 @@ class TerminalNotebook(Gtk.Notebook):
 
 class NotebookManager(GObject.Object):
     def __init__(
-        self, window, notebook_parent, workspaces_enabled, terminal_spawned_cb, page_deleted_cb,
+        self,
+        window,
+        notebook_parent,
+        workspaces_enabled,
+        terminal_spawned_cb,
+        page_deleted_cb,
     ):
         GObject.Object.__init__(self)
         if not GObject.signal_lookup("notebook-created", self):
@@ -510,7 +536,7 @@ class NotebookManager(GObject.Object):
         return self.get_notebook(self.current_notebook)
 
     def has_notebook_for_workspace(self, workspace_index):
-        return workspace_index in self.notebooks.keys()
+        return workspace_index in self.notebooks
 
     def set_workspace(self, index: int):
         self.notebook_parent.remove(self.get_current_notebook())
