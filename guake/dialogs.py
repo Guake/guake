@@ -44,7 +44,7 @@ class PromptQuitDialog(Gtk.MessageDialog):
     def __init__(self, parent, procs, tabs, notebooks):
         """Prompts the user whether to quit or not if there are procs running.
         """
-        super(PromptQuitDialog, self).__init__(
+        super().__init__(
             parent,
             Gtk.DialogFlags.MODAL | Gtk.DialogFlags.DESTROY_WITH_PARENT,
             Gtk.MessageType.QUESTION,
@@ -76,7 +76,7 @@ class PromptQuitDialog(Gtk.MessageDialog):
             proc_str = _("There are {0} processes still running").format(procs)
 
         self.set_markup(primary_msg)
-        self.format_secondary_markup("<b>{0}{1}{2}.</b>".format(proc_str, tab_str, notebooks_str))
+        self.format_secondary_markup(f"<b>{proc_str}{tab_str}{notebooks_str}.</b>")
 
     def quit(self):
         """Run the "are you sure" dialog for quitting Guake"""
@@ -102,7 +102,7 @@ class PromptResetColorsDialog(Gtk.MessageDialog):
     """Prompts the user whether to reset tab colors."""
 
     def __init__(self, parent):
-        super(PromptResetColorsDialog, self).__init__(
+        super().__init__(
             parent,
             Gtk.DialogFlags.MODAL | Gtk.DialogFlags.DESTROY_WITH_PARENT,
             Gtk.MessageType.QUESTION,
@@ -150,16 +150,16 @@ class SaveTerminalDialog(Gtk.FileChooserDialog):
         if not selection:
             return
         selection = selection.rstrip()
-        filteru = Gtk.FileFilter()
-        filteru.set_name(_("All files"))
-        filteru.add_pattern("*")
-        self.add_filter(filteru)
+        filter = Gtk.FileFilter()
+        filter.set_name(_("All files"))
+        filter.add_pattern("*")
+        self.add_filter(filter)
 
-        filteru = Gtk.FileFilter()
-        filteru.set_name(_("Text and Logs"))
-        filteru.add_pattern("*.log")
-        filteru.add_pattern("*.txt")
-        self.add_filter(filteru)
+        filter = Gtk.FileFilter()
+        filter.set_name(_("Text and Logs"))
+        filter.add_pattern("*.log")
+        filter.add_pattern("*.txt")
+        self.add_filter(filter)
 
         response = super().run()
         if response == Gtk.ResponseType.OK:
