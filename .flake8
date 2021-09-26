@@ -1,6 +1,8 @@
 
 [flake8]
+builtins = _
 ignore =
+    E902,
     E226,
     E302,
     E41,
@@ -12,5 +14,5 @@ ignore =
     W503, # line break before binary operator
     E231, # missing whitespace after ','
 max-line-length = 100
-exclude = env
+exclude = env,.direnv,docs
 max-complexity = 25

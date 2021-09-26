@@ -4,7 +4,7 @@ verify_ssl = true
 name = "pypi"
 
 [requires]
-python_version = "3.5.9"
+python_version = "3.6.9"
 
 [dev-packages]
 "autopep8" = "*"
@@ -27,13 +27,16 @@ sphinxcontrib-programoutput = "*"
 e1839a8 = {editable = true,path = "."}
 twine = "*"
 pathlib2 = "*"
-scandir = {markers = "python_version < '3.5'"}
+scandir = {markers = "python_version > '3.5'"}
 pyfakefs = "*"
 pytest-cov = "*"
 pew = "*"
-black = "==19.10b0"
-dephell = "*"
+black = "==21.8b0"
+flakehell = "*"
+toml = "*"
+dataclasses = "*"
 
 [packages]
 pbr = "*"
-typing = {markers = "python_version < '3.5'"}
+wheel = "*"
+typing = {markers = "python_version > '3.5'"}

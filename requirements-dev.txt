@@ -13,12 +13,11 @@
 -e .
 astroid
 autopep8
-black==19.10b0
+black==21.8b0
 colorlog
 dephell
 fiximports>=0.1.18
 flake8
-mock>=2.0.0
 pathlib2
 pep8
 pew

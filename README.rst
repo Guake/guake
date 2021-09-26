@@ -2,10 +2,10 @@
 Guake 3 README
 ==============
 
-|travis-badge|_ |bountysource-badge|_ |docs-badge|_ |translation-badge|_
+|actions-badge|_ |bountysource-badge|_ |docs-badge|_ |translation-badge|_
 
-.. |travis-badge| image:: https://travis-ci.org/Guake/guake.svg?branch=master
-.. _travis-badge: https://travis-ci.org/Guake/guake
+.. |actions-badge| image:: https://github.com/Guake/guake/actions/workflows/ci.yml/badge.svg
+.. _actions-badge: https://github.com/Guake/guake/actions
 
 .. |bountysource-badge| image:: https://img.shields.io/bountysource/team/guake/activity.svg
 .. _bountysource-badge: https://www.bountysource.com/teams/guake
@@ -25,9 +25,9 @@ based on an FPS game, and one of its goals is to be easy to reach.
 Quick Installation Guide
 ------------------------
 
-Please refer to `Installtion Guide <https://guake.readthedocs.io/en/latest/user/installing.html#system-wide-installation>`_
+Please refer to `Installation Guide <https://guake.readthedocs.io/en/latest/user/installing.html#system-wide-installation>`_
 
-What it looks like ?
+What it looks like ? 
 --------------------
 
 .. image:: https://i.ibb.co/s97cJWZ/guake.png
