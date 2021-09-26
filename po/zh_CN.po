@@ -11,8 +11,8 @@ msgstr ""
 "Project-Id-Version: Guake 0.4.5\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-05-20 23:56+0800\n"
-"PO-Revision-Date: 2019-09-06 13:25+0000\n"
-"Last-Translator: Geoffrey Chen <chyj1993@gmail.com>\n"
+"PO-Revision-Date: 2020-11-18 10:29+0000\n"
+"Last-Translator: Eric <spice2wolf@gmail.com>\n"
 "Language-Team: Chinese (Simplified) <https://hosted.weblate.org/projects/"
 "guake/guake/zh_Hans/>\n"
 "Language: zh_CN\n"
@@ -20,7 +20,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Weblate 3.9-dev\n"
+"X-Generator: Weblate 4.4-dev\n"
 
 #: ../guake/data/about.glade.h:1
 msgid "About Guake"
@@ -1269,7 +1269,7 @@ msgstr "这可能无法在所有shell上正常工作，请确保你的shell支�
 
 #: guake/prefs.py:128
 msgid "New tab in home directory"
-msgstr "在home目录创建新标签页"
+msgstr "在主目录打开新标签页"
 
 #: guake/dialogs.py:56
 #, python-brace-format
@@ -1278,31 +1278,31 @@ msgstr ""
 
 #: guake/main.py:211
 msgid "Change Guake palette scheme"
-msgstr ""
+msgstr "更改Guake 调色板方案"
 
 #: data/prefs.glade:331
 msgid "Use workspace-specific tab sets (requires restart)"
-msgstr ""
+msgstr "使用特定于工作空间的标签页集合 （需要重启）"
 
 #: guake/main.py:175
 msgid "Split the selected tab vertically."
-msgstr ""
+msgstr "垂直分割所选标签页。"
 
 #: guake/main.py:183
 msgid "Split the selected tab horizontally."
-msgstr ""
+msgstr "水平分割所选标签页。"
 
 #: data/prefs.glade:348
 msgid "Show close buttons for tabs"
-msgstr ""
+msgstr "显示标签页的关闭按钮"
 
 #: data/prefs.glade:1682
 msgid "Bold text is also bright"
-msgstr ""
+msgstr "粗体的文字也是明亮的"
 
 #: data/prefs.glade:1682
 msgid "Bold text is also bright (VTE >=0.52)"
-msgstr ""
+msgstr "粗体的文字也是明亮的 （VTE >=0.52）"
 
 #: guake/menus.py:42
 msgid "Save Tabs"

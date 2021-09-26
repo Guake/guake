@@ -12,15 +12,15 @@ msgstr ""
 "Project-Id-Version: Guake 0.4.5\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-07-07 19:07+0200\n"
-"PO-Revision-Date: 2019-05-19 09:48+0000\n"
-"Last-Translator: ssantos <ssantos@web.de>\n"
+"PO-Revision-Date: 2020-04-14 21:11+0000\n"
+"Last-Translator: Bernd Schwendinger <b0ernie@gmx.net>\n"
 "Language-Team: German <https://hosted.weblate.org/projects/guake/guake/de/>\n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 3.7-dev\n"
+"X-Generator: Weblate 4.0-dev\n"
 
 #: guake/about.py:54 guake/keybindings.py:94 guake/guake_app.py:201
 #: guake/guake_app.py:414
@@ -1219,62 +1219,70 @@ msgstr "Registerkartenleiste beim Vollbildmodus ausblenden"
 
 #: guake/data/prefs.glade:739
 msgid "Display as tab names:"
-msgstr ""
+msgstr "Anzeige als Registername:"
 
 #: guake/data/prefs.glade:753
 msgid "Full Path"
-msgstr ""
+msgstr "Vollständiger Dateipfad"
 
 #: guake/data/prefs.glade:754
 msgid "Abbreviated Path"
-msgstr ""
+msgstr "Verkürzter Dateipfad"
 
 #: guake/data/prefs.glade:755
 msgid "Last Segment"
-msgstr ""
+msgstr "Letztes Segment"
 
 #: guake/main.py:99
 msgid "Put Guake out from fullscreen mode"
-msgstr ""
+msgstr "Setze Guake aus dem Vollbildmodus zurück"
 
 #: guake/main.py:189
 msgid ""
 "Select a specific terminal in a split tab. Only useful with split terminals "
 "(TERMINAL_INDEX is the index of the tab)"
 msgstr ""
+"Wähle ein spezifisches Terminal in einem geteilten Register. Nur sinnvoll "
+"bei geteilten Terminals (TERMINAL_INDEX ist die Nummer des Registers)"
 
 #: guake/main.py:199
 msgid "Return the selected terminal index."
-msgstr ""
+msgstr "Zurückliefern des gewählten Terminal-Index."
 
 #: guake/main.py:259
 msgid "Set the hexadecimal (#rrggbb) background color of the current terminal."
 msgstr ""
+"Übernehmen der hexadezimalen Hintergrund-Farbe (#rrggbb) für das aktuelle "
+"Terminal."
 
 #: guake/main.py:268
 msgid "Set the hexadecimal (#rrggbb) foreground color of the current terminal."
 msgstr ""
+"Übernehmen der hexadezimalen Vordergrund-Farbe (#rrggbb) für das aktuelle "
+"Terminal."
 
 #: guake/main.py:285
 msgid "Set colors from settings."
-msgstr ""
+msgstr "Übernehmen der Farben aus den Einstellungen."
 
 #: guake/main.py:293
 msgid "Set colors of the current terminal from settings."
-msgstr ""
+msgstr "Übernehmen der Farben im aktuellen Terminal aus den Einstellungen."
 
 #: guake/main.py:358
 msgid "Show support infomation"
-msgstr ""
+msgstr "Zeige Support-Informationen"
 
 #: guake/menus.py:26
 msgid "Reset custom colors"
-msgstr ""
+msgstr "Zurücksetzen der benutzerdefinierten Farben"
 
 #: guake/dialogs.py:101
 msgid "Do you want to reset custom colors for this tab?"
 msgstr ""
+"Sollen die benutzerdefinierten Farben für dieses Register zurückgesetzt "
+"werden?"
 
 #: guake/data/prefs.glade:835
 msgid "New tabs appear after the current tab"
-msgstr ""
+msgstr "Neue Register erscheinen nach dem aktuellen Register"

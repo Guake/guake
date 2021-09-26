@@ -12,17 +12,17 @@ msgstr ""
 "Project-Id-Version: Guake 0.4.5\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-04-17 13:26+0300\n"
-"PO-Revision-Date: 2019-06-02 17:06+0000\n"
-"Last-Translator: Igor <f2404@yandex.ru>\n"
-"Language-Team: Russian <https://hosted.weblate.org/projects/guake/guake/ru/"
-">\n"
+"PO-Revision-Date: 2020-11-10 17:28+0000\n"
+"Last-Translator: Andrei Lobanov <lobanov.andrey.lavich@gmail.com>\n"
+"Language-Team: Russian <https://hosted.weblate.org/projects/guake/guake/ru/>"
+"\n"
 "Language: ru\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
 "%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
-"X-Generator: Weblate 3.7-dev\n"
+"X-Generator: Weblate 4.4-dev\n"
 
 #: ../guake/data/about.glade.h:1
 msgid "About Guake"
@@ -610,7 +610,7 @@ msgstr "Выполняется процессов: {0}"
 
 #: ../src/guake/guake_app.py:190
 msgid "guake-indicator"
-msgstr "guake-indicator"
+msgstr "guake-индикатор"
 
 #: ../src/guake/guake_app.py:190
 msgid "guake-tray"
@@ -1464,65 +1464,69 @@ msgstr "Скрывать панель вкладок в полноэкранно
 
 #: guake/data/prefs.glade:739
 msgid "Display as tab names:"
-msgstr ""
+msgstr "Отображать в качестве имен вкладок:"
 
 #: guake/data/prefs.glade:753
 msgid "Full Path"
-msgstr ""
+msgstr "Полный путь"
 
 #: guake/data/prefs.glade:754
 msgid "Abbreviated Path"
-msgstr ""
+msgstr "Сокращенный путь"
 
 #: guake/data/prefs.glade:755
 msgid "Last Segment"
-msgstr ""
+msgstr "Последний сегмент"
 
 #: guake/main.py:99
 msgid "Put Guake out from fullscreen mode"
-msgstr ""
+msgstr "Вывести Guake из полноэкранного режима"
 
 #: guake/main.py:189
 msgid ""
 "Select a specific terminal in a split tab. Only useful with split terminals "
 "(TERMINAL_INDEX is the index of the tab)"
 msgstr ""
+"Выберите конкретный терминал на разделенной вкладке. Полезно только с "
+"разделенными терминалами (TERMINAL_INDEX - это индекс вкладки)"
 
 #: guake/main.py:199
 msgid "Return the selected terminal index."
-msgstr ""
+msgstr "Вернуть индекс выбранной вкладки."
 
 #: guake/main.py:259
 msgid "Set the hexadecimal (#rrggbb) background color of the current terminal."
-msgstr ""
+msgstr "Установите шестнадцатеричный (#rrggbb) цвет фона текущего терминала."
 
 #: guake/main.py:268
 msgid "Set the hexadecimal (#rrggbb) foreground color of the current terminal."
 msgstr ""
+"Установите шестнадцатеричный (#rrggbb) цвет переднего плана текущего "
+"терминала."
 
 #: guake/main.py:285
 msgid "Set colors from settings."
-msgstr ""
+msgstr "Установите цвета из настроек."
 
 #: guake/main.py:293
 msgid "Set colors of the current terminal from settings."
-msgstr ""
+msgstr "Установите цвета текущего терминала из настроек."
 
 #: guake/main.py:358
 msgid "Show support infomation"
-msgstr ""
+msgstr "Показать информацию о поддержке"
 
 #: guake/menus.py:26
 msgid "Reset custom colors"
-msgstr ""
+msgstr "Сброс пользовательских цветов"
 
 #: guake/dialogs.py:101
 msgid "Do you want to reset custom colors for this tab?"
-msgstr ""
+msgstr "Вы хотите сбросить пользовательские цвета для этой вкладки?"
 
 #: guake/data/prefs.glade:835
 msgid "New tabs appear after the current tab"
-msgstr ""
+msgstr "Новые вкладки появляются после текущей вкладки"
 
 #~ msgid "Path to script executed on Guake start:"
 #~ msgstr "Путь к скрипту, запускаемому при старте Guake:"

@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: Guake 0.4.5\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-08-18 17:32+0200\n"
-"PO-Revision-Date: 2019-08-22 06:24+0000\n"
+"PO-Revision-Date: 2020-05-22 15:41+0000\n"
 "Last-Translator: Nilton Rabelo <niltoncrs@gmail.com>\n"
 "Language-Team: Portuguese (Brazil) <https://hosted.weblate.org/projects/"
 "guake/guake/pt_BR/>\n"
@@ -20,7 +20,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
-"X-Generator: Weblate 3.9-dev\n"
+"X-Generator: Weblate 4.1-dev\n"
 
 #: ../guake/data/about.glade.h:1
 msgid "About Guake"
@@ -191,7 +191,7 @@ msgstr "Alinhar janela à parte inferior em vez de superior"
 
 #: ../guake/data/prefs.glade.h:27
 msgid "Appear on mouse display"
-msgstr ""
+msgstr "aparecer na tela do mouse"
 
 #: ../guake/data/prefs.glade.h:28
 msgid "Appear on display:"
@@ -219,7 +219,7 @@ msgstr "Tamanho máximo para nome da aba:"
 
 #: ../guake/data/prefs.glade.h:34
 msgid "0 means no size limit"
-msgstr ""
+msgstr "0 significa que não há limite de tamanho"
 
 #: ../guake/data/prefs.glade.h:35
 msgid "Abbreviate directories in tab names"
@@ -351,6 +351,9 @@ msgid ""
 "I-Beam\n"
 "Underline"
 msgstr ""
+"Quadra\n"
+"I-Beam\n"
+"Sublinhado"
 
 #: ../guake/data/prefs.glade.h:69
 msgid ""
@@ -467,21 +470,20 @@ msgstr ""
 "faça contato com os autores do Guake)"
 
 #: ../guake/data/prefs.glade.h:97
-#, fuzzy
 msgid "<b>Quick Open</b>"
-msgstr "<b>Quick Open</b>"
+msgstr "<b>Abertura rápida</b>"
 
 #: ../guake/data/prefs.glade.h:98
 msgid "Quick Open"
-msgstr "Quick Open"
+msgstr "Abrir rapidamente"
 
 #: ../guake/data/prefs.glade.h:99
 msgid ""
 "To change a shortcut simply click on its name.\n"
 "To disable a shortcut, press the \"Backspace\" key."
 msgstr ""
-"Para mudar um atalho simplesmente clique em seu nome.\n"
-"Para desabilitar um atalho, aperte a tecla \"Backspace\""
+"Para mudar um atalho simplesmente clique em seu nome\n"
+"Para desabilitar um atalho, aperte a tecla \"Backspace\"."
 
 #: ../guake/data/prefs.glade.h:101
 msgid "Keyboard shortcuts"
@@ -506,7 +508,7 @@ msgid ""
 "Control-H"
 msgstr ""
 "ASCII DEL\n"
-"Escape sequence\n"
+"Sequencia de fuga\n"
 "Control-H"
 
 #: ../guake/data/prefs.glade.h:106
@@ -570,20 +572,20 @@ msgstr "Não há nenhum processo sendo executado."
 
 #: ../src/guake/guake_app.py:144
 msgid "There is a process still running"
-msgstr "Há um processo sendo executado."
+msgstr "Há um processo que continua sendo executado"
 
 #: ../src/guake/guake_app.py:146
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid "There are {0} processes still running"
-msgstr "<b>Há %d processos sendo executados.</b>"
+msgstr "Existem {0} processos ainda em execução"
 
 #: ../src/guake/guake_app.py:186
 msgid "guake-indicator"
-msgstr ""
+msgstr "indicador de guake"
 
 #: ../src/guake/guake_app.py:186
 msgid "guake-tray"
-msgstr ""
+msgstr "bandeja-guake"
 
 #: ../src/guake/guake_app.py:190
 msgid "Show"
@@ -608,9 +610,8 @@ msgid "Search on Web (no selection)"
 msgstr "Procurar na Web (sem seleção)"
 
 #: ../src/guake/guake_app.py:683
-#, fuzzy
 msgid "Open Link: '{}...'"
-msgstr "Abrir Link: {}"
+msgstr "Abrir Link: '{}...'"
 
 #: ../src/guake/guake_app.py:685
 msgid "Open Link: {}"
@@ -921,23 +922,23 @@ msgstr ""
 
 #: guake/main.py:153
 msgid "Return the selected tab label."
-msgstr ""
+msgstr "Retorne o rótulo da guia selecionada."
 
 #: guake/data/prefs.glade:264
 msgid "Never"
-msgstr ""
+msgstr "Nunca"
 
 #: guake/data/prefs.glade:265
 msgid "With process running"
-msgstr ""
+msgstr "Com o processo em execução"
 
 #: guake/data/prefs.glade:266
 msgid "Always"
-msgstr ""
+msgstr "Sempre"
 
 #: guake/data/prefs.glade:499
 msgid "Refocus if open"
-msgstr ""
+msgstr "Voltar a focar se estiver aberto"
 
 #: guake/data/prefs.glade:865
 msgid "Custom command file path:"
@@ -957,19 +958,19 @@ msgstr ""
 
 #: guake/data/prefs.glade:1425
 msgid "Underline"
-msgstr ""
+msgstr "Sublinhar"
 
 #: guake/data/prefs.glade:1443
 msgid "Follow GTK+ setting"
-msgstr ""
+msgstr "Usar configuração do GTK+"
 
 #: guake/data/prefs.glade:1444
 msgid "Blink on"
-msgstr ""
+msgstr "Piscar em"
 
 #: guake/data/prefs.glade:1445
 msgid "Blink off"
-msgstr ""
+msgstr "Piscar"
 
 #: guake/data/prefs.glade:2236
 msgid ""
@@ -983,22 +984,26 @@ msgid ""
 msgstr ""
 
 #: guake/data/prefs.glade:2442 guake/data/prefs.glade:2462
+#, fuzzy
 msgid "ASCII DEL"
-msgstr ""
+msgstr "ASCII DEL"
 
 #: guake/data/prefs.glade:2443 guake/data/prefs.glade:2463
 msgid "Escape sequence"
-msgstr ""
+msgstr "Sequência de escape"
 
 #: guake/data/prefs.glade:2444 guake/data/prefs.glade:2464
+#, fuzzy
 msgid "Control-H"
-msgstr ""
+msgstr "Control-H"
 
 #: guake/data/prefs.glade:2600
 msgid ""
 "<small>In this dialog you can attach your own command or script to various "
 "guake events</small>"
 msgstr ""
+"<small>Nesta janela você pode adicionar seus próprios comandos ou scripts "
+"para várias ações do guake</small>"
 
 #: guake/data/prefs.glade:2635
 msgid "On show:"
@@ -1006,7 +1011,7 @@ msgstr ""
 
 #: guake/data/prefs.glade:2665
 msgid "On start:"
-msgstr ""
+msgstr "Ao iniciar:"
 
 #: guake/data/prefs.glade:2714
 msgid "Hooks"

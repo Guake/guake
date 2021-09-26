@@ -9,16 +9,16 @@ msgstr ""
 "Project-Id-Version: Guake 0.4.5\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-08-18 17:32+0200\n"
-"PO-Revision-Date: 2020-02-14 09:50+0000\n"
+"PO-Revision-Date: 2021-09-11 10:18+0000\n"
 "Last-Translator: Oğuz Ersen <oguzersen@protonmail.com>\n"
-"Language-Team: Turkish <https://hosted.weblate.org/projects/guake/guake/tr/"
-">\n"
+"Language-Team: Turkish <https://hosted.weblate.org/projects/guake/guake/tr/>"
+"\n"
 "Language: tr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
-"X-Generator: Weblate 3.11-dev\n"
+"X-Generator: Weblate 4.9-dev\n"
 
 #: ../guake/data/about.glade.h:1
 msgid "About Guake"
@@ -70,7 +70,7 @@ msgstr "Sekmeyi Kapat"
 
 #: ../guake/data/guake.glade.h:10
 msgid "Open link..."
-msgstr "Linki aç..."
+msgstr "Bağlantıyı aç..."
 
 #: ../guake/data/guake.glade.h:11
 msgid "Search on Web"
@@ -127,11 +127,11 @@ msgid ""
 "guake -r \"main\" -e \"cd ~/projects/myproject/main\"\n"
 "guake -r \"prod\" -e \"cd ~/projects/myproject/prod\"\n"
 msgstr ""
-"- no-startup-script belirtmediğiniz sürece, Guake başladığında otomatik "
-"olarak yürütülecek bir bash komut dosyasının yolu.\n"
+"--no-startup-script belirtilmediği sürece Guake başladığında otomatik olarak "
+"çalıştırılacak bir bash betiğinin yolu.\n"
 "\n"
-"Bu, genellikle Guake'in komut satırı özelliğine göre yapılandırmayı "
-"kullanır:\n"
+"Bu, genellikle Guake'in komut satırı özelliğine göre yapılandırmayı kullanır:"
+"\n"
 "\n"
 "#!/bin/bash\n"
 "\n"
@@ -142,7 +142,7 @@ msgstr ""
 
 #: ../guake/data/prefs.glade.h:15
 msgid "Enable popup notifications on startup"
-msgstr "Başlangıçta popup uyarılarını göster"
+msgstr "Başlangıçta açılır bildirimleri etkinleştir"
 
 #: ../guake/data/prefs.glade.h:16
 msgid "Show tray icon"
@@ -162,7 +162,7 @@ msgstr "_Zil anında sistem uyarı sesini çal"
 
 #: ../guake/data/prefs.glade.h:20
 msgid "Path to script executed on Guake start:"
-msgstr "Guake başlangıcında yürütülen komut dosyasının yolu:"
+msgstr "Guake başladığında çalıştırılan betiğin yolu:"
 
 #: ../guake/data/prefs.glade.h:21
 msgid "Prompt on close tab:"
@@ -196,11 +196,11 @@ msgstr "Ekranda görün:"
 
 #: ../guake/data/prefs.glade.h:29
 msgid "Place tabs on top"
-msgstr "Sekmeleri en üste yerleştirin"
+msgstr "Sekmeleri en üste yerleştir"
 
 #: ../guake/data/prefs.glade.h:30
 msgid "<b>Placement</b>"
-msgstr "<b>Yerleştirme</b>"
+msgstr "<b>Yerleşim</b>"
 
 #: ../guake/data/prefs.glade.h:31
 msgid "Stay on top"
@@ -212,7 +212,7 @@ msgstr "Sekme adları için VTE başlıklarını kullan"
 
 #: ../guake/data/prefs.glade.h:33
 msgid "Max tab name length:"
-msgstr "Maksimum sekme adı uzunluğu:"
+msgstr "Azami sekme adı uzunluğu:"
 
 #: ../guake/data/prefs.glade.h:34
 msgid "0 means no size limit"
@@ -224,11 +224,11 @@ msgstr "Sekme isimlerinde dizinleri kısalt"
 
 #: ../guake/data/prefs.glade.h:36
 msgid "Hide on lose focus"
-msgstr "Focus kaybedildiğinde gizle"
+msgstr "Odak kaybedildiğinde gizle"
 
 #: ../guake/data/prefs.glade.h:37
 msgid "Show tab bar"
-msgstr "Sekme çubuğunu görüntüle"
+msgstr "Sekme çubuğunu göster"
 
 #: ../guake/data/prefs.glade.h:38
 msgid "Start fullscreen"
@@ -236,7 +236,7 @@ msgstr "Tam ekran modunda başla"
 
 #: ../guake/data/prefs.glade.h:39
 msgid "<b>Main Window</b>"
-msgstr "<b>Uçbirim Penceresi</b>"
+msgstr "<b>Ana Pencere</b>"
 
 #: ../guake/data/prefs.glade.h:40
 msgid "Left"
@@ -268,7 +268,7 @@ msgstr "Özel komut dosyası yolu: "
 
 #: ../guake/data/prefs.glade.h:47
 msgid "Please select a json file"
-msgstr "Lütfen bir json dosyası seçin"
+msgstr "Lütfen bir JSON dosyası seçin"
 
 #: ../guake/data/prefs.glade.h:48 ../src/guake/prefs.py:75
 msgid "General"
@@ -276,7 +276,7 @@ msgstr "Genel"
 
 #: ../guake/data/prefs.glade.h:49
 msgid "Default interpreter:"
-msgstr "Varsayılan yorumlayıcı:"
+msgstr "Öntanımlı yorumlayıcı:"
 
 #: ../guake/data/prefs.glade.h:50
 msgid "_Run command as a login shell"
@@ -284,7 +284,7 @@ msgstr "_Komutu giriş kabuğu olarak çalıştır"
 
 #: ../guake/data/prefs.glade.h:51
 msgid "_Open new tab in current directory"
-msgstr "_Yeni sekmeyi klasörde aç"
+msgstr "_Yeni sekmeyi geçerli dizinde aç"
 
 #: ../guake/data/prefs.glade.h:52
 msgid "<b>Shell</b>"
@@ -296,7 +296,7 @@ msgstr "Kabuk"
 
 #: ../guake/data/prefs.glade.h:54
 msgid "Show scrollbar"
-msgstr "Kaydırma çubuğunu görüntüle"
+msgstr "Kaydırma çubuğunu göster"
 
 #: ../guake/data/prefs.glade.h:55
 msgid "Scrollback lines:"
@@ -320,15 +320,15 @@ msgstr "Kaydırma"
 
 #: ../guake/data/prefs.glade.h:60
 msgid "Use the system fixed width font"
-msgstr "Sistemin sabit genişlikli yazıtipini kullan"
+msgstr "Sistemin sabit genişlikli yazı tipini kullan"
 
 #: ../guake/data/prefs.glade.h:61
 msgid "Font:"
-msgstr "Yazıtipi:"
+msgstr "Yazı tipi:"
 
 #: ../guake/data/prefs.glade.h:62
 msgid "Choose some font"
-msgstr "Font seçin"
+msgstr "Yazı tipi seçin"
 
 #: ../guake/data/prefs.glade.h:63
 msgid "Text color:"
@@ -336,7 +336,7 @@ msgstr "Metin rengi:"
 
 #: ../guake/data/prefs.glade.h:64
 msgid "Background color:"
-msgstr "Arkaplan rengi:"
+msgstr "Arka plan rengi:"
 
 #: ../guake/data/prefs.glade.h:65
 msgid "Cursor shape:"
@@ -376,7 +376,7 @@ msgstr "<b>Palet</b>"
 
 #: ../guake/data/prefs.glade.h:75
 msgid "Built-in schemes:"
-msgstr "Varsayılan düzenler:"
+msgstr "Yerleşik düzenler:"
 
 #: ../guake/data/prefs.glade.h:76
 msgid "Color palette:"
@@ -408,7 +408,7 @@ msgstr "Şeffaflık:"
 
 #: ../guake/data/prefs.glade.h:83
 msgid "Background image:"
-msgstr "Arkaplan resmi:"
+msgstr "Arka plan resmi:"
 
 #: ../guake/data/prefs.glade.h:84 ../src/guake/prefs.py:130
 msgid "Appearance"
@@ -422,9 +422,9 @@ msgid ""
 "extract filename below.</small>"
 msgstr ""
 "<small>Hızlı açma, bir dosyayı terminalinizde göründüğünde dosya adına "
-"tıklayarak doğrudan favori metin editörünüzde açmanıza olanak sağlayan bir "
-"özelliktir. Dosya adını çıkarmak için kullanılan şu anda desteklenen "
-"aşağıdaki metin kalıplarının listesine göz atın.</small>"
+"tıklayarak doğrudan sevdiğiniz metin düzenleyicisinde açmanıza olanak "
+"tanıyan bir özelliktir. Dosya adını çıkarmak için kullanılan şu anda "
+"desteklenen aşağıdaki metin kalıplarının listesine göz atın.</small>"
 
 #: ../guake/data/prefs.glade.h:86
 msgid "Enable Quick Open when Ctrl+clicking on a filename in the terminal"
@@ -434,7 +434,7 @@ msgstr ""
 
 #: ../guake/data/prefs.glade.h:87
 msgid "Editor command line:"
-msgstr "Editör komut satırı:"
+msgstr "Düzenleyici komut satırı:"
 
 #: ../guake/data/prefs.glade.h:89
 #, no-c-format
@@ -447,17 +447,17 @@ msgid ""
 "For example, for sublime, use <b>subl %(file_path)s:%(line_number)s</b>\n"
 "</i></small>"
 msgstr ""
-"<small><i>Açık editör komut satırında aşağıdaki öğeleri kullanın:\n"
+"<small><i>Düzenleyiciyi aç komut satırında aşağıdaki ögeleri kullanın:\n"
 " - <b>%(file_path)s</b>: tıklanan dosyanın yolu\n"
-" - <b>%(line_number)s</b>: editörünüz destekliyorsa, ekranda göründüğünde "
-"dosyayı doğrudan verilen bir satırda açabilirsiniz.\n"
+" - <b>%(line_number)s</b>: düzenleyiciniz destekliyorsa, ekranda "
+"göründüğünde dosyayı doğrudan verilen bir satırda açabilirsiniz.\n"
 "\n"
 "Örneğin, sublime için <b>subl %(file_path)s:%(line_number)s</b> kullanın.\n"
 "</i></small>"
 
 #: ../guake/data/prefs.glade.h:95
 msgid "Quick open in current terminal"
-msgstr "Mevcut terminalde hızlı aç"
+msgstr "Geçerli terminalde hızlı aç"
 
 #: ../guake/data/prefs.glade.h:96
 msgid ""
@@ -465,7 +465,7 @@ msgid ""
 "Guake's authors)"
 msgstr ""
 "Desteklenen kalıpların listesi: (kendinizinkini eklemek için lütfen "
-"Guake'nin yazarlarıyla irtibata geçin)"
+"Guake'nin yazarlarıyla iletişime geçin)"
 
 #: ../guake/data/prefs.glade.h:97
 msgid "<b>Quick Open</b>"
@@ -494,9 +494,10 @@ msgid ""
 "applications and operating systems that expect different terminal behavior.</"
 "i></small>"
 msgstr ""
-"<small><i><b>Note:</b> Bu ayarlar bazı programların hatalı davranmasına "
-"sebep olabilir. Bu ayarlar sadece farklı uçbirim davranışları bekleyen "
-"programlar ve işletim sistemleri için vardır.</i></small>"
+"<small><i><b>Not:</b> Bu seçenekler bazı uygulamaların hatalı davranmasına "
+"sebep olabilir. Bunlar, yalnızca farklı terminal davranışları bekleyen "
+"belirli uygulamalar ve işletim sistemleri üzerinde çalışmanıza izin vermek "
+"için buradadır.</i></small>"
 
 #: ../guake/data/prefs.glade.h:103
 msgid ""
@@ -518,7 +519,7 @@ msgstr "_Delete tuşu yerine:"
 
 #: ../guake/data/prefs.glade.h:108
 msgid "_Reset Compatibility Options to Defaults"
-msgstr "Uyumluluk aya_rlarını varsayılan hale getir"
+msgstr "Uyumluluk Seçeneklerini Öntanımlılara _Sıfırla"
 
 #: ../guake/data/prefs.glade.h:109
 msgid "<b>Keyboard compatibility</b>"
@@ -531,7 +532,7 @@ msgstr "Uyumluluk"
 #: ../src/guake/about.py:47 ../src/guake/gconfhandler.py:439
 #: ../src/guake/guake_app.py:181 ../src/guake/guake_app.py:378
 msgid "Guake Terminal"
-msgstr "Guake Uçbirim"
+msgstr "Guake Terminal"
 
 #: ../src/guake/gconfhandler.py:369 ../src/guake/guake_app.py:1386
 msgid "Terminal"
@@ -579,11 +580,11 @@ msgstr "Hala çalışan {0} işlem var"
 
 #: ../src/guake/guake_app.py:186
 msgid "guake-indicator"
-msgstr "guake-göstergesi"
+msgstr "guake-indicator"
 
 #: ../src/guake/guake_app.py:186
 msgid "guake-tray"
-msgstr "guake-tepsisi"
+msgstr "guake-tray"
 
 #: ../src/guake/guake_app.py:190
 msgid "Show"
@@ -609,15 +610,15 @@ msgstr "Web'de ara (seçim yok)"
 
 #: ../src/guake/guake_app.py:683
 msgid "Open Link: '{}...'"
-msgstr "Linki Aç: '{}...'"
+msgstr "Bağlantıyı Aç: '{}...'"
 
 #: ../src/guake/guake_app.py:685
 msgid "Open Link: {}"
-msgstr "Linki Aç: {}"
+msgstr "Bağlantıyı Aç: {}"
 
 #: ../src/guake/guake_app.py:688
 msgid "Open Link..."
-msgstr "Linki Aç..."
+msgstr "Bağlantıyı Aç..."
 
 #: ../src/guake/guake_app.py:1425
 msgid "Rename tab"
@@ -633,7 +634,7 @@ msgstr "Tüm dosyalar"
 
 #: ../src/guake/guake_app.py:1748
 msgid "Text and Logs"
-msgstr "Metin ve Log kayıtları"
+msgstr "Metin ve Günlük Kayıtları"
 
 #: ../src/guake/guake_app.py:1766
 msgid "Find"
@@ -653,7 +654,7 @@ msgstr "Guake'yi tam ekran moduna geçirin"
 
 #: ../src/guake/main.py:72
 msgid "Toggles the visibility of the terminal window"
-msgstr "Uçbirim penceresinin görüntüler veya gizler"
+msgstr "Terminal penceresinin görünürlüğünü değiştirir"
 
 #: ../src/guake/main.py:76
 msgid "Shows Guake main window"
@@ -665,7 +666,7 @@ msgstr "Guake ana penceresini gizler"
 
 #: ../src/guake/main.py:84
 msgid "Shows Guake preference window"
-msgstr "Guake seçenekler penceresini gösterir"
+msgstr "Guake tercihler penceresini gösterir"
 
 #: ../src/guake/main.py:88
 msgid "Shows Guake's about info"
@@ -689,7 +690,7 @@ msgstr "Seçili sekmede sınırsız komut çalıştırır."
 
 #: ../src/guake/main.py:108
 msgid "Specify the tab to rename. Default is 0."
-msgstr "Yeniden adlandırılacak sekmeyi belirtin. Varsayılan 0'dır."
+msgstr "Yeniden adlandırılacak sekmeyi belirtin. Öntanımlı değer 0'dır."
 
 #: ../src/guake/main.py:112
 msgid "Set the hexadecimal (#rrggbb) background color of the selected tab."
@@ -703,15 +704,15 @@ msgstr "Seçilen sekmenin onaltılık (#rrggbb) ön plan rengini ayarlayın."
 msgid ""
 "Rename the specified tab. Reset to default if TITLE is a single dash \"-\"."
 msgstr ""
-"Belirtilen sekmeyi yeniden adlandırın. TITLE tek bir çizgi \"-\" ise "
-"varsayılana sıfırlayın."
+"Belirtilen sekmeyi yeniden adlandır. TITLE tek bir çizgi \"-\" ise "
+"öntanımlıya sıfırla."
 
 #: ../src/guake/main.py:129
 msgid ""
 "Rename the current tab. Reset to default if TITLE is a single dash \"-\"."
 msgstr ""
-"Geçerli sekmeyi yeniden adlandırın. TITLE tek bir çizgi \"-\" ise "
-"varsayılana sıfırlayın."
+"Geçerli sekmeyi yeniden adlandır. TITLE tek bir çizgi \"-\" ise öntanımlıya "
+"sıfırla."
 
 #: ../src/guake/main.py:134
 msgid "Says to Guake go away =("
@@ -719,7 +720,7 @@ msgstr "Guake'e güle güle der =("
 
 #: ../src/guake/main.py:138
 msgid "Do not execute the start up script"
-msgstr "Başlangıç komut dosyasını çalıştırmayın"
+msgstr "Başlangıç betiğini çalıştırma"
 
 #: ../src/guake/main.py:235
 msgid "Guake can not init!"
@@ -731,7 +732,7 @@ msgid ""
 "Have you installed <b>guake.schemas</b> properly?"
 msgstr ""
 "Gconf Hatası.\n"
-"<b>guake.schemas</b>'ı doğru şekilde yüklediniz mi?"
+"<b>guake.schemas</b> düzgün bir şekilde kuruldu mu?"
 
 #. string to show in prefereces dialog for user shell option
 #: ../src/guake/prefs.py:67
@@ -848,11 +849,11 @@ msgstr "Yüksekliği azalt"
 
 #: ../src/guake/prefs.py:142
 msgid "Increase transparency"
-msgstr "Saydamlığı artırın"
+msgstr "Saydamlığı artır"
 
 #: ../src/guake/prefs.py:144
 msgid "Decrease transparency"
-msgstr "Saydamlığı azaltın"
+msgstr "Saydamlığı azalt"
 
 #: ../src/guake/prefs.py:146
 msgid "Toggle transparency"
@@ -872,7 +873,7 @@ msgstr "Panodan metni yapıştır"
 
 #: ../src/guake/prefs.py:156
 msgid "Extra features"
-msgstr "Ekstra özellikler"
+msgstr "Ek özellikler"
 
 #: ../src/guake/prefs.py:159
 msgid "Search select text on web"
@@ -880,7 +881,7 @@ msgstr "Seçili metni Web'de ara"
 
 #: ../src/guake/prefs.py:481
 msgid "Action"
-msgstr "İşlev"
+msgstr "Eylem"
 
 #: ../src/guake/prefs.py:491
 msgid "Shortcut"
@@ -978,9 +979,9 @@ msgid ""
 "For example, for sublime, use <b>subl %(file_path)s:%(line_number)s</b>\n"
 "</i></small>"
 msgstr ""
-"<small><i> Açık editör komut satırında aşağıdaki öğeleri kullanın:\n"
+"<small><i>Düzenleyiciyi aç komut satırında aşağıdaki ögeleri kullanın:\n"
 "- <b>%(file_path)s</b>: tıklanan dosyanın yolu\n"
-"- <b>%(line_number)s</b>: editörünüz destekliyorsa, ekranda bulunduğunda "
+"- <b>%(line_number)s</b>: düzenleyiciniz destekliyorsa, ekranda bulunduğunda "
 "dosyayı doğrudan verilen bir satırda açabilirsiniz.\n"
 "\n"
 "Örneğin, sublime için <b>subl %(file_path)s:%(line_number)s</b> kullanın.\n"
@@ -1003,8 +1004,8 @@ msgid ""
 "<small>In this dialog you can attach your own command or script to various "
 "guake events</small>"
 msgstr ""
-"<small>Bu iletişim kutusunda çeşitli guake etkinliklerine kendi komutunuzu "
-"veya komut dosyanızı ekleyebilirsiniz</small>"
+"<small>Bu iletişim kutusunda çeşitli Guake etkinliklerine kendi komutunuzu "
+"veya betiğinizi ekleyebilirsiniz</small>"
 
 #: guake/data/prefs.glade:2635
 msgid "On show:"
@@ -1028,7 +1029,7 @@ msgstr "guake"
 
 #: guake/data/guake-prefs.desktop:20
 msgid "Terminal;Utility;"
-msgstr "Terminal; Yardımcı program;"
+msgstr "Terminal;Utility;Araç;Yardımcı program;"
 
 #: guake/data/guake.desktop:10
 msgid "Use the command line in a Quake-like terminal"
@@ -1090,9 +1091,9 @@ msgid ""
 "filename below."
 msgstr ""
 "Hızlı Açma, bir dosyayı terminalinizde göründüğünde dosya adına tıklayarak "
-"doğrudan favori metin editörünüzde açmanıza olanak sağlayan bir özelliktir. "
-"Dosya adını çıkarmak için kullanılan şu anda desteklenen aşağıdaki metin "
-"kalıplarının listesine göz atın."
+"doğrudan sevdiğiniz metin düzenleyicisinde açmanıza olanak tanıyan bir "
+"özelliktir. Dosya adını çıkarmak için kullanılan şu anda desteklenen "
+"aşağıdaki metin kalıplarının listesine göz atın."
 
 #: guake/main.py:64
 msgid "Show Guake version number and exit"
@@ -1112,7 +1113,7 @@ msgstr "Piksel cinsinden yer değiştirme"
 
 #: guake/main.py:73
 msgid "Enable verbose logging"
-msgstr "Ayrıntılı log kaydını etkinleştir"
+msgstr "Ayrıntılı günlük kaydını etkinleştir"
 
 #: guake/guake_app.py:680
 msgid "Quick Open: '{!s}...'"
@@ -1124,11 +1125,11 @@ msgstr "Hızlı Aç: {!s}"
 
 #: guake/guake_app.py:691
 msgid "Open Link: '{!s}...'"
-msgstr "Linki Aç: '{!s}...'"
+msgstr "Bağlantıyı Aç: '{!s}...'"
 
 #: guake/guake_app.py:694
 msgid "Open Link: {!s}"
-msgstr "Linki Aç: {!s}"
+msgstr "Bağlantıyı Aç: {!s}"
 
 #: guake/data/prefs.glade:2175
 msgid ""
@@ -1140,9 +1141,9 @@ msgid ""
 msgstr ""
 "<i><b>UYARI</b>: sisteminizde VTE için PCRE2 devre dışı bırakılmış "
 "görünüyor, bu durum Guake gibi uygulamaların düzenli ifadeler kullanarak "
-"\"eşleşenleri\" kayıt etmesini engellemektedir. Lütfen PCRE2 "
-"etkinleştirilmiş yeni bir VTE sürümü talep etmek için dağıtımınızla irtibata "
-"geçin! Hızlı Aç'ı kullanmak için, Ctrl+tıklamayı kullanmadan önce <b>metni "
+"\"eşleşenleri\" kaydetmesini engellemektedir. Lütfen PCRE2 etkinleştirilmiş "
+"yeni bir VTE sürümü talep etmek için dağıtımınızla iletişime geçin! Hızlı "
+"Aç'ı kullanmak için, Ctrl+tıklamayı kullanmadan önce <b>metni "
 "seçmelisiniz</b></i>."
 
 #: guake/guake_app.py:680
@@ -1151,7 +1152,7 @@ msgstr "Hızlı Aç: {!s}..."
 
 #: guake/guake_app.py:691
 msgid "Open Link: {!s}..."
-msgstr "Linki Aç: {!s}..."
+msgstr "Bağlantıyı Aç: {!s}..."
 
 #: guake/guake_app.py:688
 msgid "Quick Open..."
@@ -1177,8 +1178,8 @@ msgstr "Özel Komutlar"
 msgid ""
 "Specify the tab to rename. Default is 0. Can be used to select tab by UUID."
 msgstr ""
-"Yeniden adlandırılacak sekmeyi belirtin. Varsayılan 0'dır. Sekmeyi UUID ile "
-"seçmek için kullanılabilir."
+"Yeniden adlandırılacak sekmeyi belirtin. Öntanımlı değer 0'dır. Sekmeyi UUID "
+"ile seçmek için kullanılabilir."
 
 #: guake/main.py:212
 msgid ""
@@ -1186,7 +1187,7 @@ msgid ""
 "single dash \"-\"."
 msgstr ""
 "--tab-index ile belirtilen sekmeyi yeniden adlandır. TITLE tek bir çizgi \"-"
-"\" ise varsayılana sıfırla."
+"\" ise öntanımlıya sıfırla."
 
 #: data/search.glade:138
 msgid "Search forward"
@@ -1206,7 +1207,7 @@ msgstr "Pencere başlığını geçerli sekme adına ayarla"
 
 #: guake/menus.py:48
 msgid "Copy Url"
-msgstr "Url'yi kopyala"
+msgstr "URL'yi kopyala"
 
 #: guake/menus.py:62
 msgid "Split ―"
@@ -1467,7 +1468,7 @@ msgstr "Kısaltılmış Yol"
 
 #: guake/data/prefs.glade:755
 msgid "Last Segment"
-msgstr "Son Segment"
+msgstr "Son Kısım"
 
 #: guake/main.py:99
 msgid "Put Guake out from fullscreen mode"

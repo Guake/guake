@@ -10,29 +10,28 @@ msgstr ""
 "Project-Id-Version: Guake 0.4.5\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-08-18 17:32+0200\n"
-"PO-Revision-Date: 2018-01-25 21:05+0100\n"
-"Last-Translator: Péter Trombitás <trombipeti@gmail.com>\n"
-"Language-Team: Hungarian (http://www.transifex.com/projects/p/guake/language/"
-"hu/)\n"
+"PO-Revision-Date: 2021-04-17 17:27+0000\n"
+"Last-Translator: Zodarr <zodarr@gmail.com>\n"
+"Language-Team: Hungarian <https://hosted.weblate.org/projects/guake/guake/hu/"
+">\n"
 "Language: hu\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 2.0.6\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 4.6-dev\n"
 
 #: ../guake/data/about.glade.h:1
 msgid "About Guake"
 msgstr "Guake-ről"
 
 #: ../guake/data/about.glade.h:5
-#, fuzzy
 msgid ""
 "Guake is an easy to access\n"
 "terminal based on FPS games terminal"
 msgstr ""
-"Guake egy könnyen hozzáférhető\n"
-" FPS játékokban megszokott terminál"
+"A Guake egy könnyen hozzáférhető terminál,\n"
+" mely az FPS játékok mintáját követi."
 
 #: ../guake/data/guake.glade.h:1
 msgid "Copy"
@@ -48,19 +47,17 @@ msgstr "Teljes képernyő"
 
 #: ../guake/data/guake.glade.h:4
 msgid "Save to File..."
-msgstr ""
+msgstr "Mentés fájlba..."
 
 #: ../guake/data/guake.glade.h:5 ../src/guake/prefs.py:85
-#, fuzzy
 msgid "Reset terminal"
-msgstr "Guake Terminál"
+msgstr "Terminál visszaállítása"
 
 #: ../guake/data/guake.glade.h:6
 msgid "Find..."
-msgstr ""
+msgstr "Keress..."
 
 #: ../guake/data/guake.glade.h:7
-#, fuzzy
 msgid "New Tab"
 msgstr "Új lap"
 
@@ -75,11 +72,11 @@ msgstr "Lap bezárása"
 
 #: ../guake/data/guake.glade.h:10
 msgid "Open link..."
-msgstr ""
+msgstr "Link megnyitása..."
 
 #: ../guake/data/guake.glade.h:11
 msgid "Search on Web"
-msgstr ""
+msgstr "Keresés online"
 
 #: ../guake/data/guake.glade.h:12 ../src/guake/prefs.py:83
 msgid "Quit"
@@ -133,6 +130,18 @@ msgid ""
 "guake -r \"main\" -e \"cd ~/projects/myproject/main\"\n"
 "guake -r \"prod\" -e \"cd ~/projects/myproject/prod\"\n"
 msgstr ""
+"Útvonal egy bash scripthez, amely automatikusan elindul a Guake indításakor, "
+"kivéve ha megadod ezt: --no-startup-script.\n"
+"\n"
+"Ez a script legtöbb esetben a Guake \"parancssor általi konfiguráció\" "
+"funkcióját használja:\n"
+"\n"
+"#!/bin/bash\n"
+"\n"
+"sleep 5  # ajánlott várni egy keveset mielőtt a Guake sikeresen elindul\n"
+"\n"
+"guake -r \"main\" -e \"cd ~/projects/myproject/main\"\n"
+"guake -r \"prod\" -e \"cd ~/projects/myproject/prod\"\n"
 
 #: ../guake/data/prefs.glade.h:15
 msgid "Enable popup notifications on startup"
@@ -165,11 +174,15 @@ msgid "Prompt on close tab:"
 msgstr "Figyelmeztetés kilépéskor"
 
 #: ../guake/data/prefs.glade.h:22
+#, fuzzy
 msgid ""
 "Never\n"
 "With process running\n"
 "Always"
 msgstr ""
+"Soha\n"
+"Ha van aktív folyamat\n"
+"Mindig"
 
 #: ../guake/data/prefs.glade.h:25
 msgid "<b>General</b>"
@@ -177,7 +190,7 @@ msgstr "<b>Általános</b>"
 
 #: ../guake/data/prefs.glade.h:26
 msgid "Bottom align window instead of top align"
-msgstr ""
+msgstr "Ablakok alsó igazítása felső helyett"
 
 #: ../guake/data/prefs.glade.h:27
 msgid "Appear on mouse display"

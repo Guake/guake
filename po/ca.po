@@ -9,16 +9,16 @@ msgstr ""
 "Project-Id-Version: Guake 0.4.5\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-08-18 17:32+0200\n"
-"PO-Revision-Date: 2020-02-14 09:50+0000\n"
-"Last-Translator: Eduard Ereza Martínez <eduard@ereza.cat>\n"
-"Language-Team: Catalan <https://hosted.weblate.org/projects/guake/guake/ca/"
-">\n"
+"PO-Revision-Date: 2020-07-19 09:41+0000\n"
+"Last-Translator: Adolfo Jayme Barrientos <fitojb@ubuntu.com>\n"
+"Language-Team: Catalan <https://hosted.weblate.org/projects/guake/guake/ca/>"
+"\n"
 "Language: ca\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 3.11-dev\n"
+"X-Generator: Weblate 4.2-dev\n"
 
 #: ../guake/data/about.glade.h:1
 msgid "About Guake"
@@ -480,7 +480,7 @@ msgid ""
 "To disable a shortcut, press the \"Backspace\" key."
 msgstr ""
 "Per a canviar una dreceta feu-hi clic al nom.\n"
-"Per a desactivar una drecera, premeu la tecla \"Retrocés\"."
+"Per a desactivar una drecera, premeu la tecla «Retrocés»."
 
 #: ../guake/data/prefs.glade.h:101
 msgid "Keyboard shortcuts"
@@ -659,7 +659,7 @@ msgstr "Mostra la finestra de preferències del Guake"
 
 #: ../src/guake/main.py:88
 msgid "Shows Guake's about info"
-msgstr "Mostra la informació \"Quant a\" del Guake"
+msgstr "Mostra la informació «Quant a» del Guake"
 
 #: ../src/guake/main.py:92
 msgid "Add a new tab (with current directory set to NEW_TAB)"
@@ -700,14 +700,14 @@ msgid ""
 "Rename the specified tab. Reset to default if TITLE is a single dash \"-\"."
 msgstr ""
 "Canvieu el nom de la pestanya especificada. Tornarà a ser el valor per "
-"defecte si TITLE és un guió \"-\"."
+"defecte si TITLE és un guionet «-»."
 
 #: ../src/guake/main.py:129
 msgid ""
 "Rename the current tab. Reset to default if TITLE is a single dash \"-\"."
 msgstr ""
 "Canvieu el nom de la pestanya actual. Tornarà a ser el valor per defecte si "
-"TITLE és un guió \"-\"."
+"TITLE és un guionet «-»."
 
 #: ../src/guake/main.py:134
 msgid "Says to Guake go away =("
@@ -893,7 +893,7 @@ msgstr "Fitxers JSON"
 #: ../src/guake/prefs.py:1063
 #, python-format
 msgid "The shortcut \"%s\" is already in use."
-msgstr "La drecera \"%s\" ja s'està fent servir."
+msgstr "La drecera «%s» ja s'està fent servir."
 
 #: ../src/guake/prefs.py:1064
 msgid "Error setting keybinding."
@@ -907,7 +907,7 @@ msgid ""
 "\n"
 "Please try with a key such as Control, Alt or Shift at the same time.\n"
 msgstr ""
-"No es pot emprar \"%s\"  com a drecera perquè seria impossible escriure amb "
+"No es pot emprar «%s» com a drecera perquè seria impossible escriure amb "
 "aquesta tecla.\n"
 "\n"
 "Proveu de combinar-la amb tecles com ara Control, Alt o Majúscules.\n"
@@ -1145,7 +1145,7 @@ msgid ""
 msgstr ""
 "<i><b>ADVERTIMENT</b>: sembla que el vostre sistema té PCRE2 desactivat per "
 "al VTE, la qual cosa evita que aplicacions com el Guake puguin registrar "
-"\"cercadors\" fent servir expressions regulars. Contacteu amb la vostra "
+"«cercadors» fent servir expressions regulars. Contacteu amb la vostra "
 "distribució i demaneu una versió nova del VTE amb PCRE2 activat! Per a fer "
 "servir l'obertura ràpida, <b>cal que seleccioneu el text</b> abans de fer "
 "servir Control+clic</i>."
@@ -1191,7 +1191,7 @@ msgid ""
 "single dash \"-\"."
 msgstr ""
 "Canvieu el nom de la pestanya especificada amb --tab-index. Tornarà a ser el "
-"valor per defecte si TITLE és un guió \"-\"."
+"valor per defecte si TITLE és un guionet «-»."
 
 #: data/search.glade:138
 msgid "Search forward"
@@ -1211,7 +1211,7 @@ msgstr "Definiu el títol de la finestra al nom de la pestanya actual"
 
 #: guake/menus.py:48
 msgid "Copy Url"
-msgstr "Copia la URL"
+msgstr "Copia l'URL"
 
 #: guake/menus.py:62
 msgid "Split ―"
