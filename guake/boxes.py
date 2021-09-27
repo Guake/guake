@@ -179,7 +179,8 @@ class RootTerminalBox(Gtk.Overlay, TerminalHolder):
             self.child = terminal_holder
             self.add(self.child)
         else:
-            raise RuntimeError("Error adding (RootTerminalBox.add({}))".format(type(terminal_holder)))
+            raise RuntimeError(
+                "Error adding (RootTerminalBox.add({}))".format(type(terminal_holder)))
 
     def get_child(self):
         return self.child
