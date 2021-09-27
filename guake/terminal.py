@@ -247,7 +247,7 @@ class GuakeTerminal(Vte.Terminal):
         directory = os.path.expanduser("~")
         if self.pid is not None:
             try:
-                cwd = os.readlink(f"/proc/{self.pid}/cwd")
+                cwd = os.readlink("/proc/{}/cwd".format(self.pid))
             except Exception:
                 return directory
             if os.path.exists(cwd):
@@ -303,7 +303,7 @@ class GuakeTerminal(Vte.Terminal):
                 return
             with pt.open() as f:
                 for i, line in enumerate(f.readlines()):
-                    if line.startswith(f"def {py_func}"):
+                    if line.startswith("def {}".format(py_func)):
                         return i + 1
                         break
 
@@ -457,13 +457,13 @@ class GuakeTerminal(Vte.Terminal):
                 # ready to be used.
                 pass
             elif TERMINAL_MATCH_TAGS[tag] == "http":
-                value = f"http://{value}"
+                value = "http://%s" % value
             elif TERMINAL_MATCH_TAGS[tag] == "https":
-                value = f"https://{value}"
+                value = "https://%s" % value
             elif TERMINAL_MATCH_TAGS[tag] == "ftp":
-                value = f"ftp://{value}"
+                value = "ftp://%s" % value
             elif TERMINAL_MATCH_TAGS[tag] == "email":
-                value = f"mailto:{value}"
+                value = "mailto:%s" % value
 
         if value:
             return value
@@ -558,7 +558,7 @@ class GuakeTerminal(Vte.Terminal):
             Vte.PtyFlags.DEFAULT,
             directory,
             argv,
-            [f"GUAKE_TAB_UUID={self.uuid}"],
+            ["GUAKE_TAB_UUID={}".format(self.uuid)],
             GLib.SpawnFlags.DO_NOT_REAP_CHILD,
             None,
             None,
@@ -600,7 +600,7 @@ class GuakeTerminal(Vte.Terminal):
 
     def set_color_foreground_custom(self, fgcolor, *args, **kwargs):
         """Sets custom foreground color for this terminal"""
-        print(f"set_color_foreground_custom: {self.uuid}")
+        print("set_color_foreground_custom: {}".format(self.uuid))
         self.custom_fgcolor = fgcolor
         super().set_color_foreground(self.custom_fgcolor, *args, **kwargs)
 

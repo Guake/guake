@@ -10,5 +10,6 @@
 # `Pipfile.lock` and then regenerate `requirements*.txt`.
 ################################################################################
 
-importlib_metadata; python_version < '3.8'
-typing ; python_version < '3.5'
+pbr
+typing ; python_version > '3.5'
+wheel

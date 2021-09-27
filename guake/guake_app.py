@@ -415,7 +415,7 @@ class Guake(SimpleGladeApp):
             c.parse("#" + bgcolor)
             bgcolor = c
         if not isinstance(bgcolor, Gdk.RGBA):
-            raise TypeError(f"color should be Gdk.RGBA, is: {bgcolor}")
+            raise TypeError("color should be Gdk.RGBA, is: {!r}".format(bgcolor))
         bgcolor = self._apply_transparency_to_color(bgcolor)
         log.debug("setting background color to: %r", bgcolor)
 
@@ -433,7 +433,7 @@ class Guake(SimpleGladeApp):
             c.parse("#" + fgcolor)
             fgcolor = c
         if not isinstance(fgcolor, Gdk.RGBA):
-            raise TypeError(f"color should be Gdk.RGBA, is: {fgcolor}")
+            raise TypeError("color should be Gdk.RGBA, is: {!r}".format(fgcolor))
         log.debug("setting background color to: %r", fgcolor)
 
         if current_terminal_only:
@@ -1266,7 +1266,7 @@ class Guake(SimpleGladeApp):
             if search_query:
                 # TODO search provider should be selectable (someone might
                 # prefer bing.com, the internet is a strange place ¯\_(ツ)_/¯ )
-                search_url = f"https://www.google.com/search?q={search_query}&safe=off"
+                search_url = "https://www.google.com/search?q={!s}&safe=off".format(search_query,)
                 Gtk.show_uri(self.window.get_screen(), search_url, get_server_time(self.window))
         return True
 
@@ -1278,7 +1278,7 @@ class Guake(SimpleGladeApp):
 
     def execute_hook(self, event_name):
         """Execute shell commands related to current event_name"""
-        hook = self.settings.hooks.get_string(f"{event_name}")
+        hook = self.settings.hooks.get_string("{!s}".format(event_name))
         if hook is not None and hook != "":
             hook = hook.split()
             try:
@@ -1355,8 +1355,7 @@ class Guake(SimpleGladeApp):
             except Exception:
                 log.warning("%s is broken", session_file)
                 shutil.copy(
-                    session_file,
-                    self.get_xdg_config_directory() / f"{filename}.bak",
+                    session_file, self.get_xdg_config_directory() / "{0}.bak".format(filename),
                 )
                 img_filename = pixmapfile("guake-notification.png")
                 notifier.showMessage(
@@ -1433,12 +1432,9 @@ class Guake(SimpleGladeApp):
         except KeyError:
             log.warning("%s schema is broken", session_file)
             shutil.copy(
-                session_file,
-                self.get_xdg_config_directory() / f"{filename}.bak",
+                session_file, self.get_xdg_config_directory() / "{}.bak".format(filename),
             )
-            with (self.get_xdg_config_directory() / f"{filename}.log.err").open(
-                "w", encoding="utf-8"
-            ) as f:
+            with (self.get_xdg_config_directory() / "{}.log.err".format(filename)).open("w") as f:
                 traceback.print_exc(file=f)
             img_filename = pixmapfile("guake-notification.png")
             notifier.showMessage(

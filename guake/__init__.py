@@ -23,13 +23,9 @@ Boston, MA 02110-1301 USA
 
 def guake_version():
     # Do not import in the module root to speed up the dbus communication as much as possible
-    # That being said, importlib.metadata is pretty speedy unlike pbr/pkg_resources
-    try:
-        import importlib.metadata as importlib_metadata
-    except ImportError:
-        import importlib_metadata
+    import pbr.version
 
-    return importlib_metadata.version("guake")
+    return pbr.version.VersionInfo("guake").version_string()
 
 
 def vte_version():
@@ -39,7 +35,7 @@ def vte_version():
 
     from gi.repository import Vte
 
-    s = f"{Vte.MAJOR_VERSION}.{Vte.MINOR_VERSION}.{Vte.MICRO_VERSION}"
+    s = "{}.{}.{}".format(Vte.MAJOR_VERSION, Vte.MINOR_VERSION, Vte.MICRO_VERSION,)
     return s
 
 
@@ -50,7 +46,9 @@ def vte_runtime_version():
 
     from gi.repository import Vte
 
-    return f"{Vte.get_major_version()}.{Vte.get_minor_version()}.{Vte.get_micro_version()}"
+    return "{}.{}.{}".format(
+        Vte.get_major_version(), Vte.get_minor_version(), Vte.get_micro_version()
+    )
 
 
 def gtk_version():
@@ -59,4 +57,4 @@ def gtk_version():
     gi.require_version("Gtk", "3.0")
     from gi.repository import Gtk
 
-    return f"{Gtk.MAJOR_VERSION}.{Gtk.MINOR_VERSION}.{Gtk.MICRO_VERSION}"
+    return "{}.{}.{}".format(Gtk.MAJOR_VERSION, Gtk.MINOR_VERSION, Gtk.MICRO_VERSION)

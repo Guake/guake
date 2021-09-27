@@ -34,7 +34,7 @@ def get_resource_dirs(resource):
             GLib.get_system_data_dirs(), GUAKE_THEME_DIR, GLib.get_user_data_dir()
         )
     ]
-    dirs += [os.path.join(os.path.expanduser("~"), f".{resource}")]
+    dirs += [os.path.join(os.path.expanduser("~"), ".{}".format(resource))]
 
     return [Path(dir) for dir in dirs if os.path.isdir(dir)]
 
@@ -77,7 +77,9 @@ def patch_gtk_theme(style_context, settings):
     theme_name, variant = get_gtk_theme(settings)
 
     def rgba_to_hex(color):
-        return f"#{''.join(f'{int(i*255):02x}' for i in (color.red, color.green, color.blue))}"
+        return "#{0:02x}{1:02x}{2:02x}".format(
+            int(color.red * 255), int(color.green * 255), int(color.blue * 255)
+        )
 
     # for n in [
     #     "inverted_bg_color",
@@ -102,12 +104,14 @@ def patch_gtk_theme(style_context, settings):
         selected_bg_color,
     )
     css_data = dedent(
-        f"""
+        """
         .custom_tab:checked {{
             color: {selected_fg_color};
             background: {selected_bg_color};
         }}
-        """
+        """.format(
+            selected_bg_color=selected_bg_color, selected_fg_color=selected_fg_color
+        )
     ).encode()
     style_provider = Gtk.CssProvider()
     style_provider.load_from_data(css_data)

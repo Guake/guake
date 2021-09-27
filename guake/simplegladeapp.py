@@ -78,8 +78,17 @@ class SimpleGladeApp:
         class_name = self.__class__.__name__
         if self.main_widget:
             root = Gtk.Widget.get_name(self.main_widget)
-            return f'{class_name}(path="{self.glade_path}", root="{root}")'
-        return f'{class_name}(path="{self.glade_path}")'
+            repr = '%s(path="%s", root="%s")' % (class_name, self.glade_path, root)
+        else:
+            repr = '%s(path="%s")' % (class_name, self.glade_path)
+        return repr
+
+    def new(self):
+        """
+        Method called when the user interface is loaded and ready to be used.
+        At this moment, the widgets are loaded and can be refered as self.widget_name
+        """
+        pass
 
     def add_callbacks(self, callbacks_proxy):
         """
@@ -116,7 +125,7 @@ class SimpleGladeApp:
                 widget_name = Gtk.Buildable.set_name(widget, widget_api_name)
                 if hasattr(self, widget_api_name):
                     raise AttributeError(
-                        f"instance {self} already has an attribute {widget_api_name}"
+                        "instance %s already has an attribute %s" % (self, widget_api_name)
                     )
                 setattr(self, widget_api_name, widget)
                 if prefixes:
