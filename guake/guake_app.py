@@ -501,7 +501,7 @@ class Guake(SimpleGladeApp):
         visible = window.get_property("visible")
         self.losefocus_time = get_server_time(self.window)
         if visible and value:
-            log.info("Hiding on focus lose")
+            log.debug("Hiding on focus lose")
             self.hide()
 
     def show_menu(self, status_icon, button, activate_time):
@@ -553,7 +553,7 @@ class Guake(SimpleGladeApp):
             return
 
         if not self.window.get_property("visible"):
-            log.info("Showing the terminal")
+            log.debug("Showing the terminal")
             self.show()
             self.window.get_window().focus(0)
             self.set_terminal_focus()
@@ -562,11 +562,11 @@ class Guake(SimpleGladeApp):
         should_refocus = self.settings.general.get_boolean("window-refocus")
         has_focus = self.window.get_window().get_state() & Gdk.WindowState.FOCUSED
         if should_refocus and not has_focus:
-            log.info("Refocussing the terminal")
+            log.debug("Refocussing the terminal")
             self.window.get_window().focus(0)
             self.set_terminal_focus()
         else:
-            log.info("Hiding the terminal")
+            log.debug("Hiding the terminal")
             self.hide()
 
     def show_focus(self, *args):
