@@ -60,24 +60,30 @@ jobs:
           make test-actions
           # prepare for deployment
           make generate-paths
-
-      - name: Stores dists (Python 3.8)
-        uses: actions/upload-artifact@v2
-        if: "${{ matrix.python-version }} == 3.8"
+          
+      - uses: Thog/action-equals@v1
+        id: isLatest
         with:
-          name: dists
-          path: dist/*
+          a: ${{ matrix.python-version }}
+          b: 3.9
+          
+      - name: Store dists (Python 3.9)
+        if: steps.isLatest.outputs.result
+        uses: actions/upload-artifact@v2
+        with:
+          name: dist
+          path: dist
 
   release-test:
     runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/master'
     needs:
       - build
-    if: github.ref == 'refs/heads/master'
     steps:
       - name: Retrieve dists
         uses: actions/download-artifact@v2
         with:
-          name: dists
+          path: ./
       - name: Publish distribution 📦 to Test PyPI
         uses: pypa/gh-action-pypi-publish@master
         with:
