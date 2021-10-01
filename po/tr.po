@@ -9,10 +9,10 @@ msgstr ""
 "Project-Id-Version: Guake 0.4.5\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-08-18 17:32+0200\n"
-"PO-Revision-Date: 2021-09-11 10:18+0000\n"
+"PO-Revision-Date: 2021-10-02 14:06+0000\n"
 "Last-Translator: Oğuz Ersen <oguzersen@protonmail.com>\n"
-"Language-Team: Turkish <https://hosted.weblate.org/projects/guake/guake/tr/"
-">\n"
+"Language-Team: Turkish <https://hosted.weblate.org/projects/guake/guake/tr/>"
+"\n"
 "Language: tr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -1520,51 +1520,51 @@ msgstr "Yeni sekmeler, geçerli sekmeden sonra görünür"
 
 #: guake/prefs.py:186
 msgid "Search selected text on web"
-msgstr ""
+msgstr "Seçili metni internette ara"
 
 #: guake/menus.py:80
 msgid "Copy URL"
-msgstr ""
+msgstr "URL'yi kopyala"
 
 #: guake/main.py:362
 msgid "Show support information"
-msgstr ""
+msgstr "Destek bilgilerini göster"
 
 #: guake/data/prefs.glade:19
 msgid "Scale"
-msgstr ""
+msgstr "Ölçekle"
 
 #: guake/data/prefs.glade:23
 msgid "Tile"
-msgstr ""
+msgstr "Döşe"
 
 #: guake/data/prefs.glade:31
 msgid "Stretch"
-msgstr ""
+msgstr "Uzat"
 
 #: guake/data/prefs.glade:472
 msgid "Copy on select"
-msgstr ""
+msgstr "Seçildiğinde kopyala"
 
 #: guake/data/prefs.glade:517
 msgid "Use system default theme"
-msgstr ""
+msgstr "Sistem öntanımlı temasını kullan"
 
 #: guake/data/prefs.glade:547
 msgid "GTK Theme:"
-msgstr ""
+msgstr "GTK Teması:"
 
 #: guake/data/prefs.glade:612
 msgid "Please select a JSON file"
-msgstr ""
+msgstr "Lütfen bir JSON dosyası seçin"
 
 #: guake/data/prefs.glade:938
 msgid "Hide tab bar if there is only one tab"
-msgstr ""
+msgstr "Yalnızca bir sekme varsa sekme çubuğunu gizle"
 
 #: guake/data/prefs.glade:1929
 msgid "Background image: "
-msgstr ""
+msgstr "Arka plan resmi: "
 
 #: guake/data/prefs.glade:2730
 msgid ""
@@ -1577,12 +1577,22 @@ msgid ""
 "Text.\n"
 "</i></small>"
 msgstr ""
+"<small><i>Düzenleyiciyi aç komut satırında aşağıdaki ögeleri kullanın:\n"
+"- <b>%(file_path)s</b>: tıklanan dosyanın yolu\n"
+"- <b>%(line_number)s</b>: düzenleyiciniz destekliyorsa, ekranda bulunduğunda "
+"dosyayı doğrudan verilen bir satırda açabilirsiniz.\n"
+"\n"
+"Örneğin, Sublime Text için <b>subl %(file_path)s:%(line_number)s</b> "
+"kullanın.\n"
+"</i></small>"
 
 #: guake/data/prefs.glade:2879
 msgid ""
 "<small>In this dialog you can attach your own command or script to various "
 "Guake events</small>"
 msgstr ""
+"<small>Bu iletişim kutusunda çeşitli Guake etkinliklerine kendi komutunuzu "
+"veya betiğinizi ekleyebilirsiniz</small>"
 
 #: guake/data/prefs.glade:3008
 msgid ""
@@ -1591,6 +1601,10 @@ msgid ""
 "applications and operating systems that expect different terminal behavior.</"
 "i></small>"
 msgstr ""
+"<small><i><b>Not:</b> Bu seçenekler bazı uygulamaların hatalı davranmasına "
+"neden olabilir. Yalnızca farklı terminal davranışı bekleyen belirli "
+"uygulamalar ve işletim sistemleri üzerinde çalışmanıza izin vermek için "
+"buradalar.</i></small>"
 
 #~ msgid "key binding error"
 #~ msgstr "kısayol atama hatası"
