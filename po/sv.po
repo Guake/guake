@@ -10,16 +10,16 @@ msgstr ""
 "Project-Id-Version: Guake 0.4.5\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-06-22 14:32+0200\n"
-"PO-Revision-Date: 2020-02-20 23:32+0000\n"
+"PO-Revision-Date: 2021-10-01 12:38+0000\n"
 "Last-Translator: Morgan Antonsson <morgan.antonsson@gmail.com>\n"
-"Language-Team: Swedish <https://hosted.weblate.org/projects/guake/guake/sv/"
-">\n"
+"Language-Team: Swedish <https://hosted.weblate.org/projects/guake/guake/sv/>"
+"\n"
 "Language: sv\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 3.11.1\n"
+"X-Generator: Weblate 4.9-dev\n"
 
 #: guake/prefs.py:78
 msgid "<user shell>"
@@ -1265,51 +1265,51 @@ msgstr "Nya flikar visas efter den aktuella fliken"
 
 #: guake/prefs.py:186
 msgid "Search selected text on web"
-msgstr ""
+msgstr "Sök markerad text på webben"
 
 #: guake/menus.py:80
 msgid "Copy URL"
-msgstr ""
+msgstr "Kopiera URL"
 
 #: guake/main.py:362
 msgid "Show support information"
-msgstr ""
+msgstr "Visa supportinformation"
 
 #: guake/data/prefs.glade:19
 msgid "Scale"
-msgstr ""
+msgstr "Skala"
 
 #: guake/data/prefs.glade:23
 msgid "Tile"
-msgstr ""
+msgstr "Sida vid sida"
 
 #: guake/data/prefs.glade:31
 msgid "Stretch"
-msgstr ""
+msgstr "Sträck ut"
 
 #: guake/data/prefs.glade:472
 msgid "Copy on select"
-msgstr ""
+msgstr "Kopiera automatiskt vald text"
 
 #: guake/data/prefs.glade:517
 msgid "Use system default theme"
-msgstr ""
+msgstr "Använd systemets standardtema"
 
 #: guake/data/prefs.glade:547
 msgid "GTK Theme:"
-msgstr ""
+msgstr "GTK -tema:"
 
 #: guake/data/prefs.glade:612
 msgid "Please select a JSON file"
-msgstr ""
+msgstr "Välj en JSON -fil"
 
 #: guake/data/prefs.glade:938
 msgid "Hide tab bar if there is only one tab"
-msgstr ""
+msgstr "Dölj flikfältet om det bara finns en flik"
 
 #: guake/data/prefs.glade:1929
 msgid "Background image: "
-msgstr ""
+msgstr "Bakgrundsbild: "
 
 #: guake/data/prefs.glade:2730
 msgid ""
@@ -1328,6 +1328,8 @@ msgid ""
 "<small>In this dialog you can attach your own command or script to various "
 "Guake events</small>"
 msgstr ""
+"<small> I denna dialog kan du lägga till ett kommando eller skript för olika "
+"Guake -händelser </small>"
 
 #: guake/data/prefs.glade:3008
 msgid ""
@@ -1336,3 +1338,7 @@ msgid ""
 "applications and operating systems that expect different terminal behavior.</"
 "i></small>"
 msgstr ""
+"<small> <i> <b> Obs! </b> Dessa alternativ kan orsaka att vissa "
+"applikationer beter sig felaktigt. De är bara här för att göra det möjligt "
+"att kringgå vissa applikationer och operativsystem som förväntar sig olika "
+"terminalbeteende. </i> </small>"
