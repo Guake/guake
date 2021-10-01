@@ -65,11 +65,11 @@ class CustomCommands:
         cust_comms = self._load_json(self.get_file_path())
         if not cust_comms:
             return None
-        try:
-            for obj in cust_comms:
+        for obj in cust_comms:
+            try:
                 self._parse_custom_commands(obj, menu)
-        except AttributeError:
-            return None
+            except AttributeError:
+                log.error("Error parsing %s", obj)
         return menu
 
     def _parse_custom_commands(self, json_object, menu):
