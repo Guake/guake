@@ -9,15 +9,15 @@ msgstr ""
 "Project-Id-Version: Guake 0.4.5\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-04-14 12:33+0200\n"
-"PO-Revision-Date: 2020-12-02 17:29+0000\n"
-"Last-Translator: Heimen Stoffels <vistausss@outlook.com>\n"
+"PO-Revision-Date: 2021-10-01 12:38+0000\n"
+"Last-Translator: Heimen Stoffels <vistausss@fastmail.com>\n"
 "Language-Team: Dutch <https://hosted.weblate.org/projects/guake/guake/nl/>\n"
 "Language: nl\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.4-dev\n"
+"X-Generator: Weblate 4.9-dev\n"
 
 #: ../guake/data/about.glade.h:1
 msgid "About Guake"
@@ -45,7 +45,7 @@ msgstr "Beeldvullende modus aan/uit"
 
 #: ../guake/data/guake.glade.h:4
 msgid "Save to File..."
-msgstr "Opslaan naar bestand..."
+msgstr "Opslaan naar bestand…"
 
 #: ../guake/data/guake.glade.h:5 ../src/guake/prefs.py:85
 msgid "Reset terminal"
@@ -53,7 +53,7 @@ msgstr "Standaardwaarden"
 
 #: ../guake/data/guake.glade.h:6
 msgid "Find..."
-msgstr "Zoeken..."
+msgstr "Zoeken…"
 
 #: ../guake/data/guake.glade.h:7
 msgid "New Tab"
@@ -69,7 +69,7 @@ msgstr "Tabblad sluiten"
 
 #: ../guake/data/guake.glade.h:10
 msgid "Open link..."
-msgstr "Link openen..."
+msgstr "Link openen…"
 
 #: ../guake/data/guake.glade.h:11
 msgid "Search on Web"
@@ -124,8 +124,8 @@ msgid ""
 "guake -r \"main\" -e \"cd ~/projects/myproject/main\"\n"
 "guake -r \"prod\" -e \"cd ~/projects/myproject/prod\"\n"
 msgstr ""
-"Pad naar een bashscript dat automatisch moet worden uitgevoerd zodra Guake "
-"wordt gestart, tenzij je --no-startup-script opgeeft.\n"
+"Locatie van een bashscript dat automatisch moet worden uitgevoerd zodra "
+"Guake wordt gestart, tenzij je --no-startup-script opgeeft.\n"
 "\n"
 "Dit gebruikt doorgaans de configuratie van de Guake-opdrachtregelfunctie:\n"
 "#!/bin/bash\n"
@@ -158,7 +158,7 @@ msgstr "Meldingsgeluid afs_pelen bij bel"
 
 #: ../guake/data/prefs.glade.h:20
 msgid "Path to script executed on Guake start:"
-msgstr "Pad naar opstartscript:"
+msgstr "Locatie van opstartscript:"
 
 #: ../guake/data/prefs.glade.h:21
 msgid "Prompt on close tab:"
@@ -252,7 +252,7 @@ msgstr "<b>Hoofdvenster - Breedte</b>"
 
 #: ../guake/data/prefs.glade.h:45
 msgid "Custom command file path: "
-msgstr "Bestandspad naar aangepaste opdracht: "
+msgstr "Bestandslocatie van aangepaste opdracht: "
 
 #: ../guake/data/prefs.glade.h:46
 msgid "Please select a json file"
@@ -446,7 +446,7 @@ msgid ""
 msgstr ""
 "<small><i>Gebruik de volgende elementen in het tekstbewerker-"
 "opdrachtregelveld:\n"
-" - <b>%(file_path)s</b>: pad naar het aangeklikte bestand\n"
+" - <b>%(file_path)s</b>: locatie van het aangeklikte bestand;\n"
 " - <b>%(line_number)s</b>: je kunt, als je tekstbewerker dit ondersteunt, "
 "het bestand direct openen op een opgegeven regelnummer indien dit "
 "overeenkomt.\n"
@@ -541,7 +541,7 @@ msgid ""
 "Insert command or path to script.\n"
 "For details, see https://github.com/Guake/guake/issues/793"
 msgstr ""
-"Voer de opdracht of het pad naar het script in.\n"
+"Voer de opdracht of locatie van het script in.\n"
 "Meer informatie: https://github.com/Guake/guake/issues/793"
 
 #: ../guake/data/prefs.glade.h:115
@@ -623,7 +623,7 @@ msgstr ""
 #: ../src/guake/guake_app.py:669
 #, python-format
 msgid "Search on Web: '%s'"
-msgstr "Zoeken op internet: '%s'"
+msgstr "Zoeken op internet: ‘%s’"
 
 #: ../src/guake/guake_app.py:674
 msgid "Search on Web (no selection)"
@@ -631,7 +631,7 @@ msgstr "Zoeken op internet (geen selectie)"
 
 #: ../src/guake/guake_app.py:682
 msgid "Open Link: '{}...'"
-msgstr "Link openen: '{}...'"
+msgstr "Link openen: ‘{}…’"
 
 #: ../src/guake/guake_app.py:684
 msgid "Open Link: {}"
@@ -639,7 +639,7 @@ msgstr "Link openen: {}"
 
 #: ../src/guake/guake_app.py:687
 msgid "Open Link..."
-msgstr "Link openen..."
+msgstr "Link openen…"
 
 #: ../src/guake/guake_app.py:1407
 msgid "Terminal"
@@ -651,7 +651,7 @@ msgstr "Tabbladnaam wijzigen"
 
 #: ../src/guake/guake_app.py:1776
 msgid "Save to..."
-msgstr "Opslaan naar..."
+msgstr "Opslaan naar…"
 
 #: ../src/guake/guake_app.py:1783 ../src/guake/prefs.py:997
 msgid "All files"
@@ -975,7 +975,7 @@ msgstr "Opnieuw focussen indien geopend"
 
 #: guake/data/prefs.glade:865
 msgid "Custom command file path:"
-msgstr "Aangepast bestandspad naar opdracht:"
+msgstr "Aangepaste bestandslocatie van opdracht:"
 
 #: guake/data/prefs.glade:1423
 msgid "Block"
@@ -1012,7 +1012,7 @@ msgid ""
 "</i></small>"
 msgstr ""
 "<small><i>Gebruik de volgende elementen in de geopende bewerker:\n"
-"- <b>%(file_path)s</b>: pad naar het aangeklikte bestand\n"
+"- <b>%(file_path)s</b>: locatie van het aangeklikte bestand;\n"
 "- <b>%(line_number)s</b>: als je bewerker dit ondersteunt, dan kun je het "
 "bestand direct openen op een opgegeven regelnummer, indien aanwezig.\n"
 "\n"
@@ -1134,7 +1134,7 @@ msgstr "Uitgebreid loggen inschakelen"
 
 #: guake/guake_app.py:680
 msgid "Quick Open: '{!s}...'"
-msgstr "Snel openen: '{!s}...'"
+msgstr "Snel openen: ‘{!s}…’"
 
 #: guake/guake_app.py:683
 msgid "Quick Open: {!s}"
@@ -1142,7 +1142,7 @@ msgstr "Snel openen: {!s}"
 
 #: guake/guake_app.py:691
 msgid "Open Link: '{!s}...'"
-msgstr "Link openen: '{!s}...'"
+msgstr "Link openen: ‘{!s}…’"
 
 #: guake/guake_app.py:694
 msgid "Open Link: {!s}"
@@ -1165,15 +1165,15 @@ msgstr ""
 
 #: guake/guake_app.py:680
 msgid "Quick Open: {!s}..."
-msgstr "Snel openen: {!s}..."
+msgstr "Snel openen: {!s}…"
 
 #: guake/guake_app.py:691
 msgid "Open Link: {!s}..."
-msgstr "Link openen: {!s}..."
+msgstr "Link openen: {!s}…"
 
 #: guake/guake_app.py:688
 msgid "Quick Open..."
-msgstr "Snel openen..."
+msgstr "Snel openen…"
 
 #: guake/data/prefs.glade:223
 msgid "Start Guake at login"
@@ -1288,7 +1288,7 @@ msgstr "| splitsen"
 
 #: guake/menus.py:72
 msgid "Save content..."
-msgstr "Inhoud opslaan..."
+msgstr "Inhoud opslaan…"
 
 #: data/prefs.glade:1182
 msgid ""
@@ -1451,7 +1451,7 @@ msgid ""
 "Your session file ({session_filename}) missing schema_version as key"
 msgstr ""
 "Sessieherstel afgebroken.\n"
-"schema_version ontbreekt als sleutel in je sessiebestand '{session_filename}'"
+"schema_version ontbreekt als sleutel in je sessiebestand ‘{session_filename}’"
 
 #: guake/guake_app.py:1252
 #, python-brace-format
@@ -1480,11 +1480,11 @@ msgstr "Tabbladlabels:"
 
 #: guake/data/prefs.glade:753
 msgid "Full Path"
-msgstr "Volledig pad"
+msgstr "Volledige locatie"
 
 #: guake/data/prefs.glade:754
 msgid "Abbreviated Path"
-msgstr "Ingekort pad"
+msgstr "Ingekorte locatie"
 
 #: guake/data/prefs.glade:755
 msgid "Last Segment"
@@ -1545,51 +1545,51 @@ msgstr "Nieuwe tabbladen openen naast huidige tabblad"
 
 #: guake/prefs.py:186
 msgid "Search selected text on web"
-msgstr ""
+msgstr "Naar selectie zoeken op internet"
 
 #: guake/menus.py:80
 msgid "Copy URL"
-msgstr ""
+msgstr "URL kopiëren"
 
 #: guake/main.py:362
 msgid "Show support information"
-msgstr ""
+msgstr "Ondersteuningsinformatie tonen"
 
 #: guake/data/prefs.glade:19
 msgid "Scale"
-msgstr ""
+msgstr "Schalen"
 
 #: guake/data/prefs.glade:23
 msgid "Tile"
-msgstr ""
+msgstr "Tegelen"
 
 #: guake/data/prefs.glade:31
 msgid "Stretch"
-msgstr ""
+msgstr "Uitrekken"
 
 #: guake/data/prefs.glade:472
 msgid "Copy on select"
-msgstr ""
+msgstr "Selectie automatisch kopiëren"
 
 #: guake/data/prefs.glade:517
 msgid "Use system default theme"
-msgstr ""
+msgstr "Systeemthema"
 
 #: guake/data/prefs.glade:547
 msgid "GTK Theme:"
-msgstr ""
+msgstr "GTK-thema:"
 
 #: guake/data/prefs.glade:612
 msgid "Please select a JSON file"
-msgstr ""
+msgstr "Kies een json-bestand"
 
 #: guake/data/prefs.glade:938
 msgid "Hide tab bar if there is only one tab"
-msgstr ""
+msgstr "Tabbladbalk verbergen als er slechts één tabblad geopend is"
 
 #: guake/data/prefs.glade:1929
 msgid "Background image: "
-msgstr ""
+msgstr "Achtergrondafbeelding: "
 
 #: guake/data/prefs.glade:2730
 msgid ""
@@ -1602,12 +1602,22 @@ msgid ""
 "Text.\n"
 "</i></small>"
 msgstr ""
+"<small><i>Gebruik de volgende elementen in een opdrachtregelbewerker:\n"
+"- <b>%(file_path)s</b>: locatie van het aangeklikte bestand;\n"
+"- <b>%(line_number)s</b>: ga direct naar een regelnummer, indien dit wordt "
+"ondersteund.\n"
+"\n"
+"Voorbeeld: <b>subl %(file_path)s:%(line_number)s</b> bij gebruik van Sublime "
+"Text.\n"
+"</i></small>"
 
 #: guake/data/prefs.glade:2879
 msgid ""
 "<small>In this dialog you can attach your own command or script to various "
 "Guake events</small>"
 msgstr ""
+"<small>In dit venster kun je je eigen opdracht of script toekennen aan "
+"verscheidene Guake-acties</small>"
 
 #: guake/data/prefs.glade:3008
 msgid ""
@@ -1616,6 +1626,10 @@ msgid ""
 "applications and operating systems that expect different terminal behavior.</"
 "i></small>"
 msgstr ""
+"<small><i><b>Let op:</b> door het gebruik van deze opties kan het gedrag van "
+"sommige toepassingen worden verstoord. Deze opties zijn alléén bedoeld als "
+"tussenoplossing voor toepassingen en werkomgevingen die ander terminalgedrag "
+"verwachten.</i></small>"
 
 #~ msgid "key binding error"
 #~ msgstr "Fout bij toets-binding"
