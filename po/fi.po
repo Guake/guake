@@ -1,0 +1,1634 @@
+# Translation of Guake to Finnish
+# Copyright (C) 2021 Guake Translators
+# This file is distributed under the same license as the Guake package.
+#
+# Translators:
+# Elias Arno Eskelinen <elias.eskelinen@protonmail.com>, 2021
+msgid ""
+msgstr ""
+"Project-Id-Version: Guake 0.4.5\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2016-08-18 17:32+0200\n"
+"PO-Revision-Date: 2021-10-02 14:37+0300\n"
+"Language-Team: Ukrainian <https://hosted.weblate.org/projects/guake/guake/uk/"
+">\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Poedit 2.4.2\n"
+"Last-Translator: Elias Arno Eskelinen <elias.eskelinen@protonmail.com>\n"
+"Language: fi\n"
+
+#: ../guake/data/about.glade.h:1
+msgid "About Guake"
+msgstr "Tietoja Guakesta"
+
+#: ../guake/data/about.glade.h:5
+msgid ""
+"Guake is an easy to access\n"
+"terminal based on FPS games terminal"
+msgstr ""
+"Guake on helppokäyttöinen\n"
+"FPS -pelien päätteisiin perustuva pääte"
+
+#: ../guake/data/guake.glade.h:1
+msgid "Copy"
+msgstr "Kopioi"
+
+#: ../guake/data/guake.glade.h:2
+msgid "Paste"
+msgstr "Liitä"
+
+#: ../guake/data/guake.glade.h:3 ../src/guake/prefs.py:79
+msgid "Toggle Fullscreen"
+msgstr "Vaihda koko näytön tilaan"
+
+#: ../guake/data/guake.glade.h:4
+msgid "Save to File..."
+msgstr "Tallenna nimellä..."
+
+#: ../guake/data/guake.glade.h:5 ../src/guake/prefs.py:85
+msgid "Reset terminal"
+msgstr "Nollaa pääte"
+
+#: ../guake/data/guake.glade.h:6
+msgid "Find..."
+msgstr "Etsi..."
+
+#: ../guake/data/guake.glade.h:7
+msgid "New Tab"
+msgstr "Uusi Välilehti"
+
+#: ../guake/data/guake.glade.h:8
+msgid "Rename Tab"
+msgstr "Uudelleennimeä Välilehti"
+
+#: ../guake/data/guake.glade.h:9
+msgid "Close Tab"
+msgstr "Sulje Välilehti"
+
+#: ../guake/data/guake.glade.h:10
+msgid "Open link..."
+msgstr "Avaa linkki..."
+
+#: ../guake/data/guake.glade.h:11
+msgid "Search on Web"
+msgstr "Etsi Verkosta"
+
+#: ../guake/data/guake.glade.h:12 ../src/guake/prefs.py:83
+msgid "Quit"
+msgstr "Lopeta"
+
+#: ../guake/data/guake.glade.h:13
+msgid "Rename"
+msgstr "Uudelleennimeä"
+
+#: ../guake/data/guake.glade.h:14
+msgid "Close"
+msgstr "Sulje"
+
+#: ../guake/data/guake.glade.h:15
+msgid "Guake!"
+msgstr "Guake!"
+
+#: ../guake/data/guake.glade.h:16
+msgid "Add a new tab"
+msgstr "Lisää uusi välilehti"
+
+#: ../guake/data/prefs.glade.h:1
+msgid "Guake Preferences"
+msgstr "Guaken Asetukset"
+
+#: ../guake/data/prefs.glade.h:2
+msgid "<span size=\"18000\" color=\"black\"><b>Guake properties</b></span>"
+msgstr "<span size=\"18000\" color=\"black\"><b>Guaken ominaisuudet</b></span>"
+
+#: ../guake/data/prefs.glade.h:3
+msgid ""
+"<span color=\"black\">Customize behavior and appearance of Guake!</span>"
+msgstr ""
+"<span color=\"black\">Mukauta Guaken käyttäytymistä ja ulkonäköä!</span>"
+
+#: ../guake/data/prefs.glade.h:4
+msgid ""
+"Path to a bash script that would be automatically executed when Guake "
+"starts, unless you specify --no-startup-script.\n"
+"\n"
+"This would typically use the configuration by command line feature of "
+"Guake:\n"
+"\n"
+"#!/bin/bash\n"
+"\n"
+"sleep 5  # it is advised to wait a bit before Guake has been successfully "
+"started\n"
+"\n"
+"guake -r \"main\" -e \"cd ~/projects/myproject/main\"\n"
+"guake -r \"prod\" -e \"cd ~/projects/myproject/prod\"\n"
+msgstr ""
+"Polku bash-skriptiin, joka suoritetaan automaattisesti, kun Guake "
+"käynnistyy, ellet määritä --no-startup-script.\n"
+"\n"
+"Tässä käytetään tyypillisesti Guaken komentorivin kautta tapahtuvaa "
+"konfigurointia:\n"
+"\n"
+"#!/bin/bash\n"
+"\n"
+"sleep 5  # on suositeltavaa odottaa hieman ennen kuin Guake on onnistuneesti "
+"käynnistetty\n"
+"\n"
+"guake -r \"main\" -e \"cd ~/projects/munprojekti/main\"\n"
+"guake -r \"prod\" -e \"cd ~/projects/munprojekti/prod\"\n"
+
+#: ../guake/data/prefs.glade.h:15
+msgid "Enable popup notifications on startup"
+msgstr "Ota ponnahdusikkuna-ilmoitukset käyttöön käynnistyksen yhteydessä"
+
+#: ../guake/data/prefs.glade.h:16
+msgid "Show tray icon"
+msgstr "Näytä tehtäväpalkin kuvake"
+
+#: ../guake/data/prefs.glade.h:17
+msgid "Always prompt on quit"
+msgstr "Varmista aina lopetettaessa"
+
+#: ../guake/data/prefs.glade.h:18
+msgid "_Flash terminal on bell"
+msgstr "_Välkytä päätettä huomioäänen yhteydessä"
+
+#: ../guake/data/prefs.glade.h:19
+msgid "_Play system alert sound on bell"
+msgstr "_Soita järjestelmän ääni päätteen huomioäänen yhteydessä"
+
+#: ../guake/data/prefs.glade.h:20
+msgid "Path to script executed on Guake start:"
+msgstr "Polku skriptiin, joka suoritetaan Guaken käynnistyessä:"
+
+#: ../guake/data/prefs.glade.h:21
+msgid "Prompt on close tab:"
+msgstr "Varmista välilehteä suljettaessa:"
+
+#: ../guake/data/prefs.glade.h:22
+msgid ""
+"Never\n"
+"With process running\n"
+"Always"
+msgstr ""
+"Ei koskaan\n"
+"Kun prosesseja on vielä käynnissä\n"
+"Aina"
+
+#: ../guake/data/prefs.glade.h:25
+msgid "<b>General</b>"
+msgstr "<b>Yleinen</b>"
+
+#: ../guake/data/prefs.glade.h:26
+msgid "Bottom align window instead of top align"
+msgstr "Kohdista ikkuna alhaalle ylhäälle kohdistamisen sijaan"
+
+#: ../guake/data/prefs.glade.h:27
+msgid "Appear on mouse display"
+msgstr "Ilmaannu näytölle jossa hiiri on"
+
+#: ../guake/data/prefs.glade.h:28
+msgid "Appear on display:"
+msgstr "Ilmaannu näytölle:"
+
+#: ../guake/data/prefs.glade.h:29
+msgid "Place tabs on top"
+msgstr "Sijoita välilehdet ikkunan päälle"
+
+#: ../guake/data/prefs.glade.h:30
+msgid "<b>Placement</b>"
+msgstr "<b>Sijoitus</b>"
+
+#: ../guake/data/prefs.glade.h:31
+msgid "Stay on top"
+msgstr "Pysy päällimmäisenä"
+
+#: ../guake/data/prefs.glade.h:32
+msgid "Use VTE titles for tab names"
+msgstr "Käytä VTE-otsikoita välilehtien nimissä"
+
+#: ../guake/data/prefs.glade.h:33
+msgid "Max tab name length:"
+msgstr "Välilehtien nimien enimmäispituus:"
+
+#: ../guake/data/prefs.glade.h:34
+msgid "0 means no size limit"
+msgstr "0 tarkoittaa, että kokorajoitusta ei ole"
+
+#: ../guake/data/prefs.glade.h:36
+msgid "Hide on lose focus"
+msgstr "Piilota, kun ikkuna menettää fokuksen"
+
+#: ../guake/data/prefs.glade.h:37
+msgid "Show tab bar"
+msgstr "Näytä välilehtipalkki"
+
+#: ../guake/data/prefs.glade.h:38
+msgid "Start fullscreen"
+msgstr "Aloita koko näytön tilassa"
+
+#: ../guake/data/prefs.glade.h:39
+msgid "<b>Main Window</b>"
+msgstr "<b>Pääikkuna</b>"
+
+#: ../guake/data/prefs.glade.h:40
+msgid "Left"
+msgstr "Vasemmalle"
+
+#: ../guake/data/prefs.glade.h:41
+msgid "Center"
+msgstr "Keskelle"
+
+#: ../guake/data/prefs.glade.h:42
+msgid "Right"
+msgstr "Oikealle"
+
+#: ../guake/data/prefs.glade.h:43
+msgid "<b>Main Window Horizontal Alignment</b>"
+msgstr "<b>Pääikkunan vaakasuora suuntaus</b>"
+
+#: ../guake/data/prefs.glade.h:44
+msgid "<b>Main Window Height</b>"
+msgstr "<b>Pääikkunan korkeus</b>"
+
+#: ../guake/data/prefs.glade.h:45
+msgid "<b>Main Window Width</b>"
+msgstr "<b>Pääikkunan leveys</b>"
+
+#: ../guake/data/prefs.glade.h:46
+msgid "Custom command file path: "
+msgstr "Mukautetun komentotiedoston polku: "
+
+#: ../guake/data/prefs.glade.h:47
+msgid "Please select a json file"
+msgstr "Valitse json-tiedosto"
+
+#: ../guake/data/prefs.glade.h:48 ../src/guake/prefs.py:75
+msgid "General"
+msgstr "Yleinen"
+
+#: ../guake/data/prefs.glade.h:49
+msgid "Default interpreter:"
+msgstr "Oletustulkki:"
+
+#: ../guake/data/prefs.glade.h:50
+msgid "_Run command as a login shell"
+msgstr "_Käynnistä komento sisäänkirjautumiskomentotulkkina"
+
+#: ../guake/data/prefs.glade.h:51
+msgid "_Open new tab in current directory"
+msgstr "_Avaa uudet välilehdet nykyisessä sijainnissa"
+
+#: ../guake/data/prefs.glade.h:52
+msgid "<b>Shell</b>"
+msgstr "<b>Komentotulkki</b>"
+
+#: ../guake/data/prefs.glade.h:53
+msgid "Shell"
+msgstr "Komentotulkki"
+
+#: ../guake/data/prefs.glade.h:54
+msgid "Show scrollbar"
+msgstr "Näytä vierityspalkki"
+
+#: ../guake/data/prefs.glade.h:55
+msgid "Scrollback lines:"
+msgstr "Scrollback-viivat:"
+
+#: ../guake/data/prefs.glade.h:56
+msgid "On output"
+msgstr "Ulostulon yhteydessä"
+
+#: ../guake/data/prefs.glade.h:57
+msgid "On key stroke"
+msgstr "Näppäinpainalluksen yhteydessä"
+
+#: ../guake/data/prefs.glade.h:58
+msgid "<b>Scroll</b>"
+msgstr "<b>Vieritä</b>"
+
+#: ../guake/data/prefs.glade.h:59
+msgid "Scrolling"
+msgstr "Vieritys"
+
+#: ../guake/data/prefs.glade.h:60
+msgid "Use the system fixed width font"
+msgstr "Käytä järjestelmän kiinteän leveyden fonttia"
+
+#: ../guake/data/prefs.glade.h:61
+msgid "Font:"
+msgstr "Fontti:"
+
+#: ../guake/data/prefs.glade.h:62
+msgid "Choose some font"
+msgstr "Valitse jokin fontti"
+
+#: ../guake/data/prefs.glade.h:63
+msgid "Text color:"
+msgstr "Tekstin väri:"
+
+#: ../guake/data/prefs.glade.h:64
+msgid "Background color:"
+msgstr "Taustan väri:"
+
+#: ../guake/data/prefs.glade.h:65
+msgid "Cursor shape:"
+msgstr "Kursorin muoto:"
+
+#: ../guake/data/prefs.glade.h:66
+msgid ""
+"Block\n"
+"I-Beam\n"
+"Underline"
+msgstr ""
+"Suorakulmio\n"
+"I-Palkki\n"
+"Alaviiva"
+
+#: ../guake/data/prefs.glade.h:69
+msgid ""
+"Follow GTK+ setting\n"
+"Blink on\n"
+"Blink off"
+msgstr ""
+"Seuraa GTK+-asetusta\n"
+"Vilkku päälle\n"
+"Vilkku pois päältä"
+
+#: ../guake/data/prefs.glade.h:72
+msgid "Cursor blink mode:"
+msgstr "Kursorin vilkkuminen:"
+
+#: ../guake/data/prefs.glade.h:73
+msgid "Allow bold font"
+msgstr "Salli lihavoitu fontti"
+
+#: ../guake/data/prefs.glade.h:74
+msgid "<b>Palette</b>"
+msgstr "<b>Paletti</b>"
+
+#: ../guake/data/prefs.glade.h:75
+msgid "Built-in schemes:"
+msgstr "Sisäänrakennetut mallit:"
+
+#: ../guake/data/prefs.glade.h:76
+msgid "Color palette:"
+msgstr "Väripaletti:"
+
+#: ../guake/data/prefs.glade.h:77
+msgid "Font color"
+msgstr "Tekstin väri"
+
+#: ../guake/data/prefs.glade.h:78
+msgid "Background color"
+msgstr "Taustan väri"
+
+#: ../guake/data/prefs.glade.h:79
+msgid "Use font and background color from the palette"
+msgstr "Käytä paletin fonttia ja taustaväriä"
+
+#: ../guake/data/prefs.glade.h:80
+msgid "Demo:"
+msgstr "Demo:"
+
+#: ../guake/data/prefs.glade.h:81
+msgid "<b>Effects</b>"
+msgstr "<b>Tehosteet</b>"
+
+#: ../guake/data/prefs.glade.h:82
+msgid "Transparency:"
+msgstr "Läpinäkyvyys:"
+
+#: ../guake/data/prefs.glade.h:83
+msgid "Background image:"
+msgstr "Taustakuva:"
+
+#: ../guake/data/prefs.glade.h:84 ../src/guake/prefs.py:130
+msgid "Appearance"
+msgstr "Ulkonäkö"
+
+#: ../guake/data/prefs.glade.h:85
+msgid ""
+"<small>Quick open is a feature allowing you to open a file directly into "
+"your favorite text editor by clicking on its filename when it appears in "
+"your terminal. See the list of currently supported text patterns used to "
+"extract filename below.</small>"
+msgstr ""
+"<small>Pika-avaus on ominaisuus, jonka avulla voit avata tiedoston suoraan "
+"suosikkitekstieditoriin napsauttamalla sen tiedostonimeä, kun se ilmestyy "
+"päätteeseesi. Katso alla oleva luettelo tällä hetkellä tuetuista "
+"tekstikuvioista, joita käytetään tiedostonimen poimimiseen.</small>"
+
+#: ../guake/data/prefs.glade.h:86
+msgid "Enable Quick Open when Ctrl+clicking on a filename in the terminal"
+msgstr "Ota Pika-avaus käyttöön, kun Ctrl+napsautat tiedostonimeä päätteessä"
+
+#: ../guake/data/prefs.glade.h:87
+msgid "Editor command line:"
+msgstr "Editorin komentorivi:"
+
+#: ../guake/data/prefs.glade.h:89
+#, no-c-format
+msgid ""
+"<small><i>Use the following elements in the open editor command line:\n"
+" - <b>%(file_path)s</b>: path to the file that has been clicked\n"
+" - <b>%(line_number)s</b>: if your editor supports it, you can directly open "
+"the file to a given line number when found on the screen.\n"
+"\n"
+"For example, for sublime, use <b>subl %(file_path)s:%(line_number)s</b>\n"
+"</i></small>"
+msgstr ""
+"<small><i>Käytä seuraavia elementtejä avoimen editorin komentorivillä:\n"
+" - <b>%(file_path)s</b>: polku tiedostoon, jota on napsautettu.\n"
+" - <b>%(line_number)s</b>: jos editorisi tukee sitä, voit avata tiedoston "
+"suoraan annetulle rivinumerolle, jos se löytyy näytöltä.\n"
+"\n"
+"Käytä esimerkiksi sublimea varten <b>subl %(file_path)s:%(line_number)s</"
+"b>.\n"
+"</i></small>"
+
+#: ../guake/data/prefs.glade.h:95
+msgid "Quick open in current terminal"
+msgstr "Pika-avaa nykyisessä päätteessä"
+
+#: ../guake/data/prefs.glade.h:96
+msgid ""
+"Here is the list of supported patterns: (to add your own, please contact the "
+"Guake's authors)"
+msgstr ""
+"Tässä on luettelo tuetuista kuvioista: (jos haluat lisätä oman kuvion, ota "
+"yhteyttä Guaken tekijöihin)"
+
+#: ../guake/data/prefs.glade.h:97
+msgid "<b>Quick Open</b>"
+msgstr "<b>Pika-avaus</b>"
+
+#: ../guake/data/prefs.glade.h:98
+msgid "Quick Open"
+msgstr "Pika-avaus"
+
+#: ../guake/data/prefs.glade.h:99
+msgid ""
+"To change a shortcut simply click on its name.\n"
+"To disable a shortcut, press the \"Backspace\" key."
+msgstr ""
+"Voit vaihtaa pikanäppäintä napsauttamalla sen nimeä.\n"
+"Voit poistaa pikanäppäimen käytöstä painamalla Backspace-näppäintä."
+
+#: ../guake/data/prefs.glade.h:101
+msgid "Keyboard shortcuts"
+msgstr "Pikanäppäimet"
+
+#: ../guake/data/prefs.glade.h:102
+msgid ""
+"<small><i><b>Note:</b> These options may cause some applications to behave "
+"incorrectly.  They are only here to allow you to work around certain "
+"applications and operating systems that expect different terminal behavior.</"
+"i></small>"
+msgstr ""
+"<small><i><b>Huomautus:</b> Nämä vaihtoehdot saattavat aiheuttaa joidenkin "
+"sovellusten virheellisen käyttäytymisen.  Ne ovat tässä vain siksi, että "
+"voit kiertää tiettyjä sovelluksia ja käyttöjärjestelmiä, jotka odottavat "
+"erilaista päätteen käyttäytymistä.</i></small>"
+
+#: ../guake/data/prefs.glade.h:103
+msgid ""
+"ASCII DEL\n"
+"Escape sequence\n"
+"Control-H"
+msgstr ""
+"ASCII DEL\n"
+"Escape sequence\n"
+"Control-H"
+
+#: ../guake/data/prefs.glade.h:106
+msgid "_Backspace key generates:"
+msgstr "_Backspace-näppäin tuottaa:"
+
+#: ../guake/data/prefs.glade.h:107
+msgid "_Delete key generates:"
+msgstr "_Delete-näppäin tuottaa:"
+
+#: ../guake/data/prefs.glade.h:108
+msgid "_Reset Compatibility Options to Defaults"
+msgstr "_Palauta yhteensopivuusasetukset oletuksiin"
+
+#: ../guake/data/prefs.glade.h:109
+msgid "<b>Keyboard compatibility</b>"
+msgstr "<b>Näppäimistöyhteensopivuus</b>"
+
+#: ../guake/data/prefs.glade.h:110
+msgid "Compatibility"
+msgstr "Yhteensopivuus"
+
+#: ../src/guake/about.py:47 ../src/guake/gconfhandler.py:439
+#: ../src/guake/guake_app.py:181 ../src/guake/guake_app.py:378
+msgid "Guake Terminal"
+msgstr "Guake Pääte"
+
+#: ../src/guake/gconfhandler.py:369 ../src/guake/guake_app.py:1386
+msgid "Terminal"
+msgstr "Pääte"
+
+#: ../src/guake/gconfhandler.py:440
+#, python-format
+msgid ""
+"A problem happened when binding <b>%s</b> key.\n"
+"Please use Guake Preferences dialog to choose another key"
+msgstr ""
+"Ongelma tapahtui, kun sidottiin <b>%s</b> -näppäintä.\n"
+"Käytä Guaken asetuksia valitaksesi toisen näppäimen"
+
+#: ../src/guake/guake_app.py:132
+msgid "Do you want to close the tab?"
+msgstr "Haluatko sulkea välilehden?"
+
+#: ../src/guake/guake_app.py:135
+msgid "Do you really want to quit Guake?"
+msgstr "Haluatko todella sulkea Guaken?"
+
+#: ../src/guake/guake_app.py:137
+msgid " and one tab open"
+msgstr " ja yksi välilehti auki"
+
+#: ../src/guake/guake_app.py:139
+#, python-brace-format
+msgid " and {0} tabs open"
+msgstr " ja {0} välilehteä auki"
+
+#: ../src/guake/guake_app.py:142
+msgid "There are no processes running"
+msgstr "Prosesseja ei ole käynnissä"
+
+#: ../src/guake/guake_app.py:144
+msgid "There is a process still running"
+msgstr "Prosesseja on vielä käynnissä"
+
+#: ../src/guake/guake_app.py:146
+#, python-brace-format
+msgid "There are {0} processes still running"
+msgstr "{0} prosessia on vielä käynnissä"
+
+#: ../src/guake/guake_app.py:186
+msgid "guake-indicator"
+msgstr "guake-ilmaisin"
+
+#: ../src/guake/guake_app.py:186
+msgid "guake-tray"
+msgstr "guake-tehtäväpalkkikuvake"
+
+#: ../src/guake/guake_app.py:190
+msgid "Show"
+msgstr "Näytä"
+
+#: ../src/guake/guake_app.py:379
+#, python-format
+msgid ""
+"Guake is now running,\n"
+"press <b>{!s}</b> to use it."
+msgstr ""
+"Guake on nyt käynnissä,\n"
+"paina <b>{!s}</b> käyttääksesi sitä."
+
+#: ../src/guake/guake_app.py:670
+#, python-format
+msgid "Search on Web: '%s'"
+msgstr "Etsi Verkosta: '%s'"
+
+#: ../src/guake/guake_app.py:675
+msgid "Search on Web (no selection)"
+msgstr "Etsi Verkosta (ei valintaa)"
+
+#: ../src/guake/guake_app.py:683
+msgid "Open Link: '{}...'"
+msgstr "Avaa Linkki '{}...'"
+
+#: ../src/guake/guake_app.py:685
+msgid "Open Link: {}"
+msgstr "Avaa Linkki: {}"
+
+#: ../src/guake/guake_app.py:688
+msgid "Open Link..."
+msgstr "Avaa Linkki..."
+
+#: ../src/guake/guake_app.py:1425
+msgid "Rename tab"
+msgstr "Uudelleennimeä Välilehti"
+
+#: ../src/guake/guake_app.py:1736
+msgid "Save to..."
+msgstr "Tallenna nimellä..."
+
+#: ../src/guake/guake_app.py:1743 ../src/guake/prefs.py:973
+msgid "All files"
+msgstr "Kaikki tiedostot"
+
+#: ../src/guake/guake_app.py:1748
+msgid "Text and Logs"
+msgstr "Teksti ja Lokit"
+
+#: ../src/guake/guake_app.py:1766
+msgid "Find"
+msgstr "Etsi"
+
+#: ../src/guake/guake_app.py:1768
+msgid "Forward"
+msgstr "Seuraava"
+
+#: ../src/guake/guake_app.py:1769
+msgid "Backward"
+msgstr "Edellinen"
+
+#: ../src/guake/main.py:68
+msgid "Put Guake in fullscreen mode"
+msgstr "Laita Guake koko näytön tilaan"
+
+#: ../src/guake/main.py:72
+msgid "Toggles the visibility of the terminal window"
+msgstr "Vaihtaa pääteikkunan näkyvyyden"
+
+#: ../src/guake/main.py:76
+msgid "Shows Guake main window"
+msgstr "Näyttää Guaken pääikkunan"
+
+#: ../src/guake/main.py:80
+msgid "Hides Guake main window"
+msgstr "Piilottaa Guaken pääikkunan"
+
+#: ../src/guake/main.py:84
+msgid "Shows Guake preference window"
+msgstr "Näyttää Guaken asetukset-ikkunan"
+
+#: ../src/guake/main.py:88
+msgid "Shows Guake's about info"
+msgstr "Näyttää tietoja Guakesta -ikkunan"
+
+#: ../src/guake/main.py:92
+msgid "Add a new tab (with current directory set to NEW_TAB)"
+msgstr "Lisää uusi välilehti (nykyisen hakemiston ollessa NEW_TAB)"
+
+#: ../src/guake/main.py:96
+msgid "Select a tab (SELECT_TAB is the index of the tab)"
+msgstr "Valitse välilehti (SELECT_TAB on välilehden indeksi)"
+
+#: ../src/guake/main.py:100
+msgid "Return the selected tab index."
+msgstr "Palauttaa valitun välilehden indeksin."
+
+#: ../src/guake/main.py:104
+msgid "Execute an arbitrary command in the selected tab."
+msgstr "Suorittaa mielivaltaisen komennon valitulla välilehdellä."
+
+#: ../src/guake/main.py:108
+msgid "Specify the tab to rename. Default is 0."
+msgstr "Määritä uudelleen nimettävä välilehti. Oletusarvo on 0."
+
+#: ../src/guake/main.py:112
+msgid "Set the hexadecimal (#rrggbb) background color of the selected tab."
+msgstr "Asettaa valitun välilehden heksadesimaalisen (#rrggbb) taustavärin."
+
+#: ../src/guake/main.py:117
+msgid "Set the hexadecimal (#rrggbb) foreground color of the selected tab."
+msgstr "Asettaa valitun välilehden heksadesimaalisen (#rrggbb) etualavärin."
+
+#: ../src/guake/main.py:123
+msgid ""
+"Rename the specified tab. Reset to default if TITLE is a single dash \"-\"."
+msgstr ""
+"Nimeä määritetty välilehti uudelleen. Nollaa oletusarvoon, jos TITLE on yksi "
+"viiva \"-\"."
+
+#: ../src/guake/main.py:129
+msgid ""
+"Rename the current tab. Reset to default if TITLE is a single dash \"-\"."
+msgstr ""
+"Nimeä nykyinen välilehti uudelleen. Nollaa oletusarvoon, jos TITLE on yksi "
+"viiva \"-\"."
+
+#: ../src/guake/main.py:134
+msgid "Says to Guake go away =("
+msgstr "Pyytää Guaken painumaan kuuseen =("
+
+#: ../src/guake/main.py:138
+msgid "Do not execute the start up script"
+msgstr "Älä suorita käynnistysskriptiä"
+
+#: ../src/guake/main.py:235
+msgid "Guake can not init!"
+msgstr "Guake ei pysty käynnistymään!"
+
+#: ../src/guake/main.py:236
+msgid ""
+"Gconf Error.\n"
+"Have you installed <b>guake.schemas</b> properly?"
+msgstr ""
+"Gconf-virhe.\n"
+"Oletko asentanut kohteen <b>guake.schemas</b> oikein?"
+
+#. string to show in prefereces dialog for user shell option
+#: ../src/guake/prefs.py:67
+msgid "<user shell>"
+msgstr "<kayttajan komentotulkki>"
+
+#: ../src/guake/prefs.py:77
+msgid "Toggle Guake visibility"
+msgstr "Guaken näkyvyyden vaihtaminen"
+
+#: ../src/guake/prefs.py:81
+msgid "Toggle Hide on Lose Focus"
+msgstr "Vaihda näkyvyyttä, kun ikkuna menettää fokuksen"
+
+#: ../src/guake/prefs.py:88
+msgid "Tab management"
+msgstr "Välilehtien hallinta"
+
+#: ../src/guake/prefs.py:90
+msgid "New tab"
+msgstr "Uusi välilehti"
+
+#: ../src/guake/prefs.py:92
+msgid "Close tab"
+msgstr "Sulje välilehti"
+
+#: ../src/guake/prefs.py:94
+msgid "Rename current tab"
+msgstr "Nimeä nykyinen välilehti uudelleen"
+
+#: ../src/guake/prefs.py:97
+msgid "Navigation"
+msgstr "Navigaatio"
+
+#: ../src/guake/prefs.py:99
+msgid "Go to previous tab"
+msgstr "Siirry edelliseen välilehteen"
+
+#: ../src/guake/prefs.py:101
+msgid "Go to next tab"
+msgstr "Siirry seuraavaan välilehteen"
+
+#: ../src/guake/prefs.py:103
+msgid "Move current tab left"
+msgstr "Siirrä nykyinen välilehti vasemmalle"
+
+#: ../src/guake/prefs.py:105
+msgid "Move current tab right"
+msgstr "Siirrä nykyinen välilehti oikealle"
+
+#: ../src/guake/prefs.py:107
+msgid "Go to first tab"
+msgstr "Siirry ensimmäiseen välilehteen"
+
+#: ../src/guake/prefs.py:109
+msgid "Go to second tab"
+msgstr "Siirry toiseen välilehteen"
+
+#: ../src/guake/prefs.py:111
+msgid "Go to third tab"
+msgstr "Siirry kolmanteen välilehteen"
+
+#: ../src/guake/prefs.py:113
+msgid "Go to fourth tab"
+msgstr "Siirry neljänteen välilehteen"
+
+#: ../src/guake/prefs.py:115
+msgid "Go to fifth tab"
+msgstr "Siirry viidenteen välilehteen"
+
+#: ../src/guake/prefs.py:117
+msgid "Go to sixth tab"
+msgstr "Siirry kuudenteen välilehteen"
+
+#: ../src/guake/prefs.py:119
+msgid "Go to seventh tab"
+msgstr "Siirry seitsemänteen välilehteen"
+
+#: ../src/guake/prefs.py:121
+msgid "Go to eighth tab"
+msgstr "Siirry kahdeksanteen välilehteen"
+
+#: ../src/guake/prefs.py:123
+msgid "Go to ninth tab"
+msgstr "Siirry yhdeksänteen välilehteen"
+
+#: ../src/guake/prefs.py:125
+msgid "Go to tenth tab"
+msgstr "Siirry kymmenennelle välilehdelle"
+
+#: ../src/guake/prefs.py:127
+msgid "Go to last tab"
+msgstr "Siirry viimeiseen välilehteen"
+
+#: ../src/guake/prefs.py:132
+msgid "Zoom out"
+msgstr "Pienennä"
+
+#: ../src/guake/prefs.py:134
+msgid "Zoom in"
+msgstr "Suurenna"
+
+#: ../src/guake/prefs.py:136
+msgid "Zoom in (alternative)"
+msgstr "Suurenna (vaihtoehtoinen)"
+
+#: ../src/guake/prefs.py:138
+msgid "Increase height"
+msgstr "Lisää korkeutta"
+
+#: ../src/guake/prefs.py:140
+msgid "Decrease height"
+msgstr "Vähennä korkeutta"
+
+#: ../src/guake/prefs.py:142
+msgid "Increase transparency"
+msgstr "Lisää läpinäkyvyyttä"
+
+#: ../src/guake/prefs.py:144
+msgid "Decrease transparency"
+msgstr "Vähennä läpinäkyvyyttä"
+
+#: ../src/guake/prefs.py:146
+msgid "Toggle transparency"
+msgstr "Vaihda läpinäkyvyys pois / päälle"
+
+#: ../src/guake/prefs.py:149
+msgid "Clipboard"
+msgstr "Leikepöytä"
+
+#: ../src/guake/prefs.py:151
+msgid "Copy text to clipboard"
+msgstr "Kopio teksti leikepöydälle"
+
+#: ../src/guake/prefs.py:153
+msgid "Paste text from clipboard"
+msgstr "Liitä teksti leikepöydältä"
+
+#: ../src/guake/prefs.py:156
+msgid "Extra features"
+msgstr "Lisäominaisuudet"
+
+#: ../src/guake/prefs.py:159
+msgid "Search select text on web"
+msgstr "Etsi valittu teksti verkosta"
+
+#: ../src/guake/prefs.py:481
+msgid "Action"
+msgstr "Toiminto"
+
+#: ../src/guake/prefs.py:491
+msgid "Shortcut"
+msgstr "Pikanäppäin"
+
+#: ../src/guake/prefs.py:651 ../src/guake/prefs.py:697
+msgid "Custom"
+msgstr "Mukautettu"
+
+#: ../src/guake/prefs.py:969
+msgid "JSON files"
+msgstr "JSON-tiedostot"
+
+#: ../src/guake/prefs.py:1063
+#, python-format
+msgid "The shortcut \"%s\" is already in use."
+msgstr "Pikanäppäin \"%s\" on jo käytössä."
+
+#: ../src/guake/prefs.py:1064
+msgid "Error setting keybinding."
+msgstr "Virhe näppäintä sidottaessa."
+
+#: ../src/guake/prefs.py:1076
+#, python-format
+msgid ""
+"The shortcut \"%s\" cannot be used because it will become impossible to type "
+"using this key.\n"
+"\n"
+"Please try with a key such as Control, Alt or Shift at the same time.\n"
+msgstr ""
+"Pikanäppäintä \"%s\" ei voi käyttää, koska näppäimellä kirjoittamisesta "
+"tulisi mahdotonta.\n"
+"\n"
+"Yritä käyttää samanaikaisesti jotain muuta näppäintä, kuten Control, Alt tai "
+"Shift.\n"
+
+#: guake/main.py:153
+msgid "Return the selected tab label."
+msgstr "Palauttaa valitun välilehden etiketin."
+
+#: guake/data/prefs.glade:264
+msgid "Never"
+msgstr "Ei koskaan"
+
+#: guake/data/prefs.glade:265
+msgid "With process running"
+msgstr "Kun prosesseja on vielä käynnissä"
+
+#: guake/data/prefs.glade:266
+msgid "Always"
+msgstr "Aina"
+
+#: guake/data/prefs.glade:499
+msgid "Refocus if open"
+msgstr "Tarkenna uudelleen, jos auki"
+
+#: guake/data/prefs.glade:865
+msgid "Custom command file path:"
+msgstr "Mukautetun komentotiedoston polku:"
+
+#: guake/data/prefs.glade:1315
+msgid "Show resizer"
+msgstr "Näytä koonmäärittäjä"
+
+#: guake/data/prefs.glade:1423
+msgid "Block"
+msgstr "Suorakulmio"
+
+#: guake/data/prefs.glade:1424
+msgid "I-Beam"
+msgstr "I-Palkki"
+
+#: guake/data/prefs.glade:1425
+msgid "Underline"
+msgstr "Alaviiva"
+
+#: guake/data/prefs.glade:1443
+msgid "Follow GTK+ setting"
+msgstr "Seuraa GTK+ -asetusta"
+
+#: guake/data/prefs.glade:1444
+msgid "Blink on"
+msgstr "Vilkku päälle"
+
+#: guake/data/prefs.glade:1445
+msgid "Blink off"
+msgstr "Vilkku pois päältä"
+
+#: guake/data/prefs.glade:2236
+msgid ""
+"<small><i>Use the following elements in the open editor command line:\n"
+"- <b>%(file_path)s</b>: path to the file that has been clicked\n"
+"- <b>%(line_number)s</b>: if your editor supports it, you can directly open "
+"the file to a given line number when found on the screen.\n"
+"\n"
+"For example, for sublime, use <b>subl %(file_path)s:%(line_number)s</b>\n"
+"</i></small>"
+msgstr ""
+"<small><i>Käytä seuraavia elementtejä avoimen editorin komentorivillä:\n"
+" - <b>%(file_path)s</b>: polku tiedostoon, jota on napsautettu.\n"
+" - <b>%(line_number)s</b>: jos editorisi tukee sitä, voit avata tiedoston "
+"suoraan annetulle rivinumerolle, jos se löytyy näytöltä.\n"
+"\n"
+"Käytä esimerkiksi sublimea varten <b>subl %(file_path)s:%(line_number)s</"
+"b>.\n"
+"</i></small>"
+
+#: guake/data/prefs.glade:2442 guake/data/prefs.glade:2462
+msgid "ASCII DEL"
+msgstr "ASCII DEL"
+
+#: guake/data/prefs.glade:2443 guake/data/prefs.glade:2463
+msgid "Escape sequence"
+msgstr "Escape sequence"
+
+#: guake/data/prefs.glade:2444 guake/data/prefs.glade:2464
+msgid "Control-H"
+msgstr "Control-H"
+
+#: guake/data/prefs.glade:2600
+msgid ""
+"<small>In this dialog you can attach your own command or script to various "
+"guake events</small>"
+msgstr ""
+"<small>Tässä dialogissa voit liittää oman komentosi tai skriptisi erilaisiin "
+"guake-tapahtumiin</small>"
+
+#: guake/data/prefs.glade:2635
+msgid "On show:"
+msgstr "Ikkunan ilmeentymisen yhteydessä:"
+
+#: guake/data/prefs.glade:2665
+msgid "On start:"
+msgstr "Aloituksen yhteydessä:"
+
+#: guake/data/prefs.glade:2714
+msgid "Hooks"
+msgstr "Koukut"
+
+#: guake/data/guake-prefs.desktop:8
+msgid "Configure your Guake sessions"
+msgstr "Guake-istuntojen määrittäminen"
+
+#: guake/data/guake-prefs.desktop:15 guake/data/guake.desktop:18
+msgid "guake"
+msgstr "guake"
+
+#: guake/data/guake-prefs.desktop:20
+msgid "Terminal;Utility;"
+msgstr "Pääte;Apuohjelma;"
+
+#: guake/data/guake.desktop:10
+msgid "Use the command line in a Quake-like terminal"
+msgstr "Käytä komentoriviä Quaken kaltaisessa päätelaitteessa"
+
+#: guake/data/prefs.glade:770
+msgid "Main Window Horizontal Alignment"
+msgstr "Pääikkunan vaakasuora suuntaus"
+
+#: guake/prefs.py:89
+msgid "Show and focus Guake window"
+msgstr "Näytä ja tarkenna Guake-ikkuna"
+
+#: guake/data/prefs.glade:566
+msgid "0"
+msgstr "0"
+
+#: guake/data/prefs.glade:610
+msgid "<b>Main Window Options</b>"
+msgstr "<b>Pääikkunan asetukset</b>"
+
+#: guake/data/prefs.glade:770
+msgid "Horizontal Alignment:"
+msgstr "Pystysuora Suuntaus:"
+
+#: guake/data/prefs.glade:855
+msgid "Height:"
+msgstr "Korkeus:"
+
+#: guake/data/prefs.glade:868
+msgid "Width:"
+msgstr "Leveys:"
+
+#: guake/data/prefs.glade:913
+msgid "<b>Geometry</b>"
+msgstr "<b>Geometria</b>"
+
+#: guake/data/prefs.glade:944
+msgid "Main Window"
+msgstr "Pääikkuna"
+
+#: guake/data/prefs.glade:1197
+msgid "Infinite scrolling"
+msgstr "Ääretön vieritys"
+
+#: guake/data/prefs.glade:1219
+msgid "<b>Scrollbar</b>"
+msgstr "<b>Rullauspalkki</b>"
+
+#: guake/data/prefs.glade:1304
+msgid "<b>Scroll to Bottom</b>"
+msgstr "<b>Vieritä Loppuun</b>"
+
+#: guake/data/prefs.glade:2117
+msgid ""
+"Quick open is a feature allowing you to open a file directly into your "
+"favorite text editor by clicking on its filename when it appears in your "
+"terminal. See the list of currently supported text patterns used to extract "
+"filename below."
+msgstr ""
+"Pika-avaus on ominaisuus, jonka avulla voit avata tiedoston suoraan "
+"suosikkitekstieditoriin napsauttamalla sen tiedostonimeä, kun se ilmestyy "
+"päätteeseesi. Katso alla oleva luettelo tällä hetkellä tuetuista "
+"tekstikuvioista, joita käytetään tiedostonimen poimimiseen."
+
+#: guake/main.py:64
+msgid "Show Guake version number and exit"
+msgstr "Näytä julkaisuversio ja lopeta"
+
+#: guake/data/prefs.glade:93
+msgid "<span size=\"18000\"><b>Guake properties</b></span>"
+msgstr "<span size=\"18000\"><b>Guaken ominaisuudet</b></span>"
+
+#: guake/data/prefs.glade:107
+msgid "Customize behavior and appearance of Guake!"
+msgstr "Mukauta Guaken käyttäytymistä ja ulkonäköä!"
+
+#: guake/data/prefs.glade:929
+msgid "Displacement in pixels"
+msgstr "Siirtymä pikseleinä"
+
+#: guake/main.py:73
+msgid "Enable verbose logging"
+msgstr "Ota tarkka virheenkorjausloki käyttöön"
+
+#: guake/guake_app.py:680
+msgid "Quick Open: '{!s}...'"
+msgstr "Pika-avaa: '{!s}...'"
+
+#: guake/guake_app.py:683
+msgid "Quick Open: {!s}"
+msgstr "Pika-avaa: '{!s}'"
+
+#: guake/guake_app.py:691
+msgid "Open Link: '{!s}...'"
+msgstr "Avaa Linkki: '{!s}...'"
+
+#: guake/guake_app.py:694
+msgid "Open Link: {!s}"
+msgstr "Avaa Linkki: {!s}"
+
+#: guake/data/prefs.glade:2175
+msgid ""
+"<i><b>WARNING</b>: your system seems to have PCRE2 disabled for VTE, "
+"preventing application such as Guake to register \"matchers\" using regular "
+"expressions. Please contact your distribution to request a new version of "
+"VTE with PCRE2 enabled ! To use Quick Open, you <b>must select the text</b> "
+"before using Ctrl+click</i>."
+msgstr ""
+"<i><b>VAROITUS</b>: järjestelmässäsi näyttää olevan PCRE2 pois käytöstä VTE:"
+"n osalta, mikä estää Guaken kaltaisia sovelluksia rekisteröimästä "
+"\"matchereita\" säännöllisten lausekkeiden avulla. Ota yhteyttä jakeluusi "
+"pyytääksesi uutta VTE-versiota, jossa PCRE2 on käytössä ! Jotta voit käyttää "
+"Quick Openia, sinun <b>pitää valita teksti</b> ennen Ctrl+napsautusta</i>."
+
+#: guake/guake_app.py:680
+msgid "Quick Open: {!s}..."
+msgstr "Pika-avaa: {!s}..."
+
+#: guake/guake_app.py:691
+msgid "Open Link: {!s}..."
+msgstr "Avaa Linkki: {!s}..."
+
+#: guake/guake_app.py:688
+msgid "Quick Open..."
+msgstr "Pika-avaa..."
+
+#: guake/data/prefs.glade:223
+msgid "Start Guake at login"
+msgstr "Käynnistä Guake sisäänkirjautumisen yhteydessä"
+
+#: guake/data/prefs.glade:363
+msgid "Gtk Theme:"
+msgstr "GTK-teema:"
+
+#: guake/data/prefs.glade:387
+msgid "Prefer dark theme"
+msgstr "Suosi tummaa teemaa"
+
+#: guake/guake_app.py:435
+msgid "Custom Commands"
+msgstr "Mukautetut Komennot"
+
+#: guake/main.py:184
+msgid ""
+"Specify the tab to rename. Default is 0. Can be used to select tab by UUID."
+msgstr ""
+"Määritä uudelleen nimettävä välilehti. Oletusarvo on 0. Voidaan valita myös "
+"välilehden UUID:n perusteella."
+
+#: guake/main.py:212
+msgid ""
+"Rename the specified tab by --tab-index. Reset to default if TITLE is a "
+"single dash \"-\"."
+msgstr ""
+"Nimeä --tab-index:illä määritetty välilehti uudelleen. Nollaa oletusarvoon, "
+"jos TITLE on yksi viiva \"-\"."
+
+#: data/search.glade:138
+msgid "Search forward"
+msgstr "Etsi seuraava"
+
+#: data/search.glade:153
+msgid "Match case"
+msgstr "Ota pienet/isot kirjaimet huomioon"
+
+#: data/search.glade:186
+msgid "Current search direction: Backward"
+msgstr "Nykyinen hakusuunta: Taaksepäin"
+
+#: data/prefs.glade:680
+msgid "Set window title to current tab name"
+msgstr "Aseta ikkunan otsikko nykyisen välilehden nimeksi"
+
+#: guake/menus.py:48
+msgid "Copy Url"
+msgstr "Kopio Url"
+
+#: guake/menus.py:62
+msgid "Split ―"
+msgstr "Jaa ―"
+
+#: guake/menus.py:65
+msgid "Split  "
+msgstr "Jaa "
+
+#: guake/menus.py:68 guake/prefs.py:150
+msgid "Close terminal"
+msgstr "Sulje pääte"
+
+#: guake/prefs.py:137
+msgid "Split management"
+msgstr "Jaon hallinta"
+
+#: guake/prefs.py:142
+msgid "Split tab vertical"
+msgstr "Jaa välilehti pystysuunnassa"
+
+#: guake/prefs.py:146
+msgid "Split tab horizontal"
+msgstr "Jaa välilehti vaakasuunnassa"
+
+#: guake/prefs.py:154
+msgid "Focus terminal above"
+msgstr "Tarkenna ylläoleva pääte"
+
+#: guake/prefs.py:158
+msgid "Focus terminal below"
+msgstr "Tarkenna allaoleva pääte"
+
+#: guake/prefs.py:162
+msgid "Focus terminal on the left"
+msgstr "Tarkenna vasemmalla oleva pääte"
+
+#: guake/prefs.py:166
+msgid "Focus terminal on the right"
+msgstr "Tarkenna oikealla oleva pääte"
+
+#: guake/prefs.py:170
+msgid "Move the terminal split handle up"
+msgstr "Siirrä päätteen jakokahvaa ylöspäin"
+
+#: guake/prefs.py:174
+msgid "Move the terminal split handle down"
+msgstr "Siirrä päätteen jakokahvaa alaspäin"
+
+#: guake/prefs.py:178
+msgid "Move the terminal split handle right"
+msgstr "Siirrä päätteen jakokahvaa oikealle"
+
+#: guake/prefs.py:182
+msgid "Move the terminal split handle left"
+msgstr "Siirrä päätteen jakokahvaa vasemmalle"
+
+#: guake/menus.py:65
+msgid "Split ｜"
+msgstr "Jaa ｜"
+
+#: guake/menus.py:72
+msgid "Save content..."
+msgstr "Tallenna sisältö..."
+
+#: data/prefs.glade:1182
+msgid ""
+"This might not work on all shells, make sure that your shell supports the --"
+"login option"
+msgstr ""
+"Tämä ei välttämättä toimi kaikilla komentotulkilla. Varmista, että "
+"komentotulkkisi tukee --login-vaihtoehtoa"
+
+#: guake/prefs.py:128
+msgid "New tab in home directory"
+msgstr "Uusi välilehti kotikansiossa"
+
+#: guake/dialogs.py:56
+#, python-brace-format
+msgid " on {0} workspaces"
+msgstr " {0} työtilassa"
+
+#: guake/main.py:211
+msgid "Change Guake palette scheme"
+msgstr "Vaihda Guaken palettimallia"
+
+#: data/prefs.glade:331
+msgid "Use workspace-specific tab sets (requires restart)"
+msgstr ""
+"Käytä työtilakohtaisia välilehtisarjoja (vaatii uudelleenkäynnistyksen)"
+
+#: guake/main.py:175
+msgid "Split the selected tab vertically."
+msgstr "Jaa valittu välilehti pystysuoraan."
+
+#: guake/main.py:183
+msgid "Split the selected tab horizontally."
+msgstr "Jaa valittu välilehti vaakasuoraan."
+
+#: data/prefs.glade:348
+msgid "Show close buttons for tabs"
+msgstr "Näytä välilehtien sulkupainikkeet"
+
+#: data/prefs.glade:1682
+msgid "Bold text is also bright"
+msgstr "Lihavoitu teksti on myös vaaleaa"
+
+#: data/prefs.glade:1682
+msgid "Bold text is also bright (VTE >=0.52)"
+msgstr "Lihavoitu teksti on myös vaaleaa (VTE >=0.52)"
+
+#: guake/menus.py:42
+msgid "Save Tabs"
+msgstr "Tallenna Välilehdet"
+
+#: guake/menus.py:45
+msgid "Restore Tabs"
+msgstr "Palauta Välilehdet"
+
+#: guake/prefs.py:113
+msgid "Search terminal"
+msgstr "Etsi päätteestä"
+
+#: guake/main.py:278
+msgid "Save Guake preferences to this filename"
+msgstr "Tallenna Guaken asetukset tähän tiedostoon"
+
+#: guake/main.py:286
+msgid "Restore Guake preferences from this file"
+msgstr "Palauta Guaken asetukset tästä tiedostosta"
+
+#: guake/guake_app.py:1192
+#, python-brace-format
+msgid "Your session.json file is broken, backup to {session_filename}.bak"
+msgstr ""
+"\"session.json\"-tiedostosi on rikki, se varmuuskopioitiin tiedostoon "
+"{session_filename}.bak"
+
+#: guake/guake_app.py:1228
+#, python-brace-format
+msgid ""
+"Your session.json schema is broken, backup to {0}.bak,and error message has "
+"been saved to {0}.log.err"
+msgstr ""
+"\"session.json\"-tiedostosi on rikki, se varmuuskopioitiin tiedostoon {0}."
+"bak, ja virheilmoitus on tallennettu {0}.log.err -tiedostoon"
+
+#: guake/guake_app.py:1239
+msgid "Your tabs has been restored!"
+msgstr "Välilehtesi on palautettu!"
+
+#: data/prefs.glade:190
+msgid "Restore previous session (tabs)"
+msgstr "Palauta edellinen istunto (välilehdet)"
+
+#: data/prefs.glade:204
+msgid "Enable notification when restore tabs"
+msgstr "Ota ilmoitus käyttöön, kun palautat välilehtiä"
+
+#: data/prefs.glade:218
+msgid "Automatically save session when the tabs has been modified"
+msgstr "Tallenna istunto automaattisesti, kun välilehtiä on muutettu"
+
+#: data/prefs.glade:238
+msgid "Startup & Tabs (Experiment)"
+msgstr "Käynnistys ja välilehdet (kokeiluvaiheessa)"
+
+#: guake/guake_app.py:1192
+#, python-brace-format
+msgid ""
+"Your {session_filename} file is broken, backup to {session_filename}.bak"
+msgstr ""
+"{session_filename} -tiedosto on rikki, varmuuskopioitiin tiedostoon "
+"{session_filename}.bak"
+
+#: guake/guake_app.py:1227
+#, python-brace-format
+msgid ""
+"Your {session_filename} schema is broken, backup to {0}.bak,and error "
+"message has been saved to {session_filename}.log.err"
+msgstr ""
+"{session_filename}-skeemasi on rikki, varmuuskopioitiin tiedostoon {0}.bak, "
+"ja virheilmoitus tallennettin tiedostoon {session_filename}.log.err"
+
+#: guake/guake_app.py:1227
+#, python-brace-format
+msgid ""
+"Your {session_filename} schema is broken, backup to {session_filename}.bak,"
+"and error message has been saved to {session_filename}.log.err."
+msgstr ""
+"{session_filename}-skeemasi on rikki, varmuuskopioitiin tiedostoon "
+"{session_filename}.bak, ja virheilmoitus tallennettin tiedostoon "
+"{session_filename}.log.err."
+
+#: guake/guake_app.py:1227
+#, python-brace-format
+msgid ""
+"Your {session_filename} schema is broken, backup to {session_filename}.bak, "
+"and error message has been saved to {session_filename}.log.err."
+msgstr ""
+"{session_filename}-skeemasi on rikki, varmuuskopioitiin tiedostoon "
+"{session_filename}.bak, ja virheilmoitus tallennettin tiedostoon "
+"{session_filename}.log.err."
+
+#: guake/notebook.py:317
+msgid ""
+"You are going to restore *all* the tabs!\n"
+"which means all your terminals & pages will be replaced.\n"
+"\n"
+"Do you want to continue?"
+msgstr ""
+"Aiot palauttaa *kaikki* välilehdet!\n"
+"mikä tarkoittaa, että kaikki päätteesi ja välilehtesi korvataan.\n"
+"\n"
+"Haluatko jatkaa?"
+
+#: guake/main.py:296
+msgid "Show support infomations"
+msgstr "Näytä tukitiedot"
+
+#: guake/guake_app.py:1240
+#, python-brace-format
+msgid ""
+"Tabs session restore abort.\n"
+"Your session file ({session_filename}) missing schema_version as key"
+msgstr ""
+"Välilehdet istunnon palauttamisen keskeytys.\n"
+"Istuntotiedostosta ({session_filename}) puuttuu avain schema_version"
+
+#: guake/guake_app.py:1252
+#, python-brace-format
+msgid ""
+"Tabs session restore abort.\n"
+"Your session file schema version is higher than current version "
+"({session_file_schema_version} > {current_schema_version})."
+msgstr ""
+"Välilehdet istunnon palauttamisen keskeytys.\n"
+"Istuntotiedoston skeemaversio on suurempi kuin nykyinen versio "
+"({session_file_schema_version} > {current_schema_version})."
+
+#: guake/data/prefs.glade:409
+msgid "Use workspace-specific tab sets (requires restart, only work on X11)"
+msgstr ""
+"Työtilakohtaisten välilehtisarjojen käyttö (vaatii uudelleenkäynnistyksen, "
+"toimii vain X11:ssä)"
+
+#: guake/data/prefs.glade:809
+msgid "Hide tabbar when fullscreen"
+msgstr "Piilota välilehtipalkki koko näytön tilan aikana"
+
+#: guake/data/prefs.glade:739
+msgid "Display as tab names:"
+msgstr "Käytä välilehtien niminä:"
+
+#: guake/data/prefs.glade:753
+msgid "Full Path"
+msgstr "Koko Polku"
+
+#: guake/data/prefs.glade:754
+msgid "Abbreviated Path"
+msgstr "Lyhennetty Polku"
+
+#: guake/data/prefs.glade:755
+msgid "Last Segment"
+msgstr "Viimeinen Osio"
+
+#: guake/main.py:99
+msgid "Put Guake out from fullscreen mode"
+msgstr "Laita Guake pois koko näytön tilasta"
+
+#: guake/main.py:189
+msgid ""
+"Select a specific terminal in a split tab. Only useful with split terminals "
+"(TERMINAL_INDEX is the index of the tab)"
+msgstr ""
+"Valitse tietty pääte jaetulla välilehdellä. Käyttökelpoinen vain jaettujen "
+"terminaalien kanssa (TERMINAL_INDEX on välilehden indeksi)."
+
+#: guake/main.py:199
+msgid "Return the selected terminal index."
+msgstr "Palauttaa valitun välilehden indeksin."
+
+#: guake/main.py:259
+msgid "Set the hexadecimal (#rrggbb) background color of the current terminal."
+msgstr "Asettaa nykyisen välilehden heksadesimaalisen (#rrggbb) taustavärin."
+
+#: guake/main.py:268
+msgid "Set the hexadecimal (#rrggbb) foreground color of the current terminal."
+msgstr "Asettaa nykyisen välilehden heksadesimaalisen (#rrggbb) etualavärin."
+
+#: guake/main.py:285
+msgid "Set colors from settings."
+msgstr "Aseta värit asetuksista."
+
+#: guake/main.py:293
+msgid "Set colors of the current terminal from settings."
+msgstr "Aseta nykyisen päätteen värit asetuksista."
+
+#: guake/main.py:358
+msgid "Show support infomation"
+msgstr "Näytä tukitiedot"
+
+#: guake/menus.py:26
+msgid "Reset custom colors"
+msgstr "Nollaa mukautetu värit"
+
+#: guake/dialogs.py:101
+msgid "Do you want to reset custom colors for this tab?"
+msgstr "Haluatko nollata mukautetut värit tälle välilehdelle?"
+
+#: guake/data/prefs.glade:835
+msgid "New tabs appear after the current tab"
+msgstr "Uudet välilehdet näkyvät nykyisen välilehden jälkeen"
+
+#: guake/prefs.py:186
+msgid "Search selected text on web"
+msgstr "Etsi valittu teksti verkosta"
+
+#: guake/menus.py:80
+msgid "Copy URL"
+msgstr "Kopio URL"
+
+#: guake/main.py:362
+msgid "Show support information"
+msgstr "Näytä tukitiedot"
+
+#: guake/data/prefs.glade:19
+msgid "Scale"
+msgstr "Skaalaa"
+
+#: guake/data/prefs.glade:23
+msgid "Tile"
+msgstr "Laatoita"
+
+#: guake/data/prefs.glade:31
+msgid "Stretch"
+msgstr "Venytä"
+
+#: guake/data/prefs.glade:472
+msgid "Copy on select"
+msgstr "Kopio valittaessa"
+
+#: guake/data/prefs.glade:517
+msgid "Use system default theme"
+msgstr "Käytä järjestelmän oletusteemaa"
+
+#: guake/data/prefs.glade:547
+msgid "GTK Theme:"
+msgstr "GTK-teema:"
+
+#: guake/data/prefs.glade:612
+msgid "Please select a JSON file"
+msgstr "Valitse json-tiedosto"
+
+#: guake/data/prefs.glade:938
+msgid "Hide tab bar if there is only one tab"
+msgstr "Piilota välilehtipalkki, jos on vain yksi välilehti"
+
+#: guake/data/prefs.glade:1929
+msgid "Background image: "
+msgstr "Taustakuva: "
+
+#: guake/data/prefs.glade:2730
+msgid ""
+"<small><i>Use the following elements in the open editor command line:\n"
+"- <b>%(file_path)s</b>: path to the file that has been clicked\n"
+"- <b>%(line_number)s</b>: if your editor supports it, you can directly open "
+"the file to a given line number when found on the screen.\n"
+"\n"
+"For example, use <b>subl %(file_path)s:%(line_number)s</b> for Sublime "
+"Text.\n"
+"</i></small>"
+msgstr ""
+"<small><i>Käytä seuraavia elementtejä avoimen editorin komentorivillä:\n"
+" - <b>%(file_path)s</b>: polku tiedostoon, jota on napsautettu.\n"
+" - <b>%(line_number)s</b>: jos editorisi tukee sitä, voit avata tiedoston "
+"suoraan annetulle rivinumerolle, kun se löytyy näytöltä.\n"
+"\n"
+"Käytä esimerkiksi sublimea varten <b>subl %(file_path)s:%(line_number)s</"
+"b>.\n"
+"</i></small>"
+
+#: guake/data/prefs.glade:2879
+msgid ""
+"<small>In this dialog you can attach your own command or script to various "
+"Guake events</small>"
+msgstr ""
+"<small>Tässä dialogissa voit liittää oman komentosi tai skriptisi erilaisiin "
+"guake-tapahtumiin</small>"
+
+#: guake/data/prefs.glade:3008
+msgid ""
+"<small><i><b>Note:</b> These options may cause some applications to behave "
+"incorrectly. They are only here to allow you to work around certain "
+"applications and operating systems that expect different terminal behavior.</"
+"i></small>"
+msgstr ""
+"<small><i><b>Huomautus:</b> Nämä vaihtoehdot saattavat aiheuttaa joidenkin "
+"sovellusten virheellisen käyttäytymisen.  Ne ovat tässä vain siksi, että "
+"voit kiertää tiettyjä sovelluksia ja käyttöjärjestelmiä, jotka odottavat "
+"erilaista päätteen käyttäytymistä.</i></small>"
+
+msgid "key binding error"
+msgstr "näppäinsidontavirhe"
+
+msgid "Unable to bind global <b>%s</b> key"
+msgstr "Globaalia <b>%s</b> -näppäintä ei pystytä sitomaan"
+
+msgid "http://guake.org"
+msgstr "http://guake.org"
+
+msgid ""
+"Tango\n"
+"Linux console\n"
+"XTerm\n"
+"Rxvt\n"
+"Custom\n"
+msgstr ""
+"Tango\n"
+"Linux-pääte\n"
+"XTerm\n"
+"Rxvt\n"
+"Oma\n"
+
+msgid "Select a tab"
+msgstr "Valitse välilehti"
+
+msgid "Rename the selected tab."
+msgstr "Nimeä valittu välilehti uudelleen."
