@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: guake\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-04-22 19:49+0200\n"
-"PO-Revision-Date: 2020-02-15 13:34+0000\n"
+"PO-Revision-Date: 2021-10-02 09:30+0000\n"
 "Last-Translator: Piotr Drąg <piotrdrag@gmail.com>\n"
 "Language-Team: Polish <https://hosted.weblate.org/projects/guake/guake/pl/>\n"
 "Language: pl\n"
@@ -19,7 +19,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 "
 "|| n%100>=20) ? 1 : 2;\n"
-"X-Generator: Weblate 3.11-dev\n"
+"X-Generator: Weblate 4.9-dev\n"
 
 #: guake/keybindings.py:94 guake/guake_app.py:191 guake/guake_app.py:403
 #: guake/about.py:54
@@ -1270,51 +1270,51 @@ msgstr "Otwieranie nowych kart za bieżącą kartą"
 
 #: guake/prefs.py:186
 msgid "Search selected text on web"
-msgstr ""
+msgstr "Znajdź zaznaczony tekst w Internecie"
 
 #: guake/menus.py:80
 msgid "Copy URL"
-msgstr ""
+msgstr "Skopiuj adres URL"
 
 #: guake/main.py:362
 msgid "Show support information"
-msgstr ""
+msgstr "Wyświetla informacje wsparcia"
 
 #: guake/data/prefs.glade:19
 msgid "Scale"
-msgstr ""
+msgstr "Skalowanie"
 
 #: guake/data/prefs.glade:23
 msgid "Tile"
-msgstr ""
+msgstr "Kafelki"
 
 #: guake/data/prefs.glade:31
 msgid "Stretch"
-msgstr ""
+msgstr "Rozciąganie"
 
 #: guake/data/prefs.glade:472
 msgid "Copy on select"
-msgstr ""
+msgstr "Kopiowanie podczas zaznaczania"
 
 #: guake/data/prefs.glade:517
 msgid "Use system default theme"
-msgstr ""
+msgstr "Domyślny motyw systemu"
 
 #: guake/data/prefs.glade:547
 msgid "GTK Theme:"
-msgstr ""
+msgstr "Motyw biblioteki GTK:"
 
 #: guake/data/prefs.glade:612
 msgid "Please select a JSON file"
-msgstr ""
+msgstr "Proszę wybrać plik JSON"
 
 #: guake/data/prefs.glade:938
 msgid "Hide tab bar if there is only one tab"
-msgstr ""
+msgstr "Ukrywanie paska kart, kiedy jest tylko jedna karta"
 
 #: guake/data/prefs.glade:1929
 msgid "Background image: "
-msgstr ""
+msgstr "Obraz tła: "
 
 #: guake/data/prefs.glade:2730
 msgid ""
@@ -1327,12 +1327,23 @@ msgid ""
 "Text.\n"
 "</i></small>"
 msgstr ""
+"<small><i>Można używać następujących elementów w poleceniu otwierania "
+"edytora:\n"
+"• <b>%(file_path)s</b>: ścieżka do pliku, który został kliknięty\n"
+"• <b>%(line_number)s</b>: jeśli edytor to obsługuje, można otwierać plik na "
+"podanym wierszu, jeśli znajduje się na ekranie.\n"
+"\n"
+"Na przykład dla edytora Sublime Text należy użyć <b>subl "
+"%(file_path)s:%(line_number)s</b>.\n"
+"</i></small>"
 
 #: guake/data/prefs.glade:2879
 msgid ""
 "<small>In this dialog you can attach your own command or script to various "
 "Guake events</small>"
 msgstr ""
+"<small>W tym oknie można dołączyć własne polecenie lub skrypt do różnych "
+"zdarzeń programu Guake</small>"
 
 #: guake/data/prefs.glade:3008
 msgid ""
@@ -1341,3 +1352,7 @@ msgid ""
 "applications and operating systems that expect different terminal behavior.</"
 "i></small>"
 msgstr ""
+"<small><i><b>Uwaga:</b> te opcje mogą spowodować nieprawidłowe zachowanie "
+"niektórych programów. Istnieją one wyłączenie w celu obejścia problemów z "
+"określonymi programami i systemami operacyjnymi, które oczekują innego "
+"zachowania terminala.</i></small>"
