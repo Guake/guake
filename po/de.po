@@ -12,15 +12,15 @@ msgstr ""
 "Project-Id-Version: Guake 0.4.5\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-07-07 19:07+0200\n"
-"PO-Revision-Date: 2020-04-14 21:11+0000\n"
-"Last-Translator: Bernd Schwendinger <b0ernie@gmx.net>\n"
+"PO-Revision-Date: 2021-10-05 16:06+0000\n"
+"Last-Translator: Michael Gangolf <migamiga@web.de>\n"
 "Language-Team: German <https://hosted.weblate.org/projects/guake/guake/de/>\n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.0-dev\n"
+"X-Generator: Weblate 4.9-dev\n"
 
 #: guake/about.py:54 guake/keybindings.py:94 guake/guake_app.py:201
 #: guake/guake_app.py:414
@@ -460,9 +460,8 @@ msgid ""
 "Guake is an easy to access\n"
 "terminal based on FPS games terminal"
 msgstr ""
-"Guake ist ein einfach zugängliches\n"
-"Terminal, basierend auf denen bekannter\n"
-"Egoshooter"
+"Guake ist ein einfach zugängliches Terminal, \n"
+"basierend auf denen bekannter Egoshooter"
 
 #: data/prefs.glade:43
 msgid "Guake Preferences"
@@ -985,11 +984,11 @@ msgstr "Reiter horizontal aufteilen"
 
 #: guake/prefs.py:154
 msgid "Focus terminal above"
-msgstr "Terminal oberhalb fokusieren"
+msgstr "Terminal oben fokussieren"
 
 #: guake/prefs.py:158
 msgid "Focus terminal below"
-msgstr "Terminal unterhalb fokusieren"
+msgstr "Terminal unten fokussieren"
 
 #: guake/prefs.py:162
 msgid "Focus terminal on the left"
@@ -1289,51 +1288,51 @@ msgstr "Neue Register erscheinen nach dem aktuellen Register"
 
 #: guake/prefs.py:186
 msgid "Search selected text on web"
-msgstr ""
+msgstr "Ausgewählten Text im Web suchen"
 
 #: guake/menus.py:80
 msgid "Copy URL"
-msgstr ""
+msgstr "URL kopieren"
 
 #: guake/main.py:362
 msgid "Show support information"
-msgstr ""
+msgstr "Zeige Support Informationen"
 
 #: guake/data/prefs.glade:19
 msgid "Scale"
-msgstr ""
+msgstr "Größe"
 
 #: guake/data/prefs.glade:23
 msgid "Tile"
-msgstr ""
+msgstr "Aufteilung"
 
 #: guake/data/prefs.glade:31
 msgid "Stretch"
-msgstr ""
+msgstr "Strecken"
 
 #: guake/data/prefs.glade:472
 msgid "Copy on select"
-msgstr ""
+msgstr "Beim Auswählen kopieren"
 
 #: guake/data/prefs.glade:517
 msgid "Use system default theme"
-msgstr ""
+msgstr "Standard System Theme verwenden"
 
 #: guake/data/prefs.glade:547
 msgid "GTK Theme:"
-msgstr ""
+msgstr "GTK Theme:"
 
 #: guake/data/prefs.glade:612
 msgid "Please select a JSON file"
-msgstr ""
+msgstr "Bitte eine JSON Datei auswählen"
 
 #: guake/data/prefs.glade:938
 msgid "Hide tab bar if there is only one tab"
-msgstr ""
+msgstr "Tab verstecken wenn es nur einen gibt"
 
 #: guake/data/prefs.glade:1929
 msgid "Background image: "
-msgstr ""
+msgstr "Hintergrundbild: "
 
 #: guake/data/prefs.glade:2730
 msgid ""
@@ -1352,6 +1351,8 @@ msgid ""
 "<small>In this dialog you can attach your own command or script to various "
 "Guake events</small>"
 msgstr ""
+"<small>In diesem Fenster können eigene Skripte oder Befehle an verschiedene "
+"Guake Events gehangen werden</small>"
 
 #: guake/data/prefs.glade:3008
 msgid ""
