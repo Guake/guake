@@ -13,7 +13,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-07-07 19:07+0200\n"
 "PO-Revision-Date: 2021-10-05 16:06+0000\n"
-"Last-Translator: Michael Gangolf <migamiga@web.de>\n"
+"Last-Translator: Robin Bauknecht <robin.bauknecht@gmail.com>\n"
 "Language-Team: German <https://hosted.weblate.org/projects/guake/guake/de/>\n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
@@ -956,7 +956,7 @@ msgstr "Terminal;Dienstprogramm;"
 
 #: guake/menus.py:42
 msgid "Copy Url"
-msgstr "Verweis kopieren"
+msgstr "Url kopieren"
 
 #: guake/menus.py:62
 msgid "Split ―"
