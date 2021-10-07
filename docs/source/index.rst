@@ -4,6 +4,7 @@ Guake User Documentation
 ========================
 
 .. image:: ../../guake/data/pixmaps/intro-small.jpg
+   :alt: computer with guake terminal
 
 Welcome to the official Guake User Documentation.
 
@@ -18,7 +19,7 @@ Main Features
 - Simple Easy and Elegant
 - Smooth integration of terminal into GUI
 - Appears when you call and disappears once you are done by pressing a predefined hotkey (F12 by
-  default)
+   default)
 - Compiz transparency support
 - Multi tab
 - Plenty of color palettes
@@ -44,10 +45,10 @@ Useful links
 - Source Code available on `GitHub <https://github.com/Guake/guake/>`_.
 - Official Homepage: http://guake-project.org
 - Online Documentation is hosted on `ReadTheDocs <http://guake.readthedocs.io/>`_.
-- If you are not a developer, you can still contribute to Guake by
-  `improving its translations in your language <https://hosted.weblate.org/projects/guake/guake/`_.
-  Guake users are welcome `to support Weblate <https://weblate.org/donate/>`_ in providing this
-  service for free for OpenSource Projects.
+- If you are not a developer, you can still contribute to Guake by 
+   `improving its translations in your language <https://hosted.weblate.org/projects/guake/guake/>`_.
+   Guake users are welcome `to support Weblate <https://weblate.org/donate/>`_ in providing this
+   service for free for OpenSource Projects.
 
 **Important note**: Do **NOT** use the domain guake.org, it has been registered by someone outside
 the team. We cannot be held responsible for the content on that web site.
