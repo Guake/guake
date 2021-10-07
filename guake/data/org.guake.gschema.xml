@@ -101,6 +101,11 @@
             <summary>Determine if guake hides on lose focus.</summary>
             <description>If this property is set as true, guake will be hidden when the main window lose the focus (when Alt+Tab be pressed for example).</description>
         </key>
+        <key name="lazy-losefocus" type="b">
+            <default>false</default>
+            <summary>Delay hiding on losing focus.</summary>
+            <description>Momentarily delay hiding Guake when focus is lost and don't hide if focus is returned quickly, like when switching desktops or turning on certain IMEs.</description>
+        </key>
         <key name="window-tabbar" type="b">
             <default>true</default>
             <summary>The tab bar visibility.</summary>
