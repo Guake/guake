@@ -282,9 +282,6 @@ class Guake(SimpleGladeApp):
                 filename,
             )
 
-        # usage of this property should be replaced with settigs option
-        self.stub_for_postponed_losefocus_property = True
-
         log.info("Guake initialized")
 
     def get_notebook(self):
@@ -512,7 +509,7 @@ class Guake(SimpleGladeApp):
                 self.hide()
             return False
 
-        def loosefocus_callback(sleep_time):
+        def losefocus_callback(sleep_time):
             sleep(sleep_time)
 
             if (
@@ -525,9 +522,9 @@ class Guake(SimpleGladeApp):
             if self.window.get_property("visible"):
                 GLib.idle_add(hide_window_callback)
 
-        if self.stub_for_postponed_losefocus_property:
+        if self.settings.general.get_boolean("lazy-losefocus"):
             self.lazy_losefocus_time = get_server_time(self.window)
-            thread = Thread(target=loosefocus_callback, args=(0.3,))
+            thread = Thread(target=losefocus_callback, args=(0.3,))
             thread.daemon = True
             thread.start()
             log.debug("Lazy losefocus check at %s", self.lazy_losefocus_time)

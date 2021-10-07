@@ -335,6 +335,10 @@ class PrefsCallbacks:
         """Changes the activity of window_losefocus in dconf"""
         self.settings.general.set_boolean("window-losefocus", chk.get_active())
 
+    def on_lazy_lose_focus_toggled(self, chk):
+        """Changes the activity of lazy_lose_focus in dconf"""
+        self.settings.general.set_boolean("lazy-losefocus", chk.get_active())
+
     def on_quick_open_command_line_changed(self, edt):
         self.settings.general.set_string("quick-open-command-line", edt.get_text())
 
@@ -544,6 +548,9 @@ class PrefsCallbacks:
 
     def toggle_show_tabbar_sensitivity(self, chk):
         self.prefDlg.toggle_show_tabbar_sensitivity(chk)
+
+    def toggle_hide_on_lose_focus_sensitivity(self, chk):
+        self.prefDlg.toggle_hide_on_lose_focus_sensitivity(chk)
 
     def toggle_quick_open_command_line_sensitivity(self, chk):
         self.prefDlg.toggle_quick_open_command_line_sensitivity(chk)
@@ -768,6 +775,12 @@ class PrefsDialog(SimpleGladeApp):
         """
         self.get_widget("palette_16").set_sensitive(chk.get_active())
         self.get_widget("palette_17").set_sensitive(chk.get_active())
+
+    def toggle_hide_on_lose_focus_sensitivity(self, chk):
+        """If the user chooses to not hide Guake on focus loss, lazy hiding on focus
+        loss will do nothing.
+        """
+        self.get_widget("lazy_lose_focus").set_sensitive(chk.get_active())
 
     def toggle_show_tabbar_sensitivity(self, chk):
         """If the user chooses to not show the tab bar, it means that they
@@ -1041,6 +1054,10 @@ class PrefsDialog(SimpleGladeApp):
         # losefocus
         value = self.settings.general.get_boolean("window-losefocus")
         self.get_widget("window_losefocus").set_active(value)
+
+        # lazy lose focus
+        value = self.settings.general.get_boolean("lazy-losefocus")
+        self.get_widget("lazy_lose_focus").set_active(value)
 
         # use VTE titles
         value = self.settings.general.get_boolean("use-vte-titles")
