@@ -621,8 +621,6 @@ class PrefsDialog(SimpleGladeApp):
         self.get_widget("config-window").connect("destroy", self.on_destroy)
 
         # images
-        ipath = pixmapfile("guake-notification.png")
-        self.get_widget("image_logo").set_from_file(ipath)
         ipath = pixmapfile("quick-open.png")
         self.get_widget("image_quick_open").set_from_file(ipath)
 
