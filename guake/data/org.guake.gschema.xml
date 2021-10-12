@@ -188,7 +188,7 @@
         </key>
         <key name="background-image-file" type="s">
             <default>''</default>
-            <summary>Background image filename.</summary>            
+            <summary>Background image filename.</summary>
             <description>When setup, the selected background image will show on guake</description>
         </key>
         <key name="background-image-layout-mode" type="i">
@@ -346,6 +346,16 @@
             <default>false</default>
             <summary>Use bright colors for bold text</summary>
             <description>If true, text from the first 8 colors that is formatted as bold will also be switched to its bright variant (VTE >=0.52).</description>
+        </key>
+        <key name="cell-height-scale" type="d">
+            <default>1.0</default>
+            <summary>Set terminal's cell height scale to `scale` (VTE >= 0.52)</summary>
+            <description>This can be used to increase the line spacing. (The font's height is not affected.) Valid values go from 1.0 (default) to 2.0 ("double spacing").</description>
+        </key>
+        <key name="cell-width-scale" type="d">
+            <default>1.0</default>
+            <summary>Set terminal's cell width scale to `scale` (VTE >= 0.52)</summary>
+            <description>This can be used to increase the letter spacing. (The font's width is not affected.) Valid values go from 1.0 (default) to 2.0 ("double spacing").</description>
         </key>
     </schema>
     <schema id="guake.style.background" path="/apps/guake/style/background/">
