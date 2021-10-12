@@ -1205,6 +1205,14 @@ class PrefsDialog(SimpleGladeApp):
         value = self.settings.styleFont.get_boolean("bold-is-bright")
         self.get_widget("bold_is_bright").set_active(value)
 
+        # cell height scale
+        value = self.settings.styleFont.get_double("cell-height-scale")
+        self.get_widget("cell_height_scale_adjustment").set_value(value)
+
+        # cell width scale
+        value = self.settings.styleFont.get_double("cell-width-scale")
+        self.get_widget("cell_width_scale_adjustment").set_value(value)
+
         # background image file
         filename = self.settings.general.get_string("background-image-file")
         if os.path.exists(filename):
