@@ -492,6 +492,14 @@ class PrefsCallbacks:
         """Changes the value of bold_is_bright in dconf"""
         self.settings.styleFont.set_boolean("bold-is-bright", chk.get_active())
 
+    def on_cell_height_scale_value_changed(self, scale):
+        value = scale.get_value()
+        self.settings.styleFont.set_double("cell-height-scale", value)
+
+    def on_cell_width_scale_value_changed(self, scale):
+        value = scale.get_value()
+        self.settings.styleFont.set_double("cell-width-scale", value)
+
     def on_font_style_font_set(self, fbtn):
         """Changes the value of font_style in dconf"""
         self.settings.styleFont.set_string("style", fbtn.get_font_name())
