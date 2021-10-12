@@ -187,6 +187,20 @@ class GuakeTerminal(Vte.Terminal):
         if (Vte.MAJOR_VERSION, Vte.MINOR_VERSION) >= (0, 50):
             self.set_allow_hyperlink(True)
 
+        if (Vte.MAJOR_VERSION, Vte.MINOR_VERSION) >= (0, 52):
+            try:
+                self.set_cell_height_scale(
+                    self.guake.settings.styleFont.get_double("cell-height-scale")
+                )
+            except:  # pylint: disable=bare-except
+                log.error("set_cell_height_scale not supported by your version of VTE")
+            try:
+                self.set_cell_width_scale(
+                    self.guake.settings.styleFont.get_double("cell-width-scale")
+                )
+            except:  # pylint: disable=bare-except
+                log.error("set_cell_width_scale not supported by your version of VTE")
+
         if (Vte.MAJOR_VERSION, Vte.MINOR_VERSION) >= (0, 56):
             try:
                 self.set_bold_is_bright(self.guake.settings.styleFont.get_boolean("bold-is-bright"))
