@@ -362,6 +362,13 @@ def main():
         help=_("Show support information"),
     )
 
+    parser.add_option(
+        "--is-visible",
+        dest="is_visible",
+        action="store_true",
+        default=False,
+        help=_("Returns true if Guake is visible else False"),
+    )
     # checking mandatory dependencies
 
     missing_deps = False
@@ -577,6 +584,9 @@ def main():
     if options.show_about:
         remote_object.show_about()
         only_show_hide = options.show
+
+    if options.is_visible:
+        return remote_object.hidden
 
     if options.quit:
         try:
