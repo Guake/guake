@@ -1,0 +1,6 @@
+release_summary: >
+    Fix keybinding regressions
+
+fixes:
+  - |
+      - Some shortcut keys are abnormal #1939
