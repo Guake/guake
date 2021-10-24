@@ -141,7 +141,9 @@ HOTKEYS = [
         "key": "nav",
         "keys": [
             {"key": "previous-tab", "label": _("Go to previous tab")},
+            {"key": "previous-tab-alt", "label": _("Go to previous tab (alternative)")},
             {"key": "next-tab", "label": _("Go to next tab")},
+            {"key": "next-tab-alt", "label": _("Go to next tab (alternative)")},
             {"key": "move-tab-left", "label": _("Move current tab left")},
             {"key": "move-tab-right", "label": _("Move current tab right")},
             {"key": "switch-tab1", "label": _("Go to first tab")},
