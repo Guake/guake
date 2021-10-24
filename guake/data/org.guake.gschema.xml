@@ -559,7 +559,7 @@
             <description>Switch to the last tab.</description>
         </key>
         <key name="split-tab-vertical" type="s">
-            <default>'&lt;Super&gt;less'</default>
+            <default>'&lt;Super&gt;&lt;Shift&gt;comma'</default>
             <summary>Split tab vertical.</summary>
             <description>Split tab vertical.</description>
         </key>

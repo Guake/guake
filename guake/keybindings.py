@@ -84,16 +84,16 @@ class Keybindings:
             ("search-on-web", self.guake.search_on_web),
             ("move-tab-left", self.guake.accel_move_tab_left),
             ("move-tab-right", self.guake.accel_move_tab_right),
-            ("switch-tab1", self.guake.gen_accel_switch_tabN(1)),
-            ("switch-tab2", self.guake.gen_accel_switch_tabN(2)),
-            ("switch-tab3", self.guake.gen_accel_switch_tabN(3)),
-            ("switch-tab4", self.guake.gen_accel_switch_tabN(4)),
-            ("switch-tab5", self.guake.gen_accel_switch_tabN(5)),
-            ("switch-tab6", self.guake.gen_accel_switch_tabN(6)),
-            ("switch-tab7", self.guake.gen_accel_switch_tabN(7)),
-            ("switch-tab8", self.guake.gen_accel_switch_tabN(8)),
-            ("switch-tab9", self.guake.gen_accel_switch_tabN(9)),
-            ("switch-tab10", self.guake.gen_accel_switch_tabN(10)),
+            ("switch-tab1", self.guake.gen_accel_switch_tabN(0)),
+            ("switch-tab2", self.guake.gen_accel_switch_tabN(1)),
+            ("switch-tab3", self.guake.gen_accel_switch_tabN(2)),
+            ("switch-tab4", self.guake.gen_accel_switch_tabN(3)),
+            ("switch-tab5", self.guake.gen_accel_switch_tabN(4)),
+            ("switch-tab6", self.guake.gen_accel_switch_tabN(5)),
+            ("switch-tab7", self.guake.gen_accel_switch_tabN(6)),
+            ("switch-tab8", self.guake.gen_accel_switch_tabN(7)),
+            ("switch-tab9", self.guake.gen_accel_switch_tabN(8)),
+            ("switch-tab10", self.guake.gen_accel_switch_tabN(9)),
             ("switch-tab-last", self.guake.accel_switch_tab_last),
             ("reset-terminal", self.guake.accel_reset_terminal),
             (
@@ -222,10 +222,8 @@ class Keybindings:
                     % label,
                     filename,
                 )
-        elif key == "show-focus":
-            if not self.guake.hotkeys.bind(value, self.guake.show_focus):
-                log.warn("can't bind show-focus key")
-                return
+        elif key == "show-focus" and not self.guake.hotkeys.bind(value, self.guake.show_focus):
+            log.warn("can't bind show-focus key")
 
     def activate(self, window, event):
         """If keystroke matches a key binding, activate keybinding. Otherwise, allow
@@ -239,8 +237,8 @@ class Keybindings:
                 key = Gdk.keyval_to_lower(key)
         else:
             keys = Gdk.keyval_convert_case(key)
-            if keys[0] != keys[1]:
-                key = keys[1]
+            if key != keys[1]:
+                key = keys[0]
                 mod &= ~Gdk.ModifierType.SHIFT_MASK
 
         mask = mod & self._masks
