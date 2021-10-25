@@ -6,32 +6,8 @@ features:
       - Now defaults to system default theme
       - New option to still allow independently setting guake's theme.
 
-known_issues:
-  - |
-      - None
-
 upgrade:
   - |
       - If a different theme from system default was already selected and
         desired, users may need to uncheck "Use system default theme" in
         properties->general
-
-deprecations:
-  - |
-    None
-
-security:
-  - |
-    None
-
-fixes:
-  - |
-    None
-
-notes_for_package_maintainers:
-  - |
-    None
-
-other:
-  - |
-    None

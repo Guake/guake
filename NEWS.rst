@@ -2,6 +2,60 @@
 guake
 =====
 
+(unreleased yet)
+================
+
+Release Summary
+---------------
+
+Fix system font application issue
+
+Use keycodes instead of keyvals for keybindings. This allow to use keybindings with different keyboard layouts.
+
+Known Issues
+------------
+
+- keybindings does not work with not English layout.
+
+Bug Fixes
+---------
+
+- - System font aplied only for last tab #1947 
+
+3.8.1
+=====
+
+Release Summary
+---------------
+
+Added line height and character width adjustment options
+
+Fix keybinding regressions
+
+Lazy focus loss to avoid closing on short-term losses
+
+Moved guake.desktop.metainfo.xml to $datadir
+
+New Features
+------------
+
+- - Feature request: Setting line-spacing / line-height #849 
+
+- - Support of short term focus loss and avoid folding #1643 
+
+Bug Fixes
+---------
+
+- - Some shortcut keys are abnormal #1939
+
+Notes for Package Maintainers
+-----------------------------
+
+- Glade layout file upgraded with 3.38.2 from last used 3.22.2, should
+  still be valid but some things may be deprecated/renamed.
+
+- guake.desktop.metainfo.xml has been moved to $datadir in Makefile
+
 3.8.0
 =====
 
@@ -180,7 +234,6 @@ Notes for Package Maintainers
   
   In the installation script, replacing [schema directory] with the place
   org.guake.gschema.xml is being saved.
-
 
 3.7.0
 =====
@@ -944,6 +997,15 @@ Notes for Package Maintainers
   I invite package maintainers to open tickets on Github about any other difficulties
   encountered when packaging Guake.
 
+3.0.6
+=====
+
+Bug Fixes
+---------
+
+- Hotfix of #1198 (Ctrl+D in the terminal does not close)
+  and #1014 (guake hangs on exit)
+
 3.0.5
 =====
 
@@ -1070,8 +1132,8 @@ Other
 -----
 
 - The dependencies of the Guake executable has been slightly better described in README.
-  There is an example for Debian/Ubuntu in the file ``scripts/bootstrap-dev-debian.sh`` which is
-  the main environment where Guake is developed and tested.
+  There is an example for Debian/Ubuntu in the file ``bootstrap-dev-debian.sh`` which is the main
+  environment where Guake is developed and tested.
 
 - Package maintainers are encouraged to submit their ``bootstrap-dev-[distribution].sh``,
   applicable for other distributions, to help users install Guake from source, and other package
@@ -1165,7 +1227,6 @@ New Features
   note directly from their Pull Request.
 
 - Update Guake window title when:
-  
     - the active tab changes
     - the active tab is renamed
     - the vte title changes
