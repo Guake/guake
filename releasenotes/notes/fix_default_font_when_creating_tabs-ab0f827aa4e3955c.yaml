@@ -1,0 +1,6 @@
+release_summary: >
+    Fix system font application issue
+
+fixes:
+  - |
+      - System font aplied only for last tab #1947 
