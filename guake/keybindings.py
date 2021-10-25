@@ -230,18 +230,8 @@ class Keybindings:
     def activate(self, window, event):
         """If keystroke matches a key binding, activate keybinding. Otherwise, allow
         keystroke to pass through."""
-        key = event.keyval
+        key = event.hardware_keycode
         mod = event.state
-        if mod & Gdk.ModifierType.SHIFT_MASK:
-            if key == Gdk.KEY_ISO_Left_Tab:
-                key = Gdk.KEY_Tab
-            else:
-                key = Gdk.keyval_to_lower(key)
-        else:
-            keys = Gdk.keyval_convert_case(key)
-            if key != keys[1]:
-                key = keys[0]
-                mod &= ~Gdk.ModifierType.SHIFT_MASK
 
         mask = mod & self._masks
 
@@ -266,11 +256,10 @@ class Keybindings:
         """Reads all gconf paths under /apps/guake/keybindings/local
         and adds to the _lookup.
         """
-
         for binding, action in self.keys:
-            key, mask = Gtk.accelerator_parse(
+            key, keycodes, mask = Gtk.accelerator_parse_with_keycode(
                 self.guake.settings.keybindingsLocal.get_string(binding)
             )
-            if key > 0:
-                self._lookup[mask][key] = action
+            if keycodes and keycodes[0]:
+                self._lookup[mask][keycodes[0]] = action
                 self._masks |= mask
