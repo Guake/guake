@@ -377,7 +377,13 @@ class GSettingHandler:
         else:
             terminals = self.guake.notebook_manager.iter_terminals()
 
-        font = Pango.FontDescription(settings.get_string(key))
+        if self.settings.general.get_boolean("use-default-font"):
+            gio_settings = Gio.Settings("org.gnome.desktop.interface")
+            font_name = gio_settings.get_string("monospace-font-name")
+        else:
+            font_name = settings.get_string(key)
+
+        font = Pango.FontDescription(font_name)
         for i in terminals:
             i.set_font(font)
 
