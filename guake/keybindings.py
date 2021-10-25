@@ -24,6 +24,7 @@ import gi
 
 gi.require_version("Gtk", "3.0")
 from gi.repository import Gtk
+from gi.repository import Gdk
 
 from guake import notifier
 from guake.common import pixmapfile
@@ -45,6 +46,7 @@ class Keybindings:
         self.accel_group = None  # see reload_accelerators
         self._lookup = None
         self._masks = None
+        self.keymap = Gdk.Keymap.get_for_display(Gdk.Display.get_default())
 
         # Setup global keys
         self.globalhotkeys = {}
@@ -229,8 +231,27 @@ class Keybindings:
     def activate(self, window, event):
         """If keystroke matches a key binding, activate keybinding. Otherwise, allow
         keystroke to pass through."""
-        key = event.hardware_keycode
+        key = event.keyval
         mod = event.state
+
+        # Set keyval to the first available English keyboard value if character is non-latin
+        # and a english keyval is found
+        if event.keyval > 126:
+            for i in self.keymap.get_entries_for_keycode(event.hardware_keycode)[2]:
+                if 0 < i <= 126:
+                    key = i
+                    break
+
+        if mod & Gdk.ModifierType.SHIFT_MASK:
+            if key == Gdk.KEY_ISO_Left_Tab:
+                key = Gdk.KEY_Tab
+            else:
+                key = Gdk.keyval_to_lower(key)
+        else:
+            keys = Gdk.keyval_convert_case(key)
+            if key != keys[1]:
+                key = keys[0]
+                mod &= ~Gdk.ModifierType.SHIFT_MASK
 
         mask = mod & self._masks
 
@@ -255,10 +276,11 @@ class Keybindings:
         """Reads all gconf paths under /apps/guake/keybindings/local
         and adds to the _lookup.
         """
+
         for binding, action in self.keys:
-            key, keycodes, mask = Gtk.accelerator_parse_with_keycode(
+            key, mask = Gtk.accelerator_parse(
                 self.guake.settings.keybindingsLocal.get_string(binding)
             )
-            if keycodes and keycodes[0]:
-                self._lookup[mask][keycodes[0]] = action
+            if key > 0:
+                self._lookup[mask][key] = action
                 self._masks |= mask
