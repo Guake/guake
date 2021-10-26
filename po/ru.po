@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: Guake 0.4.5\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-04-17 13:26+0300\n"
-"PO-Revision-Date: 2021-10-25 13:25+0000\n"
+"PO-Revision-Date: 2021-10-26 08:52+0000\n"
 "Last-Translator: Ivan Vantu5z <vantu5z@mail.ru>\n"
 "Language-Team: Russian <https://hosted.weblate.org/projects/guake/guake/ru/>"
 "\n"
@@ -1381,7 +1381,7 @@ msgstr "Автоматически сохранять сессию при изм
 
 #: data/prefs.glade:238
 msgid "Startup & Tabs (Experiment)"
-msgstr "Запуск и вкладки (эксперимент)"
+msgstr "Запуск и вкладки (экспериментально)"
 
 #: guake/guake_app.py:1192
 #, python-brace-format
