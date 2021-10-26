@@ -315,6 +315,7 @@ githook:
 
 setup-githook:
 	rm -f .git/hooks/post-commit
+	mkdir -p .git/hooks
 	cp -fv git-hooks/* .git/hooks/
 
 
