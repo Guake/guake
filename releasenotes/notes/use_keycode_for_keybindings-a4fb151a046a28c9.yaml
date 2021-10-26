@@ -1,0 +1,5 @@
+release_summary: >
+  Use keycodes instead of keyvals for keybindings. This allow to use keybindings with different keyboard layouts.
+
+known_issues:
+  - keybindings does not work with not English layout. #1946
