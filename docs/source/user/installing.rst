@@ -12,6 +12,17 @@ Debian / Ubuntu
 
 Ubuntu and Debian users will use ``sudo apt install guake``.
 
+
+Guake also has a PPA. You can add the Guake PPA to your system by entering:
+
+.. code-block:: bash
+
+   $ sudo add-apt-repository ppa:linuxuprising/guake
+   $ sudo apt-get update
+
+After which you will be able to install and update to the latest version of Guake on the PPA.
+
+
 Fedora
 ------
 
