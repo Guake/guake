@@ -121,8 +121,7 @@ class GuakeTerminal(Vte.Terminal):
 
         self.setup_drag_and_drop()
 
-        self.ENVV_EXCLUDE_LIST = ["GDK_BACKEND"]
-        self.envv = [f"{i}={os.environ[i]}" for i in os.environ if i not in self.ENVV_EXCLUDE_LIST]
+        self.envv = [f"{i}={os.environ[i]}" for i in os.environ]
         self.envv.append(f"GUAKE_TAB_UUID={self.uuid}")
 
     def setup_drag_and_drop(self):
