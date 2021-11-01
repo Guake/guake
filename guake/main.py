@@ -33,8 +33,10 @@ import subprocess
 import sys
 import uuid
 
-from locale import gettext
+from locale import gettext, getlocale, setlocale, LC_ALL
 
+if getlocale() == (None, None):
+    setlocale(LC_ALL, "en_US.UTF-8")
 builtins.__dict__["_"] = gettext
 
 from optparse import OptionParser

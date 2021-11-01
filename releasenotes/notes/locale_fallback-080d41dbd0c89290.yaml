@@ -1,0 +1,7 @@
+release_summary: >
+    Manually set encoding if system locale is absent
+
+
+fixes:
+  - |
+      - Minimal Right Click Menu, no copy or split screen #1845 
