@@ -94,7 +94,7 @@ def mk_terminal_context_menu(terminal, window, settings, callback_object):
     mi = Gtk.MenuItem(_("Split ―"))
     mi.connect("activate", callback_object.on_split_horizontal)
     menu.add(mi)
-    mi = Gtk.MenuItem(_("Split ｜"))
+    mi = Gtk.MenuItem(_("Split |"))
     mi.connect("activate", callback_object.on_split_vertical)
     menu.add(mi)
     mi = Gtk.MenuItem(_("Close terminal"))
