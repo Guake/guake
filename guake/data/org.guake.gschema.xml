@@ -549,7 +549,7 @@
             <description>Toggle main guake window fullscreen.</description>
         </key>
         <key name="toggle-hide-on-lose-focus" type="s">
-            <default>'&lt;Control&gt;F1'</default>
+            <default>'&lt;Control&gt;&lt;Shift&gt;F1'</default>
             <summary>Toggle hide on lose focus.</summary>
             <description>Toggle whether guake will hide when it loses focus.</description>
         </key>
