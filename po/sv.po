@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: Guake 0.4.5\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-06-22 14:32+0200\n"
-"PO-Revision-Date: 2021-10-01 12:38+0000\n"
+"PO-Revision-Date: 2021-11-08 18:52+0000\n"
 "Last-Translator: Morgan Antonsson <morgan.antonsson@gmail.com>\n"
 "Language-Team: Swedish <https://hosted.weblate.org/projects/guake/guake/sv/>"
 "\n"
@@ -268,7 +268,7 @@ msgstr "Guake Terminal"
 
 #: guake/guake_app.py:207
 msgid "guake-indicator"
-msgstr "guake-indicator"
+msgstr "guake-indikator"
 
 #: guake/guake_app.py:207
 msgid "guake-tray"
@@ -932,7 +932,7 @@ msgstr "guake"
 
 #: data/guake-prefs.desktop:13 data/guake-prefs.template.desktop:13
 msgid "Terminal;Utility;"
-msgstr "Terminal;Utility;"
+msgstr "Terminal;Verktyg;"
 
 #: data/guake.template.desktop:4 data/guake.desktop:4
 #: data/autostart-guake.desktop:31
@@ -1322,6 +1322,14 @@ msgid ""
 "Text.\n"
 "</i></small>"
 msgstr ""
+"<small><i>Följande element kan användas i kommandoraden för att öppna en "
+"redigerare:\n"
+"- <b>%(file_path)s</b>: sökväg till filen som har klickats\n"
+"- <b>%(line_number)s</b>: om redigeraren stödjer det kan du direkt öppna "
+"filen till ett givet radnummer om det visas på skärmen.\n"
+"\n"
+"Exempel för Sublime Text: <b>subl %(file_path)s:%(line_number)s</b>\n"
+"</i></small>"
 
 #: guake/data/prefs.glade:2879
 msgid ""
