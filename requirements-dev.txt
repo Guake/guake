@@ -15,9 +15,11 @@ astroid
 autopep8
 black==21.8b0
 colorlog
-dephell
+dataclasses
 fiximports>=0.1.18
 flake8
+flakehell
+mock>=2.0.0
 pathlib2
 pep8
 pew
@@ -29,9 +31,10 @@ pytest
 pytest-cov
 pytest-mock
 reno[sphinx]>=2.8.0
-scandir ; python_version < '3.5'
+scandir ; python_version > '3.5'
 sphinx-rtd-theme
 sphinxcontrib-programoutput
+toml
 twine
 typed-ast
 yapf
