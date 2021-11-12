@@ -145,8 +145,8 @@ def test_guake_restore_tabs_schema_broken_session_file(g, fs):
 
     fn = fs.create_file("/foobar/bar.json")
     d = fs.create_dir("/foobar/foo")
-    with open(fn.path, "w") as f:
-        f.write('{"schema_version": 1, "workspace": {"0": [[{"directory": "%s"}]]}}' % (d.path))
+    with open(fn.path, "w", encoding="utf-8") as f:
+        f.write(f'{{"schema_version": 1, "workspace": {{"0": [[{{"directory": "{d.path}"}}]]}}}}')
 
     g.restore_tabs(fn.name)
     assert guake.guake_app.shutil.copy.call_count == 1

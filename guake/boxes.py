@@ -182,6 +182,10 @@ class RootTerminalBox(Gtk.Overlay, TerminalHolder):
             raise RuntimeError(
                 "Error adding (RootTerminalBox.add({}))".format(type(terminal_holder)))
 
+    def focus():
+        if self.get_terminals():
+            self.get_terminals()[0].grab_focus()
+
     def get_child(self):
         return self.child
 

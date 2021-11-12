@@ -76,7 +76,7 @@ def get_version():
     horizonal_line()
     print("GTK+ Version:\t\t{}".format(gtk_version()))
     print()
-    print("GDK Backend:\t\t{}".format(str(display).split(" ")[0][1:]))
+    print(f"GDK Backend:\t\t{str(display).split(' ', maxsplit=1)[0]}")
     print()
     horizonal_line()
 

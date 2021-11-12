@@ -27,12 +27,13 @@ Quick Installation Guide
 
 Please refer to `Installation Guide <https://guake.readthedocs.io/en/latest/user/installing.html#system-wide-installation>`_
 
-What it looks like ? 
+What it looks like ?
 --------------------
 
 .. image:: https://i.ibb.co/s97cJWZ/guake.png
-   :alt: Guake Screenshot
-   :class: with-shadow
+    :alt: Guake Screenshot
+    :class: with-shadow
+
 Drop down terminal on pressing <F12>
 
 Features Request

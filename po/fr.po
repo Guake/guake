@@ -145,8 +145,8 @@ msgid ""
 "Rename the specified tab by --tab-index. Reset to default if TITLE is a "
 "single dash \"-\"."
 msgstr ""
-"Renomme l’onglet spécifié par --tab-dex. Remet à zéro si le TITRE est « - » ("
-"simple tiret)."
+"Renomme l’onglet spécifié par --tab-dex. Remet à zéro si le TITRE est « - "
+"» (simple tiret)."
 
 #: guake/main.py:315
 msgid ""
@@ -356,8 +356,8 @@ msgid ""
 "Your {session_filename} schema is broken, backup to {session_filename}.bak, "
 "and error message has been saved to {session_filename}.log.err."
 msgstr ""
-"Votre schéma {session_filename} est cassé, sauvegarde dans {session_filename}"
-".bak, et enregistrement des messages d’erreur vers "
+"Votre schéma {session_filename} est cassé, sauvegarde dans "
+"{session_filename}.bak, et enregistrement des messages d’erreur vers "
 "{session_filename}.log.err."
 
 #: guake/guake_app.py:1440
@@ -1086,15 +1086,15 @@ msgid ""
 "For example, for sublime, use <b>subl %(file_path)s:%(line_number)s</b>\n"
 "</i></small>"
 msgstr ""
-"<small><i>Utilisez les éléments suivants dans la ligne de commande de l’"
-"éditeur :\n"
+"<small><i>Utilisez les éléments suivants dans la ligne de commande de "
+"l’éditeur :\n"
 "– <b>%(file_path)s</b> : chemin d’accès au fichier sur lequel vous avez "
 "cliqué\n"
 "– <b>%(line_number)s</b> : si votre éditeur le prend en charge, vous pouvez "
 "directement ouvrir le fichier à un numéro de ligne donné.\n"
 "\n"
-"Par exemple, pour sublime, utilisez <b> subl%(file_path)s:%(line_number)s "
-"</b>\n"
+"Par exemple, pour sublime, utilisez <b> subl%(file_path)s:%(line_number)s </"
+"b>\n"
 "</i></small>"
 
 #: guake/data/prefs.glade:2618
@@ -1205,6 +1205,80 @@ msgstr "Configurer vos sessions Guake"
 #: guake/data/guake-prefs.desktop:68 guake/data/guake-prefs.template.desktop:13
 msgid "Terminal;Utility;"
 msgstr "Terminal;Utilitaires;"
+
+#: guake/prefs.py:186
+msgid "Search selected text on web"
+msgstr ""
+
+#: guake/menus.py:80
+msgid "Copy URL"
+msgstr ""
+
+#: guake/main.py:362
+msgid "Show support information"
+msgstr ""
+
+#: guake/data/prefs.glade:19
+msgid "Scale"
+msgstr ""
+
+#: guake/data/prefs.glade:23
+msgid "Tile"
+msgstr ""
+
+#: guake/data/prefs.glade:31
+msgid "Stretch"
+msgstr ""
+
+#: guake/data/prefs.glade:472
+msgid "Copy on select"
+msgstr ""
+
+#: guake/data/prefs.glade:517
+msgid "Use system default theme"
+msgstr ""
+
+#: guake/data/prefs.glade:547
+msgid "GTK Theme:"
+msgstr ""
+
+#: guake/data/prefs.glade:612
+msgid "Please select a JSON file"
+msgstr ""
+
+#: guake/data/prefs.glade:938
+msgid "Hide tab bar if there is only one tab"
+msgstr ""
+
+#: guake/data/prefs.glade:1929
+msgid "Background image: "
+msgstr ""
+
+#: guake/data/prefs.glade:2730
+msgid ""
+"<small><i>Use the following elements in the open editor command line:\n"
+"- <b>%(file_path)s</b>: path to the file that has been clicked\n"
+"- <b>%(line_number)s</b>: if your editor supports it, you can directly open "
+"the file to a given line number when found on the screen.\n"
+"\n"
+"For example, use <b>subl %(file_path)s:%(line_number)s</b> for Sublime "
+"Text.\n"
+"</i></small>"
+msgstr ""
+
+#: guake/data/prefs.glade:2879
+msgid ""
+"<small>In this dialog you can attach your own command or script to various "
+"Guake events</small>"
+msgstr ""
+
+#: guake/data/prefs.glade:3008
+msgid ""
+"<small><i><b>Note:</b> These options may cause some applications to behave "
+"incorrectly. They are only here to allow you to work around certain "
+"applications and operating systems that expect different terminal behavior.</"
+"i></small>"
+msgstr ""
 
 #~ msgid "Show support infomations"
 #~ msgstr "Afficher les informations pour le support"

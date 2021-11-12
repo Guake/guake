@@ -50,6 +50,13 @@ Arch Linux
 
 Guake is available on *community* repository, just use: ``sudo pacman -S guake`` to install it.
 
+
+Manjaro
+------
+
+Manjaro users can use ``pacman -S guake``.
+
+
 Install from Pypi
 =================
 
