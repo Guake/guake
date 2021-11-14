@@ -27,7 +27,12 @@ def guake_version():
     try:
         import importlib.metadata as importlib_metadata
     except ImportError:
-        import importlib_metadata
+        try:
+            import importlib_metadata
+        except ImportError:
+            import pbr.version  # Fallback for python < 3.8 unable to install importlib_metadata
+
+            return pbr.version.VersionInfo("guake").version_string()
 
     return importlib_metadata.version("guake")
 
