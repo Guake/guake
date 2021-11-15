@@ -28,6 +28,8 @@ import traceback
 import uuid
 
 from pathlib import Path
+from time import sleep
+from threading import Thread
 from urllib.parse import quote_plus
 from xml.sax.saxutils import escape as xml_escape
 
@@ -223,6 +225,7 @@ class Guake(SimpleGladeApp):
         self.display_tab_names = 0
 
         self.window.connect("focus-out-event", self.on_window_losefocus)
+        self.window.connect("focus-in-event", self.on_window_takefocus)
 
         # Handling the delete-event of the main window to avoid
         # problems when closing it.
@@ -497,12 +500,39 @@ class Guake(SimpleGladeApp):
         if not HidePrevention(self.window).may_hide():
             return
 
-        value = self.settings.general.get_boolean("window-losefocus")
-        visible = window.get_property("visible")
-        self.losefocus_time = get_server_time(self.window)
-        if visible and value:
-            log.debug("Hiding on focus lose")
-            self.hide()
+        def hide_window_callback():
+            value = self.settings.general.get_boolean("window-losefocus")
+            visible = window.get_property("visible")
+            self.losefocus_time = get_server_time(self.window)
+            if visible and value:
+                log.info("Hiding on focus lose")
+                self.hide()
+            return False
+
+        def losefocus_callback(sleep_time):
+            sleep(sleep_time)
+
+            if (
+                self.window.get_property("has-toplevel-focus")
+                and (self.takefocus_time - self.lazy_losefocus_time) > 0
+            ):
+                log.debug("Short term losefocus detected. Skip the hidding")
+                return
+
+            if self.window.get_property("visible"):
+                GLib.idle_add(hide_window_callback)
+
+        if self.settings.general.get_boolean("lazy-losefocus"):
+            self.lazy_losefocus_time = get_server_time(self.window)
+            thread = Thread(target=losefocus_callback, args=(0.3,))
+            thread.daemon = True
+            thread.start()
+            log.debug("Lazy losefocus check at %s", self.lazy_losefocus_time)
+        else:
+            hide_window_callback()
+
+    def on_window_takefocus(self, window, event):
+        self.takefocus_time = get_server_time(self.window)
 
     def show_menu(self, status_icon, button, activate_time):
         """Show the tray icon menu."""

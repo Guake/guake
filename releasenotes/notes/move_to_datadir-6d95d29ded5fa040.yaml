@@ -1,0 +1,6 @@
+release_summary: >
+    Moved guake.desktop.metainfo.xml to $datadir
+
+notes_for_package_maintainers:
+  - |
+    guake.desktop.metainfo.xml has been moved to $datadir in Makefile

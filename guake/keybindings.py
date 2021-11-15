@@ -24,8 +24,6 @@ from collections import defaultdict
 import gi
 
 gi.require_version("Gtk", "3.0")
-gi.require_version("Gdk", "3.0")
-from gi.repository import Gdk
 from gi.repository import Gtk
 
 from guake import notifier
@@ -70,7 +68,9 @@ class Keybindings:
             ("close-tab", x),
             ("rename-current-tab", self.guake.accel_rename_current_tab),
             ("previous-tab", self.guake.accel_prev),
+            ("previous-tab-alt", self.guake.accel_prev),
             ("next-tab", self.guake.accel_next),
+            ("next-tab-alt", self.guake.accel_next),
             ("clipboard-copy", self.guake.accel_copy_clipboard),
             ("clipboard-paste", self.guake.accel_paste_clipboard),
             ("quit", self.guake.accel_quit),
@@ -85,16 +85,16 @@ class Keybindings:
             ("search-on-web", self.guake.search_on_web),
             ("move-tab-left", self.guake.accel_move_tab_left),
             ("move-tab-right", self.guake.accel_move_tab_right),
-            ("switch-tab1", self.guake.gen_accel_switch_tabN(1)),
-            ("switch-tab2", self.guake.gen_accel_switch_tabN(2)),
-            ("switch-tab3", self.guake.gen_accel_switch_tabN(3)),
-            ("switch-tab4", self.guake.gen_accel_switch_tabN(4)),
-            ("switch-tab5", self.guake.gen_accel_switch_tabN(5)),
-            ("switch-tab6", self.guake.gen_accel_switch_tabN(6)),
-            ("switch-tab7", self.guake.gen_accel_switch_tabN(7)),
-            ("switch-tab8", self.guake.gen_accel_switch_tabN(8)),
-            ("switch-tab9", self.guake.gen_accel_switch_tabN(9)),
-            ("switch-tab10", self.guake.gen_accel_switch_tabN(10)),
+            ("switch-tab1", self.guake.gen_accel_switch_tabN(0)),
+            ("switch-tab2", self.guake.gen_accel_switch_tabN(1)),
+            ("switch-tab3", self.guake.gen_accel_switch_tabN(2)),
+            ("switch-tab4", self.guake.gen_accel_switch_tabN(3)),
+            ("switch-tab5", self.guake.gen_accel_switch_tabN(4)),
+            ("switch-tab6", self.guake.gen_accel_switch_tabN(5)),
+            ("switch-tab7", self.guake.gen_accel_switch_tabN(6)),
+            ("switch-tab8", self.guake.gen_accel_switch_tabN(7)),
+            ("switch-tab9", self.guake.gen_accel_switch_tabN(8)),
+            ("switch-tab10", self.guake.gen_accel_switch_tabN(9)),
             ("switch-tab-last", self.guake.accel_switch_tab_last),
             ("reset-terminal", self.guake.accel_reset_terminal),
             (
@@ -231,18 +231,8 @@ class Keybindings:
     def activate(self, window, event):
         """If keystroke matches a key binding, activate keybinding. Otherwise, allow
         keystroke to pass through."""
-        key = event.keyval
+        key = event.hardware_keycode
         mod = event.state
-        if mod & Gdk.ModifierType.SHIFT_MASK:
-            if key == Gdk.KEY_ISO_Left_Tab:
-                key = Gdk.KEY_Tab
-            else:
-                key = Gdk.keyval_to_lower(key)
-        else:
-            keys = Gdk.keyval_convert_case(key)
-            if keys[0] != keys[1]:
-                key = keys[1]
-                mod &= ~Gdk.ModifierType.SHIFT_MASK
 
         mask = mod & self._masks
 
@@ -267,11 +257,10 @@ class Keybindings:
         """Reads all gconf paths under /apps/guake/keybindings/local
         and adds to the _lookup.
         """
-
         for binding, action in self.keys:
-            key, mask = Gtk.accelerator_parse(
+            key, keycodes, mask = Gtk.accelerator_parse_with_keycode(
                 self.guake.settings.keybindingsLocal.get_string(binding)
             )
-            if key > 0:
-                self._lookup[mask][key] = action
+            if keycodes and keycodes[0]:
+                self._lookup[mask][keycodes[0]] = action
                 self._masks |= mask

@@ -80,6 +80,8 @@ class GSettingHandler:
         settings.styleFont.onChangedValue("palette", self.fpalette_changed)
         settings.styleFont.onChangedValue("allow-bold", self.allow_bold_toggled)
         settings.styleFont.onChangedValue("bold-is-bright", self.bold_is_bright_toggled)
+        settings.styleFont.onChangedValue("cell-height-scale", self.cell_height_scale_value_changed)
+        settings.styleFont.onChangedValue("cell-width-scale", self.cell_width_scale_value_changed)
         settings.styleBackground.onChangedValue("transparency", self.bgtransparency_changed)
 
         settings.general.onChangedValue("compat-backspace", self.backspace_changed)
@@ -323,6 +325,38 @@ class GSettingHandler:
         except:  # pylint: disable=bare-except
             log.error("set_bold_is_bright not supported by your version of VTE")
 
+    def cell_height_scale_value_changed(self, settings, key, user_data):
+        """If the gconf var style/font/cell-height-scale be changed, this
+        method will be called and will set terminal height scale properties
+        in all terminals.
+        """
+        height_scale = settings.get_double(key)
+        try:
+            terminal = self.guake.notebook_manager.get_terminal_by_uuid(
+                user_data.get("terminal_uuid") if user_data else None
+            )
+            terminals = (terminal,) if terminal else self.guake.notebook_manager.iter_terminals()
+            for term in terminals:
+                term.set_cell_height_scale(height_scale)
+        except:  # pylint: disable=bare-except
+            log.error("set_cell_height_scale not supported by your version of VTE")
+
+    def cell_width_scale_value_changed(self, settings, key, user_data):
+        """If the gconf var style/font/cell-width-scale be changed, this
+        method will be called and will set terminal width scale properties
+        in all terminals.
+        """
+        width_scale = settings.get_double(key)
+        try:
+            terminal = self.guake.notebook_manager.get_terminal_by_uuid(
+                user_data.get("terminal_uuid") if user_data else None
+            )
+            terminals = (terminal,) if terminal else self.guake.notebook_manager.iter_terminals()
+            for term in terminals:
+                term.set_cell_width_scale(width_scale)
+        except:  # pylint: disable=bare-except
+            log.error("set_cell_width_scale not supported by your version of VTE")
+
     def palette_font_and_background_color_toggled(self, settings, key, user_data):
         """If the gconf var use_palette_font_and_background_color be changed, this method
         will be called and will change the font color and the background color to the color
@@ -343,7 +377,13 @@ class GSettingHandler:
         else:
             terminals = self.guake.notebook_manager.iter_terminals()
 
-        font = Pango.FontDescription(settings.get_string(key))
+        if self.settings.general.get_boolean("use-default-font"):
+            gio_settings = Gio.Settings("org.gnome.desktop.interface")
+            font_name = gio_settings.get_string("monospace-font-name")
+        else:
+            font_name = settings.get_string(key)
+
+        font = Pango.FontDescription(font_name)
         for i in terminals:
             i.set_font(font)
 

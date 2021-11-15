@@ -5,30 +5,10 @@ features:
   - |
       - Automatically hide the tab bar when there is only one tab #924
 
-known_issues:
-  - |
-      - None
-
 upgrade:
   - |
     If setting is undesired, uncheck the hide tab if one tab option in settings
 
-deprecations:
-  - |
-    None
-
-security:
-  - |
-    None
-
 fixes:
   - |
     fixes #924
-
-notes_for_package_maintainers:
-  - |
-    None
-
-other:
-  - |
-    None

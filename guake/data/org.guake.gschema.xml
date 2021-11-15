@@ -101,6 +101,11 @@
             <summary>Determine if guake hides on lose focus.</summary>
             <description>If this property is set as true, guake will be hidden when the main window lose the focus (when Alt+Tab be pressed for example).</description>
         </key>
+        <key name="lazy-losefocus" type="b">
+            <default>false</default>
+            <summary>Delay hiding on losing focus.</summary>
+            <description>Momentarily delay hiding Guake when focus is lost and don't hide if focus is returned quickly, like when switching desktops or turning on certain IMEs.</description>
+        </key>
         <key name="window-tabbar" type="b">
             <default>true</default>
             <summary>The tab bar visibility.</summary>
@@ -183,7 +188,7 @@
         </key>
         <key name="background-image-file" type="s">
             <default>''</default>
-            <summary>Background image filename.</summary>            
+            <summary>Background image filename.</summary>
             <description>When setup, the selected background image will show on guake</description>
         </key>
         <key name="background-image-layout-mode" type="i">
@@ -342,6 +347,16 @@
             <summary>Use bright colors for bold text</summary>
             <description>If true, text from the first 8 colors that is formatted as bold will also be switched to its bright variant (VTE >=0.52).</description>
         </key>
+        <key name="cell-height-scale" type="d">
+            <default>1.0</default>
+            <summary>Set terminal's cell height scale to `scale` (VTE >= 0.52)</summary>
+            <description>This can be used to increase the line spacing. (The font's height is not affected.) Valid values go from 1.0 (default) to 2.0 ("double spacing").</description>
+        </key>
+        <key name="cell-width-scale" type="d">
+            <default>1.0</default>
+            <summary>Set terminal's cell width scale to `scale` (VTE >= 0.52)</summary>
+            <description>This can be used to increase the letter spacing. (The font's width is not affected.) Valid values go from 1.0 (default) to 2.0 ("double spacing").</description>
+        </key>
     </schema>
     <schema id="guake.style.background" path="/apps/guake/style/background/">
         <key name="transparency" type="i">
@@ -409,14 +424,24 @@
             <description>Move the current tab to the right</description>
         </key>
         <key name="previous-tab" type="s">
-            <default>'&lt;Control&gt;&lt;Shift&gt;Tab'</default>
+            <default>'&lt;Control&gt;Page_Up'</default>
             <summary>Previous tab.</summary>
             <description>Shows the previous tab.</description>
         </key>
         <key name="next-tab" type="s">
-            <default>'&lt;Control&gt;Tab'</default>
+            <default>'&lt;Control&gt;Page_Down'</default>
             <summary>Next tab.</summary>
             <description>Shows the next tab.</description>
+        </key>
+        <key name="previous-tab-alt" type="s">
+            <default>'&lt;Control&gt;&lt;Shift&gt;Tab'</default>
+            <summary>Previous tab (alternative)</summary>
+            <description>Alternate shortcut to show the previous tab.</description>
+        </key>
+        <key name="next-tab-alt" type="s">
+            <default>'&lt;Control&gt;Tab'</default>
+            <summary>Next tab (alternative)</summary>
+            <description>Alternate shortcut to show the next tab.</description>
         </key>
         <key name="switch-tab1" type="s">
             <default>'&lt;Control&gt;F1'</default>
@@ -544,7 +569,7 @@
             <description>Switch to the last tab.</description>
         </key>
         <key name="split-tab-vertical" type="s">
-            <default>'&lt;Super&gt;less'</default>
+            <default>'&lt;Super&gt;&lt;Shift&gt;comma'</default>
             <summary>Split tab vertical.</summary>
             <description>Split tab vertical.</description>
         </key>

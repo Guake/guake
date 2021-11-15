@@ -1,0 +1,7 @@
+release_summary: >
+    Add fallback for version number finding
+
+
+fixes:
+  - |
+      - Guake suddenly not starting any more due to ModuleNotFoundError: No module named 'importlib_metadata' #1962

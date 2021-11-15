@@ -1,0 +1,6 @@
+release_summary: >
+    Lazy focus loss to avoid closing on short-term losses
+
+features:
+  - |
+      - Support of short term focus loss and avoid folding #1643 

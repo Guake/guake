@@ -76,7 +76,6 @@ class CustomCommands:
                 log.error("_parse_custom_commands parsing json: %s", obj)
                 # AttributeError: 'str' object has no attribute 'get', ignore and move on
                 pass
-
         return menu
 
     def _parse_custom_commands(self, json_object, menu):

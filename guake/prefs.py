@@ -141,7 +141,9 @@ HOTKEYS = [
         "key": "nav",
         "keys": [
             {"key": "previous-tab", "label": _("Go to previous tab")},
+            {"key": "previous-tab-alt", "label": _("Go to previous tab (alternative)")},
             {"key": "next-tab", "label": _("Go to next tab")},
+            {"key": "next-tab-alt", "label": _("Go to next tab (alternative)")},
             {"key": "move-tab-left", "label": _("Move current tab left")},
             {"key": "move-tab-right", "label": _("Move current tab right")},
             {"key": "switch-tab1", "label": _("Go to first tab")},
@@ -335,6 +337,10 @@ class PrefsCallbacks:
         """Changes the activity of window_losefocus in dconf"""
         self.settings.general.set_boolean("window-losefocus", chk.get_active())
 
+    def on_lazy_lose_focus_toggled(self, chk):
+        """Changes the activity of lazy_lose_focus in dconf"""
+        self.settings.general.set_boolean("lazy-losefocus", chk.get_active())
+
     def on_quick_open_command_line_changed(self, edt):
         self.settings.general.set_string("quick-open-command-line", edt.get_text())
 
@@ -488,6 +494,14 @@ class PrefsCallbacks:
         """Changes the value of bold_is_bright in dconf"""
         self.settings.styleFont.set_boolean("bold-is-bright", chk.get_active())
 
+    def on_cell_height_scale_value_changed(self, scale):
+        value = scale.get_value()
+        self.settings.styleFont.set_double("cell-height-scale", value)
+
+    def on_cell_width_scale_value_changed(self, scale):
+        value = scale.get_value()
+        self.settings.styleFont.set_double("cell-width-scale", value)
+
     def on_font_style_font_set(self, fbtn):
         """Changes the value of font_style in dconf"""
         self.settings.styleFont.set_string("style", fbtn.get_font_name())
@@ -544,6 +558,9 @@ class PrefsCallbacks:
 
     def toggle_show_tabbar_sensitivity(self, chk):
         self.prefDlg.toggle_show_tabbar_sensitivity(chk)
+
+    def toggle_hide_on_lose_focus_sensitivity(self, chk):
+        self.prefDlg.toggle_hide_on_lose_focus_sensitivity(chk)
 
     def toggle_quick_open_command_line_sensitivity(self, chk):
         self.prefDlg.toggle_quick_open_command_line_sensitivity(chk)
@@ -768,6 +785,12 @@ class PrefsDialog(SimpleGladeApp):
         """
         self.get_widget("palette_16").set_sensitive(chk.get_active())
         self.get_widget("palette_17").set_sensitive(chk.get_active())
+
+    def toggle_hide_on_lose_focus_sensitivity(self, chk):
+        """If the user chooses to not hide Guake on focus loss, lazy hiding on focus
+        loss will do nothing.
+        """
+        self.get_widget("lazy_lose_focus").set_sensitive(chk.get_active())
 
     def toggle_show_tabbar_sensitivity(self, chk):
         """If the user chooses to not show the tab bar, it means that they
@@ -1042,6 +1065,10 @@ class PrefsDialog(SimpleGladeApp):
         value = self.settings.general.get_boolean("window-losefocus")
         self.get_widget("window_losefocus").set_active(value)
 
+        # lazy lose focus
+        value = self.settings.general.get_boolean("lazy-losefocus")
+        self.get_widget("lazy_lose_focus").set_active(value)
+
         # use VTE titles
         value = self.settings.general.get_boolean("use-vte-titles")
         self.get_widget("use_vte_titles").set_active(value)
@@ -1179,6 +1206,14 @@ class PrefsDialog(SimpleGladeApp):
         # use bold is bright
         value = self.settings.styleFont.get_boolean("bold-is-bright")
         self.get_widget("bold_is_bright").set_active(value)
+
+        # cell height scale
+        value = self.settings.styleFont.get_double("cell-height-scale")
+        self.get_widget("cell_height_scale_adjustment").set_value(value)
+
+        # cell width scale
+        value = self.settings.styleFont.get_double("cell-width-scale")
+        self.get_widget("cell_width_scale_adjustment").set_value(value)
 
         # background image file
         filename = self.settings.general.get_string("background-image-file")

@@ -2,6 +2,239 @@
 guake
 =====
 
+(unreleased yet)
+================
+
+Release Summary
+---------------
+
+Fix system font application issue
+
+Use keycodes instead of keyvals for keybindings. This allow to use keybindings with different keyboard layouts.
+
+Known Issues
+------------
+
+- keybindings does not work with not English layout.
+
+Bug Fixes
+---------
+
+- - System font aplied only for last tab #1947 
+
+3.8.1
+=====
+
+Release Summary
+---------------
+
+Added line height and character width adjustment options
+
+Fix keybinding regressions
+
+Lazy focus loss to avoid closing on short-term losses
+
+Moved guake.desktop.metainfo.xml to $datadir
+
+New Features
+------------
+
+- - Feature request: Setting line-spacing / line-height #849 
+
+- - Support of short term focus loss and avoid folding #1643 
+
+Bug Fixes
+---------
+
+- - Some shortcut keys are abnormal #1939
+
+Notes for Package Maintainers
+-----------------------------
+
+- Glade layout file upgraded with 3.38.2 from last used 3.22.2, should
+  still be valid but some things may be deprecated/renamed.
+
+- guake.desktop.metainfo.xml has been moved to $datadir in Makefile
+
+3.8.0
+=====
+
+Release Summary
+---------------
+
+Add Finnish translation
+
+Stopped setting GDK_BACKEND to x11 in terminals.
+
+Bug Fixes
+---------
+
+- - GDK_BACKEND is propagated to the shell in terminal #1871 
+
+Translation Updates
+-------------------
+
+- - fi
+
+3.8.0.0rc1
+==========
+
+Release Summary
+---------------
+
+Adds "Galizur" Theme
+
+Adds Shades of Purple Theme
+
+Default to the system theme, make having guake deviate be optional.
+
+Add copy on select option to copy to regular clipboard
+
+Color Palettes: Fix "Gruvbox Dark" & Add "Gruvbox Material Dark"
+
+Add support for tabs in keyboard shortcuts
+
+placing the appstream metainfo file in the right path according to https://www.freedesktop.org/software/appstream/docs/chap-Metadata.html#spec-component-location
+
+Automatically hide the tab bar when there is only one tab
+
+Add close tab to d-bus interface.
+
+Fix ignored "Show scrollbar" after spliting vertically
+
+Fix missing or malformed schema files when upgrading guake
+
+Move window to correct coordinates before maximizing
+
+Fixes prompting when closing a tab.
+
+Fix right click menu not populating when custom commands is malformed
+
+Fix trailing punctuation in URLs being included in the URL
+
+Revive GUAKE_TAB_UUID
+
+New Features
+------------
+
+- Allow reset of show-hide hot key in preferences
+
+- Add guake background image
+
+- adds a new color theme named "Galizur"
+
+- adds the Shades of Purple converted from https://github.com/ahmadawais/shades-of-purple-iterm2
+
+- - Now defaults to system default theme
+  - New option to still allow independently setting guake's theme.
+
+- - "copy on selection" option even if the desktop doesn't do it #43 
+  - copy text on selection #1898 
+
+- Added Gruvbox dark
+
+- - Allow Ctrl-Tab as an accelerator #152 
+
+- - Automatically hide the tab bar when there is only one tab #924
+
+- Add close tab to d-bus interface.
+
+- Move the window to the correct coordinates, in the correct display, before
+  attempting to maximize the window.
+
+- Re-implemented the refocus functionality.
+      
+  This functionality allows the user to return the focus to an open guake window.
+  It happened to be partially be maintained but faced issues in the migration to Gtk3.
+      
+  The functionality was revived, partially based on commented-out code found in Guake.show_hide().
+
+- Bring back GUAKE_TAB_UUID
+
+Known Issues
+------------
+
+- - removes the broken feature, where double-clicking on the tab bar opened a new tab #1439
+
+Upgrade Notes
+-------------
+
+- - If a different theme from system default was already selected and
+    desired, users may need to uncheck "Use system default theme" in
+    properties->general
+
+- Will be disabled by default
+
+- Will have to manually change keyboard shortcuts to use tab on existing installations
+
+- If setting is undesired, uncheck the hide tab if one tab option in settings
+
+- Add close tab to d-bus interface.
+
+- Should fix the errors with malformed schema files when upgrading guake.
+
+Deprecations
+------------
+
+- Default keyboard shortcut for next/previous tab is no longer ctrl+pgup/pgdn
+
+Bug Fixes
+---------
+
+- Adjusted Gruvbox
+
+- placing the appstream metainfo file in the right path
+
+- fixes #924
+
+- Added regex for line start by <word> <word>. Refer Issue
+
+- Fix config didn't reload when set_workspace
+
+- Fix ineffective override of the GDK_BACKEND environement variable causing invalid pointer location and display detection (#1820)
+
+- - fixes an issue, where double-clicking in certain CLI apps would instead open a new tab #1697
+
+- fixes #1734
+
+- - Does not start after upgrade to 3.7.0 with pip3 due to faulty schema #1718
+  - (Potentially) Guake 3.6.3 missing gschemas.compiled in PyPi #1621
+
+- - Guake always appears on mouse display regardless of Guake Preferences #1689
+  - guake follows mouse focus when have 2 monitors #1761
+  - Multiple monitors issue with Fedora 31 #1745
+  - Guake window follows mouse across monitors till it loses focus #1735
+  - And possibly more
+
+- - Fixes #1863
+
+- - Minimal Right Click Menu, no copy or split screen #1845 
+
+- Update search box to work with updated regex vte apis for v0.46+, #1752
+
+- - Open with URL includes trailing single quote (invalid URL) #1624 
+
+- - Update `session.json` when directory changed, not terminal title changed #1633
+
+- Fixes #1712
+
+Notes for Package Maintainers
+-----------------------------
+
+- Add close tab to d-bus interface.
+
+- Should resolve issues with the gschemas.compiled file. Make sure that the location
+  org.guake.gschema.xml is being saved to is user executable if guake is installed in
+  userspace so that guake can compile and create gschemas.compiled.
+  
+  If the destination for org.guake.gschema.xml cannot be user executable, make sure to
+  include:
+  
+  glib-compile-schemas [schema directory]
+  
+  In the installation script, replacing [schema directory] with the place
+  org.guake.gschema.xml is being saved.
+
 3.7.0
 =====
 
@@ -764,6 +997,15 @@ Notes for Package Maintainers
   I invite package maintainers to open tickets on Github about any other difficulties
   encountered when packaging Guake.
 
+3.0.6
+=====
+
+Bug Fixes
+---------
+
+- Hotfix of #1198 (Ctrl+D in the terminal does not close)
+  and #1014 (guake hangs on exit)
+
 3.0.5
 =====
 
@@ -890,8 +1132,8 @@ Other
 -----
 
 - The dependencies of the Guake executable has been slightly better described in README.
-  There is an example for Debian/Ubuntu in the file ``scripts/bootstrap-dev-debian.sh`` which is
-  the main environment where Guake is developed and tested.
+  There is an example for Debian/Ubuntu in the file ``bootstrap-dev-debian.sh`` which is the main
+  environment where Guake is developed and tested.
 
 - Package maintainers are encouraged to submit their ``bootstrap-dev-[distribution].sh``,
   applicable for other distributions, to help users install Guake from source, and other package
@@ -985,7 +1227,6 @@ New Features
   note directly from their Pull Request.
 
 - Update Guake window title when:
-  
     - the active tab changes
     - the active tab is renamed
     - the vte title changes
