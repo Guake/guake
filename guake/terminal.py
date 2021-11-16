@@ -121,8 +121,6 @@ class GuakeTerminal(Vte.Terminal):
 
         self.setup_drag_and_drop()
 
-        # GDK_BACKEND is ingnored
-        # Set GUAKE_ENABLE_WAYLAND=1 to use Wayland backend
         self.ENVV_EXCLUDE_LIST = ["GDK_BACKEND"]
         self.envv = [f"{i}={os.environ[i]}" for i in os.environ if i not in self.ENVV_EXCLUDE_LIST]
         self.envv.append(f"GUAKE_TAB_UUID={self.uuid}")
