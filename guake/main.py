@@ -42,7 +42,11 @@ from optparse import OptionParser
 log = logging.getLogger(__name__)
 
 # Force use X11 backend under wayland before any import of GDK through dependencies
+# This could fix weird problems under Wayland
+# But if user set GUAKE_ENABLE_WAYLAND=1, then force use Wayland backend
 os.environ["GDK_BACKEND"] = "x11"
+if os.environ["GUAKE_ENABLE_WAYLAND"] == 1:
+    os.environ["GDK_BACKEND"] = "wayland"
 
 from guake.globals import NAME
 from guake.globals import bindtextdomain
