@@ -1,0 +1,3 @@
+fixes:
+  - |
+      - Add environment variable GUAKE_ENABLE_WAYLAND, fixed #1934
