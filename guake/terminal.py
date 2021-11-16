@@ -569,7 +569,7 @@ class GuakeTerminal(Vte.Terminal):
             directory,
             argv,
             self.envv,
-            GLib.SpawnFlags(Vte.SPAWN_NO_PARENT_ENVV | GLib.SpawnFlags.DO_NOT_REAP_CHILD),
+            GLib.SpawnFlags(Vte.SPAWN_NO_PARENT_ENVV),
             None,
             None,
             None,
