@@ -9,8 +9,8 @@ msgstr ""
 "Project-Id-Version: Guake 0.4.5\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-08-18 17:32+0200\n"
-"PO-Revision-Date: 2021-10-02 14:06+0000\n"
-"Last-Translator: Oğuz Ersen <oguzersen@protonmail.com>\n"
+"PO-Revision-Date: 2021-11-20 02:52+0000\n"
+"Last-Translator: Yusuf Yavuzyigit <yusufyavuzyigit25@gmail.com>\n"
 "Language-Team: Turkish <https://hosted.weblate.org/projects/guake/guake/tr/>"
 "\n"
 "Language: tr\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
-"X-Generator: Weblate 4.9-dev\n"
+"X-Generator: Weblate 4.9.1\n"
 
 #: ../guake/data/about.glade.h:1
 msgid "About Guake"
@@ -580,7 +580,7 @@ msgstr "Hala çalışan {0} işlem var"
 
 #: ../src/guake/guake_app.py:186
 msgid "guake-indicator"
-msgstr "guake-indicator"
+msgstr "guake-göstergeci"
 
 #: ../src/guake/guake_app.py:186
 msgid "guake-tray"
@@ -716,7 +716,7 @@ msgstr ""
 
 #: ../src/guake/main.py:134
 msgid "Says to Guake go away =("
-msgstr "Guake'e güle güle der =("
+msgstr "Guake'e git der =("
 
 #: ../src/guake/main.py:138
 msgid "Do not execute the start up script"
