@@ -11,8 +11,8 @@ msgstr ""
 "Project-Id-Version: Guake 0.4.5\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-05-20 23:56+0800\n"
-"PO-Revision-Date: 2020-11-18 10:29+0000\n"
-"Last-Translator: Eric <spice2wolf@gmail.com>\n"
+"PO-Revision-Date: 2021-11-20 02:52+0000\n"
+"Last-Translator: Emily Ellis <e222d29f@outlook.com>\n"
 "Language-Team: Chinese (Simplified) <https://hosted.weblate.org/projects/"
 "guake/guake/zh_Hans/>\n"
 "Language: zh_CN\n"
@@ -20,7 +20,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Weblate 4.4-dev\n"
+"X-Generator: Weblate 4.9.1\n"
 
 #: ../guake/data/about.glade.h:1
 msgid "About Guake"
@@ -1274,7 +1274,7 @@ msgstr "在主目录打开新标签页"
 #: guake/dialogs.py:56
 #, python-brace-format
 msgid " on {0} workspaces"
-msgstr ""
+msgstr " 在 {0} 工作区"
 
 #: guake/main.py:211
 msgid "Change Guake palette scheme"
@@ -1306,15 +1306,15 @@ msgstr "粗体的文字也是明亮的 （VTE >=0.52）"
 
 #: guake/menus.py:42
 msgid "Save Tabs"
-msgstr ""
+msgstr "保存标签"
 
 #: guake/menus.py:45
 msgid "Restore Tabs"
-msgstr ""
+msgstr "恢复标签"
 
 #: guake/prefs.py:113
 msgid "Search terminal"
-msgstr ""
+msgstr "搜索终端"
 
 #: guake/main.py:278
 msgid "Save Guake preferences to this filename"
