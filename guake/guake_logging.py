@@ -18,15 +18,44 @@ Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor,
 Boston, MA 02110-1301 USA
 """
 
+import inspect
 import logging
 import logging.config
+import os
 
 try:
     from colorlog import ColoredFormatter
 except ImportError:
     ColoredFormatter = None
 
-log = logging.getLogger(__name__)
+
+# Create a custom logger
+logger = logging.getLogger(__name__)
+
+# Create handlers
+c_handler = logging.StreamHandler()
+f_handler = logging.FileHandler(os.path.expandvars("$HOME/.config/guake/") + "guake.log")
+c_handler.setLevel(logging.WARNING)
+f_handler.setLevel(logging.ERROR)
+
+# Create formatters and add it to handlers
+c_format = logging.Formatter("%(name)s - %(levelname)s - %(message)s")
+f_format = logging.Formatter("%(asctime)s - %(name)s - %(levelname)s - %(message)s")
+c_handler.setFormatter(c_format)
+f_handler.setFormatter(f_format)
+
+# Add handlers to the logger
+logger.addHandler(c_handler)
+logger.addHandler(f_handler)
+
+
+def _line_():
+    """Returns the current line number in our program."""
+    return str(inspect.currentframe().f_back.f_lineno)
+
+
+def _file_():
+    return str(__file__)
 
 
 def setupLogging(debug_mode):
@@ -72,5 +101,5 @@ def setupLogging(debug_mode):
         )
     else:
         logging.basicConfig(level=base_logging_level, format="%(message)s")
-    log.setLevel(base_logging_level)
-    log.debug("Logging configuration complete")
+    logger.setLevel(base_logging_level)
+    logger.debug("%s:%s  Logging configuration complete")

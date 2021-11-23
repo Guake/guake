@@ -1,0 +1,8 @@
+features:
+  - |
+    List new features here followed by the ticket number, for example::
+
+      - Add guake.log
+      - Replaces log.* for logger.*
+      - Added filename:line to log lines.
+      - Helps with issue https://github.com/Guake/guake/issues/1031 by providing a log file

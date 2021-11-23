@@ -1,3 +1,4 @@
+import inspect
 import itertools
 import logging
 import os
@@ -14,7 +15,34 @@ from textwrap import dedent
 
 from guake.paths import GUAKE_THEME_DIR
 
-log = logging.getLogger(__name__)
+# Create a custom logger
+logger = logging.getLogger(__name__)
+
+# Create handlers
+c_handler = logging.StreamHandler()
+f_handler = logging.FileHandler(os.path.expandvars("$HOME/.config/guake/") + "guake.log")
+c_handler.setLevel(logging.WARNING)
+f_handler.setLevel(logging.ERROR)
+
+# Create formatters and add it to handlers
+c_format = logging.Formatter("%(name)s - %(levelname)s - %(message)s")
+f_format = logging.Formatter("%(asctime)s - %(name)s - %(levelname)s - %(message)s")
+c_handler.setFormatter(c_format)
+f_handler.setFormatter(f_format)
+
+# Add handlers to the logger
+logger.addHandler(c_handler)
+logger.addHandler(f_handler)
+
+
+def _line_():
+    """Returns the current line number in our program."""
+    return str(inspect.currentframe().f_back.f_lineno)
+
+
+def _file_():
+    return str(__file__)
+
 
 # Reference:
 # https://gitlab.gnome.org/GNOME/gnome-tweaks/blob/master/gtweak/utils.py (GPL)
@@ -53,17 +81,17 @@ def list_all_themes():
 def select_gtk_theme(settings):
     gtk_settings = Gtk.Settings.get_default()
     if settings.general.get_boolean("gtk-use-system-default-theme"):
-        log.debug("Using system default theme")
+        logger.debug("%s:%s  Using system default theme", _file_(), _line_())
         gtk_settings.reset_property("gtk-theme-name")
         gtk_settings.set_property("gtk-application-prefer-dark-theme", False)
         return
 
     gtk_theme_name = settings.general.get_string("gtk-theme-name")
-    log.debug("Wanted GTK theme: %r", gtk_theme_name)
+    logger.debug("%s:%s  Wanted GTK theme: %r", _file_(), _line_(), gtk_theme_name)
     gtk_settings.set_property("gtk-theme-name", gtk_theme_name)
 
     prefer_dark_theme = settings.general.get_boolean("gtk-prefer-dark-theme")
-    log.debug("Prefer dark theme: %r", prefer_dark_theme)
+    logger.debug("%s:%s  Prefer dark theme: %r", _file_(), _line_(), prefer_dark_theme)
     gtk_settings.set_property("gtk-application-prefer-dark-theme", prefer_dark_theme)
 
 
@@ -93,11 +121,13 @@ def patch_gtk_theme(style_context, settings):
     #     print(n, s, rgba_to_hex(s[1]))
     selected_fg_color = rgba_to_hex(style_context.lookup_color("theme_selected_fg_color")[1])
     selected_bg_color = rgba_to_hex(style_context.lookup_color("theme_selected_bg_color")[1])
-    log.debug(
-        "Patching theme '%s' (prefer dark = '%r'), overriding tab 'checked' state': "
+    logger.debug(
+        "%s:%s Patching theme '%s' (prefer dark = '%r'), overriding tab 'checked' state': "
         "foreground: %r, background: %r",
+        _file_(),
+        _line_(),
         theme_name,
-        "yes" if variant == "dark" else "no",
+        ("yes" if variant == "dark" else "no"),
         selected_fg_color,
         selected_bg_color,
     )

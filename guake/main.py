@@ -26,6 +26,7 @@ Boston, MA 02110-1301 USA
 #     print(time.time() - g_start, __file__, inspect.currentframe().f_back.f_lineno)
 
 import builtins
+import inspect
 import logging
 import os
 import signal
@@ -39,12 +40,38 @@ builtins.__dict__["_"] = gettext
 
 from optparse import OptionParser
 
-log = logging.getLogger(__name__)
+# Create a custom logger
+logger = logging.getLogger(__name__)
 
-# Force use X11 backend under wayland before any import of GDK through dependencies.
-# This could fix weird problems under Wayland.
-# But if user set the environment variable GUAKE_ENABLE_WAYLAND, then force
-# use Wayland backend.
+# Create handlers
+c_handler = logging.StreamHandler()
+f_handler = logging.FileHandler(os.path.expandvars("$HOME/.config/guake/") + "guake.log")
+c_handler.setLevel(logging.WARNING)
+f_handler.setLevel(logging.ERROR)
+
+# Create formatters and add it to handlers
+c_format = logging.Formatter("%(name)s - %(levelname)s - %(message)s")
+f_format = logging.Formatter("%(asctime)s - %(name)s - %(levelname)s - %(message)s")
+c_handler.setFormatter(c_format)
+f_handler.setFormatter(f_format)
+
+# Add handlers to the logger
+logger.addHandler(c_handler)
+logger.addHandler(f_handler)
+
+
+def _line_():
+    """Returns the current line number in our program."""
+    return str(inspect.currentframe().f_back.f_lineno)
+
+
+def _file_():
+    return str(__file__)
+
+
+# Force use X11 backend under wayland before any import of
+# GDK through dependencies - This makes it floating and hides
+# the icon but fixes other settings in the GUI
 os.environ["GDK_BACKEND"] = "x11"
 if "GUAKE_ENABLE_WAYLAND" in os.environ:
     os.environ["GDK_BACKEND"] = "wayland"
@@ -465,7 +492,7 @@ def main():
         if "COLORTERM" in os.environ:
             del os.environ["COLORTERM"]
 
-        log.info("Guake not running, starting it")
+        logger.info("%s:%s  Guake not running, starting it", _file_(), _line_())
         # late loading of the Guake object, to speed up dbus comm
         from guake.guake_app import Guake
 
@@ -599,7 +626,7 @@ def main():
         if not already_running:
             startup_script = instance.settings.general.get_string("startup-script")
             if startup_script:
-                log.info("Calling startup script: %s", startup_script)
+                logger.info("%s:%s  Calling startup script: %s", _file_(), _line_(), startup_script)
                 with subprocess.Popen(
                     [startup_script],
                     shell=True,
@@ -608,18 +635,24 @@ def main():
                     stderr=None,
                     close_fds=True,
                 ) as pid:
-                    log.info("Startup script started with pid: %s", pid)
+                    logger.info(
+                        "%s:%s  Startup script started with pid: %s", _file_(), _line_(), pid
+                    )
                 # Please ensure this is the last line !!!!
     else:
-        log.info("--no-startup-script argument defined, so don't execute the startup script")
+        logger.info(
+            "%s:%s --no-startup-script argument defined, so don't execute the startup script",
+            _file_(),
+            _line_(),
+        )
     if already_running:
-        log.info("Guake is already running")
+        logger.info("%s:%s  Guake is already running", _file_(), _line_())
     return already_running
 
 
 def exec_main():
     if not main():
-        log.debug("Running main gtk loop")
+        logger.debug("%s:%s  Running main gtk loop", _file_(), _line_())
         signal.signal(signal.SIGINT, signal.SIG_DFL)
         # Load gi pretty late, to speed up as much as possible the parsing of the option for DBus
         # comm through command line
