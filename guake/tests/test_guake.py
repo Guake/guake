@@ -186,5 +186,6 @@ def test_guake_hide_tab_bar_if_one_tab(mocker, g, fs):
     # Set hide-tabs-if-one-tab to True
     mocker.patch.object(g.settings.general, "get_boolean", return_value=True)
 
+    g.settings.general.set_boolean("hide-tabs-if-one-tab", True)
     assert g.get_notebook().get_n_pages() == 1
     assert g.get_notebook().get_property("show-tabs") is False
