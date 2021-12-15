@@ -1,0 +1,3 @@
+fixes:
+    - Fix issue, At local execution of guake (without system-wide install), at start up, it break showing that cant found module named 'gi' #1971
+
