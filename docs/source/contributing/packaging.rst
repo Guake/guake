@@ -27,7 +27,6 @@ Here are the system dependencies of Guake for its execution:
 - ``python3-cairo``
 - ``python3-dbus``
 - ``python3-gi``
-- ``python3-pbr``
 
 Optional dependencies:
 

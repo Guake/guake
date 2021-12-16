@@ -103,7 +103,6 @@ You need to ensure the following points are met in your configuration:
    - ``python3-cairo``
    - ``python3-dbus``
    - ``python3-gi``
-   - ``python3-pbr``
    - ``python3-pip``
    - ``python3``
 

@@ -408,7 +408,6 @@ def main():
             "        python3 \\\n"
             "        python3-dbus \\\n"
             "        python3-gi \\\n"
-            "        python3-pbr \\\n"
             "        python3-pip"
         )
         sys.exit(1)
