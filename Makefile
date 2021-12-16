@@ -188,7 +188,7 @@ black:
 checks: black-check flake8 pylint reno-lint
 
 black-check:
-	PIPENV_IGNORE_VIRTUALENVS=1 pipenv run black --check $(MODULE)
+	PIPENV_IGNORE_VIRTUALENVS=1 pipenv run black --check $(MODULE) --extend-exclude $(MODULE)/_version.py
 
 flake8:
 	PIPENV_IGNORE_VIRTUALENVS=1 pipenv run flake8 guake

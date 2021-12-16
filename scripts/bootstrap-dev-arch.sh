@@ -42,7 +42,7 @@ if [[ $RUN == "1" ]]; then
         python-cairo \
         python-dbus \
         python-gobject \
-        python-pbr \
+        python-setuptools-scm \
         vte3
 fi
 
