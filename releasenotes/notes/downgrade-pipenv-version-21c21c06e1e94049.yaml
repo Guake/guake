@@ -1,0 +1,3 @@
+fixes:
+  - |
+    Downgrade pipenv version. Fix #1989 CI fail and closes #1971
