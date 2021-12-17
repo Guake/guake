@@ -10,7 +10,7 @@ fi
 
 python3 -m pip install $op --upgrade \
     'pip==20.0.2' \
-    'pipenv==2021.11.23' \
+    'pipenv==2018.11.26' \
     || echo "you may need to sudo me !"
 
 echo "Please ensure your local bin directory is in your path"
