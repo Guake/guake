@@ -58,7 +58,7 @@ dev-no-pipenv: clean
 	. .venv/bin/activate && pip install -r requirements.txt -r requirements-dev.txt -e .
 
 pipenv-install-dev:
-	PIPENV_IGNORE_VIRTUALENVS=1 pipenv install --dev --python $(PYTHON_INTERPRETER) --site-packages
+	PIPENV_IGNORE_VIRTUALENVS=1 pipenv install --dev --python $(PYTHON_INTERPRETER)
 
 ln-venv:
 	# use that to configure a symbolic link to the virtualenv in .venv
