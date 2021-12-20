@@ -1,0 +1,6 @@
+release_summary: >
+    Deprecated pbr
+
+notes_for_package_maintainers:
+  - |
+    Switched from importlib + pbr to setuptools_scm for versioning
