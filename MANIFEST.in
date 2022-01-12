@@ -5,3 +5,4 @@ include guake *
 prune guake/tests
 exclude guake/paths.py.in
 include guake/paths.py
+include po/*.mo
