@@ -53,7 +53,7 @@ jobs:
 
           # for dev
           make dev-actions
-          pipenv run pip install pycairo pygobject
+          pipenv run pip install pycairo pygobject platformdirs importlib_metadata
           # check
           make check
           make build
