@@ -123,6 +123,14 @@ def main():
     )
 
     parser.add_option(
+        "--is-visible",
+        dest="is_visible",
+        action="store_true",
+        default=False,
+        help=_("Return 1 if Guake is visible, 0 otherwise"),
+    )
+
+    parser.add_option(
         "--show",
         dest="show",
         action="store_true",
@@ -365,14 +373,6 @@ def main():
         action="store_true",
         default=False,
         help=_("Show support information"),
-    )
-
-    parser.add_option(
-        "--is-visible",
-        dest="is_visible",
-        action="store_true",
-        default=False,
-        help=_("Return 1 if Guake is visible, 0 otherwise"),
     )
 
     # checking mandatory dependencies
