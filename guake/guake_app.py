@@ -598,9 +598,9 @@ class Guake(SimpleGladeApp):
         else:
             log.debug("Hiding the terminal")
             self.hide()
-            
+
     def get_visibility(self):
-        if self.hidden == True:
+        if self.hidden:
             return 0
         return 1
 
