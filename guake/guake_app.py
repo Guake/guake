@@ -598,6 +598,11 @@ class Guake(SimpleGladeApp):
         else:
             log.debug("Hiding the terminal")
             self.hide()
+            
+    def get_visibility(self):
+        if self.hidden == True:
+            return 0
+        return 1
 
     def show_focus(self, *args):
         self.win_prepare()
