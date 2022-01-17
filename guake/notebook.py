@@ -120,6 +120,13 @@ class TerminalNotebook(Gtk.Notebook):
             except AttributeError:
                 # Gtk 3.18 fallback ("'Menu' object has no attribute 'popup_at_pointer'")
                 menu.popup(None, None, None, None, event.button, event.time)
+        elif (
+            event.type == Gdk.EventType.DOUBLE_BUTTON_PRESS
+            and event.button == 1
+            and event.window.get_height() < 60
+        ):
+            # event.window.get_height() reports the height of the clicked frame
+            self.new_page_with_focus()
 
         return False
 
