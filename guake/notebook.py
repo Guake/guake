@@ -193,7 +193,7 @@ class TerminalNotebook(Gtk.Notebook):
         self.popover.set_relative_to(user_data)
         self.popover.show_all()
         try:
-            # GTK >= 3.22
+            # For GTK >= 3.22
             self.popover.popup()
         except AttributeError:
             pass
