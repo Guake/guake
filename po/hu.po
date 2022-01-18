@@ -1553,6 +1553,34 @@ msgid ""
 "i></small>"
 msgstr ""
 
+#: guake/prefs.py:144
+msgid "Go to previous tab (alternative)"
+msgstr ""
+
+#: guake/prefs.py:146
+msgid "Go to next tab (alternative)"
+msgstr ""
+
+#: guake/menus.py:97
+msgid "Split |"
+msgstr ""
+
+#: guake/main.py:130
+msgid "Return 1 if Guake is visible, 0 otherwise"
+msgstr ""
+
+#: guake/data/prefs.glade:1003
+msgid "Lazy hide on lose focus"
+msgstr ""
+
+#: guake/data/prefs.glade:2135
+msgid "Line Height Scale (VTE >= 0.52)"
+msgstr ""
+
+#: guake/data/prefs.glade:2172
+msgid "Line Width Scale (VTE >= 0.52)"
+msgstr ""
+
 #~ msgid "key binding error"
 #~ msgstr "Hiba történt a billentyűkombináció hozzárendelésekor"
 
