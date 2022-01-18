@@ -2,15 +2,24 @@
 guake
 =====
 
-(unreleased yet)
-================
+3.8.2
+=====
 
 Release Summary
 ---------------
 
 Fix system font application issue
 
+Add fallback for version number finding
+
+Deprecated pbr
+
 Use keycodes instead of keyvals for keybindings. This allow to use keybindings with different keyboard layouts.
+
+New Features
+------------
+
+- --is-visible option returns 1 when visible, and 0 when not
 
 Known Issues
 ------------
@@ -20,7 +29,23 @@ Known Issues
 Bug Fixes
 ---------
 
+- Changed Toggle Hide on Lose Focus Shortcut to Shift-Ctrl-F1.
+  Instead of change Go to tab1 shortcut, because Ctrl-F1 is in the pool Ctrl-Fn of change to tabs.
+
+- Fix issue Ctrl+F1 does two jobs in Keyboard Shortcuts Page
+
+- - Add environment variable GUAKE_ENABLE_WAYLAND, fixed #1934
+
 - - System font aplied only for last tab #1947 
+
+- - Guake suddenly not starting any more due to ModuleNotFoundError: No module named 'importlib_metadata' #1962
+
+- - Fix vte spawn_sync runtime check failed: ((spawn_flags & ignored_spawn_flags()) == 0)
+
+Notes for Package Maintainers
+-----------------------------
+
+- Switched from importlib + pbr to setuptools_scm for versioning
 
 3.8.1
 =====
