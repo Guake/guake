@@ -43,7 +43,7 @@ reset:
 
 all: clean dev style checks dists test docs
 
-dev: clean-ln-venv ensure-pip pipenv-install-dev requirements ln-venv setup-githook \
+dev: clean-venv ensure-pip mk-venv pipenv-install-dev requirements mk-venv setup-githook \
 	 prepare-install install-dev-locale
 dev-actions: ensure-pip-system pipenv-install-dev requirements setup-githook prepare-install
 
@@ -60,12 +60,12 @@ dev-no-pipenv: clean
 pipenv-install-dev:
 	PIPENV_IGNORE_VIRTUALENVS=1 pipenv install --dev --python $(PYTHON_INTERPRETER)
 
-ln-venv:
+mk-venv:
 	# use that to configure a symbolic link to the virtualenv in .venv
 	rm -rf .venv
-	ln -s $$(pipenv --venv) .venv
+	mkdir -p .venv
 
-clean-ln-venv:
+clean-venv:
 	@rm -f .venv
 
 install-system: install-schemas compile-shemas install-locale install-guake
@@ -315,6 +315,7 @@ githook:
 
 setup-githook:
 	rm -f .git/hooks/post-commit
+	mkdir -p .git/hooks/
 	cp -fv git-hooks/* .git/hooks/
 
 
@@ -322,7 +323,7 @@ push: githook
 	git push origin --tags
 
 
-clean: clean-ln-venv rm-dists clean-docs clean-po clean-schemas clean-py clean-paths uninstall-dev-locale
+clean: clean-venv rm-dists clean-docs clean-po clean-schemas clean-py clean-paths uninstall-dev-locale
 	@echo "clean successful"
 
 clean-py:
