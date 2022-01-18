@@ -11,8 +11,8 @@ msgstr ""
 "POT-Creation-Date: 2016-08-18 17:32+0200\n"
 "PO-Revision-Date: 2021-11-20 02:52+0000\n"
 "Last-Translator: Yusuf Yavuzyigit <yusufyavuzyigit25@gmail.com>\n"
-"Language-Team: Turkish <https://hosted.weblate.org/projects/guake/guake/tr/>"
-"\n"
+"Language-Team: Turkish <https://hosted.weblate.org/projects/guake/guake/tr/"
+">\n"
 "Language: tr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -1605,6 +1605,34 @@ msgstr ""
 "neden olabilir. Yalnızca farklı terminal davranışı bekleyen belirli "
 "uygulamalar ve işletim sistemleri üzerinde çalışmanıza izin vermek için "
 "buradalar.</i></small>"
+
+#: guake/prefs.py:144
+msgid "Go to previous tab (alternative)"
+msgstr ""
+
+#: guake/prefs.py:146
+msgid "Go to next tab (alternative)"
+msgstr ""
+
+#: guake/menus.py:97
+msgid "Split |"
+msgstr ""
+
+#: guake/main.py:130
+msgid "Return 1 if Guake is visible, 0 otherwise"
+msgstr ""
+
+#: guake/data/prefs.glade:1003
+msgid "Lazy hide on lose focus"
+msgstr ""
+
+#: guake/data/prefs.glade:2135
+msgid "Line Height Scale (VTE >= 0.52)"
+msgstr ""
+
+#: guake/data/prefs.glade:2172
+msgid "Line Width Scale (VTE >= 0.52)"
+msgstr ""
 
 #~ msgid "key binding error"
 #~ msgstr "kısayol atama hatası"

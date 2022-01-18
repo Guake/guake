@@ -22,6 +22,7 @@ guake.kdev4
 *.pot
 .eggs/
 *.deb
+*.py-e
 ./config.*
 configure
 .libs

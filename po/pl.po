@@ -1333,8 +1333,8 @@ msgstr ""
 "• <b>%(line_number)s</b>: jeśli edytor to obsługuje, można otwierać plik na "
 "podanym wierszu, jeśli znajduje się na ekranie.\n"
 "\n"
-"Na przykład dla edytora Sublime Text należy użyć <b>subl "
-"%(file_path)s:%(line_number)s</b>.\n"
+"Na przykład dla edytora Sublime Text należy użyć <b>subl %(file_path)s:"
+"%(line_number)s</b>.\n"
 "</i></small>"
 
 #: guake/data/prefs.glade:2879
@@ -1353,6 +1353,34 @@ msgid ""
 "i></small>"
 msgstr ""
 "<small><i><b>Uwaga:</b> te opcje mogą spowodować nieprawidłowe zachowanie "
-"niektórych programów. Istnieją one wyłączenie w celu obejścia problemów z "
-"określonymi programami i systemami operacyjnymi, które oczekują innego "
+"niektórych programów. Istnieją one wyłączenie w celu obejścia problemów "
+"z określonymi programami i systemami operacyjnymi, które oczekują innego "
 "zachowania terminala.</i></small>"
+
+#: guake/prefs.py:144
+msgid "Go to previous tab (alternative)"
+msgstr ""
+
+#: guake/prefs.py:146
+msgid "Go to next tab (alternative)"
+msgstr ""
+
+#: guake/menus.py:97
+msgid "Split |"
+msgstr ""
+
+#: guake/main.py:130
+msgid "Return 1 if Guake is visible, 0 otherwise"
+msgstr ""
+
+#: guake/data/prefs.glade:1003
+msgid "Lazy hide on lose focus"
+msgstr ""
+
+#: guake/data/prefs.glade:2135
+msgid "Line Height Scale (VTE >= 0.52)"
+msgstr ""
+
+#: guake/data/prefs.glade:2172
+msgid "Line Width Scale (VTE >= 0.52)"
+msgstr ""
