@@ -39,7 +39,7 @@ if [[ $RUN == "1" ]]; then
         gir1.2-keybinder-3.0 \
         gir1.2-notify-0.7 \
         gir1.2-vte-2.91 \
-		gir1.2-wnck-3.0 \
+        gir1.2-wnck-3.0 \
         libkeybinder-3.0-0 \
         libutempter0 \
         python3 \
