@@ -1,0 +1,3 @@
+security:
+  - |
+     Fixed security Issue: Exposure of sensitive function, malicious user can arbitrary command via an execute_command d-bus method. #1796 

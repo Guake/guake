@@ -153,10 +153,6 @@ class DbusManager(dbus.service.Object):
         self.guake.reset_terminal_custom_colors(current_terminal=True)
         self.guake.set_colors_from_settings_on_page(current_terminal_only=True)
 
-    @dbus.service.method(DBUS_NAME, in_signature="s")
-    def execute_command(self, command):
-        self.guake.execute_command(command)
-
     @dbus.service.method(DBUS_NAME, in_signature="i", out_signature="s")
     def get_tab_name(self, tab_index=0):
         return self.guake.get_notebook().get_tab_text_index(tab_index)
@@ -193,10 +189,6 @@ class DbusManager(dbus.service.Object):
     def get_selected_uuidtab(self):
         return self.guake.get_selected_uuidtab()
 
-    @dbus.service.method(DBUS_NAME, in_signature="ss")
-    def execute_command_by_uuid(self, tab_uuid, command):
-        self.guake.execute_command_by_uuid(tab_uuid, command)
-
     @dbus.service.method(DBUS_NAME)
     def v_split_current_terminal(self):
         self.guake.get_notebook().get_current_terminal().get_parent().split_v()
@@ -204,7 +196,3 @@ class DbusManager(dbus.service.Object):
     @dbus.service.method(DBUS_NAME)
     def h_split_current_terminal(self):
         self.guake.get_notebook().get_current_terminal().get_parent().split_h()
-
-    @dbus.service.method(DBUS_NAME, in_signature="s")
-    def execute_command_current_termbox(self, command):
-        self.guake.get_notebook().get_current_terminal().execute_command(command)

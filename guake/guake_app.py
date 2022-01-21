@@ -457,14 +457,11 @@ class Guake(SimpleGladeApp):
             self.set_colors_from_settings()
 
     def execute_command(self, command, tab=None):
-        # TODO DBUS_ONLY
         """Execute the `command' in the `tab'. If tab is None, the
         command will be executed in the currently selected
         tab. Command should end with '\n', otherwise it will be
         appended to the string.
         """
-        # TODO CONTEXTMENU this has to be rewriten and only serves the
-        # dbus interface, maybe this should be moved to dbusinterface.py
         if not self.get_notebook().has_page():
             self.add_tab()
 
@@ -475,7 +472,6 @@ class Guake(SimpleGladeApp):
         terminal.feed_child(command)
 
     def execute_command_by_uuid(self, tab_uuid, command):
-        # TODO DBUS_ONLY
         """Execute the `command' in the tab whose terminal has the `tab_uuid' uuid"""
         if command[-1] != "\n":
             command += "\n"
