@@ -1346,16 +1346,15 @@ class Guake(SimpleGladeApp):
             for index in range(nb.get_n_pages()):
                 try:
                     page = nb.get_nth_page(index)
-                    if page.child:
-                        panes = []
-                        page.save_box_layout(page.child, panes)
-                        tabs.append(
-                            {
-                                "panes": panes,
-                                "label": nb.get_tab_text_index(index),
-                                "custom_label_set": getattr(page, "custom_label_set", False),
-                            }
-                        )
+                    panes = []
+                    page.save_box_layout(page.child, panes)
+                    tabs.append(
+                        {
+                            "panes": panes,
+                            "label": nb.get_tab_text_index(index),
+                            "custom_label_set": getattr(page, "custom_label_set", False),
+                        }
+                    )
                 except FileNotFoundError:
                     # discard same broken tabs
                     pass
@@ -1440,16 +1439,18 @@ class Guake(SimpleGladeApp):
                 # NOTE: If frame implement in future, we will need to update this code
                 for tabs in frames:
                     for index, tab in enumerate(tabs):
-                        directory = (
-                            tab["panes"][0]["directory"]
-                            if len(tab.get("panes", [])) == 1
-                            else tab.get("directory", None)
-                        )
-                        box, page_num, term = nb.new_page_with_focus(
-                            directory, tab["label"], tab["custom_label_set"]
-                        )
                         if tab.get("panes", False):
+                            box, page_num, term = nb.new_page_with_focus(
+                                label=tab["label"], empty=True
+                            )
                             box.restore_box_layout(box.child, tab["panes"])
+                        else:
+                            directory = (
+                                tab["panes"][0]["directory"]
+                                if len(tab.get("panes", [])) == 1
+                                else tab.get("directory", None)
+                            )
+                            nb.new_page_with_focus(directory, tab["label"], tab["custom_label_set"])
 
                     # Remove original pages in notebook
                     for i in range(current_pages):
