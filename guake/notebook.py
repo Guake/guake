@@ -340,10 +340,13 @@ class TerminalNotebook(Gtk.Notebook):
     def delete_page_current(self, kill=True, prompt=0):
         self.delete_page(self.get_current_page(), kill, prompt)
 
-    def new_page(self, directory=None, position=None):
-        terminal = self.terminal_spawn(directory)
+    def new_page(self, directory=None, position=None, empty=False):
         terminal_box = TerminalBox()
-        terminal_box.set_terminal(terminal)
+        if empty:
+            terminal = None
+        else:
+            terminal = self.terminal_spawn(directory)
+            terminal_box.set_terminal(terminal)
         root_terminal_box = RootTerminalBox(self.guake, self)
         root_terminal_box.set_child(terminal_box)
         page_num = self.insert_page(
@@ -358,7 +361,8 @@ class TerminalNotebook(Gtk.Notebook):
         )
         # this is needed to initially set the last_terminal_focused,
         # one could also call terminal.get_parent().on_terminal_focus()
-        self.terminal_attached(terminal)
+        if not empty:
+            self.terminal_attached(terminal)
         self.hide_tabbar_if_one_tab()
 
         if self.guake:
@@ -405,14 +409,17 @@ class TerminalNotebook(Gtk.Notebook):
         terminal.emit("focus", Gtk.DirectionType.TAB_FORWARD)
         self.emit("terminal-spawned", terminal, terminal.pid)
 
-    def new_page_with_focus(self, directory=None, label=None, user_set=False, position=None):
-        box, page_num, terminal = self.new_page(directory, position=position)
+    def new_page_with_focus(
+        self, directory=None, label=None, user_set=False, position=None, empty=False
+    ):
+        box, page_num, terminal = self.new_page(directory, position=position, empty=empty)
         self.set_current_page(page_num)
         if not label:
             self.rename_page(page_num, _("Terminal"), False)
         else:
             self.rename_page(page_num, label, user_set)
-        terminal.grab_focus()
+        if terminal is not None:
+            terminal.grab_focus()
         return box, page_num, terminal
 
     def rename_page(self, page_index, new_text, user_set=False):
