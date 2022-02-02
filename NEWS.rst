@@ -8,9 +8,45 @@ guake
 Release Summary
 ---------------
 
+Eliminated redundant terminal spawning on startup
+
+Security Issues
+---------------
+
+- Fixed security Issue: Exposure of sensitive function, malicious user can arbitrary command via an execute_command d-bus method. #1796 
+
+Translation Updates
+-------------------
+
+- Chinese Simplified (@kitty-panics)
+
+- Croatian (@milotype)
+
+- Dutch (@Vistaus)
+
+- German (@m1ga, @rMb93)
+
+- Indonesian (@rezaalmanda)
+
+- Polish (@piotrdrag)
+
+- Russian (@vantu5z)
+
+- Swedish (@MorganAntonsson)
+
+- Turkish (@Draconis-25, @ersen0)
+
+3.8.2.0rc1
+==========
+
+Release Summary
+---------------
+
 Fix system font application issue
 
 Add fallback for version number finding
+
+Reinstated double clicking to open new tabs
 
 Deprecated pbr
 
@@ -20,6 +56,9 @@ New Features
 ------------
 
 - --is-visible option returns 1 when visible, and 0 when not
+
+- - Double click to open a new tab, without side effects in mouse
+    enabled terminal apps
 
 Known Issues
 ------------
@@ -46,6 +85,11 @@ Notes for Package Maintainers
 -----------------------------
 
 - Switched from importlib + pbr to setuptools_scm for versioning
+
+Other
+-----
+
+- Fix for release pipeline.
 
 3.8.1
 =====
