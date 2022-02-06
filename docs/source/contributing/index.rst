@@ -7,6 +7,7 @@ Contributing to Guake
     :maxdepth: 2
 
     basic
+    release
     dev_env
     hacking
     packaging
