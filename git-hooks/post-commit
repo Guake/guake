@@ -14,7 +14,5 @@ while read line; do
     if [[ -f "${line}" ]]; then
         echo "fast-styling ${line}"
         pipenv run fiximports ${line};
-        pipenv run autopep8 --in-place --recursive setup.py ${line}
-        pipenv run yapf --style .yapf --recursive -i ${line}
     fi
 done < ${tempfile}
