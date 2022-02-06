@@ -68,8 +68,6 @@ jobs:
           make generate-paths
 
       - name: Publish distribution 📦 to Test PyPI
-        env:
-          SETUPTOOLS_SCM_PRETEND_VERSION_FOR_GUAKE: ${{ $(echo $GITHUB_REF_NAME) }}
         uses: pypa/gh-action-pypi-publish@master
         with:
           verify_metadata: false
@@ -77,8 +75,6 @@ jobs:
           repository_url: https://test.pypi.org/legacy/
 
       - name: Publish distribution 📦 to PyPI
-        env:
-          SETUPTOOLS_SCM_PRETEND_VERSION_FOR_GUAKE: ${{ $(echo $GITHUB_REF_NAME) }}
         if: startsWith(github.ref, 'refs/tags')
         uses: pypa/gh-action-pypi-publish@master
         with:
