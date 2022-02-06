@@ -3,5 +3,5 @@ release_summary: >
 
 features:
   - |
-      - Double click to open a new tab, without side effects in mouse
-        enabled terminal apps
+    Double click to open a new tab, without side effects in mouse
+    enabled terminal apps
