@@ -1,8 +1,0 @@
-features:
-  - |
-    Add "Infinite scrolling" option in "Scrolling" panel #274
-
-fixes:
-  - |
-    History size spin is fixed and now increment by 1000 steps. Default history value is now set to
-    1000, because "1024" has no real meaning for end user. #1082

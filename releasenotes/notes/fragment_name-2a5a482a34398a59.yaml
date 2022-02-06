@@ -1,3 +1,0 @@
-fixes:
-  - |
-    Fix vte ``spawn_sync`` runtime check failed: ``((spawn_flags & ignored_spawn_flags()) == 0)``

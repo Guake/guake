@@ -1,6 +1,0 @@
-release_summary: >
-  Minor maintenance release.
-
-fixes:
-  - |
-    Code cleaning and GNOME desktop file conformance

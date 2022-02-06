@@ -1,2 +1,0 @@
-fixes:
-  - fixes #1097: Gukae thinks process is running, prompt on close not showing up.

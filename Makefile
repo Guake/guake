@@ -404,17 +404,7 @@ reno:
 reno-lint:
 	PIPENV_IGNORE_VIRTUALENVS=1 pipenv run reno -q lint
 
-release-note: reno-lint release-note-news release-note-github
-
-release-note-news: reno-lint
-	@echo "Generating release note for NEWS file"
-	@rm -f guake/releasenotes/notes/reno.cache
-	@pipenv run python setup.py build_reno --output-file NEWS.rst.in
-	@grep -v -R "^\.\.\ " NEWS.rst.in | cat -s > NEWS.rst
-	@cat releasenotes/archive/NEWS.pre-3.0 >> NEWS.rst
-	@rm -fv NEWS.rst.in
-	@echo "Updated NEWS.rst"
-
+release-note: release-note-github
 
 release-note-github: reno-lint
 	@echo
@@ -423,7 +413,7 @@ release-note-github: reno-lint
 	@echo "!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"
 	@echo "-------- copy / paste from here --------"
 	@# markdown_github to be avoided => gfm output comes in pandoc 2.0.4 release dec 2017
-	@pipenv run reno report 2>/dev/null | \
+	@pipenv run reno report --earliest-version 3.8.3 --no-show-source --collapse-pre-releases 2>/dev/null | \
 		pandoc -f rst -t markdown --markdown-headings=atx --wrap=none --tab-stop 2 | \
 		tr '\n' '\r' | \
 			sed 's/\r<!-- -->\r//g' | \
@@ -434,35 +424,6 @@ release-note-github: reno-lint
 			sed 's/\r\ \ >\ \-\ /\r  - /g' | \
 			sed 's/\\\#/\#/g' | \
 		tr '\r' '\n'
-
-release:
-	git checkout -f master
-	git pull --rebase upstream master
-	@{ \
-		set -e ;\
-		export VERSION=$$(PIPENV_IGNORE_VIRTUALENVS=1 pipenv run python setup.py --version | cut -d. -f1,2,3); \
-		echo "I: Computed new version: $$VERSION"; \
-		echo "I: presse ENTER to accept or type new version number:"; \
-		read VERSION_OVERRIDE; \
-		VERSION=$${VERSION_OVERRIDE:-$$VERSION}; \
-		PROJECTNAME=$$(PIPENV_IGNORE_VIRTUALENVS=1 pipenv run python setup.py --name); \
-		echo "I: Tagging $$PROJECTNAME in version $$VERSION with tag: $$VERSION" ; \
-		echo "I: Pushing tag $$VERSION, press ENTER to continue, C-c to interrupt"; \
-		git commit --all -m "Release $$VERSION" --allow-empty --no-edit ; \
-		git tag $$VERSION -m "$$PROJECTNAME $$VERSION"; \
-		make release-note-news rm-dists update-po dists ; \
-		git commit --all --amend --no-edit; \
-		git tag -f "$${VERSION}"; \
-		make release-note-github; \
-		echo ""; \
-		echo "Please check your git history and push when ready with:"; \
-		echo "  git push upstream master"; \
-		echo "  git push upstream $$VERSION"; \
-		echo ""; \
-		echo "Revert with:"; \
-		echo "  git tag -d $$VERSION"; \
-	}
-
 
 # aliases to gracefully handle typos on poor dev's terminal
 check: checks

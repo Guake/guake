@@ -1,3 +1,0 @@
-fixes:
-  - Fix a need for double toggling to hide when using command line with
-    ``--show`` and option with ``only_show_hide = False``.

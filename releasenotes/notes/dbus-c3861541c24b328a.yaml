@@ -1,3 +1,0 @@
-fixes:
-  - |
-    Speed up guake D-Bus communication (command line such as ``guake -t``).

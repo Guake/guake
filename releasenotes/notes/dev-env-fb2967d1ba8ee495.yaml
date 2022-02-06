@@ -1,4 +1,0 @@
-features:
-  - |
-    [dev env]: Add the possibility to terminate guake with ``Ctrl+c`` on terminal
-    where Guake has been launched

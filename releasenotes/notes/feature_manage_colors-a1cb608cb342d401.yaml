@@ -1,7 +1,0 @@
-release_summary: >
-    --bgcolor-focused, --fgcolor-focused and --reset-colors-focused command line arguments
-        renamed to --bgcolor-current, --fgcolor-current and --reset-colors-current respectively.
-
-features:
-    - Setting of background and foreground colors and resetting colors of the current terminal
-        (not the focused one).

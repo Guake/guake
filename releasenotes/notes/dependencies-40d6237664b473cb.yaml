@@ -1,4 +1,0 @@
-notes_for_package_maintainers:
-  - |
-    Please note ``libutempter0`` should now be considered as a mandatory dependency of Guake.
-    It solves the frozen terminal issue on exit (#1014)

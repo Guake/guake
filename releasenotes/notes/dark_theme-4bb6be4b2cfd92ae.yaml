@@ -1,8 +1,0 @@
-features:
-  - |
-    Preliminary Dark theme support. To use it, install the 'numix' theme in your system.
-    For example, Ubuntu/Debian users would use ``sudo apt install numix-gtk-theme``.
-
-known_issues:
-  - |
-    Cannot enable or disable the GTK or Dark theme by a preference setting.

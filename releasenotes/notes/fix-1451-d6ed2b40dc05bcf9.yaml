@@ -1,2 +1,0 @@
-fixes:
-  - fixes #1451: `guake --new-tab dir` opens tab in $HOME dir

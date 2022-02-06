@@ -1,3 +1,0 @@
-fixes:
-  - |
-    change scope of ``which_align`` variable in ``pref.py`` (#1225)

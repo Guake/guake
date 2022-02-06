@@ -1,4 +1,0 @@
-features:
-  - |
-    Allow application to capture right click (ex: Midnight commander). #1096.
-    It is still possible to show the contextual menu with Shift+right click.

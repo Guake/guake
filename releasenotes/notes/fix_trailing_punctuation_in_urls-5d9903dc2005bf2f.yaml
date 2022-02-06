@@ -1,6 +1,0 @@
-release_summary: >
-    Fix trailing punctuation in URLs being included in the URL
-
-fixes:
-  - |
-      - Open with URL includes trailing single quote (invalid URL) #1624 

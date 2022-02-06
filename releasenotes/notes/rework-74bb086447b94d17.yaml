@@ -1,4 +1,0 @@
-fixes:
-  - fix unnecessary show/hide
-  - fix settings only applied to the active workspace if more the 1 is used
-  - fix prompt quit dialog numbers when more then 1 workspace is used

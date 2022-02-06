@@ -1,2 +1,0 @@
-fixes:
-    - Make sure workspace-specific-tab-sets only enable on X11 backend (due to wnck)

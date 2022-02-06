@@ -1,2 +1,0 @@
-fixes:
-    - Fix split terminal by menu will not follow last terminal cwd (if option set)

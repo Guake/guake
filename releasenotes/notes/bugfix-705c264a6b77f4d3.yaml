@@ -1,3 +1,0 @@
-fixes:
-  - |
-    Apply cursor blinking to new tabs as well, not only on settings change.

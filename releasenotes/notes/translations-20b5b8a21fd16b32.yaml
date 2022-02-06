@@ -1,9 +1,0 @@
-translations:
-  - Dutch
-  - Polish
-  - French
-
-fixes:
-  - Update some dependencies for build environment
-  - |
-    Update the error message on missing dependencies (ex: when use 'pip install' guake)

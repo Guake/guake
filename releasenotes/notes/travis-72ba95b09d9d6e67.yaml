@@ -1,4 +1,0 @@
-fixes:
-  - |
-    Travis build cleaned build artifacts before deployment, leading to missing files when
-    built in the CI.

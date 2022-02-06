@@ -1,3 +1,0 @@
-fixes:
-  - Fix ineffective override of the GDK_BACKEND environement variable causing invalid pointer location and display detection (#1820)
-  

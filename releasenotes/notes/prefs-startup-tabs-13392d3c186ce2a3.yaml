@@ -1,8 +1,0 @@
-features:
-  - |
-    Add session save preferences for startup/tabs:
-
-      - "restore-tabs-startup": when enabled, it will restore tabs when startup
-      - "restore-tabs-notify": when enabled, it will notify user after tabs restored (except startup)
-      - "save-tabs-when-changed": when enabled, it will automatically save tabs session
-        when changed (new/del/reorder)

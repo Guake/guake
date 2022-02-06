@@ -1,3 +1,0 @@
-fixes:
-  - |
-    delete tab even without libutempter (#1198)

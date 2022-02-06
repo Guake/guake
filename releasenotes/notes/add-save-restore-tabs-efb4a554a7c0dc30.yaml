@@ -1,6 +1,0 @@
----
-features:
-  - |
-    Add save/restore tabs function.
-  - |
-    Add label parameter to ``notebook.new_page_with_focus``

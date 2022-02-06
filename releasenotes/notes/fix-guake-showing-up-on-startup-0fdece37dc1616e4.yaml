@@ -1,5 +1,0 @@
-fixes:
-  - |
-    Command options do not work, crash when disabling keybinding #1111
-  - |
-    Do not open Guake window upon startup #1113

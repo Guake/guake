@@ -1,9 +1,0 @@
-release_summary: >
-  Adds an option to display only the last directory on the current path as the tab name.
-
-features:
-  - Adds an option to display only the last directory on the current path as the tab name.
-  - Reworked the tab name selection to use a drop-down menu.
-
-deprecations:
-  - Translations need to be updated.

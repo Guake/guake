@@ -1,8 +1,0 @@
-features: 
-  - |
-    Re-implemented the refocus functionality.
-        
-    This functionality allows the user to return the focus to an open guake window.
-    It happened to be partially be maintained but faced issues in the migration to Gtk3.
-        
-    The functionality was revived, partially based on commented-out code found in Guake.show_hide().
