@@ -28,8 +28,8 @@ import traceback
 import uuid
 
 from pathlib import Path
-from time import sleep
 from threading import Thread
+from time import sleep
 from urllib.parse import quote_plus
 from xml.sax.saxutils import escape as xml_escape
 
