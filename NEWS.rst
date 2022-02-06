@@ -1,23 +1,8 @@
 Guake Change Log
 ################
 
-3.8.3
+3.8.4
 =====
-
-Release Summary
----------------
-
-Eliminated redundant terminal spawning on startup
-
-Fix system font application issue
-
-Add fallback for version number finding
-
-Reinstated double clicking to open new tabs
-
-Deprecated pbr
-
-Use keycodes instead of keyvals for keybindings. This allow to use keybindings with different keyboard layouts.
 
 New Features
 ------------
@@ -47,6 +32,18 @@ Bug Fixes
 
 - Fix vte ``spawn_sync`` runtime check failed: ((spawn_flags & ignored_spawn_flags()) == 0)
 
+- Fix the way PBR computes the package version.
+
+- Eliminated redundant terminal spawning on startup
+
+- Fix system font application issue
+
+- Add fallback for version number finding
+
+- Reinstated double clicking to open new tabs
+
+- Use keycodes instead of keyvals for keybindings. This allow to use keybindings with different keyboard layouts.
+
 Notes for Package Maintainers
 -----------------------------
 
@@ -74,6 +71,11 @@ Translation Updates
 - Russian (@vantu5z)
 - Swedish (@MorganAntonsson)
 - Turkish (@Draconis-25, @ersen0)
+
+3.8.3
+=====
+
+Unreleased.
 
 3.8.2
 =====
