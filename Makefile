@@ -45,7 +45,7 @@ all: clean dev style checks dists test docs
 
 dev: clean-ln-venv ensure-pip pipenv-install-dev requirements ln-venv setup-githook \
 	 prepare-install install-dev-locale
-dev-actions: ensure-pip-system pipenv-install-dev requirements setup-githook prepare-install
+dev-actions: ensure-pip-system pipenv-install-dev requirements prepare-install
 
 ensure-pip:
 	./scripts/bootstrap-dev-pip.sh
