@@ -1,3 +1,0 @@
-fixes:
-  - |
-    Fix transparency regression on ubuntu composite (#1333)

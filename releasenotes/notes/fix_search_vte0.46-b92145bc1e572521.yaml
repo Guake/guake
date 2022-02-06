@@ -1,3 +1,0 @@
-fixes:
-  - |
-    Update search box to work with updated regex vte apis for v0.46+, #1752

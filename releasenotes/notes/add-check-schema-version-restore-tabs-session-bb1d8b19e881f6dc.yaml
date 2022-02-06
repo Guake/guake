@@ -1,2 +1,0 @@
-fixes:
-    - Add schema_version check for tabs session restore

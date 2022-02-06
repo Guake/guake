@@ -1,4 +1,0 @@
-release_summary: >
-  This minor release mainly focus on fixing big problems that was remaining after the migration to
-  GTK3. I would like to akwonledge the work of some contributors that helped testing and reporting
-  issues on Guake 3.0.0. Thanks a lot to @egmontkob and @aichingm.

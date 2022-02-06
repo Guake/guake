@@ -1,7 +1,0 @@
-release_summary: >
-  Reinstated double clicking to open new tabs
-
-features:
-  - |
-    Double click to open a new tab, without side effects in mouse
-    enabled terminal apps

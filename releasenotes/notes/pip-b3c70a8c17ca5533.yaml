@@ -1,3 +1,0 @@
-fixes:
-  - Install of Guake through pip install was broken (missing ``paths.py``).
-    Now fixed. Discarded generation of bdist. (fix #1349 and #1328).

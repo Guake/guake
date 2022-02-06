@@ -1,6 +1,0 @@
-release_summary: >
-    Stopped setting GDK_BACKEND to x11 in terminals.
-
-fixes:
-  - |
-      - GDK_BACKEND is propagated to the shell in terminal #1871 

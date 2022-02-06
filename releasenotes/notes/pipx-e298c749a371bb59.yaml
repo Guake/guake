@@ -1,4 +1,0 @@
-other:
-  - |
-    Add a recommendation on how to install Guake from pypi. The best way is to use `pipx` installer,
-    which install guake in its own virtual environment and create a launcher in `~/.local/bin`.

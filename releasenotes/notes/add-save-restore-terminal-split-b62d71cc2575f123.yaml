@@ -1,7 +1,0 @@
-fixes:
-    - Add save/restore terminal split for tabs session
-        - Save/Restore terminal split by pre-order traversal full binary tree in list
-    - Bump tabs session schema_version to 2 (to support terminal split)
-    - Lazy restore terminal split until Guake is visible
-    - Manage terminal signal handler by handler_ids
-

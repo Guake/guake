@@ -1,3 +1,0 @@
-fixes:
-  - |
-    fix ``import sys`` in ``simplegladeapp.py``

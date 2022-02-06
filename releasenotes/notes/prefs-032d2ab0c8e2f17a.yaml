@@ -1,9 +1,0 @@
-release_summary: >
-  The Preference window has been deeply reworked and the hotkey management has been rewriten. This
-  was one the the major regression in Guake 3.0.
-
-fixes:
-  - |
-    Rework the Preference window and reorganize the settings. Lot of small issues
-    has been fixed.
-    The Preference window now fits in a 1024x768 screen.

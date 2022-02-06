@@ -1,7 +1,0 @@
----
-features:
-  - |
-    [dev env] `reno <https://docs.openstack.org/reno/latest/>`_ will be used to generate
-    release notes for Guake starting version 3.0.0.
-    It allows developers to write the right chunk that will appear in the release
-    note directly from their Pull Request.

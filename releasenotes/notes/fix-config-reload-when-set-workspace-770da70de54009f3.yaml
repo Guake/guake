@@ -1,2 +1,0 @@
-fixes:
-    - Fix config didn't reload when set_workspace

@@ -1,7 +1,0 @@
-fixes:
-  - |
-    Fix ``sudo make uninstall/install`` to work only with ``/usr/local``
-  - |
-    Fix translation ``mo`` file generation
-  - |
-    Fix crash on Wayland

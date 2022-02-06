@@ -1,5 +1,0 @@
-release_summary: >
-  placing the appstream metainfo file in the right path according to https://www.freedesktop.org/software/appstream/docs/chap-Metadata.html#spec-component-location
-
-fixes:
-  - placing the appstream metainfo file in the right path #244

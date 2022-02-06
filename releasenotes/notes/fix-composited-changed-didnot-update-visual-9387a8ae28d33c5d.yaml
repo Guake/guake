@@ -1,2 +1,0 @@
-fixes:
-    - When composited changed, it will update Guake window visual to make it transparent

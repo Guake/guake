@@ -1,2 +1,0 @@
-fixes:
-    - Fix `make uninstall` not cleaning up properly #1646

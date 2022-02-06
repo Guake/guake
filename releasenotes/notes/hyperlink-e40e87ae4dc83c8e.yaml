@@ -1,5 +1,0 @@
-features:
-  - |
-    Support for hyperlink VTE extension
-    (`described here <https://gist.github.com/egmontkob/eb114294efbcd5adb1944c9f3cb5feda>`_ )
-    #945 (Untested, as it requires VTE 0.50)

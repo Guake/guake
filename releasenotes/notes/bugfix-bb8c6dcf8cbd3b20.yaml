@@ -1,4 +1,0 @@
-fixes:
-  - Fix transparency issue #1323
-  - Fix right-click on link #1311
-  - Fix bad css override on check tab background (#1326)

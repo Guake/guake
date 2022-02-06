@@ -1,8 +1,0 @@
-fixes:
-  - |
-   Changed Toggle Hide on Lose Focus Shortcut to Shift-Ctrl-F1.
-   Instead of change Go to tab1 shortcut, because Ctrl-F1 is in the pool Ctrl-Fn of change to tabs.
-
-  - Fix issue Ctrl+F1 does two jobs in Keyboard Shortcuts Page #1719
-
-

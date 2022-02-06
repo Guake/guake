@@ -1,3 +1,0 @@
-fixes:
-  - |
-    Fix Crash (TypeError) when common keys are found in config #1713

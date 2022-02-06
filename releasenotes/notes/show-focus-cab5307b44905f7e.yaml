@@ -1,5 +1,0 @@
-features:
-  - |
-    Added hotkey for showing and focusing Guake window when it is opened or closed.
-    It is convenient when Guake window are overlapped with another windows and user
-    needs to just showing it without closing and opening it again. #1133

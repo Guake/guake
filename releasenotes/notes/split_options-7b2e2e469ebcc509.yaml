@@ -1,4 +1,0 @@
-features:
-      - |
-        `guake --split-vertical` and `--split-horizontal` split the current
-         tab just like the context menu does

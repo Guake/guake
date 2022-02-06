@@ -1,3 +1,0 @@
-fixes:
-  - |
-    Implements a timestamp for wayland (#1215)

@@ -1,5 +1,0 @@
-fixes:
-  - |
-    removed duplicate event bind? previously I had issue where quick-open event would be fired 
-    twice because of this.
-

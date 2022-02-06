@@ -1,3 +1,0 @@
-fixes:
-  - |
-    Don't translate application icon (this finally fixes Guake application icon not being displayed with German locale, which was only partially resolved with #1320)

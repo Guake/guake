@@ -1,5 +1,0 @@
-release_summary: >
-    Fixes the bug when "New Tab" or "Split Terminal" resets colors set by "--bgcolor" command.
-
-fixes:
-    Fixes the bug when "New Tab" or "Split Terminal" resets colors set by "--bgcolor" command. #1437

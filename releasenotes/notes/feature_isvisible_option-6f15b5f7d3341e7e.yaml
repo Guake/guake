@@ -1,4 +1,0 @@
-
-features:
-  - |
-    ``--is-visible`` option returns 1 when visible, and 0 when not #1926

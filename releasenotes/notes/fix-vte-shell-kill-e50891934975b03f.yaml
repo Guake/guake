@@ -1,2 +1,0 @@
-fixes:
-    - Fix delete_shell using os.waitpid (should not use it)

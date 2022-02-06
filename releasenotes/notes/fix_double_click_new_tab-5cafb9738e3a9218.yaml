@@ -1,7 +1,0 @@
-known_issues:
-  - |
-      - removes the broken feature, where double-clicking on the tab bar opened a new tab #1439
-
-fixes:
-  - |
-      - fixes an issue, where double-clicking in certain CLI apps would instead open a new tab #1697

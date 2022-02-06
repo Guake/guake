@@ -1,2 +1,0 @@
-fixes:
-  - Avoid spurious resize event when showing fullscreened window

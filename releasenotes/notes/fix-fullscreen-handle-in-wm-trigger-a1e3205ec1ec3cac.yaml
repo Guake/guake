@@ -1,2 +1,0 @@
-fixes:
-    - Fix fullscreen/unfullscreen not handle correctly when trigger by wm

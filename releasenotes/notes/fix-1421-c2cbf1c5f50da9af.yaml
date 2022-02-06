@@ -1,2 +1,0 @@
-fixes:
-  - fix no focus after closing a split terminal (#1421)

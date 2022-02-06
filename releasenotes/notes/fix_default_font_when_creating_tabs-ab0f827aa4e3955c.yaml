@@ -1,5 +1,0 @@
-release_summary: >
-    Fix system font application issue
-
-fixes:
-  - System font applied only for last tab #1947

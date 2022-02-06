@@ -1,4 +1,0 @@
-fixes:
-  - |
-     Corrected usage of ``Vte.Regex.new_for_match`` to fix regular expression matching
-     (hyperlinks, quick open) on VTE >0.50 (#1295)

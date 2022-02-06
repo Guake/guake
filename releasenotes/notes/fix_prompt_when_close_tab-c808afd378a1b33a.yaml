@@ -1,6 +1,0 @@
-release_summary: >
-  Fixes prompting when closing a tab.
-
-fixes:
-  - |
-      - Fixes #1863

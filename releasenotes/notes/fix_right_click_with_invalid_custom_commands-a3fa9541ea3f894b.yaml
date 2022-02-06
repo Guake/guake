@@ -1,6 +1,0 @@
-release_summary: >
-    Fix right click menu not populating when custom commands is malformed
-
-fixes:
-  - |
-      - Minimal Right Click Menu, no copy or split screen #1845 
