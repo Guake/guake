@@ -1,7 +1,7 @@
 Guake Change Log
 ################
 
-3.8.4
+3.8.5
 =====
 
 New Features
@@ -71,6 +71,11 @@ Translation Updates
 - Russian (@vantu5z)
 - Swedish (@MorganAntonsson)
 - Turkish (@Draconis-25, @ersen0)
+
+3.8.4
+=====
+
+Unreleased.
 
 3.8.3
 =====
