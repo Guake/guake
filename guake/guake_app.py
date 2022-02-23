@@ -1441,7 +1441,7 @@ class Guake(SimpleGladeApp):
                     for index, tab in enumerate(tabs):
                         if tab.get("panes", False):
                             box, page_num, term = nb.new_page_with_focus(
-                                label=tab["label"], empty=True
+                                label=tab["label"], user_set=tab["custom_label_set"], empty=True
                             )
                             box.restore_box_layout(box.child, tab["panes"])
                         else:
