@@ -1,0 +1,3 @@
+fixes:
+  - |
+      - Fix custom label not working #2044
