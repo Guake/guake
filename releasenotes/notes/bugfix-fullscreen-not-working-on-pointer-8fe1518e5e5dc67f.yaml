@@ -1,0 +1,4 @@
+fixes:
+  - |
+    Fix fullscreen window is not working on multiple monitors when using
+    "appear on mouse display" option #928
