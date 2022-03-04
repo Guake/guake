@@ -27,6 +27,7 @@ import time as pytime
 import traceback
 import uuid
 
+from cryptography.fernet import Fernet
 from pathlib import Path
 from threading import Thread
 from time import sleep
@@ -56,6 +57,7 @@ from guake.dialogs import PromptQuitDialog
 from guake.globals import MAX_TRANSPARENCY
 from guake.globals import NAME
 from guake.globals import TABS_SESSION_SCHEMA_VERSION
+from guake.globals import DBUS_KEYPATH
 from guake.gsettings import GSettingHandler
 from guake.keybindings import Keybindings
 from guake.notebook import NotebookManager
@@ -281,6 +283,13 @@ class Guake(SimpleGladeApp):
                 ),
                 filename,
             )
+
+        # Init session dbus key
+        self.dbus_key = Fernet.generate_key()
+        os.makedirs(os.path.expanduser(os.path.dirname(DBUS_KEYPATH)), exist_ok=True)
+        with open(os.path.expanduser(DBUS_KEYPATH), "wb") as f:
+            f.write(self.dbus_key)
+        os.chmod(os.path.expanduser(DBUS_KEYPATH), 0o600)
 
         log.info("Guake initialized")
 

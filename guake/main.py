@@ -33,6 +33,7 @@ import subprocess
 import sys
 import uuid
 
+from cryptography.fernet import Fernet
 from locale import gettext
 
 builtins.__dict__["_"] = gettext
@@ -50,6 +51,7 @@ if "GUAKE_ENABLE_WAYLAND" in os.environ:
     os.environ["GDK_BACKEND"] = "wayland"
 
 from guake.globals import NAME
+from guake.globals import DBUS_KEYPATH
 from guake.globals import bindtextdomain
 from guake.support import print_support
 from guake.utils import restore_preferences
@@ -459,8 +461,16 @@ def main():
     # possible, lets create a new instance. This function will return
     # a boolean value depending on this decision.
     try:
-        bus = dbus.SessionBus()
+
+        if "SUDO_UID" in os.environ:
+            os.seteuid(int(os.environ["SUDO_UID"]))
+            bus = dbus.bus.BusConnection(f"unix:path=/run/user/{os.environ['SUDO_UID']}/bus")
+            os.seteuid(0)
+        else:
+            bus = dbus.SessionBus()
+
         remote_object = bus.get_object(DBUS_NAME, DBUS_PATH)
+
         already_running = True
     except dbus.DBusException:
         # can now configure the logging
@@ -549,8 +559,18 @@ def main():
         only_show_hide = options.show
 
     if options.command:
-        remote_object.execute_command(options.command)
-        only_show_hide = options.show
+        if os.geteuid() == 0:
+            with open(
+                os.path.expanduser(f"~{os.environ['SUDO_USER']}{DBUS_KEYPATH[1:]}"), "rb"
+            ) as f:
+                remote_object.execute_command(
+                    Fernet(f.read()).encrypt(f"guake.{options.command}".encode())
+                )
+            only_show_hide = options.show
+            os.seteuid(0)
+        else:
+            sys.stdout.write("Must be sudo to use -e")
+            sys.exit(-1)
 
     if options.tab_index and options.rename_tab:
         try:
@@ -614,7 +634,6 @@ def main():
                 log.info("Calling startup script: %s", startup_script)
                 with subprocess.Popen(
                     [startup_script],
-                    shell=True,
                     stdin=None,
                     stdout=None,
                     stderr=None,

@@ -1,0 +1,6 @@
+release_summary: >
+  -e command reinstated with sudo requirement
+  
+security:
+  - |
+    guake with the -e flag must now be run with super user privileges.

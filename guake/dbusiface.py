@@ -24,6 +24,9 @@ import dbus
 import dbus.glib
 import dbus.service
 
+from cryptography.fernet import Fernet
+from cryptography.exceptions import InvalidSignature
+
 log = logging.getLogger(__name__)
 
 dbus.glib.threads_init()
@@ -152,6 +155,18 @@ class DbusManager(dbus.service.Object):
     def reset_colors_current(self):
         self.guake.reset_terminal_custom_colors(current_terminal=True)
         self.guake.set_colors_from_settings_on_page(current_terminal_only=True)
+
+    @dbus.service.method(DBUS_NAME, in_signature="s")
+    def execute_command(self, command):
+        try:
+            message = Fernet(self.guake.dbus_key).decrypt(command.encode()).decode()
+        except InvalidSignature:
+            log.error("Invalid dbus key given to execute command")
+            return
+        if message[:6] == "guake.":
+            self.guake.execute_command(message[6:])
+        else:
+            log.error("Invalid command")
 
     @dbus.service.method(DBUS_NAME, in_signature="i", out_signature="s")
     def get_tab_name(self, tab_index=0):
