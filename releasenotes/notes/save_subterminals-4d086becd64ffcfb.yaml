@@ -1,0 +1,6 @@
+release_summary: >
+  Guake now saves layout when splitting/closing split panes
+
+fixes:
+  - |
+      - A closed subterminal returns back after restarting Guake #1686 

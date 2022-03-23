@@ -70,9 +70,6 @@ def save_tabs_when_changed(func):
     """Decorator for save-tabs-when-changed"""
 
     def wrapper(*args, **kwargs):
-        func(*args, **kwargs)
-        log.debug("mom, I've been called: %s %s", func.__name__, func)
-
         # Find me the Guake!
         clsname = args[0].__class__.__name__
         g = None
@@ -86,6 +83,9 @@ def save_tabs_when_changed(func):
             g = args[0].guake
         elif getattr(args[0], "notebook", None):
             g = args[0].notebook.guake
+
+        func(*args, **kwargs)
+        log.debug("mom, I've been called: %s %s", func.__name__, func)
 
         # Tada!
         if g and g.settings.general.get_boolean("save-tabs-when-changed"):
