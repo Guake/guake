@@ -1,0 +1,6 @@
+release_summary: >
+  -e command reinstated and now only runs in new tabs
+  
+security:
+  - |
+    guake with the -e flag now always opens a new tab to run commands in
