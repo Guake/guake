@@ -46,7 +46,7 @@ So on Ubuntu the following commands are equivalent:
 .. code-block:: bash
 
     $ sudo make install
-    $ sudo make install PREFIX=/usr/lobal
+    $ sudo make install PREFIX=/usr/local
 
 On Archlinux this can be done by passing ``/usr`` as ``PREFIX``:
 
@@ -54,10 +54,10 @@ On Archlinux this can be done by passing ``/usr`` as ``PREFIX``:
 
     $ sudo make install PREFIX=/usr
 
-which will changes the installation destination to ``/usr/lib/python3.x/site-packages/guake``.
+which changes the installation destination to ``/usr/lib/python3.x/site-packages/guake``.
 
-Note that the install script automatically determines to use whether to use
-``dist-packages`` or ``site-packaes``.
+Note that the install script automatically determines whether to use
+``dist-packages`` or ``site-packages``.
 
 For more details checkout the official PKGBUILD at
 `archlinux.org <https://www.archlinux.org/packages/community/any/guake/>`_, the PKGBUILD on
