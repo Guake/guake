@@ -243,7 +243,7 @@ def main():
         dest="command",
         action="store",
         default="",
-        help=_("Execute an arbitrary command in the selected tab."),
+        help=_("Execute an arbitrary command in a new tab."),
     )
 
     parser.add_option(
