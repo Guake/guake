@@ -1279,6 +1279,13 @@ class Guake(SimpleGladeApp):
         terminals = self.get_notebook().get_terminals_for_page(page_num)
         return str(terminals[0].get_uuid())
 
+    def open_link_under_terminal_cursor(self, *args):
+        current_term = self.get_notebook().get_current_terminal()
+        if current_term is None:
+            return
+        url = current_term.get_link_under_terminal_cursor()
+        current_term.browse_link_under_cursor(url)
+
     def search_on_web(self, *args):
         """Search for the selected text on the web"""
         # TODO KEYBINDINGS ONLY
