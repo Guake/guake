@@ -478,6 +478,13 @@ class GuakeTerminal(Vte.Terminal):
         if value:
             return value
 
+    def get_link_under_terminal_cursor(self) -> Optional[str]:
+        cursor_position = self.get_cursor_position()
+        matched_string = self.match_check(cursor_position.column, cursor_position.row)
+        link = self.handleTerminalMatch(matched_string)
+        if link:
+            return link
+
     def get_link_under_cursor(self):
         return self.found_link
 
