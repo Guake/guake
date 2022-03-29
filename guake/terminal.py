@@ -481,12 +481,13 @@ class GuakeTerminal(Vte.Terminal):
     def get_link_under_cursor(self):
         return self.found_link
 
-    def browse_link_under_cursor(self):
+    def browse_link_under_cursor(self, url=None):
         # TODO move the call to xdg-open to guake.utils
-        if not self.found_link:
+        if not self.found_link or url is None:
             return
-        log.debug("Opening link: %s", self.found_link)
-        cmd = ["xdg-open", self.found_link]
+        url = url if url is not None else self.found_link
+        log.debug("Opening link: %s", url)
+        cmd = ["xdg-open", url]
         with subprocess.Popen(cmd, shell=False):
             pass
 
