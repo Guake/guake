@@ -75,6 +75,7 @@ def main():
     """
     # Force to xterm-256 colors for compatibility with some old command line programs
     os.environ["TERM"] = "xterm-256color"
+    os.environ["TERM_PROGRAM"] = "guake"
 
     # do not use version keywords here, pbr might be slow to find the version of Guake module
     parser = OptionParser()
