@@ -490,7 +490,7 @@ class GuakeTerminal(Vte.Terminal):
 
     def browse_link_under_cursor(self, url=None):
         # TODO move the call to xdg-open to guake.utils
-        if not self.found_link or url is None:
+        if not self.found_link and url is None:
             return
         url = url if url is not None else self.found_link
         log.debug("Opening link: %s", url)
