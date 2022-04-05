@@ -82,6 +82,7 @@ class Keybindings:
             ("decrease-transparency", self.guake.accel_decrease_transparency),
             ("toggle-transparency", self.guake.accel_toggle_transparency),
             ("search-on-web", self.guake.search_on_web),
+            ("open-link-under-terminal-cursor", self.guake.open_link_under_terminal_cursor),
             ("move-tab-left", self.guake.accel_move_tab_left),
             ("move-tab-right", self.guake.accel_move_tab_right),
             ("switch-tab1", self.guake.gen_accel_switch_tabN(0)),

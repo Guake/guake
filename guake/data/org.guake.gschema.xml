@@ -413,6 +413,11 @@
             <summary>Search current selected text on the web</summary>
             <description>Accelerator to active function that search on the web the current selected text on the terminal.</description>
         </key>
+        <key name="open-link-under-terminal-cursor" type="s">
+            <default>'&lt;Control&gt;&lt;Shift&gt;o'</default>
+            <summary>Open link under terminal cursor</summary>
+            <description>Accelerator to active function that opens the link (URL) under the current terminal cursor.</description>
+        </key>
         <key name="move-tab-left" type="s">
             <default>'&lt;Control&gt;&lt;Shift&gt;Page_Up'</default>
             <summary>Move left current tab</summary>
