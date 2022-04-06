@@ -524,12 +524,12 @@
             <description>Decrease the screen height.</description>
         </key>
         <key name="increase-transparency" type="s">
-            <default>'&lt;Control&gt;&lt;Shift&gt;Up'</default>
+            <default>'&lt;Control&gt;&lt;Shift&gt;b'</default>
             <summary>Increase transparency.</summary>
             <description>Increase the terminal transparency.</description>
         </key>
         <key name="decrease-transparency" type="s">
-            <default>'&lt;Control&gt;&lt;Shift&gt;Down'</default>
+            <default>'&lt;Control&gt;&lt;Shift&gt;n'</default>
             <summary>Decrease transparency.</summary>
             <description>Decrease the terminal transparency.</description>
         </key>
