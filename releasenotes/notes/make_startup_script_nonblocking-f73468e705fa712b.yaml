@@ -1,0 +1,3 @@
+fixes:
+  - |
+      - Hooks > onStart delay Guake start by ~100s #1982
