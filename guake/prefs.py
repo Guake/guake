@@ -186,7 +186,10 @@ HOTKEYS = [
         "key": "extra",
         "keys": [
             {"key": "search-on-web", "label": _("Search selected text on web")},
-            {"key": "open-link-under-terminal-cursor", "label": _("Open URL under terminal cursor")},
+            {
+                "key": "open-link-under-terminal-cursor",
+                "label": _("Open URL under terminal cursor"),
+            },
         ],
     },
 ]
