@@ -39,10 +39,6 @@ class AboutDialog(SimpleGladeApp):
         dialog = self.get_widget("aboutdialog")
 
         # images
-        # ipath = pixmapfile('guake-notification.png')
-        # img = gtk.gdk.pixbuf_new_from_file(ipath)
-
-        # img = pixmapfile('guake-notification.png')
         image = Gtk.Image()
         image.set_from_file(pixmapfile("guake-notification.png"))
         pixbuf = image.get_pixbuf()

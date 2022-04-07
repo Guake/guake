@@ -12,9 +12,6 @@
 # All configuration values have a default; values that are commented out
 # serve to show the default.
 
-import os
-import sys
-
 # If extensions (or modules to document with autodoc) are in another directory,
 # add these directories to sys.path here. If the directory is relative to the
 # documentation root, use os.path.abspath to make it absolute, like shown here.
@@ -258,17 +255,3 @@ texinfo_documents = [
 
 # If true, do not generate a @detailmenu in the "Top" node's menu.
 #texinfo_no_detailmenu = False
-
-# html_theme_options = {
-#     'canonical_url': 'http://guake.readthedocs.io/en/latest/',
-#     'logo_only': False,
-#     'display_version': True,
-#     'prev_next_buttons_location': 'bottom',
-#     'style_external_links': False,
-#     'vcs_pageview_mode': '',
-#     # Toc options
-#     'collapse_navigation': True,
-#     'sticky_navigation': True,
-#     'navigation_depth': 4,
-#     'titles_only': False
-# }

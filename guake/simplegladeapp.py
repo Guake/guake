@@ -69,8 +69,6 @@ class SimpleGladeApp:
         else:
             self.main_widget = None
 
-        # self.glade = self.create_glade(self.glade_path, root, domain)
-
         self.normalize_names()
         # Widgets are loaded and can be refered as self.widget_name
 

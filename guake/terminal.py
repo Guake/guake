@@ -109,8 +109,6 @@ class GuakeTerminal(Vte.Terminal):
         self.matched_value = ""
         self.font_scale_index = 0
         self._pid = None
-        # self.custom_bgcolor = None
-        # self.custom_fgcolor = None
         self.found_link = None
         self.uuid = uuid.uuid4()
 
@@ -313,8 +311,6 @@ class GuakeTerminal(Vte.Terminal):
                     py_func = m.group(2).strip()
 
         def find_lineno(text, pt, lineno, py_func):
-            # print("text={!r}, pt={!r}, lineno={!r}, py_func={!r}".format(text,
-            #                                                              pt, lineno, py_func))
             if lineno:
                 return lineno
             if not py_func:
@@ -527,7 +523,6 @@ class GuakeTerminal(Vte.Terminal):
     def kill(self):
         pid = self.pid
         threading.Thread(target=self.delete_shell, args=(pid,)).start()
-        # start_new_thread(self.delete_shell, (pid,))
 
     def delete_shell(self, pid):
         """Kill the shell with SIGHUP

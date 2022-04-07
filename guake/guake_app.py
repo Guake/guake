@@ -1335,8 +1335,7 @@ class Guake(SimpleGladeApp):
             search_query = guake_clipboard.wait_for_text()
             search_query = quote_plus(search_query)
             if search_query:
-                # TODO: search provider should be selectable (someone might
-                # prefer bing.com, the internet is a strange place ¯\_(ツ)_/¯ )
+                # TODO: search provider should be selectable.
                 search_url = f"https://www.google.com/search?q={search_query}&safe=off"
                 Gtk.show_uri(self.window.get_screen(), search_url, get_server_time(self.window))
         return True
