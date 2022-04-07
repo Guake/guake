@@ -1,0 +1,7 @@
+release_summary: >
+  Add new accelerator to open a link or URL under the terminal cursor.
+
+features:
+  - |
+      - Add new accelerator to open a link or URL under the terminal cursor #2060
+
