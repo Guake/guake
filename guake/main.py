@@ -615,7 +615,7 @@ def main():
                 log.info("Calling startup script: %s", startup_script)
                 with subprocess.Popen(
                     [startup_script],
-                    shell=True,
+                    shell=False,
                     stdin=None,
                     stdout=None,
                     stderr=None,

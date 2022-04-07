@@ -79,18 +79,6 @@ def patch_gtk_theme(style_context, settings):
     def rgba_to_hex(color):
         return f"#{''.join(f'{int(i*255):02x}' for i in (color.red, color.green, color.blue))}"
 
-    # for n in [
-    #     "inverted_bg_color",
-    #     "inverted_fg_color",
-    #     "selected_bg_color",
-    #     "selected_fg_color",
-    #     "theme_inverted_bg_color",
-    #     "theme_inverted_fg_color",
-    #     "theme_selected_bg_color",
-    #     "theme_selected_fg_color",
-    #     ]:
-    #     s = style_context.lookup_color(n)
-    #     print(n, s, rgba_to_hex(s[1]))
     selected_fg_color = rgba_to_hex(style_context.lookup_color("theme_selected_fg_color")[1])
     selected_bg_color = rgba_to_hex(style_context.lookup_color("theme_selected_bg_color")[1])
     log.debug(
