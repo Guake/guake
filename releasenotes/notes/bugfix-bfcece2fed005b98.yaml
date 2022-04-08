@@ -1,0 +1,7 @@
+release_summary: >
+  Fix issue #1747 - Splitting terminal should not reset font size
+
+fixes:
+  - |
+    fixed issue #1747. Now font size is not reset after a terminal split
+

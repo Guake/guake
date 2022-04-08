@@ -481,6 +481,10 @@ class TerminalBox(Gtk.Box, TerminalHolder):
         dual_terminal_box.set_child_second(terminal_box)
         terminal_box.show()
         dual_terminal_box.show()
+        if self.terminal is not None:
+            # preserve font and font_scale in the new terminal
+            terminal.set_font(self.terminal.font)
+            terminal.font_scale = self.terminal.font_scale
         notebook.terminal_attached(terminal)
 
         return dual_terminal_box
