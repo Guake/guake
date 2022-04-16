@@ -174,6 +174,8 @@ class Guake(SimpleGladeApp):
             menu.prepend(show)
             self.tray_icon.set_menu(menu)
 
+        self.display_tab_names = 0
+
         # important widgets
         self.window = self.get_widget("window-root")
         self.window.set_name("guake-terminal")
@@ -222,8 +224,6 @@ class Guake(SimpleGladeApp):
 
         # store the default window title to reset it when update is not wanted
         self.default_window_title = self.window.get_title()
-
-        self.display_tab_names = 0
 
         self.window.connect("focus-out-event", self.on_window_losefocus)
         self.window.connect("focus-in-event", self.on_window_takefocus)

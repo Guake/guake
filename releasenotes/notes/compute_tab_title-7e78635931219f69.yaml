@@ -1,0 +1,3 @@
+fixes:
+  - |
+      - Tab names not showing correct directory with zsh #1853
