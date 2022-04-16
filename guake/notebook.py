@@ -415,7 +415,7 @@ class TerminalNotebook(Gtk.Notebook):
         box, page_num, terminal = self.new_page(directory, position=position, empty=empty)
         self.set_current_page(page_num)
         if not label:
-            self.rename_page(page_num, _("Terminal"), False)
+            self.rename_page(page_num, self.guake.compute_tab_title(terminal), False)
         else:
             self.rename_page(page_num, label, user_set)
         if terminal is not None:
