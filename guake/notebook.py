@@ -68,14 +68,14 @@ class TerminalNotebook(Gtk.Notebook):
             GObject.signal_new(
                 "terminal-spawned",
                 TerminalNotebook,
-                GObject.SIGNAL_RUN_LAST,
+                GObject.SignalFlags.RUN_LAST,
                 GObject.TYPE_NONE,
                 (GObject.TYPE_PYOBJECT, GObject.TYPE_INT),
             )
             GObject.signal_new(
                 "page-deleted",
                 TerminalNotebook,
-                GObject.SIGNAL_RUN_LAST,
+                GObject.SignalFlags.RUN_LAST,
                 GObject.TYPE_NONE,
                 (),
             )
@@ -511,7 +511,7 @@ class NotebookManager(GObject.Object):
             GObject.signal_new(
                 "notebook-created",
                 self,
-                GObject.SIGNAL_RUN_LAST,
+                GObject.SignalFlags.RUN_LAST,
                 GObject.TYPE_NONE,
                 (GObject.TYPE_PYOBJECT, GObject.TYPE_INT),
             )

@@ -228,13 +228,13 @@ class GuakeTerminal(Vte.Terminal):
                 tag = self.match_add_regex(
                     Vte.Regex.new_for_match(expr, len(expr), VTE_REGEX_FLAGS), 0
                 )
-                self.match_set_cursor_type(tag, Gdk.CursorType.HAND2)
+                self.match_set_cursor_name(tag, "hand")
 
             for _useless, match, _otheruseless in QUICK_OPEN_MATCHERS:
                 tag = self.match_add_regex(
                     Vte.Regex.new_for_match(match, len(match), VTE_REGEX_FLAGS), 0
                 )
-                self.match_set_cursor_type(tag, Gdk.CursorType.HAND2)
+                self.match_set_cursor_name(tag, "hand")
         except (
             GLib.Error,
             AttributeError,

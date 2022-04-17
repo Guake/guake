@@ -226,7 +226,7 @@ class Keybindings:
                     filename,
                 )
         elif key == "show-focus" and not self.guake.hotkeys.bind(value, self.guake.show_focus):
-            log.warn("can't bind show-focus key")
+            log.warning("can't bind show-focus key")
 
     def activate(self, window, event):
         """If keystroke matches a key binding, activate keybinding. Otherwise, allow
