@@ -39,7 +39,6 @@ gi.require_version("Gtk", "3.0")
 gi.require_version("Gdk", "3.0")
 gi.require_version("Keybinder", "3.0")
 from gi.repository import GLib
-from gi.repository import GObject
 from gi.repository import Gdk
 from gi.repository import Gio
 from gi.repository import Gtk
@@ -86,10 +85,8 @@ RESPONSE_BACKWARD = 1
 # Disable find feature until python-vte hasn't been updated
 enable_find = False
 
-GObject.threads_init()
-
 # Setting gobject program name
-GObject.set_prgname(NAME)
+GLib.set_prgname(NAME)
 
 GDK_WINDOW_STATE_WITHDRAWN = 1
 GDK_WINDOW_STATE_ICONIFIED = 2
@@ -308,7 +305,7 @@ class Guake(SimpleGladeApp):
                 self.hide()
                 self.show()
         else:
-            log.warn("System doesn't support transparency")
+            log.warning("System doesn't support transparency")
             self.window.transparency = False
             self.window.set_visual(screen.get_system_visual())
 
