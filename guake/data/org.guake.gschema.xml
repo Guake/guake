@@ -46,6 +46,11 @@
 		    <summary>Automatically save tabs session when changed</summary>
 		    <description>If true, when tabs has changed (add / delete ...etc.), it will automatically saved the tabs session</description>
 		</key>
+		<key name="load-guake-yml" type="b">
+		    <default>true</default>
+		    <summary>Load settings from guake.yml</summary>
+		    <description>If true, when a change in the cwd is detected settings are changed based on the content of the file `cwd`/.guake.yml</description>
+		</key>
         <key name="use-login-shell" type="b">
             <default>false</default>
             <summary>Login shell</summary>

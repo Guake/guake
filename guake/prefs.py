@@ -251,6 +251,10 @@ class PrefsCallbacks:
         """Changes the activity of save-tabs-when-changed in dconf"""
         self.settings.general.set_boolean("save-tabs-when-changed", chk.get_active())
 
+    def on_load_guake_yml_toggled(self, chk):
+        """Changes the activity of load-guake-yml"""
+        self.settings.general.set_boolean("load-guake-yml", chk.get_active())
+
     def on_default_shell_changed(self, combo):
         """Changes the activity of default_shell in dconf"""
         citer = combo.get_active_iter()
@@ -1011,6 +1015,10 @@ class PrefsDialog(SimpleGladeApp):
         # save tabs when changed
         value = self.settings.general.get_boolean("save-tabs-when-changed")
         self.get_widget("save-tabs-when-changed").set_active(value)
+
+        # save tabs when changed
+        value = self.settings.general.get_boolean("load-guake-yml")
+        self.get_widget("load-guake-yml").set_active(value)
 
         # login shell
         value = self.settings.general.get_boolean("use-login-shell")
