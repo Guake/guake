@@ -257,6 +257,10 @@ class Guake(SimpleGladeApp):
         Keybinder.init()
         self.hotkeys = Keybinder
         Keybindings(self)
+
+        # Hold a copy of guake_yaml
+        self._guake_yml = {}
+        self._guake_yml_load_monotonic = {}
         self.load_config()
 
         if self.settings.general.get_boolean("start-fullscreen"):
@@ -1105,18 +1109,32 @@ class Guake(SimpleGladeApp):
 
     def load_cwd_guake_yaml(self, vte) -> dict:
         # Read the content of .guake.yml in cwd
+        if not self.settings.general.get_boolean("load-guake-yml"):
+            return {}
+
         cwd = Path(vte.get_current_directory())
-        guake_yaml = cwd.joinpath(".guake.yml")
+        guake_yml = cwd.joinpath(".guake.yml")
         content = {}
-        try:
-            if guake_yaml.is_file():
-                with guake_yaml.open(encoding="utf-8") as fd:
-                    content = yaml.safe_load(fd)
-        except PermissionError:
-            log.debug("PermissionError on accessing .guake.yml")
+
+        reload_guake_yml = True
+        if guake_yml in self._guake_yml_load_monotonic:
+            if pytime.monotonic() < self._guake_yml_load_monotonic[guake_yml] + 1.0:
+                reload_guake_yml = False
+
+        if not reload_guake_yml:
+            content = self._guake_yml.get(guake_yml, {})
+        else:
+            try:
+                if guake_yml.is_file():
+                    with guake_yml.open(encoding="utf-8") as fd:
+                        content = yaml.safe_load(fd)
+                        self._guake_yml[guake_yml] = content
+                        self._guake_yml_load_monotonic[guake_yml] = pytime.monotonic()
+            except PermissionError:
+                log.debug("PermissionError on accessing .guake.yml")
 
         if not isinstance(content, dict):
-            conent = {}
+            content = {}
         return content
 
     def compute_tab_title(self, vte):
