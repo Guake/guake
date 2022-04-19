@@ -1116,12 +1116,7 @@ class Guake(SimpleGladeApp):
         guake_yml = cwd.joinpath(".guake.yml")
         content = {}
 
-        reload_guake_yml = True
-        if guake_yml in self._guake_yml_load_monotonic:
-            if pytime.monotonic() < self._guake_yml_load_monotonic[guake_yml] + 1.0:
-                reload_guake_yml = False
-
-        if not reload_guake_yml:
+        if self._guake_yml_load_monotonic.get(guake_yml, 0.0) + 1.0 > pytime.monotonic():
             content = self._guake_yml.get(guake_yml, {})
         else:
             try:
