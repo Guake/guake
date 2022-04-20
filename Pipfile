@@ -34,7 +34,6 @@ pew = "*"
 black = "==21.8b0"
 flakehell = "*"
 toml = "*"
-dataclasses = {markers="python_version < '3.7'","version >" = "0.1.3"}
 
 [packages]
 pbr = "*"
