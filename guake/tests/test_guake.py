@@ -189,3 +189,55 @@ def test_guake_hide_tab_bar_if_one_tab(mocker, g, fs):
     g.settings.general.set_boolean("hide-tabs-if-one-tab", True)
     assert g.get_notebook().get_n_pages() == 1
     assert g.get_notebook().get_property("show-tabs") is False
+
+
+def test_load_cwd_guake_yml_not_found_error(g):
+    vte = g.get_notebook().get_current_terminal()
+    assert g.fm.read_yaml("/foo/.guake.yml") is None
+    assert g.load_cwd_guake_yaml(vte) == {}
+
+
+def test_load_cwd_guake_yml_encoding_error(g, mocker, fs):
+    vte = g.get_notebook().get_current_terminal()
+    mocker.patch.object(vte, "get_current_directory", return_value="/foo/")
+    fs.create_file("/foo/.guake.yml", contents=b"\xfe\xf0[\xb1\x0b\xc1\x18\xda")
+    assert g.fm.read_yaml("/foo/.guake.yml") is None
+    assert g.load_cwd_guake_yaml(vte) == {}
+
+
+def test_load_cwd_guake_yml_format_error(g, mocker, fs):
+    vte = g.get_notebook().get_current_terminal()
+    mocker.patch.object(vte, "get_current_directory", return_value="/foo/")
+    fs.create_file("/foo/.guake.yml", contents=b"[[as]")
+    assert g.fm.read_yaml("/foo/.guake.yml") is None
+    assert g.load_cwd_guake_yaml(vte) == {}
+
+
+def test_load_cwd_guake_yml(mocker, g, fs):
+    vte = g.get_notebook().get_current_terminal()
+    mocker.patch.object(vte, "get_current_directory", return_value="/foo/")
+
+    f = fs.create_file("/foo/.guake.yml", contents="title: bar")
+    assert g.load_cwd_guake_yaml(vte) == {"title": "bar"}
+
+    # Cache in action.
+    f.set_contents("title: foo")
+    assert g.load_cwd_guake_yaml(vte) == {"title": "bar"}
+    g.fm.clear()
+    assert g.load_cwd_guake_yaml(vte) == {"title": "foo"}
+
+
+def test_guake_compute_tab_title(mocker, g, fs):
+    vte = g.get_notebook().get_current_terminal()
+    mocker.patch.object(vte, "get_current_directory", return_value="/foo/")
+
+    # Original title.
+    assert g.compute_tab_title(vte) == "Terminal"
+
+    # Change title.
+    fs.create_file("/foo/.guake.yml", contents="title: bar")
+    assert g.compute_tab_title(vte) == "bar"
+
+    # Avoid loading the guake.yml
+    mocker.patch.object(g.settings.general, "get_boolean", return_value=False)
+    assert g.compute_tab_title(vte) == "Terminal"

@@ -15,9 +15,8 @@ astroid
 autopep8
 black==21.8b0
 colorlog
-dataclasses
 fiximports>=0.1.18
-flake8
+flake8>=3.8.0,<4.0.0
 flakehell
 mock>=2.0.0
 pathlib2
