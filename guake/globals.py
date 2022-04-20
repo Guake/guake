@@ -98,7 +98,7 @@ QUICK_OPEN_MATCHERS = [
     ),
     (
         "line starts by 'ERROR in Filename:line' pattern (GCC/make). File path should exists.",
-        r"\s.\S[^\s\s].[a-zA-Z0-9\/\_\-\.\ ]+\.?[a-zA-Z0-9]+\:[0-9]+",
+        r"[a-zA-Z0-9\/\_\-\.\]+\.?[a-zA-Z0-9]+\:[0-9]+",
         r"\s.\S[^\s\s].(.*)\:([0-9]+)",
     ),
     (
