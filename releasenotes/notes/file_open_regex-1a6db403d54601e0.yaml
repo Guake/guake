@@ -1,0 +1,6 @@
+release_summary: >
+  Make file link matcher not match leading words.
+  
+fixes:
+  - |
+      - Spec files not recognized as links #1032 
