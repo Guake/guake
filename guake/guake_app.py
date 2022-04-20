@@ -19,7 +19,6 @@ Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor,
 Boston, MA 02110-1301 USA
 """
 import json
-import yaml
 import logging
 import os
 import shutil
@@ -70,6 +69,7 @@ from guake.simplegladeapp import SimpleGladeApp
 from guake.theme import patch_gtk_theme
 from guake.theme import select_gtk_theme
 from guake.utils import BackgroundImageManager
+from guake.utils import FileManager
 from guake.utils import FullscreenManager
 from guake.utils import HidePrevention
 from guake.utils import RectCalculator
@@ -191,9 +191,8 @@ class Guake(SimpleGladeApp):
         # FullscreenManager
         self.fullscreen_manager = FullscreenManager(self.settings, self.window, self)
 
-        # Hold a copy of guake_yaml
-        self._guake_yml = {}
-        self._guake_yml_load_monotonic = {}
+        # Start the file manager (only used by guake.yml so far).
+        self.fm = FileManager()
 
         # Workspace tracking
         self.notebook_manager = NotebookManager(
@@ -258,7 +257,6 @@ class Guake(SimpleGladeApp):
         Keybinder.init()
         self.hotkeys = Keybinder
         Keybindings(self)
-
         self.load_config()
 
         if self.settings.general.get_boolean("start-fullscreen"):
@@ -1111,20 +1109,13 @@ class Guake(SimpleGladeApp):
             return {}
 
         cwd = Path(vte.get_current_directory())
-        guake_yml = cwd.joinpath(".guake.yml")
-        content = {}
+        filename = str(cwd.joinpath(".guake.yml"))
 
-        if self._guake_yml_load_monotonic.get(guake_yml, 0.0) + 1.0 > pytime.monotonic():
-            content = self._guake_yml.get(guake_yml, {})
-        else:
-            try:
-                if guake_yml.is_file():
-                    with guake_yml.open(encoding="utf-8") as fd:
-                        content = yaml.safe_load(fd)
-                        self._guake_yml[guake_yml] = content
-                        self._guake_yml_load_monotonic[guake_yml] = pytime.monotonic()
-            except PermissionError:
-                log.debug("PermissionError on accessing .guake.yml")
+        try:
+            content = self.fm.read_yaml(filename)
+        except Exception:
+            log.debug("Unexpected error reading %s.", filename, exc_info=True)
+            content = {}
 
         if not isinstance(content, dict):
             content = {}
