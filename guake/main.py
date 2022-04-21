@@ -193,6 +193,15 @@ def main():
     )
 
     parser.add_option(
+        "-x",
+        "--uuid-index",
+        dest="uuid_index",
+        action="store",
+        default="",
+        help=_("Return the index of the tab with the given terminal UUID, -1 if not found"),
+    )
+
+    parser.add_option(
         "-l",
         "--selected-tablabel",
         dest="selected_tablabel",
@@ -525,6 +534,11 @@ def main():
     if options.selected_tablabel:
         selectedlabel = remote_object.get_selected_tablabel()
         sys.stdout.write(f"{selectedlabel}\n")
+        only_show_hide = options.show
+
+    if options.uuid_index:
+        selectedIndex = remote_object.get_index_from_uuid(options.uuid_index)
+        sys.stdout.write(f"{selectedIndex}\n")
         only_show_hide = options.show
 
     if options.split_vertical:

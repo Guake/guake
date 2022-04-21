@@ -1221,6 +1221,13 @@ class Guake(SimpleGladeApp):
         )
         self.get_notebook().rename_page(page_index, new_text, user_set)
 
+    def get_index_from_uuid(self, term_uuid):
+        term_uuid = uuid.UUID(term_uuid)
+        for index, t in enumerate(self.get_notebook().iter_terminals()):
+            if t.get_uuid() == term_uuid:
+                return index
+        return -1
+
     def rename_current_tab(self, new_text, user_set=False):
         page_num = self.get_notebook().get_current_page()
         self.get_notebook().rename_page(page_num, new_text, user_set)
