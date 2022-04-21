@@ -196,3 +196,7 @@ class DbusManager(dbus.service.Object):
     @dbus.service.method(DBUS_NAME)
     def h_split_current_terminal(self):
         self.guake.get_notebook().get_current_terminal().get_parent().split_h()
+
+    @dbus.service.method(DBUS_NAME, in_signature="s", out_signature="i")
+    def get_index_from_uuid(self, tab_uuid):
+        return self.guake.get_index_from_uuid(tab_uuid)
