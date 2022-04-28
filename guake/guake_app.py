@@ -191,6 +191,10 @@ class Guake(SimpleGladeApp):
         # FullscreenManager
         self.fullscreen_manager = FullscreenManager(self.settings, self.window, self)
 
+        # Hold a copy of guake_yaml
+        self._guake_yml = {}
+        self._guake_yml_load_monotonic = {}
+
         # Workspace tracking
         self.notebook_manager = NotebookManager(
             self.window,
@@ -255,9 +259,6 @@ class Guake(SimpleGladeApp):
         self.hotkeys = Keybinder
         Keybindings(self)
 
-        # Hold a copy of guake_yaml
-        self._guake_yml = {}
-        self._guake_yml_load_monotonic = {}
         self.load_config()
 
         if self.settings.general.get_boolean("start-fullscreen"):
