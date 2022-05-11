@@ -94,7 +94,7 @@
         <key name="tab-ontop" type="b">
             <default>false</default>
             <summary>Tab on top.</summary>
-            <description>Makes tab bar on top of the Guake window. Per default, tabs appears below the terminal. Setting this to True will move the tab on top of the terminal. Requires a restart.</description>
+            <description>Makes tab bar on top of the Guake window. Per default, tabs appear below the terminal. Setting this to True will move the tab on top of the terminal. Requires a restart.</description>
         </key>
         <key name="new-tab-after" type="b">
             <default>false</default>
