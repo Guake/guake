@@ -1,4 +1,3 @@
-
 Basic Details
 =============
 
@@ -9,9 +8,7 @@ Found a Bug?
 
 Before opening a new issue, please read the following:
 
-- for **feature requests**, please use `FeatHub <https://feathub.com/Guake/guake>`_ ).
-  This allow us to spot directly which are the most requested features.
-- A `Bountysource page <https://www.bountysource.com/teams/guake>`_ also exists for
+- A `Bountysource page <https://www.bountysource.com/teams/guake>`_ exists for
   requesting new features for Guake.
 - before opening **a new bug**, please search for a similar one in the
   `GitHub Issues <https://github.com/Guake/guake/issues>`_ .

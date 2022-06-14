@@ -36,23 +36,6 @@ What it looks like ?
 
 Drop down terminal on pressing <F12>
 
-Features Request
-----------------
-
-Please vote for feature on `FeatHub <http://feathub.com/Guake/guake>`_.
-Open Issues on GitHub only for bug reports.
-
-Most requested features list for Guake:
-
-|feathub-badge|_
-
-.. |feathub-badge| image:: http://feathub.com/Guake/guake?format=svg
-.. _feathub-badge: http://feathub.com/Guake/guake
-
-There is also a Bountysource opened here for those willing to pay a certain amount of money for a
-really needed feature.
-`See our Bountysource page here <https://www.bountysource.com/teams/guake>`_.
-
 Note when compiling from source
 -------------------------------
 
