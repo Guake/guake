@@ -690,11 +690,6 @@ class Guake(SimpleGladeApp):
             self.add_tab()
 
         self.window.set_keep_below(False)
-        if not self.fullscreen_manager.is_fullscreen():
-            self.window.show_all()
-        # this is needed because self.window.show_all() results in showing every
-        # thing which includes the scrollbar too
-        self.settings.general.triggerOnChangedValue(self.settings.general, "use-scrollbar")
 
         # move the window even when in fullscreen-mode
         log.debug("Moving window to: %r", window_rect)

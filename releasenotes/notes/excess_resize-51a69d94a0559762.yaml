@@ -1,0 +1,6 @@
+release_summary: >
+  Remove duplicate show method that generates unwanted resize events
+
+fixes:
+  - |
+      - Not taking up 100% width and is not centered as configured - screen capture included #2091
