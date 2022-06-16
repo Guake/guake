@@ -92,7 +92,7 @@ install-guake:
 	@sed -i -e 's|{{ LOGIN_DESTOP_PATH }}|"$(LOGIN_DESTOP_PATH)"|g' guake/paths.py
 	@sed -i -e 's|{{ AUTOSTART_FOLDER }}|"$(AUTOSTART_FOLDER)"|g' guake/paths.py
 
-	@$(PYTHON_INTERPRETER) setup.py install --root "$(DESTDIR)" --prefix="$(PREFIX)" --optimize=1 || echo -e "\033[31;1msetup.py install failed, you may need to run \"sudo git config --global --add safe.directory '*'\"\033[0m"
+	@$(PYTHON_INTERPRETER) setup.py install --root "$(DESTDIR)" --prefix="/usr" --optimize=1 || echo -e "\033[31;1msetup.py install failed, you may need to run \"sudo git config --global --add safe.directory '*'\"\033[0m"
 
 	@rm -f guake/paths.py
 	@if [ -f guake/paths.py.dev ]; then mv guake/paths.py.dev guake/paths.py; fi
