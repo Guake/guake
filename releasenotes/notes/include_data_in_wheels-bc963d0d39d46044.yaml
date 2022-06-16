@@ -1,0 +1,6 @@
+release_summary: >
+  Added data files to wheel distribution
+
+fixes:
+  - |
+      - Errors thrown on Ubuntu 22.04 when installing version 3.[89].x via pip/pipx #2100
