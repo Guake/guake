@@ -123,8 +123,16 @@ class Settings:
         gi.repository.Gio.Settings.triggerOnChangedValue = triggerOnChangedValue
 
     def compat():
-        if len(subprocess.check_output(["dconf", "dump", "/org/guake/"])) == 0:
-            prefs = subprocess.check_output(["dconf", "dump", "/apps/guake/"])
-            if len(prefs) > 0:
-                with subprocess.Popen(["dconf", "load", "/org/guake/"], stdin=subprocess.PIPE) as p:
-                    p.communicate(input=prefs)
+        try:
+            if len(subprocess.check_output(["dconf", "dump", "/org/guake/"])) == 0:
+                prefs = subprocess.check_output(["dconf", "dump", "/apps/guake/"])
+                if len(prefs) > 0:
+                    with subprocess.Popen(
+                        ["dconf", "load", "/org/guake/"], stdin=subprocess.PIPE
+                    ) as p:
+                        p.communicate(input=prefs)
+        except FileNotFoundError:
+            log.exception(
+                """First run with newer Guake version detected.
+dconf not installed, skipping preferences transfer."""
+            )
