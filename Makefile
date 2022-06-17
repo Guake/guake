@@ -38,7 +38,7 @@ default: prepare-install
 prepare-install: generate-desktop generate-paths generate-mo compile-glib-schemas-dev
 
 reset:
-	dconf reset -f /apps/guake/
+	dconf reset -f /org/guake/
 
 
 all: clean dev style checks dists test docs

@@ -97,7 +97,7 @@ def save_tabs_when_changed(func):
 
 def save_preferences(filename):
     # XXX: Hardcode?
-    prefs = subprocess.check_output(["dconf", "dump", "/apps/guake/"])
+    prefs = subprocess.check_output(["dconf", "dump", "/org/guake/"])
     with open(filename, "wb") as f:
         f.write(prefs)
 
@@ -106,7 +106,7 @@ def restore_preferences(filename):
     # XXX: Hardcode?
     with open(filename, "rb") as f:
         prefs = f.read()
-    with subprocess.Popen(["dconf", "load", "/apps/guake/"], stdin=subprocess.PIPE) as p:
+    with subprocess.Popen(["dconf", "load", "/org/guake/"], stdin=subprocess.PIPE) as p:
         p.communicate(input=prefs)
 
 

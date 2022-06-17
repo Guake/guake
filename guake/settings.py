@@ -19,6 +19,7 @@ Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor,
 Boston, MA 02110-1301 USA
 """
 import logging
+import subprocess
 
 import gi
 
@@ -30,6 +31,7 @@ log = logging.getLogger(__name__)
 
 class Settings:
     def __init__(self, schema_source):
+        Settings.compat()
         Settings.enhanceSetting()
 
         self.guake = Gio.Settings.new_full(
@@ -119,3 +121,10 @@ class Settings:
         gi.repository.Gio.Settings.initEnhancements = initEnhancements
         gi.repository.Gio.Settings.onChangedValue = onChangedValue
         gi.repository.Gio.Settings.triggerOnChangedValue = triggerOnChangedValue
+
+    def compat():
+        if len(subprocess.check_output(["dconf", "dump", "/org/guake/"])) == 0:
+            prefs = subprocess.check_output(["dconf", "dump", "/apps/guake/"])
+            if len(prefs) > 0:
+                with subprocess.Popen(["dconf", "load", "/org/guake/"], stdin=subprocess.PIPE) as p:
+                    p.communicate(input=prefs)

@@ -274,7 +274,7 @@ class Keybindings:
         self.guake.accel_group = self
 
     def load_accelerators(self):
-        """Reads all gconf paths under /apps/guake/keybindings/local
+        """Reads all gconf paths under /org/guake/keybindings/local
         and adds to the _lookup.
         """
 

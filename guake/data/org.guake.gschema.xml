@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <schemalist>
-    <schema id="guake" path="/apps/guake/">
+    <schema id="guake" path="/org/guake/">
         <child name="general" schema="guake.general"/>
         <child name="style" schema="guake.style"/>
         <child name="keybindings" schema="guake.keybindings"/>
     </schema>
-    <schema id="guake.general" path="/apps/guake/general/">
+    <schema id="guake.general" path="/org/guake/general/">
         <key name="schema-version" type="s">
             <default>''</default>
             <summary>Last used schema version</summary>
@@ -312,7 +312,7 @@
             <description>Copy the selected text.</description>
         </key>
     </schema>
-    <schema id="guake.style" path="/apps/guake/style/">
+    <schema id="guake.style" path="/org/guake/style/">
         <key name="cursor-blink-mode" type="i">
             <default>0</default>
             <summary>Cursor blink mode of the terminal</summary>
@@ -326,7 +326,7 @@
         <child name="font" schema="guake.style.font"/>
         <child name="background" schema="guake.style.background"/>
     </schema>
-    <schema id="guake.style.font" path="/apps/guake/style/font/">
+    <schema id="guake.style.font" path="/org/guake/style/font/">
         <key name="style" type="s">
             <default>'Monospace 10'</default>
             <summary>Font style.</summary>
@@ -363,7 +363,7 @@
             <description>This can be used to increase the letter spacing. (The font's width is not affected.) Valid values go from 1.0 (default) to 2.0 ("double spacing").</description>
         </key>
     </schema>
-    <schema id="guake.style.background" path="/apps/guake/style/background/">
+    <schema id="guake.style.background" path="/org/guake/style/background/">
         <key name="transparency" type="i">
             <default>90</default>
             <range min="0" max="100"/>
@@ -371,11 +371,11 @@
             <description>Alpha that will be applied to the terminal background.</description>
         </key>
     </schema>
-    <schema id="guake.keybindings" path="/apps/guake/keybindings/">
+    <schema id="guake.keybindings" path="/org/guake/keybindings/">
         <child name="global" schema="guake.keybindings.global"/>
         <child name="local" schema="guake.keybindings.local"/>
     </schema>
-    <schema id="guake.keybindings.global" path="/apps/guake/keybindings/global/">
+    <schema id="guake.keybindings.global" path="/org/guake/keybindings/global/">
         <key name="show-hide" type="s">
             <default>'F12'</default>
             <summary>Keybinding to show/hide guake.</summary>
@@ -387,7 +387,7 @@
             <description>Global keybinding to allow user call guake from each place after it's opened without clicks.</description>
         </key>
     </schema>
-    <schema id="guake.keybindings.local" path="/apps/guake/keybindings/local/">
+    <schema id="guake.keybindings.local" path="/org/guake/keybindings/local/">
         <key name="search-terminal" type="s">
             <default>'&lt;Control&gt;&lt;Shift&gt;f'</default>
             <summary>Search terminal</summary>
@@ -634,7 +634,7 @@
             <description>Move the terminal split handle right.</description>
         </key>
     </schema>
-    <schema id="guake.hooks" path="/apps/guake/hooks/">
+    <schema id="guake.hooks" path="/org/guake/hooks/">
         <key name="show" type="s">
             <default>''</default>
             <summary>On show.</summary>
