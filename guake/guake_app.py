@@ -1193,10 +1193,21 @@ class Guake(SimpleGladeApp):
 
     # -- tab related functions --
 
+    def select_tab_by_label(self, tab_label):
+        notebook = self.get_notebook()
+        page_num = notebook.find_tab_index_by_label_text(tab_label)
+        if page_num >= notebook.get_n_pages() or page_num < 0:
+            return False
+        notebook.set_current_page(page_num)
+        return True
+
     def close_tab(self, *args):
         """Closes the current tab."""
         prompt_cfg = self.settings.general.get_int("prompt-on-close-tab")
         self.get_notebook().delete_page_current(prompt=prompt_cfg)
+
+    def close_tab_by_label(self, tab_label):
+        return self.get_notebook().delete_page_by_label(label=tab_label)
 
     def rename_tab_uuid(self, term_uuid, new_text, user_set=True):
         """Rename an already added tab by its UUID"""

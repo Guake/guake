@@ -295,14 +295,14 @@ class TerminalNotebook(Gtk.Notebook):
         log.debug("Deleting page index %s", page_num)
         if page_num >= self.get_n_pages() or page_num < 0:
             log.error("Can not delete page %s no such index", page_num)
-            return
+            return False
         # TODO NOTEBOOK it would be nice if none of the "ui" stuff
         # (PromptQuitDialog) would be in here
         procs = self.get_running_fg_processes_count_page(page_num)
         if prompt == 2 or (prompt == 1 and procs > 0):
             # TODO NOTEBOOK remove call to guake
             if not PromptQuitDialog(self.guake.window, procs, -1, None).close_tab():
-                return
+                return False
 
         page = self.get_nth_page(page_num)
         for terminal in self.get_terminals_for_page(page_num):
@@ -321,6 +321,7 @@ class TerminalNotebook(Gtk.Notebook):
             # Check this by compare same page_num page with previous saved page instance,
             # and remove the page if it really didn't remove it.
             self.remove_page(page_num)
+        return True
 
     @save_tabs_when_changed
     def remove_page(self, page_num):
@@ -335,7 +336,7 @@ class TerminalNotebook(Gtk.Notebook):
         self.emit("page-deleted")
 
     def delete_page_by_label(self, label, kill=True, prompt=0):
-        self.delete_page(self.find_tab_index_by_label(label), kill, prompt)
+        return self.delete_page(self.find_tab_index_by_label_text(label), kill, prompt)
 
     def delete_page_current(self, kill=True, prompt=0):
         self.delete_page(self.get_current_page(), kill, prompt)
@@ -444,6 +445,12 @@ class TerminalNotebook(Gtk.Notebook):
     def find_tab_index_by_label(self, eventbox):
         for index, tab_eventbox in enumerate(self.iter_tabs()):
             if eventbox is tab_eventbox:
+                return index
+        return -1
+
+    def find_tab_index_by_label_text(self, label):
+        for index, tab_eventbox in enumerate(self.iter_tabs()):
+            if label == tab_eventbox.label.get_text():
                 return index
         return -1
 
