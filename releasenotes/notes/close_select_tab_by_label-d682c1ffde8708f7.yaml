@@ -1,0 +1,6 @@
+release_summary: >
+  Added commands for selecting/closing tabs via label
+
+features:
+  - |
+      - Close terminal by name #1835
