@@ -1,0 +1,3 @@
+fixes:
+  - |
+      - Toggle window breaks in Gnome 40 #1857
