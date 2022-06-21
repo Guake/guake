@@ -513,7 +513,7 @@ def main():
         remote_object.show_prefs()
         only_show_hide = options.show
 
-    if options.new_tab:
+    if options.new_tab and not options.command:
         remote_object.add_tab(options.new_tab)
         only_show_hide = options.show
 

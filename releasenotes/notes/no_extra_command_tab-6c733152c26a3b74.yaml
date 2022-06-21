@@ -1,0 +1,3 @@
+fixes:
+  - |
+      -  -e option spawns an additional "Terminal" tab during guake startup #2103
