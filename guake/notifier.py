@@ -20,7 +20,7 @@ Boston, MA 02110-1301 USA
 
 import gi
 
-gi.require_version("Notify", "0.7")
+gi.require_version("Notify", "0.8")
 from gi.repository import GLib
 from gi.repository import Notify
 
