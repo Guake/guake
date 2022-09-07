@@ -41,7 +41,7 @@ class TerminalContextMenuCallbacks:
         self.terminal.reset(True, True)
 
     def on_find(self):
-        # this is not implemented jet
+        # this is not implemented yet
         pass
 
     def on_open_link(self, *args):
@@ -53,8 +53,18 @@ class TerminalContextMenuCallbacks:
             clipboard = Gtk.Clipboard.get_default(self.window.get_display())
             query = clipboard.wait_for_text()
             query = quote_plus(query)
+
+            # the urls of the search engine options
+            ENGINES = {
+                0 : "google.com/search?safe=off&q=",
+                1 : "duckduckgo.com/",
+                2 : "bing.com/search?q=",
+                3 : "yandex.com/search?text="
+            }
+
             if query:
-                search_url = f"https://www.google.com/search?q={query}&safe=off"
+                # put the query at the end of the url and https 
+                search_url = "https://www." + ENGINES[self.settings.general.get_int("search-engine")] + query 
                 Gtk.show_uri(self.window.get_screen(), search_url, get_server_time(self.window))
 
     def on_quick_open(self, *args):

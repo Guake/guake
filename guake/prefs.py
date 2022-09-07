@@ -296,6 +296,10 @@ class PrefsCallbacks:
         """Set the `prompt_on_close_tab' property in dconf"""
         self.settings.general.set_int("prompt-on-close-tab", combo.get_active())
 
+    def on_search_engine_changed(self, combo):
+        print("VALUE: ", combo.get_active())
+        self.settings.general.set_int("search-engine", combo.get_active())
+
     def on_gtk_theme_name_changed(self, combo):
         """Set the `gtk_theme_name' property in dconf"""
         citer = combo.get_active_iter()
@@ -1044,6 +1048,10 @@ class PrefsDialog(SimpleGladeApp):
         value = self.settings.general.get_int("prompt-on-close-tab")
         self.get_widget("prompt_on_close_tab").set_active(value)
         self.get_widget("prompt_on_quit").set_sensitive(value != 2)
+
+        # search engine
+        value = self.settings.general.get_int("search-engine")
+        self.get_widget("search_engine_select").set_active(value)
 
         # use system theme
         value = self.settings.general.get_boolean("gtk-use-system-default-theme")
