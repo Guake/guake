@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Generated with glade 3.38.2 -->
+<!-- Generated with glade 3.40.0 -->
 <interface domain="guake">
   <requires lib="gtk+" version="3.18"/>
   <object class="GtkAdjustment" id="cell_height_scale_adjustment">
@@ -135,7 +135,7 @@
                         <property name="can-focus">False</property>
                         <property name="halign">start</property>
                         <property name="margin-top">6</property>
-                        <property name="label" translatable="yes">&lt;span size="18000"&gt;&lt;b&gt;Guake properties&lt;/b&gt;&lt;/span&gt;</property>
+                        <property name="label" translatable="yes">&lt;span size="18000"&gt;&lt;b&gt;Guakproperties&lt;/b&gt;&lt;/span&gt;</property>
                         <property name="use-markup">True</property>
                       </object>
                       <packing>
@@ -224,7 +224,7 @@
                                     <property name="can-focus">False</property>
                                     <property name="left-padding">12</property>
                                     <child>
-                                      <!-- n-columns=3 n-rows=3 -->
+                                      <!-- n-columns=3 n-rows=4 -->
                                       <object class="GtkGrid">
                                         <property name="visible">True</property>
                                         <property name="can-focus">False</property>
@@ -283,6 +283,15 @@
                                             <property name="left-attach">0</property>
                                             <property name="top-attach">3</property>
                                           </packing>
+                                        </child>
+                                        <child>
+                                          <placeholder/>
+                                        </child>
+                                        <child>
+                                          <placeholder/>
+                                        </child>
+                                        <child>
+                                          <placeholder/>
                                         </child>
                                         <child>
                                           <placeholder/>
@@ -689,6 +698,49 @@
                                 <property name="position">2</property>
                               </packing>
                             </child>
+                            <child>
+                              <object class="GtkBox">
+                                <property name="visible">True</property>
+                                <property name="can-focus">False</property>
+                                <property name="spacing">4</property>
+                                <child>
+                                  <object class="GtkLabel" id="lb_search_engine">
+                                    <property name="visible">True</property>
+                                    <property name="can-focus">False</property>
+                                    <property name="label" translatable="yes">Search Engine:                         </property>
+                                  </object>
+                                  <packing>
+                                    <property name="expand">False</property>
+                                    <property name="fill">True</property>
+                                    <property name="position">0</property>
+                                  </packing>
+                                </child>
+                                <child>
+                                  <object class="GtkComboBoxText" id="search_engine_select">
+                                    <property name="visible">True</property>
+                                    <property name="can-focus">False</property>
+                                    <property name="active">0</property>
+                                    <items>
+                                      <item translatable="yes">Google</item>
+                                      <item translatable="yes">DuckDuckGo</item>
+                                      <item translatable="yes">Bing</item>
+                                      <item translatable="yes">Yandex</item>
+                                    </items>
+                                    <signal name="changed" handler="on_search_engine_changed" swapped="no"/>
+                                  </object>
+                                  <packing>
+                                    <property name="expand">False</property>
+                                    <property name="fill">True</property>
+                                    <property name="position">1</property>
+                                  </packing>
+                                </child>
+                              </object>
+                              <packing>
+                                <property name="expand">False</property>
+                                <property name="fill">True</property>
+                                <property name="position">3</property>
+                              </packing>
+                            </child>
                           </object>
                         </child>
                       </object>
@@ -697,6 +749,9 @@
                         <property name="fill">True</property>
                         <property name="position">0</property>
                       </packing>
+                    </child>
+                    <child>
+                      <placeholder/>
                     </child>
                   </object>
                 </child>

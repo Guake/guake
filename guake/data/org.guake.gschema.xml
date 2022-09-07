@@ -81,6 +81,12 @@
             <summary>Prompt when closing tabs.</summary>
             <description>0: Never 1: If process is running 2: Always.  Also prompts on quit.</description>
         </key>
+        <key name="search-engine" type="i">
+            <default>0</default>
+            <summary>Search engine to use when using web search</summary>
+            <description>Search engine to use</description>
+        </key>
+
         <key name="window-ontop" type="b">
             <default>true</default>
             <summary>Stay on top.</summary>
