@@ -56,15 +56,17 @@ class TerminalContextMenuCallbacks:
 
             # the urls of the search engine options
             ENGINES = {
-                0 : "google.com/search?safe=off&q=",
-                1 : "duckduckgo.com/",
-                2 : "bing.com/search?q=",
-                3 : "yandex.com/search?text="
+                0: "google.com/search?safe=off&q=",
+                1: "duckduckgo.com/",
+                2: "bing.com/search?q=",
+                3: "yandex.com/search?text=",
             }
 
             if query:
-                # put the query at the end of the url and https 
-                search_url = "https://www." + ENGINES[self.settings.general.get_int("search-engine")] + query 
+                # put the query at the end of the url and https
+                search_url = (
+                    "https://www." + ENGINES[self.settings.general.get_int("search-engine")] + query
+                )
                 Gtk.show_uri(self.window.get_screen(), search_url, get_server_time(self.window))
 
     def on_quick_open(self, *args):
