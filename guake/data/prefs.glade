@@ -135,7 +135,7 @@
                         <property name="can-focus">False</property>
                         <property name="halign">start</property>
                         <property name="margin-top">6</property>
-                        <property name="label" translatable="yes">&lt;span size="18000"&gt;&lt;b&gt;Guakproperties&lt;/b&gt;&lt;/span&gt;</property>
+                        <property name="label" translatable="yes">&lt;span size="18000"&gt;&lt;b&gt;Guake properties&lt;/b&gt;&lt;/span&gt;</property>
                         <property name="use-markup">True</property>
                       </object>
                       <packing>
@@ -707,7 +707,7 @@
                                   <object class="GtkLabel" id="lb_search_engine">
                                     <property name="visible">True</property>
                                     <property name="can-focus">False</property>
-                                    <property name="label" translatable="yes">Search Engine:                         </property>
+                                    <property name="label" translatable="yes">Search Engine:</property>
                                   </object>
                                   <packing>
                                     <property name="expand">False</property>
