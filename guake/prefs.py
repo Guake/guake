@@ -297,7 +297,6 @@ class PrefsCallbacks:
         self.settings.general.set_int("prompt-on-close-tab", combo.get_active())
 
     def on_search_engine_changed(self, combo):
-        print("VALUE: ", combo.get_active())
         self.settings.general.set_int("search-engine", combo.get_active())
 
     def on_gtk_theme_name_changed(self, combo):

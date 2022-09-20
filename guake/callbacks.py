@@ -11,6 +11,14 @@ from guake.utils import HidePrevention
 from guake.utils import get_server_time
 from urllib.parse import quote_plus
 
+# the urls of the search engine options
+ENGINES = {
+    0: "google.com/search?safe=off&q=",
+    1: "duckduckgo.com/",
+    2: "bing.com/search?q=",
+    3: "yandex.com/search?text=",
+}
+
 
 class TerminalContextMenuCallbacks:
     def __init__(self, terminal, window, settings, notebook):
@@ -53,14 +61,6 @@ class TerminalContextMenuCallbacks:
             clipboard = Gtk.Clipboard.get_default(self.window.get_display())
             query = clipboard.wait_for_text()
             query = quote_plus(query)
-
-            # the urls of the search engine options
-            ENGINES = {
-                0: "google.com/search?safe=off&q=",
-                1: "duckduckgo.com/",
-                2: "bing.com/search?q=",
-                3: "yandex.com/search?text=",
-            }
 
             if query:
                 # put the query at the end of the url and https
