@@ -184,6 +184,15 @@ def main():
     )
 
     parser.add_option(
+        "--select-tab-label",
+        dest="select_tablabel",
+        metavar="TITLE",
+        action="store",
+        default=False,
+        help=_("Select a tab (TITLE is the case-sensitive label of the tab)."),
+    )
+
+    parser.add_option(
         "-g",
         "--selected-tab",
         dest="selected_tab",
@@ -341,6 +350,15 @@ def main():
         action="store",
         default="",
         help=_("Rename the current tab. Reset to default if TITLE is a " 'single dash "-".'),
+    )
+
+    parser.add_option(
+        "--close-tab-label",
+        dest="close_tablabel",
+        metavar="TITLE",
+        action="store",
+        default=False,
+        help=_("Close a tab (TITLE is the case-sensitive label of the tab)."),
     )
 
     parser.add_option(
@@ -526,6 +544,15 @@ def main():
             sys.stderr.write(f"invalid index: {selected}\n")
         only_show_hide = options.show
 
+    if options.select_tablabel:
+        tab_label = str(options.select_tablabel)
+        if not tab_label:
+            sys.stderr.write("no label was provided!\n")
+        else:
+            if not remote_object.select_tab_label(tab_label):
+                sys.stderr.write("Could not find tab with label \"" + tab_label + "\"\n")
+        only_show_hide = options.show
+
     if options.selected_tab:
         selected = remote_object.get_selected_tab()
         sys.stdout.write(f"{selected}\n")
@@ -534,6 +561,15 @@ def main():
     if options.selected_tablabel:
         selectedlabel = remote_object.get_selected_tablabel()
         sys.stdout.write(f"{selectedlabel}\n")
+        only_show_hide = options.show
+
+    if options.close_tablabel:
+        tab_label = str(options.close_tablabel)
+        if not tab_label:
+            sys.stderr.write("no label was provided!\n")
+        else:
+            if not remote_object.close_tab_label(tab_label):
+                sys.stderr.write("Could not find tab with label \"" + tab_label + "\"\n")
         only_show_hide = options.show
 
     if options.uuid_index:
