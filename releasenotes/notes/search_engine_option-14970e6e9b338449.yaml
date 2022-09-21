@@ -1,0 +1,6 @@
+release_summary: >
+  Added drop down menu to select search engine in preferences
+
+features:
+  - |
+      - search engine can be set to preference #2125
