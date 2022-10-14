@@ -17,6 +17,7 @@ ENGINES = {
     1: "duckduckgo.com/",
     2: "bing.com/search?q=",
     3: "yandex.com/search?text=",
+    4: "neeva.com/search?q=",
 }
 
 
