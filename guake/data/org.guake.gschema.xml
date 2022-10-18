@@ -86,7 +86,11 @@
             <summary>Search engine to use when using web search</summary>
             <description>Search engine to use</description>
         </key>
-
+        <key name="custom-search-engine" type="s">
+            <default>''</default>
+            <summary>Search engine to use when using web search</summary>
+            <description>Custom search engine url to use</description>
+        </key>
         <key name="window-ontop" type="b">
             <default>true</default>
             <summary>Stay on top.</summary>

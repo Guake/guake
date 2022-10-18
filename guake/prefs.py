@@ -297,7 +297,22 @@ class PrefsCallbacks:
         self.settings.general.set_int("prompt-on-close-tab", combo.get_active())
 
     def on_search_engine_changed(self, combo):
+        """
+        Sets the 'search-engine' value in dnonf.
+        Also controls the editability of 'custom_search' input
+        """
+        custom_search = self.prefDlg.get_widget("custom_search")
+        # if 'Custom' is selected make the search engine input editable
+        if combo.get_active() == 4:
+            custom_search.set_sensitive(True)
+        else:
+            # make read-only
+            custom_search.set_sensitive(False)
         self.settings.general.set_int("search-engine", combo.get_active())
+
+    def on_custom_search_changed(self, edt):
+        """Sets the 'custom-search-engine' property in dconf"""
+        self.settings.general.set_string("custom-search-engine", edt.get_text())
 
     def on_gtk_theme_name_changed(self, combo):
         """Set the `gtk_theme_name' property in dconf"""
@@ -1050,7 +1065,15 @@ class PrefsDialog(SimpleGladeApp):
 
         # search engine
         value = self.settings.general.get_int("search-engine")
+        custom_search = self.get_widget("custom_search")
+        custom_search.set_text(self.settings.general.get_string("custom-search-engine"))
         self.get_widget("search_engine_select").set_active(value)
+        # if 'Custom' is selected make the search engine input editable
+        if value == 4:
+            # make read-only
+            custom_search.set_sensitive(True)
+        else:
+            custom_search.set_sensitive(False)
 
         # use system theme
         value = self.settings.general.get_boolean("gtk-use-system-default-theme")
