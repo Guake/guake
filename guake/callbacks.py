@@ -13,10 +13,10 @@ from urllib.parse import quote_plus
 
 # the urls of the search engine options
 ENGINES = {
-    0: "google.com/search?safe=off&q=",
-    1: "duckduckgo.com/",
-    2: "bing.com/search?q=",
-    3: "yandex.com/search?text=",
+    0: "www.google.com/search?safe=off&q=",
+    1: "www.duckduckgo.com/",
+    2: "www.bing.com/search?q=",
+    3: "www.yandex.com/search?text=",
 }
 
 
@@ -62,12 +62,19 @@ class TerminalContextMenuCallbacks:
             query = clipboard.wait_for_text()
             query = quote_plus(query)
 
-            if query:
-                # put the query at the end of the url and https
-                search_url = (
-                    "https://www." + ENGINES[self.settings.general.get_int("search-engine")] + query
-                )
-                Gtk.show_uri(self.window.get_screen(), search_url, get_server_time(self.window))
+            # nothing selected
+            if not query:
+                return
+
+            selected = self.settings.general.get_int("search-engine")
+            # if custom search is selected, get the engine from the 'custom-search-engine' setting
+            if selected == 4:
+                engine = self.settings.general.get_string("custom-search-engine")
+            else:
+                engine = ENGINES[selected]
+            # put the query at the end of the url
+            search_url = "https://" + engine + query
+            Gtk.show_uri(self.window.get_screen(), search_url, get_server_time(self.window))
 
     def on_quick_open(self, *args):
         if self.terminal.get_has_selection():

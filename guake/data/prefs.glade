@@ -725,6 +725,7 @@
                                       <item translatable="yes">DuckDuckGo</item>
                                       <item translatable="yes">Bing</item>
                                       <item translatable="yes">Yandex</item>
+                                      <item translatable="yes">Custom</item>
                                     </items>
                                     <signal name="changed" handler="on_search_engine_changed" swapped="no"/>
                                   </object>
@@ -739,6 +740,45 @@
                                 <property name="expand">False</property>
                                 <property name="fill">True</property>
                                 <property name="position">3</property>
+                              </packing>
+                            </child>
+                            <child>
+                              <object class="GtkBox">
+                                <property name="visible">True</property>
+                                <property name="can-focus">False</property>
+                                <property name="spacing">4</property>
+                                <child>
+                                  <object class="GtkLabel" id="lbl_custom_search">
+                                    <property name="visible">True</property>
+                                    <property name="can-focus">False</property>
+                                    <property name="label" translatable="yes">Custom Search:</property>
+                                  </object>
+                                  <packing>
+                                    <property name="expand">False</property>
+                                    <property name="fill">True</property>
+                                    <property name="position">0</property>
+                                  </packing>
+                                </child>
+                                <child>
+                                  <object class="GtkEntry" id="custom_search">
+                                    <property name="width-request">400</property>
+                                    <property name="visible">True</property>
+                                    <property name="can-focus">True</property>
+                                    <property name="invisible-char">•</property>
+                                    <property name="placeholder-text" translatable="yes">www.google.com/search?q=&lt;search is inserted here&gt;</property>
+                                    <signal name="changed" handler="on_custom_search_changed" swapped="no"/>
+                                  </object>
+                                  <packing>
+                                    <property name="expand">False</property>
+                                    <property name="fill">True</property>
+                                    <property name="position">1</property>
+                                  </packing>
+                                </child>
+                              </object>
+                              <packing>
+                                <property name="expand">False</property>
+                                <property name="fill">True</property>
+                                <property name="position">4</property>
                               </packing>
                             </child>
                           </object>
