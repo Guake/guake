@@ -1,13 +1,5 @@
 release_summary: >
-  Replace this text with content to appear at the top of the section for this
-  release.
-
-  All of the prelude content is merged together and then rendered
-  separately from the items listed in other parts of the file, so the text
-  needs to be worded so that both the prelude and the other items make sense
-  when read independently.
-
-  Do not use "list" syntax here
+  Added input on general in preferences to add a custom url to search with.
 
 features:
   - |
