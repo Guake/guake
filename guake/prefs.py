@@ -48,6 +48,7 @@ from guake.globals import ALWAYS_ON_PRIMARY
 from guake.globals import MAX_TRANSPARENCY
 from guake.globals import NAME
 from guake.globals import QUICK_OPEN_MATCHERS
+from guake.globals import ENGINES
 from guake.palettes import PALETTES
 from guake.paths import AUTOSTART_FOLDER
 from guake.paths import LOCALE_DIR
@@ -303,7 +304,7 @@ class PrefsCallbacks:
         """
         custom_search = self.prefDlg.get_widget("custom_search")
         # if 'Custom' is selected make the search engine input editable
-        if combo.get_active() == 4:
+        if combo.get_active() not in ENGINES:
             custom_search.set_sensitive(True)
         else:
             # make read-only
@@ -1069,7 +1070,7 @@ class PrefsDialog(SimpleGladeApp):
         custom_search.set_text(self.settings.general.get_string("custom-search-engine"))
         self.get_widget("search_engine_select").set_active(value)
         # if 'Custom' is selected make the search engine input editable
-        if value == 4:
+        if value not in ENGINES:
             # make read-only
             custom_search.set_sensitive(True)
         else:

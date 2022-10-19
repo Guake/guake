@@ -9,15 +9,8 @@ from guake.prefs import PrefsDialog
 from guake.utils import FullscreenManager
 from guake.utils import HidePrevention
 from guake.utils import get_server_time
+from guake.globals import ENGINES
 from urllib.parse import quote_plus
-
-# the urls of the search engine options
-ENGINES = {
-    0: "www.google.com/search?safe=off&q=",
-    1: "www.duckduckgo.com/",
-    2: "www.bing.com/search?q=",
-    3: "www.yandex.com/search?text=",
-}
 
 
 class TerminalContextMenuCallbacks:
@@ -68,7 +61,7 @@ class TerminalContextMenuCallbacks:
 
             selected = self.settings.general.get_int("search-engine")
             # if custom search is selected, get the engine from the 'custom-search-engine' setting
-            if selected == 4:
+            if selected not in ENGINES:
                 engine = self.settings.general.get_string("custom-search-engine")
             else:
                 engine = ENGINES[selected]

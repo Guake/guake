@@ -725,6 +725,7 @@
                                       <item translatable="yes">DuckDuckGo</item>
                                       <item translatable="yes">Bing</item>
                                       <item translatable="yes">Yandex</item>
+                                      <item translatable="yes">Neeva</item>
                                       <item translatable="yes">Custom</item>
                                     </items>
                                     <signal name="changed" handler="on_search_engine_changed" swapped="no"/>
