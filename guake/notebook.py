@@ -340,12 +340,12 @@ class TerminalNotebook(Gtk.Notebook):
     def delete_page_current(self, kill=True, prompt=0):
         self.delete_page(self.get_current_page(), kill, prompt)
 
-    def new_page(self, directory=None, position=None, empty=False):
+    def new_page(self, directory=None, position=None, empty=False, open_tab_cwd=False):
         terminal_box = TerminalBox()
         if empty:
             terminal = None
         else:
-            terminal = self.terminal_spawn(directory)
+            terminal = self.terminal_spawn(directory, open_tab_cwd)
             terminal_box.set_terminal(terminal)
         root_terminal_box = RootTerminalBox(self.guake, self)
         root_terminal_box.set_child(terminal_box)
@@ -379,7 +379,7 @@ class TerminalNotebook(Gtk.Notebook):
             else:
                 self.set_property("show-tabs", True)
 
-    def terminal_spawn(self, directory=None):
+    def terminal_spawn(self, directory=None, open_tab_cwd=False):
         terminal = GuakeTerminal(self.guake)
         terminal.grab_focus()
         terminal.connect(
@@ -389,7 +389,7 @@ class TerminalNotebook(Gtk.Notebook):
         if not isinstance(directory, str):
             directory = os.environ["HOME"]
             try:
-                if self.guake.settings.general.get_boolean("open-tab-cwd"):
+                if self.guake.settings.general.get_boolean("open-tab-cwd") or open_tab_cwd:
                     # Do last focused terminal still alive?
                     active_terminal = self.get_current_terminal()
                     if not active_terminal:
@@ -410,9 +410,17 @@ class TerminalNotebook(Gtk.Notebook):
         self.emit("terminal-spawned", terminal, terminal.pid)
 
     def new_page_with_focus(
-        self, directory=None, label=None, user_set=False, position=None, empty=False
+        self,
+        directory=None,
+        label=None,
+        user_set=False,
+        position=None,
+        empty=False,
+        open_tab_cwd=False,
     ):
-        box, page_num, terminal = self.new_page(directory, position=position, empty=empty)
+        box, page_num, terminal = self.new_page(
+            directory, position=position, empty=empty, open_tab_cwd=open_tab_cwd
+        )
         self.set_current_page(page_num)
         if not label:
             self.rename_page(page_num, self.guake.compute_tab_title(terminal), False)

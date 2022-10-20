@@ -986,6 +986,11 @@ class Guake(SimpleGladeApp):
         self.add_tab(os.environ["HOME"])
         return True
 
+    def accel_add_cwd(self, *args):
+        """Callback to add a new tab in current directory. Called by the accel key."""
+        self.add_tab(open_tab_cwd=True)
+        return True
+
     def accel_prev(self, *args):
         """Callback to go to the previous tab. Called by the accel key."""
         if self.get_notebook().get_current_page() == 0:
@@ -1231,12 +1236,14 @@ class Guake(SimpleGladeApp):
         terminal.directory = terminal.get_current_directory()
 
     @save_tabs_when_changed
-    def add_tab(self, directory=None):
+    def add_tab(self, directory=None, open_tab_cwd=False):
         """Adds a new tab to the terminal notebook."""
         position = None
         if self.settings.general.get_boolean("new-tab-after"):
             position = 1 + self.get_notebook().get_current_page()
-        self.get_notebook().new_page_with_focus(directory, position=position)
+        self.get_notebook().new_page_with_focus(
+            directory, position=position, open_tab_cwd=open_tab_cwd
+        )
 
     def find_tab(self, directory=None):
         log.debug("find")

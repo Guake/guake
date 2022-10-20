@@ -67,6 +67,7 @@ class Keybindings:
             ("toggle-fullscreen", self.guake.accel_toggle_fullscreen),
             ("new-tab", self.guake.accel_add),
             ("new-tab-home", self.guake.accel_add_home),
+            ("new-tab-cwd", self.guake.accel_add_cwd),
             ("close-tab", x),
             ("rename-current-tab", self.guake.accel_rename_current_tab),
             ("previous-tab", self.guake.accel_prev),
