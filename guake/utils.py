@@ -22,6 +22,7 @@ Boston, MA 02110-1301 USA
 import enum
 import logging
 import os
+import re
 import subprocess
 import time
 import yaml
@@ -524,3 +525,16 @@ class BackgroundImageManager:
             cr.paint()
 
         cr.restore()
+
+
+def get_process_name(pid):
+    stat_file = f"/proc/{pid}/stat"
+    try:
+        with open(stat_file, "r", encoding="utf-8") as fp:
+            status = fp.read()
+    except IOError as ex:
+        log.debug("Unable to read %s: %s", stat_file, ex)
+        status = ""
+
+    match = re.match(r"\d+ \(([^)]+)\)", status)
+    return match.group(1) if match else None

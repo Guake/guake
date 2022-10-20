@@ -54,6 +54,8 @@ from guake.common import pixmapfile
 from guake.dialogs import PromptQuitDialog
 from guake.globals import MAX_TRANSPARENCY
 from guake.globals import NAME
+from guake.globals import PROMPT_ALWAYS
+from guake.globals import PROMPT_PROCESSES
 from guake.globals import TABS_SESSION_SCHEMA_VERSION
 from guake.gsettings import GSettingHandler
 from guake.keybindings import Keybindings
@@ -906,13 +908,17 @@ class Guake(SimpleGladeApp):
 
     def accel_quit(self, *args):
         """Callback to prompt the user whether to quit Guake or not."""
-        procs = self.notebook_manager.get_running_fg_processes_count()
+        procs = self.notebook_manager.get_running_fg_processes()
         tabs = self.notebook_manager.get_n_pages()
         notebooks = self.notebook_manager.get_n_notebooks()
         prompt_cfg = self.settings.general.get_boolean("prompt-on-quit")
         prompt_tab_cfg = self.settings.general.get_int("prompt-on-close-tab")
         # "Prompt on tab close" config overrides "prompt on quit" config
-        if prompt_cfg or (prompt_tab_cfg == 1 and procs > 0) or (prompt_tab_cfg == 2):
+        if (
+            prompt_cfg
+            or (prompt_tab_cfg == PROMPT_PROCESSES and procs)
+            or (prompt_tab_cfg == PROMPT_ALWAYS)
+        ):
             log.debug("Remaining procs=%r", procs)
             if PromptQuitDialog(self.window, procs, tabs, notebooks).quit():
                 log.info("Quitting Guake")
