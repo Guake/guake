@@ -25,9 +25,12 @@ from guake.boxes import TerminalBox
 from guake.callbacks import MenuHideCallback
 from guake.callbacks import NotebookScrollCallback
 from guake.dialogs import PromptQuitDialog
+from guake.globals import PROMPT_ALWAYS
+from guake.globals import PROMPT_PROCESSES
 from guake.menus import mk_notebook_context_menu
 from guake.prefs import PrefsDialog
 from guake.utils import gdk_is_x11_display
+from guake.utils import get_process_name
 from guake.utils import save_tabs_when_changed
 
 import gi
@@ -247,15 +250,15 @@ class TerminalNotebook(Gtk.Notebook):
             terminals += page.get_terminals()
         return terminals
 
-    def get_running_fg_processes_count(self):
-        fg_proc_count = 0
+    def get_running_fg_processes(self):
+        processes = []
         for page in self.iter_pages():
-            fg_proc_count += self.get_running_fg_processes_count_page(self.page_num(page))
-        return fg_proc_count
+            processes += self.get_running_fg_processes_page(page)
+        return processes
 
-    def get_running_fg_processes_count_page(self, index):
-        total_procs = 0
-        for terminal in self.get_terminals_for_page(index):
+    def get_running_fg_processes_page(self, page):
+        processes = []
+        for terminal in page.get_terminals():
             pty = terminal.get_pty()
             if not pty:
                 continue
@@ -265,14 +268,13 @@ class TerminalNotebook(Gtk.Notebook):
                 fgpid = posix.tcgetpgrp(fdpty)
                 log.debug("found running pid: %s", fgpid)
                 if fgpid not in (-1, term_pid):
-                    total_procs += 1
+                    processes.append((fgpid, get_process_name(fgpid)))
             except OSError:
                 log.debug(
                     "Cannot retrieve any pid from terminal %s, looks like it is already dead",
-                    index,
+                    terminal,
                 )
-                return 0
-        return total_procs
+        return processes
 
     def has_page(self):
         return self.get_n_pages() > 0
@@ -296,16 +298,17 @@ class TerminalNotebook(Gtk.Notebook):
         if page_num >= self.get_n_pages() or page_num < 0:
             log.error("Can not delete page %s no such index", page_num)
             return
+
+        page = self.get_nth_page(page_num)
         # TODO NOTEBOOK it would be nice if none of the "ui" stuff
         # (PromptQuitDialog) would be in here
-        procs = self.get_running_fg_processes_count_page(page_num)
-        if prompt == 2 or (prompt == 1 and procs > 0):
+        procs = self.get_running_fg_processes_page(page)
+        if prompt == PROMPT_ALWAYS or (prompt == PROMPT_PROCESSES and procs):
             # TODO NOTEBOOK remove call to guake
             if not PromptQuitDialog(self.guake.window, procs, -1, None).close_tab():
                 return
 
-        page = self.get_nth_page(page_num)
-        for terminal in self.get_terminals_for_page(page_num):
+        for terminal in page.get_terminals():
             if kill:
                 terminal.kill()
             terminal.destroy()
@@ -609,8 +612,8 @@ class NotebookManager(GObject.Object):
     def get_n_notebooks(self):
         return len(self.notebooks.keys())
 
-    def get_running_fg_processes_count(self):
-        r_fg_c = 0
+    def get_running_fg_processes(self):
+        processes = []
         for k in self.notebooks:
-            r_fg_c += self.notebooks[k].get_running_fg_processes_count()
-        return r_fg_c
+            processes += self.notebooks[k].get_running_fg_processes()
+        return processes

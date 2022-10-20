@@ -64,15 +64,20 @@ class PromptQuitDialog(Gtk.MessageDialog):
             else:
                 notebooks_str = ""
 
-        if procs == 0:
+        if not procs:
             proc_str = _("There are no processes running")
-        elif procs == 1:
+        elif len(procs) == 1:
             proc_str = _("There is a process still running")
         else:
-            proc_str = _("There are {0} processes still running").format(procs)
+            proc_str = _("There are {0} processes still running").format(len(procs))
+
+        if procs:
+            proc_list = "\n\n" + "\n".join(f"{name} ({pid})" for pid, name in procs)
+        else:
+            proc_list = ""
 
         self.set_markup(primary_msg)
-        self.format_secondary_markup(f"<b>{proc_str}{tab_str}{notebooks_str}.</b>")
+        self.format_secondary_markup(f"<b>{proc_str}{tab_str}{notebooks_str}.</b>{proc_list}")
 
     def quit(self):
         """Run the "are you sure" dialog for quitting Guake"""

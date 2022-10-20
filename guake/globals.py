@@ -70,6 +70,7 @@ NAME = "guake"
 ALIGN_CENTER, ALIGN_LEFT, ALIGN_RIGHT = range(3)
 ALIGN_TOP, ALIGN_BOTTOM = range(2)
 ALWAYS_ON_PRIMARY = -1
+PROMPT_NEVER, PROMPT_PROCESSES, PROMPT_ALWAYS = range(3)
 
 # TODO this is not as fancy as as it could be
 # pylint: disable=anomalous-backslash-in-string

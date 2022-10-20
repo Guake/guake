@@ -1,0 +1,6 @@
+release_summary: >
+  The "are you sure you want to close" dialog will now include names of any running processes.
+
+features:
+  - |
+    - Include names of any processes in PromptQuitDialog, closes #256
