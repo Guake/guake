@@ -18,6 +18,7 @@ colorlog
 fiximports>=0.1.18
 flake8>=3.8.0,<4.0.0
 flakehell
+dbus-python
 mock>=2.0.0
 pathlib2
 pep8
@@ -25,10 +26,12 @@ pew
 pipenv-to-requirements
 pyfakefs
 pyflakes
+PyGObject
 pylint
 pytest
 pytest-cov
 pytest-mock
+pyyaml
 reno[sphinx]>=2.8.0
 scandir ; python_version > '3.5'
 sphinx-rtd-theme
