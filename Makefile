@@ -66,7 +66,7 @@ ln-venv:
 	ln -s $$(pipenv --venv) .venv
 
 clean-ln-venv:
-	@rm -f .venv
+	@rm -rf .venv
 
 install-system: install-schemas compile-shemas install-locale install-guake
 
