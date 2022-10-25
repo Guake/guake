@@ -506,7 +506,6 @@ class Guake(SimpleGladeApp):
             if visible and value:
                 log.info("Hiding on focus lose")
                 self.hide()
-            return False
 
         def losefocus_callback(sleep_time):
             sleep(sleep_time)
