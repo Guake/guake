@@ -4,4 +4,3 @@ release_summary: >
 fixes:
   - |
     fixed issue #1747. Now font size is not reset after a terminal split
-

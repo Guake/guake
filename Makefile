@@ -181,7 +181,8 @@ compile-glib-schemas-dev: clean-schemas
 clean-schemas:
 	rm -f $(DEV_DATA_DIR)/gschemas.compiled
 
-style: black
+style:
+	PIPENV_IGNORE_VIRTUALENVS=1 pipenv run pre-commit run --all-files
 
 black:
 	PIPENV_IGNORE_VIRTUALENVS=1 pipenv run black $(MODULE)
@@ -312,15 +313,12 @@ freeze:
 	PIPENV_IGNORE_VIRTUALENVS=1 pipenv run pip freeze
 
 
-githook:
-	bash git-hooks/post-commit
-
 setup-githook:
 	rm -f .git/hooks/post-commit
-	cp -fv git-hooks/* .git/hooks/
+	PIPENV_IGNORE_VIRTUALENVS=1 pipenv run pre-commit install
 
 
-push: githook
+push:
 	git push origin --tags
 
 

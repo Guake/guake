@@ -41,14 +41,14 @@ Please follow these steps before submitting a new Pull Request to Guake:
 
 - Semantic commit is supported (and recommended). Add one of the following
   line in your commit messages:
-  
+
   ```
   # For a bug fix, uses:
   sem-ver: bugfix
-  
+
   # For a new feature, uses:
   sem-ver: feature
-  
-  # Please do not use the 'breaking change' syntax (`sem-ver: api-break`), 
+
+  # Please do not use the 'breaking change' syntax (`sem-ver: api-break`),
   # it is reserved for really big reworks
   ```

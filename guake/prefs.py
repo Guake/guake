@@ -45,10 +45,10 @@ from guake.globals import ALIGN_LEFT
 from guake.globals import ALIGN_RIGHT
 from guake.globals import ALIGN_TOP
 from guake.globals import ALWAYS_ON_PRIMARY
+from guake.globals import ENGINES
 from guake.globals import MAX_TRANSPARENCY
 from guake.globals import NAME
 from guake.globals import QUICK_OPEN_MATCHERS
-from guake.globals import ENGINES
 from guake.palettes import PALETTES
 from guake.paths import AUTOSTART_FOLDER
 from guake.paths import LOCALE_DIR

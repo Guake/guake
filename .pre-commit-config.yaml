@@ -1,0 +1,25 @@
+repos:
+  - repo: https://github.com/pre-commit/pre-commit-hooks.git
+    rev: v4.3.0
+    hooks:
+      - id: end-of-file-fixer
+      - id: trailing-whitespace
+        args:
+          - "--markdown-linebreak-ext=md"
+        exclude: COPYING
+  - repo: https://github.com/PyCQA/flake8.git
+    rev: 3.9.2
+    hooks:
+      - id: flake8
+  - repo: https://github.com/PyCQA/pylint.git
+    rev: v2.13.6
+    hooks:
+      - id: pylint
+  - repo: https://github.com/psf/black.git
+    rev: 22.10.0
+    hooks:
+      - id: black
+  - repo: https://github.com/hackedd/fiximports.git
+    rev: 19bd841
+    hooks:
+      - id: fiximports

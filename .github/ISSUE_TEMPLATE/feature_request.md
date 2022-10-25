@@ -15,5 +15,4 @@ For how to run the latest Guake in your computer, please refer to [Install from 
 
 Please use [FeatHub](https://feathub.com/Guake/guake) to fill-up a feature request.
 
-This allow us to spot directly which are the most requested features.
-
+This allows us to spot directly which are the most requested features.
