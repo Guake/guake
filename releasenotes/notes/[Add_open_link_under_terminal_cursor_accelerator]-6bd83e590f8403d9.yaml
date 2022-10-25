@@ -4,4 +4,3 @@ release_summary: >
 features:
   - |
       - Add new accelerator to open a link or URL under the terminal cursor #2060
-

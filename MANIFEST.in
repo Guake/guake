@@ -1,5 +1,4 @@
 prune .github
-prune git-hooks
 prune releasenotes
 include guake *
 prune guake/tests

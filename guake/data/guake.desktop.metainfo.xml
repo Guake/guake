@@ -9,12 +9,12 @@
 	<description>
 		<p>
 			Guake is a top-down terminal for Gnome, and is highly inspired by the famous terminal used in Quake.
-			You can instantaneously show and hide your terminal with a single key stroke, execute a command, and then go back to your previous task without breaking your workflow. 
+			You can instantaneously show and hide your terminal with a single key stroke, execute a command, and then go back to your previous task without breaking your workflow.
 		</p>
 		<p>
 			Imagine you are working in your favorite text editor and want to execute some commands, like execute the unit test of your code, check a man page, or edit some configuration file.
 			You can do it at lightning speed without leaving your keyboard.
-			Just press your predefined "Show Guake" hotkey, execute your command, and press it again to hide the terminal and go back to your work. 
+			Just press your predefined "Show Guake" hotkey, execute your command, and press it again to hide the terminal and go back to your work.
 		</p>
 	</description>
 
@@ -33,4 +33,3 @@
 	<url type="bugtracker">https://github.com/Guake/guake/issues</url>
 	<url type="translate">https://hosted.weblate.org/projects/guake/guake/</url>
 </component>
-

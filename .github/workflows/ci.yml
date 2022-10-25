@@ -60,7 +60,7 @@ jobs:
           make test-actions
           # prepare for deployment
           make generate-paths
-          
+
       - uses: Thog/action-equals@v1
         id: isLatest
         with:

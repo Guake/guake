@@ -5,11 +5,11 @@ from gi.repository import Gdk
 from gi.repository import Gtk
 from guake.about import AboutDialog
 from guake.dialogs import SaveTerminalDialog
+from guake.globals import ENGINES
 from guake.prefs import PrefsDialog
 from guake.utils import FullscreenManager
 from guake.utils import HidePrevention
 from guake.utils import get_server_time
-from guake.globals import ENGINES
 from urllib.parse import quote_plus
 
 

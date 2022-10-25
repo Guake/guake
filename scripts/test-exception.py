@@ -8,7 +8,7 @@ def func4():
 
 
 def func2():
-    func3()
+    func3()  # noqa: F821
 
 
 def func1():

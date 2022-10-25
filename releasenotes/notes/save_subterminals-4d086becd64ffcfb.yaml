@@ -3,4 +3,4 @@ release_summary: >
 
 fixes:
   - |
-      - A closed subterminal returns back after restarting Guake #1686 
+      - A closed subterminal returns back after restarting Guake #1686

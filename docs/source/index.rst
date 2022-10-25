@@ -45,7 +45,7 @@ Useful links
 - Source Code available on `GitHub <https://github.com/Guake/guake/>`_.
 - Official Homepage: http://guake-project.org
 - Online Documentation is hosted on `ReadTheDocs <http://guake.readthedocs.io/>`_.
-- If you are not a developer, you can still contribute to Guake by 
+- If you are not a developer, you can still contribute to Guake by
    `improving its translations in your language <https://hosted.weblate.org/projects/guake/guake/>`_.
    Guake users are welcome `to support Weblate <https://weblate.org/donate/>`_ in providing this
    service for free for OpenSource Projects.

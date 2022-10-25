@@ -84,8 +84,8 @@ You can reinstall easily in your environment (only validated for Debian/Ubuntu) 
 Git hook
 ========
 
-Please install this git hook if you want to beautify your patch before submission:
+This project uses `pre-commit <https://pre-commit.com/>` to automatically execute some codestyle tools. It should be automatically installed by the ``make dev`` command, you can use ``make style`` if you want to run it manually. If you want to pass more options, you can use:
 
 .. code-block:: bash
 
-    $ make setup-githook
+    $ pipenv run pre-commit run --all-files
