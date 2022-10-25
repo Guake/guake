@@ -29,6 +29,7 @@ from guake.globals import PROMPT_ALWAYS
 from guake.globals import PROMPT_PROCESSES
 from guake.menus import mk_notebook_context_menu
 from guake.prefs import PrefsDialog
+from guake.utils import HidePrevention
 from guake.utils import gdk_is_x11_display
 from guake.utils import get_process_name
 from guake.utils import save_tabs_when_changed
@@ -91,6 +92,11 @@ class TerminalNotebook(Gtk.Notebook):
         )
 
         # Action box
+        self.pin_button = Gtk.ToggleButton(
+            image=Gtk.Image.new_from_icon_name("view-pin-symbolic", Gtk.IconSize.MENU),
+            visible=False,
+        )
+        self.pin_button.connect("clicked", self.on_pin_clicked)
         self.new_page_button = Gtk.Button(
             image=Gtk.Image.new_from_icon_name("tab-new-symbolic", Gtk.IconSize.MENU),
             visible=True,
@@ -106,12 +112,16 @@ class TerminalNotebook(Gtk.Notebook):
         self.tab_selection_button.connect("clicked", self.on_tab_selection)
 
         self.action_box = Gtk.Box(visible=True)
+        self.action_box.pack_start(self.pin_button, 0, 0, 0)
         self.action_box.pack_start(self.new_page_button, 0, 0, 0)
-        self.action_box.pack_end(self.tab_selection_button, 0, 0, 0)
+        self.action_box.pack_start(self.tab_selection_button, 0, 0, 0)
         self.set_action_widget(self.action_box, Gtk.PackType.END)
 
     def attach_guake(self, guake):
         self.guake = guake
+
+        self.guake.settings.general.onChangedValue("window-losefocus", self.on_lose_focus_toggled)
+        self.pin_button.set_visible(self.guake.settings.general.get_boolean("window-losefocus"))
 
     def on_button_press(self, target, event, user_data):
         if event.button == 3:
@@ -132,6 +142,16 @@ class TerminalNotebook(Gtk.Notebook):
             self.new_page_with_focus()
 
         return False
+
+    def on_pin_clicked(self, user_data=None):
+        hide_prevention = HidePrevention(self.guake.window)
+        if self.pin_button.get_active():
+            hide_prevention.prevent()
+        else:
+            hide_prevention.allow()
+
+    def on_lose_focus_toggled(self, settings, key, user_data=None):
+        self.pin_button.set_visible(settings.get_boolean(key))
 
     @save_tabs_when_changed
     def on_new_tab(self, user_data):
