@@ -76,6 +76,7 @@ class Keybindings:
             ("next-tab-alt", self.guake.accel_next),
             ("clipboard-copy", self.guake.accel_copy_clipboard),
             ("clipboard-paste", self.guake.accel_paste_clipboard),
+            ("select-all", self.guake.accel_select_all),
             ("quit", self.guake.accel_quit),
             ("zoom-in", self.guake.accel_zoom_in),
             ("zoom-in-alt", self.guake.accel_zoom_in),
@@ -198,7 +199,7 @@ class Keybindings:
         ]
         for key, _ in self.keys:
             guake.settings.keybindingsLocal.onChangedValue(key, self.reload_accelerators)
-            self.reload_accelerators()
+        self.reload_accelerators()
 
     def reload_global(self, settings, key, user_data):
         value = settings.get_string(key)

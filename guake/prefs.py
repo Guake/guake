@@ -181,6 +181,7 @@ HOTKEYS = [
         "keys": [
             {"key": "clipboard-copy", "label": _("Copy text to clipboard")},
             {"key": "clipboard-paste", "label": _("Paste text from clipboard")},
+            {"key": "select-all", "label": _("Select all")},
         ],
     },
     {
