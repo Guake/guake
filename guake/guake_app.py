@@ -1074,6 +1074,10 @@ class Guake(SimpleGladeApp):
         self.get_notebook().get_current_terminal().paste_clipboard()
         return True
 
+    def accel_select_all(self, *args):
+        self.get_notebook().get_current_terminal().select_all()
+        return True
+
     def accel_toggle_hide_on_lose_focus(self, *args):
         """Callback toggle whether the window should hide when it loses
         focus. Called by the accel key.

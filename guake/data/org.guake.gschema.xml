@@ -568,6 +568,11 @@
             <summary>Paste clipboard.</summary>
             <description>Paste the clipboard content.</description>
         </key>
+        <key name="select-all" type="s">
+            <default>'&lt;Control&gt;&lt;Shift&gt;a'</default>
+            <summary>Select all.</summary>
+            <description>Select all contents of the currently active terminal.</description>
+        </key>
         <key name="toggle-fullscreen" type="s">
             <default>'F11'</default>
             <summary>Toggle Fullscreen.</summary>
