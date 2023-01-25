@@ -481,6 +481,10 @@ class PrefsCallbacks:
         """Changes the value of use_audible_bell in dconf"""
         self.settings.general.set_boolean("use-audible-bell", chk.get_active())
 
+    def on_use_sixel_toggled(self, chk):
+        """Changes the value of enable_sixel in dconf"""
+        self.settings.general.set_boolean("use-sixel", chk.get_active())
+
     # scrolling tab
 
     def on_use_scrollbar_toggled(self, chk):
@@ -1181,6 +1185,10 @@ class PrefsDialog(SimpleGladeApp):
         # use audible bell
         value = self.settings.general.get_boolean("use-audible-bell")
         self.get_widget("use_audible_bell").set_active(value)
+
+        # use sixel
+        value = self.settings.general.get_boolean("use-sixel")
+        self.get_widget("use_sixel").set_active(value)
 
         self._load_screen_settings()
 
