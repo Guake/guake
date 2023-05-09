@@ -1,0 +1,8 @@
+release_summary: >
+  execute command flag now runs commands in new split tabs if --split-vertical or --split-horizontal are also provided.
+
+
+fixes:
+  - |
+
+      - Options --select-tab, --split-vertical (--split-horizontal) and -execute-command not working as before (v. 3.8.4). #2167

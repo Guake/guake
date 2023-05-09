@@ -542,11 +542,17 @@ def main():
         only_show_hide = options.show
 
     if options.split_vertical:
-        remote_object.v_split_current_terminal()
+        if options.command:
+            remote_object.v_split_current_terminal_with_command(options.command)
+        else:
+            remote_object.v_split_current_terminal()
         only_show_hide = options.show
 
     if options.split_horizontal:
-        remote_object.h_split_current_terminal()
+        if options.command:
+            remote_object.h_split_current_terminal_with_command(options.command)
+        else:
+            remote_object.h_split_current_terminal()
         only_show_hide = options.show
 
     if options.selected_terminal:
@@ -563,7 +569,7 @@ def main():
             sys.stderr.write(f"invalid index: {selected}\n")
         only_show_hide = options.show
 
-    if options.command:
+    if options.command and not (options.split_vertical or options.split_horizontal):
         remote_object.execute_command(options.command)
         only_show_hide = options.show
 
