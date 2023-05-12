@@ -1,0 +1,10 @@
+release_summary: >
+  Open a new guake tab if guake is called with `guake [PATH]` and no other flags.
+
+features:
+  - |
+      - Open a new guake tab if guake is called with `guake [PATH]` and no other flags.
+
+fixes:
+  - |
+      - Linux mint 17.1 Cinnamon --> set Guake to current path when opened from within Nemo #424
