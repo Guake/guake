@@ -937,14 +937,20 @@ class Guake(SimpleGladeApp):
 
     def accel_zoom_in(self, *args):
         """Callback to zoom in."""
+        font = " ".join(self.settings.styleFont.get_string("style").split(" ")[:-1])
+        new_size = int(self.settings.styleFont.get_string("style").split(" ")[-1]) + 1
+        self.settings.styleFont.set_string("style", f"{font} {new_size}")
         for term in self.get_notebook().iter_terminals():
-            term.increase_font_size()
+            term.set_font_scale(new_size / (new_size - 1))
         return True
 
     def accel_zoom_out(self, *args):
         """Callback to zoom out."""
+        font = " ".join(self.settings.styleFont.get_string("style").split(" ")[:-1])
+        new_size = int(self.settings.styleFont.get_string("style").split(" ")[-1]) - 1
+        self.settings.styleFont.set_string("style", f"{font} {new_size}")
         for term in self.get_notebook().iter_terminals():
-            term.decrease_font_size()
+            term.set_font_scale((new_size - 1) / new_size)
         return True
 
     def accel_increase_height(self, *args):
