@@ -80,6 +80,12 @@ def main():
     # do not use version keywords here, pbr might be slow to find the version of Guake module
     parser = ArgumentParser()
     parser.add_argument(
+        "path",
+        nargs="?",
+        help="Add a new tab at designated path when a path is provided and no other options",
+    )
+
+    parser.add_argument(
         "-V",
         "--version",
         dest="version",
@@ -515,6 +521,10 @@ def main():
 
     if options.new_tab and not options.command:
         remote_object.add_tab(options.new_tab)
+        only_show_hide = options.show
+
+    if options.path and len(sys.argv) == 2:
+        remote_object.add_tab(os.path.abspath(options.path))
         only_show_hide = options.show
 
     if options.select_tab:
