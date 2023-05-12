@@ -1,0 +1,7 @@
+release_summary: >
+  Save font size when changing zoom level with keyboard shortcuts
+
+fixes:
+  - |
+      - Opening a new tab resets the zoom level/ #2109 
+
