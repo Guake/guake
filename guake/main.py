@@ -37,7 +37,7 @@ from locale import gettext
 
 builtins.__dict__["_"] = gettext
 
-from optparse import OptionParser
+from argparse import ArgumentParser
 
 log = logging.getLogger(__name__)
 
@@ -78,8 +78,8 @@ def main():
     os.environ["TERM_PROGRAM"] = "guake"
 
     # do not use version keywords here, pbr might be slow to find the version of Guake module
-    parser = OptionParser()
-    parser.add_option(
+    parser = ArgumentParser()
+    parser.add_argument(
         "-V",
         "--version",
         dest="version",
@@ -88,7 +88,7 @@ def main():
         help=_("Show Guake version number and exit"),
     )
 
-    parser.add_option(
+    parser.add_argument(
         "-v",
         "--verbose",
         dest="verbose",
@@ -97,7 +97,7 @@ def main():
         help=_("Enable verbose logging"),
     )
 
-    parser.add_option(
+    parser.add_argument(
         "-f",
         "--fullscreen",
         dest="fullscreen",
@@ -106,7 +106,7 @@ def main():
         help=_("Put Guake in fullscreen mode"),
     )
 
-    parser.add_option(
+    parser.add_argument(
         "--unfullscreen",
         dest="unfullscreen",
         action="store_true",
@@ -114,7 +114,7 @@ def main():
         help=_("Put Guake out from fullscreen mode"),
     )
 
-    parser.add_option(
+    parser.add_argument(
         "-t",
         "--toggle-visibility",
         dest="show_hide",
@@ -123,7 +123,7 @@ def main():
         help=_("Toggles the visibility of the terminal window"),
     )
 
-    parser.add_option(
+    parser.add_argument(
         "--is-visible",
         dest="is_visible",
         action="store_true",
@@ -131,7 +131,7 @@ def main():
         help=_("Return 1 if Guake is visible, 0 otherwise"),
     )
 
-    parser.add_option(
+    parser.add_argument(
         "--show",
         dest="show",
         action="store_true",
@@ -139,7 +139,7 @@ def main():
         help=_("Shows Guake main window"),
     )
 
-    parser.add_option(
+    parser.add_argument(
         "--hide",
         dest="hide",
         action="store_true",
@@ -147,7 +147,7 @@ def main():
         help=_("Hides Guake main window"),
     )
 
-    parser.add_option(
+    parser.add_argument(
         "-p",
         "--preferences",
         dest="show_preferences",
@@ -156,7 +156,7 @@ def main():
         help=_("Shows Guake preference window"),
     )
 
-    parser.add_option(
+    parser.add_argument(
         "-a",
         "--about",
         dest="show_about",
@@ -165,7 +165,7 @@ def main():
         help=_("Shows Guake's about info"),
     )
 
-    parser.add_option(
+    parser.add_argument(
         "-n",
         "--new-tab",
         dest="new_tab",
@@ -174,7 +174,7 @@ def main():
         help=_("Add a new tab (with current directory set to NEW_TAB)"),
     )
 
-    parser.add_option(
+    parser.add_argument(
         "-s",
         "--select-tab",
         dest="select_tab",
@@ -183,7 +183,7 @@ def main():
         help=_("Select a tab (SELECT_TAB is the index of the tab)"),
     )
 
-    parser.add_option(
+    parser.add_argument(
         "-g",
         "--selected-tab",
         dest="selected_tab",
@@ -192,7 +192,7 @@ def main():
         help=_("Return the selected tab index."),
     )
 
-    parser.add_option(
+    parser.add_argument(
         "-x",
         "--uuid-index",
         dest="uuid_index",
@@ -201,7 +201,7 @@ def main():
         help=_("Return the index of the tab with the given terminal UUID, -1 if not found"),
     )
 
-    parser.add_option(
+    parser.add_argument(
         "-l",
         "--selected-tablabel",
         dest="selected_tablabel",
@@ -210,7 +210,7 @@ def main():
         help=_("Return the selected tab label."),
     )
 
-    parser.add_option(
+    parser.add_argument(
         "-S",
         "--select-terminal",
         dest="select_terminal",
@@ -223,7 +223,7 @@ def main():
         ),
     )
 
-    parser.add_option(
+    parser.add_argument(
         "--selected-terminal",
         dest="selected_terminal",
         action="store_true",
@@ -231,7 +231,7 @@ def main():
         help=_("Return the selected terminal index."),
     )
 
-    parser.add_option(
+    parser.add_argument(
         "--split-vertical",
         dest="split_vertical",
         action="store_true",
@@ -239,7 +239,7 @@ def main():
         help=_("Split the selected tab vertically."),
     )
 
-    parser.add_option(
+    parser.add_argument(
         "--split-horizontal",
         dest="split_horizontal",
         action="store_true",
@@ -247,7 +247,7 @@ def main():
         help=_("Split the selected tab horizontally."),
     )
 
-    parser.add_option(
+    parser.add_argument(
         "-e",
         "--execute-command",
         dest="command",
@@ -256,7 +256,7 @@ def main():
         help=_("Execute an arbitrary command in a new tab."),
     )
 
-    parser.add_option(
+    parser.add_argument(
         "-i",
         "--tab-index",
         dest="tab_index",
@@ -265,7 +265,7 @@ def main():
         help=_("Specify the tab to rename. Default is 0. Can be used to select tab by UUID."),
     )
 
-    parser.add_option(
+    parser.add_argument(
         "--bgcolor",
         dest="bgcolor",
         action="store",
@@ -273,7 +273,7 @@ def main():
         help=_("Set the hexadecimal (#rrggbb) background color of " "the selected tab."),
     )
 
-    parser.add_option(
+    parser.add_argument(
         "--fgcolor",
         dest="fgcolor",
         action="store",
@@ -281,7 +281,7 @@ def main():
         help=_("Set the hexadecimal (#rrggbb) foreground color of the " "selected tab."),
     )
 
-    parser.add_option(
+    parser.add_argument(
         "--bgcolor-current",
         dest="bgcolor_current",
         action="store",
@@ -289,7 +289,7 @@ def main():
         help=_("Set the hexadecimal (#rrggbb) background color of " "the current terminal."),
     )
 
-    parser.add_option(
+    parser.add_argument(
         "--fgcolor-current",
         dest="fgcolor_current",
         action="store",
@@ -297,7 +297,7 @@ def main():
         help=_("Set the hexadecimal (#rrggbb) foreground color of " "the current terminal."),
     )
 
-    parser.add_option(
+    parser.add_argument(
         "--change-palette",
         dest="palette_name",
         action="store",
@@ -305,7 +305,7 @@ def main():
         help=_("Change Guake palette scheme"),
     )
 
-    parser.add_option(
+    parser.add_argument(
         "--reset-colors",
         dest="reset_colors",
         action="store_true",
@@ -313,7 +313,7 @@ def main():
         help=_("Set colors from settings."),
     )
 
-    parser.add_option(
+    parser.add_argument(
         "--reset-colors-current",
         dest="reset_colors_current",
         action="store_true",
@@ -321,7 +321,7 @@ def main():
         help=_("Set colors of the current terminal from settings."),
     )
 
-    parser.add_option(
+    parser.add_argument(
         "--rename-tab",
         dest="rename_tab",
         metavar="TITLE",
@@ -333,7 +333,7 @@ def main():
         ),
     )
 
-    parser.add_option(
+    parser.add_argument(
         "-r",
         "--rename-current-tab",
         dest="rename_current_tab",
@@ -343,7 +343,7 @@ def main():
         help=_("Rename the current tab. Reset to default if TITLE is a " 'single dash "-".'),
     )
 
-    parser.add_option(
+    parser.add_argument(
         "-q",
         "--quit",
         dest="quit",
@@ -352,7 +352,7 @@ def main():
         help=_("Says to Guake go away =("),
     )
 
-    parser.add_option(
+    parser.add_argument(
         "-u",
         "--no-startup-script",
         dest="execute_startup_script",
@@ -361,7 +361,7 @@ def main():
         help=_("Do not execute the start up script"),
     )
 
-    parser.add_option(
+    parser.add_argument(
         "--save-preferences",
         dest="save_preferences",
         action="store",
@@ -369,7 +369,7 @@ def main():
         help=_("Save Guake preferences to this filename"),
     )
 
-    parser.add_option(
+    parser.add_argument(
         "--restore-preferences",
         dest="restore_preferences",
         action="store",
@@ -377,7 +377,7 @@ def main():
         help=_("Restore Guake preferences from this file"),
     )
 
-    parser.add_option(
+    parser.add_argument(
         "--support",
         dest="support",
         action="store_true",
@@ -430,7 +430,7 @@ def main():
         )
         sys.exit(1)
 
-    options = parser.parse_args()[0]
+    options = parser.parse_args()
     if options.version:
         from guake import gtk_version
         from guake import guake_version
