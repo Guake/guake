@@ -5,7 +5,18 @@ Installing Guake
 System-wide installation
 ========================
 
-Always prefere using your package manager to install guake.
+On wayland systems, you will need to set the hotkey for opening Guake from your window manager's global settings.
+
+For GNOME:
+
+1. Open Gnome Settings
+2. Go to Devices -> Keyboard
+3. Scroll in the list of the keyboard shorcuts all way down to Custom Shortcuts
+4. Press + to add a custom shortcut
+5. In the Add Custom Shortcut dialog type guake-toggle for command
+6. Enter the name and specify a shortcut, then press Add
+
+Always prefer using your package manager to install guake.
 
 Debian / Ubuntu
 ---------------
