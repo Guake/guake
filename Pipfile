@@ -31,7 +31,7 @@ scandir = {markers = "python_version > '3.5'"}
 pyfakefs = "*"
 pytest-cov = "*"
 pew = "*"
-black = "==21.8b0"
+black = "==23.3.0"
 flakehell = "*"
 toml = "*"
 pre-commit = "==2.17.0"
