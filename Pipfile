@@ -35,6 +35,7 @@ black = "==21.8b0"
 flakehell = "*"
 toml = "*"
 pre-commit = "==2.17.0"
+typing-extensions = "*"
 
 [packages]
 pbr = "*"
