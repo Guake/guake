@@ -36,4 +36,5 @@ sphinxcontrib-programoutput
 toml
 twine
 typed-ast
+typing-extensions
 yapf
