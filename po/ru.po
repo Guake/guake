@@ -33,7 +33,7 @@ msgid ""
 "Guake is an easy to access\n"
 "terminal based on FPS games terminal"
 msgstr ""
-"Guake это терминал с быстрым доступом\n"
+"Guake — это терминал с быстрым доступом\n"
 "наподобие тех, что используются в играх"
 
 #: ../guake/data/guake.glade.h:1
@@ -580,7 +580,7 @@ msgstr ""
 
 #: ../src/guake/guake_app.py:133
 msgid "Do you want to close the tab?"
-msgstr "Вы действительно хотите выйти закрыть вкладку?"
+msgstr "Вы действительно хотите закрыть вкладку?"
 
 #: ../src/guake/guake_app.py:136
 msgid "Do you really want to quit Guake?"
@@ -727,7 +727,7 @@ msgstr "Выполнить произвольную команду в выбра
 
 #: ../src/guake/main.py:113
 msgid "Specify the tab to rename. Default is 0."
-msgstr "Определите вкладку для переименования. По-умолчанию 0."
+msgstr "Определите вкладку для переименования. По умолчанию 0."
 
 #: ../src/guake/main.py:117
 msgid "Set the background image of the selected tab."
@@ -746,14 +746,14 @@ msgstr ""
 msgid ""
 "Rename the specified tab. Reset to default if TITLE is a single dash \"-\"."
 msgstr ""
-"Переименование указанной вкладки. Сброс к имени по-умолчанию, если в TITLE "
+"Переименование указанной вкладки. Сброс к имени по умолчанию, если в TITLE "
 "одиночное тире \"-\"."
 
 #: ../src/guake/main.py:139
 msgid ""
 "Rename the current tab. Reset to default if TITLE is a single dash \"-\"."
 msgstr ""
-"Переименование текущей вкладки. Сброс к имени по-умолчанию, если в TITLE "
+"Переименование текущей вкладки. Сброс к имени по умолчанию, если в TITLE "
 "одиночное тире \"-\"."
 
 #: ../src/guake/main.py:144
@@ -811,7 +811,7 @@ msgstr "Навигация"
 
 #: ../src/guake/prefs.py:99
 msgid "Go to previous tab"
-msgstr "К предыдущей вклаке"
+msgstr "К предыдущей вкладке"
 
 #: ../src/guake/prefs.py:101
 msgid "Go to next tab"
@@ -935,7 +935,7 @@ msgstr "Дополнительно"
 
 #: ../src/guake/prefs.py:1003
 msgid "JSON files"
-msgstr "JSON файлы"
+msgstr "JSON-файлы"
 
 #: ../src/guake/prefs.py:1101
 #, python-format
@@ -1049,7 +1049,7 @@ msgstr "Использовать командную строку как в Quake
 
 #: guake/data/prefs.glade:770
 msgid "Main Window Horizontal Alignment"
-msgstr "Выравнивание главного окна по-горизонтали"
+msgstr "Выравнивание главного окна по горизонтали"
 
 #: guake/prefs.py:89
 msgid "Show and focus Guake window"
@@ -1136,11 +1136,11 @@ msgstr "Быстрое открытие: {!s}"
 
 #: guake/guake_app.py:691
 msgid "Open Link: '{!s}...'"
-msgstr "Окрыть ссылку: '{!s}...'"
+msgstr "Открыть ссылку: '{!s}...'"
 
 #: guake/guake_app.py:694
 msgid "Open Link: {!s}"
-msgstr "Окрыть ссылку: {!s}"
+msgstr "Открыть ссылку: {!s}"
 
 #: guake/data/prefs.glade:2175
 msgid ""
@@ -1693,4 +1693,4 @@ msgstr ""
 #~ msgstr "Стиль:"
 
 #~ msgid "Use system defaults"
-#~ msgstr "Использовать системные значения по-умолчаню"
+#~ msgstr "Использовать системные значения по умолчанию"
