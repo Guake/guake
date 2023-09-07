@@ -1,0 +1,6 @@
+release_summary: >
+  Enables the use of AyatanaAppIndicator for the tray icon
+
+fixes:
+  - |
+      - tray icon broken with AppIndicator #433
