@@ -153,14 +153,14 @@ class Guake(SimpleGladeApp):
         try:
             try:
                 gi.require_version("AyatanaAppIndicator3", "0.1")
-                from gi.repository import (
+                from gi.repository import (  # pylint: disable=import-outside-toplevel
                     AyatanaAppIndicator3 as appindicator,
-                )  # pylint: disable=import-outside-toplevel
+                )
             except (ValueError, ImportError):
                 gi.require_version("AppIndicator3", "0.1")
-                from gi.repository import (
+                from gi.repository import (  # pylint: disable=import-outside-toplevel
                     AppIndicator3 as appindicator,
-                )  # pylint: disable=import-outside-toplevel
+                )
         except (ValueError, ImportError):
             self.tray_icon = Gtk.StatusIcon()
             self.tray_icon.set_from_file(img)
