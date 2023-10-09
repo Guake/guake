@@ -536,9 +536,14 @@ class PrefsCallbacks:
         self.settings.styleFont.set_string("style", fbtn.get_font_name())
 
     def on_background_image_file_chooser_file_changed(self, fc):
-        allowed_extensions = (".jpg", ".jpeg", ".png", ".gif")  # only allow files with these extensions
+        # only allow files with these extensions
+        allowed_extensions = (".jpg", ".jpeg", ".png", ".gif")
+        filename = ""
+        if fc.get_filename() and fc.get_filename().endswith(allowed_extensions):
+            filename = fc.get_filename()
+
         self.settings.general.set_string(
-            "background-image-file", fc.get_filename() if fc.get_filename() and fc.get_filename().endswith(allowed_extensions) else ""
+            "background-image-file", filename
         )
 
     def on_background_image_file_remove_clicked(self, btn):
