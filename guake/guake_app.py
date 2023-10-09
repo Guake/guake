@@ -151,8 +151,17 @@ class Guake(SimpleGladeApp):
         # trayicon!
         img = pixmapfile("guake-tray.png")
         try:
-            import appindicator  # pylint: disable=import-outside-toplevel
-        except ImportError:
+            try:
+                gi.require_version("AyatanaAppIndicator3", "0.1")
+                from gi.repository import (  # pylint: disable=import-outside-toplevel
+                    AyatanaAppIndicator3 as appindicator,
+                )
+            except (ValueError, ImportError):
+                gi.require_version("AppIndicator3", "0.1")
+                from gi.repository import (  # pylint: disable=import-outside-toplevel
+                    AppIndicator3 as appindicator,
+                )
+        except (ValueError, ImportError):
             self.tray_icon = Gtk.StatusIcon()
             self.tray_icon.set_from_file(img)
             self.tray_icon.set_tooltip_text(_("Guake Terminal"))
@@ -160,11 +169,11 @@ class Guake(SimpleGladeApp):
             self.tray_icon.connect("activate", self.show_hide)
         else:
             # TODO PORT test this on a system with app indicator
-            self.tray_icon = appindicator.Indicator(
-                _("guake-indicator"), _("guake-tray"), appindicator.CATEGORY_OTHER
+            self.tray_icon = appindicator.Indicator.new(
+                "guake-indicator", "guake-tray", appindicator.IndicatorCategory.APPLICATION_STATUS
             )
-            self.tray_icon.set_icon(img)
-            self.tray_icon.set_status(appindicator.STATUS_ACTIVE)
+            self.tray_icon.set_icon_full("guake-tray", _("Guake Terminal"))
+            self.tray_icon.set_status(appindicator.IndicatorStatus.ACTIVE)
             menu = self.get_widget("tray-menu")
             show = Gtk.MenuItem(_("Show"))
             show.set_sensitive(True)
