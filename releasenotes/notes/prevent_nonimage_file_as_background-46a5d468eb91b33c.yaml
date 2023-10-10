@@ -1,0 +1,7 @@
+release_summary: >
+  Prevent the use of non-image files as the background image. The following file extensions are allowed: .jpg, .jpeg, .png, .gif
+
+fixes:
+  - |
+
+      - Prevent users from setting non-image files as a background image, closes #2205
