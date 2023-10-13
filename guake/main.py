@@ -240,17 +240,29 @@ def main():
     parser.add_argument(
         "--split-vertical",
         dest="split_vertical",
-        action="store_true",
-        default=False,
-        help=_("Split the selected tab vertically."),
+        metavar="SPLIT_PERCENTAGE",
+        action="store",
+        type=int,
+        nargs="?",
+        const=50,
+        default=None,
+        choices=range(1, 100),
+        help=_("Split the selected tab vertically. Optional input split percentage for the width."),
     )
 
     parser.add_argument(
         "--split-horizontal",
         dest="split_horizontal",
-        action="store_true",
-        default=False,
-        help=_("Split the selected tab horizontally."),
+        metavar="SPLIT_PERCENTAGE",
+        action="store",
+        type=int,
+        nargs="?",
+        const=50,
+        default=None,
+        choices=range(1, 100),
+        help=_(
+            "Split the selected tab horizontally. Optional input split percentage for the height."
+        ),
     )
 
     parser.add_argument(
@@ -553,16 +565,20 @@ def main():
 
     if options.split_vertical:
         if options.command:
-            remote_object.v_split_current_terminal_with_command(options.command)
+            remote_object.v_split_current_terminal_with_command(
+                options.command, options.split_vertical
+            )
         else:
-            remote_object.v_split_current_terminal()
+            remote_object.v_split_current_terminal(options.split_vertical)
         only_show_hide = options.show
 
     if options.split_horizontal:
         if options.command:
-            remote_object.h_split_current_terminal_with_command(options.command)
+            remote_object.h_split_current_terminal_with_command(
+                options.command, options.split_horizontal
+            )
         else:
-            remote_object.h_split_current_terminal()
+            remote_object.h_split_current_terminal(options.split_horizontal)
         only_show_hide = options.show
 
     if options.selected_terminal:

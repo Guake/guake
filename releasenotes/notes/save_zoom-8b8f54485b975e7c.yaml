@@ -3,5 +3,4 @@ release_summary: >
 
 fixes:
   - |
-      - Opening a new tab resets the zoom level/ #2109 
-
+      - Opening a new tab resets the zoom level/ #2109

@@ -194,22 +194,22 @@ class DbusManager(dbus.service.Object):
     def get_selected_uuidtab(self):
         return self.guake.get_selected_uuidtab()
 
-    @dbus.service.method(DBUS_NAME)
-    def v_split_current_terminal(self):
-        self.guake.get_notebook().get_current_terminal().get_parent().split_v()
+    @dbus.service.method(DBUS_NAME, in_signature="i")
+    def v_split_current_terminal(self, split_percentage: int):
+        self.guake.get_notebook().get_current_terminal().get_parent().split_v(split_percentage)
 
-    @dbus.service.method(DBUS_NAME)
-    def h_split_current_terminal(self):
-        self.guake.get_notebook().get_current_terminal().get_parent().split_h()
+    @dbus.service.method(DBUS_NAME, in_signature="i")
+    def h_split_current_terminal(self, split_percentage: int):
+        self.guake.get_notebook().get_current_terminal().get_parent().split_h(split_percentage)
 
-    @dbus.service.method(DBUS_NAME, in_signature="s")
-    def v_split_current_terminal_with_command(self, command):
-        self.guake.get_notebook().get_current_terminal().get_parent().split_v()
+    @dbus.service.method(DBUS_NAME, in_signature="si")
+    def v_split_current_terminal_with_command(self, command, split_percentage: int):
+        self.guake.get_notebook().get_current_terminal().get_parent().split_v(split_percentage)
         self.guake.execute_command(command)
 
-    @dbus.service.method(DBUS_NAME, in_signature="s")
-    def h_split_current_terminal_with_command(self, command):
-        self.guake.get_notebook().get_current_terminal().get_parent().split_h()
+    @dbus.service.method(DBUS_NAME, in_signature="si")
+    def h_split_current_terminal_with_command(self, command, split_percentage: int):
+        self.guake.get_notebook().get_current_terminal().get_parent().split_h(split_percentage)
         self.guake.execute_command(command)
 
     @dbus.service.method(DBUS_NAME, in_signature="s", out_signature="i")

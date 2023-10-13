@@ -1,0 +1,6 @@
+release_summary: >
+  Improved terminal splitting: Optional specified percentage now reflects the new pane's size when using --split-vertical or --split-horizontal.
+
+features:
+  - |
+      - Allow splitting terminal to specific size with --split-vertical <Size> or --split-horizontal <Size> #1931
