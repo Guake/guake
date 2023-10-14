@@ -1,0 +1,9 @@
+release_summary: >
+  Add experimental support for displaying Sixels. This can be enabled with a new setting.
+
+features:
+  - add sixel support #1806
+
+known_issues:
+  - sixel support requires VTE to be compiled with `-Dsixel=true`, since support for it is still experimental.
+
