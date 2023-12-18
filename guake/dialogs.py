@@ -143,14 +143,24 @@ class SaveTerminalDialog(Gtk.FileChooserDialog):
         self.parent_window = window
 
     def run(self):
-        self.terminal.select_all()
-        self.terminal.copy_clipboard()
-        self.terminal.unselect_all()
-        clipboard = Gtk.Clipboard.get_default(self.parent_window.get_display())
-        selection = clipboard.wait_for_text()
-        if not selection:
-            return
-        selection = selection.rstrip()
+        # row from get_cursor_position takes the scrollback rows into account automatically
+        row = self.terminal.get_cursor_position()[1]
+        # Get the max col, not where the cursor is, to avoid losing text at the end
+        col = self.terminal.get_column_count()
+        content = self.terminal.get_text_range(0, 0, row, col)
+
+        if content:
+            selection = content[0].rstrip().lstrip()
+        else:  # Call the original method if get_text_range fails for some reason.  (Can it fail?)
+            self.terminal.select_all()
+            self.terminal.copy_clipboard()
+            self.terminal.unselect_all()
+            clipboard = Gtk.Clipboard.get_default(self.parent_window.get_display())
+            selection = clipboard.wait_for_text()
+            if not selection:
+                return
+            selection = selection.rstrip()
+
         filter = Gtk.FileFilter()
         filter.set_name(_("All files"))
         filter.add_pattern("*")
