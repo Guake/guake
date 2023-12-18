@@ -1,0 +1,6 @@
+release_summary: >
+  Fixes Save Content feature for newer versions of Vte
+
+fixes:
+  - Save Content works for newer versions of Vte, fixes #1958
+
