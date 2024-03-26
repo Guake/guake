@@ -74,7 +74,7 @@ building the distribution packages.
 
 Same goes for the `ChangeLog` file.
 
-Versionning
+Versioning
 -----------
 
 Versioning is automatically done using git tags. When a semver tag is pushed, a new version
