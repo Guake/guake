@@ -101,7 +101,10 @@ class GuakeTerminal(Vte.Terminal):
         super().__init__()
         self.guake = guake
         self.configure_terminal()
-        self.add_matches()
+
+        if self.guake.settings.general.get_boolean("quick-open-enable"):
+            self.add_matches()
+
         self.handler_ids = []
         self.handler_ids.append(self.connect("button-press-event", self.button_press))
         self.connect("child-exited", self.on_child_exited)  # Call on_child_exited, don't remove it
@@ -347,13 +350,15 @@ class GuakeTerminal(Vte.Terminal):
         handle the matched resource uri.
         """
         self.matched_value = ""
-        if (Vte.MAJOR_VERSION, Vte.MINOR_VERSION) >= (0, 46):
-            matched_string = self.match_check_event(event)
-        else:
-            matched_string = self.match_check(
-                int(event.x / self.get_char_width()),
-                int(event.y / self.get_char_height()),
-            )
+
+        if self.guake.settings.general.get_boolean("quick-open-enable"):
+            if (Vte.MAJOR_VERSION, Vte.MINOR_VERSION) >= (0, 46):
+                matched_string = self.match_check_event(event)
+            else:
+                matched_string = self.match_check(
+                    int(event.x / self.get_char_width()),
+                    int(event.y / self.get_char_height()),
+                )
 
         self.found_link = None
 
