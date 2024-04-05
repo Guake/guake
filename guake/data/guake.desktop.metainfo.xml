@@ -22,14 +22,14 @@
 
 	<screenshots>
 		<screenshot type="default">
-			<image>http://guake-project.org/img/screenshot.png</image>
+			<image>https://guake.github.io/img/screenshot.png</image>
 		</screenshot>
 		<screenshot>
-			<image>http://guake-project.org/img/screenshot2.jpg</image>
+			<image>https://guake.github.io/img/screenshot2.jpg</image>
 		</screenshot>
 	</screenshots>
 
-	<url type="homepage">http://guake-project.org/</url>
+	<url type="homepage">https://guake.github.io/</url>
 	<url type="bugtracker">https://github.com/Guake/guake/issues</url>
 	<url type="translate">https://hosted.weblate.org/projects/guake/guake/</url>
 </component>

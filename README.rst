@@ -52,7 +52,7 @@ Bugs? Information?
 ------------------
 
 - Source Code available on `GitHub <https://github.com/Guake/guake/>`_.
-- Official Homepage: http://guake-project.org
+- Official Homepage: https://guake.github.io
 - Online Documentation is hosted on `ReadTheDocs <http://guake.readthedocs.io/>`_.
 - If you are not a developer, you can still contribute to Guake by
   `improving its translations in your language <https://hosted.weblate.org/projects/guake/guake/>`_.
