@@ -13,8 +13,8 @@ Copyright 2007-2010 Lincoln de Sousa
 Copyright 2007 Gabriel Falcão</property>
     <property name="comments" translatable="yes">Guake is an easy to access
 terminal based on FPS games terminal</property>
-    <property name="website">http://guake-project.org</property>
-    <property name="website_label">http://guake-project.org</property>
+    <property name="website">https://guake.github.io</property>
+    <property name="website_label">https://guake.github.io</property>
     <property name="license">Guake is free software; you can redistribute it and/or
 modify it under the terms of the GNU General Public
 License as published by the Free Software Foundation;
