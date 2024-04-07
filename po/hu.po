@@ -5,13 +5,14 @@
 # Translators:
 # Dávid Horváth <chronos.hun@gmail.com>,2009
 # Péter Trombitás <trombipeti@gmail.com>, 2012
+# Zodarr <zodarr@gmail.com>. 2021
 msgid ""
 msgstr ""
-"Project-Id-Version: Guake 0.4.5\n"
+"Project-Id-Version: Guake 3.10.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-08-18 17:32+0200\n"
-"PO-Revision-Date: 2021-04-17 17:27+0000\n"
-"Last-Translator: Zodarr <zodarr@gmail.com>\n"
+"POT-Creation-Date: 2024-04-07 18:21+0200\n"
+"PO-Revision-Date: 2024-04-07 20:01+0200\n"
+"Last-Translator: Lajos Gáspár <swifty@swifty.hu>\n"
 "Language-Team: Hungarian <https://hosted.weblate.org/projects/guake/guake/hu/"
 ">\n"
 "Language: hu\n"
@@ -19,571 +20,1765 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.6-dev\n"
+"X-Generator: Poedit 3.4.2\n"
+"X-Poedit-Basepath: ../guake\n"
+"X-Poedit-SearchPath-0: .\n"
 
-#: ../guake/data/about.glade.h:1
-msgid "About Guake"
-msgstr "Guake-ről"
+#: about.py:48 data/autostart-guake.desktop:25 data/guake.template.desktop:3
+#: guake_app.py:167 guake_app.py:175 guake_app.py:290 guake_app.py:1456
+#: guake_app.py:1468 guake_app.py:1481 guake_app.py:1538 guake_app.py:1554
+#: keybindings.py:222
+msgid "Guake Terminal"
+msgstr "Guake Terminál"
 
-#: ../guake/data/about.glade.h:5
+#: data/about.glade:14
 msgid ""
 "Guake is an easy to access\n"
 "terminal based on FPS games terminal"
 msgstr ""
 "A Guake egy könnyen hozzáférhető terminál,\n"
-" mely az FPS játékok mintáját követi."
+"mely az FPS játékok mintáját követi"
 
-#: ../guake/data/guake.glade.h:1
-msgid "Copy"
-msgstr "Másol"
+#: data/autostart-guake.desktop:31 data/guake.template.desktop:4
+msgid "Use the command line in a Quake-like terminal"
+msgstr ""
 
-#: ../guake/data/guake.glade.h:2
-msgid "Paste"
-msgstr "Beilleszt"
-
-#: ../guake/data/guake.glade.h:3 ../src/guake/prefs.py:79
-msgid "Toggle Fullscreen"
-msgstr "Teljes képernyő"
-
-#: ../guake/data/guake.glade.h:4
-msgid "Save to File..."
-msgstr "Mentés fájlba..."
-
-#: ../guake/data/guake.glade.h:5 ../src/guake/prefs.py:85
-msgid "Reset terminal"
-msgstr "Terminál visszaállítása"
-
-#: ../guake/data/guake.glade.h:6
-msgid "Find..."
-msgstr "Keress..."
-
-#: ../guake/data/guake.glade.h:7
-msgid "New Tab"
-msgstr "Új lap"
-
-#: ../guake/data/guake.glade.h:8
-#, fuzzy
-msgid "Rename Tab"
-msgstr "Lap átnevezése"
-
-#: ../guake/data/guake.glade.h:9
-msgid "Close Tab"
-msgstr "Lap bezárása"
-
-#: ../guake/data/guake.glade.h:10
-msgid "Open link..."
-msgstr "Link megnyitása..."
-
-#: ../guake/data/guake.glade.h:11
-msgid "Search on Web"
-msgstr "Keresés online"
-
-#: ../guake/data/guake.glade.h:12 ../src/guake/prefs.py:83
-msgid "Quit"
-msgstr "Kilépés"
-
-#: ../guake/data/guake.glade.h:13
-msgid "Rename"
-msgstr "Átnevez"
-
-#: ../guake/data/guake.glade.h:14
-msgid "Close"
-msgstr "Bezárás"
-
-#: ../guake/data/guake.glade.h:15
-msgid "Guake!"
-msgstr "Guake!"
-
-#: ../guake/data/guake.glade.h:16
-#, fuzzy
-msgid "Add a new tab"
-msgstr "Új lap hozzáadása"
-
-#: ../guake/data/prefs.glade.h:1
+#: data/guake-prefs.template.desktop:3 data/prefs.glade:88
 msgid "Guake Preferences"
 msgstr "Guake beállítások"
 
-#: ../guake/data/prefs.glade.h:2
-msgid "<span size=\"18000\" color=\"black\"><b>Guake properties</b></span>"
-msgstr "<span size=\"18000\" color=\"black\"><b>Guake beállítások</b></span>"
-
-#: ../guake/data/prefs.glade.h:3
-msgid ""
-"<span color=\"black\">Customize behavior and appearance of Guake!</span>"
+#: data/guake-prefs.template.desktop:4
+msgid "Configure your Guake sessions"
 msgstr ""
-"<span color=\"black\">Guake viselkedésének és megjelenésének testreszabása</"
-"span>"
 
-#: ../guake/data/prefs.glade.h:4
-msgid ""
-"Path to a bash script that would be automatically executed when Guake "
-"starts, unless you specify --no-startup-script.\n"
-"\n"
-"This would typically use the configuration by command line feature of "
-"Guake:\n"
-"\n"
-"#!/bin/bash\n"
-"\n"
-"sleep 5  # it is advised to wait a bit before Guake has been successfully "
-"started\n"
-"\n"
-"guake -r \"main\" -e \"cd ~/projects/myproject/main\"\n"
-"guake -r \"prod\" -e \"cd ~/projects/myproject/prod\"\n"
+#: data/guake-prefs.template.desktop:13
+msgid "Terminal;Utility;"
 msgstr ""
-"Útvonal egy bash scripthez, amely automatikusan elindul a Guake indításakor, "
-"kivéve ha megadod ezt: --no-startup-script.\n"
-"\n"
-"Ez a script legtöbb esetben a Guake \"parancssor általi konfiguráció\" "
-"funkcióját használja:\n"
-"\n"
-"#!/bin/bash\n"
-"\n"
-"sleep 5  # ajánlott várni egy keveset mielőtt a Guake sikeresen elindul\n"
-"\n"
-"guake -r \"main\" -e \"cd ~/projects/myproject/main\"\n"
-"guake -r \"prod\" -e \"cd ~/projects/myproject/prod\"\n"
 
-#: ../guake/data/prefs.glade.h:15
-msgid "Enable popup notifications on startup"
+#: data/guake.glade:36 data/org.guake.gschema.xml:408 menus.py:59 menus.py:178
+#: prefs.py:96
+msgid "Quit"
+msgstr "Kilépés"
+
+#: data/guake.glade:47
+msgid "Guake!"
+msgstr "Guake!"
+
+#: data/org.guake.gschema.xml:11
+msgid "Last used schema version"
+msgstr ""
+
+#: data/org.guake.gschema.xml:12
+msgid ""
+"If schema version is not equal to current guake version, the schema file is "
+"regenerated and this flag is set to the current guake version."
+msgstr ""
+
+#: data/org.guake.gschema.xml:16
+msgid "Enable debug mode"
+msgstr ""
+
+#: data/org.guake.gschema.xml:17
+msgid ""
+"When debug mode is enabled, logs are printed in the standard output where "
+"Guake as been launched"
+msgstr ""
+
+#: data/org.guake.gschema.xml:21
+msgid "Appear on the mouse display."
+msgstr "Azon a kijelzőn jelenik meg, ahol az egér van."
+
+#: data/org.guake.gschema.xml:22
+msgid "Appear on the mouse display. This overrides any setting in display_n."
+msgstr ""
+
+#: data/org.guake.gschema.xml:26
+msgid "Display to appear on."
+msgstr ""
+
+#: data/org.guake.gschema.xml:27
+msgid ""
+"Display to appear on if the mouse_display option is not set. If this is set "
+"to an invalid value (as in the case of removing a screen from a system), the "
+"invalid value is automatically updated to the current primary screen."
+msgstr ""
+
+#: data/org.guake.gschema.xml:31
+msgid "Path to the default shell."
+msgstr "Alapértelmezett héj útvonala."
+
+#: data/org.guake.gschema.xml:32
+msgid ""
+"Path to the default shell. Set to empty to use default user shell. If "
+"invalid path is set here, guake will fallback to user shell."
+msgstr ""
+
+#: data/org.guake.gschema.xml:36
+msgid "Restore tabs when startup"
+msgstr ""
+
+#: data/org.guake.gschema.xml:37
+msgid "If true, when guake startup, it will restore tabs from previous session"
+msgstr ""
+"Ha be van jelölve, a Guake visszaállítja a lapokat az előző munkamenetből"
+
+#: data/org.guake.gschema.xml:41
+msgid "Notify when restored the tabs"
+msgstr "Értesítés lapok helyreállításakor"
+
+#: data/org.guake.gschema.xml:42
+msgid ""
+"If true, when guake restored the tabs, it will notify the user that the tabs "
+"has been restored"
+msgstr ""
+
+#: data/org.guake.gschema.xml:46
+msgid "Automatically save tabs session when changed"
+msgstr "Automatikusan mentse a lap munkamenetet, amikor módosultak"
+
+#: data/org.guake.gschema.xml:47
+msgid ""
+"If true, when tabs has changed (add / delete ...etc.), it will automatically "
+"saved the tabs session"
+msgstr ""
+
+#: data/org.guake.gschema.xml:51
+msgid "Load settings from guake.yml"
+msgstr "Beállítások betöltése a guake.yml fájlból"
+
+#: data/org.guake.gschema.xml:52
+msgid ""
+"If true, when a change in the cwd is detected settings are changed based on "
+"the content of the file `cwd`/.guake.yml"
+msgstr ""
+
+#: data/org.guake.gschema.xml:56
+msgid "Login shell"
+msgstr ""
+
+#: data/org.guake.gschema.xml:57
+msgid "If true, the commands in terminal will be executed in a login shell."
+msgstr ""
+
+#: data/org.guake.gschema.xml:61
+msgid "Sets the tray visibility."
+msgstr ""
+
+#: data/org.guake.gschema.xml:62
+msgid "When true tray is visible."
+msgstr ""
+
+#: data/org.guake.gschema.xml:66
+msgid "Use workspace specific tab sets"
+msgstr ""
+
+#: data/org.guake.gschema.xml:67
+msgid "When true, each workspace gets their own set of tabs."
+msgstr ""
+
+#: data/org.guake.gschema.xml:71
+msgid "Sets the popup notifications visibility."
+msgstr "Felugró üzenetek láthatóságának beállítása."
+
+#: data/org.guake.gschema.xml:72
+#, fuzzy
+#| msgid "Enable popup notifications on startup"
+msgid "When true, popup notifications will be shown when Guake starts."
 msgstr "Felugró üzenetek engedélyezése induláskor"
 
-#: ../guake/data/prefs.glade.h:16
-msgid "Show tray icon"
-msgstr "Tálca ikon mutatása"
+#: data/org.guake.gschema.xml:76
+msgid "Prompt when quitting."
+msgstr "Kérdés kilépéskor."
 
-#: ../guake/data/prefs.glade.h:17
+#: data/org.guake.gschema.xml:77
+msgid "Ask for confirmation when quitting Guake."
+msgstr "Megerősítés kérése a Guake-ból való kilépésnél."
+
+#: data/org.guake.gschema.xml:81
+msgid "Prompt when closing tabs."
+msgstr "Kérdés lapok bezárásakor."
+
+#: data/org.guake.gschema.xml:82
+msgid "0: Never 1: If process is running 2: Always. Also prompts on quit."
+msgstr ""
+
+#: data/org.guake.gschema.xml:86 data/org.guake.gschema.xml:91
+msgid "Search engine to use when using web search"
+msgstr ""
+
+#: data/org.guake.gschema.xml:87
+msgid "Search engine to use"
+msgstr "Használandó keresőmotor"
+
+#: data/org.guake.gschema.xml:92
+msgid "Custom search engine url to use"
+msgstr "Egyéni keresőmotor URL-je, amelyet használni szeretnél"
+
+#: data/org.guake.gschema.xml:96
+msgid "Stay on top."
+msgstr "Maradjon mindig felül."
+
+#: data/org.guake.gschema.xml:97
+msgid "Makes guake window be on top of all other windows in the desktop."
+msgstr ""
+
+#: data/org.guake.gschema.xml:101
+msgid "Refocus window."
+msgstr ""
+
+#: data/org.guake.gschema.xml:102
 #, fuzzy
-msgid "Always prompt on quit"
-msgstr "Figyelmeztetés kilépéskor"
-
-#: ../guake/data/prefs.glade.h:18
-msgid "_Flash terminal on bell"
-msgstr ""
-
-#: ../guake/data/prefs.glade.h:19
-msgid "_Play system alert sound on bell"
-msgstr ""
-
-#: ../guake/data/prefs.glade.h:20
-msgid "Path to script executed on Guake start:"
-msgstr ""
-
-#: ../guake/data/prefs.glade.h:21
-#, fuzzy
-msgid "Prompt on close tab:"
-msgstr "Figyelmeztetés kilépéskor"
-
-#: ../guake/data/prefs.glade.h:22
-#, fuzzy
-msgid ""
-"Never\n"
-"With process running\n"
-"Always"
-msgstr ""
-"Soha\n"
-"Ha van aktív folyamat\n"
-"Mindig"
-
-#: ../guake/data/prefs.glade.h:25
-msgid "<b>General</b>"
-msgstr "<b>Általános</b>"
-
-#: ../guake/data/prefs.glade.h:26
-msgid "Bottom align window instead of top align"
+#| msgid "Bottom align window instead of top align"
+msgid "Refocus window instead of closing."
 msgstr "Ablakok alsó igazítása felső helyett"
 
-#: ../guake/data/prefs.glade.h:27
-msgid "Appear on mouse display"
-msgstr ""
-
-#: ../guake/data/prefs.glade.h:28
-msgid "Appear on display:"
-msgstr ""
-
-#: ../guake/data/prefs.glade.h:29
+#: data/org.guake.gschema.xml:106
 #, fuzzy
-msgid "Place tabs on top"
+#| msgid "Stay on top"
+msgid "Tab on top."
 msgstr "Mindig felül"
 
-#: ../guake/data/prefs.glade.h:30
+#: data/org.guake.gschema.xml:107
+msgid ""
+"Makes tab bar on top of the Guake window. Per default, tabs appear below the "
+"terminal. Setting this to True will move the tab on top of the terminal. "
+"Requires a restart."
+msgstr ""
+
+#: data/org.guake.gschema.xml:111
+msgid "New tabs appear after the current tab."
+msgstr ""
+
+#: data/org.guake.gschema.xml:112
+msgid ""
+"Makes new tabs appear after the currently selected tab, instead of at the "
+"end."
+msgstr ""
+
+#: data/org.guake.gschema.xml:116
+msgid "Determine if guake hides on lose focus."
+msgstr ""
+
+#: data/org.guake.gschema.xml:117
+msgid ""
+"If this property is set as true, guake will be hidden when the main window "
+"lose the focus (when Alt+Tab be pressed for example)."
+msgstr ""
+
+#: data/org.guake.gschema.xml:121
 #, fuzzy
-msgid "<b>Placement</b>"
-msgstr "<b>Paletta</b>"
-
-#: ../guake/data/prefs.glade.h:31
-msgid "Stay on top"
-msgstr "Mindig felül"
-
-#: ../guake/data/prefs.glade.h:32
-msgid "Use VTE titles for tab names"
-msgstr ""
-
-#: ../guake/data/prefs.glade.h:33
-msgid "Max tab name length:"
-msgstr ""
-
-#: ../guake/data/prefs.glade.h:34
-msgid "0 means no size limit"
-msgstr ""
-
-#: ../guake/data/prefs.glade.h:36
-msgid "Hide on lose focus"
+#| msgid "Hide on lose focus"
+msgid "Delay hiding on losing focus."
 msgstr "Fókusz elvesztésekor elrejtés"
 
-#: ../guake/data/prefs.glade.h:37
-msgid "Show tab bar"
-msgstr "Lapok mutatása"
+#: data/org.guake.gschema.xml:122
+msgid ""
+"Momentarily delay hiding Guake when focus is lost and don't hide if focus is "
+"returned quickly, like when switching desktops or turning on certain IMEs."
+msgstr ""
 
-#: ../guake/data/prefs.glade.h:38
+#: data/org.guake.gschema.xml:126
 #, fuzzy
-msgid "Start fullscreen"
-msgstr "Teljes képernyő"
+#| msgid "Toggle Guake visibility"
+msgid "The tab bar visibility."
+msgstr "Guake láthatóságának váltása"
 
-#: ../guake/data/prefs.glade.h:39
-msgid "<b>Main Window</b>"
-msgstr "<b>Fő ablak</b>"
-
-#: ../guake/data/prefs.glade.h:40
-msgid "Left"
+#: data/org.guake.gschema.xml:127
+msgid "When true, the tab bar is visible."
 msgstr ""
 
-#: ../guake/data/prefs.glade.h:41
-msgid "Center"
-msgstr ""
-
-#: ../guake/data/prefs.glade.h:42
-msgid "Right"
-msgstr ""
-
-#: ../guake/data/prefs.glade.h:43
+#: data/org.guake.gschema.xml:131
 #, fuzzy
-msgid "<b>Main Window Horizontal Alignment</b>"
-msgstr "<b>Főablak magassága</b>"
+#| msgid "Start fullscreen"
+msgid "Hide tab bar when fullscreen"
+msgstr "Indítás teljes képernyőn"
 
-#: ../guake/data/prefs.glade.h:44
+#: data/org.guake.gschema.xml:132
+msgid "When true, the tab bar will hide when is in fullscreen"
+msgstr ""
+
+#: data/org.guake.gschema.xml:136 data/prefs.glade:1043
+msgid "Hide tab bar if there is only one tab"
+msgstr "Lapsáv elrejtése, ha csak egy lap van"
+
+#: data/org.guake.gschema.xml:137
+msgid "When true, the tab bar will hide when there is only one tab"
+msgstr ""
+
+#: data/org.guake.gschema.xml:141
+msgid "Enable Quick Open feature."
+msgstr ""
+
+#: data/org.guake.gschema.xml:142
+msgid ""
+"If this property is set as true, guake will open a text editor when the user "
+"does a Ctrl+Click on a filename printed in the terminal."
+msgstr ""
+
+#: data/org.guake.gschema.xml:146
+msgid "Command line pattern to start a editor."
+msgstr ""
+
+#: data/org.guake.gschema.xml:147
+msgid ""
+"This property gives the command line to execute when doing a Quick Open. You "
+"can enter the following python string pattern in it: '%(file_path)s' will be "
+"replaced with the full path to the captured filename, '%(line_number)s' will "
+"be replaced by the line number if found (set to the empty string otherwise)."
+msgstr ""
+
+#: data/org.guake.gschema.xml:151
+msgid "Quick open the file in the current terminal."
+msgstr "Fájl gyors megnyitása az aktuális terminálban."
+
+#: data/org.guake.gschema.xml:152
+msgid ""
+"If this property is set as true, guake will use the current terminal to "
+"execute the Quick open feature. Use if you want to inherit your terminal "
+"environment in your text editor"
+msgstr ""
+
+#: data/org.guake.gschema.xml:156
+msgid "Startup script to execute when guake starts"
+msgstr ""
+
+#: data/org.guake.gschema.xml:157
+msgid ""
+"This property allows you to execute a startup bash script each time guake "
+"starts. You can configure your initial tab settings within this script. "
+"Please see the command line argument of guake ('guake --help') for complete "
+"help."
+msgstr ""
+
+#: data/org.guake.gschema.xml:161
+msgid "Start fullscreen."
+msgstr "Teljes képernyőn indítás."
+
+#: data/org.guake.gschema.xml:162
+msgid "When true, the program will start in fullscreen mode."
+msgstr ""
+
+#: data/org.guake.gschema.xml:166
+msgid "Start when GNOME starts"
+msgstr ""
+
+#: data/org.guake.gschema.xml:167
+msgid "When true, the program will start upon GNOME login."
+msgstr ""
+
+#: data/org.guake.gschema.xml:171
+msgid "Audible bell"
+msgstr "Hangjelzés"
+
+#: data/org.guake.gschema.xml:172
+msgid "If true, the system alert sound will be played on a bell character."
+msgstr ""
+
+#: data/org.guake.gschema.xml:176
+msgid "Window width."
+msgstr "Ablak szélesség."
+
+#: data/org.guake.gschema.xml:177
+msgid "Percent of the screen that will be used by guake terminal horizontally."
+msgstr ""
+
+#: data/org.guake.gschema.xml:181
+msgid "Window height."
+msgstr "Ablak magasság."
+
+#: data/org.guake.gschema.xml:182
+msgid "Percent of the screen that will be used by guake terminal vertically."
+msgstr ""
+
+#: data/org.guake.gschema.xml:186
 #, fuzzy
-msgid "<b>Main Window Height</b>"
-msgstr "<b>Főablak magassága</b>"
+#| msgid "Horizontal Alignment:"
+msgid "Horizontal window displacement."
+msgstr "Vízszintes igazítás:"
 
-#: ../guake/data/prefs.glade.h:45
+#: data/org.guake.gschema.xml:187
+msgid "Displace the window horizontally by a given amount of pixels."
+msgstr ""
+
+#: data/org.guake.gschema.xml:191
+msgid "Vertical window displacement."
+msgstr ""
+
+#: data/org.guake.gschema.xml:192
+msgid "Displace the window vertically by a given amount of pixels."
+msgstr ""
+
+#: data/org.guake.gschema.xml:196
+msgid "Window horizontal alignment."
+msgstr "Ablak vízszintes igazítása."
+
+#: data/org.guake.gschema.xml:197
+msgid "Place Guake at: 0: center, 1: left, 2: right"
+msgstr ""
+
+#: data/org.guake.gschema.xml:201
+msgid "Window vertical alignment."
+msgstr "Ablak vízszintes igazítása."
+
+#: data/org.guake.gschema.xml:202
+msgid "Place Guake at: 0: top, 1: bottom"
+msgstr ""
+
+#: data/org.guake.gschema.xml:206
+msgid "Background image filename."
+msgstr "Háttérkép fájlneve."
+
+#: data/org.guake.gschema.xml:207
+msgid "When setup, the selected background image will show on guake"
+msgstr ""
+
+#: data/org.guake.gschema.xml:211
+msgid "Background image layout mode."
+msgstr "Háttérkép elrendezési módja."
+
+#: data/org.guake.gschema.xml:212
+msgid "To select which layout mode want to use for background image."
+msgstr ""
+
+#: data/org.guake.gschema.xml:216
+msgid "Sets the scrollbar visibility."
+msgstr ""
+
+#: data/org.guake.gschema.xml:217
+msgid "When true, scrollbar is visible."
+msgstr ""
+
+#: data/org.guake.gschema.xml:221
+msgid "History Size."
+msgstr ""
+
+#: data/org.guake.gschema.xml:222
+msgid "The number of scrollback lines to save in history."
+msgstr ""
+
+#: data/org.guake.gschema.xml:226 data/prefs.glade:1826
+msgid "Infinite scrolling"
+msgstr "Végtelen görgetés"
+
+#: data/org.guake.gschema.xml:227
+msgid "Scrollback lines in history is infinite"
+msgstr ""
+
+#: data/org.guake.gschema.xml:231
+msgid "Scroll on output"
+msgstr "Görgetés kimenetnél"
+
+#: data/org.guake.gschema.xml:232
+msgid ""
+"If true, whenever there is new output in the terminal, it will scroll to the "
+"bottom."
+msgstr ""
+
+#: data/org.guake.gschema.xml:236
 #, fuzzy
-msgid "<b>Main Window Width</b>"
-msgstr "<b>Főablak magassága</b>"
-
-#: ../guake/data/prefs.glade.h:46
-msgid "Custom command file path: "
-msgstr ""
-
-#: ../guake/data/prefs.glade.h:47
-msgid "Please select a json file"
-msgstr ""
-
-#: ../guake/data/prefs.glade.h:48 ../src/guake/prefs.py:75
-msgid "General"
-msgstr "Általános"
-
-#: ../guake/data/prefs.glade.h:49
-msgid "Default interpreter:"
-msgstr "Alapértelmezett héj:"
-
-#: ../guake/data/prefs.glade.h:50
-msgid "_Run command as a login shell"
-msgstr "_Parancs futtatása bejelentkező héjban (login shell)"
-
-#: ../guake/data/prefs.glade.h:51
-msgid "_Open new tab in current directory"
-msgstr "Új lap megnyitása a _jelenlegi könyvtárban"
-
-#: ../guake/data/prefs.glade.h:52
-msgid "<b>Shell</b>"
-msgstr "<b>Héj (shell)</b>"
-
-#: ../guake/data/prefs.glade.h:53
-msgid "Shell"
-msgstr ""
-
-#: ../guake/data/prefs.glade.h:54
-msgid "Show scrollbar"
-msgstr "Görgetősáv mutatása"
-
-#: ../guake/data/prefs.glade.h:55
-msgid "Scrollback lines:"
-msgstr "Sor megtartása:"
-
-#: ../guake/data/prefs.glade.h:56
-msgid "On output"
-msgstr "Kimenetnél"
-
-#: ../guake/data/prefs.glade.h:57
-msgid "On key stroke"
+#| msgid "On key stroke"
+msgid "Scroll on keystroke"
 msgstr "Billentyűkombináció lenyomásakor"
 
-#: ../guake/data/prefs.glade.h:58
-msgid "<b>Scroll</b>"
-msgstr "<b>Görgetés</b>"
-
-#: ../guake/data/prefs.glade.h:59
-msgid "Scrolling"
-msgstr "Görgetés"
-
-#: ../guake/data/prefs.glade.h:60
-msgid "Use the system fixed width font"
-msgstr "A rendszer rögzített szélességű betűtípusának használata"
-
-#: ../guake/data/prefs.glade.h:61
-msgid "Font:"
-msgstr "Betűtípus:"
-
-#: ../guake/data/prefs.glade.h:62
-msgid "Choose some font"
-msgstr "Betűtípus kiválasztása"
-
-#: ../guake/data/prefs.glade.h:63
-msgid "Text color:"
-msgstr "Szövegszín:"
-
-#: ../guake/data/prefs.glade.h:64
-msgid "Background color:"
-msgstr "Háttérszín:"
-
-#: ../guake/data/prefs.glade.h:65
-msgid "Cursor shape:"
+#: data/org.guake.gschema.xml:237
+msgid "If true and a key is pressed, the terminal is scrolled to the bottom."
 msgstr ""
 
-#: ../guake/data/prefs.glade.h:66
+#: data/org.guake.gschema.xml:241
+msgid "Use default font"
+msgstr "Az alapértelmezett betűtípus használata"
+
+#: data/org.guake.gschema.xml:242
+msgid "If true, Guake will use the GNOME monospace default font."
+msgstr ""
+
+#: data/org.guake.gschema.xml:246
+msgid "Use terminal titles for tab naming"
+msgstr ""
+
+#: data/org.guake.gschema.xml:247
 msgid ""
-"Block\n"
-"I-Beam\n"
+"Any terminal program can set the terminal's title via special escape "
+"sequences. Some shells (e.g. bash) display user's prompt there (though you "
+"can adjust that to any arbitrary text in bashrc or similar) and update it "
+"automatically as the prompt changes. So you can have easy automatically "
+"updating meaningful tab titles with this option turned on."
+msgstr ""
+
+#: data/org.guake.gschema.xml:251 data/prefs.glade:1059
+msgid "Set window title to current tab name"
+msgstr ""
+
+#: data/org.guake.gschema.xml:252
+msgid ""
+"If true, Guake will update its window title from the current tab name. It is "
+"useful when you work with applications that use windows title, (keepass, "
+"automatic time tracker apps)"
+msgstr ""
+
+#: data/org.guake.gschema.xml:256
+#| msgid "Compatibility"
+msgid "Backspace Compatibility"
+msgstr ""
+
+#: data/org.guake.gschema.xml:257
+msgid "Defines the behavior of backspace key."
+msgstr ""
+
+#: data/org.guake.gschema.xml:261
+#| msgid "Compatibility"
+msgid "Delete Compatibility"
+msgstr ""
+
+#: data/org.guake.gschema.xml:262
+msgid "Defines the behavior of delete key."
+msgstr ""
+
+#: data/org.guake.gschema.xml:266
+msgid "Characters that are considered \"part of a word\""
+msgstr ""
+
+#: data/org.guake.gschema.xml:267
+msgid ""
+"When selecting text by word, sequences of these characters are considered "
+"single words. Ranges can be given as \"A-Z\". Literal hyphen (not expressing "
+"a range) should be the first character given."
+msgstr ""
+
+#: data/org.guake.gschema.xml:271
+msgid "If the tabs bar must be visible in fullscreen"
+msgstr ""
+
+#: data/org.guake.gschema.xml:272
+msgid "Set it as false to enjoy guake's fullscreen."
+msgstr ""
+
+#: data/org.guake.gschema.xml:276
+msgid "Give focus to guake if tab is opened (OBSOLETE)."
+msgstr ""
+
+#: data/org.guake.gschema.xml:277
+msgid ""
+"If the guake window is out of focus but open, enabling this will give it "
+"back the focus instead of closing the window."
+msgstr ""
+
+#: data/org.guake.gschema.xml:281
+msgid "Path to the default custom command json file."
+msgstr ""
+
+#: data/org.guake.gschema.xml:282
+msgid ""
+"Path to the default custom command json file. If is blank or the json file "
+"is not in a proper format the terminal context menu will be built without "
+"custom commands. If the file is a valid json with recognized structure "
+"theterminak context menu will be built with the commands read inside."
+msgstr ""
+
+#: data/org.guake.gschema.xml:286 data/org.guake.gschema.xml:287
+#, fuzzy
+#| msgid "_Open new tab in current directory"
+msgid "Open new tab in the current working directory"
+msgstr "Új lap megnyitása a _jelenlegi könyvtárban"
+
+#: data/org.guake.gschema.xml:291 data/org.guake.gschema.xml:292
+msgid "#TODO PORT max-tab-name-length"
+msgstr ""
+
+#: data/org.guake.gschema.xml:296
+msgid "How to display tab names."
+msgstr ""
+
+#: data/org.guake.gschema.xml:297
+msgid ""
+"Controls how the tab names are displayed. 0: Full Path, 1: Abbreviated Path, "
+"2: Only display the last segment of the path"
+msgstr ""
+
+#: data/org.guake.gschema.xml:301
+msgid "Use system default theme for GTK"
+msgstr "A rendszer alapértelmezett témájának használata GTK-hoz"
+
+#: data/org.guake.gschema.xml:302
+msgid "Prefer the system default theme"
+msgstr "A rendszer alapértelmezett témájának használata"
+
+#: data/org.guake.gschema.xml:306
+msgid "GTK Theme name"
+msgstr "GTK témanév"
+
+#: data/org.guake.gschema.xml:307
+msgid ""
+"Name of the GTK theme to apply on Guake. If set to an empty string, let GTK "
+"use the default system theme"
+msgstr ""
+
+#: data/org.guake.gschema.xml:311
+msgid "Prefer Dark Theme for GTK"
+msgstr "Sötét téma előnyben részesítése GTK-hoz"
+
+#: data/org.guake.gschema.xml:312
+msgid "Prefer the dark theme version of the theme if available"
+msgstr "A téma sötét verziójának előnyben részesítése, ha van ilyen"
+
+#: data/org.guake.gschema.xml:316 data/prefs.glade:508
+msgid "Show close buttons for tabs"
+msgstr ""
+
+#: data/org.guake.gschema.xml:317
+msgid "Show close buttons next to tab titles"
+msgstr ""
+
+#: data/org.guake.gschema.xml:321
+msgid "Copy selected text if enabled."
+msgstr ""
+
+#: data/org.guake.gschema.xml:322
+msgid "Copy the selected text."
+msgstr "A kiválasztott szöveg másolása."
+
+#: data/org.guake.gschema.xml:328
+#, fuzzy
+#| msgid "Cursor blink mode:"
+msgid "Cursor blink mode of the terminal"
+msgstr "Kurzor villogásának módja:"
+
+#: data/org.guake.gschema.xml:329
+msgid ""
+"Controls the blink mode of the cursor in the terminals. 0: Follow GTK+ "
+"setting, 1: Blink on, 2: Blink off"
+msgstr ""
+
+#: data/org.guake.gschema.xml:333
+msgid "Cursor shape of the terminal"
+msgstr "A terminál kurzorának alakja"
+
+#: data/org.guake.gschema.xml:334
+msgid ""
+"Controls the shape of the cursor in the terminals. 0: Block, 1: I-Beam, 2: "
 "Underline"
 msgstr ""
 
-#: ../guake/data/prefs.glade.h:69
+#: data/org.guake.gschema.xml:342
+msgid "Font style."
+msgstr "Betűstílus."
+
+#: data/org.guake.gschema.xml:343
+msgid "Font face and size that will be used in terminal."
+msgstr ""
+
+#: data/org.guake.gschema.xml:347
+msgid "Color scheme."
+msgstr "Színséma."
+
+#: data/org.guake.gschema.xml:348
+msgid "Color scheme that will be used in terminal."
+msgstr ""
+
+#: data/org.guake.gschema.xml:352
+msgid "Color scheme name."
+msgstr "Színséma neve."
+
+#: data/org.guake.gschema.xml:353
+msgid "Color scheme name that will be used in terminal."
+msgstr ""
+
+#: data/org.guake.gschema.xml:357
+msgid "Allow displaying bold font in Guake terminal."
+msgstr ""
+
+#: data/org.guake.gschema.xml:358
 msgid ""
-"Follow GTK+ setting\n"
-"Blink on\n"
-"Blink off"
+"When allow_bold is disabled, any text in Guake terminal intended to print as "
+"bold text will be instead rendered as normal text."
 msgstr ""
 
-#: ../guake/data/prefs.glade.h:72
+#: data/org.guake.gschema.xml:362
+msgid "Use bright colors for bold text"
+msgstr ""
+
+#: data/org.guake.gschema.xml:363
+msgid ""
+"If true, text from the first 8 colors that is formatted as bold will also be "
+"switched to its bright variant (VTE >=0.52)."
+msgstr ""
+
+#: data/org.guake.gschema.xml:367
+#, fuzzy
+#| msgid "Line Height Scale (VTE >= 0.52)"
+msgid "Set terminal's cell height scale to `scale` (VTE >= 0.52)"
+msgstr "Sor magasság skálázása (VTE>=0.52)"
+
+#: data/org.guake.gschema.xml:368
+msgid ""
+"This can be used to increase the line spacing. (The font's height is not "
+"affected.) Valid values go from 1.0 (default) to 2.0 (\"double spacing\")."
+msgstr ""
+
+#: data/org.guake.gschema.xml:372
+#, fuzzy
+#| msgid "Line Width Scale (VTE >= 0.52)"
+msgid "Set terminal's cell width scale to `scale` (VTE >= 0.52)"
+msgstr "Sor szélesség skálázása (VTE>=0.52)"
+
+#: data/org.guake.gschema.xml:373
+msgid ""
+"This can be used to increase the letter spacing. (The font's width is not "
+"affected.) Valid values go from 1.0 (default) to 2.0 (\"double spacing\")."
+msgstr ""
+
+#: data/org.guake.gschema.xml:380
+msgid "Background transparency."
+msgstr "Háttérkép átlátszósága."
+
+#: data/org.guake.gschema.xml:381
+msgid "Alpha that will be applied to the terminal background."
+msgstr ""
+
+#: data/org.guake.gschema.xml:391
+msgid "Keybinding to show/hide guake."
+msgstr ""
+
+#: data/org.guake.gschema.xml:392 data/org.guake.gschema.xml:397
+msgid ""
+"Global keybinding to allow user call guake from each place after it's opened "
+"without clicks."
+msgstr ""
+
+#: data/org.guake.gschema.xml:396
+msgid "Keybinding to show and focus guake."
+msgstr ""
+
+#: data/org.guake.gschema.xml:403 prefs.py:98
+msgid "Search terminal"
+msgstr "Terminál keresése"
+
+#: data/org.guake.gschema.xml:404
+msgid "Show search box to search text inside the terminal"
+msgstr ""
+
+#: data/org.guake.gschema.xml:409
+msgid "Quit Guake."
+msgstr "Kilépés a Guake-ből."
+
+#: data/org.guake.gschema.xml:413
+msgid "Add a new tab."
+msgstr "Új lap hozzáadása."
+
+#: data/org.guake.gschema.xml:414
+msgid "Calls the function to add a new tab in guake window."
+msgstr ""
+
+#: data/org.guake.gschema.xml:418
+#, fuzzy
+#| msgid "New tab in home directory"
+msgid "Add a new tab in home directory."
+msgstr "Új lap a HOME könyvtárban"
+
+#: data/org.guake.gschema.xml:419
+msgid "Calls the function to add a new home directory tab in guake window."
+msgstr ""
+
+#: data/org.guake.gschema.xml:423
+#, fuzzy
+#| msgid "_Open new tab in current directory"
+msgid "Add a new tab in current directory."
+msgstr "Új lap megnyitása a _jelenlegi könyvtárban"
+
+#: data/org.guake.gschema.xml:424
+msgid ""
+"Calls the function to add a new tab in guake window, in the same directory "
+"as the current tab."
+msgstr ""
+
+#: data/org.guake.gschema.xml:428
+msgid "Closes the current tab."
+msgstr "Bezárja az aktuális lapot."
+
+#: data/org.guake.gschema.xml:429
+msgid "Accelerator to active function that closes the current selected tab."
+msgstr ""
+
+#: data/org.guake.gschema.xml:433
+msgid "Search current selected text on the web"
+msgstr "A kijelölt szöveg keresése a web-en"
+
+#: data/org.guake.gschema.xml:434
+msgid ""
+"Accelerator to active function that search on the web the current selected "
+"text on the terminal."
+msgstr ""
+
+#: data/org.guake.gschema.xml:438
+msgid "Open link under terminal cursor"
+msgstr ""
+
+#: data/org.guake.gschema.xml:439
+msgid ""
+"Accelerator to active function that opens the link (URL) under the current "
+"terminal cursor."
+msgstr ""
+
+#: data/org.guake.gschema.xml:443
+#, fuzzy
+#| msgid "Move current tab left"
+msgid "Move left current tab"
+msgstr "Aktuális lap áthelyezése balra"
+
+#: data/org.guake.gschema.xml:444
+#, fuzzy
+#| msgid "Move current tab left"
+msgid "Move the current tab to the left"
+msgstr "Aktuális lap áthelyezése balra"
+
+#: data/org.guake.gschema.xml:448
+#, fuzzy
+#| msgid "Move current tab left"
+msgid "Move right current tab"
+msgstr "Aktuális lap áthelyezése balra"
+
+#: data/org.guake.gschema.xml:449
+#, fuzzy
+#| msgid "Move current tab right"
+msgid "Move the current tab to the right"
+msgstr "Aktuális lap áthelyezése jobbra"
+
+#: data/org.guake.gschema.xml:453
+msgid "Previous tab."
+msgstr "Előző lap."
+
+#: data/org.guake.gschema.xml:454
+msgid "Shows the previous tab."
+msgstr "Előző lap mutatása."
+
+#: data/org.guake.gschema.xml:458
+msgid "Next tab."
+msgstr "Új lap."
+
+#: data/org.guake.gschema.xml:459
+#, fuzzy
+#| msgid "Go to next tab"
+msgid "Shows the next tab."
+msgstr "Következő lap"
+
+#: data/org.guake.gschema.xml:463
+msgid "Previous tab (alternative)"
+msgstr "Előző lap (másodlagos billentyűzetkombináció)"
+
+#: data/org.guake.gschema.xml:464
+msgid "Alternate shortcut to show the previous tab."
+msgstr ""
+
+#: data/org.guake.gschema.xml:468
+msgid "Next tab (alternative)"
+msgstr "Következő lap (másodlagos billentyűzetkombináció)"
+
+#: data/org.guake.gschema.xml:469
+msgid "Alternate shortcut to show the next tab."
+msgstr ""
+
+#: data/org.guake.gschema.xml:473
+msgid "First tab."
+msgstr "Első lap."
+
+#: data/org.guake.gschema.xml:474
+msgid "Switch to the first tab."
+msgstr "Váltás az első lapra."
+
+#: data/org.guake.gschema.xml:478
+msgid "Second tab."
+msgstr "Második lap."
+
+#: data/org.guake.gschema.xml:479
+msgid "Switch to the second tab."
+msgstr "Váltás a második lapra."
+
+#: data/org.guake.gschema.xml:483
+msgid "Third tab."
+msgstr "Harmadik lap."
+
+#: data/org.guake.gschema.xml:484
+msgid "Switch to the third tab."
+msgstr "Váltás a harmadik lapra."
+
+#: data/org.guake.gschema.xml:488
+msgid "Fourth tab."
+msgstr "Negyedik lap."
+
+#: data/org.guake.gschema.xml:489
+msgid "Switch to the fourth tab."
+msgstr "Váltás a negyedik lapra."
+
+#: data/org.guake.gschema.xml:493
+msgid "Fifth tab."
+msgstr "Ötödik lap."
+
+#: data/org.guake.gschema.xml:494
+msgid "Switch to the fifth tab."
+msgstr "Váltás az ötödik lapra."
+
+#: data/org.guake.gschema.xml:498
+msgid "Sixth tab."
+msgstr "Hatodik lap."
+
+#: data/org.guake.gschema.xml:499
+msgid "Switch to the sixth tab."
+msgstr "Váltás a hatodik lapra."
+
+#: data/org.guake.gschema.xml:503
+msgid "Seventh tab."
+msgstr "Hetedik lap."
+
+#: data/org.guake.gschema.xml:504
+msgid "Switch to the seventh tab."
+msgstr "Váltás a hetedik lapra."
+
+#: data/org.guake.gschema.xml:508
+msgid "eighth tab."
+msgstr "Nyolcadik lap."
+
+#: data/org.guake.gschema.xml:509
+msgid "Switch to the eighth tab."
+msgstr "Váltás a nyolcadik lapra."
+
+#: data/org.guake.gschema.xml:513
+msgid "Ninth tab."
+msgstr "Kilencedik lap."
+
+#: data/org.guake.gschema.xml:514
+msgid "Switch to the ninth tab."
+msgstr "Váltás a kilencedik lapra."
+
+#: data/org.guake.gschema.xml:518
+#, fuzzy
+#| msgid "Go to tenth tab"
+msgid "Tenth tab."
+msgstr "Ugrás a tizedik lapra"
+
+#: data/org.guake.gschema.xml:519
+msgid "Switch to the tenth tab."
+msgstr "Váltás a tizedik lapra."
+
+#: data/org.guake.gschema.xml:523
+msgid "Rename current tab."
+msgstr "Aktuális lap átnevezése."
+
+#: data/org.guake.gschema.xml:524
+msgid "Shows a dialog to rename the current tab."
+msgstr ""
+
+#: data/org.guake.gschema.xml:528
+msgid "Zoom in."
+msgstr "Nagyítás."
+
+#: data/org.guake.gschema.xml:529
+msgid "Increase the font size of the terminals."
+msgstr ""
+
+#: data/org.guake.gschema.xml:533 prefs.py:170
+msgid "Zoom in (alternative)"
+msgstr "Nagyítás (másodlagos billentyűzetkombináció)"
+
+#: data/org.guake.gschema.xml:534
+msgid "Additional shortcut for zooming in."
+msgstr ""
+
+#: data/org.guake.gschema.xml:538
+msgid "Zoom out."
+msgstr "Kicsinyítés."
+
+#: data/org.guake.gschema.xml:539
+msgid "Decrease the font size of the terminals."
+msgstr ""
+
+#: data/org.guake.gschema.xml:543
+msgid "Increase height."
+msgstr "Magasság növelése."
+
+#: data/org.guake.gschema.xml:544
+#, fuzzy
+#| msgid "Increase height"
+msgid "Increase the screen height."
+msgstr "Magasság növelése"
+
+#: data/org.guake.gschema.xml:548
+msgid "Decrease height."
+msgstr "Magasság csökkentése."
+
+#: data/org.guake.gschema.xml:549
+msgid "Decrease the screen height."
+msgstr "Csökkenti a ablak magasságát."
+
+#: data/org.guake.gschema.xml:553
+#, fuzzy
+#| msgid "Increase transparency"
+msgid "Increase transparency."
+msgstr "Átlátszóság növelése"
+
+#: data/org.guake.gschema.xml:554
+#, fuzzy
+#| msgid "Increase transparency"
+msgid "Increase the terminal transparency."
+msgstr "Átlátszóság növelése"
+
+#: data/org.guake.gschema.xml:558
+msgid "Decrease transparency."
+msgstr "Átlátszóság csökkentése."
+
+#: data/org.guake.gschema.xml:559
+msgid "Decrease the terminal transparency."
+msgstr "Csökkenti a terminál átlátszóságát."
+
+#: data/org.guake.gschema.xml:563
+msgid "Copy clipboard."
+msgstr "Másolás vágólapra."
+
+#: data/org.guake.gschema.xml:564
+msgid "Copy the clipboard content."
+msgstr "Vágólap tartalmát másolja."
+
+#: data/org.guake.gschema.xml:568
+msgid "Paste clipboard."
+msgstr "Beillesztés vágólapról."
+
+#: data/org.guake.gschema.xml:569
+msgid "Paste the clipboard content."
+msgstr "Vágólap tartalmának beillesztése."
+
+#: data/org.guake.gschema.xml:573
+msgid "Select all."
+msgstr "Minden kiválasztása."
+
+#: data/org.guake.gschema.xml:574
+msgid "Select all contents of the currently active terminal."
+msgstr ""
+
+#: data/org.guake.gschema.xml:578
+#, fuzzy
+#| msgid "Toggle Fullscreen"
+msgid "Toggle Fullscreen."
+msgstr "Teljes képernyő"
+
+#: data/org.guake.gschema.xml:579
+#, fuzzy
+#| msgid "Toggle Fullscreen"
+msgid "Toggle main guake window fullscreen."
+msgstr "Teljes képernyő"
+
+#: data/org.guake.gschema.xml:583
+#, fuzzy
+#| msgid "Hide on lose focus"
+msgid "Toggle hide on lose focus."
+msgstr "Fókusz elvesztésekor elrejtés"
+
+#: data/org.guake.gschema.xml:584
+msgid "Toggle whether guake will hide when it loses focus."
+msgstr ""
+
+#: data/org.guake.gschema.xml:588
+msgid "Reset"
+msgstr "Visszaállítás"
+
+#: data/org.guake.gschema.xml:589 menus.py:107 prefs.py:97
+msgid "Reset terminal"
+msgstr "Terminál visszaállítása"
+
+#: data/org.guake.gschema.xml:593
+msgid "Toggle transparency."
+msgstr "Átlátszóság átkapcsolása."
+
+#: data/org.guake.gschema.xml:594
+msgid ""
+"Toggle the terminal transparency from the actual level to 100% and vice "
+"versa."
+msgstr ""
+
+#: data/org.guake.gschema.xml:598
+msgid "Last tab."
+msgstr "Utolsó lap."
+
+#: data/org.guake.gschema.xml:599
+msgid "Switch to the last tab."
+msgstr "Váltás az utolsó lapra."
+
+#: data/org.guake.gschema.xml:603 data/org.guake.gschema.xml:604
+msgid "Split tab vertical."
+msgstr "Lap függőleges felosztása."
+
+#: data/org.guake.gschema.xml:608 data/org.guake.gschema.xml:609
+msgid "Split tab horizontal."
+msgstr "Lap vízszintes felosztása."
+
+#: data/org.guake.gschema.xml:613
+msgid "Close terminal."
+msgstr "Terminál bezárása."
+
+#: data/org.guake.gschema.xml:614
+msgid "Close the currently focused terminal."
+msgstr ""
+
+#: data/org.guake.gschema.xml:618 data/org.guake.gschema.xml:619
+#, fuzzy
+#| msgid "Close terminal"
+msgid "Focus terminal above."
+msgstr "Terminál bezárása"
+
+#: data/org.guake.gschema.xml:623 data/org.guake.gschema.xml:624
+#, fuzzy
+#| msgid "Close terminal"
+msgid "Focus terminal below."
+msgstr "Terminál bezárása"
+
+#: data/org.guake.gschema.xml:628 data/org.guake.gschema.xml:629
+msgid "Focus terminal on the right."
+msgstr ""
+
+#: data/org.guake.gschema.xml:633 data/org.guake.gschema.xml:634
+msgid "Focus terminal on the left."
+msgstr ""
+
+#: data/org.guake.gschema.xml:638 data/org.guake.gschema.xml:639
+msgid "Move the terminal split handle up."
+msgstr ""
+
+#: data/org.guake.gschema.xml:643 data/org.guake.gschema.xml:644
+msgid "Move the terminal split handle down."
+msgstr ""
+
+#: data/org.guake.gschema.xml:648 data/org.guake.gschema.xml:649
+msgid "Move the terminal split handle left."
+msgstr ""
+
+#: data/org.guake.gschema.xml:653 data/org.guake.gschema.xml:654
+msgid "Move the terminal split handle right."
+msgstr ""
+
+#: data/org.guake.gschema.xml:660
+msgid "On show."
+msgstr "Megjelenítéskor."
+
+#: data/org.guake.gschema.xml:661
+msgid "Run this script on show."
+msgstr ""
+
+#: data/prefs.glade:33
+msgid "Scale"
+msgstr "Méretezés"
+
+#: data/prefs.glade:37
+msgid "Tile"
+msgstr "Mozaik"
+
+#: data/prefs.glade:41 data/prefs.glade:1380
+msgid "Center"
+msgstr "Középre"
+
+#: data/prefs.glade:45
+msgid "Stretch"
+msgstr "Nyújtás"
+
+#: data/prefs.glade:138
+msgid "<span size=\"18000\"><b>Guake properties</b></span>"
+msgstr "<span size=\"18000\"><b>Guake beállítások</b></span>"
+
+#: data/prefs.glade:152
+msgid "Customize behavior and appearance of Guake!"
+msgstr "Személyre szabhatod a Guake viselkedését és megjelenését!"
+
+#: data/prefs.glade:233
+msgid "Restore previous session (tabs)"
+msgstr "Előző munkamenet visszaállítása (lapok)"
+
+#: data/prefs.glade:247
+msgid "Enable notification when restore tabs"
+msgstr "Értesítések engedélyezése a lapok helyreállításakor"
+
+#: data/prefs.glade:261
+msgid "Automatically save session when the tabs has been modified"
+msgstr "Automatikusan mentse a munkamenetet, amikor a lapok módosultak"
+
+#: data/prefs.glade:275
+msgid "Load settings from `cwd`/.guake.yml"
+msgstr "Beállítások betöltése a `cwd`/.guake.yml fájlból"
+
+#: data/prefs.glade:319
+msgid "Startup & Tabs (Experiment)"
+msgstr "Indítás és lapok (Kísérlet)"
+
+#: data/prefs.glade:353
+msgid "Enable popup notifications on startup"
+msgstr "Felugró üzenetek engedélyezése induláskor"
+
+#: data/prefs.glade:370
+msgid "_Play system alert sound on bell"
+msgstr "_Rendszerjelzés lejátszása a csengetésnél"
+
+#: data/prefs.glade:386
+msgid "Start Guake at login"
+msgstr "Guake indítása bejelentkezéskor"
+
+#: data/prefs.glade:409
+msgid "Prompt on close tab:"
+msgstr "Kérdés a lap bezárásakor:"
+
+#: data/prefs.glade:423
+msgid "Never"
+msgstr "Soha"
+
+#: data/prefs.glade:424
+msgid "With process running"
+msgstr "Futó folyamat esetén"
+
+#: data/prefs.glade:425
+msgid "Always"
+msgstr "Mindig"
+
+#: data/prefs.glade:444
+msgid "Always prompt on quit"
+msgstr "Mindig rákérdezés kilépéskor"
+
+#: data/prefs.glade:460
+msgid "Show tray icon"
+msgstr "Tálca ikon mutatása"
+
+#: data/prefs.glade:476
+msgid "_Flash terminal on bell"
+msgstr ""
+
+#: data/prefs.glade:491
+msgid "Use workspace-specific tab sets (requires restart, only work on X11)"
+msgstr ""
+"Munkaterület-specifikus lapkészletek használata (újraindítás szükséges, csak "
+"X11-en működik)"
+
+#: data/prefs.glade:523
+msgid "Copy on select"
+msgstr "Másolás kijelöléskor"
+
+#: data/prefs.glade:559 data/prefs.glade:2340
+msgid "<b>General</b>"
+msgstr "<b>Általános</b>"
+
+#: data/prefs.glade:583
+msgid "Use system default theme"
+msgstr "A rendszer alapértelmezett témájának használata"
+
+#: data/prefs.glade:613
+msgid "GTK Theme:"
+msgstr "GTK téma:"
+
+#: data/prefs.glade:637
+msgid "Prefer dark theme"
+msgstr "Sötét téma előnyben részesítése"
+
+#: data/prefs.glade:666
+msgid "Custom command file path:"
+msgstr ""
+
+#: data/prefs.glade:678
+msgid "Please select a JSON file"
+msgstr ""
+
+#: data/prefs.glade:710
+msgid "Search Engine:"
+msgstr "Keresőmotor:"
+
+#: data/prefs.glade:724
+msgid "Google"
+msgstr "Google"
+
+#: data/prefs.glade:725
+msgid "DuckDuckGo"
+msgstr "DuckDuckGo"
+
+#: data/prefs.glade:726
+msgid "Bing"
+msgstr "Bing"
+
+#: data/prefs.glade:727
+msgid "Yandex"
+msgstr "Yandex"
+
+#: data/prefs.glade:728
+msgid "Neeva"
+msgstr "Neeva"
+
+#: data/prefs.glade:729 prefs.py:898 prefs.py:952
+msgid "Custom"
+msgstr "Egyéni"
+
+#: data/prefs.glade:755
+msgid "Custom Search:"
+msgstr "Egyéni kereső:"
+
+#: data/prefs.glade:769
+msgid "www.google.com/search?q=<search is inserted here>"
+msgstr "www.google.com/search?q=<keresendő szöveg>"
+
+#: data/prefs.glade:805 prefs.py:86
+msgid "General"
+msgstr "Általános"
+
+#: data/prefs.glade:854
+msgid "Refocus if open"
+msgstr ""
+
+#: data/prefs.glade:871
+msgid "Hide on lose focus"
+msgstr "Fókusz elvesztésekor elrejtés"
+
+#: data/prefs.glade:889
+msgid "Start fullscreen"
+msgstr "Indítás teljes képernyőn"
+
+#: data/prefs.glade:905
+msgid "Stay on top"
+msgstr "Mindig felül"
+
+#: data/prefs.glade:931
+msgid "Display as tab names:"
+msgstr ""
+
+#: data/prefs.glade:945
+msgid "Full Path"
+msgstr "Teljes elérési útvonal"
+
+#: data/prefs.glade:946
+msgid "Abbreviated Path"
+msgstr "Rövidített elérési út"
+
+#: data/prefs.glade:947
+msgid "Last Segment"
+msgstr "Utolsó rész"
+
+#: data/prefs.glade:974
+msgid "Max tab name length:"
+msgstr ""
+
+#: data/prefs.glade:989
+msgid "0"
+msgstr "0"
+
+#: data/prefs.glade:1011
+msgid "New tabs appear after the current tab"
+msgstr ""
+
+#: data/prefs.glade:1027
+msgid "Hide tabbar when fullscreen"
+msgstr ""
+
+#: data/prefs.glade:1075
+msgid "Use VTE titles for tab names"
+msgstr ""
+
+#: data/prefs.glade:1093
+msgid "Show tab bar"
+msgstr "Lapsáv megjelenítése"
+
+#: data/prefs.glade:1110
+msgid "Lazy hide on lose focus"
+msgstr ""
+
+#: data/prefs.glade:1158
+msgid "<b>Main Window Options</b>"
+msgstr "<b>Főablak beállításai</b>"
+
+#: data/prefs.glade:1190
+msgid "Bottom align window instead of top align"
+msgstr "Ablakok alsó igazítása felső helyett"
+
+#: data/prefs.glade:1206
+msgid "Appear on mouse display"
+msgstr "Azon a kijelzőn jelenik meg, ahol az egér van"
+
+#: data/prefs.glade:1231
+msgid "Appear on display:"
+msgstr "Megjelenítés a kijelzőn:"
+
+#: data/prefs.glade:1261
+msgid "Place tabs on top"
+msgstr "A lapokat helyezze felülre"
+
+#: data/prefs.glade:1307
+msgid "<b>Placement</b>"
+msgstr "<b>Elhelyezkedés</b>"
+
+#: data/prefs.glade:1344
+msgid "Horizontal Alignment:"
+msgstr "Vízszintes igazítás:"
+
+#: data/prefs.glade:1360
+msgid "Left"
+msgstr "Balra"
+
+#: data/prefs.glade:1400
+msgid "Right"
+msgstr "Jobbra"
+
+#: data/prefs.glade:1429
+msgid "Height:"
+msgstr "Magasság:"
+
+#: data/prefs.glade:1442
+msgid "Width:"
+msgstr "Szélesség:"
+
+#: data/prefs.glade:1496
+msgid "Displacement in pixels"
+msgstr "Elmozdítás pixelben"
+
+#: data/prefs.glade:1524
+msgid "<b>Geometry</b>"
+msgstr "<b>Geometria</b>"
+
+#: data/prefs.glade:1555
+msgid "Main Window"
+msgstr "Főablak"
+
+#: data/prefs.glade:1600
+msgid "Default interpreter:"
+msgstr "Alapértelmezett héj:"
+
+#: data/prefs.glade:1640
+msgid "_Run command as a login shell"
+msgstr "_Parancs futtatása bejelentkező héjban (login shell)"
+
+#: data/prefs.glade:1661
+msgid ""
+"This might not work on all shells, make sure that your shell supports the --"
+"login option"
+msgstr ""
+"Ez nem biztos, hogy minden parancsértelmezőnél működik, győződj meg arról, "
+"hogy a parancsértelmeződ támogatja a --login opciót"
+
+#: data/prefs.glade:1676
+msgid "_Open new tab in current directory"
+msgstr "Új lap megnyitása a _jelenlegi könyvtárban"
+
+#: data/prefs.glade:1720
+msgid "Shell"
+msgstr "Héj (shell)"
+
+#: data/prefs.glade:1766
+msgid "Show scrollbar"
+msgstr "Görgetősáv megjelenítése"
+
+#: data/prefs.glade:1790
+msgid "Scrollback lines:"
+msgstr "Sor megtartása:"
+
+#: data/prefs.glade:1848
+msgid "<b>Scrollbar</b>"
+msgstr "<b>Gördítősáv</b>"
+
+#: data/prefs.glade:1893
+msgid "On output"
+msgstr "Kimenetnél"
+
+#: data/prefs.glade:1910
+msgid "On key stroke"
+msgstr "Billentyűkombináció lenyomásakor"
+
+#: data/prefs.glade:1933
+msgid "<b>Scroll to Bottom</b>"
+msgstr "<b>Görgetés az aljára</b>"
+
+#: data/prefs.glade:1957
+msgid "Scrolling"
+msgstr "Görgetés"
+
+#: data/prefs.glade:1993
+msgid "Use the system fixed width font"
+msgstr "A rendszer rögzített szélességű betűtípusának használata"
+
+#: data/prefs.glade:2022
+msgid "Font:"
+msgstr "Betűtípus:"
+
+#: data/prefs.glade:2037
+msgid "Choose some font"
+msgstr "Betűtípus kiválasztása"
+
+#: data/prefs.glade:2051
+msgid "Cursor shape:"
+msgstr "Kurzor alakja:"
+
+#: data/prefs.glade:2066
+msgid "Block"
+msgstr "Blokk"
+
+#: data/prefs.glade:2067
+msgid "I-Beam"
+msgstr "I-alakú"
+
+#: data/prefs.glade:2068
+msgid "Underline"
+msgstr "Aláhúzás"
+
+#: data/prefs.glade:2082
 msgid "Cursor blink mode:"
+msgstr "Kurzor villogásának módja:"
+
+#: data/prefs.glade:2096
+msgid "Follow GTK+ setting"
 msgstr ""
 
-#: ../guake/data/prefs.glade.h:73
+#: data/prefs.glade:2097
+msgid "Blink on"
+msgstr "Villogás bekapcsolva"
+
+#: data/prefs.glade:2098
+msgid "Blink off"
+msgstr "Villogás kikapcsolva"
+
+#: data/prefs.glade:2124
 msgid "Allow bold font"
-msgstr ""
+msgstr "Félkövér betűtípus engedélyezése"
 
-#: ../guake/data/prefs.glade.h:74
-msgid "<b>Palette</b>"
-msgstr "<b>Paletta</b>"
+#: data/prefs.glade:2140
+msgid "Bold text is also bright (VTE >=0.52)"
+msgstr "A félkövér szöveg világos is (VTE>=0.52)"
 
-#: ../guake/data/prefs.glade.h:75
+#: data/prefs.glade:2162
+msgid "Background image: "
+msgstr "Háttérkép: "
+
+#: data/prefs.glade:2242
+msgid "Line Height Scale (VTE >= 0.52)"
+msgstr "Sor magasság skálázása (VTE>=0.52)"
+
+#: data/prefs.glade:2279
+msgid "Line Width Scale (VTE >= 0.52)"
+msgstr "Sor szélesség skálázása (VTE>=0.52)"
+
+#: data/prefs.glade:2376
 msgid "Built-in schemes:"
 msgstr "Beépített sémák:"
 
-#: ../guake/data/prefs.glade.h:76
+#: data/prefs.glade:2402
 msgid "Color palette:"
 msgstr "Színpaletta:"
 
-#: ../guake/data/prefs.glade.h:77
-#, fuzzy
-msgid "Font color"
-msgstr "Szövegszín:"
-
-#: ../guake/data/prefs.glade.h:78
-#, fuzzy
-msgid "Background color"
-msgstr "Háttérszín:"
-
-#: ../guake/data/prefs.glade.h:79
-msgid "Use font and background color from the palette"
-msgstr ""
-
-#: ../guake/data/prefs.glade.h:80
+#: data/prefs.glade:2417
 msgid "Demo:"
-msgstr ""
+msgstr "Előnézet:"
 
-#: ../guake/data/prefs.glade.h:81
+#: data/prefs.glade:2776
+msgid "<b>Palette</b>"
+msgstr "<b>Paletta</b>"
+
+#: data/prefs.glade:2798
 msgid "<b>Effects</b>"
 msgstr "<b>Effektek</b>"
 
-#: ../guake/data/prefs.glade.h:82
+#: data/prefs.glade:2823
 msgid "Transparency:"
 msgstr "Átlátszóság:"
 
-#: ../guake/data/prefs.glade.h:83
-msgid "Background image:"
-msgstr "Háttérkép:"
-
-#: ../guake/data/prefs.glade.h:84 ../src/guake/prefs.py:130
+#: data/prefs.glade:2874 prefs.py:165
 msgid "Appearance"
 msgstr "Megjelenés"
 
-#: ../guake/data/prefs.glade.h:85
-msgid ""
-"<small>Quick open is a feature allowing you to open a file directly into "
-"your favorite text editor by clicking on its filename when it appears in "
-"your terminal. See the list of currently supported text patterns used to "
-"extract filename below.</small>"
-msgstr ""
-
-#: ../guake/data/prefs.glade.h:86
-msgid "Enable Quick Open when Ctrl+clicking on a filename in the terminal"
-msgstr ""
-
-#: ../guake/data/prefs.glade.h:87
-msgid "Editor command line:"
-msgstr ""
-
-#: ../guake/data/prefs.glade.h:89
-#, no-c-format
-msgid ""
-"<small><i>Use the following elements in the open editor command line:\n"
-" - <b>%(file_path)s</b>: path to the file that has been clicked\n"
-" - <b>%(line_number)s</b>: if your editor supports it, you can directly open "
-"the file to a given line number when found on the screen.\n"
-"\n"
-"For example, for sublime, use <b>subl %(file_path)s:%(line_number)s</b>\n"
-"</i></small>"
-msgstr ""
-
-#: ../guake/data/prefs.glade.h:95
-msgid "Quick open in current terminal"
-msgstr ""
-
-#: ../guake/data/prefs.glade.h:96
-msgid ""
-"Here is the list of supported patterns: (to add your own, please contact the "
-"Guake's authors)"
-msgstr ""
-
-#: ../guake/data/prefs.glade.h:97
-#, fuzzy
-msgid "<b>Quick Open</b>"
-msgstr "<b>Paletta</b>"
-
-#: ../guake/data/prefs.glade.h:98
-msgid "Quick Open"
-msgstr ""
-
-#: ../guake/data/prefs.glade.h:99
+#: data/prefs.glade:2907
 msgid ""
 "To change a shortcut simply click on its name.\n"
 "To disable a shortcut, press the \"Backspace\" key."
 msgstr ""
+"Billentyűkombináció megváltoztatásához kattintson egyszer az előzetesen "
+"megadott \"Gyorsbillentyű\"-re.\n"
+"Billentyűkombináció törléséhez nyomja meg a \"Backspace\" billentyűt."
 
-#: ../guake/data/prefs.glade.h:101
+#: data/prefs.glade:2957
 msgid "Keyboard shortcuts"
 msgstr "Gyorsbillentyűk"
 
-#: ../guake/data/prefs.glade.h:102
+#: data/prefs.glade:3009
+msgid ""
+"Quick open is a feature allowing you to open a file directly into your "
+"favorite text editor by clicking on its filename when it appears in your "
+"terminal. See the list of currently supported text patterns used to extract "
+"filename below."
+msgstr ""
+"A Gyors megnyitás egy olyan funkció, amely lehetővé teszi, hogy egy fájlt "
+"közvetlenül megnyiss egy kedvenc szövegszerkesztődben, amikor a fájlnévre "
+"kattintasz a terminálban. Az alábbiakban láthatod a jelenleg támogatott "
+"szövegmintákat, amelyeket a fájlnevek kinyerésére használunk."
+
+#: data/prefs.glade:3047
+msgid "Enable Quick Open when Ctrl+clicking on a filename in the terminal"
+msgstr ""
+"Engedélyezi a Gyors Megnyitást, amikor a fájlnévre kattint Ctrl+kattintással "
+"a terminálban"
+
+#: data/prefs.glade:3072
+msgid "Editor command line:"
+msgstr "Szerkesztő parancssora:"
+
+#: data/prefs.glade:3118
+msgid ""
+"<small><i>Use the following elements in the open editor command line:\n"
+"- <b>%(file_path)s</b>: path to the file that has been clicked\n"
+"- <b>%(line_number)s</b>: if your editor supports it, you can directly open "
+"the file to a given line number when found on the screen.\n"
+"\n"
+"For example, use <b>subl %(file_path)s:%(line_number)s</b> for Sublime "
+"Text.\n"
+"</i></small>"
+msgstr ""
+"<small><i>Használja a következő elemeket a megnyitási parancssorban:\n"
+"- <b>%(file_path)s</b>: a kattintott fájl elérési útja\n"
+"- <b>%(line_number)s</b>: ha az Ön szerkesztője támogatja, közvetlenül "
+"megnyithatja a fájlt egy adott sorszámmal, amikor a képernyőn található.\n"
+"\n"
+"Például használja a <b>subl %(file_path)s:%(line_number)s</b> parancsot a "
+"Sublime Textben.\n"
+"</i></small>"
+
+#: data/prefs.glade:3173
+msgid "Quick open in current terminal"
+msgstr "Gyors megnyitás az aktuális terminálban"
+
+#: data/prefs.glade:3217
+msgid "Quick Open"
+msgstr "Gyors megnyitás"
+
+#: data/prefs.glade:3267
+msgid ""
+"<small>In this dialog you can attach your own command or script to various "
+"Guake events</small>"
+msgstr ""
+"<small>Ebben a párbeszédablakban saját parancsot vagy szkriptet csatolhatsz "
+"különböző Guake eseményekhez.</small>"
+
+#: data/prefs.glade:3290
+msgid "On show:"
+msgstr "Megjelenítéskor:"
+
+#: data/prefs.glade:3302
+msgid "On start:"
+msgstr "Elinduláskor:"
+
+#: data/prefs.glade:3383
+msgid "Hooks"
+msgstr "Horgok"
+
+#: data/prefs.glade:3412
 msgid ""
 "<small><i><b>Note:</b> These options may cause some applications to behave "
-"incorrectly.  They are only here to allow you to work around certain "
+"incorrectly. They are only here to allow you to work around certain "
 "applications and operating systems that expect different terminal behavior.</"
 "i></small>"
 msgstr ""
-"<small><i><b>Megjegyzés:</b> Ezek a beállítások hatással lehetnek más "
-"programokra, melyek nem biztos hogy helyesen fognak működni. Ezek csak a "
-"finomhangolás jellegük miatt maradtak itt.</i></small>"
+"<small><i><b>Megjegyzés:</b> Ezek a beállítások néhány alkalmazás esetén "
+"helytelen viselkedést okozhatnak. Csak azért vannak itt, hogy lehetővé "
+"tegyék számodra, hogy különböző alkalmazásokhoz és operációs rendszerekhez "
+"igazítsd a terminál viselkedését.</i></small>"
 
-#: ../guake/data/prefs.glade.h:103
-msgid ""
-"ASCII DEL\n"
-"Escape sequence\n"
-"Control-H"
-msgstr ""
-"ASCII DEL\n"
-"Escape szekvencia\n"
-"Control-H"
-
-#: ../guake/data/prefs.glade.h:106
+#: data/prefs.glade:3433
 msgid "_Backspace key generates:"
 msgstr "_Backspace működése:"
 
-#: ../guake/data/prefs.glade.h:107
+#: data/prefs.glade:3446
 msgid "_Delete key generates:"
 msgstr "_Delete működése:"
 
-#: ../guake/data/prefs.glade.h:108
+#: data/prefs.glade:3461 data/prefs.glade:3478
+msgid "ASCII DEL"
+msgstr "ASCII DEL"
+
+#: data/prefs.glade:3462 data/prefs.glade:3479
+msgid "Escape sequence"
+msgstr ""
+
+#: data/prefs.glade:3463 data/prefs.glade:3480
+msgid "Control-H"
+msgstr "Control-H"
+
+#: data/prefs.glade:3520
 msgid "_Reset Compatibility Options to Defaults"
-msgstr "_Kompatibilitási beállítások visszaállítása "
+msgstr "_Kompatibilitási beállítások visszaállítása"
 
-#: ../guake/data/prefs.glade.h:109
-msgid "<b>Keyboard compatibility</b>"
-msgstr "<b>Billentyűkiosztás kompatibilitása </b>"
-
-#: ../guake/data/prefs.glade.h:110
+#: data/prefs.glade:3551
 msgid "Compatibility"
 msgstr "Egyéb"
 
-#: ../src/guake/about.py:47 ../src/guake/gconfhandler.py:439
-#: ../src/guake/guake_app.py:181 ../src/guake/guake_app.py:378
-msgid "Guake Terminal"
-msgstr "Guake Terminál"
+#: data/search.glade:22 menus.py:28
+msgid "Close"
+msgstr "Bezárás"
 
-#: ../src/guake/gconfhandler.py:369 ../src/guake/guake_app.py:1386
-#, fuzzy
-msgid "Terminal"
-msgstr "Terminál %s"
+#: data/search.glade:138
+msgid "Search forward"
+msgstr "Keresés előre"
 
-#: ../src/guake/gconfhandler.py:440
-#, python-format
-msgid ""
-"A problem happened when binding <b>%s</b> key.\n"
-"Please use Guake Preferences dialog to choose another key"
+#: data/search.glade:153
+msgid "Match case"
 msgstr ""
-"Hiba történt a <b>%s</b> billentyűkombináció hozzárendelésekor.\n"
-"Kérlek állíts be egy másikat a Guake beállítások panelen."
 
-#: ../src/guake/guake_app.py:132
-#, fuzzy
+#: data/search.glade:186
+msgid "Current search direction: Backward"
+msgstr "Aktuális keresési irány: Visszafelé"
+
+#: dialogs.py:10
+msgid "Rename tab"
+msgstr "Lap átnevezése"
+
+#: dialogs.py:53
 msgid "Do you want to close the tab?"
-msgstr "Biztosan kilép a Guake-ből!?"
+msgstr "Be szeretné zárni ezt a lapot?"
 
-#: ../src/guake/guake_app.py:135
-#, fuzzy
+#: dialogs.py:57
 msgid "Do you really want to quit Guake?"
-msgstr "Biztosan kilép a Guake-ből!?"
+msgstr "Ki szeretne lépni a Guake-ből?"
 
-#: ../src/guake/guake_app.py:137
-#, fuzzy
+#: dialogs.py:59
 msgid " and one tab open"
-msgstr "Új lap hozzáadása"
+msgstr " és egy nyitott lap"
 
-#: ../src/guake/guake_app.py:139
+#: dialogs.py:61
 #, python-brace-format
 msgid " and {0} tabs open"
+msgstr " és {0} nyitott lap"
+
+#: dialogs.py:63
+#, python-brace-format
+msgid " on {0} workspaces"
 msgstr ""
 
-#: ../src/guake/guake_app.py:142
-#, fuzzy
+#: dialogs.py:68
 msgid "There are no processes running"
-msgstr "<b>Egy folyamat még fut.</b>"
+msgstr ""
 
-#: ../src/guake/guake_app.py:144
-#, fuzzy
+#: dialogs.py:70
 msgid "There is a process still running"
-msgstr "<b>Egy folyamat még fut.</b>"
+msgstr ""
 
-#: ../src/guake/guake_app.py:146
-#, fuzzy, python-brace-format
+#: dialogs.py:72
+#, python-brace-format
 msgid "There are {0} processes still running"
-msgstr "<b>%d folyamat még fut.</b>"
-
-#: ../src/guake/guake_app.py:186
-msgid "guake-indicator"
 msgstr ""
 
-#: ../src/guake/guake_app.py:186
-msgid "guake-tray"
+#: dialogs.py:113
+msgid "Do you want to reset custom colors for this tab?"
+msgstr "Szeretnéd visszaállítani az egyedi színeket ehhez a laphoz?"
+
+#: dialogs.py:131
+msgid "Save to..."
+msgstr "Mentés másként..."
+
+#: dialogs.py:155 prefs.py:1317
+msgid "All files"
+msgstr "Minden fájl"
+
+#: dialogs.py:160
+msgid "Text and Logs"
 msgstr ""
 
-#: ../src/guake/guake_app.py:190
+#: guake_app.py:178
+#, fuzzy
 msgid "Show"
-msgstr ""
+msgstr "Megjelenítéskor:"
 
-#: ../src/guake/guake_app.py:379
-#, python-format
+#: guake_app.py:291
 msgid ""
 "Guake is now running,\n"
 "press <b>{!s}</b> to use it."
@@ -591,330 +1786,553 @@ msgstr ""
 "A Guake fut,\n"
 "a használathoz nyomja meg a(z) <b>{!s}</b> gombot."
 
-#: ../src/guake/guake_app.py:670
-#, python-format
-msgid "Search on Web: '%s'"
-msgstr ""
+#: guake_app.py:1158
+msgid "Terminal"
+msgstr "Terminál"
 
-#: ../src/guake/guake_app.py:675
-msgid "Search on Web (no selection)"
-msgstr ""
-
-#: ../src/guake/guake_app.py:683
-msgid "Open Link: '{}...'"
-msgstr ""
-
-#: ../src/guake/guake_app.py:685
-msgid "Open Link: {}"
-msgstr ""
-
-#: ../src/guake/guake_app.py:688
-msgid "Open Link..."
-msgstr ""
-
-#: ../src/guake/guake_app.py:1425
-msgid "Rename tab"
-msgstr "Lap átnevezése"
-
-#: ../src/guake/guake_app.py:1736
-msgid "Save to..."
-msgstr ""
-
-#: ../src/guake/guake_app.py:1743 ../src/guake/prefs.py:973
-msgid "All files"
-msgstr ""
-
-#: ../src/guake/guake_app.py:1748
-msgid "Text and Logs"
-msgstr ""
-
-#: ../src/guake/guake_app.py:1766
+#: guake_app.py:1279
 msgid "Find"
-msgstr ""
+msgstr "Keresés"
 
-#: ../src/guake/guake_app.py:1768
+#: guake_app.py:1283
 msgid "Forward"
-msgstr ""
+msgstr "Előre"
 
-#: ../src/guake/guake_app.py:1769
+#: guake_app.py:1285
 msgid "Backward"
+msgstr "Hátra"
+
+#: guake_app.py:1458
+#, python-brace-format
+msgid ""
+"Your {session_filename} file is broken, backup to {session_filename}.bak"
 msgstr ""
 
-#: ../src/guake/main.py:68
+#: guake_app.py:1470
+#, python-brace-format
+msgid ""
+"Tabs session restore abort.\n"
+"Your session file ({session_filename}) missing schema_version as key"
+msgstr ""
+
+#: guake_app.py:1483
+#, python-brace-format
+msgid ""
+"Tabs session restore abort.\n"
+"Your session file schema version is higher than current version "
+"({session_file_schema_version} > {current_schema_version})."
+msgstr ""
+
+#: guake_app.py:1540
+#, python-brace-format
+msgid ""
+"Your {session_filename} schema is broken, backup to {session_filename}.bak, "
+"and error message has been saved to {session_filename}.log.err."
+msgstr ""
+
+#: guake_app.py:1554
+msgid "Your tabs has been restored!"
+msgstr ""
+
+#: keybindings.py:224
+#, python-format
+msgid ""
+"A problem happened when binding <b>%s</b> key.\n"
+"Please use Guake Preferences dialog to choose another key"
+msgstr ""
+"Hiba történt a <b>%s</b> billentyűkombináció hozzárendelésekor.\n"
+"Kérlek állíts be egy másikat a Guake beállítások panelen"
+
+#: main.py:94
+msgid "Show Guake version number and exit"
+msgstr ""
+
+#: main.py:103
+msgid "Enable verbose logging"
+msgstr ""
+
+#: main.py:112
 msgid "Put Guake in fullscreen mode"
 msgstr ""
 
-#: ../src/guake/main.py:72
+#: main.py:120
+msgid "Put Guake out from fullscreen mode"
+msgstr ""
+
+#: main.py:129
 msgid "Toggles the visibility of the terminal window"
-msgstr "Guake láthatóságának váltása"
+msgstr "Az terminálablak láthatóságának váltása"
 
-#: ../src/guake/main.py:76
-#, fuzzy
+#: main.py:137
+msgid "Return 1 if Guake is visible, 0 otherwise"
+msgstr ""
+
+#: main.py:145
 msgid "Shows Guake main window"
-msgstr "Guake beállításainak mutatása"
+msgstr ""
 
-#: ../src/guake/main.py:80
-#, fuzzy
+#: main.py:153
 msgid "Hides Guake main window"
-msgstr "Guake beállításainak mutatása"
+msgstr ""
 
-#: ../src/guake/main.py:84
+#: main.py:162
 msgid "Shows Guake preference window"
 msgstr "Guake beállításainak mutatása"
 
-#: ../src/guake/main.py:88
+#: main.py:171
 msgid "Shows Guake's about info"
-msgstr "Guake-ről"
+msgstr "A Guake-ről"
 
-#: ../src/guake/main.py:92
-#, fuzzy
+#: main.py:180
 msgid "Add a new tab (with current directory set to NEW_TAB)"
-msgstr "Új lap megnyitása a _jelenlegi könyvtárban"
+msgstr ""
 
-#: ../src/guake/main.py:96
+#: main.py:189
 msgid "Select a tab (SELECT_TAB is the index of the tab)"
 msgstr ""
 
-#: ../src/guake/main.py:100
+#: main.py:198
 msgid "Return the selected tab index."
 msgstr "A kiválasztott lap indexének visszaadása."
 
-#: ../src/guake/main.py:104
-msgid "Execute an arbitrary command in the selected tab."
-msgstr "Egyéni parancs végrehajtása a kiválasztott lapon"
-
-#: ../src/guake/main.py:108
-msgid "Specify the tab to rename. Default is 0."
+#: main.py:207
+msgid ""
+"Return the index of the tab with the given terminal UUID, -1 if not found"
 msgstr ""
 
-#: ../src/guake/main.py:112
+#: main.py:216
+msgid "Return the selected tab label."
+msgstr ""
+
+#: main.py:227
+msgid ""
+"Select a specific terminal in a split tab. Only useful with split terminals "
+"(TERMINAL_INDEX is the index of the tab)"
+msgstr ""
+
+#: main.py:237
+msgid "Return the selected terminal index."
+msgstr ""
+
+#: main.py:250
+msgid ""
+"Split the selected tab vertically. Optional input split percentage for the "
+"width."
+msgstr ""
+"Függőlegesen felosztja a kiválasztott lapot. Opcionálisan megadható a "
+"szélesség felosztás százaléka."
+
+#: main.py:264
+msgid ""
+"Split the selected tab horizontally. Optional input split percentage for the "
+"height."
+msgstr ""
+"Vízszintesen felosztja a kiválasztott lapot. Opcionálisan megadható a "
+"magasság felosztás százaléka."
+
+#: main.py:274
+msgid "Execute an arbitrary command in a new tab."
+msgstr "Egyéni parancs végrehajtása egy új lapon."
+
+#: main.py:283
+msgid ""
+"Specify the tab to rename. Default is 0. Can be used to select tab by UUID."
+msgstr ""
+
+#: main.py:291
 msgid "Set the hexadecimal (#rrggbb) background color of the selected tab."
 msgstr ""
 
-#: ../src/guake/main.py:117
+#: main.py:299
 msgid "Set the hexadecimal (#rrggbb) foreground color of the selected tab."
 msgstr ""
 
-#: ../src/guake/main.py:123
-msgid ""
-"Rename the specified tab. Reset to default if TITLE is a single dash \"-\"."
+#: main.py:307
+msgid "Set the hexadecimal (#rrggbb) background color of the current terminal."
 msgstr ""
 
-#: ../src/guake/main.py:129
+#: main.py:315
+msgid "Set the hexadecimal (#rrggbb) foreground color of the current terminal."
+msgstr ""
+
+#: main.py:323
+msgid "Change Guake palette scheme"
+msgstr ""
+
+#: main.py:331
+msgid "Set colors from settings."
+msgstr ""
+
+#: main.py:339
+msgid "Set colors of the current terminal from settings."
+msgstr ""
+
+#: main.py:349
+msgid ""
+"Rename the specified tab by --tab-index. Reset to default if TITLE is a "
+"single dash \"-\"."
+msgstr ""
+
+#: main.py:361
 msgid ""
 "Rename the current tab. Reset to default if TITLE is a single dash \"-\"."
 msgstr ""
 
-#: ../src/guake/main.py:134
+#: main.py:370
 msgid "Says to Guake go away =("
 msgstr "Elbúcsúzás Guake-től =("
 
-#: ../src/guake/main.py:138
+#: main.py:379
 msgid "Do not execute the start up script"
 msgstr ""
 
-#: ../src/guake/main.py:235
-msgid "Guake can not init!"
-msgstr "Guake nem tud elindulni!"
-
-#: ../src/guake/main.py:236
-#, fuzzy
-msgid ""
-"Gconf Error.\n"
-"Have you installed <b>guake.schemas</b> properly?"
+#: main.py:387
+msgid "Save Guake preferences to this filename"
 msgstr ""
-"Gconf hiba.\n"
-"Helyesen installáltad a <b>guake.schemas</b>-kat?"
 
-#. string to show in prefereces dialog for user shell option
-#: ../src/guake/prefs.py:67
+#: main.py:395
+msgid "Restore Guake preferences from this file"
+msgstr "A Guake beállításainak visszaállítása ebből a fájlból"
+
+#: main.py:403
+msgid "Show support information"
+msgstr ""
+
+#: menus.py:19 menus.py:39
+msgid "New Tab"
+msgstr "Új lap"
+
+#: menus.py:22
+msgid "Rename"
+msgstr "Átnevezés"
+
+#: menus.py:25
+msgid "Reset custom colors"
+msgstr "Egyedi színek visszaállítása"
+
+#: menus.py:43
+msgid "Save Tabs"
+msgstr "Lapok mentése"
+
+#: menus.py:46
+msgid "Restore Tabs"
+msgstr "Lapok visszaállítása"
+
+#: menus.py:76
+msgid "Copy"
+msgstr "Másol"
+
+#: menus.py:80
+msgid "Copy URL"
+msgstr "URL másolása"
+
+#: menus.py:83
+msgid "Paste"
+msgstr "Beilleszt"
+
+#: menus.py:90 prefs.py:91
+msgid "Toggle Fullscreen"
+msgstr "Teljes képernyő"
+
+#: menus.py:94
+msgid "Split ―"
+msgstr "Felosztás ―"
+
+#: menus.py:97
+msgid "Split |"
+msgstr "Felosztás ｜"
+
+#: menus.py:100 prefs.py:118
+msgid "Close terminal"
+msgstr "Terminál bezárása"
+
+#: menus.py:104
+msgid "Save content..."
+msgstr "Tartalom mentése..."
+
+#: menus.py:111
+msgid "Find..."
+msgstr "Keresés..."
+
+#: menus.py:115
+msgid "Open link..."
+msgstr "Link megnyitása..."
+
+#: menus.py:123
+msgid "Open Link: {!s}..."
+msgstr ""
+
+#: menus.py:125
+msgid "Open Link: {!s}"
+msgstr ""
+
+#: menus.py:130
+msgid "Search on Web"
+msgstr "Keresés a web-en"
+
+#: menus.py:137
+#, python-format
+msgid "Search on Web: '%s'"
+msgstr "Kijelölés keresése a web-en: '%s'"
+
+#: menus.py:142
+msgid "Quick Open..."
+msgstr "Gyors megnyitás..."
+
+#: menus.py:150
+msgid "Quick Open: {!s}..."
+msgstr ""
+
+#: menus.py:153
+msgid "Quick Open: {!s}"
+msgstr ""
+
+#: menus.py:165
+msgid "Custom Commands"
+msgstr "Egyéni parancsok"
+
+#: notebook.py:517
+msgid ""
+"You are going to restore *all* the tabs!\n"
+"which means all your terminals & pages will be replaced.\n"
+"\n"
+"Do you want to continue?"
+msgstr ""
+
+#: prefs.py:75
 msgid "<user shell>"
 msgstr "<felhasználói héj>"
 
-#: ../src/guake/prefs.py:77
+#: prefs.py:89
 msgid "Toggle Guake visibility"
-msgstr "Guake láthatósága"
+msgstr "Guake láthatóságának váltása"
 
-#: ../src/guake/prefs.py:81
-#, fuzzy
+#: prefs.py:90
+msgid "Show and focus Guake window"
+msgstr ""
+
+#: prefs.py:94
 msgid "Toggle Hide on Lose Focus"
-msgstr "Fókusz elvesztésekor elrejtés"
+msgstr ""
 
-#: ../src/guake/prefs.py:88
+#: prefs.py:102
 msgid "Tab management"
 msgstr "Lapok kezelése"
 
-#: ../src/guake/prefs.py:90
-#, fuzzy
+#: prefs.py:105
 msgid "New tab"
 msgstr "Új lap"
 
-#: ../src/guake/prefs.py:92
+#: prefs.py:106
+msgid "New tab in home directory"
+msgstr "Új lap a HOME könyvtárban"
+
+#: prefs.py:107
+msgid "New tab in current directory"
+msgstr "Új lap a jelenlegi könyvtárban"
+
+#: prefs.py:108
 msgid "Close tab"
 msgstr "Lap bezárása"
 
-#: ../src/guake/prefs.py:94
+#: prefs.py:109
 msgid "Rename current tab"
 msgstr "Lap átnevezése"
 
-#: ../src/guake/prefs.py:97
+#: prefs.py:113
+msgid "Split management"
+msgstr "Felosztás kezelés"
+
+#: prefs.py:116
+msgid "Split tab vertical"
+msgstr "Lap függőleges felosztása"
+
+#: prefs.py:117
+msgid "Split tab horizontal"
+msgstr "Lap vízszintes felosztása"
+
+#: prefs.py:119
+msgid "Focus terminal above"
+msgstr ""
+
+#: prefs.py:120
+msgid "Focus terminal below"
+msgstr ""
+
+#: prefs.py:121
+msgid "Focus terminal on the left"
+msgstr ""
+
+#: prefs.py:122
+msgid "Focus terminal on the right"
+msgstr ""
+
+#: prefs.py:125
+msgid "Move the terminal split handle up"
+msgstr ""
+
+#: prefs.py:129
+msgid "Move the terminal split handle down"
+msgstr ""
+
+#: prefs.py:133
+msgid "Move the terminal split handle right"
+msgstr ""
+
+#: prefs.py:137
+msgid "Move the terminal split handle left"
+msgstr ""
+
+#: prefs.py:142
 msgid "Navigation"
 msgstr "Navigáció"
 
-#: ../src/guake/prefs.py:99
+#: prefs.py:145
 msgid "Go to previous tab"
 msgstr "Előző lap"
 
-#: ../src/guake/prefs.py:101
+#: prefs.py:146
+msgid "Go to previous tab (alternative)"
+msgstr "Előző lap (másodlagos billentyűzetkombináció)"
+
+#: prefs.py:147
 msgid "Go to next tab"
 msgstr "Következő lap"
 
-#: ../src/guake/prefs.py:103
-#, fuzzy
+#: prefs.py:148
+msgid "Go to next tab (alternative)"
+msgstr "Következő lap (másodlagos billentyűzetkombináció)"
+
+#: prefs.py:149
 msgid "Move current tab left"
-msgstr "Lap átnevezése"
+msgstr "Aktuális lap áthelyezése balra"
 
-#: ../src/guake/prefs.py:105
-#, fuzzy
+#: prefs.py:150
 msgid "Move current tab right"
-msgstr "Lap átnevezése"
+msgstr "Aktuális lap áthelyezése jobbra"
 
-#: ../src/guake/prefs.py:107
-#, fuzzy
+#: prefs.py:151
 msgid "Go to first tab"
-msgstr "Következő lap"
+msgstr "Ugrás az első lapra"
 
-#: ../src/guake/prefs.py:109
-#, fuzzy
+#: prefs.py:152
 msgid "Go to second tab"
-msgstr "Következő lap"
+msgstr "Ugrás a második lapra"
 
-#: ../src/guake/prefs.py:111
-#, fuzzy
+#: prefs.py:153
 msgid "Go to third tab"
-msgstr "Következő lap"
+msgstr "Ugrás a harmadik lapra"
 
-#: ../src/guake/prefs.py:113
-#, fuzzy
+#: prefs.py:154
 msgid "Go to fourth tab"
-msgstr "Következő lap"
+msgstr "Ugrás a negyedik lapra"
 
-#: ../src/guake/prefs.py:115
-#, fuzzy
+#: prefs.py:155
 msgid "Go to fifth tab"
-msgstr "Következő lap"
+msgstr "Ugrás az ötödik lapra"
 
-#: ../src/guake/prefs.py:117
-#, fuzzy
+#: prefs.py:156
 msgid "Go to sixth tab"
-msgstr "Következő lap"
+msgstr "Ugrás a hatodik lapra"
 
-#: ../src/guake/prefs.py:119
-#, fuzzy
+#: prefs.py:157
 msgid "Go to seventh tab"
-msgstr "Következő lap"
+msgstr "Ugrás a hetedik lapra"
 
-#: ../src/guake/prefs.py:121
-#, fuzzy
+#: prefs.py:158
 msgid "Go to eighth tab"
-msgstr "Következő lap"
+msgstr "Ugrás a nyolcadik lapra"
 
-#: ../src/guake/prefs.py:123
-#, fuzzy
+#: prefs.py:159
 msgid "Go to ninth tab"
-msgstr "Következő lap"
+msgstr "Ugrás a kilencedik lapra"
 
-#: ../src/guake/prefs.py:125
-#, fuzzy
+#: prefs.py:160
 msgid "Go to tenth tab"
-msgstr "Következő lap"
+msgstr "Ugrás a tizedik lapra"
 
-#: ../src/guake/prefs.py:127
-#, fuzzy
+#: prefs.py:161
 msgid "Go to last tab"
-msgstr "Következő lap"
+msgstr "Ugrás az utolsó lapra"
 
-#: ../src/guake/prefs.py:132
+#: prefs.py:168
 msgid "Zoom out"
-msgstr ""
+msgstr "Kicsinyítés"
 
-#: ../src/guake/prefs.py:134
+#: prefs.py:169
 msgid "Zoom in"
-msgstr ""
+msgstr "Nagyítás"
 
-#: ../src/guake/prefs.py:136
-msgid "Zoom in (alternative)"
-msgstr ""
-
-#: ../src/guake/prefs.py:138
+#: prefs.py:171
 msgid "Increase height"
-msgstr ""
+msgstr "Magasság növelése"
 
-#: ../src/guake/prefs.py:140
+#: prefs.py:172
 msgid "Decrease height"
-msgstr ""
+msgstr "Magasság csökkentése"
 
-#: ../src/guake/prefs.py:142
-#, fuzzy
+#: prefs.py:173
 msgid "Increase transparency"
-msgstr "Átlátszóság:"
+msgstr "Átlátszóság növelése"
 
-#: ../src/guake/prefs.py:144
-#, fuzzy
+#: prefs.py:174
 msgid "Decrease transparency"
-msgstr "Átlátszóság:"
+msgstr "Átlátszóság csökkentése"
 
-#: ../src/guake/prefs.py:146
-#, fuzzy
+#: prefs.py:175
 msgid "Toggle transparency"
-msgstr "Átlátszóság:"
+msgstr "Átlátszóság átkapcsolása"
 
-#: ../src/guake/prefs.py:149
+#: prefs.py:179
 msgid "Clipboard"
 msgstr "Vágólap"
 
-#: ../src/guake/prefs.py:151
+#: prefs.py:182
 msgid "Copy text to clipboard"
 msgstr "Másolás vágólapra"
 
-#: ../src/guake/prefs.py:153
+#: prefs.py:183
 msgid "Paste text from clipboard"
 msgstr "Beillesztés vágólapról"
 
-#: ../src/guake/prefs.py:156
+#: prefs.py:184
+msgid "Select all"
+msgstr "Minden kijelölése"
+
+#: prefs.py:188
 msgid "Extra features"
-msgstr ""
+msgstr "Extra funkciók"
 
-#: ../src/guake/prefs.py:159
-msgid "Search select text on web"
-msgstr ""
+#: prefs.py:191
+msgid "Search selected text on web"
+msgstr "Kijelölt szöveg keresése a web-en"
 
-#: ../src/guake/prefs.py:481
+#: prefs.py:194
+msgid "Open URL under terminal cursor"
+msgstr "Kurzor alatt lévő URL megnyitása"
+
+#: prefs.py:699
 msgid "Action"
 msgstr "Művelet"
 
-#: ../src/guake/prefs.py:491
+#: prefs.py:708
 msgid "Shortcut"
 msgstr "Gyorsbillentyű"
 
-#: ../src/guake/prefs.py:651 ../src/guake/prefs.py:697
-msgid "Custom"
-msgstr ""
-
-#: ../src/guake/prefs.py:969
+#: prefs.py:1313
 msgid "JSON files"
-msgstr ""
+msgstr "JSON fájlok"
 
-#: ../src/guake/prefs.py:1063
+#: prefs.py:1412
 #, python-format
 msgid "The shortcut \"%s\" is already in use."
 msgstr "A \"%s\" gyorsbillentyű már használatban van."
 
-#: ../src/guake/prefs.py:1064
+#: prefs.py:1413
 msgid "Error setting keybinding."
-msgstr "Hiba a billentyűkiosztás alkalmazásával"
+msgstr "Hiba a billentyűkiosztás alkalmazásával."
 
-#: ../src/guake/prefs.py:1076
+#: prefs.py:1432
 #, python-format
 msgid ""
 "The shortcut \"%s\" cannot be used because it will become impossible to type "
@@ -927,659 +2345,189 @@ msgstr ""
 "Kérlek használj általános billentyűket mint a Control, Alt vagy Shift "
 "egyszerre.\n"
 
-#: guake/main.py:153
-msgid "Return the selected tab label."
-msgstr ""
-
-#: guake/data/prefs.glade:264
-msgid "Never"
-msgstr ""
-
-#: guake/data/prefs.glade:265
-msgid "With process running"
-msgstr ""
-
-#: guake/data/prefs.glade:266
-msgid "Always"
-msgstr ""
-
-#: guake/data/prefs.glade:499
-msgid "Refocus if open"
-msgstr ""
-
-#: guake/data/prefs.glade:865
-msgid "Custom command file path:"
-msgstr ""
-
-#: guake/data/prefs.glade:1315
-msgid "Show resizer"
-msgstr ""
-
-#: guake/data/prefs.glade:1423
-msgid "Block"
-msgstr ""
-
-#: guake/data/prefs.glade:1424
-msgid "I-Beam"
-msgstr ""
-
-#: guake/data/prefs.glade:1425
-msgid "Underline"
-msgstr ""
-
-#: guake/data/prefs.glade:1443
-msgid "Follow GTK+ setting"
-msgstr ""
-
-#: guake/data/prefs.glade:1444
-msgid "Blink on"
-msgstr ""
-
-#: guake/data/prefs.glade:1445
-msgid "Blink off"
-msgstr ""
-
-#: guake/data/prefs.glade:2236
-msgid ""
-"<small><i>Use the following elements in the open editor command line:\n"
-"- <b>%(file_path)s</b>: path to the file that has been clicked\n"
-"- <b>%(line_number)s</b>: if your editor supports it, you can directly open "
-"the file to a given line number when found on the screen.\n"
-"\n"
-"For example, for sublime, use <b>subl %(file_path)s:%(line_number)s</b>\n"
-"</i></small>"
-msgstr ""
-
-#: guake/data/prefs.glade:2442 guake/data/prefs.glade:2462
-msgid "ASCII DEL"
-msgstr ""
-
-#: guake/data/prefs.glade:2443 guake/data/prefs.glade:2463
-msgid "Escape sequence"
-msgstr ""
-
-#: guake/data/prefs.glade:2444 guake/data/prefs.glade:2464
-msgid "Control-H"
-msgstr ""
-
-#: guake/data/prefs.glade:2600
-msgid ""
-"<small>In this dialog you can attach your own command or script to various "
-"guake events</small>"
-msgstr ""
-
-#: guake/data/prefs.glade:2635
-msgid "On show:"
-msgstr ""
-
-#: guake/data/prefs.glade:2665
-msgid "On start:"
-msgstr ""
-
-#: guake/data/prefs.glade:2714
-msgid "Hooks"
-msgstr ""
-
-#: guake/data/guake-prefs.desktop:8
-msgid "Configure your Guake sessions"
-msgstr ""
-
-#: guake/data/guake-prefs.desktop:15 guake/data/guake.desktop:18
-msgid "guake"
-msgstr ""
-
-#: guake/data/guake-prefs.desktop:20
-msgid "Terminal;Utility;"
-msgstr ""
-
-#: guake/data/guake.desktop:10
-msgid "Use the command line in a Quake-like terminal"
-msgstr ""
-
-#: guake/data/prefs.glade:770
-msgid "Main Window Horizontal Alignment"
-msgstr ""
-
-#: guake/prefs.py:89
-msgid "Show and focus Guake window"
-msgstr ""
-
-#: guake/data/prefs.glade:566
-msgid "0"
-msgstr ""
-
-#: guake/data/prefs.glade:610
-msgid "<b>Main Window Options</b>"
-msgstr ""
-
-#: guake/data/prefs.glade:770
-msgid "Horizontal Alignment:"
-msgstr ""
-
-#: guake/data/prefs.glade:855
-msgid "Height:"
-msgstr ""
-
-#: guake/data/prefs.glade:868
-msgid "Width:"
-msgstr ""
-
-#: guake/data/prefs.glade:913
-msgid "<b>Geometry</b>"
-msgstr ""
-
-#: guake/data/prefs.glade:944
-msgid "Main Window"
-msgstr ""
-
-#: guake/data/prefs.glade:1197
-msgid "Infinite scrolling"
-msgstr ""
-
-#: guake/data/prefs.glade:1219
-msgid "<b>Scrollbar</b>"
-msgstr ""
-
-#: guake/data/prefs.glade:1304
-msgid "<b>Scroll to Bottom</b>"
-msgstr ""
-
-#: guake/data/prefs.glade:2117
-msgid ""
-"Quick open is a feature allowing you to open a file directly into your "
-"favorite text editor by clicking on its filename when it appears in your "
-"terminal. See the list of currently supported text patterns used to extract "
-"filename below."
-msgstr ""
-
-#: guake/main.py:64
-msgid "Show Guake version number and exit"
-msgstr ""
-
-#: guake/data/prefs.glade:93
-msgid "<span size=\"18000\"><b>Guake properties</b></span>"
-msgstr "<span size=\"18000\"><b>Guake beállítások</b></span>"
-
-#: guake/data/prefs.glade:107
-msgid "Customize behavior and appearance of Guake!"
-msgstr "Guake viselkedésének és megjelenésének testreszabása"
-
-#: guake/data/prefs.glade:929
-msgid "Displacement in pixels"
-msgstr ""
-
-#: guake/main.py:73
-msgid "Enable verbose logging"
-msgstr ""
-
-#: guake/guake_app.py:680
-msgid "Quick Open: '{!s}...'"
-msgstr ""
-
-#: guake/guake_app.py:683
-msgid "Quick Open: {!s}"
-msgstr ""
-
-#: guake/guake_app.py:691
-msgid "Open Link: '{!s}...'"
-msgstr ""
-
-#: guake/guake_app.py:694
-msgid "Open Link: {!s}"
-msgstr ""
-
-#: guake/data/prefs.glade:2175
-msgid ""
-"<i><b>WARNING</b>: your system seems to have PCRE2 disabled for VTE, "
-"preventing application such as Guake to register \"matchers\" using regular "
-"expressions. Please contact your distribution to request a new version of "
-"VTE with PCRE2 enabled ! To use Quick Open, you <b>must select the text</b> "
-"before using Ctrl+click</i>."
-msgstr ""
-
-#: guake/guake_app.py:680
-msgid "Quick Open: {!s}..."
-msgstr ""
-
-#: guake/guake_app.py:691
-msgid "Open Link: {!s}..."
-msgstr ""
-
-#: guake/guake_app.py:688
-msgid "Quick Open..."
-msgstr ""
-
-#: guake/data/prefs.glade:223
-msgid "Start Guake at login"
-msgstr ""
-
-#: guake/data/prefs.glade:363
-msgid "Gtk Theme:"
-msgstr ""
-
-#: guake/data/prefs.glade:387
-msgid "Prefer dark theme"
-msgstr ""
-
-#: guake/guake_app.py:435
-msgid "Custom Commands"
-msgstr ""
-
-#: guake/main.py:184
-msgid ""
-"Specify the tab to rename. Default is 0. Can be used to select tab by UUID."
-msgstr ""
-
-#: guake/main.py:212
-msgid ""
-"Rename the specified tab by --tab-index. Reset to default if TITLE is a "
-"single dash \"-\"."
-msgstr ""
-
-#: data/search.glade:138
-msgid "Search forward"
-msgstr ""
-
-#: data/search.glade:153
-msgid "Match case"
-msgstr ""
-
-#: data/search.glade:186
-msgid "Current search direction: Backward"
-msgstr ""
-
-#: data/prefs.glade:680
-msgid "Set window title to current tab name"
-msgstr ""
-
-#: guake/menus.py:48
-msgid "Copy Url"
-msgstr ""
-
-#: guake/menus.py:62
-msgid "Split ―"
-msgstr ""
-
-#: guake/menus.py:65
-msgid "Split  "
-msgstr ""
-
-#: guake/menus.py:68 guake/prefs.py:150
-msgid "Close terminal"
-msgstr ""
-
-#: guake/prefs.py:137
-msgid "Split management"
-msgstr ""
-
-#: guake/prefs.py:142
-msgid "Split tab vertical"
-msgstr ""
-
-#: guake/prefs.py:146
-msgid "Split tab horizontal"
-msgstr ""
-
-#: guake/prefs.py:154
-msgid "Focus terminal above"
-msgstr ""
-
-#: guake/prefs.py:158
-msgid "Focus terminal below"
-msgstr ""
-
-#: guake/prefs.py:162
-msgid "Focus terminal on the left"
-msgstr ""
-
-#: guake/prefs.py:166
-msgid "Focus terminal on the right"
-msgstr ""
-
-#: guake/prefs.py:170
-msgid "Move the terminal split handle up"
-msgstr ""
-
-#: guake/prefs.py:174
-msgid "Move the terminal split handle down"
-msgstr ""
-
-#: guake/prefs.py:178
-msgid "Move the terminal split handle right"
-msgstr ""
-
-#: guake/prefs.py:182
-msgid "Move the terminal split handle left"
-msgstr ""
-
-#: guake/menus.py:65
-msgid "Split ｜"
-msgstr ""
-
-#: guake/menus.py:72
-msgid "Save content..."
-msgstr ""
-
-#: data/prefs.glade:1182
-msgid ""
-"This might not work on all shells, make sure that your shell supports the --"
-"login option"
-msgstr ""
-
-#: guake/prefs.py:128
-msgid "New tab in home directory"
-msgstr ""
-
-#: guake/dialogs.py:56
-#, python-brace-format
-msgid " on {0} workspaces"
-msgstr ""
-
-#: guake/main.py:211
-msgid "Change Guake palette scheme"
-msgstr ""
-
-#: data/prefs.glade:331
-msgid "Use workspace-specific tab sets (requires restart)"
-msgstr ""
-
-#: guake/main.py:175
-msgid "Split the selected tab vertically."
-msgstr ""
-
-#: guake/main.py:183
-msgid "Split the selected tab horizontally."
-msgstr ""
-
-#: data/prefs.glade:348
-msgid "Show close buttons for tabs"
-msgstr ""
-
-#: data/prefs.glade:1682
-msgid "Bold text is also bright"
-msgstr ""
-
-#: data/prefs.glade:1682
-msgid "Bold text is also bright (VTE >=0.52)"
-msgstr ""
-
-#: guake/menus.py:42
-msgid "Save Tabs"
-msgstr ""
-
-#: guake/menus.py:45
-msgid "Restore Tabs"
-msgstr ""
-
-#: guake/prefs.py:113
-msgid "Search terminal"
-msgstr ""
-
-#: guake/main.py:278
-msgid "Save Guake preferences to this filename"
-msgstr ""
-
-#: guake/main.py:286
-msgid "Restore Guake preferences from this file"
-msgstr ""
-
-#: guake/guake_app.py:1192
-#, python-brace-format
-msgid "Your session.json file is broken, backup to {session_filename}.bak"
-msgstr ""
-
-#: guake/guake_app.py:1228
-#, python-brace-format
-msgid ""
-"Your session.json schema is broken, backup to {0}.bak,and error message has "
-"been saved to {0}.log.err"
-msgstr ""
-
-#: guake/guake_app.py:1239
-msgid "Your tabs has been restored!"
-msgstr ""
-
-#: data/prefs.glade:190
-msgid "Restore previous session (tabs)"
-msgstr ""
-
-#: data/prefs.glade:204
-msgid "Enable notification when restore tabs"
-msgstr ""
-
-#: data/prefs.glade:218
-msgid "Automatically save session when the tabs has been modified"
-msgstr ""
-
-#: data/prefs.glade:238
-msgid "Startup & Tabs (Experiment)"
-msgstr ""
-
-#: guake/guake_app.py:1192
-#, python-brace-format
-msgid ""
-"Your {session_filename} file is broken, backup to {session_filename}.bak"
-msgstr ""
-
-#: guake/guake_app.py:1227
-#, python-brace-format
-msgid ""
-"Your {session_filename} schema is broken, backup to {0}.bak,and error "
-"message has been saved to {session_filename}.log.err"
-msgstr ""
-
-#: guake/guake_app.py:1227
-#, python-brace-format
-msgid ""
-"Your {session_filename} schema is broken, backup to {session_filename}.bak,"
-"and error message has been saved to {session_filename}.log.err."
-msgstr ""
-
-#: guake/guake_app.py:1227
-#, python-brace-format
-msgid ""
-"Your {session_filename} schema is broken, backup to {session_filename}.bak, "
-"and error message has been saved to {session_filename}.log.err."
-msgstr ""
-
-#: guake/notebook.py:317
-msgid ""
-"You are going to restore *all* the tabs!\n"
-"which means all your terminals & pages will be replaced.\n"
-"\n"
-"Do you want to continue?"
-msgstr ""
-
-#: guake/main.py:296
-msgid "Show support infomations"
-msgstr ""
-
-#: guake/guake_app.py:1240
-#, python-brace-format
-msgid ""
-"Tabs session restore abort.\n"
-"Your session file ({session_filename}) missing schema_version as key"
-msgstr ""
-
-#: guake/guake_app.py:1252
-#, python-brace-format
-msgid ""
-"Tabs session restore abort.\n"
-"Your session file schema version is higher than current version "
-"({session_file_schema_version} > {current_schema_version})."
-msgstr ""
-
-#: guake/data/prefs.glade:409
-msgid "Use workspace-specific tab sets (requires restart, only work on X11)"
-msgstr ""
-
-#: guake/data/prefs.glade:809
-msgid "Hide tabbar when fullscreen"
-msgstr ""
-
-#: guake/data/prefs.glade:739
-msgid "Display as tab names:"
-msgstr ""
-
-#: guake/data/prefs.glade:753
-msgid "Full Path"
-msgstr ""
-
-#: guake/data/prefs.glade:754
-msgid "Abbreviated Path"
-msgstr ""
-
-#: guake/data/prefs.glade:755
-msgid "Last Segment"
-msgstr ""
-
-#: guake/main.py:99
-msgid "Put Guake out from fullscreen mode"
-msgstr ""
-
-#: guake/main.py:189
-msgid ""
-"Select a specific terminal in a split tab. Only useful with split terminals "
-"(TERMINAL_INDEX is the index of the tab)"
-msgstr ""
-
-#: guake/main.py:199
-msgid "Return the selected terminal index."
-msgstr ""
-
-#: guake/main.py:259
-msgid "Set the hexadecimal (#rrggbb) background color of the current terminal."
-msgstr ""
-
-#: guake/main.py:268
-msgid "Set the hexadecimal (#rrggbb) foreground color of the current terminal."
-msgstr ""
-
-#: guake/main.py:285
-msgid "Set colors from settings."
-msgstr ""
-
-#: guake/main.py:293
-msgid "Set colors of the current terminal from settings."
-msgstr ""
-
-#: guake/main.py:358
-msgid "Show support infomation"
-msgstr ""
-
-#: guake/menus.py:26
-msgid "Reset custom colors"
-msgstr ""
-
-#: guake/dialogs.py:101
-msgid "Do you want to reset custom colors for this tab?"
-msgstr ""
-
-#: guake/data/prefs.glade:835
-msgid "New tabs appear after the current tab"
-msgstr ""
-
-#: guake/prefs.py:186
-msgid "Search selected text on web"
-msgstr ""
-
-#: guake/menus.py:80
-msgid "Copy URL"
-msgstr ""
-
-#: guake/main.py:362
-msgid "Show support information"
-msgstr ""
-
-#: guake/data/prefs.glade:19
-msgid "Scale"
-msgstr ""
-
-#: guake/data/prefs.glade:23
-msgid "Tile"
-msgstr ""
-
-#: guake/data/prefs.glade:31
-msgid "Stretch"
-msgstr ""
-
-#: guake/data/prefs.glade:472
-msgid "Copy on select"
-msgstr ""
-
-#: guake/data/prefs.glade:517
-msgid "Use system default theme"
-msgstr ""
-
-#: guake/data/prefs.glade:547
-msgid "GTK Theme:"
-msgstr ""
-
-#: guake/data/prefs.glade:612
-msgid "Please select a JSON file"
-msgstr ""
-
-#: guake/data/prefs.glade:938
-msgid "Hide tab bar if there is only one tab"
-msgstr ""
-
-#: guake/data/prefs.glade:1929
-msgid "Background image: "
-msgstr ""
-
-#: guake/data/prefs.glade:2730
-msgid ""
-"<small><i>Use the following elements in the open editor command line:\n"
-"- <b>%(file_path)s</b>: path to the file that has been clicked\n"
-"- <b>%(line_number)s</b>: if your editor supports it, you can directly open "
-"the file to a given line number when found on the screen.\n"
-"\n"
-"For example, use <b>subl %(file_path)s:%(line_number)s</b> for Sublime "
-"Text.\n"
-"</i></small>"
-msgstr ""
-
-#: guake/data/prefs.glade:2879
-msgid ""
-"<small>In this dialog you can attach your own command or script to various "
-"Guake events</small>"
-msgstr ""
-
-#: guake/data/prefs.glade:3008
-msgid ""
-"<small><i><b>Note:</b> These options may cause some applications to behave "
-"incorrectly. They are only here to allow you to work around certain "
-"applications and operating systems that expect different terminal behavior.</"
-"i></small>"
-msgstr ""
-
-#: guake/prefs.py:144
-msgid "Go to previous tab (alternative)"
-msgstr ""
-
-#: guake/prefs.py:146
-msgid "Go to next tab (alternative)"
-msgstr ""
-
-#: guake/menus.py:97
-msgid "Split |"
-msgstr ""
-
-#: guake/main.py:130
-msgid "Return 1 if Guake is visible, 0 otherwise"
-msgstr ""
-
-#: guake/data/prefs.glade:1003
-msgid "Lazy hide on lose focus"
-msgstr ""
-
-#: guake/data/prefs.glade:2135
-msgid "Line Height Scale (VTE >= 0.52)"
-msgstr ""
-
-#: guake/data/prefs.glade:2172
-msgid "Line Width Scale (VTE >= 0.52)"
-msgstr ""
+#~ msgid "Save to File..."
+#~ msgstr "Mentés fájlba..."
+
+#~ msgid "Rename Tab"
+#~ msgstr "Lap átnevezése"
+
+#~ msgid "Close Tab"
+#~ msgstr "Lap bezárása"
+
+#~ msgid "<span size=\"18000\" color=\"black\"><b>Guake properties</b></span>"
+#~ msgstr ""
+#~ "<span size=\"18000\" color=\"black\"><b>Guake beállítások</b></span>"
+
+#~ msgid ""
+#~ "<span color=\"black\">Customize behavior and appearance of Guake!</span>"
+#~ msgstr ""
+#~ "<span color=\"black\">Guake viselkedésének és megjelenésének "
+#~ "testreszabása</span>"
+
+#~ msgid ""
+#~ "Path to a bash script that would be automatically executed when Guake "
+#~ "starts, unless you specify --no-startup-script.\n"
+#~ "\n"
+#~ "This would typically use the configuration by command line feature of "
+#~ "Guake:\n"
+#~ "\n"
+#~ "#!/bin/bash\n"
+#~ "\n"
+#~ "sleep 5  # it is advised to wait a bit before Guake has been successfully "
+#~ "started\n"
+#~ "\n"
+#~ "guake -r \"main\" -e \"cd ~/projects/myproject/main\"\n"
+#~ "guake -r \"prod\" -e \"cd ~/projects/myproject/prod\"\n"
+#~ msgstr ""
+#~ "Útvonal egy bash scripthez, amely automatikusan elindul a Guake "
+#~ "indításakor, kivéve ha megadod ezt: --no-startup-script.\n"
+#~ "\n"
+#~ "Ez a script legtöbb esetben a Guake \"parancssor általi konfiguráció\" "
+#~ "funkcióját használja:\n"
+#~ "\n"
+#~ "#!/bin/bash\n"
+#~ "\n"
+#~ "sleep 5  # ajánlott várni egy keveset mielőtt a Guake sikeresen elindul\n"
+#~ "\n"
+#~ "guake -r \"main\" -e \"cd ~/projects/myproject/main\"\n"
+#~ "guake -r \"prod\" -e \"cd ~/projects/myproject/prod\"\n"
+
+#~ msgid ""
+#~ "Never\n"
+#~ "With process running\n"
+#~ "Always"
+#~ msgstr ""
+#~ "Soha\n"
+#~ "Futó folyamat esetén\n"
+#~ "Mindig"
+
+#~ msgid "<b>Main Window</b>"
+#~ msgstr "<b>Főablak</b>"
+
+#~ msgid "<b>Main Window Horizontal Alignment</b>"
+#~ msgstr "<b>Főablak vízszintes igazítása</b>"
+
+#~ msgid "<b>Main Window Width</b>"
+#~ msgstr "<b>Főablak szélesség</b>"
+
+#~ msgid "<b>Shell</b>"
+#~ msgstr "<b>Héj (shell)</b>"
+
+#~ msgid "<b>Scroll</b>"
+#~ msgstr "<b>Görgetés</b>"
+
+#~ msgid "Text color:"
+#~ msgstr "Szövegszín:"
+
+#~ msgid "Background color:"
+#~ msgstr "Háttérszín:"
+
+#~ msgid ""
+#~ "Block\n"
+#~ "I-Beam\n"
+#~ "Underline"
+#~ msgstr ""
+#~ "Blokk\n"
+#~ "I-alakú\n"
+#~ "Aláhúzás"
+
+#~ msgid "Font color"
+#~ msgstr "Betűszín"
+
+#~ msgid "Background color"
+#~ msgstr "Háttérszín"
+
+#~ msgid "Background image:"
+#~ msgstr "Háttérkép:"
+
+#~ msgid ""
+#~ "<small>Quick open is a feature allowing you to open a file directly into "
+#~ "your favorite text editor by clicking on its filename when it appears in "
+#~ "your terminal. See the list of currently supported text patterns used to "
+#~ "extract filename below.</small>"
+#~ msgstr ""
+#~ "<small>A Gyors megnyitás egy olyan funkció, amely lehetővé teszi, hogy "
+#~ "egy fájlt közvetlenül megnyiss egy kedvenc szövegszerkesztődben, amikor a "
+#~ "fájlnévre kattintasz a terminálban. Az alábbiakban láthatod a jelenleg "
+#~ "támogatott szövegmintákat, amelyeket a fájlnevek kinyerésére használunk.</"
+#~ "small>"
+
+#~ msgid "<b>Quick Open</b>"
+#~ msgstr "<b>Gyors megnyitás</b>"
+
+#~ msgid ""
+#~ "<small><i><b>Note:</b> These options may cause some applications to "
+#~ "behave incorrectly.  They are only here to allow you to work around "
+#~ "certain applications and operating systems that expect different terminal "
+#~ "behavior.</i></small>"
+#~ msgstr ""
+#~ "<small><i><b>Megjegyzés:</b> Ezek a beállítások hatással lehetnek más "
+#~ "programokra, melyek nem biztos hogy helyesen fognak működni. Ezek csak a "
+#~ "finomhangolás jellegük miatt maradtak itt.</i></small>"
+
+#~ msgid ""
+#~ "ASCII DEL\n"
+#~ "Escape sequence\n"
+#~ "Control-H"
+#~ msgstr ""
+#~ "ASCII DEL\n"
+#~ "Escape szekvencia\n"
+#~ "Control-H"
+
+#~ msgid "<b>Keyboard compatibility</b>"
+#~ msgstr "<b>Billentyűkiosztás kompatibilitása</b>"
+
+#~ msgid "Search on Web (no selection)"
+#~ msgstr "Keresés a web-en (kijelölés nélkül)"
+
+#~ msgid "Open Link..."
+#~ msgstr "Link megnyitása..."
+
+#~ msgid "Guake can not init!"
+#~ msgstr "Guake nem tud elindulni!"
+
+#~ msgid ""
+#~ "<small>In this dialog you can attach your own command or script to "
+#~ "various guake events</small>"
+#~ msgstr ""
+#~ "<small>Ebben a párbeszédablakban saját parancsot vagy szkriptet "
+#~ "csatolhatsz különböző Guake eseményekhez.</small>"
+
+#, fuzzy
+#~ msgid "guake"
+#~ msgstr "Guake indítása bejelentkezéskor"
+
+#~ msgid ""
+#~ "<i><b>WARNING</b>: your system seems to have PCRE2 disabled for VTE, "
+#~ "preventing application such as Guake to register \"matchers\" using "
+#~ "regular expressions. Please contact your distribution to request a new "
+#~ "version of VTE with PCRE2 enabled ! To use Quick Open, you <b>must select "
+#~ "the text</b> before using Ctrl+click</i>."
+#~ msgstr ""
+#~ "<i><b>FIGYELEM</b>: Úgy tűnik, hogy a rendszer letiltotta a PCRE2-t a VTE "
+#~ "számára, amely megakadályozza olyan alkalmazásokat, mint a Guake, hogy "
+#~ "\"illesztőket\" regisztráljanak reguláris kifejezések segítségével. "
+#~ "Kérjük, lépj kapcsolatba a disztribúcióddal, hogy kérj egy újabb VTE "
+#~ "verziót PCRE2 támogatással! A Gyors megnyitáshoz először <b>kijelölnöd "
+#~ "kell a szöveget</b>, majd használd a Ctrl+kattintás kombinációt</i>."
+
+#~ msgid "Gtk Theme:"
+#~ msgstr "GTK téma:"
+
+#~ msgid "Copy Url"
+#~ msgstr "URL másolása"
+
+#~ msgid "Split  "
+#~ msgstr "Felosztás "
+
+#~ msgid "Split ｜"
+#~ msgstr "Felosztás ｜"
+
+#~ msgid "Split the selected tab vertically."
+#~ msgstr "Függőlegesen felosztja a kiválasztott lapot."
+
+#~ msgid "Bold text is also bright"
+#~ msgstr "A félkövér szöveg világos is"
 
 #~ msgid "key binding error"
 #~ msgstr "Hiba történt a billentyűkombináció hozzárendelésekor"
@@ -1602,9 +2550,3 @@ msgstr ""
 #~ "XTerm\n"
 #~ "Rxvt\n"
 #~ "Egyéni\n"
-
-#~ msgid "Select a tab"
-#~ msgstr "Lap kiválasztása"
-
-#~ msgid "Rename the selected tab."
-#~ msgstr "A kiválasztott lap átnevezése."
