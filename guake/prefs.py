@@ -64,7 +64,7 @@ log = logging.getLogger(__name__)
 
 # A regular expression to match possible python interpreters when
 # filling interpreters combo in preferences (including bpython and ipython)
-PYTHONS = re.compile(r"^[a-z]python$|^python\d\.\d$")
+PYTHONS = re.compile(r"^[a-z]python$|^python\d\.\d$|^python\d\.\d\d$")
 
 # Path to the shells file, it will be used to start to populate
 # interpreters combo, see the next variable, its important to fill the
