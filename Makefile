@@ -68,7 +68,7 @@ ln-venv:
 clean-ln-venv:
 	@rm -f .venv
 
-install-system: install-schemas compile-shemas install-locale install-guake
+install-system: install-schemas install-locale install-guake
 
 install-guake:
 	# you probably want to execute this target with sudo:
@@ -126,6 +126,7 @@ uninstall-dev-locale:
 	@rm -rf guake/po
 
 install-schemas:
+	if [ $(COMPILE_SCHEMA) = 1 ]; then glib-compile-schemas $(DESTDIR)$(SCHEMA_DIR); fi
 	install -dm755                                       "$(DESTDIR)$(datadir)/applications"
 	install -Dm644 "$(DEV_DATA_DIR)/guake.desktop"       "$(DESTDIR)$(datadir)/applications/"
 	install -Dm644 "$(DEV_DATA_DIR)/guake-prefs.desktop" "$(DESTDIR)$(datadir)/applications/"
@@ -142,9 +143,6 @@ install-schemas:
 	install -Dm644 "$(DEV_DATA_DIR)"/*.glade "$(DESTDIR)$(GLADE_DIR)/"
 	install -dm755                                         "$(DESTDIR)$(SCHEMA_DIR)"
 	install -Dm644 "$(DEV_DATA_DIR)/org.guake.gschema.xml" "$(DESTDIR)$(SCHEMA_DIR)/"
-
-compile-shemas:
-	if [ $(COMPILE_SCHEMA) = 1 ]; then glib-compile-schemas $(DESTDIR)$(gsettingsschemadir); fi
 
 uninstall-system: uninstall-schemas uninstall-locale
 	$(SHELL) -c $(PYTHON_SITEDIRS_FOR_PREFIX) \
