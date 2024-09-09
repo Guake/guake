@@ -2,4 +2,5 @@ release_summary: >
   Fix a build race condition between compilation/installation of GSettings schemas
 
 fixes:
-  - Ensure that guake's GSettings XML schemas are installed before requesting their (re)compilation #2219
+  - |
+      - Ensure that guake's GSettings XML schemas are installed before requesting their (re)compilation #2219
