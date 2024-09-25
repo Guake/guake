@@ -122,7 +122,7 @@ class RootTerminalBox(Gtk.Overlay, TerminalHolder):
         self.search_frame.get_style_context().add_class("background")
         css_provider = Gtk.CssProvider()
         css_provider.load_from_data(
-            b"#search-frame border {" b"    padding: 5px 5px 5px 5px;" b"    border: none;" b"}"
+            """#search-frame border { padding: 5px 5px 5px 5px; border: none;} notebook tab {padding:5px 5px 0px 5px; margin: 0px 0px 0px 0px;}"""
         )
         Gtk.StyleContext.add_provider_for_screen(
             Gdk.Screen.get_default(),
@@ -710,6 +710,20 @@ class TabLabelEventBox(Gtk.EventBox):
         HidePrevention(self.get_toplevel()).allow()
 
         self.grab_focus_on_last_focused_terminal()
+
+    @save_tabs_when_changed
+    def on_tab_color_change(self, user_data):
+        HidePrevention(self.get_toplevel()).prevent()
+        dialog = Gtk.ColorChooserDialog(_("Select Color"), self.notebook.guake.window)
+        if dialog.run() == Gtk.ResponseType.OK:
+            color = dialog.get_rgba()
+            dialog.destroy()
+            page_num = self.notebook.find_tab_index_by_label(self)
+            self.notebook.color_page(page_num, color, True)
+        HidePrevention(self.get_toplevel()).allow()
+        self.grab_focus_on_last_focused_terminal()
+
+
 
     @save_tabs_when_changed
     def on_reset_custom_colors(self, user_data):
