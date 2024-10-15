@@ -632,6 +632,15 @@ class PrefsCallbacks:
         """Changes the value of window-horizontal-displacement"""
         self.settings.general.set_int("window-horizontal-displacement", int(spin.get_value()))
 
+    def on_window_vertical_dimension_value_changed(self, spin):
+        """Changes the value of window-vertical-displacement"""
+        self.settings.general.set_int("window-pixel-height", int(spin.get_value()))
+
+    def on_window_horizontal_dimension_value_changed(self, spin):
+        """Changes the value of window-horizontal-displacement"""
+        print("CHANGING WIDTH TO ", int(spin.get_value()))
+        self.settings.general.set_int("window-pixel-width", int(spin.get_value()))
+
     def reload_erase_combos(self, btn=None):
         self.prefDlg.reload_erase_combos(btn)
 

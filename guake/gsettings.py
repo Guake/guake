@@ -58,6 +58,8 @@ class GSettingHandler:
         )
         settings.general.onChangedValue("window-height", self.size_changed)
         settings.general.onChangedValue("window-width", self.size_changed)
+        settings.general.onChangedValue("window-pixel-height", self.size_changed)
+        settings.general.onChangedValue("window-pixel-width", self.size_changed)
         settings.general.onChangedValue("window-valignment", self.alignment_changed)
         settings.general.onChangedValue("window-halignment", self.alignment_changed)
         settings.general.onChangedValue("window-vertical-displacement", self.alignment_changed)

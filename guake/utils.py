@@ -257,6 +257,8 @@ class RectCalculator:
         # fetch settings
         height_percents = settings.general.get_int("window-height")
         width_percents = settings.general.get_int("window-width")
+        height_pixel = settings.general.get_int("window-pixel-height")
+        width_pixel = settings.general.get_int("window-pixel-width")
         halignment = settings.general.get_int("window-halignment")
         valignment = settings.general.get_int("window-valignment")
         vdisplacement = settings.general.get_int("window-vertical-displacement")
@@ -265,6 +267,8 @@ class RectCalculator:
         log.debug("set_final_window_rect")
         log.debug("  height_percents = %s", height_percents)
         log.debug("  width_percents = %s", width_percents)
+        log.debug("  height_pixel = %s", height_pixel)
+        log.debug("  width_pixel = %s", width_pixel)
         log.debug("  halignment = %s", halignment)
         log.debug("  valignment = %s", valignment)
         log.debug("  hdisplacement = %s", hdisplacement)
@@ -299,7 +303,9 @@ class RectCalculator:
             )
             window_rect.x += total_width - window_rect.width - hdisplacement
 
-        window_rect.height = int(float(total_height) * float(height_percents) / 100.0)
+        #window_rect.height = int(float(total_height) * float(height_percents) / 100.0)
+        window_rect.width = width_pixel
+        window_rect.height = height_pixel
         if valignment == ALIGN_TOP:
             window_rect.y += vdisplacement
         elif valignment == ALIGN_BOTTOM:

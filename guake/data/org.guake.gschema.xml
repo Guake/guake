@@ -181,6 +181,16 @@
             <summary>Window height.</summary>
             <description>Percent of the screen that will be used by guake terminal vertically.</description>
         </key>
+        <key name="window-pixel-width" type="i">
+            <default>100</default>
+            <summary>Window pixel width.</summary>
+            <description>Resolution of the screen that will be used by guake terminal horizontally.</description>
+        </key>
+        <key name="window-pixel-height" type="i">
+            <default>100</default>
+            <summary>Window pixel height.</summary>
+            <description>Resolution of the screen that will be used by guake terminal vertically.</description>
+        </key>
         <key name="window-horizontal-displacement" type="i">
             <default>0</default>
             <summary>Horizontal window displacement.</summary>
