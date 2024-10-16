@@ -749,6 +749,7 @@ class PrefsDialog(SimpleGladeApp):
         self.load_configs()
         self.get_widget("config-window").hide()
 
+
     def spawn_sync_pid(self, directory=None, terminal=None):
         argv = []
         user_shell = self.settings.general.get_string("default-shell")
@@ -1311,6 +1312,8 @@ class PrefsDialog(SimpleGladeApp):
 
         # it's a separated method, to be reused.
         self.reload_erase_combos()
+        value = self.settings.general.get_int("window-pixel-height")
+        self.get_widget("window_vertical_dimension").set_value(value)
 
         # custom command context-menu configuration file
         custom_command_file = self.settings.general.get_string("custom-command-file")
