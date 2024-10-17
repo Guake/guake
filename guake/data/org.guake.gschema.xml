@@ -171,6 +171,11 @@
             <summary>Audible bell</summary>
             <description>If true, the system alert sound will be played on a bell character.</description>
         </key>
+        <key name="window-pixel-or-scale-update" type="b">
+            <default>false</default>
+            <summary>Update window size by sliding scale or text box</summary>
+            <description>If true, window size is determined by scale widget. Otherwise, by spin button in preferences.</description>
+        </key>
         <key name="window-width" type="i">
             <default>100</default>
             <summary>Window width.</summary>
