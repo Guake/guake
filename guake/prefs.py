@@ -1182,7 +1182,9 @@ class PrefsDialog(SimpleGladeApp):
         self.get_widget("window_width").set_value(value)
 
         value = self.settings.general.get_int("window-pixel-height")
+        max_value = self.settings.general.get_int("max-window-pixel-height")
         self.get_widget("window_vertical_dimension").set_value(value)
+        self.get_widget("window_vertical_dimension").set
 
         value = self.settings.general.get_int("window-pixel-width")
         self.get_widget("window_horizontal_dimension").set_value(value)
