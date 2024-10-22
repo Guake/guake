@@ -286,12 +286,14 @@ class RectCalculator:
 
         total_height = window_rect.height
         total_width = window_rect.width
+        settings.general.set_int("max-window-pixel-height",total_height)
+        settings.general.set_int("max-window-pixel-width",total_width)
 
         if not update_by_scale:
             height_percents = int((height_pixel/total_height)*100)
-            log.debug("UPDATING BY SPIN BOX!")
-            log.debug(" calculated new percent: %s", height_percents)
             width_percents = int((width_pixel/total_width)*100)
+            settings.general.set_int("window-height",height_percents)
+            settings.general.set_int("window-width",width_percents)
 
         if halignment == ALIGN_CENTER:
             log.debug("aligning to center!")
@@ -314,8 +316,7 @@ class RectCalculator:
         if update_by_scale:
             settings.general.set_int("window-pixel-height",window_rect.height)
             settings.general.set_int("window-pixel-width",window_rect.width)
-        #window_rect.width = width_pixel
-        #window_rect.height = height_pixel
+
         if valignment == ALIGN_TOP:
             window_rect.y += vdisplacement
         elif valignment == ALIGN_BOTTOM:

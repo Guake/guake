@@ -196,6 +196,16 @@
             <summary>Window pixel height.</summary>
             <description>Resolution of the screen that will be used by guake terminal vertically.</description>
         </key>
+        <key name="max-window-pixel-width" type="i">
+            <default>1920</default>
+            <summary>Max window pixel width.</summary>
+            <description>Maximum resolution of the screen that will be used by guake terminal horizontally.</description>
+        </key>
+        <key name="max-window-pixel-height" type="i">
+            <default>1080</default>
+            <summary>Max window pixel height.</summary>
+            <description>Maximum resolution of the screen that will be used by guake terminal vertically.</description>
+        </key>
         <key name="window-horizontal-displacement" type="i">
             <default>0</default>
             <summary>Horizontal window displacement.</summary>

@@ -458,21 +458,40 @@ class PrefsCallbacks:
         val = hscale.get_value()
         self.settings.general.set_int("window-height", int(val))
 
+        value = self.settings.general.get_int("window-pixel-height")
+        self.prefDlg.get_widget("window_vertical_dimension").set_value(value)
+
     def on_window_width_value_changed(self, wscale):
         """Changes the value of window_width in dconf"""
         self.settings.general.set_boolean("window-pixel-or-scale-update", True)
         val = wscale.get_value()
         self.settings.general.set_int("window-width", int(val))
 
+        value = self.settings.general.get_int("window-pixel-width")
+        self.prefDlg.get_widget("window_horizontal_dimension").set_value(value)
+
     def on_window_vertical_dimension_value_changed(self, spin):
         """Changes the value of window-vertical-displacement"""
         self.settings.general.set_boolean("window-pixel-or-scale-update", False)
-        self.settings.general.set_int("window-pixel-height", int(spin.get_value()))
+        max_value = self.settings.general.get_int("max-window-pixel-height")
+        val = int(spin.get_value())
+        if val <= max_value:
+            self.settings.general.set_int("window-pixel-height", val)
+
+            value = self.settings.general.get_int("window-height")
+            self.prefDlg.get_widget("window_height").set_value(value)
 
     def on_window_horizontal_dimension_value_changed(self, spin):
         """Changes the value of window-horizontal-displacement"""
         self.settings.general.set_boolean("window-pixel-or-scale-update", False)
-        self.settings.general.set_int("window-pixel-width", int(spin.get_value()))
+        max_value = int(self.settings.general.get_int("max-window-pixel-width"))
+        val = int(spin.get_value())
+
+        if val <= max_value:
+            self.settings.general.set_int("window-pixel-width", val)
+
+            value = self.settings.general.get_int("window-width")
+            self.prefDlg.get_widget("window_width").set_value(value)
 
     def on_window_halign_value_changed(self, halign_button):
         """Changes the value of window_halignment in dconf"""
