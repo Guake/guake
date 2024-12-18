@@ -715,11 +715,12 @@ class TabLabelEventBox(Gtk.EventBox):
     def on_tab_color_change(self, user_data):
         HidePrevention(self.get_toplevel()).prevent()
         dialog = Gtk.ColorChooserDialog(_("Select Color"), self.notebook.guake.window)
-        if dialog.run() == Gtk.ResponseType.OK:
+        response = dialog.run()
+        if response == Gtk.ResponseType.OK:
             color = dialog.get_rgba()
-            dialog.destroy()
             page_num = self.notebook.find_tab_index_by_label(self)
             self.notebook.color_page(page_num, color, True)
+        dialog.destroy()
         HidePrevention(self.get_toplevel()).allow()
         self.grab_focus_on_last_focused_terminal()
 
