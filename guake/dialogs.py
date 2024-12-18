@@ -149,7 +149,7 @@ class SaveTerminalDialog(Gtk.FileChooserDialog):
         col = self.terminal.get_column_count()
         content = self.terminal.get_text_range(0, 0, row, col)
 
-        if content:
+        if content and content[0]:
             selection = content[0].rstrip().lstrip()
         else:  # Call the original method if get_text_range fails for some reason.  (Can it fail?)
             self.terminal.select_all()
