@@ -255,8 +255,11 @@ class RectCalculator:
         horizontal alignment is given by window_alignment.
         """
         # fetch settings
+        update_by_scale = settings.general.get_boolean("window-pixel-or-scale-update")
         height_percents = settings.general.get_int("window-height")
         width_percents = settings.general.get_int("window-width")
+        height_pixel = settings.general.get_int("window-pixel-height")
+        width_pixel = settings.general.get_int("window-pixel-width")
         halignment = settings.general.get_int("window-halignment")
         valignment = settings.general.get_int("window-valignment")
         vdisplacement = settings.general.get_int("window-vertical-displacement")
@@ -265,6 +268,8 @@ class RectCalculator:
         log.debug("set_final_window_rect")
         log.debug("  height_percents = %s", height_percents)
         log.debug("  width_percents = %s", width_percents)
+        log.debug("  height_pixel = %s", height_pixel)
+        log.debug("  width_pixel = %s", width_pixel)
         log.debug("  halignment = %s", halignment)
         log.debug("  valignment = %s", valignment)
         log.debug("  hdisplacement = %s", hdisplacement)
@@ -281,6 +286,14 @@ class RectCalculator:
 
         total_height = window_rect.height
         total_width = window_rect.width
+        settings.general.set_int("max-window-pixel-height",total_height)
+        settings.general.set_int("max-window-pixel-width",total_width)
+
+        if not update_by_scale:
+            height_percents = int((height_pixel/total_height)*100)
+            width_percents = int((width_pixel/total_width)*100)
+            settings.general.set_int("window-height",height_percents)
+            settings.general.set_int("window-width",width_percents)
 
         if halignment == ALIGN_CENTER:
             log.debug("aligning to center!")
@@ -300,6 +313,10 @@ class RectCalculator:
             window_rect.x += total_width - window_rect.width - hdisplacement
 
         window_rect.height = int(float(total_height) * float(height_percents) / 100.0)
+        if update_by_scale:
+            settings.general.set_int("window-pixel-height",window_rect.height)
+            settings.general.set_int("window-pixel-width",window_rect.width)
+
         if valignment == ALIGN_TOP:
             window_rect.y += vdisplacement
         elif valignment == ALIGN_BOTTOM:

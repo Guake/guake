@@ -68,9 +68,21 @@
     <property name="step-increment">1</property>
     <property name="page-increment">10</property>
   </object>
+  <object class="GtkAdjustment" id="window_horizontal_dimension_adjustment">
+    <property name="lower">100</property>
+    <property name="upper">5000</property>
+    <property name="step-increment">100</property>
+    <property name="page-increment">10</property>
+  </object>
   <object class="GtkAdjustment" id="window_horizontal_displacement_adjustment">
     <property name="upper">10000000</property>
     <property name="step-increment">10</property>
+    <property name="page-increment">10</property>
+  </object>
+  <object class="GtkAdjustment" id="window_vertical_dimension_adjustment">
+    <property name="lower">100</property>
+    <property name="upper">5000</property>
+    <property name="step-increment">100</property>
     <property name="page-increment">10</property>
   </object>
   <object class="GtkAdjustment" id="window_vertical_displacement_adjustment">
@@ -1330,7 +1342,7 @@
                                     <property name="top-padding">6</property>
                                     <property name="left-padding">6</property>
                                     <child>
-                                      <!-- n-columns=3 n-rows=3 -->
+                                      <!-- n-columns=4 n-rows=3 -->
                                       <object class="GtkGrid">
                                         <property name="visible">True</property>
                                         <property name="can-focus">False</property>
@@ -1485,7 +1497,7 @@
                                             <signal name="value-changed" handler="on_window_vertical_displacement_value_changed" swapped="no"/>
                                           </object>
                                           <packing>
-                                            <property name="left-attach">2</property>
+                                            <property name="left-attach">3</property>
                                             <property name="top-attach">1</property>
                                           </packing>
                                         </child>
@@ -1496,7 +1508,7 @@
                                             <property name="label" translatable="yes">Displacement in pixels</property>
                                           </object>
                                           <packing>
-                                            <property name="left-attach">2</property>
+                                            <property name="left-attach">3</property>
                                             <property name="top-attach">0</property>
                                           </packing>
                                         </child>
@@ -1507,6 +1519,45 @@
                                             <property name="adjustment">window_horizontal_displacement_adjustment</property>
                                             <property name="numeric">True</property>
                                             <signal name="value-changed" handler="on_window_horizontal_displacement_value_changed" swapped="no"/>
+                                          </object>
+                                          <packing>
+                                            <property name="left-attach">3</property>
+                                            <property name="top-attach">2</property>
+                                          </packing>
+                                        </child>
+                                        <child>
+                                          <object class="GtkLabel">
+                                            <property name="visible">True</property>
+                                            <property name="can-focus">False</property>
+                                            <property name="label" translatable="yes">Dimensions in pixels</property>
+                                          </object>
+                                          <packing>
+                                            <property name="left-attach">2</property>
+                                            <property name="top-attach">0</property>
+                                          </packing>
+                                        </child>
+                                        <child>
+                                          <object class="GtkSpinButton" id="window_vertical_dimension">
+                                            <property name="visible">True</property>
+                                            <property name="can-focus">True</property>
+                                            <property name="adjustment">window_vertical_dimension_adjustment</property>
+                                            <property name="numeric">True</property>
+                                            <property name="update-policy">if-valid</property>
+                                            <signal name="value-changed" handler="on_window_vertical_dimension_value_changed" swapped="no"/>
+                                          </object>
+                                          <packing>
+                                            <property name="left-attach">2</property>
+                                            <property name="top-attach">1</property>
+                                          </packing>
+                                        </child>
+                                        <child>
+                                          <object class="GtkSpinButton" id="window_horizontal_dimension">
+                                            <property name="visible">True</property>
+                                            <property name="can-focus">True</property>
+                                            <property name="adjustment">window_horizontal_dimension_adjustment</property>
+                                            <property name="numeric">True</property>
+                                            <property name="update-policy">if-valid</property>
+                                            <signal name="value-changed" handler="on_window_horizontal_dimension_value_changed" swapped="no"/>
                                           </object>
                                           <packing>
                                             <property name="left-attach">2</property>
