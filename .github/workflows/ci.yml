@@ -10,7 +10,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        python-version: ["3.8", "3.9"]
+        python-version: ["3.8", "3.9", "3.10", "3.11"]
 
     steps:
       - uses: actions/checkout@v4
@@ -49,7 +49,6 @@ jobs:
           virtualenv test-rtd
           . ./test-rtd/bin/activate
           pip install -r requirements-dev.txt
-          rm -rf test-rtd
 
           # for dev
           make dev-actions
@@ -60,6 +59,7 @@ jobs:
           make test-actions
           # prepare for deployment
           make generate-paths
+          rm -rf test-rtd
 
       - uses: Thog/action-equals@v1
         id: isLatest
