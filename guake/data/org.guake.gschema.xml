@@ -171,6 +171,11 @@
             <summary>Audible bell</summary>
             <description>If true, the system alert sound will be played on a bell character.</description>
         </key>
+        <key name="use-sixel" type="b">
+            <default>false</default>
+            <summary>Use Sixel</summary>
+            <description>If true, terminals will render sixel escape sequences.</description>
+        </key>
         <key name="window-width" type="i">
             <default>100</default>
             <summary>Window width.</summary>
