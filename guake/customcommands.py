@@ -11,7 +11,6 @@ log = logging.getLogger(__name__)
 
 
 class CustomCommands:
-
     """
     Example for a custom commands file
         [

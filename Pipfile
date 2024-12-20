@@ -8,10 +8,9 @@ python_version = "3"
 
 [dev-packages]
 "autopep8" = "*"
-"flake8" = ">=3.8.0,<4.0.0"
+"flake8" = "==7.1.1"
 "pep8" = "*"
-pylint = "*"
-typed-ast = "*"
+pylint = "==3.3.2"
 astroid = "*"
 fiximports = ">=0.1.18"
 mock = ">=2.0.0"
@@ -31,8 +30,8 @@ scandir = {markers = "python_version > '3.5'"}
 pyfakefs = "*"
 pytest-cov = "*"
 pew = "*"
-black = "==21.8b0"
-flakehell = "*"
+black = "==24.10.0"
+typing-extensions = "*"
 toml = "*"
 pre-commit = "==2.17.0"
 

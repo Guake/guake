@@ -288,7 +288,7 @@ def main():
         dest="bgcolor",
         action="store",
         default="",
-        help=_("Set the hexadecimal (#rrggbb) background color of " "the selected tab."),
+        help=_("Set the hexadecimal (#rrggbb) background color of the selected tab."),
     )
 
     parser.add_argument(
@@ -296,7 +296,7 @@ def main():
         dest="fgcolor",
         action="store",
         default="",
-        help=_("Set the hexadecimal (#rrggbb) foreground color of the " "selected tab."),
+        help=_("Set the hexadecimal (#rrggbb) foreground color of the selected tab."),
     )
 
     parser.add_argument(
@@ -304,7 +304,7 @@ def main():
         dest="bgcolor_current",
         action="store",
         default="",
-        help=_("Set the hexadecimal (#rrggbb) background color of " "the current terminal."),
+        help=_("Set the hexadecimal (#rrggbb) background color of the current terminal."),
     )
 
     parser.add_argument(
@@ -312,7 +312,7 @@ def main():
         dest="fgcolor_current",
         action="store",
         default="",
-        help=_("Set the hexadecimal (#rrggbb) foreground color of " "the current terminal."),
+        help=_("Set the hexadecimal (#rrggbb) foreground color of the current terminal."),
     )
 
     parser.add_argument(
@@ -346,8 +346,7 @@ def main():
         action="store",
         default="",
         help=_(
-            "Rename the specified tab by --tab-index. Reset to default if TITLE is "
-            'a single dash "-".'
+            'Rename tab specified by --tab-index. Reset to default if TITLE is a single dash "-".'
         ),
     )
 
@@ -358,7 +357,7 @@ def main():
         metavar="TITLE",
         action="store",
         default="",
-        help=_("Rename the current tab. Reset to default if TITLE is a " 'single dash "-".'),
+        help=_('Rename the current tab. Reset to default if TITLE is a single dash "-".'),
     )
 
     parser.add_argument(

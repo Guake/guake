@@ -302,8 +302,7 @@ class TerminalNotebook(Gtk.Notebook):
     def iter_terminals(self):
         for page in self.iter_pages():
             if page is not None:
-                for t in page.iter_terminals():
-                    yield t
+                yield from page.iter_terminals()
 
     def iter_tabs(self):
         for page_num in range(self.get_n_pages()):
@@ -613,8 +612,7 @@ class NotebookManager(GObject.Object):
 
     def iter_terminals(self):
         for k in self.notebooks:
-            for t in self.notebooks[k].iter_terminals():
-                yield t
+            yield from self.notebooks[k].iter_terminals()
 
     def get_terminal_by_uuid(self, terminal_uuid):
         for t in self.iter_terminals():
@@ -624,8 +622,7 @@ class NotebookManager(GObject.Object):
 
     def iter_pages(self):
         for k in self.notebooks:
-            for t in self.notebooks[k].iter_pages():
-                yield t
+            yield from self.notebooks[k].iter_pages()
 
     def iter_notebooks(self):
         for k in self.notebooks:
