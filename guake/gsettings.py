@@ -32,7 +32,6 @@ log = logging.getLogger(__name__)
 
 
 class GSettingHandler:
-
     """Handles gconf changes, if any gconf variable is changed, a
     different method is called to handle this change.
     """

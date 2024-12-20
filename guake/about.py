@@ -31,7 +31,6 @@ from guake.simplegladeapp import SimpleGladeApp
 
 
 class AboutDialog(SimpleGladeApp):
-
     """The About Guake dialog class"""
 
     def __init__(self):

@@ -94,7 +94,6 @@ class DropTargets(IntEnum):
 
 
 class GuakeTerminal(Vte.Terminal):
-
     """Just a vte.Terminal with some properties already set."""
 
     def __init__(self, guake):
@@ -359,6 +358,8 @@ class GuakeTerminal(Vte.Terminal):
                     int(event.x / self.get_char_width()),
                     int(event.y / self.get_char_height()),
                 )
+        else:
+            matched_string = None
 
         self.found_link = None
 
@@ -371,7 +372,7 @@ class GuakeTerminal(Vte.Terminal):
                 self._on_ctrl_click_matcher((s, None))
             elif self.get_has_selection():
                 self.quick_open()
-            elif matched_string and matched_string[0]:
+            elif matched_string is not None and matched_string[0]:
                 self._on_ctrl_click_matcher(matched_string)
         elif event.button == 3 and matched_string:
             self.found_link = self.handleTerminalMatch(matched_string)
@@ -655,9 +656,11 @@ class GuakeTerminal(Vte.Terminal):
         return {
             "fg_color": self._color_to_list(self.custom_fgcolor),
             "bg_color": self._color_to_list(self.custom_bgcolor),
-            "palette": [self._color_to_list(col) for col in self.custom_palette]
-            if self.custom_palette
-            else None,
+            "palette": (
+                [self._color_to_list(col) for col in self.custom_palette]
+                if self.custom_palette
+                else None
+            ),
         }
 
     def set_custom_colors_from_dict(self, colors_dict):

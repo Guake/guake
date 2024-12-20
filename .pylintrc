@@ -63,7 +63,6 @@ confidence=
 disable=
    arguments-differ,
    attribute-defined-outside-init,
-   bad-continuation,
    broad-except,
    consider-using-ternary,
    deprecated-method,
@@ -73,12 +72,10 @@ disable=
    import-error,  # needed for travis build
    inconsistent-return-statements,
    invalid-name,
-   locally-enabled,
    missing-docstring,
    no-member,
    no-method-argument,
    no-name-in-module,
-   no-self-use,
    no-value-for-parameter,
    pointless-string-statement,
    protected-access,
@@ -86,11 +83,13 @@ disable=
    too-few-public-methods,
    too-many-arguments,
    too-many-boolean-expressions,
+   too-many-branches,
    too-many-instance-attributes,
    too-many-lines,
    too-many-locals,
    too-many-nested-blocks,
    too-many-public-methods,
+   too-many-positional-arguments,
    too-many-statements,
    undefined-variable,
    ungrouped-imports,
@@ -306,13 +305,6 @@ max-line-length=100
 
 # Maximum number of lines in a module.
 max-module-lines=1000
-
-# List of optional constructs for which whitespace checking is disabled. `dict-
-# separator` is used to allow tabulation in dicts, etc.: {1  : 1,\n222: 2}.
-# `trailing-comma` allows a space between comma and closing bracket: (a, ).
-# `empty-line` allows space-only lines.
-no-space-check=trailing-comma,
-               dict-separator
 
 # Allow the body of a class to be on the same line as the declaration if body
 # contains single statement.

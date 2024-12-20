@@ -167,8 +167,7 @@ class RootTerminalBox(Gtk.Overlay, TerminalHolder):
 
     def iter_terminals(self):
         if self.get_child() is not None:
-            for t in self.get_child().iter_terminals():
-                yield t
+            yield from self.get_child().iter_terminals()
 
     def replace_child(self, old, new):
         self.remove(old)
@@ -221,17 +220,14 @@ class RootTerminalBox(Gtk.Overlay, TerminalHolder):
 
     def restore_box_layout(self, box, panes: list):
         """Restore box layout by `panes`"""
-        if not panes or not isinstance(panes, list):
-            return
-        if not box or not isinstance(box, TerminalBox):
-            # Should only called on TerminalBox
+        if not panes or not isinstance(panes, list) or not box or not isinstance(box, TerminalBox):
             return
 
         cur = panes.pop(0)
         if cur["type"].startswith("dual"):
             while True:
                 if self.guake:
-                    # If Guake are not visible, we should pending the restore, then do the
+                    # If Guake is not visible, we should pending the restore, then do the
                     # restore when Guake is visible again.
                     #
                     # Otherwise we will stuck in the infinite loop, since new DualTerminalBox
@@ -384,7 +380,6 @@ class RootTerminalBox(Gtk.Overlay, TerminalHolder):
 
 
 class TerminalBox(Gtk.Box, TerminalHolder):
-
     """A box to group the terminal and a scrollbar."""
 
     def __init__(self):
@@ -588,10 +583,8 @@ class DualTerminalBox(Gtk.Paned, TerminalHolder):
         return self.get_child1().get_terminals() + self.get_child2().get_terminals()
 
     def iter_terminals(self):
-        for t in self.get_child1().iter_terminals():
-            yield t
-        for t in self.get_child2().iter_terminals():
-            yield t
+        yield from self.get_child1().iter_terminals()
+        yield from self.get_child2().iter_terminals()
 
     def replace_child(self, old, new):
         if self.get_child1() is old:

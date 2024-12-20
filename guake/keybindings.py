@@ -36,7 +36,6 @@ log = logging.getLogger(__name__)
 
 
 class Keybindings:
-
     """Handles changes in keyboard shortcuts."""
 
     def __init__(self, guake):

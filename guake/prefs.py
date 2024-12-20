@@ -233,7 +233,6 @@ def refresh_user_start(settings):
 
 
 class PrefsCallbacks:
-
     """Holds callbacks that will be used in the PrefsDialg class."""
 
     def __init__(self, prefDlg):
@@ -544,9 +543,11 @@ class PrefsCallbacks:
         )  # only allow files with these extensions
         self.settings.general.set_string(
             "background-image-file",
-            fc.get_filename()
-            if fc.get_filename() and fc.get_filename().endswith(allowed_extensions)
-            else "",
+            (
+                fc.get_filename()
+                if fc.get_filename() and fc.get_filename().endswith(allowed_extensions)
+                else ""
+            ),
         )
 
     def on_background_image_file_remove_clicked(self, btn):
@@ -640,7 +641,6 @@ class PrefsCallbacks:
 
 
 class PrefsDialog(SimpleGladeApp):
-
     """The Guake Preferences dialog."""
 
     def __init__(self, settings):

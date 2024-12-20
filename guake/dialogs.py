@@ -38,7 +38,6 @@ class RenameDialog(Gtk.Dialog):
 
 
 class PromptQuitDialog(Gtk.MessageDialog):
-
     """Prompts the user whether to quit/close a tab."""
 
     def __init__(self, parent, procs, tabs, notebooks):
@@ -99,7 +98,6 @@ class PromptQuitDialog(Gtk.MessageDialog):
 
 
 class PromptResetColorsDialog(Gtk.MessageDialog):
-
     """Prompts the user whether to reset tab colors."""
 
     def __init__(self, parent):

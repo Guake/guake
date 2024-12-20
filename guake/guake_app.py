@@ -98,7 +98,6 @@ GDK_WINDOW_STATE_ABOVE = 32
 
 
 class Guake(SimpleGladeApp):
-
     """Guake main class. Handles specialy the main window."""
 
     def __init__(self):
@@ -288,9 +287,7 @@ class Guake(SimpleGladeApp):
             filename = pixmapfile("guake-notification.png")
             notifier.showMessage(
                 _("Guake Terminal"),
-                _("Guake is now running,\n" "press <b>{!s}</b> to use it.").format(
-                    xml_escape(label)
-                ),
+                _("Guake is now running,\npress <b>{!s}</b> to use it.").format(xml_escape(label)),
                 filename,
             )
 
