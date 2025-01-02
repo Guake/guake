@@ -39,11 +39,9 @@ integration scripts accordingly.
 Guake now uses ``Pipfile`` to store it Python dependencies (except the system dependencies such as
 PyGTK3). It is maintained and used by `pipenv` CLI tool. It is a system more advanced than using
 ``requirements.txt``, but this file is still generated for backward compatibility (for example:
-ReadTheDocs only support ``requirements.txt`` for the moment), by a tool I've developed, named
-``pipenv_to_requirements`` (makefile target ``make requirements``).
-It does generate ``requirements.txt`` (running dependencies), and ``requirements-dev.txt`` (build,
-checks and test only). From then, Guake is now a classic, canon Python package (with setup.py,
-building distrubution packages, ...).
+ReadTheDocs only support ``requirements.txt`` for the moment), by the command ``pipenv
+requirements``. From then, Guake is now a classic, canon Python package (with setup.py, building
+distrubution packages, ...).
 
 It however requires system libraries, so cannot work isolated inside a virtualenv. If you look
 closer to the virtualenv used with ``make dev ; make run``, you will see it is configured to use
