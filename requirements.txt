@@ -1,15 +1,6 @@
-################################################################################
-# This requirements file has been automatically generated from `Pipfile` with
-# `pipenv-to-requirements`
-#
-#
-# This has been done to maintain backward compatibility with tools and services
-# that do not support `Pipfile` yet.
-#
-# Do NOT edit it directly, use `pipenv install [-d]` to modify `Pipfile` and
-# `Pipfile.lock` and then regenerate `requirements*.txt`.
-################################################################################
-
-pbr
-typing ; python_version > '3.5'
-wheel
+-i https://pypi.python.org/simple
+cython==3.0.11; python_version >= '2.7' and python_version not in '3.0, 3.1, 3.2, 3.3'
+pbr==6.1.0; python_version >= '2.6'
+pyyaml==6.0.2; python_version >= '3.8'
+typing==3.7.4.3; python_version > '3.5'
+wheel==0.45.1; python_version >= '3.8'

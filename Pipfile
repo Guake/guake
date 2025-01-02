@@ -19,7 +19,6 @@ pyflakes = "*"
 pytest = "*"
 yapf = "*"
 reno = {version = ">=2.8.0",extras = ["sphinx"]}
-pipenv-to-requirements = "*"
 colorlog = "*"
 sphinx-rtd-theme = "*"
 sphinxcontrib-programoutput = "*"
@@ -33,6 +32,7 @@ pew = "*"
 black = "==24.10.0"
 typing-extensions = "*"
 toml = "*"
+tomli = "*"
 pre-commit = "==2.17.0"
 
 [packages]

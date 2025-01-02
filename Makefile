@@ -301,7 +301,8 @@ update:
 lock: pipenv-lock requirements
 
 requirements:
-	PIPENV_IGNORE_VIRTUALENVS=1 pipenv run pipenv_to_requirements
+	PIPENV_IGNORE_VIRTUALENVS=1 pipenv requirements > requirements.txt
+	PIPENV_IGNORE_VIRTUALENVS=1 pipenv requirements --dev > requirements-dev.txt
 
 pipenv-lock:
 	PIPENV_IGNORE_VIRTUALENVS=1 pipenv lock
