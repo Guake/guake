@@ -68,7 +68,7 @@ jobs:
           make generate-paths
 
       - name: Publish distribution 📦 to Test PyPI
-        uses: pypa/gh-action-pypi-publish@master
+        uses: pypa/gh-action-pypi-publish@release/v1
         with:
           verify_metadata: false
           password: ${{ secrets.TEST_PYPI_API_TOKEN }}
@@ -76,7 +76,7 @@ jobs:
 
       - name: Publish distribution 📦 to PyPI
         if: startsWith(github.ref, 'refs/tags')
-        uses: pypa/gh-action-pypi-publish@master
+        uses: pypa/gh-action-pypi-publish@release/v1
         with:
           verify_metadata: false
           password: ${{ secrets.PYPI_API_TOKEN }}
