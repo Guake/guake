@@ -1175,6 +1175,10 @@ class PrefsDialog(SimpleGladeApp):
         value = self.settings.general.get_boolean("fullscreen-hide-tabbar")
         self.get_widget("fullscreen_hide_tabbar").set_active(value)
 
+        # new tabs appear after current tab
+        value = self.settings.general.get_boolean("new-tab-after")
+        self.get_widget("new_tab_after").set_active(value)
+
         # hide tabbar if only one tab
         value = self.settings.general.get_boolean("hide-tabs-if-one-tab")
         self.get_widget("hide_tabs_if_one_tab").set_active(value)

@@ -1,0 +1,8 @@
+release_summary: >
+  Properly load checkbox value for "New tabs appear after the current tab" setting on startup.
+
+
+fixes:
+  - |
+
+      - "New tabs appear after the current tab" option unchecked at start regardless of actual value. #2261
