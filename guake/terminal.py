@@ -213,6 +213,15 @@ class GuakeTerminal(Vte.Terminal):
         if hasattr(self, "set_alternate_screen_scroll"):
             self.set_alternate_screen_scroll(True)
 
+        enable_sixel = client.get_boolean("use-sixel")
+        if enable_sixel:
+            # TODO: Once Sixel support is stable and there's a release with it built-in by default,
+            # we can use a version check like done above for other features.
+            try:
+                self.set_enable_sixel(True)
+            except:  # pylint: disable=bare-except
+                log.warn("set_enable_sixel is not supported by your version of VTE")
+
         self.set_can_default(True)
         self.set_can_focus(True)
 
