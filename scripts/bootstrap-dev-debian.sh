@@ -44,13 +44,16 @@ if [[ $RUN == "1" ]]; then
         libutempter0 \
         python3 \
         python3-cairo \
+        python3-dev \
         python3-dbus \
         python3-gi \
         python3-setuptools-scm \
         python3-pip \
-        libgirepository1.0-dev
+        libgirepository1.0-dev \
+        libcairo2-dev \
+        pkg-config
 fi
-
+ 
 if [[ $MAKE == "1" ]]; then
     echo "Install packages needed for making guake"
     sudo apt-get install --no-install-recommends -y \

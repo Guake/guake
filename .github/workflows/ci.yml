@@ -38,7 +38,6 @@ jobs:
           sudo apt update -q
           yes | sudo ./scripts/bootstrap-dev-debian.sh
           ./scripts/bootstrap-dev-pip.sh system
-          #sudo apt install --no-install-recommends -y xvfb gir1.2-gtk-3.0 python3-gi python3-gi-cairo gir1.2-wnck-3.0 gobject-introspection libgirepository1.0-dev
 
           export DISPLAY=:99.0
 
@@ -87,6 +86,7 @@ jobs:
       - name: Publish distribution 📦 to Test PyPI
         uses: pypa/gh-action-pypi-publish@release/v1
         with:
-          verify_metadata: false
+          verify-metadata: false
+          verbose: true
           password: ${{ secrets.TEST_PYPI_API_TOKEN }}
-          repository_url: https://test.pypi.org/legacy/
+          repository-url: https://test.pypi.org/legacy/
