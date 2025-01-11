@@ -453,13 +453,44 @@ class PrefsCallbacks:
 
     def on_window_height_value_changed(self, hscale):
         """Changes the value of window_height in dconf"""
+        self.settings.general.set_boolean("window-pixel-or-scale-update", True)
         val = hscale.get_value()
         self.settings.general.set_int("window-height", int(val))
 
+        value = self.settings.general.get_int("window-pixel-height")
+        self.prefDlg.get_widget("window_vertical_dimension").set_value(value)
+
     def on_window_width_value_changed(self, wscale):
         """Changes the value of window_width in dconf"""
+        self.settings.general.set_boolean("window-pixel-or-scale-update", True)
         val = wscale.get_value()
         self.settings.general.set_int("window-width", int(val))
+
+        value = self.settings.general.get_int("window-pixel-width")
+        self.prefDlg.get_widget("window_horizontal_dimension").set_value(value)
+
+    def on_window_vertical_dimension_value_changed(self, spin):
+        """Changes the value of window-vertical-displacement"""
+        self.settings.general.set_boolean("window-pixel-or-scale-update", False)
+        max_value = self.settings.general.get_int("max-window-pixel-height")
+        val = int(spin.get_value())
+        if val <= max_value:
+            self.settings.general.set_int("window-pixel-height", val)
+
+            value = self.settings.general.get_int("window-height")
+            self.prefDlg.get_widget("window_height").set_value(value)
+
+    def on_window_horizontal_dimension_value_changed(self, spin):
+        """Changes the value of window-horizontal-displacement"""
+        self.settings.general.set_boolean("window-pixel-or-scale-update", False)
+        max_value = int(self.settings.general.get_int("max-window-pixel-width"))
+        val = int(spin.get_value())
+
+        if val <= max_value:
+            self.settings.general.set_int("window-pixel-width", val)
+
+            value = self.settings.general.get_int("window-width")
+            self.prefDlg.get_widget("window_width").set_value(value)
 
     def on_window_halign_value_changed(self, halign_button):
         """Changes the value of window_halignment in dconf"""
@@ -633,6 +664,7 @@ class PrefsCallbacks:
         """Changes the value of window-horizontal-displacement"""
         self.settings.general.set_int("window-horizontal-displacement", int(spin.get_value()))
 
+
     def reload_erase_combos(self, btn=None):
         self.prefDlg.reload_erase_combos(btn)
 
@@ -739,6 +771,7 @@ class PrefsDialog(SimpleGladeApp):
         self.populate_gtk_theme_names()
         self.load_configs()
         self.get_widget("config-window").hide()
+
 
     def spawn_sync_pid(self, directory=None, terminal=None):
         argv = []
@@ -1148,6 +1181,14 @@ class PrefsDialog(SimpleGladeApp):
         value = self.settings.general.get_int("window-width")
         self.get_widget("window_width").set_value(value)
 
+        value = self.settings.general.get_int("window-pixel-height")
+        max_value = self.settings.general.get_int("max-window-pixel-height")
+        self.get_widget("window_vertical_dimension").set_value(value)
+        self.get_widget("window_vertical_dimension").set
+
+        value = self.settings.general.get_int("window-pixel-width")
+        self.get_widget("window_horizontal_dimension").set_value(value)
+
         # window displacements
         value = self.settings.general.get_int("window-vertical-displacement")
         self.get_widget("window_vertical_displacement").set_value(value)
@@ -1306,6 +1347,7 @@ class PrefsDialog(SimpleGladeApp):
 
         # it's a separated method, to be reused.
         self.reload_erase_combos()
+
 
         # custom command context-menu configuration file
         custom_command_file = self.settings.general.get_string("custom-command-file")
