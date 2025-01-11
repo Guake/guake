@@ -172,7 +172,7 @@ class TerminalNotebook(Gtk.Notebook):
         # ref: epiphany
         css_provider = Gtk.CssProvider()
         css_provider.load_from_data(
-            b"#popover-window list { border-style: none; background-color: transparent; }"
+            b"#popover-window list { border-style: none; background-color: transparent; }" 
         )
         Gtk.StyleContext.add_provider_for_screen(
             Gdk.Screen.get_default(),
@@ -375,6 +375,11 @@ class TerminalNotebook(Gtk.Notebook):
             root_terminal_box, None, position if position is not None else -1
         )
         self.set_tab_reorderable(root_terminal_box, True)
+
+   
+
+
+        
         self.show_all()  # needed to show newly added tabs and pages
         # this is needed because self.window.show_all() results in showing every
         # thing which includes the scrollbar too
@@ -471,6 +476,27 @@ class TerminalNotebook(Gtk.Notebook):
             if user_set:
                 setattr(page, "custom_label_set", new_text != "-")
 
+    def color_page(self, page_index, color, user_set=False):
+        page = self.get_nth_page(page_index)
+        #page.set_name("tab-label")
+        label = self.get_tab_label(page)
+        text_color =  '#FFFFFF' if  (color.red * 0.299 + color.green * 0.587 + color.blue * 0.114) > 186 else '#000000'
+        label.set_name("tab-label" + str(page_index))
+        css =  """notebook #tab-label{page_index} {{border:none; background-color: rgba({red}, {green}, {blue}, 1);  color: {text_color}; }}""".format(page_index=page_index, 
+                                                                                                                                                       red=color.red *255, green=color.green*255, blue=color.blue*255,
+                                                                                                                                                         text_color=text_color
+                                                                                                                                                       ).encode()
+   
+        css_provider = Gtk.CssProvider()
+        css_provider.load_from_data(css)
+        
+        Gtk.StyleContext().add_provider_for_screen(
+            Gdk.Screen.get_default(),
+            css_provider,
+            Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION,
+        )
+
+  
     def find_tab_index_by_label(self, eventbox):
         for index, tab_eventbox in enumerate(self.iter_tabs()):
             if eventbox is tab_eventbox:
