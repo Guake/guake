@@ -702,7 +702,10 @@ class Guake(SimpleGladeApp):
 
         # move the window even when in fullscreen-mode
         log.debug("Moving window to: %r", window_rect)
-        self.window.move(window_rect.x, window_rect.y)
+
+        # Queue layout updates and defer positioning to prevent drift
+        self.window.queue_resize()
+        GLib.idle_add(lambda: self.window.move(window_rect.x, window_rect.y) and False)
 
         # this works around an issue in fluxbox
         if not self.fullscreen_manager.is_fullscreen():

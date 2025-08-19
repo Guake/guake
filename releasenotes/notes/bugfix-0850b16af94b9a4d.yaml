@@ -1,0 +1,6 @@
+
+fixes:
+  - |
+    Fixed window position drift during visibility toggles. The window would
+    gradually move down and sideways with each show/hide cycle. Window positioning
+    is now properly deferred until after widget layout is complete. #2184
