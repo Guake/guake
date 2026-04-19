@@ -1,0 +1,33 @@
+version: '3.8'
+
+services:
+  guake:
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
+    image: guake:dev
+    container_name: guake-dev
+
+    # Enable interactive terminal
+    stdin_open: true
+    tty: true
+
+    # Mount X11 socket for display (Linux)
+    volumes:
+      - /tmp/.X11-unix:/tmp/.X11-unix:rw
+      - ${PWD}:/guake:rw
+      - /etc/localtime:/etc/localtime:ro
+
+    # Set display for X11 forwarding
+    environment:
+      - DISPLAY=${DISPLAY}
+      - PYTHONUNBUFFERED=1
+
+    # Allow running GUI applications
+    network_mode: "host"
+
+    # Keep container running
+    command: /bin/bash
+
+    # Run as root for now (can be restricted later)
+    # user: guake
