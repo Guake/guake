@@ -822,7 +822,7 @@ class Guake(SimpleGladeApp):
         self.settings.general.triggerOnChangedValue(
             self.settings.general, "window-ontop", user_data=user_data
         )
-        if not self.fullscreen_manager.is_fullscreen():
+        if not self.fullscreen_manager.is_fullscreen() and not terminal_uuid:
             self.settings.general.triggerOnChangedValue(
                 self.settings.general, "window-height", user_data=user_data
             )
