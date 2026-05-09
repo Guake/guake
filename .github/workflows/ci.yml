@@ -60,14 +60,8 @@ jobs:
           make generate-paths
           rm -rf test-rtd
 
-      - uses: Thog/action-equals@v1
-        id: isLatest
-        with:
-          a: ${{ matrix.python-version }}
-          b: 3.9
-
       - name: Store dists (Python 3.9)
-        if: steps.isLatest.outputs.result
+        if: ${{ matrix.python-version == 3.9 }}
         uses: actions/upload-artifact@v4
         with:
           name: dist
