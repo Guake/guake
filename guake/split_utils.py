@@ -24,6 +24,7 @@ gi.require_version("Gtk", "3.0")
 from gi.repository import Gtk
 from guake.boxes import DualTerminalBox
 from guake.boxes import RootTerminalBox
+from guake.boxes import swap_terminal_boxes
 
 
 class FocusMover:
@@ -35,64 +36,101 @@ class FocusMover:
         self.window = window
 
     def move_right(self, terminal):
-        window_width, window_height = self.window.get_size()
+        term = self.find_right(terminal)
+        if term is not None:
+            term.grab_focus()
+
+    def move_left(self, terminal):
+        term = self.find_left(terminal)
+        if term is not None:
+            term.grab_focus()
+
+    def move_up(self, terminal):
+        term = self.find_up(terminal)
+        if term is not None:
+            term.grab_focus()
+
+    def move_down(self, terminal):
+        term = self.find_down(terminal)
+        if term is not None:
+            term.grab_focus()
+
+    def find_right(self, terminal):
+        window_width, _ = self.window.get_size()
         tx, ty, tw, th = self.list_allocation(terminal)
 
         if tx + tw == window_width:
-            return
+            return None
 
         search_x = tx + tw + FocusMover.THRESHOLD
         search_y = ty + (th / 2) - FocusMover.BORDER_THICKNESS
-        for term in terminal.get_parent().get_root_box().iter_terminals():
-            sx, sy, sw, sh = self.list_allocation(term)
-            if sx <= search_x <= sx + sw and sy <= search_y <= sy + sh:
-                term.grab_focus()
+        return self.find_at(terminal, search_x, search_y)
 
-    def move_left(self, terminal):
-        window_width, window_height = self.window.get_size()
+    def find_left(self, terminal):
         tx, ty, tw, th = self.list_allocation(terminal)
 
         if tx == 0:
-            return
+            return None
 
         search_x = tx - FocusMover.THRESHOLD
         search_y = ty + (th / 2) - FocusMover.BORDER_THICKNESS
-        for term in terminal.get_parent().get_root_box().iter_terminals():
-            sx, sy, sw, sh = self.list_allocation(term)
-            if sx <= search_x <= sx + sw and sy <= search_y <= sy + sh:
-                term.grab_focus()
+        return self.find_at(terminal, search_x, search_y)
 
-    def move_up(self, terminal):
-        window_width, window_height = self.window.get_size()
+    def find_up(self, terminal):
         tx, ty, tw, th = self.list_allocation(terminal)
         if ty == 0:
-            return
+            return None
 
         search_x = tx + (tw / 2) - FocusMover.BORDER_THICKNESS
         search_y = ty - FocusMover.THRESHOLD
-        for term in terminal.get_parent().get_root_box().iter_terminals():
-            sx, sy, sw, sh = self.list_allocation(term)
-            if sx <= search_x <= sx + sw and sy <= search_y <= sy + sh:
-                term.grab_focus()
+        return self.find_at(terminal, search_x, search_y)
 
-    def move_down(self, terminal):
-        window_width, window_height = self.window.get_size()
+    def find_down(self, terminal):
+        _, window_height = self.window.get_size()
         tx, ty, tw, th = self.list_allocation(terminal)
 
         if ty + th == window_height:
-            return
+            return None
 
         search_x = tx + (tw / 2) - FocusMover.BORDER_THICKNESS
         search_y = ty + th + FocusMover.THRESHOLD
+        return self.find_at(terminal, search_x, search_y)
+
+    def find_at(self, terminal, search_x, search_y):
         for term in terminal.get_parent().get_root_box().iter_terminals():
+            if term is terminal:
+                continue
             sx, sy, sw, sh = self.list_allocation(term)
             if sx <= search_x <= sx + sw and sy <= search_y <= sy + sh:
-                term.grab_focus()
+                return term
+        return None
 
     def list_allocation(self, terminal):
         terminal_rect = terminal.get_parent().get_allocation()
         x, y = terminal.get_parent().translate_coordinates(self.window, 0, 0)
         return x, y, terminal_rect.width, terminal_rect.height
+
+
+class PaneMover(FocusMover):
+    def move_right(self, terminal):
+        self.move_to_neighbor(terminal, self.find_right(terminal))
+
+    def move_left(self, terminal):
+        self.move_to_neighbor(terminal, self.find_left(terminal))
+
+    def move_up(self, terminal):
+        self.move_to_neighbor(terminal, self.find_up(terminal))
+
+    def move_down(self, terminal):
+        self.move_to_neighbor(terminal, self.find_down(terminal))
+
+    def move_to_neighbor(self, terminal, neighbor):
+        if neighbor is None:
+            return False
+
+        swap_terminal_boxes(terminal.get_parent(), neighbor.get_parent())
+        terminal.grab_focus()
+        return True
 
 
 class SplitMover:

@@ -24,12 +24,14 @@ from collections import defaultdict
 import gi
 
 gi.require_version("Gtk", "3.0")
+gi.require_version("Gdk", "3.0")
 from gi.repository import Gdk
 from gi.repository import Gtk
 
 from guake import notifier
 from guake.common import pixmapfile
 from guake.split_utils import FocusMover
+from guake.split_utils import PaneMover
 from guake.split_utils import SplitMover
 
 log = logging.getLogger(__name__)
@@ -152,6 +154,42 @@ class Keybindings:
                 "focus-terminal-left",
                 (
                     lambda *args: FocusMover(self.guake.window).move_left(
+                        self.guake.get_notebook().get_current_terminal()
+                    )
+                    or True
+                ),
+            ),
+            (
+                "move-terminal-pane-up",
+                (
+                    lambda *args: PaneMover(self.guake.window).move_up(
+                        self.guake.get_notebook().get_current_terminal()
+                    )
+                    or True
+                ),
+            ),
+            (
+                "move-terminal-pane-down",
+                (
+                    lambda *args: PaneMover(self.guake.window).move_down(
+                        self.guake.get_notebook().get_current_terminal()
+                    )
+                    or True
+                ),
+            ),
+            (
+                "move-terminal-pane-left",
+                (
+                    lambda *args: PaneMover(self.guake.window).move_left(
+                        self.guake.get_notebook().get_current_terminal()
+                    )
+                    or True
+                ),
+            ),
+            (
+                "move-terminal-pane-right",
+                (
+                    lambda *args: PaneMover(self.guake.window).move_right(
                         self.guake.get_notebook().get_current_terminal()
                     )
                     or True

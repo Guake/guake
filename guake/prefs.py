@@ -27,6 +27,7 @@ from textwrap import dedent
 import gi
 
 gi.require_version("Gtk", "3.0")
+gi.require_version("Gdk", "3.0")
 gi.require_version("Vte", "2.91")  # vte-0.38
 from gi.repository import GLib
 from gi.repository import Gdk
@@ -120,6 +121,10 @@ HOTKEYS = [
             {"key": "focus-terminal-down", "label": _("Focus terminal below")},
             {"key": "focus-terminal-left", "label": _("Focus terminal on the left")},
             {"key": "focus-terminal-right", "label": _("Focus terminal on the right")},
+            {"key": "move-terminal-pane-up", "label": _("Move terminal pane up")},
+            {"key": "move-terminal-pane-down", "label": _("Move terminal pane down")},
+            {"key": "move-terminal-pane-left", "label": _("Move terminal pane left")},
+            {"key": "move-terminal-pane-right", "label": _("Move terminal pane right")},
             {
                 "key": "move-terminal-split-up",
                 "label": _("Move the terminal split handle up"),

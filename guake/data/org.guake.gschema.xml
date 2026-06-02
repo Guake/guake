@@ -633,6 +633,26 @@
             <summary>Focus terminal on the left.</summary>
             <description>Focus terminal on the left.</description>
         </key>
+        <key name="move-terminal-pane-up" type="s">
+            <default>''</default>
+            <summary>Move terminal pane up.</summary>
+            <description>Move terminal pane up.</description>
+        </key>
+        <key name="move-terminal-pane-down" type="s">
+            <default>''</default>
+            <summary>Move terminal pane down.</summary>
+            <description>Move terminal pane down.</description>
+        </key>
+        <key name="move-terminal-pane-left" type="s">
+            <default>''</default>
+            <summary>Move terminal pane left.</summary>
+            <description>Move terminal pane left.</description>
+        </key>
+        <key name="move-terminal-pane-right" type="s">
+            <default>''</default>
+            <summary>Move terminal pane right.</summary>
+            <description>Move terminal pane right.</description>
+        </key>
         <key name="move-terminal-split-up" type="s">
             <default>''</default>
             <summary>Move the terminal split handle up.</summary>
