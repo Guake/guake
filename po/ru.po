@@ -6,6 +6,7 @@
 # Pavel Alexeev <pahan@hubbitus.info>, 2010.
 # Notes and help by Igor (nick igorsub) <igor6130@gmail.com>, 2010
 # Ivan Komaritsyn <vantu5z@mail.ru>, 2015-2017.
+# Aleksandr Ermoshkin <mrstuzer@gmail.com>, 2026.
 #
 msgid ""
 msgstr ""
@@ -405,7 +406,7 @@ msgstr ""
 
 #: ../guake/data/prefs.glade.h:77
 msgid "Editor command line:"
-msgstr "Команда для Редактора:"
+msgstr "Команда для редактора:"
 
 #: ../guake/data/prefs.glade.h:79
 #, no-c-format
@@ -508,7 +509,7 @@ msgid ""
 "<small>In this dialog you can attach your own command or script to various "
 "guake events</small>"
 msgstr ""
-"<small>В этом диалоге можно задать свою команду или скрипт для разных "
+"<small>В этом диалоговом окне вы можете задать свою команду или скрипт для разных "
 "событий guake</small>"
 
 #: ../guake/data/prefs.glade.h:102
@@ -985,7 +986,7 @@ msgstr "I-вида"
 
 #: guake/data/prefs.glade:1425
 msgid "Underline"
-msgstr "Подчёркивание"
+msgstr "Нижнее подчёркивание"
 
 #: guake/data/prefs.glade:1443
 msgid "Follow GTK+ setting"
@@ -1025,7 +1026,7 @@ msgstr "ASCII DEL"
 
 #: guake/data/prefs.glade:2443 guake/data/prefs.glade:2463
 msgid "Escape sequence"
-msgstr "Последовательность Escape"
+msgstr "Escape последовательность"
 
 #: guake/data/prefs.glade:2444 guake/data/prefs.glade:2464
 msgid "Control-H"
@@ -1387,7 +1388,7 @@ msgstr "Запуск и вкладки (экспериментально)"
 #, python-brace-format
 msgid ""
 "Your {session_filename} file is broken, backup to {session_filename}.bak"
-msgstr "Ваш файл {session_filename} сломан, возврат к {session_filename}.bak"
+msgstr "Ваш файл {session_filename} поврежден, возврат к {session_filename}.bak"
 
 #: guake/guake_app.py:1227
 #, python-brace-format
@@ -1395,7 +1396,7 @@ msgid ""
 "Your {session_filename} schema is broken, backup to {0}.bak,and error "
 "message has been saved to {session_filename}.log.err"
 msgstr ""
-"Ваша схема {session_filename} сломана, возврат к {0}.bak, сообщение об "
+"Ваша схема {session_filename} повреждена, возврат к {0}.bak, сообщение об "
 "ошибке сохранено в {session_filename}.log.err"
 
 #: guake/guake_app.py:1227
@@ -1404,7 +1405,7 @@ msgid ""
 "Your {session_filename} schema is broken, backup to {session_filename}.bak,"
 "and error message has been saved to {session_filename}.log.err."
 msgstr ""
-"Ваша схема {session_filename} сломана, возврат к {session_filename}.bak, "
+"Ваша схема {session_filename} повреждена, возврат к {session_filename}.bak, "
 "сообщение об ошибке сохранено в {session_filename}.log.err."
 
 #: guake/guake_app.py:1227
@@ -1413,7 +1414,7 @@ msgid ""
 "Your {session_filename} schema is broken, backup to {session_filename}.bak, "
 "and error message has been saved to {session_filename}.log.err."
 msgstr ""
-"Ваша схема {session_filename} сломана, возврат к {session_filename}.bak, "
+"Ваша схема {session_filename} повреждена, возврат к {session_filename}.bak, "
 "сообщение об ошибке сохранено в {session_filename}.log.err."
 
 #: guake/notebook.py:317
@@ -1540,24 +1541,24 @@ msgstr "Копировать URL"
 
 #: guake/main.py:362
 msgid "Show support information"
-msgstr ""
+msgstr "Показать информацию о поддержке"
 
 #: guake/data/prefs.glade:19
 #, fuzzy
 msgid "Scale"
-msgstr "Масштаб"
+msgstr "Масштабировать"
 
 #: guake/data/prefs.glade:23
 msgid "Tile"
-msgstr ""
+msgstr "Замостить"
 
 #: guake/data/prefs.glade:31
 msgid "Stretch"
-msgstr ""
+msgstr "Растянуть"
 
 #: guake/data/prefs.glade:472
 msgid "Copy on select"
-msgstr ""
+msgstr "Копировать при выделении"
 
 #: guake/data/prefs.glade:517
 #, fuzzy
@@ -1577,7 +1578,7 @@ msgstr "Пожалуйста, выберите файл JSON"
 #: guake/data/prefs.glade:938
 #, fuzzy
 msgid "Hide tab bar if there is only one tab"
-msgstr "Скрыть панель вкладок, если имеется только одна вкладка"
+msgstr "Скрыть панель вкладок, если используется только одна вкладка"
 
 #: guake/data/prefs.glade:1929
 #, fuzzy
@@ -1595,13 +1596,21 @@ msgid ""
 "Text.\n"
 "</i></small>"
 msgstr ""
+"<small><i>Используйте следующие элементы в командной строке открытия редактора:\n"
+"- <b>%(file_path)s</b>: путь к файлу, на который был выполнен клик\n"
+"- <b>%(line_number)s</b>: если ваш редактор поддерживает эту функцию, вы можете сразу открыть "
+"файл на определённой строке, если она найдена на экране.\n"
+"Например, используйте <b>subl %(file_path)s:%(line_number)s</b> для Sublime "
+"Text.\n"
+"</i></small>"
 
 #: guake/data/prefs.glade:2879
 msgid ""
 "<small>In this dialog you can attach your own command or script to various "
 "Guake events</small>"
 msgstr ""
-
+"<small>В этом диалоге вы можете добавить вашу кломанду или скрипт для различных "
+"событий Guake</small>"
 #: guake/data/prefs.glade:3008
 msgid ""
 "<small><i><b>Note:</b> These options may cause some applications to behave "
@@ -1609,34 +1618,37 @@ msgid ""
 "applications and operating systems that expect different terminal behavior.</"
 "i></small>"
 msgstr ""
-
+"<small><i><b>Примечание:</b> Эти параметры могут привести к некорректной "
+"работе некоторых приложений. Они предусмотрены только для того, чтобы вы могли "
+"обойти ограничения отдельных приложений и операционных систем, которые ожидают "
+"иного поведения терминала.</i></small>"
 #: guake/prefs.py:144
 msgid "Go to previous tab (alternative)"
-msgstr ""
+msgstr "Перейти к предыдущей вкладке (альтернативно)"
 
 #: guake/prefs.py:146
 msgid "Go to next tab (alternative)"
-msgstr ""
+msgstr "Перейти к следующей вкладке (альтернативно)"
 
 #: guake/menus.py:97
 msgid "Split |"
-msgstr ""
+msgstr "Раделитель |"
 
 #: guake/main.py:130
 msgid "Return 1 if Guake is visible, 0 otherwise"
-msgstr ""
+msgstr "Вернуть 1 если Guake виден, иначе 0"
 
 #: guake/data/prefs.glade:1003
 msgid "Lazy hide on lose focus"
-msgstr ""
+msgstr "Ленивое скрытие при потере фокуса"
 
 #: guake/data/prefs.glade:2135
 msgid "Line Height Scale (VTE >= 0.52)"
-msgstr ""
+msgstr "Межстрочный интервал (VTE >= 0.52)"
 
 #: guake/data/prefs.glade:2172
 msgid "Line Width Scale (VTE >= 0.52)"
-msgstr ""
+msgstr "Ширина строки (VTE >= 0.52)"
 
 #~ msgid "Path to script executed on Guake start:"
 #~ msgstr "Путь к скрипту, запускаемому при старте Guake:"
