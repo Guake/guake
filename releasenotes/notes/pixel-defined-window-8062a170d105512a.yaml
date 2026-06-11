@@ -1,0 +1,7 @@
+release_summary: >
+  Terminal window size is set by pixel rather than solely by the sliding scale in the preferences window.
+
+features:
+  - |
+      - Terminal window size can be configured in the preferences window by explicit pixel dimensions
+
