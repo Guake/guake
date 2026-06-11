@@ -342,7 +342,7 @@
                                     <property name="top-padding">12</property>
                                     <property name="left-padding">12</property>
                                     <child>
-                                      <!-- n-columns=3 n-rows=5 -->
+                                      <!-- n-columns=3 n-rows=6 -->
                                       <object class="GtkGrid">
                                         <property name="visible">True</property>
                                         <property name="can-focus">False</property>
@@ -532,6 +532,28 @@
                                             <property name="left-attach">1</property>
                                             <property name="top-attach">4</property>
                                           </packing>
+                                        </child>
+                                        <child>
+                                          <object class="GtkCheckButton" id="use_sixel">
+                                            <property name="label" translatable="yes">Render sixel escape sequences (images)</property>
+                                            <property name="visible">True</property>
+                                            <property name="can-focus">True</property>
+                                            <property name="receives-default">False</property>
+                                            <property name="halign">start</property>
+                                            <property name="use-underline">True</property>
+                                            <property name="draw-indicator">True</property>
+                                            <signal name="toggled" handler="on_use_sixel_toggled" swapped="no"/>
+                                          </object>
+                                          <packing>
+                                            <property name="left-attach">0</property>
+                                            <property name="top-attach">5</property>
+                                          </packing>
+                                        </child>
+                                        <child>
+                                          <placeholder/>
+                                        </child>
+                                        <child>
+                                          <placeholder/>
                                         </child>
                                         <child>
                                           <placeholder/>
