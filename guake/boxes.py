@@ -5,6 +5,7 @@ import gi
 
 gi.require_version("Vte", "2.91")  # vte-0.42
 gi.require_version("Gtk", "3.0")
+gi.require_version("Gdk", "3.0")
 from gi.repository import GObject
 from gi.repository import Gdk
 from gi.repository import Gio
@@ -41,6 +42,15 @@ class TerminalHolder:
         raise NotImplementedError
 
     def replace_child(self, old, new):
+        raise NotImplementedError
+
+    def get_child_position(self, child):
+        raise NotImplementedError
+
+    def detach_child(self, child, temporary_parent):
+        raise NotImplementedError
+
+    def attach_detached_child(self, position, child):
         raise NotImplementedError
 
     def get_guake(self):
@@ -170,10 +180,17 @@ class RootTerminalBox(Gtk.Overlay, TerminalHolder):
             yield from self.get_child().iter_terminals()
 
     def replace_child(self, old, new):
+        position = self.get_child_position(old)
         self.remove(old)
-        self.set_child(new)
+        self.child = None
+        self._set_child_at_position(position, new)
 
     def set_child(self, terminal_holder):
+        self._set_child_at_position(0, terminal_holder)
+
+    def _set_child_at_position(self, position, terminal_holder):
+        if position != 0:
+            raise RuntimeError(f"Error adding child at root position {position}")
         if isinstance(terminal_holder, TerminalHolder):
             self.child = terminal_holder
             self.add(self.child)
@@ -182,6 +199,23 @@ class RootTerminalBox(Gtk.Overlay, TerminalHolder):
 
     def get_child(self):
         return self.child
+
+    def get_child_position(self, child):
+        if self.child is child:
+            return 0
+        raise RuntimeError("RootTerminalBox: unknown child")
+
+    def detach_child(self, child, temporary_parent):
+        position = self.get_child_position(child)
+        child.reparent(temporary_parent)
+        self.child = None
+        return position
+
+    def attach_detached_child(self, position, child):
+        if position != 0:
+            raise RuntimeError(f"Error adding child at root position {position}")
+        self.child = child
+        child.reparent(self)
 
     def get_guake(self):
         return self.guake
@@ -587,14 +621,32 @@ class DualTerminalBox(Gtk.Paned, TerminalHolder):
         yield from self.get_child2().iter_terminals()
 
     def replace_child(self, old, new):
-        if self.get_child1() is old:
-            self.remove(old)
-            self.set_child_first(new)
-        elif self.get_child2() is old:
-            self.remove(old)
-            self.set_child_second(new)
+        position = self.get_child_position(old)
+        self.remove(old)
+        self._set_child_at_position(position, new)
+
+    def get_child_position(self, child):
+        if self.get_child1() is child:
+            return 1
+        if self.get_child2() is child:
+            return 2
+        raise RuntimeError("DualTerminalBox: unknown child")
+
+    def detach_child(self, child, temporary_parent):
+        position = self.get_child_position(child)
+        child.reparent(temporary_parent)
+        return position
+
+    def attach_detached_child(self, position, child):
+        child.reparent(self)
+
+    def _set_child_at_position(self, position, child):
+        if position == 1:
+            self.set_child_first(child)
+        elif position == 2:
+            self.set_child_second(child)
         else:
-            print("I have never seen this widget!")
+            raise RuntimeError(f"DualTerminalBox: unknown child position {position}")
 
     def get_guake(self):
         return self.get_parent().get_guake()
@@ -634,6 +686,29 @@ class DualTerminalBox(Gtk.Paned, TerminalHolder):
             self.grab_box_terminal_focus(living_child)
         else:
             print("I have never seen this widget!")
+
+
+@save_tabs_when_changed
+def swap_terminal_boxes(first, second):
+    if first is second:
+        return
+
+    temporary_parent = Gtk.Box()
+    first_parent = first.get_parent()
+    second_parent = second.get_parent()
+    first_position = first_parent.detach_child(first, temporary_parent)
+    second_position = second_parent.detach_child(second, temporary_parent)
+
+    if first_parent is second_parent:
+        reattachments = (
+            (first_position, second),
+            (second_position, first),
+        )
+        for position, child in sorted(reattachments, key=lambda item: item[0]):
+            first_parent.attach_detached_child(position, child)
+    else:
+        first_parent.attach_detached_child(first_position, second)
+        second_parent.attach_detached_child(second_position, first)
 
 
 class TabLabelEventBox(Gtk.EventBox):

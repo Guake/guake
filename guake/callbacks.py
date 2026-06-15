@@ -1,6 +1,7 @@
 import gi
 
 gi.require_version("Gtk", "3.0")
+gi.require_version("Gdk", "3.0")
 from gi.repository import Gdk
 from gi.repository import Gtk
 from guake.about import AboutDialog
@@ -92,6 +93,26 @@ class TerminalContextMenuCallbacks:
 
     def on_split_horizontal(self, *args):
         self.terminal.get_parent().split_h(50)
+
+    def on_move_pane_up(self, *args):
+        from guake.split_utils import PaneMover
+
+        PaneMover(self.window).move_up(self.terminal)
+
+    def on_move_pane_down(self, *args):
+        from guake.split_utils import PaneMover
+
+        PaneMover(self.window).move_down(self.terminal)
+
+    def on_move_pane_left(self, *args):
+        from guake.split_utils import PaneMover
+
+        PaneMover(self.window).move_left(self.terminal)
+
+    def on_move_pane_right(self, *args):
+        from guake.split_utils import PaneMover
+
+        PaneMover(self.window).move_right(self.terminal)
 
     def on_close_terminal(self, *args):
         self.terminal.kill()
