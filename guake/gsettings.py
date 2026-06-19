@@ -89,6 +89,7 @@ class GSettingHandler:
         settings.general.onChangedValue("max-tab-name-length", self.max_tab_name_length_changed)
         settings.general.onChangedValue("display-tab-names", self.display_tab_names_changed)
         settings.general.onChangedValue("hide-tabs-if-one-tab", self.hide_tabs_if_one_tab_changed)
+        settings.general.onChangedValue("display-tab-activity", self.display_tab_activity_changed)
 
     def custom_command_file_changed(self, settings, key, user_data):
         self.guake.load_custom_commands()
@@ -475,3 +476,11 @@ class GSettingHandler:
         be called and will show/hide the tab bar if necessary
         """
         self.guake.get_notebook().hide_tabbar_if_one_tab()
+
+    def display_tab_activity_changed(self, settings, key, user_data):
+        """If the gconf var display-tab-activity was disabled, clear any
+        activity highlights that are currently shown on tabs.
+        """
+        if not settings.get_boolean(key):
+            for notebook in self.guake.notebook_manager.iter_notebooks():
+                notebook.clear_all_tab_activity()
