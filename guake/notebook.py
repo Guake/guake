@@ -36,6 +36,7 @@ from guake.utils import save_tabs_when_changed
 
 import gi
 import os
+import time
 
 gi.require_version("Gtk", "3.0")
 gi.require_version("Wnck", "3.0")
@@ -90,6 +91,9 @@ class TerminalNotebook(Gtk.Notebook):
         self.notebook_on_button_press_id = self.connect(
             "button-press-event", self.on_button_press, None
         )
+        # Clear the activity highlight from a tab once it becomes the current one.
+        self._activity_last_page = None
+        self.connect("switch-page", self.on_switch_page)
 
         # Action box
         self.pin_button = Gtk.ToggleButton(
@@ -371,6 +375,12 @@ class TerminalNotebook(Gtk.Notebook):
             terminal_box.set_terminal(terminal)
         root_terminal_box = RootTerminalBox(self.guake, self)
         root_terminal_box.set_child(terminal_box)
+        # Ignore activity on a freshly created tab for a grace period, so the
+        # initial shell prompt (especially on session restore) does not light up
+        # every background tab at once.
+        if self.guake:
+            grace = self.guake.settings.general.get_double("tab-activity-new-tab-grace")
+            root_terminal_box.activity_ignore_until = time.monotonic() + grace
         page_num = self.insert_page(
             root_terminal_box, None, position if position is not None else -1
         )
@@ -408,6 +418,7 @@ class TerminalNotebook(Gtk.Notebook):
             "key-press-event",
             lambda x, y: self.guake.accel_group.activate(x, y) if self.guake.accel_group else False,
         )
+        terminal.connect("contents-changed", self.on_terminal_activity)
         if not isinstance(directory, str):
             directory = os.environ["HOME"]
             try:
@@ -426,6 +437,49 @@ class TerminalNotebook(Gtk.Notebook):
         log.info("Spawning new terminal at %s", directory)
         terminal.spawn_sync_pid(directory)
         return terminal
+
+    def on_terminal_activity(self, terminal):
+        """Highlight a background tab's title when its terminal produces output."""
+        if not getattr(self, "guake", None):
+            return
+        if not self.guake.settings.general.get_boolean("display-tab-activity"):
+            return
+        page_index = self.find_page_index_by_terminal(terminal)
+        if page_index < 0 or page_index == self.get_current_page():
+            return
+        page = self.get_nth_page(page_index)
+        if time.monotonic() < getattr(page, "activity_ignore_until", 0):
+            return
+        label = self.get_tab_label(page)
+        if hasattr(label, "set_activity"):
+            label.set_activity(True)
+
+    def on_switch_page(self, notebook, page, page_num):
+        """Clear the highlight from the tab being switched to, and start a short
+        grace period on the tab that just lost focus."""
+        previous_page = self._activity_last_page
+        self._activity_last_page = page
+        if previous_page is not None and previous_page is not page and getattr(
+            self, "guake", None
+        ):
+            grace = self.guake.settings.general.get_double("tab-activity-focus-loss-grace")
+            # Never shorten an existing (e.g. longer new-tab) grace: on session
+            # restore every tab briefly becomes current, and clobbering the
+            # creation grace with this one would let the startup burst through.
+            previous_page.activity_ignore_until = max(
+                getattr(previous_page, "activity_ignore_until", 0),
+                time.monotonic() + grace,
+            )
+        label = self.get_tab_label(page)
+        if hasattr(label, "set_activity"):
+            label.set_activity(False)
+
+    def clear_all_tab_activity(self):
+        """Remove activity highlights from every tab (e.g. when the feature is
+        disabled)."""
+        for label in self.iter_tabs():
+            if hasattr(label, "set_activity"):
+                label.set_activity(False)
 
     def terminal_attached(self, terminal):
         terminal.emit("focus", Gtk.DirectionType.TAB_FORWARD)

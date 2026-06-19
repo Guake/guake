@@ -5,6 +5,7 @@ import gi
 
 gi.require_version("Vte", "2.91")  # vte-0.42
 gi.require_version("Gtk", "3.0")
+from gi.repository import GLib
 from gi.repository import GObject
 from gi.repository import Gdk
 from gi.repository import Gio
@@ -636,10 +637,17 @@ class DualTerminalBox(Gtk.Paned, TerminalHolder):
             print("I have never seen this widget!")
 
 
+# Foreground color applied to a background tab's title when it has unseen
+# activity. Chosen to stay readable on both light and dark tab bars.
+TAB_ACTIVITY_COLOR = "#E8A33D"
+
+
 class TabLabelEventBox(Gtk.EventBox):
     def __init__(self, notebook, text, settings):
         super().__init__()
         self.notebook = notebook
+        self._text = text
+        self._activity = False
         self.box = Gtk.Box(homogeneous=Gtk.Orientation.HORIZONTAL, spacing=0, visible=True)
         self.label = Gtk.Label(label=text, visible=True)
         self.close_button = Gtk.Button(
@@ -656,10 +664,36 @@ class TabLabelEventBox(Gtk.EventBox):
         self.connect("button-press-event", self.on_button_press, self.label)
 
     def set_text(self, text):
-        self.label.set_text(text)
+        self._text = text
+        self._render()
 
     def get_text(self):
-        return self.label.get_text()
+        return self._text
+
+    def set_activity(self, active):
+        """Highlight (or clear) this tab's title to signal unseen output.
+
+        Returns True if the activity state actually changed, so callers can
+        avoid redundant re-rendering on the frequent contents-changed signal.
+        """
+        active = bool(active)
+        if active == self._activity:
+            return False
+        self._activity = active
+        self._render()
+        return True
+
+    def get_activity(self):
+        return self._activity
+
+    def _render(self):
+        if self._activity:
+            self.label.set_markup(
+                f'<span foreground="{TAB_ACTIVITY_COLOR}" weight="bold">'
+                f"{GLib.markup_escape_text(self._text)}</span>"
+            )
+        else:
+            self.label.set_text(self._text)
 
     def grab_focus_on_last_focused_terminal(self):
         server_time = get_server_time(self.notebook.guake.window)

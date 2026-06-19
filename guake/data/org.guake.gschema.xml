@@ -171,6 +171,21 @@
             <summary>Audible bell</summary>
             <description>If true, the system alert sound will be played on a bell character.</description>
         </key>
+        <key name="display-tab-activity" type="b">
+            <default>false</default>
+            <summary>Highlight tabs with activity</summary>
+            <description>If true, the title of a background tab is highlighted when its terminal produces output, until the tab is selected.</description>
+        </key>
+        <key name="tab-activity-new-tab-grace" type="d">
+            <default>3.0</default>
+            <summary>Activity grace period for new tabs</summary>
+            <description>Number of seconds during which activity is ignored on a newly created tab, to avoid highlighting it because of its initial shell prompt.</description>
+        </key>
+        <key name="tab-activity-focus-loss-grace" type="d">
+            <default>1.0</default>
+            <summary>Activity grace period after losing focus</summary>
+            <description>Number of seconds during which activity is ignored on a tab right after it loses focus.</description>
+        </key>
         <key name="window-width" type="i">
             <default>100</default>
             <summary>Window width.</summary>
