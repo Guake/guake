@@ -459,9 +459,7 @@ class TerminalNotebook(Gtk.Notebook):
         grace period on the tab that just lost focus."""
         previous_page = self._activity_last_page
         self._activity_last_page = page
-        if previous_page is not None and previous_page is not page and getattr(
-            self, "guake", None
-        ):
+        if previous_page is not None and previous_page is not page and getattr(self, "guake", None):
             grace = self.guake.settings.general.get_double("tab-activity-focus-loss-grace")
             # Never shorten an existing (e.g. longer new-tab) grace: on session
             # restore every tab briefly becomes current, and clobbering the

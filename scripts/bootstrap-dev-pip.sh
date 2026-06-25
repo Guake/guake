@@ -8,7 +8,7 @@ else
     op="--user "
 fi
 
-python3 -m pip install $op --upgrade \
+python3 -m pip install $op --upgrade --break-system-packages \
     'pip==24.3.1' \
     'pipenv==2024.4.0' \
     || echo "you may need to sudo me !"
