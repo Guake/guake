@@ -1,0 +1,23 @@
+release_summary: >
+  Added indication of activity in non-focused tabs. Added settings for enabling/disabling
+  tab activity indication, and "grace" time intervals for new tab and unfocused tab.
+
+features:
+  - |
+      - add tabs activity indication
+
+known_issues:
+
+upgrade:
+
+deprecations:
+
+security:
+
+fixes:
+
+translations:
+
+notes_for_package_maintainers:
+
+other:
