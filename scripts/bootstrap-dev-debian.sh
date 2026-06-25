@@ -53,7 +53,7 @@ if [[ $RUN == "1" ]]; then
         libcairo2-dev \
         pkg-config
 fi
- 
+
 if [[ $MAKE == "1" ]]; then
     echo "Install packages needed for making guake"
     sudo apt-get install --no-install-recommends -y \
