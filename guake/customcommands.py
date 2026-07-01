@@ -48,7 +48,7 @@ class CustomCommands:
 
     def _load_json(self, file_name):
         if not os.path.exists(file_name):
-            log.error("Custom file does not exit: %s", file_name)
+            log.error("Custom file does not exist: %s", file_name)
             return None
         try:
             with open(file_name, encoding="utf-8") as f:
