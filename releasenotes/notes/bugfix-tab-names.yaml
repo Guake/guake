@@ -1,0 +1,5 @@
+---
+fixes:
+  - |
+    Fix shortened path tab names layout issue (#2321). 
+    Tabs now correctly update their shortened titles regardless of splits layout.
