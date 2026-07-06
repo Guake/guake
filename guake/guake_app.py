@@ -1125,9 +1125,13 @@ class Guake(SimpleGladeApp):
 
         # TODO NOTEBOOK this code only works if there is only one terminal in a
         # page, this need to be rewritten
-        for terminal in self.get_notebook().iter_terminals():
-            page_num = self.get_notebook().page_num(terminal.get_parent())
-            self.get_notebook().rename_page(page_num, self.compute_tab_title(terminal), False)
+        notebook = self.get_notebook()
+        for page_num in range(notebook.get_n_pages()):
+            terminals = notebook.get_terminals_for_page(page_num)
+            if terminals:
+                main_terminal = terminals[0]
+                new_title = self.compute_tab_title(main_terminal)
+                notebook.rename_page(page_num, new_title, False)
 
     def load_cwd_guake_yaml(self, vte) -> dict:
         # Read the content of .guake.yml in cwd
