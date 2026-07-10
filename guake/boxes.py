@@ -640,6 +640,9 @@ class DualTerminalBox(Gtk.Paned, TerminalHolder):
 # Foreground color applied to a background tab's title when it has unseen
 # activity. Chosen to stay readable on both light and dark tab bars.
 TAB_ACTIVITY_COLOR = "#E8A33D"
+# Foreground color applied once unseen activity has gone quiet for a while
+# (see tab-activity-cooldown): still unread, but no longer urgent.
+TAB_ACTIVITY_STALE_COLOR = "#3D8AE8"
 
 
 class TabLabelEventBox(Gtk.EventBox):
@@ -647,7 +650,7 @@ class TabLabelEventBox(Gtk.EventBox):
         super().__init__()
         self.notebook = notebook
         self._text = text
-        self._activity = False
+        self._activity_state = None
         self.box = Gtk.Box(homogeneous=Gtk.Orientation.HORIZONTAL, spacing=0, visible=True)
         self.label = Gtk.Label(label=text, visible=True)
         self.close_button = Gtk.Button(
@@ -676,20 +679,37 @@ class TabLabelEventBox(Gtk.EventBox):
         Returns True if the activity state actually changed, so callers can
         avoid redundant re-rendering on the frequent contents-changed signal.
         """
-        active = bool(active)
-        if active == self._activity:
+        return self.set_activity_state("active" if active else None)
+
+    def set_activity_state(self, state):
+        """Set the activity indicator state: None (no activity), "active"
+        (fresh, unseen output) or "stale" (unseen output, but quiet for a
+        while - see tab-activity-cooldown).
+
+        Returns True if the state actually changed, so callers can avoid
+        redundant re-rendering on the frequent contents-changed signal.
+        """
+        if state == self._activity_state:
             return False
-        self._activity = active
+        self._activity_state = state
         self._render()
         return True
 
     def get_activity(self):
-        return self._activity
+        return self._activity_state is not None
+
+    def get_activity_state(self):
+        return self._activity_state
 
     def _render(self):
-        if self._activity:
+        if self._activity_state == "active":
             self.label.set_markup(
                 f'<span foreground="{TAB_ACTIVITY_COLOR}" weight="bold">'
+                f"{GLib.markup_escape_text(self._text)}</span>"
+            )
+        elif self._activity_state == "stale":
+            self.label.set_markup(
+                f'<span foreground="{TAB_ACTIVITY_STALE_COLOR}" weight="bold">'
                 f"{GLib.markup_escape_text(self._text)}</span>"
             )
         else:

@@ -1,0 +1,25 @@
+release_summary: >
+  Tab activity indicators now fade from an active color to a stale color after
+  a configurable cooldown period of no new output, so long-quiet tabs are
+  visually distinguished from tabs with fresh activity.
+
+features:
+  - |
+      - add a stale/cooldown color stage to tab activity indication, with a
+        configurable "tab-activity-cooldown" setting
+
+known_issues:
+
+upgrade:
+
+deprecations:
+
+security:
+
+fixes:
+
+translations:
+
+notes_for_package_maintainers:
+
+other:

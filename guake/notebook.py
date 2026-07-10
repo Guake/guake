@@ -40,6 +40,7 @@ import time
 
 gi.require_version("Gtk", "3.0")
 gi.require_version("Wnck", "3.0")
+from gi.repository import GLib
 from gi.repository import GObject
 from gi.repository import Gdk
 from gi.repository import Gtk
@@ -93,6 +94,7 @@ class TerminalNotebook(Gtk.Notebook):
         )
         # Clear the activity highlight from a tab once it becomes the current one.
         self._activity_last_page = None
+        self._activity_timer_id = None
         self.connect("switch-page", self.on_switch_page)
 
         # Action box
@@ -450,9 +452,46 @@ class TerminalNotebook(Gtk.Notebook):
         page = self.get_nth_page(page_index)
         if time.monotonic() < getattr(page, "activity_ignore_until", 0):
             return
+        page.activity_last_seen = time.monotonic()
         label = self.get_tab_label(page)
-        if hasattr(label, "set_activity"):
-            label.set_activity(True)
+        if hasattr(label, "set_activity_state"):
+            label.set_activity_state("active")
+        self._ensure_activity_timer()
+
+    def _ensure_activity_timer(self):
+        """Start the periodic tick that fades ACTIVE tabs to STALE once their
+        cooldown elapses. A single shared timer is used regardless of how
+        many tabs are currently highlighted."""
+        if self._activity_timer_id is None:
+            self._activity_timer_id = GLib.timeout_add(1000, self._tick_activity_states)
+
+    def _tick_activity_states(self):
+        """Fade any tab whose activity has gone quiet past the configured
+        cooldown from ACTIVE (orange) to STALE (blue). Returns False (and
+        clears the timer id) once no tab is ACTIVE any more, so the timer
+        auto-cancels instead of ticking forever in the idle case."""
+        if not getattr(self, "guake", None):
+            self._activity_timer_id = None
+            return False
+        cooldown = self.guake.settings.general.get_double("tab-activity-cooldown")
+        now = time.monotonic()
+        any_active = False
+        for page in self.iter_pages():
+            if page is None:
+                continue
+            label = self.get_tab_label(page)
+            if not hasattr(label, "get_activity_state"):
+                continue
+            if label.get_activity_state() != "active":
+                continue
+            if now - getattr(page, "activity_last_seen", now) >= cooldown:
+                label.set_activity_state("stale")
+            else:
+                any_active = True
+        if not any_active:
+            self._activity_timer_id = None
+            return False
+        return True
 
     def on_switch_page(self, notebook, page, page_num):
         """Clear the highlight from the tab being switched to, and start a short
@@ -469,15 +508,15 @@ class TerminalNotebook(Gtk.Notebook):
                 time.monotonic() + grace,
             )
         label = self.get_tab_label(page)
-        if hasattr(label, "set_activity"):
-            label.set_activity(False)
+        if hasattr(label, "set_activity_state"):
+            label.set_activity_state(None)
 
     def clear_all_tab_activity(self):
         """Remove activity highlights from every tab (e.g. when the feature is
         disabled)."""
         for label in self.iter_tabs():
-            if hasattr(label, "set_activity"):
-                label.set_activity(False)
+            if hasattr(label, "set_activity_state"):
+                label.set_activity_state(None)
 
     def terminal_attached(self, terminal):
         terminal.emit("focus", Gtk.DirectionType.TAB_FORWARD)

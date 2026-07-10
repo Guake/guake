@@ -186,6 +186,11 @@
             <summary>Activity grace period after losing focus</summary>
             <description>Number of seconds during which activity is ignored on a tab right after it loses focus.</description>
         </key>
+        <key name="tab-activity-cooldown" type="d">
+            <default>30.0</default>
+            <summary>Activity cooldown before fading</summary>
+            <description>Number of seconds of inactivity after which a highlighted tab's indicator fades from active to stale color.</description>
+        </key>
         <key name="window-width" type="i">
             <default>100</default>
             <summary>Window width.</summary>

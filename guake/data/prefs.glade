@@ -62,6 +62,11 @@
     <property name="step-increment">0.5</property>
     <property name="page-increment">5</property>
   </object>
+  <object class="GtkAdjustment" id="tab_activity_cooldown_adj">
+    <property name="upper">600</property>
+    <property name="step-increment">1</property>
+    <property name="page-increment">10</property>
+  </object>
   <object class="GtkAdjustment" id="scrollback_lines">
     <property name="upper">10000000</property>
     <property name="value">5000</property>
@@ -504,6 +509,48 @@
                                           <packing>
                                             <property name="left-attach">0</property>
                                             <property name="top-attach">7</property>
+                                            <property name="width">2</property>
+                                          </packing>
+                                        </child>
+                                        <child>
+                                          <object class="GtkBox" id="hbox_tab_activity_cooldown">
+                                            <property name="visible">True</property>
+                                            <property name="can-focus">False</property>
+                                            <property name="spacing">6</property>
+                                            <child>
+                                              <object class="GtkLabel" id="lbl_tab_activity_cooldown">
+                                                <property name="visible">True</property>
+                                                <property name="can-focus">False</property>
+                                                <property name="valign">center</property>
+                                                <property name="label" translatable="yes">Fade activity indicator to stale color after (seconds):</property>
+                                              </object>
+                                              <packing>
+                                                <property name="expand">False</property>
+                                                <property name="fill">False</property>
+                                                <property name="position">0</property>
+                                              </packing>
+                                            </child>
+                                            <child>
+                                              <object class="GtkSpinButton" id="tab_activity_cooldown">
+                                                <property name="visible">True</property>
+                                                <property name="can-focus">True</property>
+                                                <property name="text" translatable="yes">30.0</property>
+                                                <property name="adjustment">tab_activity_cooldown_adj</property>
+                                                <property name="climb-rate">1</property>
+                                                <property name="digits">1</property>
+                                                <property name="numeric">True</property>
+                                                <signal name="value-changed" handler="on_tab_activity_cooldown_changed" swapped="no"/>
+                                              </object>
+                                              <packing>
+                                                <property name="expand">False</property>
+                                                <property name="fill">True</property>
+                                                <property name="position">1</property>
+                                              </packing>
+                                            </child>
+                                          </object>
+                                          <packing>
+                                            <property name="left-attach">0</property>
+                                            <property name="top-attach">8</property>
                                             <property name="width">2</property>
                                           </packing>
                                         </child>

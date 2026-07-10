@@ -492,6 +492,10 @@ class PrefsCallbacks:
         """Changes the value of tab_activity_focus_loss_grace in dconf"""
         self.settings.general.set_double("tab-activity-focus-loss-grace", spin.get_value())
 
+    def on_tab_activity_cooldown_changed(self, spin):
+        """Changes the value of tab_activity_cooldown in dconf"""
+        self.settings.general.set_double("tab-activity-cooldown", spin.get_value())
+
     # scrolling tab
 
     def on_use_scrollbar_toggled(self, chk):
@@ -1216,6 +1220,8 @@ class PrefsDialog(SimpleGladeApp):
         self.get_widget("tab_activity_new_tab_grace").set_value(value)
         value = self.settings.general.get_double("tab-activity-focus-loss-grace")
         self.get_widget("tab_activity_focus_loss_grace").set_value(value)
+        value = self.settings.general.get_double("tab-activity-cooldown")
+        self.get_widget("tab_activity_cooldown").set_value(value)
 
         self._load_screen_settings()
 
