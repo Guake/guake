@@ -317,8 +317,17 @@ class RectCalculator:
             log.debug("  window_rect.height: %s", window_rect.height)
             log.debug("  window_rect.width: %s", window_rect.width)
             # Note: move_resize is only on GTK3
-            window.resize(window_rect.width, window_rect.height)
-            window.move(window_rect.x, window_rect.y)
+            gdk_window = window.get_window()
+            if gdk_window is not None:
+                gdk_window.move_resize(
+                    window_rect.x,
+                    window_rect.y,
+                    window_rect.width,
+                    window_rect.height,
+                )
+            else:
+                window.move(window_rect.x, window_rect.y)
+                window.resize(window_rect.width, window_rect.height)
             log.debug("Updated window position: %r", window.get_position())
 
         return window_rect
