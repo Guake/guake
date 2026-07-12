@@ -3,4 +3,3 @@ release_summary: >
 
 fixes:
   - Save Content works for newer versions of Vte, fixes #1958
-
