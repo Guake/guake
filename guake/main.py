@@ -251,6 +251,19 @@ def main():
     )
 
     parser.add_argument(
+        "--split-vertical-tabs",
+        dest="split_vertical_tabs",
+        metavar="N",
+        action="store",
+        type=int,
+        nargs="?",
+        const=2,
+        default=None,
+        help=_("Split the selected tab vertically into N equal tabs"),
+    )
+
+
+    parser.add_argument(
         "--split-horizontal",
         dest="split_horizontal",
         metavar="SPLIT_PERCENTAGE",
@@ -263,6 +276,17 @@ def main():
         help=_(
             "Split the selected tab horizontally. Optional input split percentage for the height."
         ),
+    )
+    parser.add_argument(
+        "--split-horizontal-tabs",
+        dest="split_horizontal_tabs",
+        metavar="N",
+        action="store",
+        type=int,
+        nargs="?",
+        const=2,
+        default=None,
+        help=_("Split the selected tab horizontally into N equal tabs"),
     )
 
     parser.add_argument(
@@ -561,6 +585,22 @@ def main():
         selectedIndex = remote_object.get_index_from_uuid(options.uuid_index)
         sys.stdout.write(f"{selectedIndex}\n")
         only_show_hide = options.show
+
+
+    if options.split_vertical_tabs:
+        if options.command:
+            remote_object.v_split_current_terminal_into_n_with_command(options.command, options.split_vertical_tabs)
+        else:
+            remote_object.v_split_current_terminal_into_n(options.split_vertical_tabs)
+        only_show_hide = options.show
+
+    if options.split_horizontal_tabs:
+        if options.command:
+            remote_object.h_split_current_terminal_into_n_with_command(options.command, options.split_horizontal_tabs)
+        else:
+            remote_object.h_split_current_terminal_into_n(options.split_horizontal_tabs)
+        only_show_hide = options.show
+
 
     if options.split_vertical:
         if options.command:

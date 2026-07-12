@@ -458,6 +458,37 @@ class TerminalBox(Gtk.Box, TerminalHolder):
     def split_v(self, split_percentage: int = 50):
         return self.split(DualTerminalBox.ORIENT_H, split_percentage)
 
+    def split_h_n(self, n: int = 2):
+        return self.split_n_no_save(DualTerminalBox.ORIENT_V, n)
+
+    def split_v_n(self, n: int = 2):
+        return self.split_n_no_save(DualTerminalBox.ORIENT_H, n)
+
+
+    def split_n_no_save(self, orientation, n: int):
+        if n is None:
+            return None
+        if n < 2:
+            raise ValueError("N must be >= 2")
+
+        box_to_split: TerminalBox = self
+        last_dual = None
+
+        for k in range(n, 1, -1):
+            # Make the NEW pane 1/k of the current box (so repeated splits yield equal sizes)
+            split_pct_new = max(1, min(99, round(100 / k)))
+
+            last_dual = box_to_split.split_no_save(orientation, split_pct_new)
+            if self.terminal is not None:
+                # Grabs focus to the original terminal to continue splitting
+                self.terminal.grab_focus()
+
+        # Let GTK update allocations before next split
+            while Gtk.events_pending():
+                Gtk.main_iteration_do(False)
+
+        return last_dual
+
     def split_h_no_save(self, split_percentage: int = 50):
         return self.split_no_save(DualTerminalBox.ORIENT_V, split_percentage)
 
