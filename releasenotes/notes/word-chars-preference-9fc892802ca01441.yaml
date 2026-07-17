@@ -1,0 +1,2 @@
+features:
+  - Add a Preferences field for configuring word characters used during text selection. (#2304)
