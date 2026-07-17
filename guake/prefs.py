@@ -589,6 +589,10 @@ class PrefsCallbacks:
         val = combo.get_active_text()
         self.settings.general.set_string("compat-delete", ERASE_BINDINGS[val])
 
+    def on_word_chars_changed(self, entry):
+        """Changes the value of word-chars in dconf"""
+        self.settings.general.set_string("word-chars", entry.get_text())
+
     def on_custom_command_file_chooser_file_changed(self, filechooser):
         self.settings.general.set_string("custom-command-file", filechooser.get_filename())
 
@@ -872,13 +876,12 @@ class PrefsDialog(SimpleGladeApp):
         self.get_widget("lbl_max_tab_name_length").set_sensitive(do_use_vte_titles)
 
     def on_reset_compat_defaults_clicked(self, bnt):
-        """Reset default values to compat_{backspace,delete} dconf
-        keys. The default values are retrivied from the guake.schemas
-        file.
-        """
+        """Reset default values to compatibility dconf keys."""
         self.settings.general.reset("compat-backspace")
         self.settings.general.reset("compat-delete")
+        self.settings.general.reset("word-chars")
         self.reload_erase_combos()
+        self.get_widget("word_chars_entry").set_text(self.settings.general.get_string("word-chars"))
 
     def on_palette_name_changed(self, combo):
         """Changes the value of palette in dconf"""
@@ -1328,6 +1331,8 @@ class PrefsDialog(SimpleGladeApp):
 
         # it's a separated method, to be reused.
         self.reload_erase_combos()
+
+        self.get_widget("word_chars_entry").set_text(self.settings.general.get_string("word-chars"))
 
         # custom command context-menu configuration file
         custom_command_file = self.settings.general.get_string("custom-command-file")
