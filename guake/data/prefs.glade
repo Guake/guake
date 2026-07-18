@@ -644,6 +644,21 @@
                                           </packing>
                                         </child>
                                         <child>
+                                          <object class="GtkCheckButton" id="enable_osc52">
+                                            <property name="label" translatable="yes">Enable OSC 52 clipboard access</property>
+                                            <property name="visible">True</property>
+                                            <property name="can-focus">True</property>
+                                            <property name="receives-default">False</property>
+                                            <property name="halign">start</property>
+                                            <property name="draw-indicator">True</property>
+                                            <signal name="toggled" handler="on_enable_osc52_toggled" swapped="no"/>
+                                          </object>
+                                          <packing>
+                                            <property name="left-attach">0</property>
+                                            <property name="top-attach">5</property>
+                                          </packing>
+                                        </child>
+                                        <child>
                                           <placeholder/>
                                         </child>
                                         <child>
