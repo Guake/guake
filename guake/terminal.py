@@ -18,13 +18,17 @@ Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor,
 Boston, MA 02110-1301 USA
 """
 import code
+import base64
+import fcntl
 import logging
 import os
 import re
 import shlex
 import signal
+import struct
 import subprocess
 import sys
+import termios
 import threading
 import uuid
 
@@ -87,6 +91,17 @@ __all__ = ["GuakeTerminal"]
 
 # pylint: enable=anomalous-backslash-in-string
 
+# OSC 52 escape sequence:  ESC ] 52 ; <params> ; <data> ( BEL | ESC \ )
+# params: c = CLIPBOARD, p = PRIMARY, s = SECONDARY, q = all, 0-7 = cut buffers
+# data:   base64-encoded text, or "?" to query, or "" to clear
+_OSC52_RE = re.compile(
+    b"\\x1b\\]52;([^;]*);([^\\x07\\x1b]*)"
+    b"(?:\\x07|\\x1b\\\\)"
+)
+
+# Maximum size of the incomplete-sequence buffer (1 MiB) to prevent runaway memory use
+_OSC52_MAX_BUF = 1024 * 1024
+
 
 class DropTargets(IntEnum):
     URIS = 0
@@ -119,6 +134,13 @@ class GuakeTerminal(Vte.Terminal):
         self.custom_fgcolor = None
         self.custom_palette = None
 
+        # OSC 52 proxy state (None when proxy is not active)
+        self._osc52_master_fd = None
+        self._osc52_buf = b""
+        self._osc52_io_watch = None
+        self._osc52_commit_id = None
+        self._osc52_resize_id = None
+
         self.setup_drag_and_drop()
 
         self.ENVV_EXCLUDE_LIST = ["GDK_BACKEND"]
@@ -145,6 +167,18 @@ class GuakeTerminal(Vte.Terminal):
         self._pid = pid
 
     def feed_child(self, resolved_cmdline):
+        if self._osc52_master_fd is not None:
+            # OSC 52 proxy mode: write keyboard/programmatic input directly to the PTY master
+            data = (
+                resolved_cmdline.encode("utf-8")
+                if isinstance(resolved_cmdline, str)
+                else resolved_cmdline
+            )
+            try:
+                os.write(self._osc52_master_fd, data)
+            except OSError as e:
+                log.debug("OSC 52 proxy: feed_child write error: %s", e)
+            return
         if (Vte.MAJOR_VERSION, Vte.MINOR_VERSION) >= (0, 42):
             encoded = resolved_cmdline.encode("utf-8")
             try:
@@ -555,8 +589,8 @@ class GuakeTerminal(Vte.Terminal):
         except OSError:
             pass
 
-    def spawn_sync_pid(self, directory):
-
+    def _get_shell_argv(self):
+        """Return the shell command argv based on current settings."""
         argv = []
         user_shell = self.guake.settings.general.get_string("default-shell")
         if user_shell and os.path.exists(user_shell):
@@ -567,10 +601,24 @@ class GuakeTerminal(Vte.Terminal):
             except KeyError:
                 argv.append("/usr/bin/bash")
 
-        login_shell = self.guake.settings.general.get_boolean("use-login-shell")
-        if login_shell:
+        if self.guake.settings.general.get_boolean("use-login-shell"):
             argv.append("--login")
 
+        return argv
+
+    def spawn_sync_pid(self, directory):
+        if self.guake.settings.general.get_boolean("enable-osc52"):
+            try:
+                return self._spawn_with_osc52_proxy(directory)
+            except Exception as e:  # pylint: disable=broad-except
+                log.warning(
+                    "OSC 52 proxy setup failed, falling back to normal spawn: %s", e
+                )
+        return self._spawn_normal(directory)
+
+    def _spawn_normal(self, directory):
+        """Original spawn logic using VTE's built-in PTY management."""
+        argv = self._get_shell_argv()
         log.debug('Spawn command: "%s"', " ".join(argv))
 
         pid = self.spawn_sync(
@@ -599,6 +647,239 @@ class GuakeTerminal(Vte.Terminal):
             libutempter.utempter_add_record(self.get_pty().get_fd(), os.uname()[1])
         self.pid = pid
         return pid
+
+    def _spawn_with_osc52_proxy(self, directory):
+        """Spawn the shell with a PTY proxy that intercepts OSC 52 clipboard sequences.
+
+        Creates a PTY pair for shell communication.  Shell output is read by
+        Guake, OSC 52 sequences are processed (clipboard is set) and stripped,
+        and the remaining data is fed into VTE via ``Vte.Terminal.feed()``.
+        Keyboard input from VTE (emitted via the ``commit`` signal because no
+        VTE-managed PTY is set) is written to the PTY master so the shell
+        receives it normally.
+        """
+        argv = self._get_shell_argv()
+        log.debug('Spawn command (OSC 52 proxy): "%s"', " ".join(argv))
+
+        # Create a PTY for the shell process
+        master_fd, slave_fd = os.openpty()
+
+        # Build environment dict from envv list
+        env_dict = {}
+        for entry in self.envv:
+            key, _, value = entry.partition("=")
+            if key:
+                env_dict[key] = value
+
+        def _preexec():
+            # Create a new session so the slave becomes the controlling terminal
+            os.setsid()
+            try:
+                fcntl.ioctl(0, termios.TIOCSCTTY, 0)
+            except Exception:  # pylint: disable=broad-except
+                pass
+
+        proc = subprocess.Popen(
+            argv,
+            stdin=slave_fd,
+            stdout=slave_fd,
+            stderr=slave_fd,
+            env=env_dict,
+            cwd=directory,
+            preexec_fn=_preexec,
+            close_fds=True,
+        )
+
+        # Close slave side in parent; child has it via dup2 to 0/1/2
+        os.close(slave_fd)
+
+        # Register the PTY session with utempter if available
+        if libutempter is not None:
+            libutempter.utempter_add_record(master_fd, os.uname()[1])
+
+        # Propagate the current terminal size to the new PTY
+        self._osc52_update_winsize(master_fd)
+
+        # Store proxy state
+        self._osc52_master_fd = master_fd
+        self._osc52_buf = b""
+
+        # Watch the PTY master for shell output
+        self._osc52_io_watch = GLib.io_add_watch(
+            master_fd,
+            GLib.IOCondition.IN | GLib.IOCondition.HUP | GLib.IOCondition.ERR,
+            self._osc52_on_shell_output,
+        )
+
+        # VTE has no PTY, so it emits 'commit' for all keyboard/mouse input
+        self._osc52_commit_id = self.connect("commit", self._osc52_on_commit)
+
+        # Keep terminal size in sync
+        self._osc52_resize_id = self.connect("size-allocate", self._osc52_on_resize)
+
+        # Watch for child exit
+        GLib.child_watch_add(proc.pid, self._osc52_on_child_exit)
+
+        self.pid = proc.pid
+        return proc.pid
+
+    # ------------------------------------------------------------------
+    # OSC 52 proxy helpers
+    # ------------------------------------------------------------------
+
+    def _osc52_update_winsize(self, master_fd):
+        """Push the current VTE terminal dimensions into the PTY."""
+        try:
+            cols = self.get_column_count()
+            rows = self.get_row_count()
+            if cols > 0 and rows > 0:
+                winsize = struct.pack("HHHH", rows, cols, 0, 0)
+                fcntl.ioctl(master_fd, termios.TIOCSWINSZ, winsize)
+        except Exception as e:  # pylint: disable=broad-except
+            log.debug("OSC 52 proxy: could not set terminal size: %s", e)
+
+    def _osc52_on_shell_output(self, fd, condition):
+        """GLib IO watch callback: read shell output, strip OSC 52, feed to VTE."""
+        if condition & GLib.IOCondition.IN:
+            try:
+                data = os.read(fd, 65536)
+            except OSError as e:
+                log.debug("OSC 52 proxy: read error: %s", e)
+                return False
+            if data:
+                filtered = self._osc52_process_data(data)
+                if filtered:
+                    try:
+                        self.feed(filtered)
+                    except TypeError:
+                        self.feed(filtered, len(filtered))
+
+        if condition & (GLib.IOCondition.HUP | GLib.IOCondition.ERR):
+            return False
+
+        return True
+
+    def _osc52_process_data(self, data):
+        """Strip OSC 52 sequences from *data*, handle clipboard side-effects.
+
+        Maintains ``self._osc52_buf`` across calls so sequences that are split
+        across multiple ``read()`` calls are handled correctly.
+        """
+        # Guard against a runaway buffer caused by a malformed/truncated sequence
+        if len(self._osc52_buf) > _OSC52_MAX_BUF:
+            log.warning("OSC 52: incomplete-sequence buffer exceeded limit, discarding")
+            self._osc52_buf = b""
+
+        combined = self._osc52_buf + data
+        self._osc52_buf = b""
+
+        # Process all complete OSC 52 sequences
+        filtered = _OSC52_RE.sub(self._osc52_handle_match, combined)
+
+        # If there is a potential incomplete OSC 52 at the tail, buffer it
+        start = filtered.rfind(b"\x1b]52;")
+        if start != -1:
+            tail = filtered[start:]
+            # Only keep it buffered when the sequence has no terminator yet
+            if not _OSC52_RE.match(tail):
+                self._osc52_buf = tail
+                filtered = filtered[:start]
+
+        return filtered
+
+    def _osc52_handle_match(self, match):
+        """Regex substitution callback: set the clipboard and return empty bytes."""
+        params = match.group(1).decode("ascii", errors="ignore")
+        encoded = match.group(2)
+
+        if encoded == b"?":
+            # Query operation – not supported; silently ignore
+            return b""
+
+        try:
+            text = base64.b64decode(encoded).decode("utf-8", errors="replace")
+        except Exception as e:  # pylint: disable=broad-except
+            log.debug("OSC 52: failed to decode base64 payload: %s", e)
+            return b""
+
+        self._osc52_set_clipboard(text, params)
+        return b""
+
+    def _osc52_set_clipboard(self, text, params):
+        """Write *text* to the clipboard targets indicated by *params*.
+
+        Recognised params: ``c`` = CLIPBOARD, ``p`` = PRIMARY.  An empty or
+        unrecognised params string defaults to CLIPBOARD.
+        """
+        if not text:
+            return
+
+        use_clipboard = "c" in params or not any(ch in params for ch in "ps")
+        use_primary = "p" in params
+
+        if use_clipboard:
+            clipboard = Gtk.Clipboard.get(Gdk.SELECTION_CLIPBOARD)
+            clipboard.set_text(text, -1)
+            log.debug("OSC 52: set CLIPBOARD (%d chars)", len(text))
+
+        if use_primary:
+            primary = Gtk.Clipboard.get(Gdk.SELECTION_PRIMARY)
+            primary.set_text(text, -1)
+            log.debug("OSC 52: set PRIMARY selection (%d chars)", len(text))
+
+    def _osc52_on_commit(self, _terminal, text, _length):
+        """Forward keyboard/mouse input from VTE to the shell PTY."""
+        if self._osc52_master_fd is None:
+            return
+        try:
+            data = text.encode("utf-8") if isinstance(text, str) else bytes(text)
+            if data:
+                os.write(self._osc52_master_fd, data)
+        except OSError as e:
+            log.debug("OSC 52 proxy: commit write error: %s", e)
+
+    def _osc52_on_resize(self, _widget, _allocation):
+        """Propagate VTE size changes to the shell PTY."""
+        if self._osc52_master_fd is not None:
+            self._osc52_update_winsize(self._osc52_master_fd)
+
+    def _osc52_on_child_exit(self, pid, status):
+        """Handle shell process exit when running in OSC 52 proxy mode."""
+        log.debug("OSC 52 proxy: process %d exited (status %d)", pid, status)
+        if libutempter is not None and self._osc52_master_fd is not None:
+            libutempter.utempter_remove_record(self._osc52_master_fd)
+        self._osc52_cleanup()
+        # Notify the rest of Guake (e.g. tab removal) via the standard signal
+        self.emit("child-exited", status)
+
+    def _osc52_cleanup(self):
+        """Release all resources held by the OSC 52 proxy."""
+        if self._osc52_io_watch is not None:
+            GLib.source_remove(self._osc52_io_watch)
+            self._osc52_io_watch = None
+
+        if self._osc52_master_fd is not None:
+            try:
+                os.close(self._osc52_master_fd)
+            except OSError:
+                pass
+            self._osc52_master_fd = None
+
+        self._osc52_buf = b""
+
+        if self._osc52_commit_id is not None:
+            try:
+                self.disconnect(self._osc52_commit_id)
+            except Exception:  # pylint: disable=broad-except
+                pass
+            self._osc52_commit_id = None
+
+        if self._osc52_resize_id is not None:
+            try:
+                self.disconnect(self._osc52_resize_id)
+            except Exception:  # pylint: disable=broad-except
+                pass
+            self._osc52_resize_id = None
 
     def set_color_foreground(self, font_color, *args, **kwargs):
         real_fgcolor = self.custom_fgcolor if self.custom_fgcolor else font_color

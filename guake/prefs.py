@@ -408,6 +408,10 @@ class PrefsCallbacks:
         """Changes the value of copy_on_select in dconf"""
         self.settings.general.set_boolean("copy-on-select", chk.get_active())
 
+    def on_enable_osc52_toggled(self, chk):
+        """Changes the value of enable_osc52 in dconf"""
+        self.settings.general.set_boolean("enable-osc52", chk.get_active())
+
     def on_tab_name_display_changed(self, combo):
         """Save `display-tab-names` property value in dconf"""
         self.settings.general.set_int("display-tab-names", combo.get_active())
@@ -1273,6 +1277,10 @@ class PrefsDialog(SimpleGladeApp):
         # use copy on select
         value = self.settings.general.get_boolean("copy-on-select")
         self.get_widget("copy_on_select").set_active(value)
+
+        # enable osc52
+        value = self.settings.general.get_boolean("enable-osc52")
+        self.get_widget("enable_osc52").set_active(value)
 
         # font
         value = self.settings.styleFont.get_string("style")
