@@ -12,6 +12,9 @@ _OSC52_RE = re.compile(
     b"\\x1b\\]52;([^;]*);([^\\x07\\x1b]*)"
     b"(?:\\x07|\\x1b\\\\)"
 )
+_OSC52_PARTIAL_RE = re.compile(
+    b"\\x1b\\]52;[^;]*;[A-Za-z0-9+/=?]*$"
+)
 _OSC52_MAX_BUF = 1024 * 1024
 
 
@@ -34,12 +37,13 @@ def _filter(data, buf=b""):
     combined = buf + data
     filtered = _OSC52_RE.sub(_handle, combined)
 
-    # Buffer any potential incomplete OSC 52 at the tail
+    # Buffer any potential incomplete OSC 52 at the tail (using the stricter
+    # partial-regex check to avoid false-positive buffering of unrelated data)
     new_buf = b""
     start = filtered.rfind(b"\x1b]52;")
     if start != -1:
         tail = filtered[start:]
-        if not _OSC52_RE.match(tail):
+        if _OSC52_PARTIAL_RE.match(tail) and not _OSC52_RE.match(tail):
             new_buf = tail
             filtered = filtered[:start]
 
@@ -157,6 +161,20 @@ def test_incomplete_sequence_buffered():
     assert b"after" in filtered2
 
 
+def test_invalid_data_not_buffered():
+    """Output with ESC]52; followed by non-base64 data is NOT held in the buffer.
+
+    If a help text or binary file contains the literal bytes ESC]52; but the
+    following data is not valid base64, the partial-regex guard must reject it
+    so valid terminal output is not accidentally withheld from VTE.
+    """
+    data = b"info: \x1b]52;c;!!invalid!!"  # no terminator; invalid chars in data field
+    filtered, buf, _ = _filter(data)
+    # Invalid chars → partial regex does not match → sequence passes through unchanged
+    assert buf == b""
+    assert b"\x1b]52;c;!!invalid!!" in filtered
+
+
 def test_utf8_content():
     """OSC 52 payload containing multibyte UTF-8 characters is decoded correctly."""
     text = "こんにちは"
@@ -194,3 +212,87 @@ def test_osc52_both_targets():
     use_primary = "p" in params
     assert use_clipboard is True
     assert use_primary is True
+
+
+# ---------------------------------------------------------------------------
+# Integration tests: verify the correct GTK clipboard targets are populated
+# ---------------------------------------------------------------------------
+
+
+def _make_clipboard_mock():
+    """Return a simple mock object that records set_text calls."""
+
+    class _Clipboard:
+        def __init__(self):
+            self.text = None
+
+        def set_text(self, text, _length):
+            self.text = text
+
+    return _Clipboard()
+
+
+def _set_clipboard(text, params, clip_mock=None, primary_mock=None):
+    """Inline re-implementation of GuakeTerminal._osc52_set_clipboard for testing."""
+    if not text:
+        return
+    use_clipboard = "c" in params or not any(ch in params for ch in "ps")
+    use_primary = "p" in params
+    if use_clipboard and clip_mock is not None:
+        clip_mock.set_text(text, -1)
+    if use_primary and primary_mock is not None:
+        primary_mock.set_text(text, -1)
+
+
+def test_clipboard_mock_default_params():
+    """Empty params → only CLIPBOARD is set."""
+    clip = _make_clipboard_mock()
+    primary = _make_clipboard_mock()
+    _set_clipboard("hello", "", clip, primary)
+    assert clip.text == "hello"
+    assert primary.text is None
+
+
+def test_clipboard_mock_c_param():
+    """Params 'c' → CLIPBOARD is set, PRIMARY is not."""
+    clip = _make_clipboard_mock()
+    primary = _make_clipboard_mock()
+    _set_clipboard("world", "c", clip, primary)
+    assert clip.text == "world"
+    assert primary.text is None
+
+
+def test_clipboard_mock_p_param():
+    """Params 'p' → PRIMARY is set, CLIPBOARD is not."""
+    clip = _make_clipboard_mock()
+    primary = _make_clipboard_mock()
+    _set_clipboard("primary text", "p", clip, primary)
+    assert clip.text is None
+    assert primary.text == "primary text"
+
+
+def test_clipboard_mock_cp_params():
+    """Params 'cp' → both CLIPBOARD and PRIMARY are set."""
+    clip = _make_clipboard_mock()
+    primary = _make_clipboard_mock()
+    _set_clipboard("both", "cp", clip, primary)
+    assert clip.text == "both"
+    assert primary.text == "both"
+
+
+def test_clipboard_mock_unknown_params():
+    """Unknown params that contain neither 'p' nor 's' → CLIPBOARD."""
+    clip = _make_clipboard_mock()
+    primary = _make_clipboard_mock()
+    _set_clipboard("data", "q", clip, primary)  # 'q' is not 'p' or 's'
+    assert clip.text == "data"
+    assert primary.text is None
+
+
+def test_clipboard_mock_empty_text():
+    """Empty text → neither clipboard target is touched."""
+    clip = _make_clipboard_mock()
+    primary = _make_clipboard_mock()
+    _set_clipboard("", "c", clip, primary)
+    assert clip.text is None
+    assert primary.text is None

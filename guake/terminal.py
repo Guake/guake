@@ -99,6 +99,14 @@ _OSC52_RE = re.compile(
     b"(?:\\x07|\\x1b\\\\)"
 )
 
+# Pattern for a *partial* (not yet terminated) OSC 52 sequence.  Only data
+# consisting of valid base64 characters (or "?") is accepted, so that
+# unrelated byte sequences that happen to start with ESC]52; are not
+# mistakenly buffered as incomplete OSC 52 sequences.
+_OSC52_PARTIAL_RE = re.compile(
+    b"\\x1b\\]52;[^;]*;[A-Za-z0-9+/=?]*$"
+)
+
 # Maximum size of the incomplete-sequence buffer (1 MiB) to prevent runaway memory use
 _OSC52_MAX_BUF = 1024 * 1024
 
@@ -671,13 +679,30 @@ class GuakeTerminal(Vte.Terminal):
             if key:
                 env_dict[key] = value
 
+        # Capture slave_fd in closure; pass_fds ensures it survives close_fds in
+        # the child so preexec_fn can reference it explicitly (rather than relying
+        # on fd 0 after the dup2, which is equivalent but less obvious).
+        _slave_fd = slave_fd
+
         def _preexec():
-            # Create a new session so the slave becomes the controlling terminal
+            # Create a new session so the slave becomes the controlling terminal.
+            # This runs in the child process; the parent logger is not available,
+            # so unexpected errors are printed to stderr (which at this point is
+            # already the slave PTY, visible in the terminal).
             os.setsid()
             try:
-                fcntl.ioctl(0, termios.TIOCSCTTY, 0)
-            except Exception:  # pylint: disable=broad-except
-                pass
+                fcntl.ioctl(_slave_fd, termios.TIOCSCTTY, 0)
+            except OSError as _e:
+                import errno as _errno
+                # EPERM/ENOTTY can occur in restricted environments; treat as
+                # non-fatal because the terminal still functions without a
+                # controlling terminal. Anything else is unexpected.
+                if _e.errno not in (_errno.EPERM, _errno.ENOTTY):
+                    import sys as _sys
+                    print(
+                        f"guake: OSC 52 proxy: TIOCSCTTY failed unexpectedly: {_e}",
+                        file=_sys.stderr,
+                    )
 
         proc = subprocess.Popen(
             argv,
@@ -688,6 +713,7 @@ class GuakeTerminal(Vte.Terminal):
             cwd=directory,
             preexec_fn=_preexec,
             close_fds=True,
+            pass_fds=(slave_fd,),
         )
 
         # Close slave side in parent; child has it via dup2 to 0/1/2
@@ -746,13 +772,15 @@ class GuakeTerminal(Vte.Terminal):
             except OSError as e:
                 log.debug("OSC 52 proxy: read error: %s", e)
                 return False
-            if data:
-                filtered = self._osc52_process_data(data)
-                if filtered:
-                    try:
-                        self.feed(filtered)
-                    except TypeError:
-                        self.feed(filtered, len(filtered))
+            if not data:
+                # EOF on the PTY master — stop the watch
+                return False
+            filtered = self._osc52_process_data(data)
+            if filtered:
+                try:
+                    self.feed(filtered)
+                except TypeError:
+                    self.feed(filtered, len(filtered))
 
         if condition & (GLib.IOCondition.HUP | GLib.IOCondition.ERR):
             return False
@@ -765,10 +793,22 @@ class GuakeTerminal(Vte.Terminal):
         Maintains ``self._osc52_buf`` across calls so sequences that are split
         across multiple ``read()`` calls are handled correctly.
         """
-        # Guard against a runaway buffer caused by a malformed/truncated sequence
+        # Guard against a runaway buffer caused by a malformed/truncated sequence.
+        # The buffer only ever holds an incomplete OSC 52 tail (i.e. everything
+        # from the last unmatched ESC]52; to the end of the previous chunk), so
+        # there is no valid terminal output to preserve – pass it through to VTE
+        # as raw bytes so the user sees the escape text rather than losing data.
         if len(self._osc52_buf) > _OSC52_MAX_BUF:
-            log.warning("OSC 52: incomplete-sequence buffer exceeded limit, discarding")
+            log.warning(
+                "OSC 52: buffer limit exceeded; displaying incomplete escape "
+                "sequence as raw text to avoid data loss"
+            )
+            overflow = self._osc52_buf
             self._osc52_buf = b""
+            try:
+                self.feed(overflow)
+            except TypeError:
+                self.feed(overflow, len(overflow))
 
         combined = self._osc52_buf + data
         self._osc52_buf = b""
@@ -776,12 +816,14 @@ class GuakeTerminal(Vte.Terminal):
         # Process all complete OSC 52 sequences
         filtered = _OSC52_RE.sub(self._osc52_handle_match, combined)
 
-        # If there is a potential incomplete OSC 52 at the tail, buffer it
+        # If there is a potential incomplete OSC 52 at the tail, buffer it.
+        # Use the stricter partial-pattern check to avoid buffering unrelated
+        # byte sequences that merely contain the ESC]52; prefix (e.g. binary
+        # output or help text that quotes escape sequences).
         start = filtered.rfind(b"\x1b]52;")
         if start != -1:
             tail = filtered[start:]
-            # Only keep it buffered when the sequence has no terminator yet
-            if not _OSC52_RE.match(tail):
+            if _OSC52_PARTIAL_RE.match(tail) and not _OSC52_RE.match(tail):
                 self._osc52_buf = tail
                 filtered = filtered[:start]
 
@@ -810,10 +852,17 @@ class GuakeTerminal(Vte.Terminal):
 
         Recognised params: ``c`` = CLIPBOARD, ``p`` = PRIMARY.  An empty or
         unrecognised params string defaults to CLIPBOARD.
+
+        This method is always called from the GLib main-loop IO watch
+        (``_osc52_on_shell_output``), which is dispatched on the same thread as
+        the GTK main loop, so GTK clipboard calls are thread-safe here.
         """
         if not text:
             return
 
+        # Use CLIPBOARD when 'c' is present, or when the params string contains
+        # neither 'p' (PRIMARY) nor 's' (SECONDARY) – an empty params string
+        # therefore also maps to CLIPBOARD.
         use_clipboard = "c" in params or not any(ch in params for ch in "ps")
         use_primary = "p" in params
 
@@ -832,7 +881,7 @@ class GuakeTerminal(Vte.Terminal):
         if self._osc52_master_fd is None:
             return
         try:
-            data = text.encode("utf-8") if isinstance(text, str) else bytes(text)
+            data = text if isinstance(text, bytes) else text.encode("utf-8")
             if data:
                 os.write(self._osc52_master_fd, data)
         except OSError as e:
