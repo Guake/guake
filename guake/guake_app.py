@@ -265,6 +265,12 @@ class Guake(SimpleGladeApp):
         # loading and setting up configuration stuff
         GSettingHandler(self)
         Keybinder.init()
+        # Disable XKB cooked accelerators to work around a keybinder
+        # library bug where FinallyGetModifiersForKeycode() returns
+        # spurious consumed modifiers for function keys (e.g. Alt for
+        # F12), causing XGrabKey to grab Alt+F12 which the X server
+        # has reserved for VT switching.
+        Keybinder.set_use_cooked_accelerators(False)
         self.hotkeys = Keybinder
         Keybindings(self)
         self.load_config()
