@@ -1,0 +1,9 @@
+release_summary: >
+  Fix F12 global hotkey not binding on certain X11 configurations
+
+fixes:
+  - |
+    F12 global hotkey now works on systems where XKB consumed-modifier
+    computation (keybinder's FinallyGetModifiersForKeycode) spuriously
+    returns Mod1/Alt for level 0, preventing the grab. Disabling XKB
+    cooked accelerators matches the approach used by Tilda terminal.
