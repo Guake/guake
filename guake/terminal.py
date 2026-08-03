@@ -374,6 +374,11 @@ class GuakeTerminal(Vte.Terminal):
                 self.quick_open()
             elif matched_string is not None and matched_string[0]:
                 self._on_ctrl_click_matcher(matched_string)
+            else:
+                return False
+            # Stop the event here: otherwise VTE also forwards the click to the
+            # application running in the terminal, which acts on it a second time.
+            return True
         elif event.button == 3 and matched_string:
             self.found_link = self.handleTerminalMatch(matched_string)
             self.matched_value = matched_string[0]
