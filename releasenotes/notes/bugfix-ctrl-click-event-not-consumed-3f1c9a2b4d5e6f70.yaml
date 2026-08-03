@@ -1,0 +1,5 @@
+fixes:
+  - |
+    Ctrl+click on a link or quick-open match no longer leaks the click to the
+    application running in the terminal, which could act on the same click a
+    second time (e.g. a multiplexer opening the very same URL again).
