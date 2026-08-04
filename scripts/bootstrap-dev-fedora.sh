@@ -40,6 +40,7 @@ if [[ $RUN == "1" ]]; then
         python3-cairo \
         python3-dbus \
         python3-pip \
+        glib2-devel \
         keybinder3 \
 		libwnck
 fi

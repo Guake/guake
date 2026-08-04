@@ -50,6 +50,7 @@ if [[ $RUN == "1" ]]; then
         python3-setuptools-scm \
         python3-pip \
         libgirepository1.0-dev \
+        libgirepository-2.0-dev \
         libcairo2-dev \
         pkg-config
 fi

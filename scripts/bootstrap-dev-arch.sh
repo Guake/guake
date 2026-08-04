@@ -37,6 +37,7 @@ if [[ $RUN == "1" ]]; then
     echo "Install packages needed for execution"
     sudo pacman -S \
 		libwnck3 \
+        gobject-introspection \
         libkeybinder3 \
         libnotify \
         python-cairo \

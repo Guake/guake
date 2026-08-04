@@ -60,7 +60,7 @@ jobs:
 
           # for dev
           make dev-actions
-          pipenv run pip install pycairo pygobject
+          pipenv run pip install pycairo "pygobject<3.52"
           # check
           make build
           # prepare for deployment
