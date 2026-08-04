@@ -1,0 +1,4 @@
+fixes:
+  - |
+    The quick-open command now runs in the active tab directory, so relative
+    paths work.
