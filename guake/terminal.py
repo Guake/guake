@@ -458,7 +458,7 @@ class GuakeTerminal(Vte.Terminal):
         else:
             resolved_cmdline += " &"
             logging.debug("Executing it independently")
-            subprocess.call(resolved_cmdline, shell=True)
+            subprocess.call(resolved_cmdline, shell=True, cwd=self.get_current_directory())
 
     def handleTerminalMatch(self, matched_string):
         value, tag = matched_string
