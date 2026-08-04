@@ -379,7 +379,7 @@ class GuakeTerminal(Vte.Terminal):
             # Stop the event here: otherwise VTE also forwards the click to the
             # application running in the terminal, which acts on it a second time.
             return True
-        elif event.button == 3 and matched_string:
+        if event.button == 3 and matched_string:
             self.found_link = self.handleTerminalMatch(matched_string)
             self.matched_value = matched_string[0]
 
