@@ -97,6 +97,12 @@ GDK_WINDOW_STATE_STICKY = 8
 GDK_WINDOW_STATE_ABOVE = 32
 
 
+def use_legacy_tray_icon():
+    """Use Gtk.StatusIcon where the desktop supports clickable legacy icons."""
+    desktops = os.environ.get("XDG_CURRENT_DESKTOP", "").lower().split(":")
+    return "cinnamon" in desktops or "x-cinnamon" in desktops
+
+
 class Guake(SimpleGladeApp):
     """Guake main class. Handles specialy the main window."""
 
@@ -149,18 +155,23 @@ class Guake(SimpleGladeApp):
         # img = pixmapfile('guake-tray.svg')
         # trayicon!
         img = pixmapfile("guake-tray.png")
-        try:
+        appindicator = None
+        if not use_legacy_tray_icon():
             try:
-                gi.require_version("AyatanaAppIndicator3", "0.1")
-                from gi.repository import (  # pylint: disable=import-outside-toplevel
-                    AyatanaAppIndicator3 as appindicator,
-                )
+                try:
+                    gi.require_version("AyatanaAppIndicator3", "0.1")
+                    from gi.repository import (  # pylint: disable=import-outside-toplevel
+                        AyatanaAppIndicator3 as appindicator,
+                    )
+                except (ValueError, ImportError):
+                    gi.require_version("AppIndicator3", "0.1")
+                    from gi.repository import (  # pylint: disable=import-outside-toplevel
+                        AppIndicator3 as appindicator,
+                    )
             except (ValueError, ImportError):
-                gi.require_version("AppIndicator3", "0.1")
-                from gi.repository import (  # pylint: disable=import-outside-toplevel
-                    AppIndicator3 as appindicator,
-                )
-        except (ValueError, ImportError):
+                pass
+
+        if appindicator is None:
             self.tray_icon = Gtk.StatusIcon()
             self.tray_icon.set_from_file(img)
             self.tray_icon.set_tooltip_text(_("Guake Terminal"))

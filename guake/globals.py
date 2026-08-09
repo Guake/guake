@@ -60,6 +60,36 @@ def bindtextdomain(app_name, locale_dir=None):
     locale.textdomain(app_name)
 
 
+def apply_language_preference(schema_dir):
+    """Apply the saved language before Guake imports translated widgets.
+
+    An empty setting deliberately leaves ``LANGUAGE`` untouched, so the
+    environment remains the second priority after the saved preference.
+    """
+    try:
+        # pylint: disable=import-outside-toplevel
+        import gi
+
+        gi.require_version("Gio", "2.0")
+        from gi.repository import Gio
+        # pylint: enable=import-outside-toplevel
+
+        schema_source = Gio.SettingsSchemaSource.new_from_directory(
+            schema_dir, Gio.SettingsSchemaSource.get_default(), False
+        )
+        schema = schema_source.lookup("guake.general", False)
+        if schema is None or "language" not in schema.list_keys():
+            return
+        language = Gio.Settings.new_full(schema, None, None).get_string("language").strip()
+    except Exception:
+        log.debug("Unable to read saved language preference", exc_info=True)
+        return
+
+    if language:
+        os.environ["LANGUAGE"] = language
+        log.info("Using saved language preference: %s", language)
+
+
 def is_run_from_git_workdir():
     self_path = os.path.abspath(inspect.getfile(inspect.currentframe()))
     return os.path.exists(f"{self_path}.in")

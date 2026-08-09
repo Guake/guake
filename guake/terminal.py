@@ -50,6 +50,8 @@ from guake.common import clamp
 from guake.globals import QUICK_OPEN_MATCHERS
 from guake.globals import TERMINAL_MATCH_EXPRS
 from guake.globals import TERMINAL_MATCH_TAGS
+from guake.quick_open import build_quick_open_argv
+from guake.quick_open import build_quick_open_command_line
 
 log = logging.getLogger(__name__)
 
@@ -440,25 +442,23 @@ class GuakeTerminal(Vte.Terminal):
         if not filepath:
             return
         cmdline = self.guake.settings.general.get_string("quick-open-command-line")
-        if not line_number:
-            line_number = ""
-        else:
-            line_number = str(line_number)
         logging.debug("Opening file %s at line %s", filepath, line_number)
-        resolved_cmdline = cmdline % {"file_path": filepath, "line_number": line_number}
-        logging.debug("Command line: %s", resolved_cmdline)
         quick_open_in_current_terminal = self.guake.settings.general.get_boolean(
             "quick-open-in-current-terminal"
         )
-        if quick_open_in_current_terminal:
-            logging.debug("Executing it in current tab")
-            if resolved_cmdline[-1] != "\n":
-                resolved_cmdline += "\n"
-            self.feed_child(resolved_cmdline)
-        else:
-            resolved_cmdline += " &"
-            logging.debug("Executing it independently")
-            subprocess.call(resolved_cmdline, shell=True)
+        try:
+            if quick_open_in_current_terminal:
+                resolved_cmdline = build_quick_open_command_line(cmdline, filepath, line_number)
+                logging.debug("Executing it in current tab: %s", resolved_cmdline)
+                self.feed_child(resolved_cmdline + "\n")
+            else:
+                resolved_argv = build_quick_open_argv(cmdline, filepath, line_number)
+                logging.debug("Executing it independently: %s", resolved_argv)
+                subprocess.Popen(  # pylint: disable=consider-using-with
+                    resolved_argv, close_fds=True
+                )
+        except ValueError as error:
+            logging.error("Unable to execute Quick Open command: %s", error)
 
     def handleTerminalMatch(self, matched_string):
         value, tag = matched_string
@@ -578,7 +578,7 @@ class GuakeTerminal(Vte.Terminal):
             directory,
             argv,
             self.envv,
-            GLib.SpawnFlags(Vte.SPAWN_NO_PARENT_ENVV),
+            GLib.SpawnFlags.DEFAULT,
             None,
             None,
             None,

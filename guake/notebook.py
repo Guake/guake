@@ -143,7 +143,7 @@ class TerminalNotebook(Gtk.Notebook):
             and event.window.get_height() < 60
         ):
             # event.window.get_height() reports the height of the clicked frame
-            self.new_page_with_focus()
+            self.new_page_after_current()
 
         return False
 
@@ -159,7 +159,16 @@ class TerminalNotebook(Gtk.Notebook):
 
     @save_tabs_when_changed
     def on_new_tab(self, user_data):
-        self.new_page_with_focus()
+        # The button on the right always adds a tab at the end.
+        self.new_page_with_focus(position=-1)
+
+    @save_tabs_when_changed
+    def on_new_tab_after_current(self, user_data):
+        self.new_page_after_current()
+
+    def new_page_after_current(self):
+        """Add a tab immediately after the currently selected tab."""
+        self.new_page_with_focus(position=self.get_current_page() + 1)
 
     def on_tab_selection(self, user_data):
         """Construct the tab selection popover

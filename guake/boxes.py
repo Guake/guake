@@ -722,7 +722,7 @@ class TabLabelEventBox(Gtk.EventBox):
 
     @save_tabs_when_changed
     def on_new_tab(self, user_data):
-        self.notebook.new_page_with_focus()
+        self.notebook.new_page_after_current()
 
     @save_tabs_when_changed
     def on_rename(self, user_data):

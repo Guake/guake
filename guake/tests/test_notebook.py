@@ -61,3 +61,20 @@ def test_add_new_page_with_focus_with_label(nb):
     nb.new_page_with_focus(label=t)
     assert nb.get_n_pages() == 1
     assert nb.get_tab_text_index(0) == t
+
+
+def test_new_tab_button_adds_page_at_the_end(nb, mocker):
+    new_page = mocker.patch.object(nb, "new_page_with_focus")
+
+    nb.on_new_tab(None)
+
+    new_page.assert_called_once_with(position=-1)
+
+
+def test_new_tab_context_menu_adds_page_after_current(nb, mocker):
+    mocker.patch.object(nb, "get_current_page", return_value=2)
+    new_page = mocker.patch.object(nb, "new_page_with_focus")
+
+    nb.on_new_tab_after_current(None)
+
+    new_page.assert_called_once_with(position=3)

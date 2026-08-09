@@ -31,6 +31,11 @@
             <summary>Path to the default shell.</summary>
             <description>Path to the default shell. Set to empty to use default user shell. If invalid path is set here, guake will fallback to user shell.</description>
         </key>
+        <key name="language" type="s">
+            <default>''</default>
+            <summary>Interface language.</summary>
+            <description>Interface language. An empty value follows the LANGUAGE environment variable and then the system locale.</description>
+        </key>
 		<key name="restore-tabs-startup" type="b">
 		    <default>true</default>
 		    <summary>Restore tabs when startup</summary>

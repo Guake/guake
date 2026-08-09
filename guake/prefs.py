@@ -29,6 +29,7 @@ import gi
 gi.require_version("Gtk", "3.0")
 gi.require_version("Vte", "2.91")  # vte-0.38
 from gi.repository import GLib
+from gi.repository import GObject
 from gi.repository import Gdk
 from gi.repository import Gio
 from gi.repository import Gtk
@@ -197,6 +198,44 @@ HOTKEYS = [
     },
 ]
 
+LANGUAGE_CHOICES = (
+    ("", _("System default")),
+    ("en", "English"),
+    ("ca", "Català"),
+    ("cs", "Čeština"),
+    ("de", "Deutsch"),
+    ("el", "Ελληνικά"),
+    ("es", "Español"),
+    ("fa", "فارسی"),
+    ("fi", "Suomi"),
+    ("fr", "Français"),
+    ("gl", "Galego"),
+    ("hr", "Hrvatski"),
+    ("hu", "Magyar"),
+    ("id", "Bahasa Indonesia"),
+    ("it", "Italiano"),
+    ("ja", "日本語"),
+    ("ko", "한국어"),
+    ("nb", "Norsk bokmål"),
+    ("nl", "Nederlands"),
+    ("pa", "ਪੰਜਾਬੀ"),
+    ("pl", "Polski"),
+    ("pt_BR", "Português (Brasil)"),
+    ("ru", "Русский"),
+    ("sv", "Svenska"),
+    ("tr", "Türkçe"),
+    ("uk", "Українська"),
+    ("zh_CN", "简体中文"),
+    ("zh_TW", "繁體中文"),
+)
+
+HOTKEY_MODEL_INDEX_DCONF = 0
+HOTKEY_MODEL_INDEX_LABEL = 1
+HOTKEY_MODEL_INDEX_HUMAN_ACCEL = 2
+HOTKEY_MODEL_INDEX_ACCEL = 3
+HOTKEY_MODEL_INDEX_ACCEL_KEY = 4
+HOTKEY_MODEL_INDEX_ACCEL_MODS = 5
+
 html_escape_table = {
     "&": "&amp;",
     '"': "&quot;",
@@ -324,6 +363,11 @@ class PrefsCallbacks:
         theme_name = combo.get_model().get_value(citer, 0)
         self.settings.general.set_string("gtk-theme-name", theme_name)
         select_gtk_theme(self.settings)
+
+    def on_language_changed(self, combo):
+        """Save the interface language; it is applied on the next startup."""
+        language = combo.get_active_id()
+        self.settings.general.set_string("language", language or "")
 
     def on_gtk_prefer_dark_theme_toggled(self, chk):
         """Set the `gtk_prefer_dark_theme' property in dconf"""
@@ -698,7 +742,9 @@ class PrefsDialog(SimpleGladeApp):
         # 1: label (str)
         # 2: human readable accelerator (str)
         # 3: gtk accelerator (str, hidden)
-        self.store = Gtk.TreeStore(str, str, str, str)
+        # 4: accelerator key (guint, hidden)
+        # 5: accelerator modifiers (GdkModifierType, hidden)
+        self.store = Gtk.TreeStore(str, str, str, str, GObject.TYPE_UINT, Gdk.ModifierType)
         treeview = self.get_widget("treeview-keys")
         treeview.set_model(self.store)
         treeview.set_rules_hint(True)
@@ -718,10 +764,9 @@ class PrefsDialog(SimpleGladeApp):
         renderer.connect("accel-edited", self.on_accel_edited)
         renderer.connect("accel-cleared", self.on_accel_cleared)
         column = Gtk.TreeViewColumn(_("Shortcut"), renderer, text=2)
-        column.pack_start(renderer, True)
         column.set_property("expand", False)
-        column.add_attribute(renderer, "accel-mods", 0)
-        column.add_attribute(renderer, "accel-key", 1)
+        column.add_attribute(renderer, "accel-mods", HOTKEY_MODEL_INDEX_ACCEL_MODS)
+        column.add_attribute(renderer, "accel-key", HOTKEY_MODEL_INDEX_ACCEL_KEY)
         treeview.append_column(column)
 
         class fake_guake:
@@ -749,6 +794,7 @@ class PrefsDialog(SimpleGladeApp):
         self.populate_keys_tree()
         self.populate_display_n()
         self.populate_gtk_theme_names()
+        self.populate_language_choices()
         self.load_configs()
         self.get_widget("config-window").hide()
 
@@ -774,7 +820,7 @@ class PrefsDialog(SimpleGladeApp):
             wd,
             argv,
             [],
-            GLib.SpawnFlags.DO_NOT_REAP_CHILD,
+            GLib.SpawnFlags.DEFAULT,
             None,
             None,
             None,
@@ -1013,6 +1059,11 @@ class PrefsDialog(SimpleGladeApp):
                 combo.set_active_iter(i.iter)
                 break
 
+    def _load_language_settings(self):
+        combo = self.get_widget("language_select")
+        language = self.settings.general.get_string("language")
+        combo.set_active_id(language if language else "")
+
     def _load_screen_settings(self):
         """Load screen settings"""
         # display number / use primary display
@@ -1045,6 +1096,7 @@ class PrefsDialog(SimpleGladeApp):
         and Appearance tabs from dconf.
         """
         self._load_default_shell_settings()
+        self._load_language_settings()
 
         # restore tabs startup
         value = self.settings.general.get_boolean("restore-tabs-startup")
@@ -1374,12 +1426,17 @@ class PrefsDialog(SimpleGladeApp):
             name = name.strip()
             cb.append_text(name)
 
+    def populate_language_choices(self):
+        combo = self.get_widget("language_select")
+        for language, label in LANGUAGE_CHOICES:
+            combo.append(language, label)
+
     def populate_keys_tree(self):
         """Reads the HOTKEYS global variable and insert all data in
         the TreeStore used by the preferences window treeview.
         """
         for group in HOTKEYS:
-            parent = self.store.append(None, [None, group["label"], None, None])
+            parent = self.store.append(None, [None, group["label"], None, None, 0, 0])
             for item in group["keys"]:
                 if item["key"] in ("show-hide", "show-focus"):
                     accel = self.settings.keybindingsGlobal.get_string(item["key"])
@@ -1388,7 +1445,10 @@ class PrefsDialog(SimpleGladeApp):
                 gsettings_path = item["key"]
                 keycode, mask = Gtk.accelerator_parse(accel)
                 keylabel = Gtk.accelerator_get_label(keycode, mask)
-                self.store.append(parent, [gsettings_path, item["label"], keylabel, accel])
+                self.store.append(
+                    parent,
+                    [gsettings_path, item["label"], keylabel, accel, keycode, mask],
+                )
         self.get_widget("treeview-keys").expand_all()
 
     def populate_display_n(self):
@@ -1469,6 +1529,8 @@ class PrefsDialog(SimpleGladeApp):
             return False
 
         self.store[path][HOTKET_MODEL_INDEX_HUMAN_ACCEL] = keylabel
+        self.store[path][HOTKEY_MODEL_INDEX_ACCEL_KEY] = key
+        self.store[path][HOTKEY_MODEL_INDEX_ACCEL_MODS] = mods
 
         if dconf_path in ("show-hide", "show-focus"):
             self.settings.keybindingsGlobal.set_string(dconf_path, accelerator)
@@ -1484,6 +1546,8 @@ class PrefsDialog(SimpleGladeApp):
         dconf_path = self.store[path][HOTKET_MODEL_INDEX_DCONF]
         self.store[path][HOTKET_MODEL_INDEX_HUMAN_ACCEL] = ""
         self.store[path][HOTKET_MODEL_INDEX_ACCEL] = "None"
+        self.store[path][HOTKEY_MODEL_INDEX_ACCEL_KEY] = 0
+        self.store[path][HOTKEY_MODEL_INDEX_ACCEL_MODS] = 0
         if dconf_path in ("show-focus", "show-hide"):
             self.settings.keybindingsGlobal.set_string(dconf_path, "disabled")
         else:

@@ -50,6 +50,7 @@ if "GUAKE_ENABLE_WAYLAND" in os.environ:
     os.environ["GDK_BACKEND"] = "wayland"
 
 from guake.globals import NAME
+from guake.globals import apply_language_preference
 from guake.globals import bindtextdomain
 from guake.support import print_support
 from guake.utils import restore_preferences
@@ -59,7 +60,9 @@ from guake.utils import save_preferences
 # we do not have paths.py generated
 try:
     from guake.paths import LOCALE_DIR
+    from guake.paths import SCHEMA_DIR
 
+    apply_language_preference(SCHEMA_DIR)
     bindtextdomain(NAME, LOCALE_DIR)
 except:  # pylint: disable=bare-except
     pass
