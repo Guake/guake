@@ -181,7 +181,10 @@ uninstall-schemas:
 	gtk-update-icon-cache -f "$(DESTDIR)$(datarootdir)/icons/hicolor" || :
 
 reinstall:
-	sudo make uninstall && make && sudo make install && $(DESTDIR)$(bindir)/guake
+	sudo make uninstall && make && sudo make install && \
+	gsettings set guake.general schema-version \
+		"$$($(PYTHON_INTERPRETER) -c 'from guake import guake_version; print(guake_version())')" && \
+	$(DESTDIR)$(bindir)/guake
 
 reinstall-v:
 	sudo make uninstall && make && sudo make install && $(DESTDIR)$(bindir)/guake -v

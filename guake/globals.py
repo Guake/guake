@@ -30,9 +30,15 @@ __all__ = [
     "ALIGN_TOP",
     "ALWAYS_ON_PRIMARY",
     "NAME",
+    "ORIGINAL_LANGUAGE",
 ]
 
 log = logging.getLogger(__name__)
+
+# Keep the user's locale environment for child terminal processes. Guake may
+# override LANGUAGE below so that its own translated UI uses the saved
+# preference, but that preference must not leak into shells started by Guake.
+ORIGINAL_LANGUAGE = os.environ.get("LANGUAGE")
 
 
 def bindtextdomain(app_name, locale_dir=None):
@@ -72,6 +78,7 @@ def apply_language_preference(schema_dir):
 
         gi.require_version("Gio", "2.0")
         from gi.repository import Gio
+
         # pylint: enable=import-outside-toplevel
 
         schema_source = Gio.SettingsSchemaSource.new_from_directory(

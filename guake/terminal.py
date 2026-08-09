@@ -37,6 +37,7 @@ from urllib.parse import urlparse
 
 import gi
 
+gi.require_version("Gdk", "3.0")
 gi.require_version("Gtk", "3.0")
 gi.require_version("Vte", "2.91")  # vte-0.38
 
@@ -47,6 +48,7 @@ from gi.repository import Pango
 from gi.repository import Vte
 
 from guake.common import clamp
+from guake.globals import ORIGINAL_LANGUAGE
 from guake.globals import QUICK_OPEN_MATCHERS
 from guake.globals import TERMINAL_MATCH_EXPRS
 from guake.globals import TERMINAL_MATCH_TAGS
@@ -90,6 +92,18 @@ __all__ = ["GuakeTerminal"]
 # pylint: enable=anomalous-backslash-in-string
 
 
+def build_terminal_environment():
+    """Build the environment inherited by shells started in Guake."""
+    environment = [f"{key}={value}" for key, value in os.environ.items()]
+    environment = [env for env in environment if not env.startswith("GDK_BACKEND=")]
+    if ORIGINAL_LANGUAGE is None:
+        return [env for env in environment if not env.startswith("LANGUAGE=")]
+    return [
+        f"LANGUAGE={ORIGINAL_LANGUAGE}" if env.startswith("LANGUAGE=") else env
+        for env in environment
+    ]
+
+
 class DropTargets(IntEnum):
     URIS = 0
     TEXT = 1
@@ -125,8 +139,7 @@ class GuakeTerminal(Vte.Terminal):
 
         self.setup_drag_and_drop()
 
-        self.ENVV_EXCLUDE_LIST = ["GDK_BACKEND"]
-        self.envv = [f"{i}={os.environ[i]}" for i in os.environ if i not in self.ENVV_EXCLUDE_LIST]
+        self.envv = build_terminal_environment()
         self.envv.append(f"GUAKE_TAB_UUID={self.uuid}")
 
     def setup_drag_and_drop(self):
