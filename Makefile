@@ -3,6 +3,7 @@
 PYTHON?=python3
 PYTHON_INTERPRETER?=$(PYTHON)
 MODULE:=guake
+TESTS:=guake/tests
 DESTDIR?=
 PREFIX?=/usr/local
 exec_prefix:=$(PREFIX)
@@ -252,12 +253,12 @@ shell:
 
 
 test:
-	PIPENV_IGNORE_VIRTUALENVS=1 pipenv run pytest $(MODULE)
+	PIPENV_IGNORE_VIRTUALENVS=1 pipenv run pytest -q $(TESTS)
 
 test-actions:
-	xvfb-run -a pipenv run pytest $(MODULE)
+	xvfb-run -a pipenv run pytest -q $(TESTS)
 test-coverage:
-	PIPENV_IGNORE_VIRTUALENVS=1 pipenv run py.test -v --cov $(MODULE) --cov-report term-missing
+	PIPENV_IGNORE_VIRTUALENVS=1 pipenv run py.test -v --cov $(MODULE) $(TESTS) --cov-report term-missing
 
 test-pip-install-sdist: clean-pip-install-local generate-paths sdist
 	@echo "Testing installation by pip (will install on ~/.local)"

@@ -52,3 +52,14 @@ def test_quick_open_shell_command_quotes_filepath():
 def test_quick_open_command_rejects_empty_template():
     with pytest.raises(ValueError, match="empty"):
         build_quick_open_argv("", "/tmp/report", 1)
+
+
+def test_quick_open_command_omits_zero_line_number():
+    argv = build_quick_open_argv("editor %(file_path)s:%(line_number)s", "/tmp/report", 0)
+
+    assert argv == ["editor", "/tmp/report:"]
+
+
+def test_quick_open_command_rejects_unknown_placeholder():
+    with pytest.raises(ValueError, match="Invalid"):
+        build_quick_open_argv("editor %(unknown)s", "/tmp/report", 1)

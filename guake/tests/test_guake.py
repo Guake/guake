@@ -193,6 +193,15 @@ def test_guake_save_tabs_and_restore(mocker, g, fs):
     assert nb.get_tab_text_index(2) == "python"
 
 
+def test_guake_save_tabs_replaces_session_atomically(mocker, g):
+    session_file = g.get_xdg_config_directory() / "atomic.json"
+
+    g.save_tabs(session_file.name)
+
+    assert session_file.exists()
+    assert not list(session_file.parent.glob(f".{session_file.name}.*.tmp"))
+
+
 def test_guake_hide_tab_bar_if_one_tab(mocker, g, fs):
     # Set hide-tabs-if-one-tab to True
     mocker.patch.object(g.settings.general, "get_boolean", return_value=True)

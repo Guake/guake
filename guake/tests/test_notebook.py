@@ -1,8 +1,11 @@
 # -*- coding: utf-8 -*-
 # pylint: disable=redefined-outer-name
 
+from types import SimpleNamespace
+
 import pytest
 
+from guake.notebook import NotebookManager
 from guake.notebook import TerminalNotebook
 
 
@@ -78,3 +81,31 @@ def test_new_tab_context_menu_adds_page_after_current(nb, mocker):
     nb.on_new_tab_after_current(None)
 
     new_page.assert_called_once_with(position=3)
+
+
+def test_notebook_manager_switches_current_workspace(mocker):
+    parent = mocker.Mock()
+    window = mocker.Mock()
+    window.get_property.return_value = False
+    manager = NotebookManager(window, parent, False, mocker.Mock(), mocker.Mock())
+    workspace_zero = SimpleNamespace(
+        last_terminal_focused=None,
+        guake=SimpleNamespace(
+            restore_pending_terminal_split=mocker.Mock(), load_config=mocker.Mock()
+        ),
+    )
+    workspace_one = SimpleNamespace(
+        last_terminal_focused=None,
+        guake=SimpleNamespace(
+            restore_pending_terminal_split=mocker.Mock(), load_config=mocker.Mock()
+        ),
+    )
+    manager.notebooks = {0: workspace_zero, 1: workspace_one}
+
+    manager.set_workspace(1)
+
+    assert manager.current_notebook == 1
+    parent.remove.assert_called_once_with(workspace_zero)
+    parent.add.assert_called_once_with(workspace_one)
+    workspace_one.guake.restore_pending_terminal_split.assert_called_once_with()
+    workspace_one.guake.load_config.assert_called_once_with()

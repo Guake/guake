@@ -30,3 +30,25 @@ def test_build_terminal_environment_omits_language_when_original_was_unset(mocke
 
     assert not any(value.startswith("LANGUAGE=") for value in environment)
     assert "TERM=xterm" in environment
+
+
+def test_kill_before_pid_marks_terminal_for_deferred_kill():
+    terminal_instance = type("Terminal", (), {"pid": None, "_kill_requested": False})()
+
+    terminal.GuakeTerminal.kill(terminal_instance)
+
+    assert terminal_instance._kill_requested is True
+
+
+def test_kill_with_pid_starts_shell_termination(mocker):
+    terminal_instance = type(
+        "Terminal",
+        (),
+        {"pid": 123, "delete_shell": mocker.Mock()},
+    )()
+    thread = mocker.patch("guake.terminal.threading.Thread")
+
+    terminal.GuakeTerminal.kill(terminal_instance)
+
+    thread.assert_called_once_with(target=terminal_instance.delete_shell, args=(123,))
+    thread.return_value.start.assert_called_once_with()

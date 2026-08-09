@@ -2,8 +2,14 @@
 # pylint: disable=redefined-outer-name
 import os
 
+from types import SimpleNamespace
+
+import pytest
+
 from guake.utils import FileManager
+from guake.utils import TabNameUtils
 from guake.utils import get_process_name
+from guake.utils import save_tabs_when_changed
 
 
 def test_file_manager(fs):
@@ -43,3 +49,43 @@ def test_file_manager_clear(fs):
 
 def test_process_name():
     assert get_process_name(os.getpid())
+
+
+def test_save_tabs_when_changed_schedules_save_for_guake_object(mocker):
+    settings = SimpleNamespace(general=SimpleNamespace(get_boolean=lambda key: True))
+    guake = SimpleNamespace(settings=settings, schedule_tabs_save=mocker.Mock())
+    renamed = []
+
+    class Target:
+        def __init__(self):
+            self.guake = guake
+            self.renamed = renamed
+
+        @save_tabs_when_changed
+        def rename(self, value):
+            self.renamed.append(value.upper())
+
+    target = Target()
+    target.rename("tab")
+
+    assert renamed == ["TAB"]
+    guake.schedule_tabs_save.assert_called_once_with()
+
+
+@pytest.mark.parametrize(
+    ("use_vte_titles", "max_name_length", "text", "expected"),
+    [
+        (False, 5, "terminal", "terminal"),
+        (True, 0, "terminal", "terminal"),
+        (True, 5, "terminal", "...minal"),
+        (True, 20, "terminal", "terminal"),
+    ],
+)
+def test_tab_name_shorten_respects_settings(
+    mocker, use_vte_titles, max_name_length, text, expected
+):
+    settings = mocker.Mock()
+    settings.general.get_boolean.return_value = use_vte_titles
+    settings.general.get_int.return_value = max_name_length
+
+    assert TabNameUtils.shorten(text, settings) == expected
