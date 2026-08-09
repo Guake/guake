@@ -27,6 +27,8 @@ import subprocess
 import time
 import yaml
 
+from functools import wraps
+
 import cairo
 
 import gi
@@ -34,9 +36,9 @@ import gi
 gi.require_version("Gtk", "3.0")
 gi.require_version("Gdk", "3.0")
 
+from gi.repository import GLib
 from gi.repository import Gdk
 from gi.repository import Gtk
-from gi.repository import GLib
 from guake.globals import ALIGN_BOTTOM
 from guake.globals import ALIGN_CENTER
 from guake.globals import ALIGN_LEFT
@@ -72,6 +74,7 @@ def get_server_time(widget):
 def save_tabs_when_changed(func):
     """Decorator for save-tabs-when-changed"""
 
+    @wraps(func)
     def wrapper(*args, **kwargs):
         # Find me the Guake!
         clsname = args[0].__class__.__name__
@@ -87,12 +90,13 @@ def save_tabs_when_changed(func):
         elif getattr(args[0], "notebook", None):
             g = args[0].notebook.guake
 
-        func(*args, **kwargs)
+        result = func(*args, **kwargs)
         log.debug("mom, I've been called: %s %s", func.__name__, func)
 
         # Tada!
         if g and g.settings.general.get_boolean("save-tabs-when-changed"):
             g.schedule_tabs_save()
+        return result
 
     return wrapper
 

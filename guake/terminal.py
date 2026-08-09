@@ -472,7 +472,7 @@ class GuakeTerminal(Vte.Terminal):
                 subprocess.Popen(  # pylint: disable=consider-using-with
                     resolved_argv, close_fds=True
                 )
-        except ValueError as error:
+        except (OSError, ValueError) as error:
             logging.error("Unable to execute Quick Open command: %s", error)
 
     def handleTerminalMatch(self, matched_string):

@@ -109,3 +109,11 @@ def test_notebook_manager_switches_current_workspace(mocker):
     parent.add.assert_called_once_with(workspace_one)
     workspace_one.guake.restore_pending_terminal_split.assert_called_once_with()
     workspace_one.guake.load_config.assert_called_once_with()
+
+
+def test_notebook_manager_uses_active_workspace_index(mocker):
+    manager = NotebookManager(mocker.Mock(), mocker.Mock(), False, mocker.Mock(), mocker.Mock())
+    manager.screen = mocker.Mock()
+    manager.screen.get_active_workspace.return_value.get_number.return_value = 2
+
+    assert manager.get_active_workspace_index() == 2

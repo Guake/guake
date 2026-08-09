@@ -118,6 +118,17 @@ def test_guake_restore_tabs_json_without_schema_version(g, fs):
     assert guake.guake_app.notifier.showMessage.call_count == 1
 
 
+def test_guake_restore_tabs_rejects_non_integer_schema_version(g, fs):
+    guake.guake_app.notifier.showMessage.reset_mock()
+    fn = fs.create_file("/foobar/invalid-schema-version.json")
+    with open(fn.path, "w", encoding="utf-8") as f:
+        json.dump({"schema_version": "1", "workspace": {}}, f)
+
+    g.restore_tabs(fn.name)
+
+    assert guake.guake_app.notifier.showMessage.call_count == 1
+
+
 def test_guake_restore_tabs_with_higher_schema_version(g, fs):
     guake.guake_app.notifier.showMessage.reset_mock()
 

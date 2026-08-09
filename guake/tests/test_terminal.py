@@ -1,5 +1,7 @@
 # -*- coding: utf-8; -*-
 
+from types import SimpleNamespace
+
 from guake import terminal
 
 
@@ -52,3 +54,15 @@ def test_kill_with_pid_starts_shell_termination(mocker):
 
     thread.assert_called_once_with(target=terminal_instance.delete_shell, args=(123,))
     thread.return_value.start.assert_called_once_with()
+
+
+def test_quick_open_logs_spawn_error_without_raising(mocker, caplog):
+    settings = mocker.Mock()
+    settings.general.get_string.return_value = "missing-editor %(file_path)s"
+    settings.general.get_boolean.return_value = False
+    terminal_instance = type("Terminal", (), {"guake": SimpleNamespace(settings=settings)})()
+    mocker.patch("guake.terminal.subprocess.Popen", side_effect=OSError("not found"))
+
+    terminal.GuakeTerminal._execute_quick_open(terminal_instance, "/tmp/file", 1)
+
+    assert "Unable to execute Quick Open command" in caplog.text

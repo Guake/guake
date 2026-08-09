@@ -623,6 +623,12 @@ class NotebookManager(GObject.Object):
     def __workspace_changed_cb(self, screen, previous_workspace):
         self.set_workspace(self.screen.get_active_workspace().get_number())
 
+    def get_active_workspace_index(self):
+        if getattr(self, "screen", None) is None:
+            return 0
+        workspace = self.screen.get_active_workspace()
+        return workspace.get_number() if workspace is not None else 0
+
     def get_notebook(self, workspace_index: int):
         if not self.has_notebook_for_workspace(workspace_index):
             self.notebooks[workspace_index] = TerminalNotebook()

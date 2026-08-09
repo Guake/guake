@@ -63,10 +63,12 @@ def test_save_tabs_when_changed_schedules_save_for_guake_object(mocker):
 
         @save_tabs_when_changed
         def rename(self, value):
-            self.renamed.append(value.upper())
+            result = value.upper()
+            self.renamed.append(result)
+            return result
 
     target = Target()
-    target.rename("tab")
+    assert target.rename("tab") == "TAB"
 
     assert renamed == ["TAB"]
     guake.schedule_tabs_save.assert_called_once_with()

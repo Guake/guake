@@ -129,11 +129,12 @@ class Guake(SimpleGladeApp):
             or self.settings.general.get_string("schema-version") != guake_version()
         ):
             log.info("Schema from an older Guake version detected, refreshing schema")
+            schema_compiled = False
             try:
-                try_to_compile_glib_schemas()
+                schema_compiled = try_to_compile_glib_schemas()
             except (OSError, subprocess.CalledProcessError) as error:
                 log.warning("Could not refresh the GSettings schema: %s", error)
-            else:
+            if schema_compiled:
                 schema_source = load_schema()
                 self.settings = Settings(schema_source)
                 self.settings.general.set_string("schema-version", guake_version())
@@ -227,7 +228,7 @@ class Guake(SimpleGladeApp):
             self.page_deleted,
         )
         self.notebook_manager.connect("notebook-created", self.notebook_created)
-        self.notebook_manager.set_workspace(0)
+        self.notebook_manager.set_workspace(self.notebook_manager.get_active_workspace_index())
         self.set_tab_position()
 
         # check and set ARGB for real transparency
@@ -1529,13 +1530,27 @@ class Guake(SimpleGladeApp):
                 return
 
         # Check schema_version exist
-        if "schema_version" not in config:
+        if not isinstance(config, dict) or "schema_version" not in config:
             img_filename = pixmapfile("guake-notification.png")
             notifier.showMessage(
                 _("Guake Terminal"),
                 _(
                     "Tabs session restore abort.\n"
                     "Your session file ({session_filename}) missing schema_version as key"
+                ).format(session_filename=session_file),
+                img_filename,
+            )
+            return
+
+        if not isinstance(config["schema_version"], int) or isinstance(
+            config["schema_version"], bool
+        ):
+            img_filename = pixmapfile("guake-notification.png")
+            notifier.showMessage(
+                _("Guake Terminal"),
+                _(
+                    "Tabs session restore abort.\n"
+                    "Your session file ({session_filename}) has an invalid schema_version"
                 ).format(session_filename=session_file),
                 img_filename,
             )
