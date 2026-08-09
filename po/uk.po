@@ -19,8 +19,8 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
-"%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
+"Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
+"n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
 "X-Generator: Weblate 4.2-dev\n"
 
 #: ../guake/data/about.glade.h:1
@@ -57,7 +57,7 @@ msgstr "Скинути термінал"
 
 #: ../guake/data/guake.glade.h:6
 msgid "Find..."
-msgstr ""
+msgstr "Знайти..."
 
 #: ../guake/data/guake.glade.h:7
 msgid "New Tab"
@@ -73,11 +73,11 @@ msgstr "Зачинити вкладку"
 
 #: ../guake/data/guake.glade.h:10
 msgid "Open link..."
-msgstr ""
+msgstr "Відкрити посилання..."
 
 #: ../guake/data/guake.glade.h:11
 msgid "Search on Web"
-msgstr ""
+msgstr "Шукати в Інтернеті"
 
 #: ../guake/data/guake.glade.h:12 ../src/guake/prefs.py:83
 msgid "Quit"
@@ -128,6 +128,17 @@ msgid ""
 "guake -r \"main\" -e \"cd ~/projects/myproject/main\"\n"
 "guake -r \"prod\" -e \"cd ~/projects/myproject/prod\"\n"
 msgstr ""
+"Шлях до bash-скрипту, який автоматично виконується під час запуску Guake, "
+"якщо не вказано --no-startup-script.\n"
+"\n"
+"Зазвичай він використовує функцію налаштування Guake з командного рядка:\n"
+"\n"
+"#!/bin/bash\n"
+"\n"
+"sleep 5  # радимо трохи зачекати, доки Guake успішно запуститься\n"
+"\n"
+"guake -r \"main\" -e \"cd ~/projects/myproject/main\"\n"
+"guake -r \"prod\" -e \"cd ~/projects/myproject/prod\"\n"
 
 #: ../guake/data/prefs.glade.h:15
 msgid "Enable popup notifications on startup"
@@ -143,15 +154,15 @@ msgstr "Завжди запитувати про вихід"
 
 #: ../guake/data/prefs.glade.h:18
 msgid "_Flash terminal on bell"
-msgstr ""
+msgstr "_Блимати терміналом за дзвінком"
 
 #: ../guake/data/prefs.glade.h:19
 msgid "_Play system alert sound on bell"
-msgstr ""
+msgstr "_Відтворювати системний звук сповіщення за дзвінком"
 
 #: ../guake/data/prefs.glade.h:20
 msgid "Path to script executed on Guake start:"
-msgstr ""
+msgstr "Шлях до скрипту, що виконується під час запуску Guake:"
 
 #: ../guake/data/prefs.glade.h:21
 msgid "Prompt on close tab:"
@@ -163,6 +174,9 @@ msgid ""
 "With process running\n"
 "Always"
 msgstr ""
+"Ніколи\n"
+"Якщо процес виконується\n"
+"Завжди"
 
 #: ../guake/data/prefs.glade.h:25
 msgid "<b>General</b>"
@@ -170,15 +184,15 @@ msgstr "<b>Загальне</b>"
 
 #: ../guake/data/prefs.glade.h:26
 msgid "Bottom align window instead of top align"
-msgstr ""
+msgstr "Вирівнювати вікно за нижнім, а не верхнім краєм"
 
 #: ../guake/data/prefs.glade.h:27
 msgid "Appear on mouse display"
-msgstr ""
+msgstr "Показувати на дисплеї з вказівником миші"
 
 #: ../guake/data/prefs.glade.h:28
 msgid "Appear on display:"
-msgstr ""
+msgstr "Показувати на дисплеї:"
 
 #: ../guake/data/prefs.glade.h:29
 msgid "Place tabs on top"
@@ -194,15 +208,15 @@ msgstr "Триматися поверха"
 
 #: ../guake/data/prefs.glade.h:32
 msgid "Use VTE titles for tab names"
-msgstr ""
+msgstr "Використовувати заголовки VTE як назви вкладок"
 
 #: ../guake/data/prefs.glade.h:33
 msgid "Max tab name length:"
-msgstr ""
+msgstr "Максимальна довжина назви вкладки:"
 
 #: ../guake/data/prefs.glade.h:34
 msgid "0 means no size limit"
-msgstr ""
+msgstr "0 означає відсутність обмеження розміру"
 
 #: ../guake/data/prefs.glade.h:36
 msgid "Hide on lose focus"
@@ -222,15 +236,15 @@ msgstr "<b>Головне вікно</b>"
 
 #: ../guake/data/prefs.glade.h:40
 msgid "Left"
-msgstr ""
+msgstr "Ліворуч"
 
 #: ../guake/data/prefs.glade.h:41
 msgid "Center"
-msgstr ""
+msgstr "По центру"
 
 #: ../guake/data/prefs.glade.h:42
 msgid "Right"
-msgstr ""
+msgstr "Праворуч"
 
 #: ../guake/data/prefs.glade.h:43
 msgid "<b>Main Window Horizontal Alignment</b>"
@@ -246,11 +260,11 @@ msgstr "<b>Ширина головного вікна</b>"
 
 #: ../guake/data/prefs.glade.h:46
 msgid "Custom command file path: "
-msgstr ""
+msgstr "Шлях до файлу власних команд: "
 
 #: ../guake/data/prefs.glade.h:47
 msgid "Please select a json file"
-msgstr ""
+msgstr "Виберіть JSON-файл"
 
 #: ../guake/data/prefs.glade.h:48 ../src/guake/prefs.py:75
 msgid "General"
@@ -274,7 +288,7 @@ msgstr "<b>Оболонка</b>"
 
 #: ../guake/data/prefs.glade.h:53
 msgid "Shell"
-msgstr ""
+msgstr "Оболонка"
 
 #: ../guake/data/prefs.glade.h:54
 msgid "Show scrollbar"
@@ -322,7 +336,7 @@ msgstr "Колір тла:"
 
 #: ../guake/data/prefs.glade.h:65
 msgid "Cursor shape:"
-msgstr ""
+msgstr "Форма курсора:"
 
 #: ../guake/data/prefs.glade.h:66
 msgid ""
@@ -330,6 +344,9 @@ msgid ""
 "I-Beam\n"
 "Underline"
 msgstr ""
+"Блок\n"
+"I-подібний\n"
+"Підкреслення"
 
 #: ../guake/data/prefs.glade.h:69
 msgid ""
@@ -337,14 +354,17 @@ msgid ""
 "Blink on\n"
 "Blink off"
 msgstr ""
+"Дотримуватися налаштування GTK+\n"
+"Блимання увімкнено\n"
+"Блимання вимкнено"
 
 #: ../guake/data/prefs.glade.h:72
 msgid "Cursor blink mode:"
-msgstr ""
+msgstr "Режим блимання курсора:"
 
 #: ../guake/data/prefs.glade.h:73
 msgid "Allow bold font"
-msgstr ""
+msgstr "Дозволити жирний шрифт"
 
 #: ../guake/data/prefs.glade.h:74
 msgid "<b>Palette</b>"
@@ -368,11 +388,11 @@ msgstr "Колір тла"
 
 #: ../guake/data/prefs.glade.h:79
 msgid "Use font and background color from the palette"
-msgstr ""
+msgstr "Використовувати колір шрифту й тла з палітри"
 
 #: ../guake/data/prefs.glade.h:80
 msgid "Demo:"
-msgstr ""
+msgstr "Приклад:"
 
 #: ../guake/data/prefs.glade.h:81
 msgid "<b>Effects</b>"
@@ -397,14 +417,18 @@ msgid ""
 "your terminal. See the list of currently supported text patterns used to "
 "extract filename below.</small>"
 msgstr ""
+"<small>Швидке відкриття дає змогу відкрити файл безпосередньо у вибраному "
+"текстовому редакторі, натиснувши його назву в терміналі. Нижче наведено "
+"список підтримуваних шаблонів для визначення назв файлів.</small>"
 
 #: ../guake/data/prefs.glade.h:86
 msgid "Enable Quick Open when Ctrl+clicking on a filename in the terminal"
 msgstr ""
+"Увімкнути швидке відкриття при натисканні Ctrl на назві файлу в терміналі"
 
 #: ../guake/data/prefs.glade.h:87
 msgid "Editor command line:"
-msgstr ""
+msgstr "Командний рядок редактора:"
 
 #: ../guake/data/prefs.glade.h:89
 #, no-c-format
@@ -417,16 +441,26 @@ msgid ""
 "For example, for sublime, use <b>subl %(file_path)s:%(line_number)s</b>\n"
 "</i></small>"
 msgstr ""
+"<small><i>Використовуйте такі елементи в командному рядку редактора:\n"
+" - <b>%(file_path)s</b>: шлях до вибраного файлу\n"
+" - <b>%(line_number)s</b>: якщо редактор це підтримує, можна безпосередньо "
+"відкрити файл на знайденому в терміналі номері рядка.\n"
+"\n"
+"Наприклад, для Sublime використовуйте <b>subl %(file_path)s:%(line_number)s</"
+"b>\n"
+"</i></small>"
 
 #: ../guake/data/prefs.glade.h:95
 msgid "Quick open in current terminal"
-msgstr ""
+msgstr "Швидке відкриття в поточному терміналі"
 
 #: ../guake/data/prefs.glade.h:96
 msgid ""
 "Here is the list of supported patterns: (to add your own, please contact the "
 "Guake's authors)"
 msgstr ""
+"Ось список підтримуваних шаблонів (щоб додати власний, зверніться до авторів "
+"Guake)"
 
 #: ../guake/data/prefs.glade.h:97
 msgid "<b>Quick Open</b>"
@@ -434,13 +468,15 @@ msgstr "<b>Швидке відкриття</b>"
 
 #: ../guake/data/prefs.glade.h:98
 msgid "Quick Open"
-msgstr ""
+msgstr "Швидке відкриття"
 
 #: ../guake/data/prefs.glade.h:99
 msgid ""
 "To change a shortcut simply click on its name.\n"
 "To disable a shortcut, press the \"Backspace\" key."
 msgstr ""
+"Натисніть назву комбінації, щоб змінити її.\n"
+"Щоб вимкнути комбінацію, натисніть клавішу «Backspace»."
 
 #: ../guake/data/prefs.glade.h:101
 msgid "Keyboard shortcuts"
@@ -521,7 +557,7 @@ msgstr " і одна вкладка відкрита"
 #: ../src/guake/guake_app.py:139
 #, python-brace-format
 msgid " and {0} tabs open"
-msgstr ""
+msgstr " і відкрито вкладок: {0}"
 
 #: ../src/guake/guake_app.py:142
 msgid "There are no processes running"
@@ -546,7 +582,7 @@ msgstr ""
 
 #: ../src/guake/guake_app.py:190
 msgid "Show"
-msgstr ""
+msgstr "Показати"
 
 #: ../src/guake/guake_app.py:379
 #, python-format
@@ -560,23 +596,23 @@ msgstr ""
 #: ../src/guake/guake_app.py:670
 #, python-format
 msgid "Search on Web: '%s'"
-msgstr ""
+msgstr "Шукати в Інтернеті: «%s»"
 
 #: ../src/guake/guake_app.py:675
 msgid "Search on Web (no selection)"
-msgstr ""
+msgstr "Шукати в Інтернеті (нічого не вибрано)"
 
 #: ../src/guake/guake_app.py:683
 msgid "Open Link: '{}...'"
-msgstr ""
+msgstr "Відкрити посилання: «{}...»"
 
 #: ../src/guake/guake_app.py:685
 msgid "Open Link: {}"
-msgstr ""
+msgstr "Відкрити посилання: {}"
 
 #: ../src/guake/guake_app.py:688
 msgid "Open Link..."
-msgstr ""
+msgstr "Відкрити посилання..."
 
 #: ../src/guake/guake_app.py:1425
 msgid "Rename tab"
@@ -584,31 +620,31 @@ msgstr "Перейменувати вкладку"
 
 #: ../src/guake/guake_app.py:1736
 msgid "Save to..."
-msgstr ""
+msgstr "Зберегти до..."
 
 #: ../src/guake/guake_app.py:1743 ../src/guake/prefs.py:973
 msgid "All files"
-msgstr ""
+msgstr "Усі файли"
 
 #: ../src/guake/guake_app.py:1748
 msgid "Text and Logs"
-msgstr ""
+msgstr "Текст і журнали"
 
 #: ../src/guake/guake_app.py:1766
 msgid "Find"
-msgstr ""
+msgstr "Знайти"
 
 #: ../src/guake/guake_app.py:1768
 msgid "Forward"
-msgstr ""
+msgstr "Вперед"
 
 #: ../src/guake/guake_app.py:1769
 msgid "Backward"
-msgstr ""
+msgstr "Назад"
 
 #: ../src/guake/main.py:68
 msgid "Put Guake in fullscreen mode"
-msgstr ""
+msgstr "Увімкнути повноекранний режим Guake"
 
 #: ../src/guake/main.py:72
 msgid "Toggles the visibility of the terminal window"
@@ -637,7 +673,7 @@ msgstr "_Нові вкладки відкриваються в тій же те�
 
 #: ../src/guake/main.py:96
 msgid "Select a tab (SELECT_TAB is the index of the tab)"
-msgstr ""
+msgstr "Вибрати вкладку (SELECT_TAB — індекс вкладки)"
 
 #: ../src/guake/main.py:100
 msgid "Return the selected tab index."
@@ -649,25 +685,29 @@ msgstr "Виконати вказану команду у поточній вк�
 
 #: ../src/guake/main.py:108
 msgid "Specify the tab to rename. Default is 0."
-msgstr ""
+msgstr "Вказати вкладку для перейменування. Типове значення — 0."
 
 #: ../src/guake/main.py:112
 msgid "Set the hexadecimal (#rrggbb) background color of the selected tab."
-msgstr ""
+msgstr "Встановити шістнадцятковий колір тла (#rrggbb) вибраної вкладки."
 
 #: ../src/guake/main.py:117
 msgid "Set the hexadecimal (#rrggbb) foreground color of the selected tab."
-msgstr ""
+msgstr "Встановити шістнадцятковий колір тексту (#rrggbb) вибраної вкладки."
 
 #: ../src/guake/main.py:123
 msgid ""
 "Rename the specified tab. Reset to default if TITLE is a single dash \"-\"."
 msgstr ""
+"Перейменувати вказану вкладку. Скинути до типової назви, якщо TITLE — один "
+"дефіс «-»."
 
 #: ../src/guake/main.py:129
 msgid ""
 "Rename the current tab. Reset to default if TITLE is a single dash \"-\"."
 msgstr ""
+"Перейменувати поточну вкладку. Скинути до типової назви, якщо TITLE — один "
+"дефіс «-»."
 
 #: ../src/guake/main.py:134
 msgid "Says to Guake go away =("
@@ -675,7 +715,7 @@ msgstr "Наказує Guake зникнути =("
 
 #: ../src/guake/main.py:138
 msgid "Do not execute the start up script"
-msgstr ""
+msgstr "Не виконувати скрипт запуску"
 
 #: ../src/guake/main.py:235
 msgid "Guake can not init!"
@@ -800,23 +840,23 @@ msgstr "Перейти до наступної вкладки"
 
 #: ../src/guake/prefs.py:132
 msgid "Zoom out"
-msgstr ""
+msgstr "Зменшити масштаб"
 
 #: ../src/guake/prefs.py:134
 msgid "Zoom in"
-msgstr ""
+msgstr "Збільшити масштаб"
 
 #: ../src/guake/prefs.py:136
 msgid "Zoom in (alternative)"
-msgstr ""
+msgstr "Збільшити масштаб (альтернативна комбінація)"
 
 #: ../src/guake/prefs.py:138
 msgid "Increase height"
-msgstr ""
+msgstr "Збільшити висоту"
 
 #: ../src/guake/prefs.py:140
 msgid "Decrease height"
-msgstr ""
+msgstr "Зменшити висоту"
 
 #: ../src/guake/prefs.py:142
 msgid "Increase transparency"
@@ -844,11 +884,11 @@ msgstr "Вставити текст з буфера обміну"
 
 #: ../src/guake/prefs.py:156
 msgid "Extra features"
-msgstr ""
+msgstr "Додаткові функції"
 
 #: ../src/guake/prefs.py:159
 msgid "Search select text on web"
-msgstr ""
+msgstr "Шукати вибраний текст в Інтернеті"
 
 #: ../src/guake/prefs.py:481
 msgid "Action"
@@ -860,11 +900,11 @@ msgstr "Комбінація клавіш"
 
 #: ../src/guake/prefs.py:651 ../src/guake/prefs.py:697
 msgid "Custom"
-msgstr ""
+msgstr "Власний"
 
 #: ../src/guake/prefs.py:969
 msgid "JSON files"
-msgstr ""
+msgstr "JSON-файли"
 
 #: ../src/guake/prefs.py:1063
 #, python-format
@@ -891,55 +931,55 @@ msgstr ""
 
 #: guake/main.py:153
 msgid "Return the selected tab label."
-msgstr ""
+msgstr "Повернути назву вибраної вкладки."
 
 #: guake/data/prefs.glade:264
 msgid "Never"
-msgstr ""
+msgstr "Ніколи"
 
 #: guake/data/prefs.glade:265
 msgid "With process running"
-msgstr ""
+msgstr "Якщо процес виконується"
 
 #: guake/data/prefs.glade:266
 msgid "Always"
-msgstr ""
+msgstr "Завжди"
 
 #: guake/data/prefs.glade:499
 msgid "Refocus if open"
-msgstr ""
+msgstr "Повторно сфокусувати, якщо відкрито"
 
 #: guake/data/prefs.glade:865
 msgid "Custom command file path:"
-msgstr ""
+msgstr "Шлях до файлу власних команд:"
 
 #: guake/data/prefs.glade:1315
 msgid "Show resizer"
-msgstr ""
+msgstr "Показувати змінювач розміру"
 
 #: guake/data/prefs.glade:1423
 msgid "Block"
-msgstr ""
+msgstr "Блок"
 
 #: guake/data/prefs.glade:1424
 msgid "I-Beam"
-msgstr ""
+msgstr "I-подібний"
 
 #: guake/data/prefs.glade:1425
 msgid "Underline"
-msgstr ""
+msgstr "Підкреслення"
 
 #: guake/data/prefs.glade:1443
 msgid "Follow GTK+ setting"
-msgstr ""
+msgstr "Дотримуватися налаштування GTK+"
 
 #: guake/data/prefs.glade:1444
 msgid "Blink on"
-msgstr ""
+msgstr "Блимання увімкнено"
 
 #: guake/data/prefs.glade:1445
 msgid "Blink off"
-msgstr ""
+msgstr "Блимання вимкнено"
 
 #: guake/data/prefs.glade:2236
 msgid ""
@@ -958,7 +998,7 @@ msgstr ""
 
 #: guake/data/prefs.glade:2443 guake/data/prefs.glade:2463
 msgid "Escape sequence"
-msgstr ""
+msgstr "Керівна послідовність"
 
 #: guake/data/prefs.glade:2444 guake/data/prefs.glade:2464
 msgid "Control-H"
@@ -969,22 +1009,24 @@ msgid ""
 "<small>In this dialog you can attach your own command or script to various "
 "guake events</small>"
 msgstr ""
+"<small>У цьому діалозі можна призначити власну команду або скрипт для різних "
+"подій Guake</small>"
 
 #: guake/data/prefs.glade:2635
 msgid "On show:"
-msgstr ""
+msgstr "Під час показу:"
 
 #: guake/data/prefs.glade:2665
 msgid "On start:"
-msgstr ""
+msgstr "Під час запуску:"
 
 #: guake/data/prefs.glade:2714
 msgid "Hooks"
-msgstr ""
+msgstr "Обробники подій"
 
 #: guake/data/guake-prefs.desktop:8
 msgid "Configure your Guake sessions"
-msgstr ""
+msgstr "Налаштувати сеанси Guake"
 
 #: guake/data/guake-prefs.desktop:15 guake/data/guake.desktop:18
 msgid "guake"
@@ -992,19 +1034,19 @@ msgstr ""
 
 #: guake/data/guake-prefs.desktop:20
 msgid "Terminal;Utility;"
-msgstr ""
+msgstr "Термінал;Утиліта;"
 
 #: guake/data/guake.desktop:10
 msgid "Use the command line in a Quake-like terminal"
-msgstr ""
+msgstr "Використовуйте командний рядок у терміналі на кшталт Quake"
 
 #: guake/data/prefs.glade:770
 msgid "Main Window Horizontal Alignment"
-msgstr ""
+msgstr "Горизонтальне вирівнювання головного вікна"
 
 #: guake/prefs.py:89
 msgid "Show and focus Guake window"
-msgstr ""
+msgstr "Показати й сфокусувати вікно Guake"
 
 #: guake/data/prefs.glade:566
 msgid "0"
@@ -1012,39 +1054,39 @@ msgstr ""
 
 #: guake/data/prefs.glade:610
 msgid "<b>Main Window Options</b>"
-msgstr ""
+msgstr "<b>Параметри головного вікна</b>"
 
 #: guake/data/prefs.glade:770
 msgid "Horizontal Alignment:"
-msgstr ""
+msgstr "Горизонтальне вирівнювання:"
 
 #: guake/data/prefs.glade:855
 msgid "Height:"
-msgstr ""
+msgstr "Висота:"
 
 #: guake/data/prefs.glade:868
 msgid "Width:"
-msgstr ""
+msgstr "Ширина:"
 
 #: guake/data/prefs.glade:913
 msgid "<b>Geometry</b>"
-msgstr ""
+msgstr "<b>Геометрія</b>"
 
 #: guake/data/prefs.glade:944
 msgid "Main Window"
-msgstr ""
+msgstr "Головне вікно"
 
 #: guake/data/prefs.glade:1197
 msgid "Infinite scrolling"
-msgstr ""
+msgstr "Нескінченне прокручування"
 
 #: guake/data/prefs.glade:1219
 msgid "<b>Scrollbar</b>"
-msgstr ""
+msgstr "<b>Смуга прокручування</b>"
 
 #: guake/data/prefs.glade:1304
 msgid "<b>Scroll to Bottom</b>"
-msgstr ""
+msgstr "<b>Прокручування вниз</b>"
 
 #: guake/data/prefs.glade:2117
 msgid ""
@@ -1053,10 +1095,13 @@ msgid ""
 "terminal. See the list of currently supported text patterns used to extract "
 "filename below."
 msgstr ""
+"<small>Швидке відкриття дає змогу відкрити файл безпосередньо у вибраному "
+"текстовому редакторі, натиснувши його назву в терміналі. Нижче наведено "
+"список підтримуваних шаблонів для визначення назв файлів.</small>"
 
 #: guake/main.py:64
 msgid "Show Guake version number and exit"
-msgstr ""
+msgstr "Показати номер версії Guake та завершити роботу"
 
 #: guake/data/prefs.glade:93
 msgid "<span size=\"18000\"><b>Guake properties</b></span>"
@@ -1068,27 +1113,27 @@ msgstr "Налаштування поведінки та вигляду Guake!"
 
 #: guake/data/prefs.glade:929
 msgid "Displacement in pixels"
-msgstr ""
+msgstr "Зміщення в пікселях"
 
 #: guake/main.py:73
 msgid "Enable verbose logging"
-msgstr ""
+msgstr "Увімкнути докладне журналювання"
 
 #: guake/guake_app.py:680
 msgid "Quick Open: '{!s}...'"
-msgstr ""
+msgstr "Швидке відкриття: «{!s}...»"
 
 #: guake/guake_app.py:683
 msgid "Quick Open: {!s}"
-msgstr ""
+msgstr "Швидке відкриття: {!s}"
 
 #: guake/guake_app.py:691
 msgid "Open Link: '{!s}...'"
-msgstr ""
+msgstr "Відкрити посилання: «{!s}...»"
 
 #: guake/guake_app.py:694
 msgid "Open Link: {!s}"
-msgstr ""
+msgstr "Відкрити посилання: {!s}"
 
 #: guake/data/prefs.glade:2175
 msgid ""
@@ -1098,197 +1143,212 @@ msgid ""
 "VTE with PCRE2 enabled ! To use Quick Open, you <b>must select the text</b> "
 "before using Ctrl+click</i>."
 msgstr ""
+"<i><b>ПОПЕРЕДЖЕННЯ</b>: схоже, у вашій системі для VTE вимкнено PCRE2, тому "
+"Guake не може реєструвати «збіги» за допомогою регулярних виразів. "
+"Зверніться до розробників дистрибутива й попросіть новішу версію VTE з "
+"увімкненим PCRE2! Щоб використовувати швидке відкриття, <b>потрібно вибрати "
+"текст</b> перед натисканням Ctrl+клацання.</i>."
 
 #: guake/guake_app.py:680
 msgid "Quick Open: {!s}..."
-msgstr ""
+msgstr "Швидке відкриття: {!s}..."
 
 #: guake/guake_app.py:691
 msgid "Open Link: {!s}..."
-msgstr ""
+msgstr "Відкрити посилання: {!s}..."
 
 #: guake/guake_app.py:688
 msgid "Quick Open..."
-msgstr ""
+msgstr "Швидке відкриття..."
 
 #: guake/data/prefs.glade:223
 msgid "Start Guake at login"
-msgstr ""
+msgstr "Запускати Guake під час входу в систему"
 
 #: guake/data/prefs.glade:363
 msgid "Gtk Theme:"
-msgstr ""
+msgstr "Тема GTK:"
 
 #: guake/data/prefs.glade:387
 msgid "Prefer dark theme"
-msgstr ""
+msgstr "Надавати перевагу темній темі"
 
 #: guake/guake_app.py:435
 msgid "Custom Commands"
-msgstr ""
+msgstr "Власні команди"
 
 #: guake/main.py:184
 msgid ""
 "Specify the tab to rename. Default is 0. Can be used to select tab by UUID."
 msgstr ""
+"Вказати вкладку для перейменування. Типове значення — 0. Можна "
+"використовувати для вибору вкладки за UUID."
 
 #: guake/main.py:212
 msgid ""
 "Rename the specified tab by --tab-index. Reset to default if TITLE is a "
 "single dash \"-\"."
 msgstr ""
+"Перейменувати вкладку, вказану через --tab-index. Скинути до типової назви, "
+"якщо TITLE — один дефіс «-»."
 
 #: data/search.glade:138
 msgid "Search forward"
-msgstr ""
+msgstr "Шукати вперед"
 
 #: data/search.glade:153
 msgid "Match case"
-msgstr ""
+msgstr "Враховувати регістр"
 
 #: data/search.glade:186
 msgid "Current search direction: Backward"
-msgstr ""
+msgstr "Поточний напрямок пошуку: назад"
 
 #: data/prefs.glade:680
 msgid "Set window title to current tab name"
-msgstr ""
+msgstr "Встановлювати заголовок вікна за назвою поточної вкладки"
 
 #: guake/menus.py:48
 msgid "Copy Url"
-msgstr ""
+msgstr "Копіювати URL"
 
 #: guake/menus.py:62
 msgid "Split ―"
-msgstr ""
+msgstr "Розділити ―"
 
 #: guake/menus.py:65
 msgid "Split  "
-msgstr ""
+msgstr "Розділити  "
 
 #: guake/menus.py:68 guake/prefs.py:150
 msgid "Close terminal"
-msgstr ""
+msgstr "Закрити термінал"
 
 #: guake/prefs.py:137
 msgid "Split management"
-msgstr ""
+msgstr "Керування розділенням"
 
 #: guake/prefs.py:142
 msgid "Split tab vertical"
-msgstr ""
+msgstr "Розділити вкладку вертикально"
 
 #: guake/prefs.py:146
 msgid "Split tab horizontal"
-msgstr ""
+msgstr "Розділити вкладку горизонтально"
 
 #: guake/prefs.py:154
 msgid "Focus terminal above"
-msgstr ""
+msgstr "Фокусувати термінал вище"
 
 #: guake/prefs.py:158
 msgid "Focus terminal below"
-msgstr ""
+msgstr "Фокусувати термінал нижче"
 
 #: guake/prefs.py:162
 msgid "Focus terminal on the left"
-msgstr ""
+msgstr "Фокусувати термінал ліворуч"
 
 #: guake/prefs.py:166
 msgid "Focus terminal on the right"
-msgstr ""
+msgstr "Фокусувати термінал праворуч"
 
 #: guake/prefs.py:170
 msgid "Move the terminal split handle up"
-msgstr ""
+msgstr "Перемістити роздільник терміналів угору"
 
 #: guake/prefs.py:174
 msgid "Move the terminal split handle down"
-msgstr ""
+msgstr "Перемістити роздільник терміналів униз"
 
 #: guake/prefs.py:178
 msgid "Move the terminal split handle right"
-msgstr ""
+msgstr "Перемістити роздільник терміналів праворуч"
 
 #: guake/prefs.py:182
 msgid "Move the terminal split handle left"
-msgstr ""
+msgstr "Перемістити роздільник терміналів ліворуч"
 
 #: guake/menus.py:65
 msgid "Split ｜"
-msgstr ""
+msgstr "Розділити ｜"
 
 #: guake/menus.py:72
 msgid "Save content..."
-msgstr ""
+msgstr "Зберегти вміст..."
 
 #: data/prefs.glade:1182
 msgid ""
 "This might not work on all shells, make sure that your shell supports the --"
 "login option"
 msgstr ""
+"Це може не працювати в усіх оболонках; переконайтеся, що ваша оболонка "
+"підтримує параметр --login"
 
 #: guake/prefs.py:128
 msgid "New tab in home directory"
-msgstr ""
+msgstr "Нова вкладка в домашньому каталозі"
 
 #: guake/dialogs.py:56
 #, python-brace-format
 msgid " on {0} workspaces"
-msgstr ""
+msgstr " у робочих просторах: {0}"
 
 #: guake/main.py:211
 msgid "Change Guake palette scheme"
-msgstr ""
+msgstr "Змінити схему палітри Guake"
 
 #: data/prefs.glade:331
 msgid "Use workspace-specific tab sets (requires restart)"
 msgstr ""
+"Використовувати окремі набори вкладок для робочих просторів (потребує "
+"перезапуску)"
 
 #: guake/main.py:175
 msgid "Split the selected tab vertically."
-msgstr ""
+msgstr "Розділити вибрану вкладку вертикально."
 
 #: guake/main.py:183
 msgid "Split the selected tab horizontally."
-msgstr ""
+msgstr "Розділити вибрану вкладку горизонтально."
 
 #: data/prefs.glade:348
 msgid "Show close buttons for tabs"
-msgstr ""
+msgstr "Показувати кнопки закриття вкладок"
 
 #: data/prefs.glade:1682
 msgid "Bold text is also bright"
-msgstr ""
+msgstr "Жирний текст також яскравий"
 
 #: data/prefs.glade:1682
 msgid "Bold text is also bright (VTE >=0.52)"
-msgstr ""
+msgstr "Жирний текст також яскравий (VTE >=0.52)"
 
 #: guake/menus.py:42
 msgid "Save Tabs"
-msgstr ""
+msgstr "Зберегти вкладки"
 
 #: guake/menus.py:45
 msgid "Restore Tabs"
-msgstr ""
+msgstr "Відновити вкладки"
 
 #: guake/prefs.py:113
 msgid "Search terminal"
-msgstr ""
+msgstr "Шукати в терміналі"
 
 #: guake/main.py:278
 msgid "Save Guake preferences to this filename"
-msgstr ""
+msgstr "Зберегти налаштування Guake у цей файл"
 
 #: guake/main.py:286
 msgid "Restore Guake preferences from this file"
-msgstr ""
+msgstr "Відновити налаштування Guake з цього файлу"
 
 #: guake/guake_app.py:1192
 #, python-brace-format
 msgid "Your session.json file is broken, backup to {session_filename}.bak"
 msgstr ""
+"Файл session.json пошкоджено; резервну копію збережено як {session_filename}."
+"bak"
 
 #: guake/guake_app.py:1228
 #, python-brace-format
@@ -1296,32 +1356,36 @@ msgid ""
 "Your session.json schema is broken, backup to {0}.bak,and error message has "
 "been saved to {0}.log.err"
 msgstr ""
+"Схему session.json пошкоджено; резервну копію збережено як {0}.bak, а "
+"повідомлення про помилку — у {0}.log.err"
 
 #: guake/guake_app.py:1239
 msgid "Your tabs has been restored!"
-msgstr ""
+msgstr "Ваші вкладки відновлено!"
 
 #: data/prefs.glade:190
 msgid "Restore previous session (tabs)"
-msgstr ""
+msgstr "Відновити попередній сеанс (вкладки)"
 
 #: data/prefs.glade:204
 msgid "Enable notification when restore tabs"
-msgstr ""
+msgstr "Увімкнути сповіщення під час відновлення вкладок"
 
 #: data/prefs.glade:218
 msgid "Automatically save session when the tabs has been modified"
-msgstr ""
+msgstr "Автоматично зберігати сеанс після зміни вкладок"
 
 #: data/prefs.glade:238
 msgid "Startup & Tabs (Experiment)"
-msgstr ""
+msgstr "Запуск і вкладки (експериментально)"
 
 #: guake/guake_app.py:1192
 #, python-brace-format
 msgid ""
 "Your {session_filename} file is broken, backup to {session_filename}.bak"
 msgstr ""
+"Файл {session_filename} пошкоджено; резервну копію збережено як "
+"{session_filename}.bak"
 
 #: guake/guake_app.py:1227
 #, python-brace-format
@@ -1329,6 +1393,8 @@ msgid ""
 "Your {session_filename} schema is broken, backup to {0}.bak,and error "
 "message has been saved to {session_filename}.log.err"
 msgstr ""
+"Схему {session_filename} пошкоджено; резервну копію збережено як {0}.bak, а "
+"повідомлення про помилку — у {session_filename}.log.err"
 
 #: guake/guake_app.py:1227
 #, python-brace-format
@@ -1336,6 +1402,9 @@ msgid ""
 "Your {session_filename} schema is broken, backup to {session_filename}.bak,"
 "and error message has been saved to {session_filename}.log.err."
 msgstr ""
+"Схему {session_filename} пошкоджено; резервну копію збережено як "
+"{session_filename}.bak, а повідомлення про помилку — у {session_filename}."
+"log.err."
 
 #: guake/guake_app.py:1227
 #, python-brace-format
@@ -1343,6 +1412,9 @@ msgid ""
 "Your {session_filename} schema is broken, backup to {session_filename}.bak, "
 "and error message has been saved to {session_filename}.log.err."
 msgstr ""
+"Схему {session_filename} пошкоджено; резервну копію збережено як "
+"{session_filename}.bak, а повідомлення про помилку — у {session_filename}."
+"log.err."
 
 #: guake/notebook.py:317
 msgid ""
@@ -1351,10 +1423,14 @@ msgid ""
 "\n"
 "Do you want to continue?"
 msgstr ""
+"Ви збираєтеся відновити *всі* вкладки!\n"
+"Це означає, що всі ваші термінали й сторінки буде замінено.\n"
+"\n"
+"Продовжити?"
 
 #: guake/main.py:296
 msgid "Show support infomations"
-msgstr ""
+msgstr "Показати інформацію для підтримки"
 
 #: guake/guake_app.py:1240
 #, python-brace-format
@@ -1362,6 +1438,8 @@ msgid ""
 "Tabs session restore abort.\n"
 "Your session file ({session_filename}) missing schema_version as key"
 msgstr ""
+"Сеанс відновлення вкладок перервано.\n"
+"У файлі сеансу ({session_filename}) відсутній ключ schema_version"
 
 #: guake/guake_app.py:1252
 #, python-brace-format
@@ -1370,124 +1448,131 @@ msgid ""
 "Your session file schema version is higher than current version "
 "({session_file_schema_version} > {current_schema_version})."
 msgstr ""
+"Сеанс відновлення вкладок перервано.\n"
+"Версія схеми файлу сеансу новіша за поточну ({session_file_schema_version} > "
+"{current_schema_version})."
 
 #: guake/data/prefs.glade:409
 msgid "Use workspace-specific tab sets (requires restart, only work on X11)"
 msgstr ""
+"Використовувати окремі набори вкладок для робочих просторів (потребує "
+"перезапуску, працює лише в X11)"
 
 #: guake/data/prefs.glade:809
 msgid "Hide tabbar when fullscreen"
-msgstr ""
+msgstr "Ховати панель вкладок у повноекранному режимі"
 
 #: guake/data/prefs.glade:739
 msgid "Display as tab names:"
-msgstr ""
+msgstr "Показувати як назви вкладок:"
 
 #: guake/data/prefs.glade:753
 msgid "Full Path"
-msgstr ""
+msgstr "Повний шлях"
 
 #: guake/data/prefs.glade:754
 msgid "Abbreviated Path"
-msgstr ""
+msgstr "Скорочений шлях"
 
 #: guake/data/prefs.glade:755
 msgid "Last Segment"
-msgstr ""
+msgstr "Останній сегмент"
 
 #: guake/main.py:99
 msgid "Put Guake out from fullscreen mode"
-msgstr ""
+msgstr "Вийти з повноекранного режиму Guake"
 
 #: guake/main.py:189
 msgid ""
 "Select a specific terminal in a split tab. Only useful with split terminals "
 "(TERMINAL_INDEX is the index of the tab)"
 msgstr ""
+"Вибрати певний термінал у розділеній вкладці. Корисно лише для розділених "
+"терміналів (TERMINAL_INDEX — індекс термінала)"
 
 #: guake/main.py:199
 msgid "Return the selected terminal index."
-msgstr ""
+msgstr "Повернути індекс вибраного термінала."
 
 #: guake/main.py:259
 msgid "Set the hexadecimal (#rrggbb) background color of the current terminal."
-msgstr ""
+msgstr "Встановити шістнадцятковий колір тла (#rrggbb) поточного термінала."
 
 #: guake/main.py:268
 msgid "Set the hexadecimal (#rrggbb) foreground color of the current terminal."
-msgstr ""
+msgstr "Встановити шістнадцятковий колір тексту (#rrggbb) поточного термінала."
 
 #: guake/main.py:285
 msgid "Set colors from settings."
-msgstr ""
+msgstr "Встановити кольори з налаштувань."
 
 #: guake/main.py:293
 msgid "Set colors of the current terminal from settings."
-msgstr ""
+msgstr "Встановити кольори поточного термінала з налаштувань."
 
 #: guake/main.py:358
 msgid "Show support infomation"
-msgstr ""
+msgstr "Показати інформацію для підтримки"
 
 #: guake/menus.py:26
 msgid "Reset custom colors"
-msgstr ""
+msgstr "Скинути власні кольори"
 
 #: guake/dialogs.py:101
 msgid "Do you want to reset custom colors for this tab?"
-msgstr ""
+msgstr "Скинути власні кольори для цієї вкладки?"
 
 #: guake/data/prefs.glade:835
 msgid "New tabs appear after the current tab"
-msgstr ""
+msgstr "Нові вкладки з’являються після поточної вкладки"
 
 #: guake/prefs.py:186
 msgid "Search selected text on web"
-msgstr ""
+msgstr "Шукати вибраний текст в Інтернеті"
 
 #: guake/menus.py:80
 msgid "Copy URL"
-msgstr ""
+msgstr "Копіювати URL"
 
 #: guake/main.py:362
 msgid "Show support information"
-msgstr ""
+msgstr "Показати інформацію для підтримки"
 
 #: guake/data/prefs.glade:19
 msgid "Scale"
-msgstr ""
+msgstr "Масштабувати"
 
 #: guake/data/prefs.glade:23
 msgid "Tile"
-msgstr ""
+msgstr "Мозаїка"
 
 #: guake/data/prefs.glade:31
 msgid "Stretch"
-msgstr ""
+msgstr "Розтягнути"
 
 #: guake/data/prefs.glade:472
 msgid "Copy on select"
-msgstr ""
+msgstr "Копіювати під час вибору"
 
 #: guake/data/prefs.glade:517
 msgid "Use system default theme"
-msgstr ""
+msgstr "Використовувати системну типову тему"
 
 #: guake/data/prefs.glade:547
 msgid "GTK Theme:"
-msgstr ""
+msgstr "Тема GTK:"
 
 #: guake/data/prefs.glade:612
 msgid "Please select a JSON file"
-msgstr ""
+msgstr "Виберіть JSON-файл"
 
 #: guake/data/prefs.glade:938
 msgid "Hide tab bar if there is only one tab"
-msgstr ""
+msgstr "Ховати панель вкладок, якщо є лише одна вкладка"
 
 #: guake/data/prefs.glade:1929
 msgid "Background image: "
-msgstr ""
+msgstr "Зображення тла: "
 
 #: guake/data/prefs.glade:2730
 msgid ""
@@ -1500,12 +1585,22 @@ msgid ""
 "Text.\n"
 "</i></small>"
 msgstr ""
+"<small><i>Використовуйте такі елементи в командному рядку редактора:\n"
+"- <b>%(file_path)s</b>: шлях до вибраного файлу\n"
+"- <b>%(line_number)s</b>: якщо редактор це підтримує, можна безпосередньо "
+"відкрити файл на знайденому в терміналі номері рядка.\n"
+"\n"
+"Наприклад, для Sublime Text використовуйте <b>subl %(file_path)s:"
+"%(line_number)s</b>.\n"
+"</i></small>"
 
 #: guake/data/prefs.glade:2879
 msgid ""
 "<small>In this dialog you can attach your own command or script to various "
 "Guake events</small>"
 msgstr ""
+"<small>У цьому діалозі можна призначити власну команду або скрипт для різних "
+"подій Guake</small>"
 
 #: guake/data/prefs.glade:3008
 msgid ""
@@ -1514,33 +1609,131 @@ msgid ""
 "applications and operating systems that expect different terminal behavior.</"
 "i></small>"
 msgstr ""
+"<small><i><b>Примітка:</b> ці параметри можуть спричинити неправильну роботу "
+"деяких програм. Вони призначені лише для обходу проблем із програмами та "
+"операційними системами, які очікують іншої поведінки термінала.</i></small>"
 
 #: guake/prefs.py:144
 msgid "Go to previous tab (alternative)"
-msgstr ""
+msgstr "Перейти до попередньої вкладки (альтернативна комбінація)"
 
 #: guake/prefs.py:146
 msgid "Go to next tab (alternative)"
-msgstr ""
+msgstr "Перейти до наступної вкладки (альтернативна комбінація)"
 
 #: guake/menus.py:97
 msgid "Split |"
-msgstr ""
+msgstr "Розділити |"
 
 #: guake/main.py:130
 msgid "Return 1 if Guake is visible, 0 otherwise"
-msgstr ""
+msgstr "Повернути 1, якщо Guake видимий, інакше 0"
 
 #: guake/data/prefs.glade:1003
 msgid "Lazy hide on lose focus"
-msgstr ""
+msgstr "Повільно ховати після втрати фокусу"
 
 #: guake/data/prefs.glade:2135
 msgid "Line Height Scale (VTE >= 0.52)"
-msgstr ""
+msgstr "Масштаб висоти рядка (VTE >= 0.52)"
 
 #: guake/data/prefs.glade:2172
 msgid "Line Width Scale (VTE >= 0.52)"
+msgstr "Масштаб ширини рядка (VTE >= 0.52)"
+
+#: guake/main.py:207
+msgid ""
+"Return the index of the tab with the given terminal UUID, -1 if not found"
+msgstr ""
+
+#: guake/main.py:250
+msgid ""
+"Split the selected tab vertically. Optional input split percentage for the "
+"width."
+msgstr ""
+
+#: guake/main.py:264
+msgid ""
+"Split the selected tab horizontally. Optional input split percentage for the "
+"height."
+msgstr ""
+
+#: guake/main.py:274
+msgid "Execute an arbitrary command in a new tab."
+msgstr ""
+
+#: guake/main.py:349
+msgid ""
+"Rename tab specified by --tab-index. Reset to default if TITLE is a single "
+"dash \"-\"."
+msgstr ""
+
+#: guake/prefs.py:107
+msgid "New tab in current directory"
+msgstr ""
+
+#: guake/prefs.py:184
+msgid "Select all"
+msgstr ""
+
+#: guake/prefs.py:194
+msgid "Open URL under terminal cursor"
+msgstr ""
+
+#: guake/data/prefs.glade:285
+msgid "Load settings from `cwd`/.guake.yml"
+msgstr ""
+
+#: guake/data/prefs.glade:412
+msgid "Highlight tabs with activity"
+msgstr ""
+
+#: guake/data/prefs.glade:436
+msgid "Ignore activity on new tabs for (seconds):"
+msgstr ""
+
+#: guake/data/prefs.glade:448
+msgid "3.0"
+msgstr ""
+
+#: guake/data/prefs.glade:478
+msgid "Ignore activity after losing focus for (seconds):"
+msgstr ""
+
+#: guake/data/prefs.glade:490
+msgid "1.0"
+msgstr ""
+
+#: guake/data/prefs.glade:820
+msgid "Search Engine:"
+msgstr ""
+
+#: guake/data/prefs.glade:834
+msgid "Google"
+msgstr ""
+
+#: guake/data/prefs.glade:835
+msgid "DuckDuckGo"
+msgstr ""
+
+#: guake/data/prefs.glade:836
+msgid "Bing"
+msgstr ""
+
+#: guake/data/prefs.glade:837
+msgid "Yandex"
+msgstr ""
+
+#: guake/data/prefs.glade:838
+msgid "Neeva"
+msgstr ""
+
+#: guake/data/prefs.glade:865
+msgid "Custom Search:"
+msgstr ""
+
+#: guake/data/prefs.glade:879
+msgid "www.google.com/search?q=<search is inserted here>"
 msgstr ""
 
 #~ msgid "key binding error"

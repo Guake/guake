@@ -27,6 +27,7 @@ SHARE_DIR:=$(datadir)/guake
 GUAKE_THEME_DIR:=$(SHARE_DIR)/guake
 LOGIN_DESTOP_PATH = $(SHARE_DIR)
 IMAGE_DIR:=$(SHARE_DIR)/pixmaps
+ICON_DIR:=$(datarootdir)/icons/hicolor/22x22/apps
 GLADE_DIR:=$(SHARE_DIR)
 SCHEMA_DIR:=$(gsettingsschemadir)
 
@@ -134,8 +135,10 @@ install-schemas:
 	install -dm755                                 "$(DESTDIR)$(IMAGE_DIR)"
 	install -Dm644 "$(DEV_DATA_DIR)"/pixmaps/*.png "$(DESTDIR)$(IMAGE_DIR)/"
 	install -Dm644 "$(DEV_DATA_DIR)"/pixmaps/*.svg "$(DESTDIR)$(IMAGE_DIR)/"
+	install -Dm644 "$(DEV_DATA_DIR)/pixmaps/guake-tray.png" "$(DESTDIR)$(ICON_DIR)/guake-tray.png"
 	install -dm755                                     "$(DESTDIR)$(PREFIX)/share/pixmaps"
 	install -Dm644 "$(DEV_DATA_DIR)/pixmaps/guake.png" "$(DESTDIR)$(PREFIX)/share/pixmaps/"
+	install -Dm644 "$(DEV_DATA_DIR)/pixmaps/guake-tray.png" "$(DESTDIR)$(PREFIX)/share/pixmaps/"
 	install -dm755                                           "$(DESTDIR)$(SHARE_DIR)"
 	install -Dm644 "$(DEV_DATA_DIR)/autostart-guake.desktop" "$(DESTDIR)$(SHARE_DIR)/"
 	install -dm755                           "$(DESTDIR)$(GLADE_DIR)"
@@ -143,6 +146,7 @@ install-schemas:
 	install -dm755                                         "$(DESTDIR)$(SCHEMA_DIR)"
 	install -Dm644 "$(DEV_DATA_DIR)/org.guake.gschema.xml" "$(DESTDIR)$(SCHEMA_DIR)/"
 	if [ $(COMPILE_SCHEMA) = 1 ]; then glib-compile-schemas $(DESTDIR)$(SCHEMA_DIR); fi
+	gtk-update-icon-cache -f "$(DESTDIR)$(datarootdir)/icons/hicolor" || true
 
 uninstall-system: uninstall-schemas uninstall-locale
 	$(SHELL) -c $(PYTHON_SITEDIRS_FOR_PREFIX) \
@@ -162,10 +166,13 @@ uninstall-schemas:
 	rm -f "$(DESTDIR)$(datadir)/applications/guake-prefs.desktop"
 	rm -f "$(DESTDIR)$(datadir)/metainfo/guake.desktop.metainfo.xml"
 	rm -f "$(DESTDIR)$(datadir)/pixmaps/guake.png"
+	rm -f "$(DESTDIR)$(PREFIX)/share/pixmaps/guake-tray.png"
+	rm -f "$(DESTDIR)$(ICON_DIR)/guake-tray.png"
 	rm -fr "$(DESTDIR)$(IMAGE_DIR)"
 	rm -fr "$(DESTDIR)$(SHARE_DIR)"
 	rm -f "$(DESTDIR)$(SCHEMA_DIR)/org.guake.gschema.xml"
 	rm -f "$(DESTDIR)$(SCHEMA_DIR)/gschemas.compiled"
+	gtk-update-icon-cache -f "$(DESTDIR)$(datarootdir)/icons/hicolor" || :
 
 reinstall:
 	sudo make uninstall && make && sudo make install && $(DESTDIR)$(bindir)/guake
