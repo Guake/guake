@@ -343,7 +343,6 @@ class TerminalNotebook(Gtk.Notebook):
         for terminal in page.get_terminals():
             if kill:
                 terminal.kill()
-            terminal.destroy()
 
         if self.get_nth_page(page_num) is page:
             # NOTE: GitHub issue #1438
@@ -380,7 +379,9 @@ class TerminalNotebook(Gtk.Notebook):
         if empty:
             terminal = None
         else:
-            terminal = self.terminal_spawn(directory, open_tab_cwd)
+            terminal = self.terminal_spawn(
+                directory, open_tab_cwd, spawned_callback=self.terminal_attached
+            )
             terminal_box.set_terminal(terminal)
         root_terminal_box = RootTerminalBox(self.guake, self)
         root_terminal_box.set_child(terminal_box)
@@ -402,8 +403,6 @@ class TerminalNotebook(Gtk.Notebook):
         )
         # this is needed to initially set the last_terminal_focused,
         # one could also call terminal.get_parent().on_terminal_focus()
-        if not empty:
-            self.terminal_attached(terminal)
         self.hide_tabbar_if_one_tab()
 
         if self.guake:
@@ -420,7 +419,7 @@ class TerminalNotebook(Gtk.Notebook):
             else:
                 self.set_property("show-tabs", True)
 
-    def terminal_spawn(self, directory=None, open_tab_cwd=False):
+    def terminal_spawn(self, directory=None, open_tab_cwd=False, spawned_callback=None):
         terminal = GuakeTerminal(self.guake)
         terminal.grab_focus()
         terminal.connect(
@@ -444,7 +443,8 @@ class TerminalNotebook(Gtk.Notebook):
             except BaseException:
                 pass
         log.info("Spawning new terminal at %s", directory)
-        terminal.spawn_sync_pid(directory)
+        terminal.directory = directory
+        terminal.spawn_async_pid(directory, spawned_callback)
         return terminal
 
     def on_terminal_activity(self, terminal):

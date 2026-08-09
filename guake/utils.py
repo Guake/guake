@@ -36,6 +36,7 @@ gi.require_version("Gdk", "3.0")
 
 from gi.repository import Gdk
 from gi.repository import Gtk
+from gi.repository import GLib
 from guake.globals import ALIGN_BOTTOM
 from guake.globals import ALIGN_CENTER
 from guake.globals import ALIGN_LEFT
@@ -91,7 +92,7 @@ def save_tabs_when_changed(func):
 
         # Tada!
         if g and g.settings.general.get_boolean("save-tabs-when-changed"):
-            g.save_tabs()
+            g.schedule_tabs_save()
 
     return wrapper
 
@@ -222,6 +223,8 @@ class FullscreenManager:
         self.window.unfullscreen()
         setattr(self.window, self.FULLSCREEN_ATTR, False)
         self.toggle_fullscreen_hide_tabbar()
+        if self.guake and self.guake.notebook_manager:
+            GLib.idle_add(self.restore_tabbar_visibility)
 
         # FIX to unfullscreen after show, fullscreen, hide, unfullscreen
         # (unfullscreen breaks/does not shrink window size)
@@ -242,9 +245,19 @@ class FullscreenManager:
             ):
                 self.guake.notebook_manager.set_notebooks_tabbar_visible(False)
         else:
-            if self.guake and self.guake.notebook_manager:
-                v = self.settings.general.get_boolean("window-tabbar")
-                self.guake.notebook_manager.set_notebooks_tabbar_visible(v)
+            self.restore_tabbar_visibility()
+
+    def restore_tabbar_visibility(self):
+        """Restore the configured tabbar state after leaving fullscreen."""
+        if not self.guake or not self.guake.notebook_manager:
+            return GLib.SOURCE_REMOVE
+
+        if self.settings.general.get_boolean("window-tabbar"):
+            for notebook in self.guake.notebook_manager.iter_notebooks():
+                notebook.hide_tabbar_if_one_tab()
+        else:
+            self.guake.notebook_manager.set_notebooks_tabbar_visible(False)
+        return GLib.SOURCE_REMOVE
 
 
 class RectCalculator:

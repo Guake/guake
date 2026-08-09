@@ -1616,6 +1616,109 @@ msgstr ""
 msgid "Line Width Scale (VTE >= 0.52)"
 msgstr ""
 
+#: guake/main.py:210
+msgid ""
+"Return the index of the tab with the given terminal UUID, -1 if not found"
+msgstr ""
+
+#: guake/main.py:253
+msgid ""
+"Split the selected tab vertically. Optional input split percentage for the "
+"width."
+msgstr ""
+
+#: guake/main.py:267
+msgid ""
+"Split the selected tab horizontally. Optional input split percentage for the "
+"height."
+msgstr ""
+
+#: guake/main.py:277
+msgid "Execute an arbitrary command in a new tab."
+msgstr ""
+
+#: guake/main.py:352
+msgid ""
+"Rename tab specified by --tab-index. Reset to default if TITLE is a single "
+"dash \"-\"."
+msgstr ""
+
+#: guake/prefs.py:108
+msgid "New tab in current directory"
+msgstr ""
+
+#: guake/prefs.py:185
+msgid "Select all"
+msgstr ""
+
+#: guake/prefs.py:195
+msgid "Open URL under terminal cursor"
+msgstr ""
+
+#: guake/prefs.py:202
+msgid "System default"
+msgstr ""
+
+#: guake/data/prefs.glade:285
+msgid "Load settings from `cwd`/.guake.yml"
+msgstr ""
+
+#: guake/data/prefs.glade:412
+msgid "Highlight tabs with activity"
+msgstr ""
+
+#: guake/data/prefs.glade:436
+msgid "Ignore activity on new tabs for (seconds):"
+msgstr ""
+
+#: guake/data/prefs.glade:448
+msgid "3.0"
+msgstr ""
+
+#: guake/data/prefs.glade:478
+msgid "Ignore activity after losing focus for (seconds):"
+msgstr ""
+
+#: guake/data/prefs.glade:490
+msgid "1.0"
+msgstr ""
+
+#: guake/data/prefs.glade:776
+msgid "Language:"
+msgstr ""
+
+#: guake/data/prefs.glade:858
+msgid "Search Engine:"
+msgstr ""
+
+#: guake/data/prefs.glade:872
+msgid "Google"
+msgstr ""
+
+#: guake/data/prefs.glade:873
+msgid "DuckDuckGo"
+msgstr ""
+
+#: guake/data/prefs.glade:874
+msgid "Bing"
+msgstr ""
+
+#: guake/data/prefs.glade:875
+msgid "Yandex"
+msgstr ""
+
+#: guake/data/prefs.glade:876
+msgid "Neeva"
+msgstr ""
+
+#: guake/data/prefs.glade:903
+msgid "Custom Search:"
+msgstr ""
+
+#: guake/data/prefs.glade:917
+msgid "www.google.com/search?q=<search is inserted here>"
+msgstr ""
+
 #~ msgid "key binding error"
 #~ msgstr "chyba klávesových zkratek"
 

@@ -7,7 +7,6 @@ from guake.about import AboutDialog
 from guake.dialogs import SaveTerminalDialog
 from guake.globals import ENGINES
 from guake.prefs import PrefsDialog
-from guake.utils import FullscreenManager
 from guake.utils import HidePrevention
 from guake.utils import get_server_time
 from urllib.parse import quote_plus
@@ -33,7 +32,7 @@ class TerminalContextMenuCallbacks:
         self.terminal.paste_clipboard()
 
     def on_toggle_fullscreen(self, *args):
-        FullscreenManager(self.settings, self.window).toggle()
+        self.notebook.guake.fullscreen_manager.toggle()
 
     def on_save_to_file(self, *args):
         SaveTerminalDialog(self.terminal, self.window).run()

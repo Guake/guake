@@ -210,7 +210,9 @@ class RootTerminalBox(Gtk.Overlay, TerminalHolder):
             self.save_box_layout(box.get_child2(), panes)
         elif isinstance(box, TerminalBox):
             btype = "term"
-            directory = box.terminal.get_current_directory()
+            directory = getattr(box.terminal, "directory", None)
+            if not directory:
+                directory = box.terminal.get_current_directory()
             panes.append(
                 {
                     "type": btype,
@@ -271,10 +273,11 @@ class RootTerminalBox(Gtk.Overlay, TerminalHolder):
                 box.unset_terminal()
 
             # Replace term in the TerminalBox
-            term = self.get_notebook().terminal_spawn(cur["directory"])
+            term = self.get_notebook().terminal_spawn(
+                cur["directory"], spawned_callback=self.get_notebook().terminal_attached
+            )
             term.set_custom_colors_from_dict(cur.get("custom_colors", None))
             box.set_terminal(term)
-            self.get_notebook().terminal_attached(term)
 
     def set_last_terminal_focused(self, terminal):
         self.last_terminal_focused = terminal
@@ -478,7 +481,7 @@ class TerminalBox(Gtk.Box, TerminalHolder):
             position = self.get_allocation().height * ((100 - split_percentage) / 100)
 
         terminal_box = TerminalBox()
-        terminal = notebook.terminal_spawn()
+        terminal = notebook.terminal_spawn(spawned_callback=notebook.terminal_attached)
         terminal_box.set_terminal(terminal)
         dual_terminal_box = DualTerminalBox(orientation)
         dual_terminal_box.set_position(position)
@@ -491,8 +494,6 @@ class TerminalBox(Gtk.Box, TerminalHolder):
             # preserve font and font_scale in the new terminal
             terminal.set_font(self.terminal.font)
             terminal.font_scale = self.terminal.font_scale
-        notebook.terminal_attached(terminal)
-
         return dual_terminal_box
 
     def get_guake(self):

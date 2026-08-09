@@ -113,6 +113,8 @@ class GuakeTerminal(Vte.Terminal):
         self.matched_value = ""
         self.font_scale_index = 0
         self._pid = None
+        self._spawn_callback = None
+        self._kill_requested = False
         self.found_link = None
         self.uuid = uuid.uuid4()
 
@@ -264,7 +266,7 @@ class GuakeTerminal(Vte.Terminal):
                 )
 
     def get_current_directory(self):
-        directory = os.path.expanduser("~")
+        directory = getattr(self, "directory", os.path.expanduser("~"))
         if self.pid is not None:
             try:
                 cwd = os.readlink(f"/proc/{self.pid}/cwd")
@@ -528,6 +530,11 @@ class GuakeTerminal(Vte.Terminal):
 
     def kill(self):
         pid = self.pid
+        if pid is None:
+            # An asynchronously spawned terminal may not have a PID yet.  Keep
+            # the request so the child is terminated as soon as VTE reports it.
+            self._kill_requested = True
+            return
         threading.Thread(target=self.delete_shell, args=(pid,)).start()
 
     def delete_shell(self, pid):
@@ -550,13 +557,14 @@ class GuakeTerminal(Vte.Terminal):
             ...
         For this reason, we should not call os.waitpid(pid, ...), leave it to OS
         """
+        if pid is None:
+            return
         try:
             os.kill(pid, signal.SIGHUP)
         except OSError:
             pass
 
-    def spawn_sync_pid(self, directory):
-
+    def _get_shell_argv(self):
         argv = []
         user_shell = self.guake.settings.general.get_string("default-shell")
         if user_shell and os.path.exists(user_shell):
@@ -570,6 +578,10 @@ class GuakeTerminal(Vte.Terminal):
         login_shell = self.guake.settings.general.get_boolean("use-login-shell")
         if login_shell:
             argv.append("--login")
+        return argv
+
+    def spawn_sync_pid(self, directory):
+        argv = self._get_shell_argv()
 
         log.debug('Spawn command: "%s"', " ".join(argv))
 
@@ -599,6 +611,42 @@ class GuakeTerminal(Vte.Terminal):
             libutempter.utempter_add_record(self.get_pty().get_fd(), os.uname()[1])
         self.pid = pid
         return pid
+
+    def spawn_async_pid(self, directory, callback=None):
+        """Start the shell without blocking the GTK main loop."""
+        argv = self._get_shell_argv()
+        self._spawn_callback = callback
+        log.debug('Spawn command asynchronously: "%s"', " ".join(argv))
+        self.spawn_async(
+            Vte.PtyFlags.DEFAULT,
+            directory,
+            argv,
+            self.envv,
+            GLib.SpawnFlags.DEFAULT,
+            None,
+            None,
+            -1,
+            None,
+            self._on_spawn_async_complete,
+            self,
+        )
+
+    def _on_spawn_async_complete(self, terminal, pid, error, user_data):
+        callback = user_data._spawn_callback
+        user_data._spawn_callback = None
+        if error is not None:
+            log.error("Unable to spawn terminal shell: %s", error)
+            return
+
+        user_data.pid = pid
+        if user_data._kill_requested:
+            user_data._kill_requested = False
+            threading.Thread(target=user_data.delete_shell, args=(pid,)).start()
+            return
+        if libutempter is not None:
+            libutempter.utempter_add_record(user_data.get_pty().get_fd(), os.uname()[1])
+        if callback is not None and user_data.get_parent() is not None:
+            callback(user_data)
 
     def set_color_foreground(self, font_color, *args, **kwargs):
         real_fgcolor = self.custom_fgcolor if self.custom_fgcolor else font_color

@@ -150,6 +150,7 @@ class Guake(SimpleGladeApp):
 
         self.hidden = True
         self.forceHide = False
+        self._save_tabs_source_id = None
 
         # trayicon! Using SVG handles better different OS trays
         # img = pixmapfile('guake-tray.svg')
@@ -309,6 +310,7 @@ class Guake(SimpleGladeApp):
 
     def notebook_created(self, nm, notebook, key):
         notebook.attach_guake(self)
+        self.set_notebook_tab_position(notebook)
 
         # Tracking when reorder page
         notebook.connect("page-reordered", self.on_page_reorder)
@@ -941,10 +943,17 @@ class Guake(SimpleGladeApp):
             log.debug("Remaining procs=%r", procs)
             if PromptQuitDialog(self.window, procs, tabs, notebooks).quit():
                 log.info("Quitting Guake")
+                self.flush_tabs_save()
                 Gtk.main_quit()
         else:
             log.info("Quitting Guake")
+            self.flush_tabs_save()
             Gtk.main_quit()
+
+    def quit(self, *args):
+        """Flush pending session changes before leaving the GTK loop."""
+        self.flush_tabs_save()
+        Gtk.main_quit()
 
     def accel_reset_terminal(self, *args):
         # TODO KEYBINDINGS ONLY
@@ -1269,6 +1278,8 @@ class Guake(SimpleGladeApp):
 
         # Use to detect if directory has changed
         terminal.directory = terminal.get_current_directory()
+        if self.settings.general.get_boolean("save-tabs-when-changed"):
+            self.schedule_tabs_save()
 
     @save_tabs_when_changed
     def add_tab(self, directory=None, open_tab_cwd=False):
@@ -1376,10 +1387,16 @@ class Guake(SimpleGladeApp):
         return True
 
     def set_tab_position(self, *args):
-        if self.settings.general.get_boolean("tab-ontop"):
-            self.get_notebook().set_tab_pos(Gtk.PositionType.TOP)
-        else:
-            self.get_notebook().set_tab_pos(Gtk.PositionType.BOTTOM)
+        for notebook in self.notebook_manager.iter_notebooks():
+            self.set_notebook_tab_position(notebook)
+
+    def set_notebook_tab_position(self, notebook):
+        position = (
+            Gtk.PositionType.TOP
+            if self.settings.general.get_boolean("tab-ontop")
+            else Gtk.PositionType.BOTTOM
+        )
+        notebook.set_tab_pos(position)
 
     def execute_hook(self, event_name):
         """Execute shell commands related to current event_name"""
@@ -1412,6 +1429,25 @@ class Guake(SimpleGladeApp):
     def get_xdg_config_directory(self):
         xdg_config_home = os.environ.get("XDG_CONFIG_HOME", "~/.config")
         return Path(xdg_config_home, "guake").expanduser()
+
+    def schedule_tabs_save(self):
+        """Save changed tabs once after a short burst of related events."""
+        if self._save_tabs_source_id is None:
+            self._save_tabs_source_id = GLib.timeout_add(300, self._save_tabs_timeout)
+
+    def _save_tabs_timeout(self):
+        self._save_tabs_source_id = None
+        if self.settings.general.get_boolean("save-tabs-when-changed"):
+            self.save_tabs()
+        return GLib.SOURCE_REMOVE
+
+    def flush_tabs_save(self):
+        """Persist a pending tab change before the application exits."""
+        if self._save_tabs_source_id is not None:
+            GLib.source_remove(self._save_tabs_source_id)
+            self._save_tabs_source_id = None
+        if self.settings.general.get_boolean("save-tabs-when-changed"):
+            self.save_tabs()
 
     def save_tabs(self, filename="session.json"):
         config = {

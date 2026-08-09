@@ -136,10 +136,7 @@ class GSettingHandler:
         if settings.get_boolean(key):
             self.guake.notebook_manager.set_notebooks_tabbar_visible(False)
         else:
-            if settings.get_boolean(key):
-                self.guake.get_notebook().hide_tabbar_if_one_tab()
-            else:
-                self.guake.notebook_manager.set_notebooks_tabbar_visible(True)
+            self.guake.fullscreen_manager.restore_tabbar_visibility()
 
     def alignment_changed(self, settings, key, user_data):
         """If the gconf var window_halignment be changed, this method will

@@ -1736,6 +1736,14 @@ msgstr ""
 msgid "www.google.com/search?q=<search is inserted here>"
 msgstr ""
 
+#: guake/prefs.py:202
+msgid "System default"
+msgstr ""
+
+#: guake/data/prefs.glade:776
+msgid "Language:"
+msgstr ""
+
 #~ msgid "key binding error"
 #~ msgstr "не вдалося створити прив’язку клавіш"
 

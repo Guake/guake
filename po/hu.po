@@ -2345,6 +2345,40 @@ msgstr ""
 "Kérlek használj általános billentyűket mint a Control, Alt vagy Shift "
 "egyszerre.\n"
 
+#: guake/main.py:352
+msgid ""
+"Rename tab specified by --tab-index. Reset to default if TITLE is a single "
+"dash \"-\"."
+msgstr ""
+
+#: guake/prefs.py:202
+msgid "System default"
+msgstr ""
+
+#: guake/data/prefs.glade:412
+msgid "Highlight tabs with activity"
+msgstr ""
+
+#: guake/data/prefs.glade:436
+msgid "Ignore activity on new tabs for (seconds):"
+msgstr ""
+
+#: guake/data/prefs.glade:448
+msgid "3.0"
+msgstr ""
+
+#: guake/data/prefs.glade:478
+msgid "Ignore activity after losing focus for (seconds):"
+msgstr ""
+
+#: guake/data/prefs.glade:490
+msgid "1.0"
+msgstr ""
+
+#: guake/data/prefs.glade:776
+msgid "Language:"
+msgstr ""
+
 #~ msgid "Save to File..."
 #~ msgstr "Mentés fájlba..."
 
