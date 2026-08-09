@@ -3,7 +3,7 @@
 PYTHON?=python3
 PYTHON_INTERPRETER?=$(PYTHON)
 MODULE:=guake
-DESTDIR:=/
+DESTDIR?=
 PREFIX?=/usr/local
 exec_prefix:=$(PREFIX)
 bindir = $(exec_prefix)/bin
@@ -30,6 +30,8 @@ IMAGE_DIR:=$(SHARE_DIR)/pixmaps
 ICON_DIR:=$(datarootdir)/icons/hicolor/22x22/apps
 GLADE_DIR:=$(SHARE_DIR)
 SCHEMA_DIR:=$(gsettingsschemadir)
+PYTHON_SITE_DIR:=$(shell PREFIX="$(PREFIX)" $(PYTHON_INTERPRETER) -c 'import os, sysconfig; prefix=os.environ["PREFIX"]; scheme="deb_system" if prefix == "/usr" and "deb_system" in sysconfig.get_scheme_names() else ("posix_local" if prefix == "/usr/local" else "posix_prefix"); vars=None if prefix in ("/usr", "/usr/local") else {"base": prefix, "platbase": prefix, "installed_base": prefix}; print(sysconfig.get_path("purelib", scheme=scheme, **({} if vars is None else {"vars": vars})))')
+PYTHON_TARGET_DIR:=$(DESTDIR)$(PYTHON_SITE_DIR)
 
 SLUG:=fragment_name
 
@@ -80,7 +82,8 @@ install-guake:
 	@echo "Please prefer you application package manager (apt, yum, ...)"
 	@echo
 	@echo "#############################################################"
-	@if [ "$(DESTDIR)" = "" ]; then $(PYTHON_INTERPRETER) -m pip install -r requirements.txt; fi
+	@echo "Python dependencies are not installed globally by make install."
+	@echo "Install them with your distribution package manager or activate a virtualenv."
 
 	@if [ `python -c "import sys; print(sys.version_info[0])"` -eq 2 ]; then SETUPTOOLS_SCM_PRETEND_VERSION=3.9.0; fi
 
@@ -95,7 +98,10 @@ install-guake:
 	@sed -i -e 's|{{ LOGIN_DESTOP_PATH }}|"$(LOGIN_DESTOP_PATH)"|g' guake/paths.py
 	@sed -i -e 's|{{ AUTOSTART_FOLDER }}|"$(AUTOSTART_FOLDER)"|g' guake/paths.py
 
-	@$(PYTHON_INTERPRETER) -m pip install . --root "$(DESTDIR)" --prefix="/usr" || echo -e "\033[31;1msetup.py install failed, you may need to run \"sudo git config --global --add safe.directory '*'\"\033[0m"
+	@$(PYTHON_INTERPRETER) -m pip install . --target="$(PYTHON_TARGET_DIR)" --no-deps --no-build-isolation --upgrade --force-reinstall
+	@install -Dm755 "$(PYTHON_TARGET_DIR)/bin/guake" "$(DESTDIR)$(bindir)/guake"
+	@install -Dm755 "$(PYTHON_TARGET_DIR)/bin/guake-toggle" "$(DESTDIR)$(bindir)/guake-toggle"
+	@rm -rf "$(PYTHON_TARGET_DIR)/bin"
 
 	@rm -f guake/paths.py
 	@if [ -f guake/paths.py.dev ]; then mv guake/paths.py.dev guake/paths.py; fi
@@ -145,7 +151,7 @@ install-schemas:
 	install -Dm644 "$(DEV_DATA_DIR)"/*.glade "$(DESTDIR)$(GLADE_DIR)/"
 	install -dm755                                         "$(DESTDIR)$(SCHEMA_DIR)"
 	install -Dm644 "$(DEV_DATA_DIR)/org.guake.gschema.xml" "$(DESTDIR)$(SCHEMA_DIR)/"
-	if [ $(COMPILE_SCHEMA) = 1 ]; then glib-compile-schemas $(DESTDIR)$(SCHEMA_DIR); fi
+	if [ $(COMPILE_SCHEMA) = 1 ]; then glib-compile-schemas "$(DESTDIR)$(SCHEMA_DIR)"; fi
 	gtk-update-icon-cache -f "$(DESTDIR)$(datarootdir)/icons/hicolor" || true
 
 uninstall-system: uninstall-schemas uninstall-locale

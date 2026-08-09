@@ -35,6 +35,7 @@ tomli = "*"
 pre-commit = "==2.17.0"
 
 [packages]
+setuptools = "<82"
 wheel = "*"
 alabaster = "==1.0.0"
 astroid = "==3.3.8"

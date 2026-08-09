@@ -23,6 +23,7 @@ import logging
 import os
 import shutil
 import subprocess
+import tempfile
 import time as pytime
 import traceback
 import uuid
@@ -127,14 +128,15 @@ class Guake(SimpleGladeApp):
             "schema-version" not in self.settings.general.keys()
             or self.settings.general.get_string("schema-version") != guake_version()
         ):
-            log.exception("Schema from old guake version detected, regenerating schema")
+            log.info("Schema from an older Guake version detected, refreshing schema")
             try:
                 try_to_compile_glib_schemas()
-            except subprocess.CalledProcessError:
-                log.exception("Schema in non user-editable location, attempting to continue")
-            schema_source = load_schema()
-            self.settings = Settings(schema_source)
-            self.settings.general.set_string("schema-version", guake_version())
+            except (OSError, subprocess.CalledProcessError) as error:
+                log.warning("Could not refresh the GSettings schema: %s", error)
+            else:
+                schema_source = load_schema()
+                self.settings = Settings(schema_source)
+                self.settings.general.set_string("schema-version", guake_version())
 
         log.info("Language previously loaded from: %s", LOCALE_DIR)
 
@@ -1480,8 +1482,26 @@ class Guake(SimpleGladeApp):
         if not self.get_xdg_config_directory().exists():
             self.get_xdg_config_directory().mkdir(parents=True)
         session_file = self.get_xdg_config_directory() / filename
-        with session_file.open("w", encoding="utf-8") as f:
-            json.dump(config, f, ensure_ascii=False, indent=4)
+        temporary_name = None
+        try:
+            temporary_fd, temporary_name = tempfile.mkstemp(
+                prefix=f".{session_file.name}.",
+                suffix=".tmp",
+                dir=session_file.parent,
+            )
+            with os.fdopen(temporary_fd, "w", encoding="utf-8") as f:
+                json.dump(config, f, ensure_ascii=False, indent=4)
+                f.write("\n")
+                f.flush()
+                os.fsync(f.fileno())
+            os.replace(temporary_name, session_file)
+            temporary_name = None
+        finally:
+            if temporary_name is not None:
+                try:
+                    os.unlink(temporary_name)
+                except FileNotFoundError:
+                    pass
         log.info("Guake tabs saved to %s", session_file)
 
     def restore_tabs(self, filename="session.json", suppress_notify=False):
@@ -1570,7 +1590,7 @@ class Guake(SimpleGladeApp):
                     # Remove original pages in notebook
                     for i in range(current_pages):
                         nb.delete_page(0)
-        except KeyError:
+        except (AttributeError, IndexError, KeyError, OSError, TypeError, ValueError):
             log.warning("%s schema is broken", session_file)
             shutil.copy(
                 session_file,
@@ -1591,9 +1611,10 @@ class Guake(SimpleGladeApp):
                 ),
                 img_filename,
             )
-
-        # Reset auto save tabs
-        self.settings.general.set_boolean("save-tabs-when-changed", v)
+        finally:
+            # Always restore the user's setting, including when a malformed
+            # session entry aborts the restore operation.
+            self.settings.general.set_boolean("save-tabs-when-changed", v)
 
         # Notify the user
         if self.settings.general.get_boolean("restore-tabs-notify") and not suppress_notify:

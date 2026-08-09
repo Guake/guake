@@ -153,6 +153,17 @@ def test_guake_restore_tabs_schema_broken_session_file(g, fs):
     assert guake.guake_app.traceback.print_exc.call_count == 1
 
 
+def test_guake_restore_tabs_restores_autosave_after_invalid_workspace(g, fs):
+    g.settings.general.set_boolean("save-tabs-when-changed", True)
+    fn = fs.create_file("/foobar/invalid-workspace.json")
+    with open(fn.path, "w", encoding="utf-8") as f:
+        json.dump({"schema_version": 1, "workspace": []}, f)
+
+    g.restore_tabs(fn.name)
+
+    assert g.settings.general.get_boolean("save-tabs-when-changed") is True
+
+
 def test_guake_save_tabs_and_restore(mocker, g, fs):
     # Disable auto save
     mocker.patch.object(g.settings.general, "get_boolean", return_value=False)

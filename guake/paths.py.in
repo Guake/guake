@@ -35,8 +35,8 @@ def get_default_package_root():
 
 def get_data_files_dir():
     d = os.path.dirname(sys.modules["guake"].__file__)
-    p = os.path.basename(os.path.abspath(os.path.join(os.path.dirname(d), "..")))
-    if p in ["site-packages", "dist-packages"]:
+    package_parent = os.path.dirname(d)
+    if os.path.basename(package_parent) in ["site-packages", "dist-packages"]:
         # current "guake" package has been installed in a prefix structure (/usr, /usr/local or
         # ~/.local/)
         loc_dir = os.path.abspath(os.path.join(d, "..", "..", "..", ".."))
