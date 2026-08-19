@@ -7,9 +7,6 @@ Guake 3 README
 .. |actions-badge| image:: https://github.com/Guake/guake/actions/workflows/ci.yml/badge.svg
 .. _actions-badge: https://github.com/Guake/guake/actions
 
-.. |bountysource-badge| image:: https://img.shields.io/bountysource/team/guake/activity.svg
-.. _bountysource-badge: https://www.bountysource.com/teams/guake
-
 .. |docs-badge| image:: https://readthedocs.org/projects/guake/badge/?version=stable
 .. _docs-badge: https://guake.readthedocs.io/en/stable/?badge=stable
 
