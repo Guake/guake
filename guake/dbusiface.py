@@ -215,3 +215,21 @@ class DbusManager(dbus.service.Object):
     @dbus.service.method(DBUS_NAME, in_signature="s", out_signature="i")
     def get_index_from_uuid(self, tab_uuid):
         return self.guake.get_index_from_uuid(tab_uuid)
+
+    @dbus.service.method(DBUS_NAME, in_signature="i")
+    def v_split_current_terminal_into_n(self, n: int):
+        self.guake.get_notebook().get_current_terminal().get_parent().split_v_n(n)
+
+    @dbus.service.method(DBUS_NAME, in_signature="i")
+    def h_split_current_terminal_into_n(self, n: int):
+        self.guake.get_notebook().get_current_terminal().get_parent().split_h_n(n)
+
+    @dbus.service.method(DBUS_NAME, in_signature="si")
+    def v_split_current_terminal_into_n_with_command(self, command, n: int):
+        self.guake.get_notebook().get_current_terminal().get_parent().split_v_n(n)
+        self.guake.execute_command(command)
+
+    @dbus.service.method(DBUS_NAME, in_signature="si")
+    def h_split_current_terminal_into_n_with_command(self, command, n: int):
+        self.guake.get_notebook().get_current_terminal().get_parent().split_h_n(n)
+        self.guake.execute_command(command)
