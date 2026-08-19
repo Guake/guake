@@ -2,7 +2,7 @@
 Guake 3 README
 ==============
 
-|actions-badge|_ |bountysource-badge|_ |docs-badge|_ |translation-badge|_
+|actions-badge|_ |docs-badge|_ |translation-badge|_
 
 .. |actions-badge| image:: https://github.com/Guake/guake/actions/workflows/ci.yml/badge.svg
 .. _actions-badge: https://github.com/Guake/guake/actions
