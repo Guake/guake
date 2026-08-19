@@ -85,6 +85,7 @@ class GSettingHandler:
 
         settings.general.onChangedValue("compat-backspace", self.backspace_changed)
         settings.general.onChangedValue("compat-delete", self.delete_changed)
+        settings.general.onChangedValue("word-chars", self.word_chars_changed)
         settings.general.onChangedValue("custom-command_file", self.custom_command_file_changed)
         settings.general.onChangedValue("max-tab-name-length", self.max_tab_name_length_changed)
         settings.general.onChangedValue("display-tab-names", self.display_tab_names_changed)
@@ -177,6 +178,17 @@ class GSettingHandler:
         terminals = (terminal,) if terminal else self.guake.notebook_manager.iter_terminals()
         for term in terminals:
             term.set_property("cursor-shape", settings.get_int(key))
+
+    def word_chars_changed(self, settings, key, user_data):
+        word_chars = settings.get_string(key)
+        terminal = (
+            self.guake.notebook_manager.get_terminal_by_uuid(user_data.get("terminal_uuid"))
+            if user_data
+            else None
+        )
+        terminals = (terminal,) if terminal else self.guake.notebook_manager.iter_terminals()
+        for term in terminals:
+            term.set_word_char_exceptions(word_chars)
 
     def background_image_file_changed(self, settings, key, user_data):
         """Called when the background image file settings has been changed"""

@@ -3647,7 +3647,7 @@ For example, use &lt;b&gt;subl %(file_path)s:%(line_number)s&lt;/b&gt; for Subli
                                   <object class="GtkLabel" id="word_chars_label">
                                     <property name="visible">True</property>
                                     <property name="can-focus">False</property>
-                                    <property name="label" translatable="yes">Word _characters:</property>
+                                    <property name="label" translatable="yes">_Word characters:</property>
                                     <property name="use-underline">True</property>
                                     <property name="xalign">0</property>
                                     <property name="mnemonic-widget">word_chars_entry</property>
