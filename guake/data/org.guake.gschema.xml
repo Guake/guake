@@ -336,6 +336,11 @@
             <summary>Copy selected text if enabled.</summary>
             <description>Copy the selected text.</description>
         </key>
+        <key name="enable-osc52" type="b">
+            <default>true</default>
+            <summary>Enable OSC 52 clipboard access</summary>
+            <description>Allow applications running in the terminal to set the system clipboard using the OSC 52 escape sequence.</description>
+        </key>
     </schema>
     <schema id="guake.style" path="/org/guake/style/">
         <key name="cursor-blink-mode" type="i">
