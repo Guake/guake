@@ -68,7 +68,7 @@ rfc3986==2.0.0; python_version >= '3.7'
 rich==13.9.4; python_full_version >= '3.8.0'
 scandir==1.10.0; python_version < '3.5'
 secretstorage==3.3.3; python_version >= '3.6'
-setuptools==75.6.0; python_version >= '3.9'
+setuptools==78.1.1; python_version >= '3.9'
 six==1.17.0; python_version >= '2.7' and python_version not in '3.0, 3.1, 3.2'
 snowballstemmer==2.2.0
 sphinx==8.1.3; python_version >= '3.10'
