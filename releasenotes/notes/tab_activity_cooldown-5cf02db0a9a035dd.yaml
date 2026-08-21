@@ -5,21 +5,5 @@ release_summary: >
 
 features:
   - |
-      - add a stale/cooldown color stage to tab activity indication, with a
-        configurable "tab-activity-cooldown" setting
+      - add a stale/cooldown color stage to tab activity indication
 
-known_issues:
-
-upgrade:
-
-deprecations:
-
-security:
-
-fixes:
-
-translations:
-
-notes_for_package_maintainers:
-
-other:

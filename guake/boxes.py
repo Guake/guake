@@ -1,3 +1,4 @@
+import enum
 import logging
 import time
 
@@ -25,6 +26,14 @@ from guake.utils import get_server_time
 from guake.utils import save_tabs_when_changed
 
 log = logging.getLogger(__name__)
+
+
+# Foreground color applied to a background tab's title when it has unseen
+# activity. Chosen to stay readable on both light and dark tab bars.
+TAB_ACTIVITY_COLOR = "#E8A33D"
+# Foreground color applied once unseen activity has gone quiet for a while
+TAB_ACTIVITY_STALE_COLOR = "#3D8AE8"
+
 
 # TODO remove calls to guake
 
@@ -637,12 +646,9 @@ class DualTerminalBox(Gtk.Paned, TerminalHolder):
             print("I have never seen this widget!")
 
 
-# Foreground color applied to a background tab's title when it has unseen
-# activity. Chosen to stay readable on both light and dark tab bars.
-TAB_ACTIVITY_COLOR = "#E8A33D"
-# Foreground color applied once unseen activity has gone quiet for a while
-# (see tab-activity-cooldown): still unread, but no longer urgent.
-TAB_ACTIVITY_STALE_COLOR = "#3D8AE8"
+class TabActivityState(enum.Enum):
+    ACTIVE = "active"
+    STALE = "stale"
 
 
 class TabLabelEventBox(Gtk.EventBox):
@@ -679,12 +685,13 @@ class TabLabelEventBox(Gtk.EventBox):
         Returns True if the activity state actually changed, so callers can
         avoid redundant re-rendering on the frequent contents-changed signal.
         """
-        return self.set_activity_state("active" if active else None)
+        return self.set_activity_state(TabActivityState.ACTIVE if active else None)
 
     def set_activity_state(self, state):
-        """Set the activity indicator state: None (no activity), "active"
-        (fresh, unseen output) or "stale" (unseen output, but quiet for a
-        while - see tab-activity-cooldown).
+        """Set the activity indicator state: None (no activity),
+        TabActivityState.ACTIVE (fresh, unseen output) or
+        TabActivityState.STALE (unseen output, but quiet for a while - see
+        tab-activity-cooldown).
 
         Returns True if the state actually changed, so callers can avoid
         redundant re-rendering on the frequent contents-changed signal.
@@ -702,12 +709,12 @@ class TabLabelEventBox(Gtk.EventBox):
         return self._activity_state
 
     def _render(self):
-        if self._activity_state == "active":
+        if self._activity_state == TabActivityState.ACTIVE:
             self.label.set_markup(
                 f'<span foreground="{TAB_ACTIVITY_COLOR}" weight="bold">'
                 f"{GLib.markup_escape_text(self._text)}</span>"
             )
-        elif self._activity_state == "stale":
+        elif self._activity_state == TabActivityState.STALE:
             self.label.set_markup(
                 f'<span foreground="{TAB_ACTIVITY_STALE_COLOR}" weight="bold">'
                 f"{GLib.markup_escape_text(self._text)}</span>"

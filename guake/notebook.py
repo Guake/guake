@@ -20,6 +20,7 @@ Boston, MA 02110-1301 USA
 
 from guake.about import AboutDialog
 from guake.boxes import RootTerminalBox
+from guake.boxes import TabActivityState
 from guake.boxes import TabLabelEventBox
 from guake.boxes import TerminalBox
 from guake.callbacks import MenuHideCallback
@@ -51,6 +52,16 @@ import logging
 import posix
 
 log = logging.getLogger(__name__)
+
+# Number of seconds during which activity is ignored on a newly created tab,
+# to avoid highlighting it because of its initial shell prompt.
+TAB_ACTIVITY_NEW_TAB_GRACE = 3.0
+# Number of seconds during which activity is ignored on a tab right after it
+# loses focus.
+TAB_ACTIVITY_FOCUS_LOSS_GRACE = 1.0
+# Number of seconds of inactivity after which a highlighted tab's indicator
+# fades from active to stale color.
+TAB_ACTIVITY_COOLDOWN = 30.0
 
 
 class TerminalNotebook(Gtk.Notebook):
@@ -94,7 +105,6 @@ class TerminalNotebook(Gtk.Notebook):
         )
         # Clear the activity highlight from a tab once it becomes the current one.
         self._activity_last_page = None
-        self._activity_timer_id = None
         self.connect("switch-page", self.on_switch_page)
 
         # Action box
@@ -352,6 +362,10 @@ class TerminalNotebook(Gtk.Notebook):
 
     @save_tabs_when_changed
     def remove_page(self, page_num):
+        page = self.get_nth_page(page_num)
+        source_id = getattr(page, "activity_stale_source_id", None)
+        if source_id is not None:
+            GLib.source_remove(source_id)
         super().remove_page(page_num)
         # focusing the first terminal on the previous page
         if self.get_current_page() > -1:
@@ -381,8 +395,7 @@ class TerminalNotebook(Gtk.Notebook):
         # initial shell prompt (especially on session restore) does not light up
         # every background tab at once.
         if self.guake:
-            grace = self.guake.settings.general.get_double("tab-activity-new-tab-grace")
-            root_terminal_box.activity_ignore_until = time.monotonic() + grace
+            root_terminal_box.activity_ignore_until = time.monotonic() + TAB_ACTIVITY_NEW_TAB_GRACE
         page_num = self.insert_page(
             root_terminal_box, None, position if position is not None else -1
         )
@@ -452,46 +465,34 @@ class TerminalNotebook(Gtk.Notebook):
         page = self.get_nth_page(page_index)
         if time.monotonic() < getattr(page, "activity_ignore_until", 0):
             return
-        page.activity_last_seen = time.monotonic()
+        page.activity_deadline = time.monotonic() + TAB_ACTIVITY_COOLDOWN
         label = self.get_tab_label(page)
         if hasattr(label, "set_activity_state"):
-            label.set_activity_state("active")
-        self._ensure_activity_timer()
+            label.set_activity_state(TabActivityState.ACTIVE)
+        # Only arm a timer if this page doesn't already have one pending: further
+        # activity just pushes activity_deadline out, the live timer picks that up
+        # when it wakes rather than being cancelled and re-armed on every event.
+        if getattr(page, "activity_stale_source_id", None) is None:
+            self._schedule_stale_check(page, TAB_ACTIVITY_COOLDOWN)
 
-    def _ensure_activity_timer(self):
-        """Start the periodic tick that fades ACTIVE tabs to STALE once their
-        cooldown elapses. A single shared timer is used regardless of how
-        many tabs are currently highlighted."""
-        if self._activity_timer_id is None:
-            self._activity_timer_id = GLib.timeout_add(1000, self._tick_activity_states)
+    def _schedule_stale_check(self, page, delay):
+        page.activity_stale_source_id = GLib.timeout_add(
+            max(0, int(delay * 1000)), self._on_activity_stale_check, page
+        )
 
-    def _tick_activity_states(self):
-        """Fade any tab whose activity has gone quiet past the configured
-        cooldown from ACTIVE (orange) to STALE (blue). Returns False (and
-        clears the timer id) once no tab is ACTIVE any more, so the timer
-        auto-cancels instead of ticking forever in the idle case."""
-        if not getattr(self, "guake", None):
-            self._activity_timer_id = None
+    def _on_activity_stale_check(self, page):
+        """Fade a tab from ACTIVE (orange) to STALE (blue) once its cooldown has
+        elapsed. If activity pushed the deadline further out while this was
+        pending, reschedule for the remaining time instead of fading early."""
+        page.activity_stale_source_id = None
+        remaining = getattr(page, "activity_deadline", 0) - time.monotonic()
+        if remaining > 0:
+            self._schedule_stale_check(page, remaining)
             return False
-        cooldown = self.guake.settings.general.get_double("tab-activity-cooldown")
-        now = time.monotonic()
-        any_active = False
-        for page in self.iter_pages():
-            if page is None:
-                continue
-            label = self.get_tab_label(page)
-            if not hasattr(label, "get_activity_state"):
-                continue
-            if label.get_activity_state() != "active":
-                continue
-            if now - getattr(page, "activity_last_seen", now) >= cooldown:
-                label.set_activity_state("stale")
-            else:
-                any_active = True
-        if not any_active:
-            self._activity_timer_id = None
-            return False
-        return True
+        label = self.get_tab_label(page)
+        if hasattr(label, "set_activity_state"):
+            label.set_activity_state(TabActivityState.STALE)
+        return False
 
     def on_switch_page(self, notebook, page, page_num):
         """Clear the highlight from the tab being switched to, and start a short
@@ -499,13 +500,12 @@ class TerminalNotebook(Gtk.Notebook):
         previous_page = self._activity_last_page
         self._activity_last_page = page
         if previous_page is not None and previous_page is not page and getattr(self, "guake", None):
-            grace = self.guake.settings.general.get_double("tab-activity-focus-loss-grace")
             # Never shorten an existing (e.g. longer new-tab) grace: on session
             # restore every tab briefly becomes current, and clobbering the
             # creation grace with this one would let the startup burst through.
             previous_page.activity_ignore_until = max(
                 getattr(previous_page, "activity_ignore_until", 0),
-                time.monotonic() + grace,
+                time.monotonic() + TAB_ACTIVITY_FOCUS_LOSS_GRACE,
             )
         label = self.get_tab_label(page)
         if hasattr(label, "set_activity_state"):
