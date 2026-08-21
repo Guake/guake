@@ -8,15 +8,15 @@ repos:
           - "--markdown-linebreak-ext=md"
         exclude: COPYING
   - repo: https://github.com/PyCQA/flake8.git
-    rev: 3.9.2
+    rev: 7.3.0
     hooks:
       - id: flake8
   - repo: https://github.com/PyCQA/pylint.git
-    rev: v2.13.6
+    rev: v4.0.7
     hooks:
       - id: pylint
   - repo: https://github.com/psf/black.git
-    rev: 22.10.0
+    rev: 24.10.0
     hooks:
       - id: black
   - repo: https://github.com/hackedd/fiximports.git
