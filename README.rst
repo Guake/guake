@@ -55,6 +55,8 @@ Bugs? Information?
   `improving its translations in your language <https://hosted.weblate.org/projects/guake/guake/>`_.
   Guake users are welcome `to support Weblate <https://weblate.org/donate/>`_ in providing this
   service for free for OpenSource Projects.
+- You may improve Guake, but first please
+  read `Contributing Guide <https://guake.readthedocs.io/en/stable/contributing/index.html>`_.
 
 **Important note**: Do **NOT** use the domain guake.org, it has been registered by someone outside
 the team. We cannot be held responsible for the content on that web site.

@@ -484,14 +484,6 @@ class PrefsCallbacks:
         """Changes the value of display_tab_activity in dconf"""
         self.settings.general.set_boolean("display-tab-activity", chk.get_active())
 
-    def on_tab_activity_new_tab_grace_changed(self, spin):
-        """Changes the value of tab_activity_new_tab_grace in dconf"""
-        self.settings.general.set_double("tab-activity-new-tab-grace", spin.get_value())
-
-    def on_tab_activity_focus_loss_grace_changed(self, spin):
-        """Changes the value of tab_activity_focus_loss_grace in dconf"""
-        self.settings.general.set_double("tab-activity-focus-loss-grace", spin.get_value())
-
     # scrolling tab
 
     def on_use_scrollbar_toggled(self, chk):
@@ -1213,12 +1205,6 @@ class PrefsDialog(SimpleGladeApp):
         # highlight tabs with activity
         value = self.settings.general.get_boolean("display-tab-activity")
         self.get_widget("display_tab_activity").set_active(value)
-
-        # tab activity grace periods
-        value = self.settings.general.get_double("tab-activity-new-tab-grace")
-        self.get_widget("tab_activity_new_tab_grace").set_value(value)
-        value = self.settings.general.get_double("tab-activity-focus-loss-grace")
-        self.get_widget("tab_activity_focus_loss_grace").set_value(value)
 
         self._load_screen_settings()
 
