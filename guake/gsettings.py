@@ -148,6 +148,7 @@ class GSettingHandler:
         """
         RectCalculator.set_final_window_rect(self.settings, self.guake.window)
         self.guake.set_tab_position()
+        self.guake.update_bottom_drag_handle_visibility()
         self.guake.force_move_if_shown()
 
     def size_changed(self, settings, key, user_data):

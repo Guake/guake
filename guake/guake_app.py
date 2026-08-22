@@ -52,6 +52,7 @@ from guake.about import AboutDialog
 from guake.common import gladefile
 from guake.common import pixmapfile
 from guake.dialogs import PromptQuitDialog
+from guake.globals import ALIGN_BOTTOM
 from guake.globals import MAX_TRANSPARENCY
 from guake.globals import NAME
 from guake.globals import PROMPT_ALWAYS
@@ -189,6 +190,21 @@ class Guake(SimpleGladeApp):
         self.window.set_keep_above(True)
         self.mainframe = self.get_widget("mainframe")
         self.mainframe.remove(self.get_widget("notebook-teminals"))
+
+        # Window is undecorated (no WM title bar/borders), so provide a thin
+        # drag handle at the bottom edge to let users resize it manually.
+        self.bottom_drag_handle = Gtk.EventBox()
+        self.bottom_drag_handle.set_size_request(-1, 8)
+        self.bottom_drag_handle.connect(
+            "realize",
+            lambda widget: widget.get_window().set_cursor(
+                Gdk.Cursor.new_from_name(Gdk.Display.get_default(), "ns-resize")
+            ),
+        )
+        self.bottom_drag_handle.connect("button-press-event", self.on_resize_handle_by_dragging)
+        self.bottom_drag_handle.connect("button-release-event", self.on_resize_handle_release)
+        self.mainframe.pack_end(self.bottom_drag_handle, False, False, 0)
+        self.update_bottom_drag_handle_visibility()
 
         # Pending restore for terminal split after show-up
         #     [(RootTerminalBox, TerminaBox, panes), ...]
@@ -543,6 +559,43 @@ class Guake(SimpleGladeApp):
 
     def on_window_takefocus(self, window, event):
         self.takefocus_time = get_server_time(self.window)
+
+    def update_bottom_drag_handle_visibility(self):
+        """Hide the bottom drag handle when the window is bottom-aligned, since
+        dragging it from the top-anchored SOUTH edge would fight the bottom-anchoring
+        done by RectCalculator.set_final_window_rect.
+        """
+        if self.settings.general.get_int("window-valignment") == ALIGN_BOTTOM:
+            self.bottom_drag_handle.hide()
+        else:
+            self.bottom_drag_handle.show()
+
+    def on_resize_handle_by_dragging(self, widget, event):
+        """Start an interactive window resize as long as the user holds the button."""
+        if event.button == 1:
+            self.window.begin_resize_drag(
+                Gdk.WindowEdge.SOUTH, event.button, int(event.x_root), int(event.y_root), event.time
+            )
+        return True
+
+    def on_resize_handle_release(self, widget, event):
+        """Once the drag completes, persist height percentage to setting."""
+        if event.button != 1:
+            return True
+
+        workarea = RectCalculator.get_final_window_monitor(
+            self.settings, self.window
+        ).get_workarea()
+        if workarea.height <= 0:
+            log.warning("Skipping resize-override update: invalid workarea %r", workarea)
+            return True
+
+        height = self.window.get_size()[1]
+        current_height_percentage = min(round(height / workarea.height * 100), 100)
+        self.settings.general.set_int("window-height", current_height_percentage)
+
+        log.debug("Resize settled at %spx / %s%%", height, current_height_percentage)
+        return True
 
     def show_menu(self, status_icon, button, activate_time):
         """Show the tray icon menu."""
