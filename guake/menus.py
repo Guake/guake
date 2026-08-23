@@ -25,6 +25,17 @@ def mk_tab_context_menu(callback_object):
     mi_reset_custom_colors = Gtk.MenuItem(_("Reset custom colors"))
     mi_reset_custom_colors.connect("activate", callback_object.on_reset_custom_colors)
     menu.add(mi_reset_custom_colors)
+
+    menu.add(Gtk.SeparatorMenuItem())
+
+    mi_change_tab_colors = Gtk.MenuItem(_("Change tab colors"))
+    mi_change_tab_colors.connect("activate", callback_object.on_tab_color_change)
+    menu.add(mi_change_tab_colors)
+    menu.add(Gtk.SeparatorMenuItem())
+
+
+
+    
     mi_close = Gtk.MenuItem(_("Close"))
     mi_close.connect("activate", callback_object.on_close)
     menu.add(mi_close)
