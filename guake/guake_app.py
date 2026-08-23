@@ -169,9 +169,9 @@ class Guake(SimpleGladeApp):
         else:
             # TODO PORT test this on a system with app indicator
             self.tray_icon = appindicator.Indicator.new(
-                "guake-indicator", "guake-tray", appindicator.IndicatorCategory.APPLICATION_STATUS
+                "guake-indicator", "guake", appindicator.IndicatorCategory.APPLICATION_STATUS
             )
-            self.tray_icon.set_icon_full("guake-tray", _("Guake Terminal"))
+            self.tray_icon.set_icon_full("guake", _("Guake Terminal"))
             self.tray_icon.set_status(appindicator.IndicatorStatus.ACTIVE)
             menu = self.get_widget("tray-menu")
             show = Gtk.MenuItem(_("Show"))
