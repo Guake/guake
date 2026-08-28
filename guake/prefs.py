@@ -534,6 +534,10 @@ class PrefsCallbacks:
         """Changes the value of bold_is_bright in dconf"""
         self.settings.styleFont.set_boolean("bold-is-bright", chk.get_active())
 
+    def on_per_terminal_zoom_toggled(self, chk):
+        """Changes the activity of per_terminal_zoom in dconf"""
+        self.settings.general.set_boolean("per-terminal-zoom", chk.get_active())
+
     def on_cell_height_scale_value_changed(self, scale):
         value = scale.get_value()
         self.settings.styleFont.set_double("cell-height-scale", value)
@@ -1289,6 +1293,10 @@ class PrefsDialog(SimpleGladeApp):
         # use bold is bright
         value = self.settings.styleFont.get_boolean("bold-is-bright")
         self.get_widget("bold_is_bright").set_active(value)
+
+        # zoom only the focused terminal
+        value = self.settings.general.get_boolean("per-terminal-zoom")
+        self.get_widget("per_terminal_zoom").set_active(value)
 
         # cell height scale
         value = self.settings.styleFont.get_double("cell-height-scale")

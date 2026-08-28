@@ -136,6 +136,11 @@
 		  <summary>Hide tab bar if there is only one tab</summary>
 		  <description>When true, the tab bar will hide when there is only one tab</description>
 		</key>
+        <key name="per-terminal-zoom" type="b">
+            <default>false</default>
+            <summary>Zoom only the focused terminal</summary>
+            <description>When true, the zoom in/out shortcuts change the font size of the focused terminal only, and each terminal keeps its own zoom level. When false, they change the configured font size, zooming every terminal at once.</description>
+        </key>
         <key name="quick-open-enable" type="b">
             <default>false</default>
             <summary>Enable Quick Open feature.</summary>
