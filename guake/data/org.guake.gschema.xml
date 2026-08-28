@@ -106,6 +106,11 @@
             <summary>Tab on top.</summary>
             <description>Makes tab bar on top of the Guake window. Per default, tabs appear below the terminal. Setting this to True will move the tab on top of the terminal. Requires a restart.</description>
         </key>
+        <key name="wrap-tabs" type="b">
+            <default>true</default>
+            <summary>Wrap around when switching tabs</summary>
+            <description>When true, going to the next tab from the last one moves to the first, and going to the previous tab from the first one moves to the last. When false, switching tabs stops at the first and last tab.</description>
+        </key>
         <key name="new-tab-after" type="b">
             <default>false</default>
             <summary>New tabs appear after the current tab.</summary>

@@ -1,0 +1,10 @@
+release_summary: >
+  Switching to the next or previous tab can now stop at the last and first tab
+  instead of wrapping around.
+
+features:
+  - |
+      - New "Wrap around when switching tabs" preference, in Main Window. It is
+        enabled by default, as before. When disabled, the next and previous tab
+        shortcuts stop at the last and first tab, which also matches what the
+        mouse wheel over the tab bar already does.
