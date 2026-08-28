@@ -1165,6 +1165,24 @@
                                           </packing>
                                         </child>
                                         <child>
+                                          <object class="GtkCheckButton" id="wrap_tabs">
+                                            <property name="label" translatable="yes">Wrap around when switching tabs</property>
+                                            <property name="visible">True</property>
+                                            <property name="can-focus">True</property>
+                                            <property name="receives-default">False</property>
+                                            <property name="tooltip-text" translatable="yes">When disabled, switching to the next or previous tab stops at the last and first tab.</property>
+                                            <property name="halign">start</property>
+                                            <property name="use-underline">True</property>
+                                            <property name="active">True</property>
+                                            <property name="draw-indicator">True</property>
+                                            <signal name="toggled" handler="on_wrap_tabs_toggled" swapped="no"/>
+                                          </object>
+                                          <packing>
+                                            <property name="left-attach">1</property>
+                                            <property name="top-attach">5</property>
+                                          </packing>
+                                        </child>
+                                        <child>
                                           <object class="GtkCheckButton" id="set_window_title">
                                             <property name="label" translatable="yes">Set window title to current tab name</property>
                                             <property name="visible">True</property>

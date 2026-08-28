@@ -387,6 +387,10 @@ class PrefsCallbacks:
         """Changes the activity of hide_tabs_if_one_tab in dconf"""
         self.settings.general.set_boolean("hide-tabs-if-one-tab", chk.get_active())
 
+    def on_wrap_tabs_toggled(self, chk):
+        """Changes the activity of wrap_tabs in dconf"""
+        self.settings.general.set_boolean("wrap-tabs", chk.get_active())
+
     def on_start_fullscreen_toggled(self, chk):
         """Changes the activity of start_fullscreen in dconf"""
         self.settings.general.set_boolean("start-fullscreen", chk.get_active())
@@ -1197,6 +1201,10 @@ class PrefsDialog(SimpleGladeApp):
         # hide tabbar if only one tab
         value = self.settings.general.get_boolean("hide-tabs-if-one-tab")
         self.get_widget("hide_tabs_if_one_tab").set_active(value)
+
+        # wrap around when switching tabs
+        value = self.settings.general.get_boolean("wrap-tabs")
+        self.get_widget("wrap_tabs").set_active(value)
 
         # start fullscreen
         value = self.settings.general.get_boolean("start-fullscreen")

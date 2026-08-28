@@ -1019,18 +1019,22 @@ class Guake(SimpleGladeApp):
 
     def accel_prev(self, *args):
         """Callback to go to the previous tab. Called by the accel key."""
-        if self.get_notebook().get_current_page() == 0:
-            self.get_notebook().set_current_page(self.get_notebook().get_n_pages() - 1)
+        notebook = self.get_notebook()
+        if notebook.get_current_page() == 0:
+            if self.settings.general.get_boolean("wrap-tabs"):
+                notebook.set_current_page(notebook.get_n_pages() - 1)
         else:
-            self.get_notebook().prev_page()
+            notebook.prev_page()
         return True
 
     def accel_next(self, *args):
         """Callback to go to the next tab. Called by the accel key."""
-        if self.get_notebook().get_current_page() + 1 == self.get_notebook().get_n_pages():
-            self.get_notebook().set_current_page(0)
+        notebook = self.get_notebook()
+        if notebook.get_current_page() + 1 == notebook.get_n_pages():
+            if self.settings.general.get_boolean("wrap-tabs"):
+                notebook.set_current_page(0)
         else:
-            self.get_notebook().next_page()
+            notebook.next_page()
         return True
 
     def accel_move_tab_left(self, *args):
