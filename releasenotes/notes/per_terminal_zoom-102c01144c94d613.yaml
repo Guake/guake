@@ -1,0 +1,17 @@
+release_summary: >
+  Zoom in and out can now apply to the focused terminal only, letting each terminal
+  keep its own zoom level.
+
+features:
+  - |
+      - New "Zoom in/out affects only the focused terminal" preference, in Appearance.
+        When enabled, each terminal keeps its own zoom level, applied on top of the
+        configured font size. When disabled (the default, as before), zooming changes
+        the configured font size and every terminal with it.
+
+fixes:
+  - |
+      - Zooming every terminal no longer applies the new font size twice, once as a
+        font size and once as a terminal font scale, which made a zoom step larger
+        than intended and zoom out a different size than zoom in.
+      - Zooming out repeatedly no longer reaches a font size of zero.

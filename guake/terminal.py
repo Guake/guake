@@ -513,8 +513,7 @@ class GuakeTerminal(Vte.Terminal):
         self.font_scale_index = clamp(scale_index, -6, 12)
 
         font = Pango.FontDescription(self.font.to_string())
-        scale_factor = 2 ** (self.font_scale_index / 6)
-        new_size = int(scale_factor * font.get_size())
+        new_size = int(self.font_scale_factor * font.get_size())
 
         if font.get_size_is_absolute():
             font.set_absolute_size(new_size)
@@ -524,6 +523,11 @@ class GuakeTerminal(Vte.Terminal):
         super().set_font(font)
 
     font_scale = property(fset=set_font_scale_index, fget=lambda self: self.font_scale_index)
+
+    @property
+    def font_scale_factor(self):
+        """Factor the zoom level applies to the configured font size."""
+        return 2 ** (self.font_scale_index / 6)
 
     def increase_font_size(self):
         self.font_scale += 1

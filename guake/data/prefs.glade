@@ -2262,6 +2262,23 @@
                                   </packing>
                                 </child>
                                 <child>
+                                  <object class="GtkCheckButton" id="per_terminal_zoom">
+                                    <property name="label" translatable="yes">Zoom in/out affects only the focused terminal</property>
+                                    <property name="visible">True</property>
+                                    <property name="can-focus">True</property>
+                                    <property name="receives-default">False</property>
+                                    <property name="tooltip-text" translatable="yes">Each terminal keeps its own zoom level. When disabled, zooming changes the configured font size and every terminal at once.</property>
+                                    <property name="halign">start</property>
+                                    <property name="use-underline">True</property>
+                                    <property name="draw-indicator">True</property>
+                                    <signal name="toggled" handler="on_per_terminal_zoom_toggled" swapped="no"/>
+                                  </object>
+                                  <packing>
+                                    <property name="left-attach">0</property>
+                                    <property name="top-attach">5</property>
+                                  </packing>
+                                </child>
+                                <child>
                                   <object class="GtkBox">
                                     <property name="visible">True</property>
                                     <property name="can-focus">False</property>

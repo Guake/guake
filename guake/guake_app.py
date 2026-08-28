@@ -950,22 +950,47 @@ class Guake(SimpleGladeApp):
         HidePrevention(self.window).allow()
         return True
 
+    def zoom(self, step):
+        """Zoom in or out by one step.
+
+        A zoom level is a scale a terminal applies on top of the configured font size.
+        With per-terminal zoom, only the focused terminal is zoomed and each terminal
+        keeps its own level. Otherwise every terminal ends up the same size as the
+        focused one: their individual levels are dropped, and the configured font size
+        is changed instead, so the zoom is remembered across restarts.
+        """
+        notebook = self.get_notebook()
+        terminal = notebook.get_current_terminal()
+
+        if self.settings.general.get_boolean("per-terminal-zoom"):
+            if terminal:
+                terminal.font_scale += step
+            return
+
+        if self.settings.general.get_boolean("use-default-font"):
+            # The font size follows the desktop setting, so there is no configured size
+            # to change here: zoom every terminal to the same level instead.
+            scale = (terminal.font_scale if terminal else 0) + step
+            for term in notebook.iter_terminals():
+                term.font_scale = scale
+            return
+
+        font, _, size = self.settings.styleFont.get_string("style").rpartition(" ")
+        # Start from the size the focused terminal shows, so a terminal zoomed on its
+        # own is the one the others snap to.
+        size = round(int(size) * terminal.font_scale_factor) if terminal else int(size)
+        self.settings.styleFont.set_string("style", f"{font} {max(1, size + step)}")
+        for term in notebook.iter_terminals():
+            term.font_scale = 0
+
     def accel_zoom_in(self, *args):
         """Callback to zoom in."""
-        font = " ".join(self.settings.styleFont.get_string("style").split(" ")[:-1])
-        new_size = int(self.settings.styleFont.get_string("style").split(" ")[-1]) + 1
-        self.settings.styleFont.set_string("style", f"{font} {new_size}")
-        for term in self.get_notebook().iter_terminals():
-            term.set_font_scale(new_size / (new_size - 1))
+        self.zoom(1)
         return True
 
     def accel_zoom_out(self, *args):
         """Callback to zoom out."""
-        font = " ".join(self.settings.styleFont.get_string("style").split(" ")[:-1])
-        new_size = int(self.settings.styleFont.get_string("style").split(" ")[-1]) - 1
-        self.settings.styleFont.set_string("style", f"{font} {new_size}")
-        for term in self.get_notebook().iter_terminals():
-            term.set_font_scale((new_size - 1) / new_size)
+        self.zoom(-1)
         return True
 
     def accel_increase_height(self, *args):
