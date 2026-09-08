@@ -1,0 +1,7 @@
+{
+    "name": "Guake Pointer Helper",
+    "description": "Exposes Wayland cursor position over D-Bus for Guake multi-monitor support",
+    "uuid": "guake-pointer-helper@guake.org",
+    "shell-version": ["45", "46", "47", "48", "49", "50", "51"],
+    "url": "https://github.com/Guake/guake"
+}

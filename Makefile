@@ -29,6 +29,7 @@ LOGIN_DESTOP_PATH = $(SHARE_DIR)
 IMAGE_DIR:=$(SHARE_DIR)/pixmaps
 GLADE_DIR:=$(SHARE_DIR)
 SCHEMA_DIR:=$(gsettingsschemadir)
+GNOME_SHELL_EXTDIR:=$(datadir)/gnome-shell/extensions
 
 SLUG:=fragment_name
 
@@ -68,7 +69,7 @@ ln-venv:
 clean-ln-venv:
 	@rm -f .venv
 
-install-system: install-schemas install-locale install-guake
+install-system: install-schemas install-locale install-guake install-gnome-extension
 
 install-guake:
 	# you probably want to execute this target with sudo:
@@ -144,7 +145,22 @@ install-schemas:
 	install -Dm644 "$(DEV_DATA_DIR)/org.guake.gschema.xml" "$(DESTDIR)$(SCHEMA_DIR)/"
 	if [ $(COMPILE_SCHEMA) = 1 ]; then glib-compile-schemas $(DESTDIR)$(SCHEMA_DIR); fi
 
-uninstall-system: uninstall-schemas uninstall-locale
+install-gnome-extension:
+	install -dm755 "$(DESTDIR)$(GNOME_SHELL_EXTDIR)/guake-pointer-helper@guake.org"
+	install -Dm644 "$(DEV_DATA_DIR)/gnome-shell-extension/guake-pointer-helper@guake.org/metadata.json" \
+		"$(DESTDIR)$(GNOME_SHELL_EXTDIR)/guake-pointer-helper@guake.org/"
+	install -Dm644 "$(DEV_DATA_DIR)/gnome-shell-extension/guake-pointer-helper@guake.org/extension.js" \
+		"$(DESTDIR)$(GNOME_SHELL_EXTDIR)/guake-pointer-helper@guake.org/"
+	@echo
+	@echo "Installed GNOME Shell extension: guake-pointer-helper@guake.org"
+	@echo "Enable it with: gnome-extensions enable guake-pointer-helper@guake.org"
+	@echo "A session restart (log out/in) may be required for GNOME to detect the extension."
+	@echo
+
+uninstall-gnome-extension:
+	rm -rf "$(DESTDIR)$(GNOME_SHELL_EXTDIR)/guake-pointer-helper@guake.org"
+
+uninstall-system: uninstall-schemas uninstall-locale uninstall-gnome-extension
 	$(SHELL) -c $(PYTHON_SITEDIRS_FOR_PREFIX) \
 		| while read sitedir; do \
 			echo "rm -rf $(DESTDIR)$$sitedir/{guake,guake-*.egg-info}"; \
