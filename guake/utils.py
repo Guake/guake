@@ -324,6 +324,41 @@ class RectCalculator:
         return window_rect
 
     @classmethod
+    def _get_gnome_shell_pointer(cls):
+        """Get cursor position via guake-pointer-helper GNOME Shell extension.
+
+        Under XWayland, GDK only sees cursor updates when hovering over
+        X11-compat windows. The guake-pointer-helper extension queries
+        Mutter's CursorTracker for the real Wayland pointer coordinates
+        and exposes them over a dedicated D-Bus interface.
+
+        Returns (x, y) or None on failure.
+        """
+        try:
+            result = subprocess.run(
+                [
+                    "gdbus", "call", "--session",
+                    "--dest", "org.gnome.Shell",
+                    "--object-path", "/org/guake/JsonPointer",
+                    "--method", "org.guake.JsonPointer.GetPointer",
+                ],
+                capture_output=True,
+                text=True,
+                timeout=1,
+            )
+            if result.returncode != 0:
+                return None
+            # Output: (1234, 567)
+            match = re.search(r"\((\d+),\s*(\d+)\)", result.stdout)
+            if match:
+                return int(match.group(1)), int(match.group(2))
+        except Exception as e:
+            log.debug("GNOME Shell pointer query failed: %s", e)
+        return None
+
+    _wayland_extension_warned = False
+
+    @classmethod
     def get_final_window_monitor(cls, settings, window):
         """Gets the final monitor for the main window of guake."""
 
@@ -334,12 +369,31 @@ class RectCalculator:
         num_monitor = settings.general.get_int("display-n")
 
         if use_mouse:
-            pointer = display.get_default_seat().get_pointer()
-            if pointer is None:
-                monitor = display.get_primary_monitor()
-            else:
-                _, x, y = pointer.get_position()
-                monitor = display.get_monitor_at_point(x, y)
+            monitor = None
+
+            if os.environ.get("XDG_SESSION_TYPE") == "wayland":
+                pos = cls._get_gnome_shell_pointer()
+                if pos is not None:
+                    x, y = pos
+                    monitor = display.get_monitor_at_point(x, y)
+                    log.debug("Wayland pointer via GNOME Shell: (%s, %s)", x, y)
+                elif not cls._wayland_extension_warned:
+                    cls._wayland_extension_warned = True
+                    log.warning(
+                        "Wayland session detected but guake-pointer-helper GNOME Shell "
+                        "extension is not available. Multi-monitor 'appear on mouse "
+                        "display' may not work correctly. Install and enable the "
+                        "extension with: gnome-extensions enable "
+                        "guake-pointer-helper@guake.org"
+                    )
+
+            if monitor is None:
+                pointer = display.get_default_seat().get_pointer()
+                if pointer is None:
+                    monitor = display.get_primary_monitor()
+                else:
+                    _, x, y = pointer.get_position()
+                    monitor = display.get_monitor_at_point(x, y)
         else:
             monitor = display.get_monitor(num_monitor)
             if monitor is None:
