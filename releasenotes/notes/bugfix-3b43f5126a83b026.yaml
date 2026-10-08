@@ -1,0 +1,5 @@
+fixes:
+  - |
+    On KDE Plasma, a window with 100% width no longer shrinks to 2/3 of the screen width
+    when it is shown or leaves fullscreen. Guake now only unmaximizes the window when it
+    is maximized. #2117

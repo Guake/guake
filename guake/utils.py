@@ -311,7 +311,10 @@ class RectCalculator:
             window.maximize()
         elif not FullscreenManager(settings, window).is_fullscreen():
             log.debug("RESIZING MAIN WINDOW TO THE FOLLOWING VALUES:")
-            window.unmaximize()
+            # KWin marks a full-width window as maximized horizontally. Calling
+            # unmaximize() on it makes KWin shrink it to 2/3 of the screen width (#2117).
+            if window.is_maximized():
+                window.unmaximize()
             log.debug("  window_rect.x: %s", window_rect.x)
             log.debug("  window_rect.y: %s", window_rect.y)
             log.debug("  window_rect.height: %s", window_rect.height)
