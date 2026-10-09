@@ -307,6 +307,7 @@ class RectCalculator:
 
         if width_percents == 100 and height_percents == 100:
             log.debug("MAXIMIZING MAIN WINDOW")
+            window.set_size_request(-1, -1)
             window.move(window_rect.x, window_rect.y)
             window.maximize()
         elif not FullscreenManager(settings, window).is_fullscreen():
@@ -319,6 +320,9 @@ class RectCalculator:
             # Note: move_resize is only on GTK3
             window.resize(window_rect.width, window_rect.height)
             window.move(window_rect.x, window_rect.y)
+            # Floor the width: KWin/XWayland otherwise snaps a fresh map
+            # back to VTE natural width until something re-asserts it.
+            window.set_size_request(window_rect.width, -1)
             log.debug("Updated window position: %r", window.get_position())
 
         return window_rect
