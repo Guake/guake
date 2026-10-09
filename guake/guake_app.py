@@ -237,6 +237,10 @@ class Guake(SimpleGladeApp):
 
         self.window.connect("focus-out-event", self.on_window_losefocus)
         self.window.connect("focus-in-event", self.on_window_takefocus)
+        # Watchdog state: last width we enforced; see _on_window_configure.
+        self._enforced_width = None
+        self._size_restore_pending = False
+        self.window.connect("configure-event", self._on_window_configure)
 
         # Handling the delete-event of the main window to avoid
         # problems when closing it.
@@ -697,6 +701,10 @@ class Guake(SimpleGladeApp):
         # setting window in all desktops
 
         window_rect = RectCalculator.set_final_window_rect(self.settings, self.window)
+        self._enforced_width = int(window_rect.width)
+        # Used by the WM as the map-time size; without it KWin/XWayland maps
+        # at VTE natural width and we get a shrink-then-grow flicker.
+        self.window.set_default_size(window_rect.width, window_rect.height)
         self.window.stick()
 
         # add tab must be called before window.show to avoid a
@@ -739,13 +747,24 @@ class Guake(SimpleGladeApp):
         #     glib.timeout_add_seconds(1, lambda: self.timeout_restore(time))
         #
 
+        # Flip type hint before mapping: doing it after show() makes KWin
+        # re-manage the window at VTE natural width (flicker).
+        self.window.set_type_hint(Gdk.WindowTypeHint.DOCK)
+        self.window.set_type_hint(Gdk.WindowTypeHint.NORMAL)
         log.debug("order to present and deiconify")
         self.window.present()
         self.window.deiconify()
         self.window.show()
+        # Re-assert size after mapping; the configure watchdog below
+        # catches any late snap-back by the compositor.
+        RectCalculator.set_final_window_rect(self.settings, self.window)
+        GLib.idle_add(
+            lambda: not getattr(self, "hidden", True)
+            and self.window.get_visible()
+            and RectCalculator.set_final_window_rect(self.settings, self.window)
+            and False
+        )
         self.window.get_window().focus(time)
-        self.window.set_type_hint(Gdk.WindowTypeHint.DOCK)
-        self.window.set_type_hint(Gdk.WindowTypeHint.NORMAL)
 
         # This is here because vte color configuration works only after the
         # widget is shown.
@@ -786,6 +805,42 @@ class Guake(SimpleGladeApp):
 
         # Hide popover
         self.notebook_manager.get_current_notebook().popover.hide()
+
+    def _on_window_configure(self, widget, event):
+        """Watchdog: KWin/XWayland sometimes snaps the mapped window back
+        to VTE natural width. Re-assert the enforced size when a configure
+        shows a large unexpected shrink (debounced).
+        """
+        try:
+            if getattr(self, "hidden", True):
+                return False
+            if self._enforced_width is None or self._size_restore_pending:
+                return False
+            if self.fullscreen_manager.is_fullscreen():
+                return False
+            if event.width < self._enforced_width - 64:
+                self._size_restore_pending = True
+                GLib.timeout_add(120, self._restore_enforced_size)
+        except Exception:
+            log.exception("configure watchdog failed")
+        return False
+
+    def _restore_enforced_size(self):
+        self._size_restore_pending = False
+        try:
+            if getattr(self, "hidden", True):
+                return False
+            if not self.window.get_visible():
+                return False
+            if self.fullscreen_manager.is_fullscreen():
+                return False
+            w, _h = self.window.get_size()
+            if self._enforced_width is not None and w < self._enforced_width - 64:
+                rect = RectCalculator.set_final_window_rect(self.settings, self.window)
+                self._enforced_width = int(rect.width)
+        except Exception:
+            log.exception("failed to restore enforced window size")
+        return False
 
     def force_move_if_shown(self):
         if not self.hidden:

@@ -146,7 +146,8 @@ class GSettingHandler:
         """If the gconf var window_halignment be changed, this method will
         be called and will call the move function in guake.
         """
-        RectCalculator.set_final_window_rect(self.settings, self.guake.window)
+        rect = RectCalculator.set_final_window_rect(self.settings, self.guake.window)
+        self.guake._enforced_width = int(rect.width)
         self.guake.set_tab_position()
         self.guake.force_move_if_shown()
 
@@ -155,7 +156,8 @@ class GSettingHandler:
         this method will be called and will call the resize function
         in guake.
         """
-        RectCalculator.set_final_window_rect(self.settings, self.guake.window)
+        rect = RectCalculator.set_final_window_rect(self.settings, self.guake.window)
+        self.guake._enforced_width = int(rect.width)
 
     def cursor_blink_mode_changed(self, settings, key, user_data):
         """Called when cursor blink mode settings has been changed"""

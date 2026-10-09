@@ -30,6 +30,7 @@ from guake.globals import PROMPT_PROCESSES
 from guake.menus import mk_notebook_context_menu
 from guake.prefs import PrefsDialog
 from guake.utils import HidePrevention
+from guake.utils import RectCalculator
 from guake.utils import gdk_is_x11_display
 from guake.utils import get_process_name
 from guake.utils import save_tabs_when_changed
@@ -40,6 +41,7 @@ import time
 
 gi.require_version("Gtk", "3.0")
 gi.require_version("Wnck", "3.0")
+from gi.repository import GLib
 from gi.repository import GObject
 from gi.repository import Gdk
 from gi.repository import Gtk
@@ -359,6 +361,7 @@ class TerminalNotebook(Gtk.Notebook):
 
         self.hide_tabbar_if_one_tab()
         self.emit("page-deleted")
+        self.restore_window_size()
 
     def delete_page_by_label(self, label, kill=True, prompt=0):
         self.delete_page(self.find_tab_index_by_label(label), kill, prompt)
@@ -396,11 +399,35 @@ class TerminalNotebook(Gtk.Notebook):
         if not empty:
             self.terminal_attached(terminal)
         self.hide_tabbar_if_one_tab()
+        self.restore_window_size()
 
         if self.guake:
             # Attack background image draw callback to root terminal box
             root_terminal_box.connect_after("draw", self.guake.background_image_manager.draw)
         return root_terminal_box, page_num, terminal
+
+    def restore_window_size(self):
+        """Re-assert the configured window size after a tab is added/removed.
+
+        GTK renegotiates the toplevel natural size on insert_page/show_all
+        and KWin (XWayland) shrinks Guake. show() already enforces the size
+        via RectCalculator, but new_page()/remove_page() did not.
+        """
+        try:
+            guake = getattr(self, "guake", None)
+            if not guake or not getattr(guake, "window", None):
+                return
+            if getattr(guake, "hidden", True):
+                return
+            window = guake.window
+            if not window.get_visible():
+                return
+            GLib.idle_add(
+                lambda: RectCalculator.set_final_window_rect(guake.settings, window)
+                and False
+            )
+        except Exception:  # never break tab creation on resize failure
+            log.exception("failed to restore window size after tab change")
 
     def hide_tabbar_if_one_tab(self):
         """Hide the tab bar if hide-tabs-if-one-tab is true and there is only one
