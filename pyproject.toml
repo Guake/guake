@@ -1,4 +1,97 @@
+[build-system]
+requires = ["setuptools>=77", "setuptools_scm>=8,<9"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "guake"
+description = "Guake Terminal"
+readme = "README.rst"
+license = "GPL-2.0-or-later"
+license-files = ["COPYING"]
+authors = [{ name = "Gaetan Semet", email = "gaetan@xeberon.net" }]
+requires-python = ">=3.8"
+classifiers = [
+    "Intended Audience :: Information Technology",
+    "Intended Audience :: System Administrators",
+    "Operating System :: POSIX :: Linux",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Topic :: Terminals",
+    "Topic :: Terminals :: Terminal Emulators/X Terminals",
+    "Topic :: Desktop Environment :: Gnome",
+]
+dynamic = ["version"]
+
+[project.urls]
+Homepage = "https://github.com/Guake/guake"
+
+[project.scripts]
+guake = "guake.main:exec_main"
+guake-toggle = "guake.guake_toggle:toggle_guake_by_dbus"
+
+[tool.setuptools]
+packages = ["guake"]
+include-package-data = true
+
+[tool.setuptools_scm]
+version_file = "guake/_version.py"
+local_scheme = "no-local-version"
+
 [tool.black]
 line-length = 100
 target-version = ['py36']
 include = '\.pyi?$'
+
+[tool.pylint.main]
+jobs = 4
+
+[tool.pylint.format]
+max-line-length = 100
+
+[tool.pylint."messages control"]
+disable = [
+    "arguments-differ",
+    "attribute-defined-outside-init",
+    "broad-exception-caught",
+    "broad-exception-raised",
+    "consider-using-ternary",
+    "deprecated-method",
+    "deprecated-module",
+    "duplicate-code",
+    "fixme",
+    "import-error",
+    "inconsistent-return-statements",
+    "invalid-name",
+    "missing-docstring",
+    "no-member",
+    "no-method-argument",
+    "no-name-in-module",
+    "no-value-for-parameter",
+    "pointless-string-statement",
+    "protected-access",
+    "redefined-builtin",
+    "too-few-public-methods",
+    "too-many-arguments",
+    "too-many-boolean-expressions",
+    "too-many-branches",
+    "too-many-instance-attributes",
+    "too-many-lines",
+    "too-many-locals",
+    "too-many-nested-blocks",
+    "too-many-public-methods",
+    "too-many-positional-arguments",
+    "too-many-statements",
+    "undefined-variable",
+    "ungrouped-imports",
+    "unnecessary-pass",
+    "unreachable",
+    "unused-argument",
+    "unused-import",
+    "unused-variable",
+    "wrong-import-order",
+    "wrong-import-position",
+    "consider-using-dict-items",
+]
+enable = ["c-extension-no-member"]
