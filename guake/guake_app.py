@@ -1439,8 +1439,22 @@ class Guake(SimpleGladeApp):
         if not self.get_xdg_config_directory().exists():
             self.get_xdg_config_directory().mkdir(parents=True)
         session_file = self.get_xdg_config_directory() / filename
-        with session_file.open("w", encoding="utf-8") as f:
+        # Write atomically so an unclean shutdown (crash, power loss) can never
+        # leave a half-written session file: dump to a sibling temp file, fsync
+        # it, then os.replace() onto the real path. os.replace is atomic, so a
+        # restore always sees either the previous complete file or the new one.
+        # Finally fsync the directory so the rename itself survives power loss.
+        tmp_file = session_file.with_name(f"{filename}.tmp")
+        with tmp_file.open("w", encoding="utf-8") as f:
             json.dump(config, f, ensure_ascii=False, indent=4)
+            f.flush()
+            os.fsync(f.fileno())
+        os.replace(tmp_file, session_file)
+        dir_fd = os.open(session_file.parent, os.O_RDONLY)
+        try:
+            os.fsync(dir_fd)
+        finally:
+            os.close(dir_fd)
         log.info("Guake tabs saved to %s", session_file)
 
     def restore_tabs(self, filename="session.json", suppress_notify=False):
