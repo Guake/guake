@@ -1,7 +1,8 @@
 fixes:
   - |
     Saving the tabs session is now atomic: Guake writes to a temporary file,
-    flushes it to disk and then replaces ``session.json`` in a single step. An
-    unclean shutdown (crash or power loss) during a save can no longer leave a
-    truncated ``session.json`` that would be discarded on the next restore, so
-    restored tabs survive abnormal shutdowns.
+    flushes it to disk, replaces ``session.json`` in a single step and syncs
+    the directory so the rename itself is durable. An unclean shutdown (crash
+    or power loss) during a save can no longer leave a truncated
+    ``session.json`` that would be discarded on the next restore, so restored
+    tabs survive abnormal shutdowns.
