@@ -182,6 +182,21 @@ def test_guake_save_tabs_and_restore(mocker, g, fs):
     assert nb.get_tab_text_index(2) == "python"
 
 
+def test_guake_save_tabs_is_atomic(mocker, g, fs):
+    # save_tabs must write via a temp file + os.replace so an unclean shutdown
+    # can never leave a half-written session.json. After a successful save the
+    # real file is valid JSON and no leftover temp file remains.
+    mocker.patch.object(g.settings.general, "get_boolean", return_value=False)
+
+    g.save_tabs()
+
+    assert os.path.exists("/foobar/session.json")
+    assert not os.path.exists("/foobar/session.json.tmp")
+    with open("/foobar/session.json", encoding="utf-8") as f:
+        config = json.load(f)
+    assert "schema_version" in config
+
+
 def test_guake_hide_tab_bar_if_one_tab(mocker, g, fs):
     # Set hide-tabs-if-one-tab to True
     mocker.patch.object(g.settings.general, "get_boolean", return_value=True)
