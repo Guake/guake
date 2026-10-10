@@ -195,7 +195,7 @@ flake8:
 	PIPENV_IGNORE_VIRTUALENVS=1 pipenv run flake8 guake
 
 pylint:
-	PIPENV_IGNORE_VIRTUALENVS=1 pipenv run pylint --rcfile=.pylintrc --output-format=colorized $(MODULE)
+	PIPENV_IGNORE_VIRTUALENVS=1 pipenv run pylint --output-format=colorized $(MODULE)
 
 sc: style check
 

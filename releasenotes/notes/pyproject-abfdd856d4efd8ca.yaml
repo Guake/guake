@@ -1,0 +1,4 @@
+other:
+  - |
+      Move packaging metadata (``setup.cfg``) and pylint configuration (``.pylintrc``)
+      into ``pyproject.toml``, and remove the unused ``.pep8rc``.
