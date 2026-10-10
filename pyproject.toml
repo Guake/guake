@@ -1,18 +1,17 @@
 [build-system]
-requires = ["setuptools>=77", "setuptools_scm>=8,<9"]
+requires = ["setuptools>=64", "setuptools_scm>=8,<9"]
 build-backend = "setuptools.build_meta"
 
 [project]
 name = "guake"
 description = "Guake Terminal"
 readme = "README.rst"
-license = "GPL-2.0-or-later"
-license-files = ["COPYING"]
 authors = [{ name = "Gaetan Semet", email = "gaetan@xeberon.net" }]
 requires-python = ">=3.8"
 classifiers = [
     "Intended Audience :: Information Technology",
     "Intended Audience :: System Administrators",
+    "License :: OSI Approved :: GNU General Public License v2 or later (GPLv2+)",
     "Operating System :: POSIX :: Linux",
     "Programming Language :: Python :: 3.8",
     "Programming Language :: Python :: 3.9",
