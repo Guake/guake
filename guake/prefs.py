@@ -1442,6 +1442,7 @@ class PrefsDialog(SimpleGladeApp):
                 self.hotkey_alread_used = True
                 msg = _('The shortcut "%s" is already in use.') % html_escape(accelerator)
                 ShowableError(self.window, _("Error setting keybinding."), msg, -1)
+                # pylint: disable-next=broad-exception-raised
                 raise Exception("This is ok, we just use it to break the foreach loop!")
 
         self.store.foreach(each_key)

@@ -2,6 +2,7 @@
 
 import setuptools
 
-setuptools.setup(
-    use_scm_version={"write_to": "guake/_version.py", "local_scheme": "no-local-version"}
-)
+# Only kept because the Makefile still runs `python setup.py ...`. All configuration
+# lives in pyproject.toml; setuptools_scm comes from the dev environment (Pipfile)
+# for these direct calls, and from [build-system].requires for pip / build.
+setuptools.setup()

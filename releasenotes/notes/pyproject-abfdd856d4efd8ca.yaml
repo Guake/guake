@@ -1,0 +1,6 @@
+other:
+  - |
+      Move packaging metadata (``setup.cfg``) and pylint configuration (``.pylintrc``)
+      into ``pyproject.toml``, and remove the unused ``.pep8rc``. The build backend
+      is still setuptools. The wheel is now tagged ``py3-none-any`` instead of
+      ``py2.py3-none-any``, and its metadata declares ``Requires-Python: >=3.8``.
