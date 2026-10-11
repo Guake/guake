@@ -26,6 +26,8 @@ twine = "*"
 pathlib2 = {markers = "python_version < '3.8'"}
 scandir = {markers = "python_version < '3.5'"}
 pyfakefs = "*"
+# build 1.3 dropped Python 3.8, which CI still runs
+build = "==1.2.2.post1"
 pytest-cov = "*"
 pew = "*"
 black = "==24.10.0"

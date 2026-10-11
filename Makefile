@@ -203,7 +203,7 @@ dists: update-po requirements prepare-install rm-dists sdist bdist wheels
 build: dists
 
 sdist: generate-paths
-	export SKIP_GIT_SDIST=1 && PIPENV_IGNORE_VIRTUALENVS=1 pipenv run python setup.py sdist
+	PIPENV_IGNORE_VIRTUALENVS=1 pipenv run python -m build --sdist
 
 rm-dists:
 	rm -rf build dist
@@ -213,7 +213,7 @@ bdist: generate-paths
 	@echo "Ignoring build of bdist package"
 
 wheels: generate-paths
-	PIPENV_IGNORE_VIRTUALENVS=1 pipenv run python setup.py bdist_wheel
+	PIPENV_IGNORE_VIRTUALENVS=1 pipenv run python -m build --wheel
 
 wheel: wheels
 
@@ -288,9 +288,6 @@ tag-pbr:
 	@# Note:
 	@# To sign, need gpg configured and the following command:
 	@#  git tag -s $$VERSION -m \"$$PROJECTNAME $$VERSION\""
-
-pypi-publish: build
-	PIPENV_IGNORE_VIRTUALENVS=1 pipenv run python setup.py upload -r pypi
 
 
 update:
@@ -432,7 +429,6 @@ dist: dists
 doc: docs
 install: install-system
 purge: purge-system
-pypi: pypi-publish
 run: run-local
 run-prefs: run-local-prefs
 styles: style
