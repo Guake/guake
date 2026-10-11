@@ -17,7 +17,14 @@ from guake.guake_app import Guake
 
 @pytest.fixture
 def g(mocker, fs):
-    mocker.patch("guake.guake_app.Guake.get_xdg_config_directory", return_value=Path("/foobar"))
+    # Build the Path on every call so it is created under whatever filesystem
+    # is active at that moment. A single Path object made here outlives the
+    # fs.pause()/resume() below and breaks on some Python versions (a FakePath
+    # fails on 3.12 while paused; a real Path on 3.8-3.10 bypasses the fake fs).
+    mocker.patch(
+        "guake.guake_app.Guake.get_xdg_config_directory",
+        side_effect=lambda: Path("/foobar"),
+    )
     mocker.patch("guake.guake_app.shutil.copy", create=True)
     mocker.patch("guake.guake_app.notifier.showMessage", create=True)
     mocker.patch("guake.guake_app.traceback.print_exc", create=True)
