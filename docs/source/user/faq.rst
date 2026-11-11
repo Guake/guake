@@ -32,6 +32,42 @@ The workaround is setting a manual keybinding as described above.
 On Fedora 26, for example, this can be accomplished by going to *Settings > Keyboard* and
 adding a new custom shortcut to execute :code:`guake-toggle`.
 
+Running Guake as a native Wayland client
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Guake sets the X11 GDK backend at startup (see ``guake/main.py``), because that is still the backend
+where most things work, global shortcuts in particular. If you would rather have Guake talk to
+Wayland directly, set the ``GUAKE_ENABLE_WAYLAND`` environment variable:
+
+.. code-block:: bash
+
+    $ GUAKE_ENABLE_WAYLAND=1 guake
+
+Only the presence of the variable is checked, its value does not matter, so
+``GUAKE_ENABLE_WAYLAND=0`` turns Wayland on as well. Unset it to get the X11 backend back.
+
+The variable is read when Guake starts, so it has to be in Guake's own environment. Putting it in
+your shell rc file only covers instances you launch from that shell, not the one GNOME starts at
+login. For that case a systemd user environment file is read early enough:
+
+.. code-block:: bash
+
+    $ mkdir -p ~/.config/environment.d
+    $ echo "GUAKE_ENABLE_WAYLAND=1" > ~/.config/environment.d/guake-wayland.conf
+
+and takes effect at the next login. Editing the ``Exec=`` line of the desktop entry you launch
+Guake from works too, but note that with *Start Guake at login* enabled Guake rewrites
+``~/.config/autostart/guake.desktop`` from the packaged template on every start, so changes made
+there are lost.
+
+Wayland does not let an application grab global shortcuts, so Guake cannot register the show/hide
+key itself and has to leave it to the desktop, as described above. If you get a *problem happened
+when binding* notification on every launch, switch the builtin binding off with:
+
+.. code-block:: bash
+
+    $ gsettings set guake.keybindings.global show-hide "disabled"
+
 Note for Archlinux users
 ------------------------
 

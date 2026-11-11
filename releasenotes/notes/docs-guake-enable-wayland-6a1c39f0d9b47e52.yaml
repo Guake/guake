@@ -1,0 +1,3 @@
+other:
+  - |
+      - Document the ``GUAKE_ENABLE_WAYLAND`` environment variable in the FAQ: what it does, where to set it so a Guake started at login picks it up, and what it means for the show/hide keybinding (#1976)
