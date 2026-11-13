@@ -24,7 +24,12 @@
         <key name="display-n" type="i">
             <default>0</default>
             <summary>Display to appear on.</summary>
-            <description>Display to appear on if the  mouse_display option is not set. If this is set to an invalid value (as in the case of removing a screen from a system), the invalid value is automatically updated to the current primary screen.</description>
+            <description>Display to appear on if mouse-display is not set. A value of -1 follows the primary display. For a fixed display, display-name takes precedence over this index. If the selected display is unavailable, use the primary display without changing the saved choice.</description>
+        </key>
+        <key name="display-name" type="s">
+            <default>''</default>
+            <summary>Name of the selected display.</summary>
+            <description>GDK monitor model identifying the selected display, usually the output connector name on X11. Keeps the selected display when monitor indices change. Empty if unavailable or ambiguous, in which case display-n is used.</description>
         </key>
         <key name="default-shell" type="s">
             <default>''</default>

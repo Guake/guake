@@ -1,0 +1,6 @@
+fixes:
+  - |
+    Keep Guake on the selected display when monitor indices change after suspend
+    or reconnecting a screen. Remember the GDK monitor name alongside the numeric
+    selection, and retain it while the display is disconnected. The display list
+    in Preferences now includes monitor names and refreshes when displays change.
