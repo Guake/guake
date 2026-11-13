@@ -57,6 +57,8 @@ from guake.simplegladeapp import SimpleGladeApp
 from guake.terminal import GuakeTerminal
 from guake.theme import list_all_themes
 from guake.theme import select_gtk_theme
+from guake.utils import get_display_index
+from guake.utils import get_monitor_name
 
 # pylint: disable=unsubscriptable-object
 
@@ -436,19 +438,14 @@ class PrefsCallbacks:
 
     def on_display_n_changed(self, combo):
         """Set the destination display in dconf."""
-
-        i = combo.get_active_iter()
-        if not i:
+        if self.prefDlg.loading_display_settings:
             return
-
-        model = combo.get_model()
-        first_item_path = model.get_path(model.get_iter_first())
-
-        if model.get_path(i) == first_item_path:
-            val_int = ALWAYS_ON_PRIMARY
-        else:
-            val = model.get_value(i, 0)
-            val_int = int(val.split()[0])  # extracts 1 from '1' or from '1 (primary)'
+        value = combo.get_active_id()
+        if value is None or value == "unavailable":
+            return
+        val_int = int(value)
+        display = self.prefDlg.window.get_display()
+        self.settings.general.set_string("display-name", get_monitor_name(display, val_int))
         self.settings.general.set_int("display-n", val_int)
 
     def on_window_height_value_changed(self, hscale):
@@ -665,6 +662,7 @@ class PrefsDialog(SimpleGladeApp):
         """
         self.hotkey_alread_used = False
         self.store = None
+        self.loading_display_settings = False
 
         super().__init__(gladefile("prefs.glade"), root="config-window")
         style_provider = Gtk.CssProvider()
@@ -751,9 +749,11 @@ class PrefsDialog(SimpleGladeApp):
 
         self.populate_shell_combo()
         self.populate_keys_tree()
-        self.populate_display_n()
         self.populate_gtk_theme_names()
         self.load_configs()
+        self.monitors_changed_handler = self.window.get_screen().connect(
+            "monitors-changed", self._load_screen_settings
+        )
         self.get_widget("config-window").hide()
 
     def spawn_sync_pid(self, directory=None, terminal=None):
@@ -808,6 +808,7 @@ class PrefsDialog(SimpleGladeApp):
         self.get_widget("config-window").hide()
 
     def on_destroy(self, window):
+        self.window.get_screen().disconnect(self.monitors_changed_handler)
         self.demo_terminal.kill()
         self.demo_terminal.destroy()
 
@@ -1016,32 +1017,27 @@ class PrefsDialog(SimpleGladeApp):
                 combo.set_active_iter(i.iter)
                 break
 
-    def _load_screen_settings(self):
+    def _load_screen_settings(self, *_args):
         """Load screen settings"""
-        # display number / use primary display
         combo = self.get_widget("display_n")
-        dest_screen = self.settings.general.get_int("display-n")
-        # If Guake is configured to use a screen that is not currently attached,
-        # default to 'primary display' option.
-        screen = self.get_widget("config-window").get_screen()
-        n_screens = screen.get_n_monitors()
-        if dest_screen > n_screens - 1:
-            self.settings.general.set_boolean("mouse-display", False)
-            dest_screen = screen.get_primary_monitor()
-            self.settings.general.set_int("display-n", dest_screen)
-
-        if dest_screen == ALWAYS_ON_PRIMARY:
-            first_item = combo.get_model().get_iter_first()
-            combo.set_active_iter(first_item)
-        else:
-            seen_first = False  # first item "always on primary" is special
-            for i in combo.get_model():
-                if seen_first:
-                    i_int = int(i[0].split()[0])  # extracts 1 from '1' or from '1 (primary)'
-                    if i_int == dest_screen:
-                        combo.set_active_iter(i.iter)
-                else:
-                    seen_first = True
+        display = self.window.get_display()
+        dest_screen = get_display_index(self.settings, display)
+        self.loading_display_settings = True
+        try:
+            self.populate_display_n()
+            if (
+                dest_screen == ALWAYS_ON_PRIMARY
+                and self.settings.general.get_int("display-n") != ALWAYS_ON_PRIMARY
+            ):
+                name = self.settings.general.get_string("display-name") or str(
+                    self.settings.general.get_int("display-n")
+                )
+                combo.append("unavailable", _("Unavailable display: %s") % name)
+                combo.set_active_id("unavailable")
+            else:
+                combo.set_active_id(str(dest_screen))
+        finally:
+            self.loading_display_settings = False
 
     def load_configs(self):
         """Load configurations for all widgets in General, Scrolling
@@ -1401,16 +1397,17 @@ class PrefsDialog(SimpleGladeApp):
         with them all. Prepend the "always on primary" option.
         """
         cb = self.get_widget("display_n")
-        screen = self.get_widget("config-window").get_screen()
-
-        cb.append_text("always on primary")
-
-        for m in range(0, int(screen.get_n_monitors())):
-            if m == int(screen.get_primary_monitor()):
-                # TODO l10n
-                cb.append_text(str(m) + " " + "(primary)")
-            else:
-                cb.append_text(str(m))
+        display = self.window.get_display()
+        cb.remove_all()
+        cb.append(str(ALWAYS_ON_PRIMARY), "always on primary")
+        for m in range(display.get_n_monitors()):
+            monitor = display.get_monitor(m)
+            label = str(m)
+            if monitor.get_model():
+                label += " - " + monitor.get_model()
+            if monitor.is_primary():
+                label += " (primary)"
+            cb.append(str(m), label)
 
     # -- key handling --
 

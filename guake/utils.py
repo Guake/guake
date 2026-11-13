@@ -41,6 +41,7 @@ from guake.globals import ALIGN_CENTER
 from guake.globals import ALIGN_LEFT
 from guake.globals import ALIGN_RIGHT
 from guake.globals import ALIGN_TOP
+from guake.globals import ALWAYS_ON_PRIMARY
 
 try:
     from gi.repository import GdkX11
@@ -247,6 +248,39 @@ class FullscreenManager:
                 self.guake.notebook_manager.set_notebooks_tabbar_visible(v)
 
 
+def get_monitor_name(display, index):
+    """Return a monitor name only when it uniquely identifies an attached output."""
+    if not 0 <= index < display.get_n_monitors():
+        return ""
+    name = display.get_monitor(index).get_model() or ""
+    names = [display.get_monitor(i).get_model() for i in range(display.get_n_monitors())]
+    return name if names.count(name) == 1 else ""
+
+
+def get_display_index(settings, display):
+    """Resolve a saved display name, retaining the numeric setting for older configs."""
+    index = settings.general.get_int("display-n")
+    if index == ALWAYS_ON_PRIMARY:
+        return ALWAYS_ON_PRIMARY
+
+    name = settings.general.get_string("display-name")
+    if name:
+        matches = [
+            i for i in range(display.get_n_monitors()) if display.get_monitor(i).get_model() == name
+        ]
+        if len(matches) == 1:
+            return matches[0]
+        if not matches:
+            # A temporarily disconnected display must not erase the saved choice.
+            return ALWAYS_ON_PRIMARY
+    else:
+        name = get_monitor_name(display, index)
+        if name:
+            settings.general.set_string("display-name", name)
+
+    return index if 0 <= index < display.get_n_monitors() else ALWAYS_ON_PRIMARY
+
+
 class RectCalculator:
     @classmethod
     def set_final_window_rect(cls, settings, window):
@@ -331,7 +365,6 @@ class RectCalculator:
 
         # fetch settings
         use_mouse = settings.general.get_boolean("mouse-display")
-        num_monitor = settings.general.get_int("display-n")
 
         if use_mouse:
             pointer = display.get_default_seat().get_pointer()
@@ -341,7 +374,8 @@ class RectCalculator:
                 _, x, y = pointer.get_position()
                 monitor = display.get_monitor_at_point(x, y)
         else:
-            monitor = display.get_monitor(num_monitor)
+            num_monitor = get_display_index(settings, display)
+            monitor = display.get_monitor(num_monitor) if num_monitor >= 0 else None
             if monitor is None:
                 # monitor not found or num_monitor is wrong
                 # by default we use the primary monitor
