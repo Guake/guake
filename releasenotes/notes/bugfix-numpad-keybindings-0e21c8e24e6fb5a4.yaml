@@ -1,0 +1,7 @@
+---
+fixes:
+  - |
+    Fixed keypad shortcuts never triggering. The English keysym used as a fallback for
+    non-latin layouts is now only tried when the keyval itself has no binding, so
+    accelerators such as ``<Primary>KP_Divide`` fire instead of being rewritten to the
+    ASCII key sitting on the same keycode. #2351

@@ -237,11 +237,15 @@ class Keybindings:
         mod = event.state
 
         # Set keyval to the first available English keyboard value if character is non-latin
-        # and a english keyval is found
+        # and a english keyval is found. That value is only a fallback: the keyval itself is
+        # what load_accelerators registered, and rewriting it unconditionally made every
+        # keypad key miss its own binding, as all the KP_* keysyms are above 126.
+        ascii_key = None
         if event.keyval > 126:
             for i in self.keymap.get_entries_for_keycode(event.hardware_keycode)[2]:
                 if 0 < i <= 126:
                     key = i
+                    ascii_key = i
                     break
 
         if mod & Gdk.ModifierType.SHIFT_MASK:
@@ -257,7 +261,13 @@ class Keybindings:
 
         mask = mod & self._masks
 
-        func = self._lookup[mask].get(key, None)
+        func = None
+        if ascii_key is not None:
+            # the registered keyval wins over the ASCII keysym sharing its keycode
+            func = self._lookup[mask].get(event.keyval, None)
+        if not func:
+            func = self._lookup[mask].get(key, None)
+
         if func:
             func()
             return True
