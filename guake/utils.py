@@ -243,8 +243,11 @@ class FullscreenManager:
                 self.guake.notebook_manager.set_notebooks_tabbar_visible(False)
         else:
             if self.guake and self.guake.notebook_manager:
-                v = self.settings.general.get_boolean("window-tabbar")
-                self.guake.notebook_manager.set_notebooks_tabbar_visible(v)
+                if self.settings.general.get_boolean("window-tabbar"):
+                    for nb in self.guake.notebook_manager.iter_notebooks():
+                        nb.hide_tabbar_if_one_tab()
+                else:
+                    self.guake.notebook_manager.set_notebooks_tabbar_visible(False)
 
 
 class RectCalculator:
