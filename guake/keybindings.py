@@ -62,9 +62,9 @@ def _x11_query_modifiers():
     The result is based on the real X server keyboard state (XQueryKeymap),
     not on the possibly incomplete modifier state of the current GDK event.
 
-    Only Shift, Control and Mod1(Alt) are restored. Super/Mod4 is intentionally
-    not restored here: Guake hotkeys rarely need it to be recovered from a
-    layout-switch chord, and restoring extra modifiers can create false matches.
+    Shift, Control, Mod1(Alt) and Mod4(Super) are restored. These cover the
+    modifiers commonly used in Guake hotkeys and layout-switch chords. Other
+    modifiers are left untouched to avoid false matches.
     """
     global _x11, _x11_display
     try:
@@ -106,11 +106,14 @@ def _x11_query_modifiers():
         n = modmap.max_keypermod
         held = Gdk.ModifierType(0)
         # X modifier indices: Shift=0, Lock=1, Control=2, Mod1=3, Mod2=4,
-        # Mod3=5, Mod4=6, Mod5=7. We only care about Shift/Ctrl/Alt(Mod1).
+        # Mod3=5, Mod4=6, Mod5=7. Restore Shift/Ctrl/Alt(Mod1)/Super(Mod4):
+        # these are commonly used in hotkeys and can be eaten by layout-switch
+        # chords (e.g. Ctrl+Shift, Alt+Shift, Super+Shift).
         mod_masks = {
             0: Gdk.ModifierType.SHIFT_MASK,
             2: Gdk.ModifierType.CONTROL_MASK,
             3: Gdk.ModifierType.MOD1_MASK,
+            6: Gdk.ModifierType.SUPER_MASK,
         }
         for mod_idx, mask in mod_masks.items():
             for i in range(n):
@@ -365,6 +368,7 @@ class Keybindings:
                     Gdk.ModifierType.SHIFT_MASK
                     | Gdk.ModifierType.CONTROL_MASK
                     | Gdk.ModifierType.MOD1_MASK
+                    | Gdk.ModifierType.SUPER_MASK
                 )
                 mod |= physical & mod_mask
 
