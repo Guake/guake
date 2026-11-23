@@ -32,7 +32,69 @@ from guake.common import pixmapfile
 from guake.split_utils import FocusMover
 from guake.split_utils import SplitMover
 
+import ctypes
+import ctypes.util
+
 log = logging.getLogger(__name__)
+
+# X11 helpers for physical modifier state (layout switch can eat modifiers).
+_x11 = None
+_x11_display = None
+_x11_keymap = (ctypes.c_char * 32)()
+
+
+def _x11_query_modifiers():
+    """Return a Gdk.ModifierType mask of physically held Shift/Ctrl/Alt on X11."""
+    global _x11, _x11_display
+    try:
+        if _x11 is None:
+            libname = ctypes.util.find_library("X11") or "libX11.so.6"
+            _x11 = ctypes.cdll.LoadLibrary(libname)
+            _x11.XOpenDisplay.argtypes = [ctypes.c_char_p]
+            _x11.XOpenDisplay.restype = ctypes.c_void_p
+            _x11.XQueryKeymap.argtypes = [ctypes.c_void_p, ctypes.c_char_p]
+            _x11.XQueryKeymap.restype = ctypes.c_int
+            _x11.XGetModifierMapping.argtypes = [ctypes.c_void_p]
+            _x11.XGetModifierMapping.restype = ctypes.c_void_p
+            _x11.XFreeModifiermap.argtypes = [ctypes.c_void_p]
+            _x11.XFreeModifiermap.restype = ctypes.c_int
+            _x11_display = _x11.XOpenDisplay(None)
+        if not _x11_display:
+            return Gdk.ModifierType(0)
+
+        _x11.XQueryKeymap(_x11_display, _x11_keymap)
+        keys = bytes(_x11_keymap)
+
+        # Read modifier mapping: 8 modifiers * keycodes_per_modifier keycodes.
+        class XModifierKeymap(ctypes.Structure):
+            _fields_ = [
+                ("max_keypermod", ctypes.c_int),
+                ("modifiermap", ctypes.POINTER(ctypes.c_ubyte)),
+            ]
+
+        modmap_ptr = _x11.XGetModifierMapping(_x11_display)
+        if not modmap_ptr:
+            return Gdk.ModifierType(0)
+        modmap = ctypes.cast(modmap_ptr, ctypes.POINTER(XModifierKeymap)).contents
+        n = modmap.max_keypermod
+        held = Gdk.ModifierType(0)
+        # X modifier indices: Shift=0, Lock=1, Control=2, Mod1=3, Mod2=4, Mod3=5, Mod4=6, Mod5=7
+        mod_masks = {
+            0: Gdk.ModifierType.SHIFT_MASK,
+            2: Gdk.ModifierType.CONTROL_MASK,
+            3: Gdk.ModifierType.MOD1_MASK,
+        }
+        for mod_idx, mask in mod_masks.items():
+            for i in range(n):
+                keycode = modmap.modifiermap[mod_idx * n + i]
+                if keycode != 0 and (keys[keycode >> 3] & (1 << (keycode & 7))):
+                    held |= mask
+                    break
+        _x11.XFreeModifiermap(modmap_ptr)
+        return held
+    except Exception:
+        log.debug("X11 modifier query failed", exc_info=True)
+        return Gdk.ModifierType(0)
 
 
 class Keybindings:
@@ -235,6 +297,32 @@ class Keybindings:
         keystroke to pass through."""
         key = event.keyval
         mod = event.state
+
+        # Restore modifiers eaten by the layout switch (e.g. Ctrl+Shift
+        # toggle) on X11. Only for non-modifier key presses.
+        is_wayland = os.environ.get("XDG_SESSION_TYPE", "").lower() == "wayland"
+        if not is_wayland and event.hardware_keycode:
+            mod_keys = {
+                Gdk.KEY_Shift_L, Gdk.KEY_Shift_R,
+                Gdk.KEY_Control_L, Gdk.KEY_Control_R,
+                Gdk.KEY_Alt_L, Gdk.KEY_Alt_R,
+                Gdk.KEY_Meta_L, Gdk.KEY_Meta_R,
+                Gdk.KEY_Super_L, Gdk.KEY_Super_R,
+                Gdk.KEY_ISO_Next_Group, Gdk.KEY_ISO_Prev_Group,
+                Gdk.KEY_ISO_First_Group, Gdk.KEY_ISO_Last_Group,
+            }
+            if key not in mod_keys:
+                physical = _x11_query_modifiers()
+                if not isinstance(physical, int):
+                    physical = int(physical)
+                if not isinstance(mod, int):
+                    mod = int(mod)
+                mod_mask = int(
+                    Gdk.ModifierType.SHIFT_MASK
+                    | Gdk.ModifierType.CONTROL_MASK
+                    | Gdk.ModifierType.MOD1_MASK
+                )
+                mod |= physical & mod_mask
 
         # Normalize to the base Latin keysym from group 0 so hotkeys work
         # on non-Latin layouts (e.g. Russian). Group 0 is where XKB keeps
