@@ -38,16 +38,39 @@ import ctypes.util
 
 log = logging.getLogger(__name__)
 
-# X11 helpers for physical modifier state (layout switch can eat modifiers).
+# X11 helpers for physical modifier state.
+#
+# Why this exists: when the keyboard layout switch is bound to a modifier
+# chord (very common: Ctrl+Shift or Alt+Shift), XKB can "eat" one of the
+# modifiers of that chord before the application receives the key event.
+# The key press then arrives with an incomplete modifier state (e.g.
+# Ctrl+Shift+T arrives as Ctrl+T), so the accelerator does not match.
+#
+# GTK3 matches accelerators by hardware keycode/keyval, but Guake resolves
+# local hotkeys manually in Keybindings.activate(). We therefore restore the
+# physically held modifiers on X11 by querying XQueryKeymap. On Wayland there
+# is no equivalent X11 query here; the Wayland backend reports physical
+# modifier state differently, so this workaround is X11-only.
 _x11 = None
 _x11_display = None
 _x11_keymap = (ctypes.c_char * 32)()
 
 
 def _x11_query_modifiers():
-    """Return a Gdk.ModifierType mask of physically held Shift/Ctrl/Alt on X11."""
+    """Return a Gdk.ModifierType mask of physically held Shift/Ctrl/Alt on X11.
+
+    The result is based on the real X server keyboard state (XQueryKeymap),
+    not on the possibly incomplete modifier state of the current GDK event.
+
+    Only Shift, Control and Mod1(Alt) are restored. Super/Mod4 is intentionally
+    not restored here: Guake hotkeys rarely need it to be recovered from a
+    layout-switch chord, and restoring extra modifiers can create false matches.
+    """
     global _x11, _x11_display
     try:
+        # Lazily load libX11 and cache a private Display connection. The
+        # connection is used only for key/modifier queries and kept for the
+        # process lifetime.
         if _x11 is None:
             libname = ctypes.util.find_library("X11") or "libX11.so.6"
             _x11 = ctypes.cdll.LoadLibrary(libname)
@@ -63,10 +86,13 @@ def _x11_query_modifiers():
         if not _x11_display:
             return Gdk.ModifierType(0)
 
+        # XQueryKeymap writes 32 bytes: bit (keycode & 7) of byte (keycode >> 3)
+        # is set when that physical key is currently down.
         _x11.XQueryKeymap(_x11_display, _x11_keymap)
         keys = bytes(_x11_keymap)
 
-        # Read modifier mapping: 8 modifiers * keycodes_per_modifier keycodes.
+        # XGetModifierMapping returns 8 modifier slots (Shift, Lock, Control,
+        # Mod1..Mod5), each containing max_keypermod keycodes.
         class XModifierKeymap(ctypes.Structure):
             _fields_ = [
                 ("max_keypermod", ctypes.c_int),
@@ -79,7 +105,8 @@ def _x11_query_modifiers():
         modmap = ctypes.cast(modmap_ptr, ctypes.POINTER(XModifierKeymap)).contents
         n = modmap.max_keypermod
         held = Gdk.ModifierType(0)
-        # X modifier indices: Shift=0, Lock=1, Control=2, Mod1=3, Mod2=4, Mod3=5, Mod4=6, Mod5=7
+        # X modifier indices: Shift=0, Lock=1, Control=2, Mod1=3, Mod2=4,
+        # Mod3=5, Mod4=6, Mod5=7. We only care about Shift/Ctrl/Alt(Mod1).
         mod_masks = {
             0: Gdk.ModifierType.SHIFT_MASK,
             2: Gdk.ModifierType.CONTROL_MASK,
@@ -94,6 +121,8 @@ def _x11_query_modifiers():
         _x11.XFreeModifiermap(modmap_ptr)
         return held
     except Exception:
+        # Never break key handling because of the X11 probe; fall back to the
+        # event state Guake already received.
         log.debug("X11 modifier query failed", exc_info=True)
         return Gdk.ModifierType(0)
 
@@ -295,12 +324,26 @@ class Keybindings:
 
     def activate(self, window, event):
         """If keystroke matches a key binding, activate keybinding. Otherwise, allow
-        keystroke to pass through."""
+        keystroke to pass through.
+
+        Guake handles local hotkeys manually (not through GtkAccelGroup) by
+        matching (modifier mask, keysym) against configured accelerators. This
+        method normalizes the event before matching so hotkeys work reliably on
+        non-Latin keyboard layouts and with layout-switch chords.
+        """
         key = event.keyval
         mod = event.state
 
-        # Restore modifiers eaten by the layout switch (e.g. Ctrl+Shift
-        # toggle) on X11. Only for non-modifier key presses.
+        # 1) Restore modifiers eaten by the layout switch (X11 only).
+        #
+        # If the user switches layouts with Ctrl+Shift or Alt+Shift, XKB may
+        # consume one of those modifiers before Guake receives the event. The
+        # letter key then arrives with an incomplete state, e.g. Ctrl+T instead
+        # of Ctrl+Shift+T. We query the physical X keyboard state and OR back
+        # Shift/Ctrl/Alt that are physically held.
+        #
+        # We skip modifier keys themselves and ISO group-switch keysyms to avoid
+        # interfering with the switch event.
         is_wayland = os.environ.get("XDG_SESSION_TYPE", "").lower() == "wayland"
         if not is_wayland and event.hardware_keycode:
             mod_keys = {
@@ -325,23 +368,33 @@ class Keybindings:
                 )
                 mod |= physical & mod_mask
 
-        # Normalize to the base Latin keysym from group 0 so hotkeys work
-        # on non-Latin layouts (e.g. Russian). Group 0 is where XKB keeps
-        # the Latin layout.
+        # 2) Normalize the key to a base Latin keysym from layout group 0.
+        #
+        # Guake accelerators are stored/parsed as Latin keysyms. On a Russian
+        # layout the same physical key produces a Cyrillic keysym, so we
+        # translate hardware_keycode with group=0, state=0 to get the base
+        # layout symbol (XKB usually keeps Latin in group 0).
+        #
+        # Important: do NOT restore consumed modifiers reported by
+        # translate_keyboard_state(). Those modifiers are consumed for keysym
+        # translation (e.g. level selection) and are not the same as
+        # layout-switch-eaten modifiers; restoring them can add spurious
+        # Shift/Ctrl/Alt and break valid bindings.
         if event.hardware_keycode:
             try:
-                found, latin_key, _eg, _level, consumed = self.keymap.translate_keyboard_state(
+                found, latin_key, _eg, _level, _consumed = self.keymap.translate_keyboard_state(
                     event.hardware_keycode, Gdk.ModifierType(0), 0
                 )
             except TypeError:
                 found = False
                 latin_key = 0
-                consumed = Gdk.ModifierType(0)
 
             if found and 0 < latin_key <= 126:
                 key = latin_key
             elif event.keyval > 126:
-                # Fallback: pick any ASCII keysym from this keycode.
+                # Fallback for non-Latin keyvals when group 0 translation did
+                # not yield an ASCII symbol: scan keycode entries for any ASCII
+                # keysym.
                 for i in self.keymap.get_entries_for_keycode(event.hardware_keycode)[2]:
                     if 0 < i <= 126:
                         key = i

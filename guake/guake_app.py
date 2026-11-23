@@ -145,23 +145,37 @@ class Guake(SimpleGladeApp):
         self.hidden = True
         self.forceHide = False
 
-        # trayicon! Using SVG handles better different OS trays
-        # img = pixmapfile('guake-tray.svg')
-        # trayicon!
+        # Tray icon setup.
+        #
+        # We intentionally pick the tray backend by session type instead of
+        # "AppIndicator library is installed => use it":
+        #   - X11: prefer GtkStatusIcon. It gives the classic, predictable
+        #     behavior (left click toggles show/hide, right click opens the
+        #     context menu) and works well with traditional X11 trays.
+        #     AppIndicator/SNI on X11 can make left/right click behave the same
+        #     depending on the host, which breaks the context menu UX.
+        #   - Wayland: prefer AppIndicator/SNI (AyatanaAppIndicator3 or
+        #     AppIndicator3). GtkStatusIcon is not reliable on Wayland, while
+        #     SNI is the protocol modern Wayland trays expose. If neither
+        #     AppIndicator library is available, fall back to GtkStatusIcon.
+        #
+        # NOTE: GtkStatusIcon is deprecated in GTK3, but it remains the most
+        # compatible X11 fallback for Guake's "toggle on left click, menu on
+        # right click" behavior.
         img = pixmapfile("guake-tray.png")
         is_wayland = os.environ.get("XDG_SESSION_TYPE", "").lower() == "wayland"
 
-        # On X11 prefer GtkStatusIcon: it gives the expected behavior
-        # (left click toggles show/hide, right click opens context menu).
-        # AppIndicator/SNI is used on Wayland where GtkStatusIcon is not
-        # reliable.
         if not is_wayland:
+            # X11 path: native tray icon with explicit left/right click handlers.
             self.tray_icon = Gtk.StatusIcon()
             self.tray_icon.set_from_file(img)
             self.tray_icon.set_tooltip_text(_("Guake Terminal"))
             self.tray_icon.connect("popup-menu", self.show_menu)
             self.tray_icon.connect("activate", self.show_hide)
         else:
+            # Wayland path: use StatusNotifierItem via AppIndicator libraries.
+            # Both Ayatana and legacy AppIndicator provide the same API surface
+            # we need; try Ayatana first as it is the actively maintained fork.
             try:
                 try:
                     gi.require_version("AyatanaAppIndicator3", "0.1")
@@ -174,6 +188,7 @@ class Guake(SimpleGladeApp):
                         AppIndicator3 as appindicator,
                     )
             except (ValueError, ImportError):
+                # No AppIndicator/SNI library: keep StatusIcon as a last resort.
                 self.tray_icon = Gtk.StatusIcon()
                 self.tray_icon.set_from_file(img)
                 self.tray_icon.set_tooltip_text(_("Guake Terminal"))
@@ -189,6 +204,8 @@ class Guake(SimpleGladeApp):
                 self.tray_icon.set_icon_full("guake-tray", _("Guake Terminal"))
                 self.tray_icon.set_status(appindicator.IndicatorStatus.ACTIVE)
                 menu = self.get_widget("tray-menu")
+                # AppIndicator hosts render the menu; add an explicit "Show"
+                # entry so there is always a visible way to reveal Guake.
                 show = Gtk.MenuItem(_("Show"))
                 show.set_sensitive(True)
                 show.connect("activate", self.show_hide)
