@@ -340,16 +340,6 @@ class Keybindings:
 
             if found and 0 < latin_key <= 126:
                 key = latin_key
-                # If the layout switch consumed Shift/Ctrl/Alt, restore them
-                # from the physical state so accelerators still match.
-                if not isinstance(consumed, int):
-                    consumed = int(consumed)
-                consumed_mask = (
-                    Gdk.ModifierType.SHIFT_MASK
-                    | Gdk.ModifierType.CONTROL_MASK
-                    | Gdk.ModifierType.MOD1_MASK
-                ) & Gdk.ModifierType(consumed)
-                mod |= consumed_mask
             elif event.keyval > 126:
                 # Fallback: pick any ASCII keysym from this keycode.
                 for i in self.keymap.get_entries_for_keycode(event.hardware_keycode)[2]:
