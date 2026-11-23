@@ -372,22 +372,28 @@ class Keybindings:
                 )
                 mod |= physical & mod_mask
 
-        # 2) Normalize the key to a base Latin keysym from layout group 0.
+        # 2) Normalize non-Latin keysyms to a base Latin keysym.
         #
         # Guake accelerators are stored/parsed as Latin keysyms. On a Russian
-        # layout the same physical key produces a Cyrillic keysym, so we
-        # translate hardware_keycode with group=0, state=0 to get the base
+        # layout the same physical key produces a Cyrillic keysym (> 126), so
+        # we translate hardware_keycode with group=0, state=0 to get the base
         # layout symbol (XKB usually keeps Latin in group 0).
+        #
+        # For keyvals that are already ASCII (<= 126), keep the original keyval.
+        # Translating ASCII keyvals through group 0 / state 0 would map shifted
+        # symbols (e.g. '+') to their level-0 symbol (e.g. '='), breaking
+        # bindings.
         #
         # Important: do NOT restore consumed modifiers reported by
         # translate_keyboard_state(). Those modifiers are consumed for keysym
         # translation (e.g. level selection) and are not the same as
         # layout-switch-eaten modifiers; restoring them can add spurious
         # Shift/Ctrl/Alt and break valid bindings.
-        if event.hardware_keycode:
+        if event.hardware_keycode and event.keyval > 126:
             try:
+                shift_state = Gdk.ModifierType(int(mod) & int(Gdk.ModifierType.SHIFT_MASK))
                 found, latin_key, _eg, _level, _consumed = self.keymap.translate_keyboard_state(
-                    event.hardware_keycode, Gdk.ModifierType(0), 0
+                    event.hardware_keycode, shift_state, 0
                 )
             except TypeError:
                 found = False
@@ -395,10 +401,8 @@ class Keybindings:
 
             if found and 0 < latin_key <= 126:
                 key = latin_key
-            elif event.keyval > 126:
-                # Fallback for non-Latin keyvals when group 0 translation did
-                # not yield an ASCII symbol: scan keycode entries for any ASCII
-                # keysym.
+            else:
+                # Fallback: scan keycode entries for any ASCII keysym.
                 for i in self.keymap.get_entries_for_keycode(event.hardware_keycode)[2]:
                     if 0 < i <= 126:
                         key = i

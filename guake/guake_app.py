@@ -214,21 +214,20 @@ class Guake(SimpleGladeApp):
             menu.prepend(show)
             self.tray_icon.set_menu(menu)
 
-        has_sni_watcher = is_wayland or _has_sni_watcher()
-        if has_sni_watcher:
+        force_sni = os.environ.get("GUAKE_TRAY_SNI", "").lower() in ("1", "true", "yes")
+        if is_wayland or force_sni:
+            # Wayland (or explicit override): prefer SNI/AppIndicator.
             try:
                 _setup_appindicator()
                 log.debug("Tray backend: AppIndicator/SNI")
             except Exception:
                 log.warning("AppIndicator/SNI unavailable, falling back to StatusIcon")
                 _setup_status_icon()
-        elif not is_wayland:
-            # X11 without SNI watcher: XEmbed StatusIcon is the compatible fallback.
-            _setup_status_icon()
-            log.debug("Tray backend: GtkStatusIcon (X11 fallback)")
         else:
+            # X11 default: GtkStatusIcon gives predictable left/right click
+            # behavior across X11 trays. SNI is available via GUAKE_TRAY_SNI=1.
             _setup_status_icon()
-            log.debug("Tray backend: GtkStatusIcon (last resort)")
+            log.debug("Tray backend: GtkStatusIcon (X11 default)")
 
         self.display_tab_names = 0
 
