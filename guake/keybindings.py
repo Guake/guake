@@ -236,13 +236,37 @@ class Keybindings:
         key = event.keyval
         mod = event.state
 
-        # Set keyval to the first available English keyboard value if character is non-latin
-        # and a english keyval is found
-        if event.keyval > 126:
-            for i in self.keymap.get_entries_for_keycode(event.hardware_keycode)[2]:
-                if 0 < i <= 126:
-                    key = i
-                    break
+        # Normalize to the base Latin keysym from group 0 so hotkeys work
+        # on non-Latin layouts (e.g. Russian). Group 0 is where XKB keeps
+        # the Latin layout.
+        if event.hardware_keycode:
+            try:
+                found, latin_key, _eg, _level, consumed = self.keymap.translate_keyboard_state(
+                    event.hardware_keycode, Gdk.ModifierType(0), 0
+                )
+            except TypeError:
+                found = False
+                latin_key = 0
+                consumed = Gdk.ModifierType(0)
+
+            if found and 0 < latin_key <= 126:
+                key = latin_key
+                # If the layout switch consumed Shift/Ctrl/Alt, restore them
+                # from the physical state so accelerators still match.
+                if not isinstance(consumed, int):
+                    consumed = int(consumed)
+                consumed_mask = (
+                    Gdk.ModifierType.SHIFT_MASK
+                    | Gdk.ModifierType.CONTROL_MASK
+                    | Gdk.ModifierType.MOD1_MASK
+                ) & Gdk.ModifierType(consumed)
+                mod |= consumed_mask
+            elif event.keyval > 126:
+                # Fallback: pick any ASCII keysym from this keycode.
+                for i in self.keymap.get_entries_for_keycode(event.hardware_keycode)[2]:
+                    if 0 < i <= 126:
+                        key = i
+                        break
 
         if mod & Gdk.ModifierType.SHIFT_MASK:
             if key == Gdk.KEY_ISO_Left_Tab:
