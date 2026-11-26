@@ -120,10 +120,8 @@ class GSettingHandler:
         called and will show/hide the tabbar.
         """
         if settings.get_boolean(key):
-            if settings.get_boolean(key):
-                self.guake.get_notebook().hide_tabbar_if_one_tab()
-            else:
-                self.guake.notebook_manager.set_notebooks_tabbar_visible(True)
+            for nb in self.guake.notebook_manager.iter_notebooks():
+                nb.hide_tabbar_if_one_tab()
         else:
             self.guake.notebook_manager.set_notebooks_tabbar_visible(False)
 
@@ -137,10 +135,8 @@ class GSettingHandler:
         if settings.get_boolean(key):
             self.guake.notebook_manager.set_notebooks_tabbar_visible(False)
         else:
-            if settings.get_boolean(key):
-                self.guake.get_notebook().hide_tabbar_if_one_tab()
-            else:
-                self.guake.notebook_manager.set_notebooks_tabbar_visible(True)
+            for nb in self.guake.notebook_manager.iter_notebooks():
+                nb.hide_tabbar_if_one_tab()
 
     def alignment_changed(self, settings, key, user_data):
         """If the gconf var window_halignment be changed, this method will
@@ -487,7 +483,8 @@ class GSettingHandler:
         """If the gconf var hide-tabs-if-one-tab was changed, this method will
         be called and will show/hide the tab bar if necessary
         """
-        self.guake.get_notebook().hide_tabbar_if_one_tab()
+        for nb in self.guake.notebook_manager.iter_notebooks():
+            nb.hide_tabbar_if_one_tab()
 
     def display_tab_activity_changed(self, settings, key, user_data):
         """If the gconf var display-tab-activity was disabled, clear any

@@ -145,11 +145,48 @@ class Guake(SimpleGladeApp):
         self.hidden = True
         self.forceHide = False
 
-        # trayicon! Using SVG handles better different OS trays
-        # img = pixmapfile('guake-tray.svg')
-        # trayicon!
+        # Tray icon setup.
+        #
+        # Backend selection policy (SNI-first, legacy fallback only when needed):
+        #   1. Wayland, or X11 with an active StatusNotifierWatcher on the
+        #      session bus: use AppIndicator/SNI (AyatanaAppIndicator3 or
+        #      AppIndicator3). This is the modern tray protocol and works on
+        #      both Wayland and SNI-capable X11 desktops.
+        #   2. X11 without a StatusNotifierWatcher: fall back to GtkStatusIcon.
+        #      GtkStatusIcon is deprecated in GTK3, but it is the only practical
+        #      XEmbed fallback for X11 trays that do not expose SNI.
+        #   3. If no suitable backend is available, fall back to GtkStatusIcon
+        #      as a last resort so Guake still has a tray icon where possible.
         img = pixmapfile("guake-tray.png")
-        try:
+        is_wayland = os.environ.get("XDG_SESSION_TYPE", "").lower() == "wayland"
+
+        def _has_sni_watcher():
+            try:
+                bus = Gio.bus_get_sync(Gio.BusType.SESSION, None)
+                reply = bus.call_sync(
+                    "org.freedesktop.DBus",
+                    "/org/freedesktop/DBus",
+                    "org.freedesktop.DBus",
+                    "NameHasOwner",
+                    GLib.Variant("(s)", ("org.kde.StatusNotifierWatcher",)),
+                    GLib.VariantType.new("(b)"),
+                    Gio.DBusCallFlags.NONE,
+                    1000,
+                    None,
+                )
+                return bool(reply.unpack()[0])
+            except Exception:
+                log.debug("SNI watcher detection failed", exc_info=True)
+                return False
+
+        def _setup_status_icon():
+            self.tray_icon = Gtk.StatusIcon()
+            self.tray_icon.set_from_file(img)
+            self.tray_icon.set_tooltip_text(_("Guake Terminal"))
+            self.tray_icon.connect("popup-menu", self.show_menu)
+            self.tray_icon.connect("activate", self.show_hide)
+
+        def _setup_appindicator():
             try:
                 gi.require_version("AyatanaAppIndicator3", "0.1")
                 from gi.repository import (  # pylint: disable=import-outside-toplevel
@@ -160,26 +197,37 @@ class Guake(SimpleGladeApp):
                 from gi.repository import (  # pylint: disable=import-outside-toplevel
                     AppIndicator3 as appindicator,
                 )
-        except (ValueError, ImportError):
-            self.tray_icon = Gtk.StatusIcon()
-            self.tray_icon.set_from_file(img)
-            self.tray_icon.set_tooltip_text(_("Guake Terminal"))
-            self.tray_icon.connect("popup-menu", self.show_menu)
-            self.tray_icon.connect("activate", self.show_hide)
-        else:
-            # TODO PORT test this on a system with app indicator
             self.tray_icon = appindicator.Indicator.new(
-                "guake-indicator", "guake-tray", appindicator.IndicatorCategory.APPLICATION_STATUS
+                "guake-indicator",
+                "guake-tray",
+                appindicator.IndicatorCategory.APPLICATION_STATUS,
             )
             self.tray_icon.set_icon_full("guake-tray", _("Guake Terminal"))
             self.tray_icon.set_status(appindicator.IndicatorStatus.ACTIVE)
             menu = self.get_widget("tray-menu")
+            # AppIndicator hosts render the menu; add an explicit "Show"
+            # entry so there is always a visible way to reveal Guake.
             show = Gtk.MenuItem(_("Show"))
             show.set_sensitive(True)
             show.connect("activate", self.show_hide)
             show.show()
             menu.prepend(show)
             self.tray_icon.set_menu(menu)
+
+        force_sni = os.environ.get("GUAKE_TRAY_SNI", "").lower() in ("1", "true", "yes")
+        if is_wayland or force_sni:
+            # Wayland (or explicit override): prefer SNI/AppIndicator.
+            try:
+                _setup_appindicator()
+                log.debug("Tray backend: AppIndicator/SNI")
+            except Exception:
+                log.warning("AppIndicator/SNI unavailable, falling back to StatusIcon")
+                _setup_status_icon()
+        else:
+            # X11 default: GtkStatusIcon gives predictable left/right click
+            # behavior across X11 trays. SNI is available via GUAKE_TRAY_SNI=1.
+            _setup_status_icon()
+            log.debug("Tray backend: GtkStatusIcon (X11 default)")
 
         self.display_tab_names = 0
 
