@@ -1,0 +1,5 @@
+fixes:
+  - |
+    Fix systray icon
+
+      - closes #2303

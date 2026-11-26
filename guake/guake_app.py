@@ -171,6 +171,8 @@ class Guake(SimpleGladeApp):
             self.tray_icon = appindicator.Indicator.new(
                 "guake-indicator", "guake-tray", appindicator.IndicatorCategory.APPLICATION_STATUS
             )
+            # Tell the indicator where to look for the icon.
+            self.tray_icon.set_icon_theme_path(os.path.dirname(img))
             self.tray_icon.set_icon_full("guake-tray", _("Guake Terminal"))
             self.tray_icon.set_status(appindicator.IndicatorStatus.ACTIVE)
             menu = self.get_widget("tray-menu")
